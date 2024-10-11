@@ -53,11 +53,11 @@ public open class CenterContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setUseTopLeftPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setUseTopLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("CenterContainer", "set_use_top_left", 2586408642)
 
-    public val isUsingTopLeftPtr: VoidPtr =
+    internal val isUsingTopLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("CenterContainer", "is_using_top_left", 36873697)
   }
 }

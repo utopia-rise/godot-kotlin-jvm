@@ -119,20 +119,20 @@ public open class BoxContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addSpacerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addSpacerPtr: VoidPtr =
         Internals.getMethodBindPtr("BoxContainer", "add_spacer", 1326660695)
 
-    public val setAlignmentPtr: VoidPtr =
+    internal val setAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("BoxContainer", "set_alignment", 2456745134)
 
-    public val getAlignmentPtr: VoidPtr =
+    internal val getAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("BoxContainer", "get_alignment", 1915476527)
 
-    public val setVerticalPtr: VoidPtr =
+    internal val setVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("BoxContainer", "set_vertical", 2586408642)
 
-    public val isVerticalPtr: VoidPtr =
+    internal val isVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("BoxContainer", "is_vertical", 36873697)
   }
 }

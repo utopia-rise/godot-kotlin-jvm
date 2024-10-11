@@ -154,20 +154,20 @@ public open class Shader : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getModePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_mode", 3392948163)
+  public object MethodBindings {
+    internal val getModePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_mode", 3392948163)
 
-    public val setCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "set_code", 83702148)
+    internal val setCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "set_code", 83702148)
 
-    public val getCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_code", 201670096)
+    internal val getCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_code", 201670096)
 
-    public val setDefaultTextureParameterPtr: VoidPtr =
+    internal val setDefaultTextureParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("Shader", "set_default_texture_parameter", 2750740428)
 
-    public val getDefaultTextureParameterPtr: VoidPtr =
+    internal val getDefaultTextureParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("Shader", "get_default_texture_parameter", 3090538643)
 
-    public val getShaderUniformListPtr: VoidPtr =
+    internal val getShaderUniformListPtr: VoidPtr =
         Internals.getMethodBindPtr("Shader", "get_shader_uniform_list", 1230511656)
   }
 }

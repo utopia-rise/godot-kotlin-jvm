@@ -218,35 +218,35 @@ public open class GraphElement : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setResizablePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setResizablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "set_resizable", 2586408642)
 
-    public val isResizablePtr: VoidPtr =
+    internal val isResizablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "is_resizable", 36873697)
 
-    public val setDraggablePtr: VoidPtr =
+    internal val setDraggablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "set_draggable", 2586408642)
 
-    public val isDraggablePtr: VoidPtr =
+    internal val isDraggablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "is_draggable", 2240911060)
 
-    public val setSelectablePtr: VoidPtr =
+    internal val setSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "set_selectable", 2586408642)
 
-    public val isSelectablePtr: VoidPtr =
+    internal val isSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "is_selectable", 2240911060)
 
-    public val setSelectedPtr: VoidPtr =
+    internal val setSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "set_selected", 2586408642)
 
-    public val isSelectedPtr: VoidPtr =
+    internal val isSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
 
-    public val setPositionOffsetPtr: VoidPtr =
+    internal val setPositionOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)
 
-    public val getPositionOffsetPtr: VoidPtr =
+    internal val getPositionOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphElement", "get_position_offset", 3341600327)
   }
 }

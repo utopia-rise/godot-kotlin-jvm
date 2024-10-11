@@ -25,5 +25,5 @@ public open class VisualShaderNodeProximityFade : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

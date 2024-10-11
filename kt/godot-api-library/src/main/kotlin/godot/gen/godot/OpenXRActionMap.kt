@@ -181,50 +181,50 @@ public open class OpenXRActionMap : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setActionSetsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setActionSetsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "set_action_sets", 381264803)
 
-    public val getActionSetsPtr: VoidPtr =
+    internal val getActionSetsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_action_sets", 3995934104)
 
-    public val getActionSetCountPtr: VoidPtr =
+    internal val getActionSetCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_action_set_count", 3905245786)
 
-    public val findActionSetPtr: VoidPtr =
+    internal val findActionSetPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "find_action_set", 1888809267)
 
-    public val getActionSetPtr: VoidPtr =
+    internal val getActionSetPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_action_set", 1789580336)
 
-    public val addActionSetPtr: VoidPtr =
+    internal val addActionSetPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "add_action_set", 2093310581)
 
-    public val removeActionSetPtr: VoidPtr =
+    internal val removeActionSetPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "remove_action_set", 2093310581)
 
-    public val setInteractionProfilesPtr: VoidPtr =
+    internal val setInteractionProfilesPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "set_interaction_profiles", 381264803)
 
-    public val getInteractionProfilesPtr: VoidPtr =
+    internal val getInteractionProfilesPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profiles", 3995934104)
 
-    public val getInteractionProfileCountPtr: VoidPtr =
+    internal val getInteractionProfileCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile_count", 3905245786)
 
-    public val findInteractionProfilePtr: VoidPtr =
+    internal val findInteractionProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "find_interaction_profile", 3095875538)
 
-    public val getInteractionProfilePtr: VoidPtr =
+    internal val getInteractionProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile", 2546151210)
 
-    public val addInteractionProfilePtr: VoidPtr =
+    internal val addInteractionProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "add_interaction_profile", 2697953512)
 
-    public val removeInteractionProfilePtr: VoidPtr =
+    internal val removeInteractionProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "remove_interaction_profile", 2697953512)
 
-    public val createDefaultActionSetsPtr: VoidPtr =
+    internal val createDefaultActionSetsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionMap", "create_default_action_sets", 3218959716)
   }
 }

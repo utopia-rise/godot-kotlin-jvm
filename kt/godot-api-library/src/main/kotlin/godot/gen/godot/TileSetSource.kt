@@ -99,23 +99,23 @@ public open class TileSetSource internal constructor() : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTilesCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTilesCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "get_tiles_count", 3905245786)
 
-    public val getTileIdPtr: VoidPtr =
+    internal val getTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "get_tile_id", 880721226)
 
-    public val hasTilePtr: VoidPtr =
+    internal val hasTilePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "has_tile", 3900751641)
 
-    public val getAlternativeTilesCountPtr: VoidPtr =
+    internal val getAlternativeTilesCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "get_alternative_tiles_count", 2485466453)
 
-    public val getAlternativeTileIdPtr: VoidPtr =
+    internal val getAlternativeTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "get_alternative_tile_id", 89881719)
 
-    public val hasAlternativeTilePtr: VoidPtr =
+    internal val hasAlternativeTilePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetSource", "has_alternative_tile", 1073731340)
   }
 }

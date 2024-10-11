@@ -166,34 +166,35 @@ public open class XRNode3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTrackerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "set_tracker", 3304788590)
 
-    public val getTrackerPtr: VoidPtr =
+    internal val getTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "get_tracker", 2002593661)
 
-    public val setPoseNamePtr: VoidPtr =
+    internal val setPoseNamePtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "set_pose_name", 3304788590)
 
-    public val getPoseNamePtr: VoidPtr =
+    internal val getPoseNamePtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "get_pose_name", 2002593661)
 
-    public val setShowWhenTrackedPtr: VoidPtr =
+    internal val setShowWhenTrackedPtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2586408642)
 
-    public val getShowWhenTrackedPtr: VoidPtr =
+    internal val getShowWhenTrackedPtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36873697)
 
-    public val getIsActivePtr: VoidPtr =
+    internal val getIsActivePtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "get_is_active", 36873697)
 
-    public val getHasTrackingDataPtr: VoidPtr =
+    internal val getHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36873697)
 
-    public val getPosePtr: VoidPtr = Internals.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
+    internal val getPosePtr: VoidPtr =
+        Internals.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
 
-    public val triggerHapticPulsePtr: VoidPtr =
+    internal val triggerHapticPulsePtr: VoidPtr =
         Internals.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508576839)
   }
 }

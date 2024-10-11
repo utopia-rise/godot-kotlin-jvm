@@ -176,5 +176,5 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

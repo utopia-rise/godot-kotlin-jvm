@@ -71,15 +71,15 @@ public open class X509Certificate : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val savePtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "save", 166001499)
+  public object MethodBindings {
+    internal val savePtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "save", 166001499)
 
-    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "load", 166001499)
+    internal val loadPtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "load", 166001499)
 
-    public val saveToStringPtr: VoidPtr =
+    internal val saveToStringPtr: VoidPtr =
         Internals.getMethodBindPtr("X509Certificate", "save_to_string", 2841200299)
 
-    public val loadFromStringPtr: VoidPtr =
+    internal val loadFromStringPtr: VoidPtr =
         Internals.getMethodBindPtr("X509Certificate", "load_from_string", 166001499)
   }
 }

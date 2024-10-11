@@ -176,44 +176,44 @@ public object InputMap : Object() {
     Internals.callMethod(rawPtr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }
 
-  internal object MethodBindings {
-    public val hasActionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "has_action", 2619796661)
 
-    public val getActionsPtr: VoidPtr =
+    internal val getActionsPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "get_actions", 2915620761)
 
-    public val addActionPtr: VoidPtr =
+    internal val addActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "add_action", 4100757082)
 
-    public val eraseActionPtr: VoidPtr =
+    internal val eraseActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "erase_action", 3304788590)
 
-    public val actionSetDeadzonePtr: VoidPtr =
+    internal val actionSetDeadzonePtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_set_deadzone", 4135858297)
 
-    public val actionGetDeadzonePtr: VoidPtr =
+    internal val actionGetDeadzonePtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_get_deadzone", 1391627649)
 
-    public val actionAddEventPtr: VoidPtr =
+    internal val actionAddEventPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_add_event", 518302593)
 
-    public val actionHasEventPtr: VoidPtr =
+    internal val actionHasEventPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_has_event", 1185871985)
 
-    public val actionEraseEventPtr: VoidPtr =
+    internal val actionEraseEventPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_erase_event", 518302593)
 
-    public val actionEraseEventsPtr: VoidPtr =
+    internal val actionEraseEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_erase_events", 3304788590)
 
-    public val actionGetEventsPtr: VoidPtr =
+    internal val actionGetEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "action_get_events", 689397652)
 
-    public val eventIsActionPtr: VoidPtr =
+    internal val eventIsActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "event_is_action", 3193353650)
 
-    public val loadFromProjectSettingsPtr: VoidPtr =
+    internal val loadFromProjectSettingsPtr: VoidPtr =
         Internals.getMethodBindPtr("InputMap", "load_from_project_settings", 3218959716)
   }
 }

@@ -64,10 +64,11 @@ public open class VideoStream : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFilePtr: VoidPtr = Internals.getMethodBindPtr("VideoStream", "set_file", 83702148)
+  public object MethodBindings {
+    internal val setFilePtr: VoidPtr =
+        Internals.getMethodBindPtr("VideoStream", "set_file", 83702148)
 
-    public val getFilePtr: VoidPtr =
+    internal val getFilePtr: VoidPtr =
         Internals.getMethodBindPtr("VideoStream", "get_file", 2841200299)
   }
 }

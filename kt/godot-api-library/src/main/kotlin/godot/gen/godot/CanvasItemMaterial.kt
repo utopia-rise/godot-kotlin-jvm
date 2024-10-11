@@ -240,41 +240,41 @@ public open class CanvasItemMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBlendModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode", 1786054936)
 
-    public val getBlendModePtr: VoidPtr =
+    internal val getBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode", 3318684035)
 
-    public val setLightModePtr: VoidPtr =
+    internal val setLightModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_light_mode", 628074070)
 
-    public val getLightModePtr: VoidPtr =
+    internal val getLightModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_light_mode", 3863292382)
 
-    public val setParticlesAnimationPtr: VoidPtr =
+    internal val setParticlesAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation", 2586408642)
 
-    public val getParticlesAnimationPtr: VoidPtr =
+    internal val getParticlesAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation", 36873697)
 
-    public val setParticlesAnimHFramesPtr: VoidPtr =
+    internal val setParticlesAnimHFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames", 1286410249)
 
-    public val getParticlesAnimHFramesPtr: VoidPtr =
+    internal val getParticlesAnimHFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames", 3905245786)
 
-    public val setParticlesAnimVFramesPtr: VoidPtr =
+    internal val setParticlesAnimVFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames", 1286410249)
 
-    public val getParticlesAnimVFramesPtr: VoidPtr =
+    internal val getParticlesAnimVFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames", 3905245786)
 
-    public val setParticlesAnimLoopPtr: VoidPtr =
+    internal val setParticlesAnimLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop", 2586408642)
 
-    public val getParticlesAnimLoopPtr: VoidPtr =
+    internal val getParticlesAnimLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop", 36873697)
   }
 }

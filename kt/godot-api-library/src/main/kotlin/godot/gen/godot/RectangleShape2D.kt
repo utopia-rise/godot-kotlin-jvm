@@ -82,11 +82,11 @@ public open class RectangleShape2D : Shape2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RectangleShape2D", "set_size", 743155724)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RectangleShape2D", "get_size", 3341600327)
   }
 }

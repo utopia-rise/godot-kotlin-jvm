@@ -311,62 +311,62 @@ public open class Range : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_value", 1740695150)
+  public object MethodBindings {
+    internal val getValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_value", 1740695150)
 
-    public val getMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_min", 1740695150)
+    internal val getMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_min", 1740695150)
 
-    public val getMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_max", 1740695150)
+    internal val getMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_max", 1740695150)
 
-    public val getStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_step", 1740695150)
+    internal val getStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_step", 1740695150)
 
-    public val getPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_page", 1740695150)
+    internal val getPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_page", 1740695150)
 
-    public val getAsRatioPtr: VoidPtr =
+    internal val getAsRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "get_as_ratio", 1740695150)
 
-    public val setValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_value", 373806689)
+    internal val setValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_value", 373806689)
 
-    public val setValueNoSignalPtr: VoidPtr =
+    internal val setValueNoSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_value_no_signal", 373806689)
 
-    public val setMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_min", 373806689)
+    internal val setMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_min", 373806689)
 
-    public val setMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_max", 373806689)
+    internal val setMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_max", 373806689)
 
-    public val setStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_step", 373806689)
+    internal val setStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_step", 373806689)
 
-    public val setPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_page", 373806689)
+    internal val setPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_page", 373806689)
 
-    public val setAsRatioPtr: VoidPtr =
+    internal val setAsRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_as_ratio", 373806689)
 
-    public val setUseRoundedValuesPtr: VoidPtr =
+    internal val setUseRoundedValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_use_rounded_values", 2586408642)
 
-    public val isUsingRoundedValuesPtr: VoidPtr =
+    internal val isUsingRoundedValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "is_using_rounded_values", 36873697)
 
-    public val setExpRatioPtr: VoidPtr =
+    internal val setExpRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_exp_ratio", 2586408642)
 
-    public val isRatioExpPtr: VoidPtr =
+    internal val isRatioExpPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "is_ratio_exp", 36873697)
 
-    public val setAllowGreaterPtr: VoidPtr =
+    internal val setAllowGreaterPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_allow_greater", 2586408642)
 
-    public val isGreaterAllowedPtr: VoidPtr =
+    internal val isGreaterAllowedPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "is_greater_allowed", 36873697)
 
-    public val setAllowLesserPtr: VoidPtr =
+    internal val setAllowLesserPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "set_allow_lesser", 2586408642)
 
-    public val isLesserAllowedPtr: VoidPtr =
+    internal val isLesserAllowedPtr: VoidPtr =
         Internals.getMethodBindPtr("Range", "is_lesser_allowed", 36873697)
 
-    public val sharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "share", 1078189570)
+    internal val sharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "share", 1078189570)
 
-    public val unsharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "unshare", 3218959716)
+    internal val unsharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "unshare", 3218959716)
   }
 }

@@ -325,80 +325,80 @@ public open class Curve : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPointCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_count", 3905245786)
 
-    public val setPointCountPtr: VoidPtr =
+    internal val setPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Curve", "add_point", 434072736)
+    internal val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Curve", "add_point", 434072736)
 
-    public val removePointPtr: VoidPtr =
+    internal val removePointPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr =
+    internal val clearPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "clear_points", 3218959716)
 
-    public val getPointPositionPtr: VoidPtr =
+    internal val getPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_position", 2299179447)
 
-    public val setPointValuePtr: VoidPtr =
+    internal val setPointValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_value", 1602489585)
 
-    public val setPointOffsetPtr: VoidPtr =
+    internal val setPointOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_offset", 3780573764)
 
-    public val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve", "sample", 3919130443)
+    internal val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve", "sample", 3919130443)
 
-    public val sampleBakedPtr: VoidPtr =
+    internal val sampleBakedPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "sample_baked", 3919130443)
 
-    public val getPointLeftTangentPtr: VoidPtr =
+    internal val getPointLeftTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_left_tangent", 2339986948)
 
-    public val getPointRightTangentPtr: VoidPtr =
+    internal val getPointRightTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_right_tangent", 2339986948)
 
-    public val getPointLeftModePtr: VoidPtr =
+    internal val getPointLeftModePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_left_mode", 426950354)
 
-    public val getPointRightModePtr: VoidPtr =
+    internal val getPointRightModePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_point_right_mode", 426950354)
 
-    public val setPointLeftTangentPtr: VoidPtr =
+    internal val setPointLeftTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_left_tangent", 1602489585)
 
-    public val setPointRightTangentPtr: VoidPtr =
+    internal val setPointRightTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_right_tangent", 1602489585)
 
-    public val setPointLeftModePtr: VoidPtr =
+    internal val setPointLeftModePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_left_mode", 1217242874)
 
-    public val setPointRightModePtr: VoidPtr =
+    internal val setPointRightModePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_point_right_mode", 1217242874)
 
-    public val getMinValuePtr: VoidPtr =
+    internal val getMinValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_min_value", 1740695150)
 
-    public val setMinValuePtr: VoidPtr =
+    internal val setMinValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_min_value", 373806689)
 
-    public val getMaxValuePtr: VoidPtr =
+    internal val getMaxValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_max_value", 1740695150)
 
-    public val setMaxValuePtr: VoidPtr =
+    internal val setMaxValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_max_value", 373806689)
 
-    public val cleanDupesPtr: VoidPtr =
+    internal val cleanDupesPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "clean_dupes", 3218959716)
 
-    public val bakePtr: VoidPtr = Internals.getMethodBindPtr("Curve", "bake", 3218959716)
+    internal val bakePtr: VoidPtr = Internals.getMethodBindPtr("Curve", "bake", 3218959716)
 
-    public val getBakeResolutionPtr: VoidPtr =
+    internal val getBakeResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "get_bake_resolution", 3905245786)
 
-    public val setBakeResolutionPtr: VoidPtr =
+    internal val setBakeResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve", "set_bake_resolution", 1286410249)
   }
 }

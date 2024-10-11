@@ -1286,332 +1286,332 @@ public open class CodeEdit : TextEdit() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setIndentSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setIndentSizePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_indent_size", 1286410249)
 
-    public val getIndentSizePtr: VoidPtr =
+    internal val getIndentSizePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_indent_size", 3905245786)
 
-    public val setIndentUsingSpacesPtr: VoidPtr =
+    internal val setIndentUsingSpacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_indent_using_spaces", 2586408642)
 
-    public val isIndentUsingSpacesPtr: VoidPtr =
+    internal val isIndentUsingSpacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_indent_using_spaces", 36873697)
 
-    public val setAutoIndentEnabledPtr: VoidPtr =
+    internal val setAutoIndentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_auto_indent_enabled", 2586408642)
 
-    public val isAutoIndentEnabledPtr: VoidPtr =
+    internal val isAutoIndentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_auto_indent_enabled", 36873697)
 
-    public val setAutoIndentPrefixesPtr: VoidPtr =
+    internal val setAutoIndentPrefixesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_auto_indent_prefixes", 381264803)
 
-    public val getAutoIndentPrefixesPtr: VoidPtr =
+    internal val getAutoIndentPrefixesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_auto_indent_prefixes", 3995934104)
 
-    public val doIndentPtr: VoidPtr =
+    internal val doIndentPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "do_indent", 3218959716)
 
-    public val indentLinesPtr: VoidPtr =
+    internal val indentLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "indent_lines", 3218959716)
 
-    public val unindentLinesPtr: VoidPtr =
+    internal val unindentLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "unindent_lines", 3218959716)
 
-    public val convertIndentPtr: VoidPtr =
+    internal val convertIndentPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "convert_indent", 423910286)
 
-    public val setAutoBraceCompletionEnabledPtr: VoidPtr =
+    internal val setAutoBraceCompletionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_auto_brace_completion_enabled", 2586408642)
 
-    public val isAutoBraceCompletionEnabledPtr: VoidPtr =
+    internal val isAutoBraceCompletionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_auto_brace_completion_enabled", 36873697)
 
-    public val setHighlightMatchingBracesEnabledPtr: VoidPtr =
+    internal val setHighlightMatchingBracesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_highlight_matching_braces_enabled", 2586408642)
 
-    public val isHighlightMatchingBracesEnabledPtr: VoidPtr =
+    internal val isHighlightMatchingBracesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_highlight_matching_braces_enabled", 36873697)
 
-    public val addAutoBraceCompletionPairPtr: VoidPtr =
+    internal val addAutoBraceCompletionPairPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "add_auto_brace_completion_pair", 3186203200)
 
-    public val setAutoBraceCompletionPairsPtr: VoidPtr =
+    internal val setAutoBraceCompletionPairsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_auto_brace_completion_pairs", 4155329257)
 
-    public val getAutoBraceCompletionPairsPtr: VoidPtr =
+    internal val getAutoBraceCompletionPairsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_auto_brace_completion_pairs", 3102165223)
 
-    public val hasAutoBraceCompletionOpenKeyPtr: VoidPtr =
+    internal val hasAutoBraceCompletionOpenKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "has_auto_brace_completion_open_key", 3927539163)
 
-    public val hasAutoBraceCompletionCloseKeyPtr: VoidPtr =
+    internal val hasAutoBraceCompletionCloseKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "has_auto_brace_completion_close_key", 3927539163)
 
-    public val getAutoBraceCompletionCloseKeyPtr: VoidPtr =
+    internal val getAutoBraceCompletionCloseKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_auto_brace_completion_close_key", 3135753539)
 
-    public val setDrawBreakpointsGutterPtr: VoidPtr =
+    internal val setDrawBreakpointsGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_draw_breakpoints_gutter", 2586408642)
 
-    public val isDrawingBreakpointsGutterPtr: VoidPtr =
+    internal val isDrawingBreakpointsGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_drawing_breakpoints_gutter", 36873697)
 
-    public val setDrawBookmarksGutterPtr: VoidPtr =
+    internal val setDrawBookmarksGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_draw_bookmarks_gutter", 2586408642)
 
-    public val isDrawingBookmarksGutterPtr: VoidPtr =
+    internal val isDrawingBookmarksGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_drawing_bookmarks_gutter", 36873697)
 
-    public val setDrawExecutingLinesGutterPtr: VoidPtr =
+    internal val setDrawExecutingLinesGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_draw_executing_lines_gutter", 2586408642)
 
-    public val isDrawingExecutingLinesGutterPtr: VoidPtr =
+    internal val isDrawingExecutingLinesGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_drawing_executing_lines_gutter", 36873697)
 
-    public val setLineAsBreakpointPtr: VoidPtr =
+    internal val setLineAsBreakpointPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_as_breakpoint", 300928843)
 
-    public val isLineBreakpointedPtr: VoidPtr =
+    internal val isLineBreakpointedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_breakpointed", 1116898809)
 
-    public val clearBreakpointedLinesPtr: VoidPtr =
+    internal val clearBreakpointedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "clear_breakpointed_lines", 3218959716)
 
-    public val getBreakpointedLinesPtr: VoidPtr =
+    internal val getBreakpointedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_breakpointed_lines", 1930428628)
 
-    public val setLineAsBookmarkedPtr: VoidPtr =
+    internal val setLineAsBookmarkedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_as_bookmarked", 300928843)
 
-    public val isLineBookmarkedPtr: VoidPtr =
+    internal val isLineBookmarkedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_bookmarked", 1116898809)
 
-    public val clearBookmarkedLinesPtr: VoidPtr =
+    internal val clearBookmarkedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "clear_bookmarked_lines", 3218959716)
 
-    public val getBookmarkedLinesPtr: VoidPtr =
+    internal val getBookmarkedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_bookmarked_lines", 1930428628)
 
-    public val setLineAsExecutingPtr: VoidPtr =
+    internal val setLineAsExecutingPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_as_executing", 300928843)
 
-    public val isLineExecutingPtr: VoidPtr =
+    internal val isLineExecutingPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_executing", 1116898809)
 
-    public val clearExecutingLinesPtr: VoidPtr =
+    internal val clearExecutingLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "clear_executing_lines", 3218959716)
 
-    public val getExecutingLinesPtr: VoidPtr =
+    internal val getExecutingLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_executing_lines", 1930428628)
 
-    public val setDrawLineNumbersPtr: VoidPtr =
+    internal val setDrawLineNumbersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_draw_line_numbers", 2586408642)
 
-    public val isDrawLineNumbersEnabledPtr: VoidPtr =
+    internal val isDrawLineNumbersEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_draw_line_numbers_enabled", 36873697)
 
-    public val setLineNumbersZeroPaddedPtr: VoidPtr =
+    internal val setLineNumbersZeroPaddedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_numbers_zero_padded", 2586408642)
 
-    public val isLineNumbersZeroPaddedPtr: VoidPtr =
+    internal val isLineNumbersZeroPaddedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_numbers_zero_padded", 36873697)
 
-    public val setDrawFoldGutterPtr: VoidPtr =
+    internal val setDrawFoldGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_draw_fold_gutter", 2586408642)
 
-    public val isDrawingFoldGutterPtr: VoidPtr =
+    internal val isDrawingFoldGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_drawing_fold_gutter", 36873697)
 
-    public val setLineFoldingEnabledPtr: VoidPtr =
+    internal val setLineFoldingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_folding_enabled", 2586408642)
 
-    public val isLineFoldingEnabledPtr: VoidPtr =
+    internal val isLineFoldingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_folding_enabled", 36873697)
 
-    public val canFoldLinePtr: VoidPtr =
+    internal val canFoldLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "can_fold_line", 1116898809)
 
-    public val foldLinePtr: VoidPtr =
+    internal val foldLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "fold_line", 1286410249)
 
-    public val unfoldLinePtr: VoidPtr =
+    internal val unfoldLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "unfold_line", 1286410249)
 
-    public val foldAllLinesPtr: VoidPtr =
+    internal val foldAllLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "fold_all_lines", 3218959716)
 
-    public val unfoldAllLinesPtr: VoidPtr =
+    internal val unfoldAllLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "unfold_all_lines", 3218959716)
 
-    public val toggleFoldableLinePtr: VoidPtr =
+    internal val toggleFoldableLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "toggle_foldable_line", 1286410249)
 
-    public val toggleFoldableLinesAtCaretsPtr: VoidPtr =
+    internal val toggleFoldableLinesAtCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "toggle_foldable_lines_at_carets", 3218959716)
 
-    public val isLineFoldedPtr: VoidPtr =
+    internal val isLineFoldedPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_folded", 1116898809)
 
-    public val getFoldedLinesPtr: VoidPtr =
+    internal val getFoldedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_folded_lines", 3995934104)
 
-    public val createCodeRegionPtr: VoidPtr =
+    internal val createCodeRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "create_code_region", 3218959716)
 
-    public val getCodeRegionStartTagPtr: VoidPtr =
+    internal val getCodeRegionStartTagPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_region_start_tag", 201670096)
 
-    public val getCodeRegionEndTagPtr: VoidPtr =
+    internal val getCodeRegionEndTagPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_region_end_tag", 201670096)
 
-    public val setCodeRegionTagsPtr: VoidPtr =
+    internal val setCodeRegionTagsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_region_tags", 708800718)
 
-    public val isLineCodeRegionStartPtr: VoidPtr =
+    internal val isLineCodeRegionStartPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_code_region_start", 1116898809)
 
-    public val isLineCodeRegionEndPtr: VoidPtr =
+    internal val isLineCodeRegionEndPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_line_code_region_end", 1116898809)
 
-    public val addStringDelimiterPtr: VoidPtr =
+    internal val addStringDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "add_string_delimiter", 3146098955)
 
-    public val removeStringDelimiterPtr: VoidPtr =
+    internal val removeStringDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "remove_string_delimiter", 83702148)
 
-    public val hasStringDelimiterPtr: VoidPtr =
+    internal val hasStringDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "has_string_delimiter", 3927539163)
 
-    public val setStringDelimitersPtr: VoidPtr =
+    internal val setStringDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_string_delimiters", 381264803)
 
-    public val clearStringDelimitersPtr: VoidPtr =
+    internal val clearStringDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "clear_string_delimiters", 3218959716)
 
-    public val getStringDelimitersPtr: VoidPtr =
+    internal val getStringDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_string_delimiters", 3995934104)
 
-    public val isInStringPtr: VoidPtr =
+    internal val isInStringPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_in_string", 688195400)
 
-    public val addCommentDelimiterPtr: VoidPtr =
+    internal val addCommentDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "add_comment_delimiter", 3146098955)
 
-    public val removeCommentDelimiterPtr: VoidPtr =
+    internal val removeCommentDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "remove_comment_delimiter", 83702148)
 
-    public val hasCommentDelimiterPtr: VoidPtr =
+    internal val hasCommentDelimiterPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "has_comment_delimiter", 3927539163)
 
-    public val setCommentDelimitersPtr: VoidPtr =
+    internal val setCommentDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_comment_delimiters", 381264803)
 
-    public val clearCommentDelimitersPtr: VoidPtr =
+    internal val clearCommentDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "clear_comment_delimiters", 3218959716)
 
-    public val getCommentDelimitersPtr: VoidPtr =
+    internal val getCommentDelimitersPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_comment_delimiters", 3995934104)
 
-    public val isInCommentPtr: VoidPtr =
+    internal val isInCommentPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_in_comment", 688195400)
 
-    public val getDelimiterStartKeyPtr: VoidPtr =
+    internal val getDelimiterStartKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_delimiter_start_key", 844755477)
 
-    public val getDelimiterEndKeyPtr: VoidPtr =
+    internal val getDelimiterEndKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_delimiter_end_key", 844755477)
 
-    public val getDelimiterStartPositionPtr: VoidPtr =
+    internal val getDelimiterStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_delimiter_start_position", 3016396712)
 
-    public val getDelimiterEndPositionPtr: VoidPtr =
+    internal val getDelimiterEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_delimiter_end_position", 3016396712)
 
-    public val setCodeHintPtr: VoidPtr =
+    internal val setCodeHintPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_hint", 83702148)
 
-    public val setCodeHintDrawBelowPtr: VoidPtr =
+    internal val setCodeHintDrawBelowPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_hint_draw_below", 2586408642)
 
-    public val getTextForCodeCompletionPtr: VoidPtr =
+    internal val getTextForCodeCompletionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_text_for_code_completion", 201670096)
 
-    public val requestCodeCompletionPtr: VoidPtr =
+    internal val requestCodeCompletionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "request_code_completion", 107499316)
 
-    public val addCodeCompletionOptionPtr: VoidPtr =
+    internal val addCodeCompletionOptionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "add_code_completion_option", 3944379502)
 
-    public val updateCodeCompletionOptionsPtr: VoidPtr =
+    internal val updateCodeCompletionOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "update_code_completion_options", 2586408642)
 
-    public val getCodeCompletionOptionsPtr: VoidPtr =
+    internal val getCodeCompletionOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_completion_options", 3995934104)
 
-    public val getCodeCompletionOptionPtr: VoidPtr =
+    internal val getCodeCompletionOptionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_completion_option", 3485342025)
 
-    public val getCodeCompletionSelectedIndexPtr: VoidPtr =
+    internal val getCodeCompletionSelectedIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_completion_selected_index", 3905245786)
 
-    public val setCodeCompletionSelectedIndexPtr: VoidPtr =
+    internal val setCodeCompletionSelectedIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_completion_selected_index", 1286410249)
 
-    public val confirmCodeCompletionPtr: VoidPtr =
+    internal val confirmCodeCompletionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "confirm_code_completion", 107499316)
 
-    public val cancelCodeCompletionPtr: VoidPtr =
+    internal val cancelCodeCompletionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "cancel_code_completion", 3218959716)
 
-    public val setCodeCompletionEnabledPtr: VoidPtr =
+    internal val setCodeCompletionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_completion_enabled", 2586408642)
 
-    public val isCodeCompletionEnabledPtr: VoidPtr =
+    internal val isCodeCompletionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_code_completion_enabled", 36873697)
 
-    public val setCodeCompletionPrefixesPtr: VoidPtr =
+    internal val setCodeCompletionPrefixesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_code_completion_prefixes", 381264803)
 
-    public val getCodeCompletionPrefixesPtr: VoidPtr =
+    internal val getCodeCompletionPrefixesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_code_completion_prefixes", 3995934104)
 
-    public val setLineLengthGuidelinesPtr: VoidPtr =
+    internal val setLineLengthGuidelinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_line_length_guidelines", 381264803)
 
-    public val getLineLengthGuidelinesPtr: VoidPtr =
+    internal val getLineLengthGuidelinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_line_length_guidelines", 3995934104)
 
-    public val setSymbolLookupOnClickEnabledPtr: VoidPtr =
+    internal val setSymbolLookupOnClickEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_symbol_lookup_on_click_enabled", 2586408642)
 
-    public val isSymbolLookupOnClickEnabledPtr: VoidPtr =
+    internal val isSymbolLookupOnClickEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "is_symbol_lookup_on_click_enabled", 36873697)
 
-    public val getTextForSymbolLookupPtr: VoidPtr =
+    internal val getTextForSymbolLookupPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_text_for_symbol_lookup", 201670096)
 
-    public val getTextWithCursorCharPtr: VoidPtr =
+    internal val getTextWithCursorCharPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "get_text_with_cursor_char", 1391810591)
 
-    public val setSymbolLookupWordAsValidPtr: VoidPtr =
+    internal val setSymbolLookupWordAsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "set_symbol_lookup_word_as_valid", 2586408642)
 
-    public val moveLinesUpPtr: VoidPtr =
+    internal val moveLinesUpPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "move_lines_up", 3218959716)
 
-    public val moveLinesDownPtr: VoidPtr =
+    internal val moveLinesDownPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "move_lines_down", 3218959716)
 
-    public val deleteLinesPtr: VoidPtr =
+    internal val deleteLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "delete_lines", 3218959716)
 
-    public val duplicateSelectionPtr: VoidPtr =
+    internal val duplicateSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "duplicate_selection", 3218959716)
 
-    public val duplicateLinesPtr: VoidPtr =
+    internal val duplicateLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("CodeEdit", "duplicate_lines", 3218959716)
   }
 }

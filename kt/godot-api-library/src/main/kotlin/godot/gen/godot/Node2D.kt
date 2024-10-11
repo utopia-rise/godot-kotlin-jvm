@@ -563,95 +563,98 @@ public open class Node2D : CanvasItem() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPositionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_position", 743155724)
 
-    public val setRotationPtr: VoidPtr =
+    internal val setRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_rotation", 373806689)
 
-    public val setRotationDegreesPtr: VoidPtr =
+    internal val setRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_rotation_degrees", 373806689)
 
-    public val setSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_skew", 373806689)
+    internal val setSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_skew", 373806689)
 
-    public val setScalePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_scale", 743155724)
+    internal val setScalePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_scale", 743155724)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_position", 3341600327)
 
-    public val getRotationPtr: VoidPtr =
+    internal val getRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_rotation", 1740695150)
 
-    public val getRotationDegreesPtr: VoidPtr =
+    internal val getRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_rotation_degrees", 1740695150)
 
-    public val getSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "get_skew", 1740695150)
+    internal val getSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "get_skew", 1740695150)
 
-    public val getScalePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "get_scale", 3341600327)
+    internal val getScalePtr: VoidPtr =
+        Internals.getMethodBindPtr("Node2D", "get_scale", 3341600327)
 
-    public val rotatePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "rotate", 373806689)
+    internal val rotatePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "rotate", 373806689)
 
-    public val moveLocalXPtr: VoidPtr =
+    internal val moveLocalXPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "move_local_x", 2087892650)
 
-    public val moveLocalYPtr: VoidPtr =
+    internal val moveLocalYPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "move_local_y", 2087892650)
 
-    public val translatePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "translate", 743155724)
+    internal val translatePtr: VoidPtr =
+        Internals.getMethodBindPtr("Node2D", "translate", 743155724)
 
-    public val globalTranslatePtr: VoidPtr =
+    internal val globalTranslatePtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "global_translate", 743155724)
 
-    public val applyScalePtr: VoidPtr =
+    internal val applyScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "apply_scale", 743155724)
 
-    public val setGlobalPositionPtr: VoidPtr =
+    internal val setGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_position", 743155724)
 
-    public val getGlobalPositionPtr: VoidPtr =
+    internal val getGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_global_position", 3341600327)
 
-    public val setGlobalRotationPtr: VoidPtr =
+    internal val setGlobalRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_rotation", 373806689)
 
-    public val setGlobalRotationDegreesPtr: VoidPtr =
+    internal val setGlobalRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_rotation_degrees", 373806689)
 
-    public val getGlobalRotationPtr: VoidPtr =
+    internal val getGlobalRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_global_rotation", 1740695150)
 
-    public val getGlobalRotationDegreesPtr: VoidPtr =
+    internal val getGlobalRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_global_rotation_degrees", 1740695150)
 
-    public val setGlobalSkewPtr: VoidPtr =
+    internal val setGlobalSkewPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_skew", 373806689)
 
-    public val getGlobalSkewPtr: VoidPtr =
+    internal val getGlobalSkewPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_global_skew", 1740695150)
 
-    public val setGlobalScalePtr: VoidPtr =
+    internal val setGlobalScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_scale", 743155724)
 
-    public val getGlobalScalePtr: VoidPtr =
+    internal val getGlobalScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_global_scale", 3341600327)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_transform", 2761652528)
 
-    public val setGlobalTransformPtr: VoidPtr =
+    internal val setGlobalTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "set_global_transform", 2761652528)
 
-    public val lookAtPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "look_at", 743155724)
+    internal val lookAtPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "look_at", 743155724)
 
-    public val getAngleToPtr: VoidPtr =
+    internal val getAngleToPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_angle_to", 2276447920)
 
-    public val toLocalPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "to_local", 2656412154)
+    internal val toLocalPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "to_local", 2656412154)
 
-    public val toGlobalPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "to_global", 2656412154)
+    internal val toGlobalPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node2D", "to_global", 2656412154)
 
-    public val getRelativeTransformToParentPtr: VoidPtr =
+    internal val getRelativeTransformToParentPtr: VoidPtr =
         Internals.getMethodBindPtr("Node2D", "get_relative_transform_to_parent", 904556875)
   }
 }

@@ -205,5 +205,5 @@ public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D()
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

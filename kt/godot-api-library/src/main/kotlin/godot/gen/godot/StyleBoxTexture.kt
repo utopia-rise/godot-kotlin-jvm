@@ -417,59 +417,59 @@ public open class StyleBoxTexture : StyleBox() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_texture", 3635182373)
 
-    public val setTextureMarginPtr: VoidPtr =
+    internal val setTextureMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_texture_margin", 4290182280)
 
-    public val setTextureMarginAllPtr: VoidPtr =
+    internal val setTextureMarginAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all", 373806689)
 
-    public val getTextureMarginPtr: VoidPtr =
+    internal val getTextureMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_texture_margin", 2869120046)
 
-    public val setExpandMarginPtr: VoidPtr =
+    internal val setExpandMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_expand_margin", 4290182280)
 
-    public val setExpandMarginAllPtr: VoidPtr =
+    internal val setExpandMarginAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all", 373806689)
 
-    public val getExpandMarginPtr: VoidPtr =
+    internal val getExpandMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_expand_margin", 2869120046)
 
-    public val setRegionRectPtr: VoidPtr =
+    internal val setRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_region_rect", 2046264180)
 
-    public val getRegionRectPtr: VoidPtr =
+    internal val getRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_region_rect", 1639390495)
 
-    public val setDrawCenterPtr: VoidPtr =
+    internal val setDrawCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_draw_center", 2586408642)
 
-    public val isDrawCenterEnabledPtr: VoidPtr =
+    internal val isDrawCenterEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled", 36873697)
 
-    public val setModulatePtr: VoidPtr =
+    internal val setModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr =
+    internal val getModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_modulate", 3444240500)
 
-    public val setHAxisStretchModePtr: VoidPtr =
+    internal val setHAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode", 2965538783)
 
-    public val getHAxisStretchModePtr: VoidPtr =
+    internal val getHAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode", 3807744063)
 
-    public val setVAxisStretchModePtr: VoidPtr =
+    internal val setVAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode", 2965538783)
 
-    public val getVAxisStretchModePtr: VoidPtr =
+    internal val getVAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode", 3807744063)
   }
 }

@@ -1239,309 +1239,311 @@ public open class FontFile : Font() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val loadBitmapFontPtr: VoidPtr =
+  public object MethodBindings {
+    internal val loadBitmapFontPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "load_bitmap_font", 166001499)
 
-    public val loadDynamicFontPtr: VoidPtr =
+    internal val loadDynamicFontPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "load_dynamic_font", 166001499)
 
-    public val setDataPtr: VoidPtr = Internals.getMethodBindPtr("FontFile", "set_data", 2971499966)
+    internal val setDataPtr: VoidPtr =
+        Internals.getMethodBindPtr("FontFile", "set_data", 2971499966)
 
-    public val getDataPtr: VoidPtr = Internals.getMethodBindPtr("FontFile", "get_data", 2362200018)
+    internal val getDataPtr: VoidPtr =
+        Internals.getMethodBindPtr("FontFile", "get_data", 2362200018)
 
-    public val setFontNamePtr: VoidPtr =
+    internal val setFontNamePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_font_name", 83702148)
 
-    public val setFontStyleNamePtr: VoidPtr =
+    internal val setFontStyleNamePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_font_style_name", 83702148)
 
-    public val setFontStylePtr: VoidPtr =
+    internal val setFontStylePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_font_style", 918070724)
 
-    public val setFontWeightPtr: VoidPtr =
+    internal val setFontWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_font_weight", 1286410249)
 
-    public val setFontStretchPtr: VoidPtr =
+    internal val setFontStretchPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_font_stretch", 1286410249)
 
-    public val setAntialiasingPtr: VoidPtr =
+    internal val setAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_antialiasing", 1669900)
 
-    public val getAntialiasingPtr: VoidPtr =
+    internal val getAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_antialiasing", 4262718649)
 
-    public val setDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val setDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps", 2586408642)
 
-    public val getDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val getDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps", 36873697)
 
-    public val setGenerateMipmapsPtr: VoidPtr =
+    internal val setGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_generate_mipmaps", 2586408642)
 
-    public val getGenerateMipmapsPtr: VoidPtr =
+    internal val getGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_generate_mipmaps", 36873697)
 
-    public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val setMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_multichannel_signed_distance_field", 2586408642)
 
-    public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val isMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "is_multichannel_signed_distance_field", 36873697)
 
-    public val setMsdfPixelRangePtr: VoidPtr =
+    internal val setMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_msdf_pixel_range", 1286410249)
 
-    public val getMsdfPixelRangePtr: VoidPtr =
+    internal val getMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_msdf_pixel_range", 3905245786)
 
-    public val setMsdfSizePtr: VoidPtr =
+    internal val setMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_msdf_size", 1286410249)
 
-    public val getMsdfSizePtr: VoidPtr =
+    internal val getMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_msdf_size", 3905245786)
 
-    public val setFixedSizePtr: VoidPtr =
+    internal val setFixedSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_fixed_size", 1286410249)
 
-    public val getFixedSizePtr: VoidPtr =
+    internal val getFixedSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_fixed_size", 3905245786)
 
-    public val setFixedSizeScaleModePtr: VoidPtr =
+    internal val setFixedSizeScaleModePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode", 1660989956)
 
-    public val getFixedSizeScaleModePtr: VoidPtr =
+    internal val getFixedSizeScaleModePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode", 753873478)
 
-    public val setAllowSystemFallbackPtr: VoidPtr =
+    internal val setAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_allow_system_fallback", 2586408642)
 
-    public val isAllowSystemFallbackPtr: VoidPtr =
+    internal val isAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "is_allow_system_fallback", 36873697)
 
-    public val setForceAutohinterPtr: VoidPtr =
+    internal val setForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_force_autohinter", 2586408642)
 
-    public val isForceAutohinterPtr: VoidPtr =
+    internal val isForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "is_force_autohinter", 36873697)
 
-    public val setHintingPtr: VoidPtr =
+    internal val setHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_hinting", 1827459492)
 
-    public val getHintingPtr: VoidPtr =
+    internal val getHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_hinting", 3683214614)
 
-    public val setSubpixelPositioningPtr: VoidPtr =
+    internal val setSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_subpixel_positioning", 4225742182)
 
-    public val getSubpixelPositioningPtr: VoidPtr =
+    internal val getSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_subpixel_positioning", 1069238588)
 
-    public val setOversamplingPtr: VoidPtr =
+    internal val setOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_oversampling", 373806689)
 
-    public val getOversamplingPtr: VoidPtr =
+    internal val getOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_oversampling", 1740695150)
 
-    public val getCacheCountPtr: VoidPtr =
+    internal val getCacheCountPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_count", 3905245786)
 
-    public val clearCachePtr: VoidPtr =
+    internal val clearCachePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "clear_cache", 3218959716)
 
-    public val removeCachePtr: VoidPtr =
+    internal val removeCachePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_cache", 1286410249)
 
-    public val getSizeCacheListPtr: VoidPtr =
+    internal val getSizeCacheListPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_size_cache_list", 663333327)
 
-    public val clearSizeCachePtr: VoidPtr =
+    internal val clearSizeCachePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "clear_size_cache", 1286410249)
 
-    public val removeSizeCachePtr: VoidPtr =
+    internal val removeSizeCachePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_size_cache", 2311374912)
 
-    public val setVariationCoordinatesPtr: VoidPtr =
+    internal val setVariationCoordinatesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_variation_coordinates", 64545446)
 
-    public val getVariationCoordinatesPtr: VoidPtr =
+    internal val getVariationCoordinatesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_variation_coordinates", 3485342025)
 
-    public val setEmboldenPtr: VoidPtr =
+    internal val setEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_embolden", 1602489585)
 
-    public val getEmboldenPtr: VoidPtr =
+    internal val getEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_embolden", 2339986948)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_transform", 30160968)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_transform", 3836996910)
 
-    public val setExtraSpacingPtr: VoidPtr =
+    internal val setExtraSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_extra_spacing", 62942285)
 
-    public val getExtraSpacingPtr: VoidPtr =
+    internal val getExtraSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_extra_spacing", 1924257185)
 
-    public val setExtraBaselineOffsetPtr: VoidPtr =
+    internal val setExtraBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_extra_baseline_offset", 1602489585)
 
-    public val getExtraBaselineOffsetPtr: VoidPtr =
+    internal val getExtraBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_extra_baseline_offset", 2339986948)
 
-    public val setFaceIndexPtr: VoidPtr =
+    internal val setFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_face_index", 3937882851)
 
-    public val getFaceIndexPtr: VoidPtr =
+    internal val getFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_face_index", 923996154)
 
-    public val setCacheAscentPtr: VoidPtr =
+    internal val setCacheAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_cache_ascent", 3506521499)
 
-    public val getCacheAscentPtr: VoidPtr =
+    internal val getCacheAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_ascent", 3085491603)
 
-    public val setCacheDescentPtr: VoidPtr =
+    internal val setCacheDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_cache_descent", 3506521499)
 
-    public val getCacheDescentPtr: VoidPtr =
+    internal val getCacheDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_descent", 3085491603)
 
-    public val setCacheUnderlinePositionPtr: VoidPtr =
+    internal val setCacheUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_cache_underline_position", 3506521499)
 
-    public val getCacheUnderlinePositionPtr: VoidPtr =
+    internal val getCacheUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_underline_position", 3085491603)
 
-    public val setCacheUnderlineThicknessPtr: VoidPtr =
+    internal val setCacheUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_cache_underline_thickness", 3506521499)
 
-    public val getCacheUnderlineThicknessPtr: VoidPtr =
+    internal val getCacheUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_underline_thickness", 3085491603)
 
-    public val setCacheScalePtr: VoidPtr =
+    internal val setCacheScalePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_cache_scale", 3506521499)
 
-    public val getCacheScalePtr: VoidPtr =
+    internal val getCacheScalePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_cache_scale", 3085491603)
 
-    public val getTextureCountPtr: VoidPtr =
+    internal val getTextureCountPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_texture_count", 1987661582)
 
-    public val clearTexturesPtr: VoidPtr =
+    internal val clearTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "clear_textures", 2311374912)
 
-    public val removeTexturePtr: VoidPtr =
+    internal val removeTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_texture", 2328951467)
 
-    public val setTextureImagePtr: VoidPtr =
+    internal val setTextureImagePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_texture_image", 4157974066)
 
-    public val getTextureImagePtr: VoidPtr =
+    internal val getTextureImagePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_texture_image", 3878418953)
 
-    public val setTextureOffsetsPtr: VoidPtr =
+    internal val setTextureOffsetsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_texture_offsets", 2849993437)
 
-    public val getTextureOffsetsPtr: VoidPtr =
+    internal val getTextureOffsetsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_texture_offsets", 3703444828)
 
-    public val getGlyphListPtr: VoidPtr =
+    internal val getGlyphListPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_list", 681709689)
 
-    public val clearGlyphsPtr: VoidPtr =
+    internal val clearGlyphsPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "clear_glyphs", 2311374912)
 
-    public val removeGlyphPtr: VoidPtr =
+    internal val removeGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_glyph", 2328951467)
 
-    public val setGlyphAdvancePtr: VoidPtr =
+    internal val setGlyphAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_glyph_advance", 947991729)
 
-    public val getGlyphAdvancePtr: VoidPtr =
+    internal val getGlyphAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_advance", 1601573536)
 
-    public val setGlyphOffsetPtr: VoidPtr =
+    internal val setGlyphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_glyph_offset", 921719850)
 
-    public val getGlyphOffsetPtr: VoidPtr =
+    internal val getGlyphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_offset", 3205412300)
 
-    public val setGlyphSizePtr: VoidPtr =
+    internal val setGlyphSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_glyph_size", 921719850)
 
-    public val getGlyphSizePtr: VoidPtr =
+    internal val getGlyphSizePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_size", 3205412300)
 
-    public val setGlyphUvRectPtr: VoidPtr =
+    internal val setGlyphUvRectPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_glyph_uv_rect", 3821620992)
 
-    public val getGlyphUvRectPtr: VoidPtr =
+    internal val getGlyphUvRectPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_uv_rect", 3927917900)
 
-    public val setGlyphTextureIdxPtr: VoidPtr =
+    internal val setGlyphTextureIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_glyph_texture_idx", 355564111)
 
-    public val getGlyphTextureIdxPtr: VoidPtr =
+    internal val getGlyphTextureIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_texture_idx", 1629411054)
 
-    public val getKerningListPtr: VoidPtr =
+    internal val getKerningListPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_kerning_list", 2345056839)
 
-    public val clearKerningMapPtr: VoidPtr =
+    internal val clearKerningMapPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "clear_kerning_map", 3937882851)
 
-    public val removeKerningPtr: VoidPtr =
+    internal val removeKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_kerning", 3930204747)
 
-    public val setKerningPtr: VoidPtr =
+    internal val setKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_kerning", 3182200918)
 
-    public val getKerningPtr: VoidPtr =
+    internal val getKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_kerning", 1611912865)
 
-    public val renderRangePtr: VoidPtr =
+    internal val renderRangePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "render_range", 355564111)
 
-    public val renderGlyphPtr: VoidPtr =
+    internal val renderGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "render_glyph", 2328951467)
 
-    public val setLanguageSupportOverridePtr: VoidPtr =
+    internal val setLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_language_support_override", 2678287736)
 
-    public val getLanguageSupportOverridePtr: VoidPtr =
+    internal val getLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_language_support_override", 3927539163)
 
-    public val removeLanguageSupportOverridePtr: VoidPtr =
+    internal val removeLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_language_support_override", 83702148)
 
-    public val getLanguageSupportOverridesPtr: VoidPtr =
+    internal val getLanguageSupportOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_language_support_overrides", 1139954409)
 
-    public val setScriptSupportOverridePtr: VoidPtr =
+    internal val setScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_script_support_override", 2678287736)
 
-    public val getScriptSupportOverridePtr: VoidPtr =
+    internal val getScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_script_support_override", 3927539163)
 
-    public val removeScriptSupportOverridePtr: VoidPtr =
+    internal val removeScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "remove_script_support_override", 83702148)
 
-    public val getScriptSupportOverridesPtr: VoidPtr =
+    internal val getScriptSupportOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_script_support_overrides", 1139954409)
 
-    public val setOpentypeFeatureOverridesPtr: VoidPtr =
+    internal val setOpentypeFeatureOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "set_opentype_feature_overrides", 4155329257)
 
-    public val getOpentypeFeatureOverridesPtr: VoidPtr =
+    internal val getOpentypeFeatureOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_opentype_feature_overrides", 3102165223)
 
-    public val getGlyphIndexPtr: VoidPtr =
+    internal val getGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_glyph_index", 864943070)
 
-    public val getCharFromGlyphIndexPtr: VoidPtr =
+    internal val getCharFromGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontFile", "get_char_from_glyph_index", 3175239445)
   }
 }

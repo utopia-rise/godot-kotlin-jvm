@@ -26,5 +26,5 @@ public open class RenderDataRD : RenderData() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

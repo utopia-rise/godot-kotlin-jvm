@@ -87,5 +87,5 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

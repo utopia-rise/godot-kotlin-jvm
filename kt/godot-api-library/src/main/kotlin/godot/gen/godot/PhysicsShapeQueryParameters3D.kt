@@ -334,59 +334,59 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape", 968641751)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape", 121922552)
 
-    public val setShapeRidPtr: VoidPtr =
+    internal val setShapeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape_rid", 2722037293)
 
-    public val getShapeRidPtr: VoidPtr =
+    internal val getShapeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape_rid", 2944877500)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_transform", 2952846383)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_transform", 3229777777)
 
-    public val setMotionPtr: VoidPtr =
+    internal val setMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_motion", 3460891852)
 
-    public val getMotionPtr: VoidPtr =
+    internal val getMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_motion", 3360562783)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_margin", 1740695150)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_collision_mask", 3905245786)
 
-    public val setExcludePtr: VoidPtr =
+    internal val setExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_exclude", 381264803)
 
-    public val getExcludePtr: VoidPtr =
+    internal val getExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_exclude", 3995934104)
 
-    public val setCollideWithBodiesPtr: VoidPtr =
+    internal val setCollideWithBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_bodies", 2586408642)
 
-    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+    internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
 
-    public val setCollideWithAreasPtr: VoidPtr =
+    internal val setCollideWithAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_areas", 2586408642)
 
-    public val isCollideWithAreasEnabledPtr: VoidPtr =
+    internal val isCollideWithAreasEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
   }
 }

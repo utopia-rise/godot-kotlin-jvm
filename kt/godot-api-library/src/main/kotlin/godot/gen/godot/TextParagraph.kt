@@ -678,171 +678,172 @@ public open class TextParagraph : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("TextParagraph", "clear", 3218959716)
+  public object MethodBindings {
+    internal val clearPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextParagraph", "clear", 3218959716)
 
-    public val setDirectionPtr: VoidPtr =
+    internal val setDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_direction", 1418190634)
 
-    public val getDirectionPtr: VoidPtr =
+    internal val getDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_direction", 2516697328)
 
-    public val setCustomPunctuationPtr: VoidPtr =
+    internal val setCustomPunctuationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_custom_punctuation", 83702148)
 
-    public val getCustomPunctuationPtr: VoidPtr =
+    internal val getCustomPunctuationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_custom_punctuation", 201670096)
 
-    public val setOrientationPtr: VoidPtr =
+    internal val setOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_orientation", 42823726)
 
-    public val getOrientationPtr: VoidPtr =
+    internal val getOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_orientation", 175768116)
 
-    public val setPreserveInvalidPtr: VoidPtr =
+    internal val setPreserveInvalidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_preserve_invalid", 2586408642)
 
-    public val getPreserveInvalidPtr: VoidPtr =
+    internal val getPreserveInvalidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_preserve_invalid", 36873697)
 
-    public val setPreserveControlPtr: VoidPtr =
+    internal val setPreserveControlPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_preserve_control", 2586408642)
 
-    public val getPreserveControlPtr: VoidPtr =
+    internal val getPreserveControlPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_preserve_control", 36873697)
 
-    public val setBidiOverridePtr: VoidPtr =
+    internal val setBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_bidi_override", 381264803)
 
-    public val setDropcapPtr: VoidPtr =
+    internal val setDropcapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_dropcap", 2498990330)
 
-    public val clearDropcapPtr: VoidPtr =
+    internal val clearDropcapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "clear_dropcap", 3218959716)
 
-    public val addStringPtr: VoidPtr =
+    internal val addStringPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "add_string", 621426851)
 
-    public val addObjectPtr: VoidPtr =
+    internal val addObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "add_object", 1316529304)
 
-    public val resizeObjectPtr: VoidPtr =
+    internal val resizeObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "resize_object", 2095776372)
 
-    public val setAlignmentPtr: VoidPtr =
+    internal val setAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_alignment", 2312603777)
 
-    public val getAlignmentPtr: VoidPtr =
+    internal val getAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_alignment", 341400642)
 
-    public val tabAlignPtr: VoidPtr =
+    internal val tabAlignPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "tab_align", 2899603908)
 
-    public val setBreakFlagsPtr: VoidPtr =
+    internal val setBreakFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_break_flags", 2809697122)
 
-    public val getBreakFlagsPtr: VoidPtr =
+    internal val getBreakFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_break_flags", 2340632602)
 
-    public val setJustificationFlagsPtr: VoidPtr =
+    internal val setJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_justification_flags", 2877345813)
 
-    public val getJustificationFlagsPtr: VoidPtr =
+    internal val getJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_justification_flags", 1583363614)
 
-    public val setTextOverrunBehaviorPtr: VoidPtr =
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_text_overrun_behavior", 1008890932)
 
-    public val getTextOverrunBehaviorPtr: VoidPtr =
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_text_overrun_behavior", 3779142101)
 
-    public val setEllipsisCharPtr: VoidPtr =
+    internal val setEllipsisCharPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_ellipsis_char", 83702148)
 
-    public val getEllipsisCharPtr: VoidPtr =
+    internal val getEllipsisCharPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_ellipsis_char", 201670096)
 
-    public val setWidthPtr: VoidPtr =
+    internal val setWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr =
+    internal val getWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_width", 1740695150)
 
-    public val getNonWrappedSizePtr: VoidPtr =
+    internal val getNonWrappedSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_non_wrapped_size", 3341600327)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_size", 3341600327)
 
-    public val getRidPtr: VoidPtr =
+    internal val getRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_rid", 2944877500)
 
-    public val getLineRidPtr: VoidPtr =
+    internal val getLineRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_rid", 495598643)
 
-    public val getDropcapRidPtr: VoidPtr =
+    internal val getDropcapRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_dropcap_rid", 2944877500)
 
-    public val getLineCountPtr: VoidPtr =
+    internal val getLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_count", 3905245786)
 
-    public val setMaxLinesVisiblePtr: VoidPtr =
+    internal val setMaxLinesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "set_max_lines_visible", 1286410249)
 
-    public val getMaxLinesVisiblePtr: VoidPtr =
+    internal val getMaxLinesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_max_lines_visible", 3905245786)
 
-    public val getLineObjectsPtr: VoidPtr =
+    internal val getLineObjectsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_objects", 663333327)
 
-    public val getLineObjectRectPtr: VoidPtr =
+    internal val getLineObjectRectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_object_rect", 204315017)
 
-    public val getLineSizePtr: VoidPtr =
+    internal val getLineSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_size", 2299179447)
 
-    public val getLineRangePtr: VoidPtr =
+    internal val getLineRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_range", 880721226)
 
-    public val getLineAscentPtr: VoidPtr =
+    internal val getLineAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_ascent", 2339986948)
 
-    public val getLineDescentPtr: VoidPtr =
+    internal val getLineDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_descent", 2339986948)
 
-    public val getLineWidthPtr: VoidPtr =
+    internal val getLineWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_width", 2339986948)
 
-    public val getLineUnderlinePositionPtr: VoidPtr =
+    internal val getLineUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_underline_position", 2339986948)
 
-    public val getLineUnderlineThicknessPtr: VoidPtr =
+    internal val getLineUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_line_underline_thickness", 2339986948)
 
-    public val getDropcapSizePtr: VoidPtr =
+    internal val getDropcapSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_dropcap_size", 3341600327)
 
-    public val getDropcapLinesPtr: VoidPtr =
+    internal val getDropcapLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "get_dropcap_lines", 3905245786)
 
-    public val drawPtr: VoidPtr = Internals.getMethodBindPtr("TextParagraph", "draw", 1567802413)
+    internal val drawPtr: VoidPtr = Internals.getMethodBindPtr("TextParagraph", "draw", 1567802413)
 
-    public val drawOutlinePtr: VoidPtr =
+    internal val drawOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "draw_outline", 1893131224)
 
-    public val drawLinePtr: VoidPtr =
+    internal val drawLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "draw_line", 1242169894)
 
-    public val drawLineOutlinePtr: VoidPtr =
+    internal val drawLineOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "draw_line_outline", 2664926980)
 
-    public val drawDropcapPtr: VoidPtr =
+    internal val drawDropcapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "draw_dropcap", 856975658)
 
-    public val drawDropcapOutlinePtr: VoidPtr =
+    internal val drawDropcapOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "draw_dropcap_outline", 1343401456)
 
-    public val hitTestPtr: VoidPtr =
+    internal val hitTestPtr: VoidPtr =
         Internals.getMethodBindPtr("TextParagraph", "hit_test", 3820158470)
   }
 }

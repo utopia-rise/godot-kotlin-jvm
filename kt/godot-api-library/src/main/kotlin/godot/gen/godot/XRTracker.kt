@@ -109,23 +109,23 @@ public open class XRTracker internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTrackerTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTrackerTypePtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "get_tracker_type", 2784508102)
 
-    public val setTrackerTypePtr: VoidPtr =
+    internal val setTrackerTypePtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "set_tracker_type", 3055763575)
 
-    public val getTrackerNamePtr: VoidPtr =
+    internal val getTrackerNamePtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "get_tracker_name", 2002593661)
 
-    public val setTrackerNamePtr: VoidPtr =
+    internal val setTrackerNamePtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "set_tracker_name", 3304788590)
 
-    public val getTrackerDescPtr: VoidPtr =
+    internal val getTrackerDescPtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "get_tracker_desc", 201670096)
 
-    public val setTrackerDescPtr: VoidPtr =
+    internal val setTrackerDescPtr: VoidPtr =
         Internals.getMethodBindPtr("XRTracker", "set_tracker_desc", 83702148)
   }
 }

@@ -53,11 +53,11 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "set_texture", 1188404210)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "get_texture", 373985333)
   }
 }

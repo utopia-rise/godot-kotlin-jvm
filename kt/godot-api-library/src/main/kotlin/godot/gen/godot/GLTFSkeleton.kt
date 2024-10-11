@@ -140,38 +140,38 @@ public open class GLTFSkeleton : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getJointsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getJointsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_joints", 969006518)
 
-    public val setJointsPtr: VoidPtr =
+    internal val setJointsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "set_joints", 3614634198)
 
-    public val getRootsPtr: VoidPtr =
+    internal val getRootsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_roots", 969006518)
 
-    public val setRootsPtr: VoidPtr =
+    internal val setRootsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "set_roots", 3614634198)
 
-    public val getGodotSkeletonPtr: VoidPtr =
+    internal val getGodotSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_godot_skeleton", 1814733083)
 
-    public val getUniqueNamesPtr: VoidPtr =
+    internal val getUniqueNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_unique_names", 2915620761)
 
-    public val setUniqueNamesPtr: VoidPtr =
+    internal val setUniqueNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "set_unique_names", 381264803)
 
-    public val getGodotBoneNodePtr: VoidPtr =
+    internal val getGodotBoneNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_godot_bone_node", 2382534195)
 
-    public val setGodotBoneNodePtr: VoidPtr =
+    internal val setGodotBoneNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "set_godot_bone_node", 4155329257)
 
-    public val getBoneAttachmentCountPtr: VoidPtr =
+    internal val getBoneAttachmentCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment_count", 2455072627)
 
-    public val getBoneAttachmentPtr: VoidPtr =
+    internal val getBoneAttachmentPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment", 945440495)
   }
 }

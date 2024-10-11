@@ -199,22 +199,23 @@ public open class Sky : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadianceSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadianceSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Sky", "set_radiance_size", 1512957179)
 
-    public val getRadianceSizePtr: VoidPtr =
+    internal val getRadianceSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Sky", "get_radiance_size", 2708733976)
 
-    public val setProcessModePtr: VoidPtr =
+    internal val setProcessModePtr: VoidPtr =
         Internals.getMethodBindPtr("Sky", "set_process_mode", 875986769)
 
-    public val getProcessModePtr: VoidPtr =
+    internal val getProcessModePtr: VoidPtr =
         Internals.getMethodBindPtr("Sky", "get_process_mode", 731245043)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("Sky", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = Internals.getMethodBindPtr("Sky", "get_material", 5934680)
+    internal val getMaterialPtr: VoidPtr =
+        Internals.getMethodBindPtr("Sky", "get_material", 5934680)
   }
 }

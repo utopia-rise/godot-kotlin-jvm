@@ -327,68 +327,68 @@ public open class NavigationLink2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getRidPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_rid", 2944877500)
 
-    public val setEnabledPtr: VoidPtr =
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr =
+    internal val isEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "is_enabled", 36873697)
 
-    public val setBidirectionalPtr: VoidPtr =
+    internal val setBidirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_bidirectional", 2586408642)
 
-    public val isBidirectionalPtr: VoidPtr =
+    internal val isBidirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "is_bidirectional", 36873697)
 
-    public val setNavigationLayersPtr: VoidPtr =
+    internal val setNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_navigation_layers", 1286410249)
 
-    public val getNavigationLayersPtr: VoidPtr =
+    internal val getNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_navigation_layers", 3905245786)
 
-    public val setNavigationLayerValuePtr: VoidPtr =
+    internal val setNavigationLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_navigation_layer_value", 300928843)
 
-    public val getNavigationLayerValuePtr: VoidPtr =
+    internal val getNavigationLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_navigation_layer_value", 1116898809)
 
-    public val setStartPositionPtr: VoidPtr =
+    internal val setStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_start_position", 743155724)
 
-    public val getStartPositionPtr: VoidPtr =
+    internal val getStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_start_position", 3341600327)
 
-    public val setEndPositionPtr: VoidPtr =
+    internal val setEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_end_position", 743155724)
 
-    public val getEndPositionPtr: VoidPtr =
+    internal val getEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_end_position", 3341600327)
 
-    public val setGlobalStartPositionPtr: VoidPtr =
+    internal val setGlobalStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_global_start_position", 743155724)
 
-    public val getGlobalStartPositionPtr: VoidPtr =
+    internal val getGlobalStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_global_start_position", 3341600327)
 
-    public val setGlobalEndPositionPtr: VoidPtr =
+    internal val setGlobalEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_global_end_position", 743155724)
 
-    public val getGlobalEndPositionPtr: VoidPtr =
+    internal val getGlobalEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_global_end_position", 3341600327)
 
-    public val setEnterCostPtr: VoidPtr =
+    internal val setEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_enter_cost", 373806689)
 
-    public val getEnterCostPtr: VoidPtr =
+    internal val getEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_enter_cost", 1740695150)
 
-    public val setTravelCostPtr: VoidPtr =
+    internal val setTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "set_travel_cost", 373806689)
 
-    public val getTravelCostPtr: VoidPtr =
+    internal val getTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationLink2D", "get_travel_cost", 1740695150)
   }
 }

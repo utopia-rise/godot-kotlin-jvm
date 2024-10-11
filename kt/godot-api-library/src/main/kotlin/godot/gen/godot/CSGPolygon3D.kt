@@ -492,101 +492,101 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPolygonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr =
+    internal val getPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2961356807)
 
-    public val setModePtr: VoidPtr =
+    internal val setModePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_mode", 3158377035)
 
-    public val getModePtr: VoidPtr =
+    internal val getModePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_mode", 1201612222)
 
-    public val setDepthPtr: VoidPtr =
+    internal val setDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_depth", 1740695150)
 
-    public val setSpinDegreesPtr: VoidPtr =
+    internal val setSpinDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373806689)
 
-    public val getSpinDegreesPtr: VoidPtr =
+    internal val getSpinDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1740695150)
 
-    public val setSpinSidesPtr: VoidPtr =
+    internal val setSpinSidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1286410249)
 
-    public val getSpinSidesPtr: VoidPtr =
+    internal val getSpinSidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3905245786)
 
-    public val setPathNodePtr: VoidPtr =
+    internal val setPathNodePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1348162250)
 
-    public val getPathNodePtr: VoidPtr =
+    internal val getPathNodePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4075236667)
 
-    public val setPathIntervalTypePtr: VoidPtr =
+    internal val setPathIntervalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3744240707)
 
-    public val getPathIntervalTypePtr: VoidPtr =
+    internal val getPathIntervalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3434618397)
 
-    public val setPathIntervalPtr: VoidPtr =
+    internal val setPathIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373806689)
 
-    public val getPathIntervalPtr: VoidPtr =
+    internal val getPathIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1740695150)
 
-    public val setPathSimplifyAnglePtr: VoidPtr =
+    internal val setPathSimplifyAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373806689)
 
-    public val getPathSimplifyAnglePtr: VoidPtr =
+    internal val getPathSimplifyAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1740695150)
 
-    public val setPathRotationPtr: VoidPtr =
+    internal val setPathRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1412947288)
 
-    public val getPathRotationPtr: VoidPtr =
+    internal val getPathRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
 
-    public val setPathLocalPtr: VoidPtr =
+    internal val setPathLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)
 
-    public val isPathLocalPtr: VoidPtr =
+    internal val isPathLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36873697)
 
-    public val setPathContinuousUPtr: VoidPtr =
+    internal val setPathContinuousUPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2586408642)
 
-    public val isPathContinuousUPtr: VoidPtr =
+    internal val isPathContinuousUPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36873697)
 
-    public val setPathUDistancePtr: VoidPtr =
+    internal val setPathUDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373806689)
 
-    public val getPathUDistancePtr: VoidPtr =
+    internal val getPathUDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1740695150)
 
-    public val setPathJoinedPtr: VoidPtr =
+    internal val setPathJoinedPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2586408642)
 
-    public val isPathJoinedPtr: VoidPtr =
+    internal val isPathJoinedPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36873697)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_material", 5934680)
 
-    public val setSmoothFacesPtr: VoidPtr =
+    internal val setSmoothFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2586408642)
 
-    public val getSmoothFacesPtr: VoidPtr =
+    internal val getSmoothFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36873697)
   }
 }

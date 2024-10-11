@@ -257,59 +257,59 @@ public open class CameraAttributesPractical : CameraAttributes() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDofBlurFarEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDofBlurFarEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_enabled", 2586408642)
 
-    public val isDofBlurFarEnabledPtr: VoidPtr =
+    internal val isDofBlurFarEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_far_enabled", 36873697)
 
-    public val setDofBlurFarDistancePtr: VoidPtr =
+    internal val setDofBlurFarDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_distance", 373806689)
 
-    public val getDofBlurFarDistancePtr: VoidPtr =
+    internal val getDofBlurFarDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_distance", 1740695150)
 
-    public val setDofBlurFarTransitionPtr: VoidPtr =
+    internal val setDofBlurFarTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_transition", 373806689)
 
-    public val getDofBlurFarTransitionPtr: VoidPtr =
+    internal val getDofBlurFarTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_transition", 1740695150)
 
-    public val setDofBlurNearEnabledPtr: VoidPtr =
+    internal val setDofBlurNearEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_enabled", 2586408642)
 
-    public val isDofBlurNearEnabledPtr: VoidPtr =
+    internal val isDofBlurNearEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_near_enabled", 36873697)
 
-    public val setDofBlurNearDistancePtr: VoidPtr =
+    internal val setDofBlurNearDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_distance", 373806689)
 
-    public val getDofBlurNearDistancePtr: VoidPtr =
+    internal val getDofBlurNearDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_distance", 1740695150)
 
-    public val setDofBlurNearTransitionPtr: VoidPtr =
+    internal val setDofBlurNearTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_transition", 373806689)
 
-    public val getDofBlurNearTransitionPtr: VoidPtr =
+    internal val getDofBlurNearTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_transition", 1740695150)
 
-    public val setDofBlurAmountPtr: VoidPtr =
+    internal val setDofBlurAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_amount", 373806689)
 
-    public val getDofBlurAmountPtr: VoidPtr =
+    internal val getDofBlurAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_amount", 1740695150)
 
-    public val setAutoExposureMaxSensitivityPtr: VoidPtr =
+    internal val setAutoExposureMaxSensitivityPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_max_sensitivity", 373806689)
 
-    public val getAutoExposureMaxSensitivityPtr: VoidPtr =
+    internal val getAutoExposureMaxSensitivityPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_max_sensitivity", 1740695150)
 
-    public val setAutoExposureMinSensitivityPtr: VoidPtr =
+    internal val setAutoExposureMinSensitivityPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_min_sensitivity", 373806689)
 
-    public val getAutoExposureMinSensitivityPtr: VoidPtr =
+    internal val getAutoExposureMinSensitivityPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_min_sensitivity", 1740695150)
   }
 }

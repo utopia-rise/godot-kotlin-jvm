@@ -86,11 +86,11 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3457585749)
 
-    public val getModePtr: VoidPtr =
+    internal val getModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2660365633)
   }
 }

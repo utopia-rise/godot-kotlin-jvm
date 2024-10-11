@@ -47,8 +47,8 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
 
   public companion object
 
-  internal object MethodBindings {
-    public val isBodyExcludedFromQueryPtr: VoidPtr =
+  public object MethodBindings {
+    internal val isBodyExcludedFromQueryPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "is_body_excluded_from_query", 4155700596)
   }
 }

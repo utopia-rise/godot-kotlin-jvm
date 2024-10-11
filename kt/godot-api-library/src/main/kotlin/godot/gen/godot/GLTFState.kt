@@ -862,207 +862,209 @@ public open class GLTFState : Resource() {
     public final const val HANDLE_BINARY_EMBED_AS_UNCOMPRESSED: Long = 3
   }
 
-  internal object MethodBindings {
-    public val addUsedExtensionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addUsedExtensionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "add_used_extension", 2678287736)
 
-    public val appendDataToBuffersPtr: VoidPtr =
+    internal val appendDataToBuffersPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
 
-    public val getJsonPtr: VoidPtr = Internals.getMethodBindPtr("GLTFState", "get_json", 2382534195)
+    internal val getJsonPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFState", "get_json", 2382534195)
 
-    public val setJsonPtr: VoidPtr = Internals.getMethodBindPtr("GLTFState", "set_json", 4155329257)
+    internal val setJsonPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFState", "set_json", 4155329257)
 
-    public val getMajorVersionPtr: VoidPtr =
+    internal val getMajorVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
 
-    public val setMajorVersionPtr: VoidPtr =
+    internal val setMajorVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
 
-    public val getMinorVersionPtr: VoidPtr =
+    internal val getMinorVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
 
-    public val setMinorVersionPtr: VoidPtr =
+    internal val setMinorVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
 
-    public val getCopyrightPtr: VoidPtr =
+    internal val getCopyrightPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_copyright", 201670096)
 
-    public val setCopyrightPtr: VoidPtr =
+    internal val setCopyrightPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
 
-    public val getGlbDataPtr: VoidPtr =
+    internal val getGlbDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
 
-    public val setGlbDataPtr: VoidPtr =
+    internal val setGlbDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
 
-    public val getUseNamedSkinBindsPtr: VoidPtr =
+    internal val getUseNamedSkinBindsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
 
-    public val setUseNamedSkinBindsPtr: VoidPtr =
+    internal val setUseNamedSkinBindsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
 
-    public val getNodesPtr: VoidPtr =
+    internal val getNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
 
-    public val setNodesPtr: VoidPtr =
+    internal val setNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
 
-    public val getBuffersPtr: VoidPtr =
+    internal val getBuffersPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
 
-    public val setBuffersPtr: VoidPtr =
+    internal val setBuffersPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
 
-    public val getBufferViewsPtr: VoidPtr =
+    internal val getBufferViewsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
 
-    public val setBufferViewsPtr: VoidPtr =
+    internal val setBufferViewsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
 
-    public val getAccessorsPtr: VoidPtr =
+    internal val getAccessorsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
 
-    public val setAccessorsPtr: VoidPtr =
+    internal val setAccessorsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
 
-    public val getMeshesPtr: VoidPtr =
+    internal val getMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
 
-    public val setMeshesPtr: VoidPtr =
+    internal val setMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
 
-    public val getAnimationPlayersCountPtr: VoidPtr =
+    internal val getAnimationPlayersCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
 
-    public val getAnimationPlayerPtr: VoidPtr =
+    internal val getAnimationPlayerPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
 
-    public val getMaterialsPtr: VoidPtr =
+    internal val getMaterialsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
 
-    public val setMaterialsPtr: VoidPtr =
+    internal val setMaterialsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_materials", 381264803)
 
-    public val getSceneNamePtr: VoidPtr =
+    internal val getSceneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
 
-    public val setSceneNamePtr: VoidPtr =
+    internal val setSceneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
 
-    public val getBasePathPtr: VoidPtr =
+    internal val getBasePathPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
 
-    public val setBasePathPtr: VoidPtr =
+    internal val setBasePathPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
 
-    public val getFilenamePtr: VoidPtr =
+    internal val getFilenamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_filename", 201670096)
 
-    public val setFilenamePtr: VoidPtr =
+    internal val setFilenamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_filename", 83702148)
 
-    public val getRootNodesPtr: VoidPtr =
+    internal val getRootNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
 
-    public val setRootNodesPtr: VoidPtr =
+    internal val setRootNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
 
-    public val getTexturesPtr: VoidPtr =
+    internal val getTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
 
-    public val setTexturesPtr: VoidPtr =
+    internal val setTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_textures", 381264803)
 
-    public val getTextureSamplersPtr: VoidPtr =
+    internal val getTextureSamplersPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
 
-    public val setTextureSamplersPtr: VoidPtr =
+    internal val setTextureSamplersPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
 
-    public val getImagesPtr: VoidPtr =
+    internal val getImagesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_images", 2915620761)
 
-    public val setImagesPtr: VoidPtr =
+    internal val setImagesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_images", 381264803)
 
-    public val getSkinsPtr: VoidPtr =
+    internal val getSkinsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
 
-    public val setSkinsPtr: VoidPtr =
+    internal val setSkinsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_skins", 381264803)
 
-    public val getCamerasPtr: VoidPtr =
+    internal val getCamerasPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
 
-    public val setCamerasPtr: VoidPtr =
+    internal val setCamerasPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
 
-    public val getLightsPtr: VoidPtr =
+    internal val getLightsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
 
-    public val setLightsPtr: VoidPtr =
+    internal val setLightsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_lights", 381264803)
 
-    public val getUniqueNamesPtr: VoidPtr =
+    internal val getUniqueNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
 
-    public val setUniqueNamesPtr: VoidPtr =
+    internal val setUniqueNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
 
-    public val getUniqueAnimationNamesPtr: VoidPtr =
+    internal val getUniqueAnimationNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
 
-    public val setUniqueAnimationNamesPtr: VoidPtr =
+    internal val setUniqueAnimationNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
 
-    public val getSkeletonsPtr: VoidPtr =
+    internal val getSkeletonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
 
-    public val setSkeletonsPtr: VoidPtr =
+    internal val setSkeletonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
 
-    public val getCreateAnimationsPtr: VoidPtr =
+    internal val getCreateAnimationsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
 
-    public val setCreateAnimationsPtr: VoidPtr =
+    internal val setCreateAnimationsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
 
-    public val getImportAsSkeletonBonesPtr: VoidPtr =
+    internal val getImportAsSkeletonBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
 
-    public val setImportAsSkeletonBonesPtr: VoidPtr =
+    internal val setImportAsSkeletonBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
 
-    public val getAnimationsPtr: VoidPtr =
+    internal val getAnimationsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
 
-    public val setAnimationsPtr: VoidPtr =
+    internal val setAnimationsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_animations", 381264803)
 
-    public val getSceneNodePtr: VoidPtr =
+    internal val getSceneNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
 
-    public val getNodeIndexPtr: VoidPtr =
+    internal val getNodeIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
 
-    public val getAdditionalDataPtr: VoidPtr =
+    internal val getAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
 
-    public val setAdditionalDataPtr: VoidPtr =
+    internal val setAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
 
-    public val getHandleBinaryImagePtr: VoidPtr =
+    internal val getHandleBinaryImagePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
 
-    public val setHandleBinaryImagePtr: VoidPtr =
+    internal val setHandleBinaryImagePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
 
-    public val setBakeFpsPtr: VoidPtr =
+    internal val setBakeFpsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
 
-    public val getBakeFpsPtr: VoidPtr =
+    internal val getBakeFpsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
   }
 }

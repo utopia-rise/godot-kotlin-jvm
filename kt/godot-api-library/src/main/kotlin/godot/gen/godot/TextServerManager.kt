@@ -129,29 +129,29 @@ public object TextServerManager : Object() {
     return (Internals.readReturnValue(OBJECT) as TextServer?)
   }
 
-  internal object MethodBindings {
-    public val addInterfacePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "add_interface", 1799689403)
 
-    public val getInterfaceCountPtr: VoidPtr =
+    internal val getInterfaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "get_interface_count", 3905245786)
 
-    public val removeInterfacePtr: VoidPtr =
+    internal val removeInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "remove_interface", 1799689403)
 
-    public val getInterfacePtr: VoidPtr =
+    internal val getInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "get_interface", 1672475555)
 
-    public val getInterfacesPtr: VoidPtr =
+    internal val getInterfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "get_interfaces", 3995934104)
 
-    public val findInterfacePtr: VoidPtr =
+    internal val findInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "find_interface", 2240905781)
 
-    public val setPrimaryInterfacePtr: VoidPtr =
+    internal val setPrimaryInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "set_primary_interface", 1799689403)
 
-    public val getPrimaryInterfacePtr: VoidPtr =
+    internal val getPrimaryInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServerManager", "get_primary_interface", 905850878)
   }
 }

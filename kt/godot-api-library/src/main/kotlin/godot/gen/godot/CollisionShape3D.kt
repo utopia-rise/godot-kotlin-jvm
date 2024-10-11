@@ -95,23 +95,23 @@ public open class CollisionShape3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val resourceChangedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val resourceChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "resource_changed", 968641751)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "set_shape", 1549710052)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "get_shape", 3214262478)
 
-    public val setDisabledPtr: VoidPtr =
+    internal val setDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "set_disabled", 2586408642)
 
-    public val isDisabledPtr: VoidPtr =
+    internal val isDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "is_disabled", 36873697)
 
-    public val makeConvexFromSiblingsPtr: VoidPtr =
+    internal val makeConvexFromSiblingsPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
   }
 }

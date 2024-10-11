@@ -295,65 +295,65 @@ public open class GLTFPhysicsShape : Resource() {
     }
   }
 
-  internal object MethodBindings {
-    public val fromNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
 
-    public val toNodePtr: VoidPtr =
+    internal val toNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
 
-    public val fromResourcePtr: VoidPtr =
+    internal val fromResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
 
-    public val toResourcePtr: VoidPtr =
+    internal val toResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
 
-    public val fromDictionaryPtr: VoidPtr =
+    internal val fromDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
 
-    public val toDictionaryPtr: VoidPtr =
+    internal val toDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
 
-    public val getShapeTypePtr: VoidPtr =
+    internal val getShapeTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201670096)
 
-    public val setShapeTypePtr: VoidPtr =
+    internal val setShapeTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83702148)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3360562783)
 
-    public val setSizePtr: VoidPtr =
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3460891852)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1740695150)
 
-    public val setRadiusPtr: VoidPtr =
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373806689)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1740695150)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373806689)
 
-    public val getIsTriggerPtr: VoidPtr =
+    internal val getIsTriggerPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36873697)
 
-    public val setIsTriggerPtr: VoidPtr =
+    internal val setIsTriggerPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2586408642)
 
-    public val getMeshIndexPtr: VoidPtr =
+    internal val getMeshIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3905245786)
 
-    public val setMeshIndexPtr: VoidPtr =
+    internal val setMeshIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1286410249)
 
-    public val getImporterMeshPtr: VoidPtr =
+    internal val getImporterMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3161779525)
 
-    public val setImporterMeshPtr: VoidPtr =
+    internal val setImporterMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
   }
 }

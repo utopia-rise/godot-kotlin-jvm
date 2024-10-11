@@ -54,11 +54,11 @@ public open class AnimationNodeSync : AnimationNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setUseSyncPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setUseSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeSync", "set_use_sync", 2586408642)
 
-    public val isUsingSyncPtr: VoidPtr =
+    internal val isUsingSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeSync", "is_using_sync", 36873697)
   }
 }

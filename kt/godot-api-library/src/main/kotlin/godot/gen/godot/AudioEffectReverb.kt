@@ -213,53 +213,53 @@ public open class AudioEffectReverb : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPredelayMsecPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPredelayMsecPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec", 373806689)
 
-    public val getPredelayMsecPtr: VoidPtr =
+    internal val getPredelayMsecPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec", 1740695150)
 
-    public val setPredelayFeedbackPtr: VoidPtr =
+    internal val setPredelayFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback", 373806689)
 
-    public val getPredelayFeedbackPtr: VoidPtr =
+    internal val getPredelayFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback", 1740695150)
 
-    public val setRoomSizePtr: VoidPtr =
+    internal val setRoomSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_room_size", 373806689)
 
-    public val getRoomSizePtr: VoidPtr =
+    internal val getRoomSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_room_size", 1740695150)
 
-    public val setDampingPtr: VoidPtr =
+    internal val setDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_damping", 373806689)
 
-    public val getDampingPtr: VoidPtr =
+    internal val getDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_damping", 1740695150)
 
-    public val setSpreadPtr: VoidPtr =
+    internal val setSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_spread", 373806689)
 
-    public val getSpreadPtr: VoidPtr =
+    internal val getSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_spread", 1740695150)
 
-    public val setDryPtr: VoidPtr =
+    internal val setDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_dry", 373806689)
 
-    public val getDryPtr: VoidPtr =
+    internal val getDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_dry", 1740695150)
 
-    public val setWetPtr: VoidPtr =
+    internal val setWetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_wet", 373806689)
 
-    public val getWetPtr: VoidPtr =
+    internal val getWetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_wet", 1740695150)
 
-    public val setHpfPtr: VoidPtr =
+    internal val setHpfPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "set_hpf", 373806689)
 
-    public val getHpfPtr: VoidPtr =
+    internal val getHpfPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectReverb", "get_hpf", 1740695150)
   }
 }

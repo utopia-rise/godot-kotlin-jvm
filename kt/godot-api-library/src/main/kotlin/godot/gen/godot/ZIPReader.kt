@@ -98,18 +98,18 @@ public open class ZIPReader : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val openPtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "open", 166001499)
+  public object MethodBindings {
+    internal val openPtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "open", 166001499)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "close", 166280745)
+    internal val closePtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "close", 166280745)
 
-    public val getFilesPtr: VoidPtr =
+    internal val getFilesPtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPReader", "get_files", 2981934095)
 
-    public val readFilePtr: VoidPtr =
+    internal val readFilePtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPReader", "read_file", 740857591)
 
-    public val fileExistsPtr: VoidPtr =
+    internal val fileExistsPtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPReader", "file_exists", 35364943)
   }
 }

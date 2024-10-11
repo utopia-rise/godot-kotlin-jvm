@@ -53,11 +53,11 @@ public open class Texture2DRD : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureRdRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureRdRidPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid", 2722037293)
 
-    public val getTextureRdRidPtr: VoidPtr =
+    internal val getTextureRdRidPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid", 2944877500)
   }
 }

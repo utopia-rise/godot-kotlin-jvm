@@ -22,5 +22,5 @@ public open class AudioStreamPlaybackPlaylist internal constructor() : AudioStre
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

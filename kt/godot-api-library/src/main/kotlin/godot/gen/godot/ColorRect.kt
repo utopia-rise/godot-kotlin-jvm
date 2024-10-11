@@ -80,11 +80,11 @@ public open class ColorRect : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setColorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorRect", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorRect", "get_color", 3444240500)
   }
 }

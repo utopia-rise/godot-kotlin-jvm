@@ -551,75 +551,75 @@ public open class Decal : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "set_size", 3460891852)
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "get_size", 3360562783)
+    internal val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "get_size", 3360562783)
 
-    public val setTexturePtr: VoidPtr =
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_texture", 2086764391)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_texture", 3244119503)
 
-    public val setEmissionEnergyPtr: VoidPtr =
+    internal val setEmissionEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_emission_energy", 373806689)
 
-    public val getEmissionEnergyPtr: VoidPtr =
+    internal val getEmissionEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_emission_energy", 1740695150)
 
-    public val setAlbedoMixPtr: VoidPtr =
+    internal val setAlbedoMixPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_albedo_mix", 373806689)
 
-    public val getAlbedoMixPtr: VoidPtr =
+    internal val getAlbedoMixPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_albedo_mix", 1740695150)
 
-    public val setModulatePtr: VoidPtr =
+    internal val setModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr =
+    internal val getModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_modulate", 3444240500)
 
-    public val setUpperFadePtr: VoidPtr =
+    internal val setUpperFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_upper_fade", 373806689)
 
-    public val getUpperFadePtr: VoidPtr =
+    internal val getUpperFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_upper_fade", 1740695150)
 
-    public val setLowerFadePtr: VoidPtr =
+    internal val setLowerFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_lower_fade", 373806689)
 
-    public val getLowerFadePtr: VoidPtr =
+    internal val getLowerFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_lower_fade", 1740695150)
 
-    public val setNormalFadePtr: VoidPtr =
+    internal val setNormalFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_normal_fade", 373806689)
 
-    public val getNormalFadePtr: VoidPtr =
+    internal val getNormalFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_normal_fade", 1740695150)
 
-    public val setEnableDistanceFadePtr: VoidPtr =
+    internal val setEnableDistanceFadePtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_enable_distance_fade", 2586408642)
 
-    public val isDistanceFadeEnabledPtr: VoidPtr =
+    internal val isDistanceFadeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "is_distance_fade_enabled", 36873697)
 
-    public val setDistanceFadeBeginPtr: VoidPtr =
+    internal val setDistanceFadeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_distance_fade_begin", 373806689)
 
-    public val getDistanceFadeBeginPtr: VoidPtr =
+    internal val getDistanceFadeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_distance_fade_begin", 1740695150)
 
-    public val setDistanceFadeLengthPtr: VoidPtr =
+    internal val setDistanceFadeLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_distance_fade_length", 373806689)
 
-    public val getDistanceFadeLengthPtr: VoidPtr =
+    internal val getDistanceFadeLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_distance_fade_length", 1740695150)
 
-    public val setCullMaskPtr: VoidPtr =
+    internal val setCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr =
+    internal val getCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Decal", "get_cull_mask", 3905245786)
   }
 }

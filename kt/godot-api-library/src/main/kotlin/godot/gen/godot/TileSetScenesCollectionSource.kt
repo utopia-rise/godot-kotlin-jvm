@@ -166,38 +166,38 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSceneTilesCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSceneTilesCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2455072627)
 
-    public val getSceneTileIdPtr: VoidPtr =
+    internal val getSceneTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3744713108)
 
-    public val hasSceneTileIdPtr: VoidPtr =
+    internal val hasSceneTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3067735520)
 
-    public val createSceneTilePtr: VoidPtr =
+    internal val createSceneTilePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1117465415)
 
-    public val setSceneTileIdPtr: VoidPtr =
+    internal val setSceneTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3937882851)
 
-    public val setSceneTileScenePtr: VoidPtr =
+    internal val setSceneTileScenePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3435852839)
 
-    public val getSceneTileScenePtr: VoidPtr =
+    internal val getSceneTileScenePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511017218)
 
-    public val setSceneTileDisplayPlaceholderPtr: VoidPtr =
+    internal val setSceneTileDisplayPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300928843)
 
-    public val getSceneTileDisplayPlaceholderPtr: VoidPtr =
+    internal val getSceneTileDisplayPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1116898809)
 
-    public val removeSceneTilePtr: VoidPtr =
+    internal val removeSceneTilePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1286410249)
 
-    public val getNextSceneTileIdPtr: VoidPtr =
+    internal val getNextSceneTileIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3905245786)
   }
 }

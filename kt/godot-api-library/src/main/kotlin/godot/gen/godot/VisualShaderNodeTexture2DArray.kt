@@ -52,11 +52,11 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureArrayPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array", 2206200446)
 
-    public val getTextureArrayPtr: VoidPtr =
+    internal val getTextureArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array", 146117123)
   }
 }

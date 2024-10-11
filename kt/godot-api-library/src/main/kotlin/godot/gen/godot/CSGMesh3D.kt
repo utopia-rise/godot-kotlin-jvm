@@ -86,15 +86,17 @@ public open class CSGMesh3D : CSGPrimitive3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMeshPtr: VoidPtr = Internals.getMethodBindPtr("CSGMesh3D", "set_mesh", 194775623)
+  public object MethodBindings {
+    internal val setMeshPtr: VoidPtr =
+        Internals.getMethodBindPtr("CSGMesh3D", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr = Internals.getMethodBindPtr("CSGMesh3D", "get_mesh", 4081188045)
+    internal val getMeshPtr: VoidPtr =
+        Internals.getMethodBindPtr("CSGMesh3D", "get_mesh", 4081188045)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGMesh3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGMesh3D", "get_material", 5934680)
   }
 }

@@ -75,17 +75,17 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDefaultValueEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDefaultValueEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBooleanParameter", "set_default_value_enabled", 2586408642)
 
-    public val isDefaultValueEnabledPtr: VoidPtr =
+    internal val isDefaultValueEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBooleanParameter", "is_default_value_enabled", 36873697)
 
-    public val setDefaultValuePtr: VoidPtr =
+    internal val setDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBooleanParameter", "set_default_value", 2586408642)
 
-    public val getDefaultValuePtr: VoidPtr =
+    internal val getDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBooleanParameter", "get_default_value", 36873697)
   }
 }

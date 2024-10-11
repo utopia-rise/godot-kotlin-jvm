@@ -266,47 +266,47 @@ public open class GLTFDocument : Resource() {
     }
   }
 
-  internal object MethodBindings {
-    public val setImageFormatPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setImageFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "set_image_format", 83702148)
 
-    public val getImageFormatPtr: VoidPtr =
+    internal val getImageFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "get_image_format", 201670096)
 
-    public val setLossyQualityPtr: VoidPtr =
+    internal val setLossyQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "set_lossy_quality", 373806689)
 
-    public val getLossyQualityPtr: VoidPtr =
+    internal val getLossyQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "get_lossy_quality", 1740695150)
 
-    public val setRootNodeModePtr: VoidPtr =
+    internal val setRootNodeModePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "set_root_node_mode", 463633402)
 
-    public val getRootNodeModePtr: VoidPtr =
+    internal val getRootNodeModePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "get_root_node_mode", 948057992)
 
-    public val appendFromFilePtr: VoidPtr =
+    internal val appendFromFilePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "append_from_file", 866380864)
 
-    public val appendFromBufferPtr: VoidPtr =
+    internal val appendFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "append_from_buffer", 1616081266)
 
-    public val appendFromScenePtr: VoidPtr =
+    internal val appendFromScenePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "append_from_scene", 1622574258)
 
-    public val generateScenePtr: VoidPtr =
+    internal val generateScenePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "generate_scene", 596118388)
 
-    public val generateBufferPtr: VoidPtr =
+    internal val generateBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "generate_buffer", 741783455)
 
-    public val writeToFilesystemPtr: VoidPtr =
+    internal val writeToFilesystemPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "write_to_filesystem", 1784551478)
 
-    public val registerGltfDocumentExtensionPtr: VoidPtr =
+    internal val registerGltfDocumentExtensionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension", 3752678331)
 
-    public val unregisterGltfDocumentExtensionPtr: VoidPtr =
+    internal val unregisterGltfDocumentExtensionPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFDocument", "unregister_gltf_document_extension", 2684415758)
   }
 }

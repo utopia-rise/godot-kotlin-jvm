@@ -152,33 +152,35 @@ public open class GLTFMesh : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getOriginalNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getOriginalNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "get_original_name", 2841200299)
 
-    public val setOriginalNamePtr: VoidPtr =
+    internal val setOriginalNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "set_original_name", 83702148)
 
-    public val getMeshPtr: VoidPtr = Internals.getMethodBindPtr("GLTFMesh", "get_mesh", 3754628756)
+    internal val getMeshPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFMesh", "get_mesh", 3754628756)
 
-    public val setMeshPtr: VoidPtr = Internals.getMethodBindPtr("GLTFMesh", "set_mesh", 2255166972)
+    internal val setMeshPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFMesh", "set_mesh", 2255166972)
 
-    public val getBlendWeightsPtr: VoidPtr =
+    internal val getBlendWeightsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "get_blend_weights", 2445143706)
 
-    public val setBlendWeightsPtr: VoidPtr =
+    internal val setBlendWeightsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "set_blend_weights", 2899603908)
 
-    public val getInstanceMaterialsPtr: VoidPtr =
+    internal val getInstanceMaterialsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "get_instance_materials", 2915620761)
 
-    public val setInstanceMaterialsPtr: VoidPtr =
+    internal val setInstanceMaterialsPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "set_instance_materials", 381264803)
 
-    public val getAdditionalDataPtr: VoidPtr =
+    internal val getAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "get_additional_data", 2138907829)
 
-    public val setAdditionalDataPtr: VoidPtr =
+    internal val setAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFMesh", "set_additional_data", 3776071444)
   }
 }

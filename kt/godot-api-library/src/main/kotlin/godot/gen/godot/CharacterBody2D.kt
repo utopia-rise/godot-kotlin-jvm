@@ -740,149 +740,149 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val moveAndSlidePtr: VoidPtr =
+  public object MethodBindings {
+    internal val moveAndSlidePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "move_and_slide", 2240911060)
 
-    public val applyFloorSnapPtr: VoidPtr =
+    internal val applyFloorSnapPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "apply_floor_snap", 3218959716)
 
-    public val setVelocityPtr: VoidPtr =
+    internal val setVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_velocity", 743155724)
 
-    public val getVelocityPtr: VoidPtr =
+    internal val getVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_velocity", 3341600327)
 
-    public val setSafeMarginPtr: VoidPtr =
+    internal val setSafeMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_safe_margin", 373806689)
 
-    public val getSafeMarginPtr: VoidPtr =
+    internal val getSafeMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_safe_margin", 1740695150)
 
-    public val isFloorStopOnSlopeEnabledPtr: VoidPtr =
+    internal val isFloorStopOnSlopeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_floor_stop_on_slope_enabled", 36873697)
 
-    public val setFloorStopOnSlopeEnabledPtr: VoidPtr =
+    internal val setFloorStopOnSlopeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_floor_stop_on_slope_enabled", 2586408642)
 
-    public val setFloorConstantSpeedEnabledPtr: VoidPtr =
+    internal val setFloorConstantSpeedEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_floor_constant_speed_enabled", 2586408642)
 
-    public val isFloorConstantSpeedEnabledPtr: VoidPtr =
+    internal val isFloorConstantSpeedEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_floor_constant_speed_enabled", 36873697)
 
-    public val setFloorBlockOnWallEnabledPtr: VoidPtr =
+    internal val setFloorBlockOnWallEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_floor_block_on_wall_enabled", 2586408642)
 
-    public val isFloorBlockOnWallEnabledPtr: VoidPtr =
+    internal val isFloorBlockOnWallEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_floor_block_on_wall_enabled", 36873697)
 
-    public val setSlideOnCeilingEnabledPtr: VoidPtr =
+    internal val setSlideOnCeilingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_slide_on_ceiling_enabled", 2586408642)
 
-    public val isSlideOnCeilingEnabledPtr: VoidPtr =
+    internal val isSlideOnCeilingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_slide_on_ceiling_enabled", 36873697)
 
-    public val setPlatformFloorLayersPtr: VoidPtr =
+    internal val setPlatformFloorLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_platform_floor_layers", 1286410249)
 
-    public val getPlatformFloorLayersPtr: VoidPtr =
+    internal val getPlatformFloorLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_platform_floor_layers", 3905245786)
 
-    public val setPlatformWallLayersPtr: VoidPtr =
+    internal val setPlatformWallLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_platform_wall_layers", 1286410249)
 
-    public val getPlatformWallLayersPtr: VoidPtr =
+    internal val getPlatformWallLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_platform_wall_layers", 3905245786)
 
-    public val getMaxSlidesPtr: VoidPtr =
+    internal val getMaxSlidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_max_slides", 3905245786)
 
-    public val setMaxSlidesPtr: VoidPtr =
+    internal val setMaxSlidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_max_slides", 1286410249)
 
-    public val getFloorMaxAnglePtr: VoidPtr =
+    internal val getFloorMaxAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_floor_max_angle", 1740695150)
 
-    public val setFloorMaxAnglePtr: VoidPtr =
+    internal val setFloorMaxAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_floor_max_angle", 373806689)
 
-    public val getFloorSnapLengthPtr: VoidPtr =
+    internal val getFloorSnapLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_floor_snap_length", 191475506)
 
-    public val setFloorSnapLengthPtr: VoidPtr =
+    internal val setFloorSnapLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_floor_snap_length", 373806689)
 
-    public val getWallMinSlideAnglePtr: VoidPtr =
+    internal val getWallMinSlideAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_wall_min_slide_angle", 1740695150)
 
-    public val setWallMinSlideAnglePtr: VoidPtr =
+    internal val setWallMinSlideAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_wall_min_slide_angle", 373806689)
 
-    public val getUpDirectionPtr: VoidPtr =
+    internal val getUpDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_up_direction", 3341600327)
 
-    public val setUpDirectionPtr: VoidPtr =
+    internal val setUpDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_up_direction", 743155724)
 
-    public val setMotionModePtr: VoidPtr =
+    internal val setMotionModePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_motion_mode", 1224392233)
 
-    public val getMotionModePtr: VoidPtr =
+    internal val getMotionModePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_motion_mode", 1160151236)
 
-    public val setPlatformOnLeavePtr: VoidPtr =
+    internal val setPlatformOnLeavePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "set_platform_on_leave", 2423324375)
 
-    public val getPlatformOnLeavePtr: VoidPtr =
+    internal val getPlatformOnLeavePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_platform_on_leave", 4054324341)
 
-    public val isOnFloorPtr: VoidPtr =
+    internal val isOnFloorPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_floor", 36873697)
 
-    public val isOnFloorOnlyPtr: VoidPtr =
+    internal val isOnFloorOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_floor_only", 36873697)
 
-    public val isOnCeilingPtr: VoidPtr =
+    internal val isOnCeilingPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_ceiling", 36873697)
 
-    public val isOnCeilingOnlyPtr: VoidPtr =
+    internal val isOnCeilingOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_ceiling_only", 36873697)
 
-    public val isOnWallPtr: VoidPtr =
+    internal val isOnWallPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_wall", 36873697)
 
-    public val isOnWallOnlyPtr: VoidPtr =
+    internal val isOnWallOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "is_on_wall_only", 36873697)
 
-    public val getFloorNormalPtr: VoidPtr =
+    internal val getFloorNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_floor_normal", 3341600327)
 
-    public val getWallNormalPtr: VoidPtr =
+    internal val getWallNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_wall_normal", 3341600327)
 
-    public val getLastMotionPtr: VoidPtr =
+    internal val getLastMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_last_motion", 3341600327)
 
-    public val getPositionDeltaPtr: VoidPtr =
+    internal val getPositionDeltaPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_position_delta", 3341600327)
 
-    public val getRealVelocityPtr: VoidPtr =
+    internal val getRealVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_real_velocity", 3341600327)
 
-    public val getFloorAnglePtr: VoidPtr =
+    internal val getFloorAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_floor_angle", 2841063350)
 
-    public val getPlatformVelocityPtr: VoidPtr =
+    internal val getPlatformVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_platform_velocity", 3341600327)
 
-    public val getSlideCollisionCountPtr: VoidPtr =
+    internal val getSlideCollisionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_slide_collision_count", 3905245786)
 
-    public val getSlideCollisionPtr: VoidPtr =
+    internal val getSlideCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_slide_collision", 860659811)
 
-    public val getLastSlideCollisionPtr: VoidPtr =
+    internal val getLastSlideCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CharacterBody2D", "get_last_slide_collision", 2161834755)
   }
 }

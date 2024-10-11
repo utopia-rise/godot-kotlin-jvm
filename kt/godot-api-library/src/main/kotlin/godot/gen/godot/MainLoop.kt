@@ -190,5 +190,5 @@ public open class MainLoop : Object() {
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
   }
 
-  internal object MethodBindings
+  public object MethodBindings
 }

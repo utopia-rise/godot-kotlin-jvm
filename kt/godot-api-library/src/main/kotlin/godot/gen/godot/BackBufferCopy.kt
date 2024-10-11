@@ -138,17 +138,17 @@ public open class BackBufferCopy : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRectPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRectPtr: VoidPtr =
         Internals.getMethodBindPtr("BackBufferCopy", "set_rect", 2046264180)
 
-    public val getRectPtr: VoidPtr =
+    internal val getRectPtr: VoidPtr =
         Internals.getMethodBindPtr("BackBufferCopy", "get_rect", 1639390495)
 
-    public val setCopyModePtr: VoidPtr =
+    internal val setCopyModePtr: VoidPtr =
         Internals.getMethodBindPtr("BackBufferCopy", "set_copy_mode", 1713538590)
 
-    public val getCopyModePtr: VoidPtr =
+    internal val getCopyModePtr: VoidPtr =
         Internals.getMethodBindPtr("BackBufferCopy", "get_copy_mode", 3271169440)
   }
 }

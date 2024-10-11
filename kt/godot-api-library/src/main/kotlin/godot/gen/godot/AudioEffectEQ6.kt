@@ -32,5 +32,5 @@ public open class AudioEffectEQ6 : AudioEffectEQ() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

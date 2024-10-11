@@ -82,14 +82,14 @@ public open class ArrayOccluder3D : Occluder3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setArraysPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayOccluder3D", "set_arrays", 3233972621)
 
-    public val setVerticesPtr: VoidPtr =
+    internal val setVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayOccluder3D", "set_vertices", 334873810)
 
-    public val setIndicesPtr: VoidPtr =
+    internal val setIndicesPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayOccluder3D", "set_indices", 3614634198)
   }
 }

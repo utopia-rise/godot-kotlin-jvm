@@ -112,26 +112,26 @@ public open class OggPacketSequence : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPacketDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPacketDataPtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381264803)
 
-    public val getPacketDataPtr: VoidPtr =
+    internal val getPacketDataPtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3995934104)
 
-    public val setPacketGranulePositionsPtr: VoidPtr =
+    internal val setPacketGranulePositionsPtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3709968205)
 
-    public val getPacketGranulePositionsPtr: VoidPtr =
+    internal val getPacketGranulePositionsPtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235988956)
 
-    public val setSamplingRatePtr: VoidPtr =
+    internal val setSamplingRatePtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373806689)
 
-    public val getSamplingRatePtr: VoidPtr =
+    internal val getSamplingRatePtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1740695150)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("OggPacketSequence", "get_length", 1740695150)
   }
 }

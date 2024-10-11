@@ -82,11 +82,11 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPositionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventGesture", "set_position", 743155724)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventGesture", "get_position", 3341600327)
   }
 }

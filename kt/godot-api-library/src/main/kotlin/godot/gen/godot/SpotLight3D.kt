@@ -36,5 +36,5 @@ public open class SpotLight3D : Light3D() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

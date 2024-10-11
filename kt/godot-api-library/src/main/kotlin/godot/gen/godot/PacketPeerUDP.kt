@@ -221,41 +221,42 @@ public open class PacketPeerUDP : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val bindPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "bind", 4051239242)
+  public object MethodBindings {
+    internal val bindPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "bind", 4051239242)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "close", 3218959716)
+    internal val closePtr: VoidPtr =
+        Internals.getMethodBindPtr("PacketPeerUDP", "close", 3218959716)
 
-    public val waitPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "wait", 166280745)
+    internal val waitPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "wait", 166280745)
 
-    public val isBoundPtr: VoidPtr =
+    internal val isBoundPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "is_bound", 36873697)
 
-    public val connectToHostPtr: VoidPtr =
+    internal val connectToHostPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "connect_to_host", 993915709)
 
-    public val isSocketConnectedPtr: VoidPtr =
+    internal val isSocketConnectedPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "is_socket_connected", 36873697)
 
-    public val getPacketIpPtr: VoidPtr =
+    internal val getPacketIpPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "get_packet_ip", 201670096)
 
-    public val getPacketPortPtr: VoidPtr =
+    internal val getPacketPortPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "get_packet_port", 3905245786)
 
-    public val getLocalPortPtr: VoidPtr =
+    internal val getLocalPortPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "get_local_port", 3905245786)
 
-    public val setDestAddressPtr: VoidPtr =
+    internal val setDestAddressPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "set_dest_address", 993915709)
 
-    public val setBroadcastEnabledPtr: VoidPtr =
+    internal val setBroadcastEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "set_broadcast_enabled", 2586408642)
 
-    public val joinMulticastGroupPtr: VoidPtr =
+    internal val joinMulticastGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "join_multicast_group", 852856452)
 
-    public val leaveMulticastGroupPtr: VoidPtr =
+    internal val leaveMulticastGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerUDP", "leave_multicast_group", 852856452)
   }
 }

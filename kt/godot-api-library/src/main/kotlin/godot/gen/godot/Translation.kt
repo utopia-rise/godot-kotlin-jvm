@@ -176,35 +176,35 @@ public open class Translation : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLocalePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "set_locale", 83702148)
 
-    public val getLocalePtr: VoidPtr =
+    internal val getLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_locale", 201670096)
 
-    public val addMessagePtr: VoidPtr =
+    internal val addMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "add_message", 971803314)
 
-    public val addPluralMessagePtr: VoidPtr =
+    internal val addPluralMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "add_plural_message", 360316719)
 
-    public val getMessagePtr: VoidPtr =
+    internal val getMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_message", 58037827)
 
-    public val getPluralMessagePtr: VoidPtr =
+    internal val getPluralMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_plural_message", 1333931916)
 
-    public val eraseMessagePtr: VoidPtr =
+    internal val eraseMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "erase_message", 3919944288)
 
-    public val getMessageListPtr: VoidPtr =
+    internal val getMessageListPtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_message_list", 1139954409)
 
-    public val getTranslatedMessageListPtr: VoidPtr =
+    internal val getTranslatedMessageListPtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_translated_message_list", 1139954409)
 
-    public val getMessageCountPtr: VoidPtr =
+    internal val getMessageCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Translation", "get_message_count", 3905245786)
   }
 }

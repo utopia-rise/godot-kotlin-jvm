@@ -113,26 +113,26 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPhysicalBoneChainLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPhysicalBoneChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length", 1286410249)
 
-    public val getPhysicalBoneChainLengthPtr: VoidPtr =
+    internal val getPhysicalBoneChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length", 2455072627)
 
-    public val setPhysicalBoneNodePtr: VoidPtr =
+    internal val setPhysicalBoneNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node", 2761262315)
 
-    public val getPhysicalBoneNodePtr: VoidPtr =
+    internal val getPhysicalBoneNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node", 408788394)
 
-    public val fetchPhysicalBonesPtr: VoidPtr =
+    internal val fetchPhysicalBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones", 3218959716)
 
-    public val startSimulationPtr: VoidPtr =
+    internal val startSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation", 2787316981)
 
-    public val stopSimulationPtr: VoidPtr =
+    internal val stopSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation", 2787316981)
   }
 }

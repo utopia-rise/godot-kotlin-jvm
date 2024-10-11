@@ -129,25 +129,25 @@ public open class RegExMatch : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSubjectPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSubjectPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_subject", 201670096)
 
-    public val getGroupCountPtr: VoidPtr =
+    internal val getGroupCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_group_count", 3905245786)
 
-    public val getNamesPtr: VoidPtr =
+    internal val getNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_names", 3102165223)
 
-    public val getStringsPtr: VoidPtr =
+    internal val getStringsPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_strings", 1139954409)
 
-    public val getStringPtr: VoidPtr =
+    internal val getStringPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_string", 687115856)
 
-    public val getStartPtr: VoidPtr =
+    internal val getStartPtr: VoidPtr =
         Internals.getMethodBindPtr("RegExMatch", "get_start", 490464691)
 
-    public val getEndPtr: VoidPtr = Internals.getMethodBindPtr("RegExMatch", "get_end", 490464691)
+    internal val getEndPtr: VoidPtr = Internals.getMethodBindPtr("RegExMatch", "get_end", 490464691)
   }
 }

@@ -51,11 +51,11 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "set_texture", 8031783)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "get_texture", 1950275015)
   }
 }

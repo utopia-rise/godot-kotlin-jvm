@@ -261,35 +261,35 @@ public open class OpenXRHand : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHandPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHandPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "set_hand", 1849328560)
 
-    public val getHandPtr: VoidPtr =
+    internal val getHandPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "get_hand", 2850644561)
 
-    public val setHandSkeletonPtr: VoidPtr =
+    internal val setHandSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1348162250)
 
-    public val getHandSkeletonPtr: VoidPtr =
+    internal val getHandSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4075236667)
 
-    public val setMotionRangePtr: VoidPtr =
+    internal val setMotionRangePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "set_motion_range", 3326516003)
 
-    public val getMotionRangePtr: VoidPtr =
+    internal val getMotionRangePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "get_motion_range", 2191822314)
 
-    public val setSkeletonRigPtr: VoidPtr =
+    internal val setSkeletonRigPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1528072213)
 
-    public val getSkeletonRigPtr: VoidPtr =
+    internal val getSkeletonRigPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968409338)
 
-    public val setBoneUpdatePtr: VoidPtr =
+    internal val setBoneUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "set_bone_update", 3144625444)
 
-    public val getBoneUpdatePtr: VoidPtr =
+    internal val getBoneUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRHand", "get_bone_update", 1310695248)
   }
 }

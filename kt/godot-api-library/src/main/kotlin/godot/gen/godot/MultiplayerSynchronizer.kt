@@ -282,56 +282,56 @@ public open class MultiplayerSynchronizer : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRootPathPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRootPathPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1348162250)
 
-    public val getRootPathPtr: VoidPtr =
+    internal val getRootPathPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4075236667)
 
-    public val setReplicationIntervalPtr: VoidPtr =
+    internal val setReplicationIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373806689)
 
-    public val getReplicationIntervalPtr: VoidPtr =
+    internal val getReplicationIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1740695150)
 
-    public val setDeltaIntervalPtr: VoidPtr =
+    internal val setDeltaIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373806689)
 
-    public val getDeltaIntervalPtr: VoidPtr =
+    internal val getDeltaIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1740695150)
 
-    public val setReplicationConfigPtr: VoidPtr =
+    internal val setReplicationConfigPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3889206742)
 
-    public val getReplicationConfigPtr: VoidPtr =
+    internal val getReplicationConfigPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3200254614)
 
-    public val setVisibilityUpdateModePtr: VoidPtr =
+    internal val setVisibilityUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3494860300)
 
-    public val getVisibilityUpdateModePtr: VoidPtr =
+    internal val getVisibilityUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3352241418)
 
-    public val updateVisibilityPtr: VoidPtr =
+    internal val updateVisibilityPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1995695955)
 
-    public val setVisibilityPublicPtr: VoidPtr =
+    internal val setVisibilityPublicPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2586408642)
 
-    public val isVisibilityPublicPtr: VoidPtr =
+    internal val isVisibilityPublicPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36873697)
 
-    public val addVisibilityFilterPtr: VoidPtr =
+    internal val addVisibilityFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1611583062)
 
-    public val removeVisibilityFilterPtr: VoidPtr =
+    internal val removeVisibilityFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1611583062)
 
-    public val setVisibilityForPtr: VoidPtr =
+    internal val setVisibilityForPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300928843)
 
-    public val getVisibilityForPtr: VoidPtr =
+    internal val getVisibilityForPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1116898809)
   }
 }

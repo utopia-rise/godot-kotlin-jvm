@@ -97,23 +97,23 @@ public open class AudioStreamSynchronized : AudioStream() {
     public final const val MAX_STREAMS: Long = 32
   }
 
-  internal object MethodBindings {
-    public val setStreamCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStreamCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "set_stream_count", 1286410249)
 
-    public val getStreamCountPtr: VoidPtr =
+    internal val getStreamCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "get_stream_count", 3905245786)
 
-    public val setSyncStreamPtr: VoidPtr =
+    internal val setSyncStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream", 111075094)
 
-    public val getSyncStreamPtr: VoidPtr =
+    internal val getSyncStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream", 2739380747)
 
-    public val setSyncStreamVolumePtr: VoidPtr =
+    internal val setSyncStreamVolumePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream_volume", 1602489585)
 
-    public val getSyncStreamVolumePtr: VoidPtr =
+    internal val getSyncStreamVolumePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream_volume", 2339986948)
   }
 }

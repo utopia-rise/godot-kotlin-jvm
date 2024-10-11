@@ -206,27 +206,28 @@ public open class CameraFeed : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getIdPtr: VoidPtr = Internals.getMethodBindPtr("CameraFeed", "get_id", 3905245786)
+  public object MethodBindings {
+    internal val getIdPtr: VoidPtr = Internals.getMethodBindPtr("CameraFeed", "get_id", 3905245786)
 
-    public val isActivePtr: VoidPtr =
+    internal val isActivePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "is_active", 36873697)
 
-    public val setActivePtr: VoidPtr =
+    internal val setActivePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "set_active", 2586408642)
 
-    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("CameraFeed", "get_name", 201670096)
+    internal val getNamePtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraFeed", "get_name", 201670096)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "get_position", 2711679033)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "get_transform", 3814499831)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "set_transform", 2761652528)
 
-    public val getDatatypePtr: VoidPtr =
+    internal val getDatatypePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraFeed", "get_datatype", 1477782850)
   }
 }

@@ -67,11 +67,11 @@ public open class ConvexPolygonShape3D : Shape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPointsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("ConvexPolygonShape3D", "set_points", 334873810)
 
-    public val getPointsPtr: VoidPtr =
+    internal val getPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("ConvexPolygonShape3D", "get_points", 497664490)
   }
 }

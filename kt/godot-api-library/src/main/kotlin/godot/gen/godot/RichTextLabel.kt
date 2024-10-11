@@ -1635,354 +1635,355 @@ public open class RichTextLabel : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getParsedTextPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getParsedTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_parsed_text", 201670096)
 
-    public val addTextPtr: VoidPtr =
+    internal val addTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "add_text", 83702148)
 
-    public val setTextPtr: VoidPtr =
+    internal val setTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_text", 83702148)
 
-    public val addImagePtr: VoidPtr =
+    internal val addImagePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "add_image", 3017663154)
 
-    public val updateImagePtr: VoidPtr =
+    internal val updateImagePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "update_image", 815048486)
 
-    public val newlinePtr: VoidPtr =
+    internal val newlinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "newline", 3218959716)
 
-    public val removeParagraphPtr: VoidPtr =
+    internal val removeParagraphPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "remove_paragraph", 3262369265)
 
-    public val invalidateParagraphPtr: VoidPtr =
+    internal val invalidateParagraphPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "invalidate_paragraph", 3067735520)
 
-    public val pushFontPtr: VoidPtr =
+    internal val pushFontPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_font", 2347424842)
 
-    public val pushFontSizePtr: VoidPtr =
+    internal val pushFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_font_size", 1286410249)
 
-    public val pushNormalPtr: VoidPtr =
+    internal val pushNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_normal", 3218959716)
 
-    public val pushBoldPtr: VoidPtr =
+    internal val pushBoldPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_bold", 3218959716)
 
-    public val pushBoldItalicsPtr: VoidPtr =
+    internal val pushBoldItalicsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_bold_italics", 3218959716)
 
-    public val pushItalicsPtr: VoidPtr =
+    internal val pushItalicsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_italics", 3218959716)
 
-    public val pushMonoPtr: VoidPtr =
+    internal val pushMonoPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_mono", 3218959716)
 
-    public val pushColorPtr: VoidPtr =
+    internal val pushColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_color", 2920490490)
 
-    public val pushOutlineSizePtr: VoidPtr =
+    internal val pushOutlineSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_outline_size", 1286410249)
 
-    public val pushOutlineColorPtr: VoidPtr =
+    internal val pushOutlineColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_outline_color", 2920490490)
 
-    public val pushParagraphPtr: VoidPtr =
+    internal val pushParagraphPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_paragraph", 3089306873)
 
-    public val pushIndentPtr: VoidPtr =
+    internal val pushIndentPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_indent", 1286410249)
 
-    public val pushListPtr: VoidPtr =
+    internal val pushListPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_list", 3017143144)
 
-    public val pushMetaPtr: VoidPtr =
+    internal val pushMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_meta", 2206155733)
 
-    public val pushHintPtr: VoidPtr =
+    internal val pushHintPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_hint", 83702148)
 
-    public val pushLanguagePtr: VoidPtr =
+    internal val pushLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_language", 83702148)
 
-    public val pushUnderlinePtr: VoidPtr =
+    internal val pushUnderlinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_underline", 3218959716)
 
-    public val pushStrikethroughPtr: VoidPtr =
+    internal val pushStrikethroughPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_strikethrough", 3218959716)
 
-    public val pushTablePtr: VoidPtr =
+    internal val pushTablePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_table", 2623499273)
 
-    public val pushDropcapPtr: VoidPtr =
+    internal val pushDropcapPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
 
-    public val setTableColumnExpandPtr: VoidPtr =
+    internal val setTableColumnExpandPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 2185176273)
 
-    public val setCellRowBackgroundColorPtr: VoidPtr =
+    internal val setCellRowBackgroundColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
 
-    public val setCellBorderColorPtr: VoidPtr =
+    internal val setCellBorderColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_cell_border_color", 2920490490)
 
-    public val setCellSizeOverridePtr: VoidPtr =
+    internal val setCellSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_cell_size_override", 3108078480)
 
-    public val setCellPaddingPtr: VoidPtr =
+    internal val setCellPaddingPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_cell_padding", 2046264180)
 
-    public val pushCellPtr: VoidPtr =
+    internal val pushCellPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_cell", 3218959716)
 
-    public val pushFgcolorPtr: VoidPtr =
+    internal val pushFgcolorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_fgcolor", 2920490490)
 
-    public val pushBgcolorPtr: VoidPtr =
+    internal val pushBgcolorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_bgcolor", 2920490490)
 
-    public val pushCustomfxPtr: VoidPtr =
+    internal val pushCustomfxPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_customfx", 2337942958)
 
-    public val pushContextPtr: VoidPtr =
+    internal val pushContextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "push_context", 3218959716)
 
-    public val popContextPtr: VoidPtr =
+    internal val popContextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "pop_context", 3218959716)
 
-    public val popPtr: VoidPtr = Internals.getMethodBindPtr("RichTextLabel", "pop", 3218959716)
+    internal val popPtr: VoidPtr = Internals.getMethodBindPtr("RichTextLabel", "pop", 3218959716)
 
-    public val popAllPtr: VoidPtr =
+    internal val popAllPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "pop_all", 3218959716)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("RichTextLabel", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        Internals.getMethodBindPtr("RichTextLabel", "clear", 3218959716)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override", 55961453)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override", 3385126229)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override_options", 381264803)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override_options", 3995934104)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_language", 201670096)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_autowrap_mode", 3289138044)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_autowrap_mode", 1549071663)
 
-    public val setMetaUnderlinePtr: VoidPtr =
+    internal val setMetaUnderlinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_meta_underline", 2586408642)
 
-    public val isMetaUnderlinedPtr: VoidPtr =
+    internal val isMetaUnderlinedPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_meta_underlined", 36873697)
 
-    public val setHintUnderlinePtr: VoidPtr =
+    internal val setHintUnderlinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_hint_underline", 2586408642)
 
-    public val isHintUnderlinedPtr: VoidPtr =
+    internal val isHintUnderlinedPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_hint_underlined", 36873697)
 
-    public val setScrollActivePtr: VoidPtr =
+    internal val setScrollActivePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_scroll_active", 2586408642)
 
-    public val isScrollActivePtr: VoidPtr =
+    internal val isScrollActivePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_scroll_active", 36873697)
 
-    public val setScrollFollowPtr: VoidPtr =
+    internal val setScrollFollowPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_scroll_follow", 2586408642)
 
-    public val isScrollFollowingPtr: VoidPtr =
+    internal val isScrollFollowingPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_scroll_following", 36873697)
 
-    public val getVScrollBarPtr: VoidPtr =
+    internal val getVScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_v_scroll_bar", 2630340773)
 
-    public val scrollToLinePtr: VoidPtr =
+    internal val scrollToLinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "scroll_to_line", 1286410249)
 
-    public val scrollToParagraphPtr: VoidPtr =
+    internal val scrollToParagraphPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "scroll_to_paragraph", 1286410249)
 
-    public val scrollToSelectionPtr: VoidPtr =
+    internal val scrollToSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "scroll_to_selection", 3218959716)
 
-    public val setTabSizePtr: VoidPtr =
+    internal val setTabSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_tab_size", 1286410249)
 
-    public val getTabSizePtr: VoidPtr =
+    internal val getTabSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_tab_size", 3905245786)
 
-    public val setFitContentPtr: VoidPtr =
+    internal val setFitContentPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_fit_content", 2586408642)
 
-    public val isFitContentEnabledPtr: VoidPtr =
+    internal val isFitContentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_fit_content_enabled", 36873697)
 
-    public val setSelectionEnabledPtr: VoidPtr =
+    internal val setSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_selection_enabled", 2586408642)
 
-    public val isSelectionEnabledPtr: VoidPtr =
+    internal val isSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_selection_enabled", 36873697)
 
-    public val setContextMenuEnabledPtr: VoidPtr =
+    internal val setContextMenuEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_context_menu_enabled", 2586408642)
 
-    public val isContextMenuEnabledPtr: VoidPtr =
+    internal val isContextMenuEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_context_menu_enabled", 36873697)
 
-    public val setShortcutKeysEnabledPtr: VoidPtr =
+    internal val setShortcutKeysEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_shortcut_keys_enabled", 2586408642)
 
-    public val isShortcutKeysEnabledPtr: VoidPtr =
+    internal val isShortcutKeysEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_shortcut_keys_enabled", 36873697)
 
-    public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
+    internal val setDeselectOnFocusLossEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_deselect_on_focus_loss_enabled", 2586408642)
 
-    public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
+    internal val isDeselectOnFocusLossEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled", 36873697)
 
-    public val setDragAndDropSelectionEnabledPtr: VoidPtr =
+    internal val setDragAndDropSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled", 2586408642)
 
-    public val isDragAndDropSelectionEnabledPtr: VoidPtr =
+    internal val isDragAndDropSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled", 36873697)
 
-    public val getSelectionFromPtr: VoidPtr =
+    internal val getSelectionFromPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_selection_from", 3905245786)
 
-    public val getSelectionToPtr: VoidPtr =
+    internal val getSelectionToPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_selection_to", 3905245786)
 
-    public val selectAllPtr: VoidPtr =
+    internal val selectAllPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "select_all", 3218959716)
 
-    public val getSelectedTextPtr: VoidPtr =
+    internal val getSelectedTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_selected_text", 201670096)
 
-    public val deselectPtr: VoidPtr =
+    internal val deselectPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "deselect", 3218959716)
 
-    public val parseBbcodePtr: VoidPtr =
+    internal val parseBbcodePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "parse_bbcode", 83702148)
 
-    public val appendTextPtr: VoidPtr =
+    internal val appendTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "append_text", 83702148)
 
-    public val getTextPtr: VoidPtr =
+    internal val getTextPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_text", 201670096)
 
-    public val isReadyPtr: VoidPtr =
+    internal val isReadyPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_ready", 36873697)
 
-    public val setThreadedPtr: VoidPtr =
+    internal val setThreadedPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_threaded", 2586408642)
 
-    public val isThreadedPtr: VoidPtr =
+    internal val isThreadedPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_threaded", 36873697)
 
-    public val setProgressBarDelayPtr: VoidPtr =
+    internal val setProgressBarDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_progress_bar_delay", 1286410249)
 
-    public val getProgressBarDelayPtr: VoidPtr =
+    internal val getProgressBarDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_progress_bar_delay", 3905245786)
 
-    public val setVisibleCharactersPtr: VoidPtr =
+    internal val setVisibleCharactersPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_visible_characters", 1286410249)
 
-    public val getVisibleCharactersPtr: VoidPtr =
+    internal val getVisibleCharactersPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_visible_characters", 3905245786)
 
-    public val getVisibleCharactersBehaviorPtr: VoidPtr =
+    internal val getVisibleCharactersBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_visible_characters_behavior", 258789322)
 
-    public val setVisibleCharactersBehaviorPtr: VoidPtr =
+    internal val setVisibleCharactersBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_visible_characters_behavior", 3383839701)
 
-    public val setVisibleRatioPtr: VoidPtr =
+    internal val setVisibleRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_visible_ratio", 373806689)
 
-    public val getVisibleRatioPtr: VoidPtr =
+    internal val getVisibleRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_visible_ratio", 1740695150)
 
-    public val getCharacterLinePtr: VoidPtr =
+    internal val getCharacterLinePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_character_line", 3744713108)
 
-    public val getCharacterParagraphPtr: VoidPtr =
+    internal val getCharacterParagraphPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_character_paragraph", 3744713108)
 
-    public val getTotalCharacterCountPtr: VoidPtr =
+    internal val getTotalCharacterCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_total_character_count", 3905245786)
 
-    public val setUseBbcodePtr: VoidPtr =
+    internal val setUseBbcodePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_use_bbcode", 2586408642)
 
-    public val isUsingBbcodePtr: VoidPtr =
+    internal val isUsingBbcodePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_using_bbcode", 36873697)
 
-    public val getLineCountPtr: VoidPtr =
+    internal val getLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_line_count", 3905245786)
 
-    public val getVisibleLineCountPtr: VoidPtr =
+    internal val getVisibleLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_visible_line_count", 3905245786)
 
-    public val getParagraphCountPtr: VoidPtr =
+    internal val getParagraphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_paragraph_count", 3905245786)
 
-    public val getVisibleParagraphCountPtr: VoidPtr =
+    internal val getVisibleParagraphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_visible_paragraph_count", 3905245786)
 
-    public val getContentHeightPtr: VoidPtr =
+    internal val getContentHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_content_height", 3905245786)
 
-    public val getContentWidthPtr: VoidPtr =
+    internal val getContentWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_content_width", 3905245786)
 
-    public val getLineOffsetPtr: VoidPtr =
+    internal val getLineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_line_offset", 4025615559)
 
-    public val getParagraphOffsetPtr: VoidPtr =
+    internal val getParagraphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_paragraph_offset", 4025615559)
 
-    public val parseExpressionsForValuesPtr: VoidPtr =
+    internal val parseExpressionsForValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "parse_expressions_for_values", 1522900837)
 
-    public val setEffectsPtr: VoidPtr =
+    internal val setEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "set_effects", 381264803)
 
-    public val getEffectsPtr: VoidPtr =
+    internal val getEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_effects", 2915620761)
 
-    public val installEffectPtr: VoidPtr =
+    internal val installEffectPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "install_effect", 1114965689)
 
-    public val getMenuPtr: VoidPtr =
+    internal val getMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "get_menu", 229722558)
 
-    public val isMenuVisiblePtr: VoidPtr =
+    internal val isMenuVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "is_menu_visible", 36873697)
 
-    public val menuOptionPtr: VoidPtr =
+    internal val menuOptionPtr: VoidPtr =
         Internals.getMethodBindPtr("RichTextLabel", "menu_option", 1286410249)
   }
 }

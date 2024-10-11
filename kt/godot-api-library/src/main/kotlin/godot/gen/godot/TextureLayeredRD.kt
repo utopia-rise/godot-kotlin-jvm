@@ -53,11 +53,11 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureRdRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureRdRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureLayeredRD", "set_texture_rd_rid", 2722037293)
 
-    public val getTextureRdRidPtr: VoidPtr =
+    internal val getTextureRdRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureLayeredRD", "get_texture_rd_rid", 2944877500)
   }
 }

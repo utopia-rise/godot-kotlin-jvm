@@ -85,20 +85,20 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val isSimulatingPhysicsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val isSimulatingPhysicsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "is_simulating_physics", 36873697)
 
-    public val physicalBonesStopSimulationPtr: VoidPtr =
+    internal val physicalBonesStopSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_stop_simulation", 3218959716)
 
-    public val physicalBonesStartSimulationPtr: VoidPtr =
+    internal val physicalBonesStartSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_start_simulation", 2787316981)
 
-    public val physicalBonesAddCollisionExceptionPtr: VoidPtr =
+    internal val physicalBonesAddCollisionExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_add_collision_exception", 2722037293)
 
-    public val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
+    internal val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_remove_collision_exception", 2722037293)
   }
 }

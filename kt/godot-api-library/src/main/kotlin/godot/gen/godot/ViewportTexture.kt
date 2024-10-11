@@ -63,11 +63,11 @@ public open class ViewportTexture : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setViewportPathInScenePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setViewportPathInScenePtr: VoidPtr =
         Internals.getMethodBindPtr("ViewportTexture", "set_viewport_path_in_scene", 1348162250)
 
-    public val getViewportPathInScenePtr: VoidPtr =
+    internal val getViewportPathInScenePtr: VoidPtr =
         Internals.getMethodBindPtr("ViewportTexture", "get_viewport_path_in_scene", 4075236667)
   }
 }

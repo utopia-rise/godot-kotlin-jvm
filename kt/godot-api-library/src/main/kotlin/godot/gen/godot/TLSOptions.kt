@@ -146,30 +146,30 @@ public open class TLSOptions internal constructor() : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val clientPtr: VoidPtr = Internals.getMethodBindPtr("TLSOptions", "client", 3565000357)
+  public object MethodBindings {
+    internal val clientPtr: VoidPtr = Internals.getMethodBindPtr("TLSOptions", "client", 3565000357)
 
-    public val clientUnsafePtr: VoidPtr =
+    internal val clientUnsafePtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "client_unsafe", 2090251749)
 
-    public val serverPtr: VoidPtr = Internals.getMethodBindPtr("TLSOptions", "server", 36969539)
+    internal val serverPtr: VoidPtr = Internals.getMethodBindPtr("TLSOptions", "server", 36969539)
 
-    public val isServerPtr: VoidPtr =
+    internal val isServerPtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "is_server", 36873697)
 
-    public val isUnsafeClientPtr: VoidPtr =
+    internal val isUnsafeClientPtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "is_unsafe_client", 36873697)
 
-    public val getCommonNameOverridePtr: VoidPtr =
+    internal val getCommonNameOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "get_common_name_override", 201670096)
 
-    public val getTrustedCaChainPtr: VoidPtr =
+    internal val getTrustedCaChainPtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain", 1120709175)
 
-    public val getPrivateKeyPtr: VoidPtr =
+    internal val getPrivateKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "get_private_key", 2119971811)
 
-    public val getOwnCertificatePtr: VoidPtr =
+    internal val getOwnCertificatePtr: VoidPtr =
         Internals.getMethodBindPtr("TLSOptions", "get_own_certificate", 1120709175)
   }
 }

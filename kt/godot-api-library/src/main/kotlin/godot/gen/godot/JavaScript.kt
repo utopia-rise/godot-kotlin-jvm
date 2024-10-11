@@ -22,5 +22,5 @@ public open class JavaScript : JvmScript() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

@@ -9261,1487 +9261,1487 @@ public object RenderingServer : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val texture2dCreatePtr: VoidPtr =
+  public object MethodBindings {
+    internal val texture2dCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_create", 2010018390)
 
-    public val texture2dLayeredCreatePtr: VoidPtr =
+    internal val texture2dLayeredCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_layered_create", 913689023)
 
-    public val texture3dCreatePtr: VoidPtr =
+    internal val texture3dCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_3d_create", 4036838706)
 
-    public val textureProxyCreatePtr: VoidPtr =
+    internal val textureProxyCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_proxy_create", 41030802)
 
-    public val texture2dUpdatePtr: VoidPtr =
+    internal val texture2dUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_update", 999539803)
 
-    public val texture3dUpdatePtr: VoidPtr =
+    internal val texture3dUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_3d_update", 684822712)
 
-    public val textureProxyUpdatePtr: VoidPtr =
+    internal val textureProxyUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_proxy_update", 395945892)
 
-    public val texture2dPlaceholderCreatePtr: VoidPtr =
+    internal val texture2dPlaceholderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_placeholder_create", 529393457)
 
-    public val texture2dLayeredPlaceholderCreatePtr: VoidPtr =
+    internal val texture2dLayeredPlaceholderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_layered_placeholder_create", 1394585590)
 
-    public val texture3dPlaceholderCreatePtr: VoidPtr =
+    internal val texture3dPlaceholderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_3d_placeholder_create", 529393457)
 
-    public val texture2dGetPtr: VoidPtr =
+    internal val texture2dGetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_get", 4206205781)
 
-    public val texture2dLayerGetPtr: VoidPtr =
+    internal val texture2dLayerGetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_2d_layer_get", 2705440895)
 
-    public val texture3dGetPtr: VoidPtr =
+    internal val texture3dGetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_3d_get", 2684255073)
 
-    public val textureReplacePtr: VoidPtr =
+    internal val textureReplacePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_replace", 395945892)
 
-    public val textureSetSizeOverridePtr: VoidPtr =
+    internal val textureSetSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_set_size_override", 4288446313)
 
-    public val textureSetPathPtr: VoidPtr =
+    internal val textureSetPathPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_set_path", 2726140452)
 
-    public val textureGetPathPtr: VoidPtr =
+    internal val textureGetPathPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_get_path", 642473191)
 
-    public val textureGetFormatPtr: VoidPtr =
+    internal val textureGetFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_get_format", 1932918979)
 
-    public val textureSetForceRedrawIfVisiblePtr: VoidPtr =
+    internal val textureSetForceRedrawIfVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_set_force_redraw_if_visible", 1265174801)
 
-    public val textureRdCreatePtr: VoidPtr =
+    internal val textureRdCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_rd_create", 1434128712)
 
-    public val textureGetRdTexturePtr: VoidPtr =
+    internal val textureGetRdTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_get_rd_texture", 2790148051)
 
-    public val textureGetNativeHandlePtr: VoidPtr =
+    internal val textureGetNativeHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "texture_get_native_handle", 1834114100)
 
-    public val shaderCreatePtr: VoidPtr =
+    internal val shaderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_create", 529393457)
 
-    public val shaderSetCodePtr: VoidPtr =
+    internal val shaderSetCodePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_set_code", 2726140452)
 
-    public val shaderSetPathHintPtr: VoidPtr =
+    internal val shaderSetPathHintPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_set_path_hint", 2726140452)
 
-    public val shaderGetCodePtr: VoidPtr =
+    internal val shaderGetCodePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_get_code", 642473191)
 
-    public val getShaderParameterListPtr: VoidPtr =
+    internal val getShaderParameterListPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_shader_parameter_list", 2684255073)
 
-    public val shaderGetParameterDefaultPtr: VoidPtr =
+    internal val shaderGetParameterDefaultPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_get_parameter_default", 2621281810)
 
-    public val shaderSetDefaultTextureParameterPtr: VoidPtr =
+    internal val shaderSetDefaultTextureParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_set_default_texture_parameter", 4094001817)
 
-    public val shaderGetDefaultTextureParameterPtr: VoidPtr =
+    internal val shaderGetDefaultTextureParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "shader_get_default_texture_parameter", 1464608890)
 
-    public val materialCreatePtr: VoidPtr =
+    internal val materialCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_create", 529393457)
 
-    public val materialSetShaderPtr: VoidPtr =
+    internal val materialSetShaderPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_set_shader", 395945892)
 
-    public val materialSetParamPtr: VoidPtr =
+    internal val materialSetParamPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_set_param", 3477296213)
 
-    public val materialGetParamPtr: VoidPtr =
+    internal val materialGetParamPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_get_param", 2621281810)
 
-    public val materialSetRenderPriorityPtr: VoidPtr =
+    internal val materialSetRenderPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_set_render_priority", 3411492887)
 
-    public val materialSetNextPassPtr: VoidPtr =
+    internal val materialSetNextPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "material_set_next_pass", 395945892)
 
-    public val meshCreateFromSurfacesPtr: VoidPtr =
+    internal val meshCreateFromSurfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_create_from_surfaces", 4291747531)
 
-    public val meshCreatePtr: VoidPtr =
+    internal val meshCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_create", 529393457)
 
-    public val meshSurfaceGetFormatOffsetPtr: VoidPtr =
+    internal val meshSurfaceGetFormatOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_offset", 2981368685)
 
-    public val meshSurfaceGetFormatVertexStridePtr: VoidPtr =
+    internal val meshSurfaceGetFormatVertexStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_vertex_stride", 3188363337)
 
-    public val meshSurfaceGetFormatNormalTangentStridePtr: VoidPtr =
+    internal val meshSurfaceGetFormatNormalTangentStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_normal_tangent_stride", 3188363337)
 
-    public val meshSurfaceGetFormatAttributeStridePtr: VoidPtr =
+    internal val meshSurfaceGetFormatAttributeStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_attribute_stride", 3188363337)
 
-    public val meshSurfaceGetFormatSkinStridePtr: VoidPtr =
+    internal val meshSurfaceGetFormatSkinStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_skin_stride", 3188363337)
 
-    public val meshAddSurfacePtr: VoidPtr =
+    internal val meshAddSurfacePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_add_surface", 1217542888)
 
-    public val meshAddSurfaceFromArraysPtr: VoidPtr =
+    internal val meshAddSurfaceFromArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_add_surface_from_arrays", 2342446560)
 
-    public val meshGetBlendShapeCountPtr: VoidPtr =
+    internal val meshGetBlendShapeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_count", 2198884583)
 
-    public val meshSetBlendShapeModePtr: VoidPtr =
+    internal val meshSetBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_set_blend_shape_mode", 1294662092)
 
-    public val meshGetBlendShapeModePtr: VoidPtr =
+    internal val meshGetBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_mode", 4282291819)
 
-    public val meshSurfaceSetMaterialPtr: VoidPtr =
+    internal val meshSurfaceSetMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_set_material", 2310537182)
 
-    public val meshSurfaceGetMaterialPtr: VoidPtr =
+    internal val meshSurfaceGetMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_material", 1066463050)
 
-    public val meshGetSurfacePtr: VoidPtr =
+    internal val meshGetSurfacePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_get_surface", 186674697)
 
-    public val meshSurfaceGetArraysPtr: VoidPtr =
+    internal val meshSurfaceGetArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_arrays", 1778388067)
 
-    public val meshSurfaceGetBlendShapeArraysPtr: VoidPtr =
+    internal val meshSurfaceGetBlendShapeArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_get_blend_shape_arrays", 1778388067)
 
-    public val meshGetSurfaceCountPtr: VoidPtr =
+    internal val meshGetSurfaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_get_surface_count", 2198884583)
 
-    public val meshSetCustomAabbPtr: VoidPtr =
+    internal val meshSetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_set_custom_aabb", 3696536120)
 
-    public val meshGetCustomAabbPtr: VoidPtr =
+    internal val meshGetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_get_custom_aabb", 974181306)
 
-    public val meshClearPtr: VoidPtr =
+    internal val meshClearPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_clear", 2722037293)
 
-    public val meshSurfaceUpdateVertexRegionPtr: VoidPtr =
+    internal val meshSurfaceUpdateVertexRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_update_vertex_region", 2900195149)
 
-    public val meshSurfaceUpdateAttributeRegionPtr: VoidPtr =
+    internal val meshSurfaceUpdateAttributeRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_update_attribute_region", 2900195149)
 
-    public val meshSurfaceUpdateSkinRegionPtr: VoidPtr =
+    internal val meshSurfaceUpdateSkinRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_surface_update_skin_region", 2900195149)
 
-    public val meshSetShadowMeshPtr: VoidPtr =
+    internal val meshSetShadowMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "mesh_set_shadow_mesh", 395945892)
 
-    public val multimeshCreatePtr: VoidPtr =
+    internal val multimeshCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_create", 529393457)
 
-    public val multimeshAllocateDataPtr: VoidPtr =
+    internal val multimeshAllocateDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_allocate_data", 283685892)
 
-    public val multimeshGetInstanceCountPtr: VoidPtr =
+    internal val multimeshGetInstanceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_instance_count", 2198884583)
 
-    public val multimeshSetMeshPtr: VoidPtr =
+    internal val multimeshSetMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_set_mesh", 395945892)
 
-    public val multimeshInstanceSetTransformPtr: VoidPtr =
+    internal val multimeshInstanceSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform", 675327471)
 
-    public val multimeshInstanceSetTransform2dPtr: VoidPtr =
+    internal val multimeshInstanceSetTransform2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform_2d", 736082694)
 
-    public val multimeshInstanceSetColorPtr: VoidPtr =
+    internal val multimeshInstanceSetColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_set_color", 176975443)
 
-    public val multimeshInstanceSetCustomDataPtr: VoidPtr =
+    internal val multimeshInstanceSetCustomDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_set_custom_data", 176975443)
 
-    public val multimeshGetMeshPtr: VoidPtr =
+    internal val multimeshGetMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_mesh", 3814569979)
 
-    public val multimeshGetAabbPtr: VoidPtr =
+    internal val multimeshGetAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_aabb", 974181306)
 
-    public val multimeshSetCustomAabbPtr: VoidPtr =
+    internal val multimeshSetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_set_custom_aabb", 3696536120)
 
-    public val multimeshGetCustomAabbPtr: VoidPtr =
+    internal val multimeshGetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_custom_aabb", 974181306)
 
-    public val multimeshInstanceGetTransformPtr: VoidPtr =
+    internal val multimeshInstanceGetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform", 1050775521)
 
-    public val multimeshInstanceGetTransform2dPtr: VoidPtr =
+    internal val multimeshInstanceGetTransform2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform_2d", 1324854622)
 
-    public val multimeshInstanceGetColorPtr: VoidPtr =
+    internal val multimeshInstanceGetColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_get_color", 2946315076)
 
-    public val multimeshInstanceGetCustomDataPtr: VoidPtr =
+    internal val multimeshInstanceGetCustomDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_instance_get_custom_data", 2946315076)
 
-    public val multimeshSetVisibleInstancesPtr: VoidPtr =
+    internal val multimeshSetVisibleInstancesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_set_visible_instances", 3411492887)
 
-    public val multimeshGetVisibleInstancesPtr: VoidPtr =
+    internal val multimeshGetVisibleInstancesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_visible_instances", 2198884583)
 
-    public val multimeshSetBufferPtr: VoidPtr =
+    internal val multimeshSetBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_set_buffer", 2960552364)
 
-    public val multimeshGetBufferPtr: VoidPtr =
+    internal val multimeshGetBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "multimesh_get_buffer", 3964669176)
 
-    public val skeletonCreatePtr: VoidPtr =
+    internal val skeletonCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_create", 529393457)
 
-    public val skeletonAllocateDataPtr: VoidPtr =
+    internal val skeletonAllocateDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_allocate_data", 1904426712)
 
-    public val skeletonGetBoneCountPtr: VoidPtr =
+    internal val skeletonGetBoneCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_get_bone_count", 2198884583)
 
-    public val skeletonBoneSetTransformPtr: VoidPtr =
+    internal val skeletonBoneSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform", 675327471)
 
-    public val skeletonBoneGetTransformPtr: VoidPtr =
+    internal val skeletonBoneGetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform", 1050775521)
 
-    public val skeletonBoneSetTransform2dPtr: VoidPtr =
+    internal val skeletonBoneSetTransform2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform_2d", 736082694)
 
-    public val skeletonBoneGetTransform2dPtr: VoidPtr =
+    internal val skeletonBoneGetTransform2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform_2d", 1324854622)
 
-    public val skeletonSetBaseTransform2dPtr: VoidPtr =
+    internal val skeletonSetBaseTransform2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "skeleton_set_base_transform_2d", 1246044741)
 
-    public val directionalLightCreatePtr: VoidPtr =
+    internal val directionalLightCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "directional_light_create", 529393457)
 
-    public val omniLightCreatePtr: VoidPtr =
+    internal val omniLightCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "omni_light_create", 529393457)
 
-    public val spotLightCreatePtr: VoidPtr =
+    internal val spotLightCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "spot_light_create", 529393457)
 
-    public val lightSetColorPtr: VoidPtr =
+    internal val lightSetColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_color", 2948539648)
 
-    public val lightSetParamPtr: VoidPtr =
+    internal val lightSetParamPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_param", 501936875)
 
-    public val lightSetShadowPtr: VoidPtr =
+    internal val lightSetShadowPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_shadow", 1265174801)
 
-    public val lightSetProjectorPtr: VoidPtr =
+    internal val lightSetProjectorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_projector", 395945892)
 
-    public val lightSetNegativePtr: VoidPtr =
+    internal val lightSetNegativePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_negative", 1265174801)
 
-    public val lightSetCullMaskPtr: VoidPtr =
+    internal val lightSetCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_cull_mask", 3411492887)
 
-    public val lightSetDistanceFadePtr: VoidPtr =
+    internal val lightSetDistanceFadePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_distance_fade", 1622292572)
 
-    public val lightSetReverseCullFaceModePtr: VoidPtr =
+    internal val lightSetReverseCullFaceModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_reverse_cull_face_mode", 1265174801)
 
-    public val lightSetBakeModePtr: VoidPtr =
+    internal val lightSetBakeModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_bake_mode", 1048525260)
 
-    public val lightSetMaxSdfgiCascadePtr: VoidPtr =
+    internal val lightSetMaxSdfgiCascadePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_set_max_sdfgi_cascade", 3411492887)
 
-    public val lightOmniSetShadowModePtr: VoidPtr =
+    internal val lightOmniSetShadowModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_omni_set_shadow_mode", 2552677200)
 
-    public val lightDirectionalSetShadowModePtr: VoidPtr =
+    internal val lightDirectionalSetShadowModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_directional_set_shadow_mode", 380462970)
 
-    public val lightDirectionalSetBlendSplitsPtr: VoidPtr =
+    internal val lightDirectionalSetBlendSplitsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_directional_set_blend_splits", 1265174801)
 
-    public val lightDirectionalSetSkyModePtr: VoidPtr =
+    internal val lightDirectionalSetSkyModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_directional_set_sky_mode", 2559740754)
 
-    public val lightProjectorsSetFilterPtr: VoidPtr =
+    internal val lightProjectorsSetFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "light_projectors_set_filter", 43944325)
 
-    public val positionalSoftShadowFilterSetQualityPtr: VoidPtr =
+    internal val positionalSoftShadowFilterSetQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "positional_soft_shadow_filter_set_quality", 3613045266)
 
-    public val directionalSoftShadowFilterSetQualityPtr: VoidPtr =
+    internal val directionalSoftShadowFilterSetQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "directional_soft_shadow_filter_set_quality", 3613045266)
 
-    public val directionalShadowAtlasSetSizePtr: VoidPtr =
+    internal val directionalShadowAtlasSetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "directional_shadow_atlas_set_size", 300928843)
 
-    public val reflectionProbeCreatePtr: VoidPtr =
+    internal val reflectionProbeCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_create", 529393457)
 
-    public val reflectionProbeSetUpdateModePtr: VoidPtr =
+    internal val reflectionProbeSetUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_update_mode", 3853670147)
 
-    public val reflectionProbeSetIntensityPtr: VoidPtr =
+    internal val reflectionProbeSetIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_intensity", 1794382983)
 
-    public val reflectionProbeSetAmbientModePtr: VoidPtr =
+    internal val reflectionProbeSetAmbientModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_mode", 184163074)
 
-    public val reflectionProbeSetAmbientColorPtr: VoidPtr =
+    internal val reflectionProbeSetAmbientColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_color", 2948539648)
 
-    public val reflectionProbeSetAmbientEnergyPtr: VoidPtr =
+    internal val reflectionProbeSetAmbientEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_energy", 1794382983)
 
-    public val reflectionProbeSetMaxDistancePtr: VoidPtr =
+    internal val reflectionProbeSetMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_max_distance", 1794382983)
 
-    public val reflectionProbeSetSizePtr: VoidPtr =
+    internal val reflectionProbeSetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_size", 3227306858)
 
-    public val reflectionProbeSetOriginOffsetPtr: VoidPtr =
+    internal val reflectionProbeSetOriginOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_origin_offset", 3227306858)
 
-    public val reflectionProbeSetAsInteriorPtr: VoidPtr =
+    internal val reflectionProbeSetAsInteriorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_as_interior", 1265174801)
 
-    public val reflectionProbeSetEnableBoxProjectionPtr: VoidPtr =
+    internal val reflectionProbeSetEnableBoxProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_box_projection", 1265174801)
 
-    public val reflectionProbeSetEnableShadowsPtr: VoidPtr =
+    internal val reflectionProbeSetEnableShadowsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_shadows", 1265174801)
 
-    public val reflectionProbeSetCullMaskPtr: VoidPtr =
+    internal val reflectionProbeSetCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_cull_mask", 3411492887)
 
-    public val reflectionProbeSetReflectionMaskPtr: VoidPtr =
+    internal val reflectionProbeSetReflectionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_reflection_mask", 3411492887)
 
-    public val reflectionProbeSetResolutionPtr: VoidPtr =
+    internal val reflectionProbeSetResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_resolution", 3411492887)
 
-    public val reflectionProbeSetMeshLodThresholdPtr: VoidPtr =
+    internal val reflectionProbeSetMeshLodThresholdPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "reflection_probe_set_mesh_lod_threshold", 1794382983)
 
-    public val decalCreatePtr: VoidPtr =
+    internal val decalCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_create", 529393457)
 
-    public val decalSetSizePtr: VoidPtr =
+    internal val decalSetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_size", 3227306858)
 
-    public val decalSetTexturePtr: VoidPtr =
+    internal val decalSetTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_texture", 3953344054)
 
-    public val decalSetEmissionEnergyPtr: VoidPtr =
+    internal val decalSetEmissionEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_emission_energy", 1794382983)
 
-    public val decalSetAlbedoMixPtr: VoidPtr =
+    internal val decalSetAlbedoMixPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_albedo_mix", 1794382983)
 
-    public val decalSetModulatePtr: VoidPtr =
+    internal val decalSetModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_modulate", 2948539648)
 
-    public val decalSetCullMaskPtr: VoidPtr =
+    internal val decalSetCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_cull_mask", 3411492887)
 
-    public val decalSetDistanceFadePtr: VoidPtr =
+    internal val decalSetDistanceFadePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_distance_fade", 2972769666)
 
-    public val decalSetFadePtr: VoidPtr =
+    internal val decalSetFadePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_fade", 2513314492)
 
-    public val decalSetNormalFadePtr: VoidPtr =
+    internal val decalSetNormalFadePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decal_set_normal_fade", 1794382983)
 
-    public val decalsSetFilterPtr: VoidPtr =
+    internal val decalsSetFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "decals_set_filter", 3519875702)
 
-    public val giSetUseHalfResolutionPtr: VoidPtr =
+    internal val giSetUseHalfResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "gi_set_use_half_resolution", 2586408642)
 
-    public val voxelGiCreatePtr: VoidPtr =
+    internal val voxelGiCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_create", 529393457)
 
-    public val voxelGiAllocateDataPtr: VoidPtr =
+    internal val voxelGiAllocateDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_allocate_data", 4108223027)
 
-    public val voxelGiGetOctreeSizePtr: VoidPtr =
+    internal val voxelGiGetOctreeSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_size", 2607699645)
 
-    public val voxelGiGetOctreeCellsPtr: VoidPtr =
+    internal val voxelGiGetOctreeCellsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_cells", 3348040486)
 
-    public val voxelGiGetDataCellsPtr: VoidPtr =
+    internal val voxelGiGetDataCellsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_data_cells", 3348040486)
 
-    public val voxelGiGetDistanceFieldPtr: VoidPtr =
+    internal val voxelGiGetDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_distance_field", 3348040486)
 
-    public val voxelGiGetLevelCountsPtr: VoidPtr =
+    internal val voxelGiGetLevelCountsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_level_counts", 788230395)
 
-    public val voxelGiGetToCellXformPtr: VoidPtr =
+    internal val voxelGiGetToCellXformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_get_to_cell_xform", 1128465797)
 
-    public val voxelGiSetDynamicRangePtr: VoidPtr =
+    internal val voxelGiSetDynamicRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_dynamic_range", 1794382983)
 
-    public val voxelGiSetPropagationPtr: VoidPtr =
+    internal val voxelGiSetPropagationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_propagation", 1794382983)
 
-    public val voxelGiSetEnergyPtr: VoidPtr =
+    internal val voxelGiSetEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_energy", 1794382983)
 
-    public val voxelGiSetBakedExposureNormalizationPtr: VoidPtr =
+    internal val voxelGiSetBakedExposureNormalizationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_baked_exposure_normalization", 1794382983)
 
-    public val voxelGiSetBiasPtr: VoidPtr =
+    internal val voxelGiSetBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_bias", 1794382983)
 
-    public val voxelGiSetNormalBiasPtr: VoidPtr =
+    internal val voxelGiSetNormalBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_normal_bias", 1794382983)
 
-    public val voxelGiSetInteriorPtr: VoidPtr =
+    internal val voxelGiSetInteriorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_interior", 1265174801)
 
-    public val voxelGiSetUseTwoBouncesPtr: VoidPtr =
+    internal val voxelGiSetUseTwoBouncesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_use_two_bounces", 1265174801)
 
-    public val voxelGiSetQualityPtr: VoidPtr =
+    internal val voxelGiSetQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "voxel_gi_set_quality", 1538689978)
 
-    public val lightmapCreatePtr: VoidPtr =
+    internal val lightmapCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_create", 529393457)
 
-    public val lightmapSetTexturesPtr: VoidPtr =
+    internal val lightmapSetTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_textures", 2646464759)
 
-    public val lightmapSetProbeBoundsPtr: VoidPtr =
+    internal val lightmapSetProbeBoundsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_probe_bounds", 3696536120)
 
-    public val lightmapSetProbeInteriorPtr: VoidPtr =
+    internal val lightmapSetProbeInteriorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_probe_interior", 1265174801)
 
-    public val lightmapSetProbeCaptureDataPtr: VoidPtr =
+    internal val lightmapSetProbeCaptureDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_data", 3217845880)
 
-    public val lightmapGetProbeCapturePointsPtr: VoidPtr =
+    internal val lightmapGetProbeCapturePointsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_points", 808965560)
 
-    public val lightmapGetProbeCaptureShPtr: VoidPtr =
+    internal val lightmapGetProbeCaptureShPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_sh", 1569415609)
 
-    public val lightmapGetProbeCaptureTetrahedraPtr: VoidPtr =
+    internal val lightmapGetProbeCaptureTetrahedraPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_tetrahedra", 788230395)
 
-    public val lightmapGetProbeCaptureBspTreePtr: VoidPtr =
+    internal val lightmapGetProbeCaptureBspTreePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_bsp_tree", 788230395)
 
-    public val lightmapSetBakedExposureNormalizationPtr: VoidPtr =
+    internal val lightmapSetBakedExposureNormalizationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_baked_exposure_normalization", 1794382983)
 
-    public val lightmapSetProbeCaptureUpdateSpeedPtr: VoidPtr =
+    internal val lightmapSetProbeCaptureUpdateSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_update_speed", 373806689)
 
-    public val particlesCreatePtr: VoidPtr =
+    internal val particlesCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_create", 529393457)
 
-    public val particlesSetModePtr: VoidPtr =
+    internal val particlesSetModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_mode", 3492270028)
 
-    public val particlesSetEmittingPtr: VoidPtr =
+    internal val particlesSetEmittingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_emitting", 1265174801)
 
-    public val particlesGetEmittingPtr: VoidPtr =
+    internal val particlesGetEmittingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_get_emitting", 3521089500)
 
-    public val particlesSetAmountPtr: VoidPtr =
+    internal val particlesSetAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_amount", 3411492887)
 
-    public val particlesSetAmountRatioPtr: VoidPtr =
+    internal val particlesSetAmountRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_amount_ratio", 1794382983)
 
-    public val particlesSetLifetimePtr: VoidPtr =
+    internal val particlesSetLifetimePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_lifetime", 1794382983)
 
-    public val particlesSetOneShotPtr: VoidPtr =
+    internal val particlesSetOneShotPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_one_shot", 1265174801)
 
-    public val particlesSetPreProcessTimePtr: VoidPtr =
+    internal val particlesSetPreProcessTimePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_pre_process_time", 1794382983)
 
-    public val particlesSetExplosivenessRatioPtr: VoidPtr =
+    internal val particlesSetExplosivenessRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_explosiveness_ratio", 1794382983)
 
-    public val particlesSetRandomnessRatioPtr: VoidPtr =
+    internal val particlesSetRandomnessRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_randomness_ratio", 1794382983)
 
-    public val particlesSetInterpToEndPtr: VoidPtr =
+    internal val particlesSetInterpToEndPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_interp_to_end", 1794382983)
 
-    public val particlesSetEmitterVelocityPtr: VoidPtr =
+    internal val particlesSetEmitterVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_emitter_velocity", 3227306858)
 
-    public val particlesSetCustomAabbPtr: VoidPtr =
+    internal val particlesSetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_custom_aabb", 3696536120)
 
-    public val particlesSetSpeedScalePtr: VoidPtr =
+    internal val particlesSetSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_speed_scale", 1794382983)
 
-    public val particlesSetUseLocalCoordinatesPtr: VoidPtr =
+    internal val particlesSetUseLocalCoordinatesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_use_local_coordinates", 1265174801)
 
-    public val particlesSetProcessMaterialPtr: VoidPtr =
+    internal val particlesSetProcessMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_process_material", 395945892)
 
-    public val particlesSetFixedFpsPtr: VoidPtr =
+    internal val particlesSetFixedFpsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_fixed_fps", 3411492887)
 
-    public val particlesSetInterpolatePtr: VoidPtr =
+    internal val particlesSetInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_interpolate", 1265174801)
 
-    public val particlesSetFractionalDeltaPtr: VoidPtr =
+    internal val particlesSetFractionalDeltaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_fractional_delta", 1265174801)
 
-    public val particlesSetCollisionBaseSizePtr: VoidPtr =
+    internal val particlesSetCollisionBaseSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_collision_base_size", 1794382983)
 
-    public val particlesSetTransformAlignPtr: VoidPtr =
+    internal val particlesSetTransformAlignPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_transform_align", 3264971368)
 
-    public val particlesSetTrailsPtr: VoidPtr =
+    internal val particlesSetTrailsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_trails", 2010054925)
 
-    public val particlesSetTrailBindPosesPtr: VoidPtr =
+    internal val particlesSetTrailBindPosesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_trail_bind_poses", 684822712)
 
-    public val particlesIsInactivePtr: VoidPtr =
+    internal val particlesIsInactivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_is_inactive", 3521089500)
 
-    public val particlesRequestProcessPtr: VoidPtr =
+    internal val particlesRequestProcessPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_request_process", 2722037293)
 
-    public val particlesRestartPtr: VoidPtr =
+    internal val particlesRestartPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_restart", 2722037293)
 
-    public val particlesSetSubemitterPtr: VoidPtr =
+    internal val particlesSetSubemitterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_subemitter", 395945892)
 
-    public val particlesEmitPtr: VoidPtr =
+    internal val particlesEmitPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_emit", 4043136117)
 
-    public val particlesSetDrawOrderPtr: VoidPtr =
+    internal val particlesSetDrawOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_draw_order", 935028487)
 
-    public val particlesSetDrawPassesPtr: VoidPtr =
+    internal val particlesSetDrawPassesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_draw_passes", 3411492887)
 
-    public val particlesSetDrawPassMeshPtr: VoidPtr =
+    internal val particlesSetDrawPassMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_draw_pass_mesh", 2310537182)
 
-    public val particlesGetCurrentAabbPtr: VoidPtr =
+    internal val particlesGetCurrentAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_get_current_aabb", 3952830260)
 
-    public val particlesSetEmissionTransformPtr: VoidPtr =
+    internal val particlesSetEmissionTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_set_emission_transform", 3935195649)
 
-    public val particlesCollisionCreatePtr: VoidPtr =
+    internal val particlesCollisionCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_create", 529393457)
 
-    public val particlesCollisionSetCollisionTypePtr: VoidPtr =
+    internal val particlesCollisionSetCollisionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_collision_type", 1497044930)
 
-    public val particlesCollisionSetCullMaskPtr: VoidPtr =
+    internal val particlesCollisionSetCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_cull_mask", 3411492887)
 
-    public val particlesCollisionSetSphereRadiusPtr: VoidPtr =
+    internal val particlesCollisionSetSphereRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_sphere_radius", 1794382983)
 
-    public val particlesCollisionSetBoxExtentsPtr: VoidPtr =
+    internal val particlesCollisionSetBoxExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_box_extents", 3227306858)
 
-    public val particlesCollisionSetAttractorStrengthPtr: VoidPtr =
+    internal val particlesCollisionSetAttractorStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_strength", 1794382983)
 
-    public val particlesCollisionSetAttractorDirectionalityPtr: VoidPtr =
+    internal val particlesCollisionSetAttractorDirectionalityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_directionality", 1794382983)
 
-    public val particlesCollisionSetAttractorAttenuationPtr: VoidPtr =
+    internal val particlesCollisionSetAttractorAttenuationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_attenuation", 1794382983)
 
-    public val particlesCollisionSetFieldTexturePtr: VoidPtr =
+    internal val particlesCollisionSetFieldTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_field_texture", 395945892)
 
-    public val particlesCollisionHeightFieldUpdatePtr: VoidPtr =
+    internal val particlesCollisionHeightFieldUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_height_field_update", 2722037293)
 
-    public val particlesCollisionSetHeightFieldResolutionPtr: VoidPtr =
+    internal val particlesCollisionSetHeightFieldResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "particles_collision_set_height_field_resolution", 962977297)
 
-    public val fogVolumeCreatePtr: VoidPtr =
+    internal val fogVolumeCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "fog_volume_create", 529393457)
 
-    public val fogVolumeSetShapePtr: VoidPtr =
+    internal val fogVolumeSetShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "fog_volume_set_shape", 3818703106)
 
-    public val fogVolumeSetSizePtr: VoidPtr =
+    internal val fogVolumeSetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "fog_volume_set_size", 3227306858)
 
-    public val fogVolumeSetMaterialPtr: VoidPtr =
+    internal val fogVolumeSetMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "fog_volume_set_material", 395945892)
 
-    public val visibilityNotifierCreatePtr: VoidPtr =
+    internal val visibilityNotifierCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "visibility_notifier_create", 529393457)
 
-    public val visibilityNotifierSetAabbPtr: VoidPtr =
+    internal val visibilityNotifierSetAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "visibility_notifier_set_aabb", 3696536120)
 
-    public val visibilityNotifierSetCallbacksPtr: VoidPtr =
+    internal val visibilityNotifierSetCallbacksPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "visibility_notifier_set_callbacks", 2689735388)
 
-    public val occluderCreatePtr: VoidPtr =
+    internal val occluderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "occluder_create", 529393457)
 
-    public val occluderSetMeshPtr: VoidPtr =
+    internal val occluderSetMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "occluder_set_mesh", 3854404263)
 
-    public val cameraCreatePtr: VoidPtr =
+    internal val cameraCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_create", 529393457)
 
-    public val cameraSetPerspectivePtr: VoidPtr =
+    internal val cameraSetPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_perspective", 157498339)
 
-    public val cameraSetOrthogonalPtr: VoidPtr =
+    internal val cameraSetOrthogonalPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_orthogonal", 157498339)
 
-    public val cameraSetFrustumPtr: VoidPtr =
+    internal val cameraSetFrustumPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_frustum", 1889878953)
 
-    public val cameraSetTransformPtr: VoidPtr =
+    internal val cameraSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_transform", 3935195649)
 
-    public val cameraSetCullMaskPtr: VoidPtr =
+    internal val cameraSetCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_cull_mask", 3411492887)
 
-    public val cameraSetEnvironmentPtr: VoidPtr =
+    internal val cameraSetEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_environment", 395945892)
 
-    public val cameraSetCameraAttributesPtr: VoidPtr =
+    internal val cameraSetCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_camera_attributes", 395945892)
 
-    public val cameraSetCompositorPtr: VoidPtr =
+    internal val cameraSetCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_compositor", 395945892)
 
-    public val cameraSetUseVerticalAspectPtr: VoidPtr =
+    internal val cameraSetUseVerticalAspectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_set_use_vertical_aspect", 1265174801)
 
-    public val viewportCreatePtr: VoidPtr =
+    internal val viewportCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_create", 529393457)
 
-    public val viewportSetUseXrPtr: VoidPtr =
+    internal val viewportSetUseXrPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_use_xr", 1265174801)
 
-    public val viewportSetSizePtr: VoidPtr =
+    internal val viewportSetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_size", 4288446313)
 
-    public val viewportSetActivePtr: VoidPtr =
+    internal val viewportSetActivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_active", 1265174801)
 
-    public val viewportSetParentViewportPtr: VoidPtr =
+    internal val viewportSetParentViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_parent_viewport", 395945892)
 
-    public val viewportAttachToScreenPtr: VoidPtr =
+    internal val viewportAttachToScreenPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_attach_to_screen", 1062245816)
 
-    public val viewportSetRenderDirectToScreenPtr: VoidPtr =
+    internal val viewportSetRenderDirectToScreenPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_render_direct_to_screen", 1265174801)
 
-    public val viewportSetCanvasCullMaskPtr: VoidPtr =
+    internal val viewportSetCanvasCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_canvas_cull_mask", 3411492887)
 
-    public val viewportSetScaling3dModePtr: VoidPtr =
+    internal val viewportSetScaling3dModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_mode", 2386524376)
 
-    public val viewportSetScaling3dScalePtr: VoidPtr =
+    internal val viewportSetScaling3dScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_scale", 1794382983)
 
-    public val viewportSetFsrSharpnessPtr: VoidPtr =
+    internal val viewportSetFsrSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_fsr_sharpness", 1794382983)
 
-    public val viewportSetTextureMipmapBiasPtr: VoidPtr =
+    internal val viewportSetTextureMipmapBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_texture_mipmap_bias", 1794382983)
 
-    public val viewportSetUpdateModePtr: VoidPtr =
+    internal val viewportSetUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_update_mode", 3161116010)
 
-    public val viewportGetUpdateModePtr: VoidPtr =
+    internal val viewportGetUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_update_mode", 3803901472)
 
-    public val viewportSetClearModePtr: VoidPtr =
+    internal val viewportSetClearModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_clear_mode", 3628367896)
 
-    public val viewportGetRenderTargetPtr: VoidPtr =
+    internal val viewportGetRenderTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_render_target", 3814569979)
 
-    public val viewportGetTexturePtr: VoidPtr =
+    internal val viewportGetTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_texture", 3814569979)
 
-    public val viewportSetDisable3dPtr: VoidPtr =
+    internal val viewportSetDisable3dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_disable_3d", 1265174801)
 
-    public val viewportSetDisable2dPtr: VoidPtr =
+    internal val viewportSetDisable2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_disable_2d", 1265174801)
 
-    public val viewportSetEnvironmentModePtr: VoidPtr =
+    internal val viewportSetEnvironmentModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_environment_mode", 2196892182)
 
-    public val viewportAttachCameraPtr: VoidPtr =
+    internal val viewportAttachCameraPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_attach_camera", 395945892)
 
-    public val viewportSetScenarioPtr: VoidPtr =
+    internal val viewportSetScenarioPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_scenario", 395945892)
 
-    public val viewportAttachCanvasPtr: VoidPtr =
+    internal val viewportAttachCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_attach_canvas", 395945892)
 
-    public val viewportRemoveCanvasPtr: VoidPtr =
+    internal val viewportRemoveCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_remove_canvas", 395945892)
 
-    public val viewportSetSnap2dTransformsToPixelPtr: VoidPtr =
+    internal val viewportSetSnap2dTransformsToPixelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_transforms_to_pixel", 1265174801)
 
-    public val viewportSetSnap2dVerticesToPixelPtr: VoidPtr =
+    internal val viewportSetSnap2dVerticesToPixelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_vertices_to_pixel", 1265174801)
 
-    public val viewportSetDefaultCanvasItemTextureFilterPtr: VoidPtr =
+    internal val viewportSetDefaultCanvasItemTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_filter", 1155129294)
 
-    public val viewportSetDefaultCanvasItemTextureRepeatPtr: VoidPtr =
+    internal val viewportSetDefaultCanvasItemTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_repeat", 1652956681)
 
-    public val viewportSetCanvasTransformPtr: VoidPtr =
+    internal val viewportSetCanvasTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_canvas_transform", 3608606053)
 
-    public val viewportSetCanvasStackingPtr: VoidPtr =
+    internal val viewportSetCanvasStackingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_canvas_stacking", 3713930247)
 
-    public val viewportSetTransparentBackgroundPtr: VoidPtr =
+    internal val viewportSetTransparentBackgroundPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_transparent_background", 1265174801)
 
-    public val viewportSetGlobalCanvasTransformPtr: VoidPtr =
+    internal val viewportSetGlobalCanvasTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_global_canvas_transform", 1246044741)
 
-    public val viewportSetSdfOversizeAndScalePtr: VoidPtr =
+    internal val viewportSetSdfOversizeAndScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_sdf_oversize_and_scale", 1329198632)
 
-    public val viewportSetPositionalShadowAtlasSizePtr: VoidPtr =
+    internal val viewportSetPositionalShadowAtlasSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_size", 1904426712)
 
-    public val viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr: VoidPtr =
+    internal val viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_quadrant_subdivision", 4288446313)
 
-    public val viewportSetMsaa3dPtr: VoidPtr =
+    internal val viewportSetMsaa3dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_msaa_3d", 3764433340)
 
-    public val viewportSetMsaa2dPtr: VoidPtr =
+    internal val viewportSetMsaa2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_msaa_2d", 3764433340)
 
-    public val viewportSetUseHdr2dPtr: VoidPtr =
+    internal val viewportSetUseHdr2dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_use_hdr_2d", 1265174801)
 
-    public val viewportSetScreenSpaceAaPtr: VoidPtr =
+    internal val viewportSetScreenSpaceAaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_screen_space_aa", 1447279591)
 
-    public val viewportSetUseTaaPtr: VoidPtr =
+    internal val viewportSetUseTaaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_use_taa", 1265174801)
 
-    public val viewportSetUseDebandingPtr: VoidPtr =
+    internal val viewportSetUseDebandingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_use_debanding", 1265174801)
 
-    public val viewportSetUseOcclusionCullingPtr: VoidPtr =
+    internal val viewportSetUseOcclusionCullingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_use_occlusion_culling", 1265174801)
 
-    public val viewportSetOcclusionRaysPerThreadPtr: VoidPtr =
+    internal val viewportSetOcclusionRaysPerThreadPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_rays_per_thread", 1286410249)
 
-    public val viewportSetOcclusionCullingBuildQualityPtr: VoidPtr =
+    internal val viewportSetOcclusionCullingBuildQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_culling_build_quality", 2069725696)
 
-    public val viewportGetRenderInfoPtr: VoidPtr =
+    internal val viewportGetRenderInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_render_info", 2041262392)
 
-    public val viewportSetDebugDrawPtr: VoidPtr =
+    internal val viewportSetDebugDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_debug_draw", 2089420930)
 
-    public val viewportSetMeasureRenderTimePtr: VoidPtr =
+    internal val viewportSetMeasureRenderTimePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_measure_render_time", 1265174801)
 
-    public val viewportGetMeasuredRenderTimeCpuPtr: VoidPtr =
+    internal val viewportGetMeasuredRenderTimeCpuPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_cpu", 866169185)
 
-    public val viewportGetMeasuredRenderTimeGpuPtr: VoidPtr =
+    internal val viewportGetMeasuredRenderTimeGpuPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_gpu", 866169185)
 
-    public val viewportSetVrsModePtr: VoidPtr =
+    internal val viewportSetVrsModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_vrs_mode", 398809874)
 
-    public val viewportSetVrsUpdateModePtr: VoidPtr =
+    internal val viewportSetVrsUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_vrs_update_mode", 2696154815)
 
-    public val viewportSetVrsTexturePtr: VoidPtr =
+    internal val viewportSetVrsTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "viewport_set_vrs_texture", 395945892)
 
-    public val skyCreatePtr: VoidPtr =
+    internal val skyCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sky_create", 529393457)
 
-    public val skySetRadianceSizePtr: VoidPtr =
+    internal val skySetRadianceSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sky_set_radiance_size", 3411492887)
 
-    public val skySetModePtr: VoidPtr =
+    internal val skySetModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sky_set_mode", 3279019937)
 
-    public val skySetMaterialPtr: VoidPtr =
+    internal val skySetMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sky_set_material", 395945892)
 
-    public val skyBakePanoramaPtr: VoidPtr =
+    internal val skyBakePanoramaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sky_bake_panorama", 3875285818)
 
-    public val compositorEffectCreatePtr: VoidPtr =
+    internal val compositorEffectCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_effect_create", 529393457)
 
-    public val compositorEffectSetEnabledPtr: VoidPtr =
+    internal val compositorEffectSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_effect_set_enabled", 1265174801)
 
-    public val compositorEffectSetCallbackPtr: VoidPtr =
+    internal val compositorEffectSetCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_effect_set_callback", 487412485)
 
-    public val compositorEffectSetFlagPtr: VoidPtr =
+    internal val compositorEffectSetFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_effect_set_flag", 3659527075)
 
-    public val compositorCreatePtr: VoidPtr =
+    internal val compositorCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_create", 529393457)
 
-    public val compositorSetCompositorEffectsPtr: VoidPtr =
+    internal val compositorSetCompositorEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "compositor_set_compositor_effects", 684822712)
 
-    public val environmentCreatePtr: VoidPtr =
+    internal val environmentCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_create", 529393457)
 
-    public val environmentSetBackgroundPtr: VoidPtr =
+    internal val environmentSetBackgroundPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_background", 3937328877)
 
-    public val environmentSetSkyPtr: VoidPtr =
+    internal val environmentSetSkyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sky", 395945892)
 
-    public val environmentSetSkyCustomFovPtr: VoidPtr =
+    internal val environmentSetSkyCustomFovPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sky_custom_fov", 1794382983)
 
-    public val environmentSetSkyOrientationPtr: VoidPtr =
+    internal val environmentSetSkyOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sky_orientation", 1735850857)
 
-    public val environmentSetBgColorPtr: VoidPtr =
+    internal val environmentSetBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_bg_color", 2948539648)
 
-    public val environmentSetBgEnergyPtr: VoidPtr =
+    internal val environmentSetBgEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_bg_energy", 2513314492)
 
-    public val environmentSetCanvasMaxLayerPtr: VoidPtr =
+    internal val environmentSetCanvasMaxLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_canvas_max_layer", 3411492887)
 
-    public val environmentSetAmbientLightPtr: VoidPtr =
+    internal val environmentSetAmbientLightPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ambient_light", 1214961493)
 
-    public val environmentSetGlowPtr: VoidPtr =
+    internal val environmentSetGlowPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_glow", 2421724940)
 
-    public val environmentSetTonemapPtr: VoidPtr =
+    internal val environmentSetTonemapPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_tonemap", 2914312638)
 
-    public val environmentSetAdjustmentPtr: VoidPtr =
+    internal val environmentSetAdjustmentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_adjustment", 876799838)
 
-    public val environmentSetSsrPtr: VoidPtr =
+    internal val environmentSetSsrPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ssr", 3607294374)
 
-    public val environmentSetSsaoPtr: VoidPtr =
+    internal val environmentSetSsaoPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ssao", 3994732740)
 
-    public val environmentSetFogPtr: VoidPtr =
+    internal val environmentSetFogPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_fog", 105051629)
 
-    public val environmentSetSdfgiPtr: VoidPtr =
+    internal val environmentSetSdfgiPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sdfgi", 3519144388)
 
-    public val environmentSetVolumetricFogPtr: VoidPtr =
+    internal val environmentSetVolumetricFogPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog", 1553633833)
 
-    public val environmentGlowSetUseBicubicUpscalePtr: VoidPtr =
+    internal val environmentGlowSetUseBicubicUpscalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_glow_set_use_bicubic_upscale", 2586408642)
 
-    public val environmentSetSsrRoughnessQualityPtr: VoidPtr =
+    internal val environmentSetSsrRoughnessQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ssr_roughness_quality", 1190026788)
 
-    public val environmentSetSsaoQualityPtr: VoidPtr =
+    internal val environmentSetSsaoQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ssao_quality", 189753569)
 
-    public val environmentSetSsilQualityPtr: VoidPtr =
+    internal val environmentSetSsilQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_ssil_quality", 1713836683)
 
-    public val environmentSetSdfgiRayCountPtr: VoidPtr =
+    internal val environmentSetSdfgiRayCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_ray_count", 340137951)
 
-    public val environmentSetSdfgiFramesToConvergePtr: VoidPtr =
+    internal val environmentSetSdfgiFramesToConvergePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_converge", 2182444374)
 
-    public val environmentSetSdfgiFramesToUpdateLightPtr: VoidPtr =
+    internal val environmentSetSdfgiFramesToUpdateLightPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_update_light", 1251144068)
 
-    public val environmentSetVolumetricFogVolumeSizePtr: VoidPtr =
+    internal val environmentSetVolumetricFogVolumeSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_volume_size", 3937882851)
 
-    public val environmentSetVolumetricFogFilterActivePtr: VoidPtr =
+    internal val environmentSetVolumetricFogFilterActivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_filter_active", 2586408642)
 
-    public val environmentBakePanoramaPtr: VoidPtr =
+    internal val environmentBakePanoramaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "environment_bake_panorama", 2452908646)
 
-    public val screenSpaceRoughnessLimiterSetActivePtr: VoidPtr =
+    internal val screenSpaceRoughnessLimiterSetActivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "screen_space_roughness_limiter_set_active", 916716790)
 
-    public val subSurfaceScatteringSetQualityPtr: VoidPtr =
+    internal val subSurfaceScatteringSetQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_quality", 64571803)
 
-    public val subSurfaceScatteringSetScalePtr: VoidPtr =
+    internal val subSurfaceScatteringSetScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_scale", 1017552074)
 
-    public val cameraAttributesCreatePtr: VoidPtr =
+    internal val cameraAttributesCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_create", 529393457)
 
-    public val cameraAttributesSetDofBlurQualityPtr: VoidPtr =
+    internal val cameraAttributesSetDofBlurQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_quality", 2220136795)
 
-    public val cameraAttributesSetDofBlurBokehShapePtr: VoidPtr =
+    internal val cameraAttributesSetDofBlurBokehShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_bokeh_shape", 1205058394)
 
-    public val cameraAttributesSetDofBlurPtr: VoidPtr =
+    internal val cameraAttributesSetDofBlurPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur", 316272616)
 
-    public val cameraAttributesSetExposurePtr: VoidPtr =
+    internal val cameraAttributesSetExposurePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_set_exposure", 2513314492)
 
-    public val cameraAttributesSetAutoExposurePtr: VoidPtr =
+    internal val cameraAttributesSetAutoExposurePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "camera_attributes_set_auto_exposure", 4266986332)
 
-    public val scenarioCreatePtr: VoidPtr =
+    internal val scenarioCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "scenario_create", 529393457)
 
-    public val scenarioSetEnvironmentPtr: VoidPtr =
+    internal val scenarioSetEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "scenario_set_environment", 395945892)
 
-    public val scenarioSetFallbackEnvironmentPtr: VoidPtr =
+    internal val scenarioSetFallbackEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "scenario_set_fallback_environment", 395945892)
 
-    public val scenarioSetCameraAttributesPtr: VoidPtr =
+    internal val scenarioSetCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "scenario_set_camera_attributes", 395945892)
 
-    public val scenarioSetCompositorPtr: VoidPtr =
+    internal val scenarioSetCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "scenario_set_compositor", 395945892)
 
-    public val instanceCreate2Ptr: VoidPtr =
+    internal val instanceCreate2Ptr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_create2", 746547085)
 
-    public val instanceCreatePtr: VoidPtr =
+    internal val instanceCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_create", 529393457)
 
-    public val instanceSetBasePtr: VoidPtr =
+    internal val instanceSetBasePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_base", 395945892)
 
-    public val instanceSetScenarioPtr: VoidPtr =
+    internal val instanceSetScenarioPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_scenario", 395945892)
 
-    public val instanceSetLayerMaskPtr: VoidPtr =
+    internal val instanceSetLayerMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_layer_mask", 3411492887)
 
-    public val instanceSetPivotDataPtr: VoidPtr =
+    internal val instanceSetPivotDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_pivot_data", 1280615259)
 
-    public val instanceSetTransformPtr: VoidPtr =
+    internal val instanceSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_transform", 3935195649)
 
-    public val instanceAttachObjectInstanceIdPtr: VoidPtr =
+    internal val instanceAttachObjectInstanceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_attach_object_instance_id", 3411492887)
 
-    public val instanceSetBlendShapeWeightPtr: VoidPtr =
+    internal val instanceSetBlendShapeWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_blend_shape_weight", 1892459533)
 
-    public val instanceSetSurfaceOverrideMaterialPtr: VoidPtr =
+    internal val instanceSetSurfaceOverrideMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_surface_override_material", 2310537182)
 
-    public val instanceSetVisiblePtr: VoidPtr =
+    internal val instanceSetVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_visible", 1265174801)
 
-    public val instanceGeometrySetTransparencyPtr: VoidPtr =
+    internal val instanceGeometrySetTransparencyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_transparency", 1794382983)
 
-    public val instanceSetCustomAabbPtr: VoidPtr =
+    internal val instanceSetCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_custom_aabb", 3696536120)
 
-    public val instanceAttachSkeletonPtr: VoidPtr =
+    internal val instanceAttachSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_attach_skeleton", 395945892)
 
-    public val instanceSetExtraVisibilityMarginPtr: VoidPtr =
+    internal val instanceSetExtraVisibilityMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_extra_visibility_margin", 1794382983)
 
-    public val instanceSetVisibilityParentPtr: VoidPtr =
+    internal val instanceSetVisibilityParentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_visibility_parent", 395945892)
 
-    public val instanceSetIgnoreCullingPtr: VoidPtr =
+    internal val instanceSetIgnoreCullingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_set_ignore_culling", 1265174801)
 
-    public val instanceGeometrySetFlagPtr: VoidPtr =
+    internal val instanceGeometrySetFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_flag", 1014989537)
 
-    public val instanceGeometrySetCastShadowsSettingPtr: VoidPtr =
+    internal val instanceGeometrySetCastShadowsSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_cast_shadows_setting", 3768836020)
 
-    public val instanceGeometrySetMaterialOverridePtr: VoidPtr =
+    internal val instanceGeometrySetMaterialOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_override", 395945892)
 
-    public val instanceGeometrySetMaterialOverlayPtr: VoidPtr =
+    internal val instanceGeometrySetMaterialOverlayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_overlay", 395945892)
 
-    public val instanceGeometrySetVisibilityRangePtr: VoidPtr =
+    internal val instanceGeometrySetVisibilityRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_visibility_range", 4263925858)
 
-    public val instanceGeometrySetLightmapPtr: VoidPtr =
+    internal val instanceGeometrySetLightmapPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_lightmap", 536974962)
 
-    public val instanceGeometrySetLodBiasPtr: VoidPtr =
+    internal val instanceGeometrySetLodBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_lod_bias", 1794382983)
 
-    public val instanceGeometrySetShaderParameterPtr: VoidPtr =
+    internal val instanceGeometrySetShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_set_shader_parameter", 3477296213)
 
-    public val instanceGeometryGetShaderParameterPtr: VoidPtr =
+    internal val instanceGeometryGetShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter", 2621281810)
 
-    public val instanceGeometryGetShaderParameterDefaultValuePtr: VoidPtr =
+    internal val instanceGeometryGetShaderParameterDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_default_value", 2621281810)
 
-    public val instanceGeometryGetShaderParameterListPtr: VoidPtr =
+    internal val instanceGeometryGetShaderParameterListPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_list", 2684255073)
 
-    public val instancesCullAabbPtr: VoidPtr =
+    internal val instancesCullAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instances_cull_aabb", 2570105777)
 
-    public val instancesCullRayPtr: VoidPtr =
+    internal val instancesCullRayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instances_cull_ray", 2208759584)
 
-    public val instancesCullConvexPtr: VoidPtr =
+    internal val instancesCullConvexPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "instances_cull_convex", 2488539944)
 
-    public val bakeRenderUv2Ptr: VoidPtr =
+    internal val bakeRenderUv2Ptr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "bake_render_uv2", 1904608558)
 
-    public val canvasCreatePtr: VoidPtr =
+    internal val canvasCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_create", 529393457)
 
-    public val canvasSetItemMirroringPtr: VoidPtr =
+    internal val canvasSetItemMirroringPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_set_item_mirroring", 2343975398)
 
-    public val canvasSetItemRepeatPtr: VoidPtr =
+    internal val canvasSetItemRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_set_item_repeat", 1739512717)
 
-    public val canvasSetModulatePtr: VoidPtr =
+    internal val canvasSetModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_set_modulate", 2948539648)
 
-    public val canvasSetDisableScalePtr: VoidPtr =
+    internal val canvasSetDisableScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_set_disable_scale", 2586408642)
 
-    public val canvasTextureCreatePtr: VoidPtr =
+    internal val canvasTextureCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_texture_create", 529393457)
 
-    public val canvasTextureSetChannelPtr: VoidPtr =
+    internal val canvasTextureSetChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_texture_set_channel", 3822119138)
 
-    public val canvasTextureSetShadingParametersPtr: VoidPtr =
+    internal val canvasTextureSetShadingParametersPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_texture_set_shading_parameters", 2124967469)
 
-    public val canvasTextureSetTextureFilterPtr: VoidPtr =
+    internal val canvasTextureSetTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_filter", 1155129294)
 
-    public val canvasTextureSetTextureRepeatPtr: VoidPtr =
+    internal val canvasTextureSetTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_repeat", 1652956681)
 
-    public val canvasItemCreatePtr: VoidPtr =
+    internal val canvasItemCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_create", 529393457)
 
-    public val canvasItemSetParentPtr: VoidPtr =
+    internal val canvasItemSetParentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_parent", 395945892)
 
-    public val canvasItemSetDefaultTextureFilterPtr: VoidPtr =
+    internal val canvasItemSetDefaultTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_filter", 1155129294)
 
-    public val canvasItemSetDefaultTextureRepeatPtr: VoidPtr =
+    internal val canvasItemSetDefaultTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_repeat", 1652956681)
 
-    public val canvasItemSetVisiblePtr: VoidPtr =
+    internal val canvasItemSetVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_visible", 1265174801)
 
-    public val canvasItemSetLightMaskPtr: VoidPtr =
+    internal val canvasItemSetLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_light_mask", 3411492887)
 
-    public val canvasItemSetVisibilityLayerPtr: VoidPtr =
+    internal val canvasItemSetVisibilityLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_layer", 3411492887)
 
-    public val canvasItemSetTransformPtr: VoidPtr =
+    internal val canvasItemSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_transform", 1246044741)
 
-    public val canvasItemSetClipPtr: VoidPtr =
+    internal val canvasItemSetClipPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_clip", 1265174801)
 
-    public val canvasItemSetDistanceFieldModePtr: VoidPtr =
+    internal val canvasItemSetDistanceFieldModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_distance_field_mode", 1265174801)
 
-    public val canvasItemSetCustomRectPtr: VoidPtr =
+    internal val canvasItemSetCustomRectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_custom_rect", 1333997032)
 
-    public val canvasItemSetModulatePtr: VoidPtr =
+    internal val canvasItemSetModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_modulate", 2948539648)
 
-    public val canvasItemSetSelfModulatePtr: VoidPtr =
+    internal val canvasItemSetSelfModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_self_modulate", 2948539648)
 
-    public val canvasItemSetDrawBehindParentPtr: VoidPtr =
+    internal val canvasItemSetDrawBehindParentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_behind_parent", 1265174801)
 
-    public val canvasItemSetInterpolatedPtr: VoidPtr =
+    internal val canvasItemSetInterpolatedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_interpolated", 1265174801)
 
-    public val canvasItemResetPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasItemResetPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_reset_physics_interpolation", 2722037293)
 
-    public val canvasItemTransformPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasItemTransformPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_transform_physics_interpolation", 1246044741)
 
-    public val canvasItemAddLinePtr: VoidPtr =
+    internal val canvasItemAddLinePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_line", 1819681853)
 
-    public val canvasItemAddPolylinePtr: VoidPtr =
+    internal val canvasItemAddPolylinePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_polyline", 3098767073)
 
-    public val canvasItemAddMultilinePtr: VoidPtr =
+    internal val canvasItemAddMultilinePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_multiline", 3098767073)
 
-    public val canvasItemAddRectPtr: VoidPtr =
+    internal val canvasItemAddRectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_rect", 3523446176)
 
-    public val canvasItemAddCirclePtr: VoidPtr =
+    internal val canvasItemAddCirclePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_circle", 333077949)
 
-    public val canvasItemAddTextureRectPtr: VoidPtr =
+    internal val canvasItemAddTextureRectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect", 324864032)
 
-    public val canvasItemAddMsdfTextureRectRegionPtr: VoidPtr =
+    internal val canvasItemAddMsdfTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_msdf_texture_rect_region", 97408773)
 
-    public val canvasItemAddLcdTextureRectRegionPtr: VoidPtr =
+    internal val canvasItemAddLcdTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_lcd_texture_rect_region", 359793297)
 
-    public val canvasItemAddTextureRectRegionPtr: VoidPtr =
+    internal val canvasItemAddTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect_region", 485157892)
 
-    public val canvasItemAddNinePatchPtr: VoidPtr =
+    internal val canvasItemAddNinePatchPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_nine_patch", 389957886)
 
-    public val canvasItemAddPrimitivePtr: VoidPtr =
+    internal val canvasItemAddPrimitivePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_primitive", 3731601077)
 
-    public val canvasItemAddPolygonPtr: VoidPtr =
+    internal val canvasItemAddPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_polygon", 3580000528)
 
-    public val canvasItemAddTriangleArrayPtr: VoidPtr =
+    internal val canvasItemAddTriangleArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_triangle_array", 660261329)
 
-    public val canvasItemAddMeshPtr: VoidPtr =
+    internal val canvasItemAddMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_mesh", 316450961)
 
-    public val canvasItemAddMultimeshPtr: VoidPtr =
+    internal val canvasItemAddMultimeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_multimesh", 2131855138)
 
-    public val canvasItemAddParticlesPtr: VoidPtr =
+    internal val canvasItemAddParticlesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_particles", 2575754278)
 
-    public val canvasItemAddSetTransformPtr: VoidPtr =
+    internal val canvasItemAddSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_set_transform", 1246044741)
 
-    public val canvasItemAddClipIgnorePtr: VoidPtr =
+    internal val canvasItemAddClipIgnorePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_clip_ignore", 1265174801)
 
-    public val canvasItemAddAnimationSlicePtr: VoidPtr =
+    internal val canvasItemAddAnimationSlicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_add_animation_slice", 2646834499)
 
-    public val canvasItemSetSortChildrenByYPtr: VoidPtr =
+    internal val canvasItemSetSortChildrenByYPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_sort_children_by_y", 1265174801)
 
-    public val canvasItemSetZIndexPtr: VoidPtr =
+    internal val canvasItemSetZIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_z_index", 3411492887)
 
-    public val canvasItemSetZAsRelativeToParentPtr: VoidPtr =
+    internal val canvasItemSetZAsRelativeToParentPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_z_as_relative_to_parent", 1265174801)
 
-    public val canvasItemSetCopyToBackbufferPtr: VoidPtr =
+    internal val canvasItemSetCopyToBackbufferPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_copy_to_backbuffer", 2429202503)
 
-    public val canvasItemClearPtr: VoidPtr =
+    internal val canvasItemClearPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_clear", 2722037293)
 
-    public val canvasItemSetDrawIndexPtr: VoidPtr =
+    internal val canvasItemSetDrawIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_index", 3411492887)
 
-    public val canvasItemSetMaterialPtr: VoidPtr =
+    internal val canvasItemSetMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_material", 395945892)
 
-    public val canvasItemSetUseParentMaterialPtr: VoidPtr =
+    internal val canvasItemSetUseParentMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_use_parent_material", 1265174801)
 
-    public val canvasItemSetVisibilityNotifierPtr: VoidPtr =
+    internal val canvasItemSetVisibilityNotifierPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_notifier", 3568945579)
 
-    public val canvasItemSetCanvasGroupModePtr: VoidPtr =
+    internal val canvasItemSetCanvasGroupModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_item_set_canvas_group_mode", 3973586316)
 
-    public val debugCanvasItemGetRectPtr: VoidPtr =
+    internal val debugCanvasItemGetRectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "debug_canvas_item_get_rect", 624227424)
 
-    public val canvasLightCreatePtr: VoidPtr =
+    internal val canvasLightCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_create", 529393457)
 
-    public val canvasLightAttachToCanvasPtr: VoidPtr =
+    internal val canvasLightAttachToCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_attach_to_canvas", 395945892)
 
-    public val canvasLightSetEnabledPtr: VoidPtr =
+    internal val canvasLightSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_enabled", 1265174801)
 
-    public val canvasLightSetTextureScalePtr: VoidPtr =
+    internal val canvasLightSetTextureScalePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_scale", 1794382983)
 
-    public val canvasLightSetTransformPtr: VoidPtr =
+    internal val canvasLightSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_transform", 1246044741)
 
-    public val canvasLightSetTexturePtr: VoidPtr =
+    internal val canvasLightSetTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_texture", 395945892)
 
-    public val canvasLightSetTextureOffsetPtr: VoidPtr =
+    internal val canvasLightSetTextureOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_offset", 3201125042)
 
-    public val canvasLightSetColorPtr: VoidPtr =
+    internal val canvasLightSetColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_color", 2948539648)
 
-    public val canvasLightSetHeightPtr: VoidPtr =
+    internal val canvasLightSetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_height", 1794382983)
 
-    public val canvasLightSetEnergyPtr: VoidPtr =
+    internal val canvasLightSetEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_energy", 1794382983)
 
-    public val canvasLightSetZRangePtr: VoidPtr =
+    internal val canvasLightSetZRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_z_range", 4288446313)
 
-    public val canvasLightSetLayerRangePtr: VoidPtr =
+    internal val canvasLightSetLayerRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_layer_range", 4288446313)
 
-    public val canvasLightSetItemCullMaskPtr: VoidPtr =
+    internal val canvasLightSetItemCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_item_cull_mask", 3411492887)
 
-    public val canvasLightSetItemShadowCullMaskPtr: VoidPtr =
+    internal val canvasLightSetItemShadowCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_item_shadow_cull_mask", 3411492887)
 
-    public val canvasLightSetModePtr: VoidPtr =
+    internal val canvasLightSetModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_mode", 2957564891)
 
-    public val canvasLightSetShadowEnabledPtr: VoidPtr =
+    internal val canvasLightSetShadowEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_enabled", 1265174801)
 
-    public val canvasLightSetShadowFilterPtr: VoidPtr =
+    internal val canvasLightSetShadowFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_filter", 393119659)
 
-    public val canvasLightSetShadowColorPtr: VoidPtr =
+    internal val canvasLightSetShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_color", 2948539648)
 
-    public val canvasLightSetShadowSmoothPtr: VoidPtr =
+    internal val canvasLightSetShadowSmoothPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_smooth", 1794382983)
 
-    public val canvasLightSetBlendModePtr: VoidPtr =
+    internal val canvasLightSetBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_blend_mode", 804895945)
 
-    public val canvasLightSetInterpolatedPtr: VoidPtr =
+    internal val canvasLightSetInterpolatedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_set_interpolated", 1265174801)
 
-    public val canvasLightResetPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasLightResetPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_reset_physics_interpolation", 2722037293)
 
-    public val canvasLightTransformPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasLightTransformPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_transform_physics_interpolation", 1246044741)
 
-    public val canvasLightOccluderCreatePtr: VoidPtr =
+    internal val canvasLightOccluderCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_create", 529393457)
 
-    public val canvasLightOccluderAttachToCanvasPtr: VoidPtr =
+    internal val canvasLightOccluderAttachToCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_attach_to_canvas", 395945892)
 
-    public val canvasLightOccluderSetEnabledPtr: VoidPtr =
+    internal val canvasLightOccluderSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_enabled", 1265174801)
 
-    public val canvasLightOccluderSetPolygonPtr: VoidPtr =
+    internal val canvasLightOccluderSetPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_polygon", 395945892)
 
-    public val canvasLightOccluderSetAsSdfCollisionPtr: VoidPtr =
+    internal val canvasLightOccluderSetAsSdfCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_as_sdf_collision", 1265174801)
 
-    public val canvasLightOccluderSetTransformPtr: VoidPtr =
+    internal val canvasLightOccluderSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_transform", 1246044741)
 
-    public val canvasLightOccluderSetLightMaskPtr: VoidPtr =
+    internal val canvasLightOccluderSetLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_light_mask", 3411492887)
 
-    public val canvasLightOccluderSetInterpolatedPtr: VoidPtr =
+    internal val canvasLightOccluderSetInterpolatedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_interpolated", 1265174801)
 
-    public val canvasLightOccluderResetPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasLightOccluderResetPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_reset_physics_interpolation", 2722037293)
 
-    public val canvasLightOccluderTransformPhysicsInterpolationPtr: VoidPtr =
+    internal val canvasLightOccluderTransformPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_light_occluder_transform_physics_interpolation", 1246044741)
 
-    public val canvasOccluderPolygonCreatePtr: VoidPtr =
+    internal val canvasOccluderPolygonCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_create", 529393457)
 
-    public val canvasOccluderPolygonSetShapePtr: VoidPtr =
+    internal val canvasOccluderPolygonSetShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_shape", 2103882027)
 
-    public val canvasOccluderPolygonSetCullModePtr: VoidPtr =
+    internal val canvasOccluderPolygonSetCullModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_cull_mode", 1839404663)
 
-    public val canvasSetShadowTextureSizePtr: VoidPtr =
+    internal val canvasSetShadowTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "canvas_set_shadow_texture_size", 1286410249)
 
-    public val globalShaderParameterAddPtr: VoidPtr =
+    internal val globalShaderParameterAddPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_add", 463390080)
 
-    public val globalShaderParameterRemovePtr: VoidPtr =
+    internal val globalShaderParameterRemovePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_remove", 3304788590)
 
-    public val globalShaderParameterGetListPtr: VoidPtr =
+    internal val globalShaderParameterGetListPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_list", 3995934104)
 
-    public val globalShaderParameterSetPtr: VoidPtr =
+    internal val globalShaderParameterSetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_set", 3776071444)
 
-    public val globalShaderParameterSetOverridePtr: VoidPtr =
+    internal val globalShaderParameterSetOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_set_override", 3776071444)
 
-    public val globalShaderParameterGetPtr: VoidPtr =
+    internal val globalShaderParameterGetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_get", 2760726917)
 
-    public val globalShaderParameterGetTypePtr: VoidPtr =
+    internal val globalShaderParameterGetTypePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_type", 1601414142)
 
-    public val freeRidPtr: VoidPtr =
+    internal val freeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "free_rid", 2722037293)
 
-    public val requestFrameDrawnCallbackPtr: VoidPtr =
+    internal val requestFrameDrawnCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "request_frame_drawn_callback", 1611583062)
 
-    public val hasChangedPtr: VoidPtr =
+    internal val hasChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "has_changed", 36873697)
 
-    public val getRenderingInfoPtr: VoidPtr =
+    internal val getRenderingInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_rendering_info", 3763192241)
 
-    public val getVideoAdapterNamePtr: VoidPtr =
+    internal val getVideoAdapterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_video_adapter_name", 201670096)
 
-    public val getVideoAdapterVendorPtr: VoidPtr =
+    internal val getVideoAdapterVendorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_video_adapter_vendor", 201670096)
 
-    public val getVideoAdapterTypePtr: VoidPtr =
+    internal val getVideoAdapterTypePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_video_adapter_type", 3099547011)
 
-    public val getVideoAdapterApiVersionPtr: VoidPtr =
+    internal val getVideoAdapterApiVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_video_adapter_api_version", 201670096)
 
-    public val makeSphereMeshPtr: VoidPtr =
+    internal val makeSphereMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "make_sphere_mesh", 2251015897)
 
-    public val getTestCubePtr: VoidPtr =
+    internal val getTestCubePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_test_cube", 529393457)
 
-    public val getTestTexturePtr: VoidPtr =
+    internal val getTestTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_test_texture", 529393457)
 
-    public val getWhiteTexturePtr: VoidPtr =
+    internal val getWhiteTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_white_texture", 529393457)
 
-    public val setBootImagePtr: VoidPtr =
+    internal val setBootImagePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "set_boot_image", 3759744527)
 
-    public val getDefaultClearColorPtr: VoidPtr =
+    internal val getDefaultClearColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_default_clear_color", 3200896285)
 
-    public val setDefaultClearColorPtr: VoidPtr =
+    internal val setDefaultClearColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "set_default_clear_color", 2920490490)
 
-    public val hasOsFeaturePtr: VoidPtr =
+    internal val hasOsFeaturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "has_os_feature", 3927539163)
 
-    public val setDebugGenerateWireframesPtr: VoidPtr =
+    internal val setDebugGenerateWireframesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "set_debug_generate_wireframes", 2586408642)
 
-    public val isRenderLoopEnabledPtr: VoidPtr =
+    internal val isRenderLoopEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "is_render_loop_enabled", 36873697)
 
-    public val setRenderLoopEnabledPtr: VoidPtr =
+    internal val setRenderLoopEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "set_render_loop_enabled", 2586408642)
 
-    public val getFrameSetupTimeCpuPtr: VoidPtr =
+    internal val getFrameSetupTimeCpuPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_frame_setup_time_cpu", 1740695150)
 
-    public val forceSyncPtr: VoidPtr =
+    internal val forceSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "force_sync", 3218959716)
 
-    public val forceDrawPtr: VoidPtr =
+    internal val forceDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "force_draw", 1076185472)
 
-    public val getRenderingDevicePtr: VoidPtr =
+    internal val getRenderingDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "get_rendering_device", 1405107940)
 
-    public val createLocalRenderingDevicePtr: VoidPtr =
+    internal val createLocalRenderingDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "create_local_rendering_device", 1405107940)
 
-    public val isOnRenderThreadPtr: VoidPtr =
+    internal val isOnRenderThreadPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "is_on_render_thread", 2240911060)
 
-    public val callOnRenderThreadPtr: VoidPtr =
+    internal val callOnRenderThreadPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "call_on_render_thread", 1611583062)
 
-    public val hasFeaturePtr: VoidPtr =
+    internal val hasFeaturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingServer", "has_feature", 598462696)
   }
 }

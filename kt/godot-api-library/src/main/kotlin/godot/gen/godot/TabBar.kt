@@ -716,171 +716,171 @@ public open class TabBar : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTabCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTabCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_count", 1286410249)
 
-    public val getTabCountPtr: VoidPtr =
+    internal val getTabCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_count", 3905245786)
 
-    public val setCurrentTabPtr: VoidPtr =
+    internal val setCurrentTabPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_current_tab", 1286410249)
 
-    public val getCurrentTabPtr: VoidPtr =
+    internal val getCurrentTabPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_current_tab", 3905245786)
 
-    public val getPreviousTabPtr: VoidPtr =
+    internal val getPreviousTabPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_previous_tab", 3905245786)
 
-    public val selectPreviousAvailablePtr: VoidPtr =
+    internal val selectPreviousAvailablePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "select_previous_available", 2240911060)
 
-    public val selectNextAvailablePtr: VoidPtr =
+    internal val selectNextAvailablePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "select_next_available", 2240911060)
 
-    public val setTabTitlePtr: VoidPtr =
+    internal val setTabTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_title", 501894301)
 
-    public val getTabTitlePtr: VoidPtr =
+    internal val getTabTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_title", 844755477)
 
-    public val setTabTooltipPtr: VoidPtr =
+    internal val setTabTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_tooltip", 501894301)
 
-    public val getTabTooltipPtr: VoidPtr =
+    internal val getTabTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_tooltip", 844755477)
 
-    public val setTabTextDirectionPtr: VoidPtr =
+    internal val setTabTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_text_direction", 1707680378)
 
-    public val getTabTextDirectionPtr: VoidPtr =
+    internal val getTabTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_text_direction", 4235602388)
 
-    public val setTabLanguagePtr: VoidPtr =
+    internal val setTabLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_language", 501894301)
 
-    public val getTabLanguagePtr: VoidPtr =
+    internal val getTabLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_language", 844755477)
 
-    public val setTabIconPtr: VoidPtr =
+    internal val setTabIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_icon", 666127730)
 
-    public val getTabIconPtr: VoidPtr =
+    internal val getTabIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_icon", 3536238170)
 
-    public val setTabIconMaxWidthPtr: VoidPtr =
+    internal val setTabIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_icon_max_width", 3937882851)
 
-    public val getTabIconMaxWidthPtr: VoidPtr =
+    internal val getTabIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_icon_max_width", 923996154)
 
-    public val setTabButtonIconPtr: VoidPtr =
+    internal val setTabButtonIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_button_icon", 666127730)
 
-    public val getTabButtonIconPtr: VoidPtr =
+    internal val getTabButtonIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_button_icon", 3536238170)
 
-    public val setTabDisabledPtr: VoidPtr =
+    internal val setTabDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_disabled", 300928843)
 
-    public val isTabDisabledPtr: VoidPtr =
+    internal val isTabDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "is_tab_disabled", 1116898809)
 
-    public val setTabHiddenPtr: VoidPtr =
+    internal val setTabHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_hidden", 300928843)
 
-    public val isTabHiddenPtr: VoidPtr =
+    internal val isTabHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "is_tab_hidden", 1116898809)
 
-    public val setTabMetadataPtr: VoidPtr =
+    internal val setTabMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_metadata", 2152698145)
 
-    public val getTabMetadataPtr: VoidPtr =
+    internal val getTabMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_metadata", 4227898402)
 
-    public val removeTabPtr: VoidPtr =
+    internal val removeTabPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "remove_tab", 1286410249)
 
-    public val addTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "add_tab", 1465444425)
+    internal val addTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "add_tab", 1465444425)
 
-    public val getTabIdxAtPointPtr: VoidPtr =
+    internal val getTabIdxAtPointPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_idx_at_point", 3820158470)
 
-    public val setTabAlignmentPtr: VoidPtr =
+    internal val setTabAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_alignment", 2413632353)
 
-    public val getTabAlignmentPtr: VoidPtr =
+    internal val getTabAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_alignment", 2178122193)
 
-    public val setClipTabsPtr: VoidPtr =
+    internal val setClipTabsPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_clip_tabs", 2586408642)
 
-    public val getClipTabsPtr: VoidPtr =
+    internal val getClipTabsPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_clip_tabs", 36873697)
 
-    public val getTabOffsetPtr: VoidPtr =
+    internal val getTabOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_offset", 3905245786)
 
-    public val getOffsetButtonsVisiblePtr: VoidPtr =
+    internal val getOffsetButtonsVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_offset_buttons_visible", 36873697)
 
-    public val ensureTabVisiblePtr: VoidPtr =
+    internal val ensureTabVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "ensure_tab_visible", 1286410249)
 
-    public val getTabRectPtr: VoidPtr =
+    internal val getTabRectPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_rect", 3327874267)
 
-    public val moveTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "move_tab", 3937882851)
+    internal val moveTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "move_tab", 3937882851)
 
-    public val setTabCloseDisplayPolicyPtr: VoidPtr =
+    internal val setTabCloseDisplayPolicyPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tab_close_display_policy", 2212906737)
 
-    public val getTabCloseDisplayPolicyPtr: VoidPtr =
+    internal val getTabCloseDisplayPolicyPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tab_close_display_policy", 2956568028)
 
-    public val setMaxTabWidthPtr: VoidPtr =
+    internal val setMaxTabWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_max_tab_width", 1286410249)
 
-    public val getMaxTabWidthPtr: VoidPtr =
+    internal val getMaxTabWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_max_tab_width", 3905245786)
 
-    public val setScrollingEnabledPtr: VoidPtr =
+    internal val setScrollingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_scrolling_enabled", 2586408642)
 
-    public val getScrollingEnabledPtr: VoidPtr =
+    internal val getScrollingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_scrolling_enabled", 36873697)
 
-    public val setDragToRearrangeEnabledPtr: VoidPtr =
+    internal val setDragToRearrangeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_drag_to_rearrange_enabled", 2586408642)
 
-    public val getDragToRearrangeEnabledPtr: VoidPtr =
+    internal val getDragToRearrangeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_drag_to_rearrange_enabled", 36873697)
 
-    public val setTabsRearrangeGroupPtr: VoidPtr =
+    internal val setTabsRearrangeGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_tabs_rearrange_group", 1286410249)
 
-    public val getTabsRearrangeGroupPtr: VoidPtr =
+    internal val getTabsRearrangeGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_tabs_rearrange_group", 3905245786)
 
-    public val setScrollToSelectedPtr: VoidPtr =
+    internal val setScrollToSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_scroll_to_selected", 2586408642)
 
-    public val getScrollToSelectedPtr: VoidPtr =
+    internal val getScrollToSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_scroll_to_selected", 36873697)
 
-    public val setSelectWithRmbPtr: VoidPtr =
+    internal val setSelectWithRmbPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_select_with_rmb", 2586408642)
 
-    public val getSelectWithRmbPtr: VoidPtr =
+    internal val getSelectWithRmbPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_select_with_rmb", 36873697)
 
-    public val setDeselectEnabledPtr: VoidPtr =
+    internal val setDeselectEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "set_deselect_enabled", 2586408642)
 
-    public val getDeselectEnabledPtr: VoidPtr =
+    internal val getDeselectEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "get_deselect_enabled", 36873697)
 
-    public val clearTabsPtr: VoidPtr =
+    internal val clearTabsPtr: VoidPtr =
         Internals.getMethodBindPtr("TabBar", "clear_tabs", 3218959716)
   }
 }

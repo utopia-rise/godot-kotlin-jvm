@@ -182,16 +182,16 @@ public object ResourceSaver : Object() {
     public override val flag: Long,
   ) : SaverFlags
 
-  internal object MethodBindings {
-    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ResourceSaver", "save", 2983274697)
+  public object MethodBindings {
+    internal val savePtr: VoidPtr = Internals.getMethodBindPtr("ResourceSaver", "save", 2983274697)
 
-    public val getRecognizedExtensionsPtr: VoidPtr =
+    internal val getRecognizedExtensionsPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)
 
-    public val addResourceFormatSaverPtr: VoidPtr =
+    internal val addResourceFormatSaverPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362894272)
 
-    public val removeResourceFormatSaverPtr: VoidPtr =
+    internal val removeResourceFormatSaverPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
   }
 }

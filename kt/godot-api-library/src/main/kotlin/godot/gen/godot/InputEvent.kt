@@ -241,48 +241,48 @@ public open class InputEvent internal constructor() : Resource() {
     public final const val DEVICE_ID_EMULATION: Long = -1
   }
 
-  internal object MethodBindings {
-    public val setDevicePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "set_device", 1286410249)
 
-    public val getDevicePtr: VoidPtr =
+    internal val getDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "get_device", 3905245786)
 
-    public val isActionPtr: VoidPtr =
+    internal val isActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_action", 1558498928)
 
-    public val isActionPressedPtr: VoidPtr =
+    internal val isActionPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_action_pressed", 1631499404)
 
-    public val isActionReleasedPtr: VoidPtr =
+    internal val isActionReleasedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_action_released", 1558498928)
 
-    public val getActionStrengthPtr: VoidPtr =
+    internal val getActionStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "get_action_strength", 801543509)
 
-    public val isCanceledPtr: VoidPtr =
+    internal val isCanceledPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_canceled", 36873697)
 
-    public val isPressedPtr: VoidPtr =
+    internal val isPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_pressed", 36873697)
 
-    public val isReleasedPtr: VoidPtr =
+    internal val isReleasedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_released", 36873697)
 
-    public val isEchoPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "is_echo", 36873697)
+    internal val isEchoPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "is_echo", 36873697)
 
-    public val asTextPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "as_text", 201670096)
+    internal val asTextPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "as_text", 201670096)
 
-    public val isMatchPtr: VoidPtr =
+    internal val isMatchPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_match", 1754951977)
 
-    public val isActionTypePtr: VoidPtr =
+    internal val isActionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "is_action_type", 36873697)
 
-    public val accumulatePtr: VoidPtr =
+    internal val accumulatePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "accumulate", 1062211774)
 
-    public val xformedByPtr: VoidPtr =
+    internal val xformedByPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEvent", "xformed_by", 1282766827)
   }
 }

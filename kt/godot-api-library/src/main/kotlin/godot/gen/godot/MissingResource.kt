@@ -81,17 +81,17 @@ public open class MissingResource : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOriginalClassPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOriginalClassPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingResource", "set_original_class", 83702148)
 
-    public val getOriginalClassPtr: VoidPtr =
+    internal val getOriginalClassPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingResource", "get_original_class", 201670096)
 
-    public val setRecordingPropertiesPtr: VoidPtr =
+    internal val setRecordingPropertiesPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingResource", "set_recording_properties", 2586408642)
 
-    public val isRecordingPropertiesPtr: VoidPtr =
+    internal val isRecordingPropertiesPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingResource", "is_recording_properties", 36873697)
   }
 }

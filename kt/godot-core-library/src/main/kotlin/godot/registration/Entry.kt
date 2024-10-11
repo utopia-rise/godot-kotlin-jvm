@@ -1,6 +1,5 @@
-package godot.runtime
+package godot.registration
 
-import godot.registration.ClassRegistry
 import kotlin.reflect.KClass
 
 abstract class Entry {

@@ -114,11 +114,11 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOperatorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFloatOp", "set_operator", 2488468047)
 
-    public val getOperatorPtr: VoidPtr =
+    internal val getOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFloatOp", "get_operator", 1867979390)
   }
 }

@@ -566,116 +566,116 @@ public object Engine : Object() {
     return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
-  internal object MethodBindings {
-    public val setPhysicsTicksPerSecondPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPhysicsTicksPerSecondPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_physics_ticks_per_second", 1286410249)
 
-    public val getPhysicsTicksPerSecondPtr: VoidPtr =
+    internal val getPhysicsTicksPerSecondPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_physics_ticks_per_second", 3905245786)
 
-    public val setMaxPhysicsStepsPerFramePtr: VoidPtr =
+    internal val setMaxPhysicsStepsPerFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_max_physics_steps_per_frame", 1286410249)
 
-    public val getMaxPhysicsStepsPerFramePtr: VoidPtr =
+    internal val getMaxPhysicsStepsPerFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_max_physics_steps_per_frame", 3905245786)
 
-    public val setPhysicsJitterFixPtr: VoidPtr =
+    internal val setPhysicsJitterFixPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_physics_jitter_fix", 373806689)
 
-    public val getPhysicsJitterFixPtr: VoidPtr =
+    internal val getPhysicsJitterFixPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_physics_jitter_fix", 1740695150)
 
-    public val getPhysicsInterpolationFractionPtr: VoidPtr =
+    internal val getPhysicsInterpolationFractionPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_physics_interpolation_fraction", 1740695150)
 
-    public val setMaxFpsPtr: VoidPtr =
+    internal val setMaxFpsPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_max_fps", 1286410249)
 
-    public val getMaxFpsPtr: VoidPtr =
+    internal val getMaxFpsPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_max_fps", 3905245786)
 
-    public val setTimeScalePtr: VoidPtr =
+    internal val setTimeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_time_scale", 373806689)
 
-    public val getTimeScalePtr: VoidPtr =
+    internal val getTimeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_time_scale", 191475506)
 
-    public val getFramesDrawnPtr: VoidPtr =
+    internal val getFramesDrawnPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_frames_drawn", 2455072627)
 
-    public val getFramesPerSecondPtr: VoidPtr =
+    internal val getFramesPerSecondPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_frames_per_second", 1740695150)
 
-    public val getPhysicsFramesPtr: VoidPtr =
+    internal val getPhysicsFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_physics_frames", 3905245786)
 
-    public val getProcessFramesPtr: VoidPtr =
+    internal val getProcessFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_process_frames", 3905245786)
 
-    public val getMainLoopPtr: VoidPtr =
+    internal val getMainLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_main_loop", 1016888095)
 
-    public val getVersionInfoPtr: VoidPtr =
+    internal val getVersionInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_version_info", 3102165223)
 
-    public val getAuthorInfoPtr: VoidPtr =
+    internal val getAuthorInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_author_info", 3102165223)
 
-    public val getCopyrightInfoPtr: VoidPtr =
+    internal val getCopyrightInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_copyright_info", 3995934104)
 
-    public val getDonorInfoPtr: VoidPtr =
+    internal val getDonorInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_donor_info", 3102165223)
 
-    public val getLicenseInfoPtr: VoidPtr =
+    internal val getLicenseInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_license_info", 3102165223)
 
-    public val getLicenseTextPtr: VoidPtr =
+    internal val getLicenseTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_license_text", 201670096)
 
-    public val getArchitectureNamePtr: VoidPtr =
+    internal val getArchitectureNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_architecture_name", 201670096)
 
-    public val isInPhysicsFramePtr: VoidPtr =
+    internal val isInPhysicsFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "is_in_physics_frame", 36873697)
 
-    public val hasSingletonPtr: VoidPtr =
+    internal val hasSingletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "has_singleton", 2619796661)
 
-    public val getSingletonPtr: VoidPtr =
+    internal val getSingletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_singleton", 1371597918)
 
-    public val registerSingletonPtr: VoidPtr =
+    internal val registerSingletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "register_singleton", 965313290)
 
-    public val unregisterSingletonPtr: VoidPtr =
+    internal val unregisterSingletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "unregister_singleton", 3304788590)
 
-    public val getSingletonListPtr: VoidPtr =
+    internal val getSingletonListPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_singleton_list", 1139954409)
 
-    public val registerScriptLanguagePtr: VoidPtr =
+    internal val registerScriptLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "register_script_language", 1850254898)
 
-    public val unregisterScriptLanguagePtr: VoidPtr =
+    internal val unregisterScriptLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "unregister_script_language", 1850254898)
 
-    public val getScriptLanguageCountPtr: VoidPtr =
+    internal val getScriptLanguageCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_script_language_count", 2455072627)
 
-    public val getScriptLanguagePtr: VoidPtr =
+    internal val getScriptLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_script_language", 2151255799)
 
-    public val isEditorHintPtr: VoidPtr =
+    internal val isEditorHintPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "is_editor_hint", 36873697)
 
-    public val getWriteMoviePathPtr: VoidPtr =
+    internal val getWriteMoviePathPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "get_write_movie_path", 201670096)
 
-    public val setPrintErrorMessagesPtr: VoidPtr =
+    internal val setPrintErrorMessagesPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "set_print_error_messages", 2586408642)
 
-    public val isPrintingErrorMessagesPtr: VoidPtr =
+    internal val isPrintingErrorMessagesPtr: VoidPtr =
         Internals.getMethodBindPtr("Engine", "is_printing_error_messages", 36873697)
   }
 }

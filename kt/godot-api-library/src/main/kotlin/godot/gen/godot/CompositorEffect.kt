@@ -267,47 +267,47 @@ public open class CompositorEffect : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_enabled", 2586408642)
 
-    public val getEnabledPtr: VoidPtr =
+    internal val getEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_enabled", 36873697)
 
-    public val setEffectCallbackTypePtr: VoidPtr =
+    internal val setEffectCallbackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1390728419)
 
-    public val getEffectCallbackTypePtr: VoidPtr =
+    internal val getEffectCallbackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1221912590)
 
-    public val setAccessResolvedColorPtr: VoidPtr =
+    internal val setAccessResolvedColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2586408642)
 
-    public val getAccessResolvedColorPtr: VoidPtr =
+    internal val getAccessResolvedColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36873697)
 
-    public val setAccessResolvedDepthPtr: VoidPtr =
+    internal val setAccessResolvedDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2586408642)
 
-    public val getAccessResolvedDepthPtr: VoidPtr =
+    internal val getAccessResolvedDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36873697)
 
-    public val setNeedsMotionVectorsPtr: VoidPtr =
+    internal val setNeedsMotionVectorsPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2586408642)
 
-    public val getNeedsMotionVectorsPtr: VoidPtr =
+    internal val getNeedsMotionVectorsPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36873697)
 
-    public val setNeedsNormalRoughnessPtr: VoidPtr =
+    internal val setNeedsNormalRoughnessPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2586408642)
 
-    public val getNeedsNormalRoughnessPtr: VoidPtr =
+    internal val getNeedsNormalRoughnessPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36873697)
 
-    public val setNeedsSeparateSpecularPtr: VoidPtr =
+    internal val setNeedsSeparateSpecularPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2586408642)
 
-    public val getNeedsSeparateSpecularPtr: VoidPtr =
+    internal val getNeedsSeparateSpecularPtr: VoidPtr =
         Internals.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36873697)
   }
 }

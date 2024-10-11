@@ -217,29 +217,29 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val moveAndCollidePtr: VoidPtr =
+  public object MethodBindings {
+    internal val moveAndCollidePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "move_and_collide", 3208792678)
 
-    public val testMovePtr: VoidPtr =
+    internal val testMovePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "test_move", 2481691619)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "get_gravity", 3360562783)
 
-    public val setAxisLockPtr: VoidPtr =
+    internal val setAxisLockPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "set_axis_lock", 1787895195)
 
-    public val getAxisLockPtr: VoidPtr =
+    internal val getAxisLockPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "get_axis_lock", 2264617709)
 
-    public val getCollisionExceptionsPtr: VoidPtr =
+    internal val getCollisionExceptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "get_collision_exceptions", 2915620761)
 
-    public val addCollisionExceptionWithPtr: VoidPtr =
+    internal val addCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "add_collision_exception_with", 1078189570)
 
-    public val removeCollisionExceptionWithPtr: VoidPtr =
+    internal val removeCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody3D", "remove_collision_exception_with", 1078189570)
   }
 }

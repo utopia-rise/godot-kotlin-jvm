@@ -617,131 +617,133 @@ public open class AnimationPlayer : AnimationMixer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val animationSetNextPtr: VoidPtr =
+  public object MethodBindings {
+    internal val animationSetNextPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "animation_set_next", 3740211285)
 
-    public val animationGetNextPtr: VoidPtr =
+    internal val animationGetNextPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "animation_get_next", 1965194235)
 
-    public val setBlendTimePtr: VoidPtr =
+    internal val setBlendTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_blend_time", 3231131886)
 
-    public val getBlendTimePtr: VoidPtr =
+    internal val getBlendTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_blend_time", 1958752504)
 
-    public val setDefaultBlendTimePtr: VoidPtr =
+    internal val setDefaultBlendTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_default_blend_time", 373806689)
 
-    public val getDefaultBlendTimePtr: VoidPtr =
+    internal val getDefaultBlendTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_default_blend_time", 1740695150)
 
-    public val setAutoCapturePtr: VoidPtr =
+    internal val setAutoCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_auto_capture", 2586408642)
 
-    public val isAutoCapturePtr: VoidPtr =
+    internal val isAutoCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "is_auto_capture", 36873697)
 
-    public val setAutoCaptureDurationPtr: VoidPtr =
+    internal val setAutoCaptureDurationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_auto_capture_duration", 373806689)
 
-    public val getAutoCaptureDurationPtr: VoidPtr =
+    internal val getAutoCaptureDurationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_auto_capture_duration", 1740695150)
 
-    public val setAutoCaptureTransitionTypePtr: VoidPtr =
+    internal val setAutoCaptureTransitionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_auto_capture_transition_type", 1058637742)
 
-    public val getAutoCaptureTransitionTypePtr: VoidPtr =
+    internal val getAutoCaptureTransitionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_auto_capture_transition_type", 3842314528)
 
-    public val setAutoCaptureEaseTypePtr: VoidPtr =
+    internal val setAutoCaptureEaseTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_auto_capture_ease_type", 1208105857)
 
-    public val getAutoCaptureEaseTypePtr: VoidPtr =
+    internal val getAutoCaptureEaseTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_auto_capture_ease_type", 631880200)
 
-    public val playPtr: VoidPtr = Internals.getMethodBindPtr("AnimationPlayer", "play", 3697947785)
+    internal val playPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimationPlayer", "play", 3697947785)
 
-    public val playBackwardsPtr: VoidPtr =
+    internal val playBackwardsPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "play_backwards", 3890664824)
 
-    public val playWithCapturePtr: VoidPtr =
+    internal val playWithCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "play_with_capture", 3180464118)
 
-    public val pausePtr: VoidPtr =
+    internal val pausePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "pause", 3218959716)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("AnimationPlayer", "stop", 107499316)
+    internal val stopPtr: VoidPtr = Internals.getMethodBindPtr("AnimationPlayer", "stop", 107499316)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "is_playing", 36873697)
 
-    public val setCurrentAnimationPtr: VoidPtr =
+    internal val setCurrentAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_current_animation", 83702148)
 
-    public val getCurrentAnimationPtr: VoidPtr =
+    internal val getCurrentAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_current_animation", 201670096)
 
-    public val setAssignedAnimationPtr: VoidPtr =
+    internal val setAssignedAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_assigned_animation", 83702148)
 
-    public val getAssignedAnimationPtr: VoidPtr =
+    internal val getAssignedAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_assigned_animation", 201670096)
 
-    public val queuePtr: VoidPtr =
+    internal val queuePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "queue", 3304788590)
 
-    public val getQueuePtr: VoidPtr =
+    internal val getQueuePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_queue", 2981934095)
 
-    public val clearQueuePtr: VoidPtr =
+    internal val clearQueuePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "clear_queue", 3218959716)
 
-    public val setSpeedScalePtr: VoidPtr =
+    internal val setSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_speed_scale", 373806689)
 
-    public val getSpeedScalePtr: VoidPtr =
+    internal val getSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_speed_scale", 1740695150)
 
-    public val getPlayingSpeedPtr: VoidPtr =
+    internal val getPlayingSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_playing_speed", 1740695150)
 
-    public val setAutoplayPtr: VoidPtr =
+    internal val setAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_autoplay", 83702148)
 
-    public val getAutoplayPtr: VoidPtr =
+    internal val getAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_autoplay", 201670096)
 
-    public val setMovieQuitOnFinishEnabledPtr: VoidPtr =
+    internal val setMovieQuitOnFinishEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_movie_quit_on_finish_enabled", 2586408642)
 
-    public val isMovieQuitOnFinishEnabledPtr: VoidPtr =
+    internal val isMovieQuitOnFinishEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "is_movie_quit_on_finish_enabled", 36873697)
 
-    public val getCurrentAnimationPositionPtr: VoidPtr =
+    internal val getCurrentAnimationPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_current_animation_position", 1740695150)
 
-    public val getCurrentAnimationLengthPtr: VoidPtr =
+    internal val getCurrentAnimationLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_current_animation_length", 1740695150)
 
-    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("AnimationPlayer", "seek", 1807872683)
+    internal val seekPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimationPlayer", "seek", 1807872683)
 
-    public val setProcessCallbackPtr: VoidPtr =
+    internal val setProcessCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_process_callback", 1663839457)
 
-    public val getProcessCallbackPtr: VoidPtr =
+    internal val getProcessCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_process_callback", 4207496604)
 
-    public val setMethodCallModePtr: VoidPtr =
+    internal val setMethodCallModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_method_call_mode", 3413514846)
 
-    public val getMethodCallModePtr: VoidPtr =
+    internal val getMethodCallModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_method_call_mode", 3583380054)
 
-    public val setRootPtr: VoidPtr =
+    internal val setRootPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "set_root", 1348162250)
 
-    public val getRootPtr: VoidPtr =
+    internal val getRootPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationPlayer", "get_root", 4075236667)
   }
 }

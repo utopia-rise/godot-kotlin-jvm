@@ -70,14 +70,14 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setInputNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setInputNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeInput", "set_input_name", 83702148)
 
-    public val getInputNamePtr: VoidPtr =
+    internal val getInputNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeInput", "get_input_name", 201670096)
 
-    public val getInputRealNamePtr: VoidPtr =
+    internal val getInputRealNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeInput", "get_input_real_name", 201670096)
   }
 }

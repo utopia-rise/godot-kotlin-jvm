@@ -150,26 +150,26 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createServerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createServerPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_server", 2917761309)
 
-    public val createClientPtr: VoidPtr =
+    internal val createClientPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_client", 2327163476)
 
-    public val createMeshPtr: VoidPtr =
+    internal val createMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_mesh", 844576869)
 
-    public val addMeshPeerPtr: VoidPtr =
+    internal val addMeshPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "add_mesh_peer", 1293458335)
 
-    public val setBindIpPtr: VoidPtr =
+    internal val setBindIpPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "set_bind_ip", 83702148)
 
-    public val getHostPtr: VoidPtr =
+    internal val getHostPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "get_host", 4103238886)
 
-    public val getPeerPtr: VoidPtr =
+    internal val getPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetMultiplayerPeer", "get_peer", 3793311544)
   }
 }

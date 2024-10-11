@@ -141,23 +141,23 @@ public open class OpenXRAction : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLocalizedNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLocalizedNamePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "set_localized_name", 83702148)
 
-    public val getLocalizedNamePtr: VoidPtr =
+    internal val getLocalizedNamePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "get_localized_name", 201670096)
 
-    public val setActionTypePtr: VoidPtr =
+    internal val setActionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "set_action_type", 1675238366)
 
-    public val getActionTypePtr: VoidPtr =
+    internal val getActionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "get_action_type", 3536542431)
 
-    public val setToplevelPathsPtr: VoidPtr =
+    internal val setToplevelPathsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "set_toplevel_paths", 4015028928)
 
-    public val getToplevelPathsPtr: VoidPtr =
+    internal val getToplevelPathsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRAction", "get_toplevel_paths", 1139954409)
   }
 }

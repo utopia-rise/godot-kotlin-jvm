@@ -318,71 +318,72 @@ public open class Curve2D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPointCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_point_count", 3905245786)
 
-    public val setPointCountPtr: VoidPtr =
+    internal val setPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "add_point", 4175465202)
+    internal val addPointPtr: VoidPtr =
+        Internals.getMethodBindPtr("Curve2D", "add_point", 4175465202)
 
-    public val setPointPositionPtr: VoidPtr =
+    internal val setPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "set_point_position", 163021252)
 
-    public val getPointPositionPtr: VoidPtr =
+    internal val getPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_point_position", 2299179447)
 
-    public val setPointInPtr: VoidPtr =
+    internal val setPointInPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "set_point_in", 163021252)
 
-    public val getPointInPtr: VoidPtr =
+    internal val getPointInPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_point_in", 2299179447)
 
-    public val setPointOutPtr: VoidPtr =
+    internal val setPointOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "set_point_out", 163021252)
 
-    public val getPointOutPtr: VoidPtr =
+    internal val getPointOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_point_out", 2299179447)
 
-    public val removePointPtr: VoidPtr =
+    internal val removePointPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr =
+    internal val clearPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "clear_points", 3218959716)
 
-    public val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "sample", 26514310)
+    internal val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "sample", 26514310)
 
-    public val samplefPtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "samplef", 3588506812)
+    internal val samplefPtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "samplef", 3588506812)
 
-    public val setBakeIntervalPtr: VoidPtr =
+    internal val setBakeIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "set_bake_interval", 373806689)
 
-    public val getBakeIntervalPtr: VoidPtr =
+    internal val getBakeIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_bake_interval", 1740695150)
 
-    public val getBakedLengthPtr: VoidPtr =
+    internal val getBakedLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_baked_length", 1740695150)
 
-    public val sampleBakedPtr: VoidPtr =
+    internal val sampleBakedPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "sample_baked", 3464257706)
 
-    public val sampleBakedWithRotationPtr: VoidPtr =
+    internal val sampleBakedWithRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "sample_baked_with_rotation", 3296056341)
 
-    public val getBakedPointsPtr: VoidPtr =
+    internal val getBakedPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_baked_points", 2961356807)
 
-    public val getClosestPointPtr: VoidPtr =
+    internal val getClosestPointPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_closest_point", 2656412154)
 
-    public val getClosestOffsetPtr: VoidPtr =
+    internal val getClosestOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "get_closest_offset", 2276447920)
 
-    public val tessellatePtr: VoidPtr =
+    internal val tessellatePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "tessellate", 958145977)
 
-    public val tessellateEvenLengthPtr: VoidPtr =
+    internal val tessellateEvenLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve2D", "tessellate_even_length", 2319761637)
   }
 }

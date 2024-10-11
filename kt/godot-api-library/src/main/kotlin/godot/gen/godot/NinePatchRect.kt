@@ -288,41 +288,41 @@ public open class NinePatchRect : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "get_texture", 3635182373)
 
-    public val setPatchMarginPtr: VoidPtr =
+    internal val setPatchMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437707142)
 
-    public val getPatchMarginPtr: VoidPtr =
+    internal val getPatchMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1983885014)
 
-    public val setRegionRectPtr: VoidPtr =
+    internal val setRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_region_rect", 2046264180)
 
-    public val getRegionRectPtr: VoidPtr =
+    internal val getRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "get_region_rect", 1639390495)
 
-    public val setDrawCenterPtr: VoidPtr =
+    internal val setDrawCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_draw_center", 2586408642)
 
-    public val isDrawCenterEnabledPtr: VoidPtr =
+    internal val isDrawCenterEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36873697)
 
-    public val setHAxisStretchModePtr: VoidPtr =
+    internal val setHAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3219608417)
 
-    public val getHAxisStretchModePtr: VoidPtr =
+    internal val getHAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3317113799)
 
-    public val setVAxisStretchModePtr: VoidPtr =
+    internal val setVAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3219608417)
 
-    public val getVAxisStretchModePtr: VoidPtr =
+    internal val getVAxisStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3317113799)
   }
 }

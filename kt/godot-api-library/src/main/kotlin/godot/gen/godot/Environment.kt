@@ -2683,555 +2683,557 @@ public open class Environment : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBackgroundPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBackgroundPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_background", 4071623990)
 
-    public val getBackgroundPtr: VoidPtr =
+    internal val getBackgroundPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_background", 1843210413)
 
-    public val setSkyPtr: VoidPtr = Internals.getMethodBindPtr("Environment", "set_sky", 3336722921)
+    internal val setSkyPtr: VoidPtr =
+        Internals.getMethodBindPtr("Environment", "set_sky", 3336722921)
 
-    public val getSkyPtr: VoidPtr = Internals.getMethodBindPtr("Environment", "get_sky", 1177136966)
+    internal val getSkyPtr: VoidPtr =
+        Internals.getMethodBindPtr("Environment", "get_sky", 1177136966)
 
-    public val setSkyCustomFovPtr: VoidPtr =
+    internal val setSkyCustomFovPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sky_custom_fov", 373806689)
 
-    public val getSkyCustomFovPtr: VoidPtr =
+    internal val getSkyCustomFovPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sky_custom_fov", 1740695150)
 
-    public val setSkyRotationPtr: VoidPtr =
+    internal val setSkyRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sky_rotation", 3460891852)
 
-    public val getSkyRotationPtr: VoidPtr =
+    internal val getSkyRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sky_rotation", 3360562783)
 
-    public val setBgColorPtr: VoidPtr =
+    internal val setBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_bg_color", 2920490490)
 
-    public val getBgColorPtr: VoidPtr =
+    internal val getBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_bg_color", 3444240500)
 
-    public val setBgEnergyMultiplierPtr: VoidPtr =
+    internal val setBgEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373806689)
 
-    public val getBgEnergyMultiplierPtr: VoidPtr =
+    internal val getBgEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1740695150)
 
-    public val setBgIntensityPtr: VoidPtr =
+    internal val setBgIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_bg_intensity", 373806689)
 
-    public val getBgIntensityPtr: VoidPtr =
+    internal val getBgIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_bg_intensity", 1740695150)
 
-    public val setCanvasMaxLayerPtr: VoidPtr =
+    internal val setCanvasMaxLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_canvas_max_layer", 1286410249)
 
-    public val getCanvasMaxLayerPtr: VoidPtr =
+    internal val getCanvasMaxLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_canvas_max_layer", 3905245786)
 
-    public val setCameraFeedIdPtr: VoidPtr =
+    internal val setCameraFeedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_camera_feed_id", 1286410249)
 
-    public val getCameraFeedIdPtr: VoidPtr =
+    internal val getCameraFeedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_camera_feed_id", 3905245786)
 
-    public val setAmbientLightColorPtr: VoidPtr =
+    internal val setAmbientLightColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ambient_light_color", 2920490490)
 
-    public val getAmbientLightColorPtr: VoidPtr =
+    internal val getAmbientLightColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ambient_light_color", 3444240500)
 
-    public val setAmbientSourcePtr: VoidPtr =
+    internal val setAmbientSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ambient_source", 2607780160)
 
-    public val getAmbientSourcePtr: VoidPtr =
+    internal val getAmbientSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ambient_source", 67453933)
 
-    public val setAmbientLightEnergyPtr: VoidPtr =
+    internal val setAmbientLightEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ambient_light_energy", 373806689)
 
-    public val getAmbientLightEnergyPtr: VoidPtr =
+    internal val getAmbientLightEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ambient_light_energy", 1740695150)
 
-    public val setAmbientLightSkyContributionPtr: VoidPtr =
+    internal val setAmbientLightSkyContributionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373806689)
 
-    public val getAmbientLightSkyContributionPtr: VoidPtr =
+    internal val getAmbientLightSkyContributionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1740695150)
 
-    public val setReflectionSourcePtr: VoidPtr =
+    internal val setReflectionSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_reflection_source", 299673197)
 
-    public val getReflectionSourcePtr: VoidPtr =
+    internal val getReflectionSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_reflection_source", 777700713)
 
-    public val setTonemapperPtr: VoidPtr =
+    internal val setTonemapperPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_tonemapper", 1509116664)
 
-    public val getTonemapperPtr: VoidPtr =
+    internal val getTonemapperPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_tonemapper", 2908408137)
 
-    public val setTonemapExposurePtr: VoidPtr =
+    internal val setTonemapExposurePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_tonemap_exposure", 373806689)
 
-    public val getTonemapExposurePtr: VoidPtr =
+    internal val getTonemapExposurePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_tonemap_exposure", 1740695150)
 
-    public val setTonemapWhitePtr: VoidPtr =
+    internal val setTonemapWhitePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_tonemap_white", 373806689)
 
-    public val getTonemapWhitePtr: VoidPtr =
+    internal val getTonemapWhitePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
 
-    public val setSsrEnabledPtr: VoidPtr =
+    internal val setSsrEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)
 
-    public val isSsrEnabledPtr: VoidPtr =
+    internal val isSsrEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_ssr_enabled", 36873697)
 
-    public val setSsrMaxStepsPtr: VoidPtr =
+    internal val setSsrMaxStepsPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssr_max_steps", 1286410249)
 
-    public val getSsrMaxStepsPtr: VoidPtr =
+    internal val getSsrMaxStepsPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssr_max_steps", 3905245786)
 
-    public val setSsrFadeInPtr: VoidPtr =
+    internal val setSsrFadeInPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssr_fade_in", 373806689)
 
-    public val getSsrFadeInPtr: VoidPtr =
+    internal val getSsrFadeInPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssr_fade_in", 1740695150)
 
-    public val setSsrFadeOutPtr: VoidPtr =
+    internal val setSsrFadeOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssr_fade_out", 373806689)
 
-    public val getSsrFadeOutPtr: VoidPtr =
+    internal val getSsrFadeOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssr_fade_out", 1740695150)
 
-    public val setSsrDepthTolerancePtr: VoidPtr =
+    internal val setSsrDepthTolerancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373806689)
 
-    public val getSsrDepthTolerancePtr: VoidPtr =
+    internal val getSsrDepthTolerancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1740695150)
 
-    public val setSsaoEnabledPtr: VoidPtr =
+    internal val setSsaoEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_enabled", 2586408642)
 
-    public val isSsaoEnabledPtr: VoidPtr =
+    internal val isSsaoEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_ssao_enabled", 36873697)
 
-    public val setSsaoRadiusPtr: VoidPtr =
+    internal val setSsaoRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_radius", 373806689)
 
-    public val getSsaoRadiusPtr: VoidPtr =
+    internal val getSsaoRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_radius", 1740695150)
 
-    public val setSsaoIntensityPtr: VoidPtr =
+    internal val setSsaoIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_intensity", 373806689)
 
-    public val getSsaoIntensityPtr: VoidPtr =
+    internal val getSsaoIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_intensity", 1740695150)
 
-    public val setSsaoPowerPtr: VoidPtr =
+    internal val setSsaoPowerPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_power", 373806689)
 
-    public val getSsaoPowerPtr: VoidPtr =
+    internal val getSsaoPowerPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_power", 1740695150)
 
-    public val setSsaoDetailPtr: VoidPtr =
+    internal val setSsaoDetailPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_detail", 373806689)
 
-    public val getSsaoDetailPtr: VoidPtr =
+    internal val getSsaoDetailPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_detail", 1740695150)
 
-    public val setSsaoHorizonPtr: VoidPtr =
+    internal val setSsaoHorizonPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_horizon", 373806689)
 
-    public val getSsaoHorizonPtr: VoidPtr =
+    internal val getSsaoHorizonPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_horizon", 1740695150)
 
-    public val setSsaoSharpnessPtr: VoidPtr =
+    internal val setSsaoSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_sharpness", 373806689)
 
-    public val getSsaoSharpnessPtr: VoidPtr =
+    internal val getSsaoSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_sharpness", 1740695150)
 
-    public val setSsaoDirectLightAffectPtr: VoidPtr =
+    internal val setSsaoDirectLightAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373806689)
 
-    public val getSsaoDirectLightAffectPtr: VoidPtr =
+    internal val getSsaoDirectLightAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1740695150)
 
-    public val setSsaoAoChannelAffectPtr: VoidPtr =
+    internal val setSsaoAoChannelAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373806689)
 
-    public val getSsaoAoChannelAffectPtr: VoidPtr =
+    internal val getSsaoAoChannelAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1740695150)
 
-    public val setSsilEnabledPtr: VoidPtr =
+    internal val setSsilEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssil_enabled", 2586408642)
 
-    public val isSsilEnabledPtr: VoidPtr =
+    internal val isSsilEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_ssil_enabled", 36873697)
 
-    public val setSsilRadiusPtr: VoidPtr =
+    internal val setSsilRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssil_radius", 373806689)
 
-    public val getSsilRadiusPtr: VoidPtr =
+    internal val getSsilRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssil_radius", 1740695150)
 
-    public val setSsilIntensityPtr: VoidPtr =
+    internal val setSsilIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssil_intensity", 373806689)
 
-    public val getSsilIntensityPtr: VoidPtr =
+    internal val getSsilIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssil_intensity", 1740695150)
 
-    public val setSsilSharpnessPtr: VoidPtr =
+    internal val setSsilSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssil_sharpness", 373806689)
 
-    public val getSsilSharpnessPtr: VoidPtr =
+    internal val getSsilSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssil_sharpness", 1740695150)
 
-    public val setSsilNormalRejectionPtr: VoidPtr =
+    internal val setSsilNormalRejectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373806689)
 
-    public val getSsilNormalRejectionPtr: VoidPtr =
+    internal val getSsilNormalRejectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1740695150)
 
-    public val setSdfgiEnabledPtr: VoidPtr =
+    internal val setSdfgiEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2586408642)
 
-    public val isSdfgiEnabledPtr: VoidPtr =
+    internal val isSdfgiEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36873697)
 
-    public val setSdfgiCascadesPtr: VoidPtr =
+    internal val setSdfgiCascadesPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1286410249)
 
-    public val getSdfgiCascadesPtr: VoidPtr =
+    internal val getSdfgiCascadesPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3905245786)
 
-    public val setSdfgiMinCellSizePtr: VoidPtr =
+    internal val setSdfgiMinCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373806689)
 
-    public val getSdfgiMinCellSizePtr: VoidPtr =
+    internal val getSdfgiMinCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1740695150)
 
-    public val setSdfgiMaxDistancePtr: VoidPtr =
+    internal val setSdfgiMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373806689)
 
-    public val getSdfgiMaxDistancePtr: VoidPtr =
+    internal val getSdfgiMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1740695150)
 
-    public val setSdfgiCascade0DistancePtr: VoidPtr =
+    internal val setSdfgiCascade0DistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373806689)
 
-    public val getSdfgiCascade0DistancePtr: VoidPtr =
+    internal val getSdfgiCascade0DistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1740695150)
 
-    public val setSdfgiYScalePtr: VoidPtr =
+    internal val setSdfgiYScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3608608372)
 
-    public val getSdfgiYScalePtr: VoidPtr =
+    internal val getSdfgiYScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2568002245)
 
-    public val setSdfgiUseOcclusionPtr: VoidPtr =
+    internal val setSdfgiUseOcclusionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2586408642)
 
-    public val isSdfgiUsingOcclusionPtr: VoidPtr =
+    internal val isSdfgiUsingOcclusionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36873697)
 
-    public val setSdfgiBounceFeedbackPtr: VoidPtr =
+    internal val setSdfgiBounceFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373806689)
 
-    public val getSdfgiBounceFeedbackPtr: VoidPtr =
+    internal val getSdfgiBounceFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1740695150)
 
-    public val setSdfgiReadSkyLightPtr: VoidPtr =
+    internal val setSdfgiReadSkyLightPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2586408642)
 
-    public val isSdfgiReadingSkyLightPtr: VoidPtr =
+    internal val isSdfgiReadingSkyLightPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36873697)
 
-    public val setSdfgiEnergyPtr: VoidPtr =
+    internal val setSdfgiEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_energy", 373806689)
 
-    public val getSdfgiEnergyPtr: VoidPtr =
+    internal val getSdfgiEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_energy", 1740695150)
 
-    public val setSdfgiNormalBiasPtr: VoidPtr =
+    internal val setSdfgiNormalBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373806689)
 
-    public val getSdfgiNormalBiasPtr: VoidPtr =
+    internal val getSdfgiNormalBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1740695150)
 
-    public val setSdfgiProbeBiasPtr: VoidPtr =
+    internal val setSdfgiProbeBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373806689)
 
-    public val getSdfgiProbeBiasPtr: VoidPtr =
+    internal val getSdfgiProbeBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1740695150)
 
-    public val setGlowEnabledPtr: VoidPtr =
+    internal val setGlowEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_enabled", 2586408642)
 
-    public val isGlowEnabledPtr: VoidPtr =
+    internal val isGlowEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_glow_enabled", 36873697)
 
-    public val setGlowLevelPtr: VoidPtr =
+    internal val setGlowLevelPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_level", 1602489585)
 
-    public val getGlowLevelPtr: VoidPtr =
+    internal val getGlowLevelPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_level", 2339986948)
 
-    public val setGlowNormalizedPtr: VoidPtr =
+    internal val setGlowNormalizedPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_normalized", 2586408642)
 
-    public val isGlowNormalizedPtr: VoidPtr =
+    internal val isGlowNormalizedPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_glow_normalized", 36873697)
 
-    public val setGlowIntensityPtr: VoidPtr =
+    internal val setGlowIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_intensity", 373806689)
 
-    public val getGlowIntensityPtr: VoidPtr =
+    internal val getGlowIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_intensity", 1740695150)
 
-    public val setGlowStrengthPtr: VoidPtr =
+    internal val setGlowStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_strength", 373806689)
 
-    public val getGlowStrengthPtr: VoidPtr =
+    internal val getGlowStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_strength", 1740695150)
 
-    public val setGlowMixPtr: VoidPtr =
+    internal val setGlowMixPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_mix", 373806689)
 
-    public val getGlowMixPtr: VoidPtr =
+    internal val getGlowMixPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_mix", 1740695150)
 
-    public val setGlowBloomPtr: VoidPtr =
+    internal val setGlowBloomPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_bloom", 373806689)
 
-    public val getGlowBloomPtr: VoidPtr =
+    internal val getGlowBloomPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_bloom", 1740695150)
 
-    public val setGlowBlendModePtr: VoidPtr =
+    internal val setGlowBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_blend_mode", 2561587761)
 
-    public val getGlowBlendModePtr: VoidPtr =
+    internal val getGlowBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_blend_mode", 1529667332)
 
-    public val setGlowHdrBleedThresholdPtr: VoidPtr =
+    internal val setGlowHdrBleedThresholdPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373806689)
 
-    public val getGlowHdrBleedThresholdPtr: VoidPtr =
+    internal val getGlowHdrBleedThresholdPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1740695150)
 
-    public val setGlowHdrBleedScalePtr: VoidPtr =
+    internal val setGlowHdrBleedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373806689)
 
-    public val getGlowHdrBleedScalePtr: VoidPtr =
+    internal val getGlowHdrBleedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1740695150)
 
-    public val setGlowHdrLuminanceCapPtr: VoidPtr =
+    internal val setGlowHdrLuminanceCapPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373806689)
 
-    public val getGlowHdrLuminanceCapPtr: VoidPtr =
+    internal val getGlowHdrLuminanceCapPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1740695150)
 
-    public val setGlowMapStrengthPtr: VoidPtr =
+    internal val setGlowMapStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_map_strength", 373806689)
 
-    public val getGlowMapStrengthPtr: VoidPtr =
+    internal val getGlowMapStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_map_strength", 1740695150)
 
-    public val setGlowMapPtr: VoidPtr =
+    internal val setGlowMapPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_glow_map", 1790811099)
 
-    public val getGlowMapPtr: VoidPtr =
+    internal val getGlowMapPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_glow_map", 4037048985)
 
-    public val setFogEnabledPtr: VoidPtr =
+    internal val setFogEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_enabled", 2586408642)
 
-    public val isFogEnabledPtr: VoidPtr =
+    internal val isFogEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_fog_enabled", 36873697)
 
-    public val setFogModePtr: VoidPtr =
+    internal val setFogModePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_mode", 3059806579)
 
-    public val getFogModePtr: VoidPtr =
+    internal val getFogModePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_mode", 2456062483)
 
-    public val setFogLightColorPtr: VoidPtr =
+    internal val setFogLightColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_light_color", 2920490490)
 
-    public val getFogLightColorPtr: VoidPtr =
+    internal val getFogLightColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_light_color", 3444240500)
 
-    public val setFogLightEnergyPtr: VoidPtr =
+    internal val setFogLightEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_light_energy", 373806689)
 
-    public val getFogLightEnergyPtr: VoidPtr =
+    internal val getFogLightEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_light_energy", 1740695150)
 
-    public val setFogSunScatterPtr: VoidPtr =
+    internal val setFogSunScatterPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373806689)
 
-    public val getFogSunScatterPtr: VoidPtr =
+    internal val getFogSunScatterPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1740695150)
 
-    public val setFogDensityPtr: VoidPtr =
+    internal val setFogDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_density", 373806689)
 
-    public val getFogDensityPtr: VoidPtr =
+    internal val getFogDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_density", 1740695150)
 
-    public val setFogHeightPtr: VoidPtr =
+    internal val setFogHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_height", 373806689)
 
-    public val getFogHeightPtr: VoidPtr =
+    internal val getFogHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_height", 1740695150)
 
-    public val setFogHeightDensityPtr: VoidPtr =
+    internal val setFogHeightDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_height_density", 373806689)
 
-    public val getFogHeightDensityPtr: VoidPtr =
+    internal val getFogHeightDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_height_density", 1740695150)
 
-    public val setFogAerialPerspectivePtr: VoidPtr =
+    internal val setFogAerialPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373806689)
 
-    public val getFogAerialPerspectivePtr: VoidPtr =
+    internal val getFogAerialPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1740695150)
 
-    public val setFogSkyAffectPtr: VoidPtr =
+    internal val setFogSkyAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_sky_affect", 373806689)
 
-    public val getFogSkyAffectPtr: VoidPtr =
+    internal val getFogSkyAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_sky_affect", 1740695150)
 
-    public val setFogDepthCurvePtr: VoidPtr =
+    internal val setFogDepthCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_depth_curve", 373806689)
 
-    public val getFogDepthCurvePtr: VoidPtr =
+    internal val getFogDepthCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_depth_curve", 1740695150)
 
-    public val setFogDepthBeginPtr: VoidPtr =
+    internal val setFogDepthBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_depth_begin", 373806689)
 
-    public val getFogDepthBeginPtr: VoidPtr =
+    internal val getFogDepthBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_depth_begin", 1740695150)
 
-    public val setFogDepthEndPtr: VoidPtr =
+    internal val setFogDepthEndPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_fog_depth_end", 373806689)
 
-    public val getFogDepthEndPtr: VoidPtr =
+    internal val getFogDepthEndPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_fog_depth_end", 1740695150)
 
-    public val setVolumetricFogEnabledPtr: VoidPtr =
+    internal val setVolumetricFogEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2586408642)
 
-    public val isVolumetricFogEnabledPtr: VoidPtr =
+    internal val isVolumetricFogEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36873697)
 
-    public val setVolumetricFogEmissionPtr: VoidPtr =
+    internal val setVolumetricFogEmissionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2920490490)
 
-    public val getVolumetricFogEmissionPtr: VoidPtr =
+    internal val getVolumetricFogEmissionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3444240500)
 
-    public val setVolumetricFogAlbedoPtr: VoidPtr =
+    internal val setVolumetricFogAlbedoPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2920490490)
 
-    public val getVolumetricFogAlbedoPtr: VoidPtr =
+    internal val getVolumetricFogAlbedoPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3444240500)
 
-    public val setVolumetricFogDensityPtr: VoidPtr =
+    internal val setVolumetricFogDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373806689)
 
-    public val getVolumetricFogDensityPtr: VoidPtr =
+    internal val getVolumetricFogDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1740695150)
 
-    public val setVolumetricFogEmissionEnergyPtr: VoidPtr =
+    internal val setVolumetricFogEmissionEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373806689)
 
-    public val getVolumetricFogEmissionEnergyPtr: VoidPtr =
+    internal val getVolumetricFogEmissionEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1740695150)
 
-    public val setVolumetricFogAnisotropyPtr: VoidPtr =
+    internal val setVolumetricFogAnisotropyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373806689)
 
-    public val getVolumetricFogAnisotropyPtr: VoidPtr =
+    internal val getVolumetricFogAnisotropyPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1740695150)
 
-    public val setVolumetricFogLengthPtr: VoidPtr =
+    internal val setVolumetricFogLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373806689)
 
-    public val getVolumetricFogLengthPtr: VoidPtr =
+    internal val getVolumetricFogLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1740695150)
 
-    public val setVolumetricFogDetailSpreadPtr: VoidPtr =
+    internal val setVolumetricFogDetailSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373806689)
 
-    public val getVolumetricFogDetailSpreadPtr: VoidPtr =
+    internal val getVolumetricFogDetailSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1740695150)
 
-    public val setVolumetricFogGiInjectPtr: VoidPtr =
+    internal val setVolumetricFogGiInjectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373806689)
 
-    public val getVolumetricFogGiInjectPtr: VoidPtr =
+    internal val getVolumetricFogGiInjectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1740695150)
 
-    public val setVolumetricFogAmbientInjectPtr: VoidPtr =
+    internal val setVolumetricFogAmbientInjectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373806689)
 
-    public val getVolumetricFogAmbientInjectPtr: VoidPtr =
+    internal val getVolumetricFogAmbientInjectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1740695150)
 
-    public val setVolumetricFogSkyAffectPtr: VoidPtr =
+    internal val setVolumetricFogSkyAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373806689)
 
-    public val getVolumetricFogSkyAffectPtr: VoidPtr =
+    internal val getVolumetricFogSkyAffectPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1740695150)
 
-    public val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
+    internal val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2586408642)
 
-    public val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
+    internal val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36873697)
 
-    public val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
+    internal val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373806689)
 
-    public val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
+    internal val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1740695150)
 
-    public val setAdjustmentEnabledPtr: VoidPtr =
+    internal val setAdjustmentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_adjustment_enabled", 2586408642)
 
-    public val isAdjustmentEnabledPtr: VoidPtr =
+    internal val isAdjustmentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "is_adjustment_enabled", 36873697)
 
-    public val setAdjustmentBrightnessPtr: VoidPtr =
+    internal val setAdjustmentBrightnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_adjustment_brightness", 373806689)
 
-    public val getAdjustmentBrightnessPtr: VoidPtr =
+    internal val getAdjustmentBrightnessPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_adjustment_brightness", 1740695150)
 
-    public val setAdjustmentContrastPtr: VoidPtr =
+    internal val setAdjustmentContrastPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_adjustment_contrast", 373806689)
 
-    public val getAdjustmentContrastPtr: VoidPtr =
+    internal val getAdjustmentContrastPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_adjustment_contrast", 1740695150)
 
-    public val setAdjustmentSaturationPtr: VoidPtr =
+    internal val setAdjustmentSaturationPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_adjustment_saturation", 373806689)
 
-    public val getAdjustmentSaturationPtr: VoidPtr =
+    internal val getAdjustmentSaturationPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_adjustment_saturation", 1740695150)
 
-    public val setAdjustmentColorCorrectionPtr: VoidPtr =
+    internal val setAdjustmentColorCorrectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1790811099)
 
-    public val getAdjustmentColorCorrectionPtr: VoidPtr =
+    internal val getAdjustmentColorCorrectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4037048985)
   }
 }

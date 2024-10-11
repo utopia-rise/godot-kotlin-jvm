@@ -394,80 +394,80 @@ public open class ArrayMesh : Mesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addBlendShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addBlendShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3304788590)
 
-    public val getBlendShapeCountPtr: VoidPtr =
+    internal val getBlendShapeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3905245786)
 
-    public val getBlendShapeNamePtr: VoidPtr =
+    internal val getBlendShapeNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659327637)
 
-    public val setBlendShapeNamePtr: VoidPtr =
+    internal val setBlendShapeNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3780747571)
 
-    public val clearBlendShapesPtr: VoidPtr =
+    internal val clearBlendShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3218959716)
 
-    public val setBlendShapeModePtr: VoidPtr =
+    internal val setBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227983991)
 
-    public val getBlendShapeModePtr: VoidPtr =
+    internal val getBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836485024)
 
-    public val addSurfaceFromArraysPtr: VoidPtr =
+    internal val addSurfaceFromArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1796411378)
 
-    public val clearSurfacesPtr: VoidPtr =
+    internal val clearSurfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
 
-    public val surfaceUpdateVertexRegionPtr: VoidPtr =
+    internal val surfaceUpdateVertexRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)
 
-    public val surfaceUpdateAttributeRegionPtr: VoidPtr =
+    internal val surfaceUpdateAttributeRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3837166854)
 
-    public val surfaceUpdateSkinRegionPtr: VoidPtr =
+    internal val surfaceUpdateSkinRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3837166854)
 
-    public val surfaceGetArrayLenPtr: VoidPtr =
+    internal val surfaceGetArrayLenPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923996154)
 
-    public val surfaceGetArrayIndexLenPtr: VoidPtr =
+    internal val surfaceGetArrayIndexLenPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923996154)
 
-    public val surfaceGetFormatPtr: VoidPtr =
+    internal val surfaceGetFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_get_format", 3718287884)
 
-    public val surfaceGetPrimitiveTypePtr: VoidPtr =
+    internal val surfaceGetPrimitiveTypePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4141943888)
 
-    public val surfaceFindByNamePtr: VoidPtr =
+    internal val surfaceFindByNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1321353865)
 
-    public val surfaceSetNamePtr: VoidPtr =
+    internal val surfaceSetNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_set_name", 501894301)
 
-    public val surfaceGetNamePtr: VoidPtr =
+    internal val surfaceGetNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "surface_get_name", 844755477)
 
-    public val regenNormalMapsPtr: VoidPtr =
+    internal val regenNormalMapsPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3218959716)
 
-    public val lightmapUnwrapPtr: VoidPtr =
+    internal val lightmapUnwrapPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1476641071)
 
-    public val setCustomAabbPtr: VoidPtr =
+    internal val setCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259215842)
 
-    public val getCustomAabbPtr: VoidPtr =
+    internal val getCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1068685055)
 
-    public val setShadowMeshPtr: VoidPtr =
+    internal val setShadowMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3377897901)
 
-    public val getShadowMeshPtr: VoidPtr =
+    internal val getShadowMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3206942465)
   }
 }

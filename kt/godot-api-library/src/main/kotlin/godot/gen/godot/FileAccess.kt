@@ -965,161 +965,165 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val openPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "open", 1247358404)
+  public object MethodBindings {
+    internal val openPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "open", 1247358404)
 
-    public val openEncryptedPtr: VoidPtr =
+    internal val openEncryptedPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "open_encrypted", 1482131466)
 
-    public val openEncryptedWithPassPtr: VoidPtr =
+    internal val openEncryptedWithPassPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
 
-    public val openCompressedPtr: VoidPtr =
+    internal val openCompressedPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
 
-    public val getOpenErrorPtr: VoidPtr =
+    internal val getOpenErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
 
-    public val getFileAsBytesPtr: VoidPtr =
+    internal val getFileAsBytesPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
 
-    public val getFileAsStringPtr: VoidPtr =
+    internal val getFileAsStringPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
 
-    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "resize", 844576869)
+    internal val resizePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "resize", 844576869)
 
-    public val flushPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "flush", 3218959716)
+    internal val flushPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "flush", 3218959716)
 
-    public val getPathPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_path", 201670096)
+    internal val getPathPtr: VoidPtr =
+        Internals.getMethodBindPtr("FileAccess", "get_path", 201670096)
 
-    public val getPathAbsolutePtr: VoidPtr =
+    internal val getPathAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_path_absolute", 201670096)
 
-    public val isOpenPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "is_open", 36873697)
+    internal val isOpenPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "is_open", 36873697)
 
-    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "seek", 1286410249)
+    internal val seekPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "seek", 1286410249)
 
-    public val seekEndPtr: VoidPtr =
+    internal val seekEndPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "seek_end", 1995695955)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_position", 3905245786)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_length", 3905245786)
 
-    public val eofReachedPtr: VoidPtr =
+    internal val eofReachedPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "eof_reached", 36873697)
 
-    public val get8Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_8", 3905245786)
+    internal val get8Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_8", 3905245786)
 
-    public val get16Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_16", 3905245786)
+    internal val get16Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_16", 3905245786)
 
-    public val get32Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_32", 3905245786)
+    internal val get32Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_32", 3905245786)
 
-    public val get64Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_64", 3905245786)
+    internal val get64Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_64", 3905245786)
 
-    public val getFloatPtr: VoidPtr =
+    internal val getFloatPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_float", 1740695150)
 
-    public val getDoublePtr: VoidPtr =
+    internal val getDoublePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_double", 1740695150)
 
-    public val getRealPtr: VoidPtr =
+    internal val getRealPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_real", 1740695150)
 
-    public val getBufferPtr: VoidPtr =
+    internal val getBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_buffer", 4131300905)
 
-    public val getLinePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_line", 201670096)
+    internal val getLinePtr: VoidPtr =
+        Internals.getMethodBindPtr("FileAccess", "get_line", 201670096)
 
-    public val getCsvLinePtr: VoidPtr =
+    internal val getCsvLinePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_csv_line", 2358116058)
 
-    public val getAsTextPtr: VoidPtr =
+    internal val getAsTextPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
 
-    public val getMd5Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
+    internal val getMd5Ptr: VoidPtr =
+        Internals.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
 
-    public val getSha256Ptr: VoidPtr =
+    internal val getSha256Ptr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
 
-    public val isBigEndianPtr: VoidPtr =
+    internal val isBigEndianPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
 
-    public val setBigEndianPtr: VoidPtr =
+    internal val setBigEndianPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "set_big_endian", 2586408642)
 
-    public val getErrorPtr: VoidPtr =
+    internal val getErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_error", 3185525595)
 
-    public val getVarPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_var", 189129690)
+    internal val getVarPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_var", 189129690)
 
-    public val store8Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "store_8", 1286410249)
+    internal val store8Ptr: VoidPtr =
+        Internals.getMethodBindPtr("FileAccess", "store_8", 1286410249)
 
-    public val store16Ptr: VoidPtr =
+    internal val store16Ptr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_16", 1286410249)
 
-    public val store32Ptr: VoidPtr =
+    internal val store32Ptr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_32", 1286410249)
 
-    public val store64Ptr: VoidPtr =
+    internal val store64Ptr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_64", 1286410249)
 
-    public val storeFloatPtr: VoidPtr =
+    internal val storeFloatPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_float", 373806689)
 
-    public val storeDoublePtr: VoidPtr =
+    internal val storeDoublePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_double", 373806689)
 
-    public val storeRealPtr: VoidPtr =
+    internal val storeRealPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_real", 373806689)
 
-    public val storeBufferPtr: VoidPtr =
+    internal val storeBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_buffer", 2971499966)
 
-    public val storeLinePtr: VoidPtr =
+    internal val storeLinePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_line", 83702148)
 
-    public val storeCsvLinePtr: VoidPtr =
+    internal val storeCsvLinePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_csv_line", 2173791505)
 
-    public val storeStringPtr: VoidPtr =
+    internal val storeStringPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_string", 83702148)
 
-    public val storeVarPtr: VoidPtr =
+    internal val storeVarPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_var", 738511890)
 
-    public val storePascalStringPtr: VoidPtr =
+    internal val storePascalStringPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "store_pascal_string", 83702148)
 
-    public val getPascalStringPtr: VoidPtr =
+    internal val getPascalStringPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "close", 3218959716)
+    internal val closePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "close", 3218959716)
 
-    public val fileExistsPtr: VoidPtr =
+    internal val fileExistsPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "file_exists", 2323990056)
 
-    public val getModifiedTimePtr: VoidPtr =
+    internal val getModifiedTimePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_modified_time", 1597066294)
 
-    public val getUnixPermissionsPtr: VoidPtr =
+    internal val getUnixPermissionsPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_unix_permissions", 524341837)
 
-    public val setUnixPermissionsPtr: VoidPtr =
+    internal val setUnixPermissionsPtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "set_unix_permissions", 846038644)
 
-    public val getHiddenAttributePtr: VoidPtr =
+    internal val getHiddenAttributePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_hidden_attribute", 2323990056)
 
-    public val setHiddenAttributePtr: VoidPtr =
+    internal val setHiddenAttributePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "set_hidden_attribute", 2892558115)
 
-    public val setReadOnlyAttributePtr: VoidPtr =
+    internal val setReadOnlyAttributePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "set_read_only_attribute", 2892558115)
 
-    public val getReadOnlyAttributePtr: VoidPtr =
+    internal val getReadOnlyAttributePtr: VoidPtr =
         Internals.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
   }
 }

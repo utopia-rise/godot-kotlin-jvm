@@ -27,5 +27,5 @@ public open class VisualShaderNodeTransformCompose : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

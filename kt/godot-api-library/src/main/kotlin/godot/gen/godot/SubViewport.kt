@@ -272,35 +272,35 @@ public open class SubViewport : Viewport() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "set_size", 1130785943)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "get_size", 3690982128)
 
-    public val setSize2dOverridePtr: VoidPtr =
+    internal val setSize2dOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "set_size_2d_override", 1130785943)
 
-    public val getSize2dOverridePtr: VoidPtr =
+    internal val getSize2dOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "get_size_2d_override", 3690982128)
 
-    public val setSize2dOverrideStretchPtr: VoidPtr =
+    internal val setSize2dOverrideStretchPtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2586408642)
 
-    public val isSize2dOverrideStretchEnabledPtr: VoidPtr =
+    internal val isSize2dOverrideStretchEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
 
-    public val setUpdateModePtr: VoidPtr =
+    internal val setUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)
 
-    public val getUpdateModePtr: VoidPtr =
+    internal val getUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "get_update_mode", 2980171553)
 
-    public val setClearModePtr: VoidPtr =
+    internal val setClearModePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "set_clear_mode", 2834454712)
 
-    public val getClearModePtr: VoidPtr =
+    internal val getClearModePtr: VoidPtr =
         Internals.getMethodBindPtr("SubViewport", "get_clear_mode", 331324495)
   }
 }

@@ -822,155 +822,155 @@ public open class Area3D : CollisionObject3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setGravitySpaceOverrideModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setGravitySpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity_space_override_mode", 2311433571)
 
-    public val getGravitySpaceOverrideModePtr: VoidPtr =
+    internal val getGravitySpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_gravity_space_override_mode", 958191869)
 
-    public val setGravityIsPointPtr: VoidPtr =
+    internal val setGravityIsPointPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity_is_point", 2586408642)
 
-    public val isGravityAPointPtr: VoidPtr =
+    internal val isGravityAPointPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "is_gravity_a_point", 36873697)
 
-    public val setGravityPointUnitDistancePtr: VoidPtr =
+    internal val setGravityPointUnitDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity_point_unit_distance", 373806689)
 
-    public val getGravityPointUnitDistancePtr: VoidPtr =
+    internal val getGravityPointUnitDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_gravity_point_unit_distance", 1740695150)
 
-    public val setGravityPointCenterPtr: VoidPtr =
+    internal val setGravityPointCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity_point_center", 3460891852)
 
-    public val getGravityPointCenterPtr: VoidPtr =
+    internal val getGravityPointCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_gravity_point_center", 3360562783)
 
-    public val setGravityDirectionPtr: VoidPtr =
+    internal val setGravityDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity_direction", 3460891852)
 
-    public val getGravityDirectionPtr: VoidPtr =
+    internal val getGravityDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_gravity_direction", 3360562783)
 
-    public val setGravityPtr: VoidPtr =
+    internal val setGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_gravity", 373806689)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_gravity", 1740695150)
 
-    public val setLinearDampSpaceOverrideModePtr: VoidPtr =
+    internal val setLinearDampSpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_linear_damp_space_override_mode", 2311433571)
 
-    public val getLinearDampSpaceOverrideModePtr: VoidPtr =
+    internal val getLinearDampSpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_linear_damp_space_override_mode", 958191869)
 
-    public val setAngularDampSpaceOverrideModePtr: VoidPtr =
+    internal val setAngularDampSpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_angular_damp_space_override_mode", 2311433571)
 
-    public val getAngularDampSpaceOverrideModePtr: VoidPtr =
+    internal val getAngularDampSpaceOverrideModePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_angular_damp_space_override_mode", 958191869)
 
-    public val setAngularDampPtr: VoidPtr =
+    internal val setAngularDampPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_angular_damp", 373806689)
 
-    public val getAngularDampPtr: VoidPtr =
+    internal val getAngularDampPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_angular_damp", 1740695150)
 
-    public val setLinearDampPtr: VoidPtr =
+    internal val setLinearDampPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_linear_damp", 373806689)
 
-    public val getLinearDampPtr: VoidPtr =
+    internal val getLinearDampPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_linear_damp", 1740695150)
 
-    public val setPriorityPtr: VoidPtr =
+    internal val setPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_priority", 1286410249)
 
-    public val getPriorityPtr: VoidPtr =
+    internal val getPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_priority", 3905245786)
 
-    public val setWindForceMagnitudePtr: VoidPtr =
+    internal val setWindForceMagnitudePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_wind_force_magnitude", 373806689)
 
-    public val getWindForceMagnitudePtr: VoidPtr =
+    internal val getWindForceMagnitudePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_wind_force_magnitude", 1740695150)
 
-    public val setWindAttenuationFactorPtr: VoidPtr =
+    internal val setWindAttenuationFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_wind_attenuation_factor", 373806689)
 
-    public val getWindAttenuationFactorPtr: VoidPtr =
+    internal val getWindAttenuationFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_wind_attenuation_factor", 1740695150)
 
-    public val setWindSourcePathPtr: VoidPtr =
+    internal val setWindSourcePathPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_wind_source_path", 1348162250)
 
-    public val getWindSourcePathPtr: VoidPtr =
+    internal val getWindSourcePathPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_wind_source_path", 4075236667)
 
-    public val setMonitorablePtr: VoidPtr =
+    internal val setMonitorablePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_monitorable", 2586408642)
 
-    public val isMonitorablePtr: VoidPtr =
+    internal val isMonitorablePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "is_monitorable", 36873697)
 
-    public val setMonitoringPtr: VoidPtr =
+    internal val setMonitoringPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_monitoring", 2586408642)
 
-    public val isMonitoringPtr: VoidPtr =
+    internal val isMonitoringPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "is_monitoring", 36873697)
 
-    public val getOverlappingBodiesPtr: VoidPtr =
+    internal val getOverlappingBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_overlapping_bodies", 3995934104)
 
-    public val getOverlappingAreasPtr: VoidPtr =
+    internal val getOverlappingAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_overlapping_areas", 3995934104)
 
-    public val hasOverlappingBodiesPtr: VoidPtr =
+    internal val hasOverlappingBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "has_overlapping_bodies", 36873697)
 
-    public val hasOverlappingAreasPtr: VoidPtr =
+    internal val hasOverlappingAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "has_overlapping_areas", 36873697)
 
-    public val overlapsBodyPtr: VoidPtr =
+    internal val overlapsBodyPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "overlaps_body", 3093956946)
 
-    public val overlapsAreaPtr: VoidPtr =
+    internal val overlapsAreaPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "overlaps_area", 3093956946)
 
-    public val setAudioBusOverridePtr: VoidPtr =
+    internal val setAudioBusOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_audio_bus_override", 2586408642)
 
-    public val isOverridingAudioBusPtr: VoidPtr =
+    internal val isOverridingAudioBusPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "is_overriding_audio_bus", 36873697)
 
-    public val setAudioBusNamePtr: VoidPtr =
+    internal val setAudioBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_audio_bus_name", 3304788590)
 
-    public val getAudioBusNamePtr: VoidPtr =
+    internal val getAudioBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_audio_bus_name", 2002593661)
 
-    public val setUseReverbBusPtr: VoidPtr =
+    internal val setUseReverbBusPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_use_reverb_bus", 2586408642)
 
-    public val isUsingReverbBusPtr: VoidPtr =
+    internal val isUsingReverbBusPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "is_using_reverb_bus", 36873697)
 
-    public val setReverbBusNamePtr: VoidPtr =
+    internal val setReverbBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_reverb_bus_name", 3304788590)
 
-    public val getReverbBusNamePtr: VoidPtr =
+    internal val getReverbBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_reverb_bus_name", 2002593661)
 
-    public val setReverbAmountPtr: VoidPtr =
+    internal val setReverbAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_reverb_amount", 373806689)
 
-    public val getReverbAmountPtr: VoidPtr =
+    internal val getReverbAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_reverb_amount", 1740695150)
 
-    public val setReverbUniformityPtr: VoidPtr =
+    internal val setReverbUniformityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "set_reverb_uniformity", 373806689)
 
-    public val getReverbUniformityPtr: VoidPtr =
+    internal val getReverbUniformityPtr: VoidPtr =
         Internals.getMethodBindPtr("Area3D", "get_reverb_uniformity", 1740695150)
   }
 }

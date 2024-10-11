@@ -8,7 +8,7 @@ import godot.core.asStringName
 
 private val connectMethodName = "connect".asStringName()
 
-fun Signal.connectThreadSafeVararg(
+fun Signal.connectThreadSafe(
     callable: Callable,
     flags: Int = 0
 ): Any? {

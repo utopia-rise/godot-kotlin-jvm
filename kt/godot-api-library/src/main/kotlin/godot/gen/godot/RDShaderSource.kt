@@ -133,17 +133,17 @@ public open class RDShaderSource : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setStageSourcePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStageSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderSource", "set_stage_source", 620821314)
 
-    public val getStageSourcePtr: VoidPtr =
+    internal val getStageSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderSource", "get_stage_source", 3354920045)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderSource", "set_language", 3422186742)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderSource", "get_language", 1063538261)
   }
 }

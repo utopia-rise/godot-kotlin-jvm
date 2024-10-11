@@ -733,118 +733,119 @@ public open class LightmapGI : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLightDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLightDataPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_light_data", 1790597277)
 
-    public val getLightDataPtr: VoidPtr =
+    internal val getLightDataPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_light_data", 290354153)
 
-    public val setBakeQualityPtr: VoidPtr =
+    internal val setBakeQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_bake_quality", 1192215803)
 
-    public val getBakeQualityPtr: VoidPtr =
+    internal val getBakeQualityPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_bake_quality", 688832735)
 
-    public val setBouncesPtr: VoidPtr =
+    internal val setBouncesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_bounces", 1286410249)
 
-    public val getBouncesPtr: VoidPtr =
+    internal val getBouncesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_bounces", 3905245786)
 
-    public val setBounceIndirectEnergyPtr: VoidPtr =
+    internal val setBounceIndirectEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373806689)
 
-    public val getBounceIndirectEnergyPtr: VoidPtr =
+    internal val getBounceIndirectEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1740695150)
 
-    public val setGenerateProbesPtr: VoidPtr =
+    internal val setGenerateProbesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_generate_probes", 549981046)
 
-    public val getGenerateProbesPtr: VoidPtr =
+    internal val getGenerateProbesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_generate_probes", 3930596226)
 
-    public val setBiasPtr: VoidPtr = Internals.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
+    internal val setBiasPtr: VoidPtr =
+        Internals.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr =
+    internal val getBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_bias", 1740695150)
 
-    public val setEnvironmentModePtr: VoidPtr =
+    internal val setEnvironmentModePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_environment_mode", 2282650285)
 
-    public val getEnvironmentModePtr: VoidPtr =
+    internal val getEnvironmentModePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_environment_mode", 4128646479)
 
-    public val setEnvironmentCustomSkyPtr: VoidPtr =
+    internal val setEnvironmentCustomSkyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3336722921)
 
-    public val getEnvironmentCustomSkyPtr: VoidPtr =
+    internal val getEnvironmentCustomSkyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1177136966)
 
-    public val setEnvironmentCustomColorPtr: VoidPtr =
+    internal val setEnvironmentCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2920490490)
 
-    public val getEnvironmentCustomColorPtr: VoidPtr =
+    internal val getEnvironmentCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3444240500)
 
-    public val setEnvironmentCustomEnergyPtr: VoidPtr =
+    internal val setEnvironmentCustomEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373806689)
 
-    public val getEnvironmentCustomEnergyPtr: VoidPtr =
+    internal val getEnvironmentCustomEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1740695150)
 
-    public val setTexelScalePtr: VoidPtr =
+    internal val setTexelScalePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_texel_scale", 373806689)
 
-    public val getTexelScalePtr: VoidPtr =
+    internal val getTexelScalePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_texel_scale", 1740695150)
 
-    public val setMaxTextureSizePtr: VoidPtr =
+    internal val setMaxTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1286410249)
 
-    public val getMaxTextureSizePtr: VoidPtr =
+    internal val getMaxTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
 
-    public val setUseDenoiserPtr: VoidPtr =
+    internal val setUseDenoiserPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
 
-    public val isUsingDenoiserPtr: VoidPtr =
+    internal val isUsingDenoiserPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36873697)
 
-    public val setDenoiserStrengthPtr: VoidPtr =
+    internal val setDenoiserStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373806689)
 
-    public val getDenoiserStrengthPtr: VoidPtr =
+    internal val getDenoiserStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1740695150)
 
-    public val setDenoiserRangePtr: VoidPtr =
+    internal val setDenoiserRangePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1286410249)
 
-    public val getDenoiserRangePtr: VoidPtr =
+    internal val getDenoiserRangePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3905245786)
 
-    public val setInteriorPtr: VoidPtr =
+    internal val setInteriorPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_interior", 2586408642)
 
-    public val isInteriorPtr: VoidPtr =
+    internal val isInteriorPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "is_interior", 36873697)
 
-    public val setDirectionalPtr: VoidPtr =
+    internal val setDirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_directional", 2586408642)
 
-    public val isDirectionalPtr: VoidPtr =
+    internal val isDirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
 
-    public val setUseTextureForBouncesPtr: VoidPtr =
+    internal val setUseTextureForBouncesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)
 
-    public val isUsingTextureForBouncesPtr: VoidPtr =
+    internal val isUsingTextureForBouncesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36873697)
 
-    public val setCameraAttributesPtr: VoidPtr =
+    internal val setCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2817810567)
 
-    public val getCameraAttributesPtr: VoidPtr =
+    internal val getCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3921283215)
   }
 }

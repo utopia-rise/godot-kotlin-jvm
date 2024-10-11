@@ -307,41 +307,41 @@ public open class ParallaxBackground : CanvasLayer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setScrollOffsetPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743155724)
 
-    public val getScrollOffsetPtr: VoidPtr =
+    internal val getScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3341600327)
 
-    public val setScrollBaseOffsetPtr: VoidPtr =
+    internal val setScrollBaseOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743155724)
 
-    public val getScrollBaseOffsetPtr: VoidPtr =
+    internal val getScrollBaseOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3341600327)
 
-    public val setScrollBaseScalePtr: VoidPtr =
+    internal val setScrollBaseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743155724)
 
-    public val getScrollBaseScalePtr: VoidPtr =
+    internal val getScrollBaseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3341600327)
 
-    public val setLimitBeginPtr: VoidPtr =
+    internal val setLimitBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743155724)
 
-    public val getLimitBeginPtr: VoidPtr =
+    internal val getLimitBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3341600327)
 
-    public val setLimitEndPtr: VoidPtr =
+    internal val setLimitEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743155724)
 
-    public val getLimitEndPtr: VoidPtr =
+    internal val getLimitEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3341600327)
 
-    public val setIgnoreCameraZoomPtr: VoidPtr =
+    internal val setIgnoreCameraZoomPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2586408642)
 
-    public val isIgnoreCameraZoomPtr: VoidPtr =
+    internal val isIgnoreCameraZoomPtr: VoidPtr =
         Internals.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2240911060)
   }
 }

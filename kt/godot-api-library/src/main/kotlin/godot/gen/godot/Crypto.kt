@@ -240,28 +240,28 @@ public open class Crypto : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val generateRandomBytesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val generateRandomBytesPtr: VoidPtr =
         Internals.getMethodBindPtr("Crypto", "generate_random_bytes", 47165747)
 
-    public val generateRsaPtr: VoidPtr =
+    internal val generateRsaPtr: VoidPtr =
         Internals.getMethodBindPtr("Crypto", "generate_rsa", 1237515462)
 
-    public val generateSelfSignedCertificatePtr: VoidPtr =
+    internal val generateSelfSignedCertificatePtr: VoidPtr =
         Internals.getMethodBindPtr("Crypto", "generate_self_signed_certificate", 492266173)
 
-    public val signPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "sign", 1673662703)
+    internal val signPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "sign", 1673662703)
 
-    public val verifyPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "verify", 2805902225)
+    internal val verifyPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "verify", 2805902225)
 
-    public val encryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "encrypt", 2361793670)
+    internal val encryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "encrypt", 2361793670)
 
-    public val decryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "decrypt", 2361793670)
+    internal val decryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "decrypt", 2361793670)
 
-    public val hmacDigestPtr: VoidPtr =
+    internal val hmacDigestPtr: VoidPtr =
         Internals.getMethodBindPtr("Crypto", "hmac_digest", 2368951203)
 
-    public val constantTimeComparePtr: VoidPtr =
+    internal val constantTimeComparePtr: VoidPtr =
         Internals.getMethodBindPtr("Crypto", "constant_time_compare", 1024142237)
   }
 }

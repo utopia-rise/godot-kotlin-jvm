@@ -2860,377 +2860,383 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_LAYOUT_DIRECTION_CHANGED: Long = 49
   }
 
-  internal object MethodBindings {
-    public val acceptEventPtr: VoidPtr =
+  public object MethodBindings {
+    internal val acceptEventPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "accept_event", 3218959716)
 
-    public val getMinimumSizePtr: VoidPtr =
+    internal val getMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_minimum_size", 3341600327)
 
-    public val getCombinedMinimumSizePtr: VoidPtr =
+    internal val getCombinedMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_combined_minimum_size", 3341600327)
 
-    public val setAnchorsPresetPtr: VoidPtr =
+    internal val setAnchorsPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_anchors_preset", 509135270)
 
-    public val setOffsetsPresetPtr: VoidPtr =
+    internal val setOffsetsPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_offsets_preset", 3724524307)
 
-    public val setAnchorsAndOffsetsPresetPtr: VoidPtr =
+    internal val setAnchorsAndOffsetsPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_anchors_and_offsets_preset", 3724524307)
 
-    public val setAnchorPtr: VoidPtr =
+    internal val setAnchorPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_anchor", 2302782885)
 
-    public val getAnchorPtr: VoidPtr =
+    internal val getAnchorPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_anchor", 2869120046)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_offset", 4290182280)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_offset", 2869120046)
 
-    public val setAnchorAndOffsetPtr: VoidPtr =
+    internal val setAnchorAndOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_anchor_and_offset", 4031722181)
 
-    public val setBeginPtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_begin", 743155724)
+    internal val setBeginPtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "set_begin", 743155724)
 
-    public val setEndPtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_end", 743155724)
+    internal val setEndPtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_end", 743155724)
 
-    public val setPositionPtr: VoidPtr =
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_position", 2436320129)
 
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_size", 2436320129)
+    internal val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_size", 2436320129)
 
-    public val resetSizePtr: VoidPtr =
+    internal val resetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "reset_size", 3218959716)
 
-    public val setCustomMinimumSizePtr: VoidPtr =
+    internal val setCustomMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_custom_minimum_size", 743155724)
 
-    public val setGlobalPositionPtr: VoidPtr =
+    internal val setGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_global_position", 2436320129)
 
-    public val setRotationPtr: VoidPtr =
+    internal val setRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_rotation", 373806689)
 
-    public val setRotationDegreesPtr: VoidPtr =
+    internal val setRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_rotation_degrees", 373806689)
 
-    public val setScalePtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_scale", 743155724)
+    internal val setScalePtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "set_scale", 743155724)
 
-    public val setPivotOffsetPtr: VoidPtr =
+    internal val setPivotOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_pivot_offset", 743155724)
 
-    public val getBeginPtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_begin", 3341600327)
+    internal val getBeginPtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "get_begin", 3341600327)
 
-    public val getEndPtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_end", 3341600327)
+    internal val getEndPtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_end", 3341600327)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_position", 3341600327)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_size", 3341600327)
+    internal val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_size", 3341600327)
 
-    public val getRotationPtr: VoidPtr =
+    internal val getRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_rotation", 1740695150)
 
-    public val getRotationDegreesPtr: VoidPtr =
+    internal val getRotationDegreesPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_rotation_degrees", 1740695150)
 
-    public val getScalePtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_scale", 3341600327)
+    internal val getScalePtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "get_scale", 3341600327)
 
-    public val getPivotOffsetPtr: VoidPtr =
+    internal val getPivotOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_pivot_offset", 3341600327)
 
-    public val getCustomMinimumSizePtr: VoidPtr =
+    internal val getCustomMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_custom_minimum_size", 3341600327)
 
-    public val getParentAreaSizePtr: VoidPtr =
+    internal val getParentAreaSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_parent_area_size", 3341600327)
 
-    public val getGlobalPositionPtr: VoidPtr =
+    internal val getGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_global_position", 3341600327)
 
-    public val getScreenPositionPtr: VoidPtr =
+    internal val getScreenPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_screen_position", 3341600327)
 
-    public val getRectPtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_rect", 1639390495)
+    internal val getRectPtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_rect", 1639390495)
 
-    public val getGlobalRectPtr: VoidPtr =
+    internal val getGlobalRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_global_rect", 1639390495)
 
-    public val setFocusModePtr: VoidPtr =
+    internal val setFocusModePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_focus_mode", 3232914922)
 
-    public val getFocusModePtr: VoidPtr =
+    internal val getFocusModePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_focus_mode", 2132829277)
 
-    public val hasFocusPtr: VoidPtr = Internals.getMethodBindPtr("Control", "has_focus", 36873697)
+    internal val hasFocusPtr: VoidPtr = Internals.getMethodBindPtr("Control", "has_focus", 36873697)
 
-    public val grabFocusPtr: VoidPtr =
+    internal val grabFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "grab_focus", 3218959716)
 
-    public val releaseFocusPtr: VoidPtr =
+    internal val releaseFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "release_focus", 3218959716)
 
-    public val findPrevValidFocusPtr: VoidPtr =
+    internal val findPrevValidFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "find_prev_valid_focus", 2783021301)
 
-    public val findNextValidFocusPtr: VoidPtr =
+    internal val findNextValidFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "find_next_valid_focus", 2783021301)
 
-    public val findValidFocusNeighborPtr: VoidPtr =
+    internal val findValidFocusNeighborPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "find_valid_focus_neighbor", 1543910170)
 
-    public val setHSizeFlagsPtr: VoidPtr =
+    internal val setHSizeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_h_size_flags", 394851643)
 
-    public val getHSizeFlagsPtr: VoidPtr =
+    internal val getHSizeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_h_size_flags", 3781367401)
 
-    public val setStretchRatioPtr: VoidPtr =
+    internal val setStretchRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_stretch_ratio", 373806689)
 
-    public val getStretchRatioPtr: VoidPtr =
+    internal val getStretchRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_stretch_ratio", 1740695150)
 
-    public val setVSizeFlagsPtr: VoidPtr =
+    internal val setVSizeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_v_size_flags", 394851643)
 
-    public val getVSizeFlagsPtr: VoidPtr =
+    internal val getVSizeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_v_size_flags", 3781367401)
 
-    public val setThemePtr: VoidPtr = Internals.getMethodBindPtr("Control", "set_theme", 2326690814)
+    internal val setThemePtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "set_theme", 2326690814)
 
-    public val getThemePtr: VoidPtr = Internals.getMethodBindPtr("Control", "get_theme", 3846893731)
+    internal val getThemePtr: VoidPtr =
+        Internals.getMethodBindPtr("Control", "get_theme", 3846893731)
 
-    public val setThemeTypeVariationPtr: VoidPtr =
+    internal val setThemeTypeVariationPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_theme_type_variation", 3304788590)
 
-    public val getThemeTypeVariationPtr: VoidPtr =
+    internal val getThemeTypeVariationPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_type_variation", 2002593661)
 
-    public val beginBulkThemeOverridePtr: VoidPtr =
+    internal val beginBulkThemeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "begin_bulk_theme_override", 3218959716)
 
-    public val endBulkThemeOverridePtr: VoidPtr =
+    internal val endBulkThemeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "end_bulk_theme_override", 3218959716)
 
-    public val addThemeIconOverridePtr: VoidPtr =
+    internal val addThemeIconOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_icon_override", 1373065600)
 
-    public val addThemeStyleboxOverridePtr: VoidPtr =
+    internal val addThemeStyleboxOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_stylebox_override", 4188838905)
 
-    public val addThemeFontOverridePtr: VoidPtr =
+    internal val addThemeFontOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_font_override", 3518018674)
 
-    public val addThemeFontSizeOverridePtr: VoidPtr =
+    internal val addThemeFontSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_font_size_override", 2415702435)
 
-    public val addThemeColorOverridePtr: VoidPtr =
+    internal val addThemeColorOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_color_override", 4260178595)
 
-    public val addThemeConstantOverridePtr: VoidPtr =
+    internal val addThemeConstantOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "add_theme_constant_override", 2415702435)
 
-    public val removeThemeIconOverridePtr: VoidPtr =
+    internal val removeThemeIconOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_icon_override", 3304788590)
 
-    public val removeThemeStyleboxOverridePtr: VoidPtr =
+    internal val removeThemeStyleboxOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_stylebox_override", 3304788590)
 
-    public val removeThemeFontOverridePtr: VoidPtr =
+    internal val removeThemeFontOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_font_override", 3304788590)
 
-    public val removeThemeFontSizeOverridePtr: VoidPtr =
+    internal val removeThemeFontSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_font_size_override", 3304788590)
 
-    public val removeThemeColorOverridePtr: VoidPtr =
+    internal val removeThemeColorOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_color_override", 3304788590)
 
-    public val removeThemeConstantOverridePtr: VoidPtr =
+    internal val removeThemeConstantOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "remove_theme_constant_override", 3304788590)
 
-    public val getThemeIconPtr: VoidPtr =
+    internal val getThemeIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_icon", 2336455395)
 
-    public val getThemeStyleboxPtr: VoidPtr =
+    internal val getThemeStyleboxPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_stylebox", 2759935355)
 
-    public val getThemeFontPtr: VoidPtr =
+    internal val getThemeFontPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_font", 387378635)
 
-    public val getThemeFontSizePtr: VoidPtr =
+    internal val getThemeFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_font_size", 229578101)
 
-    public val getThemeColorPtr: VoidPtr =
+    internal val getThemeColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_color", 2377051548)
 
-    public val getThemeConstantPtr: VoidPtr =
+    internal val getThemeConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_constant", 229578101)
 
-    public val hasThemeIconOverridePtr: VoidPtr =
+    internal val hasThemeIconOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_icon_override", 2619796661)
 
-    public val hasThemeStyleboxOverridePtr: VoidPtr =
+    internal val hasThemeStyleboxOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_stylebox_override", 2619796661)
 
-    public val hasThemeFontOverridePtr: VoidPtr =
+    internal val hasThemeFontOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_font_override", 2619796661)
 
-    public val hasThemeFontSizeOverridePtr: VoidPtr =
+    internal val hasThemeFontSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_font_size_override", 2619796661)
 
-    public val hasThemeColorOverridePtr: VoidPtr =
+    internal val hasThemeColorOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_color_override", 2619796661)
 
-    public val hasThemeConstantOverridePtr: VoidPtr =
+    internal val hasThemeConstantOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_constant_override", 2619796661)
 
-    public val hasThemeIconPtr: VoidPtr =
+    internal val hasThemeIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_icon", 1187511791)
 
-    public val hasThemeStyleboxPtr: VoidPtr =
+    internal val hasThemeStyleboxPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_stylebox", 1187511791)
 
-    public val hasThemeFontPtr: VoidPtr =
+    internal val hasThemeFontPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_font", 1187511791)
 
-    public val hasThemeFontSizePtr: VoidPtr =
+    internal val hasThemeFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_font_size", 1187511791)
 
-    public val hasThemeColorPtr: VoidPtr =
+    internal val hasThemeColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_color", 1187511791)
 
-    public val hasThemeConstantPtr: VoidPtr =
+    internal val hasThemeConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "has_theme_constant", 1187511791)
 
-    public val getThemeDefaultBaseScalePtr: VoidPtr =
+    internal val getThemeDefaultBaseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_default_base_scale", 1740695150)
 
-    public val getThemeDefaultFontPtr: VoidPtr =
+    internal val getThemeDefaultFontPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_default_font", 3229501585)
 
-    public val getThemeDefaultFontSizePtr: VoidPtr =
+    internal val getThemeDefaultFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_theme_default_font_size", 3905245786)
 
-    public val getParentControlPtr: VoidPtr =
+    internal val getParentControlPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_parent_control", 2783021301)
 
-    public val setHGrowDirectionPtr: VoidPtr =
+    internal val setHGrowDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_h_grow_direction", 2022385301)
 
-    public val getHGrowDirectionPtr: VoidPtr =
+    internal val getHGrowDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_h_grow_direction", 3635610155)
 
-    public val setVGrowDirectionPtr: VoidPtr =
+    internal val setVGrowDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_v_grow_direction", 2022385301)
 
-    public val getVGrowDirectionPtr: VoidPtr =
+    internal val getVGrowDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_v_grow_direction", 3635610155)
 
-    public val setTooltipTextPtr: VoidPtr =
+    internal val setTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_tooltip_text", 83702148)
 
-    public val getTooltipTextPtr: VoidPtr =
+    internal val getTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_tooltip_text", 201670096)
 
-    public val getTooltipPtr: VoidPtr =
+    internal val getTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_tooltip", 2895288280)
 
-    public val setDefaultCursorShapePtr: VoidPtr =
+    internal val setDefaultCursorShapePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_default_cursor_shape", 217062046)
 
-    public val getDefaultCursorShapePtr: VoidPtr =
+    internal val getDefaultCursorShapePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_default_cursor_shape", 2359535750)
 
-    public val getCursorShapePtr: VoidPtr =
+    internal val getCursorShapePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_cursor_shape", 1395773853)
 
-    public val setFocusNeighborPtr: VoidPtr =
+    internal val setFocusNeighborPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_focus_neighbor", 2024461774)
 
-    public val getFocusNeighborPtr: VoidPtr =
+    internal val getFocusNeighborPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_focus_neighbor", 2757935761)
 
-    public val setFocusNextPtr: VoidPtr =
+    internal val setFocusNextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_focus_next", 1348162250)
 
-    public val getFocusNextPtr: VoidPtr =
+    internal val getFocusNextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_focus_next", 4075236667)
 
-    public val setFocusPreviousPtr: VoidPtr =
+    internal val setFocusPreviousPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_focus_previous", 1348162250)
 
-    public val getFocusPreviousPtr: VoidPtr =
+    internal val getFocusPreviousPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_focus_previous", 4075236667)
 
-    public val forceDragPtr: VoidPtr =
+    internal val forceDragPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "force_drag", 3191844692)
 
-    public val setMouseFilterPtr: VoidPtr =
+    internal val setMouseFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_mouse_filter", 3891156122)
 
-    public val getMouseFilterPtr: VoidPtr =
+    internal val getMouseFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_mouse_filter", 1572545674)
 
-    public val setForcePassScrollEventsPtr: VoidPtr =
+    internal val setForcePassScrollEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_force_pass_scroll_events", 2586408642)
 
-    public val isForcePassScrollEventsPtr: VoidPtr =
+    internal val isForcePassScrollEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_force_pass_scroll_events", 36873697)
 
-    public val setClipContentsPtr: VoidPtr =
+    internal val setClipContentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_clip_contents", 2586408642)
 
-    public val isClippingContentsPtr: VoidPtr =
+    internal val isClippingContentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_clipping_contents", 2240911060)
 
-    public val grabClickFocusPtr: VoidPtr =
+    internal val grabClickFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "grab_click_focus", 3218959716)
 
-    public val setDragForwardingPtr: VoidPtr =
+    internal val setDragForwardingPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_drag_forwarding", 1076571380)
 
-    public val setDragPreviewPtr: VoidPtr =
+    internal val setDragPreviewPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_drag_preview", 1496901182)
 
-    public val isDragSuccessfulPtr: VoidPtr =
+    internal val isDragSuccessfulPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_drag_successful", 36873697)
 
-    public val warpMousePtr: VoidPtr =
+    internal val warpMousePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "warp_mouse", 743155724)
 
-    public val setShortcutContextPtr: VoidPtr =
+    internal val setShortcutContextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_shortcut_context", 1078189570)
 
-    public val getShortcutContextPtr: VoidPtr =
+    internal val getShortcutContextPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_shortcut_context", 3160264692)
 
-    public val updateMinimumSizePtr: VoidPtr =
+    internal val updateMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "update_minimum_size", 3218959716)
 
-    public val setLayoutDirectionPtr: VoidPtr =
+    internal val setLayoutDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_layout_direction", 3310692370)
 
-    public val getLayoutDirectionPtr: VoidPtr =
+    internal val getLayoutDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "get_layout_direction", 1546772008)
 
-    public val isLayoutRtlPtr: VoidPtr =
+    internal val isLayoutRtlPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_layout_rtl", 36873697)
 
-    public val setAutoTranslatePtr: VoidPtr =
+    internal val setAutoTranslatePtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_auto_translate", 2586408642)
 
-    public val isAutoTranslatingPtr: VoidPtr =
+    internal val isAutoTranslatingPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_auto_translating", 36873697)
 
-    public val setLocalizeNumeralSystemPtr: VoidPtr =
+    internal val setLocalizeNumeralSystemPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "set_localize_numeral_system", 2586408642)
 
-    public val isLocalizingNumeralSystemPtr: VoidPtr =
+    internal val isLocalizingNumeralSystemPtr: VoidPtr =
         Internals.getMethodBindPtr("Control", "is_localizing_numeral_system", 36873697)
   }
 }

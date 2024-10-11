@@ -94,12 +94,13 @@ public open class PCKPacker : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val pckStartPtr: VoidPtr =
+  public object MethodBindings {
+    internal val pckStartPtr: VoidPtr =
         Internals.getMethodBindPtr("PCKPacker", "pck_start", 508410629)
 
-    public val addFilePtr: VoidPtr = Internals.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
+    internal val addFilePtr: VoidPtr =
+        Internals.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
 
-    public val flushPtr: VoidPtr = Internals.getMethodBindPtr("PCKPacker", "flush", 1633102583)
+    internal val flushPtr: VoidPtr = Internals.getMethodBindPtr("PCKPacker", "flush", 1633102583)
   }
 }

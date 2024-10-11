@@ -163,23 +163,23 @@ public open class AudioStream : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "get_length", 1740695150)
 
-    public val isMonophonicPtr: VoidPtr =
+    internal val isMonophonicPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "is_monophonic", 36873697)
 
-    public val instantiatePlaybackPtr: VoidPtr =
+    internal val instantiatePlaybackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "instantiate_playback", 210135309)
 
-    public val canBeSampledPtr: VoidPtr =
+    internal val canBeSampledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "can_be_sampled", 36873697)
 
-    public val generateSamplePtr: VoidPtr =
+    internal val generateSamplePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "generate_sample", 2646048999)
 
-    public val isMetaStreamPtr: VoidPtr =
+    internal val isMetaStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStream", "is_meta_stream", 36873697)
   }
 }

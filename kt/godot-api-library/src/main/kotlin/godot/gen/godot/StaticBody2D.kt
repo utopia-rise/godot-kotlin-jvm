@@ -140,23 +140,23 @@ public open class StaticBody2D : PhysicsBody2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setConstantLinearVelocityPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setConstantLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743155724)
 
-    public val setConstantAngularVelocityPtr: VoidPtr =
+    internal val setConstantAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373806689)
 
-    public val getConstantLinearVelocityPtr: VoidPtr =
+    internal val getConstantLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3341600327)
 
-    public val getConstantAngularVelocityPtr: VoidPtr =
+    internal val getConstantAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1740695150)
 
-    public val setPhysicsMaterialOverridePtr: VoidPtr =
+    internal val setPhysicsMaterialOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1784508650)
 
-    public val getPhysicsMaterialOverridePtr: VoidPtr =
+    internal val getPhysicsMaterialOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2521850424)
   }
 }

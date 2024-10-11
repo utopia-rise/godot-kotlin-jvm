@@ -186,35 +186,35 @@ public open class CollisionPolygon2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPolygonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr =
+    internal val getPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2961356807)
 
-    public val setBuildModePtr: VoidPtr =
+    internal val setBuildModePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2780803135)
 
-    public val getBuildModePtr: VoidPtr =
+    internal val getBuildModePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3044948800)
 
-    public val setDisabledPtr: VoidPtr =
+    internal val setDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2586408642)
 
-    public val isDisabledPtr: VoidPtr =
+    internal val isDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36873697)
 
-    public val setOneWayCollisionPtr: VoidPtr =
+    internal val setOneWayCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2586408642)
 
-    public val isOneWayCollisionEnabledPtr: VoidPtr =
+    internal val isOneWayCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36873697)
 
-    public val setOneWayCollisionMarginPtr: VoidPtr =
+    internal val setOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373806689)
 
-    public val getOneWayCollisionMarginPtr: VoidPtr =
+    internal val getOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
   }
 }

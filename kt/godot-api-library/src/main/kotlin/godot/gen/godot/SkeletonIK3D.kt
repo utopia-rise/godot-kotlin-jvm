@@ -404,75 +404,75 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRootBonePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRootBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_root_bone", 3304788590)
 
-    public val getRootBonePtr: VoidPtr =
+    internal val getRootBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_root_bone", 2002593661)
 
-    public val setTipBonePtr: VoidPtr =
+    internal val setTipBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_tip_bone", 3304788590)
 
-    public val getTipBonePtr: VoidPtr =
+    internal val getTipBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_tip_bone", 2002593661)
 
-    public val setTargetTransformPtr: VoidPtr =
+    internal val setTargetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_target_transform", 2952846383)
 
-    public val getTargetTransformPtr: VoidPtr =
+    internal val getTargetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_target_transform", 3229777777)
 
-    public val setTargetNodePtr: VoidPtr =
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_target_node", 277076166)
 
-    public val setOverrideTipBasisPtr: VoidPtr =
+    internal val setOverrideTipBasisPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_override_tip_basis", 2586408642)
 
-    public val isOverrideTipBasisPtr: VoidPtr =
+    internal val isOverrideTipBasisPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "is_override_tip_basis", 36873697)
 
-    public val setUseMagnetPtr: VoidPtr =
+    internal val setUseMagnetPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_use_magnet", 2586408642)
 
-    public val isUsingMagnetPtr: VoidPtr =
+    internal val isUsingMagnetPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "is_using_magnet", 36873697)
 
-    public val setMagnetPositionPtr: VoidPtr =
+    internal val setMagnetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_magnet_position", 3460891852)
 
-    public val getMagnetPositionPtr: VoidPtr =
+    internal val getMagnetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_magnet_position", 3360562783)
 
-    public val getParentSkeletonPtr: VoidPtr =
+    internal val getParentSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_parent_skeleton", 1488626673)
 
-    public val isRunningPtr: VoidPtr =
+    internal val isRunningPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "is_running", 2240911060)
 
-    public val setMinDistancePtr: VoidPtr =
+    internal val setMinDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_min_distance", 373806689)
 
-    public val getMinDistancePtr: VoidPtr =
+    internal val getMinDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_min_distance", 1740695150)
 
-    public val setMaxIterationsPtr: VoidPtr =
+    internal val setMaxIterationsPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_max_iterations", 1286410249)
 
-    public val getMaxIterationsPtr: VoidPtr =
+    internal val getMaxIterationsPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_max_iterations", 3905245786)
 
-    public val startPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "start", 107499316)
+    internal val startPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "start", 107499316)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "stop", 3218959716)
 
-    public val setInterpolationPtr: VoidPtr =
+    internal val setInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "set_interpolation", 373806689)
 
-    public val getInterpolationPtr: VoidPtr =
+    internal val getInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonIK3D", "get_interpolation", 1740695150)
   }
 }

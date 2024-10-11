@@ -113,17 +113,17 @@ public open class WorldBoundaryShape2D : Shape2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setNormalPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape2D", "set_normal", 743155724)
 
-    public val getNormalPtr: VoidPtr =
+    internal val getNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape2D", "get_normal", 3341600327)
 
-    public val setDistancePtr: VoidPtr =
+    internal val setDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape2D", "set_distance", 373806689)
 
-    public val getDistancePtr: VoidPtr =
+    internal val getDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape2D", "get_distance", 1740695150)
   }
 }

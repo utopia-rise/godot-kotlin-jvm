@@ -158,11 +158,11 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOperatorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeColorOp", "set_operator", 4260370673)
 
-    public val getOperatorPtr: VoidPtr =
+    internal val getOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeColorOp", "get_operator", 1950956529)
   }
 }

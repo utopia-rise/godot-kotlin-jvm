@@ -306,47 +306,47 @@ public open class FontVariation : Font() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBaseFontPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBaseFontPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_base_font", 1262170328)
 
-    public val getBaseFontPtr: VoidPtr =
+    internal val getBaseFontPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_base_font", 3229501585)
 
-    public val setVariationOpentypePtr: VoidPtr =
+    internal val setVariationOpentypePtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_variation_opentype", 4155329257)
 
-    public val getVariationOpentypePtr: VoidPtr =
+    internal val getVariationOpentypePtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_variation_opentype", 3102165223)
 
-    public val setVariationEmboldenPtr: VoidPtr =
+    internal val setVariationEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_variation_embolden", 373806689)
 
-    public val getVariationEmboldenPtr: VoidPtr =
+    internal val getVariationEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_variation_embolden", 1740695150)
 
-    public val setVariationFaceIndexPtr: VoidPtr =
+    internal val setVariationFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_variation_face_index", 1286410249)
 
-    public val getVariationFaceIndexPtr: VoidPtr =
+    internal val getVariationFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_variation_face_index", 3905245786)
 
-    public val setVariationTransformPtr: VoidPtr =
+    internal val setVariationTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_variation_transform", 2761652528)
 
-    public val getVariationTransformPtr: VoidPtr =
+    internal val getVariationTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_variation_transform", 3814499831)
 
-    public val setOpentypeFeaturesPtr: VoidPtr =
+    internal val setOpentypeFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_opentype_features", 4155329257)
 
-    public val setSpacingPtr: VoidPtr =
+    internal val setSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_spacing", 3122339690)
 
-    public val setBaselineOffsetPtr: VoidPtr =
+    internal val setBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "set_baseline_offset", 373806689)
 
-    public val getBaselineOffsetPtr: VoidPtr =
+    internal val getBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FontVariation", "get_baseline_offset", 1740695150)
   }
 }

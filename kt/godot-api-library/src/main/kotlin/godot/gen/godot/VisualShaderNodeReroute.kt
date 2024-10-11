@@ -43,8 +43,8 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPortTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPortTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeReroute", "get_port_type", 1287173294)
   }
 }

@@ -158,35 +158,35 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLayerViewportPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLayerViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3888077664)
 
-    public val getLayerViewportPtr: VoidPtr =
+    internal val getLayerViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3750751911)
 
-    public val setEnableHolePunchPtr: VoidPtr =
+    internal val setEnableHolePunchPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2586408642)
 
-    public val getEnableHolePunchPtr: VoidPtr =
+    internal val getEnableHolePunchPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36873697)
 
-    public val setSortOrderPtr: VoidPtr =
+    internal val setSortOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1286410249)
 
-    public val getSortOrderPtr: VoidPtr =
+    internal val getSortOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3905245786)
 
-    public val setAlphaBlendPtr: VoidPtr =
+    internal val setAlphaBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2586408642)
 
-    public val getAlphaBlendPtr: VoidPtr =
+    internal val getAlphaBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36873697)
 
-    public val isNativelySupportedPtr: VoidPtr =
+    internal val isNativelySupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
 
-    public val intersectsRayPtr: VoidPtr =
+    internal val intersectsRayPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)
   }
 }

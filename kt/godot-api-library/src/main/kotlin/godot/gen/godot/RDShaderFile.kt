@@ -92,20 +92,20 @@ public open class RDShaderFile : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBytecodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBytecodePtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderFile", "set_bytecode", 1558064255)
 
-    public val getSpirvPtr: VoidPtr =
+    internal val getSpirvPtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderFile", "get_spirv", 3340165340)
 
-    public val getVersionListPtr: VoidPtr =
+    internal val getVersionListPtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderFile", "get_version_list", 3995934104)
 
-    public val setBaseErrorPtr: VoidPtr =
+    internal val setBaseErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderFile", "set_base_error", 83702148)
 
-    public val getBaseErrorPtr: VoidPtr =
+    internal val getBaseErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDShaderFile", "get_base_error", 201670096)
   }
 }

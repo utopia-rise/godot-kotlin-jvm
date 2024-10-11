@@ -551,89 +551,89 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getNamePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_name", 2002593661)
 
-    public val getCapabilitiesPtr: VoidPtr =
+    internal val getCapabilitiesPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_capabilities", 3905245786)
 
-    public val isPrimaryPtr: VoidPtr =
+    internal val isPrimaryPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "is_primary", 2240911060)
 
-    public val setPrimaryPtr: VoidPtr =
+    internal val setPrimaryPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "set_primary", 2586408642)
 
-    public val isInitializedPtr: VoidPtr =
+    internal val isInitializedPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "is_initialized", 36873697)
 
-    public val initializePtr: VoidPtr =
+    internal val initializePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "initialize", 2240911060)
 
-    public val uninitializePtr: VoidPtr =
+    internal val uninitializePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "uninitialize", 3218959716)
 
-    public val getSystemInfoPtr: VoidPtr =
+    internal val getSystemInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_system_info", 2382534195)
 
-    public val getTrackingStatusPtr: VoidPtr =
+    internal val getTrackingStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_tracking_status", 167423259)
 
-    public val getRenderTargetSizePtr: VoidPtr =
+    internal val getRenderTargetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_render_target_size", 1497962370)
 
-    public val getViewCountPtr: VoidPtr =
+    internal val getViewCountPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_view_count", 2455072627)
 
-    public val triggerHapticPulsePtr: VoidPtr =
+    internal val triggerHapticPulsePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "trigger_haptic_pulse", 3752640163)
 
-    public val supportsPlayAreaModePtr: VoidPtr =
+    internal val supportsPlayAreaModePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "supports_play_area_mode", 3429955281)
 
-    public val getPlayAreaModePtr: VoidPtr =
+    internal val getPlayAreaModePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_play_area_mode", 1615132885)
 
-    public val setPlayAreaModePtr: VoidPtr =
+    internal val setPlayAreaModePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "set_play_area_mode", 3429955281)
 
-    public val getPlayAreaPtr: VoidPtr =
+    internal val getPlayAreaPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_play_area", 497664490)
 
-    public val getAnchorDetectionIsEnabledPtr: VoidPtr =
+    internal val getAnchorDetectionIsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_anchor_detection_is_enabled", 36873697)
 
-    public val setAnchorDetectionIsEnabledPtr: VoidPtr =
+    internal val setAnchorDetectionIsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "set_anchor_detection_is_enabled", 2586408642)
 
-    public val getCameraFeedIdPtr: VoidPtr =
+    internal val getCameraFeedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_camera_feed_id", 2455072627)
 
-    public val isPassthroughSupportedPtr: VoidPtr =
+    internal val isPassthroughSupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "is_passthrough_supported", 2240911060)
 
-    public val isPassthroughEnabledPtr: VoidPtr =
+    internal val isPassthroughEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "is_passthrough_enabled", 2240911060)
 
-    public val startPassthroughPtr: VoidPtr =
+    internal val startPassthroughPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "start_passthrough", 2240911060)
 
-    public val stopPassthroughPtr: VoidPtr =
+    internal val stopPassthroughPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "stop_passthrough", 3218959716)
 
-    public val getTransformForViewPtr: VoidPtr =
+    internal val getTransformForViewPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_transform_for_view", 518934792)
 
-    public val getProjectionForViewPtr: VoidPtr =
+    internal val getProjectionForViewPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_projection_for_view", 3766090294)
 
-    public val getSupportedEnvironmentBlendModesPtr: VoidPtr =
+    internal val getSupportedEnvironmentBlendModesPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_supported_environment_blend_modes", 2915620761)
 
-    public val setEnvironmentBlendModePtr: VoidPtr =
+    internal val setEnvironmentBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "set_environment_blend_mode", 551152418)
 
-    public val getEnvironmentBlendModePtr: VoidPtr =
+    internal val getEnvironmentBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterface", "get_environment_blend_mode", 1984334071)
   }
 }

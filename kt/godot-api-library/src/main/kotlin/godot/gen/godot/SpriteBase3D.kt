@@ -630,107 +630,107 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCenteredPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_centered", 2586408642)
 
-    public val isCenteredPtr: VoidPtr =
+    internal val isCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "is_centered", 36873697)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_offset", 3341600327)
 
-    public val setFlipHPtr: VoidPtr =
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr =
+    internal val isFlippedHPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr =
+    internal val isFlippedVPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "is_flipped_v", 36873697)
 
-    public val setModulatePtr: VoidPtr =
+    internal val setModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr =
+    internal val getModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_modulate", 3444240500)
 
-    public val setRenderPriorityPtr: VoidPtr =
+    internal val setRenderPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_render_priority", 1286410249)
 
-    public val getRenderPriorityPtr: VoidPtr =
+    internal val getRenderPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_render_priority", 3905245786)
 
-    public val setPixelSizePtr: VoidPtr =
+    internal val setPixelSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_pixel_size", 373806689)
 
-    public val getPixelSizePtr: VoidPtr =
+    internal val getPixelSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_pixel_size", 1740695150)
 
-    public val setAxisPtr: VoidPtr =
+    internal val setAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_axis", 1144690656)
 
-    public val getAxisPtr: VoidPtr =
+    internal val getAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_axis", 3050976882)
 
-    public val setDrawFlagPtr: VoidPtr =
+    internal val setDrawFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_draw_flag", 1135633219)
 
-    public val getDrawFlagPtr: VoidPtr =
+    internal val getDrawFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_draw_flag", 1733036628)
 
-    public val setAlphaCutModePtr: VoidPtr =
+    internal val setAlphaCutModePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode", 227561226)
 
-    public val getAlphaCutModePtr: VoidPtr =
+    internal val getAlphaCutModePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode", 336003791)
 
-    public val setAlphaScissorThresholdPtr: VoidPtr =
+    internal val setAlphaScissorThresholdPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold", 373806689)
 
-    public val getAlphaScissorThresholdPtr: VoidPtr =
+    internal val getAlphaScissorThresholdPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold", 1740695150)
 
-    public val setAlphaHashScalePtr: VoidPtr =
+    internal val setAlphaHashScalePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale", 373806689)
 
-    public val getAlphaHashScalePtr: VoidPtr =
+    internal val getAlphaHashScalePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale", 1740695150)
 
-    public val setAlphaAntialiasingPtr: VoidPtr =
+    internal val setAlphaAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing", 3212649852)
 
-    public val getAlphaAntialiasingPtr: VoidPtr =
+    internal val getAlphaAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing", 2889939400)
 
-    public val setAlphaAntialiasingEdgePtr: VoidPtr =
+    internal val setAlphaAntialiasingEdgePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge", 373806689)
 
-    public val getAlphaAntialiasingEdgePtr: VoidPtr =
+    internal val getAlphaAntialiasingEdgePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge", 1740695150)
 
-    public val setBillboardModePtr: VoidPtr =
+    internal val setBillboardModePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_billboard_mode", 4202036497)
 
-    public val getBillboardModePtr: VoidPtr =
+    internal val getBillboardModePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_billboard_mode", 1283840139)
 
-    public val setTextureFilterPtr: VoidPtr =
+    internal val setTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "set_texture_filter", 22904437)
 
-    public val getTextureFilterPtr: VoidPtr =
+    internal val getTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_texture_filter", 3289213076)
 
-    public val getItemRectPtr: VoidPtr =
+    internal val getItemRectPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "get_item_rect", 1639390495)
 
-    public val generateTriangleMeshPtr: VoidPtr =
+    internal val generateTriangleMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh", 3476533166)
   }
 }

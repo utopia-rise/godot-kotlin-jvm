@@ -109,17 +109,17 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
   public companion object
 
-  internal object MethodBindings {
-    public val setParameterNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setParameterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83702148)
 
-    public val getParameterNamePtr: VoidPtr =
+    internal val getParameterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201670096)
 
-    public val setQualifierPtr: VoidPtr =
+    internal val setQualifierPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1276489447)
 
-    public val getQualifierPtr: VoidPtr =
+    internal val getQualifierPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
   }
 }

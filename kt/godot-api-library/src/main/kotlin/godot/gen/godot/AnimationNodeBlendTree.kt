@@ -212,38 +212,38 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     public final const val CONNECTION_ERROR_CONNECTION_EXISTS: Long = 5
   }
 
-  internal object MethodBindings {
-    public val addNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "add_node", 1980270704)
 
-    public val getNodePtr: VoidPtr =
+    internal val getNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "get_node", 625644256)
 
-    public val removeNodePtr: VoidPtr =
+    internal val removeNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "remove_node", 3304788590)
 
-    public val renameNodePtr: VoidPtr =
+    internal val renameNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "rename_node", 3740211285)
 
-    public val hasNodePtr: VoidPtr =
+    internal val hasNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "has_node", 2619796661)
 
-    public val connectNodePtr: VoidPtr =
+    internal val connectNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "connect_node", 2168001410)
 
-    public val disconnectNodePtr: VoidPtr =
+    internal val disconnectNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node", 2415702435)
 
-    public val setNodePositionPtr: VoidPtr =
+    internal val setNodePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position", 1999414630)
 
-    public val getNodePositionPtr: VoidPtr =
+    internal val getNodePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "get_node_position", 3100822709)
 
-    public val setGraphOffsetPtr: VoidPtr =
+    internal val setGraphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "set_graph_offset", 743155724)
 
-    public val getGraphOffsetPtr: VoidPtr =
+    internal val getGraphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendTree", "get_graph_offset", 3341600327)
   }
 }

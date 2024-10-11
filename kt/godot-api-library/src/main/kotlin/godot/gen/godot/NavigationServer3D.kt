@@ -1686,437 +1686,437 @@ public object NavigationServer3D : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val getMapsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getMapsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "get_maps", 3995934104)
 
-    public val mapCreatePtr: VoidPtr =
+    internal val mapCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_create", 529393457)
 
-    public val mapSetActivePtr: VoidPtr =
+    internal val mapSetActivePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_active", 1265174801)
 
-    public val mapIsActivePtr: VoidPtr =
+    internal val mapIsActivePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_is_active", 4155700596)
 
-    public val mapSetUpPtr: VoidPtr =
+    internal val mapSetUpPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_up", 3227306858)
 
-    public val mapGetUpPtr: VoidPtr =
+    internal val mapGetUpPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_up", 531438156)
 
-    public val mapSetCellSizePtr: VoidPtr =
+    internal val mapSetCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_cell_size", 1794382983)
 
-    public val mapGetCellSizePtr: VoidPtr =
+    internal val mapGetCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_cell_size", 866169185)
 
-    public val mapSetCellHeightPtr: VoidPtr =
+    internal val mapSetCellHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_cell_height", 1794382983)
 
-    public val mapGetCellHeightPtr: VoidPtr =
+    internal val mapGetCellHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_cell_height", 866169185)
 
-    public val mapSetMergeRasterizerCellScalePtr: VoidPtr =
+    internal val mapSetMergeRasterizerCellScalePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_merge_rasterizer_cell_scale", 1794382983)
 
-    public val mapGetMergeRasterizerCellScalePtr: VoidPtr =
+    internal val mapGetMergeRasterizerCellScalePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_merge_rasterizer_cell_scale", 866169185)
 
-    public val mapSetUseEdgeConnectionsPtr: VoidPtr =
+    internal val mapSetUseEdgeConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_use_edge_connections", 1265174801)
 
-    public val mapGetUseEdgeConnectionsPtr: VoidPtr =
+    internal val mapGetUseEdgeConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_use_edge_connections", 4155700596)
 
-    public val mapSetEdgeConnectionMarginPtr: VoidPtr =
+    internal val mapSetEdgeConnectionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_edge_connection_margin", 1794382983)
 
-    public val mapGetEdgeConnectionMarginPtr: VoidPtr =
+    internal val mapGetEdgeConnectionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_edge_connection_margin", 866169185)
 
-    public val mapSetLinkConnectionRadiusPtr: VoidPtr =
+    internal val mapSetLinkConnectionRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_set_link_connection_radius", 1794382983)
 
-    public val mapGetLinkConnectionRadiusPtr: VoidPtr =
+    internal val mapGetLinkConnectionRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius", 866169185)
 
-    public val mapGetPathPtr: VoidPtr =
+    internal val mapGetPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_path", 1187418690)
 
-    public val mapGetClosestPointToSegmentPtr: VoidPtr =
+    internal val mapGetClosestPointToSegmentPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment", 3830095642)
 
-    public val mapGetClosestPointPtr: VoidPtr =
+    internal val mapGetClosestPointPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point", 2056183332)
 
-    public val mapGetClosestPointNormalPtr: VoidPtr =
+    internal val mapGetClosestPointNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_normal", 2056183332)
 
-    public val mapGetClosestPointOwnerPtr: VoidPtr =
+    internal val mapGetClosestPointOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_owner", 553364610)
 
-    public val mapGetLinksPtr: VoidPtr =
+    internal val mapGetLinksPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_links", 2684255073)
 
-    public val mapGetRegionsPtr: VoidPtr =
+    internal val mapGetRegionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_regions", 2684255073)
 
-    public val mapGetAgentsPtr: VoidPtr =
+    internal val mapGetAgentsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_agents", 2684255073)
 
-    public val mapGetObstaclesPtr: VoidPtr =
+    internal val mapGetObstaclesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_obstacles", 2684255073)
 
-    public val mapForceUpdatePtr: VoidPtr =
+    internal val mapForceUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_force_update", 2722037293)
 
-    public val mapGetIterationIdPtr: VoidPtr =
+    internal val mapGetIterationIdPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id", 2198884583)
 
-    public val mapGetRandomPointPtr: VoidPtr =
+    internal val mapGetRandomPointPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "map_get_random_point", 722801526)
 
-    public val queryPathPtr: VoidPtr =
+    internal val queryPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "query_path", 3415008901)
 
-    public val regionCreatePtr: VoidPtr =
+    internal val regionCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
 
-    public val regionSetEnabledPtr: VoidPtr =
+    internal val regionSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_enabled", 1265174801)
 
-    public val regionGetEnabledPtr: VoidPtr =
+    internal val regionGetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_enabled", 4155700596)
 
-    public val regionSetUseEdgeConnectionsPtr: VoidPtr =
+    internal val regionSetUseEdgeConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections", 1265174801)
 
-    public val regionGetUseEdgeConnectionsPtr: VoidPtr =
+    internal val regionGetUseEdgeConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_use_edge_connections", 4155700596)
 
-    public val regionSetEnterCostPtr: VoidPtr =
+    internal val regionSetEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_enter_cost", 1794382983)
 
-    public val regionGetEnterCostPtr: VoidPtr =
+    internal val regionGetEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_enter_cost", 866169185)
 
-    public val regionSetTravelCostPtr: VoidPtr =
+    internal val regionSetTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_travel_cost", 1794382983)
 
-    public val regionGetTravelCostPtr: VoidPtr =
+    internal val regionGetTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_travel_cost", 866169185)
 
-    public val regionSetOwnerIdPtr: VoidPtr =
+    internal val regionSetOwnerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_owner_id", 3411492887)
 
-    public val regionGetOwnerIdPtr: VoidPtr =
+    internal val regionGetOwnerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_owner_id", 2198884583)
 
-    public val regionOwnsPointPtr: VoidPtr =
+    internal val regionOwnsPointPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_owns_point", 2360011153)
 
-    public val regionSetMapPtr: VoidPtr =
+    internal val regionSetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_map", 395945892)
 
-    public val regionGetMapPtr: VoidPtr =
+    internal val regionGetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_map", 3814569979)
 
-    public val regionSetNavigationLayersPtr: VoidPtr =
+    internal val regionSetNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_navigation_layers", 3411492887)
 
-    public val regionGetNavigationLayersPtr: VoidPtr =
+    internal val regionGetNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_navigation_layers", 2198884583)
 
-    public val regionSetTransformPtr: VoidPtr =
+    internal val regionSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_transform", 3935195649)
 
-    public val regionGetTransformPtr: VoidPtr =
+    internal val regionGetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_transform", 1128465797)
 
-    public val regionSetNavigationMeshPtr: VoidPtr =
+    internal val regionSetNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_set_navigation_mesh", 2764952978)
 
-    public val regionBakeNavigationMeshPtr: VoidPtr =
+    internal val regionBakeNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_bake_navigation_mesh", 1401173477)
 
-    public val regionGetConnectionsCountPtr: VoidPtr =
+    internal val regionGetConnectionsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_connections_count", 2198884583)
 
-    public val regionGetConnectionPathwayStartPtr: VoidPtr =
+    internal val regionGetConnectionPathwayStartPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_start", 3440143363)
 
-    public val regionGetConnectionPathwayEndPtr: VoidPtr =
+    internal val regionGetConnectionPathwayEndPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end", 3440143363)
 
-    public val regionGetRandomPointPtr: VoidPtr =
+    internal val regionGetRandomPointPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "region_get_random_point", 722801526)
 
-    public val linkCreatePtr: VoidPtr =
+    internal val linkCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
 
-    public val linkSetMapPtr: VoidPtr =
+    internal val linkSetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_map", 395945892)
 
-    public val linkGetMapPtr: VoidPtr =
+    internal val linkGetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_map", 3814569979)
 
-    public val linkSetEnabledPtr: VoidPtr =
+    internal val linkSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_enabled", 1265174801)
 
-    public val linkGetEnabledPtr: VoidPtr =
+    internal val linkGetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_enabled", 4155700596)
 
-    public val linkSetBidirectionalPtr: VoidPtr =
+    internal val linkSetBidirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional", 1265174801)
 
-    public val linkIsBidirectionalPtr: VoidPtr =
+    internal val linkIsBidirectionalPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_is_bidirectional", 4155700596)
 
-    public val linkSetNavigationLayersPtr: VoidPtr =
+    internal val linkSetNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_navigation_layers", 3411492887)
 
-    public val linkGetNavigationLayersPtr: VoidPtr =
+    internal val linkGetNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_navigation_layers", 2198884583)
 
-    public val linkSetStartPositionPtr: VoidPtr =
+    internal val linkSetStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_start_position", 3227306858)
 
-    public val linkGetStartPositionPtr: VoidPtr =
+    internal val linkGetStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_start_position", 531438156)
 
-    public val linkSetEndPositionPtr: VoidPtr =
+    internal val linkSetEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_end_position", 3227306858)
 
-    public val linkGetEndPositionPtr: VoidPtr =
+    internal val linkGetEndPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_end_position", 531438156)
 
-    public val linkSetEnterCostPtr: VoidPtr =
+    internal val linkSetEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_enter_cost", 1794382983)
 
-    public val linkGetEnterCostPtr: VoidPtr =
+    internal val linkGetEnterCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_enter_cost", 866169185)
 
-    public val linkSetTravelCostPtr: VoidPtr =
+    internal val linkSetTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_travel_cost", 1794382983)
 
-    public val linkGetTravelCostPtr: VoidPtr =
+    internal val linkGetTravelCostPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_travel_cost", 866169185)
 
-    public val linkSetOwnerIdPtr: VoidPtr =
+    internal val linkSetOwnerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_set_owner_id", 3411492887)
 
-    public val linkGetOwnerIdPtr: VoidPtr =
+    internal val linkGetOwnerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "link_get_owner_id", 2198884583)
 
-    public val agentCreatePtr: VoidPtr =
+    internal val agentCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_create", 529393457)
 
-    public val agentSetAvoidanceEnabledPtr: VoidPtr =
+    internal val agentSetAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_enabled", 1265174801)
 
-    public val agentGetAvoidanceEnabledPtr: VoidPtr =
+    internal val agentGetAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_enabled", 4155700596)
 
-    public val agentSetUse3dAvoidancePtr: VoidPtr =
+    internal val agentSetUse3dAvoidancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_use_3d_avoidance", 1265174801)
 
-    public val agentGetUse3dAvoidancePtr: VoidPtr =
+    internal val agentGetUse3dAvoidancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_use_3d_avoidance", 4155700596)
 
-    public val agentSetMapPtr: VoidPtr =
+    internal val agentSetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_map", 395945892)
 
-    public val agentGetMapPtr: VoidPtr =
+    internal val agentGetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_map", 3814569979)
 
-    public val agentSetPausedPtr: VoidPtr =
+    internal val agentSetPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_paused", 1265174801)
 
-    public val agentGetPausedPtr: VoidPtr =
+    internal val agentGetPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_paused", 4155700596)
 
-    public val agentSetNeighborDistancePtr: VoidPtr =
+    internal val agentSetNeighborDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_neighbor_distance", 1794382983)
 
-    public val agentGetNeighborDistancePtr: VoidPtr =
+    internal val agentGetNeighborDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_neighbor_distance", 866169185)
 
-    public val agentSetMaxNeighborsPtr: VoidPtr =
+    internal val agentSetMaxNeighborsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_max_neighbors", 3411492887)
 
-    public val agentGetMaxNeighborsPtr: VoidPtr =
+    internal val agentGetMaxNeighborsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_max_neighbors", 2198884583)
 
-    public val agentSetTimeHorizonAgentsPtr: VoidPtr =
+    internal val agentSetTimeHorizonAgentsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_agents", 1794382983)
 
-    public val agentGetTimeHorizonAgentsPtr: VoidPtr =
+    internal val agentGetTimeHorizonAgentsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_agents", 866169185)
 
-    public val agentSetTimeHorizonObstaclesPtr: VoidPtr =
+    internal val agentSetTimeHorizonObstaclesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_obstacles", 1794382983)
 
-    public val agentGetTimeHorizonObstaclesPtr: VoidPtr =
+    internal val agentGetTimeHorizonObstaclesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_obstacles", 866169185)
 
-    public val agentSetRadiusPtr: VoidPtr =
+    internal val agentSetRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_radius", 1794382983)
 
-    public val agentGetRadiusPtr: VoidPtr =
+    internal val agentGetRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_radius", 866169185)
 
-    public val agentSetHeightPtr: VoidPtr =
+    internal val agentSetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_height", 1794382983)
 
-    public val agentGetHeightPtr: VoidPtr =
+    internal val agentGetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_height", 866169185)
 
-    public val agentSetMaxSpeedPtr: VoidPtr =
+    internal val agentSetMaxSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_max_speed", 1794382983)
 
-    public val agentGetMaxSpeedPtr: VoidPtr =
+    internal val agentGetMaxSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_max_speed", 866169185)
 
-    public val agentSetVelocityForcedPtr: VoidPtr =
+    internal val agentSetVelocityForcedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_velocity_forced", 3227306858)
 
-    public val agentSetVelocityPtr: VoidPtr =
+    internal val agentSetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_velocity", 3227306858)
 
-    public val agentGetVelocityPtr: VoidPtr =
+    internal val agentGetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_velocity", 531438156)
 
-    public val agentSetPositionPtr: VoidPtr =
+    internal val agentSetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_position", 3227306858)
 
-    public val agentGetPositionPtr: VoidPtr =
+    internal val agentGetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_position", 531438156)
 
-    public val agentIsMapChangedPtr: VoidPtr =
+    internal val agentIsMapChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_is_map_changed", 4155700596)
 
-    public val agentSetAvoidanceCallbackPtr: VoidPtr =
+    internal val agentSetAvoidanceCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_callback", 3379118538)
 
-    public val agentHasAvoidanceCallbackPtr: VoidPtr =
+    internal val agentHasAvoidanceCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_has_avoidance_callback", 4155700596)
 
-    public val agentSetAvoidanceLayersPtr: VoidPtr =
+    internal val agentSetAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_layers", 3411492887)
 
-    public val agentGetAvoidanceLayersPtr: VoidPtr =
+    internal val agentGetAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_layers", 2198884583)
 
-    public val agentSetAvoidanceMaskPtr: VoidPtr =
+    internal val agentSetAvoidanceMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_mask", 3411492887)
 
-    public val agentGetAvoidanceMaskPtr: VoidPtr =
+    internal val agentGetAvoidanceMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_mask", 2198884583)
 
-    public val agentSetAvoidancePriorityPtr: VoidPtr =
+    internal val agentSetAvoidancePriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_priority", 1794382983)
 
-    public val agentGetAvoidancePriorityPtr: VoidPtr =
+    internal val agentGetAvoidancePriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_priority", 866169185)
 
-    public val obstacleCreatePtr: VoidPtr =
+    internal val obstacleCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_create", 529393457)
 
-    public val obstacleSetAvoidanceEnabledPtr: VoidPtr =
+    internal val obstacleSetAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_enabled", 1265174801)
 
-    public val obstacleGetAvoidanceEnabledPtr: VoidPtr =
+    internal val obstacleGetAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_enabled", 4155700596)
 
-    public val obstacleSetUse3dAvoidancePtr: VoidPtr =
+    internal val obstacleSetUse3dAvoidancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_use_3d_avoidance", 1265174801)
 
-    public val obstacleGetUse3dAvoidancePtr: VoidPtr =
+    internal val obstacleGetUse3dAvoidancePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_use_3d_avoidance", 4155700596)
 
-    public val obstacleSetMapPtr: VoidPtr =
+    internal val obstacleSetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_map", 395945892)
 
-    public val obstacleGetMapPtr: VoidPtr =
+    internal val obstacleGetMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_map", 3814569979)
 
-    public val obstacleSetPausedPtr: VoidPtr =
+    internal val obstacleSetPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_paused", 1265174801)
 
-    public val obstacleGetPausedPtr: VoidPtr =
+    internal val obstacleGetPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_paused", 4155700596)
 
-    public val obstacleSetRadiusPtr: VoidPtr =
+    internal val obstacleSetRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_radius", 1794382983)
 
-    public val obstacleGetRadiusPtr: VoidPtr =
+    internal val obstacleGetRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_radius", 866169185)
 
-    public val obstacleSetHeightPtr: VoidPtr =
+    internal val obstacleSetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_height", 1794382983)
 
-    public val obstacleGetHeightPtr: VoidPtr =
+    internal val obstacleGetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_height", 866169185)
 
-    public val obstacleSetVelocityPtr: VoidPtr =
+    internal val obstacleSetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_velocity", 3227306858)
 
-    public val obstacleGetVelocityPtr: VoidPtr =
+    internal val obstacleGetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_velocity", 531438156)
 
-    public val obstacleSetPositionPtr: VoidPtr =
+    internal val obstacleSetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_position", 3227306858)
 
-    public val obstacleGetPositionPtr: VoidPtr =
+    internal val obstacleGetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_position", 531438156)
 
-    public val obstacleSetVerticesPtr: VoidPtr =
+    internal val obstacleSetVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_vertices", 4030257846)
 
-    public val obstacleGetVerticesPtr: VoidPtr =
+    internal val obstacleGetVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_vertices", 808965560)
 
-    public val obstacleSetAvoidanceLayersPtr: VoidPtr =
+    internal val obstacleSetAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_layers", 3411492887)
 
-    public val obstacleGetAvoidanceLayersPtr: VoidPtr =
+    internal val obstacleGetAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers", 2198884583)
 
-    public val parseSourceGeometryDataPtr: VoidPtr =
+    internal val parseSourceGeometryDataPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 685862123)
 
-    public val bakeFromSourceGeometryDataPtr: VoidPtr =
+    internal val bakeFromSourceGeometryDataPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 2469318639)
 
-    public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
+    internal val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 2469318639)
 
-    public val isBakingNavigationMeshPtr: VoidPtr =
+    internal val isBakingNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh", 3142026141)
 
-    public val sourceGeometryParserCreatePtr: VoidPtr =
+    internal val sourceGeometryParserCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_create", 529393457)
 
-    public val sourceGeometryParserSetCallbackPtr: VoidPtr =
+    internal val sourceGeometryParserSetCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_set_callback", 3379118538)
 
-    public val simplifyPathPtr: VoidPtr =
+    internal val simplifyPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "simplify_path", 2344122170)
 
-    public val freeRidPtr: VoidPtr =
+    internal val freeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "free_rid", 2722037293)
 
-    public val setActivePtr: VoidPtr =
+    internal val setActivePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "set_active", 2586408642)
 
-    public val setDebugEnabledPtr: VoidPtr =
+    internal val setDebugEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "set_debug_enabled", 2586408642)
 
-    public val getDebugEnabledPtr: VoidPtr =
+    internal val getDebugEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "get_debug_enabled", 36873697)
 
-    public val getProcessInfoPtr: VoidPtr =
+    internal val getProcessInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationServer3D", "get_process_info", 1938440894)
   }
 }

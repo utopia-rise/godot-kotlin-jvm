@@ -107,23 +107,23 @@ public open class PanoramaSkyMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPanoramaPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPanoramaPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_panorama", 4051416890)
 
-    public val getPanoramaPtr: VoidPtr =
+    internal val getPanoramaPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "get_panorama", 3635182373)
 
-    public val setFilteringEnabledPtr: VoidPtr =
+    internal val setFilteringEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_filtering_enabled", 2586408642)
 
-    public val isFilteringEnabledPtr: VoidPtr =
+    internal val isFilteringEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled", 36873697)
 
-    public val setEnergyMultiplierPtr: VoidPtr =
+    internal val setEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier", 373806689)
 
-    public val getEnergyMultiplierPtr: VoidPtr =
+    internal val getEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier", 1740695150)
   }
 }

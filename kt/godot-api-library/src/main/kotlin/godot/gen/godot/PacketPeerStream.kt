@@ -96,23 +96,23 @@ public open class PacketPeerStream : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setStreamPeerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStreamPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "set_stream_peer", 3281897016)
 
-    public val getStreamPeerPtr: VoidPtr =
+    internal val getStreamPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "get_stream_peer", 2741655269)
 
-    public val setInputBufferMaxSizePtr: VoidPtr =
+    internal val setInputBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size", 1286410249)
 
-    public val setOutputBufferMaxSizePtr: VoidPtr =
+    internal val setOutputBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size", 1286410249)
 
-    public val getInputBufferMaxSizePtr: VoidPtr =
+    internal val getInputBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size", 3905245786)
 
-    public val getOutputBufferMaxSizePtr: VoidPtr =
+    internal val getOutputBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size", 3905245786)
   }
 }

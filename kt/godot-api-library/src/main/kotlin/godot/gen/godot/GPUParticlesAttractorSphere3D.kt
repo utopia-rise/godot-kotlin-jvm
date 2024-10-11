@@ -59,11 +59,11 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractorSphere3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractorSphere3D", "get_radius", 1740695150)
   }
 }

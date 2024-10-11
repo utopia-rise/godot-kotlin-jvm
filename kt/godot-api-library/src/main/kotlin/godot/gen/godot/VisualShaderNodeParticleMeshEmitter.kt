@@ -102,23 +102,23 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMeshPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr =
+    internal val getMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1808005922)
 
-    public val setUseAllSurfacesPtr: VoidPtr =
+    internal val setUseAllSurfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2586408642)
 
-    public val isUseAllSurfacesPtr: VoidPtr =
+    internal val isUseAllSurfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36873697)
 
-    public val setSurfaceIndexPtr: VoidPtr =
+    internal val setSurfaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1286410249)
 
-    public val getSurfaceIndexPtr: VoidPtr =
+    internal val getSurfaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3905245786)
   }
 }

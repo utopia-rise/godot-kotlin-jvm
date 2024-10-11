@@ -557,74 +557,74 @@ public open class HTTPRequest : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val requestPtr: VoidPtr =
+  public object MethodBindings {
+    internal val requestPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "request", 3215244323)
 
-    public val requestRawPtr: VoidPtr =
+    internal val requestRawPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "request_raw", 2714829993)
 
-    public val cancelRequestPtr: VoidPtr =
+    internal val cancelRequestPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "cancel_request", 3218959716)
 
-    public val setTlsOptionsPtr: VoidPtr =
+    internal val setTlsOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_tls_options", 2210231844)
 
-    public val getHttpClientStatusPtr: VoidPtr =
+    internal val getHttpClientStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_http_client_status", 1426656811)
 
-    public val setUseThreadsPtr: VoidPtr =
+    internal val setUseThreadsPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_use_threads", 2586408642)
 
-    public val isUsingThreadsPtr: VoidPtr =
+    internal val isUsingThreadsPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "is_using_threads", 36873697)
 
-    public val setAcceptGzipPtr: VoidPtr =
+    internal val setAcceptGzipPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_accept_gzip", 2586408642)
 
-    public val isAcceptingGzipPtr: VoidPtr =
+    internal val isAcceptingGzipPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "is_accepting_gzip", 36873697)
 
-    public val setBodySizeLimitPtr: VoidPtr =
+    internal val setBodySizeLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_body_size_limit", 1286410249)
 
-    public val getBodySizeLimitPtr: VoidPtr =
+    internal val getBodySizeLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_body_size_limit", 3905245786)
 
-    public val setMaxRedirectsPtr: VoidPtr =
+    internal val setMaxRedirectsPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_max_redirects", 1286410249)
 
-    public val getMaxRedirectsPtr: VoidPtr =
+    internal val getMaxRedirectsPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_max_redirects", 3905245786)
 
-    public val setDownloadFilePtr: VoidPtr =
+    internal val setDownloadFilePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_download_file", 83702148)
 
-    public val getDownloadFilePtr: VoidPtr =
+    internal val getDownloadFilePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_download_file", 201670096)
 
-    public val getDownloadedBytesPtr: VoidPtr =
+    internal val getDownloadedBytesPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes", 3905245786)
 
-    public val getBodySizePtr: VoidPtr =
+    internal val getBodySizePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_body_size", 3905245786)
 
-    public val setTimeoutPtr: VoidPtr =
+    internal val setTimeoutPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_timeout", 373806689)
 
-    public val getTimeoutPtr: VoidPtr =
+    internal val getTimeoutPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_timeout", 191475506)
 
-    public val setDownloadChunkSizePtr: VoidPtr =
+    internal val setDownloadChunkSizePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_download_chunk_size", 1286410249)
 
-    public val getDownloadChunkSizePtr: VoidPtr =
+    internal val getDownloadChunkSizePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "get_download_chunk_size", 3905245786)
 
-    public val setHttpProxyPtr: VoidPtr =
+    internal val setHttpProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_http_proxy", 2956805083)
 
-    public val setHttpsProxyPtr: VoidPtr =
+    internal val setHttpsProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPRequest", "set_https_proxy", 2956805083)
   }
 }

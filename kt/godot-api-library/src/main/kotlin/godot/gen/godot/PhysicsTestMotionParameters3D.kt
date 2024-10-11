@@ -282,53 +282,53 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getFromPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getFromPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from", 3229777777)
 
-    public val setFromPtr: VoidPtr =
+    internal val setFromPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from", 2952846383)
 
-    public val getMotionPtr: VoidPtr =
+    internal val getMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion", 3360562783)
 
-    public val setMotionPtr: VoidPtr =
+    internal val setMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion", 3460891852)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin", 1740695150)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin", 373806689)
 
-    public val getMaxCollisionsPtr: VoidPtr =
+    internal val getMaxCollisionsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions", 3905245786)
 
-    public val setMaxCollisionsPtr: VoidPtr =
+    internal val setMaxCollisionsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions", 1286410249)
 
-    public val isCollideSeparationRayEnabledPtr: VoidPtr =
+    internal val isCollideSeparationRayEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled", 36873697)
 
-    public val setCollideSeparationRayEnabledPtr: VoidPtr =
+    internal val setCollideSeparationRayEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled", 2586408642)
 
-    public val getExcludeBodiesPtr: VoidPtr =
+    internal val getExcludeBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies", 3995934104)
 
-    public val setExcludeBodiesPtr: VoidPtr =
+    internal val setExcludeBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies", 381264803)
 
-    public val getExcludeObjectsPtr: VoidPtr =
+    internal val getExcludeObjectsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects", 3995934104)
 
-    public val setExcludeObjectsPtr: VoidPtr =
+    internal val setExcludeObjectsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects", 381264803)
 
-    public val isRecoveryAsCollisionEnabledPtr: VoidPtr =
+    internal val isRecoveryAsCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled", 36873697)
 
-    public val setRecoveryAsCollisionEnabledPtr: VoidPtr =
+    internal val setRecoveryAsCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled", 2586408642)
   }
 }

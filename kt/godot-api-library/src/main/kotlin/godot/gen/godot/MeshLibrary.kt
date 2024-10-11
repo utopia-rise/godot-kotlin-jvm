@@ -236,70 +236,70 @@ public open class MeshLibrary : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createItemPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createItemPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "create_item", 1286410249)
 
-    public val setItemNamePtr: VoidPtr =
+    internal val setItemNamePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_name", 501894301)
 
-    public val setItemMeshPtr: VoidPtr =
+    internal val setItemMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_mesh", 969122797)
 
-    public val setItemMeshTransformPtr: VoidPtr =
+    internal val setItemMeshTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform", 3616898986)
 
-    public val setItemNavigationMeshPtr: VoidPtr =
+    internal val setItemNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh", 3483353960)
 
-    public val setItemNavigationMeshTransformPtr: VoidPtr =
+    internal val setItemNavigationMeshTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh_transform", 3616898986)
 
-    public val setItemNavigationLayersPtr: VoidPtr =
+    internal val setItemNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_layers", 3937882851)
 
-    public val setItemShapesPtr: VoidPtr =
+    internal val setItemShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_shapes", 537221740)
 
-    public val setItemPreviewPtr: VoidPtr =
+    internal val setItemPreviewPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "set_item_preview", 666127730)
 
-    public val getItemNamePtr: VoidPtr =
+    internal val getItemNamePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_name", 844755477)
 
-    public val getItemMeshPtr: VoidPtr =
+    internal val getItemMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_mesh", 1576363275)
 
-    public val getItemMeshTransformPtr: VoidPtr =
+    internal val getItemMeshTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform", 1965739696)
 
-    public val getItemNavigationMeshPtr: VoidPtr =
+    internal val getItemNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh", 2729647406)
 
-    public val getItemNavigationMeshTransformPtr: VoidPtr =
+    internal val getItemNavigationMeshTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh_transform", 1965739696)
 
-    public val getItemNavigationLayersPtr: VoidPtr =
+    internal val getItemNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_layers", 923996154)
 
-    public val getItemShapesPtr: VoidPtr =
+    internal val getItemShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_shapes", 663333327)
 
-    public val getItemPreviewPtr: VoidPtr =
+    internal val getItemPreviewPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_preview", 3536238170)
 
-    public val removeItemPtr: VoidPtr =
+    internal val removeItemPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "remove_item", 1286410249)
 
-    public val findItemByNamePtr: VoidPtr =
+    internal val findItemByNamePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "find_item_by_name", 1321353865)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("MeshLibrary", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("MeshLibrary", "clear", 3218959716)
 
-    public val getItemListPtr: VoidPtr =
+    internal val getItemListPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_item_list", 1930428628)
 
-    public val getLastUnusedItemIdPtr: VoidPtr =
+    internal val getLastUnusedItemIdPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id", 3905245786)
   }
 }

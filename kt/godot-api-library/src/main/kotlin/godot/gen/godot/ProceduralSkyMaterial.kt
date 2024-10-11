@@ -493,89 +493,89 @@ public open class ProceduralSkyMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSkyTopColorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSkyTopColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2920490490)
 
-    public val getSkyTopColorPtr: VoidPtr =
+    internal val getSkyTopColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3444240500)
 
-    public val setSkyHorizonColorPtr: VoidPtr =
+    internal val setSkyHorizonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2920490490)
 
-    public val getSkyHorizonColorPtr: VoidPtr =
+    internal val getSkyHorizonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3444240500)
 
-    public val setSkyCurvePtr: VoidPtr =
+    internal val setSkyCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373806689)
 
-    public val getSkyCurvePtr: VoidPtr =
+    internal val getSkyCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1740695150)
 
-    public val setSkyEnergyMultiplierPtr: VoidPtr =
+    internal val setSkyEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373806689)
 
-    public val getSkyEnergyMultiplierPtr: VoidPtr =
+    internal val getSkyEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1740695150)
 
-    public val setSkyCoverPtr: VoidPtr =
+    internal val setSkyCoverPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4051416890)
 
-    public val getSkyCoverPtr: VoidPtr =
+    internal val getSkyCoverPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3635182373)
 
-    public val setSkyCoverModulatePtr: VoidPtr =
+    internal val setSkyCoverModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2920490490)
 
-    public val getSkyCoverModulatePtr: VoidPtr =
+    internal val getSkyCoverModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3444240500)
 
-    public val setGroundBottomColorPtr: VoidPtr =
+    internal val setGroundBottomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2920490490)
 
-    public val getGroundBottomColorPtr: VoidPtr =
+    internal val getGroundBottomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3444240500)
 
-    public val setGroundHorizonColorPtr: VoidPtr =
+    internal val setGroundHorizonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2920490490)
 
-    public val getGroundHorizonColorPtr: VoidPtr =
+    internal val getGroundHorizonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3444240500)
 
-    public val setGroundCurvePtr: VoidPtr =
+    internal val setGroundCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373806689)
 
-    public val getGroundCurvePtr: VoidPtr =
+    internal val getGroundCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1740695150)
 
-    public val setGroundEnergyMultiplierPtr: VoidPtr =
+    internal val setGroundEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373806689)
 
-    public val getGroundEnergyMultiplierPtr: VoidPtr =
+    internal val getGroundEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1740695150)
 
-    public val setSunAngleMaxPtr: VoidPtr =
+    internal val setSunAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373806689)
 
-    public val getSunAngleMaxPtr: VoidPtr =
+    internal val getSunAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1740695150)
 
-    public val setSunCurvePtr: VoidPtr =
+    internal val setSunCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373806689)
 
-    public val getSunCurvePtr: VoidPtr =
+    internal val getSunCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1740695150)
 
-    public val setUseDebandingPtr: VoidPtr =
+    internal val setUseDebandingPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2586408642)
 
-    public val getUseDebandingPtr: VoidPtr =
+    internal val getUseDebandingPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36873697)
 
-    public val setEnergyMultiplierPtr: VoidPtr =
+    internal val setEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373806689)
 
-    public val getEnergyMultiplierPtr: VoidPtr =
+    internal val getEnergyMultiplierPtr: VoidPtr =
         Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1740695150)
   }
 }

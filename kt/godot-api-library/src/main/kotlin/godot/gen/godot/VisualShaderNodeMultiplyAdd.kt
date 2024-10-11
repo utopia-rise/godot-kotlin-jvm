@@ -87,11 +87,11 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOpTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeMultiplyAdd", "set_op_type", 1409862380)
 
-    public val getOpTypePtr: VoidPtr =
+    internal val getOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeMultiplyAdd", "get_op_type", 2823201991)
   }
 }

@@ -358,59 +358,59 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFadeinTimePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFadeinTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373806689)
 
-    public val getFadeinTimePtr: VoidPtr =
+    internal val getFadeinTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1740695150)
 
-    public val setFadeinCurvePtr: VoidPtr =
+    internal val setFadeinCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270443179)
 
-    public val getFadeinCurvePtr: VoidPtr =
+    internal val getFadeinCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2460114913)
 
-    public val setFadeoutTimePtr: VoidPtr =
+    internal val setFadeoutTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373806689)
 
-    public val getFadeoutTimePtr: VoidPtr =
+    internal val getFadeoutTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1740695150)
 
-    public val setFadeoutCurvePtr: VoidPtr =
+    internal val setFadeoutCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270443179)
 
-    public val getFadeoutCurvePtr: VoidPtr =
+    internal val getFadeoutCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2460114913)
 
-    public val setBreakLoopAtEndPtr: VoidPtr =
+    internal val setBreakLoopAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2586408642)
 
-    public val isLoopBrokenAtEndPtr: VoidPtr =
+    internal val isLoopBrokenAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
 
-    public val setAutorestartPtr: VoidPtr =
+    internal val setAutorestartPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)
 
-    public val hasAutorestartPtr: VoidPtr =
+    internal val hasAutorestartPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36873697)
 
-    public val setAutorestartDelayPtr: VoidPtr =
+    internal val setAutorestartDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373806689)
 
-    public val getAutorestartDelayPtr: VoidPtr =
+    internal val getAutorestartDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1740695150)
 
-    public val setAutorestartRandomDelayPtr: VoidPtr =
+    internal val setAutorestartRandomDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373806689)
 
-    public val getAutorestartRandomDelayPtr: VoidPtr =
+    internal val getAutorestartRandomDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1740695150)
 
-    public val setMixModePtr: VoidPtr =
+    internal val setMixModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1018899799)
 
-    public val getMixModePtr: VoidPtr =
+    internal val getMixModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3076550526)
   }
 }

@@ -72,11 +72,11 @@ public open class Mutex : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val lockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "lock", 3218959716)
+  public object MethodBindings {
+    internal val lockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "lock", 3218959716)
 
-    public val tryLockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "try_lock", 2240911060)
+    internal val tryLockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "try_lock", 2240911060)
 
-    public val unlockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "unlock", 3218959716)
+    internal val unlockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "unlock", 3218959716)
   }
 }

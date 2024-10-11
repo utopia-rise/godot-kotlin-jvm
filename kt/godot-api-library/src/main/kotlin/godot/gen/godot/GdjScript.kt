@@ -22,5 +22,5 @@ public open class GdjScript : JvmScript() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

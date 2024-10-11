@@ -510,107 +510,107 @@ public open class CollisionObject2D internal constructor() : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getRidPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_rid", 2944877500)
 
-    public val setCollisionLayerPtr: VoidPtr =
+    internal val setCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_collision_layer", 1286410249)
 
-    public val getCollisionLayerPtr: VoidPtr =
+    internal val getCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_collision_layer", 3905245786)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_collision_mask", 3905245786)
 
-    public val setCollisionLayerValuePtr: VoidPtr =
+    internal val setCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_collision_layer_value", 300928843)
 
-    public val getCollisionLayerValuePtr: VoidPtr =
+    internal val getCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_collision_layer_value", 1116898809)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_collision_mask_value", 1116898809)
 
-    public val setCollisionPriorityPtr: VoidPtr =
+    internal val setCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_collision_priority", 373806689)
 
-    public val getCollisionPriorityPtr: VoidPtr =
+    internal val getCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_collision_priority", 1740695150)
 
-    public val setDisableModePtr: VoidPtr =
+    internal val setDisableModePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_disable_mode", 1919204045)
 
-    public val getDisableModePtr: VoidPtr =
+    internal val getDisableModePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_disable_mode", 3172846349)
 
-    public val setPickablePtr: VoidPtr =
+    internal val setPickablePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "set_pickable", 2586408642)
 
-    public val isPickablePtr: VoidPtr =
+    internal val isPickablePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "is_pickable", 36873697)
 
-    public val createShapeOwnerPtr: VoidPtr =
+    internal val createShapeOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "create_shape_owner", 3429307534)
 
-    public val removeShapeOwnerPtr: VoidPtr =
+    internal val removeShapeOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "remove_shape_owner", 1286410249)
 
-    public val getShapeOwnersPtr: VoidPtr =
+    internal val getShapeOwnersPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_shape_owners", 969006518)
 
-    public val shapeOwnerSetTransformPtr: VoidPtr =
+    internal val shapeOwnerSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_set_transform", 30160968)
 
-    public val shapeOwnerGetTransformPtr: VoidPtr =
+    internal val shapeOwnerGetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_get_transform", 3836996910)
 
-    public val shapeOwnerGetOwnerPtr: VoidPtr =
+    internal val shapeOwnerGetOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_get_owner", 3332903315)
 
-    public val shapeOwnerSetDisabledPtr: VoidPtr =
+    internal val shapeOwnerSetDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_set_disabled", 300928843)
 
-    public val isShapeOwnerDisabledPtr: VoidPtr =
+    internal val isShapeOwnerDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "is_shape_owner_disabled", 1116898809)
 
-    public val shapeOwnerSetOneWayCollisionPtr: VoidPtr =
+    internal val shapeOwnerSetOneWayCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_set_one_way_collision", 300928843)
 
-    public val isShapeOwnerOneWayCollisionEnabledPtr: VoidPtr =
+    internal val isShapeOwnerOneWayCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "is_shape_owner_one_way_collision_enabled", 1116898809)
 
-    public val shapeOwnerSetOneWayCollisionMarginPtr: VoidPtr =
+    internal val shapeOwnerSetOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_set_one_way_collision_margin", 1602489585)
 
-    public val getShapeOwnerOneWayCollisionMarginPtr: VoidPtr =
+    internal val getShapeOwnerOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "get_shape_owner_one_way_collision_margin", 2339986948)
 
-    public val shapeOwnerAddShapePtr: VoidPtr =
+    internal val shapeOwnerAddShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_add_shape", 2077425081)
 
-    public val shapeOwnerGetShapeCountPtr: VoidPtr =
+    internal val shapeOwnerGetShapeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_get_shape_count", 923996154)
 
-    public val shapeOwnerGetShapePtr: VoidPtr =
+    internal val shapeOwnerGetShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_get_shape", 3106725749)
 
-    public val shapeOwnerGetShapeIndexPtr: VoidPtr =
+    internal val shapeOwnerGetShapeIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_get_shape_index", 3175239445)
 
-    public val shapeOwnerRemoveShapePtr: VoidPtr =
+    internal val shapeOwnerRemoveShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_remove_shape", 3937882851)
 
-    public val shapeOwnerClearShapesPtr: VoidPtr =
+    internal val shapeOwnerClearShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_owner_clear_shapes", 1286410249)
 
-    public val shapeFindOwnerPtr: VoidPtr =
+    internal val shapeFindOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionObject2D", "shape_find_owner", 923996154)
   }
 }

@@ -572,137 +572,137 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTotalGravityPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTotalGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_gravity", 3341600327)
 
-    public val getTotalLinearDampPtr: VoidPtr =
+    internal val getTotalLinearDampPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_linear_damp", 1740695150)
 
-    public val getTotalAngularDampPtr: VoidPtr =
+    internal val getTotalAngularDampPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_angular_damp", 1740695150)
 
-    public val getCenterOfMassPtr: VoidPtr =
+    internal val getCenterOfMassPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass", 3341600327)
 
-    public val getCenterOfMassLocalPtr: VoidPtr =
+    internal val getCenterOfMassLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass_local", 3341600327)
 
-    public val getInverseMassPtr: VoidPtr =
+    internal val getInverseMassPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_mass", 1740695150)
 
-    public val getInverseInertiaPtr: VoidPtr =
+    internal val getInverseInertiaPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_inertia", 1740695150)
 
-    public val setLinearVelocityPtr: VoidPtr =
+    internal val setLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_linear_velocity", 743155724)
 
-    public val getLinearVelocityPtr: VoidPtr =
+    internal val getLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_linear_velocity", 3341600327)
 
-    public val setAngularVelocityPtr: VoidPtr =
+    internal val setAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_angular_velocity", 373806689)
 
-    public val getAngularVelocityPtr: VoidPtr =
+    internal val getAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_angular_velocity", 1740695150)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_transform", 2761652528)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_transform", 3814499831)
 
-    public val getVelocityAtLocalPositionPtr: VoidPtr =
+    internal val getVelocityAtLocalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_velocity_at_local_position", 2656412154)
 
-    public val applyCentralImpulsePtr: VoidPtr =
+    internal val applyCentralImpulsePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_impulse", 743155724)
 
-    public val applyTorqueImpulsePtr: VoidPtr =
+    internal val applyTorqueImpulsePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque_impulse", 373806689)
 
-    public val applyImpulsePtr: VoidPtr =
+    internal val applyImpulsePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_impulse", 4288681949)
 
-    public val applyCentralForcePtr: VoidPtr =
+    internal val applyCentralForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_force", 3862383994)
 
-    public val applyForcePtr: VoidPtr =
+    internal val applyForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_force", 4288681949)
 
-    public val applyTorquePtr: VoidPtr =
+    internal val applyTorquePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque", 373806689)
 
-    public val addConstantCentralForcePtr: VoidPtr =
+    internal val addConstantCentralForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_central_force", 3862383994)
 
-    public val addConstantForcePtr: VoidPtr =
+    internal val addConstantForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_force", 4288681949)
 
-    public val addConstantTorquePtr: VoidPtr =
+    internal val addConstantTorquePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_torque", 373806689)
 
-    public val setConstantForcePtr: VoidPtr =
+    internal val setConstantForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_force", 743155724)
 
-    public val getConstantForcePtr: VoidPtr =
+    internal val getConstantForcePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_force", 3341600327)
 
-    public val setConstantTorquePtr: VoidPtr =
+    internal val setConstantTorquePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_torque", 373806689)
 
-    public val getConstantTorquePtr: VoidPtr =
+    internal val getConstantTorquePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_torque", 1740695150)
 
-    public val setSleepStatePtr: VoidPtr =
+    internal val setSleepStatePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "set_sleep_state", 2586408642)
 
-    public val isSleepingPtr: VoidPtr =
+    internal val isSleepingPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "is_sleeping", 36873697)
 
-    public val getContactCountPtr: VoidPtr =
+    internal val getContactCountPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_count", 3905245786)
 
-    public val getContactLocalPositionPtr: VoidPtr =
+    internal val getContactLocalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_position", 2299179447)
 
-    public val getContactLocalNormalPtr: VoidPtr =
+    internal val getContactLocalNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_normal", 2299179447)
 
-    public val getContactLocalShapePtr: VoidPtr =
+    internal val getContactLocalShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_shape", 923996154)
 
-    public val getContactLocalVelocityAtPositionPtr: VoidPtr =
+    internal val getContactLocalVelocityAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_velocity_at_position", 2299179447)
 
-    public val getContactColliderPtr: VoidPtr =
+    internal val getContactColliderPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider", 495598643)
 
-    public val getContactColliderPositionPtr: VoidPtr =
+    internal val getContactColliderPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_position", 2299179447)
 
-    public val getContactColliderIdPtr: VoidPtr =
+    internal val getContactColliderIdPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_id", 923996154)
 
-    public val getContactColliderObjectPtr: VoidPtr =
+    internal val getContactColliderObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_object", 3332903315)
 
-    public val getContactColliderShapePtr: VoidPtr =
+    internal val getContactColliderShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_shape", 923996154)
 
-    public val getContactColliderVelocityAtPositionPtr: VoidPtr =
+    internal val getContactColliderVelocityAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_velocity_at_position", 2299179447)
 
-    public val getContactImpulsePtr: VoidPtr =
+    internal val getContactImpulsePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_impulse", 2299179447)
 
-    public val getStepPtr: VoidPtr =
+    internal val getStepPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_step", 1740695150)
 
-    public val integrateForcesPtr: VoidPtr =
+    internal val integrateForcesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "integrate_forces", 3218959716)
 
-    public val getSpaceStatePtr: VoidPtr =
+    internal val getSpaceStatePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectBodyState2D", "get_space_state", 2506717822)
   }
 }

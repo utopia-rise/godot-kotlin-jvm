@@ -50,5 +50,5 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

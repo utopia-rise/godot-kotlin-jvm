@@ -22,5 +22,5 @@ public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() 
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

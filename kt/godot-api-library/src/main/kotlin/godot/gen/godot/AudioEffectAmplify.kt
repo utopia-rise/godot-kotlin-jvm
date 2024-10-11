@@ -54,11 +54,11 @@ public open class AudioEffectAmplify : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setVolumeDbPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373806689)
 
-    public val getVolumeDbPtr: VoidPtr =
+    internal val getVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
   }
 }

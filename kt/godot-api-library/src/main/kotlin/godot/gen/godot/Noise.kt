@@ -169,31 +169,31 @@ public open class Noise internal constructor() : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getNoise1dPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getNoise1dPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_noise_1d", 3919130443)
 
-    public val getNoise2dPtr: VoidPtr =
+    internal val getNoise2dPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_noise_2d", 2753205203)
 
-    public val getNoise2dvPtr: VoidPtr =
+    internal val getNoise2dvPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_noise_2dv", 2276447920)
 
-    public val getNoise3dPtr: VoidPtr =
+    internal val getNoise3dPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_noise_3d", 973811851)
 
-    public val getNoise3dvPtr: VoidPtr =
+    internal val getNoise3dvPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_noise_3dv", 1109078154)
 
-    public val getImagePtr: VoidPtr = Internals.getMethodBindPtr("Noise", "get_image", 3180683109)
+    internal val getImagePtr: VoidPtr = Internals.getMethodBindPtr("Noise", "get_image", 3180683109)
 
-    public val getSeamlessImagePtr: VoidPtr =
+    internal val getSeamlessImagePtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_seamless_image", 2770743602)
 
-    public val getImage3dPtr: VoidPtr =
+    internal val getImage3dPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_image_3d", 3977814329)
 
-    public val getSeamlessImage3dPtr: VoidPtr =
+    internal val getSeamlessImage3dPtr: VoidPtr =
         Internals.getMethodBindPtr("Noise", "get_seamless_image_3d", 451006340)
   }
 }

@@ -210,55 +210,55 @@ public open class SpriteFrames : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addAnimationPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "add_animation", 3304788590)
 
-    public val hasAnimationPtr: VoidPtr =
+    internal val hasAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "has_animation", 2619796661)
 
-    public val removeAnimationPtr: VoidPtr =
+    internal val removeAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "remove_animation", 3304788590)
 
-    public val renameAnimationPtr: VoidPtr =
+    internal val renameAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "rename_animation", 3740211285)
 
-    public val getAnimationNamesPtr: VoidPtr =
+    internal val getAnimationNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_animation_names", 1139954409)
 
-    public val setAnimationSpeedPtr: VoidPtr =
+    internal val setAnimationSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "set_animation_speed", 4135858297)
 
-    public val getAnimationSpeedPtr: VoidPtr =
+    internal val getAnimationSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_animation_speed", 2349060816)
 
-    public val setAnimationLoopPtr: VoidPtr =
+    internal val setAnimationLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "set_animation_loop", 2524380260)
 
-    public val getAnimationLoopPtr: VoidPtr =
+    internal val getAnimationLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_animation_loop", 2619796661)
 
-    public val addFramePtr: VoidPtr =
+    internal val addFramePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "add_frame", 1351332740)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "set_frame", 56804795)
 
-    public val removeFramePtr: VoidPtr =
+    internal val removeFramePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "remove_frame", 2415702435)
 
-    public val getFrameCountPtr: VoidPtr =
+    internal val getFrameCountPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_frame_count", 2458036349)
 
-    public val getFrameTexturePtr: VoidPtr =
+    internal val getFrameTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_frame_texture", 2900517879)
 
-    public val getFrameDurationPtr: VoidPtr =
+    internal val getFrameDurationPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "get_frame_duration", 1129309260)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("SpriteFrames", "clear", 3304788590)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("SpriteFrames", "clear", 3304788590)
 
-    public val clearAllPtr: VoidPtr =
+    internal val clearAllPtr: VoidPtr =
         Internals.getMethodBindPtr("SpriteFrames", "clear_all", 3218959716)
   }
 }

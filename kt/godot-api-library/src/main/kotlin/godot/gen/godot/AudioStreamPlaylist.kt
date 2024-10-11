@@ -666,38 +666,38 @@ public open class AudioStreamPlaylist : AudioStream() {
     public final const val MAX_STREAMS: Long = 64
   }
 
-  internal object MethodBindings {
-    public val setStreamCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStreamCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1286410249)
 
-    public val getStreamCountPtr: VoidPtr =
+    internal val getStreamCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3905245786)
 
-    public val getBpmPtr: VoidPtr =
+    internal val getBpmPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1740695150)
 
-    public val setListStreamPtr: VoidPtr =
+    internal val setListStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111075094)
 
-    public val getListStreamPtr: VoidPtr =
+    internal val getListStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2739380747)
 
-    public val setShufflePtr: VoidPtr =
+    internal val setShufflePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2586408642)
 
-    public val getShufflePtr: VoidPtr =
+    internal val getShufflePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36873697)
 
-    public val setFadeTimePtr: VoidPtr =
+    internal val setFadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373806689)
 
-    public val getFadeTimePtr: VoidPtr =
+    internal val getFadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1740695150)
 
-    public val setLoopPtr: VoidPtr =
+    internal val setLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr =
+    internal val hasLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36873697)
   }
 }

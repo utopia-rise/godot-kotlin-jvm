@@ -30,5 +30,5 @@ public open class AudioStreamMicrophone : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

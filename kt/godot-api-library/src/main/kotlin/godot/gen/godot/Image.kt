@@ -1362,183 +1362,193 @@ public open class Image : Resource() {
     }
   }
 
-  internal object MethodBindings {
-    public val getWidthPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_width", 3905245786)
+  public object MethodBindings {
+    internal val getWidthPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_height", 3905245786)
+    internal val getHeightPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "get_height", 3905245786)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_size", 3690982128)
+    internal val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_size", 3690982128)
 
-    public val hasMipmapsPtr: VoidPtr = Internals.getMethodBindPtr("Image", "has_mipmaps", 36873697)
+    internal val hasMipmapsPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "has_mipmaps", 36873697)
 
-    public val getFormatPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_format", 3847873762)
+    internal val getFormatPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "get_format", 3847873762)
 
-    public val getDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_data", 2362200018)
+    internal val getDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_data", 2362200018)
 
-    public val getDataSizePtr: VoidPtr =
+    internal val getDataSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "get_data_size", 3905245786)
 
-    public val convertPtr: VoidPtr = Internals.getMethodBindPtr("Image", "convert", 2120693146)
+    internal val convertPtr: VoidPtr = Internals.getMethodBindPtr("Image", "convert", 2120693146)
 
-    public val getMipmapCountPtr: VoidPtr =
+    internal val getMipmapCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "get_mipmap_count", 3905245786)
 
-    public val getMipmapOffsetPtr: VoidPtr =
+    internal val getMipmapOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "get_mipmap_offset", 923996154)
 
-    public val resizeToPo2Ptr: VoidPtr =
+    internal val resizeToPo2Ptr: VoidPtr =
         Internals.getMethodBindPtr("Image", "resize_to_po2", 4189212329)
 
-    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "resize", 994498151)
+    internal val resizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "resize", 994498151)
 
-    public val shrinkX2Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "shrink_x2", 3218959716)
+    internal val shrinkX2Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "shrink_x2", 3218959716)
 
-    public val cropPtr: VoidPtr = Internals.getMethodBindPtr("Image", "crop", 3937882851)
+    internal val cropPtr: VoidPtr = Internals.getMethodBindPtr("Image", "crop", 3937882851)
 
-    public val flipXPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_x", 3218959716)
+    internal val flipXPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_x", 3218959716)
 
-    public val flipYPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_y", 3218959716)
+    internal val flipYPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_y", 3218959716)
 
-    public val generateMipmapsPtr: VoidPtr =
+    internal val generateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "generate_mipmaps", 1633102583)
 
-    public val clearMipmapsPtr: VoidPtr =
+    internal val clearMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
 
-    public val createPtr: VoidPtr = Internals.getMethodBindPtr("Image", "create", 986942177)
+    internal val createPtr: VoidPtr = Internals.getMethodBindPtr("Image", "create", 986942177)
 
-    public val createEmptyPtr: VoidPtr =
+    internal val createEmptyPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "create_empty", 986942177)
 
-    public val createFromDataPtr: VoidPtr =
+    internal val createFromDataPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "create_from_data", 299398494)
 
-    public val setDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_data", 2740482212)
+    internal val setDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_data", 2740482212)
 
-    public val isEmptyPtr: VoidPtr = Internals.getMethodBindPtr("Image", "is_empty", 36873697)
+    internal val isEmptyPtr: VoidPtr = Internals.getMethodBindPtr("Image", "is_empty", 36873697)
 
-    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("Image", "load", 166001499)
+    internal val loadPtr: VoidPtr = Internals.getMethodBindPtr("Image", "load", 166001499)
 
-    public val loadFromFilePtr: VoidPtr =
+    internal val loadFromFilePtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_from_file", 736337515)
 
-    public val savePngPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_png", 2113323047)
+    internal val savePngPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_png", 2113323047)
 
-    public val savePngToBufferPtr: VoidPtr =
+    internal val savePngToBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "save_png_to_buffer", 2362200018)
 
-    public val saveJpgPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_jpg", 2800019068)
+    internal val saveJpgPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_jpg", 2800019068)
 
-    public val saveJpgToBufferPtr: VoidPtr =
+    internal val saveJpgToBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "save_jpg_to_buffer", 592235273)
 
-    public val saveExrPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_exr", 3108122999)
+    internal val saveExrPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_exr", 3108122999)
 
-    public val saveExrToBufferPtr: VoidPtr =
+    internal val saveExrToBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "save_exr_to_buffer", 3178917920)
 
-    public val saveWebpPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_webp", 2781156876)
+    internal val saveWebpPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_webp", 2781156876)
 
-    public val saveWebpToBufferPtr: VoidPtr =
+    internal val saveWebpToBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "save_webp_to_buffer", 1214628238)
 
-    public val detectAlphaPtr: VoidPtr =
+    internal val detectAlphaPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "detect_alpha", 2030116505)
 
-    public val isInvisiblePtr: VoidPtr =
+    internal val isInvisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "is_invisible", 36873697)
 
-    public val detectUsedChannelsPtr: VoidPtr =
+    internal val detectUsedChannelsPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "detect_used_channels", 2703139984)
 
-    public val compressPtr: VoidPtr = Internals.getMethodBindPtr("Image", "compress", 2975424957)
+    internal val compressPtr: VoidPtr = Internals.getMethodBindPtr("Image", "compress", 2975424957)
 
-    public val compressFromChannelsPtr: VoidPtr =
+    internal val compressFromChannelsPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "compress_from_channels", 4212890953)
 
-    public val decompressPtr: VoidPtr = Internals.getMethodBindPtr("Image", "decompress", 166280745)
+    internal val decompressPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "decompress", 166280745)
 
-    public val isCompressedPtr: VoidPtr =
+    internal val isCompressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "is_compressed", 36873697)
 
-    public val rotate90Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "rotate_90", 1901204267)
+    internal val rotate90Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "rotate_90", 1901204267)
 
-    public val rotate180Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "rotate_180", 3218959716)
+    internal val rotate180Ptr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "rotate_180", 3218959716)
 
-    public val fixAlphaEdgesPtr: VoidPtr =
+    internal val fixAlphaEdgesPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "fix_alpha_edges", 3218959716)
 
-    public val premultiplyAlphaPtr: VoidPtr =
+    internal val premultiplyAlphaPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "premultiply_alpha", 3218959716)
 
-    public val srgbToLinearPtr: VoidPtr =
+    internal val srgbToLinearPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "srgb_to_linear", 3218959716)
 
-    public val normalMapToXyPtr: VoidPtr =
+    internal val normalMapToXyPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "normal_map_to_xy", 3218959716)
 
-    public val rgbeToSrgbPtr: VoidPtr =
+    internal val rgbeToSrgbPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "rgbe_to_srgb", 564927088)
 
-    public val bumpMapToNormalMapPtr: VoidPtr =
+    internal val bumpMapToNormalMapPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "bump_map_to_normal_map", 3423495036)
 
-    public val computeImageMetricsPtr: VoidPtr =
+    internal val computeImageMetricsPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "compute_image_metrics", 3080961247)
 
-    public val blitRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "blit_rect", 2903928755)
+    internal val blitRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "blit_rect", 2903928755)
 
-    public val blitRectMaskPtr: VoidPtr =
+    internal val blitRectMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "blit_rect_mask", 3383581145)
 
-    public val blendRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "blend_rect", 2903928755)
+    internal val blendRectPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "blend_rect", 2903928755)
 
-    public val blendRectMaskPtr: VoidPtr =
+    internal val blendRectMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "blend_rect_mask", 3383581145)
 
-    public val fillPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill", 2920490490)
+    internal val fillPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill", 2920490490)
 
-    public val fillRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill_rect", 514693913)
+    internal val fillRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill_rect", 514693913)
 
-    public val getUsedRectPtr: VoidPtr =
+    internal val getUsedRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "get_used_rect", 410525958)
 
-    public val getRegionPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_region", 2601441065)
+    internal val getRegionPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "get_region", 2601441065)
 
-    public val copyFromPtr: VoidPtr = Internals.getMethodBindPtr("Image", "copy_from", 532598488)
+    internal val copyFromPtr: VoidPtr = Internals.getMethodBindPtr("Image", "copy_from", 532598488)
 
-    public val getPixelvPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_pixelv", 1532707496)
+    internal val getPixelvPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "get_pixelv", 1532707496)
 
-    public val getPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_pixel", 2165839948)
+    internal val getPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_pixel", 2165839948)
 
-    public val setPixelvPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_pixelv", 287851464)
+    internal val setPixelvPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "set_pixelv", 287851464)
 
-    public val setPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_pixel", 3733378741)
+    internal val setPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_pixel", 3733378741)
 
-    public val adjustBcsPtr: VoidPtr = Internals.getMethodBindPtr("Image", "adjust_bcs", 2385087082)
+    internal val adjustBcsPtr: VoidPtr =
+        Internals.getMethodBindPtr("Image", "adjust_bcs", 2385087082)
 
-    public val loadPngFromBufferPtr: VoidPtr =
+    internal val loadPngFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_png_from_buffer", 680677267)
 
-    public val loadJpgFromBufferPtr: VoidPtr =
+    internal val loadJpgFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_jpg_from_buffer", 680677267)
 
-    public val loadWebpFromBufferPtr: VoidPtr =
+    internal val loadWebpFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_webp_from_buffer", 680677267)
 
-    public val loadTgaFromBufferPtr: VoidPtr =
+    internal val loadTgaFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_tga_from_buffer", 680677267)
 
-    public val loadBmpFromBufferPtr: VoidPtr =
+    internal val loadBmpFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_bmp_from_buffer", 680677267)
 
-    public val loadKtxFromBufferPtr: VoidPtr =
+    internal val loadKtxFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_ktx_from_buffer", 680677267)
 
-    public val loadSvgFromBufferPtr: VoidPtr =
+    internal val loadSvgFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_svg_from_buffer", 311853421)
 
-    public val loadSvgFromStringPtr: VoidPtr =
+    internal val loadSvgFromStringPtr: VoidPtr =
         Internals.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
   }
 }

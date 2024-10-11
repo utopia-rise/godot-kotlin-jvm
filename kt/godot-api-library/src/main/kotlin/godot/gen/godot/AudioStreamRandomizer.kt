@@ -220,50 +220,50 @@ public open class AudioStreamRandomizer : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addStreamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "add_stream", 1892018854)
 
-    public val moveStreamPtr: VoidPtr =
+    internal val moveStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "move_stream", 3937882851)
 
-    public val removeStreamPtr: VoidPtr =
+    internal val removeStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "remove_stream", 1286410249)
 
-    public val setStreamPtr: VoidPtr =
+    internal val setStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_stream", 111075094)
 
-    public val getStreamPtr: VoidPtr =
+    internal val getStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_stream", 2739380747)
 
-    public val setStreamProbabilityWeightPtr: VoidPtr =
+    internal val setStreamProbabilityWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_stream_probability_weight", 1602489585)
 
-    public val getStreamProbabilityWeightPtr: VoidPtr =
+    internal val getStreamProbabilityWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_stream_probability_weight", 2339986948)
 
-    public val setStreamsCountPtr: VoidPtr =
+    internal val setStreamsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_streams_count", 1286410249)
 
-    public val getStreamsCountPtr: VoidPtr =
+    internal val getStreamsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_streams_count", 3905245786)
 
-    public val setRandomPitchPtr: VoidPtr =
+    internal val setRandomPitchPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_random_pitch", 373806689)
 
-    public val getRandomPitchPtr: VoidPtr =
+    internal val getRandomPitchPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_random_pitch", 1740695150)
 
-    public val setRandomVolumeOffsetDbPtr: VoidPtr =
+    internal val setRandomVolumeOffsetDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_random_volume_offset_db", 373806689)
 
-    public val getRandomVolumeOffsetDbPtr: VoidPtr =
+    internal val getRandomVolumeOffsetDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_random_volume_offset_db", 1740695150)
 
-    public val setPlaybackModePtr: VoidPtr =
+    internal val setPlaybackModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "set_playback_mode", 3950967023)
 
-    public val getPlaybackModePtr: VoidPtr =
+    internal val getPlaybackModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamRandomizer", "get_playback_mode", 3943055077)
   }
 }

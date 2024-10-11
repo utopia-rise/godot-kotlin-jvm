@@ -867,68 +867,69 @@ public open class HTTPClient : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val connectToHostPtr: VoidPtr =
+  public object MethodBindings {
+    internal val connectToHostPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "connect_to_host", 504540374)
 
-    public val setConnectionPtr: VoidPtr =
+    internal val setConnectionPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "set_connection", 3281897016)
 
-    public val getConnectionPtr: VoidPtr =
+    internal val getConnectionPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_connection", 2741655269)
 
-    public val requestRawPtr: VoidPtr =
+    internal val requestRawPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "request_raw", 540161961)
 
-    public val requestPtr: VoidPtr = Internals.getMethodBindPtr("HTTPClient", "request", 3778990155)
+    internal val requestPtr: VoidPtr =
+        Internals.getMethodBindPtr("HTTPClient", "request", 3778990155)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("HTTPClient", "close", 3218959716)
+    internal val closePtr: VoidPtr = Internals.getMethodBindPtr("HTTPClient", "close", 3218959716)
 
-    public val hasResponsePtr: VoidPtr =
+    internal val hasResponsePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "has_response", 36873697)
 
-    public val isResponseChunkedPtr: VoidPtr =
+    internal val isResponseChunkedPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "is_response_chunked", 36873697)
 
-    public val getResponseCodePtr: VoidPtr =
+    internal val getResponseCodePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_response_code", 3905245786)
 
-    public val getResponseHeadersPtr: VoidPtr =
+    internal val getResponseHeadersPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_response_headers", 2981934095)
 
-    public val getResponseHeadersAsDictionaryPtr: VoidPtr =
+    internal val getResponseHeadersAsDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_response_headers_as_dictionary", 2382534195)
 
-    public val getResponseBodyLengthPtr: VoidPtr =
+    internal val getResponseBodyLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_response_body_length", 3905245786)
 
-    public val readResponseBodyChunkPtr: VoidPtr =
+    internal val readResponseBodyChunkPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "read_response_body_chunk", 2115431945)
 
-    public val setReadChunkSizePtr: VoidPtr =
+    internal val setReadChunkSizePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "set_read_chunk_size", 1286410249)
 
-    public val getReadChunkSizePtr: VoidPtr =
+    internal val getReadChunkSizePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_read_chunk_size", 3905245786)
 
-    public val setBlockingModePtr: VoidPtr =
+    internal val setBlockingModePtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "set_blocking_mode", 2586408642)
 
-    public val isBlockingModeEnabledPtr: VoidPtr =
+    internal val isBlockingModeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "is_blocking_mode_enabled", 36873697)
 
-    public val getStatusPtr: VoidPtr =
+    internal val getStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "get_status", 1426656811)
 
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("HTTPClient", "poll", 166280745)
+    internal val pollPtr: VoidPtr = Internals.getMethodBindPtr("HTTPClient", "poll", 166280745)
 
-    public val setHttpProxyPtr: VoidPtr =
+    internal val setHttpProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "set_http_proxy", 2956805083)
 
-    public val setHttpsProxyPtr: VoidPtr =
+    internal val setHttpsProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "set_https_proxy", 2956805083)
 
-    public val queryStringFromDictPtr: VoidPtr =
+    internal val queryStringFromDictPtr: VoidPtr =
         Internals.getMethodBindPtr("HTTPClient", "query_string_from_dict", 2538086567)
   }
 }

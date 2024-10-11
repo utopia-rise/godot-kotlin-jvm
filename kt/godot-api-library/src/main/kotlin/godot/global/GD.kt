@@ -1,4 +1,4 @@
-package godot.api
+package godot.global
 
 import godot.RandomNumberGenerator
 import godot.Resource
@@ -13,6 +13,7 @@ import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.Object
 import godot.extensions.asStatic
+import godot.extensions.loadAs
 import godot.util.Internals
 
 import godot.util.nullptr

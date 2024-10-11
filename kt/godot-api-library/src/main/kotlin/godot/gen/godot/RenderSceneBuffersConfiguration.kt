@@ -289,59 +289,59 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRenderTargetPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getRenderTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2944877500)
 
-    public val setRenderTargetPtr: VoidPtr =
+    internal val setRenderTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2722037293)
 
-    public val getInternalSizePtr: VoidPtr =
+    internal val getInternalSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3690982128)
 
-    public val setInternalSizePtr: VoidPtr =
+    internal val setInternalSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1130785943)
 
-    public val getTargetSizePtr: VoidPtr =
+    internal val getTargetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3690982128)
 
-    public val setTargetSizePtr: VoidPtr =
+    internal val setTargetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1130785943)
 
-    public val getViewCountPtr: VoidPtr =
+    internal val getViewCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3905245786)
 
-    public val setViewCountPtr: VoidPtr =
+    internal val setViewCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1286410249)
 
-    public val getScaling3dModePtr: VoidPtr =
+    internal val getScaling3dModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976778074)
 
-    public val setScaling3dModePtr: VoidPtr =
+    internal val setScaling3dModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447477857)
 
-    public val getMsaa3dPtr: VoidPtr =
+    internal val getMsaa3dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3109158617)
 
-    public val setMsaa3dPtr: VoidPtr =
+    internal val setMsaa3dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3952630748)
 
-    public val getScreenSpaceAaPtr: VoidPtr =
+    internal val getScreenSpaceAaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641513172)
 
-    public val setScreenSpaceAaPtr: VoidPtr =
+    internal val setScreenSpaceAaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139543108)
 
-    public val getFsrSharpnessPtr: VoidPtr =
+    internal val getFsrSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1740695150)
 
-    public val setFsrSharpnessPtr: VoidPtr =
+    internal val setFsrSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373806689)
 
-    public val getTextureMipmapBiasPtr: VoidPtr =
+    internal val getTextureMipmapBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1740695150)
 
-    public val setTextureMipmapBiasPtr: VoidPtr =
+    internal val setTextureMipmapBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
   }
 }

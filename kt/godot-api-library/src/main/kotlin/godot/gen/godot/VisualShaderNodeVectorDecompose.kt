@@ -26,5 +26,5 @@ public open class VisualShaderNodeVectorDecompose : VisualShaderNodeVectorBase()
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

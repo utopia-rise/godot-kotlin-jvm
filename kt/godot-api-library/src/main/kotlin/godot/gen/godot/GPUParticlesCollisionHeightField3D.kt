@@ -242,29 +242,29 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3360562783)
 
-    public val setResolutionPtr: VoidPtr =
+    internal val setResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1009996517)
 
-    public val getResolutionPtr: VoidPtr =
+    internal val getResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1156065644)
 
-    public val setUpdateModePtr: VoidPtr =
+    internal val setUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673680859)
 
-    public val getUpdateModePtr: VoidPtr =
+    internal val getUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
 
-    public val setFollowCameraEnabledPtr: VoidPtr =
+    internal val setFollowCameraEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)
 
-    public val isFollowCameraEnabledPtr: VoidPtr =
+    internal val isFollowCameraEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36873697)
   }
 }

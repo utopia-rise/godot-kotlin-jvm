@@ -187,29 +187,29 @@ public open class AspectRatioContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRatioPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "set_ratio", 373806689)
 
-    public val getRatioPtr: VoidPtr =
+    internal val getRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "get_ratio", 1740695150)
 
-    public val setStretchModePtr: VoidPtr =
+    internal val setStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "set_stretch_mode", 1876743467)
 
-    public val getStretchModePtr: VoidPtr =
+    internal val getStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "get_stretch_mode", 3416449033)
 
-    public val setAlignmentHorizontalPtr: VoidPtr =
+    internal val setAlignmentHorizontalPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "set_alignment_horizontal", 2147829016)
 
-    public val getAlignmentHorizontalPtr: VoidPtr =
+    internal val getAlignmentHorizontalPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "get_alignment_horizontal", 3838875429)
 
-    public val setAlignmentVerticalPtr: VoidPtr =
+    internal val setAlignmentVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "set_alignment_vertical", 2147829016)
 
-    public val getAlignmentVerticalPtr: VoidPtr =
+    internal val getAlignmentVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("AspectRatioContainer", "get_alignment_vertical", 3838875429)
   }
 }

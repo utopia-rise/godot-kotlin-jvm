@@ -27,5 +27,5 @@ public open class JavaClass : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

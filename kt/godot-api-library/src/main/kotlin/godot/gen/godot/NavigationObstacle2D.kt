@@ -296,62 +296,62 @@ public open class NavigationObstacle2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getRidPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_rid", 2944877500)
 
-    public val setAvoidanceEnabledPtr: VoidPtr =
+    internal val setAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled", 2586408642)
 
-    public val getAvoidanceEnabledPtr: VoidPtr =
+    internal val getAvoidanceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled", 36873697)
 
-    public val setNavigationMapPtr: VoidPtr =
+    internal val setNavigationMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map", 2722037293)
 
-    public val getNavigationMapPtr: VoidPtr =
+    internal val getNavigationMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map", 2944877500)
 
-    public val setRadiusPtr: VoidPtr =
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_radius", 1740695150)
 
-    public val setVelocityPtr: VoidPtr =
+    internal val setVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_velocity", 743155724)
 
-    public val getVelocityPtr: VoidPtr =
+    internal val getVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_velocity", 3341600327)
 
-    public val setVerticesPtr: VoidPtr =
+    internal val setVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_vertices", 1509147220)
 
-    public val getVerticesPtr: VoidPtr =
+    internal val getVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_vertices", 2961356807)
 
-    public val setAvoidanceLayersPtr: VoidPtr =
+    internal val setAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers", 1286410249)
 
-    public val getAvoidanceLayersPtr: VoidPtr =
+    internal val getAvoidanceLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers", 3905245786)
 
-    public val setAvoidanceLayerValuePtr: VoidPtr =
+    internal val setAvoidanceLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value", 300928843)
 
-    public val getAvoidanceLayerValuePtr: VoidPtr =
+    internal val getAvoidanceLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value", 1116898809)
 
-    public val setAffectNavigationMeshPtr: VoidPtr =
+    internal val setAffectNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_affect_navigation_mesh", 2586408642)
 
-    public val getAffectNavigationMeshPtr: VoidPtr =
+    internal val getAffectNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_affect_navigation_mesh", 36873697)
 
-    public val setCarveNavigationMeshPtr: VoidPtr =
+    internal val setCarveNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "set_carve_navigation_mesh", 2586408642)
 
-    public val getCarveNavigationMeshPtr: VoidPtr =
+    internal val getCarveNavigationMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationObstacle2D", "get_carve_navigation_mesh", 36873697)
   }
 }

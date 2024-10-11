@@ -145,35 +145,35 @@ public open class AudioEffectPhaser : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRangeMinHzPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRangeMinHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz", 373806689)
 
-    public val getRangeMinHzPtr: VoidPtr =
+    internal val getRangeMinHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz", 1740695150)
 
-    public val setRangeMaxHzPtr: VoidPtr =
+    internal val setRangeMaxHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz", 373806689)
 
-    public val getRangeMaxHzPtr: VoidPtr =
+    internal val getRangeMaxHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz", 1740695150)
 
-    public val setRateHzPtr: VoidPtr =
+    internal val setRateHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz", 373806689)
 
-    public val getRateHzPtr: VoidPtr =
+    internal val getRateHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz", 1740695150)
 
-    public val setFeedbackPtr: VoidPtr =
+    internal val setFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "set_feedback", 373806689)
 
-    public val getFeedbackPtr: VoidPtr =
+    internal val getFeedbackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "get_feedback", 1740695150)
 
-    public val setDepthPtr: VoidPtr =
+    internal val setDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectPhaser", "get_depth", 1740695150)
   }
 }

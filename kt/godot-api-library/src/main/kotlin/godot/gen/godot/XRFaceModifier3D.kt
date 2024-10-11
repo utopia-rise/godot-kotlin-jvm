@@ -83,17 +83,17 @@ public open class XRFaceModifier3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFaceTrackerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFaceTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceModifier3D", "set_face_tracker", 3304788590)
 
-    public val getFaceTrackerPtr: VoidPtr =
+    internal val getFaceTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceModifier3D", "get_face_tracker", 2002593661)
 
-    public val setTargetPtr: VoidPtr =
+    internal val setTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceModifier3D", "set_target", 1348162250)
 
-    public val getTargetPtr: VoidPtr =
+    internal val getTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceModifier3D", "get_target", 4075236667)
   }
 }

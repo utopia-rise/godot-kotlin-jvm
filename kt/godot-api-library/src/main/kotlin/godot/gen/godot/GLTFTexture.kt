@@ -73,17 +73,17 @@ public open class GLTFTexture : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSrcImagePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSrcImagePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFTexture", "get_src_image", 3905245786)
 
-    public val setSrcImagePtr: VoidPtr =
+    internal val setSrcImagePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFTexture", "set_src_image", 1286410249)
 
-    public val getSamplerPtr: VoidPtr =
+    internal val getSamplerPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFTexture", "get_sampler", 3905245786)
 
-    public val setSamplerPtr: VoidPtr =
+    internal val setSamplerPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFTexture", "set_sampler", 1286410249)
   }
 }

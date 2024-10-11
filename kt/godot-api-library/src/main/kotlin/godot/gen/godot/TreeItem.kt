@@ -1179,328 +1179,334 @@ public open class TreeItem internal constructor() : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCellModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCellModePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_cell_mode", 289920701)
 
-    public val getCellModePtr: VoidPtr =
+    internal val getCellModePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_cell_mode", 3406114978)
 
-    public val setEditMultilinePtr: VoidPtr =
+    internal val setEditMultilinePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_edit_multiline", 300928843)
 
-    public val isEditMultilinePtr: VoidPtr =
+    internal val isEditMultilinePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_edit_multiline", 1116898809)
 
-    public val setCheckedPtr: VoidPtr =
+    internal val setCheckedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_checked", 300928843)
 
-    public val setIndeterminatePtr: VoidPtr =
+    internal val setIndeterminatePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_indeterminate", 300928843)
 
-    public val isCheckedPtr: VoidPtr =
+    internal val isCheckedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_checked", 1116898809)
 
-    public val isIndeterminatePtr: VoidPtr =
+    internal val isIndeterminatePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_indeterminate", 1116898809)
 
-    public val propagateCheckPtr: VoidPtr =
+    internal val propagateCheckPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "propagate_check", 972357352)
 
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "set_text", 501894301)
+    internal val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "set_text", 501894301)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_text", 844755477)
+    internal val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_text", 844755477)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_text_direction", 1707680378)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_text_direction", 4235602388)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_autowrap_mode", 3633006561)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_autowrap_mode", 2902757236)
 
-    public val setTextOverrunBehaviorPtr: VoidPtr =
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_text_overrun_behavior", 1940772195)
 
-    public val getTextOverrunBehaviorPtr: VoidPtr =
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_text_overrun_behavior", 3782727860)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override", 868756907)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override", 3377823772)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override_options", 537221740)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override_options", 663333327)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_language", 501894301)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_language", 844755477)
 
-    public val setSuffixPtr: VoidPtr =
+    internal val setSuffixPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_suffix", 501894301)
 
-    public val getSuffixPtr: VoidPtr =
+    internal val getSuffixPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_suffix", 844755477)
 
-    public val setIconPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "set_icon", 666127730)
+    internal val setIconPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "set_icon", 666127730)
 
-    public val getIconPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_icon", 3536238170)
+    internal val getIconPtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "get_icon", 3536238170)
 
-    public val setIconRegionPtr: VoidPtr =
+    internal val setIconRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_icon_region", 1356297692)
 
-    public val getIconRegionPtr: VoidPtr =
+    internal val getIconRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_icon_region", 3327874267)
 
-    public val setIconMaxWidthPtr: VoidPtr =
+    internal val setIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_icon_max_width", 3937882851)
 
-    public val getIconMaxWidthPtr: VoidPtr =
+    internal val getIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_icon_max_width", 923996154)
 
-    public val setIconModulatePtr: VoidPtr =
+    internal val setIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_icon_modulate", 2878471219)
 
-    public val getIconModulatePtr: VoidPtr =
+    internal val getIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_icon_modulate", 3457211756)
 
-    public val setRangePtr: VoidPtr =
+    internal val setRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_range", 1602489585)
 
-    public val getRangePtr: VoidPtr =
+    internal val getRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_range", 2339986948)
 
-    public val setRangeConfigPtr: VoidPtr =
+    internal val setRangeConfigPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_range_config", 1547181014)
 
-    public val getRangeConfigPtr: VoidPtr =
+    internal val getRangeConfigPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_range_config", 3554694381)
 
-    public val setMetadataPtr: VoidPtr =
+    internal val setMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_metadata", 2152698145)
 
-    public val getMetadataPtr: VoidPtr =
+    internal val getMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_metadata", 4227898402)
 
-    public val setCustomDrawPtr: VoidPtr =
+    internal val setCustomDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_draw", 272420368)
 
-    public val setCustomDrawCallbackPtr: VoidPtr =
+    internal val setCustomDrawCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_draw_callback", 957362965)
 
-    public val getCustomDrawCallbackPtr: VoidPtr =
+    internal val getCustomDrawCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_draw_callback", 1317077508)
 
-    public val setCollapsedPtr: VoidPtr =
+    internal val setCollapsedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_collapsed", 2586408642)
 
-    public val isCollapsedPtr: VoidPtr =
+    internal val isCollapsedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_collapsed", 2240911060)
 
-    public val setCollapsedRecursivePtr: VoidPtr =
+    internal val setCollapsedRecursivePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_collapsed_recursive", 2586408642)
 
-    public val isAnyCollapsedPtr: VoidPtr =
+    internal val isAnyCollapsedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_any_collapsed", 2595650253)
 
-    public val setVisiblePtr: VoidPtr =
+    internal val setVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr =
+    internal val isVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_visible", 2240911060)
 
-    public val isVisibleInTreePtr: VoidPtr =
+    internal val isVisibleInTreePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_visible_in_tree", 36873697)
 
-    public val uncollapseTreePtr: VoidPtr =
+    internal val uncollapseTreePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "uncollapse_tree", 3218959716)
 
-    public val setCustomMinimumHeightPtr: VoidPtr =
+    internal val setCustomMinimumHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_minimum_height", 1286410249)
 
-    public val getCustomMinimumHeightPtr: VoidPtr =
+    internal val getCustomMinimumHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_minimum_height", 3905245786)
 
-    public val setSelectablePtr: VoidPtr =
+    internal val setSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_selectable", 300928843)
 
-    public val isSelectablePtr: VoidPtr =
+    internal val isSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_selectable", 1116898809)
 
-    public val isSelectedPtr: VoidPtr =
+    internal val isSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_selected", 3067735520)
 
-    public val selectPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "select", 1286410249)
+    internal val selectPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "select", 1286410249)
 
-    public val deselectPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "deselect", 1286410249)
+    internal val deselectPtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "deselect", 1286410249)
 
-    public val setEditablePtr: VoidPtr =
+    internal val setEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_editable", 300928843)
 
-    public val isEditablePtr: VoidPtr =
+    internal val isEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_editable", 3067735520)
 
-    public val setCustomColorPtr: VoidPtr =
+    internal val setCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_color", 2878471219)
 
-    public val getCustomColorPtr: VoidPtr =
+    internal val getCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_color", 3457211756)
 
-    public val clearCustomColorPtr: VoidPtr =
+    internal val clearCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "clear_custom_color", 1286410249)
 
-    public val setCustomFontPtr: VoidPtr =
+    internal val setCustomFontPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_font", 2637609184)
 
-    public val getCustomFontPtr: VoidPtr =
+    internal val getCustomFontPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_font", 4244553094)
 
-    public val setCustomFontSizePtr: VoidPtr =
+    internal val setCustomFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_font_size", 3937882851)
 
-    public val getCustomFontSizePtr: VoidPtr =
+    internal val getCustomFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_font_size", 923996154)
 
-    public val setCustomBgColorPtr: VoidPtr =
+    internal val setCustomBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_bg_color", 894174518)
 
-    public val clearCustomBgColorPtr: VoidPtr =
+    internal val clearCustomBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "clear_custom_bg_color", 1286410249)
 
-    public val getCustomBgColorPtr: VoidPtr =
+    internal val getCustomBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_custom_bg_color", 3457211756)
 
-    public val setCustomAsButtonPtr: VoidPtr =
+    internal val setCustomAsButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_custom_as_button", 300928843)
 
-    public val isCustomSetAsButtonPtr: VoidPtr =
+    internal val isCustomSetAsButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_custom_set_as_button", 1116898809)
 
-    public val addButtonPtr: VoidPtr =
+    internal val addButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "add_button", 1688223362)
 
-    public val getButtonCountPtr: VoidPtr =
+    internal val getButtonCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button_count", 923996154)
 
-    public val getButtonTooltipTextPtr: VoidPtr =
+    internal val getButtonTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button_tooltip_text", 1391810591)
 
-    public val getButtonIdPtr: VoidPtr =
+    internal val getButtonIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button_id", 3175239445)
 
-    public val getButtonByIdPtr: VoidPtr =
+    internal val getButtonByIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button_by_id", 3175239445)
 
-    public val getButtonColorPtr: VoidPtr =
+    internal val getButtonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button_color", 2165839948)
 
-    public val getButtonPtr: VoidPtr =
+    internal val getButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_button", 2584904275)
 
-    public val setButtonTooltipTextPtr: VoidPtr =
+    internal val setButtonTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_button_tooltip_text", 2285447957)
 
-    public val setButtonPtr: VoidPtr =
+    internal val setButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_button", 176101966)
 
-    public val eraseButtonPtr: VoidPtr =
+    internal val eraseButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "erase_button", 3937882851)
 
-    public val setButtonDisabledPtr: VoidPtr =
+    internal val setButtonDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_button_disabled", 1383440665)
 
-    public val setButtonColorPtr: VoidPtr =
+    internal val setButtonColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_button_color", 3733378741)
 
-    public val isButtonDisabledPtr: VoidPtr =
+    internal val isButtonDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_button_disabled", 2522259332)
 
-    public val setTooltipTextPtr: VoidPtr =
+    internal val setTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_tooltip_text", 501894301)
 
-    public val getTooltipTextPtr: VoidPtr =
+    internal val getTooltipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_tooltip_text", 844755477)
 
-    public val setTextAlignmentPtr: VoidPtr =
+    internal val setTextAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_text_alignment", 3276431499)
 
-    public val getTextAlignmentPtr: VoidPtr =
+    internal val getTextAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_text_alignment", 4171562184)
 
-    public val setExpandRightPtr: VoidPtr =
+    internal val setExpandRightPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_expand_right", 300928843)
 
-    public val getExpandRightPtr: VoidPtr =
+    internal val getExpandRightPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_expand_right", 1116898809)
 
-    public val setDisableFoldingPtr: VoidPtr =
+    internal val setDisableFoldingPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "set_disable_folding", 2586408642)
 
-    public val isFoldingDisabledPtr: VoidPtr =
+    internal val isFoldingDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "is_folding_disabled", 36873697)
 
-    public val createChildPtr: VoidPtr =
+    internal val createChildPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "create_child", 954243986)
 
-    public val addChildPtr: VoidPtr =
+    internal val addChildPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "add_child", 1819951137)
 
-    public val removeChildPtr: VoidPtr =
+    internal val removeChildPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "remove_child", 1819951137)
 
-    public val getTreePtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_tree", 2243340556)
+    internal val getTreePtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "get_tree", 2243340556)
 
-    public val getNextPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_next", 1514277247)
+    internal val getNextPtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "get_next", 1514277247)
 
-    public val getPrevPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_prev", 2768121250)
+    internal val getPrevPtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "get_prev", 2768121250)
 
-    public val getParentPtr: VoidPtr =
+    internal val getParentPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_parent", 1514277247)
 
-    public val getFirstChildPtr: VoidPtr =
+    internal val getFirstChildPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_first_child", 1514277247)
 
-    public val getNextInTreePtr: VoidPtr =
+    internal val getNextInTreePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_next_in_tree", 1666920593)
 
-    public val getPrevInTreePtr: VoidPtr =
+    internal val getPrevInTreePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_prev_in_tree", 1666920593)
 
-    public val getNextVisiblePtr: VoidPtr =
+    internal val getNextVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_next_visible", 1666920593)
 
-    public val getPrevVisiblePtr: VoidPtr =
+    internal val getPrevVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_prev_visible", 1666920593)
 
-    public val getChildPtr: VoidPtr = Internals.getMethodBindPtr("TreeItem", "get_child", 306700752)
+    internal val getChildPtr: VoidPtr =
+        Internals.getMethodBindPtr("TreeItem", "get_child", 306700752)
 
-    public val getChildCountPtr: VoidPtr =
+    internal val getChildCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_child_count", 2455072627)
 
-    public val getChildrenPtr: VoidPtr =
+    internal val getChildrenPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_children", 2915620761)
 
-    public val getIndexPtr: VoidPtr =
+    internal val getIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "get_index", 2455072627)
 
-    public val moveBeforePtr: VoidPtr =
+    internal val moveBeforePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "move_before", 1819951137)
 
-    public val moveAfterPtr: VoidPtr =
+    internal val moveAfterPtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "move_after", 1819951137)
 
-    public val callRecursivePtr: VoidPtr =
+    internal val callRecursivePtr: VoidPtr =
         Internals.getMethodBindPtr("TreeItem", "call_recursive", 2866548813)
   }
 }

@@ -240,53 +240,53 @@ public open class AcceptDialog : Window() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getOkButtonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getOkButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_ok_button", 1856205918)
 
-    public val getLabelPtr: VoidPtr =
+    internal val getLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_label", 566733104)
 
-    public val setHideOnOkPtr: VoidPtr =
+    internal val setHideOnOkPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "set_hide_on_ok", 2586408642)
 
-    public val getHideOnOkPtr: VoidPtr =
+    internal val getHideOnOkPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_hide_on_ok", 36873697)
 
-    public val setCloseOnEscapePtr: VoidPtr =
+    internal val setCloseOnEscapePtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "set_close_on_escape", 2586408642)
 
-    public val getCloseOnEscapePtr: VoidPtr =
+    internal val getCloseOnEscapePtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_close_on_escape", 36873697)
 
-    public val addButtonPtr: VoidPtr =
+    internal val addButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "add_button", 3328440682)
 
-    public val addCancelButtonPtr: VoidPtr =
+    internal val addCancelButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "add_cancel_button", 242045556)
 
-    public val removeButtonPtr: VoidPtr =
+    internal val removeButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "remove_button", 2068354942)
 
-    public val registerTextEnterPtr: VoidPtr =
+    internal val registerTextEnterPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "register_text_enter", 3714008017)
 
-    public val setTextPtr: VoidPtr =
+    internal val setTextPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr =
+    internal val getTextPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_text", 201670096)
 
-    public val setAutowrapPtr: VoidPtr =
+    internal val setAutowrapPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "set_autowrap", 2586408642)
 
-    public val hasAutowrapPtr: VoidPtr =
+    internal val hasAutowrapPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "has_autowrap", 2240911060)
 
-    public val setOkButtonTextPtr: VoidPtr =
+    internal val setOkButtonTextPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "set_ok_button_text", 83702148)
 
-    public val getOkButtonTextPtr: VoidPtr =
+    internal val getOkButtonTextPtr: VoidPtr =
         Internals.getMethodBindPtr("AcceptDialog", "get_ok_button_text", 201670096)
   }
 }

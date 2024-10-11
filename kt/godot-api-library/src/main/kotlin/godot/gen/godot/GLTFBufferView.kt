@@ -192,44 +192,44 @@ public open class GLTFBufferView : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val loadBufferViewDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val loadBufferViewDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
 
-    public val getBufferPtr: VoidPtr =
+    internal val getBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)
 
-    public val setBufferPtr: VoidPtr =
+    internal val setBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_buffer", 1286410249)
 
-    public val getByteOffsetPtr: VoidPtr =
+    internal val getByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3905245786)
 
-    public val setByteOffsetPtr: VoidPtr =
+    internal val setByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1286410249)
 
-    public val getByteLengthPtr: VoidPtr =
+    internal val getByteLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3905245786)
 
-    public val setByteLengthPtr: VoidPtr =
+    internal val setByteLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1286410249)
 
-    public val getByteStridePtr: VoidPtr =
+    internal val getByteStridePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3905245786)
 
-    public val setByteStridePtr: VoidPtr =
+    internal val setByteStridePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1286410249)
 
-    public val getIndicesPtr: VoidPtr =
+    internal val getIndicesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_indices", 36873697)
 
-    public val setIndicesPtr: VoidPtr =
+    internal val setIndicesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_indices", 2586408642)
 
-    public val getVertexAttributesPtr: VoidPtr =
+    internal val getVertexAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36873697)
 
-    public val setVertexAttributesPtr: VoidPtr =
+    internal val setVertexAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2586408642)
   }
 }

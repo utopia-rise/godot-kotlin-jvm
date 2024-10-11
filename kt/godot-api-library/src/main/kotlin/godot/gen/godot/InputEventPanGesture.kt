@@ -83,11 +83,11 @@ public open class InputEventPanGesture : InputEventGesture() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDeltaPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDeltaPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventPanGesture", "set_delta", 743155724)
 
-    public val getDeltaPtr: VoidPtr =
+    internal val getDeltaPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventPanGesture", "get_delta", 3341600327)
   }
 }

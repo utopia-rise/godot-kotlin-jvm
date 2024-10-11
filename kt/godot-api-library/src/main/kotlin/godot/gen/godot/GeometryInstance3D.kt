@@ -634,101 +634,101 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMaterialOverridePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMaterialOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_material_override", 2757459619)
 
-    public val getMaterialOverridePtr: VoidPtr =
+    internal val getMaterialOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_material_override", 5934680)
 
-    public val setMaterialOverlayPtr: VoidPtr =
+    internal val setMaterialOverlayPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_material_overlay", 2757459619)
 
-    public val getMaterialOverlayPtr: VoidPtr =
+    internal val getMaterialOverlayPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_material_overlay", 5934680)
 
-    public val setCastShadowsSettingPtr: VoidPtr =
+    internal val setCastShadowsSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting", 856677339)
 
-    public val getCastShadowsSettingPtr: VoidPtr =
+    internal val getCastShadowsSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting", 3383019359)
 
-    public val setLodBiasPtr: VoidPtr =
+    internal val setLodBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_lod_bias", 373806689)
 
-    public val getLodBiasPtr: VoidPtr =
+    internal val getLodBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_lod_bias", 1740695150)
 
-    public val setTransparencyPtr: VoidPtr =
+    internal val setTransparencyPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_transparency", 373806689)
 
-    public val getTransparencyPtr: VoidPtr =
+    internal val getTransparencyPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_transparency", 1740695150)
 
-    public val setVisibilityRangeEndMarginPtr: VoidPtr =
+    internal val setVisibilityRangeEndMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin", 373806689)
 
-    public val getVisibilityRangeEndMarginPtr: VoidPtr =
+    internal val getVisibilityRangeEndMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin", 1740695150)
 
-    public val setVisibilityRangeEndPtr: VoidPtr =
+    internal val setVisibilityRangeEndPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end", 373806689)
 
-    public val getVisibilityRangeEndPtr: VoidPtr =
+    internal val getVisibilityRangeEndPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end", 1740695150)
 
-    public val setVisibilityRangeBeginMarginPtr: VoidPtr =
+    internal val setVisibilityRangeBeginMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin", 373806689)
 
-    public val getVisibilityRangeBeginMarginPtr: VoidPtr =
+    internal val getVisibilityRangeBeginMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin", 1740695150)
 
-    public val setVisibilityRangeBeginPtr: VoidPtr =
+    internal val setVisibilityRangeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin", 373806689)
 
-    public val getVisibilityRangeBeginPtr: VoidPtr =
+    internal val getVisibilityRangeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin", 1740695150)
 
-    public val setVisibilityRangeFadeModePtr: VoidPtr =
+    internal val setVisibilityRangeFadeModePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode", 1440117808)
 
-    public val getVisibilityRangeFadeModePtr: VoidPtr =
+    internal val getVisibilityRangeFadeModePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode", 2067221882)
 
-    public val setInstanceShaderParameterPtr: VoidPtr =
+    internal val setInstanceShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter", 3776071444)
 
-    public val getInstanceShaderParameterPtr: VoidPtr =
+    internal val getInstanceShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter", 2760726917)
 
-    public val setExtraCullMarginPtr: VoidPtr =
+    internal val setExtraCullMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin", 373806689)
 
-    public val getExtraCullMarginPtr: VoidPtr =
+    internal val getExtraCullMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin", 1740695150)
 
-    public val setLightmapScalePtr: VoidPtr =
+    internal val setLightmapScalePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale", 2462696582)
 
-    public val getLightmapScalePtr: VoidPtr =
+    internal val getLightmapScalePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale", 798767852)
 
-    public val setGiModePtr: VoidPtr =
+    internal val setGiModePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_gi_mode", 2548557163)
 
-    public val getGiModePtr: VoidPtr =
+    internal val getGiModePtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_gi_mode", 2188566509)
 
-    public val setIgnoreOcclusionCullingPtr: VoidPtr =
+    internal val setIgnoreOcclusionCullingPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling", 2586408642)
 
-    public val isIgnoringOcclusionCullingPtr: VoidPtr =
+    internal val isIgnoringOcclusionCullingPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling", 2240911060)
 
-    public val setCustomAabbPtr: VoidPtr =
+    internal val setCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb", 259215842)
 
-    public val getCustomAabbPtr: VoidPtr =
+    internal val getCustomAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb", 1068685055)
   }
 }

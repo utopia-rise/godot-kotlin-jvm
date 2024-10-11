@@ -54,11 +54,11 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDescriptionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83702148)
 
-    public val getDescriptionPtr: VoidPtr =
+    internal val getDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201670096)
   }
 }

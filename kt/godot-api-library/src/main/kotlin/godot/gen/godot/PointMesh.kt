@@ -33,5 +33,5 @@ public open class PointMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

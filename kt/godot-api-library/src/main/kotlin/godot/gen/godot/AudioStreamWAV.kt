@@ -281,50 +281,50 @@ public open class AudioStreamWAV : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDataPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_data", 2971499966)
 
-    public val getDataPtr: VoidPtr =
+    internal val getDataPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_data", 2362200018)
 
-    public val setFormatPtr: VoidPtr =
+    internal val setFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_format", 60648488)
 
-    public val getFormatPtr: VoidPtr =
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_format", 3151724922)
 
-    public val setLoopModePtr: VoidPtr =
+    internal val setLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_loop_mode", 2444882972)
 
-    public val getLoopModePtr: VoidPtr =
+    internal val getLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_loop_mode", 393560655)
 
-    public val setLoopBeginPtr: VoidPtr =
+    internal val setLoopBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_loop_begin", 1286410249)
 
-    public val getLoopBeginPtr: VoidPtr =
+    internal val getLoopBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_loop_begin", 3905245786)
 
-    public val setLoopEndPtr: VoidPtr =
+    internal val setLoopEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_loop_end", 1286410249)
 
-    public val getLoopEndPtr: VoidPtr =
+    internal val getLoopEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_loop_end", 3905245786)
 
-    public val setMixRatePtr: VoidPtr =
+    internal val setMixRatePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_mix_rate", 1286410249)
 
-    public val getMixRatePtr: VoidPtr =
+    internal val getMixRatePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "get_mix_rate", 3905245786)
 
-    public val setStereoPtr: VoidPtr =
+    internal val setStereoPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "set_stereo", 2586408642)
 
-    public val isStereoPtr: VoidPtr =
+    internal val isStereoPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "is_stereo", 36873697)
 
-    public val saveToWavPtr: VoidPtr =
+    internal val saveToWavPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166001499)
   }
 }

@@ -82,5 +82,5 @@ public open class ResourceFormatSaver : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

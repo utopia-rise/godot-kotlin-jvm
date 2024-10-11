@@ -37,8 +37,8 @@ public open class OptimizedTranslation : Translation() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val generatePtr: VoidPtr =
+  public object MethodBindings {
+    internal val generatePtr: VoidPtr =
         Internals.getMethodBindPtr("OptimizedTranslation", "generate", 1466479800)
   }
 }

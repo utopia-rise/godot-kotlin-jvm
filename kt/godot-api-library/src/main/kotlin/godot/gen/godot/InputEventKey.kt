@@ -307,62 +307,62 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPressedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_pressed", 2586408642)
 
-    public val setKeycodePtr: VoidPtr =
+    internal val setKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_keycode", 888074362)
 
-    public val getKeycodePtr: VoidPtr =
+    internal val getKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_keycode", 1585896689)
 
-    public val setPhysicalKeycodePtr: VoidPtr =
+    internal val setPhysicalKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_physical_keycode", 888074362)
 
-    public val getPhysicalKeycodePtr: VoidPtr =
+    internal val getPhysicalKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_physical_keycode", 1585896689)
 
-    public val setKeyLabelPtr: VoidPtr =
+    internal val setKeyLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_key_label", 888074362)
 
-    public val getKeyLabelPtr: VoidPtr =
+    internal val getKeyLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_key_label", 1585896689)
 
-    public val setUnicodePtr: VoidPtr =
+    internal val setUnicodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_unicode", 1286410249)
 
-    public val getUnicodePtr: VoidPtr =
+    internal val getUnicodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_unicode", 3905245786)
 
-    public val setLocationPtr: VoidPtr =
+    internal val setLocationPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_location", 634453155)
 
-    public val getLocationPtr: VoidPtr =
+    internal val getLocationPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_location", 211810873)
 
-    public val setEchoPtr: VoidPtr =
+    internal val setEchoPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "set_echo", 2586408642)
 
-    public val getKeycodeWithModifiersPtr: VoidPtr =
+    internal val getKeycodeWithModifiersPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_keycode_with_modifiers", 1585896689)
 
-    public val getPhysicalKeycodeWithModifiersPtr: VoidPtr =
+    internal val getPhysicalKeycodeWithModifiersPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_physical_keycode_with_modifiers", 1585896689)
 
-    public val getKeyLabelWithModifiersPtr: VoidPtr =
+    internal val getKeyLabelWithModifiersPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "get_key_label_with_modifiers", 1585896689)
 
-    public val asTextKeycodePtr: VoidPtr =
+    internal val asTextKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "as_text_keycode", 201670096)
 
-    public val asTextPhysicalKeycodePtr: VoidPtr =
+    internal val asTextPhysicalKeycodePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "as_text_physical_keycode", 201670096)
 
-    public val asTextKeyLabelPtr: VoidPtr =
+    internal val asTextKeyLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "as_text_key_label", 201670096)
 
-    public val asTextLocationPtr: VoidPtr =
+    internal val asTextLocationPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventKey", "as_text_location", 201670096)
   }
 }

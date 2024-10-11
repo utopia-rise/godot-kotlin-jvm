@@ -39,5 +39,5 @@ public open class AudioEffectInstance : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

@@ -101,11 +101,11 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFunctionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeColorFunc", "set_function", 3973396138)
 
-    public val getFunctionPtr: VoidPtr =
+    internal val getFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeColorFunc", "get_function", 554863321)
   }
 }

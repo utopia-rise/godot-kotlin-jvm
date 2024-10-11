@@ -148,23 +148,23 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBufferLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_buffer_length", 373806689)
 
-    public val getBufferLengthPtr: VoidPtr =
+    internal val getBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_buffer_length", 1740695150)
 
-    public val setTapBackPosPtr: VoidPtr =
+    internal val setTapBackPosPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_tap_back_pos", 373806689)
 
-    public val getTapBackPosPtr: VoidPtr =
+    internal val getTapBackPosPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_tap_back_pos", 1740695150)
 
-    public val setFftSizePtr: VoidPtr =
+    internal val setFftSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_fft_size", 1202879215)
 
-    public val getFftSizePtr: VoidPtr =
+    internal val getFftSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_fft_size", 3925405343)
   }
 }

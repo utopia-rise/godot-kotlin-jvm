@@ -51,5 +51,5 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

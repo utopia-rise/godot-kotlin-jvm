@@ -89,11 +89,11 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOpTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleRandomness", "set_op_type", 2060089061)
 
-    public val getOpTypePtr: VoidPtr =
+    internal val getOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleRandomness", "get_op_type", 3597061078)
   }
 }

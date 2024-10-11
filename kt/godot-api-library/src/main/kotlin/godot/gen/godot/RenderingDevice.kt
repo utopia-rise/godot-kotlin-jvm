@@ -4456,298 +4456,299 @@ public open class RenderingDevice internal constructor() : Object() {
     public final const val INVALID_FORMAT_ID: Long = -1
   }
 
-  internal object MethodBindings {
-    public val textureCreatePtr: VoidPtr =
+  public object MethodBindings {
+    internal val textureCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_create", 3709173589)
 
-    public val textureCreateSharedPtr: VoidPtr =
+    internal val textureCreateSharedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_create_shared", 3178156134)
 
-    public val textureCreateSharedFromSlicePtr: VoidPtr =
+    internal val textureCreateSharedFromSlicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_create_shared_from_slice", 1808971279)
 
-    public val textureCreateFromExtensionPtr: VoidPtr =
+    internal val textureCreateFromExtensionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_create_from_extension", 1397171480)
 
-    public val textureUpdatePtr: VoidPtr =
+    internal val textureUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_update", 1349464008)
 
-    public val textureGetDataPtr: VoidPtr =
+    internal val textureGetDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_get_data", 1859412099)
 
-    public val textureIsFormatSupportedForUsagePtr: VoidPtr =
+    internal val textureIsFormatSupportedForUsagePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_is_format_supported_for_usage", 2592520478)
 
-    public val textureIsSharedPtr: VoidPtr =
+    internal val textureIsSharedPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_is_shared", 3521089500)
 
-    public val textureIsValidPtr: VoidPtr =
+    internal val textureIsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_is_valid", 3521089500)
 
-    public val textureCopyPtr: VoidPtr =
+    internal val textureCopyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_copy", 2859522160)
 
-    public val textureClearPtr: VoidPtr =
+    internal val textureClearPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_clear", 3477703247)
 
-    public val textureResolveMultisamplePtr: VoidPtr =
+    internal val textureResolveMultisamplePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_resolve_multisample", 3181288260)
 
-    public val textureGetFormatPtr: VoidPtr =
+    internal val textureGetFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_get_format", 1374471690)
 
-    public val textureGetNativeHandlePtr: VoidPtr =
+    internal val textureGetNativeHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_get_native_handle", 3917799429)
 
-    public val framebufferFormatCreatePtr: VoidPtr =
+    internal val framebufferFormatCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_format_create", 697032759)
 
-    public val framebufferFormatCreateMultipassPtr: VoidPtr =
+    internal val framebufferFormatCreateMultipassPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_format_create_multipass", 2647479094)
 
-    public val framebufferFormatCreateEmptyPtr: VoidPtr =
+    internal val framebufferFormatCreateEmptyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_format_create_empty", 555930169)
 
-    public val framebufferFormatGetTextureSamplesPtr: VoidPtr =
+    internal val framebufferFormatGetTextureSamplesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_format_get_texture_samples", 4223391010)
 
-    public val framebufferCreatePtr: VoidPtr =
+    internal val framebufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_create", 3284231055)
 
-    public val framebufferCreateMultipassPtr: VoidPtr =
+    internal val framebufferCreateMultipassPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_create_multipass", 1750306695)
 
-    public val framebufferCreateEmptyPtr: VoidPtr =
+    internal val framebufferCreateEmptyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_create_empty", 3058360618)
 
-    public val framebufferGetFormatPtr: VoidPtr =
+    internal val framebufferGetFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_get_format", 3917799429)
 
-    public val framebufferIsValidPtr: VoidPtr =
+    internal val framebufferIsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "framebuffer_is_valid", 4155700596)
 
-    public val samplerCreatePtr: VoidPtr =
+    internal val samplerCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "sampler_create", 2327892535)
 
-    public val samplerIsFormatSupportedForFilterPtr: VoidPtr =
+    internal val samplerIsFormatSupportedForFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "sampler_is_format_supported_for_filter", 2247922238)
 
-    public val vertexBufferCreatePtr: VoidPtr =
+    internal val vertexBufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "vertex_buffer_create", 3410049843)
 
-    public val vertexFormatCreatePtr: VoidPtr =
+    internal val vertexFormatCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "vertex_format_create", 1242678479)
 
-    public val vertexArrayCreatePtr: VoidPtr =
+    internal val vertexArrayCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "vertex_array_create", 3799816279)
 
-    public val indexBufferCreatePtr: VoidPtr =
+    internal val indexBufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "index_buffer_create", 3935920523)
 
-    public val indexArrayCreatePtr: VoidPtr =
+    internal val indexArrayCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "index_array_create", 2256026069)
 
-    public val shaderCompileSpirvFromSourcePtr: VoidPtr =
+    internal val shaderCompileSpirvFromSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_compile_spirv_from_source", 1178973306)
 
-    public val shaderCompileBinaryFromSpirvPtr: VoidPtr =
+    internal val shaderCompileBinaryFromSpirvPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_compile_binary_from_spirv", 134910450)
 
-    public val shaderCreateFromSpirvPtr: VoidPtr =
+    internal val shaderCreateFromSpirvPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_create_from_spirv", 342949005)
 
-    public val shaderCreateFromBytecodePtr: VoidPtr =
+    internal val shaderCreateFromBytecodePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_create_from_bytecode", 1687031350)
 
-    public val shaderCreatePlaceholderPtr: VoidPtr =
+    internal val shaderCreatePlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_create_placeholder", 529393457)
 
-    public val shaderGetVertexInputAttributeMaskPtr: VoidPtr =
+    internal val shaderGetVertexInputAttributeMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "shader_get_vertex_input_attribute_mask", 3917799429)
 
-    public val uniformBufferCreatePtr: VoidPtr =
+    internal val uniformBufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "uniform_buffer_create", 34556762)
 
-    public val storageBufferCreatePtr: VoidPtr =
+    internal val storageBufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "storage_buffer_create", 2316365934)
 
-    public val textureBufferCreatePtr: VoidPtr =
+    internal val textureBufferCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "texture_buffer_create", 1470338698)
 
-    public val uniformSetCreatePtr: VoidPtr =
+    internal val uniformSetCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "uniform_set_create", 2280795797)
 
-    public val uniformSetIsValidPtr: VoidPtr =
+    internal val uniformSetIsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "uniform_set_is_valid", 3521089500)
 
-    public val bufferCopyPtr: VoidPtr =
+    internal val bufferCopyPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "buffer_copy", 864257779)
 
-    public val bufferUpdatePtr: VoidPtr =
+    internal val bufferUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "buffer_update", 3454956949)
 
-    public val bufferClearPtr: VoidPtr =
+    internal val bufferClearPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "buffer_clear", 2452320800)
 
-    public val bufferGetDataPtr: VoidPtr =
+    internal val bufferGetDataPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "buffer_get_data", 3101830688)
 
-    public val renderPipelineCreatePtr: VoidPtr =
+    internal val renderPipelineCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "render_pipeline_create", 2385451958)
 
-    public val renderPipelineIsValidPtr: VoidPtr =
+    internal val renderPipelineIsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "render_pipeline_is_valid", 3521089500)
 
-    public val computePipelineCreatePtr: VoidPtr =
+    internal val computePipelineCreatePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_pipeline_create", 1448838280)
 
-    public val computePipelineIsValidPtr: VoidPtr =
+    internal val computePipelineIsValidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_pipeline_is_valid", 3521089500)
 
-    public val screenGetWidthPtr: VoidPtr =
+    internal val screenGetWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "screen_get_width", 1591665591)
 
-    public val screenGetHeightPtr: VoidPtr =
+    internal val screenGetHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "screen_get_height", 1591665591)
 
-    public val screenGetFramebufferFormatPtr: VoidPtr =
+    internal val screenGetFramebufferFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "screen_get_framebuffer_format", 1591665591)
 
-    public val drawListBeginForScreenPtr: VoidPtr =
+    internal val drawListBeginForScreenPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_begin_for_screen", 3988079995)
 
-    public val drawListBeginPtr: VoidPtr =
+    internal val drawListBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_begin", 2686605154)
 
-    public val drawListBeginSplitPtr: VoidPtr =
+    internal val drawListBeginSplitPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_begin_split", 2406300660)
 
-    public val drawListSetBlendConstantsPtr: VoidPtr =
+    internal val drawListSetBlendConstantsPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_set_blend_constants", 2878471219)
 
-    public val drawListBindRenderPipelinePtr: VoidPtr =
+    internal val drawListBindRenderPipelinePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_bind_render_pipeline", 4040184819)
 
-    public val drawListBindUniformSetPtr: VoidPtr =
+    internal val drawListBindUniformSetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_bind_uniform_set", 749655778)
 
-    public val drawListBindVertexArrayPtr: VoidPtr =
+    internal val drawListBindVertexArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_bind_vertex_array", 4040184819)
 
-    public val drawListBindIndexArrayPtr: VoidPtr =
+    internal val drawListBindIndexArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_bind_index_array", 4040184819)
 
-    public val drawListSetPushConstantPtr: VoidPtr =
+    internal val drawListSetPushConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_set_push_constant", 2772371345)
 
-    public val drawListDrawPtr: VoidPtr =
+    internal val drawListDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_draw", 4230067973)
 
-    public val drawListEnableScissorPtr: VoidPtr =
+    internal val drawListEnableScissorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_enable_scissor", 244650101)
 
-    public val drawListDisableScissorPtr: VoidPtr =
+    internal val drawListDisableScissorPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_disable_scissor", 1286410249)
 
-    public val drawListSwitchToNextPassPtr: VoidPtr =
+    internal val drawListSwitchToNextPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_switch_to_next_pass", 2455072627)
 
-    public val drawListSwitchToNextPassSplitPtr: VoidPtr =
+    internal val drawListSwitchToNextPassSplitPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_switch_to_next_pass_split", 2865087369)
 
-    public val drawListEndPtr: VoidPtr =
+    internal val drawListEndPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_list_end", 3218959716)
 
-    public val computeListBeginPtr: VoidPtr =
+    internal val computeListBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_begin", 2455072627)
 
-    public val computeListBindComputePipelinePtr: VoidPtr =
+    internal val computeListBindComputePipelinePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_bind_compute_pipeline", 4040184819)
 
-    public val computeListSetPushConstantPtr: VoidPtr =
+    internal val computeListSetPushConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_set_push_constant", 2772371345)
 
-    public val computeListBindUniformSetPtr: VoidPtr =
+    internal val computeListBindUniformSetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_bind_uniform_set", 749655778)
 
-    public val computeListDispatchPtr: VoidPtr =
+    internal val computeListDispatchPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_dispatch", 4275841770)
 
-    public val computeListDispatchIndirectPtr: VoidPtr =
+    internal val computeListDispatchIndirectPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_dispatch_indirect", 749655778)
 
-    public val computeListAddBarrierPtr: VoidPtr =
+    internal val computeListAddBarrierPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_add_barrier", 1286410249)
 
-    public val computeListEndPtr: VoidPtr =
+    internal val computeListEndPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "compute_list_end", 3218959716)
 
-    public val freeRidPtr: VoidPtr =
+    internal val freeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "free_rid", 2722037293)
 
-    public val captureTimestampPtr: VoidPtr =
+    internal val captureTimestampPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "capture_timestamp", 83702148)
 
-    public val getCapturedTimestampsCountPtr: VoidPtr =
+    internal val getCapturedTimestampsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_captured_timestamps_count", 3905245786)
 
-    public val getCapturedTimestampsFramePtr: VoidPtr =
+    internal val getCapturedTimestampsFramePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_captured_timestamps_frame", 3905245786)
 
-    public val getCapturedTimestampGpuTimePtr: VoidPtr =
+    internal val getCapturedTimestampGpuTimePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_gpu_time", 923996154)
 
-    public val getCapturedTimestampCpuTimePtr: VoidPtr =
+    internal val getCapturedTimestampCpuTimePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_cpu_time", 923996154)
 
-    public val getCapturedTimestampNamePtr: VoidPtr =
+    internal val getCapturedTimestampNamePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_name", 844755477)
 
-    public val limitGetPtr: VoidPtr =
+    internal val limitGetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "limit_get", 1559202131)
 
-    public val getFrameDelayPtr: VoidPtr =
+    internal val getFrameDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_frame_delay", 3905245786)
 
-    public val submitPtr: VoidPtr =
+    internal val submitPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "submit", 3218959716)
 
-    public val syncPtr: VoidPtr = Internals.getMethodBindPtr("RenderingDevice", "sync", 3218959716)
+    internal val syncPtr: VoidPtr =
+        Internals.getMethodBindPtr("RenderingDevice", "sync", 3218959716)
 
-    public val barrierPtr: VoidPtr =
+    internal val barrierPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "barrier", 3718155691)
 
-    public val fullBarrierPtr: VoidPtr =
+    internal val fullBarrierPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "full_barrier", 3218959716)
 
-    public val createLocalDevicePtr: VoidPtr =
+    internal val createLocalDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "create_local_device", 2846302423)
 
-    public val setResourceNamePtr: VoidPtr =
+    internal val setResourceNamePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "set_resource_name", 2726140452)
 
-    public val drawCommandBeginLabelPtr: VoidPtr =
+    internal val drawCommandBeginLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_command_begin_label", 1636512886)
 
-    public val drawCommandInsertLabelPtr: VoidPtr =
+    internal val drawCommandInsertLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_command_insert_label", 1636512886)
 
-    public val drawCommandEndLabelPtr: VoidPtr =
+    internal val drawCommandEndLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "draw_command_end_label", 3218959716)
 
-    public val getDeviceVendorNamePtr: VoidPtr =
+    internal val getDeviceVendorNamePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_device_vendor_name", 201670096)
 
-    public val getDeviceNamePtr: VoidPtr =
+    internal val getDeviceNamePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_device_name", 201670096)
 
-    public val getDevicePipelineCacheUuidPtr: VoidPtr =
+    internal val getDevicePipelineCacheUuidPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_device_pipeline_cache_uuid", 201670096)
 
-    public val getMemoryUsagePtr: VoidPtr =
+    internal val getMemoryUsagePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_memory_usage", 251690689)
 
-    public val getDriverResourcePtr: VoidPtr =
+    internal val getDriverResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderingDevice", "get_driver_resource", 501815484)
   }
 }

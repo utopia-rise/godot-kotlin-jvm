@@ -22,5 +22,5 @@ public open class KotlinScript : JvmScript() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

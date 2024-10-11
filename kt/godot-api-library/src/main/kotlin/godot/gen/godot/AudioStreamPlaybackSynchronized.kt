@@ -22,5 +22,5 @@ public open class AudioStreamPlaybackSynchronized internal constructor() : Audio
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

@@ -322,62 +322,62 @@ public open class ScrollContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHScrollPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_h_scroll", 1286410249)
 
-    public val getHScrollPtr: VoidPtr =
+    internal val getHScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_h_scroll", 3905245786)
 
-    public val setVScrollPtr: VoidPtr =
+    internal val setVScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_v_scroll", 1286410249)
 
-    public val getVScrollPtr: VoidPtr =
+    internal val getVScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_v_scroll", 3905245786)
 
-    public val setHorizontalCustomStepPtr: VoidPtr =
+    internal val setHorizontalCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_horizontal_custom_step", 373806689)
 
-    public val getHorizontalCustomStepPtr: VoidPtr =
+    internal val getHorizontalCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_horizontal_custom_step", 1740695150)
 
-    public val setVerticalCustomStepPtr: VoidPtr =
+    internal val setVerticalCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_vertical_custom_step", 373806689)
 
-    public val getVerticalCustomStepPtr: VoidPtr =
+    internal val getVerticalCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_vertical_custom_step", 1740695150)
 
-    public val setHorizontalScrollModePtr: VoidPtr =
+    internal val setHorizontalScrollModePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_horizontal_scroll_mode", 2750506364)
 
-    public val getHorizontalScrollModePtr: VoidPtr =
+    internal val getHorizontalScrollModePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_horizontal_scroll_mode", 3987985145)
 
-    public val setVerticalScrollModePtr: VoidPtr =
+    internal val setVerticalScrollModePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_vertical_scroll_mode", 2750506364)
 
-    public val getVerticalScrollModePtr: VoidPtr =
+    internal val getVerticalScrollModePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_vertical_scroll_mode", 3987985145)
 
-    public val setDeadzonePtr: VoidPtr =
+    internal val setDeadzonePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_deadzone", 1286410249)
 
-    public val getDeadzonePtr: VoidPtr =
+    internal val getDeadzonePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_deadzone", 3905245786)
 
-    public val setFollowFocusPtr: VoidPtr =
+    internal val setFollowFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "set_follow_focus", 2586408642)
 
-    public val isFollowingFocusPtr: VoidPtr =
+    internal val isFollowingFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "is_following_focus", 36873697)
 
-    public val getHScrollBarPtr: VoidPtr =
+    internal val getHScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_h_scroll_bar", 4004517983)
 
-    public val getVScrollBarPtr: VoidPtr =
+    internal val getVScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "get_v_scroll_bar", 2630340773)
 
-    public val ensureControlVisiblePtr: VoidPtr =
+    internal val ensureControlVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollContainer", "ensure_control_visible", 1496901182)
   }
 }

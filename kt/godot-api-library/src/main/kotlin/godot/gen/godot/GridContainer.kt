@@ -57,11 +57,11 @@ public open class GridContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setColumnsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("GridContainer", "set_columns", 1286410249)
 
-    public val getColumnsPtr: VoidPtr =
+    internal val getColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("GridContainer", "get_columns", 3905245786)
   }
 }

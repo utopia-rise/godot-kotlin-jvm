@@ -54,11 +54,11 @@ public object PhysicsServer3DManager : Object() {
     Internals.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
   }
 
-  internal object MethodBindings {
-    public val registerServerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val registerServerPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsServer3DManager", "register_server", 2137474292)
 
-    public val setDefaultServerPtr: VoidPtr =
+    internal val setDefaultServerPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsServer3DManager", "set_default_server", 2956805083)
   }
 }

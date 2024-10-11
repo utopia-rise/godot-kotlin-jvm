@@ -138,25 +138,26 @@ public open class PropertyTweener : Tweener() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val fromPtr: VoidPtr = Internals.getMethodBindPtr("PropertyTweener", "from", 4190193059)
+  public object MethodBindings {
+    internal val fromPtr: VoidPtr =
+        Internals.getMethodBindPtr("PropertyTweener", "from", 4190193059)
 
-    public val fromCurrentPtr: VoidPtr =
+    internal val fromCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "from_current", 4279177709)
 
-    public val asRelativePtr: VoidPtr =
+    internal val asRelativePtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "as_relative", 4279177709)
 
-    public val setTransPtr: VoidPtr =
+    internal val setTransPtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "set_trans", 1899107404)
 
-    public val setEasePtr: VoidPtr =
+    internal val setEasePtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "set_ease", 1080455622)
 
-    public val setCustomInterpolatorPtr: VoidPtr =
+    internal val setCustomInterpolatorPtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "set_custom_interpolator", 3174170268)
 
-    public val setDelayPtr: VoidPtr =
+    internal val setDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("PropertyTweener", "set_delay", 2171559331)
   }
 }

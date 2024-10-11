@@ -64,11 +64,11 @@ public open class ImageTexture3D : Texture3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createPtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture3D", "create", 1130379827)
 
-    public val updatePtr: VoidPtr =
+    internal val updatePtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture3D", "update", 381264803)
   }
 }

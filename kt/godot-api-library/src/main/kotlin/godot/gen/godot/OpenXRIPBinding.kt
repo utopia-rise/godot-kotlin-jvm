@@ -118,29 +118,29 @@ public open class OpenXRIPBinding : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setActionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setActionPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "set_action", 349361333)
 
-    public val getActionPtr: VoidPtr =
+    internal val getActionPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "get_action", 4072409085)
 
-    public val getPathCountPtr: VoidPtr =
+    internal val getPathCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "get_path_count", 3905245786)
 
-    public val setPathsPtr: VoidPtr =
+    internal val setPathsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "set_paths", 4015028928)
 
-    public val getPathsPtr: VoidPtr =
+    internal val getPathsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "get_paths", 1139954409)
 
-    public val hasPathPtr: VoidPtr =
+    internal val hasPathPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "has_path", 3927539163)
 
-    public val addPathPtr: VoidPtr =
+    internal val addPathPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "add_path", 83702148)
 
-    public val removePathPtr: VoidPtr =
+    internal val removePathPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRIPBinding", "remove_path", 83702148)
   }
 }

@@ -182,35 +182,35 @@ public open class RootMotionView : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAnimationPathPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setAnimationPathPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "set_animation_path", 1348162250)
 
-    public val getAnimationPathPtr: VoidPtr =
+    internal val getAnimationPathPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "get_animation_path", 4075236667)
 
-    public val setColorPtr: VoidPtr =
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "get_color", 3444240500)
 
-    public val setCellSizePtr: VoidPtr =
+    internal val setCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "set_cell_size", 373806689)
 
-    public val getCellSizePtr: VoidPtr =
+    internal val getCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "get_cell_size", 1740695150)
 
-    public val setRadiusPtr: VoidPtr =
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "get_radius", 1740695150)
 
-    public val setZeroYPtr: VoidPtr =
+    internal val setZeroYPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "set_zero_y", 2586408642)
 
-    public val getZeroYPtr: VoidPtr =
+    internal val getZeroYPtr: VoidPtr =
         Internals.getMethodBindPtr("RootMotionView", "get_zero_y", 36873697)
   }
 }

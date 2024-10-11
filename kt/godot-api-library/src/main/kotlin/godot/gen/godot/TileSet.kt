@@ -1159,263 +1159,263 @@ public open class TileSet : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getNextSourceIdPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getNextSourceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_next_source_id", 3905245786)
 
-    public val addSourcePtr: VoidPtr =
+    internal val addSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_source", 1059186179)
 
-    public val removeSourcePtr: VoidPtr =
+    internal val removeSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_source", 1286410249)
 
-    public val setSourceIdPtr: VoidPtr =
+    internal val setSourceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_source_id", 3937882851)
 
-    public val getSourceCountPtr: VoidPtr =
+    internal val getSourceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_source_count", 3905245786)
 
-    public val getSourceIdPtr: VoidPtr =
+    internal val getSourceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_source_id", 923996154)
 
-    public val hasSourcePtr: VoidPtr =
+    internal val hasSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "has_source", 1116898809)
 
-    public val getSourcePtr: VoidPtr =
+    internal val getSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_source", 1763540252)
 
-    public val setTileShapePtr: VoidPtr =
+    internal val setTileShapePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_tile_shape", 2131427112)
 
-    public val getTileShapePtr: VoidPtr =
+    internal val getTileShapePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_tile_shape", 716918169)
 
-    public val setTileLayoutPtr: VoidPtr =
+    internal val setTileLayoutPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_tile_layout", 1071216679)
 
-    public val getTileLayoutPtr: VoidPtr =
+    internal val getTileLayoutPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_tile_layout", 194628839)
 
-    public val setTileOffsetAxisPtr: VoidPtr =
+    internal val setTileOffsetAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_tile_offset_axis", 3300198521)
 
-    public val getTileOffsetAxisPtr: VoidPtr =
+    internal val getTileOffsetAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_tile_offset_axis", 762494114)
 
-    public val setTileSizePtr: VoidPtr =
+    internal val setTileSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_tile_size", 1130785943)
 
-    public val getTileSizePtr: VoidPtr =
+    internal val getTileSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_tile_size", 3690982128)
 
-    public val setUvClippingPtr: VoidPtr =
+    internal val setUvClippingPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_uv_clipping", 2586408642)
 
-    public val isUvClippingPtr: VoidPtr =
+    internal val isUvClippingPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "is_uv_clipping", 36873697)
 
-    public val getOcclusionLayersCountPtr: VoidPtr =
+    internal val getOcclusionLayersCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_occlusion_layers_count", 3905245786)
 
-    public val addOcclusionLayerPtr: VoidPtr =
+    internal val addOcclusionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_occlusion_layer", 1025054187)
 
-    public val moveOcclusionLayerPtr: VoidPtr =
+    internal val moveOcclusionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_occlusion_layer", 3937882851)
 
-    public val removeOcclusionLayerPtr: VoidPtr =
+    internal val removeOcclusionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_occlusion_layer", 1286410249)
 
-    public val setOcclusionLayerLightMaskPtr: VoidPtr =
+    internal val setOcclusionLayerLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_occlusion_layer_light_mask", 3937882851)
 
-    public val getOcclusionLayerLightMaskPtr: VoidPtr =
+    internal val getOcclusionLayerLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_occlusion_layer_light_mask", 923996154)
 
-    public val setOcclusionLayerSdfCollisionPtr: VoidPtr =
+    internal val setOcclusionLayerSdfCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_occlusion_layer_sdf_collision", 300928843)
 
-    public val getOcclusionLayerSdfCollisionPtr: VoidPtr =
+    internal val getOcclusionLayerSdfCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_occlusion_layer_sdf_collision", 1116898809)
 
-    public val getPhysicsLayersCountPtr: VoidPtr =
+    internal val getPhysicsLayersCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_physics_layers_count", 3905245786)
 
-    public val addPhysicsLayerPtr: VoidPtr =
+    internal val addPhysicsLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_physics_layer", 1025054187)
 
-    public val movePhysicsLayerPtr: VoidPtr =
+    internal val movePhysicsLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_physics_layer", 3937882851)
 
-    public val removePhysicsLayerPtr: VoidPtr =
+    internal val removePhysicsLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_physics_layer", 1286410249)
 
-    public val setPhysicsLayerCollisionLayerPtr: VoidPtr =
+    internal val setPhysicsLayerCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_physics_layer_collision_layer", 3937882851)
 
-    public val getPhysicsLayerCollisionLayerPtr: VoidPtr =
+    internal val getPhysicsLayerCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_physics_layer_collision_layer", 923996154)
 
-    public val setPhysicsLayerCollisionMaskPtr: VoidPtr =
+    internal val setPhysicsLayerCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_physics_layer_collision_mask", 3937882851)
 
-    public val getPhysicsLayerCollisionMaskPtr: VoidPtr =
+    internal val getPhysicsLayerCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923996154)
 
-    public val setPhysicsLayerPhysicsMaterialPtr: VoidPtr =
+    internal val setPhysicsLayerPhysicsMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1018687357)
 
-    public val getPhysicsLayerPhysicsMaterialPtr: VoidPtr =
+    internal val getPhysicsLayerPhysicsMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_physics_layer_physics_material", 788318639)
 
-    public val getTerrainSetsCountPtr: VoidPtr =
+    internal val getTerrainSetsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_terrain_sets_count", 3905245786)
 
-    public val addTerrainSetPtr: VoidPtr =
+    internal val addTerrainSetPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_terrain_set", 1025054187)
 
-    public val moveTerrainSetPtr: VoidPtr =
+    internal val moveTerrainSetPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_terrain_set", 3937882851)
 
-    public val removeTerrainSetPtr: VoidPtr =
+    internal val removeTerrainSetPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_terrain_set", 1286410249)
 
-    public val setTerrainSetModePtr: VoidPtr =
+    internal val setTerrainSetModePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_terrain_set_mode", 3943003916)
 
-    public val getTerrainSetModePtr: VoidPtr =
+    internal val getTerrainSetModePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_terrain_set_mode", 2084469411)
 
-    public val getTerrainsCountPtr: VoidPtr =
+    internal val getTerrainsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_terrains_count", 923996154)
 
-    public val addTerrainPtr: VoidPtr =
+    internal val addTerrainPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_terrain", 1230568737)
 
-    public val moveTerrainPtr: VoidPtr =
+    internal val moveTerrainPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_terrain", 1649997291)
 
-    public val removeTerrainPtr: VoidPtr =
+    internal val removeTerrainPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_terrain", 3937882851)
 
-    public val setTerrainNamePtr: VoidPtr =
+    internal val setTerrainNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_terrain_name", 2285447957)
 
-    public val getTerrainNamePtr: VoidPtr =
+    internal val getTerrainNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_terrain_name", 1391810591)
 
-    public val setTerrainColorPtr: VoidPtr =
+    internal val setTerrainColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_terrain_color", 3733378741)
 
-    public val getTerrainColorPtr: VoidPtr =
+    internal val getTerrainColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_terrain_color", 2165839948)
 
-    public val getNavigationLayersCountPtr: VoidPtr =
+    internal val getNavigationLayersCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_navigation_layers_count", 3905245786)
 
-    public val addNavigationLayerPtr: VoidPtr =
+    internal val addNavigationLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_navigation_layer", 1025054187)
 
-    public val moveNavigationLayerPtr: VoidPtr =
+    internal val moveNavigationLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_navigation_layer", 3937882851)
 
-    public val removeNavigationLayerPtr: VoidPtr =
+    internal val removeNavigationLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_navigation_layer", 1286410249)
 
-    public val setNavigationLayerLayersPtr: VoidPtr =
+    internal val setNavigationLayerLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_navigation_layer_layers", 3937882851)
 
-    public val getNavigationLayerLayersPtr: VoidPtr =
+    internal val getNavigationLayerLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_navigation_layer_layers", 923996154)
 
-    public val setNavigationLayerLayerValuePtr: VoidPtr =
+    internal val setNavigationLayerLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_navigation_layer_layer_value", 1383440665)
 
-    public val getNavigationLayerLayerValuePtr: VoidPtr =
+    internal val getNavigationLayerLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_navigation_layer_layer_value", 2522259332)
 
-    public val getCustomDataLayersCountPtr: VoidPtr =
+    internal val getCustomDataLayersCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_custom_data_layers_count", 3905245786)
 
-    public val addCustomDataLayerPtr: VoidPtr =
+    internal val addCustomDataLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_custom_data_layer", 1025054187)
 
-    public val moveCustomDataLayerPtr: VoidPtr =
+    internal val moveCustomDataLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "move_custom_data_layer", 3937882851)
 
-    public val removeCustomDataLayerPtr: VoidPtr =
+    internal val removeCustomDataLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_custom_data_layer", 1286410249)
 
-    public val getCustomDataLayerByNamePtr: VoidPtr =
+    internal val getCustomDataLayerByNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_by_name", 1321353865)
 
-    public val setCustomDataLayerNamePtr: VoidPtr =
+    internal val setCustomDataLayerNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501894301)
 
-    public val getCustomDataLayerNamePtr: VoidPtr =
+    internal val getCustomDataLayerNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844755477)
 
-    public val setCustomDataLayerTypePtr: VoidPtr =
+    internal val setCustomDataLayerTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_custom_data_layer_type", 3492912874)
 
-    public val getCustomDataLayerTypePtr: VoidPtr =
+    internal val getCustomDataLayerTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_type", 2990820875)
 
-    public val setSourceLevelTileProxyPtr: VoidPtr =
+    internal val setSourceLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_source_level_tile_proxy", 3937882851)
 
-    public val getSourceLevelTileProxyPtr: VoidPtr =
+    internal val getSourceLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_source_level_tile_proxy", 3744713108)
 
-    public val hasSourceLevelTileProxyPtr: VoidPtr =
+    internal val hasSourceLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "has_source_level_tile_proxy", 3067735520)
 
-    public val removeSourceLevelTileProxyPtr: VoidPtr =
+    internal val removeSourceLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_source_level_tile_proxy", 1286410249)
 
-    public val setCoordsLevelTileProxyPtr: VoidPtr =
+    internal val setCoordsLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_coords_level_tile_proxy", 1769939278)
 
-    public val getCoordsLevelTileProxyPtr: VoidPtr =
+    internal val getCoordsLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_coords_level_tile_proxy", 2856536371)
 
-    public val hasCoordsLevelTileProxyPtr: VoidPtr =
+    internal val hasCoordsLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "has_coords_level_tile_proxy", 3957903770)
 
-    public val removeCoordsLevelTileProxyPtr: VoidPtr =
+    internal val removeCoordsLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_coords_level_tile_proxy", 2311374912)
 
-    public val setAlternativeLevelTileProxyPtr: VoidPtr =
+    internal val setAlternativeLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "set_alternative_level_tile_proxy", 3862385460)
 
-    public val getAlternativeLevelTileProxyPtr: VoidPtr =
+    internal val getAlternativeLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_alternative_level_tile_proxy", 2303761075)
 
-    public val hasAlternativeLevelTileProxyPtr: VoidPtr =
+    internal val hasAlternativeLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "has_alternative_level_tile_proxy", 180086755)
 
-    public val removeAlternativeLevelTileProxyPtr: VoidPtr =
+    internal val removeAlternativeLevelTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_alternative_level_tile_proxy", 2328951467)
 
-    public val mapTileProxyPtr: VoidPtr =
+    internal val mapTileProxyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "map_tile_proxy", 4267935328)
 
-    public val cleanupInvalidTileProxiesPtr: VoidPtr =
+    internal val cleanupInvalidTileProxiesPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "cleanup_invalid_tile_proxies", 3218959716)
 
-    public val clearTileProxiesPtr: VoidPtr =
+    internal val clearTileProxiesPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "clear_tile_proxies", 3218959716)
 
-    public val addPatternPtr: VoidPtr =
+    internal val addPatternPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "add_pattern", 763712015)
 
-    public val getPatternPtr: VoidPtr =
+    internal val getPatternPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_pattern", 4207737510)
 
-    public val removePatternPtr: VoidPtr =
+    internal val removePatternPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "remove_pattern", 1286410249)
 
-    public val getPatternsCountPtr: VoidPtr =
+    internal val getPatternsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileSet", "get_patterns_count", 2455072627)
   }
 }

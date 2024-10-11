@@ -369,92 +369,92 @@ public open class SkeletonProfile : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRootBonePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRootBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_root_bone", 3304788590)
 
-    public val getRootBonePtr: VoidPtr =
+    internal val getRootBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_root_bone", 2737447660)
 
-    public val setScaleBaseBonePtr: VoidPtr =
+    internal val setScaleBaseBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_scale_base_bone", 3304788590)
 
-    public val getScaleBaseBonePtr: VoidPtr =
+    internal val getScaleBaseBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_scale_base_bone", 2737447660)
 
-    public val setGroupSizePtr: VoidPtr =
+    internal val setGroupSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_group_size", 1286410249)
 
-    public val getGroupSizePtr: VoidPtr =
+    internal val getGroupSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_group_size", 2455072627)
 
-    public val getGroupNamePtr: VoidPtr =
+    internal val getGroupNamePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_group_name", 659327637)
 
-    public val setGroupNamePtr: VoidPtr =
+    internal val setGroupNamePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_group_name", 3780747571)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_texture", 3536238170)
 
-    public val setTexturePtr: VoidPtr =
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_texture", 666127730)
 
-    public val setBoneSizePtr: VoidPtr =
+    internal val setBoneSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_bone_size", 1286410249)
 
-    public val getBoneSizePtr: VoidPtr =
+    internal val getBoneSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_bone_size", 2455072627)
 
-    public val findBonePtr: VoidPtr =
+    internal val findBonePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "find_bone", 2458036349)
 
-    public val getBoneNamePtr: VoidPtr =
+    internal val getBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_bone_name", 659327637)
 
-    public val setBoneNamePtr: VoidPtr =
+    internal val setBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_bone_name", 3780747571)
 
-    public val getBoneParentPtr: VoidPtr =
+    internal val getBoneParentPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_bone_parent", 659327637)
 
-    public val setBoneParentPtr: VoidPtr =
+    internal val setBoneParentPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_bone_parent", 3780747571)
 
-    public val getTailDirectionPtr: VoidPtr =
+    internal val getTailDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_tail_direction", 2675997574)
 
-    public val setTailDirectionPtr: VoidPtr =
+    internal val setTailDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_tail_direction", 1231951015)
 
-    public val getBoneTailPtr: VoidPtr =
+    internal val getBoneTailPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_bone_tail", 659327637)
 
-    public val setBoneTailPtr: VoidPtr =
+    internal val setBoneTailPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_bone_tail", 3780747571)
 
-    public val getReferencePosePtr: VoidPtr =
+    internal val getReferencePosePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_reference_pose", 1965739696)
 
-    public val setReferencePosePtr: VoidPtr =
+    internal val setReferencePosePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_reference_pose", 3616898986)
 
-    public val getHandleOffsetPtr: VoidPtr =
+    internal val getHandleOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_handle_offset", 2299179447)
 
-    public val setHandleOffsetPtr: VoidPtr =
+    internal val setHandleOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_handle_offset", 163021252)
 
-    public val getGroupPtr: VoidPtr =
+    internal val getGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "get_group", 659327637)
 
-    public val setGroupPtr: VoidPtr =
+    internal val setGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_group", 3780747571)
 
-    public val isRequiredPtr: VoidPtr =
+    internal val isRequiredPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "is_required", 1116898809)
 
-    public val setRequiredPtr: VoidPtr =
+    internal val setRequiredPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonProfile", "set_required", 300928843)
   }
 }

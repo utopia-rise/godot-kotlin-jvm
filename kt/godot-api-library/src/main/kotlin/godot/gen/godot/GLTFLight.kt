@@ -261,58 +261,58 @@ public open class GLTFLight : Resource() {
     }
   }
 
-  internal object MethodBindings {
-    public val fromNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
 
-    public val toNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
+    internal val toNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
 
-    public val fromDictionaryPtr: VoidPtr =
+    internal val fromDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
 
-    public val toDictionaryPtr: VoidPtr =
+    internal val toDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_color", 3200896285)
 
-    public val setColorPtr: VoidPtr =
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_color", 2920490490)
 
-    public val getIntensityPtr: VoidPtr =
+    internal val getIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_intensity", 191475506)
 
-    public val setIntensityPtr: VoidPtr =
+    internal val setIntensityPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_intensity", 373806689)
 
-    public val getLightTypePtr: VoidPtr =
+    internal val getLightTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_light_type", 2841200299)
 
-    public val setLightTypePtr: VoidPtr =
+    internal val setLightTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_light_type", 83702148)
 
-    public val getRangePtr: VoidPtr =
+    internal val getRangePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_range", 191475506)
 
-    public val setRangePtr: VoidPtr =
+    internal val setRangePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_range", 373806689)
 
-    public val getInnerConeAnglePtr: VoidPtr =
+    internal val getInnerConeAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_inner_cone_angle", 191475506)
 
-    public val setInnerConeAnglePtr: VoidPtr =
+    internal val setInnerConeAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_inner_cone_angle", 373806689)
 
-    public val getOuterConeAnglePtr: VoidPtr =
+    internal val getOuterConeAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_outer_cone_angle", 191475506)
 
-    public val setOuterConeAnglePtr: VoidPtr =
+    internal val setOuterConeAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_outer_cone_angle", 373806689)
 
-    public val getAdditionalDataPtr: VoidPtr =
+    internal val getAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "get_additional_data", 2138907829)
 
-    public val setAdditionalDataPtr: VoidPtr =
+    internal val setAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
   }
 }

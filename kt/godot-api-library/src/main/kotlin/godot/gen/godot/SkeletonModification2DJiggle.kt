@@ -412,107 +412,107 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTargetNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_target_node", 4075236667)
 
-    public val setJiggleDataChainLengthPtr: VoidPtr =
+    internal val setJiggleDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_data_chain_length", 1286410249)
 
-    public val getJiggleDataChainLengthPtr: VoidPtr =
+    internal val getJiggleDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_data_chain_length", 2455072627)
 
-    public val setStiffnessPtr: VoidPtr =
+    internal val setStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_stiffness", 373806689)
 
-    public val getStiffnessPtr: VoidPtr =
+    internal val getStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_stiffness", 1740695150)
 
-    public val setMassPtr: VoidPtr =
+    internal val setMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_mass", 373806689)
 
-    public val getMassPtr: VoidPtr =
+    internal val getMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_mass", 1740695150)
 
-    public val setDampingPtr: VoidPtr =
+    internal val setDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_damping", 373806689)
 
-    public val getDampingPtr: VoidPtr =
+    internal val getDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_damping", 1740695150)
 
-    public val setUseGravityPtr: VoidPtr =
+    internal val setUseGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_use_gravity", 2586408642)
 
-    public val getUseGravityPtr: VoidPtr =
+    internal val getUseGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_use_gravity", 36873697)
 
-    public val setGravityPtr: VoidPtr =
+    internal val setGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_gravity", 743155724)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_gravity", 3341600327)
 
-    public val setUseCollidersPtr: VoidPtr =
+    internal val setUseCollidersPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_use_colliders", 2586408642)
 
-    public val getUseCollidersPtr: VoidPtr =
+    internal val getUseCollidersPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_use_colliders", 36873697)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_collision_mask", 3905245786)
 
-    public val setJiggleJointBone2dNodePtr: VoidPtr =
+    internal val setJiggleJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_bone2d_node", 2761262315)
 
-    public val getJiggleJointBone2dNodePtr: VoidPtr =
+    internal val getJiggleJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_bone2d_node", 408788394)
 
-    public val setJiggleJointBoneIndexPtr: VoidPtr =
+    internal val setJiggleJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_bone_index", 3937882851)
 
-    public val getJiggleJointBoneIndexPtr: VoidPtr =
+    internal val getJiggleJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_bone_index", 923996154)
 
-    public val setJiggleJointOverridePtr: VoidPtr =
+    internal val setJiggleJointOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_override", 300928843)
 
-    public val getJiggleJointOverridePtr: VoidPtr =
+    internal val getJiggleJointOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_override", 1116898809)
 
-    public val setJiggleJointStiffnessPtr: VoidPtr =
+    internal val setJiggleJointStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_stiffness", 1602489585)
 
-    public val getJiggleJointStiffnessPtr: VoidPtr =
+    internal val getJiggleJointStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_stiffness", 2339986948)
 
-    public val setJiggleJointMassPtr: VoidPtr =
+    internal val setJiggleJointMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_mass", 1602489585)
 
-    public val getJiggleJointMassPtr: VoidPtr =
+    internal val getJiggleJointMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_mass", 2339986948)
 
-    public val setJiggleJointDampingPtr: VoidPtr =
+    internal val setJiggleJointDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_damping", 1602489585)
 
-    public val getJiggleJointDampingPtr: VoidPtr =
+    internal val getJiggleJointDampingPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_damping", 2339986948)
 
-    public val setJiggleJointUseGravityPtr: VoidPtr =
+    internal val setJiggleJointUseGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_use_gravity", 300928843)
 
-    public val getJiggleJointUseGravityPtr: VoidPtr =
+    internal val getJiggleJointUseGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_use_gravity", 1116898809)
 
-    public val setJiggleJointGravityPtr: VoidPtr =
+    internal val setJiggleJointGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_gravity", 163021252)
 
-    public val getJiggleJointGravityPtr: VoidPtr =
+    internal val getJiggleJointGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DJiggle", "get_jiggle_joint_gravity", 2299179447)
   }
 }

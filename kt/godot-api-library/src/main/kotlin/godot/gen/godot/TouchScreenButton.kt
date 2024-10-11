@@ -288,62 +288,62 @@ public open class TouchScreenButton : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureNormalPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4051416890)
 
-    public val getTextureNormalPtr: VoidPtr =
+    internal val getTextureNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3635182373)
 
-    public val setTexturePressedPtr: VoidPtr =
+    internal val setTexturePressedPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4051416890)
 
-    public val getTexturePressedPtr: VoidPtr =
+    internal val getTexturePressedPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3635182373)
 
-    public val setBitmaskPtr: VoidPtr =
+    internal val setBitmaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698588216)
 
-    public val getBitmaskPtr: VoidPtr =
+    internal val getBitmaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2459671998)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_shape", 771364740)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_shape", 522005891)
 
-    public val setShapeCenteredPtr: VoidPtr =
+    internal val setShapeCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2586408642)
 
-    public val isShapeCenteredPtr: VoidPtr =
+    internal val isShapeCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36873697)
 
-    public val setShapeVisiblePtr: VoidPtr =
+    internal val setShapeVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2586408642)
 
-    public val isShapeVisiblePtr: VoidPtr =
+    internal val isShapeVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36873697)
 
-    public val setActionPtr: VoidPtr =
+    internal val setActionPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_action", 83702148)
 
-    public val getActionPtr: VoidPtr =
+    internal val getActionPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_action", 201670096)
 
-    public val setVisibilityModePtr: VoidPtr =
+    internal val setVisibilityModePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3031128463)
 
-    public val getVisibilityModePtr: VoidPtr =
+    internal val getVisibilityModePtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2558996468)
 
-    public val setPassbyPressPtr: VoidPtr =
+    internal val setPassbyPressPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2586408642)
 
-    public val isPassbyPressEnabledPtr: VoidPtr =
+    internal val isPassbyPressEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36873697)
 
-    public val isPressedPtr: VoidPtr =
+    internal val isPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("TouchScreenButton", "is_pressed", 36873697)
   }
 }

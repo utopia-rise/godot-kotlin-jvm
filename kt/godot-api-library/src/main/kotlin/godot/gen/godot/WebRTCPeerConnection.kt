@@ -360,41 +360,41 @@ public open class WebRTCPeerConnection : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val setDefaultExtensionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDefaultExtensionPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
 
-    public val initializePtr: VoidPtr =
+    internal val initializePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
 
-    public val createDataChannelPtr: VoidPtr =
+    internal val createDataChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "create_data_channel", 1288557393)
 
-    public val createOfferPtr: VoidPtr =
+    internal val createOfferPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "create_offer", 166280745)
 
-    public val setLocalDescriptionPtr: VoidPtr =
+    internal val setLocalDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "set_local_description", 852856452)
 
-    public val setRemoteDescriptionPtr: VoidPtr =
+    internal val setRemoteDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "set_remote_description", 852856452)
 
-    public val addIceCandidatePtr: VoidPtr =
+    internal val addIceCandidatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "add_ice_candidate", 3958950400)
 
-    public val pollPtr: VoidPtr =
+    internal val pollPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "poll", 166280745)
 
-    public val closePtr: VoidPtr =
+    internal val closePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "close", 3218959716)
 
-    public val getConnectionStatePtr: VoidPtr =
+    internal val getConnectionStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "get_connection_state", 2275710506)
 
-    public val getGatheringStatePtr: VoidPtr =
+    internal val getGatheringStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "get_gathering_state", 4262591401)
 
-    public val getSignalingStatePtr: VoidPtr =
+    internal val getSignalingStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
   }
 }

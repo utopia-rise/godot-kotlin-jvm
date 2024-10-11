@@ -191,41 +191,41 @@ public open class VisualInstance3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBasePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBasePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "set_base", 2722037293)
 
-    public val getBasePtr: VoidPtr =
+    internal val getBasePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_base", 2944877500)
 
-    public val getInstancePtr: VoidPtr =
+    internal val getInstancePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_instance", 2944877500)
 
-    public val setLayerMaskPtr: VoidPtr =
+    internal val setLayerMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "set_layer_mask", 1286410249)
 
-    public val getLayerMaskPtr: VoidPtr =
+    internal val getLayerMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_layer_mask", 3905245786)
 
-    public val setLayerMaskValuePtr: VoidPtr =
+    internal val setLayerMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value", 300928843)
 
-    public val getLayerMaskValuePtr: VoidPtr =
+    internal val getLayerMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value", 1116898809)
 
-    public val setSortingOffsetPtr: VoidPtr =
+    internal val setSortingOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "set_sorting_offset", 373806689)
 
-    public val getSortingOffsetPtr: VoidPtr =
+    internal val getSortingOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_sorting_offset", 1740695150)
 
-    public val setSortingUseAabbCenterPtr: VoidPtr =
+    internal val setSortingUseAabbCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center", 2586408642)
 
-    public val isSortingUseAabbCenterPtr: VoidPtr =
+    internal val isSortingUseAabbCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center", 36873697)
 
-    public val getAabbPtr: VoidPtr =
+    internal val getAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualInstance3D", "get_aabb", 1068685055)
   }
 }

@@ -106,20 +106,20 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     public final const val INVALID_ID: Long = -1
   }
 
-  internal object MethodBindings {
-    public val playStreamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val playStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "play_stream", 1846744803)
 
-    public val setStreamVolumePtr: VoidPtr =
+    internal val setStreamVolumePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_volume", 1602489585)
 
-    public val setStreamPitchScalePtr: VoidPtr =
+    internal val setStreamPitchScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_pitch_scale", 1602489585)
 
-    public val isStreamPlayingPtr: VoidPtr =
+    internal val isStreamPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "is_stream_playing", 1116898809)
 
-    public val stopStreamPtr: VoidPtr =
+    internal val stopStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "stop_stream", 1286410249)
   }
 }

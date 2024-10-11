@@ -373,89 +373,89 @@ public open class SystemFont : Font() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAntialiasingPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_antialiasing", 1669900)
 
-    public val getAntialiasingPtr: VoidPtr =
+    internal val getAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_antialiasing", 4262718649)
 
-    public val setDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val setDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2586408642)
 
-    public val getDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val getDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36873697)
 
-    public val setGenerateMipmapsPtr: VoidPtr =
+    internal val setGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2586408642)
 
-    public val getGenerateMipmapsPtr: VoidPtr =
+    internal val getGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36873697)
 
-    public val setAllowSystemFallbackPtr: VoidPtr =
+    internal val setAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2586408642)
 
-    public val isAllowSystemFallbackPtr: VoidPtr =
+    internal val isAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36873697)
 
-    public val setForceAutohinterPtr: VoidPtr =
+    internal val setForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_force_autohinter", 2586408642)
 
-    public val isForceAutohinterPtr: VoidPtr =
+    internal val isForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
 
-    public val setHintingPtr: VoidPtr =
+    internal val setHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)
 
-    public val getHintingPtr: VoidPtr =
+    internal val getHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_hinting", 3683214614)
 
-    public val setSubpixelPositioningPtr: VoidPtr =
+    internal val setSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4225742182)
 
-    public val getSubpixelPositioningPtr: VoidPtr =
+    internal val getSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
 
-    public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val setMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)
 
-    public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val isMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36873697)
 
-    public val setMsdfPixelRangePtr: VoidPtr =
+    internal val setMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1286410249)
 
-    public val getMsdfPixelRangePtr: VoidPtr =
+    internal val getMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3905245786)
 
-    public val setMsdfSizePtr: VoidPtr =
+    internal val setMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_msdf_size", 1286410249)
 
-    public val getMsdfSizePtr: VoidPtr =
+    internal val getMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_msdf_size", 3905245786)
 
-    public val setOversamplingPtr: VoidPtr =
+    internal val setOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_oversampling", 373806689)
 
-    public val getOversamplingPtr: VoidPtr =
+    internal val getOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_oversampling", 1740695150)
 
-    public val getFontNamesPtr: VoidPtr =
+    internal val getFontNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_font_names", 1139954409)
 
-    public val setFontNamesPtr: VoidPtr =
+    internal val setFontNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_font_names", 4015028928)
 
-    public val getFontItalicPtr: VoidPtr =
+    internal val getFontItalicPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "get_font_italic", 36873697)
 
-    public val setFontItalicPtr: VoidPtr =
+    internal val setFontItalicPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_font_italic", 2586408642)
 
-    public val setFontWeightPtr: VoidPtr =
+    internal val setFontWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_font_weight", 1286410249)
 
-    public val setFontStretchPtr: VoidPtr =
+    internal val setFontStretchPtr: VoidPtr =
         Internals.getMethodBindPtr("SystemFont", "set_font_stretch", 1286410249)
   }
 }

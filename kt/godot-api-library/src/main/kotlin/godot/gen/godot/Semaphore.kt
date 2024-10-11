@@ -65,11 +65,12 @@ public open class Semaphore : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val waitPtr: VoidPtr = Internals.getMethodBindPtr("Semaphore", "wait", 3218959716)
+  public object MethodBindings {
+    internal val waitPtr: VoidPtr = Internals.getMethodBindPtr("Semaphore", "wait", 3218959716)
 
-    public val tryWaitPtr: VoidPtr = Internals.getMethodBindPtr("Semaphore", "try_wait", 2240911060)
+    internal val tryWaitPtr: VoidPtr =
+        Internals.getMethodBindPtr("Semaphore", "try_wait", 2240911060)
 
-    public val postPtr: VoidPtr = Internals.getMethodBindPtr("Semaphore", "post", 3218959716)
+    internal val postPtr: VoidPtr = Internals.getMethodBindPtr("Semaphore", "post", 3218959716)
   }
 }

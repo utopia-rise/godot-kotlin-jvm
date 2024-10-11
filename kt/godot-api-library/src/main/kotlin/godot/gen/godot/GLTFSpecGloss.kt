@@ -197,35 +197,35 @@ public open class GLTFSpecGloss : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getDiffuseImgPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getDiffuseImgPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564927088)
 
-    public val setDiffuseImgPtr: VoidPtr =
+    internal val setDiffuseImgPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532598488)
 
-    public val getDiffuseFactorPtr: VoidPtr =
+    internal val getDiffuseFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3200896285)
 
-    public val setDiffuseFactorPtr: VoidPtr =
+    internal val setDiffuseFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2920490490)
 
-    public val getGlossFactorPtr: VoidPtr =
+    internal val getGlossFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191475506)
 
-    public val setGlossFactorPtr: VoidPtr =
+    internal val setGlossFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373806689)
 
-    public val getSpecularFactorPtr: VoidPtr =
+    internal val getSpecularFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3200896285)
 
-    public val setSpecularFactorPtr: VoidPtr =
+    internal val setSpecularFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2920490490)
 
-    public val getSpecGlossImgPtr: VoidPtr =
+    internal val getSpecGlossImgPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564927088)
 
-    public val setSpecGlossImgPtr: VoidPtr =
+    internal val setSpecGlossImgPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532598488)
   }
 }

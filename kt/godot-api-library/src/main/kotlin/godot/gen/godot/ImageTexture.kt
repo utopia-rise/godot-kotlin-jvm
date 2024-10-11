@@ -111,19 +111,20 @@ public open class ImageTexture : Texture2D() {
     }
   }
 
-  internal object MethodBindings {
-    public val createFromImagePtr: VoidPtr =
+  public object MethodBindings {
+    internal val createFromImagePtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
 
-    public val getFormatPtr: VoidPtr =
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
 
-    public val setImagePtr: VoidPtr =
+    internal val setImagePtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture", "set_image", 532598488)
 
-    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("ImageTexture", "update", 532598488)
+    internal val updatePtr: VoidPtr =
+        Internals.getMethodBindPtr("ImageTexture", "update", 532598488)
 
-    public val setSizeOverridePtr: VoidPtr =
+    internal val setSizeOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTexture", "set_size_override", 1130785943)
   }
 }

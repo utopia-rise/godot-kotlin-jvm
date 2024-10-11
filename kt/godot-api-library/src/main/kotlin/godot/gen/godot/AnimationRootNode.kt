@@ -33,5 +33,5 @@ public open class AnimationRootNode : AnimationNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

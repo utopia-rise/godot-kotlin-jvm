@@ -26,5 +26,5 @@ public open class Texture2DArrayRD : TextureLayeredRD() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

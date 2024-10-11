@@ -80,11 +80,11 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFunctionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIs", "set_function", 1438374690)
 
-    public val getFunctionPtr: VoidPtr =
+    internal val getFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIs", "get_function", 580678557)
   }
 }

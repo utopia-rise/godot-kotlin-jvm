@@ -111,28 +111,29 @@ public open class StreamPeerBuffer : StreamPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerBuffer", "seek", 1286410249)
+  public object MethodBindings {
+    internal val seekPtr: VoidPtr =
+        Internals.getMethodBindPtr("StreamPeerBuffer", "seek", 1286410249)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "get_size", 3905245786)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "get_position", 3905245786)
 
-    public val resizePtr: VoidPtr =
+    internal val resizePtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "resize", 1286410249)
 
-    public val setDataArrayPtr: VoidPtr =
+    internal val setDataArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "set_data_array", 2971499966)
 
-    public val getDataArrayPtr: VoidPtr =
+    internal val getDataArrayPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "get_data_array", 2362200018)
 
-    public val clearPtr: VoidPtr =
+    internal val clearPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "clear", 3218959716)
 
-    public val duplicatePtr: VoidPtr =
+    internal val duplicatePtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerBuffer", "duplicate", 2474064677)
   }
 }

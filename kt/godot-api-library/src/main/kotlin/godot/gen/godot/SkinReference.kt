@@ -60,11 +60,11 @@ public open class SkinReference internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSkeletonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("SkinReference", "get_skeleton", 2944877500)
 
-    public val getSkinPtr: VoidPtr =
+    internal val getSkinPtr: VoidPtr =
         Internals.getMethodBindPtr("SkinReference", "get_skin", 2074563878)
   }
 }

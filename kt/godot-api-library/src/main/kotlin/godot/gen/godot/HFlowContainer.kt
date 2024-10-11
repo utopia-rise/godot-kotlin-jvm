@@ -27,5 +27,5 @@ public open class HFlowContainer : FlowContainer() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

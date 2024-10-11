@@ -90,20 +90,20 @@ public open class Shortcut : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEventsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("Shortcut", "set_events", 381264803)
 
-    public val getEventsPtr: VoidPtr =
+    internal val getEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("Shortcut", "get_events", 3995934104)
 
-    public val hasValidEventPtr: VoidPtr =
+    internal val hasValidEventPtr: VoidPtr =
         Internals.getMethodBindPtr("Shortcut", "has_valid_event", 36873697)
 
-    public val matchesEventPtr: VoidPtr =
+    internal val matchesEventPtr: VoidPtr =
         Internals.getMethodBindPtr("Shortcut", "matches_event", 3738334489)
 
-    public val getAsTextPtr: VoidPtr =
+    internal val getAsTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Shortcut", "get_as_text", 201670096)
   }
 }

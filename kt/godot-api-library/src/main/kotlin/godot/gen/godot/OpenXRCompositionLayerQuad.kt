@@ -79,11 +79,11 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setQuadSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setQuadSizePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerQuad", "set_quad_size", 743155724)
 
-    public val getQuadSizePtr: VoidPtr =
+    internal val getQuadSizePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerQuad", "get_quad_size", 3341600327)
   }
 }

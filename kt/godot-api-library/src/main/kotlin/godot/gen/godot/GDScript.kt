@@ -47,7 +47,7 @@ public open class GDScript : Script() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val newPtr: VoidPtr = Internals.getMethodBindPtr("GDScript", "new", 1545262638)
+  public object MethodBindings {
+    internal val newPtr: VoidPtr = Internals.getMethodBindPtr("GDScript", "new", 1545262638)
   }
 }

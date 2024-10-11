@@ -21,6 +21,7 @@ internal object TypeManager {
         engineTypesConstructors.add(invocator)
         engineTypeNames.add(className)
         engineTypeToId[clazz] = engineTypeNames.size - 1
+        variantMapper[clazz] = VariantParser.OBJECT
     }
 
     fun registerSingleton(singletonName: String) {

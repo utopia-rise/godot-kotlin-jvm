@@ -320,52 +320,52 @@ public open class ConfigFile : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setValuePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "set_value", 2504492430)
 
-    public val getValuePtr: VoidPtr =
+    internal val getValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "get_value", 89809366)
 
-    public val hasSectionPtr: VoidPtr =
+    internal val hasSectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "has_section", 3927539163)
 
-    public val hasSectionKeyPtr: VoidPtr =
+    internal val hasSectionKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "has_section_key", 820780508)
 
-    public val getSectionsPtr: VoidPtr =
+    internal val getSectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "get_sections", 1139954409)
 
-    public val getSectionKeysPtr: VoidPtr =
+    internal val getSectionKeysPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "get_section_keys", 4291131558)
 
-    public val eraseSectionPtr: VoidPtr =
+    internal val eraseSectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "erase_section", 83702148)
 
-    public val eraseSectionKeyPtr: VoidPtr =
+    internal val eraseSectionKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "erase_section_key", 3186203200)
 
-    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "load", 166001499)
+    internal val loadPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "load", 166001499)
 
-    public val parsePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "parse", 166001499)
+    internal val parsePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "parse", 166001499)
 
-    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "save", 166001499)
+    internal val savePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "save", 166001499)
 
-    public val encodeToTextPtr: VoidPtr =
+    internal val encodeToTextPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "encode_to_text", 201670096)
 
-    public val loadEncryptedPtr: VoidPtr =
+    internal val loadEncryptedPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "load_encrypted", 887037711)
 
-    public val loadEncryptedPassPtr: VoidPtr =
+    internal val loadEncryptedPassPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852856452)
 
-    public val saveEncryptedPtr: VoidPtr =
+    internal val saveEncryptedPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "save_encrypted", 887037711)
 
-    public val saveEncryptedPassPtr: VoidPtr =
+    internal val saveEncryptedPassPtr: VoidPtr =
         Internals.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852856452)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "clear", 3218959716)
   }
 }

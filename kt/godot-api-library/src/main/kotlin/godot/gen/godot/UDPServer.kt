@@ -255,29 +255,29 @@ public open class UDPServer : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val listenPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "listen", 3167955072)
+  public object MethodBindings {
+    internal val listenPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "listen", 3167955072)
 
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "poll", 166280745)
+    internal val pollPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "poll", 166280745)
 
-    public val isConnectionAvailablePtr: VoidPtr =
+    internal val isConnectionAvailablePtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "is_connection_available", 36873697)
 
-    public val getLocalPortPtr: VoidPtr =
+    internal val getLocalPortPtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "get_local_port", 3905245786)
 
-    public val isListeningPtr: VoidPtr =
+    internal val isListeningPtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "is_listening", 36873697)
 
-    public val takeConnectionPtr: VoidPtr =
+    internal val takeConnectionPtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "take_connection", 808734560)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "stop", 3218959716)
 
-    public val setMaxPendingConnectionsPtr: VoidPtr =
+    internal val setMaxPendingConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "set_max_pending_connections", 1286410249)
 
-    public val getMaxPendingConnectionsPtr: VoidPtr =
+    internal val getMaxPendingConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("UDPServer", "get_max_pending_connections", 3905245786)
   }
 }

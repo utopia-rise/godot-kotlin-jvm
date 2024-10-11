@@ -80,16 +80,17 @@ public open class StreamPeerGZIP : StreamPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val startCompressionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val startCompressionPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerGZIP", "start_compression", 781582770)
 
-    public val startDecompressionPtr: VoidPtr =
+    internal val startDecompressionPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerGZIP", "start_decompression", 781582770)
 
-    public val finishPtr: VoidPtr =
+    internal val finishPtr: VoidPtr =
         Internals.getMethodBindPtr("StreamPeerGZIP", "finish", 166280745)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerGZIP", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        Internals.getMethodBindPtr("StreamPeerGZIP", "clear", 3218959716)
   }
 }

@@ -69,17 +69,17 @@ public open class AudioListener3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val makeCurrentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val makeCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener3D", "make_current", 3218959716)
 
-    public val clearCurrentPtr: VoidPtr =
+    internal val clearCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener3D", "clear_current", 3218959716)
 
-    public val isCurrentPtr: VoidPtr =
+    internal val isCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener3D", "is_current", 36873697)
 
-    public val getListenerTransformPtr: VoidPtr =
+    internal val getListenerTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3229777777)
   }
 }

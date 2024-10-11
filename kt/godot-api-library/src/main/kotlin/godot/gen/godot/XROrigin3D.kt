@@ -90,17 +90,17 @@ public open class XROrigin3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setWorldScalePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setWorldScalePtr: VoidPtr =
         Internals.getMethodBindPtr("XROrigin3D", "set_world_scale", 373806689)
 
-    public val getWorldScalePtr: VoidPtr =
+    internal val getWorldScalePtr: VoidPtr =
         Internals.getMethodBindPtr("XROrigin3D", "get_world_scale", 1740695150)
 
-    public val setCurrentPtr: VoidPtr =
+    internal val setCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("XROrigin3D", "set_current", 2586408642)
 
-    public val isCurrentPtr: VoidPtr =
+    internal val isCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("XROrigin3D", "is_current", 36873697)
   }
 }

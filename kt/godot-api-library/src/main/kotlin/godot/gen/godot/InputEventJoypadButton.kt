@@ -93,20 +93,20 @@ public open class InputEventJoypadButton : InputEvent() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setButtonIndexPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setButtonIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventJoypadButton", "set_button_index", 1466368136)
 
-    public val getButtonIndexPtr: VoidPtr =
+    internal val getButtonIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventJoypadButton", "get_button_index", 595588182)
 
-    public val setPressurePtr: VoidPtr =
+    internal val setPressurePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventJoypadButton", "set_pressure", 373806689)
 
-    public val getPressurePtr: VoidPtr =
+    internal val getPressurePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventJoypadButton", "get_pressure", 1740695150)
 
-    public val setPressedPtr: VoidPtr =
+    internal val setPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventJoypadButton", "set_pressed", 2586408642)
   }
 }

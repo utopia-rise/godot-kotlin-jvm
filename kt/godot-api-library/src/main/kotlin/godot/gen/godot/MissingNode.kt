@@ -103,23 +103,23 @@ public open class MissingNode : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOriginalClassPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOriginalClassPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "set_original_class", 83702148)
 
-    public val getOriginalClassPtr: VoidPtr =
+    internal val getOriginalClassPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "get_original_class", 201670096)
 
-    public val setOriginalScenePtr: VoidPtr =
+    internal val setOriginalScenePtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "set_original_scene", 83702148)
 
-    public val getOriginalScenePtr: VoidPtr =
+    internal val getOriginalScenePtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "get_original_scene", 201670096)
 
-    public val setRecordingPropertiesPtr: VoidPtr =
+    internal val setRecordingPropertiesPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "set_recording_properties", 2586408642)
 
-    public val isRecordingPropertiesPtr: VoidPtr =
+    internal val isRecordingPropertiesPtr: VoidPtr =
         Internals.getMethodBindPtr("MissingNode", "is_recording_properties", 36873697)
   }
 }

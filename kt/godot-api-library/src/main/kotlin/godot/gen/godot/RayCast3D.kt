@@ -500,110 +500,110 @@ public open class RayCast3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr =
+    internal val isEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_enabled", 36873697)
 
-    public val setTargetPositionPtr: VoidPtr =
+    internal val setTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_target_position", 3460891852)
 
-    public val getTargetPositionPtr: VoidPtr =
+    internal val getTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_target_position", 3360562783)
 
-    public val isCollidingPtr: VoidPtr =
+    internal val isCollidingPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_colliding", 36873697)
 
-    public val forceRaycastUpdatePtr: VoidPtr =
+    internal val forceRaycastUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "force_raycast_update", 3218959716)
 
-    public val getColliderPtr: VoidPtr =
+    internal val getColliderPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collider", 1981248198)
 
-    public val getColliderRidPtr: VoidPtr =
+    internal val getColliderRidPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collider_rid", 2944877500)
 
-    public val getColliderShapePtr: VoidPtr =
+    internal val getColliderShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collider_shape", 3905245786)
 
-    public val getCollisionPointPtr: VoidPtr =
+    internal val getCollisionPointPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collision_point", 3360562783)
 
-    public val getCollisionNormalPtr: VoidPtr =
+    internal val getCollisionNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collision_normal", 3360562783)
 
-    public val getCollisionFaceIndexPtr: VoidPtr =
+    internal val getCollisionFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collision_face_index", 3905245786)
 
-    public val addExceptionRidPtr: VoidPtr =
+    internal val addExceptionRidPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "add_exception_rid", 2722037293)
 
-    public val addExceptionPtr: VoidPtr =
+    internal val addExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "add_exception", 1976431078)
 
-    public val removeExceptionRidPtr: VoidPtr =
+    internal val removeExceptionRidPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "remove_exception_rid", 2722037293)
 
-    public val removeExceptionPtr: VoidPtr =
+    internal val removeExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "remove_exception", 1976431078)
 
-    public val clearExceptionsPtr: VoidPtr =
+    internal val clearExceptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "clear_exceptions", 3218959716)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collision_mask", 3905245786)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_collision_mask_value", 1116898809)
 
-    public val setExcludeParentBodyPtr: VoidPtr =
+    internal val setExcludeParentBodyPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_exclude_parent_body", 2586408642)
 
-    public val getExcludeParentBodyPtr: VoidPtr =
+    internal val getExcludeParentBodyPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_exclude_parent_body", 36873697)
 
-    public val setCollideWithAreasPtr: VoidPtr =
+    internal val setCollideWithAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_collide_with_areas", 2586408642)
 
-    public val isCollideWithAreasEnabledPtr: VoidPtr =
+    internal val isCollideWithAreasEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_collide_with_areas_enabled", 36873697)
 
-    public val setCollideWithBodiesPtr: VoidPtr =
+    internal val setCollideWithBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_collide_with_bodies", 2586408642)
 
-    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+    internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_collide_with_bodies_enabled", 36873697)
 
-    public val setHitFromInsidePtr: VoidPtr =
+    internal val setHitFromInsidePtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_hit_from_inside", 2586408642)
 
-    public val isHitFromInsideEnabledPtr: VoidPtr =
+    internal val isHitFromInsideEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_hit_from_inside_enabled", 36873697)
 
-    public val setHitBackFacesPtr: VoidPtr =
+    internal val setHitBackFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_hit_back_faces", 2586408642)
 
-    public val isHitBackFacesEnabledPtr: VoidPtr =
+    internal val isHitBackFacesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "is_hit_back_faces_enabled", 36873697)
 
-    public val setDebugShapeCustomColorPtr: VoidPtr =
+    internal val setDebugShapeCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_debug_shape_custom_color", 2920490490)
 
-    public val getDebugShapeCustomColorPtr: VoidPtr =
+    internal val getDebugShapeCustomColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_debug_shape_custom_color", 3444240500)
 
-    public val setDebugShapeThicknessPtr: VoidPtr =
+    internal val setDebugShapeThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "set_debug_shape_thickness", 1286410249)
 
-    public val getDebugShapeThicknessPtr: VoidPtr =
+    internal val getDebugShapeThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("RayCast3D", "get_debug_shape_thickness", 3905245786)
   }
 }

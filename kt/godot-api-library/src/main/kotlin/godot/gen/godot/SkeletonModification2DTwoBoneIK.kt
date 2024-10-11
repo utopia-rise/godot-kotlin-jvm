@@ -210,53 +210,53 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTargetNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_node", 4075236667)
 
-    public val setTargetMinimumDistancePtr: VoidPtr =
+    internal val setTargetMinimumDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_minimum_distance", 373806689)
 
-    public val getTargetMinimumDistancePtr: VoidPtr =
+    internal val getTargetMinimumDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_minimum_distance", 1740695150)
 
-    public val setTargetMaximumDistancePtr: VoidPtr =
+    internal val setTargetMaximumDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_maximum_distance", 373806689)
 
-    public val getTargetMaximumDistancePtr: VoidPtr =
+    internal val getTargetMaximumDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_maximum_distance", 1740695150)
 
-    public val setFlipBendDirectionPtr: VoidPtr =
+    internal val setFlipBendDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_flip_bend_direction", 2586408642)
 
-    public val getFlipBendDirectionPtr: VoidPtr =
+    internal val getFlipBendDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_flip_bend_direction", 36873697)
 
-    public val setJointOneBone2dNodePtr: VoidPtr =
+    internal val setJointOneBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone2d_node", 1348162250)
 
-    public val getJointOneBone2dNodePtr: VoidPtr =
+    internal val getJointOneBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone2d_node", 4075236667)
 
-    public val setJointOneBoneIdxPtr: VoidPtr =
+    internal val setJointOneBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone_idx", 1286410249)
 
-    public val getJointOneBoneIdxPtr: VoidPtr =
+    internal val getJointOneBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone_idx", 3905245786)
 
-    public val setJointTwoBone2dNodePtr: VoidPtr =
+    internal val setJointTwoBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone2d_node", 1348162250)
 
-    public val getJointTwoBone2dNodePtr: VoidPtr =
+    internal val getJointTwoBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone2d_node", 4075236667)
 
-    public val setJointTwoBoneIdxPtr: VoidPtr =
+    internal val setJointTwoBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone_idx", 1286410249)
 
-    public val getJointTwoBoneIdxPtr: VoidPtr =
+    internal val getJointTwoBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone_idx", 3905245786)
   }
 }

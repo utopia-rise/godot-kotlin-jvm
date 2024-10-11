@@ -177,35 +177,35 @@ public open class StyleBoxLine : StyleBox() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setColorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "get_color", 3444240500)
 
-    public val setThicknessPtr: VoidPtr =
+    internal val setThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "set_thickness", 1286410249)
 
-    public val getThicknessPtr: VoidPtr =
+    internal val getThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "get_thickness", 3905245786)
 
-    public val setGrowBeginPtr: VoidPtr =
+    internal val setGrowBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373806689)
 
-    public val getGrowBeginPtr: VoidPtr =
+    internal val getGrowBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1740695150)
 
-    public val setGrowEndPtr: VoidPtr =
+    internal val setGrowEndPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373806689)
 
-    public val getGrowEndPtr: VoidPtr =
+    internal val getGrowEndPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1740695150)
 
-    public val setVerticalPtr: VoidPtr =
+    internal val setVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "set_vertical", 2586408642)
 
-    public val isVerticalPtr: VoidPtr =
+    internal val isVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxLine", "is_vertical", 36873697)
   }
 }

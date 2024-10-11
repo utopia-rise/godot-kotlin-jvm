@@ -126,26 +126,26 @@ public object ResourceUID : Object() {
     Internals.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)
   }
 
-  internal object MethodBindings {
-    public val idToTextPtr: VoidPtr =
+  public object MethodBindings {
+    internal val idToTextPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceUID", "id_to_text", 844755477)
 
-    public val textToIdPtr: VoidPtr =
+    internal val textToIdPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceUID", "text_to_id", 1321353865)
 
-    public val createIdPtr: VoidPtr =
+    internal val createIdPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceUID", "create_id", 2455072627)
 
-    public val hasIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "has_id", 1116898809)
+    internal val hasIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "has_id", 1116898809)
 
-    public val addIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "add_id", 501894301)
+    internal val addIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "add_id", 501894301)
 
-    public val setIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "set_id", 501894301)
+    internal val setIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "set_id", 501894301)
 
-    public val getIdPathPtr: VoidPtr =
+    internal val getIdPathPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceUID", "get_id_path", 844755477)
 
-    public val removeIdPtr: VoidPtr =
+    internal val removeIdPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceUID", "remove_id", 1286410249)
   }
 }

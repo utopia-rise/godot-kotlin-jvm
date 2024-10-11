@@ -28,5 +28,5 @@ public open class VisualShaderNodeOuterProduct : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

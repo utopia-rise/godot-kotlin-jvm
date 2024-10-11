@@ -557,138 +557,138 @@ public open class Label : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHorizontalAlignmentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_horizontal_alignment", 2312603777)
 
-    public val getHorizontalAlignmentPtr: VoidPtr =
+    internal val getHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_horizontal_alignment", 341400642)
 
-    public val setVerticalAlignmentPtr: VoidPtr =
+    internal val setVerticalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_vertical_alignment", 1796458609)
 
-    public val getVerticalAlignmentPtr: VoidPtr =
+    internal val getVerticalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_vertical_alignment", 3274884059)
 
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "set_text", 83702148)
+    internal val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "get_text", 201670096)
 
-    public val setLabelSettingsPtr: VoidPtr =
+    internal val setLabelSettingsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_label_settings", 1030653839)
 
-    public val getLabelSettingsPtr: VoidPtr =
+    internal val getLabelSettingsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_label_settings", 826676056)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_language", 201670096)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
 
-    public val setJustificationFlagsPtr: VoidPtr =
+    internal val setJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_justification_flags", 2877345813)
 
-    public val getJustificationFlagsPtr: VoidPtr =
+    internal val getJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_justification_flags", 1583363614)
 
-    public val setClipTextPtr: VoidPtr =
+    internal val setClipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_clip_text", 2586408642)
 
-    public val isClippingTextPtr: VoidPtr =
+    internal val isClippingTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "is_clipping_text", 36873697)
 
-    public val setTabStopsPtr: VoidPtr =
+    internal val setTabStopsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_tab_stops", 2899603908)
 
-    public val getTabStopsPtr: VoidPtr =
+    internal val getTabStopsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_tab_stops", 675695659)
 
-    public val setTextOverrunBehaviorPtr: VoidPtr =
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_text_overrun_behavior", 1008890932)
 
-    public val getTextOverrunBehaviorPtr: VoidPtr =
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_text_overrun_behavior", 3779142101)
 
-    public val setEllipsisCharPtr: VoidPtr =
+    internal val setEllipsisCharPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_ellipsis_char", 83702148)
 
-    public val getEllipsisCharPtr: VoidPtr =
+    internal val getEllipsisCharPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_ellipsis_char", 201670096)
 
-    public val setUppercasePtr: VoidPtr =
+    internal val setUppercasePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_uppercase", 2586408642)
 
-    public val isUppercasePtr: VoidPtr =
+    internal val isUppercasePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "is_uppercase", 36873697)
 
-    public val getLineHeightPtr: VoidPtr =
+    internal val getLineHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_line_height", 181039630)
 
-    public val getLineCountPtr: VoidPtr =
+    internal val getLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_line_count", 3905245786)
 
-    public val getVisibleLineCountPtr: VoidPtr =
+    internal val getVisibleLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_visible_line_count", 3905245786)
 
-    public val getTotalCharacterCountPtr: VoidPtr =
+    internal val getTotalCharacterCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_total_character_count", 3905245786)
 
-    public val setVisibleCharactersPtr: VoidPtr =
+    internal val setVisibleCharactersPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_visible_characters", 1286410249)
 
-    public val getVisibleCharactersPtr: VoidPtr =
+    internal val getVisibleCharactersPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_visible_characters", 3905245786)
 
-    public val getVisibleCharactersBehaviorPtr: VoidPtr =
+    internal val getVisibleCharactersBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_visible_characters_behavior", 258789322)
 
-    public val setVisibleCharactersBehaviorPtr: VoidPtr =
+    internal val setVisibleCharactersBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_visible_characters_behavior", 3383839701)
 
-    public val setVisibleRatioPtr: VoidPtr =
+    internal val setVisibleRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_visible_ratio", 373806689)
 
-    public val getVisibleRatioPtr: VoidPtr =
+    internal val getVisibleRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_visible_ratio", 1740695150)
 
-    public val setLinesSkippedPtr: VoidPtr =
+    internal val setLinesSkippedPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_lines_skipped", 1286410249)
 
-    public val getLinesSkippedPtr: VoidPtr =
+    internal val getLinesSkippedPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_lines_skipped", 3905245786)
 
-    public val setMaxLinesVisiblePtr: VoidPtr =
+    internal val setMaxLinesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_max_lines_visible", 1286410249)
 
-    public val getMaxLinesVisiblePtr: VoidPtr =
+    internal val getMaxLinesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_max_lines_visible", 3905245786)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55961453)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3385126229)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381264803)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3995934104)
 
-    public val getCharacterBoundsPtr: VoidPtr =
+    internal val getCharacterBoundsPtr: VoidPtr =
         Internals.getMethodBindPtr("Label", "get_character_bounds", 3327874267)
   }
 }

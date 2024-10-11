@@ -154,35 +154,35 @@ public open class LightmapGIData : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLightmapTexturesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLightmapTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "set_lightmap_textures", 381264803)
 
-    public val getLightmapTexturesPtr: VoidPtr =
+    internal val getLightmapTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "get_lightmap_textures", 3995934104)
 
-    public val setUsesSphericalHarmonicsPtr: VoidPtr =
+    internal val setUsesSphericalHarmonicsPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "set_uses_spherical_harmonics", 2586408642)
 
-    public val isUsingSphericalHarmonicsPtr: VoidPtr =
+    internal val isUsingSphericalHarmonicsPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "is_using_spherical_harmonics", 36873697)
 
-    public val addUserPtr: VoidPtr =
+    internal val addUserPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "add_user", 4272570515)
 
-    public val getUserCountPtr: VoidPtr =
+    internal val getUserCountPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "get_user_count", 3905245786)
 
-    public val getUserPathPtr: VoidPtr =
+    internal val getUserPathPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "get_user_path", 408788394)
 
-    public val clearUsersPtr: VoidPtr =
+    internal val clearUsersPtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "clear_users", 3218959716)
 
-    public val setLightTexturePtr: VoidPtr =
+    internal val setLightTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "set_light_texture", 1278366092)
 
-    public val getLightTexturePtr: VoidPtr =
+    internal val getLightTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("LightmapGIData", "get_light_texture", 3984243839)
   }
 }

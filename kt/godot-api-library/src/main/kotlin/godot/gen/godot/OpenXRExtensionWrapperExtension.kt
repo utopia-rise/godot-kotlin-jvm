@@ -232,11 +232,11 @@ public open class OpenXRExtensionWrapperExtension : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getOpenxrApiPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getOpenxrApiPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api", 1637791613)
 
-    public val registerExtensionWrapperPtr: VoidPtr =
+    internal val registerExtensionWrapperPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRExtensionWrapperExtension", "register_extension_wrapper", 3218959716)
   }
 }

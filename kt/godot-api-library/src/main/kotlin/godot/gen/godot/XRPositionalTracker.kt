@@ -227,35 +227,35 @@ public open class XRPositionalTracker : XRTracker() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTrackerProfilePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTrackerProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201670096)
 
-    public val setTrackerProfilePtr: VoidPtr =
+    internal val setTrackerProfilePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83702148)
 
-    public val getTrackerHandPtr: VoidPtr =
+    internal val getTrackerHandPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4181770860)
 
-    public val setTrackerHandPtr: VoidPtr =
+    internal val setTrackerHandPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3904108980)
 
-    public val hasPosePtr: VoidPtr =
+    internal val hasPosePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "has_pose", 2619796661)
 
-    public val getPosePtr: VoidPtr =
+    internal val getPosePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "get_pose", 4099720006)
 
-    public val invalidatePosePtr: VoidPtr =
+    internal val invalidatePosePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3304788590)
 
-    public val setPosePtr: VoidPtr =
+    internal val setPosePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "set_pose", 3451230163)
 
-    public val getInputPtr: VoidPtr =
+    internal val getInputPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "get_input", 2760726917)
 
-    public val setInputPtr: VoidPtr =
+    internal val setInputPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPositionalTracker", "set_input", 3776071444)
   }
 }

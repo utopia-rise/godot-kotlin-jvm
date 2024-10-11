@@ -323,83 +323,83 @@ public open class AudioEffectDelay : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDryPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_dry", 373806689)
 
-    public val getDryPtr: VoidPtr =
+    internal val getDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_dry", 191475506)
 
-    public val setTap1ActivePtr: VoidPtr =
+    internal val setTap1ActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2586408642)
 
-    public val isTap1ActivePtr: VoidPtr =
+    internal val isTap1ActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36873697)
 
-    public val setTap1DelayMsPtr: VoidPtr =
+    internal val setTap1DelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373806689)
 
-    public val getTap1DelayMsPtr: VoidPtr =
+    internal val getTap1DelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1740695150)
 
-    public val setTap1LevelDbPtr: VoidPtr =
+    internal val setTap1LevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373806689)
 
-    public val getTap1LevelDbPtr: VoidPtr =
+    internal val getTap1LevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1740695150)
 
-    public val setTap1PanPtr: VoidPtr =
+    internal val setTap1PanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373806689)
 
-    public val getTap1PanPtr: VoidPtr =
+    internal val getTap1PanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1740695150)
 
-    public val setTap2ActivePtr: VoidPtr =
+    internal val setTap2ActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2586408642)
 
-    public val isTap2ActivePtr: VoidPtr =
+    internal val isTap2ActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36873697)
 
-    public val setTap2DelayMsPtr: VoidPtr =
+    internal val setTap2DelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373806689)
 
-    public val getTap2DelayMsPtr: VoidPtr =
+    internal val getTap2DelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1740695150)
 
-    public val setTap2LevelDbPtr: VoidPtr =
+    internal val setTap2LevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373806689)
 
-    public val getTap2LevelDbPtr: VoidPtr =
+    internal val getTap2LevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1740695150)
 
-    public val setTap2PanPtr: VoidPtr =
+    internal val setTap2PanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373806689)
 
-    public val getTap2PanPtr: VoidPtr =
+    internal val getTap2PanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1740695150)
 
-    public val setFeedbackActivePtr: VoidPtr =
+    internal val setFeedbackActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2586408642)
 
-    public val isFeedbackActivePtr: VoidPtr =
+    internal val isFeedbackActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36873697)
 
-    public val setFeedbackDelayMsPtr: VoidPtr =
+    internal val setFeedbackDelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373806689)
 
-    public val getFeedbackDelayMsPtr: VoidPtr =
+    internal val getFeedbackDelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1740695150)
 
-    public val setFeedbackLevelDbPtr: VoidPtr =
+    internal val setFeedbackLevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373806689)
 
-    public val getFeedbackLevelDbPtr: VoidPtr =
+    internal val getFeedbackLevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1740695150)
 
-    public val setFeedbackLowpassPtr: VoidPtr =
+    internal val setFeedbackLowpassPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373806689)
 
-    public val getFeedbackLowpassPtr: VoidPtr =
+    internal val getFeedbackLowpassPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1740695150)
   }
 }

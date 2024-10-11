@@ -47,8 +47,8 @@ public open class CallbackTweener : Tweener() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDelayPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("CallbackTweener", "set_delay", 3008182292)
   }
 }

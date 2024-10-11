@@ -152,23 +152,23 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val intersectPointPtr: VoidPtr =
+  public object MethodBindings {
+    internal val intersectPointPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_point", 975173756)
 
-    public val intersectRayPtr: VoidPtr =
+    internal val intersectRayPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_ray", 3957970750)
 
-    public val intersectShapePtr: VoidPtr =
+    internal val intersectShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_shape", 3762137681)
 
-    public val castMotionPtr: VoidPtr =
+    internal val castMotionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "cast_motion", 1778757334)
 
-    public val collideShapePtr: VoidPtr =
+    internal val collideShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "collide_shape", 3762137681)
 
-    public val getRestInfoPtr: VoidPtr =
+    internal val getRestInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "get_rest_info", 1376751592)
   }
 }

@@ -177,38 +177,38 @@ public open class MultiplayerSpawner : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addSpawnableScenePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addSpawnableScenePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "add_spawnable_scene", 83702148)
 
-    public val getSpawnableSceneCountPtr: VoidPtr =
+    internal val getSpawnableSceneCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene_count", 3905245786)
 
-    public val getSpawnableScenePtr: VoidPtr =
+    internal val getSpawnableScenePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene", 844755477)
 
-    public val clearSpawnableScenesPtr: VoidPtr =
+    internal val clearSpawnableScenesPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "clear_spawnable_scenes", 3218959716)
 
-    public val spawnPtr: VoidPtr =
+    internal val spawnPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "spawn", 1991184589)
 
-    public val getSpawnPathPtr: VoidPtr =
+    internal val getSpawnPathPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "get_spawn_path", 4075236667)
 
-    public val setSpawnPathPtr: VoidPtr =
+    internal val setSpawnPathPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "set_spawn_path", 1348162250)
 
-    public val getSpawnLimitPtr: VoidPtr =
+    internal val getSpawnLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "get_spawn_limit", 3905245786)
 
-    public val setSpawnLimitPtr: VoidPtr =
+    internal val setSpawnLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "set_spawn_limit", 1286410249)
 
-    public val getSpawnFunctionPtr: VoidPtr =
+    internal val getSpawnFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "get_spawn_function", 1307783378)
 
-    public val setSpawnFunctionPtr: VoidPtr =
+    internal val setSpawnFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerSpawner", "set_spawn_function", 1611583062)
   }
 }

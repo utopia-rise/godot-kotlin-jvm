@@ -105,11 +105,12 @@ public open class HMACContext : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val startPtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "start", 3537364598)
+  public object MethodBindings {
+    internal val startPtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "start", 3537364598)
 
-    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "update", 680677267)
+    internal val updatePtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "update", 680677267)
 
-    public val finishPtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "finish", 2115431945)
+    internal val finishPtr: VoidPtr =
+        Internals.getMethodBindPtr("HMACContext", "finish", 2115431945)
   }
 }

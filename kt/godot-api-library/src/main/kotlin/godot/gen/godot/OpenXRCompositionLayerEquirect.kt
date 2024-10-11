@@ -146,35 +146,35 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_radius", 1740695150)
 
-    public val setCentralHorizontalAnglePtr: VoidPtr =
+    internal val setCentralHorizontalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_central_horizontal_angle", 373806689)
 
-    public val getCentralHorizontalAnglePtr: VoidPtr =
+    internal val getCentralHorizontalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_central_horizontal_angle", 1740695150)
 
-    public val setUpperVerticalAnglePtr: VoidPtr =
+    internal val setUpperVerticalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_upper_vertical_angle", 373806689)
 
-    public val getUpperVerticalAnglePtr: VoidPtr =
+    internal val getUpperVerticalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_upper_vertical_angle", 1740695150)
 
-    public val setLowerVerticalAnglePtr: VoidPtr =
+    internal val setLowerVerticalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_lower_vertical_angle", 373806689)
 
-    public val getLowerVerticalAnglePtr: VoidPtr =
+    internal val getLowerVerticalAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_lower_vertical_angle", 1740695150)
 
-    public val setFallbackSegmentsPtr: VoidPtr =
+    internal val setFallbackSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_fallback_segments", 1286410249)
 
-    public val getFallbackSegmentsPtr: VoidPtr =
+    internal val getFallbackSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_fallback_segments", 3905245786)
   }
 }

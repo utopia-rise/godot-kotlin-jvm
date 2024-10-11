@@ -525,109 +525,111 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val openPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "open", 1923528528)
+  public object MethodBindings {
+    internal val openPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "open", 1923528528)
 
-    public val getOpenErrorPtr: VoidPtr =
+    internal val getOpenErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_open_error", 166280745)
 
-    public val listDirBeginPtr: VoidPtr =
+    internal val listDirBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "list_dir_begin", 2610976713)
 
-    public val getNextPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "get_next", 2841200299)
+    internal val getNextPtr: VoidPtr =
+        Internals.getMethodBindPtr("DirAccess", "get_next", 2841200299)
 
-    public val currentIsDirPtr: VoidPtr =
+    internal val currentIsDirPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "current_is_dir", 36873697)
 
-    public val listDirEndPtr: VoidPtr =
+    internal val listDirEndPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "list_dir_end", 3218959716)
 
-    public val getFilesPtr: VoidPtr =
+    internal val getFilesPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_files", 2981934095)
 
-    public val getFilesAtPtr: VoidPtr =
+    internal val getFilesAtPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_files_at", 3538744774)
 
-    public val getDirectoriesPtr: VoidPtr =
+    internal val getDirectoriesPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_directories", 2981934095)
 
-    public val getDirectoriesAtPtr: VoidPtr =
+    internal val getDirectoriesAtPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_directories_at", 3538744774)
 
-    public val getDriveCountPtr: VoidPtr =
+    internal val getDriveCountPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_drive_count", 2455072627)
 
-    public val getDriveNamePtr: VoidPtr =
+    internal val getDriveNamePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_drive_name", 990163283)
 
-    public val getCurrentDrivePtr: VoidPtr =
+    internal val getCurrentDrivePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_current_drive", 2455072627)
 
-    public val changeDirPtr: VoidPtr =
+    internal val changeDirPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "change_dir", 166001499)
 
-    public val getCurrentDirPtr: VoidPtr =
+    internal val getCurrentDirPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_current_dir", 1287308131)
 
-    public val makeDirPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "make_dir", 166001499)
+    internal val makeDirPtr: VoidPtr =
+        Internals.getMethodBindPtr("DirAccess", "make_dir", 166001499)
 
-    public val makeDirAbsolutePtr: VoidPtr =
+    internal val makeDirAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "make_dir_absolute", 166001499)
 
-    public val makeDirRecursivePtr: VoidPtr =
+    internal val makeDirRecursivePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "make_dir_recursive", 166001499)
 
-    public val makeDirRecursiveAbsolutePtr: VoidPtr =
+    internal val makeDirRecursiveAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "make_dir_recursive_absolute", 166001499)
 
-    public val fileExistsPtr: VoidPtr =
+    internal val fileExistsPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "file_exists", 2323990056)
 
-    public val dirExistsPtr: VoidPtr =
+    internal val dirExistsPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "dir_exists", 2323990056)
 
-    public val dirExistsAbsolutePtr: VoidPtr =
+    internal val dirExistsAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "dir_exists_absolute", 2323990056)
 
-    public val getSpaceLeftPtr: VoidPtr =
+    internal val getSpaceLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_space_left", 2455072627)
 
-    public val copyPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "copy", 1063198817)
+    internal val copyPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "copy", 1063198817)
 
-    public val copyAbsolutePtr: VoidPtr =
+    internal val copyAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "copy_absolute", 1063198817)
 
-    public val renamePtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "rename", 852856452)
+    internal val renamePtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "rename", 852856452)
 
-    public val renameAbsolutePtr: VoidPtr =
+    internal val renameAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "rename_absolute", 852856452)
 
-    public val removePtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "remove", 166001499)
+    internal val removePtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "remove", 166001499)
 
-    public val removeAbsolutePtr: VoidPtr =
+    internal val removeAbsolutePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "remove_absolute", 166001499)
 
-    public val isLinkPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "is_link", 2323990056)
+    internal val isLinkPtr: VoidPtr = Internals.getMethodBindPtr("DirAccess", "is_link", 2323990056)
 
-    public val readLinkPtr: VoidPtr =
+    internal val readLinkPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "read_link", 1703090593)
 
-    public val createLinkPtr: VoidPtr =
+    internal val createLinkPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "create_link", 852856452)
 
-    public val setIncludeNavigationalPtr: VoidPtr =
+    internal val setIncludeNavigationalPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "set_include_navigational", 2586408642)
 
-    public val getIncludeNavigationalPtr: VoidPtr =
+    internal val getIncludeNavigationalPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_include_navigational", 36873697)
 
-    public val setIncludeHiddenPtr: VoidPtr =
+    internal val setIncludeHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "set_include_hidden", 2586408642)
 
-    public val getIncludeHiddenPtr: VoidPtr =
+    internal val getIncludeHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "get_include_hidden", 36873697)
 
-    public val isCaseSensitivePtr: VoidPtr =
+    internal val isCaseSensitivePtr: VoidPtr =
         Internals.getMethodBindPtr("DirAccess", "is_case_sensitive", 3927539163)
   }
 }

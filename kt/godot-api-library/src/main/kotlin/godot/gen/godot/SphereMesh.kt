@@ -146,35 +146,35 @@ public open class SphereMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "get_height", 1740695150)
 
-    public val setRadialSegmentsPtr: VoidPtr =
+    internal val setRadialSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "set_radial_segments", 1286410249)
 
-    public val getRadialSegmentsPtr: VoidPtr =
+    internal val getRadialSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "get_radial_segments", 3905245786)
 
-    public val setRingsPtr: VoidPtr =
+    internal val setRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr =
+    internal val getRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "get_rings", 3905245786)
 
-    public val setIsHemispherePtr: VoidPtr =
+    internal val setIsHemispherePtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "set_is_hemisphere", 2586408642)
 
-    public val getIsHemispherePtr: VoidPtr =
+    internal val getIsHemispherePtr: VoidPtr =
         Internals.getMethodBindPtr("SphereMesh", "get_is_hemisphere", 36873697)
   }
 }

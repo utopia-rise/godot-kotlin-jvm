@@ -59,11 +59,11 @@ public open class AnimatableBody3D : StaticBody3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSyncToPhysicsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSyncToPhysicsPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatableBody3D", "set_sync_to_physics", 2586408642)
 
-    public val isSyncToPhysicsEnabledPtr: VoidPtr =
+    internal val isSyncToPhysicsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatableBody3D", "is_sync_to_physics_enabled", 36873697)
   }
 }

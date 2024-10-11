@@ -302,65 +302,65 @@ public open class MobileVRInterface : XRInterface() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEyeHeightPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEyeHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_eye_height", 373806689)
 
-    public val getEyeHeightPtr: VoidPtr =
+    internal val getEyeHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_eye_height", 1740695150)
 
-    public val setIodPtr: VoidPtr =
+    internal val setIodPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_iod", 373806689)
 
-    public val getIodPtr: VoidPtr =
+    internal val getIodPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_iod", 1740695150)
 
-    public val setDisplayWidthPtr: VoidPtr =
+    internal val setDisplayWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_display_width", 373806689)
 
-    public val getDisplayWidthPtr: VoidPtr =
+    internal val getDisplayWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_display_width", 1740695150)
 
-    public val setDisplayToLensPtr: VoidPtr =
+    internal val setDisplayToLensPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_display_to_lens", 373806689)
 
-    public val getDisplayToLensPtr: VoidPtr =
+    internal val getDisplayToLensPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_display_to_lens", 1740695150)
 
-    public val setOffsetRectPtr: VoidPtr =
+    internal val setOffsetRectPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_offset_rect", 2046264180)
 
-    public val getOffsetRectPtr: VoidPtr =
+    internal val getOffsetRectPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_offset_rect", 1639390495)
 
-    public val setOversamplePtr: VoidPtr =
+    internal val setOversamplePtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_oversample", 373806689)
 
-    public val getOversamplePtr: VoidPtr =
+    internal val getOversamplePtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_oversample", 1740695150)
 
-    public val setK1Ptr: VoidPtr =
+    internal val setK1Ptr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_k1", 373806689)
 
-    public val getK1Ptr: VoidPtr =
+    internal val getK1Ptr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_k1", 1740695150)
 
-    public val setK2Ptr: VoidPtr =
+    internal val setK2Ptr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_k2", 373806689)
 
-    public val getK2Ptr: VoidPtr =
+    internal val getK2Ptr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_k2", 1740695150)
 
-    public val getVrsMinRadiusPtr: VoidPtr =
+    internal val getVrsMinRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius", 1740695150)
 
-    public val setVrsMinRadiusPtr: VoidPtr =
+    internal val setVrsMinRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius", 373806689)
 
-    public val getVrsStrengthPtr: VoidPtr =
+    internal val getVrsStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "get_vrs_strength", 1740695150)
 
-    public val setVrsStrengthPtr: VoidPtr =
+    internal val setVrsStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("MobileVRInterface", "set_vrs_strength", 373806689)
   }
 }

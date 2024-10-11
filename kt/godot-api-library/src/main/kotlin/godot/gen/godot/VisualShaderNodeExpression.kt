@@ -57,11 +57,11 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setExpressionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setExpressionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeExpression", "set_expression", 83702148)
 
-    public val getExpressionPtr: VoidPtr =
+    internal val getExpressionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeExpression", "get_expression", 201670096)
   }
 }

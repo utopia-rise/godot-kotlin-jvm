@@ -161,32 +161,32 @@ public open class NavigationPathQueryResult2D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPathPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path", 1509147220)
 
-    public val getPathPtr: VoidPtr =
+    internal val getPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path", 2961356807)
 
-    public val setPathTypesPtr: VoidPtr =
+    internal val setPathTypesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_types", 3614634198)
 
-    public val getPathTypesPtr: VoidPtr =
+    internal val getPathTypesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_types", 1930428628)
 
-    public val setPathRidsPtr: VoidPtr =
+    internal val setPathRidsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_rids", 381264803)
 
-    public val getPathRidsPtr: VoidPtr =
+    internal val getPathRidsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_rids", 3995934104)
 
-    public val setPathOwnerIdsPtr: VoidPtr =
+    internal val setPathOwnerIdsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_owner_ids", 3709968205)
 
-    public val getPathOwnerIdsPtr: VoidPtr =
+    internal val getPathOwnerIdsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_owner_ids", 235988956)
 
-    public val resetPtr: VoidPtr =
+    internal val resetPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryResult2D", "reset", 3218959716)
   }
 }

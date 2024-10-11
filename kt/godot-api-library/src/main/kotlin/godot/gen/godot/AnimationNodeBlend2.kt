@@ -28,5 +28,5 @@ public open class AnimationNodeBlend2 : AnimationNodeSync() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

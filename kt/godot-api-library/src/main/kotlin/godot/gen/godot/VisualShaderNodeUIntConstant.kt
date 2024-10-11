@@ -52,11 +52,11 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setConstantPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeUIntConstant", "set_constant", 1286410249)
 
-    public val getConstantPtr: VoidPtr =
+    internal val getConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeUIntConstant", "get_constant", 3905245786)
   }
 }

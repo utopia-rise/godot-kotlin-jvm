@@ -166,41 +166,41 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCommandOrControlAutoremapPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCommandOrControlAutoremapPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "set_command_or_control_autoremap", 2586408642)
 
-    public val isCommandOrControlAutoremapPtr: VoidPtr =
+    internal val isCommandOrControlAutoremapPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_autoremap", 36873697)
 
-    public val isCommandOrControlPressedPtr: VoidPtr =
+    internal val isCommandOrControlPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_pressed", 36873697)
 
-    public val setAltPressedPtr: VoidPtr =
+    internal val setAltPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "set_alt_pressed", 2586408642)
 
-    public val isAltPressedPtr: VoidPtr =
+    internal val isAltPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_alt_pressed", 36873697)
 
-    public val setShiftPressedPtr: VoidPtr =
+    internal val setShiftPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "set_shift_pressed", 2586408642)
 
-    public val isShiftPressedPtr: VoidPtr =
+    internal val isShiftPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_shift_pressed", 36873697)
 
-    public val setCtrlPressedPtr: VoidPtr =
+    internal val setCtrlPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "set_ctrl_pressed", 2586408642)
 
-    public val isCtrlPressedPtr: VoidPtr =
+    internal val isCtrlPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_ctrl_pressed", 36873697)
 
-    public val setMetaPressedPtr: VoidPtr =
+    internal val setMetaPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "set_meta_pressed", 2586408642)
 
-    public val isMetaPressedPtr: VoidPtr =
+    internal val isMetaPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "is_meta_pressed", 36873697)
 
-    public val getModifiersMaskPtr: VoidPtr =
+    internal val getModifiersMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventWithModifiers", "get_modifiers_mask", 1258259499)
   }
 }

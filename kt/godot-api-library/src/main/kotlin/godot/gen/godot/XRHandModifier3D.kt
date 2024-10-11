@@ -110,17 +110,17 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHandTrackerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHandTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandModifier3D", "set_hand_tracker", 3304788590)
 
-    public val getHandTrackerPtr: VoidPtr =
+    internal val getHandTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandModifier3D", "get_hand_tracker", 2002593661)
 
-    public val setBoneUpdatePtr: VoidPtr =
+    internal val setBoneUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandModifier3D", "set_bone_update", 3635701455)
 
-    public val getBoneUpdatePtr: VoidPtr =
+    internal val getBoneUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandModifier3D", "get_bone_update", 2873665691)
   }
 }

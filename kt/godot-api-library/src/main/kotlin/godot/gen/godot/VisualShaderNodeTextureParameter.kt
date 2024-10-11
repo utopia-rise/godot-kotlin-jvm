@@ -353,35 +353,35 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type", 2227296876)
 
-    public val getTextureTypePtr: VoidPtr =
+    internal val getTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type", 367922070)
 
-    public val setColorDefaultPtr: VoidPtr =
+    internal val setColorDefaultPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default", 4217624432)
 
-    public val getColorDefaultPtr: VoidPtr =
+    internal val getColorDefaultPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default", 3837060134)
 
-    public val setTextureFilterPtr: VoidPtr =
+    internal val setTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter", 2147684752)
 
-    public val getTextureFilterPtr: VoidPtr =
+    internal val getTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter", 4184490817)
 
-    public val setTextureRepeatPtr: VoidPtr =
+    internal val setTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat", 2036143070)
 
-    public val getTextureRepeatPtr: VoidPtr =
+    internal val getTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat", 1690132794)
 
-    public val setTextureSourcePtr: VoidPtr =
+    internal val setTextureSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source", 1212687372)
 
-    public val getTextureSourcePtr: VoidPtr =
+    internal val getTextureSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source", 2039092262)
   }
 }

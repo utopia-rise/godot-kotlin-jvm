@@ -154,23 +154,23 @@ public open class Material : Resource() {
     public final const val RENDER_PRIORITY_MIN: Long = -128
   }
 
-  internal object MethodBindings {
-    public val setNextPassPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setNextPassPtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "set_next_pass", 2757459619)
 
-    public val getNextPassPtr: VoidPtr =
+    internal val getNextPassPtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "get_next_pass", 5934680)
 
-    public val setRenderPriorityPtr: VoidPtr =
+    internal val setRenderPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "set_render_priority", 1286410249)
 
-    public val getRenderPriorityPtr: VoidPtr =
+    internal val getRenderPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "get_render_priority", 3905245786)
 
-    public val inspectNativeShaderCodePtr: VoidPtr =
+    internal val inspectNativeShaderCodePtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "inspect_native_shader_code", 3218959716)
 
-    public val createPlaceholderPtr: VoidPtr =
+    internal val createPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Material", "create_placeholder", 121922552)
   }
 }

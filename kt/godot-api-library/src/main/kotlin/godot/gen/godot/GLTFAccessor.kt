@@ -428,93 +428,95 @@ public open class GLTFAccessor : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getBufferViewPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
 
-    public val setBufferViewPtr: VoidPtr =
+    internal val setBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
 
-    public val getByteOffsetPtr: VoidPtr =
+    internal val getByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
 
-    public val setByteOffsetPtr: VoidPtr =
+    internal val setByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
 
-    public val getComponentTypePtr: VoidPtr =
+    internal val getComponentTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
 
-    public val setComponentTypePtr: VoidPtr =
+    internal val setComponentTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
 
-    public val getNormalizedPtr: VoidPtr =
+    internal val getNormalizedPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
 
-    public val setNormalizedPtr: VoidPtr =
+    internal val setNormalizedPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
 
-    public val getCountPtr: VoidPtr =
+    internal val getCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
 
-    public val setCountPtr: VoidPtr =
+    internal val setCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
 
-    public val getAccessorTypePtr: VoidPtr =
+    internal val getAccessorTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
 
-    public val setAccessorTypePtr: VoidPtr =
+    internal val setAccessorTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
 
-    public val getTypePtr: VoidPtr =
+    internal val getTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
 
-    public val setTypePtr: VoidPtr =
+    internal val setTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
 
-    public val getMinPtr: VoidPtr = Internals.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
+    internal val getMinPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
 
-    public val setMinPtr: VoidPtr =
+    internal val setMinPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
 
-    public val getMaxPtr: VoidPtr = Internals.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
+    internal val getMaxPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
 
-    public val setMaxPtr: VoidPtr =
+    internal val setMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
 
-    public val getSparseCountPtr: VoidPtr =
+    internal val getSparseCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
 
-    public val setSparseCountPtr: VoidPtr =
+    internal val setSparseCountPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
 
-    public val getSparseIndicesBufferViewPtr: VoidPtr =
+    internal val getSparseIndicesBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
 
-    public val setSparseIndicesBufferViewPtr: VoidPtr =
+    internal val setSparseIndicesBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
 
-    public val getSparseIndicesByteOffsetPtr: VoidPtr =
+    internal val getSparseIndicesByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
 
-    public val setSparseIndicesByteOffsetPtr: VoidPtr =
+    internal val setSparseIndicesByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
 
-    public val getSparseIndicesComponentTypePtr: VoidPtr =
+    internal val getSparseIndicesComponentTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
 
-    public val setSparseIndicesComponentTypePtr: VoidPtr =
+    internal val setSparseIndicesComponentTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
 
-    public val getSparseValuesBufferViewPtr: VoidPtr =
+    internal val getSparseValuesBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
 
-    public val setSparseValuesBufferViewPtr: VoidPtr =
+    internal val setSparseValuesBufferViewPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
 
-    public val getSparseValuesByteOffsetPtr: VoidPtr =
+    internal val getSparseValuesByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
 
-    public val setSparseValuesByteOffsetPtr: VoidPtr =
+    internal val setSparseValuesByteOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)
   }
 }

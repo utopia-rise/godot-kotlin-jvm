@@ -181,41 +181,41 @@ public open class AudioStreamMP3 : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDataPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
 
-    public val getDataPtr: VoidPtr =
+    internal val getDataPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "get_data", 2362200018)
 
-    public val setLoopPtr: VoidPtr =
+    internal val setLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr =
+    internal val hasLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "has_loop", 36873697)
 
-    public val setLoopOffsetPtr: VoidPtr =
+    internal val setLoopOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_loop_offset", 373806689)
 
-    public val getLoopOffsetPtr: VoidPtr =
+    internal val getLoopOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "get_loop_offset", 1740695150)
 
-    public val setBpmPtr: VoidPtr =
+    internal val setBpmPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_bpm", 373806689)
 
-    public val getBpmPtr: VoidPtr =
+    internal val getBpmPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "get_bpm", 1740695150)
 
-    public val setBeatCountPtr: VoidPtr =
+    internal val setBeatCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_beat_count", 1286410249)
 
-    public val getBeatCountPtr: VoidPtr =
+    internal val getBeatCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "get_beat_count", 3905245786)
 
-    public val setBarBeatsPtr: VoidPtr =
+    internal val setBarBeatsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "set_bar_beats", 1286410249)
 
-    public val getBarBeatsPtr: VoidPtr =
+    internal val getBarBeatsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
   }
 }

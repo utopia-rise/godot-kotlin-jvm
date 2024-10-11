@@ -26,5 +26,5 @@ public open class HScrollBar : ScrollBar() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

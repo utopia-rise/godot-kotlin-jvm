@@ -734,134 +734,136 @@ public open class SceneTree : MainLoop() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRootPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "get_root", 1757182445)
+  public object MethodBindings {
+    internal val getRootPtr: VoidPtr =
+        Internals.getMethodBindPtr("SceneTree", "get_root", 1757182445)
 
-    public val hasGroupPtr: VoidPtr =
+    internal val hasGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "has_group", 2619796661)
 
-    public val isAutoAcceptQuitPtr: VoidPtr =
+    internal val isAutoAcceptQuitPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_auto_accept_quit", 36873697)
 
-    public val setAutoAcceptQuitPtr: VoidPtr =
+    internal val setAutoAcceptQuitPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_auto_accept_quit", 2586408642)
 
-    public val isQuitOnGoBackPtr: VoidPtr =
+    internal val isQuitOnGoBackPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_quit_on_go_back", 36873697)
 
-    public val setQuitOnGoBackPtr: VoidPtr =
+    internal val setQuitOnGoBackPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_quit_on_go_back", 2586408642)
 
-    public val setDebugCollisionsHintPtr: VoidPtr =
+    internal val setDebugCollisionsHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_debug_collisions_hint", 2586408642)
 
-    public val isDebuggingCollisionsHintPtr: VoidPtr =
+    internal val isDebuggingCollisionsHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_debugging_collisions_hint", 36873697)
 
-    public val setDebugPathsHintPtr: VoidPtr =
+    internal val setDebugPathsHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_debug_paths_hint", 2586408642)
 
-    public val isDebuggingPathsHintPtr: VoidPtr =
+    internal val isDebuggingPathsHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_debugging_paths_hint", 36873697)
 
-    public val setDebugNavigationHintPtr: VoidPtr =
+    internal val setDebugNavigationHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_debug_navigation_hint", 2586408642)
 
-    public val isDebuggingNavigationHintPtr: VoidPtr =
+    internal val isDebuggingNavigationHintPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_debugging_navigation_hint", 36873697)
 
-    public val setEditedSceneRootPtr: VoidPtr =
+    internal val setEditedSceneRootPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_edited_scene_root", 1078189570)
 
-    public val getEditedSceneRootPtr: VoidPtr =
+    internal val getEditedSceneRootPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_edited_scene_root", 3160264692)
 
-    public val setPausePtr: VoidPtr =
+    internal val setPausePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_pause", 2586408642)
 
-    public val isPausedPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "is_paused", 36873697)
+    internal val isPausedPtr: VoidPtr =
+        Internals.getMethodBindPtr("SceneTree", "is_paused", 36873697)
 
-    public val createTimerPtr: VoidPtr =
+    internal val createTimerPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "create_timer", 2709170273)
 
-    public val createTweenPtr: VoidPtr =
+    internal val createTweenPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "create_tween", 3426978995)
 
-    public val getProcessedTweensPtr: VoidPtr =
+    internal val getProcessedTweensPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_processed_tweens", 2915620761)
 
-    public val getNodeCountPtr: VoidPtr =
+    internal val getNodeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_node_count", 3905245786)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_frame", 3905245786)
 
-    public val quitPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "quit", 1995695955)
+    internal val quitPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "quit", 1995695955)
 
-    public val setPhysicsInterpolationEnabledPtr: VoidPtr =
+    internal val setPhysicsInterpolationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled", 2586408642)
 
-    public val isPhysicsInterpolationEnabledPtr: VoidPtr =
+    internal val isPhysicsInterpolationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled", 36873697)
 
-    public val queueDeletePtr: VoidPtr =
+    internal val queueDeletePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "queue_delete", 3975164845)
 
-    public val callGroupFlagsPtr: VoidPtr =
+    internal val callGroupFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "call_group_flags", 1527739229)
 
-    public val notifyGroupFlagsPtr: VoidPtr =
+    internal val notifyGroupFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "notify_group_flags", 1245489420)
 
-    public val setGroupFlagsPtr: VoidPtr =
+    internal val setGroupFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_group_flags", 3497599527)
 
-    public val callGroupPtr: VoidPtr =
+    internal val callGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "call_group", 1257962832)
 
-    public val notifyGroupPtr: VoidPtr =
+    internal val notifyGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "notify_group", 2415702435)
 
-    public val setGroupPtr: VoidPtr =
+    internal val setGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_group", 1279312029)
 
-    public val getNodesInGroupPtr: VoidPtr =
+    internal val getNodesInGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_nodes_in_group", 689397652)
 
-    public val getFirstNodeInGroupPtr: VoidPtr =
+    internal val getFirstNodeInGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_first_node_in_group", 4071044623)
 
-    public val getNodeCountInGroupPtr: VoidPtr =
+    internal val getNodeCountInGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_node_count_in_group", 2458036349)
 
-    public val setCurrentScenePtr: VoidPtr =
+    internal val setCurrentScenePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_current_scene", 1078189570)
 
-    public val getCurrentScenePtr: VoidPtr =
+    internal val getCurrentScenePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_current_scene", 3160264692)
 
-    public val changeSceneToFilePtr: VoidPtr =
+    internal val changeSceneToFilePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "change_scene_to_file", 166001499)
 
-    public val changeSceneToPackedPtr: VoidPtr =
+    internal val changeSceneToPackedPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "change_scene_to_packed", 107349098)
 
-    public val reloadCurrentScenePtr: VoidPtr =
+    internal val reloadCurrentScenePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "reload_current_scene", 166280745)
 
-    public val unloadCurrentScenePtr: VoidPtr =
+    internal val unloadCurrentScenePtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "unload_current_scene", 3218959716)
 
-    public val setMultiplayerPtr: VoidPtr =
+    internal val setMultiplayerPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_multiplayer", 2385607013)
 
-    public val getMultiplayerPtr: VoidPtr =
+    internal val getMultiplayerPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "get_multiplayer", 3453401404)
 
-    public val setMultiplayerPollEnabledPtr: VoidPtr =
+    internal val setMultiplayerPollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "set_multiplayer_poll_enabled", 2586408642)
 
-    public val isMultiplayerPollEnabledPtr: VoidPtr =
+    internal val isMultiplayerPollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTree", "is_multiplayer_poll_enabled", 36873697)
   }
 }

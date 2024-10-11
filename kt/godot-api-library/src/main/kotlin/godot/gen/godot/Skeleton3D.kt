@@ -631,158 +631,158 @@ public open class Skeleton3D : Node3D() {
     public final const val NOTIFICATION_UPDATE_SKELETON: Long = 50
   }
 
-  internal object MethodBindings {
-    public val addBonePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addBonePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "add_bone", 1597066294)
 
-    public val findBonePtr: VoidPtr =
+    internal val findBonePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "find_bone", 1321353865)
 
-    public val getBoneNamePtr: VoidPtr =
+    internal val getBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_name", 844755477)
 
-    public val setBoneNamePtr: VoidPtr =
+    internal val setBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_name", 501894301)
 
-    public val getConcatenatedBoneNamesPtr: VoidPtr =
+    internal val getConcatenatedBoneNamesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_concatenated_bone_names", 2002593661)
 
-    public val getBoneParentPtr: VoidPtr =
+    internal val getBoneParentPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_parent", 923996154)
 
-    public val setBoneParentPtr: VoidPtr =
+    internal val setBoneParentPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_parent", 3937882851)
 
-    public val getBoneCountPtr: VoidPtr =
+    internal val getBoneCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_count", 3905245786)
 
-    public val getVersionPtr: VoidPtr =
+    internal val getVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_version", 3905245786)
 
-    public val unparentBoneAndRestPtr: VoidPtr =
+    internal val unparentBoneAndRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "unparent_bone_and_rest", 1286410249)
 
-    public val getBoneChildrenPtr: VoidPtr =
+    internal val getBoneChildrenPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_children", 1706082319)
 
-    public val getParentlessBonesPtr: VoidPtr =
+    internal val getParentlessBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_parentless_bones", 1930428628)
 
-    public val getBoneRestPtr: VoidPtr =
+    internal val getBoneRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_rest", 1965739696)
 
-    public val setBoneRestPtr: VoidPtr =
+    internal val setBoneRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_rest", 3616898986)
 
-    public val getBoneGlobalRestPtr: VoidPtr =
+    internal val getBoneGlobalRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_global_rest", 1965739696)
 
-    public val createSkinFromRestTransformsPtr: VoidPtr =
+    internal val createSkinFromRestTransformsPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "create_skin_from_rest_transforms", 1032037385)
 
-    public val registerSkinPtr: VoidPtr =
+    internal val registerSkinPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "register_skin", 3405789568)
 
-    public val localizeRestsPtr: VoidPtr =
+    internal val localizeRestsPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "localize_rests", 3218959716)
 
-    public val clearBonesPtr: VoidPtr =
+    internal val clearBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "clear_bones", 3218959716)
 
-    public val getBonePosePtr: VoidPtr =
+    internal val getBonePosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_pose", 1965739696)
 
-    public val setBonePosePtr: VoidPtr =
+    internal val setBonePosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_pose", 3616898986)
 
-    public val setBonePosePositionPtr: VoidPtr =
+    internal val setBonePosePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_pose_position", 1530502735)
 
-    public val setBonePoseRotationPtr: VoidPtr =
+    internal val setBonePoseRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_pose_rotation", 2823819782)
 
-    public val setBonePoseScalePtr: VoidPtr =
+    internal val setBonePoseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_pose_scale", 1530502735)
 
-    public val getBonePosePositionPtr: VoidPtr =
+    internal val getBonePosePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_pose_position", 711720468)
 
-    public val getBonePoseRotationPtr: VoidPtr =
+    internal val getBonePoseRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_pose_rotation", 476865136)
 
-    public val getBonePoseScalePtr: VoidPtr =
+    internal val getBonePoseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_pose_scale", 711720468)
 
-    public val resetBonePosePtr: VoidPtr =
+    internal val resetBonePosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "reset_bone_pose", 1286410249)
 
-    public val resetBonePosesPtr: VoidPtr =
+    internal val resetBonePosesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "reset_bone_poses", 3218959716)
 
-    public val isBoneEnabledPtr: VoidPtr =
+    internal val isBoneEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "is_bone_enabled", 1116898809)
 
-    public val setBoneEnabledPtr: VoidPtr =
+    internal val setBoneEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_enabled", 972357352)
 
-    public val getBoneGlobalPosePtr: VoidPtr =
+    internal val getBoneGlobalPosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_global_pose", 1965739696)
 
-    public val setBoneGlobalPosePtr: VoidPtr =
+    internal val setBoneGlobalPosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_global_pose", 3616898986)
 
-    public val forceUpdateAllBoneTransformsPtr: VoidPtr =
+    internal val forceUpdateAllBoneTransformsPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "force_update_all_bone_transforms", 3218959716)
 
-    public val forceUpdateBoneChildTransformPtr: VoidPtr =
+    internal val forceUpdateBoneChildTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "force_update_bone_child_transform", 1286410249)
 
-    public val setMotionScalePtr: VoidPtr =
+    internal val setMotionScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_motion_scale", 373806689)
 
-    public val getMotionScalePtr: VoidPtr =
+    internal val getMotionScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_motion_scale", 1740695150)
 
-    public val setShowRestOnlyPtr: VoidPtr =
+    internal val setShowRestOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_show_rest_only", 2586408642)
 
-    public val isShowRestOnlyPtr: VoidPtr =
+    internal val isShowRestOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "is_show_rest_only", 36873697)
 
-    public val setModifierCallbackModeProcessPtr: VoidPtr =
+    internal val setModifierCallbackModeProcessPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_modifier_callback_mode_process", 3916362634)
 
-    public val getModifierCallbackModeProcessPtr: VoidPtr =
+    internal val getModifierCallbackModeProcessPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_modifier_callback_mode_process", 997182536)
 
-    public val clearBonesGlobalPoseOverridePtr: VoidPtr =
+    internal val clearBonesGlobalPoseOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "clear_bones_global_pose_override", 3218959716)
 
-    public val setBoneGlobalPoseOverridePtr: VoidPtr =
+    internal val setBoneGlobalPoseOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_bone_global_pose_override", 3483398371)
 
-    public val getBoneGlobalPoseOverridePtr: VoidPtr =
+    internal val getBoneGlobalPoseOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_override", 1965739696)
 
-    public val getBoneGlobalPoseNoOverridePtr: VoidPtr =
+    internal val getBoneGlobalPoseNoOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_bone_global_pose_no_override", 1965739696)
 
-    public val setAnimatePhysicalBonesPtr: VoidPtr =
+    internal val setAnimatePhysicalBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "set_animate_physical_bones", 2586408642)
 
-    public val getAnimatePhysicalBonesPtr: VoidPtr =
+    internal val getAnimatePhysicalBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "get_animate_physical_bones", 36873697)
 
-    public val physicalBonesStopSimulationPtr: VoidPtr =
+    internal val physicalBonesStopSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "physical_bones_stop_simulation", 3218959716)
 
-    public val physicalBonesStartSimulationPtr: VoidPtr =
+    internal val physicalBonesStartSimulationPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "physical_bones_start_simulation", 2787316981)
 
-    public val physicalBonesAddCollisionExceptionPtr: VoidPtr =
+    internal val physicalBonesAddCollisionExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "physical_bones_add_collision_exception", 2722037293)
 
-    public val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
+    internal val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton3D", "physical_bones_remove_collision_exception", 2722037293)
   }
 }

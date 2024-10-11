@@ -185,23 +185,23 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSourcePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_source", 905262939)
 
-    public val getSourcePtr: VoidPtr =
+    internal val getSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_source", 2896297444)
 
-    public val setTexturePtr: VoidPtr =
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_texture", 3635182373)
 
-    public val setTextureTypePtr: VoidPtr =
+    internal val setTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_texture_type", 986314081)
 
-    public val getTextureTypePtr: VoidPtr =
+    internal val getTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_texture_type", 3290430153)
   }
 }

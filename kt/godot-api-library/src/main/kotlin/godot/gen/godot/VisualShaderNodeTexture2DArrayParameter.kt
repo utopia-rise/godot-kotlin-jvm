@@ -27,5 +27,5 @@ public open class VisualShaderNodeTexture2DArrayParameter : VisualShaderNodeText
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

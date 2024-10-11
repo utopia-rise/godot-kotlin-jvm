@@ -228,29 +228,31 @@ public open class Texture2D : Texture() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getWidthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "get_height", 3905245786)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Texture2D", "get_size", 3341600327)
+    internal val getSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("Texture2D", "get_size", 3341600327)
 
-    public val hasAlphaPtr: VoidPtr = Internals.getMethodBindPtr("Texture2D", "has_alpha", 36873697)
+    internal val hasAlphaPtr: VoidPtr =
+        Internals.getMethodBindPtr("Texture2D", "has_alpha", 36873697)
 
-    public val drawPtr: VoidPtr = Internals.getMethodBindPtr("Texture2D", "draw", 2729649137)
+    internal val drawPtr: VoidPtr = Internals.getMethodBindPtr("Texture2D", "draw", 2729649137)
 
-    public val drawRectPtr: VoidPtr =
+    internal val drawRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "draw_rect", 3499451691)
 
-    public val drawRectRegionPtr: VoidPtr =
+    internal val drawRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "draw_rect_region", 2963678660)
 
-    public val getImagePtr: VoidPtr =
+    internal val getImagePtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "get_image", 4190603485)
 
-    public val createPlaceholderPtr: VoidPtr =
+    internal val createPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2D", "create_placeholder", 121922552)
   }
 }

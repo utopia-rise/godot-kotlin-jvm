@@ -109,20 +109,20 @@ public open class SkeletonModifier3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSkeletonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModifier3D", "get_skeleton", 1488626673)
 
-    public val setActivePtr: VoidPtr =
+    internal val setActivePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModifier3D", "set_active", 2586408642)
 
-    public val isActivePtr: VoidPtr =
+    internal val isActivePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModifier3D", "is_active", 36873697)
 
-    public val setInfluencePtr: VoidPtr =
+    internal val setInfluencePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModifier3D", "set_influence", 373806689)
 
-    public val getInfluencePtr: VoidPtr =
+    internal val getInfluencePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModifier3D", "get_influence", 1740695150)
   }
 }

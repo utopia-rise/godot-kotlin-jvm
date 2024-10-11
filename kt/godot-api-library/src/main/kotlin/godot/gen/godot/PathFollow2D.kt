@@ -204,47 +204,47 @@ public open class PathFollow2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setProgressPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_progress", 373806689)
 
-    public val getProgressPtr: VoidPtr =
+    internal val getProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "get_progress", 1740695150)
 
-    public val setHOffsetPtr: VoidPtr =
+    internal val setHOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_h_offset", 373806689)
 
-    public val getHOffsetPtr: VoidPtr =
+    internal val getHOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "get_h_offset", 1740695150)
 
-    public val setVOffsetPtr: VoidPtr =
+    internal val setVOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_v_offset", 373806689)
 
-    public val getVOffsetPtr: VoidPtr =
+    internal val getVOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "get_v_offset", 1740695150)
 
-    public val setProgressRatioPtr: VoidPtr =
+    internal val setProgressRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_progress_ratio", 373806689)
 
-    public val getProgressRatioPtr: VoidPtr =
+    internal val getProgressRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "get_progress_ratio", 1740695150)
 
-    public val setRotatesPtr: VoidPtr =
+    internal val setRotatesPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_rotates", 2586408642)
 
-    public val isRotatingPtr: VoidPtr =
+    internal val isRotatingPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "is_rotating", 36873697)
 
-    public val setCubicInterpolationPtr: VoidPtr =
+    internal val setCubicInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_cubic_interpolation", 2586408642)
 
-    public val getCubicInterpolationPtr: VoidPtr =
+    internal val getCubicInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "get_cubic_interpolation", 36873697)
 
-    public val setLoopPtr: VoidPtr =
+    internal val setLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr =
+    internal val hasLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("PathFollow2D", "has_loop", 36873697)
   }
 }

@@ -280,45 +280,45 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val hasMultiplayerPeerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasMultiplayerPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "has_multiplayer_peer", 2240911060)
 
-    public val getMultiplayerPeerPtr: VoidPtr =
+    internal val getMultiplayerPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "get_multiplayer_peer", 3223692825)
 
-    public val setMultiplayerPeerPtr: VoidPtr =
+    internal val setMultiplayerPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "set_multiplayer_peer", 3694835298)
 
-    public val getUniqueIdPtr: VoidPtr =
+    internal val getUniqueIdPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "get_unique_id", 2455072627)
 
-    public val isServerPtr: VoidPtr =
+    internal val isServerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "is_server", 2240911060)
 
-    public val getRemoteSenderIdPtr: VoidPtr =
+    internal val getRemoteSenderIdPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "get_remote_sender_id", 2455072627)
 
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "poll", 166280745)
+    internal val pollPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "poll", 166280745)
 
-    public val rpcPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "rpc", 2077486355)
+    internal val rpcPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "rpc", 2077486355)
 
-    public val objectConfigurationAddPtr: VoidPtr =
+    internal val objectConfigurationAddPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "object_configuration_add", 1171879464)
 
-    public val objectConfigurationRemovePtr: VoidPtr =
+    internal val objectConfigurationRemovePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "object_configuration_remove", 1171879464)
 
-    public val getPeersPtr: VoidPtr =
+    internal val getPeersPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "get_peers", 969006518)
 
-    public val setDefaultInterfacePtr: VoidPtr =
+    internal val setDefaultInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "set_default_interface", 3304788590)
 
-    public val getDefaultInterfacePtr: VoidPtr =
+    internal val getDefaultInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "get_default_interface", 2737447660)
 
-    public val createDefaultInterfacePtr: VoidPtr =
+    internal val createDefaultInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerAPI", "create_default_interface", 3294156723)
   }
 }

@@ -238,50 +238,50 @@ public open class NoiseTexture3D : Texture3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setWidthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_width", 1286410249)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_height", 1286410249)
 
-    public val setDepthPtr: VoidPtr =
+    internal val setDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_depth", 1286410249)
 
-    public val setInvertPtr: VoidPtr =
+    internal val setInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_invert", 2586408642)
 
-    public val getInvertPtr: VoidPtr =
+    internal val getInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "get_invert", 36873697)
 
-    public val setSeamlessPtr: VoidPtr =
+    internal val setSeamlessPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_seamless", 2586408642)
 
-    public val getSeamlessPtr: VoidPtr =
+    internal val getSeamlessPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "get_seamless", 2240911060)
 
-    public val setSeamlessBlendSkirtPtr: VoidPtr =
+    internal val setSeamlessBlendSkirtPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_seamless_blend_skirt", 373806689)
 
-    public val getSeamlessBlendSkirtPtr: VoidPtr =
+    internal val getSeamlessBlendSkirtPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "get_seamless_blend_skirt", 191475506)
 
-    public val setNormalizePtr: VoidPtr =
+    internal val setNormalizePtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_normalize", 2586408642)
 
-    public val isNormalizedPtr: VoidPtr =
+    internal val isNormalizedPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "is_normalized", 36873697)
 
-    public val setColorRampPtr: VoidPtr =
+    internal val setColorRampPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_color_ramp", 2756054477)
 
-    public val getColorRampPtr: VoidPtr =
+    internal val getColorRampPtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "get_color_ramp", 132272999)
 
-    public val setNoisePtr: VoidPtr =
+    internal val setNoisePtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "set_noise", 4135492439)
 
-    public val getNoisePtr: VoidPtr =
+    internal val getNoisePtr: VoidPtr =
         Internals.getMethodBindPtr("NoiseTexture3D", "get_noise", 185851837)
   }
 }

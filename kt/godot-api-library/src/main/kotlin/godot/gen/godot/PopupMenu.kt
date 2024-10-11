@@ -1086,264 +1086,265 @@ public open class PopupMenu : Popup() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val activateItemByEventPtr: VoidPtr =
+  public object MethodBindings {
+    internal val activateItemByEventPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "activate_item_by_event", 3716412023)
 
-    public val setPreferNativeMenuPtr: VoidPtr =
+    internal val setPreferNativeMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_prefer_native_menu", 2586408642)
 
-    public val isPreferNativeMenuPtr: VoidPtr =
+    internal val isPreferNativeMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_prefer_native_menu", 36873697)
 
-    public val isNativeMenuPtr: VoidPtr =
+    internal val isNativeMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_native_menu", 36873697)
 
-    public val addItemPtr: VoidPtr = Internals.getMethodBindPtr("PopupMenu", "add_item", 3674230041)
+    internal val addItemPtr: VoidPtr =
+        Internals.getMethodBindPtr("PopupMenu", "add_item", 3674230041)
 
-    public val addIconItemPtr: VoidPtr =
+    internal val addIconItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_item", 1086190128)
 
-    public val addCheckItemPtr: VoidPtr =
+    internal val addCheckItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_check_item", 3674230041)
 
-    public val addIconCheckItemPtr: VoidPtr =
+    internal val addIconCheckItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_check_item", 1086190128)
 
-    public val addRadioCheckItemPtr: VoidPtr =
+    internal val addRadioCheckItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_radio_check_item", 3674230041)
 
-    public val addIconRadioCheckItemPtr: VoidPtr =
+    internal val addIconRadioCheckItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_radio_check_item", 1086190128)
 
-    public val addMultistateItemPtr: VoidPtr =
+    internal val addMultistateItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_multistate_item", 150780458)
 
-    public val addShortcutPtr: VoidPtr =
+    internal val addShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_shortcut", 3451850107)
 
-    public val addIconShortcutPtr: VoidPtr =
+    internal val addIconShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_shortcut", 2997871092)
 
-    public val addCheckShortcutPtr: VoidPtr =
+    internal val addCheckShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_check_shortcut", 1642193386)
 
-    public val addIconCheckShortcutPtr: VoidPtr =
+    internal val addIconCheckShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_check_shortcut", 3856247530)
 
-    public val addRadioCheckShortcutPtr: VoidPtr =
+    internal val addRadioCheckShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_radio_check_shortcut", 1642193386)
 
-    public val addIconRadioCheckShortcutPtr: VoidPtr =
+    internal val addIconRadioCheckShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_icon_radio_check_shortcut", 3856247530)
 
-    public val addSubmenuItemPtr: VoidPtr =
+    internal val addSubmenuItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_submenu_item", 2979222410)
 
-    public val addSubmenuNodeItemPtr: VoidPtr =
+    internal val addSubmenuNodeItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_submenu_node_item", 1325455216)
 
-    public val setItemTextPtr: VoidPtr =
+    internal val setItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_text", 501894301)
 
-    public val setItemTextDirectionPtr: VoidPtr =
+    internal val setItemTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_text_direction", 1707680378)
 
-    public val setItemLanguagePtr: VoidPtr =
+    internal val setItemLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_language", 501894301)
 
-    public val setItemIconPtr: VoidPtr =
+    internal val setItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_icon", 666127730)
 
-    public val setItemIconMaxWidthPtr: VoidPtr =
+    internal val setItemIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_icon_max_width", 3937882851)
 
-    public val setItemIconModulatePtr: VoidPtr =
+    internal val setItemIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_icon_modulate", 2878471219)
 
-    public val setItemCheckedPtr: VoidPtr =
+    internal val setItemCheckedPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_checked", 300928843)
 
-    public val setItemIdPtr: VoidPtr =
+    internal val setItemIdPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_id", 3937882851)
 
-    public val setItemAcceleratorPtr: VoidPtr =
+    internal val setItemAcceleratorPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_accelerator", 2992817551)
 
-    public val setItemMetadataPtr: VoidPtr =
+    internal val setItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_metadata", 2152698145)
 
-    public val setItemDisabledPtr: VoidPtr =
+    internal val setItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_disabled", 300928843)
 
-    public val setItemSubmenuPtr: VoidPtr =
+    internal val setItemSubmenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_submenu", 501894301)
 
-    public val setItemSubmenuNodePtr: VoidPtr =
+    internal val setItemSubmenuNodePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_submenu_node", 1068370740)
 
-    public val setItemAsSeparatorPtr: VoidPtr =
+    internal val setItemAsSeparatorPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_as_separator", 300928843)
 
-    public val setItemAsCheckablePtr: VoidPtr =
+    internal val setItemAsCheckablePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_as_checkable", 300928843)
 
-    public val setItemAsRadioCheckablePtr: VoidPtr =
+    internal val setItemAsRadioCheckablePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_as_radio_checkable", 300928843)
 
-    public val setItemTooltipPtr: VoidPtr =
+    internal val setItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_tooltip", 501894301)
 
-    public val setItemShortcutPtr: VoidPtr =
+    internal val setItemShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_shortcut", 825127832)
 
-    public val setItemIndentPtr: VoidPtr =
+    internal val setItemIndentPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_indent", 3937882851)
 
-    public val setItemMultistatePtr: VoidPtr =
+    internal val setItemMultistatePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_multistate", 3937882851)
 
-    public val setItemMultistateMaxPtr: VoidPtr =
+    internal val setItemMultistateMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_multistate_max", 3937882851)
 
-    public val setItemShortcutDisabledPtr: VoidPtr =
+    internal val setItemShortcutDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_shortcut_disabled", 300928843)
 
-    public val toggleItemCheckedPtr: VoidPtr =
+    internal val toggleItemCheckedPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "toggle_item_checked", 1286410249)
 
-    public val toggleItemMultistatePtr: VoidPtr =
+    internal val toggleItemMultistatePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "toggle_item_multistate", 1286410249)
 
-    public val getItemTextPtr: VoidPtr =
+    internal val getItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_text", 844755477)
 
-    public val getItemTextDirectionPtr: VoidPtr =
+    internal val getItemTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_text_direction", 4235602388)
 
-    public val getItemLanguagePtr: VoidPtr =
+    internal val getItemLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_language", 844755477)
 
-    public val getItemIconPtr: VoidPtr =
+    internal val getItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_icon", 3536238170)
 
-    public val getItemIconMaxWidthPtr: VoidPtr =
+    internal val getItemIconMaxWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_icon_max_width", 923996154)
 
-    public val getItemIconModulatePtr: VoidPtr =
+    internal val getItemIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_icon_modulate", 3457211756)
 
-    public val isItemCheckedPtr: VoidPtr =
+    internal val isItemCheckedPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_checked", 1116898809)
 
-    public val getItemIdPtr: VoidPtr =
+    internal val getItemIdPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_id", 923996154)
 
-    public val getItemIndexPtr: VoidPtr =
+    internal val getItemIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_index", 923996154)
 
-    public val getItemAcceleratorPtr: VoidPtr =
+    internal val getItemAcceleratorPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_accelerator", 253789942)
 
-    public val getItemMetadataPtr: VoidPtr =
+    internal val getItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_metadata", 4227898402)
 
-    public val isItemDisabledPtr: VoidPtr =
+    internal val isItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_disabled", 1116898809)
 
-    public val getItemSubmenuPtr: VoidPtr =
+    internal val getItemSubmenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_submenu", 844755477)
 
-    public val getItemSubmenuNodePtr: VoidPtr =
+    internal val getItemSubmenuNodePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_submenu_node", 2100501353)
 
-    public val isItemSeparatorPtr: VoidPtr =
+    internal val isItemSeparatorPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_separator", 1116898809)
 
-    public val isItemCheckablePtr: VoidPtr =
+    internal val isItemCheckablePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_checkable", 1116898809)
 
-    public val isItemRadioCheckablePtr: VoidPtr =
+    internal val isItemRadioCheckablePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_radio_checkable", 1116898809)
 
-    public val isItemShortcutDisabledPtr: VoidPtr =
+    internal val isItemShortcutDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_item_shortcut_disabled", 1116898809)
 
-    public val getItemTooltipPtr: VoidPtr =
+    internal val getItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_tooltip", 844755477)
 
-    public val getItemShortcutPtr: VoidPtr =
+    internal val getItemShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_shortcut", 1449483325)
 
-    public val getItemIndentPtr: VoidPtr =
+    internal val getItemIndentPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_indent", 923996154)
 
-    public val getItemMultistateMaxPtr: VoidPtr =
+    internal val getItemMultistateMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_multistate_max", 923996154)
 
-    public val getItemMultistatePtr: VoidPtr =
+    internal val getItemMultistatePtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_multistate", 923996154)
 
-    public val setFocusedItemPtr: VoidPtr =
+    internal val setFocusedItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_focused_item", 1286410249)
 
-    public val getFocusedItemPtr: VoidPtr =
+    internal val getFocusedItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_focused_item", 3905245786)
 
-    public val setItemCountPtr: VoidPtr =
+    internal val setItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_item_count", 1286410249)
 
-    public val getItemCountPtr: VoidPtr =
+    internal val getItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_item_count", 3905245786)
 
-    public val scrollToItemPtr: VoidPtr =
+    internal val scrollToItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "scroll_to_item", 1286410249)
 
-    public val removeItemPtr: VoidPtr =
+    internal val removeItemPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "remove_item", 1286410249)
 
-    public val addSeparatorPtr: VoidPtr =
+    internal val addSeparatorPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "add_separator", 2266703459)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("PopupMenu", "clear", 107499316)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("PopupMenu", "clear", 107499316)
 
-    public val setHideOnItemSelectionPtr: VoidPtr =
+    internal val setHideOnItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_hide_on_item_selection", 2586408642)
 
-    public val isHideOnItemSelectionPtr: VoidPtr =
+    internal val isHideOnItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_hide_on_item_selection", 36873697)
 
-    public val setHideOnCheckableItemSelectionPtr: VoidPtr =
+    internal val setHideOnCheckableItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_hide_on_checkable_item_selection", 2586408642)
 
-    public val isHideOnCheckableItemSelectionPtr: VoidPtr =
+    internal val isHideOnCheckableItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_hide_on_checkable_item_selection", 36873697)
 
-    public val setHideOnStateItemSelectionPtr: VoidPtr =
+    internal val setHideOnStateItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_hide_on_state_item_selection", 2586408642)
 
-    public val isHideOnStateItemSelectionPtr: VoidPtr =
+    internal val isHideOnStateItemSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_hide_on_state_item_selection", 36873697)
 
-    public val setSubmenuPopupDelayPtr: VoidPtr =
+    internal val setSubmenuPopupDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_submenu_popup_delay", 373806689)
 
-    public val getSubmenuPopupDelayPtr: VoidPtr =
+    internal val getSubmenuPopupDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_submenu_popup_delay", 1740695150)
 
-    public val setAllowSearchPtr: VoidPtr =
+    internal val setAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_allow_search", 2586408642)
 
-    public val getAllowSearchPtr: VoidPtr =
+    internal val getAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_allow_search", 36873697)
 
-    public val isSystemMenuPtr: VoidPtr =
+    internal val isSystemMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "is_system_menu", 36873697)
 
-    public val setSystemMenuPtr: VoidPtr =
+    internal val setSystemMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "set_system_menu", 600639674)
 
-    public val getSystemMenuPtr: VoidPtr =
+    internal val getSystemMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("PopupMenu", "get_system_menu", 1222557358)
   }
 }

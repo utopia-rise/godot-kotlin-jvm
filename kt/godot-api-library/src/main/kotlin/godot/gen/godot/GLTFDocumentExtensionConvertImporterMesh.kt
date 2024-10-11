@@ -23,5 +23,5 @@ public open class GLTFDocumentExtensionConvertImporterMesh : GLTFDocumentExtensi
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

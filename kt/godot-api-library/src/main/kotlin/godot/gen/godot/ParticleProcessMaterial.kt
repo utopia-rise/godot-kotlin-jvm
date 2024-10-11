@@ -2766,281 +2766,281 @@ public open class ParticleProcessMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDirectionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_direction", 3460891852)
 
-    public val getDirectionPtr: VoidPtr =
+    internal val getDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_direction", 3360562783)
 
-    public val setInheritVelocityRatioPtr: VoidPtr =
+    internal val setInheritVelocityRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_inherit_velocity_ratio", 373806689)
 
-    public val getInheritVelocityRatioPtr: VoidPtr =
+    internal val getInheritVelocityRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_inherit_velocity_ratio", 191475506)
 
-    public val setSpreadPtr: VoidPtr =
+    internal val setSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_spread", 373806689)
 
-    public val getSpreadPtr: VoidPtr =
+    internal val getSpreadPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_spread", 1740695150)
 
-    public val setFlatnessPtr: VoidPtr =
+    internal val setFlatnessPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_flatness", 373806689)
 
-    public val getFlatnessPtr: VoidPtr =
+    internal val getFlatnessPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_flatness", 1740695150)
 
-    public val setParamPtr: VoidPtr =
+    internal val setParamPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_param", 676779352)
 
-    public val getParamPtr: VoidPtr =
+    internal val getParamPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_param", 2623708480)
 
-    public val setParamMinPtr: VoidPtr =
+    internal val setParamMinPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_param_min", 2295964248)
 
-    public val getParamMinPtr: VoidPtr =
+    internal val getParamMinPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_param_min", 3903786503)
 
-    public val setParamMaxPtr: VoidPtr =
+    internal val setParamMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_param_max", 2295964248)
 
-    public val getParamMaxPtr: VoidPtr =
+    internal val getParamMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_param_max", 3903786503)
 
-    public val setParamTexturePtr: VoidPtr =
+    internal val setParamTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_param_texture", 526976089)
 
-    public val getParamTexturePtr: VoidPtr =
+    internal val getParamTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_param_texture", 3489372978)
 
-    public val setColorPtr: VoidPtr =
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_color", 3444240500)
 
-    public val setColorRampPtr: VoidPtr =
+    internal val setColorRampPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp", 4051416890)
 
-    public val getColorRampPtr: VoidPtr =
+    internal val getColorRampPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_color_ramp", 3635182373)
 
-    public val setAlphaCurvePtr: VoidPtr =
+    internal val setAlphaCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_alpha_curve", 4051416890)
 
-    public val getAlphaCurvePtr: VoidPtr =
+    internal val getAlphaCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_alpha_curve", 3635182373)
 
-    public val setEmissionCurvePtr: VoidPtr =
+    internal val setEmissionCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_curve", 4051416890)
 
-    public val getEmissionCurvePtr: VoidPtr =
+    internal val getEmissionCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_curve", 3635182373)
 
-    public val setColorInitialRampPtr: VoidPtr =
+    internal val setColorInitialRampPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_color_initial_ramp", 4051416890)
 
-    public val getColorInitialRampPtr: VoidPtr =
+    internal val getColorInitialRampPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_color_initial_ramp", 3635182373)
 
-    public val setVelocityLimitCurvePtr: VoidPtr =
+    internal val setVelocityLimitCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_limit_curve", 4051416890)
 
-    public val getVelocityLimitCurvePtr: VoidPtr =
+    internal val getVelocityLimitCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_limit_curve", 3635182373)
 
-    public val setParticleFlagPtr: VoidPtr =
+    internal val setParticleFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_particle_flag", 1711815571)
 
-    public val getParticleFlagPtr: VoidPtr =
+    internal val getParticleFlagPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_particle_flag", 3895316907)
 
-    public val setVelocityPivotPtr: VoidPtr =
+    internal val setVelocityPivotPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_pivot", 3460891852)
 
-    public val getVelocityPivotPtr: VoidPtr =
+    internal val getVelocityPivotPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_pivot", 3783033775)
 
-    public val setEmissionShapePtr: VoidPtr =
+    internal val setEmissionShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape", 461501442)
 
-    public val getEmissionShapePtr: VoidPtr =
+    internal val getEmissionShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape", 3719733018)
 
-    public val setEmissionSphereRadiusPtr: VoidPtr =
+    internal val setEmissionSphereRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_sphere_radius", 373806689)
 
-    public val getEmissionSphereRadiusPtr: VoidPtr =
+    internal val getEmissionSphereRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_sphere_radius", 1740695150)
 
-    public val setEmissionBoxExtentsPtr: VoidPtr =
+    internal val setEmissionBoxExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_box_extents", 3460891852)
 
-    public val getEmissionBoxExtentsPtr: VoidPtr =
+    internal val getEmissionBoxExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_box_extents", 3360562783)
 
-    public val setEmissionPointTexturePtr: VoidPtr =
+    internal val setEmissionPointTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_texture", 4051416890)
 
-    public val getEmissionPointTexturePtr: VoidPtr =
+    internal val getEmissionPointTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_texture", 3635182373)
 
-    public val setEmissionNormalTexturePtr: VoidPtr =
+    internal val setEmissionNormalTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_normal_texture", 4051416890)
 
-    public val getEmissionNormalTexturePtr: VoidPtr =
+    internal val getEmissionNormalTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_normal_texture", 3635182373)
 
-    public val setEmissionColorTexturePtr: VoidPtr =
+    internal val setEmissionColorTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_color_texture", 4051416890)
 
-    public val getEmissionColorTexturePtr: VoidPtr =
+    internal val getEmissionColorTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_color_texture", 3635182373)
 
-    public val setEmissionPointCountPtr: VoidPtr =
+    internal val setEmissionPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_count", 1286410249)
 
-    public val getEmissionPointCountPtr: VoidPtr =
+    internal val getEmissionPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_count", 3905245786)
 
-    public val setEmissionRingAxisPtr: VoidPtr =
+    internal val setEmissionRingAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_axis", 3460891852)
 
-    public val getEmissionRingAxisPtr: VoidPtr =
+    internal val getEmissionRingAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_axis", 3360562783)
 
-    public val setEmissionRingHeightPtr: VoidPtr =
+    internal val setEmissionRingHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_height", 373806689)
 
-    public val getEmissionRingHeightPtr: VoidPtr =
+    internal val getEmissionRingHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_height", 1740695150)
 
-    public val setEmissionRingRadiusPtr: VoidPtr =
+    internal val setEmissionRingRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_radius", 373806689)
 
-    public val getEmissionRingRadiusPtr: VoidPtr =
+    internal val getEmissionRingRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_radius", 1740695150)
 
-    public val setEmissionRingInnerRadiusPtr: VoidPtr =
+    internal val setEmissionRingInnerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_inner_radius", 373806689)
 
-    public val getEmissionRingInnerRadiusPtr: VoidPtr =
+    internal val getEmissionRingInnerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius", 1740695150)
 
-    public val setEmissionShapeOffsetPtr: VoidPtr =
+    internal val setEmissionShapeOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset", 3460891852)
 
-    public val getEmissionShapeOffsetPtr: VoidPtr =
+    internal val getEmissionShapeOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_offset", 3360562783)
 
-    public val setEmissionShapeScalePtr: VoidPtr =
+    internal val setEmissionShapeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_scale", 3460891852)
 
-    public val getEmissionShapeScalePtr: VoidPtr =
+    internal val getEmissionShapeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_scale", 3360562783)
 
-    public val getTurbulenceEnabledPtr: VoidPtr =
+    internal val getTurbulenceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_enabled", 36873697)
 
-    public val setTurbulenceEnabledPtr: VoidPtr =
+    internal val setTurbulenceEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_enabled", 2586408642)
 
-    public val getTurbulenceNoiseStrengthPtr: VoidPtr =
+    internal val getTurbulenceNoiseStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_strength", 1740695150)
 
-    public val setTurbulenceNoiseStrengthPtr: VoidPtr =
+    internal val setTurbulenceNoiseStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_strength", 373806689)
 
-    public val getTurbulenceNoiseScalePtr: VoidPtr =
+    internal val getTurbulenceNoiseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_scale", 1740695150)
 
-    public val setTurbulenceNoiseScalePtr: VoidPtr =
+    internal val setTurbulenceNoiseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_scale", 373806689)
 
-    public val getTurbulenceNoiseSpeedRandomPtr: VoidPtr =
+    internal val getTurbulenceNoiseSpeedRandomPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed_random", 1740695150)
 
-    public val setTurbulenceNoiseSpeedRandomPtr: VoidPtr =
+    internal val setTurbulenceNoiseSpeedRandomPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed_random", 373806689)
 
-    public val getTurbulenceNoiseSpeedPtr: VoidPtr =
+    internal val getTurbulenceNoiseSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed", 3360562783)
 
-    public val setTurbulenceNoiseSpeedPtr: VoidPtr =
+    internal val setTurbulenceNoiseSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed", 3460891852)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_gravity", 3360562783)
 
-    public val setGravityPtr: VoidPtr =
+    internal val setGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_gravity", 3460891852)
 
-    public val setLifetimeRandomnessPtr: VoidPtr =
+    internal val setLifetimeRandomnessPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_lifetime_randomness", 373806689)
 
-    public val getLifetimeRandomnessPtr: VoidPtr =
+    internal val getLifetimeRandomnessPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_lifetime_randomness", 1740695150)
 
-    public val getSubEmitterModePtr: VoidPtr =
+    internal val getSubEmitterModePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_mode", 2399052877)
 
-    public val setSubEmitterModePtr: VoidPtr =
+    internal val setSubEmitterModePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_mode", 2161806672)
 
-    public val getSubEmitterFrequencyPtr: VoidPtr =
+    internal val getSubEmitterFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_frequency", 1740695150)
 
-    public val setSubEmitterFrequencyPtr: VoidPtr =
+    internal val setSubEmitterFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_frequency", 373806689)
 
-    public val getSubEmitterAmountAtEndPtr: VoidPtr =
+    internal val getSubEmitterAmountAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_end", 3905245786)
 
-    public val setSubEmitterAmountAtEndPtr: VoidPtr =
+    internal val setSubEmitterAmountAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_end", 1286410249)
 
-    public val getSubEmitterAmountAtCollisionPtr: VoidPtr =
+    internal val getSubEmitterAmountAtCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_collision", 3905245786)
 
-    public val setSubEmitterAmountAtCollisionPtr: VoidPtr =
+    internal val setSubEmitterAmountAtCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision", 1286410249)
 
-    public val getSubEmitterKeepVelocityPtr: VoidPtr =
+    internal val getSubEmitterKeepVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity", 36873697)
 
-    public val setSubEmitterKeepVelocityPtr: VoidPtr =
+    internal val setSubEmitterKeepVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_keep_velocity", 2586408642)
 
-    public val setAttractorInteractionEnabledPtr: VoidPtr =
+    internal val setAttractorInteractionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_attractor_interaction_enabled", 2586408642)
 
-    public val isAttractorInteractionEnabledPtr: VoidPtr =
+    internal val isAttractorInteractionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "is_attractor_interaction_enabled", 36873697)
 
-    public val setCollisionModePtr: VoidPtr =
+    internal val setCollisionModePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_collision_mode", 653804659)
 
-    public val getCollisionModePtr: VoidPtr =
+    internal val getCollisionModePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_collision_mode", 139371864)
 
-    public val setCollisionUseScalePtr: VoidPtr =
+    internal val setCollisionUseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_collision_use_scale", 2586408642)
 
-    public val isCollisionUsingScalePtr: VoidPtr =
+    internal val isCollisionUsingScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "is_collision_using_scale", 36873697)
 
-    public val setCollisionFrictionPtr: VoidPtr =
+    internal val setCollisionFrictionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_collision_friction", 373806689)
 
-    public val getCollisionFrictionPtr: VoidPtr =
+    internal val getCollisionFrictionPtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_collision_friction", 1740695150)
 
-    public val setCollisionBouncePtr: VoidPtr =
+    internal val setCollisionBouncePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "set_collision_bounce", 373806689)
 
-    public val getCollisionBouncePtr: VoidPtr =
+    internal val getCollisionBouncePtr: VoidPtr =
         Internals.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce", 1740695150)
   }
 }

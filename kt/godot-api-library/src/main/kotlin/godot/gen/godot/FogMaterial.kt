@@ -238,41 +238,41 @@ public open class FogMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDensityPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_density", 373806689)
 
-    public val getDensityPtr: VoidPtr =
+    internal val getDensityPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_density", 1740695150)
 
-    public val setAlbedoPtr: VoidPtr =
+    internal val setAlbedoPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_albedo", 2920490490)
 
-    public val getAlbedoPtr: VoidPtr =
+    internal val getAlbedoPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_albedo", 3444240500)
 
-    public val setEmissionPtr: VoidPtr =
+    internal val setEmissionPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_emission", 2920490490)
 
-    public val getEmissionPtr: VoidPtr =
+    internal val getEmissionPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_emission", 3444240500)
 
-    public val setHeightFalloffPtr: VoidPtr =
+    internal val setHeightFalloffPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_height_falloff", 373806689)
 
-    public val getHeightFalloffPtr: VoidPtr =
+    internal val getHeightFalloffPtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_height_falloff", 1740695150)
 
-    public val setEdgeFadePtr: VoidPtr =
+    internal val setEdgeFadePtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_edge_fade", 373806689)
 
-    public val getEdgeFadePtr: VoidPtr =
+    internal val getEdgeFadePtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_edge_fade", 1740695150)
 
-    public val setDensityTexturePtr: VoidPtr =
+    internal val setDensityTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "set_density_texture", 1188404210)
 
-    public val getDensityTexturePtr: VoidPtr =
+    internal val getDensityTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("FogMaterial", "get_density_texture", 373985333)
   }
 }

@@ -170,35 +170,35 @@ public open class SkeletonModification2D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2586408642)
 
-    public val getEnabledPtr: VoidPtr =
+    internal val getEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2240911060)
 
-    public val getModificationStackPtr: VoidPtr =
+    internal val getModificationStackPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2137761694)
 
-    public val setIsSetupPtr: VoidPtr =
+    internal val setIsSetupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2586408642)
 
-    public val getIsSetupPtr: VoidPtr =
+    internal val getIsSetupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36873697)
 
-    public val setExecutionModePtr: VoidPtr =
+    internal val setExecutionModePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1286410249)
 
-    public val getExecutionModePtr: VoidPtr =
+    internal val getExecutionModePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3905245786)
 
-    public val clampAnglePtr: VoidPtr =
+    internal val clampAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1229502682)
 
-    public val setEditorDrawGizmoPtr: VoidPtr =
+    internal val setEditorDrawGizmoPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2586408642)
 
-    public val getEditorDrawGizmoPtr: VoidPtr =
+    internal val getEditorDrawGizmoPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36873697)
   }
 }

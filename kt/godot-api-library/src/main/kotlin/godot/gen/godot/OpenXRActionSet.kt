@@ -133,32 +133,32 @@ public open class OpenXRActionSet : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLocalizedNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLocalizedNamePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "set_localized_name", 83702148)
 
-    public val getLocalizedNamePtr: VoidPtr =
+    internal val getLocalizedNamePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "get_localized_name", 201670096)
 
-    public val setPriorityPtr: VoidPtr =
+    internal val setPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "set_priority", 1286410249)
 
-    public val getPriorityPtr: VoidPtr =
+    internal val getPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "get_priority", 3905245786)
 
-    public val getActionCountPtr: VoidPtr =
+    internal val getActionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "get_action_count", 3905245786)
 
-    public val setActionsPtr: VoidPtr =
+    internal val setActionsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "set_actions", 381264803)
 
-    public val getActionsPtr: VoidPtr =
+    internal val getActionsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "get_actions", 3995934104)
 
-    public val addActionPtr: VoidPtr =
+    internal val addActionPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "add_action", 349361333)
 
-    public val removeActionPtr: VoidPtr =
+    internal val removeActionPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRActionSet", "remove_action", 349361333)
   }
 }

@@ -55,11 +55,11 @@ public open class SphereOccluder3D : Occluder3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereOccluder3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("SphereOccluder3D", "get_radius", 1740695150)
   }
 }

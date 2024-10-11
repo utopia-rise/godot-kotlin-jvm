@@ -306,55 +306,56 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     public final const val TARGET_PEER_SERVER: Long = 1
   }
 
-  internal object MethodBindings {
-    public val setTransferChannelPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTransferChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "set_transfer_channel", 1286410249)
 
-    public val getTransferChannelPtr: VoidPtr =
+    internal val getTransferChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_transfer_channel", 3905245786)
 
-    public val setTransferModePtr: VoidPtr =
+    internal val setTransferModePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "set_transfer_mode", 950411049)
 
-    public val getTransferModePtr: VoidPtr =
+    internal val getTransferModePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_transfer_mode", 3369852622)
 
-    public val setTargetPeerPtr: VoidPtr =
+    internal val setTargetPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "set_target_peer", 1286410249)
 
-    public val getPacketPeerPtr: VoidPtr =
+    internal val getPacketPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_peer", 3905245786)
 
-    public val getPacketChannelPtr: VoidPtr =
+    internal val getPacketChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_channel", 3905245786)
 
-    public val getPacketModePtr: VoidPtr =
+    internal val getPacketModePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_mode", 3369852622)
 
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerPeer", "poll", 3218959716)
+    internal val pollPtr: VoidPtr =
+        Internals.getMethodBindPtr("MultiplayerPeer", "poll", 3218959716)
 
-    public val closePtr: VoidPtr =
+    internal val closePtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "close", 3218959716)
 
-    public val disconnectPeerPtr: VoidPtr =
+    internal val disconnectPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "disconnect_peer", 4023243586)
 
-    public val getConnectionStatusPtr: VoidPtr =
+    internal val getConnectionStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_connection_status", 2147374275)
 
-    public val getUniqueIdPtr: VoidPtr =
+    internal val getUniqueIdPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "get_unique_id", 3905245786)
 
-    public val generateUniqueIdPtr: VoidPtr =
+    internal val generateUniqueIdPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "generate_unique_id", 3905245786)
 
-    public val setRefuseNewConnectionsPtr: VoidPtr =
+    internal val setRefuseNewConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "set_refuse_new_connections", 2586408642)
 
-    public val isRefusingNewConnectionsPtr: VoidPtr =
+    internal val isRefusingNewConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "is_refusing_new_connections", 36873697)
 
-    public val isServerRelaySupportedPtr: VoidPtr =
+    internal val isServerRelaySupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("MultiplayerPeer", "is_server_relay_supported", 36873697)
   }
 }

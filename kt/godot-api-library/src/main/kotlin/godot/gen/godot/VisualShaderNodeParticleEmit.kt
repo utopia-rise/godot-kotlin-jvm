@@ -89,11 +89,11 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFlagsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3960756792)
 
-    public val getFlagsPtr: VoidPtr =
+    internal val getFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171277835)
   }
 }

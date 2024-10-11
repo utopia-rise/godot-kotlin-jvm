@@ -452,82 +452,83 @@ public open class Sprite2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_texture", 3635182373)
 
-    public val setCenteredPtr: VoidPtr =
+    internal val setCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_centered", 2586408642)
 
-    public val isCenteredPtr: VoidPtr =
+    internal val isCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_centered", 36873697)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_offset", 3341600327)
 
-    public val setFlipHPtr: VoidPtr =
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr =
+    internal val isFlippedHPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr =
+    internal val isFlippedVPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_flipped_v", 36873697)
 
-    public val setRegionEnabledPtr: VoidPtr =
+    internal val setRegionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_region_enabled", 2586408642)
 
-    public val isRegionEnabledPtr: VoidPtr =
+    internal val isRegionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_region_enabled", 36873697)
 
-    public val isPixelOpaquePtr: VoidPtr =
+    internal val isPixelOpaquePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_pixel_opaque", 556197845)
 
-    public val setRegionRectPtr: VoidPtr =
+    internal val setRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_region_rect", 2046264180)
 
-    public val getRegionRectPtr: VoidPtr =
+    internal val getRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_region_rect", 1639390495)
 
-    public val setRegionFilterClipEnabledPtr: VoidPtr =
+    internal val setRegionFilterClipEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_region_filter_clip_enabled", 2586408642)
 
-    public val isRegionFilterClipEnabledPtr: VoidPtr =
+    internal val isRegionFilterClipEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "is_region_filter_clip_enabled", 36873697)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_frame", 3905245786)
 
-    public val setFrameCoordsPtr: VoidPtr =
+    internal val setFrameCoordsPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_frame_coords", 1130785943)
 
-    public val getFrameCoordsPtr: VoidPtr =
+    internal val getFrameCoordsPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_frame_coords", 3690982128)
 
-    public val setVframesPtr: VoidPtr =
+    internal val setVframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_vframes", 1286410249)
 
-    public val getVframesPtr: VoidPtr =
+    internal val getVframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_vframes", 3905245786)
 
-    public val setHframesPtr: VoidPtr =
+    internal val setHframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "set_hframes", 1286410249)
 
-    public val getHframesPtr: VoidPtr =
+    internal val getHframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite2D", "get_hframes", 3905245786)
 
-    public val getRectPtr: VoidPtr = Internals.getMethodBindPtr("Sprite2D", "get_rect", 1639390495)
+    internal val getRectPtr: VoidPtr =
+        Internals.getMethodBindPtr("Sprite2D", "get_rect", 1639390495)
   }
 }

@@ -440,110 +440,110 @@ public open class ShapeCast2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr =
+    internal val isEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "is_enabled", 36873697)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_shape", 771364740)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_shape", 522005891)
 
-    public val setTargetPositionPtr: VoidPtr =
+    internal val setTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_target_position", 743155724)
 
-    public val getTargetPositionPtr: VoidPtr =
+    internal val getTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_target_position", 3341600327)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_margin", 1740695150)
 
-    public val setMaxResultsPtr: VoidPtr =
+    internal val setMaxResultsPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_max_results", 1286410249)
 
-    public val getMaxResultsPtr: VoidPtr =
+    internal val getMaxResultsPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_max_results", 3905245786)
 
-    public val isCollidingPtr: VoidPtr =
+    internal val isCollidingPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "is_colliding", 36873697)
 
-    public val getCollisionCountPtr: VoidPtr =
+    internal val getCollisionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collision_count", 3905245786)
 
-    public val forceShapecastUpdatePtr: VoidPtr =
+    internal val forceShapecastUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "force_shapecast_update", 3218959716)
 
-    public val getColliderPtr: VoidPtr =
+    internal val getColliderPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collider", 3332903315)
 
-    public val getColliderRidPtr: VoidPtr =
+    internal val getColliderRidPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collider_rid", 495598643)
 
-    public val getColliderShapePtr: VoidPtr =
+    internal val getColliderShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collider_shape", 923996154)
 
-    public val getCollisionPointPtr: VoidPtr =
+    internal val getCollisionPointPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collision_point", 2299179447)
 
-    public val getCollisionNormalPtr: VoidPtr =
+    internal val getCollisionNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collision_normal", 2299179447)
 
-    public val getClosestCollisionSafeFractionPtr: VoidPtr =
+    internal val getClosestCollisionSafeFractionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_closest_collision_safe_fraction", 1740695150)
 
-    public val getClosestCollisionUnsafeFractionPtr: VoidPtr =
+    internal val getClosestCollisionUnsafeFractionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_closest_collision_unsafe_fraction", 1740695150)
 
-    public val addExceptionRidPtr: VoidPtr =
+    internal val addExceptionRidPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "add_exception_rid", 2722037293)
 
-    public val addExceptionPtr: VoidPtr =
+    internal val addExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "add_exception", 3090941106)
 
-    public val removeExceptionRidPtr: VoidPtr =
+    internal val removeExceptionRidPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "remove_exception_rid", 2722037293)
 
-    public val removeExceptionPtr: VoidPtr =
+    internal val removeExceptionPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "remove_exception", 3090941106)
 
-    public val clearExceptionsPtr: VoidPtr =
+    internal val clearExceptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "clear_exceptions", 3218959716)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collision_mask", 3905245786)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_collision_mask_value", 1116898809)
 
-    public val setExcludeParentBodyPtr: VoidPtr =
+    internal val setExcludeParentBodyPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_exclude_parent_body", 2586408642)
 
-    public val getExcludeParentBodyPtr: VoidPtr =
+    internal val getExcludeParentBodyPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "get_exclude_parent_body", 36873697)
 
-    public val setCollideWithAreasPtr: VoidPtr =
+    internal val setCollideWithAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_collide_with_areas", 2586408642)
 
-    public val isCollideWithAreasEnabledPtr: VoidPtr =
+    internal val isCollideWithAreasEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "is_collide_with_areas_enabled", 36873697)
 
-    public val setCollideWithBodiesPtr: VoidPtr =
+    internal val setCollideWithBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "set_collide_with_bodies", 2586408642)
 
-    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+    internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ShapeCast2D", "is_collide_with_bodies_enabled", 36873697)
   }
 }

@@ -121,29 +121,29 @@ public open class TorusMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setInnerRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setInnerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "set_inner_radius", 373806689)
 
-    public val getInnerRadiusPtr: VoidPtr =
+    internal val getInnerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "get_inner_radius", 1740695150)
 
-    public val setOuterRadiusPtr: VoidPtr =
+    internal val setOuterRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "set_outer_radius", 373806689)
 
-    public val getOuterRadiusPtr: VoidPtr =
+    internal val getOuterRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "get_outer_radius", 1740695150)
 
-    public val setRingsPtr: VoidPtr =
+    internal val setRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr =
+    internal val getRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "get_rings", 3905245786)
 
-    public val setRingSegmentsPtr: VoidPtr =
+    internal val setRingSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "set_ring_segments", 1286410249)
 
-    public val getRingSegmentsPtr: VoidPtr =
+    internal val getRingSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("TorusMesh", "get_ring_segments", 3905245786)
   }
 }

@@ -903,220 +903,221 @@ public open class ItemList : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addItemPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "add_item", 359861678)
+  public object MethodBindings {
+    internal val addItemPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "add_item", 359861678)
 
-    public val addIconItemPtr: VoidPtr =
+    internal val addIconItemPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "add_icon_item", 4256579627)
 
-    public val setItemTextPtr: VoidPtr =
+    internal val setItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_text", 501894301)
 
-    public val getItemTextPtr: VoidPtr =
+    internal val getItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_text", 844755477)
 
-    public val setItemIconPtr: VoidPtr =
+    internal val setItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_icon", 666127730)
 
-    public val getItemIconPtr: VoidPtr =
+    internal val getItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_icon", 3536238170)
 
-    public val setItemTextDirectionPtr: VoidPtr =
+    internal val setItemTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_text_direction", 1707680378)
 
-    public val getItemTextDirectionPtr: VoidPtr =
+    internal val getItemTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_text_direction", 4235602388)
 
-    public val setItemLanguagePtr: VoidPtr =
+    internal val setItemLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_language", 501894301)
 
-    public val getItemLanguagePtr: VoidPtr =
+    internal val getItemLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_language", 844755477)
 
-    public val setItemIconTransposedPtr: VoidPtr =
+    internal val setItemIconTransposedPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_icon_transposed", 300928843)
 
-    public val isItemIconTransposedPtr: VoidPtr =
+    internal val isItemIconTransposedPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_item_icon_transposed", 1116898809)
 
-    public val setItemIconRegionPtr: VoidPtr =
+    internal val setItemIconRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_icon_region", 1356297692)
 
-    public val getItemIconRegionPtr: VoidPtr =
+    internal val getItemIconRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_icon_region", 3327874267)
 
-    public val setItemIconModulatePtr: VoidPtr =
+    internal val setItemIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_icon_modulate", 2878471219)
 
-    public val getItemIconModulatePtr: VoidPtr =
+    internal val getItemIconModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_icon_modulate", 3457211756)
 
-    public val setItemSelectablePtr: VoidPtr =
+    internal val setItemSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_selectable", 300928843)
 
-    public val isItemSelectablePtr: VoidPtr =
+    internal val isItemSelectablePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_item_selectable", 1116898809)
 
-    public val setItemDisabledPtr: VoidPtr =
+    internal val setItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_disabled", 300928843)
 
-    public val isItemDisabledPtr: VoidPtr =
+    internal val isItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_item_disabled", 1116898809)
 
-    public val setItemMetadataPtr: VoidPtr =
+    internal val setItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_metadata", 2152698145)
 
-    public val getItemMetadataPtr: VoidPtr =
+    internal val getItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_metadata", 4227898402)
 
-    public val setItemCustomBgColorPtr: VoidPtr =
+    internal val setItemCustomBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_custom_bg_color", 2878471219)
 
-    public val getItemCustomBgColorPtr: VoidPtr =
+    internal val getItemCustomBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_custom_bg_color", 3457211756)
 
-    public val setItemCustomFgColorPtr: VoidPtr =
+    internal val setItemCustomFgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_custom_fg_color", 2878471219)
 
-    public val getItemCustomFgColorPtr: VoidPtr =
+    internal val getItemCustomFgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_custom_fg_color", 3457211756)
 
-    public val getItemRectPtr: VoidPtr =
+    internal val getItemRectPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_rect", 159227807)
 
-    public val setItemTooltipEnabledPtr: VoidPtr =
+    internal val setItemTooltipEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_tooltip_enabled", 300928843)
 
-    public val isItemTooltipEnabledPtr: VoidPtr =
+    internal val isItemTooltipEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_item_tooltip_enabled", 1116898809)
 
-    public val setItemTooltipPtr: VoidPtr =
+    internal val setItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_tooltip", 501894301)
 
-    public val getItemTooltipPtr: VoidPtr =
+    internal val getItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_tooltip", 844755477)
 
-    public val selectPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "select", 972357352)
+    internal val selectPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "select", 972357352)
 
-    public val deselectPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "deselect", 1286410249)
+    internal val deselectPtr: VoidPtr =
+        Internals.getMethodBindPtr("ItemList", "deselect", 1286410249)
 
-    public val deselectAllPtr: VoidPtr =
+    internal val deselectAllPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "deselect_all", 3218959716)
 
-    public val isSelectedPtr: VoidPtr =
+    internal val isSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_selected", 1116898809)
 
-    public val getSelectedItemsPtr: VoidPtr =
+    internal val getSelectedItemsPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_selected_items", 969006518)
 
-    public val moveItemPtr: VoidPtr =
+    internal val moveItemPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "move_item", 3937882851)
 
-    public val setItemCountPtr: VoidPtr =
+    internal val setItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_item_count", 1286410249)
 
-    public val getItemCountPtr: VoidPtr =
+    internal val getItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_count", 3905245786)
 
-    public val removeItemPtr: VoidPtr =
+    internal val removeItemPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "remove_item", 1286410249)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("ItemList", "clear", 3218959716)
 
-    public val sortItemsByTextPtr: VoidPtr =
+    internal val sortItemsByTextPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "sort_items_by_text", 3218959716)
 
-    public val setFixedColumnWidthPtr: VoidPtr =
+    internal val setFixedColumnWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_fixed_column_width", 1286410249)
 
-    public val getFixedColumnWidthPtr: VoidPtr =
+    internal val getFixedColumnWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_fixed_column_width", 3905245786)
 
-    public val setSameColumnWidthPtr: VoidPtr =
+    internal val setSameColumnWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_same_column_width", 2586408642)
 
-    public val isSameColumnWidthPtr: VoidPtr =
+    internal val isSameColumnWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_same_column_width", 36873697)
 
-    public val setMaxTextLinesPtr: VoidPtr =
+    internal val setMaxTextLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_max_text_lines", 1286410249)
 
-    public val getMaxTextLinesPtr: VoidPtr =
+    internal val getMaxTextLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_max_text_lines", 3905245786)
 
-    public val setMaxColumnsPtr: VoidPtr =
+    internal val setMaxColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_max_columns", 1286410249)
 
-    public val getMaxColumnsPtr: VoidPtr =
+    internal val getMaxColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_max_columns", 3905245786)
 
-    public val setSelectModePtr: VoidPtr =
+    internal val setSelectModePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_select_mode", 928267388)
 
-    public val getSelectModePtr: VoidPtr =
+    internal val getSelectModePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_select_mode", 1191945842)
 
-    public val setIconModePtr: VoidPtr =
+    internal val setIconModePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_icon_mode", 2025053633)
 
-    public val getIconModePtr: VoidPtr =
+    internal val getIconModePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_icon_mode", 3353929232)
 
-    public val setFixedIconSizePtr: VoidPtr =
+    internal val setFixedIconSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_fixed_icon_size", 1130785943)
 
-    public val getFixedIconSizePtr: VoidPtr =
+    internal val getFixedIconSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_fixed_icon_size", 3690982128)
 
-    public val setIconScalePtr: VoidPtr =
+    internal val setIconScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_icon_scale", 373806689)
 
-    public val getIconScalePtr: VoidPtr =
+    internal val getIconScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_icon_scale", 1740695150)
 
-    public val setAllowRmbSelectPtr: VoidPtr =
+    internal val setAllowRmbSelectPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_allow_rmb_select", 2586408642)
 
-    public val getAllowRmbSelectPtr: VoidPtr =
+    internal val getAllowRmbSelectPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_allow_rmb_select", 36873697)
 
-    public val setAllowReselectPtr: VoidPtr =
+    internal val setAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_allow_reselect", 2586408642)
 
-    public val getAllowReselectPtr: VoidPtr =
+    internal val getAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_allow_reselect", 36873697)
 
-    public val setAllowSearchPtr: VoidPtr =
+    internal val setAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_allow_search", 2586408642)
 
-    public val getAllowSearchPtr: VoidPtr =
+    internal val getAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_allow_search", 36873697)
 
-    public val setAutoHeightPtr: VoidPtr =
+    internal val setAutoHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_auto_height", 2586408642)
 
-    public val hasAutoHeightPtr: VoidPtr =
+    internal val hasAutoHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "has_auto_height", 36873697)
 
-    public val isAnythingSelectedPtr: VoidPtr =
+    internal val isAnythingSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "is_anything_selected", 2240911060)
 
-    public val getItemAtPositionPtr: VoidPtr =
+    internal val getItemAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_item_at_position", 2300324924)
 
-    public val ensureCurrentIsVisiblePtr: VoidPtr =
+    internal val ensureCurrentIsVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "ensure_current_is_visible", 3218959716)
 
-    public val getVScrollBarPtr: VoidPtr =
+    internal val getVScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2630340773)
 
-    public val setTextOverrunBehaviorPtr: VoidPtr =
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1008890932)
 
-    public val getTextOverrunBehaviorPtr: VoidPtr =
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "get_text_overrun_behavior", 3779142101)
 
-    public val forceUpdateListSizePtr: VoidPtr =
+    internal val forceUpdateListSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ItemList", "force_update_list_size", 3218959716)
   }
 }

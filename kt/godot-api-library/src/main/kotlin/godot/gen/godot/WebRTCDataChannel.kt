@@ -222,46 +222,47 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("WebRTCDataChannel", "poll", 166280745)
+  public object MethodBindings {
+    internal val pollPtr: VoidPtr =
+        Internals.getMethodBindPtr("WebRTCDataChannel", "poll", 166280745)
 
-    public val closePtr: VoidPtr =
+    internal val closePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "close", 3218959716)
 
-    public val wasStringPacketPtr: VoidPtr =
+    internal val wasStringPacketPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "was_string_packet", 36873697)
 
-    public val setWriteModePtr: VoidPtr =
+    internal val setWriteModePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "set_write_mode", 1999768052)
 
-    public val getWriteModePtr: VoidPtr =
+    internal val getWriteModePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_write_mode", 2848495172)
 
-    public val getReadyStatePtr: VoidPtr =
+    internal val getReadyStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_ready_state", 3501143017)
 
-    public val getLabelPtr: VoidPtr =
+    internal val getLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_label", 201670096)
 
-    public val isOrderedPtr: VoidPtr =
+    internal val isOrderedPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "is_ordered", 36873697)
 
-    public val getIdPtr: VoidPtr =
+    internal val getIdPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_id", 3905245786)
 
-    public val getMaxPacketLifeTimePtr: VoidPtr =
+    internal val getMaxPacketLifeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_max_packet_life_time", 3905245786)
 
-    public val getMaxRetransmitsPtr: VoidPtr =
+    internal val getMaxRetransmitsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_max_retransmits", 3905245786)
 
-    public val getProtocolPtr: VoidPtr =
+    internal val getProtocolPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_protocol", 201670096)
 
-    public val isNegotiatedPtr: VoidPtr =
+    internal val isNegotiatedPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "is_negotiated", 36873697)
 
-    public val getBufferedAmountPtr: VoidPtr =
+    internal val getBufferedAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCDataChannel", "get_buffered_amount", 3905245786)
   }
 }

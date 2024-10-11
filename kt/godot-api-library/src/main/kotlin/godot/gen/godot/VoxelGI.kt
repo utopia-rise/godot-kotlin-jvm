@@ -247,32 +247,32 @@ public open class VoxelGI : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setProbeDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setProbeDataPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "set_probe_data", 1637849675)
 
-    public val getProbeDataPtr: VoidPtr =
+    internal val getProbeDataPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "get_probe_data", 1730645405)
 
-    public val setSubdivPtr: VoidPtr =
+    internal val setSubdivPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "set_subdiv", 2240898472)
 
-    public val getSubdivPtr: VoidPtr =
+    internal val getSubdivPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "get_subdiv", 4261647950)
 
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "set_size", 3460891852)
+    internal val setSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "get_size", 3360562783)
+    internal val getSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "get_size", 3360562783)
 
-    public val setCameraAttributesPtr: VoidPtr =
+    internal val setCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "set_camera_attributes", 2817810567)
 
-    public val getCameraAttributesPtr: VoidPtr =
+    internal val getCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "get_camera_attributes", 3921283215)
 
-    public val bakePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "bake", 2781551026)
+    internal val bakePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "bake", 2781551026)
 
-    public val debugBakePtr: VoidPtr =
+    internal val debugBakePtr: VoidPtr =
         Internals.getMethodBindPtr("VoxelGI", "debug_bake", 3218959716)
   }
 }

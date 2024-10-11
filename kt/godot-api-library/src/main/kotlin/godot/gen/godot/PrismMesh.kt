@@ -173,33 +173,35 @@ public open class PrismMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLeftToRightPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLeftToRightPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "set_left_to_right", 373806689)
 
-    public val getLeftToRightPtr: VoidPtr =
+    internal val getLeftToRightPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "get_left_to_right", 1740695150)
 
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
+    internal val setSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
+    internal val getSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
 
-    public val setSubdivideWidthPtr: VoidPtr =
+    internal val setSubdivideWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1286410249)
 
-    public val getSubdivideWidthPtr: VoidPtr =
+    internal val getSubdivideWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3905245786)
 
-    public val setSubdivideHeightPtr: VoidPtr =
+    internal val setSubdivideHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1286410249)
 
-    public val getSubdivideHeightPtr: VoidPtr =
+    internal val getSubdivideHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3905245786)
 
-    public val setSubdivideDepthPtr: VoidPtr =
+    internal val setSubdivideDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1286410249)
 
-    public val getSubdivideDepthPtr: VoidPtr =
+    internal val getSubdivideDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3905245786)
   }
 }

@@ -346,83 +346,83 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMaxConcavityPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMaxConcavityPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_concavity", 373806689)
 
-    public val getMaxConcavityPtr: VoidPtr =
+    internal val getMaxConcavityPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_concavity", 1740695150)
 
-    public val setSymmetryPlanesClippingBiasPtr: VoidPtr =
+    internal val setSymmetryPlanesClippingBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_symmetry_planes_clipping_bias", 373806689)
 
-    public val getSymmetryPlanesClippingBiasPtr: VoidPtr =
+    internal val getSymmetryPlanesClippingBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_symmetry_planes_clipping_bias", 1740695150)
 
-    public val setRevolutionAxesClippingBiasPtr: VoidPtr =
+    internal val setRevolutionAxesClippingBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_revolution_axes_clipping_bias", 373806689)
 
-    public val getRevolutionAxesClippingBiasPtr: VoidPtr =
+    internal val getRevolutionAxesClippingBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_revolution_axes_clipping_bias", 1740695150)
 
-    public val setMinVolumePerConvexHullPtr: VoidPtr =
+    internal val setMinVolumePerConvexHullPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_min_volume_per_convex_hull", 373806689)
 
-    public val getMinVolumePerConvexHullPtr: VoidPtr =
+    internal val getMinVolumePerConvexHullPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_min_volume_per_convex_hull", 1740695150)
 
-    public val setResolutionPtr: VoidPtr =
+    internal val setResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_resolution", 1286410249)
 
-    public val getResolutionPtr: VoidPtr =
+    internal val getResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_resolution", 3905245786)
 
-    public val setMaxNumVerticesPerConvexHullPtr: VoidPtr =
+    internal val setMaxNumVerticesPerConvexHullPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_num_vertices_per_convex_hull", 1286410249)
 
-    public val getMaxNumVerticesPerConvexHullPtr: VoidPtr =
+    internal val getMaxNumVerticesPerConvexHullPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_num_vertices_per_convex_hull", 3905245786)
 
-    public val setPlaneDownsamplingPtr: VoidPtr =
+    internal val setPlaneDownsamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_plane_downsampling", 1286410249)
 
-    public val getPlaneDownsamplingPtr: VoidPtr =
+    internal val getPlaneDownsamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_plane_downsampling", 3905245786)
 
-    public val setConvexHullDownsamplingPtr: VoidPtr =
+    internal val setConvexHullDownsamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_downsampling", 1286410249)
 
-    public val getConvexHullDownsamplingPtr: VoidPtr =
+    internal val getConvexHullDownsamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_downsampling", 3905245786)
 
-    public val setNormalizeMeshPtr: VoidPtr =
+    internal val setNormalizeMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_normalize_mesh", 2586408642)
 
-    public val getNormalizeMeshPtr: VoidPtr =
+    internal val getNormalizeMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_normalize_mesh", 36873697)
 
-    public val setModePtr: VoidPtr =
+    internal val setModePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_mode", 1668072869)
 
-    public val getModePtr: VoidPtr =
+    internal val getModePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_mode", 23479454)
 
-    public val setConvexHullApproximationPtr: VoidPtr =
+    internal val setConvexHullApproximationPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_approximation", 2586408642)
 
-    public val getConvexHullApproximationPtr: VoidPtr =
+    internal val getConvexHullApproximationPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_approximation", 36873697)
 
-    public val setMaxConvexHullsPtr: VoidPtr =
+    internal val setMaxConvexHullsPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_convex_hulls", 1286410249)
 
-    public val getMaxConvexHullsPtr: VoidPtr =
+    internal val getMaxConvexHullsPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_convex_hulls", 3905245786)
 
-    public val setProjectHullVerticesPtr: VoidPtr =
+    internal val setProjectHullVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_project_hull_vertices", 2586408642)
 
-    public val getProjectHullVerticesPtr: VoidPtr =
+    internal val getProjectHullVerticesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_project_hull_vertices", 36873697)
   }
 }

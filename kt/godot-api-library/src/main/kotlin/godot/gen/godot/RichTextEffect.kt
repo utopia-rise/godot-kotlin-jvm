@@ -52,5 +52,5 @@ public open class RichTextEffect : Resource() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

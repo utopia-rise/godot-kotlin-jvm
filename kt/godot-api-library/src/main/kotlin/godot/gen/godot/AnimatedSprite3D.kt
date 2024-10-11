@@ -301,60 +301,62 @@ public open class AnimatedSprite3D : SpriteBase3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSpriteFramesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSpriteFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905781144)
 
-    public val getSpriteFramesPtr: VoidPtr =
+    internal val getSpriteFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3804851214)
 
-    public val setAnimationPtr: VoidPtr =
+    internal val setAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3304788590)
 
-    public val getAnimationPtr: VoidPtr =
+    internal val getAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2002593661)
 
-    public val setAutoplayPtr: VoidPtr =
+    internal val setAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83702148)
 
-    public val getAutoplayPtr: VoidPtr =
+    internal val getAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201670096)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
 
-    public val playPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
+    internal val playPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
 
-    public val playBackwardsPtr: VoidPtr =
+    internal val playBackwardsPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 1421762485)
 
-    public val pausePtr: VoidPtr =
+    internal val pausePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
+    internal val stopPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3905245786)
 
-    public val setFrameProgressPtr: VoidPtr =
+    internal val setFrameProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373806689)
 
-    public val getFrameProgressPtr: VoidPtr =
+    internal val getFrameProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1740695150)
 
-    public val setFrameAndProgressPtr: VoidPtr =
+    internal val setFrameAndProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1602489585)
 
-    public val setSpeedScalePtr: VoidPtr =
+    internal val setSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373806689)
 
-    public val getSpeedScalePtr: VoidPtr =
+    internal val getSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1740695150)
 
-    public val getPlayingSpeedPtr: VoidPtr =
+    internal val getPlayingSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1740695150)
   }
 }

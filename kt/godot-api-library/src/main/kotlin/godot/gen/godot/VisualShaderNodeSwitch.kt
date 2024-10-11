@@ -104,11 +104,11 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOpTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSwitch", "set_op_type", 510471861)
 
-    public val getOpTypePtr: VoidPtr =
+    internal val getOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSwitch", "get_op_type", 2517845071)
   }
 }

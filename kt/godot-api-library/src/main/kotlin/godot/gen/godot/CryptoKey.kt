@@ -90,18 +90,18 @@ public open class CryptoKey : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val savePtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "save", 885841341)
+  public object MethodBindings {
+    internal val savePtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "save", 885841341)
 
-    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "load", 885841341)
+    internal val loadPtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "load", 885841341)
 
-    public val isPublicOnlyPtr: VoidPtr =
+    internal val isPublicOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("CryptoKey", "is_public_only", 36873697)
 
-    public val saveToStringPtr: VoidPtr =
+    internal val saveToStringPtr: VoidPtr =
         Internals.getMethodBindPtr("CryptoKey", "save_to_string", 32795936)
 
-    public val loadFromStringPtr: VoidPtr =
+    internal val loadFromStringPtr: VoidPtr =
         Internals.getMethodBindPtr("CryptoKey", "load_from_string", 885841341)
   }
 }

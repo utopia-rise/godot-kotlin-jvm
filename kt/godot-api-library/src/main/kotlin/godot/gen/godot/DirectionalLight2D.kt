@@ -73,11 +73,11 @@ public open class DirectionalLight2D : Light2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMaxDistancePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight2D", "set_max_distance", 373806689)
 
-    public val getMaxDistancePtr: VoidPtr =
+    internal val getMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight2D", "get_max_distance", 1740695150)
   }
 }

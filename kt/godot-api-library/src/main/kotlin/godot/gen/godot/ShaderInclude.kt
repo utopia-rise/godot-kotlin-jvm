@@ -56,11 +56,11 @@ public open class ShaderInclude : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCodePtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderInclude", "set_code", 83702148)
 
-    public val getCodePtr: VoidPtr =
+    internal val getCodePtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderInclude", "get_code", 201670096)
   }
 }

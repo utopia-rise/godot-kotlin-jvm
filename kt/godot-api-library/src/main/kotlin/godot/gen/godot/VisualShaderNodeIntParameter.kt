@@ -201,41 +201,41 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHintPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHintPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2540512075)
 
-    public val getHintPtr: VoidPtr =
+    internal val getHintPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4250814924)
 
-    public val setMinPtr: VoidPtr =
+    internal val setMinPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1286410249)
 
-    public val getMinPtr: VoidPtr =
+    internal val getMinPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3905245786)
 
-    public val setMaxPtr: VoidPtr =
+    internal val setMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1286410249)
 
-    public val getMaxPtr: VoidPtr =
+    internal val getMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3905245786)
 
-    public val setStepPtr: VoidPtr =
+    internal val setStepPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1286410249)
 
-    public val getStepPtr: VoidPtr =
+    internal val getStepPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
 
-    public val setDefaultValueEnabledPtr: VoidPtr =
+    internal val setDefaultValueEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)
 
-    public val isDefaultValueEnabledPtr: VoidPtr =
+    internal val isDefaultValueEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36873697)
 
-    public val setDefaultValuePtr: VoidPtr =
+    internal val setDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1286410249)
 
-    public val getDefaultValuePtr: VoidPtr =
+    internal val getDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3905245786)
   }
 }

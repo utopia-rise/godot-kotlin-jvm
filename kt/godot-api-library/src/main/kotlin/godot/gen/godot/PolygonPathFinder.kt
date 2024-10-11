@@ -84,29 +84,29 @@ public open class PolygonPathFinder : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setupPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setupPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "setup", 3251786936)
 
-    public val findPathPtr: VoidPtr =
+    internal val findPathPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "find_path", 1562168077)
 
-    public val getIntersectionsPtr: VoidPtr =
+    internal val getIntersectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "get_intersections", 3932192302)
 
-    public val getClosestPointPtr: VoidPtr =
+    internal val getClosestPointPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "get_closest_point", 2656412154)
 
-    public val isPointInsidePtr: VoidPtr =
+    internal val isPointInsidePtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "is_point_inside", 556197845)
 
-    public val setPointPenaltyPtr: VoidPtr =
+    internal val setPointPenaltyPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "set_point_penalty", 1602489585)
 
-    public val getPointPenaltyPtr: VoidPtr =
+    internal val getPointPenaltyPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "get_point_penalty", 2339986948)
 
-    public val getBoundsPtr: VoidPtr =
+    internal val getBoundsPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonPathFinder", "get_bounds", 1639390495)
   }
 }

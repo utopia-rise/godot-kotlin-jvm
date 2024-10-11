@@ -297,53 +297,53 @@ public open class InputEventMIDI : InputEvent() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setChannelPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_channel", 1286410249)
 
-    public val getChannelPtr: VoidPtr =
+    internal val getChannelPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_channel", 3905245786)
 
-    public val setMessagePtr: VoidPtr =
+    internal val setMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_message", 1064271510)
 
-    public val getMessagePtr: VoidPtr =
+    internal val getMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_message", 1936512097)
 
-    public val setPitchPtr: VoidPtr =
+    internal val setPitchPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_pitch", 1286410249)
 
-    public val getPitchPtr: VoidPtr =
+    internal val getPitchPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_pitch", 3905245786)
 
-    public val setVelocityPtr: VoidPtr =
+    internal val setVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_velocity", 1286410249)
 
-    public val getVelocityPtr: VoidPtr =
+    internal val getVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_velocity", 3905245786)
 
-    public val setInstrumentPtr: VoidPtr =
+    internal val setInstrumentPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_instrument", 1286410249)
 
-    public val getInstrumentPtr: VoidPtr =
+    internal val getInstrumentPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_instrument", 3905245786)
 
-    public val setPressurePtr: VoidPtr =
+    internal val setPressurePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_pressure", 1286410249)
 
-    public val getPressurePtr: VoidPtr =
+    internal val getPressurePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_pressure", 3905245786)
 
-    public val setControllerNumberPtr: VoidPtr =
+    internal val setControllerNumberPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_controller_number", 1286410249)
 
-    public val getControllerNumberPtr: VoidPtr =
+    internal val getControllerNumberPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_controller_number", 3905245786)
 
-    public val setControllerValuePtr: VoidPtr =
+    internal val setControllerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "set_controller_value", 1286410249)
 
-    public val getControllerValuePtr: VoidPtr =
+    internal val getControllerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMIDI", "get_controller_value", 3905245786)
   }
 }

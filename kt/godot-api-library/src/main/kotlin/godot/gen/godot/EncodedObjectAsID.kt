@@ -57,11 +57,11 @@ public open class EncodedObjectAsID : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setObjectIdPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setObjectIdPtr: VoidPtr =
         Internals.getMethodBindPtr("EncodedObjectAsID", "set_object_id", 1286410249)
 
-    public val getObjectIdPtr: VoidPtr =
+    internal val getObjectIdPtr: VoidPtr =
         Internals.getMethodBindPtr("EncodedObjectAsID", "get_object_id", 3905245786)
   }
 }

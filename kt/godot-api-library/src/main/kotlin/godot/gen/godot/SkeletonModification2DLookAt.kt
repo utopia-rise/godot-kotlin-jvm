@@ -197,53 +197,53 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBone2dNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node", 1348162250)
 
-    public val getBone2dNodePtr: VoidPtr =
+    internal val getBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node", 4075236667)
 
-    public val setBoneIndexPtr: VoidPtr =
+    internal val setBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index", 1286410249)
 
-    public val getBoneIndexPtr: VoidPtr =
+    internal val getBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index", 3905245786)
 
-    public val setTargetNodePtr: VoidPtr =
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node", 4075236667)
 
-    public val setAdditionalRotationPtr: VoidPtr =
+    internal val setAdditionalRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation", 373806689)
 
-    public val getAdditionalRotationPtr: VoidPtr =
+    internal val getAdditionalRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation", 1740695150)
 
-    public val setEnableConstraintPtr: VoidPtr =
+    internal val setEnableConstraintPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint", 2586408642)
 
-    public val getEnableConstraintPtr: VoidPtr =
+    internal val getEnableConstraintPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint", 36873697)
 
-    public val setConstraintAngleMinPtr: VoidPtr =
+    internal val setConstraintAngleMinPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min", 373806689)
 
-    public val getConstraintAngleMinPtr: VoidPtr =
+    internal val getConstraintAngleMinPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min", 1740695150)
 
-    public val setConstraintAngleMaxPtr: VoidPtr =
+    internal val setConstraintAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max", 373806689)
 
-    public val getConstraintAngleMaxPtr: VoidPtr =
+    internal val getConstraintAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max", 1740695150)
 
-    public val setConstraintAngleInvertPtr: VoidPtr =
+    internal val setConstraintAngleInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert", 2586408642)
 
-    public val getConstraintAngleInvertPtr: VoidPtr =
+    internal val getConstraintAngleInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert", 36873697)
   }
 }

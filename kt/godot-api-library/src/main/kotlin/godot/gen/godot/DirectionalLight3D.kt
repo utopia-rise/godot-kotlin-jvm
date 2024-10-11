@@ -165,23 +165,23 @@ public open class DirectionalLight3D : Light3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setShadowModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setShadowModePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode", 1261211726)
 
-    public val getShadowModePtr: VoidPtr =
+    internal val getShadowModePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode", 2765228544)
 
-    public val setBlendSplitsPtr: VoidPtr =
+    internal val setBlendSplitsPtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "set_blend_splits", 2586408642)
 
-    public val isBlendSplitsEnabledPtr: VoidPtr =
+    internal val isBlendSplitsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled", 36873697)
 
-    public val setSkyModePtr: VoidPtr =
+    internal val setSkyModePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "set_sky_mode", 2691194817)
 
-    public val getSkyModePtr: VoidPtr =
+    internal val getSkyModePtr: VoidPtr =
         Internals.getMethodBindPtr("DirectionalLight3D", "get_sky_mode", 3819982774)
   }
 }

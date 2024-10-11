@@ -383,5 +383,5 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

@@ -1549,264 +1549,264 @@ public open class CanvasItem internal constructor() : Node() {
     public final const val NOTIFICATION_WORLD_2D_CHANGED: Long = 36
   }
 
-  internal object MethodBindings {
-    public val getCanvasItemPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getCanvasItemPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_canvas_item", 2944877500)
 
-    public val setVisiblePtr: VoidPtr =
+    internal val setVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr =
+    internal val isVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_visible", 36873697)
 
-    public val isVisibleInTreePtr: VoidPtr =
+    internal val isVisibleInTreePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_visible_in_tree", 36873697)
 
-    public val showPtr: VoidPtr = Internals.getMethodBindPtr("CanvasItem", "show", 3218959716)
+    internal val showPtr: VoidPtr = Internals.getMethodBindPtr("CanvasItem", "show", 3218959716)
 
-    public val hidePtr: VoidPtr = Internals.getMethodBindPtr("CanvasItem", "hide", 3218959716)
+    internal val hidePtr: VoidPtr = Internals.getMethodBindPtr("CanvasItem", "hide", 3218959716)
 
-    public val queueRedrawPtr: VoidPtr =
+    internal val queueRedrawPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "queue_redraw", 3218959716)
 
-    public val moveToFrontPtr: VoidPtr =
+    internal val moveToFrontPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "move_to_front", 3218959716)
 
-    public val setAsTopLevelPtr: VoidPtr =
+    internal val setAsTopLevelPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_as_top_level", 2586408642)
 
-    public val isSetAsTopLevelPtr: VoidPtr =
+    internal val isSetAsTopLevelPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_set_as_top_level", 36873697)
 
-    public val setLightMaskPtr: VoidPtr =
+    internal val setLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_light_mask", 1286410249)
 
-    public val getLightMaskPtr: VoidPtr =
+    internal val getLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_light_mask", 3905245786)
 
-    public val setModulatePtr: VoidPtr =
+    internal val setModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr =
+    internal val getModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_modulate", 3444240500)
 
-    public val setSelfModulatePtr: VoidPtr =
+    internal val setSelfModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_self_modulate", 2920490490)
 
-    public val getSelfModulatePtr: VoidPtr =
+    internal val getSelfModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_self_modulate", 3444240500)
 
-    public val setZIndexPtr: VoidPtr =
+    internal val setZIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_z_index", 1286410249)
 
-    public val getZIndexPtr: VoidPtr =
+    internal val getZIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_z_index", 3905245786)
 
-    public val setZAsRelativePtr: VoidPtr =
+    internal val setZAsRelativePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_z_as_relative", 2586408642)
 
-    public val isZRelativePtr: VoidPtr =
+    internal val isZRelativePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_z_relative", 36873697)
 
-    public val setYSortEnabledPtr: VoidPtr =
+    internal val setYSortEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_y_sort_enabled", 2586408642)
 
-    public val isYSortEnabledPtr: VoidPtr =
+    internal val isYSortEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_y_sort_enabled", 36873697)
 
-    public val setDrawBehindParentPtr: VoidPtr =
+    internal val setDrawBehindParentPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_draw_behind_parent", 2586408642)
 
-    public val isDrawBehindParentEnabledPtr: VoidPtr =
+    internal val isDrawBehindParentEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_draw_behind_parent_enabled", 36873697)
 
-    public val drawLinePtr: VoidPtr =
+    internal val drawLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_line", 1562330099)
 
-    public val drawDashedLinePtr: VoidPtr =
+    internal val drawDashedLinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_dashed_line", 3653831622)
 
-    public val drawPolylinePtr: VoidPtr =
+    internal val drawPolylinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_polyline", 3797364428)
 
-    public val drawPolylineColorsPtr: VoidPtr =
+    internal val drawPolylineColorsPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_polyline_colors", 2311979562)
 
-    public val drawArcPtr: VoidPtr =
+    internal val drawArcPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_arc", 4140652635)
 
-    public val drawMultilinePtr: VoidPtr =
+    internal val drawMultilinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_multiline", 3797364428)
 
-    public val drawMultilineColorsPtr: VoidPtr =
+    internal val drawMultilineColorsPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_multiline_colors", 2311979562)
 
-    public val drawRectPtr: VoidPtr =
+    internal val drawRectPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_rect", 2773573813)
 
-    public val drawCirclePtr: VoidPtr =
+    internal val drawCirclePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_circle", 3153026596)
 
-    public val drawTexturePtr: VoidPtr =
+    internal val drawTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_texture", 520200117)
 
-    public val drawTextureRectPtr: VoidPtr =
+    internal val drawTextureRectPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_texture_rect", 3832805018)
 
-    public val drawTextureRectRegionPtr: VoidPtr =
+    internal val drawTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_texture_rect_region", 3883821411)
 
-    public val drawMsdfTextureRectRegionPtr: VoidPtr =
+    internal val drawMsdfTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_msdf_texture_rect_region", 4219163252)
 
-    public val drawLcdTextureRectRegionPtr: VoidPtr =
+    internal val drawLcdTextureRectRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_lcd_texture_rect_region", 3212350954)
 
-    public val drawStyleBoxPtr: VoidPtr =
+    internal val drawStyleBoxPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_style_box", 388176283)
 
-    public val drawPrimitivePtr: VoidPtr =
+    internal val drawPrimitivePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_primitive", 3288481815)
 
-    public val drawPolygonPtr: VoidPtr =
+    internal val drawPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_polygon", 974537912)
 
-    public val drawColoredPolygonPtr: VoidPtr =
+    internal val drawColoredPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_colored_polygon", 15245644)
 
-    public val drawStringPtr: VoidPtr =
+    internal val drawStringPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_string", 728290553)
 
-    public val drawMultilineStringPtr: VoidPtr =
+    internal val drawMultilineStringPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_multiline_string", 1927038192)
 
-    public val drawStringOutlinePtr: VoidPtr =
+    internal val drawStringOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_string_outline", 340562381)
 
-    public val drawMultilineStringOutlinePtr: VoidPtr =
+    internal val drawMultilineStringOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_multiline_string_outline", 1912318525)
 
-    public val drawCharPtr: VoidPtr =
+    internal val drawCharPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_char", 3339793283)
 
-    public val drawCharOutlinePtr: VoidPtr =
+    internal val drawCharOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_char_outline", 3302344391)
 
-    public val drawMeshPtr: VoidPtr =
+    internal val drawMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_mesh", 153818295)
 
-    public val drawMultimeshPtr: VoidPtr =
+    internal val drawMultimeshPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_multimesh", 937992368)
 
-    public val drawSetTransformPtr: VoidPtr =
+    internal val drawSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_set_transform", 288975085)
 
-    public val drawSetTransformMatrixPtr: VoidPtr =
+    internal val drawSetTransformMatrixPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_set_transform_matrix", 2761652528)
 
-    public val drawAnimationSlicePtr: VoidPtr =
+    internal val drawAnimationSlicePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_animation_slice", 3112831842)
 
-    public val drawEndAnimationPtr: VoidPtr =
+    internal val drawEndAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "draw_end_animation", 3218959716)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_transform", 3814499831)
 
-    public val getGlobalTransformPtr: VoidPtr =
+    internal val getGlobalTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_global_transform", 3814499831)
 
-    public val getGlobalTransformWithCanvasPtr: VoidPtr =
+    internal val getGlobalTransformWithCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_global_transform_with_canvas", 3814499831)
 
-    public val getViewportTransformPtr: VoidPtr =
+    internal val getViewportTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_viewport_transform", 3814499831)
 
-    public val getViewportRectPtr: VoidPtr =
+    internal val getViewportRectPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_viewport_rect", 1639390495)
 
-    public val getCanvasTransformPtr: VoidPtr =
+    internal val getCanvasTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_canvas_transform", 3814499831)
 
-    public val getScreenTransformPtr: VoidPtr =
+    internal val getScreenTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_screen_transform", 3814499831)
 
-    public val getLocalMousePositionPtr: VoidPtr =
+    internal val getLocalMousePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_local_mouse_position", 3341600327)
 
-    public val getGlobalMousePositionPtr: VoidPtr =
+    internal val getGlobalMousePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_global_mouse_position", 3341600327)
 
-    public val getCanvasPtr: VoidPtr =
+    internal val getCanvasPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_canvas", 2944877500)
 
-    public val getCanvasLayerNodePtr: VoidPtr =
+    internal val getCanvasLayerNodePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_canvas_layer_node", 2602762519)
 
-    public val getWorld2dPtr: VoidPtr =
+    internal val getWorld2dPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_world_2d", 2339128592)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_material", 5934680)
 
-    public val setUseParentMaterialPtr: VoidPtr =
+    internal val setUseParentMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_use_parent_material", 2586408642)
 
-    public val getUseParentMaterialPtr: VoidPtr =
+    internal val getUseParentMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_use_parent_material", 36873697)
 
-    public val setNotifyLocalTransformPtr: VoidPtr =
+    internal val setNotifyLocalTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_notify_local_transform", 2586408642)
 
-    public val isLocalTransformNotificationEnabledPtr: VoidPtr =
+    internal val isLocalTransformNotificationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_local_transform_notification_enabled", 36873697)
 
-    public val setNotifyTransformPtr: VoidPtr =
+    internal val setNotifyTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_notify_transform", 2586408642)
 
-    public val isTransformNotificationEnabledPtr: VoidPtr =
+    internal val isTransformNotificationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "is_transform_notification_enabled", 36873697)
 
-    public val forceUpdateTransformPtr: VoidPtr =
+    internal val forceUpdateTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "force_update_transform", 3218959716)
 
-    public val makeCanvasPositionLocalPtr: VoidPtr =
+    internal val makeCanvasPositionLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "make_canvas_position_local", 2656412154)
 
-    public val makeInputLocalPtr: VoidPtr =
+    internal val makeInputLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "make_input_local", 811130057)
 
-    public val setVisibilityLayerPtr: VoidPtr =
+    internal val setVisibilityLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_visibility_layer", 1286410249)
 
-    public val getVisibilityLayerPtr: VoidPtr =
+    internal val getVisibilityLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_visibility_layer", 3905245786)
 
-    public val setVisibilityLayerBitPtr: VoidPtr =
+    internal val setVisibilityLayerBitPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_visibility_layer_bit", 300928843)
 
-    public val getVisibilityLayerBitPtr: VoidPtr =
+    internal val getVisibilityLayerBitPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_visibility_layer_bit", 1116898809)
 
-    public val setTextureFilterPtr: VoidPtr =
+    internal val setTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_texture_filter", 1037999706)
 
-    public val getTextureFilterPtr: VoidPtr =
+    internal val getTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_texture_filter", 121960042)
 
-    public val setTextureRepeatPtr: VoidPtr =
+    internal val setTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_texture_repeat", 1716472974)
 
-    public val getTextureRepeatPtr: VoidPtr =
+    internal val getTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_texture_repeat", 2667158319)
 
-    public val setClipChildrenModePtr: VoidPtr =
+    internal val setClipChildrenModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "set_clip_children_mode", 1319393776)
 
-    public val getClipChildrenModePtr: VoidPtr =
+    internal val getClipChildrenModePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasItem", "get_clip_children_mode", 3581808349)
   }
 }

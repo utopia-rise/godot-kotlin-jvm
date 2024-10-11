@@ -115,17 +115,17 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnableModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnableModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_mode", 320303646)
 
-    public val getEnableModePtr: VoidPtr =
+    internal val getEnableModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_mode", 3352990031)
 
-    public val setEnableNodePathPtr: VoidPtr =
+    internal val setEnableNodePathPtr: VoidPtr =
         Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_node_path", 1348162250)
 
-    public val getEnableNodePathPtr: VoidPtr =
+    internal val getEnableNodePathPtr: VoidPtr =
         Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_node_path", 277076166)
   }
 }

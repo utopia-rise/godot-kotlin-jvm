@@ -506,98 +506,101 @@ public open class Light2D internal constructor() : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnabledPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "is_enabled", 36873697)
+    internal val isEnabledPtr: VoidPtr =
+        Internals.getMethodBindPtr("Light2D", "is_enabled", 36873697)
 
-    public val setEditorOnlyPtr: VoidPtr =
+    internal val setEditorOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_editor_only", 2586408642)
 
-    public val isEditorOnlyPtr: VoidPtr =
+    internal val isEditorOnlyPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "is_editor_only", 36873697)
 
-    public val setColorPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "set_color", 2920490490)
+    internal val setColorPtr: VoidPtr =
+        Internals.getMethodBindPtr("Light2D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "get_color", 3444240500)
+    internal val getColorPtr: VoidPtr =
+        Internals.getMethodBindPtr("Light2D", "get_color", 3444240500)
 
-    public val setEnergyPtr: VoidPtr =
+    internal val setEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_energy", 373806689)
 
-    public val getEnergyPtr: VoidPtr =
+    internal val getEnergyPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_energy", 1740695150)
 
-    public val setZRangeMinPtr: VoidPtr =
+    internal val setZRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_z_range_min", 1286410249)
 
-    public val getZRangeMinPtr: VoidPtr =
+    internal val getZRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_z_range_min", 3905245786)
 
-    public val setZRangeMaxPtr: VoidPtr =
+    internal val setZRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_z_range_max", 1286410249)
 
-    public val getZRangeMaxPtr: VoidPtr =
+    internal val getZRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_z_range_max", 3905245786)
 
-    public val setLayerRangeMinPtr: VoidPtr =
+    internal val setLayerRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_layer_range_min", 1286410249)
 
-    public val getLayerRangeMinPtr: VoidPtr =
+    internal val getLayerRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_layer_range_min", 3905245786)
 
-    public val setLayerRangeMaxPtr: VoidPtr =
+    internal val setLayerRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_layer_range_max", 1286410249)
 
-    public val getLayerRangeMaxPtr: VoidPtr =
+    internal val getLayerRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_layer_range_max", 3905245786)
 
-    public val setItemCullMaskPtr: VoidPtr =
+    internal val setItemCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_item_cull_mask", 1286410249)
 
-    public val getItemCullMaskPtr: VoidPtr =
+    internal val getItemCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_item_cull_mask", 3905245786)
 
-    public val setItemShadowCullMaskPtr: VoidPtr =
+    internal val setItemShadowCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask", 1286410249)
 
-    public val getItemShadowCullMaskPtr: VoidPtr =
+    internal val getItemShadowCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask", 3905245786)
 
-    public val setShadowEnabledPtr: VoidPtr =
+    internal val setShadowEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_shadow_enabled", 2586408642)
 
-    public val isShadowEnabledPtr: VoidPtr =
+    internal val isShadowEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "is_shadow_enabled", 36873697)
 
-    public val setShadowSmoothPtr: VoidPtr =
+    internal val setShadowSmoothPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_shadow_smooth", 373806689)
 
-    public val getShadowSmoothPtr: VoidPtr =
+    internal val getShadowSmoothPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_shadow_smooth", 1740695150)
 
-    public val setShadowFilterPtr: VoidPtr =
+    internal val setShadowFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_shadow_filter", 3209356555)
 
-    public val getShadowFilterPtr: VoidPtr =
+    internal val getShadowFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_shadow_filter", 1973619177)
 
-    public val setShadowColorPtr: VoidPtr =
+    internal val setShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_shadow_color", 2920490490)
 
-    public val getShadowColorPtr: VoidPtr =
+    internal val getShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_shadow_color", 3444240500)
 
-    public val setBlendModePtr: VoidPtr =
+    internal val setBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_blend_mode", 2916638796)
 
-    public val getBlendModePtr: VoidPtr =
+    internal val getBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_blend_mode", 936255250)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Light2D", "get_height", 1740695150)
   }
 }

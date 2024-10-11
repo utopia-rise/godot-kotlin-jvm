@@ -167,25 +167,26 @@ public open class JSONRPC : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setScopePtr: VoidPtr = Internals.getMethodBindPtr("JSONRPC", "set_scope", 2572618360)
+  public object MethodBindings {
+    internal val setScopePtr: VoidPtr =
+        Internals.getMethodBindPtr("JSONRPC", "set_scope", 2572618360)
 
-    public val processActionPtr: VoidPtr =
+    internal val processActionPtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "process_action", 2963479484)
 
-    public val processStringPtr: VoidPtr =
+    internal val processStringPtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "process_string", 1703090593)
 
-    public val makeRequestPtr: VoidPtr =
+    internal val makeRequestPtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "make_request", 3423508980)
 
-    public val makeResponsePtr: VoidPtr =
+    internal val makeResponsePtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "make_response", 5053918)
 
-    public val makeNotificationPtr: VoidPtr =
+    internal val makeNotificationPtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "make_notification", 2949127017)
 
-    public val makeResponseErrorPtr: VoidPtr =
+    internal val makeResponseErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("JSONRPC", "make_response_error", 928596297)
   }
 }

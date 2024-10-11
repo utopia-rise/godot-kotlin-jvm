@@ -80,11 +80,11 @@ public open class PinJoint3D : Joint3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setParamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setParamPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint3D", "set_param", 2059913726)
 
-    public val getParamPtr: VoidPtr =
+    internal val getParamPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint3D", "get_param", 1758438771)
   }
 }

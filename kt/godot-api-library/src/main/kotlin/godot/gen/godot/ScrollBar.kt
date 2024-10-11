@@ -61,11 +61,11 @@ public open class ScrollBar internal constructor() : Range() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCustomStepPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollBar", "set_custom_step", 373806689)
 
-    public val getCustomStepPtr: VoidPtr =
+    internal val getCustomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("ScrollBar", "get_custom_step", 1740695150)
   }
 }

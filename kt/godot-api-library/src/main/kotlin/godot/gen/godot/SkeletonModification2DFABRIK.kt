@@ -171,41 +171,41 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTargetNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_target_node", 4075236667)
 
-    public val setFabrikDataChainLengthPtr: VoidPtr =
+    internal val setFabrikDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_data_chain_length", 1286410249)
 
-    public val getFabrikDataChainLengthPtr: VoidPtr =
+    internal val getFabrikDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_data_chain_length", 2455072627)
 
-    public val setFabrikJointBone2dNodePtr: VoidPtr =
+    internal val setFabrikJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone2d_node", 2761262315)
 
-    public val getFabrikJointBone2dNodePtr: VoidPtr =
+    internal val getFabrikJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone2d_node", 408788394)
 
-    public val setFabrikJointBoneIndexPtr: VoidPtr =
+    internal val setFabrikJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone_index", 3937882851)
 
-    public val getFabrikJointBoneIndexPtr: VoidPtr =
+    internal val getFabrikJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone_index", 923996154)
 
-    public val setFabrikJointMagnetPositionPtr: VoidPtr =
+    internal val setFabrikJointMagnetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_magnet_position", 163021252)
 
-    public val getFabrikJointMagnetPositionPtr: VoidPtr =
+    internal val getFabrikJointMagnetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_magnet_position", 2299179447)
 
-    public val setFabrikJointUseTargetRotationPtr: VoidPtr =
+    internal val setFabrikJointUseTargetRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_use_target_rotation", 300928843)
 
-    public val getFabrikJointUseTargetRotationPtr: VoidPtr =
+    internal val getFabrikJointUseTargetRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_use_target_rotation", 1116898809)
   }
 }

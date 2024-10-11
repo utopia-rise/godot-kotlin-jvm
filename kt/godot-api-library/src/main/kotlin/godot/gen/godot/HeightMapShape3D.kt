@@ -156,32 +156,32 @@ public open class HeightMapShape3D : Shape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMapWidthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMapWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1286410249)
 
-    public val getMapWidthPtr: VoidPtr =
+    internal val getMapWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3905245786)
 
-    public val setMapDepthPtr: VoidPtr =
+    internal val setMapDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1286410249)
 
-    public val getMapDepthPtr: VoidPtr =
+    internal val getMapDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3905245786)
 
-    public val setMapDataPtr: VoidPtr =
+    internal val setMapDataPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2899603908)
 
-    public val getMapDataPtr: VoidPtr =
+    internal val getMapDataPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675695659)
 
-    public val getMinHeightPtr: VoidPtr =
+    internal val getMinHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1740695150)
 
-    public val getMaxHeightPtr: VoidPtr =
+    internal val getMaxHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1740695150)
 
-    public val updateMapDataFromImagePtr: VoidPtr =
+    internal val updateMapDataFromImagePtr: VoidPtr =
         Internals.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2636652979)
   }
 }

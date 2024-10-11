@@ -459,52 +459,54 @@ public open class UPNP : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getDeviceCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getDeviceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "get_device_count", 3905245786)
 
-    public val getDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "get_device", 2193290270)
+    internal val getDevicePtr: VoidPtr =
+        Internals.getMethodBindPtr("UPNP", "get_device", 2193290270)
 
-    public val addDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "add_device", 986715920)
+    internal val addDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "add_device", 986715920)
 
-    public val setDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "set_device", 3015133723)
+    internal val setDevicePtr: VoidPtr =
+        Internals.getMethodBindPtr("UPNP", "set_device", 3015133723)
 
-    public val removeDevicePtr: VoidPtr =
+    internal val removeDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "remove_device", 1286410249)
 
-    public val clearDevicesPtr: VoidPtr =
+    internal val clearDevicesPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "clear_devices", 3218959716)
 
-    public val getGatewayPtr: VoidPtr =
+    internal val getGatewayPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "get_gateway", 2276800779)
 
-    public val discoverPtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "discover", 1575334765)
+    internal val discoverPtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "discover", 1575334765)
 
-    public val queryExternalAddressPtr: VoidPtr =
+    internal val queryExternalAddressPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "query_external_address", 201670096)
 
-    public val addPortMappingPtr: VoidPtr =
+    internal val addPortMappingPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "add_port_mapping", 818314583)
 
-    public val deletePortMappingPtr: VoidPtr =
+    internal val deletePortMappingPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "delete_port_mapping", 3444187325)
 
-    public val setDiscoverMulticastIfPtr: VoidPtr =
+    internal val setDiscoverMulticastIfPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "set_discover_multicast_if", 83702148)
 
-    public val getDiscoverMulticastIfPtr: VoidPtr =
+    internal val getDiscoverMulticastIfPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "get_discover_multicast_if", 201670096)
 
-    public val setDiscoverLocalPortPtr: VoidPtr =
+    internal val setDiscoverLocalPortPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "set_discover_local_port", 1286410249)
 
-    public val getDiscoverLocalPortPtr: VoidPtr =
+    internal val getDiscoverLocalPortPtr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "get_discover_local_port", 3905245786)
 
-    public val setDiscoverIpv6Ptr: VoidPtr =
+    internal val setDiscoverIpv6Ptr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "set_discover_ipv6", 2586408642)
 
-    public val isDiscoverIpv6Ptr: VoidPtr =
+    internal val isDiscoverIpv6Ptr: VoidPtr =
         Internals.getMethodBindPtr("UPNP", "is_discover_ipv6", 36873697)
   }
 }

@@ -598,29 +598,29 @@ public open class XRBodyTracker : XRPositionalTracker() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHasTrackingDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2586408642)
 
-    public val getHasTrackingDataPtr: VoidPtr =
+    internal val getHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36873697)
 
-    public val setBodyFlagsPtr: VoidPtr =
+    internal val setBodyFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2103235750)
 
-    public val getBodyFlagsPtr: VoidPtr =
+    internal val getBodyFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3543166366)
 
-    public val setJointFlagsPtr: VoidPtr =
+    internal val setJointFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592144999)
 
-    public val getJointFlagsPtr: VoidPtr =
+    internal val getJointFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1030162609)
 
-    public val setJointTransformPtr: VoidPtr =
+    internal val setJointTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2635424328)
 
-    public val getJointTransformPtr: VoidPtr =
+    internal val getJointTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
   }
 }

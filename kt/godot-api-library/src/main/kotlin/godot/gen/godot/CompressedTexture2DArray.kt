@@ -40,5 +40,5 @@ public open class CompressedTexture2DArray : CompressedTextureLayered() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

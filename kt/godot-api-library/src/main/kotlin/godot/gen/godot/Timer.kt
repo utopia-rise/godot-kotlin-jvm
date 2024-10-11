@@ -238,41 +238,43 @@ public open class Timer : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setWaitTimePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setWaitTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "set_wait_time", 373806689)
 
-    public val getWaitTimePtr: VoidPtr =
+    internal val getWaitTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "get_wait_time", 1740695150)
 
-    public val setOneShotPtr: VoidPtr =
+    internal val setOneShotPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "set_one_shot", 2586408642)
 
-    public val isOneShotPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_one_shot", 36873697)
+    internal val isOneShotPtr: VoidPtr =
+        Internals.getMethodBindPtr("Timer", "is_one_shot", 36873697)
 
-    public val setAutostartPtr: VoidPtr =
+    internal val setAutostartPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "set_autostart", 2586408642)
 
-    public val hasAutostartPtr: VoidPtr =
+    internal val hasAutostartPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "has_autostart", 36873697)
 
-    public val startPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "start", 1392008558)
+    internal val startPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "start", 1392008558)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "stop", 3218959716)
 
-    public val setPausedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "set_paused", 2586408642)
+    internal val setPausedPtr: VoidPtr =
+        Internals.getMethodBindPtr("Timer", "set_paused", 2586408642)
 
-    public val isPausedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_paused", 36873697)
+    internal val isPausedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_paused", 36873697)
 
-    public val isStoppedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_stopped", 36873697)
+    internal val isStoppedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_stopped", 36873697)
 
-    public val getTimeLeftPtr: VoidPtr =
+    internal val getTimeLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "get_time_left", 1740695150)
 
-    public val setTimerProcessCallbackPtr: VoidPtr =
+    internal val setTimerProcessCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "set_timer_process_callback", 3469495063)
 
-    public val getTimerProcessCallbackPtr: VoidPtr =
+    internal val getTimerProcessCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("Timer", "get_timer_process_callback", 2672570227)
   }
 }

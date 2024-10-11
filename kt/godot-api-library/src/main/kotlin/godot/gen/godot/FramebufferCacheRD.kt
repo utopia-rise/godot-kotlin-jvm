@@ -50,8 +50,8 @@ public open class FramebufferCacheRD : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val getCacheMultipassPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getCacheMultipassPtr: VoidPtr =
         Internals.getMethodBindPtr("FramebufferCacheRD", "get_cache_multipass", 3437881813)
   }
 }

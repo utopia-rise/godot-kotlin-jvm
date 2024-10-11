@@ -79,11 +79,11 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSourcePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3315130991)
 
-    public val getSourcePtr: VoidPtr =
+    internal val getSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1079494121)
   }
 }

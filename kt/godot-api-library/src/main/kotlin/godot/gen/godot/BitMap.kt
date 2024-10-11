@@ -175,36 +175,37 @@ public open class BitMap : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "create", 1130785943)
+  public object MethodBindings {
+    internal val createPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "create", 1130785943)
 
-    public val createFromImageAlphaPtr: VoidPtr =
+    internal val createFromImageAlphaPtr: VoidPtr =
         Internals.getMethodBindPtr("BitMap", "create_from_image_alpha", 106271684)
 
-    public val setBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bitv", 4153096796)
+    internal val setBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bitv", 4153096796)
 
-    public val setBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bit", 1383440665)
+    internal val setBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bit", 1383440665)
 
-    public val getBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bitv", 3900751641)
+    internal val getBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bitv", 3900751641)
 
-    public val getBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bit", 2522259332)
+    internal val getBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bit", 2522259332)
 
-    public val setBitRectPtr: VoidPtr =
+    internal val setBitRectPtr: VoidPtr =
         Internals.getMethodBindPtr("BitMap", "set_bit_rect", 472162941)
 
-    public val getTrueBitCountPtr: VoidPtr =
+    internal val getTrueBitCountPtr: VoidPtr =
         Internals.getMethodBindPtr("BitMap", "get_true_bit_count", 3905245786)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_size", 3690982128)
+    internal val getSizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_size", 3690982128)
 
-    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "resize", 1130785943)
+    internal val resizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "resize", 1130785943)
 
-    public val growMaskPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "grow_mask", 3317281434)
+    internal val growMaskPtr: VoidPtr =
+        Internals.getMethodBindPtr("BitMap", "grow_mask", 3317281434)
 
-    public val convertToImagePtr: VoidPtr =
+    internal val convertToImagePtr: VoidPtr =
         Internals.getMethodBindPtr("BitMap", "convert_to_image", 4190603485)
 
-    public val opaqueToPolygonsPtr: VoidPtr =
+    internal val opaqueToPolygonsPtr: VoidPtr =
         Internals.getMethodBindPtr("BitMap", "opaque_to_polygons", 48478126)
   }
 }

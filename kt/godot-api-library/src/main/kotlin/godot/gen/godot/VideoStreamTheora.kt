@@ -28,5 +28,5 @@ public open class VideoStreamTheora : VideoStream() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

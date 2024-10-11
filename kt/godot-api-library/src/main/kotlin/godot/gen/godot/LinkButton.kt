@@ -237,43 +237,45 @@ public open class LinkButton : BaseButton() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "set_text", 83702148)
+  public object MethodBindings {
+    internal val setTextPtr: VoidPtr =
+        Internals.getMethodBindPtr("LinkButton", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr =
+        Internals.getMethodBindPtr("LinkButton", "get_text", 201670096)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "get_language", 201670096)
 
-    public val setUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "set_uri", 83702148)
+    internal val setUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "set_uri", 83702148)
 
-    public val getUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "get_uri", 201670096)
+    internal val getUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "get_uri", 201670096)
 
-    public val setUnderlineModePtr: VoidPtr =
+    internal val setUnderlineModePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "set_underline_mode", 4032947085)
 
-    public val getUnderlineModePtr: VoidPtr =
+    internal val getUnderlineModePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "get_underline_mode", 568343738)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55961453)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3385126229)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381264803)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3995934104)
   }
 }

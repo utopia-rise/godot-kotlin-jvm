@@ -53,11 +53,11 @@ public open class FBXState : GLTFState() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getAllowGeometryHelperNodesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getAllowGeometryHelperNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("FBXState", "get_allow_geometry_helper_nodes", 2240911060)
 
-    public val setAllowGeometryHelperNodesPtr: VoidPtr =
+    internal val setAllowGeometryHelperNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("FBXState", "set_allow_geometry_helper_nodes", 2586408642)
   }
 }

@@ -276,74 +276,74 @@ public object TranslationServer : Object() {
     return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
-  internal object MethodBindings {
-    public val setLocalePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "set_locale", 83702148)
 
-    public val getLocalePtr: VoidPtr =
+    internal val getLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_locale", 201670096)
 
-    public val getToolLocalePtr: VoidPtr =
+    internal val getToolLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_tool_locale", 2841200299)
 
-    public val compareLocalesPtr: VoidPtr =
+    internal val compareLocalesPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "compare_locales", 2878152881)
 
-    public val standardizeLocalePtr: VoidPtr =
+    internal val standardizeLocalePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "standardize_locale", 3135753539)
 
-    public val getAllLanguagesPtr: VoidPtr =
+    internal val getAllLanguagesPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_all_languages", 1139954409)
 
-    public val getLanguageNamePtr: VoidPtr =
+    internal val getLanguageNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_language_name", 3135753539)
 
-    public val getAllScriptsPtr: VoidPtr =
+    internal val getAllScriptsPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_all_scripts", 1139954409)
 
-    public val getScriptNamePtr: VoidPtr =
+    internal val getScriptNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_script_name", 3135753539)
 
-    public val getAllCountriesPtr: VoidPtr =
+    internal val getAllCountriesPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_all_countries", 1139954409)
 
-    public val getCountryNamePtr: VoidPtr =
+    internal val getCountryNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_country_name", 3135753539)
 
-    public val getLocaleNamePtr: VoidPtr =
+    internal val getLocaleNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
 
-    public val translatePtr: VoidPtr =
+    internal val translatePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "translate", 58037827)
 
-    public val translatePluralPtr: VoidPtr =
+    internal val translatePluralPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "translate_plural", 1333931916)
 
-    public val addTranslationPtr: VoidPtr =
+    internal val addTranslationPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "add_translation", 1466479800)
 
-    public val removeTranslationPtr: VoidPtr =
+    internal val removeTranslationPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "remove_translation", 1466479800)
 
-    public val getTranslationObjectPtr: VoidPtr =
+    internal val getTranslationObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
 
-    public val clearPtr: VoidPtr =
+    internal val clearPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "clear", 3218959716)
 
-    public val getLoadedLocalesPtr: VoidPtr =
+    internal val getLoadedLocalesPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "get_loaded_locales", 1139954409)
 
-    public val isPseudolocalizationEnabledPtr: VoidPtr =
+    internal val isPseudolocalizationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled", 36873697)
 
-    public val setPseudolocalizationEnabledPtr: VoidPtr =
+    internal val setPseudolocalizationEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "set_pseudolocalization_enabled", 2586408642)
 
-    public val reloadPseudolocalizationPtr: VoidPtr =
+    internal val reloadPseudolocalizationPtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "reload_pseudolocalization", 3218959716)
 
-    public val pseudolocalizePtr: VoidPtr =
+    internal val pseudolocalizePtr: VoidPtr =
         Internals.getMethodBindPtr("TranslationServer", "pseudolocalize", 1965194235)
   }
 }

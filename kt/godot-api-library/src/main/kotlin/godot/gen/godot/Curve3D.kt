@@ -396,92 +396,93 @@ public open class Curve3D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPointCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_point_count", 3905245786)
 
-    public val setPointCountPtr: VoidPtr =
+    internal val setPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Curve3D", "add_point", 2931053748)
+    internal val addPointPtr: VoidPtr =
+        Internals.getMethodBindPtr("Curve3D", "add_point", 2931053748)
 
-    public val setPointPositionPtr: VoidPtr =
+    internal val setPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_point_position", 1530502735)
 
-    public val getPointPositionPtr: VoidPtr =
+    internal val getPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_point_position", 711720468)
 
-    public val setPointTiltPtr: VoidPtr =
+    internal val setPointTiltPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_point_tilt", 1602489585)
 
-    public val getPointTiltPtr: VoidPtr =
+    internal val getPointTiltPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_point_tilt", 2339986948)
 
-    public val setPointInPtr: VoidPtr =
+    internal val setPointInPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_point_in", 1530502735)
 
-    public val getPointInPtr: VoidPtr =
+    internal val getPointInPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_point_in", 711720468)
 
-    public val setPointOutPtr: VoidPtr =
+    internal val setPointOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_point_out", 1530502735)
 
-    public val getPointOutPtr: VoidPtr =
+    internal val getPointOutPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_point_out", 711720468)
 
-    public val removePointPtr: VoidPtr =
+    internal val removePointPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr =
+    internal val clearPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "clear_points", 3218959716)
 
-    public val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve3D", "sample", 3285246857)
+    internal val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve3D", "sample", 3285246857)
 
-    public val samplefPtr: VoidPtr = Internals.getMethodBindPtr("Curve3D", "samplef", 2553580215)
+    internal val samplefPtr: VoidPtr = Internals.getMethodBindPtr("Curve3D", "samplef", 2553580215)
 
-    public val setBakeIntervalPtr: VoidPtr =
+    internal val setBakeIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_bake_interval", 373806689)
 
-    public val getBakeIntervalPtr: VoidPtr =
+    internal val getBakeIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_bake_interval", 1740695150)
 
-    public val setUpVectorEnabledPtr: VoidPtr =
+    internal val setUpVectorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "set_up_vector_enabled", 2586408642)
 
-    public val isUpVectorEnabledPtr: VoidPtr =
+    internal val isUpVectorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "is_up_vector_enabled", 36873697)
 
-    public val getBakedLengthPtr: VoidPtr =
+    internal val getBakedLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_baked_length", 1740695150)
 
-    public val sampleBakedPtr: VoidPtr =
+    internal val sampleBakedPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "sample_baked", 1350085894)
 
-    public val sampleBakedWithRotationPtr: VoidPtr =
+    internal val sampleBakedWithRotationPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "sample_baked_with_rotation", 1939359131)
 
-    public val sampleBakedUpVectorPtr: VoidPtr =
+    internal val sampleBakedUpVectorPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "sample_baked_up_vector", 1362627031)
 
-    public val getBakedPointsPtr: VoidPtr =
+    internal val getBakedPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_baked_points", 497664490)
 
-    public val getBakedTiltsPtr: VoidPtr =
+    internal val getBakedTiltsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_baked_tilts", 675695659)
 
-    public val getBakedUpVectorsPtr: VoidPtr =
+    internal val getBakedUpVectorsPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_baked_up_vectors", 497664490)
 
-    public val getClosestPointPtr: VoidPtr =
+    internal val getClosestPointPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_closest_point", 192990374)
 
-    public val getClosestOffsetPtr: VoidPtr =
+    internal val getClosestOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "get_closest_offset", 1109078154)
 
-    public val tessellatePtr: VoidPtr =
+    internal val tessellatePtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "tessellate", 1519759391)
 
-    public val tessellateEvenLengthPtr: VoidPtr =
+    internal val tessellateEvenLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Curve3D", "tessellate_even_length", 133237049)
   }
 }

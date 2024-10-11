@@ -34,5 +34,5 @@ public open class CSGCombiner3D : CSGShape3D() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

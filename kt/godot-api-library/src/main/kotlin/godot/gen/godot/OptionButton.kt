@@ -394,105 +394,106 @@ public open class OptionButton : Button() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addItemPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "add_item", 2697778442)
 
-    public val addIconItemPtr: VoidPtr =
+    internal val addIconItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "add_icon_item", 3781678508)
 
-    public val setItemTextPtr: VoidPtr =
+    internal val setItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_text", 501894301)
 
-    public val setItemIconPtr: VoidPtr =
+    internal val setItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_icon", 666127730)
 
-    public val setItemDisabledPtr: VoidPtr =
+    internal val setItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_disabled", 300928843)
 
-    public val setItemIdPtr: VoidPtr =
+    internal val setItemIdPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_id", 3937882851)
 
-    public val setItemMetadataPtr: VoidPtr =
+    internal val setItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_metadata", 2152698145)
 
-    public val setItemTooltipPtr: VoidPtr =
+    internal val setItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_tooltip", 501894301)
 
-    public val getItemTextPtr: VoidPtr =
+    internal val getItemTextPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_text", 844755477)
 
-    public val getItemIconPtr: VoidPtr =
+    internal val getItemIconPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_icon", 3536238170)
 
-    public val getItemIdPtr: VoidPtr =
+    internal val getItemIdPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_id", 923996154)
 
-    public val getItemIndexPtr: VoidPtr =
+    internal val getItemIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_index", 923996154)
 
-    public val getItemMetadataPtr: VoidPtr =
+    internal val getItemMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_metadata", 4227898402)
 
-    public val getItemTooltipPtr: VoidPtr =
+    internal val getItemTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_tooltip", 844755477)
 
-    public val isItemDisabledPtr: VoidPtr =
+    internal val isItemDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "is_item_disabled", 1116898809)
 
-    public val isItemSeparatorPtr: VoidPtr =
+    internal val isItemSeparatorPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "is_item_separator", 1116898809)
 
-    public val addSeparatorPtr: VoidPtr =
+    internal val addSeparatorPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "add_separator", 3005725572)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("OptionButton", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("OptionButton", "clear", 3218959716)
 
-    public val selectPtr: VoidPtr = Internals.getMethodBindPtr("OptionButton", "select", 1286410249)
+    internal val selectPtr: VoidPtr =
+        Internals.getMethodBindPtr("OptionButton", "select", 1286410249)
 
-    public val getSelectedPtr: VoidPtr =
+    internal val getSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_selected", 3905245786)
 
-    public val getSelectedIdPtr: VoidPtr =
+    internal val getSelectedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_selected_id", 3905245786)
 
-    public val getSelectedMetadataPtr: VoidPtr =
+    internal val getSelectedMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_selected_metadata", 1214101251)
 
-    public val removeItemPtr: VoidPtr =
+    internal val removeItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "remove_item", 1286410249)
 
-    public val getPopupPtr: VoidPtr =
+    internal val getPopupPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_popup", 229722558)
 
-    public val showPopupPtr: VoidPtr =
+    internal val showPopupPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "show_popup", 3218959716)
 
-    public val setItemCountPtr: VoidPtr =
+    internal val setItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_item_count", 1286410249)
 
-    public val getItemCountPtr: VoidPtr =
+    internal val getItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_item_count", 3905245786)
 
-    public val hasSelectableItemsPtr: VoidPtr =
+    internal val hasSelectableItemsPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "has_selectable_items", 36873697)
 
-    public val getSelectableItemPtr: VoidPtr =
+    internal val getSelectableItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_selectable_item", 894402480)
 
-    public val setFitToLongestItemPtr: VoidPtr =
+    internal val setFitToLongestItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_fit_to_longest_item", 2586408642)
 
-    public val isFitToLongestItemPtr: VoidPtr =
+    internal val isFitToLongestItemPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "is_fit_to_longest_item", 36873697)
 
-    public val setAllowReselectPtr: VoidPtr =
+    internal val setAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_allow_reselect", 2586408642)
 
-    public val getAllowReselectPtr: VoidPtr =
+    internal val getAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "get_allow_reselect", 36873697)
 
-    public val setDisableShortcutsPtr: VoidPtr =
+    internal val setDisableShortcutsPtr: VoidPtr =
         Internals.getMethodBindPtr("OptionButton", "set_disable_shortcuts", 2586408642)
   }
 }

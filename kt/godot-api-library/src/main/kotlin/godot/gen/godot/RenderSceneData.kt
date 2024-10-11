@@ -96,23 +96,23 @@ public open class RenderSceneData internal constructor() : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getCamTransformPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getCamTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3229777777)
 
-    public val getCamProjectionPtr: VoidPtr =
+    internal val getCamProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2910717950)
 
-    public val getViewCountPtr: VoidPtr =
+    internal val getViewCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_view_count", 3905245786)
 
-    public val getViewEyeOffsetPtr: VoidPtr =
+    internal val getViewEyeOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711720468)
 
-    public val getViewProjectionPtr: VoidPtr =
+    internal val getViewProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_view_projection", 3179846605)
 
-    public val getUniformBufferPtr: VoidPtr =
+    internal val getUniformBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2944877500)
   }
 }

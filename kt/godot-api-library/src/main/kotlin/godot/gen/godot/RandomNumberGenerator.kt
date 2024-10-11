@@ -199,38 +199,38 @@ public open class RandomNumberGenerator : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSeedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSeedPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1286410249)
 
-    public val getSeedPtr: VoidPtr =
+    internal val getSeedPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2455072627)
 
-    public val setStatePtr: VoidPtr =
+    internal val setStatePtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "set_state", 1286410249)
 
-    public val getStatePtr: VoidPtr =
+    internal val getStatePtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "get_state", 3905245786)
 
-    public val randiPtr: VoidPtr =
+    internal val randiPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randi", 2455072627)
 
-    public val randfPtr: VoidPtr =
+    internal val randfPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randf", 191475506)
 
-    public val randfnPtr: VoidPtr =
+    internal val randfnPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randfn", 837325100)
 
-    public val randfRangePtr: VoidPtr =
+    internal val randfRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4269894367)
 
-    public val randiRangePtr: VoidPtr =
+    internal val randiRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50157827)
 
-    public val randWeightedPtr: VoidPtr =
+    internal val randWeightedPtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4189642986)
 
-    public val randomizePtr: VoidPtr =
+    internal val randomizePtr: VoidPtr =
         Internals.getMethodBindPtr("RandomNumberGenerator", "randomize", 3218959716)
   }
 }

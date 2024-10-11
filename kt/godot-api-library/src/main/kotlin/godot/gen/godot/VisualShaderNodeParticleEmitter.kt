@@ -54,11 +54,11 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMode2dPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMode2dPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d", 2586408642)
 
-    public val isMode2dPtr: VoidPtr =
+    internal val isMode2dPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d", 36873697)
   }
 }

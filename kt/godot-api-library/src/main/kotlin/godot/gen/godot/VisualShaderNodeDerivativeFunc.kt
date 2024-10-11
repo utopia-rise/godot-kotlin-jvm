@@ -201,23 +201,23 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOpTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_op_type", 377800221)
 
-    public val getOpTypePtr: VoidPtr =
+    internal val getOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_op_type", 3997800514)
 
-    public val setFunctionPtr: VoidPtr =
+    internal val setFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_function", 1944704156)
 
-    public val getFunctionPtr: VoidPtr =
+    internal val getFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_function", 2389093396)
 
-    public val setPrecisionPtr: VoidPtr =
+    internal val setPrecisionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_precision", 797270566)
 
-    public val getPrecisionPtr: VoidPtr =
+    internal val getPrecisionPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_precision", 3822547323)
   }
 }

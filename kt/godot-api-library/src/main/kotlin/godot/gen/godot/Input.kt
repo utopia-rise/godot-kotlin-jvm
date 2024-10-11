@@ -908,164 +908,166 @@ public object Input : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val isAnythingPressedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val isAnythingPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_anything_pressed", 36873697)
 
-    public val isKeyPressedPtr: VoidPtr =
+    internal val isKeyPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_key_pressed", 1938909964)
 
-    public val isPhysicalKeyPressedPtr: VoidPtr =
+    internal val isPhysicalKeyPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_physical_key_pressed", 1938909964)
 
-    public val isKeyLabelPressedPtr: VoidPtr =
+    internal val isKeyLabelPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_key_label_pressed", 1938909964)
 
-    public val isMouseButtonPressedPtr: VoidPtr =
+    internal val isMouseButtonPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_mouse_button_pressed", 1821097125)
 
-    public val isJoyButtonPressedPtr: VoidPtr =
+    internal val isJoyButtonPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_joy_button_pressed", 787208542)
 
-    public val isActionPressedPtr: VoidPtr =
+    internal val isActionPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_action_pressed", 1558498928)
 
-    public val isActionJustPressedPtr: VoidPtr =
+    internal val isActionJustPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_action_just_pressed", 1558498928)
 
-    public val isActionJustReleasedPtr: VoidPtr =
+    internal val isActionJustReleasedPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_action_just_released", 1558498928)
 
-    public val getActionStrengthPtr: VoidPtr =
+    internal val getActionStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_action_strength", 801543509)
 
-    public val getActionRawStrengthPtr: VoidPtr =
+    internal val getActionRawStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_action_raw_strength", 801543509)
 
-    public val getAxisPtr: VoidPtr = Internals.getMethodBindPtr("Input", "get_axis", 1958752504)
+    internal val getAxisPtr: VoidPtr = Internals.getMethodBindPtr("Input", "get_axis", 1958752504)
 
-    public val getVectorPtr: VoidPtr = Internals.getMethodBindPtr("Input", "get_vector", 2479607902)
+    internal val getVectorPtr: VoidPtr =
+        Internals.getMethodBindPtr("Input", "get_vector", 2479607902)
 
-    public val addJoyMappingPtr: VoidPtr =
+    internal val addJoyMappingPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "add_joy_mapping", 1168363258)
 
-    public val removeJoyMappingPtr: VoidPtr =
+    internal val removeJoyMappingPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "remove_joy_mapping", 83702148)
 
-    public val isJoyKnownPtr: VoidPtr =
+    internal val isJoyKnownPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_joy_known", 3067735520)
 
-    public val getJoyAxisPtr: VoidPtr =
+    internal val getJoyAxisPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_axis", 4063175957)
 
-    public val getJoyNamePtr: VoidPtr =
+    internal val getJoyNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_name", 990163283)
 
-    public val getJoyGuidPtr: VoidPtr =
+    internal val getJoyGuidPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_guid", 844755477)
 
-    public val getJoyInfoPtr: VoidPtr =
+    internal val getJoyInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_info", 3485342025)
 
-    public val shouldIgnoreDevicePtr: VoidPtr =
+    internal val shouldIgnoreDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "should_ignore_device", 2522259332)
 
-    public val getConnectedJoypadsPtr: VoidPtr =
+    internal val getConnectedJoypadsPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_connected_joypads", 2915620761)
 
-    public val getJoyVibrationStrengthPtr: VoidPtr =
+    internal val getJoyVibrationStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_vibration_strength", 3114997196)
 
-    public val getJoyVibrationDurationPtr: VoidPtr =
+    internal val getJoyVibrationDurationPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_joy_vibration_duration", 4025615559)
 
-    public val startJoyVibrationPtr: VoidPtr =
+    internal val startJoyVibrationPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "start_joy_vibration", 2576575033)
 
-    public val stopJoyVibrationPtr: VoidPtr =
+    internal val stopJoyVibrationPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "stop_joy_vibration", 1286410249)
 
-    public val vibrateHandheldPtr: VoidPtr =
+    internal val vibrateHandheldPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "vibrate_handheld", 544894297)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_gravity", 3360562783)
 
-    public val getAccelerometerPtr: VoidPtr =
+    internal val getAccelerometerPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_accelerometer", 3360562783)
 
-    public val getMagnetometerPtr: VoidPtr =
+    internal val getMagnetometerPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_magnetometer", 3360562783)
 
-    public val getGyroscopePtr: VoidPtr =
+    internal val getGyroscopePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_gyroscope", 3360562783)
 
-    public val setGravityPtr: VoidPtr =
+    internal val setGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_gravity", 3460891852)
 
-    public val setAccelerometerPtr: VoidPtr =
+    internal val setAccelerometerPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_accelerometer", 3460891852)
 
-    public val setMagnetometerPtr: VoidPtr =
+    internal val setMagnetometerPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_magnetometer", 3460891852)
 
-    public val setGyroscopePtr: VoidPtr =
+    internal val setGyroscopePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_gyroscope", 3460891852)
 
-    public val getLastMouseVelocityPtr: VoidPtr =
+    internal val getLastMouseVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_last_mouse_velocity", 1497962370)
 
-    public val getLastMouseScreenVelocityPtr: VoidPtr =
+    internal val getLastMouseScreenVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_last_mouse_screen_velocity", 1497962370)
 
-    public val getMouseButtonMaskPtr: VoidPtr =
+    internal val getMouseButtonMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_mouse_button_mask", 2512161324)
 
-    public val setMouseModePtr: VoidPtr =
+    internal val setMouseModePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_mouse_mode", 2228490894)
 
-    public val getMouseModePtr: VoidPtr =
+    internal val getMouseModePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_mouse_mode", 965286182)
 
-    public val warpMousePtr: VoidPtr = Internals.getMethodBindPtr("Input", "warp_mouse", 743155724)
+    internal val warpMousePtr: VoidPtr =
+        Internals.getMethodBindPtr("Input", "warp_mouse", 743155724)
 
-    public val actionPressPtr: VoidPtr =
+    internal val actionPressPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "action_press", 1713091165)
 
-    public val actionReleasePtr: VoidPtr =
+    internal val actionReleasePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "action_release", 3304788590)
 
-    public val setDefaultCursorShapePtr: VoidPtr =
+    internal val setDefaultCursorShapePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_default_cursor_shape", 2124816902)
 
-    public val getCurrentCursorShapePtr: VoidPtr =
+    internal val getCurrentCursorShapePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "get_current_cursor_shape", 3455658929)
 
-    public val setCustomMouseCursorPtr: VoidPtr =
+    internal val setCustomMouseCursorPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_custom_mouse_cursor", 703945977)
 
-    public val parseInputEventPtr: VoidPtr =
+    internal val parseInputEventPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "parse_input_event", 3754044979)
 
-    public val setUseAccumulatedInputPtr: VoidPtr =
+    internal val setUseAccumulatedInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_use_accumulated_input", 2586408642)
 
-    public val isUsingAccumulatedInputPtr: VoidPtr =
+    internal val isUsingAccumulatedInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_using_accumulated_input", 2240911060)
 
-    public val flushBufferedEventsPtr: VoidPtr =
+    internal val flushBufferedEventsPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "flush_buffered_events", 3218959716)
 
-    public val setEmulateMouseFromTouchPtr: VoidPtr =
+    internal val setEmulateMouseFromTouchPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_emulate_mouse_from_touch", 2586408642)
 
-    public val isEmulatingMouseFromTouchPtr: VoidPtr =
+    internal val isEmulatingMouseFromTouchPtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_emulating_mouse_from_touch", 36873697)
 
-    public val setEmulateTouchFromMousePtr: VoidPtr =
+    internal val setEmulateTouchFromMousePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "set_emulate_touch_from_mouse", 2586408642)
 
-    public val isEmulatingTouchFromMousePtr: VoidPtr =
+    internal val isEmulatingTouchFromMousePtr: VoidPtr =
         Internals.getMethodBindPtr("Input", "is_emulating_touch_from_mouse", 36873697)
   }
 }

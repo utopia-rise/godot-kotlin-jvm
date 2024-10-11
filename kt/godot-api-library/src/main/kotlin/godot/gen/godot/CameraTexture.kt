@@ -100,23 +100,23 @@ public open class CameraTexture : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCameraFeedIdPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCameraFeedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "set_camera_feed_id", 1286410249)
 
-    public val getCameraFeedIdPtr: VoidPtr =
+    internal val getCameraFeedIdPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "get_camera_feed_id", 3905245786)
 
-    public val setWhichFeedPtr: VoidPtr =
+    internal val setWhichFeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "set_which_feed", 1595299230)
 
-    public val getWhichFeedPtr: VoidPtr =
+    internal val getWhichFeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "get_which_feed", 91039457)
 
-    public val setCameraActivePtr: VoidPtr =
+    internal val setCameraActivePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "set_camera_active", 2586408642)
 
-    public val getCameraActivePtr: VoidPtr =
+    internal val getCameraActivePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraTexture", "get_camera_active", 36873697)
   }
 }

@@ -210,31 +210,31 @@ public open class StyleBox : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getMinimumSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getMinimumSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "get_minimum_size", 3341600327)
 
-    public val setContentMarginPtr: VoidPtr =
+    internal val setContentMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "set_content_margin", 4290182280)
 
-    public val setContentMarginAllPtr: VoidPtr =
+    internal val setContentMarginAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "set_content_margin_all", 373806689)
 
-    public val getContentMarginPtr: VoidPtr =
+    internal val getContentMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "get_content_margin", 2869120046)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "get_margin", 2869120046)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "get_offset", 3341600327)
 
-    public val drawPtr: VoidPtr = Internals.getMethodBindPtr("StyleBox", "draw", 2275962004)
+    internal val drawPtr: VoidPtr = Internals.getMethodBindPtr("StyleBox", "draw", 2275962004)
 
-    public val getCurrentItemDrawnPtr: VoidPtr =
+    internal val getCurrentItemDrawnPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "get_current_item_drawn", 3213695180)
 
-    public val testMaskPtr: VoidPtr =
+    internal val testMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBox", "test_mask", 3735564539)
   }
 }

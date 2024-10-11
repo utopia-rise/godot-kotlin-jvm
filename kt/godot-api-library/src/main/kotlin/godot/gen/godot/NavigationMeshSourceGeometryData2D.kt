@@ -205,50 +205,50 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val clearPtr: VoidPtr =
+  public object MethodBindings {
+    internal val clearPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear", 3218959716)
 
-    public val hasDataPtr: VoidPtr =
+    internal val hasDataPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "has_data", 2240911060)
 
-    public val setTraversableOutlinesPtr: VoidPtr =
+    internal val setTraversableOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_traversable_outlines", 381264803)
 
-    public val getTraversableOutlinesPtr: VoidPtr =
+    internal val getTraversableOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_traversable_outlines", 3995934104)
 
-    public val setObstructionOutlinesPtr: VoidPtr =
+    internal val setObstructionOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_obstruction_outlines", 381264803)
 
-    public val getObstructionOutlinesPtr: VoidPtr =
+    internal val getObstructionOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_obstruction_outlines", 3995934104)
 
-    public val appendTraversableOutlinesPtr: VoidPtr =
+    internal val appendTraversableOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_traversable_outlines", 381264803)
 
-    public val appendObstructionOutlinesPtr: VoidPtr =
+    internal val appendObstructionOutlinesPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_obstruction_outlines", 381264803)
 
-    public val addTraversableOutlinePtr: VoidPtr =
+    internal val addTraversableOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_traversable_outline", 1509147220)
 
-    public val addObstructionOutlinePtr: VoidPtr =
+    internal val addObstructionOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_obstruction_outline", 1509147220)
 
-    public val mergePtr: VoidPtr =
+    internal val mergePtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "merge", 742424872)
 
-    public val addProjectedObstructionPtr: VoidPtr =
+    internal val addProjectedObstructionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_projected_obstruction", 3882407395)
 
-    public val clearProjectedObstructionsPtr: VoidPtr =
+    internal val clearProjectedObstructionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear_projected_obstructions", 3218959716)
 
-    public val setProjectedObstructionsPtr: VoidPtr =
+    internal val setProjectedObstructionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_projected_obstructions", 381264803)
 
-    public val getProjectedObstructionsPtr: VoidPtr =
+    internal val getProjectedObstructionsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions", 3995934104)
   }
 }

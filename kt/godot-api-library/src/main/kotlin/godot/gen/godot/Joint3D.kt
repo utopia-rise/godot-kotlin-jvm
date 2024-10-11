@@ -140,31 +140,31 @@ public open class Joint3D internal constructor() : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setNodeAPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setNodeAPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "set_node_a", 1348162250)
 
-    public val getNodeAPtr: VoidPtr =
+    internal val getNodeAPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "get_node_a", 4075236667)
 
-    public val setNodeBPtr: VoidPtr =
+    internal val setNodeBPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "set_node_b", 1348162250)
 
-    public val getNodeBPtr: VoidPtr =
+    internal val getNodeBPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "get_node_b", 4075236667)
 
-    public val setSolverPriorityPtr: VoidPtr =
+    internal val setSolverPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "set_solver_priority", 1286410249)
 
-    public val getSolverPriorityPtr: VoidPtr =
+    internal val getSolverPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "get_solver_priority", 3905245786)
 
-    public val setExcludeNodesFromCollisionPtr: VoidPtr =
+    internal val setExcludeNodesFromCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "set_exclude_nodes_from_collision", 2586408642)
 
-    public val getExcludeNodesFromCollisionPtr: VoidPtr =
+    internal val getExcludeNodesFromCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint3D", "get_exclude_nodes_from_collision", 36873697)
 
-    public val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint3D", "get_rid", 2944877500)
+    internal val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint3D", "get_rid", 2944877500)
   }
 }

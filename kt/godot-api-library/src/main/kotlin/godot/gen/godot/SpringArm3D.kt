@@ -177,41 +177,41 @@ public open class SpringArm3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getHitLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getHitLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "get_hit_length", 191475506)
 
-    public val setLengthPtr: VoidPtr =
+    internal val setLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "get_length", 1740695150)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "set_shape", 1549710052)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "get_shape", 3214262478)
 
-    public val addExcludedObjectPtr: VoidPtr =
+    internal val addExcludedObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "add_excluded_object", 2722037293)
 
-    public val removeExcludedObjectPtr: VoidPtr =
+    internal val removeExcludedObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "remove_excluded_object", 3521089500)
 
-    public val clearExcludedObjectsPtr: VoidPtr =
+    internal val clearExcludedObjectsPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "clear_excluded_objects", 3218959716)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "get_collision_mask", 2455072627)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("SpringArm3D", "get_margin", 191475506)
   }
 }

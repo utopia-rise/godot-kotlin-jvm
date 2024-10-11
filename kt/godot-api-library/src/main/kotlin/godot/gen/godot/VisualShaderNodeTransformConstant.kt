@@ -80,11 +80,11 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
 
   public companion object
 
-  internal object MethodBindings {
-    public val setConstantPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTransformConstant", "set_constant", 2952846383)
 
-    public val getConstantPtr: VoidPtr =
+    internal val getConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeTransformConstant", "get_constant", 3229777777)
   }
 }

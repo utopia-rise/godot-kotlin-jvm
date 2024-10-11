@@ -178,11 +178,11 @@ public open class SliderJoint3D : Joint3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setParamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setParamPtr: VoidPtr =
         Internals.getMethodBindPtr("SliderJoint3D", "set_param", 918243683)
 
-    public val getParamPtr: VoidPtr =
+    internal val getParamPtr: VoidPtr =
         Internals.getMethodBindPtr("SliderJoint3D", "get_param", 959925627)
   }
 }

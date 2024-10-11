@@ -140,29 +140,29 @@ public open class InputEventMouseButton : InputEventMouse() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFactorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "set_factor", 373806689)
 
-    public val getFactorPtr: VoidPtr =
+    internal val getFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "get_factor", 1740695150)
 
-    public val setButtonIndexPtr: VoidPtr =
+    internal val setButtonIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "set_button_index", 3624991109)
 
-    public val getButtonIndexPtr: VoidPtr =
+    internal val getButtonIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "get_button_index", 1132662608)
 
-    public val setPressedPtr: VoidPtr =
+    internal val setPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "set_pressed", 2586408642)
 
-    public val setCanceledPtr: VoidPtr =
+    internal val setCanceledPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "set_canceled", 2586408642)
 
-    public val setDoubleClickPtr: VoidPtr =
+    internal val setDoubleClickPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "set_double_click", 2586408642)
 
-    public val isDoubleClickPtr: VoidPtr =
+    internal val isDoubleClickPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouseButton", "is_double_click", 36873697)
   }
 }

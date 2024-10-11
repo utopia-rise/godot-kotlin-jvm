@@ -163,28 +163,29 @@ public object JavaScriptBridge : Object() {
     Internals.callMethod(rawPtr, MethodBindings.forceFsSyncPtr, NIL)
   }
 
-  internal object MethodBindings {
-    public val evalPtr: VoidPtr = Internals.getMethodBindPtr("JavaScriptBridge", "eval", 218087648)
+  public object MethodBindings {
+    internal val evalPtr: VoidPtr =
+        Internals.getMethodBindPtr("JavaScriptBridge", "eval", 218087648)
 
-    public val getInterfacePtr: VoidPtr =
+    internal val getInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "get_interface", 1355533281)
 
-    public val createCallbackPtr: VoidPtr =
+    internal val createCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "create_callback", 422818440)
 
-    public val createObjectPtr: VoidPtr =
+    internal val createObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "create_object", 3093893586)
 
-    public val downloadBufferPtr: VoidPtr =
+    internal val downloadBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "download_buffer", 3352272093)
 
-    public val pwaNeedsUpdatePtr: VoidPtr =
+    internal val pwaNeedsUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update", 36873697)
 
-    public val pwaUpdatePtr: VoidPtr =
+    internal val pwaUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "pwa_update", 166280745)
 
-    public val forceFsSyncPtr: VoidPtr =
+    internal val forceFsSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("JavaScriptBridge", "force_fs_sync", 3218959716)
   }
 }

@@ -58,11 +58,11 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFactorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMagnifyGesture", "set_factor", 373806689)
 
-    public val getFactorPtr: VoidPtr =
+    internal val getFactorPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMagnifyGesture", "get_factor", 1740695150)
   }
 }

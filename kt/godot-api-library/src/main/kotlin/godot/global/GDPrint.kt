@@ -1,4 +1,4 @@
-package godot.api
+package godot.global
 
 import godot.core.bridge.GodotPrint
 

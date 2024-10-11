@@ -344,5 +344,5 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

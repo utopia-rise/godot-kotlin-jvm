@@ -26,5 +26,5 @@ public open class TextureCubemapRD : TextureLayeredRD() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

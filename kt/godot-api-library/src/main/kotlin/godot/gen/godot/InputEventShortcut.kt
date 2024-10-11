@@ -54,11 +54,11 @@ public open class InputEventShortcut : InputEvent() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setShortcutPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventShortcut", "set_shortcut", 857163497)
 
-    public val getShortcutPtr: VoidPtr =
+    internal val getShortcutPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventShortcut", "get_shortcut", 3766804753)
   }
 }

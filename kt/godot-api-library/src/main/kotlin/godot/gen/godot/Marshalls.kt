@@ -103,23 +103,23 @@ public object Marshalls : Object() {
     return (Internals.readReturnValue(STRING) as String)
   }
 
-  internal object MethodBindings {
-    public val variantToBase64Ptr: VoidPtr =
+  public object MethodBindings {
+    internal val variantToBase64Ptr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "variant_to_base64", 3876248563)
 
-    public val base64ToVariantPtr: VoidPtr =
+    internal val base64ToVariantPtr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "base64_to_variant", 218087648)
 
-    public val rawToBase64Ptr: VoidPtr =
+    internal val rawToBase64Ptr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "raw_to_base64", 3999417757)
 
-    public val base64ToRawPtr: VoidPtr =
+    internal val base64ToRawPtr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "base64_to_raw", 659035735)
 
-    public val utf8ToBase64Ptr: VoidPtr =
+    internal val utf8ToBase64Ptr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "utf8_to_base64", 1703090593)
 
-    public val base64ToUtf8Ptr: VoidPtr =
+    internal val base64ToUtf8Ptr: VoidPtr =
         Internals.getMethodBindPtr("Marshalls", "base64_to_utf8", 1703090593)
   }
 }

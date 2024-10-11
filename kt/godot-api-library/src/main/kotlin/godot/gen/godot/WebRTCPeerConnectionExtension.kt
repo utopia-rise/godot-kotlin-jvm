@@ -74,5 +74,5 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

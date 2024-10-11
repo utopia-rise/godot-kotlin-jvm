@@ -142,32 +142,32 @@ public open class StatusIndicator : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTooltipPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "set_tooltip", 83702148)
 
-    public val getTooltipPtr: VoidPtr =
+    internal val getTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "get_tooltip", 201670096)
 
-    public val setIconPtr: VoidPtr =
+    internal val setIconPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "set_icon", 4051416890)
 
-    public val getIconPtr: VoidPtr =
+    internal val getIconPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "get_icon", 3635182373)
 
-    public val setVisiblePtr: VoidPtr =
+    internal val setVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr =
+    internal val isVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "is_visible", 36873697)
 
-    public val setMenuPtr: VoidPtr =
+    internal val setMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "set_menu", 1348162250)
 
-    public val getMenuPtr: VoidPtr =
+    internal val getMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "get_menu", 4075236667)
 
-    public val getRectPtr: VoidPtr =
+    internal val getRectPtr: VoidPtr =
         Internals.getMethodBindPtr("StatusIndicator", "get_rect", 1639390495)
   }
 }

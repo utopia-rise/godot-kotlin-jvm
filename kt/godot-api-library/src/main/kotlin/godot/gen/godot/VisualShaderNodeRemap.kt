@@ -26,5 +26,5 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

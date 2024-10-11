@@ -55,11 +55,11 @@ public open class Marker2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setGizmoExtentsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setGizmoExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Marker2D", "set_gizmo_extents", 373806689)
 
-    public val getGizmoExtentsPtr: VoidPtr =
+    internal val getGizmoExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Marker2D", "get_gizmo_extents", 1740695150)
   }
 }

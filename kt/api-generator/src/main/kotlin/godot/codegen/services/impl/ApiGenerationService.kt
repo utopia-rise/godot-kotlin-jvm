@@ -53,7 +53,6 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.INTERNALS
 import godot.tools.common.constants.KT_OBJECT
-import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.godotPackage
@@ -253,7 +252,6 @@ class ApiGenerationService(
 
         val methodBindPtrReceiver = TypeSpec
             .objectBuilder(methodBindingsInnerClassName)
-            .addModifiers(KModifier.INTERNAL)
 
         for (method in enrichedClass.methods.filter { !it.internal.isVirtual }) {
             methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
@@ -719,6 +717,7 @@ class ApiGenerationService(
 
     private fun generateMethodVoidPtr(enrichedClass: EnrichedClass, method: EnrichedMethod) = PropertySpec
         .builder("${method.name}Ptr", VOID_PTR)
+        .addModifiers(KModifier.INTERNAL)
         .initializer(
             "%T.getMethodBindPtr(%S,·%S,·%L)",
             INTERNALS,
@@ -987,20 +986,10 @@ class ApiGenerationService(
         registrationFunc: RegistrationFileSpec.(EnrichedClass) -> Unit
     ) {
         registrationFileSpec.registrationFunc(clazz)
-        registrationFileSpec.addVariantMapping(clazz)
 
         registrationFileSpec.registerMethodsFunBuilder.addStatement(
             "%T",
             clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName)
-        )
-    }
-
-    private fun RegistrationFileSpec.addVariantMapping(enrichedClass: EnrichedClass) {
-        registerVariantMappingFunBuilder.addStatement(
-            "%M[%T::class] = %T",
-            MemberName(godotCorePackage, "variantMapper"),
-            enrichedClass.getTypeClassName().typeName,
-            enrichedClass.jvmVariantTypeValue
         )
     }
 
@@ -1013,7 +1002,7 @@ class ApiGenerationService(
         val typeName = clazz.getTypeClassName().typeName
         registerTypesFunBuilder.addStatement(
             formatString,
-            TYPE_MANAGER,
+            INTERNALS,
             clazz.internal.name,
             typeName,
             typeName
@@ -1023,7 +1012,7 @@ class ApiGenerationService(
     private fun RegistrationFileSpec.addRegisterSingleton(clazz: EnrichedClass) {
         registerTypesFunBuilder.addStatement(
             "%T.registerSingleton(%S)",
-            TYPE_MANAGER,
+            INTERNALS,
             clazz.name
         )
     }

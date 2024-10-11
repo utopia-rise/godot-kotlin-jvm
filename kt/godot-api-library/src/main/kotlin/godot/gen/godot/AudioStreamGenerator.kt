@@ -149,17 +149,17 @@ public open class AudioStreamGenerator : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMixRatePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMixRatePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373806689)
 
-    public val getMixRatePtr: VoidPtr =
+    internal val getMixRatePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1740695150)
 
-    public val setBufferLengthPtr: VoidPtr =
+    internal val setBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373806689)
 
-    public val getBufferLengthPtr: VoidPtr =
+    internal val getBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1740695150)
   }
 }

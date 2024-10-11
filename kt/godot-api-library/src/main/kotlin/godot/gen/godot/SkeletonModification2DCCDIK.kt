@@ -243,65 +243,65 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTargetNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_target_node", 1348162250)
 
-    public val getTargetNodePtr: VoidPtr =
+    internal val getTargetNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_target_node", 4075236667)
 
-    public val setTipNodePtr: VoidPtr =
+    internal val setTipNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_tip_node", 1348162250)
 
-    public val getTipNodePtr: VoidPtr =
+    internal val getTipNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_tip_node", 4075236667)
 
-    public val setCcdikDataChainLengthPtr: VoidPtr =
+    internal val setCcdikDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_data_chain_length", 1286410249)
 
-    public val getCcdikDataChainLengthPtr: VoidPtr =
+    internal val getCcdikDataChainLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_data_chain_length", 2455072627)
 
-    public val setCcdikJointBone2dNodePtr: VoidPtr =
+    internal val setCcdikJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_bone2d_node", 2761262315)
 
-    public val getCcdikJointBone2dNodePtr: VoidPtr =
+    internal val getCcdikJointBone2dNodePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_bone2d_node", 408788394)
 
-    public val setCcdikJointBoneIndexPtr: VoidPtr =
+    internal val setCcdikJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_bone_index", 3937882851)
 
-    public val getCcdikJointBoneIndexPtr: VoidPtr =
+    internal val getCcdikJointBoneIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_bone_index", 923996154)
 
-    public val setCcdikJointRotateFromJointPtr: VoidPtr =
+    internal val setCcdikJointRotateFromJointPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_rotate_from_joint", 300928843)
 
-    public val getCcdikJointRotateFromJointPtr: VoidPtr =
+    internal val getCcdikJointRotateFromJointPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_rotate_from_joint", 1116898809)
 
-    public val setCcdikJointEnableConstraintPtr: VoidPtr =
+    internal val setCcdikJointEnableConstraintPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_enable_constraint", 300928843)
 
-    public val getCcdikJointEnableConstraintPtr: VoidPtr =
+    internal val getCcdikJointEnableConstraintPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_enable_constraint", 1116898809)
 
-    public val setCcdikJointConstraintAngleMinPtr: VoidPtr =
+    internal val setCcdikJointConstraintAngleMinPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_constraint_angle_min", 1602489585)
 
-    public val getCcdikJointConstraintAngleMinPtr: VoidPtr =
+    internal val getCcdikJointConstraintAngleMinPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_constraint_angle_min", 2339986948)
 
-    public val setCcdikJointConstraintAngleMaxPtr: VoidPtr =
+    internal val setCcdikJointConstraintAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_constraint_angle_max", 1602489585)
 
-    public val getCcdikJointConstraintAngleMaxPtr: VoidPtr =
+    internal val getCcdikJointConstraintAngleMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_constraint_angle_max", 2339986948)
 
-    public val setCcdikJointConstraintAngleInvertPtr: VoidPtr =
+    internal val setCcdikJointConstraintAngleInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "set_ccdik_joint_constraint_angle_invert", 300928843)
 
-    public val getCcdikJointConstraintAngleInvertPtr: VoidPtr =
+    internal val getCcdikJointConstraintAngleInvertPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DCCDIK", "get_ccdik_joint_constraint_angle_invert", 1116898809)
   }
 }

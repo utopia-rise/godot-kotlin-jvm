@@ -162,29 +162,29 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setIndexPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "set_index", 1286410249)
 
-    public val getIndexPtr: VoidPtr =
+    internal val getIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "get_index", 3905245786)
 
-    public val setPositionPtr: VoidPtr =
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "set_position", 743155724)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "get_position", 3341600327)
 
-    public val setPressedPtr: VoidPtr =
+    internal val setPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2586408642)
 
-    public val setCanceledPtr: VoidPtr =
+    internal val setCanceledPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2586408642)
 
-    public val setDoubleTapPtr: VoidPtr =
+    internal val setDoubleTapPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2586408642)
 
-    public val isDoubleTapPtr: VoidPtr =
+    internal val isDoubleTapPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36873697)
   }
 }

@@ -2978,687 +2978,689 @@ public open class TextEdit : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val hasImeTextPtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasImeTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "has_ime_text", 36873697)
 
-    public val cancelImePtr: VoidPtr =
+    internal val cancelImePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "cancel_ime", 3218959716)
 
-    public val applyImePtr: VoidPtr =
+    internal val applyImePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "apply_ime", 3218959716)
 
-    public val setEditablePtr: VoidPtr =
+    internal val setEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_editable", 2586408642)
 
-    public val isEditablePtr: VoidPtr =
+    internal val isEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_editable", 36873697)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_language", 201670096)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_structured_text_bidi_override", 55961453)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_structured_text_bidi_override", 3385126229)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_structured_text_bidi_override_options", 381264803)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_structured_text_bidi_override_options", 3995934104)
 
-    public val setTabSizePtr: VoidPtr =
+    internal val setTabSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_tab_size", 1286410249)
 
-    public val getTabSizePtr: VoidPtr =
+    internal val getTabSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_tab_size", 3905245786)
 
-    public val setIndentWrappedLinesPtr: VoidPtr =
+    internal val setIndentWrappedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_indent_wrapped_lines", 2586408642)
 
-    public val isIndentWrappedLinesPtr: VoidPtr =
+    internal val isIndentWrappedLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_indent_wrapped_lines", 36873697)
 
-    public val setOvertypeModeEnabledPtr: VoidPtr =
+    internal val setOvertypeModeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_overtype_mode_enabled", 2586408642)
 
-    public val isOvertypeModeEnabledPtr: VoidPtr =
+    internal val isOvertypeModeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_overtype_mode_enabled", 36873697)
 
-    public val setContextMenuEnabledPtr: VoidPtr =
+    internal val setContextMenuEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_context_menu_enabled", 2586408642)
 
-    public val isContextMenuEnabledPtr: VoidPtr =
+    internal val isContextMenuEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_context_menu_enabled", 36873697)
 
-    public val setShortcutKeysEnabledPtr: VoidPtr =
+    internal val setShortcutKeysEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_shortcut_keys_enabled", 2586408642)
 
-    public val isShortcutKeysEnabledPtr: VoidPtr =
+    internal val isShortcutKeysEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_shortcut_keys_enabled", 36873697)
 
-    public val setVirtualKeyboardEnabledPtr: VoidPtr =
+    internal val setVirtualKeyboardEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_virtual_keyboard_enabled", 2586408642)
 
-    public val isVirtualKeyboardEnabledPtr: VoidPtr =
+    internal val isVirtualKeyboardEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_virtual_keyboard_enabled", 36873697)
 
-    public val setMiddleMousePasteEnabledPtr: VoidPtr =
+    internal val setMiddleMousePasteEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_middle_mouse_paste_enabled", 2586408642)
 
-    public val isMiddleMousePasteEnabledPtr: VoidPtr =
+    internal val isMiddleMousePasteEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_middle_mouse_paste_enabled", 36873697)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "clear", 3218959716)
 
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "set_text", 83702148)
+    internal val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_text", 201670096)
 
-    public val getLineCountPtr: VoidPtr =
+    internal val getLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_count", 3905245786)
 
-    public val setPlaceholderPtr: VoidPtr =
+    internal val setPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_placeholder", 83702148)
 
-    public val getPlaceholderPtr: VoidPtr =
+    internal val getPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_placeholder", 201670096)
 
-    public val setLinePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "set_line", 501894301)
+    internal val setLinePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "set_line", 501894301)
 
-    public val getLinePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_line", 844755477)
+    internal val getLinePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_line", 844755477)
 
-    public val getLineWidthPtr: VoidPtr =
+    internal val getLineWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_width", 688195400)
 
-    public val getLineHeightPtr: VoidPtr =
+    internal val getLineHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_height", 3905245786)
 
-    public val getIndentLevelPtr: VoidPtr =
+    internal val getIndentLevelPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_indent_level", 923996154)
 
-    public val getFirstNonWhitespaceColumnPtr: VoidPtr =
+    internal val getFirstNonWhitespaceColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_first_non_whitespace_column", 923996154)
 
-    public val swapLinesPtr: VoidPtr =
+    internal val swapLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "swap_lines", 3937882851)
 
-    public val insertLineAtPtr: VoidPtr =
+    internal val insertLineAtPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "insert_line_at", 501894301)
 
-    public val removeLineAtPtr: VoidPtr =
+    internal val removeLineAtPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "remove_line_at", 972357352)
 
-    public val insertTextAtCaretPtr: VoidPtr =
+    internal val insertTextAtCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "insert_text_at_caret", 2697778442)
 
-    public val insertTextPtr: VoidPtr =
+    internal val insertTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "insert_text", 1881564334)
 
-    public val removeTextPtr: VoidPtr =
+    internal val removeTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "remove_text", 4275841770)
 
-    public val getLastUnhiddenLinePtr: VoidPtr =
+    internal val getLastUnhiddenLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_last_unhidden_line", 3905245786)
 
-    public val getNextVisibleLineOffsetFromPtr: VoidPtr =
+    internal val getNextVisibleLineOffsetFromPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_next_visible_line_offset_from", 3175239445)
 
-    public val getNextVisibleLineIndexOffsetFromPtr: VoidPtr =
+    internal val getNextVisibleLineIndexOffsetFromPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_next_visible_line_index_offset_from", 3386475622)
 
-    public val backspacePtr: VoidPtr =
+    internal val backspacePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "backspace", 1025054187)
 
-    public val cutPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "cut", 1025054187)
+    internal val cutPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "cut", 1025054187)
 
-    public val copyPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "copy", 1025054187)
+    internal val copyPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "copy", 1025054187)
 
-    public val pastePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "paste", 1025054187)
+    internal val pastePtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "paste", 1025054187)
 
-    public val pastePrimaryClipboardPtr: VoidPtr =
+    internal val pastePrimaryClipboardPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "paste_primary_clipboard", 1025054187)
 
-    public val startActionPtr: VoidPtr =
+    internal val startActionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "start_action", 2834827583)
 
-    public val endActionPtr: VoidPtr =
+    internal val endActionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "end_action", 3218959716)
 
-    public val beginComplexOperationPtr: VoidPtr =
+    internal val beginComplexOperationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "begin_complex_operation", 3218959716)
 
-    public val endComplexOperationPtr: VoidPtr =
+    internal val endComplexOperationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "end_complex_operation", 3218959716)
 
-    public val hasUndoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "has_undo", 36873697)
+    internal val hasUndoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "has_undo", 36873697)
 
-    public val hasRedoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "has_redo", 36873697)
+    internal val hasRedoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "has_redo", 36873697)
 
-    public val undoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "undo", 3218959716)
+    internal val undoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "undo", 3218959716)
 
-    public val redoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "redo", 3218959716)
+    internal val redoPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "redo", 3218959716)
 
-    public val clearUndoHistoryPtr: VoidPtr =
+    internal val clearUndoHistoryPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "clear_undo_history", 3218959716)
 
-    public val tagSavedVersionPtr: VoidPtr =
+    internal val tagSavedVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "tag_saved_version", 3218959716)
 
-    public val getVersionPtr: VoidPtr =
+    internal val getVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_version", 3905245786)
 
-    public val getSavedVersionPtr: VoidPtr =
+    internal val getSavedVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_saved_version", 3905245786)
 
-    public val setSearchTextPtr: VoidPtr =
+    internal val setSearchTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_search_text", 83702148)
 
-    public val setSearchFlagsPtr: VoidPtr =
+    internal val setSearchFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_search_flags", 1286410249)
 
-    public val searchPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "search", 1203739136)
+    internal val searchPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "search", 1203739136)
 
-    public val setTooltipRequestFuncPtr: VoidPtr =
+    internal val setTooltipRequestFuncPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_tooltip_request_func", 1611583062)
 
-    public val getLocalMousePosPtr: VoidPtr =
+    internal val getLocalMousePosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_local_mouse_pos", 3341600327)
 
-    public val getWordAtPosPtr: VoidPtr =
+    internal val getWordAtPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_word_at_pos", 3674420000)
 
-    public val getLineColumnAtPosPtr: VoidPtr =
+    internal val getLineColumnAtPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_column_at_pos", 239517838)
 
-    public val getPosAtLineColumnPtr: VoidPtr =
+    internal val getPosAtLineColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_pos_at_line_column", 410388347)
 
-    public val getRectAtLineColumnPtr: VoidPtr =
+    internal val getRectAtLineColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_rect_at_line_column", 3256618057)
 
-    public val getMinimapLineAtPosPtr: VoidPtr =
+    internal val getMinimapLineAtPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_minimap_line_at_pos", 2485466453)
 
-    public val isDraggingCursorPtr: VoidPtr =
+    internal val isDraggingCursorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_dragging_cursor", 36873697)
 
-    public val isMouseOverSelectionPtr: VoidPtr =
+    internal val isMouseOverSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_mouse_over_selection", 1840282309)
 
-    public val setCaretTypePtr: VoidPtr =
+    internal val setCaretTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_type", 1211596914)
 
-    public val getCaretTypePtr: VoidPtr =
+    internal val getCaretTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_type", 2830252959)
 
-    public val setCaretBlinkEnabledPtr: VoidPtr =
+    internal val setCaretBlinkEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_blink_enabled", 2586408642)
 
-    public val isCaretBlinkEnabledPtr: VoidPtr =
+    internal val isCaretBlinkEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_caret_blink_enabled", 36873697)
 
-    public val setCaretBlinkIntervalPtr: VoidPtr =
+    internal val setCaretBlinkIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_blink_interval", 373806689)
 
-    public val getCaretBlinkIntervalPtr: VoidPtr =
+    internal val getCaretBlinkIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_blink_interval", 1740695150)
 
-    public val setDrawCaretWhenEditableDisabledPtr: VoidPtr =
+    internal val setDrawCaretWhenEditableDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_draw_caret_when_editable_disabled", 2586408642)
 
-    public val isDrawingCaretWhenEditableDisabledPtr: VoidPtr =
+    internal val isDrawingCaretWhenEditableDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_drawing_caret_when_editable_disabled", 36873697)
 
-    public val setMoveCaretOnRightClickEnabledPtr: VoidPtr =
+    internal val setMoveCaretOnRightClickEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_move_caret_on_right_click_enabled", 2586408642)
 
-    public val isMoveCaretOnRightClickEnabledPtr: VoidPtr =
+    internal val isMoveCaretOnRightClickEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_move_caret_on_right_click_enabled", 36873697)
 
-    public val setCaretMidGraphemeEnabledPtr: VoidPtr =
+    internal val setCaretMidGraphemeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_mid_grapheme_enabled", 2586408642)
 
-    public val isCaretMidGraphemeEnabledPtr: VoidPtr =
+    internal val isCaretMidGraphemeEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_caret_mid_grapheme_enabled", 36873697)
 
-    public val setMultipleCaretsEnabledPtr: VoidPtr =
+    internal val setMultipleCaretsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_multiple_carets_enabled", 2586408642)
 
-    public val isMultipleCaretsEnabledPtr: VoidPtr =
+    internal val isMultipleCaretsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_multiple_carets_enabled", 36873697)
 
-    public val addCaretPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "add_caret", 50157827)
+    internal val addCaretPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextEdit", "add_caret", 50157827)
 
-    public val removeCaretPtr: VoidPtr =
+    internal val removeCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "remove_caret", 1286410249)
 
-    public val removeSecondaryCaretsPtr: VoidPtr =
+    internal val removeSecondaryCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "remove_secondary_carets", 3218959716)
 
-    public val getCaretCountPtr: VoidPtr =
+    internal val getCaretCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_count", 3905245786)
 
-    public val addCaretAtCaretsPtr: VoidPtr =
+    internal val addCaretAtCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "add_caret_at_carets", 2586408642)
 
-    public val getSortedCaretsPtr: VoidPtr =
+    internal val getSortedCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_sorted_carets", 2131714034)
 
-    public val collapseCaretsPtr: VoidPtr =
+    internal val collapseCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "collapse_carets", 228654177)
 
-    public val mergeOverlappingCaretsPtr: VoidPtr =
+    internal val mergeOverlappingCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "merge_overlapping_carets", 3218959716)
 
-    public val beginMulticaretEditPtr: VoidPtr =
+    internal val beginMulticaretEditPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "begin_multicaret_edit", 3218959716)
 
-    public val endMulticaretEditPtr: VoidPtr =
+    internal val endMulticaretEditPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "end_multicaret_edit", 3218959716)
 
-    public val isInMulitcaretEditPtr: VoidPtr =
+    internal val isInMulitcaretEditPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_in_mulitcaret_edit", 36873697)
 
-    public val multicaretEditIgnoreCaretPtr: VoidPtr =
+    internal val multicaretEditIgnoreCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "multicaret_edit_ignore_caret", 1116898809)
 
-    public val isCaretVisiblePtr: VoidPtr =
+    internal val isCaretVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_caret_visible", 1051549951)
 
-    public val getCaretDrawPosPtr: VoidPtr =
+    internal val getCaretDrawPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_draw_pos", 478253731)
 
-    public val setCaretLinePtr: VoidPtr =
+    internal val setCaretLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_line", 1302582944)
 
-    public val getCaretLinePtr: VoidPtr =
+    internal val getCaretLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_line", 1591665591)
 
-    public val setCaretColumnPtr: VoidPtr =
+    internal val setCaretColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_caret_column", 3796796178)
 
-    public val getCaretColumnPtr: VoidPtr =
+    internal val getCaretColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_column", 1591665591)
 
-    public val getCaretWrapIndexPtr: VoidPtr =
+    internal val getCaretWrapIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_wrap_index", 1591665591)
 
-    public val getWordUnderCaretPtr: VoidPtr =
+    internal val getWordUnderCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_word_under_caret", 3929349208)
 
-    public val setUseDefaultWordSeparatorsPtr: VoidPtr =
+    internal val setUseDefaultWordSeparatorsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_use_default_word_separators", 2586408642)
 
-    public val isDefaultWordSeparatorsEnabledPtr: VoidPtr =
+    internal val isDefaultWordSeparatorsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_default_word_separators_enabled", 36873697)
 
-    public val setUseCustomWordSeparatorsPtr: VoidPtr =
+    internal val setUseCustomWordSeparatorsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_use_custom_word_separators", 2586408642)
 
-    public val isCustomWordSeparatorsEnabledPtr: VoidPtr =
+    internal val isCustomWordSeparatorsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_custom_word_separators_enabled", 36873697)
 
-    public val setCustomWordSeparatorsPtr: VoidPtr =
+    internal val setCustomWordSeparatorsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_custom_word_separators", 83702148)
 
-    public val getCustomWordSeparatorsPtr: VoidPtr =
+    internal val getCustomWordSeparatorsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_custom_word_separators", 201670096)
 
-    public val setSelectingEnabledPtr: VoidPtr =
+    internal val setSelectingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_selecting_enabled", 2586408642)
 
-    public val isSelectingEnabledPtr: VoidPtr =
+    internal val isSelectingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_selecting_enabled", 36873697)
 
-    public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
+    internal val setDeselectOnFocusLossEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_deselect_on_focus_loss_enabled", 2586408642)
 
-    public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
+    internal val isDeselectOnFocusLossEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_deselect_on_focus_loss_enabled", 36873697)
 
-    public val setDragAndDropSelectionEnabledPtr: VoidPtr =
+    internal val setDragAndDropSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_drag_and_drop_selection_enabled", 2586408642)
 
-    public val isDragAndDropSelectionEnabledPtr: VoidPtr =
+    internal val isDragAndDropSelectionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_drag_and_drop_selection_enabled", 36873697)
 
-    public val setSelectionModePtr: VoidPtr =
+    internal val setSelectionModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_selection_mode", 1658801786)
 
-    public val getSelectionModePtr: VoidPtr =
+    internal val getSelectionModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_mode", 3750106938)
 
-    public val selectAllPtr: VoidPtr =
+    internal val selectAllPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "select_all", 3218959716)
 
-    public val selectWordUnderCaretPtr: VoidPtr =
+    internal val selectWordUnderCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "select_word_under_caret", 1025054187)
 
-    public val addSelectionForNextOccurrencePtr: VoidPtr =
+    internal val addSelectionForNextOccurrencePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "add_selection_for_next_occurrence", 3218959716)
 
-    public val skipSelectionForNextOccurrencePtr: VoidPtr =
+    internal val skipSelectionForNextOccurrencePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "skip_selection_for_next_occurrence", 3218959716)
 
-    public val selectPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "select", 2560984452)
+    internal val selectPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "select", 2560984452)
 
-    public val hasSelectionPtr: VoidPtr =
+    internal val hasSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "has_selection", 2824505868)
 
-    public val getSelectedTextPtr: VoidPtr =
+    internal val getSelectedTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selected_text", 2309358862)
 
-    public val getSelectionAtLineColumnPtr: VoidPtr =
+    internal val getSelectionAtLineColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_at_line_column", 1810224333)
 
-    public val getLineRangesFromCaretsPtr: VoidPtr =
+    internal val getLineRangesFromCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_ranges_from_carets", 2393089247)
 
-    public val getSelectionOriginLinePtr: VoidPtr =
+    internal val getSelectionOriginLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_origin_line", 1591665591)
 
-    public val getSelectionOriginColumnPtr: VoidPtr =
+    internal val getSelectionOriginColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_origin_column", 1591665591)
 
-    public val setSelectionOriginLinePtr: VoidPtr =
+    internal val setSelectionOriginLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_selection_origin_line", 195434140)
 
-    public val setSelectionOriginColumnPtr: VoidPtr =
+    internal val setSelectionOriginColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_selection_origin_column", 2230941749)
 
-    public val getSelectionFromLinePtr: VoidPtr =
+    internal val getSelectionFromLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_from_line", 1591665591)
 
-    public val getSelectionFromColumnPtr: VoidPtr =
+    internal val getSelectionFromColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_from_column", 1591665591)
 
-    public val getSelectionToLinePtr: VoidPtr =
+    internal val getSelectionToLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_to_line", 1591665591)
 
-    public val getSelectionToColumnPtr: VoidPtr =
+    internal val getSelectionToColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_to_column", 1591665591)
 
-    public val isCaretAfterSelectionOriginPtr: VoidPtr =
+    internal val isCaretAfterSelectionOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_caret_after_selection_origin", 1051549951)
 
-    public val deselectPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "deselect", 1025054187)
+    internal val deselectPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextEdit", "deselect", 1025054187)
 
-    public val deleteSelectionPtr: VoidPtr =
+    internal val deleteSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "delete_selection", 1025054187)
 
-    public val setLineWrappingModePtr: VoidPtr =
+    internal val setLineWrappingModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_wrapping_mode", 2525115309)
 
-    public val getLineWrappingModePtr: VoidPtr =
+    internal val getLineWrappingModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_wrapping_mode", 3562716114)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_autowrap_mode", 3289138044)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_autowrap_mode", 1549071663)
 
-    public val isLineWrappedPtr: VoidPtr =
+    internal val isLineWrappedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_line_wrapped", 1116898809)
 
-    public val getLineWrapCountPtr: VoidPtr =
+    internal val getLineWrapCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_wrap_count", 923996154)
 
-    public val getLineWrapIndexAtColumnPtr: VoidPtr =
+    internal val getLineWrapIndexAtColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_wrap_index_at_column", 3175239445)
 
-    public val getLineWrappedTextPtr: VoidPtr =
+    internal val getLineWrappedTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_wrapped_text", 647634434)
 
-    public val setSmoothScrollEnabledPtr: VoidPtr =
+    internal val setSmoothScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_smooth_scroll_enabled", 2586408642)
 
-    public val isSmoothScrollEnabledPtr: VoidPtr =
+    internal val isSmoothScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_smooth_scroll_enabled", 36873697)
 
-    public val getVScrollBarPtr: VoidPtr =
+    internal val getVScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_v_scroll_bar", 3226026593)
 
-    public val getHScrollBarPtr: VoidPtr =
+    internal val getHScrollBarPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_h_scroll_bar", 3774687988)
 
-    public val setVScrollPtr: VoidPtr =
+    internal val setVScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_v_scroll", 373806689)
 
-    public val getVScrollPtr: VoidPtr =
+    internal val getVScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_v_scroll", 1740695150)
 
-    public val setHScrollPtr: VoidPtr =
+    internal val setHScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_h_scroll", 1286410249)
 
-    public val getHScrollPtr: VoidPtr =
+    internal val getHScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_h_scroll", 3905245786)
 
-    public val setScrollPastEndOfFileEnabledPtr: VoidPtr =
+    internal val setScrollPastEndOfFileEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_scroll_past_end_of_file_enabled", 2586408642)
 
-    public val isScrollPastEndOfFileEnabledPtr: VoidPtr =
+    internal val isScrollPastEndOfFileEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_scroll_past_end_of_file_enabled", 36873697)
 
-    public val setVScrollSpeedPtr: VoidPtr =
+    internal val setVScrollSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_v_scroll_speed", 373806689)
 
-    public val getVScrollSpeedPtr: VoidPtr =
+    internal val getVScrollSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_v_scroll_speed", 1740695150)
 
-    public val setFitContentHeightEnabledPtr: VoidPtr =
+    internal val setFitContentHeightEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_fit_content_height_enabled", 2586408642)
 
-    public val isFitContentHeightEnabledPtr: VoidPtr =
+    internal val isFitContentHeightEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_fit_content_height_enabled", 36873697)
 
-    public val getScrollPosForLinePtr: VoidPtr =
+    internal val getScrollPosForLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_scroll_pos_for_line", 3929084198)
 
-    public val setLineAsFirstVisiblePtr: VoidPtr =
+    internal val setLineAsFirstVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_as_first_visible", 2230941749)
 
-    public val getFirstVisibleLinePtr: VoidPtr =
+    internal val getFirstVisibleLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_first_visible_line", 3905245786)
 
-    public val setLineAsCenterVisiblePtr: VoidPtr =
+    internal val setLineAsCenterVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_as_center_visible", 2230941749)
 
-    public val setLineAsLastVisiblePtr: VoidPtr =
+    internal val setLineAsLastVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_as_last_visible", 2230941749)
 
-    public val getLastFullVisibleLinePtr: VoidPtr =
+    internal val getLastFullVisibleLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_last_full_visible_line", 3905245786)
 
-    public val getLastFullVisibleLineWrapIndexPtr: VoidPtr =
+    internal val getLastFullVisibleLineWrapIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_last_full_visible_line_wrap_index", 3905245786)
 
-    public val getVisibleLineCountPtr: VoidPtr =
+    internal val getVisibleLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_visible_line_count", 3905245786)
 
-    public val getVisibleLineCountInRangePtr: VoidPtr =
+    internal val getVisibleLineCountInRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_visible_line_count_in_range", 3175239445)
 
-    public val getTotalVisibleLineCountPtr: VoidPtr =
+    internal val getTotalVisibleLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_total_visible_line_count", 3905245786)
 
-    public val adjustViewportToCaretPtr: VoidPtr =
+    internal val adjustViewportToCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "adjust_viewport_to_caret", 1995695955)
 
-    public val centerViewportToCaretPtr: VoidPtr =
+    internal val centerViewportToCaretPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "center_viewport_to_caret", 1995695955)
 
-    public val setDrawMinimapPtr: VoidPtr =
+    internal val setDrawMinimapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_draw_minimap", 2586408642)
 
-    public val isDrawingMinimapPtr: VoidPtr =
+    internal val isDrawingMinimapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_drawing_minimap", 36873697)
 
-    public val setMinimapWidthPtr: VoidPtr =
+    internal val setMinimapWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_minimap_width", 1286410249)
 
-    public val getMinimapWidthPtr: VoidPtr =
+    internal val getMinimapWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_minimap_width", 3905245786)
 
-    public val getMinimapVisibleLinesPtr: VoidPtr =
+    internal val getMinimapVisibleLinesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_minimap_visible_lines", 3905245786)
 
-    public val addGutterPtr: VoidPtr =
+    internal val addGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "add_gutter", 1025054187)
 
-    public val removeGutterPtr: VoidPtr =
+    internal val removeGutterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "remove_gutter", 1286410249)
 
-    public val getGutterCountPtr: VoidPtr =
+    internal val getGutterCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_gutter_count", 3905245786)
 
-    public val setGutterNamePtr: VoidPtr =
+    internal val setGutterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_name", 501894301)
 
-    public val getGutterNamePtr: VoidPtr =
+    internal val getGutterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_gutter_name", 844755477)
 
-    public val setGutterTypePtr: VoidPtr =
+    internal val setGutterTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_type", 1088959071)
 
-    public val getGutterTypePtr: VoidPtr =
+    internal val getGutterTypePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_gutter_type", 1159699127)
 
-    public val setGutterWidthPtr: VoidPtr =
+    internal val setGutterWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_width", 3937882851)
 
-    public val getGutterWidthPtr: VoidPtr =
+    internal val getGutterWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_gutter_width", 923996154)
 
-    public val setGutterDrawPtr: VoidPtr =
+    internal val setGutterDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_draw", 300928843)
 
-    public val isGutterDrawnPtr: VoidPtr =
+    internal val isGutterDrawnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_gutter_drawn", 1116898809)
 
-    public val setGutterClickablePtr: VoidPtr =
+    internal val setGutterClickablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_clickable", 300928843)
 
-    public val isGutterClickablePtr: VoidPtr =
+    internal val isGutterClickablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_gutter_clickable", 1116898809)
 
-    public val setGutterOverwritablePtr: VoidPtr =
+    internal val setGutterOverwritablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_overwritable", 300928843)
 
-    public val isGutterOverwritablePtr: VoidPtr =
+    internal val isGutterOverwritablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_gutter_overwritable", 1116898809)
 
-    public val mergeGuttersPtr: VoidPtr =
+    internal val mergeGuttersPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "merge_gutters", 3937882851)
 
-    public val setGutterCustomDrawPtr: VoidPtr =
+    internal val setGutterCustomDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_gutter_custom_draw", 957362965)
 
-    public val getTotalGutterWidthPtr: VoidPtr =
+    internal val getTotalGutterWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_total_gutter_width", 3905245786)
 
-    public val setLineGutterMetadataPtr: VoidPtr =
+    internal val setLineGutterMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_gutter_metadata", 2060538656)
 
-    public val getLineGutterMetadataPtr: VoidPtr =
+    internal val getLineGutterMetadataPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_gutter_metadata", 678354945)
 
-    public val setLineGutterTextPtr: VoidPtr =
+    internal val setLineGutterTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_gutter_text", 2285447957)
 
-    public val getLineGutterTextPtr: VoidPtr =
+    internal val getLineGutterTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_gutter_text", 1391810591)
 
-    public val setLineGutterIconPtr: VoidPtr =
+    internal val setLineGutterIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_gutter_icon", 176101966)
 
-    public val getLineGutterIconPtr: VoidPtr =
+    internal val getLineGutterIconPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_gutter_icon", 2584904275)
 
-    public val setLineGutterItemColorPtr: VoidPtr =
+    internal val setLineGutterItemColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_gutter_item_color", 3733378741)
 
-    public val getLineGutterItemColorPtr: VoidPtr =
+    internal val getLineGutterItemColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_gutter_item_color", 2165839948)
 
-    public val setLineGutterClickablePtr: VoidPtr =
+    internal val setLineGutterClickablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_gutter_clickable", 1383440665)
 
-    public val isLineGutterClickablePtr: VoidPtr =
+    internal val isLineGutterClickablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_line_gutter_clickable", 2522259332)
 
-    public val setLineBackgroundColorPtr: VoidPtr =
+    internal val setLineBackgroundColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_line_background_color", 2878471219)
 
-    public val getLineBackgroundColorPtr: VoidPtr =
+    internal val getLineBackgroundColorPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_line_background_color", 3457211756)
 
-    public val setSyntaxHighlighterPtr: VoidPtr =
+    internal val setSyntaxHighlighterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_syntax_highlighter", 2765644541)
 
-    public val getSyntaxHighlighterPtr: VoidPtr =
+    internal val getSyntaxHighlighterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_syntax_highlighter", 2721131626)
 
-    public val setHighlightCurrentLinePtr: VoidPtr =
+    internal val setHighlightCurrentLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_highlight_current_line", 2586408642)
 
-    public val isHighlightCurrentLineEnabledPtr: VoidPtr =
+    internal val isHighlightCurrentLineEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_highlight_current_line_enabled", 36873697)
 
-    public val setHighlightAllOccurrencesPtr: VoidPtr =
+    internal val setHighlightAllOccurrencesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_highlight_all_occurrences", 2586408642)
 
-    public val isHighlightAllOccurrencesEnabledPtr: VoidPtr =
+    internal val isHighlightAllOccurrencesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_highlight_all_occurrences_enabled", 36873697)
 
-    public val getDrawControlCharsPtr: VoidPtr =
+    internal val getDrawControlCharsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_draw_control_chars", 36873697)
 
-    public val setDrawControlCharsPtr: VoidPtr =
+    internal val setDrawControlCharsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_draw_control_chars", 2586408642)
 
-    public val setDrawTabsPtr: VoidPtr =
+    internal val setDrawTabsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_draw_tabs", 2586408642)
 
-    public val isDrawingTabsPtr: VoidPtr =
+    internal val isDrawingTabsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_drawing_tabs", 36873697)
 
-    public val setDrawSpacesPtr: VoidPtr =
+    internal val setDrawSpacesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "set_draw_spaces", 2586408642)
 
-    public val isDrawingSpacesPtr: VoidPtr =
+    internal val isDrawingSpacesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_drawing_spaces", 36873697)
 
-    public val getMenuPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_menu", 229722558)
+    internal val getMenuPtr: VoidPtr = Internals.getMethodBindPtr("TextEdit", "get_menu", 229722558)
 
-    public val isMenuVisiblePtr: VoidPtr =
+    internal val isMenuVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "is_menu_visible", 36873697)
 
-    public val menuOptionPtr: VoidPtr =
+    internal val menuOptionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "menu_option", 1286410249)
 
-    public val adjustCaretsAfterEditPtr: VoidPtr =
+    internal val adjustCaretsAfterEditPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "adjust_carets_after_edit", 1770277138)
 
-    public val getCaretIndexEditOrderPtr: VoidPtr =
+    internal val getCaretIndexEditOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_caret_index_edit_order", 969006518)
 
-    public val getSelectionLinePtr: VoidPtr =
+    internal val getSelectionLinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_line", 1591665591)
 
-    public val getSelectionColumnPtr: VoidPtr =
+    internal val getSelectionColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("TextEdit", "get_selection_column", 1591665591)
   }
 }

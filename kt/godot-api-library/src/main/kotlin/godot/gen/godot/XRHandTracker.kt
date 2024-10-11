@@ -423,47 +423,47 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHasTrackingDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2586408642)
 
-    public val getHasTrackingDataPtr: VoidPtr =
+    internal val getHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36873697)
 
-    public val setHandTrackingSourcePtr: VoidPtr =
+    internal val setHandTrackingSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2958308861)
 
-    public val getHandTrackingSourcePtr: VoidPtr =
+    internal val getHandTrackingSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2475045250)
 
-    public val setHandJointFlagsPtr: VoidPtr =
+    internal val setHandJointFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3028437365)
 
-    public val getHandJointFlagsPtr: VoidPtr =
+    internal val getHandJointFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1730972401)
 
-    public val setHandJointTransformPtr: VoidPtr =
+    internal val setHandJointTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2529959613)
 
-    public val getHandJointTransformPtr: VoidPtr =
+    internal val getHandJointTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1090840196)
 
-    public val setHandJointRadiusPtr: VoidPtr =
+    internal val setHandJointRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2723659615)
 
-    public val getHandJointRadiusPtr: VoidPtr =
+    internal val getHandJointRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3400025734)
 
-    public val setHandJointLinearVelocityPtr: VoidPtr =
+    internal val setHandJointLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1978646737)
 
-    public val getHandJointLinearVelocityPtr: VoidPtr =
+    internal val getHandJointLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547240792)
 
-    public val setHandJointAngularVelocityPtr: VoidPtr =
+    internal val setHandJointAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1978646737)
 
-    public val getHandJointAngularVelocityPtr: VoidPtr =
+    internal val getHandJointAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
   }
 }

@@ -91,23 +91,23 @@ public open class ResourcePreloader : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addResourcePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "add_resource", 1168801743)
 
-    public val removeResourcePtr: VoidPtr =
+    internal val removeResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "remove_resource", 3304788590)
 
-    public val renameResourcePtr: VoidPtr =
+    internal val renameResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "rename_resource", 3740211285)
 
-    public val hasResourcePtr: VoidPtr =
+    internal val hasResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "has_resource", 2619796661)
 
-    public val getResourcePtr: VoidPtr =
+    internal val getResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "get_resource", 3742749261)
 
-    public val getResourceListPtr: VoidPtr =
+    internal val getResourceListPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourcePreloader", "get_resource_list", 1139954409)
   }
 }

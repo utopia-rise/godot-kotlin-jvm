@@ -97,23 +97,23 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
 
   public companion object
 
-  internal object MethodBindings {
-    public val pushFramePtr: VoidPtr =
+  public object MethodBindings {
+    internal val pushFramePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_frame", 3975407249)
 
-    public val canPushBufferPtr: VoidPtr =
+    internal val canPushBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "can_push_buffer", 1116898809)
 
-    public val pushBufferPtr: VoidPtr =
+    internal val pushBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_buffer", 1361156557)
 
-    public val getFramesAvailablePtr: VoidPtr =
+    internal val getFramesAvailablePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_frames_available", 3905245786)
 
-    public val getSkipsPtr: VoidPtr =
+    internal val getSkipsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_skips", 3905245786)
 
-    public val clearBufferPtr: VoidPtr =
+    internal val clearBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "clear_buffer", 3218959716)
   }
 }

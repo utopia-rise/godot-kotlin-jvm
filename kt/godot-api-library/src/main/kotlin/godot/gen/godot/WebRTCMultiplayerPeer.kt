@@ -151,29 +151,29 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createServerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createServerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_server", 2865356025)
 
-    public val createClientPtr: VoidPtr =
+    internal val createClientPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_client", 2641732907)
 
-    public val createMeshPtr: VoidPtr =
+    internal val createMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_mesh", 2641732907)
 
-    public val addPeerPtr: VoidPtr =
+    internal val addPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "add_peer", 4078953270)
 
-    public val removePeerPtr: VoidPtr =
+    internal val removePeerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "remove_peer", 1286410249)
 
-    public val hasPeerPtr: VoidPtr =
+    internal val hasPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "has_peer", 3067735520)
 
-    public val getPeerPtr: VoidPtr =
+    internal val getPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peer", 3554694381)
 
-    public val getPeersPtr: VoidPtr =
+    internal val getPeersPtr: VoidPtr =
         Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peers", 2382534195)
   }
 }

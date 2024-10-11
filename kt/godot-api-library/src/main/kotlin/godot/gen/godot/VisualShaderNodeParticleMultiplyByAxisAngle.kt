@@ -54,11 +54,11 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDegreesModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDegreesModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "set_degrees_mode", 2586408642)
 
-    public val isDegreesModePtr: VoidPtr =
+    internal val isDegreesModePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "is_degrees_mode", 36873697)
   }
 }

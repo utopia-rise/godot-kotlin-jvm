@@ -127,13 +127,15 @@ public open class SegmentShape2D : Shape2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_a", 743155724)
+  public object MethodBindings {
+    internal val setAPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_a", 743155724)
 
-    public val getAPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "get_a", 3341600327)
+    internal val getAPtr: VoidPtr =
+        Internals.getMethodBindPtr("SegmentShape2D", "get_a", 3341600327)
 
-    public val setBPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_b", 743155724)
+    internal val setBPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_b", 743155724)
 
-    public val getBPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "get_b", 3341600327)
+    internal val getBPtr: VoidPtr =
+        Internals.getMethodBindPtr("SegmentShape2D", "get_b", 3341600327)
   }
 }

@@ -510,74 +510,74 @@ public object Geometry2D : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val isPointInCirclePtr: VoidPtr =
+  public object MethodBindings {
+    internal val isPointInCirclePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "is_point_in_circle", 2929491703)
 
-    public val segmentIntersectsCirclePtr: VoidPtr =
+    internal val segmentIntersectsCirclePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "segment_intersects_circle", 1356928167)
 
-    public val segmentIntersectsSegmentPtr: VoidPtr =
+    internal val segmentIntersectsSegmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "segment_intersects_segment", 2058025344)
 
-    public val lineIntersectsLinePtr: VoidPtr =
+    internal val lineIntersectsLinePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "line_intersects_line", 2058025344)
 
-    public val getClosestPointsBetweenSegmentsPtr: VoidPtr =
+    internal val getClosestPointsBetweenSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "get_closest_points_between_segments", 3344690961)
 
-    public val getClosestPointToSegmentPtr: VoidPtr =
+    internal val getClosestPointToSegmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "get_closest_point_to_segment", 4172901909)
 
-    public val getClosestPointToSegmentUncappedPtr: VoidPtr =
+    internal val getClosestPointToSegmentUncappedPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "get_closest_point_to_segment_uncapped", 4172901909)
 
-    public val pointIsInsideTrianglePtr: VoidPtr =
+    internal val pointIsInsideTrianglePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "point_is_inside_triangle", 1025948137)
 
-    public val isPolygonClockwisePtr: VoidPtr =
+    internal val isPolygonClockwisePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "is_polygon_clockwise", 1361156557)
 
-    public val isPointInPolygonPtr: VoidPtr =
+    internal val isPointInPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "is_point_in_polygon", 738277916)
 
-    public val triangulatePolygonPtr: VoidPtr =
+    internal val triangulatePolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "triangulate_polygon", 1389921771)
 
-    public val triangulateDelaunayPtr: VoidPtr =
+    internal val triangulateDelaunayPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "triangulate_delaunay", 1389921771)
 
-    public val convexHullPtr: VoidPtr =
+    internal val convexHullPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "convex_hull", 2004331998)
 
-    public val decomposePolygonInConvexPtr: VoidPtr =
+    internal val decomposePolygonInConvexPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "decompose_polygon_in_convex", 3982393695)
 
-    public val mergePolygonsPtr: VoidPtr =
+    internal val mergePolygonsPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "merge_polygons", 3637387053)
 
-    public val clipPolygonsPtr: VoidPtr =
+    internal val clipPolygonsPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "clip_polygons", 3637387053)
 
-    public val intersectPolygonsPtr: VoidPtr =
+    internal val intersectPolygonsPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "intersect_polygons", 3637387053)
 
-    public val excludePolygonsPtr: VoidPtr =
+    internal val excludePolygonsPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "exclude_polygons", 3637387053)
 
-    public val clipPolylineWithPolygonPtr: VoidPtr =
+    internal val clipPolylineWithPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "clip_polyline_with_polygon", 3637387053)
 
-    public val intersectPolylineWithPolygonPtr: VoidPtr =
+    internal val intersectPolylineWithPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "intersect_polyline_with_polygon", 3637387053)
 
-    public val offsetPolygonPtr: VoidPtr =
+    internal val offsetPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "offset_polygon", 1275354010)
 
-    public val offsetPolylinePtr: VoidPtr =
+    internal val offsetPolylinePtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "offset_polyline", 2328231778)
 
-    public val makeAtlasPtr: VoidPtr =
+    internal val makeAtlasPtr: VoidPtr =
         Internals.getMethodBindPtr("Geometry2D", "make_atlas", 1337682371)
   }
 }

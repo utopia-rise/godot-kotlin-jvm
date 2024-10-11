@@ -341,59 +341,59 @@ public open class LabelSettings : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLineSpacingPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLineSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_line_spacing", 373806689)
 
-    public val getLineSpacingPtr: VoidPtr =
+    internal val getLineSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
 
-    public val setFontPtr: VoidPtr =
+    internal val setFontPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_font", 1262170328)
 
-    public val getFontPtr: VoidPtr =
+    internal val getFontPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_font", 3229501585)
 
-    public val setFontSizePtr: VoidPtr =
+    internal val setFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_font_size", 1286410249)
 
-    public val getFontSizePtr: VoidPtr =
+    internal val getFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_font_size", 3905245786)
 
-    public val setFontColorPtr: VoidPtr =
+    internal val setFontColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_font_color", 2920490490)
 
-    public val getFontColorPtr: VoidPtr =
+    internal val getFontColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_font_color", 3444240500)
 
-    public val setOutlineSizePtr: VoidPtr =
+    internal val setOutlineSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_outline_size", 1286410249)
 
-    public val getOutlineSizePtr: VoidPtr =
+    internal val getOutlineSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_outline_size", 3905245786)
 
-    public val setOutlineColorPtr: VoidPtr =
+    internal val setOutlineColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_outline_color", 2920490490)
 
-    public val getOutlineColorPtr: VoidPtr =
+    internal val getOutlineColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_outline_color", 3444240500)
 
-    public val setShadowSizePtr: VoidPtr =
+    internal val setShadowSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_shadow_size", 1286410249)
 
-    public val getShadowSizePtr: VoidPtr =
+    internal val getShadowSizePtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_shadow_size", 3905245786)
 
-    public val setShadowColorPtr: VoidPtr =
+    internal val setShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_shadow_color", 2920490490)
 
-    public val getShadowColorPtr: VoidPtr =
+    internal val getShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_shadow_color", 3444240500)
 
-    public val setShadowOffsetPtr: VoidPtr =
+    internal val setShadowOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743155724)
 
-    public val getShadowOffsetPtr: VoidPtr =
+    internal val getShadowOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
   }
 }

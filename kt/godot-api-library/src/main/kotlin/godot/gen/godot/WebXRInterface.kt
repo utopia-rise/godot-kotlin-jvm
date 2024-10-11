@@ -516,59 +516,59 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val isSessionSupportedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val isSessionSupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "is_session_supported", 83702148)
 
-    public val setSessionModePtr: VoidPtr =
+    internal val setSessionModePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "set_session_mode", 83702148)
 
-    public val getSessionModePtr: VoidPtr =
+    internal val getSessionModePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_session_mode", 201670096)
 
-    public val setRequiredFeaturesPtr: VoidPtr =
+    internal val setRequiredFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "set_required_features", 83702148)
 
-    public val getRequiredFeaturesPtr: VoidPtr =
+    internal val getRequiredFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_required_features", 201670096)
 
-    public val setOptionalFeaturesPtr: VoidPtr =
+    internal val setOptionalFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "set_optional_features", 83702148)
 
-    public val getOptionalFeaturesPtr: VoidPtr =
+    internal val getOptionalFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_optional_features", 201670096)
 
-    public val getReferenceSpaceTypePtr: VoidPtr =
+    internal val getReferenceSpaceTypePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_reference_space_type", 201670096)
 
-    public val getEnabledFeaturesPtr: VoidPtr =
+    internal val getEnabledFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_enabled_features", 201670096)
 
-    public val setRequestedReferenceSpaceTypesPtr: VoidPtr =
+    internal val setRequestedReferenceSpaceTypesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types", 83702148)
 
-    public val getRequestedReferenceSpaceTypesPtr: VoidPtr =
+    internal val getRequestedReferenceSpaceTypesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_requested_reference_space_types", 201670096)
 
-    public val isInputSourceActivePtr: VoidPtr =
+    internal val isInputSourceActivePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "is_input_source_active", 1116898809)
 
-    public val getInputSourceTrackerPtr: VoidPtr =
+    internal val getInputSourceTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_input_source_tracker", 399776966)
 
-    public val getInputSourceTargetRayModePtr: VoidPtr =
+    internal val getInputSourceTargetRayModePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_input_source_target_ray_mode", 2852387453)
 
-    public val getVisibilityStatePtr: VoidPtr =
+    internal val getVisibilityStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_visibility_state", 201670096)
 
-    public val getDisplayRefreshRatePtr: VoidPtr =
+    internal val getDisplayRefreshRatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_display_refresh_rate", 1740695150)
 
-    public val setDisplayRefreshRatePtr: VoidPtr =
+    internal val setDisplayRefreshRatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "set_display_refresh_rate", 373806689)
 
-    public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
+    internal val getAvailableDisplayRefreshRatesPtr: VoidPtr =
         Internals.getMethodBindPtr("WebXRInterface", "get_available_display_refresh_rates", 3995934104)
   }
 }

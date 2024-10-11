@@ -265,47 +265,47 @@ public open class Sprite3D : SpriteBase3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_texture", 3635182373)
 
-    public val setRegionEnabledPtr: VoidPtr =
+    internal val setRegionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_region_enabled", 2586408642)
 
-    public val isRegionEnabledPtr: VoidPtr =
+    internal val isRegionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "is_region_enabled", 36873697)
 
-    public val setRegionRectPtr: VoidPtr =
+    internal val setRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_region_rect", 2046264180)
 
-    public val getRegionRectPtr: VoidPtr =
+    internal val getRegionRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_region_rect", 1639390495)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_frame", 3905245786)
 
-    public val setFrameCoordsPtr: VoidPtr =
+    internal val setFrameCoordsPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_frame_coords", 1130785943)
 
-    public val getFrameCoordsPtr: VoidPtr =
+    internal val getFrameCoordsPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_frame_coords", 3690982128)
 
-    public val setVframesPtr: VoidPtr =
+    internal val setVframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_vframes", 1286410249)
 
-    public val getVframesPtr: VoidPtr =
+    internal val getVframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_vframes", 3905245786)
 
-    public val setHframesPtr: VoidPtr =
+    internal val setHframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "set_hframes", 1286410249)
 
-    public val getHframesPtr: VoidPtr =
+    internal val getHframesPtr: VoidPtr =
         Internals.getMethodBindPtr("Sprite3D", "get_hframes", 3905245786)
   }
 }

@@ -26,5 +26,5 @@ public open class AudioEffectNotchFilter : AudioEffectFilter() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

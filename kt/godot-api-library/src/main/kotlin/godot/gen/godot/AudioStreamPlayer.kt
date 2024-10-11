@@ -360,79 +360,80 @@ public open class AudioStreamPlayer : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setStreamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_stream", 2210767741)
 
-    public val getStreamPtr: VoidPtr =
+    internal val getStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream", 160907539)
 
-    public val setVolumeDbPtr: VoidPtr =
+    internal val setVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_volume_db", 373806689)
 
-    public val getVolumeDbPtr: VoidPtr =
+    internal val getVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1740695150)
 
-    public val setPitchScalePtr: VoidPtr =
+    internal val setPitchScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373806689)
 
-    public val getPitchScalePtr: VoidPtr =
+    internal val getPitchScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale", 1740695150)
 
-    public val playPtr: VoidPtr =
+    internal val playPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "play", 1958160172)
 
-    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("AudioStreamPlayer", "seek", 373806689)
+    internal val seekPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamPlayer", "seek", 373806689)
 
-    public val stopPtr: VoidPtr =
+    internal val stopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "stop", 3218959716)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "is_playing", 36873697)
 
-    public val getPlaybackPositionPtr: VoidPtr =
+    internal val getPlaybackPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_playback_position", 191475506)
 
-    public val setBusPtr: VoidPtr =
+    internal val setBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_bus", 3304788590)
 
-    public val getBusPtr: VoidPtr =
+    internal val getBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_bus", 2002593661)
 
-    public val setAutoplayPtr: VoidPtr =
+    internal val setAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_autoplay", 2586408642)
 
-    public val isAutoplayEnabledPtr: VoidPtr =
+    internal val isAutoplayEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled", 36873697)
 
-    public val setMixTargetPtr: VoidPtr =
+    internal val setMixTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_mix_target", 2300306138)
 
-    public val getMixTargetPtr: VoidPtr =
+    internal val getMixTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172807476)
 
-    public val setStreamPausedPtr: VoidPtr =
+    internal val setStreamPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2586408642)
 
-    public val getStreamPausedPtr: VoidPtr =
+    internal val getStreamPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused", 36873697)
 
-    public val setMaxPolyphonyPtr: VoidPtr =
+    internal val setMaxPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony", 1286410249)
 
-    public val getMaxPolyphonyPtr: VoidPtr =
+    internal val getMaxPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony", 3905245786)
 
-    public val hasStreamPlaybackPtr: VoidPtr =
+    internal val hasStreamPlaybackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback", 2240911060)
 
-    public val getStreamPlaybackPtr: VoidPtr =
+    internal val getStreamPlaybackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback", 210135309)
 
-    public val setPlaybackTypePtr: VoidPtr =
+    internal val setPlaybackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "set_playback_type", 725473817)
 
-    public val getPlaybackTypePtr: VoidPtr =
+    internal val getPlaybackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer", "get_playback_type", 4011264623)
   }
 }

@@ -608,145 +608,145 @@ public open class GridMap : Node3D() {
     public final const val INVALID_CELL_ITEM: Long = -1
   }
 
-  internal object MethodBindings {
-    public val setCollisionLayerPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_collision_layer", 1286410249)
 
-    public val getCollisionLayerPtr: VoidPtr =
+    internal val getCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_collision_layer", 3905245786)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_collision_mask", 3905245786)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_collision_mask_value", 1116898809)
 
-    public val setCollisionLayerValuePtr: VoidPtr =
+    internal val setCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_collision_layer_value", 300928843)
 
-    public val getCollisionLayerValuePtr: VoidPtr =
+    internal val getCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_collision_layer_value", 1116898809)
 
-    public val setCollisionPriorityPtr: VoidPtr =
+    internal val setCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_collision_priority", 373806689)
 
-    public val getCollisionPriorityPtr: VoidPtr =
+    internal val getCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_collision_priority", 1740695150)
 
-    public val setPhysicsMaterialPtr: VoidPtr =
+    internal val setPhysicsMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_physics_material", 1784508650)
 
-    public val getPhysicsMaterialPtr: VoidPtr =
+    internal val getPhysicsMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_physics_material", 2521850424)
 
-    public val setBakeNavigationPtr: VoidPtr =
+    internal val setBakeNavigationPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_bake_navigation", 2586408642)
 
-    public val isBakingNavigationPtr: VoidPtr =
+    internal val isBakingNavigationPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "is_baking_navigation", 2240911060)
 
-    public val setNavigationMapPtr: VoidPtr =
+    internal val setNavigationMapPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_navigation_map", 2722037293)
 
-    public val getNavigationMapPtr: VoidPtr =
+    internal val getNavigationMapPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_navigation_map", 2944877500)
 
-    public val setMeshLibraryPtr: VoidPtr =
+    internal val setMeshLibraryPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_mesh_library", 1488083439)
 
-    public val getMeshLibraryPtr: VoidPtr =
+    internal val getMeshLibraryPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_mesh_library", 3350993772)
 
-    public val setCellSizePtr: VoidPtr =
+    internal val setCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_cell_size", 3460891852)
 
-    public val getCellSizePtr: VoidPtr =
+    internal val getCellSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_cell_size", 3360562783)
 
-    public val setCellScalePtr: VoidPtr =
+    internal val setCellScalePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_cell_scale", 373806689)
 
-    public val getCellScalePtr: VoidPtr =
+    internal val getCellScalePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_cell_scale", 1740695150)
 
-    public val setOctantSizePtr: VoidPtr =
+    internal val setOctantSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_octant_size", 1286410249)
 
-    public val getOctantSizePtr: VoidPtr =
+    internal val getOctantSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_octant_size", 3905245786)
 
-    public val setCellItemPtr: VoidPtr =
+    internal val setCellItemPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_cell_item", 3449088946)
 
-    public val getCellItemPtr: VoidPtr =
+    internal val getCellItemPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_cell_item", 3724960147)
 
-    public val getCellItemOrientationPtr: VoidPtr =
+    internal val getCellItemOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_cell_item_orientation", 3724960147)
 
-    public val getCellItemBasisPtr: VoidPtr =
+    internal val getCellItemBasisPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_cell_item_basis", 3493604918)
 
-    public val getBasisWithOrthogonalIndexPtr: VoidPtr =
+    internal val getBasisWithOrthogonalIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_basis_with_orthogonal_index", 2816196998)
 
-    public val getOrthogonalIndexFromBasisPtr: VoidPtr =
+    internal val getOrthogonalIndexFromBasisPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_orthogonal_index_from_basis", 4210359952)
 
-    public val localToMapPtr: VoidPtr =
+    internal val localToMapPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "local_to_map", 1257687843)
 
-    public val mapToLocalPtr: VoidPtr =
+    internal val mapToLocalPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "map_to_local", 1088329196)
 
-    public val resourceChangedPtr: VoidPtr =
+    internal val resourceChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "resource_changed", 968641751)
 
-    public val setCenterXPtr: VoidPtr =
+    internal val setCenterXPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_center_x", 2586408642)
 
-    public val getCenterXPtr: VoidPtr =
+    internal val getCenterXPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_center_x", 36873697)
 
-    public val setCenterYPtr: VoidPtr =
+    internal val setCenterYPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_center_y", 2586408642)
 
-    public val getCenterYPtr: VoidPtr =
+    internal val getCenterYPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_center_y", 36873697)
 
-    public val setCenterZPtr: VoidPtr =
+    internal val setCenterZPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "set_center_z", 2586408642)
 
-    public val getCenterZPtr: VoidPtr =
+    internal val getCenterZPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_center_z", 36873697)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("GridMap", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("GridMap", "clear", 3218959716)
 
-    public val getUsedCellsPtr: VoidPtr =
+    internal val getUsedCellsPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_used_cells", 3995934104)
 
-    public val getUsedCellsByItemPtr: VoidPtr =
+    internal val getUsedCellsByItemPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_used_cells_by_item", 663333327)
 
-    public val getMeshesPtr: VoidPtr =
+    internal val getMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_meshes", 3995934104)
 
-    public val getBakeMeshesPtr: VoidPtr =
+    internal val getBakeMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_bake_meshes", 2915620761)
 
-    public val getBakeMeshInstancePtr: VoidPtr =
+    internal val getBakeMeshInstancePtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "get_bake_mesh_instance", 937000113)
 
-    public val clearBakedMeshesPtr: VoidPtr =
+    internal val clearBakedMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "clear_baked_meshes", 3218959716)
 
-    public val makeBakedMeshesPtr: VoidPtr =
+    internal val makeBakedMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("GridMap", "make_baked_meshes", 3609286057)
   }
 }

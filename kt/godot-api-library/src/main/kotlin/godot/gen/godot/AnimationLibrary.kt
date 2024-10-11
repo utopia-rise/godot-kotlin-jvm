@@ -114,23 +114,23 @@ public open class AnimationLibrary : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addAnimationPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "add_animation", 1811855551)
 
-    public val removeAnimationPtr: VoidPtr =
+    internal val removeAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "remove_animation", 3304788590)
 
-    public val renameAnimationPtr: VoidPtr =
+    internal val renameAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "rename_animation", 3740211285)
 
-    public val hasAnimationPtr: VoidPtr =
+    internal val hasAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "has_animation", 2619796661)
 
-    public val getAnimationPtr: VoidPtr =
+    internal val getAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "get_animation", 2933122410)
 
-    public val getAnimationListPtr: VoidPtr =
+    internal val getAnimationListPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationLibrary", "get_animation_list", 3995934104)
   }
 }

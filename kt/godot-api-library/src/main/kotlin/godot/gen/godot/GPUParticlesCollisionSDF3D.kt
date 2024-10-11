@@ -265,41 +265,41 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3360562783)
 
-    public val setResolutionPtr: VoidPtr =
+    internal val setResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1155629297)
 
-    public val getResolutionPtr: VoidPtr =
+    internal val getResolutionPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2919555867)
 
-    public val setTexturePtr: VoidPtr =
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1188404210)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373985333)
 
-    public val setThicknessPtr: VoidPtr =
+    internal val setThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373806689)
 
-    public val getThicknessPtr: VoidPtr =
+    internal val getThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1740695150)
 
-    public val setBakeMaskPtr: VoidPtr =
+    internal val setBakeMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1286410249)
 
-    public val getBakeMaskPtr: VoidPtr =
+    internal val getBakeMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3905245786)
 
-    public val setBakeMaskValuePtr: VoidPtr =
+    internal val setBakeMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300928843)
 
-    public val getBakeMaskValuePtr: VoidPtr =
+    internal val getBakeMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1116898809)
   }
 }

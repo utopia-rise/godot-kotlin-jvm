@@ -384,95 +384,95 @@ public open class RDSamplerState : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMagFilterPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMagFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_mag_filter", 1493420382)
 
-    public val getMagFilterPtr: VoidPtr =
+    internal val getMagFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_mag_filter", 2209202801)
 
-    public val setMinFilterPtr: VoidPtr =
+    internal val setMinFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_min_filter", 1493420382)
 
-    public val getMinFilterPtr: VoidPtr =
+    internal val getMinFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_min_filter", 2209202801)
 
-    public val setMipFilterPtr: VoidPtr =
+    internal val setMipFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_mip_filter", 1493420382)
 
-    public val getMipFilterPtr: VoidPtr =
+    internal val getMipFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_mip_filter", 2209202801)
 
-    public val setRepeatUPtr: VoidPtr =
+    internal val setRepeatUPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_repeat_u", 246127626)
 
-    public val getRepeatUPtr: VoidPtr =
+    internal val getRepeatUPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_repeat_u", 3227895872)
 
-    public val setRepeatVPtr: VoidPtr =
+    internal val setRepeatVPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_repeat_v", 246127626)
 
-    public val getRepeatVPtr: VoidPtr =
+    internal val getRepeatVPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_repeat_v", 3227895872)
 
-    public val setRepeatWPtr: VoidPtr =
+    internal val setRepeatWPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_repeat_w", 246127626)
 
-    public val getRepeatWPtr: VoidPtr =
+    internal val getRepeatWPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_repeat_w", 3227895872)
 
-    public val setLodBiasPtr: VoidPtr =
+    internal val setLodBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_lod_bias", 373806689)
 
-    public val getLodBiasPtr: VoidPtr =
+    internal val getLodBiasPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_lod_bias", 1740695150)
 
-    public val setUseAnisotropyPtr: VoidPtr =
+    internal val setUseAnisotropyPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_use_anisotropy", 2586408642)
 
-    public val getUseAnisotropyPtr: VoidPtr =
+    internal val getUseAnisotropyPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_use_anisotropy", 36873697)
 
-    public val setAnisotropyMaxPtr: VoidPtr =
+    internal val setAnisotropyMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_anisotropy_max", 373806689)
 
-    public val getAnisotropyMaxPtr: VoidPtr =
+    internal val getAnisotropyMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_anisotropy_max", 1740695150)
 
-    public val setEnableComparePtr: VoidPtr =
+    internal val setEnableComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_enable_compare", 2586408642)
 
-    public val getEnableComparePtr: VoidPtr =
+    internal val getEnableComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_enable_compare", 36873697)
 
-    public val setCompareOpPtr: VoidPtr =
+    internal val setCompareOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_compare_op", 2573711505)
 
-    public val getCompareOpPtr: VoidPtr =
+    internal val getCompareOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_compare_op", 269730778)
 
-    public val setMinLodPtr: VoidPtr =
+    internal val setMinLodPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_min_lod", 373806689)
 
-    public val getMinLodPtr: VoidPtr =
+    internal val getMinLodPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_min_lod", 1740695150)
 
-    public val setMaxLodPtr: VoidPtr =
+    internal val setMaxLodPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_max_lod", 373806689)
 
-    public val getMaxLodPtr: VoidPtr =
+    internal val getMaxLodPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_max_lod", 1740695150)
 
-    public val setBorderColorPtr: VoidPtr =
+    internal val setBorderColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_border_color", 1115869595)
 
-    public val getBorderColorPtr: VoidPtr =
+    internal val getBorderColorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_border_color", 3514246478)
 
-    public val setUnnormalizedUvwPtr: VoidPtr =
+    internal val setUnnormalizedUvwPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "set_unnormalized_uvw", 2586408642)
 
-    public val getUnnormalizedUvwPtr: VoidPtr =
+    internal val getUnnormalizedUvwPtr: VoidPtr =
         Internals.getMethodBindPtr("RDSamplerState", "get_unnormalized_uvw", 36873697)
   }
 }

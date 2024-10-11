@@ -27,5 +27,5 @@ public open class ORMMaterial3D : BaseMaterial3D() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

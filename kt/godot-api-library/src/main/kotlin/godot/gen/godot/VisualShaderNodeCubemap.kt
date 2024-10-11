@@ -159,23 +159,23 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSourcePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_source", 1625400621)
 
-    public val getSourcePtr: VoidPtr =
+    internal val getSourcePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2222048781)
 
-    public val setCubeMapPtr: VoidPtr =
+    internal val setCubeMapPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 2219800736)
 
-    public val getCubeMapPtr: VoidPtr =
+    internal val getCubeMapPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 1772111058)
 
-    public val setTextureTypePtr: VoidPtr =
+    internal val setTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1899718876)
 
-    public val getTextureTypePtr: VoidPtr =
+    internal val getTextureTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type", 3356498888)
   }
 }

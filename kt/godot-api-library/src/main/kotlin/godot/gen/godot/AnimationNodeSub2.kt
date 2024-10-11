@@ -34,5 +34,5 @@ public open class AnimationNodeSub2 : AnimationNodeSync() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

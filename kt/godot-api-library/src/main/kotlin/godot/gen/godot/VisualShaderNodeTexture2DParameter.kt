@@ -26,5 +26,5 @@ public open class VisualShaderNodeTexture2DParameter : VisualShaderNodeTexturePa
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

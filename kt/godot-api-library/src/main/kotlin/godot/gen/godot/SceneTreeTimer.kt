@@ -84,11 +84,11 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTimeLeftPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTimeLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373806689)
 
-    public val getTimeLeftPtr: VoidPtr =
+    internal val getTimeLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1740695150)
   }
 }

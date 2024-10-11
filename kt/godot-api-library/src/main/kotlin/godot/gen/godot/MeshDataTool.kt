@@ -446,118 +446,118 @@ public open class MeshDataTool : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("MeshDataTool", "clear", 3218959716)
+  public object MethodBindings {
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("MeshDataTool", "clear", 3218959716)
 
-    public val createFromSurfacePtr: VoidPtr =
+    internal val createFromSurfacePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "create_from_surface", 2727020678)
 
-    public val commitToSurfacePtr: VoidPtr =
+    internal val commitToSurfacePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "commit_to_surface", 2021686445)
 
-    public val getFormatPtr: VoidPtr =
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_format", 3905245786)
 
-    public val getVertexCountPtr: VoidPtr =
+    internal val getVertexCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_count", 3905245786)
 
-    public val getEdgeCountPtr: VoidPtr =
+    internal val getEdgeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_edge_count", 3905245786)
 
-    public val getFaceCountPtr: VoidPtr =
+    internal val getFaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_face_count", 3905245786)
 
-    public val setVertexPtr: VoidPtr =
+    internal val setVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex", 1530502735)
 
-    public val getVertexPtr: VoidPtr =
+    internal val getVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex", 711720468)
 
-    public val setVertexNormalPtr: VoidPtr =
+    internal val setVertexNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_normal", 1530502735)
 
-    public val getVertexNormalPtr: VoidPtr =
+    internal val getVertexNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_normal", 711720468)
 
-    public val setVertexTangentPtr: VoidPtr =
+    internal val setVertexTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_tangent", 1104099133)
 
-    public val getVertexTangentPtr: VoidPtr =
+    internal val getVertexTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_tangent", 1372055458)
 
-    public val setVertexUvPtr: VoidPtr =
+    internal val setVertexUvPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_uv", 163021252)
 
-    public val getVertexUvPtr: VoidPtr =
+    internal val getVertexUvPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_uv", 2299179447)
 
-    public val setVertexUv2Ptr: VoidPtr =
+    internal val setVertexUv2Ptr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_uv2", 163021252)
 
-    public val getVertexUv2Ptr: VoidPtr =
+    internal val getVertexUv2Ptr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_uv2", 2299179447)
 
-    public val setVertexColorPtr: VoidPtr =
+    internal val setVertexColorPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_color", 2878471219)
 
-    public val getVertexColorPtr: VoidPtr =
+    internal val getVertexColorPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_color", 3457211756)
 
-    public val setVertexBonesPtr: VoidPtr =
+    internal val setVertexBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_bones", 3500328261)
 
-    public val getVertexBonesPtr: VoidPtr =
+    internal val getVertexBonesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_bones", 1706082319)
 
-    public val setVertexWeightsPtr: VoidPtr =
+    internal val setVertexWeightsPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_weights", 1345852415)
 
-    public val getVertexWeightsPtr: VoidPtr =
+    internal val getVertexWeightsPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_weights", 1542882410)
 
-    public val setVertexMetaPtr: VoidPtr =
+    internal val setVertexMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_vertex_meta", 2152698145)
 
-    public val getVertexMetaPtr: VoidPtr =
+    internal val getVertexMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_meta", 4227898402)
 
-    public val getVertexEdgesPtr: VoidPtr =
+    internal val getVertexEdgesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_edges", 1706082319)
 
-    public val getVertexFacesPtr: VoidPtr =
+    internal val getVertexFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_vertex_faces", 1706082319)
 
-    public val getEdgeVertexPtr: VoidPtr =
+    internal val getEdgeVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_edge_vertex", 3175239445)
 
-    public val getEdgeFacesPtr: VoidPtr =
+    internal val getEdgeFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_edge_faces", 1706082319)
 
-    public val setEdgeMetaPtr: VoidPtr =
+    internal val setEdgeMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_edge_meta", 2152698145)
 
-    public val getEdgeMetaPtr: VoidPtr =
+    internal val getEdgeMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_edge_meta", 4227898402)
 
-    public val getFaceVertexPtr: VoidPtr =
+    internal val getFaceVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_face_vertex", 3175239445)
 
-    public val getFaceEdgePtr: VoidPtr =
+    internal val getFaceEdgePtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_face_edge", 3175239445)
 
-    public val setFaceMetaPtr: VoidPtr =
+    internal val setFaceMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_face_meta", 2152698145)
 
-    public val getFaceMetaPtr: VoidPtr =
+    internal val getFaceMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_face_meta", 4227898402)
 
-    public val getFaceNormalPtr: VoidPtr =
+    internal val getFaceNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_face_normal", 711720468)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("MeshDataTool", "get_material", 5934680)
   }
 }

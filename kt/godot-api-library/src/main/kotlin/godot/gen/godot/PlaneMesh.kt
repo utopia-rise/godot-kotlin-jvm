@@ -230,33 +230,35 @@ public open class PlaneMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
+    internal val getSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
 
-    public val setSubdivideWidthPtr: VoidPtr =
+    internal val setSubdivideWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1286410249)
 
-    public val getSubdivideWidthPtr: VoidPtr =
+    internal val getSubdivideWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3905245786)
 
-    public val setSubdivideDepthPtr: VoidPtr =
+    internal val setSubdivideDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1286410249)
 
-    public val getSubdivideDepthPtr: VoidPtr =
+    internal val getSubdivideDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3905245786)
 
-    public val setCenterOffsetPtr: VoidPtr =
+    internal val setCenterOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "set_center_offset", 3460891852)
 
-    public val getCenterOffsetPtr: VoidPtr =
+    internal val getCenterOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "get_center_offset", 3360562783)
 
-    public val setOrientationPtr: VoidPtr =
+    internal val setOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "set_orientation", 2751399687)
 
-    public val getOrientationPtr: VoidPtr =
+    internal val getOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("PlaneMesh", "get_orientation", 3227599250)
   }
 }

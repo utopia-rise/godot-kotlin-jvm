@@ -255,56 +255,56 @@ public open class CameraAttributesPhysical : CameraAttributes() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAperturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setAperturePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_aperture", 373806689)
 
-    public val getAperturePtr: VoidPtr =
+    internal val getAperturePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_aperture", 1740695150)
 
-    public val setShutterSpeedPtr: VoidPtr =
+    internal val setShutterSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_shutter_speed", 373806689)
 
-    public val getShutterSpeedPtr: VoidPtr =
+    internal val getShutterSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_shutter_speed", 1740695150)
 
-    public val setFocalLengthPtr: VoidPtr =
+    internal val setFocalLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_focal_length", 373806689)
 
-    public val getFocalLengthPtr: VoidPtr =
+    internal val getFocalLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_focal_length", 1740695150)
 
-    public val setFocusDistancePtr: VoidPtr =
+    internal val setFocusDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_focus_distance", 373806689)
 
-    public val getFocusDistancePtr: VoidPtr =
+    internal val getFocusDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_focus_distance", 1740695150)
 
-    public val setNearPtr: VoidPtr =
+    internal val setNearPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_near", 373806689)
 
-    public val getNearPtr: VoidPtr =
+    internal val getNearPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_near", 1740695150)
 
-    public val setFarPtr: VoidPtr =
+    internal val setFarPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_far", 373806689)
 
-    public val getFarPtr: VoidPtr =
+    internal val getFarPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_far", 1740695150)
 
-    public val getFovPtr: VoidPtr =
+    internal val getFovPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_fov", 1740695150)
 
-    public val setAutoExposureMaxExposureValuePtr: VoidPtr =
+    internal val setAutoExposureMaxExposureValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_max_exposure_value", 373806689)
 
-    public val getAutoExposureMaxExposureValuePtr: VoidPtr =
+    internal val getAutoExposureMaxExposureValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_max_exposure_value", 1740695150)
 
-    public val setAutoExposureMinExposureValuePtr: VoidPtr =
+    internal val setAutoExposureMinExposureValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_min_exposure_value", 373806689)
 
-    public val getAutoExposureMinExposureValuePtr: VoidPtr =
+    internal val getAutoExposureMinExposureValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_min_exposure_value", 1740695150)
   }
 }

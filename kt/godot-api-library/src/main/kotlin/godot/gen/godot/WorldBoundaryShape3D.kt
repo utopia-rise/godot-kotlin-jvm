@@ -82,11 +82,11 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPlanePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPlanePtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3505987427)
 
-    public val getPlanePtr: VoidPtr =
+    internal val getPlanePtr: VoidPtr =
         Internals.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2753500971)
   }
 }

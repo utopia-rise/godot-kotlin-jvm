@@ -75,14 +75,14 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setVertexPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_vertex", 1530502735)
 
-    public val setNormalPtr: VoidPtr =
+    internal val setNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_normal", 1530502735)
 
-    public val setAabbPtr: VoidPtr =
+    internal val setAabbPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_aabb", 259215842)
   }
 }

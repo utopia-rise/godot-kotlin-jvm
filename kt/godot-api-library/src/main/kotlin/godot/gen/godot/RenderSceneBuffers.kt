@@ -40,8 +40,8 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val configurePtr: VoidPtr =
+  public object MethodBindings {
+    internal val configurePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffers", "configure", 3072623270)
   }
 }

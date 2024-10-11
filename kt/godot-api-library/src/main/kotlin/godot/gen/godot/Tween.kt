@@ -816,65 +816,66 @@ public open class Tween : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val tweenPropertyPtr: VoidPtr =
+  public object MethodBindings {
+    internal val tweenPropertyPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "tween_property", 4049770449)
 
-    public val tweenIntervalPtr: VoidPtr =
+    internal val tweenIntervalPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "tween_interval", 413360199)
 
-    public val tweenCallbackPtr: VoidPtr =
+    internal val tweenCallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "tween_callback", 1540176488)
 
-    public val tweenMethodPtr: VoidPtr =
+    internal val tweenMethodPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "tween_method", 2337877153)
 
-    public val customStepPtr: VoidPtr =
+    internal val customStepPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "custom_step", 330693286)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "stop", 3218959716)
 
-    public val pausePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "pause", 3218959716)
+    internal val pausePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "pause", 3218959716)
 
-    public val playPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "play", 3218959716)
+    internal val playPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "play", 3218959716)
 
-    public val killPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "kill", 3218959716)
+    internal val killPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "kill", 3218959716)
 
-    public val getTotalElapsedTimePtr: VoidPtr =
+    internal val getTotalElapsedTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
 
-    public val isRunningPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "is_running", 2240911060)
+    internal val isRunningPtr: VoidPtr =
+        Internals.getMethodBindPtr("Tween", "is_running", 2240911060)
 
-    public val isValidPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "is_valid", 2240911060)
+    internal val isValidPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "is_valid", 2240911060)
 
-    public val bindNodePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "bind_node", 2946786331)
+    internal val bindNodePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "bind_node", 2946786331)
 
-    public val setProcessModePtr: VoidPtr =
+    internal val setProcessModePtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "set_process_mode", 855258840)
 
-    public val setPauseModePtr: VoidPtr =
+    internal val setPauseModePtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
 
-    public val setParallelPtr: VoidPtr =
+    internal val setParallelPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "set_parallel", 1942052223)
 
-    public val setLoopsPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_loops", 2670836414)
+    internal val setLoopsPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_loops", 2670836414)
 
-    public val getLoopsLeftPtr: VoidPtr =
+    internal val getLoopsLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "get_loops_left", 3905245786)
 
-    public val setSpeedScalePtr: VoidPtr =
+    internal val setSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "set_speed_scale", 3961971106)
 
-    public val setTransPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_trans", 3965963875)
+    internal val setTransPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_trans", 3965963875)
 
-    public val setEasePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_ease", 1208117252)
+    internal val setEasePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_ease", 1208117252)
 
-    public val parallelPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "parallel", 3426978995)
+    internal val parallelPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "parallel", 3426978995)
 
-    public val chainPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "chain", 3426978995)
+    internal val chainPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "chain", 3426978995)
 
-    public val interpolateValuePtr: VoidPtr =
+    internal val interpolateValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Tween", "interpolate_value", 3452526450)
   }
 }

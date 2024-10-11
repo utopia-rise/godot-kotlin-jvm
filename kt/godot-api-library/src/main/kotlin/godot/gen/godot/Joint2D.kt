@@ -139,29 +139,29 @@ public open class Joint2D internal constructor() : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setNodeAPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setNodeAPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "set_node_a", 1348162250)
 
-    public val getNodeAPtr: VoidPtr =
+    internal val getNodeAPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "get_node_a", 4075236667)
 
-    public val setNodeBPtr: VoidPtr =
+    internal val setNodeBPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "set_node_b", 1348162250)
 
-    public val getNodeBPtr: VoidPtr =
+    internal val getNodeBPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "get_node_b", 4075236667)
 
-    public val setBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "set_bias", 373806689)
+    internal val setBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
+    internal val getBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
 
-    public val setExcludeNodesFromCollisionPtr: VoidPtr =
+    internal val setExcludeNodesFromCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2586408642)
 
-    public val getExcludeNodesFromCollisionPtr: VoidPtr =
+    internal val getExcludeNodesFromCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36873697)
 
-    public val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
+    internal val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
   }
 }

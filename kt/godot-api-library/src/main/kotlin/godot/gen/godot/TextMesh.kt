@@ -480,107 +480,111 @@ public open class TextMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHorizontalAlignmentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_horizontal_alignment", 2312603777)
 
-    public val getHorizontalAlignmentPtr: VoidPtr =
+    internal val getHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_horizontal_alignment", 341400642)
 
-    public val setVerticalAlignmentPtr: VoidPtr =
+    internal val setVerticalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_vertical_alignment", 1796458609)
 
-    public val getVerticalAlignmentPtr: VoidPtr =
+    internal val getVerticalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_vertical_alignment", 3274884059)
 
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "set_text", 83702148)
+    internal val setTextPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "get_text", 201670096)
 
-    public val setFontPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "set_font", 1262170328)
+    internal val setFontPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextMesh", "set_font", 1262170328)
 
-    public val getFontPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "get_font", 3229501585)
+    internal val getFontPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextMesh", "get_font", 3229501585)
 
-    public val setFontSizePtr: VoidPtr =
+    internal val setFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_font_size", 1286410249)
 
-    public val getFontSizePtr: VoidPtr =
+    internal val getFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_font_size", 3905245786)
 
-    public val setLineSpacingPtr: VoidPtr =
+    internal val setLineSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_line_spacing", 373806689)
 
-    public val getLineSpacingPtr: VoidPtr =
+    internal val getLineSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_line_spacing", 1740695150)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_autowrap_mode", 3289138044)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_autowrap_mode", 1549071663)
 
-    public val setJustificationFlagsPtr: VoidPtr =
+    internal val setJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_justification_flags", 2877345813)
 
-    public val getJustificationFlagsPtr: VoidPtr =
+    internal val getJustificationFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_justification_flags", 1583363614)
 
-    public val setDepthPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "set_depth", 373806689)
+    internal val setDepthPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextMesh", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_depth", 1740695150)
 
-    public val setWidthPtr: VoidPtr = Internals.getMethodBindPtr("TextMesh", "set_width", 373806689)
+    internal val setWidthPtr: VoidPtr =
+        Internals.getMethodBindPtr("TextMesh", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr =
+    internal val getWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_width", 1740695150)
 
-    public val setPixelSizePtr: VoidPtr =
+    internal val setPixelSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_pixel_size", 373806689)
 
-    public val getPixelSizePtr: VoidPtr =
+    internal val getPixelSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_pixel_size", 1740695150)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_offset", 3341600327)
 
-    public val setCurveStepPtr: VoidPtr =
+    internal val setCurveStepPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_curve_step", 373806689)
 
-    public val getCurveStepPtr: VoidPtr =
+    internal val getCurveStepPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_curve_step", 1740695150)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_text_direction", 1418190634)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_text_direction", 2516697328)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_language", 201670096)
 
-    public val setStructuredTextBidiOverridePtr: VoidPtr =
+    internal val setStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override", 55961453)
 
-    public val getStructuredTextBidiOverridePtr: VoidPtr =
+    internal val getStructuredTextBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override", 3385126229)
 
-    public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override_options", 381264803)
 
-    public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
+    internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override_options", 3995934104)
 
-    public val setUppercasePtr: VoidPtr =
+    internal val setUppercasePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "set_uppercase", 2586408642)
 
-    public val isUppercasePtr: VoidPtr =
+    internal val isUppercasePtr: VoidPtr =
         Internals.getMethodBindPtr("TextMesh", "is_uppercase", 36873697)
   }
 }

@@ -102,23 +102,23 @@ public open class WorldEnvironment : Node() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnvironmentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "set_environment", 4143518816)
 
-    public val getEnvironmentPtr: VoidPtr =
+    internal val getEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "get_environment", 3082064660)
 
-    public val setCameraAttributesPtr: VoidPtr =
+    internal val setCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "set_camera_attributes", 2817810567)
 
-    public val getCameraAttributesPtr: VoidPtr =
+    internal val getCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "get_camera_attributes", 3921283215)
 
-    public val setCompositorPtr: VoidPtr =
+    internal val setCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "set_compositor", 1586754307)
 
-    public val getCompositorPtr: VoidPtr =
+    internal val getCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("WorldEnvironment", "get_compositor", 3647707413)
   }
 }

@@ -103,23 +103,23 @@ public open class AudioEffectHardLimiter : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCeilingDbPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCeilingDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373806689)
 
-    public val getCeilingDbPtr: VoidPtr =
+    internal val getCeilingDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1740695150)
 
-    public val setPreGainDbPtr: VoidPtr =
+    internal val setPreGainDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373806689)
 
-    public val getPreGainDbPtr: VoidPtr =
+    internal val getPreGainDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1740695150)
 
-    public val setReleasePtr: VoidPtr =
+    internal val setReleasePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373806689)
 
-    public val getReleasePtr: VoidPtr =
+    internal val getReleasePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1740695150)
   }
 }

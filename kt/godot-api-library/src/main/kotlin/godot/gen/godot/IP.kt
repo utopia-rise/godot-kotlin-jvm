@@ -231,34 +231,35 @@ public object IP : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val resolveHostnamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val resolveHostnamePtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "resolve_hostname", 4283295457)
 
-    public val resolveHostnameAddressesPtr: VoidPtr =
+    internal val resolveHostnameAddressesPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "resolve_hostname_addresses", 773767525)
 
-    public val resolveHostnameQueueItemPtr: VoidPtr =
+    internal val resolveHostnameQueueItemPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1749894742)
 
-    public val getResolveItemStatusPtr: VoidPtr =
+    internal val getResolveItemStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "get_resolve_item_status", 3812250196)
 
-    public val getResolveItemAddressPtr: VoidPtr =
+    internal val getResolveItemAddressPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "get_resolve_item_address", 844755477)
 
-    public val getResolveItemAddressesPtr: VoidPtr =
+    internal val getResolveItemAddressesPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "get_resolve_item_addresses", 663333327)
 
-    public val eraseResolveItemPtr: VoidPtr =
+    internal val eraseResolveItemPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "erase_resolve_item", 1286410249)
 
-    public val getLocalAddressesPtr: VoidPtr =
+    internal val getLocalAddressesPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "get_local_addresses", 1139954409)
 
-    public val getLocalInterfacesPtr: VoidPtr =
+    internal val getLocalInterfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("IP", "get_local_interfaces", 3995934104)
 
-    public val clearCachePtr: VoidPtr = Internals.getMethodBindPtr("IP", "clear_cache", 3005725572)
+    internal val clearCachePtr: VoidPtr =
+        Internals.getMethodBindPtr("IP", "clear_cache", 3005725572)
   }
 }

@@ -31,5 +31,5 @@ public open class PacketPeerExtension : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

@@ -61,11 +61,11 @@ public open class PolygonOccluder3D : Occluder3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPolygonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonOccluder3D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr =
+    internal val getPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("PolygonOccluder3D", "get_polygon", 2961356807)
   }
 }

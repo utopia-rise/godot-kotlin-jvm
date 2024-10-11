@@ -152,29 +152,29 @@ public open class RDPipelineColorBlendState : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnableLogicOpPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnableLogicOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2586408642)
 
-    public val getEnableLogicOpPtr: VoidPtr =
+    internal val getEnableLogicOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36873697)
 
-    public val setLogicOpPtr: VoidPtr =
+    internal val setLogicOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3610841058)
 
-    public val getLogicOpPtr: VoidPtr =
+    internal val getLogicOpPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988254690)
 
-    public val setBlendConstantPtr: VoidPtr =
+    internal val setBlendConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2920490490)
 
-    public val getBlendConstantPtr: VoidPtr =
+    internal val getBlendConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3444240500)
 
-    public val setAttachmentsPtr: VoidPtr =
+    internal val setAttachmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381264803)
 
-    public val getAttachmentsPtr: VoidPtr =
+    internal val getAttachmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3995934104)
   }
 }

@@ -420,80 +420,81 @@ public open class WebSocketPeer : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val connectToUrlPtr: VoidPtr =
+  public object MethodBindings {
+    internal val connectToUrlPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "connect_to_url", 1966198364)
 
-    public val acceptStreamPtr: VoidPtr =
+    internal val acceptStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "accept_stream", 255125695)
 
-    public val sendPtr: VoidPtr = Internals.getMethodBindPtr("WebSocketPeer", "send", 2780360567)
+    internal val sendPtr: VoidPtr = Internals.getMethodBindPtr("WebSocketPeer", "send", 2780360567)
 
-    public val sendTextPtr: VoidPtr =
+    internal val sendTextPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "send_text", 166001499)
 
-    public val wasStringPacketPtr: VoidPtr =
+    internal val wasStringPacketPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "was_string_packet", 36873697)
 
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("WebSocketPeer", "poll", 3218959716)
+    internal val pollPtr: VoidPtr = Internals.getMethodBindPtr("WebSocketPeer", "poll", 3218959716)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("WebSocketPeer", "close", 1047156615)
+    internal val closePtr: VoidPtr =
+        Internals.getMethodBindPtr("WebSocketPeer", "close", 1047156615)
 
-    public val getConnectedHostPtr: VoidPtr =
+    internal val getConnectedHostPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_connected_host", 201670096)
 
-    public val getConnectedPortPtr: VoidPtr =
+    internal val getConnectedPortPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_connected_port", 3905245786)
 
-    public val getSelectedProtocolPtr: VoidPtr =
+    internal val getSelectedProtocolPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_selected_protocol", 201670096)
 
-    public val getRequestedUrlPtr: VoidPtr =
+    internal val getRequestedUrlPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_requested_url", 201670096)
 
-    public val setNoDelayPtr: VoidPtr =
+    internal val setNoDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_no_delay", 2586408642)
 
-    public val getCurrentOutboundBufferedAmountPtr: VoidPtr =
+    internal val getCurrentOutboundBufferedAmountPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_current_outbound_buffered_amount", 3905245786)
 
-    public val getReadyStatePtr: VoidPtr =
+    internal val getReadyStatePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_ready_state", 346482985)
 
-    public val getCloseCodePtr: VoidPtr =
+    internal val getCloseCodePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_close_code", 3905245786)
 
-    public val getCloseReasonPtr: VoidPtr =
+    internal val getCloseReasonPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_close_reason", 201670096)
 
-    public val getSupportedProtocolsPtr: VoidPtr =
+    internal val getSupportedProtocolsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_supported_protocols", 1139954409)
 
-    public val setSupportedProtocolsPtr: VoidPtr =
+    internal val setSupportedProtocolsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_supported_protocols", 4015028928)
 
-    public val getHandshakeHeadersPtr: VoidPtr =
+    internal val getHandshakeHeadersPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_handshake_headers", 1139954409)
 
-    public val setHandshakeHeadersPtr: VoidPtr =
+    internal val setHandshakeHeadersPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_handshake_headers", 4015028928)
 
-    public val getInboundBufferSizePtr: VoidPtr =
+    internal val getInboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_inbound_buffer_size", 3905245786)
 
-    public val setInboundBufferSizePtr: VoidPtr =
+    internal val setInboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_inbound_buffer_size", 1286410249)
 
-    public val getOutboundBufferSizePtr: VoidPtr =
+    internal val getOutboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_outbound_buffer_size", 3905245786)
 
-    public val setOutboundBufferSizePtr: VoidPtr =
+    internal val setOutboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_outbound_buffer_size", 1286410249)
 
-    public val setMaxQueuedPacketsPtr: VoidPtr =
+    internal val setMaxQueuedPacketsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "set_max_queued_packets", 1286410249)
 
-    public val getMaxQueuedPacketsPtr: VoidPtr =
+    internal val getMaxQueuedPacketsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketPeer", "get_max_queued_packets", 3905245786)
   }
 }

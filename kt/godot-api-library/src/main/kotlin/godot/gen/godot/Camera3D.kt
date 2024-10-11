@@ -751,144 +751,146 @@ public open class Camera3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val projectRayNormalPtr: VoidPtr =
+  public object MethodBindings {
+    internal val projectRayNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "project_ray_normal", 1718073306)
 
-    public val projectLocalRayNormalPtr: VoidPtr =
+    internal val projectLocalRayNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "project_local_ray_normal", 1718073306)
 
-    public val projectRayOriginPtr: VoidPtr =
+    internal val projectRayOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "project_ray_origin", 1718073306)
 
-    public val unprojectPositionPtr: VoidPtr =
+    internal val unprojectPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "unproject_position", 3758901831)
 
-    public val isPositionBehindPtr: VoidPtr =
+    internal val isPositionBehindPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "is_position_behind", 3108956480)
 
-    public val projectPositionPtr: VoidPtr =
+    internal val projectPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "project_position", 2171975744)
 
-    public val setPerspectivePtr: VoidPtr =
+    internal val setPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_perspective", 2385087082)
 
-    public val setOrthogonalPtr: VoidPtr =
+    internal val setOrthogonalPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_orthogonal", 2385087082)
 
-    public val setFrustumPtr: VoidPtr =
+    internal val setFrustumPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_frustum", 354890663)
 
-    public val makeCurrentPtr: VoidPtr =
+    internal val makeCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "make_current", 3218959716)
 
-    public val clearCurrentPtr: VoidPtr =
+    internal val clearCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "clear_current", 3216645846)
 
-    public val setCurrentPtr: VoidPtr =
+    internal val setCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_current", 2586408642)
 
-    public val isCurrentPtr: VoidPtr =
+    internal val isCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "is_current", 36873697)
 
-    public val getCameraTransformPtr: VoidPtr =
+    internal val getCameraTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_camera_transform", 3229777777)
 
-    public val getCameraProjectionPtr: VoidPtr =
+    internal val getCameraProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_camera_projection", 2910717950)
 
-    public val getFovPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_fov", 1740695150)
+    internal val getFovPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_fov", 1740695150)
 
-    public val getFrustumOffsetPtr: VoidPtr =
+    internal val getFrustumOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_frustum_offset", 3341600327)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_size", 1740695150)
+    internal val getSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("Camera3D", "get_size", 1740695150)
 
-    public val getFarPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_far", 1740695150)
+    internal val getFarPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_far", 1740695150)
 
-    public val getNearPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "get_near", 1740695150)
+    internal val getNearPtr: VoidPtr =
+        Internals.getMethodBindPtr("Camera3D", "get_near", 1740695150)
 
-    public val setFovPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_fov", 373806689)
+    internal val setFovPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_fov", 373806689)
 
-    public val setFrustumOffsetPtr: VoidPtr =
+    internal val setFrustumOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_frustum_offset", 743155724)
 
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_size", 373806689)
+    internal val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_size", 373806689)
 
-    public val setFarPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_far", 373806689)
+    internal val setFarPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_far", 373806689)
 
-    public val setNearPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_near", 373806689)
+    internal val setNearPtr: VoidPtr = Internals.getMethodBindPtr("Camera3D", "set_near", 373806689)
 
-    public val getProjectionPtr: VoidPtr =
+    internal val getProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_projection", 2624185235)
 
-    public val setProjectionPtr: VoidPtr =
+    internal val setProjectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_projection", 4218540108)
 
-    public val setHOffsetPtr: VoidPtr =
+    internal val setHOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_h_offset", 373806689)
 
-    public val getHOffsetPtr: VoidPtr =
+    internal val getHOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_h_offset", 1740695150)
 
-    public val setVOffsetPtr: VoidPtr =
+    internal val setVOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_v_offset", 373806689)
 
-    public val getVOffsetPtr: VoidPtr =
+    internal val getVOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_v_offset", 1740695150)
 
-    public val setCullMaskPtr: VoidPtr =
+    internal val setCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr =
+    internal val getCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_cull_mask", 3905245786)
 
-    public val setEnvironmentPtr: VoidPtr =
+    internal val setEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_environment", 4143518816)
 
-    public val getEnvironmentPtr: VoidPtr =
+    internal val getEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_environment", 3082064660)
 
-    public val setAttributesPtr: VoidPtr =
+    internal val setAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_attributes", 2817810567)
 
-    public val getAttributesPtr: VoidPtr =
+    internal val getAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_attributes", 3921283215)
 
-    public val setCompositorPtr: VoidPtr =
+    internal val setCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_compositor", 1586754307)
 
-    public val getCompositorPtr: VoidPtr =
+    internal val getCompositorPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_compositor", 3647707413)
 
-    public val setKeepAspectModePtr: VoidPtr =
+    internal val setKeepAspectModePtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_keep_aspect_mode", 1740651252)
 
-    public val getKeepAspectModePtr: VoidPtr =
+    internal val getKeepAspectModePtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_keep_aspect_mode", 2790278316)
 
-    public val setDopplerTrackingPtr: VoidPtr =
+    internal val setDopplerTrackingPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_doppler_tracking", 3109431270)
 
-    public val getDopplerTrackingPtr: VoidPtr =
+    internal val getDopplerTrackingPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_doppler_tracking", 1584483649)
 
-    public val getFrustumPtr: VoidPtr =
+    internal val getFrustumPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_frustum", 3995934104)
 
-    public val isPositionInFrustumPtr: VoidPtr =
+    internal val isPositionInFrustumPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "is_position_in_frustum", 3108956480)
 
-    public val getCameraRidPtr: VoidPtr =
+    internal val getCameraRidPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_camera_rid", 2944877500)
 
-    public val getPyramidShapeRidPtr: VoidPtr =
+    internal val getPyramidShapeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_pyramid_shape_rid", 529393457)
 
-    public val setCullMaskValuePtr: VoidPtr =
+    internal val setCullMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "set_cull_mask_value", 300928843)
 
-    public val getCullMaskValuePtr: VoidPtr =
+    internal val getCullMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Camera3D", "get_cull_mask_value", 1116898809)
   }
 }

@@ -77,8 +77,8 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
 
   public companion object
 
-  internal object MethodBindings {
-    public val getMagnitudeForFrequencyRangePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getMagnitudeForFrequencyRangePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzerInstance", "get_magnitude_for_frequency_range", 797993915)
   }
 }

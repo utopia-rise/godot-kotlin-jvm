@@ -25,5 +25,5 @@ public open class VisualShaderNodeConstant internal constructor() : VisualShader
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

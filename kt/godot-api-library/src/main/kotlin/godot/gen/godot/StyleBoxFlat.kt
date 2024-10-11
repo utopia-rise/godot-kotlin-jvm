@@ -684,101 +684,101 @@ public open class StyleBoxFlat : StyleBox() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBgColorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_bg_color", 2920490490)
 
-    public val getBgColorPtr: VoidPtr =
+    internal val getBgColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_bg_color", 3444240500)
 
-    public val setBorderColorPtr: VoidPtr =
+    internal val setBorderColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_border_color", 2920490490)
 
-    public val getBorderColorPtr: VoidPtr =
+    internal val getBorderColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_border_color", 3444240500)
 
-    public val setBorderWidthAllPtr: VoidPtr =
+    internal val setBorderWidthAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_border_width_all", 1286410249)
 
-    public val getBorderWidthMinPtr: VoidPtr =
+    internal val getBorderWidthMinPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_border_width_min", 3905245786)
 
-    public val setBorderWidthPtr: VoidPtr =
+    internal val setBorderWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_border_width", 437707142)
 
-    public val getBorderWidthPtr: VoidPtr =
+    internal val getBorderWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_border_width", 1983885014)
 
-    public val setBorderBlendPtr: VoidPtr =
+    internal val setBorderBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_border_blend", 2586408642)
 
-    public val getBorderBlendPtr: VoidPtr =
+    internal val getBorderBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_border_blend", 36873697)
 
-    public val setCornerRadiusAllPtr: VoidPtr =
+    internal val setCornerRadiusAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all", 1286410249)
 
-    public val setCornerRadiusPtr: VoidPtr =
+    internal val setCornerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_radius", 2696158768)
 
-    public val getCornerRadiusPtr: VoidPtr =
+    internal val getCornerRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_corner_radius", 3982397690)
 
-    public val setExpandMarginPtr: VoidPtr =
+    internal val setExpandMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_expand_margin", 4290182280)
 
-    public val setExpandMarginAllPtr: VoidPtr =
+    internal val setExpandMarginAllPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all", 373806689)
 
-    public val getExpandMarginPtr: VoidPtr =
+    internal val getExpandMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_expand_margin", 2869120046)
 
-    public val setDrawCenterPtr: VoidPtr =
+    internal val setDrawCenterPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_draw_center", 2586408642)
 
-    public val isDrawCenterEnabledPtr: VoidPtr =
+    internal val isDrawCenterEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled", 36873697)
 
-    public val setSkewPtr: VoidPtr =
+    internal val setSkewPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_skew", 743155724)
 
-    public val getSkewPtr: VoidPtr =
+    internal val getSkewPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_skew", 3341600327)
 
-    public val setShadowColorPtr: VoidPtr =
+    internal val setShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_color", 2920490490)
 
-    public val getShadowColorPtr: VoidPtr =
+    internal val getShadowColorPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_color", 3444240500)
 
-    public val setShadowSizePtr: VoidPtr =
+    internal val setShadowSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_size", 1286410249)
 
-    public val getShadowSizePtr: VoidPtr =
+    internal val getShadowSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_size", 3905245786)
 
-    public val setShadowOffsetPtr: VoidPtr =
+    internal val setShadowOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset", 743155724)
 
-    public val getShadowOffsetPtr: VoidPtr =
+    internal val getShadowOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset", 3341600327)
 
-    public val setAntiAliasedPtr: VoidPtr =
+    internal val setAntiAliasedPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased", 2586408642)
 
-    public val isAntiAliasedPtr: VoidPtr =
+    internal val isAntiAliasedPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased", 36873697)
 
-    public val setAaSizePtr: VoidPtr =
+    internal val setAaSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_aa_size", 373806689)
 
-    public val getAaSizePtr: VoidPtr =
+    internal val getAaSizePtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_aa_size", 1740695150)
 
-    public val setCornerDetailPtr: VoidPtr =
+    internal val setCornerDetailPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_detail", 1286410249)
 
-    public val getCornerDetailPtr: VoidPtr =
+    internal val getCornerDetailPtr: VoidPtr =
         Internals.getMethodBindPtr("StyleBoxFlat", "get_corner_detail", 3905245786)
   }
 }

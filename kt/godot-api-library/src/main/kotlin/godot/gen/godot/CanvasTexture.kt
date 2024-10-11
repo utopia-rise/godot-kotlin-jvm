@@ -237,47 +237,47 @@ public open class CanvasTexture : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDiffuseTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDiffuseTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_diffuse_texture", 4051416890)
 
-    public val getDiffuseTexturePtr: VoidPtr =
+    internal val getDiffuseTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_diffuse_texture", 3635182373)
 
-    public val setNormalTexturePtr: VoidPtr =
+    internal val setNormalTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_normal_texture", 4051416890)
 
-    public val getNormalTexturePtr: VoidPtr =
+    internal val getNormalTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_normal_texture", 3635182373)
 
-    public val setSpecularTexturePtr: VoidPtr =
+    internal val setSpecularTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_specular_texture", 4051416890)
 
-    public val getSpecularTexturePtr: VoidPtr =
+    internal val getSpecularTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_specular_texture", 3635182373)
 
-    public val setSpecularColorPtr: VoidPtr =
+    internal val setSpecularColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_specular_color", 2920490490)
 
-    public val getSpecularColorPtr: VoidPtr =
+    internal val getSpecularColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_specular_color", 3444240500)
 
-    public val setSpecularShininessPtr: VoidPtr =
+    internal val setSpecularShininessPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_specular_shininess", 373806689)
 
-    public val getSpecularShininessPtr: VoidPtr =
+    internal val getSpecularShininessPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_specular_shininess", 1740695150)
 
-    public val setTextureFilterPtr: VoidPtr =
+    internal val setTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_texture_filter", 1037999706)
 
-    public val getTextureFilterPtr: VoidPtr =
+    internal val getTextureFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_texture_filter", 121960042)
 
-    public val setTextureRepeatPtr: VoidPtr =
+    internal val setTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "set_texture_repeat", 1716472974)
 
-    public val getTextureRepeatPtr: VoidPtr =
+    internal val getTextureRepeatPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasTexture", "get_texture_repeat", 2667158319)
   }
 }

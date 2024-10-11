@@ -53,11 +53,11 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setParameterNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setParameterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83702148)
 
-    public val getParameterNamePtr: VoidPtr =
+    internal val getParameterNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201670096)
   }
 }

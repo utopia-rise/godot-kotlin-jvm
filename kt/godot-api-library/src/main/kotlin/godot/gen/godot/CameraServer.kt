@@ -129,19 +129,19 @@ public object CameraServer : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val getFeedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getFeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraServer", "get_feed", 361927068)
 
-    public val getFeedCountPtr: VoidPtr =
+    internal val getFeedCountPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraServer", "get_feed_count", 2455072627)
 
-    public val feedsPtr: VoidPtr = Internals.getMethodBindPtr("CameraServer", "feeds", 2915620761)
+    internal val feedsPtr: VoidPtr = Internals.getMethodBindPtr("CameraServer", "feeds", 2915620761)
 
-    public val addFeedPtr: VoidPtr =
+    internal val addFeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraServer", "add_feed", 3204782488)
 
-    public val removeFeedPtr: VoidPtr =
+    internal val removeFeedPtr: VoidPtr =
         Internals.getMethodBindPtr("CameraServer", "remove_feed", 3204782488)
   }
 }

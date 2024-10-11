@@ -469,71 +469,73 @@ public open class AStar3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getAvailablePointIdPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getAvailablePointIdPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_available_point_id", 3905245786)
 
-    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "add_point", 1038703438)
+    internal val addPointPtr: VoidPtr =
+        Internals.getMethodBindPtr("AStar3D", "add_point", 1038703438)
 
-    public val getPointPositionPtr: VoidPtr =
+    internal val getPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_position", 711720468)
 
-    public val setPointPositionPtr: VoidPtr =
+    internal val setPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "set_point_position", 1530502735)
 
-    public val getPointWeightScalePtr: VoidPtr =
+    internal val getPointWeightScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_weight_scale", 2339986948)
 
-    public val setPointWeightScalePtr: VoidPtr =
+    internal val setPointWeightScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "set_point_weight_scale", 1602489585)
 
-    public val removePointPtr: VoidPtr =
+    internal val removePointPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "remove_point", 1286410249)
 
-    public val hasPointPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "has_point", 1116898809)
+    internal val hasPointPtr: VoidPtr =
+        Internals.getMethodBindPtr("AStar3D", "has_point", 1116898809)
 
-    public val getPointConnectionsPtr: VoidPtr =
+    internal val getPointConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_connections", 2865087369)
 
-    public val getPointIdsPtr: VoidPtr =
+    internal val getPointIdsPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_ids", 3851388692)
 
-    public val setPointDisabledPtr: VoidPtr =
+    internal val setPointDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "set_point_disabled", 972357352)
 
-    public val isPointDisabledPtr: VoidPtr =
+    internal val isPointDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "is_point_disabled", 1116898809)
 
-    public val connectPointsPtr: VoidPtr =
+    internal val connectPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "connect_points", 3710494224)
 
-    public val disconnectPointsPtr: VoidPtr =
+    internal val disconnectPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "disconnect_points", 3710494224)
 
-    public val arePointsConnectedPtr: VoidPtr =
+    internal val arePointsConnectedPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "are_points_connected", 2288175859)
 
-    public val getPointCountPtr: VoidPtr =
+    internal val getPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_count", 3905245786)
 
-    public val getPointCapacityPtr: VoidPtr =
+    internal val getPointCapacityPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_capacity", 3905245786)
 
-    public val reserveSpacePtr: VoidPtr =
+    internal val reserveSpacePtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "reserve_space", 1286410249)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "clear", 3218959716)
 
-    public val getClosestPointPtr: VoidPtr =
+    internal val getClosestPointPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_closest_point", 3241074317)
 
-    public val getClosestPositionInSegmentPtr: VoidPtr =
+    internal val getClosestPositionInSegmentPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_closest_position_in_segment", 192990374)
 
-    public val getPointPathPtr: VoidPtr =
+    internal val getPointPathPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_point_path", 1562654675)
 
-    public val getIdPathPtr: VoidPtr =
+    internal val getIdPathPtr: VoidPtr =
         Internals.getMethodBindPtr("AStar3D", "get_id_path", 3136199648)
   }
 }

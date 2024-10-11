@@ -197,41 +197,41 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_size", 373806689)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_size", 1740695150)
 
-    public val setSectionsPtr: VoidPtr =
+    internal val setSectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_sections", 1286410249)
 
-    public val getSectionsPtr: VoidPtr =
+    internal val getSectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_sections", 3905245786)
 
-    public val setSectionLengthPtr: VoidPtr =
+    internal val setSectionLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_section_length", 373806689)
 
-    public val getSectionLengthPtr: VoidPtr =
+    internal val getSectionLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_section_length", 1740695150)
 
-    public val setSectionSegmentsPtr: VoidPtr =
+    internal val setSectionSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_section_segments", 1286410249)
 
-    public val getSectionSegmentsPtr: VoidPtr =
+    internal val getSectionSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_section_segments", 3905245786)
 
-    public val setCurvePtr: VoidPtr =
+    internal val setCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr =
+    internal val getCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_curve", 2460114913)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "set_shape", 1684440262)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("RibbonTrailMesh", "get_shape", 1317484155)
   }
 }

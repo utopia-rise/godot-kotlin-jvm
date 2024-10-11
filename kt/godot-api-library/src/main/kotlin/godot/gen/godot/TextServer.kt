@@ -3373,642 +3373,643 @@ public open class TextServer internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val hasFeaturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasFeaturePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "has_feature", 3967367083)
 
-    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("TextServer", "get_name", 201670096)
+    internal val getNamePtr: VoidPtr =
+        Internals.getMethodBindPtr("TextServer", "get_name", 201670096)
 
-    public val getFeaturesPtr: VoidPtr =
+    internal val getFeaturesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "get_features", 3905245786)
 
-    public val loadSupportDataPtr: VoidPtr =
+    internal val loadSupportDataPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "load_support_data", 2323990056)
 
-    public val getSupportDataFilenamePtr: VoidPtr =
+    internal val getSupportDataFilenamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "get_support_data_filename", 201670096)
 
-    public val getSupportDataInfoPtr: VoidPtr =
+    internal val getSupportDataInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "get_support_data_info", 201670096)
 
-    public val saveSupportDataPtr: VoidPtr =
+    internal val saveSupportDataPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "save_support_data", 3927539163)
 
-    public val isLocaleRightToLeftPtr: VoidPtr =
+    internal val isLocaleRightToLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "is_locale_right_to_left", 3927539163)
 
-    public val nameToTagPtr: VoidPtr =
+    internal val nameToTagPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "name_to_tag", 1321353865)
 
-    public val tagToNamePtr: VoidPtr =
+    internal val tagToNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "tag_to_name", 844755477)
 
-    public val hasPtr: VoidPtr = Internals.getMethodBindPtr("TextServer", "has", 3521089500)
+    internal val hasPtr: VoidPtr = Internals.getMethodBindPtr("TextServer", "has", 3521089500)
 
-    public val freeRidPtr: VoidPtr =
+    internal val freeRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "free_rid", 2722037293)
 
-    public val createFontPtr: VoidPtr =
+    internal val createFontPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "create_font", 529393457)
 
-    public val createFontLinkedVariationPtr: VoidPtr =
+    internal val createFontLinkedVariationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "create_font_linked_variation", 41030802)
 
-    public val fontSetDataPtr: VoidPtr =
+    internal val fontSetDataPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_data", 1355495400)
 
-    public val fontSetFaceIndexPtr: VoidPtr =
+    internal val fontSetFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_face_index", 3411492887)
 
-    public val fontGetFaceIndexPtr: VoidPtr =
+    internal val fontGetFaceIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_face_index", 2198884583)
 
-    public val fontGetFaceCountPtr: VoidPtr =
+    internal val fontGetFaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_face_count", 2198884583)
 
-    public val fontSetStylePtr: VoidPtr =
+    internal val fontSetStylePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_style", 898466325)
 
-    public val fontGetStylePtr: VoidPtr =
+    internal val fontGetStylePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_style", 3082502592)
 
-    public val fontSetNamePtr: VoidPtr =
+    internal val fontSetNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_name", 2726140452)
 
-    public val fontGetNamePtr: VoidPtr =
+    internal val fontGetNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_name", 642473191)
 
-    public val fontGetOtNameStringsPtr: VoidPtr =
+    internal val fontGetOtNameStringsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_ot_name_strings", 1882737106)
 
-    public val fontSetStyleNamePtr: VoidPtr =
+    internal val fontSetStyleNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_style_name", 2726140452)
 
-    public val fontGetStyleNamePtr: VoidPtr =
+    internal val fontGetStyleNamePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_style_name", 642473191)
 
-    public val fontSetWeightPtr: VoidPtr =
+    internal val fontSetWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_weight", 3411492887)
 
-    public val fontGetWeightPtr: VoidPtr =
+    internal val fontGetWeightPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_weight", 2198884583)
 
-    public val fontSetStretchPtr: VoidPtr =
+    internal val fontSetStretchPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_stretch", 3411492887)
 
-    public val fontGetStretchPtr: VoidPtr =
+    internal val fontGetStretchPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_stretch", 2198884583)
 
-    public val fontSetAntialiasingPtr: VoidPtr =
+    internal val fontSetAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_antialiasing", 958337235)
 
-    public val fontGetAntialiasingPtr: VoidPtr =
+    internal val fontGetAntialiasingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_antialiasing", 3389420495)
 
-    public val fontSetDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val fontSetDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_disable_embedded_bitmaps", 1265174801)
 
-    public val fontGetDisableEmbeddedBitmapsPtr: VoidPtr =
+    internal val fontGetDisableEmbeddedBitmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_disable_embedded_bitmaps", 4155700596)
 
-    public val fontSetGenerateMipmapsPtr: VoidPtr =
+    internal val fontSetGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_generate_mipmaps", 1265174801)
 
-    public val fontGetGenerateMipmapsPtr: VoidPtr =
+    internal val fontGetGenerateMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_generate_mipmaps", 4155700596)
 
-    public val fontSetMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val fontSetMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_multichannel_signed_distance_field", 1265174801)
 
-    public val fontIsMultichannelSignedDistanceFieldPtr: VoidPtr =
+    internal val fontIsMultichannelSignedDistanceFieldPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_is_multichannel_signed_distance_field", 4155700596)
 
-    public val fontSetMsdfPixelRangePtr: VoidPtr =
+    internal val fontSetMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_msdf_pixel_range", 3411492887)
 
-    public val fontGetMsdfPixelRangePtr: VoidPtr =
+    internal val fontGetMsdfPixelRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_msdf_pixel_range", 2198884583)
 
-    public val fontSetMsdfSizePtr: VoidPtr =
+    internal val fontSetMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_msdf_size", 3411492887)
 
-    public val fontGetMsdfSizePtr: VoidPtr =
+    internal val fontGetMsdfSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_msdf_size", 2198884583)
 
-    public val fontSetFixedSizePtr: VoidPtr =
+    internal val fontSetFixedSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_fixed_size", 3411492887)
 
-    public val fontGetFixedSizePtr: VoidPtr =
+    internal val fontGetFixedSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_fixed_size", 2198884583)
 
-    public val fontSetFixedSizeScaleModePtr: VoidPtr =
+    internal val fontSetFixedSizeScaleModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_fixed_size_scale_mode", 1029390307)
 
-    public val fontGetFixedSizeScaleModePtr: VoidPtr =
+    internal val fontGetFixedSizeScaleModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_fixed_size_scale_mode", 4113120379)
 
-    public val fontSetAllowSystemFallbackPtr: VoidPtr =
+    internal val fontSetAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_allow_system_fallback", 1265174801)
 
-    public val fontIsAllowSystemFallbackPtr: VoidPtr =
+    internal val fontIsAllowSystemFallbackPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_is_allow_system_fallback", 4155700596)
 
-    public val fontSetForceAutohinterPtr: VoidPtr =
+    internal val fontSetForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_force_autohinter", 1265174801)
 
-    public val fontIsForceAutohinterPtr: VoidPtr =
+    internal val fontIsForceAutohinterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_is_force_autohinter", 4155700596)
 
-    public val fontSetHintingPtr: VoidPtr =
+    internal val fontSetHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_hinting", 1520010864)
 
-    public val fontGetHintingPtr: VoidPtr =
+    internal val fontGetHintingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_hinting", 3971592737)
 
-    public val fontSetSubpixelPositioningPtr: VoidPtr =
+    internal val fontSetSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_subpixel_positioning", 3830459669)
 
-    public val fontGetSubpixelPositioningPtr: VoidPtr =
+    internal val fontGetSubpixelPositioningPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_subpixel_positioning", 2752233671)
 
-    public val fontSetEmboldenPtr: VoidPtr =
+    internal val fontSetEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_embolden", 1794382983)
 
-    public val fontGetEmboldenPtr: VoidPtr =
+    internal val fontGetEmboldenPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_embolden", 866169185)
 
-    public val fontSetSpacingPtr: VoidPtr =
+    internal val fontSetSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_spacing", 1307259930)
 
-    public val fontGetSpacingPtr: VoidPtr =
+    internal val fontGetSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_spacing", 1213653558)
 
-    public val fontSetBaselineOffsetPtr: VoidPtr =
+    internal val fontSetBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_baseline_offset", 1794382983)
 
-    public val fontGetBaselineOffsetPtr: VoidPtr =
+    internal val fontGetBaselineOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_baseline_offset", 866169185)
 
-    public val fontSetTransformPtr: VoidPtr =
+    internal val fontSetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_transform", 1246044741)
 
-    public val fontGetTransformPtr: VoidPtr =
+    internal val fontGetTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_transform", 213527486)
 
-    public val fontSetVariationCoordinatesPtr: VoidPtr =
+    internal val fontSetVariationCoordinatesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_variation_coordinates", 1217542888)
 
-    public val fontGetVariationCoordinatesPtr: VoidPtr =
+    internal val fontGetVariationCoordinatesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_variation_coordinates", 1882737106)
 
-    public val fontSetOversamplingPtr: VoidPtr =
+    internal val fontSetOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_oversampling", 1794382983)
 
-    public val fontGetOversamplingPtr: VoidPtr =
+    internal val fontGetOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_oversampling", 866169185)
 
-    public val fontGetSizeCacheListPtr: VoidPtr =
+    internal val fontGetSizeCacheListPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_size_cache_list", 2684255073)
 
-    public val fontClearSizeCachePtr: VoidPtr =
+    internal val fontClearSizeCachePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_clear_size_cache", 2722037293)
 
-    public val fontRemoveSizeCachePtr: VoidPtr =
+    internal val fontRemoveSizeCachePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_size_cache", 2450610377)
 
-    public val fontSetAscentPtr: VoidPtr =
+    internal val fontSetAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_ascent", 1892459533)
 
-    public val fontGetAscentPtr: VoidPtr =
+    internal val fontGetAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_ascent", 755457166)
 
-    public val fontSetDescentPtr: VoidPtr =
+    internal val fontSetDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_descent", 1892459533)
 
-    public val fontGetDescentPtr: VoidPtr =
+    internal val fontGetDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_descent", 755457166)
 
-    public val fontSetUnderlinePositionPtr: VoidPtr =
+    internal val fontSetUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_underline_position", 1892459533)
 
-    public val fontGetUnderlinePositionPtr: VoidPtr =
+    internal val fontGetUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_underline_position", 755457166)
 
-    public val fontSetUnderlineThicknessPtr: VoidPtr =
+    internal val fontSetUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_underline_thickness", 1892459533)
 
-    public val fontGetUnderlineThicknessPtr: VoidPtr =
+    internal val fontGetUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_underline_thickness", 755457166)
 
-    public val fontSetScalePtr: VoidPtr =
+    internal val fontSetScalePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_scale", 1892459533)
 
-    public val fontGetScalePtr: VoidPtr =
+    internal val fontGetScalePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_scale", 755457166)
 
-    public val fontGetTextureCountPtr: VoidPtr =
+    internal val fontGetTextureCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_texture_count", 1311001310)
 
-    public val fontClearTexturesPtr: VoidPtr =
+    internal val fontClearTexturesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_clear_textures", 2450610377)
 
-    public val fontRemoveTexturePtr: VoidPtr =
+    internal val fontRemoveTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_texture", 3810512262)
 
-    public val fontSetTextureImagePtr: VoidPtr =
+    internal val fontSetTextureImagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_texture_image", 2354485091)
 
-    public val fontGetTextureImagePtr: VoidPtr =
+    internal val fontGetTextureImagePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_texture_image", 2451761155)
 
-    public val fontSetTextureOffsetsPtr: VoidPtr =
+    internal val fontSetTextureOffsetsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_texture_offsets", 3005398047)
 
-    public val fontGetTextureOffsetsPtr: VoidPtr =
+    internal val fontGetTextureOffsetsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_texture_offsets", 3420028887)
 
-    public val fontGetGlyphListPtr: VoidPtr =
+    internal val fontGetGlyphListPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_list", 46086620)
 
-    public val fontClearGlyphsPtr: VoidPtr =
+    internal val fontClearGlyphsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_clear_glyphs", 2450610377)
 
-    public val fontRemoveGlyphPtr: VoidPtr =
+    internal val fontRemoveGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_glyph", 3810512262)
 
-    public val fontGetGlyphAdvancePtr: VoidPtr =
+    internal val fontGetGlyphAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_advance", 2555689501)
 
-    public val fontSetGlyphAdvancePtr: VoidPtr =
+    internal val fontSetGlyphAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_glyph_advance", 3219397315)
 
-    public val fontGetGlyphOffsetPtr: VoidPtr =
+    internal val fontGetGlyphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_offset", 513728628)
 
-    public val fontSetGlyphOffsetPtr: VoidPtr =
+    internal val fontSetGlyphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_glyph_offset", 1812632090)
 
-    public val fontGetGlyphSizePtr: VoidPtr =
+    internal val fontGetGlyphSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_size", 513728628)
 
-    public val fontSetGlyphSizePtr: VoidPtr =
+    internal val fontSetGlyphSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_glyph_size", 1812632090)
 
-    public val fontGetGlyphUvRectPtr: VoidPtr =
+    internal val fontGetGlyphUvRectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_uv_rect", 2274268786)
 
-    public val fontSetGlyphUvRectPtr: VoidPtr =
+    internal val fontSetGlyphUvRectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_glyph_uv_rect", 1973324081)
 
-    public val fontGetGlyphTextureIdxPtr: VoidPtr =
+    internal val fontGetGlyphTextureIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_texture_idx", 4292800474)
 
-    public val fontSetGlyphTextureIdxPtr: VoidPtr =
+    internal val fontSetGlyphTextureIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_glyph_texture_idx", 4254580980)
 
-    public val fontGetGlyphTextureRidPtr: VoidPtr =
+    internal val fontGetGlyphTextureRidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_texture_rid", 1451696141)
 
-    public val fontGetGlyphTextureSizePtr: VoidPtr =
+    internal val fontGetGlyphTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_texture_size", 513728628)
 
-    public val fontGetGlyphContoursPtr: VoidPtr =
+    internal val fontGetGlyphContoursPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_contours", 2903964473)
 
-    public val fontGetKerningListPtr: VoidPtr =
+    internal val fontGetKerningListPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_kerning_list", 1778388067)
 
-    public val fontClearKerningMapPtr: VoidPtr =
+    internal val fontClearKerningMapPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_clear_kerning_map", 3411492887)
 
-    public val fontRemoveKerningPtr: VoidPtr =
+    internal val fontRemoveKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_kerning", 2141860016)
 
-    public val fontSetKerningPtr: VoidPtr =
+    internal val fontSetKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_kerning", 3630965883)
 
-    public val fontGetKerningPtr: VoidPtr =
+    internal val fontGetKerningPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_kerning", 1019980169)
 
-    public val fontGetGlyphIndexPtr: VoidPtr =
+    internal val fontGetGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_glyph_index", 1765635060)
 
-    public val fontGetCharFromGlyphIndexPtr: VoidPtr =
+    internal val fontGetCharFromGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_char_from_glyph_index", 2156738276)
 
-    public val fontHasCharPtr: VoidPtr =
+    internal val fontHasCharPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_has_char", 3120086654)
 
-    public val fontGetSupportedCharsPtr: VoidPtr =
+    internal val fontGetSupportedCharsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_supported_chars", 642473191)
 
-    public val fontRenderRangePtr: VoidPtr =
+    internal val fontRenderRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_render_range", 4254580980)
 
-    public val fontRenderGlyphPtr: VoidPtr =
+    internal val fontRenderGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_render_glyph", 3810512262)
 
-    public val fontDrawGlyphPtr: VoidPtr =
+    internal val fontDrawGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_draw_glyph", 1339057948)
 
-    public val fontDrawGlyphOutlinePtr: VoidPtr =
+    internal val fontDrawGlyphOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_draw_glyph_outline", 2626165733)
 
-    public val fontIsLanguageSupportedPtr: VoidPtr =
+    internal val fontIsLanguageSupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_is_language_supported", 3199320846)
 
-    public val fontSetLanguageSupportOverridePtr: VoidPtr =
+    internal val fontSetLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_language_support_override", 2313957094)
 
-    public val fontGetLanguageSupportOverridePtr: VoidPtr =
+    internal val fontGetLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_language_support_override", 2829184646)
 
-    public val fontRemoveLanguageSupportOverridePtr: VoidPtr =
+    internal val fontRemoveLanguageSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_language_support_override", 2726140452)
 
-    public val fontGetLanguageSupportOverridesPtr: VoidPtr =
+    internal val fontGetLanguageSupportOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_language_support_overrides", 2801473409)
 
-    public val fontIsScriptSupportedPtr: VoidPtr =
+    internal val fontIsScriptSupportedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_is_script_supported", 3199320846)
 
-    public val fontSetScriptSupportOverridePtr: VoidPtr =
+    internal val fontSetScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_script_support_override", 2313957094)
 
-    public val fontGetScriptSupportOverridePtr: VoidPtr =
+    internal val fontGetScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_script_support_override", 2829184646)
 
-    public val fontRemoveScriptSupportOverridePtr: VoidPtr =
+    internal val fontRemoveScriptSupportOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_remove_script_support_override", 2726140452)
 
-    public val fontGetScriptSupportOverridesPtr: VoidPtr =
+    internal val fontGetScriptSupportOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_script_support_overrides", 2801473409)
 
-    public val fontSetOpentypeFeatureOverridesPtr: VoidPtr =
+    internal val fontSetOpentypeFeatureOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_opentype_feature_overrides", 1217542888)
 
-    public val fontGetOpentypeFeatureOverridesPtr: VoidPtr =
+    internal val fontGetOpentypeFeatureOverridesPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_opentype_feature_overrides", 1882737106)
 
-    public val fontSupportedFeatureListPtr: VoidPtr =
+    internal val fontSupportedFeatureListPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_supported_feature_list", 1882737106)
 
-    public val fontSupportedVariationListPtr: VoidPtr =
+    internal val fontSupportedVariationListPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_supported_variation_list", 1882737106)
 
-    public val fontGetGlobalOversamplingPtr: VoidPtr =
+    internal val fontGetGlobalOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_get_global_oversampling", 1740695150)
 
-    public val fontSetGlobalOversamplingPtr: VoidPtr =
+    internal val fontSetGlobalOversamplingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "font_set_global_oversampling", 373806689)
 
-    public val getHexCodeBoxSizePtr: VoidPtr =
+    internal val getHexCodeBoxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "get_hex_code_box_size", 3016396712)
 
-    public val drawHexCodeBoxPtr: VoidPtr =
+    internal val drawHexCodeBoxPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "draw_hex_code_box", 1602046441)
 
-    public val createShapedTextPtr: VoidPtr =
+    internal val createShapedTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "create_shaped_text", 1231398698)
 
-    public val shapedTextClearPtr: VoidPtr =
+    internal val shapedTextClearPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_clear", 2722037293)
 
-    public val shapedTextSetDirectionPtr: VoidPtr =
+    internal val shapedTextSetDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_direction", 1551430183)
 
-    public val shapedTextGetDirectionPtr: VoidPtr =
+    internal val shapedTextGetDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_direction", 3065904362)
 
-    public val shapedTextGetInferredDirectionPtr: VoidPtr =
+    internal val shapedTextGetInferredDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_inferred_direction", 3065904362)
 
-    public val shapedTextSetBidiOverridePtr: VoidPtr =
+    internal val shapedTextSetBidiOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_bidi_override", 684822712)
 
-    public val shapedTextSetCustomPunctuationPtr: VoidPtr =
+    internal val shapedTextSetCustomPunctuationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_custom_punctuation", 2726140452)
 
-    public val shapedTextGetCustomPunctuationPtr: VoidPtr =
+    internal val shapedTextGetCustomPunctuationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_custom_punctuation", 642473191)
 
-    public val shapedTextSetCustomEllipsisPtr: VoidPtr =
+    internal val shapedTextSetCustomEllipsisPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_custom_ellipsis", 3411492887)
 
-    public val shapedTextGetCustomEllipsisPtr: VoidPtr =
+    internal val shapedTextGetCustomEllipsisPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_custom_ellipsis", 2198884583)
 
-    public val shapedTextSetOrientationPtr: VoidPtr =
+    internal val shapedTextSetOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_orientation", 3019609126)
 
-    public val shapedTextGetOrientationPtr: VoidPtr =
+    internal val shapedTextGetOrientationPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_orientation", 3142708106)
 
-    public val shapedTextSetPreserveInvalidPtr: VoidPtr =
+    internal val shapedTextSetPreserveInvalidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_preserve_invalid", 1265174801)
 
-    public val shapedTextGetPreserveInvalidPtr: VoidPtr =
+    internal val shapedTextGetPreserveInvalidPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_preserve_invalid", 4155700596)
 
-    public val shapedTextSetPreserveControlPtr: VoidPtr =
+    internal val shapedTextSetPreserveControlPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_preserve_control", 1265174801)
 
-    public val shapedTextGetPreserveControlPtr: VoidPtr =
+    internal val shapedTextGetPreserveControlPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_preserve_control", 4155700596)
 
-    public val shapedTextSetSpacingPtr: VoidPtr =
+    internal val shapedTextSetSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_set_spacing", 1307259930)
 
-    public val shapedTextGetSpacingPtr: VoidPtr =
+    internal val shapedTextGetSpacingPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_spacing", 1213653558)
 
-    public val shapedTextAddStringPtr: VoidPtr =
+    internal val shapedTextAddStringPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_add_string", 623473029)
 
-    public val shapedTextAddObjectPtr: VoidPtr =
+    internal val shapedTextAddObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_add_object", 3664424789)
 
-    public val shapedTextResizeObjectPtr: VoidPtr =
+    internal val shapedTextResizeObjectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_resize_object", 790361552)
 
-    public val shapedGetSpanCountPtr: VoidPtr =
+    internal val shapedGetSpanCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_get_span_count", 2198884583)
 
-    public val shapedGetSpanMetaPtr: VoidPtr =
+    internal val shapedGetSpanMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_get_span_meta", 4069510997)
 
-    public val shapedSetSpanUpdateFontPtr: VoidPtr =
+    internal val shapedSetSpanUpdateFontPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_set_span_update_font", 2022725822)
 
-    public val shapedTextSubstrPtr: VoidPtr =
+    internal val shapedTextSubstrPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_substr", 1937682086)
 
-    public val shapedTextGetParentPtr: VoidPtr =
+    internal val shapedTextGetParentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_parent", 3814569979)
 
-    public val shapedTextFitToWidthPtr: VoidPtr =
+    internal val shapedTextFitToWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_fit_to_width", 530670926)
 
-    public val shapedTextTabAlignPtr: VoidPtr =
+    internal val shapedTextTabAlignPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_tab_align", 1283669550)
 
-    public val shapedTextShapePtr: VoidPtr =
+    internal val shapedTextShapePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_shape", 3521089500)
 
-    public val shapedTextIsReadyPtr: VoidPtr =
+    internal val shapedTextIsReadyPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_is_ready", 4155700596)
 
-    public val shapedTextHasVisibleCharsPtr: VoidPtr =
+    internal val shapedTextHasVisibleCharsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_has_visible_chars", 4155700596)
 
-    public val shapedTextGetGlyphsPtr: VoidPtr =
+    internal val shapedTextGetGlyphsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_glyphs", 2684255073)
 
-    public val shapedTextSortLogicalPtr: VoidPtr =
+    internal val shapedTextSortLogicalPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_sort_logical", 2670461153)
 
-    public val shapedTextGetGlyphCountPtr: VoidPtr =
+    internal val shapedTextGetGlyphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_glyph_count", 2198884583)
 
-    public val shapedTextGetRangePtr: VoidPtr =
+    internal val shapedTextGetRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_range", 733700038)
 
-    public val shapedTextGetLineBreaksAdvPtr: VoidPtr =
+    internal val shapedTextGetLineBreaksAdvPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_line_breaks_adv", 2376991424)
 
-    public val shapedTextGetLineBreaksPtr: VoidPtr =
+    internal val shapedTextGetLineBreaksPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_line_breaks", 2651359741)
 
-    public val shapedTextGetWordBreaksPtr: VoidPtr =
+    internal val shapedTextGetWordBreaksPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_word_breaks", 4099476853)
 
-    public val shapedTextGetTrimPosPtr: VoidPtr =
+    internal val shapedTextGetTrimPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_trim_pos", 2198884583)
 
-    public val shapedTextGetEllipsisPosPtr: VoidPtr =
+    internal val shapedTextGetEllipsisPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_ellipsis_pos", 2198884583)
 
-    public val shapedTextGetEllipsisGlyphsPtr: VoidPtr =
+    internal val shapedTextGetEllipsisGlyphsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_ellipsis_glyphs", 2684255073)
 
-    public val shapedTextGetEllipsisGlyphCountPtr: VoidPtr =
+    internal val shapedTextGetEllipsisGlyphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_ellipsis_glyph_count", 2198884583)
 
-    public val shapedTextOverrunTrimToWidthPtr: VoidPtr =
+    internal val shapedTextOverrunTrimToWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_overrun_trim_to_width", 2723146520)
 
-    public val shapedTextGetObjectsPtr: VoidPtr =
+    internal val shapedTextGetObjectsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_objects", 2684255073)
 
-    public val shapedTextGetObjectRectPtr: VoidPtr =
+    internal val shapedTextGetObjectRectPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_object_rect", 447978354)
 
-    public val shapedTextGetObjectRangePtr: VoidPtr =
+    internal val shapedTextGetObjectRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_object_range", 2524675647)
 
-    public val shapedTextGetObjectGlyphPtr: VoidPtr =
+    internal val shapedTextGetObjectGlyphPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_object_glyph", 1260085030)
 
-    public val shapedTextGetSizePtr: VoidPtr =
+    internal val shapedTextGetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_size", 2440833711)
 
-    public val shapedTextGetAscentPtr: VoidPtr =
+    internal val shapedTextGetAscentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_ascent", 866169185)
 
-    public val shapedTextGetDescentPtr: VoidPtr =
+    internal val shapedTextGetDescentPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_descent", 866169185)
 
-    public val shapedTextGetWidthPtr: VoidPtr =
+    internal val shapedTextGetWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_width", 866169185)
 
-    public val shapedTextGetUnderlinePositionPtr: VoidPtr =
+    internal val shapedTextGetUnderlinePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_underline_position", 866169185)
 
-    public val shapedTextGetUnderlineThicknessPtr: VoidPtr =
+    internal val shapedTextGetUnderlineThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_underline_thickness", 866169185)
 
-    public val shapedTextGetCaretsPtr: VoidPtr =
+    internal val shapedTextGetCaretsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_carets", 1574219346)
 
-    public val shapedTextGetSelectionPtr: VoidPtr =
+    internal val shapedTextGetSelectionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_selection", 3714187733)
 
-    public val shapedTextHitTestGraphemePtr: VoidPtr =
+    internal val shapedTextHitTestGraphemePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_hit_test_grapheme", 3149310417)
 
-    public val shapedTextHitTestPositionPtr: VoidPtr =
+    internal val shapedTextHitTestPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_hit_test_position", 3149310417)
 
-    public val shapedTextGetGraphemeBoundsPtr: VoidPtr =
+    internal val shapedTextGetGraphemeBoundsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_grapheme_bounds", 2546185844)
 
-    public val shapedTextNextGraphemePosPtr: VoidPtr =
+    internal val shapedTextNextGraphemePosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_next_grapheme_pos", 1120910005)
 
-    public val shapedTextPrevGraphemePosPtr: VoidPtr =
+    internal val shapedTextPrevGraphemePosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_prev_grapheme_pos", 1120910005)
 
-    public val shapedTextGetCharacterBreaksPtr: VoidPtr =
+    internal val shapedTextGetCharacterBreaksPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_character_breaks", 788230395)
 
-    public val shapedTextNextCharacterPosPtr: VoidPtr =
+    internal val shapedTextNextCharacterPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_next_character_pos", 1120910005)
 
-    public val shapedTextPrevCharacterPosPtr: VoidPtr =
+    internal val shapedTextPrevCharacterPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_prev_character_pos", 1120910005)
 
-    public val shapedTextClosestCharacterPosPtr: VoidPtr =
+    internal val shapedTextClosestCharacterPosPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_closest_character_pos", 1120910005)
 
-    public val shapedTextDrawPtr: VoidPtr =
+    internal val shapedTextDrawPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_draw", 880389142)
 
-    public val shapedTextDrawOutlinePtr: VoidPtr =
+    internal val shapedTextDrawOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_draw_outline", 2559184194)
 
-    public val shapedTextGetDominantDirectionInRangePtr: VoidPtr =
+    internal val shapedTextGetDominantDirectionInRangePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "shaped_text_get_dominant_direction_in_range", 3326907668)
 
-    public val formatNumberPtr: VoidPtr =
+    internal val formatNumberPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "format_number", 2664628024)
 
-    public val parseNumberPtr: VoidPtr =
+    internal val parseNumberPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "parse_number", 2664628024)
 
-    public val percentSignPtr: VoidPtr =
+    internal val percentSignPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "percent_sign", 993269549)
 
-    public val stringGetWordBreaksPtr: VoidPtr =
+    internal val stringGetWordBreaksPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "string_get_word_breaks", 581857818)
 
-    public val stringGetCharacterBreaksPtr: VoidPtr =
+    internal val stringGetCharacterBreaksPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "string_get_character_breaks", 2333794773)
 
-    public val isConfusablePtr: VoidPtr =
+    internal val isConfusablePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "is_confusable", 1433197768)
 
-    public val spoofCheckPtr: VoidPtr =
+    internal val spoofCheckPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "spoof_check", 3927539163)
 
-    public val stripDiacriticsPtr: VoidPtr =
+    internal val stripDiacriticsPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "strip_diacritics", 3135753539)
 
-    public val isValidIdentifierPtr: VoidPtr =
+    internal val isValidIdentifierPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "is_valid_identifier", 3927539163)
 
-    public val isValidLetterPtr: VoidPtr =
+    internal val isValidLetterPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "is_valid_letter", 1116898809)
 
-    public val stringToUpperPtr: VoidPtr =
+    internal val stringToUpperPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "string_to_upper", 2664628024)
 
-    public val stringToLowerPtr: VoidPtr =
+    internal val stringToLowerPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "string_to_lower", 2664628024)
 
-    public val stringToTitlePtr: VoidPtr =
+    internal val stringToTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "string_to_title", 2664628024)
 
-    public val parseStructuredTextPtr: VoidPtr =
+    internal val parseStructuredTextPtr: VoidPtr =
         Internals.getMethodBindPtr("TextServer", "parse_structured_text", 3310685015)
   }
 }

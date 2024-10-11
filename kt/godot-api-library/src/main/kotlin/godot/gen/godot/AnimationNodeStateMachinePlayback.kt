@@ -152,35 +152,35 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val travelPtr: VoidPtr =
+  public object MethodBindings {
+    internal val travelPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "travel", 3823612587)
 
-    public val startPtr: VoidPtr =
+    internal val startPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "start", 3823612587)
 
-    public val nextPtr: VoidPtr =
+    internal val nextPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "next", 3218959716)
 
-    public val stopPtr: VoidPtr =
+    internal val stopPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "stop", 3218959716)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "is_playing", 36873697)
 
-    public val getCurrentNodePtr: VoidPtr =
+    internal val getCurrentNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_node", 2002593661)
 
-    public val getCurrentPlayPositionPtr: VoidPtr =
+    internal val getCurrentPlayPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_play_position", 1740695150)
 
-    public val getCurrentLengthPtr: VoidPtr =
+    internal val getCurrentLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_length", 1740695150)
 
-    public val getFadingFromNodePtr: VoidPtr =
+    internal val getFadingFromNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_node", 2002593661)
 
-    public val getTravelPathPtr: VoidPtr =
+    internal val getTravelPathPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_travel_path", 3995934104)
   }
 }

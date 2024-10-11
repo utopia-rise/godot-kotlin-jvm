@@ -129,26 +129,26 @@ public open class InputEventAction : InputEvent() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setActionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "set_action", 3304788590)
 
-    public val getActionPtr: VoidPtr =
+    internal val getActionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "get_action", 2002593661)
 
-    public val setPressedPtr: VoidPtr =
+    internal val setPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "set_pressed", 2586408642)
 
-    public val setStrengthPtr: VoidPtr =
+    internal val setStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "set_strength", 373806689)
 
-    public val getStrengthPtr: VoidPtr =
+    internal val getStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "get_strength", 1740695150)
 
-    public val setEventIndexPtr: VoidPtr =
+    internal val setEventIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "set_event_index", 1286410249)
 
-    public val getEventIndexPtr: VoidPtr =
+    internal val getEventIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventAction", "get_event_index", 3905245786)
   }
 }

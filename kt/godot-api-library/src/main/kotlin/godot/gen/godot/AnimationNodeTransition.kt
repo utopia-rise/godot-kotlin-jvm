@@ -210,44 +210,44 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setInputCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setInputCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_count", 1286410249)
 
-    public val setInputAsAutoAdvancePtr: VoidPtr =
+    internal val setInputAsAutoAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance", 300928843)
 
-    public val isInputSetAsAutoAdvancePtr: VoidPtr =
+    internal val isInputSetAsAutoAdvancePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance", 1116898809)
 
-    public val setInputBreakLoopAtEndPtr: VoidPtr =
+    internal val setInputBreakLoopAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end", 300928843)
 
-    public val isInputLoopBrokenAtEndPtr: VoidPtr =
+    internal val isInputLoopBrokenAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end", 1116898809)
 
-    public val setInputResetPtr: VoidPtr =
+    internal val setInputResetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_reset", 300928843)
 
-    public val isInputResetPtr: VoidPtr =
+    internal val isInputResetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_reset", 1116898809)
 
-    public val setXfadeTimePtr: VoidPtr =
+    internal val setXfadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time", 373806689)
 
-    public val getXfadeTimePtr: VoidPtr =
+    internal val getXfadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time", 1740695150)
 
-    public val setXfadeCurvePtr: VoidPtr =
+    internal val setXfadeCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve", 270443179)
 
-    public val getXfadeCurvePtr: VoidPtr =
+    internal val getXfadeCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve", 2460114913)
 
-    public val setAllowTransitionToSelfPtr: VoidPtr =
+    internal val setAllowTransitionToSelfPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self", 2586408642)
 
-    public val isAllowTransitionToSelfPtr: VoidPtr =
+    internal val isAllowTransitionToSelfPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self", 36873697)
   }
 }

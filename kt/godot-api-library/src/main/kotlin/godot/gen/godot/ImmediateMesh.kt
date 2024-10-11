@@ -143,35 +143,35 @@ public open class ImmediateMesh : Mesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val surfaceBeginPtr: VoidPtr =
+  public object MethodBindings {
+    internal val surfaceBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_begin", 2794442543)
 
-    public val surfaceSetColorPtr: VoidPtr =
+    internal val surfaceSetColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_set_color", 2920490490)
 
-    public val surfaceSetNormalPtr: VoidPtr =
+    internal val surfaceSetNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_set_normal", 3460891852)
 
-    public val surfaceSetTangentPtr: VoidPtr =
+    internal val surfaceSetTangentPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_set_tangent", 3505987427)
 
-    public val surfaceSetUvPtr: VoidPtr =
+    internal val surfaceSetUvPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_set_uv", 743155724)
 
-    public val surfaceSetUv2Ptr: VoidPtr =
+    internal val surfaceSetUv2Ptr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_set_uv2", 743155724)
 
-    public val surfaceAddVertexPtr: VoidPtr =
+    internal val surfaceAddVertexPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_add_vertex", 3460891852)
 
-    public val surfaceAddVertex2dPtr: VoidPtr =
+    internal val surfaceAddVertex2dPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d", 743155724)
 
-    public val surfaceEndPtr: VoidPtr =
+    internal val surfaceEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "surface_end", 3218959716)
 
-    public val clearSurfacesPtr: VoidPtr =
+    internal val clearSurfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("ImmediateMesh", "clear_surfaces", 3218959716)
   }
 }

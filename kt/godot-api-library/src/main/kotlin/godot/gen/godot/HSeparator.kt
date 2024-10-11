@@ -26,5 +26,5 @@ public open class HSeparator : Separator() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

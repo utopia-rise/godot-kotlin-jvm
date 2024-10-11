@@ -101,11 +101,11 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOpTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSmoothStep", "set_op_type", 2427426148)
 
-    public val getOpTypePtr: VoidPtr =
+    internal val getOpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeSmoothStep", "get_op_type", 359640855)
   }
 }

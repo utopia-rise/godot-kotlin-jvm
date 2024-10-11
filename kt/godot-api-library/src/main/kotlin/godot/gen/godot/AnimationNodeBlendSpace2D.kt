@@ -444,86 +444,86 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addBlendPointPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addBlendPointPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point", 402261981)
 
-    public val setBlendPointPositionPtr: VoidPtr =
+    internal val setBlendPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_position", 163021252)
 
-    public val getBlendPointPositionPtr: VoidPtr =
+    internal val getBlendPointPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_position", 2299179447)
 
-    public val setBlendPointNodePtr: VoidPtr =
+    internal val setBlendPointNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_node", 4240341528)
 
-    public val getBlendPointNodePtr: VoidPtr =
+    internal val getBlendPointNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_node", 665599029)
 
-    public val removeBlendPointPtr: VoidPtr =
+    internal val removeBlendPointPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_blend_point", 1286410249)
 
-    public val getBlendPointCountPtr: VoidPtr =
+    internal val getBlendPointCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_count", 3905245786)
 
-    public val addTrianglePtr: VoidPtr =
+    internal val addTrianglePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_triangle", 753017335)
 
-    public val getTrianglePointPtr: VoidPtr =
+    internal val getTrianglePointPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_point", 50157827)
 
-    public val removeTrianglePtr: VoidPtr =
+    internal val removeTrianglePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_triangle", 1286410249)
 
-    public val getTriangleCountPtr: VoidPtr =
+    internal val getTriangleCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_count", 3905245786)
 
-    public val setMinSpacePtr: VoidPtr =
+    internal val setMinSpacePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_min_space", 743155724)
 
-    public val getMinSpacePtr: VoidPtr =
+    internal val getMinSpacePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_min_space", 3341600327)
 
-    public val setMaxSpacePtr: VoidPtr =
+    internal val setMaxSpacePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_max_space", 743155724)
 
-    public val getMaxSpacePtr: VoidPtr =
+    internal val getMaxSpacePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_max_space", 3341600327)
 
-    public val setSnapPtr: VoidPtr =
+    internal val setSnapPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_snap", 743155724)
 
-    public val getSnapPtr: VoidPtr =
+    internal val getSnapPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_snap", 3341600327)
 
-    public val setXLabelPtr: VoidPtr =
+    internal val setXLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_x_label", 83702148)
 
-    public val getXLabelPtr: VoidPtr =
+    internal val getXLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_x_label", 201670096)
 
-    public val setYLabelPtr: VoidPtr =
+    internal val setYLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_y_label", 83702148)
 
-    public val getYLabelPtr: VoidPtr =
+    internal val getYLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_y_label", 201670096)
 
-    public val setAutoTrianglesPtr: VoidPtr =
+    internal val setAutoTrianglesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_auto_triangles", 2586408642)
 
-    public val getAutoTrianglesPtr: VoidPtr =
+    internal val getAutoTrianglesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_auto_triangles", 36873697)
 
-    public val setBlendModePtr: VoidPtr =
+    internal val setBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_mode", 81193520)
 
-    public val getBlendModePtr: VoidPtr =
+    internal val getBlendModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_mode", 1398433632)
 
-    public val setUseSyncPtr: VoidPtr =
+    internal val setUseSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_use_sync", 2586408642)
 
-    public val isUsingSyncPtr: VoidPtr =
+    internal val isUsingSyncPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeBlendSpace2D", "is_using_sync", 36873697)
   }
 }

@@ -202,10 +202,10 @@ public open class DTLSServer : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setupPtr: VoidPtr = Internals.getMethodBindPtr("DTLSServer", "setup", 1262296096)
+  public object MethodBindings {
+    internal val setupPtr: VoidPtr = Internals.getMethodBindPtr("DTLSServer", "setup", 1262296096)
 
-    public val takeConnectionPtr: VoidPtr =
+    internal val takeConnectionPtr: VoidPtr =
         Internals.getMethodBindPtr("DTLSServer", "take_connection", 3946580474)
   }
 }

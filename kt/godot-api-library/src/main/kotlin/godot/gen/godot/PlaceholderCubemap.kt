@@ -30,5 +30,5 @@ public open class PlaceholderCubemap : PlaceholderTextureLayered() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

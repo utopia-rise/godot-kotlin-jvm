@@ -51,11 +51,11 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHeldModificationStackPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHeldModificationStackPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack", 3907307132)
 
-    public val getHeldModificationStackPtr: VoidPtr =
+    internal val getHeldModificationStackPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack", 2107508396)
   }
 }

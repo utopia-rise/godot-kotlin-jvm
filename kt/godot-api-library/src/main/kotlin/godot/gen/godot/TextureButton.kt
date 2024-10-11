@@ -313,65 +313,65 @@ public open class TextureButton : BaseButton() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextureNormalPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTextureNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_texture_normal", 4051416890)
 
-    public val setTexturePressedPtr: VoidPtr =
+    internal val setTexturePressedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_texture_pressed", 4051416890)
 
-    public val setTextureHoverPtr: VoidPtr =
+    internal val setTextureHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_texture_hover", 4051416890)
 
-    public val setTextureDisabledPtr: VoidPtr =
+    internal val setTextureDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_texture_disabled", 4051416890)
 
-    public val setTextureFocusedPtr: VoidPtr =
+    internal val setTextureFocusedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_texture_focused", 4051416890)
 
-    public val setClickMaskPtr: VoidPtr =
+    internal val setClickMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_click_mask", 698588216)
 
-    public val setIgnoreTextureSizePtr: VoidPtr =
+    internal val setIgnoreTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_ignore_texture_size", 2586408642)
 
-    public val setStretchModePtr: VoidPtr =
+    internal val setStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_stretch_mode", 252530840)
 
-    public val setFlipHPtr: VoidPtr =
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr =
+    internal val isFlippedHPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr =
+    internal val isFlippedVPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "is_flipped_v", 36873697)
 
-    public val getTextureNormalPtr: VoidPtr =
+    internal val getTextureNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_texture_normal", 3635182373)
 
-    public val getTexturePressedPtr: VoidPtr =
+    internal val getTexturePressedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_texture_pressed", 3635182373)
 
-    public val getTextureHoverPtr: VoidPtr =
+    internal val getTextureHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_texture_hover", 3635182373)
 
-    public val getTextureDisabledPtr: VoidPtr =
+    internal val getTextureDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_texture_disabled", 3635182373)
 
-    public val getTextureFocusedPtr: VoidPtr =
+    internal val getTextureFocusedPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_texture_focused", 3635182373)
 
-    public val getClickMaskPtr: VoidPtr =
+    internal val getClickMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_click_mask", 2459671998)
 
-    public val getIgnoreTextureSizePtr: VoidPtr =
+    internal val getIgnoreTextureSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_ignore_texture_size", 36873697)
 
-    public val getStretchModePtr: VoidPtr =
+    internal val getStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureButton", "get_stretch_mode", 33815122)
   }
 }

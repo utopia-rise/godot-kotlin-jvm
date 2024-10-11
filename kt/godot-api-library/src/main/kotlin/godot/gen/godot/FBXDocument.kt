@@ -29,5 +29,5 @@ public open class FBXDocument : GLTFDocument() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

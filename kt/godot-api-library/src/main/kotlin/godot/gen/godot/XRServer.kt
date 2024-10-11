@@ -368,65 +368,65 @@ public object XRServer : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val getWorldScalePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getWorldScalePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_world_scale", 1740695150)
 
-    public val setWorldScalePtr: VoidPtr =
+    internal val setWorldScalePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "set_world_scale", 373806689)
 
-    public val getWorldOriginPtr: VoidPtr =
+    internal val getWorldOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_world_origin", 3229777777)
 
-    public val setWorldOriginPtr: VoidPtr =
+    internal val setWorldOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "set_world_origin", 2952846383)
 
-    public val getReferenceFramePtr: VoidPtr =
+    internal val getReferenceFramePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_reference_frame", 3229777777)
 
-    public val clearReferenceFramePtr: VoidPtr =
+    internal val clearReferenceFramePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "clear_reference_frame", 3218959716)
 
-    public val centerOnHmdPtr: VoidPtr =
+    internal val centerOnHmdPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "center_on_hmd", 1450904707)
 
-    public val getHmdTransformPtr: VoidPtr =
+    internal val getHmdTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_hmd_transform", 4183770049)
 
-    public val addInterfacePtr: VoidPtr =
+    internal val addInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "add_interface", 1898711491)
 
-    public val getInterfaceCountPtr: VoidPtr =
+    internal val getInterfaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_interface_count", 3905245786)
 
-    public val removeInterfacePtr: VoidPtr =
+    internal val removeInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "remove_interface", 1898711491)
 
-    public val getInterfacePtr: VoidPtr =
+    internal val getInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_interface", 4237347919)
 
-    public val getInterfacesPtr: VoidPtr =
+    internal val getInterfacesPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_interfaces", 3995934104)
 
-    public val findInterfacePtr: VoidPtr =
+    internal val findInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "find_interface", 1395192955)
 
-    public val addTrackerPtr: VoidPtr =
+    internal val addTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "add_tracker", 684804553)
 
-    public val removeTrackerPtr: VoidPtr =
+    internal val removeTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "remove_tracker", 684804553)
 
-    public val getTrackersPtr: VoidPtr =
+    internal val getTrackersPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_trackers", 3554694381)
 
-    public val getTrackerPtr: VoidPtr =
+    internal val getTrackerPtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_tracker", 147382240)
 
-    public val getPrimaryInterfacePtr: VoidPtr =
+    internal val getPrimaryInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "get_primary_interface", 2143545064)
 
-    public val setPrimaryInterfacePtr: VoidPtr =
+    internal val setPrimaryInterfacePtr: VoidPtr =
         Internals.getMethodBindPtr("XRServer", "set_primary_interface", 1898711491)
   }
 }

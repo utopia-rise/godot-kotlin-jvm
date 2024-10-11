@@ -183,47 +183,47 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTravelPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTravelPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_travel", 3360562783)
 
-    public val getRemainderPtr: VoidPtr =
+    internal val getRemainderPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_remainder", 3360562783)
 
-    public val getCollisionSafeFractionPtr: VoidPtr =
+    internal val getCollisionSafeFractionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_safe_fraction", 1740695150)
 
-    public val getCollisionUnsafeFractionPtr: VoidPtr =
+    internal val getCollisionUnsafeFractionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_unsafe_fraction", 1740695150)
 
-    public val getCollisionCountPtr: VoidPtr =
+    internal val getCollisionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_count", 3905245786)
 
-    public val getCollisionPointPtr: VoidPtr =
+    internal val getCollisionPointPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_point", 1914908202)
 
-    public val getCollisionNormalPtr: VoidPtr =
+    internal val getCollisionNormalPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_normal", 1914908202)
 
-    public val getColliderVelocityPtr: VoidPtr =
+    internal val getColliderVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_velocity", 1914908202)
 
-    public val getColliderIdPtr: VoidPtr =
+    internal val getColliderIdPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_id", 1591665591)
 
-    public val getColliderRidPtr: VoidPtr =
+    internal val getColliderRidPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_rid", 1231817359)
 
-    public val getColliderPtr: VoidPtr =
+    internal val getColliderPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider", 2639523548)
 
-    public val getColliderShapePtr: VoidPtr =
+    internal val getColliderShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_shape", 1591665591)
 
-    public val getCollisionLocalShapePtr: VoidPtr =
+    internal val getCollisionLocalShapePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_local_shape", 1591665591)
 
-    public val getCollisionDepthPtr: VoidPtr =
+    internal val getCollisionDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_depth", 218038398)
   }
 }

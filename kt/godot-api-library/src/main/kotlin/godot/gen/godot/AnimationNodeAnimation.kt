@@ -224,47 +224,47 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAnimationPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_animation", 3304788590)
 
-    public val getAnimationPtr: VoidPtr =
+    internal val getAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "get_animation", 2002593661)
 
-    public val setPlayModePtr: VoidPtr =
+    internal val setPlayModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode", 3347718873)
 
-    public val getPlayModePtr: VoidPtr =
+    internal val getPlayModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode", 2061244637)
 
-    public val setUseCustomTimelinePtr: VoidPtr =
+    internal val setUseCustomTimelinePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline", 2586408642)
 
-    public val isUsingCustomTimelinePtr: VoidPtr =
+    internal val isUsingCustomTimelinePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline", 36873697)
 
-    public val setTimelineLengthPtr: VoidPtr =
+    internal val setTimelineLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length", 373806689)
 
-    public val getTimelineLengthPtr: VoidPtr =
+    internal val getTimelineLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length", 1740695150)
 
-    public val setStretchTimeScalePtr: VoidPtr =
+    internal val setStretchTimeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale", 2586408642)
 
-    public val isStretchingTimeScalePtr: VoidPtr =
+    internal val isStretchingTimeScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale", 36873697)
 
-    public val setStartOffsetPtr: VoidPtr =
+    internal val setStartOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset", 373806689)
 
-    public val getStartOffsetPtr: VoidPtr =
+    internal val getStartOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset", 1740695150)
 
-    public val setLoopModePtr: VoidPtr =
+    internal val setLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode", 3155355575)
 
-    public val getLoopModePtr: VoidPtr =
+    internal val getLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode", 1988889481)
   }
 }

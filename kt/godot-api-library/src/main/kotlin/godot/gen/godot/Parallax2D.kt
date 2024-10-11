@@ -464,65 +464,65 @@ public open class Parallax2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setScrollScalePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setScrollScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743155724)
 
-    public val getScrollScalePtr: VoidPtr =
+    internal val getScrollScalePtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3341600327)
 
-    public val setRepeatSizePtr: VoidPtr =
+    internal val setRepeatSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_repeat_size", 743155724)
 
-    public val getRepeatSizePtr: VoidPtr =
+    internal val getRepeatSizePtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_repeat_size", 3341600327)
 
-    public val setRepeatTimesPtr: VoidPtr =
+    internal val setRepeatTimesPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_repeat_times", 1286410249)
 
-    public val getRepeatTimesPtr: VoidPtr =
+    internal val getRepeatTimesPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_repeat_times", 3905245786)
 
-    public val setAutoscrollPtr: VoidPtr =
+    internal val setAutoscrollPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_autoscroll", 743155724)
 
-    public val getAutoscrollPtr: VoidPtr =
+    internal val getAutoscrollPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_autoscroll", 3341600327)
 
-    public val setScrollOffsetPtr: VoidPtr =
+    internal val setScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743155724)
 
-    public val getScrollOffsetPtr: VoidPtr =
+    internal val getScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3341600327)
 
-    public val setScreenOffsetPtr: VoidPtr =
+    internal val setScreenOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_screen_offset", 743155724)
 
-    public val getScreenOffsetPtr: VoidPtr =
+    internal val getScreenOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_screen_offset", 3341600327)
 
-    public val setLimitBeginPtr: VoidPtr =
+    internal val setLimitBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_limit_begin", 743155724)
 
-    public val getLimitBeginPtr: VoidPtr =
+    internal val getLimitBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_limit_begin", 3341600327)
 
-    public val setLimitEndPtr: VoidPtr =
+    internal val setLimitEndPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_limit_end", 743155724)
 
-    public val getLimitEndPtr: VoidPtr =
+    internal val getLimitEndPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_limit_end", 3341600327)
 
-    public val setFollowViewportPtr: VoidPtr =
+    internal val setFollowViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2586408642)
 
-    public val getFollowViewportPtr: VoidPtr =
+    internal val getFollowViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2240911060)
 
-    public val setIgnoreCameraScrollPtr: VoidPtr =
+    internal val setIgnoreCameraScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2586408642)
 
-    public val isIgnoreCameraScrollPtr: VoidPtr =
+    internal val isIgnoreCameraScrollPtr: VoidPtr =
         Internals.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2240911060)
   }
 }

@@ -128,29 +128,29 @@ public open class CollisionPolygon3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDepthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "get_depth", 1740695150)
 
-    public val setPolygonPtr: VoidPtr =
+    internal val setPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr =
+    internal val getPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "get_polygon", 2961356807)
 
-    public val setDisabledPtr: VoidPtr =
+    internal val setDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "set_disabled", 2586408642)
 
-    public val isDisabledPtr: VoidPtr =
+    internal val isDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "is_disabled", 36873697)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionPolygon3D", "get_margin", 1740695150)
   }
 }

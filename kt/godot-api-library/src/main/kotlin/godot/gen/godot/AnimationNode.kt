@@ -372,50 +372,50 @@ public open class AnimationNode : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addInputPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addInputPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "add_input", 2323990056)
 
-    public val removeInputPtr: VoidPtr =
+    internal val removeInputPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "remove_input", 1286410249)
 
-    public val setInputNamePtr: VoidPtr =
+    internal val setInputNamePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "set_input_name", 215573526)
 
-    public val getInputNamePtr: VoidPtr =
+    internal val getInputNamePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "get_input_name", 844755477)
 
-    public val getInputCountPtr: VoidPtr =
+    internal val getInputCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "get_input_count", 3905245786)
 
-    public val findInputPtr: VoidPtr =
+    internal val findInputPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "find_input", 1321353865)
 
-    public val setFilterPathPtr: VoidPtr =
+    internal val setFilterPathPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "set_filter_path", 3868023870)
 
-    public val isPathFilteredPtr: VoidPtr =
+    internal val isPathFilteredPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "is_path_filtered", 861721659)
 
-    public val setFilterEnabledPtr: VoidPtr =
+    internal val setFilterEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "set_filter_enabled", 2586408642)
 
-    public val isFilterEnabledPtr: VoidPtr =
+    internal val isFilterEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "is_filter_enabled", 36873697)
 
-    public val blendAnimationPtr: VoidPtr =
+    internal val blendAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "blend_animation", 1630801826)
 
-    public val blendNodePtr: VoidPtr =
+    internal val blendNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "blend_node", 1746075988)
 
-    public val blendInputPtr: VoidPtr =
+    internal val blendInputPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "blend_input", 1361527350)
 
-    public val setParameterPtr: VoidPtr =
+    internal val setParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "set_parameter", 3776071444)
 
-    public val getParameterPtr: VoidPtr =
+    internal val getParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNode", "get_parameter", 2760726917)
   }
 }

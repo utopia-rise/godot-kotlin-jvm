@@ -1,7 +1,8 @@
 package godot.gradle.tasks
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import godot.gradle.projectExt.godotLibraryArtifactName
+import godot.gradle.projectExt.godotApiLibraryArtifactName
+import godot.gradle.projectExt.godotCoreLibraryArtifactName
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -25,7 +26,8 @@ fun Project.packageMainJarTask(
 
             dependencies {
                 it.exclude(it.dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
-                it.exclude(it.dependency("com.utopia-rise:$godotLibraryArtifactName:.*"))
+                it.exclude(it.dependency("com.utopia-rise:$godotCoreLibraryArtifactName:.*"))
+                it.exclude(it.dependency("com.utopia-rise:$godotApiLibraryArtifactName:.*"))
             }
 
             dependsOn(

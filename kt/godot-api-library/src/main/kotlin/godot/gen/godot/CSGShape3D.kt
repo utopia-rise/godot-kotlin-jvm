@@ -299,64 +299,65 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val isRootShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val isRootShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "is_root_shape", 36873697)
 
-    public val setOperationPtr: VoidPtr =
+    internal val setOperationPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_operation", 811425055)
 
-    public val getOperationPtr: VoidPtr =
+    internal val getOperationPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_operation", 2662425879)
 
-    public val setSnapPtr: VoidPtr = Internals.getMethodBindPtr("CSGShape3D", "set_snap", 373806689)
+    internal val setSnapPtr: VoidPtr =
+        Internals.getMethodBindPtr("CSGShape3D", "set_snap", 373806689)
 
-    public val getSnapPtr: VoidPtr =
+    internal val getSnapPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_snap", 1740695150)
 
-    public val setUseCollisionPtr: VoidPtr =
+    internal val setUseCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_use_collision", 2586408642)
 
-    public val isUsingCollisionPtr: VoidPtr =
+    internal val isUsingCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "is_using_collision", 36873697)
 
-    public val setCollisionLayerPtr: VoidPtr =
+    internal val setCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_collision_layer", 1286410249)
 
-    public val getCollisionLayerPtr: VoidPtr =
+    internal val getCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_collision_layer", 3905245786)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_collision_mask", 3905245786)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_collision_mask_value", 1116898809)
 
-    public val setCollisionLayerValuePtr: VoidPtr =
+    internal val setCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_collision_layer_value", 300928843)
 
-    public val getCollisionLayerValuePtr: VoidPtr =
+    internal val getCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_collision_layer_value", 1116898809)
 
-    public val setCollisionPriorityPtr: VoidPtr =
+    internal val setCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_collision_priority", 373806689)
 
-    public val getCollisionPriorityPtr: VoidPtr =
+    internal val getCollisionPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_collision_priority", 1740695150)
 
-    public val setCalculateTangentsPtr: VoidPtr =
+    internal val setCalculateTangentsPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "set_calculate_tangents", 2586408642)
 
-    public val isCalculatingTangentsPtr: VoidPtr =
+    internal val isCalculatingTangentsPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "is_calculating_tangents", 36873697)
 
-    public val getMeshesPtr: VoidPtr =
+    internal val getMeshesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGShape3D", "get_meshes", 3995934104)
   }
 }

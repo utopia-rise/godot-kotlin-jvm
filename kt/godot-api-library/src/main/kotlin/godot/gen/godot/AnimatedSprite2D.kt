@@ -421,84 +421,86 @@ public open class AnimatedSprite2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSpriteFramesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSpriteFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_sprite_frames", 905781144)
 
-    public val getSpriteFramesPtr: VoidPtr =
+    internal val getSpriteFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_sprite_frames", 3804851214)
 
-    public val setAnimationPtr: VoidPtr =
+    internal val setAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_animation", 3304788590)
 
-    public val getAnimationPtr: VoidPtr =
+    internal val getAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_animation", 2002593661)
 
-    public val setAutoplayPtr: VoidPtr =
+    internal val setAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_autoplay", 83702148)
 
-    public val getAutoplayPtr: VoidPtr =
+    internal val getAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_autoplay", 201670096)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "is_playing", 36873697)
 
-    public val playPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite2D", "play", 2372066587)
+    internal val playPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimatedSprite2D", "play", 2372066587)
 
-    public val playBackwardsPtr: VoidPtr =
+    internal val playBackwardsPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "play_backwards", 1421762485)
 
-    public val pausePtr: VoidPtr =
+    internal val pausePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "pause", 3218959716)
 
-    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite2D", "stop", 3218959716)
+    internal val stopPtr: VoidPtr =
+        Internals.getMethodBindPtr("AnimatedSprite2D", "stop", 3218959716)
 
-    public val setCenteredPtr: VoidPtr =
+    internal val setCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_centered", 2586408642)
 
-    public val isCenteredPtr: VoidPtr =
+    internal val isCenteredPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "is_centered", 36873697)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_offset", 3341600327)
 
-    public val setFlipHPtr: VoidPtr =
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr =
+    internal val isFlippedHPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr =
+    internal val isFlippedVPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "is_flipped_v", 36873697)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_frame", 3905245786)
 
-    public val setFrameProgressPtr: VoidPtr =
+    internal val setFrameProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_frame_progress", 373806689)
 
-    public val getFrameProgressPtr: VoidPtr =
+    internal val getFrameProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_frame_progress", 1740695150)
 
-    public val setFrameAndProgressPtr: VoidPtr =
+    internal val setFrameAndProgressPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_frame_and_progress", 1602489585)
 
-    public val setSpeedScalePtr: VoidPtr =
+    internal val setSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "set_speed_scale", 373806689)
 
-    public val getSpeedScalePtr: VoidPtr =
+    internal val getSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_speed_scale", 1740695150)
 
-    public val getPlayingSpeedPtr: VoidPtr =
+    internal val getPlayingSpeedPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimatedSprite2D", "get_playing_speed", 1740695150)
   }
 }

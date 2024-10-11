@@ -182,35 +182,36 @@ public open class Bone2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
+  public object MethodBindings {
+    internal val setRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
 
-    public val getRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
+    internal val getRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
 
-    public val applyRestPtr: VoidPtr =
+    internal val applyRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "apply_rest", 3218959716)
 
-    public val getSkeletonRestPtr: VoidPtr =
+    internal val getSkeletonRestPtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3814499831)
 
-    public val getIndexInSkeletonPtr: VoidPtr =
+    internal val getIndexInSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3905245786)
 
-    public val setAutocalculateLengthAndAnglePtr: VoidPtr =
+    internal val setAutocalculateLengthAndAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2586408642)
 
-    public val getAutocalculateLengthAndAnglePtr: VoidPtr =
+    internal val getAutocalculateLengthAndAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36873697)
 
-    public val setLengthPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "set_length", 373806689)
+    internal val setLengthPtr: VoidPtr =
+        Internals.getMethodBindPtr("Bone2D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "get_length", 1740695150)
 
-    public val setBoneAnglePtr: VoidPtr =
+    internal val setBoneAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "set_bone_angle", 373806689)
 
-    public val getBoneAnglePtr: VoidPtr =
+    internal val getBoneAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("Bone2D", "get_bone_angle", 1740695150)
   }
 }

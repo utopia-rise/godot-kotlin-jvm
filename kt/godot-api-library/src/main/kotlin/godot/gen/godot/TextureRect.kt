@@ -235,35 +235,35 @@ public open class TextureRect : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "get_texture", 3635182373)
 
-    public val setExpandModePtr: VoidPtr =
+    internal val setExpandModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "set_expand_mode", 1870766882)
 
-    public val getExpandModePtr: VoidPtr =
+    internal val getExpandModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "get_expand_mode", 3863824733)
 
-    public val setFlipHPtr: VoidPtr =
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr =
+    internal val isFlippedHPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr =
+    internal val isFlippedVPtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "is_flipped_v", 36873697)
 
-    public val setStretchModePtr: VoidPtr =
+    internal val setStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "set_stretch_mode", 58788729)
 
-    public val getStretchModePtr: VoidPtr =
+    internal val getStretchModePtr: VoidPtr =
         Internals.getMethodBindPtr("TextureRect", "get_stretch_mode", 346396079)
   }
 }

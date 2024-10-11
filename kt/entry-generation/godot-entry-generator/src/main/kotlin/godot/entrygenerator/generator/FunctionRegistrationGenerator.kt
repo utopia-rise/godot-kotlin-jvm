@@ -113,7 +113,7 @@ object FunctionRegistrationGenerator {
             add(ktFunctionArgumentClassName)
             add(registeredFunction.returnType.toKtVariantType())
             add(registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName))
-            add(ClassName(godotCorePackage, GodotKotlinJvmTypes.ktRpcConfig))
+            add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktRpcConfig))
             add(getRpcModeEnum(registeredFunction))
             add(getRpcCallLocal(registeredFunction))
             add(getRpcTransferModeEnum(registeredFunction))

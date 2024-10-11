@@ -122,29 +122,29 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_radius", 1740695150)
 
-    public val setAspectRatioPtr: VoidPtr =
+    internal val setAspectRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_aspect_ratio", 373806689)
 
-    public val getAspectRatioPtr: VoidPtr =
+    internal val getAspectRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_aspect_ratio", 1740695150)
 
-    public val setCentralAnglePtr: VoidPtr =
+    internal val setCentralAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_central_angle", 373806689)
 
-    public val getCentralAnglePtr: VoidPtr =
+    internal val getCentralAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_central_angle", 1740695150)
 
-    public val setFallbackSegmentsPtr: VoidPtr =
+    internal val setFallbackSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_fallback_segments", 1286410249)
 
-    public val getFallbackSegmentsPtr: VoidPtr =
+    internal val getFallbackSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_fallback_segments", 3905245786)
   }
 }

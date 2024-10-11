@@ -96,11 +96,11 @@ public open class Container : Control() {
     public final const val NOTIFICATION_SORT_CHILDREN: Long = 51
   }
 
-  internal object MethodBindings {
-    public val queueSortPtr: VoidPtr =
+  public object MethodBindings {
+    internal val queueSortPtr: VoidPtr =
         Internals.getMethodBindPtr("Container", "queue_sort", 3218959716)
 
-    public val fitChildInRectPtr: VoidPtr =
+    internal val fitChildInRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Container", "fit_child_in_rect", 1993438598)
   }
 }

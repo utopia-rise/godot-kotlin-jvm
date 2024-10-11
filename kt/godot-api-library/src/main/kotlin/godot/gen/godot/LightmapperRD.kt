@@ -29,5 +29,5 @@ public open class LightmapperRD : Lightmapper() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

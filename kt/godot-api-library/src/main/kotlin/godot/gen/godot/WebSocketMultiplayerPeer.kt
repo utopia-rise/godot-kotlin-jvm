@@ -236,56 +236,56 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createClientPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createClientPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "create_client", 1966198364)
 
-    public val createServerPtr: VoidPtr =
+    internal val createServerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "create_server", 2400822951)
 
-    public val getPeerPtr: VoidPtr =
+    internal val getPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer", 1381378851)
 
-    public val getPeerAddressPtr: VoidPtr =
+    internal val getPeerAddressPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_address", 844755477)
 
-    public val getPeerPortPtr: VoidPtr =
+    internal val getPeerPortPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_port", 923996154)
 
-    public val getSupportedProtocolsPtr: VoidPtr =
+    internal val getSupportedProtocolsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_supported_protocols", 1139954409)
 
-    public val setSupportedProtocolsPtr: VoidPtr =
+    internal val setSupportedProtocolsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_supported_protocols", 4015028928)
 
-    public val getHandshakeHeadersPtr: VoidPtr =
+    internal val getHandshakeHeadersPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_headers", 1139954409)
 
-    public val setHandshakeHeadersPtr: VoidPtr =
+    internal val setHandshakeHeadersPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_headers", 4015028928)
 
-    public val getInboundBufferSizePtr: VoidPtr =
+    internal val getInboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_inbound_buffer_size", 3905245786)
 
-    public val setInboundBufferSizePtr: VoidPtr =
+    internal val setInboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_inbound_buffer_size", 1286410249)
 
-    public val getOutboundBufferSizePtr: VoidPtr =
+    internal val getOutboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_outbound_buffer_size", 3905245786)
 
-    public val setOutboundBufferSizePtr: VoidPtr =
+    internal val setOutboundBufferSizePtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_outbound_buffer_size", 1286410249)
 
-    public val getHandshakeTimeoutPtr: VoidPtr =
+    internal val getHandshakeTimeoutPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_timeout", 1740695150)
 
-    public val setHandshakeTimeoutPtr: VoidPtr =
+    internal val setHandshakeTimeoutPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_timeout", 373806689)
 
-    public val setMaxQueuedPacketsPtr: VoidPtr =
+    internal val setMaxQueuedPacketsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "set_max_queued_packets", 1286410249)
 
-    public val getMaxQueuedPacketsPtr: VoidPtr =
+    internal val getMaxQueuedPacketsPtr: VoidPtr =
         Internals.getMethodBindPtr("WebSocketMultiplayerPeer", "get_max_queued_packets", 3905245786)
   }
 }

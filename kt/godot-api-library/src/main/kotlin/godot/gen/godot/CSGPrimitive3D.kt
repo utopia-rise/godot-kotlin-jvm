@@ -59,11 +59,11 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFlipFacesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFlipFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPrimitive3D", "set_flip_faces", 2586408642)
 
-    public val getFlipFacesPtr: VoidPtr =
+    internal val getFlipFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGPrimitive3D", "get_flip_faces", 2240911060)
   }
 }

@@ -115,26 +115,26 @@ public open class MenuButton : Button() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPopupPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPopupPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "get_popup", 229722558)
 
-    public val showPopupPtr: VoidPtr =
+    internal val showPopupPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "show_popup", 3218959716)
 
-    public val setSwitchOnHoverPtr: VoidPtr =
+    internal val setSwitchOnHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "set_switch_on_hover", 2586408642)
 
-    public val isSwitchOnHoverPtr: VoidPtr =
+    internal val isSwitchOnHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "is_switch_on_hover", 2240911060)
 
-    public val setDisableShortcutsPtr: VoidPtr =
+    internal val setDisableShortcutsPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "set_disable_shortcuts", 2586408642)
 
-    public val setItemCountPtr: VoidPtr =
+    internal val setItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "set_item_count", 1286410249)
 
-    public val getItemCountPtr: VoidPtr =
+    internal val getItemCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuButton", "get_item_count", 3905245786)
   }
 }

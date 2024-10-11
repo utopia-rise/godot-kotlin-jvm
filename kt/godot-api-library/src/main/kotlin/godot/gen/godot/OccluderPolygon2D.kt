@@ -128,23 +128,23 @@ public open class OccluderPolygon2D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setClosedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setClosedPtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "set_closed", 2586408642)
 
-    public val isClosedPtr: VoidPtr =
+    internal val isClosedPtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "is_closed", 36873697)
 
-    public val setCullModePtr: VoidPtr =
+    internal val setCullModePtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode", 3500863002)
 
-    public val getCullModePtr: VoidPtr =
+    internal val getCullModePtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode", 33931036)
 
-    public val setPolygonPtr: VoidPtr =
+    internal val setPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr =
+    internal val getPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("OccluderPolygon2D", "get_polygon", 2961356807)
   }
 }

@@ -224,68 +224,68 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
 
   public companion object
 
-  internal object MethodBindings {
-    public val setInputsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setInputsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_inputs", 83702148)
 
-    public val getInputsPtr: VoidPtr =
+    internal val getInputsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_inputs", 201670096)
 
-    public val setOutputsPtr: VoidPtr =
+    internal val setOutputsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_outputs", 83702148)
 
-    public val getOutputsPtr: VoidPtr =
+    internal val getOutputsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_outputs", 201670096)
 
-    public val isValidPortNamePtr: VoidPtr =
+    internal val isValidPortNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "is_valid_port_name", 3927539163)
 
-    public val addInputPortPtr: VoidPtr =
+    internal val addInputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "add_input_port", 2285447957)
 
-    public val removeInputPortPtr: VoidPtr =
+    internal val removeInputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_input_port", 1286410249)
 
-    public val getInputPortCountPtr: VoidPtr =
+    internal val getInputPortCountPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_input_port_count", 3905245786)
 
-    public val hasInputPortPtr: VoidPtr =
+    internal val hasInputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "has_input_port", 1116898809)
 
-    public val clearInputPortsPtr: VoidPtr =
+    internal val clearInputPortsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_input_ports", 3218959716)
 
-    public val addOutputPortPtr: VoidPtr =
+    internal val addOutputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "add_output_port", 2285447957)
 
-    public val removeOutputPortPtr: VoidPtr =
+    internal val removeOutputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_output_port", 1286410249)
 
-    public val getOutputPortCountPtr: VoidPtr =
+    internal val getOutputPortCountPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_output_port_count", 3905245786)
 
-    public val hasOutputPortPtr: VoidPtr =
+    internal val hasOutputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "has_output_port", 1116898809)
 
-    public val clearOutputPortsPtr: VoidPtr =
+    internal val clearOutputPortsPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_output_ports", 3218959716)
 
-    public val setInputPortNamePtr: VoidPtr =
+    internal val setInputPortNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_name", 501894301)
 
-    public val setInputPortTypePtr: VoidPtr =
+    internal val setInputPortTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_type", 3937882851)
 
-    public val setOutputPortNamePtr: VoidPtr =
+    internal val setOutputPortNamePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_name", 501894301)
 
-    public val setOutputPortTypePtr: VoidPtr =
+    internal val setOutputPortTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_type", 3937882851)
 
-    public val getFreeInputPortIdPtr: VoidPtr =
+    internal val getFreeInputPortIdPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_input_port_id", 3905245786)
 
-    public val getFreeOutputPortIdPtr: VoidPtr =
+    internal val getFreeOutputPortIdPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_output_port_id", 3905245786)
   }
 }

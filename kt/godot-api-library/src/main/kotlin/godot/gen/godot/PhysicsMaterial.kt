@@ -130,29 +130,29 @@ public open class PhysicsMaterial : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFrictionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFrictionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "set_friction", 373806689)
 
-    public val getFrictionPtr: VoidPtr =
+    internal val getFrictionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "get_friction", 1740695150)
 
-    public val setRoughPtr: VoidPtr =
+    internal val setRoughPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "set_rough", 2586408642)
 
-    public val isRoughPtr: VoidPtr =
+    internal val isRoughPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "is_rough", 36873697)
 
-    public val setBouncePtr: VoidPtr =
+    internal val setBouncePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "set_bounce", 373806689)
 
-    public val getBouncePtr: VoidPtr =
+    internal val getBouncePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "get_bounce", 1740695150)
 
-    public val setAbsorbentPtr: VoidPtr =
+    internal val setAbsorbentPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "set_absorbent", 2586408642)
 
-    public val isAbsorbentPtr: VoidPtr =
+    internal val isAbsorbentPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsMaterial", "is_absorbent", 36873697)
   }
 }

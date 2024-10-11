@@ -191,43 +191,46 @@ public open class GLTFCamera : Resource() {
     }
   }
 
-  internal object MethodBindings {
-    public val fromNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "from_node", 237784)
+  public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFCamera", "from_node", 237784)
 
-    public val toNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
+    internal val toNodePtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
 
-    public val fromDictionaryPtr: VoidPtr =
+    internal val fromDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
 
-    public val toDictionaryPtr: VoidPtr =
+    internal val toDictionaryPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "to_dictionary", 3102165223)
 
-    public val getPerspectivePtr: VoidPtr =
+    internal val getPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "get_perspective", 36873697)
 
-    public val setPerspectivePtr: VoidPtr =
+    internal val setPerspectivePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "set_perspective", 2586408642)
 
-    public val getFovPtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "get_fov", 1740695150)
+    internal val getFovPtr: VoidPtr =
+        Internals.getMethodBindPtr("GLTFCamera", "get_fov", 1740695150)
 
-    public val setFovPtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "set_fov", 373806689)
+    internal val setFovPtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "set_fov", 373806689)
 
-    public val getSizeMagPtr: VoidPtr =
+    internal val getSizeMagPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "get_size_mag", 1740695150)
 
-    public val setSizeMagPtr: VoidPtr =
+    internal val setSizeMagPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "set_size_mag", 373806689)
 
-    public val getDepthFarPtr: VoidPtr =
+    internal val getDepthFarPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "get_depth_far", 1740695150)
 
-    public val setDepthFarPtr: VoidPtr =
+    internal val setDepthFarPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "set_depth_far", 373806689)
 
-    public val getDepthNearPtr: VoidPtr =
+    internal val getDepthNearPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "get_depth_near", 1740695150)
 
-    public val setDepthNearPtr: VoidPtr =
+    internal val setDepthNearPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFCamera", "set_depth_near", 373806689)
   }
 }

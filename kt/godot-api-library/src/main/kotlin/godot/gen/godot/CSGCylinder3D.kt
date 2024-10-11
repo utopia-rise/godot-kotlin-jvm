@@ -174,40 +174,41 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "get_height", 1740695150)
 
-    public val setSidesPtr: VoidPtr =
+    internal val setSidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_sides", 1286410249)
 
-    public val getSidesPtr: VoidPtr =
+    internal val getSidesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "get_sides", 3905245786)
 
-    public val setConePtr: VoidPtr =
+    internal val setConePtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_cone", 2586408642)
 
-    public val isConePtr: VoidPtr = Internals.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
+    internal val isConePtr: VoidPtr =
+        Internals.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "get_material", 5934680)
 
-    public val setSmoothFacesPtr: VoidPtr =
+    internal val setSmoothFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2586408642)
 
-    public val getSmoothFacesPtr: VoidPtr =
+    internal val getSmoothFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36873697)
   }
 }

@@ -136,32 +136,32 @@ public open class AudioEffectCapture : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val canGetBufferPtr: VoidPtr =
+  public object MethodBindings {
+    internal val canGetBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1116898809)
 
-    public val getBufferPtr: VoidPtr =
+    internal val getBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2649534757)
 
-    public val clearBufferPtr: VoidPtr =
+    internal val clearBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3218959716)
 
-    public val setBufferLengthPtr: VoidPtr =
+    internal val setBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373806689)
 
-    public val getBufferLengthPtr: VoidPtr =
+    internal val getBufferLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191475506)
 
-    public val getFramesAvailablePtr: VoidPtr =
+    internal val getFramesAvailablePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3905245786)
 
-    public val getDiscardedFramesPtr: VoidPtr =
+    internal val getDiscardedFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3905245786)
 
-    public val getBufferLengthFramesPtr: VoidPtr =
+    internal val getBufferLengthFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3905245786)
 
-    public val getPushedFramesPtr: VoidPtr =
+    internal val getPushedFramesPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3905245786)
   }
 }

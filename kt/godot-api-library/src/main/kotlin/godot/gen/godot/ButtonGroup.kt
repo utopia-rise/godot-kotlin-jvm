@@ -83,17 +83,17 @@ public open class ButtonGroup : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPressedButtonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPressedButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("ButtonGroup", "get_pressed_button", 3886434893)
 
-    public val getButtonsPtr: VoidPtr =
+    internal val getButtonsPtr: VoidPtr =
         Internals.getMethodBindPtr("ButtonGroup", "get_buttons", 2915620761)
 
-    public val setAllowUnpressPtr: VoidPtr =
+    internal val setAllowUnpressPtr: VoidPtr =
         Internals.getMethodBindPtr("ButtonGroup", "set_allow_unpress", 2586408642)
 
-    public val isAllowUnpressPtr: VoidPtr =
+    internal val isAllowUnpressPtr: VoidPtr =
         Internals.getMethodBindPtr("ButtonGroup", "is_allow_unpress", 2240911060)
   }
 }

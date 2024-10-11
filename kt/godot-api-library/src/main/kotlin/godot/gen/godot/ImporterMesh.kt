@@ -303,73 +303,73 @@ public open class ImporterMesh : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addBlendShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addBlendShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
 
-    public val getBlendShapeCountPtr: VoidPtr =
+    internal val getBlendShapeCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3905245786)
 
-    public val getBlendShapeNamePtr: VoidPtr =
+    internal val getBlendShapeNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844755477)
 
-    public val setBlendShapeModePtr: VoidPtr =
+    internal val setBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227983991)
 
-    public val getBlendShapeModePtr: VoidPtr =
+    internal val getBlendShapeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836485024)
 
-    public val addSurfacePtr: VoidPtr =
+    internal val addSurfacePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "add_surface", 1740448849)
 
-    public val getSurfaceCountPtr: VoidPtr =
+    internal val getSurfaceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_count", 3905245786)
 
-    public val getSurfacePrimitiveTypePtr: VoidPtr =
+    internal val getSurfacePrimitiveTypePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3552571330)
 
-    public val getSurfaceNamePtr: VoidPtr =
+    internal val getSurfaceNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_name", 844755477)
 
-    public val getSurfaceArraysPtr: VoidPtr =
+    internal val getSurfaceArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663333327)
 
-    public val getSurfaceBlendShapeArraysPtr: VoidPtr =
+    internal val getSurfaceBlendShapeArraysPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2345056839)
 
-    public val getSurfaceLodCountPtr: VoidPtr =
+    internal val getSurfaceLodCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923996154)
 
-    public val getSurfaceLodSizePtr: VoidPtr =
+    internal val getSurfaceLodSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3085491603)
 
-    public val getSurfaceLodIndicesPtr: VoidPtr =
+    internal val getSurfaceLodIndicesPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1265128013)
 
-    public val getSurfaceMaterialPtr: VoidPtr =
+    internal val getSurfaceMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_material", 2897466400)
 
-    public val getSurfaceFormatPtr: VoidPtr =
+    internal val getSurfaceFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_surface_format", 923996154)
 
-    public val setSurfaceNamePtr: VoidPtr =
+    internal val setSurfaceNamePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "set_surface_name", 501894301)
 
-    public val setSurfaceMaterialPtr: VoidPtr =
+    internal val setSurfaceMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "set_surface_material", 3671737478)
 
-    public val generateLodsPtr: VoidPtr =
+    internal val generateLodsPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "generate_lods", 2491878677)
 
-    public val getMeshPtr: VoidPtr =
+    internal val getMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
 
-    public val setLightmapSizeHintPtr: VoidPtr =
+    internal val setLightmapSizeHintPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1130785943)
 
-    public val getLightmapSizeHintPtr: VoidPtr =
+    internal val getLightmapSizeHintPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3690982128)
   }
 }

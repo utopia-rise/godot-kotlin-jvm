@@ -126,23 +126,23 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val moveAndCollidePtr: VoidPtr =
+  public object MethodBindings {
+    internal val moveAndCollidePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "move_and_collide", 3681923724)
 
-    public val testMovePtr: VoidPtr =
+    internal val testMovePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "test_move", 3324464701)
 
-    public val getGravityPtr: VoidPtr =
+    internal val getGravityPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "get_gravity", 3341600327)
 
-    public val getCollisionExceptionsPtr: VoidPtr =
+    internal val getCollisionExceptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "get_collision_exceptions", 2915620761)
 
-    public val addCollisionExceptionWithPtr: VoidPtr =
+    internal val addCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "add_collision_exception_with", 1078189570)
 
-    public val removeCollisionExceptionWithPtr: VoidPtr =
+    internal val removeCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsBody2D", "remove_collision_exception_with", 1078189570)
   }
 }

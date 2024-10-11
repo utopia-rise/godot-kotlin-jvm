@@ -65,14 +65,14 @@ public open class MethodTweener : Tweener() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setDelayPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setDelayPtr: VoidPtr =
         Internals.getMethodBindPtr("MethodTweener", "set_delay", 266477812)
 
-    public val setTransPtr: VoidPtr =
+    internal val setTransPtr: VoidPtr =
         Internals.getMethodBindPtr("MethodTweener", "set_trans", 3740975367)
 
-    public val setEasePtr: VoidPtr =
+    internal val setEasePtr: VoidPtr =
         Internals.getMethodBindPtr("MethodTweener", "set_ease", 315540545)
   }
 }

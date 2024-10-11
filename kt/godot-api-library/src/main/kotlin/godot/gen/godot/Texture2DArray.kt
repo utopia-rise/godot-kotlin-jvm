@@ -45,8 +45,8 @@ public open class Texture2DArray : ImageTextureLayered() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createPlaceholderPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture2DArray", "create_placeholder", 121922552)
   }
 }

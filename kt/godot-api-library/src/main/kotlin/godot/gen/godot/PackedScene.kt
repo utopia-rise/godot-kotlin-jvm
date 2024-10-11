@@ -182,16 +182,16 @@ public open class PackedScene : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val packPtr: VoidPtr = Internals.getMethodBindPtr("PackedScene", "pack", 2584678054)
+  public object MethodBindings {
+    internal val packPtr: VoidPtr = Internals.getMethodBindPtr("PackedScene", "pack", 2584678054)
 
-    public val instantiatePtr: VoidPtr =
+    internal val instantiatePtr: VoidPtr =
         Internals.getMethodBindPtr("PackedScene", "instantiate", 2628778455)
 
-    public val canInstantiatePtr: VoidPtr =
+    internal val canInstantiatePtr: VoidPtr =
         Internals.getMethodBindPtr("PackedScene", "can_instantiate", 36873697)
 
-    public val getStatePtr: VoidPtr =
+    internal val getStatePtr: VoidPtr =
         Internals.getMethodBindPtr("PackedScene", "get_state", 3479783971)
   }
 }

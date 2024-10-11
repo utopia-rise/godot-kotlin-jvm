@@ -187,5 +187,5 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

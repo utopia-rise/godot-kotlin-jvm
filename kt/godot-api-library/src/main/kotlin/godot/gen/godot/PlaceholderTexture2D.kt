@@ -80,8 +80,8 @@ public open class PlaceholderTexture2D : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PlaceholderTexture2D", "set_size", 743155724)
   }
 }

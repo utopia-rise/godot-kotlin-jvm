@@ -124,18 +124,18 @@ public open class ZIPPacker : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val openPtr: VoidPtr = Internals.getMethodBindPtr("ZIPPacker", "open", 1936816515)
+  public object MethodBindings {
+    internal val openPtr: VoidPtr = Internals.getMethodBindPtr("ZIPPacker", "open", 1936816515)
 
-    public val startFilePtr: VoidPtr =
+    internal val startFilePtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPPacker", "start_file", 166001499)
 
-    public val writeFilePtr: VoidPtr =
+    internal val writeFilePtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPPacker", "write_file", 680677267)
 
-    public val closeFilePtr: VoidPtr =
+    internal val closeFilePtr: VoidPtr =
         Internals.getMethodBindPtr("ZIPPacker", "close_file", 166280745)
 
-    public val closePtr: VoidPtr = Internals.getMethodBindPtr("ZIPPacker", "close", 166280745)
+    internal val closePtr: VoidPtr = Internals.getMethodBindPtr("ZIPPacker", "close", 166280745)
   }
 }

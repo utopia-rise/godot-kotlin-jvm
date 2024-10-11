@@ -168,41 +168,41 @@ public open class PinJoint2D : Joint2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSoftnessPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSoftnessPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_softness", 373806689)
 
-    public val getSoftnessPtr: VoidPtr =
+    internal val getSoftnessPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "get_softness", 1740695150)
 
-    public val setAngularLimitLowerPtr: VoidPtr =
+    internal val setAngularLimitLowerPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_lower", 373806689)
 
-    public val getAngularLimitLowerPtr: VoidPtr =
+    internal val getAngularLimitLowerPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "get_angular_limit_lower", 1740695150)
 
-    public val setAngularLimitUpperPtr: VoidPtr =
+    internal val setAngularLimitUpperPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_upper", 373806689)
 
-    public val getAngularLimitUpperPtr: VoidPtr =
+    internal val getAngularLimitUpperPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "get_angular_limit_upper", 1740695150)
 
-    public val setMotorTargetVelocityPtr: VoidPtr =
+    internal val setMotorTargetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_motor_target_velocity", 373806689)
 
-    public val getMotorTargetVelocityPtr: VoidPtr =
+    internal val getMotorTargetVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "get_motor_target_velocity", 1740695150)
 
-    public val setMotorEnabledPtr: VoidPtr =
+    internal val setMotorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_motor_enabled", 2586408642)
 
-    public val isMotorEnabledPtr: VoidPtr =
+    internal val isMotorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "is_motor_enabled", 36873697)
 
-    public val setAngularLimitEnabledPtr: VoidPtr =
+    internal val setAngularLimitEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_enabled", 2586408642)
 
-    public val isAngularLimitEnabledPtr: VoidPtr =
+    internal val isAngularLimitEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PinJoint2D", "is_angular_limit_enabled", 36873697)
   }
 }

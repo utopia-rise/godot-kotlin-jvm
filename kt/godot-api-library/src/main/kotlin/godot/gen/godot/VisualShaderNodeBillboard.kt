@@ -113,17 +113,17 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBillboardTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBillboardTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBillboard", "set_billboard_type", 1227463289)
 
-    public val getBillboardTypePtr: VoidPtr =
+    internal val getBillboardTypePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBillboard", "get_billboard_type", 3724188517)
 
-    public val setKeepScaleEnabledPtr: VoidPtr =
+    internal val setKeepScaleEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBillboard", "set_keep_scale_enabled", 2586408642)
 
-    public val isKeepScaleEnabledPtr: VoidPtr =
+    internal val isKeepScaleEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeBillboard", "is_keep_scale_enabled", 36873697)
   }
 }

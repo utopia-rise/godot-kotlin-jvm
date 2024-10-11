@@ -750,131 +750,131 @@ public open class FastNoiseLite : Noise() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setNoiseTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setNoiseTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_noise_type", 2624461392)
 
-    public val getNoiseTypePtr: VoidPtr =
+    internal val getNoiseTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_noise_type", 1458108610)
 
-    public val setSeedPtr: VoidPtr =
+    internal val setSeedPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_seed", 1286410249)
 
-    public val getSeedPtr: VoidPtr =
+    internal val getSeedPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_seed", 3905245786)
 
-    public val setFrequencyPtr: VoidPtr =
+    internal val setFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_frequency", 373806689)
 
-    public val getFrequencyPtr: VoidPtr =
+    internal val getFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_frequency", 1740695150)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_offset", 3460891852)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_offset", 3360562783)
 
-    public val setFractalTypePtr: VoidPtr =
+    internal val setFractalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_type", 4132731174)
 
-    public val getFractalTypePtr: VoidPtr =
+    internal val getFractalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_type", 1036889279)
 
-    public val setFractalOctavesPtr: VoidPtr =
+    internal val setFractalOctavesPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_octaves", 1286410249)
 
-    public val getFractalOctavesPtr: VoidPtr =
+    internal val getFractalOctavesPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_octaves", 3905245786)
 
-    public val setFractalLacunarityPtr: VoidPtr =
+    internal val setFractalLacunarityPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_lacunarity", 373806689)
 
-    public val getFractalLacunarityPtr: VoidPtr =
+    internal val getFractalLacunarityPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_lacunarity", 1740695150)
 
-    public val setFractalGainPtr: VoidPtr =
+    internal val setFractalGainPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_gain", 373806689)
 
-    public val getFractalGainPtr: VoidPtr =
+    internal val getFractalGainPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_gain", 1740695150)
 
-    public val setFractalWeightedStrengthPtr: VoidPtr =
+    internal val setFractalWeightedStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_weighted_strength", 373806689)
 
-    public val getFractalWeightedStrengthPtr: VoidPtr =
+    internal val getFractalWeightedStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_weighted_strength", 1740695150)
 
-    public val setFractalPingPongStrengthPtr: VoidPtr =
+    internal val setFractalPingPongStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_fractal_ping_pong_strength", 373806689)
 
-    public val getFractalPingPongStrengthPtr: VoidPtr =
+    internal val getFractalPingPongStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_fractal_ping_pong_strength", 1740695150)
 
-    public val setCellularDistanceFunctionPtr: VoidPtr =
+    internal val setCellularDistanceFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_cellular_distance_function", 1006013267)
 
-    public val getCellularDistanceFunctionPtr: VoidPtr =
+    internal val getCellularDistanceFunctionPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_cellular_distance_function", 2021274088)
 
-    public val setCellularJitterPtr: VoidPtr =
+    internal val setCellularJitterPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_cellular_jitter", 373806689)
 
-    public val getCellularJitterPtr: VoidPtr =
+    internal val getCellularJitterPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_cellular_jitter", 1740695150)
 
-    public val setCellularReturnTypePtr: VoidPtr =
+    internal val setCellularReturnTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_cellular_return_type", 2654169698)
 
-    public val getCellularReturnTypePtr: VoidPtr =
+    internal val getCellularReturnTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_cellular_return_type", 3699796343)
 
-    public val setDomainWarpEnabledPtr: VoidPtr =
+    internal val setDomainWarpEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_enabled", 2586408642)
 
-    public val isDomainWarpEnabledPtr: VoidPtr =
+    internal val isDomainWarpEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "is_domain_warp_enabled", 36873697)
 
-    public val setDomainWarpTypePtr: VoidPtr =
+    internal val setDomainWarpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_type", 3629692980)
 
-    public val getDomainWarpTypePtr: VoidPtr =
+    internal val getDomainWarpTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_type", 2980162020)
 
-    public val setDomainWarpAmplitudePtr: VoidPtr =
+    internal val setDomainWarpAmplitudePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_amplitude", 373806689)
 
-    public val getDomainWarpAmplitudePtr: VoidPtr =
+    internal val getDomainWarpAmplitudePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_amplitude", 1740695150)
 
-    public val setDomainWarpFrequencyPtr: VoidPtr =
+    internal val setDomainWarpFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_frequency", 373806689)
 
-    public val getDomainWarpFrequencyPtr: VoidPtr =
+    internal val getDomainWarpFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_frequency", 1740695150)
 
-    public val setDomainWarpFractalTypePtr: VoidPtr =
+    internal val setDomainWarpFractalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_type", 3999408287)
 
-    public val getDomainWarpFractalTypePtr: VoidPtr =
+    internal val getDomainWarpFractalTypePtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_type", 407716934)
 
-    public val setDomainWarpFractalOctavesPtr: VoidPtr =
+    internal val setDomainWarpFractalOctavesPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_octaves", 1286410249)
 
-    public val getDomainWarpFractalOctavesPtr: VoidPtr =
+    internal val getDomainWarpFractalOctavesPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_octaves", 3905245786)
 
-    public val setDomainWarpFractalLacunarityPtr: VoidPtr =
+    internal val setDomainWarpFractalLacunarityPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_lacunarity", 373806689)
 
-    public val getDomainWarpFractalLacunarityPtr: VoidPtr =
+    internal val getDomainWarpFractalLacunarityPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_lacunarity", 1740695150)
 
-    public val setDomainWarpFractalGainPtr: VoidPtr =
+    internal val setDomainWarpFractalGainPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_gain", 373806689)
 
-    public val getDomainWarpFractalGainPtr: VoidPtr =
+    internal val getDomainWarpFractalGainPtr: VoidPtr =
         Internals.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_gain", 1740695150)
   }
 }

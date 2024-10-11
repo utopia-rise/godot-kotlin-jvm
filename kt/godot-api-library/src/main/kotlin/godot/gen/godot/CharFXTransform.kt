@@ -460,83 +460,83 @@ public open class CharFXTransform : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getTransformPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_transform", 3761352769)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_transform", 2761652528)
 
-    public val getRangePtr: VoidPtr =
+    internal val getRangePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_range", 2741790807)
 
-    public val setRangePtr: VoidPtr =
+    internal val setRangePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_range", 1130785943)
 
-    public val getElapsedTimePtr: VoidPtr =
+    internal val getElapsedTimePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_elapsed_time", 191475506)
 
-    public val setElapsedTimePtr: VoidPtr =
+    internal val setElapsedTimePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_elapsed_time", 373806689)
 
-    public val isVisiblePtr: VoidPtr =
+    internal val isVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "is_visible", 2240911060)
 
-    public val setVisibilityPtr: VoidPtr =
+    internal val setVisibilityPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_visibility", 2586408642)
 
-    public val isOutlinePtr: VoidPtr =
+    internal val isOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "is_outline", 2240911060)
 
-    public val setOutlinePtr: VoidPtr =
+    internal val setOutlinePtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_outline", 2586408642)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_offset", 1497962370)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_offset", 743155724)
 
-    public val getColorPtr: VoidPtr =
+    internal val getColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_color", 3200896285)
 
-    public val setColorPtr: VoidPtr =
+    internal val setColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_color", 2920490490)
 
-    public val getEnvironmentPtr: VoidPtr =
+    internal val getEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_environment", 2382534195)
 
-    public val setEnvironmentPtr: VoidPtr =
+    internal val setEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_environment", 4155329257)
 
-    public val getGlyphIndexPtr: VoidPtr =
+    internal val getGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_glyph_index", 3905245786)
 
-    public val setGlyphIndexPtr: VoidPtr =
+    internal val setGlyphIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_glyph_index", 1286410249)
 
-    public val getRelativeIndexPtr: VoidPtr =
+    internal val getRelativeIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_relative_index", 3905245786)
 
-    public val setRelativeIndexPtr: VoidPtr =
+    internal val setRelativeIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_relative_index", 1286410249)
 
-    public val getGlyphCountPtr: VoidPtr =
+    internal val getGlyphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_glyph_count", 3905245786)
 
-    public val setGlyphCountPtr: VoidPtr =
+    internal val setGlyphCountPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_glyph_count", 1286410249)
 
-    public val getGlyphFlagsPtr: VoidPtr =
+    internal val getGlyphFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_glyph_flags", 3905245786)
 
-    public val setGlyphFlagsPtr: VoidPtr =
+    internal val setGlyphFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_glyph_flags", 1286410249)
 
-    public val getFontPtr: VoidPtr =
+    internal val getFontPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "get_font", 2944877500)
 
-    public val setFontPtr: VoidPtr =
+    internal val setFontPtr: VoidPtr =
         Internals.getMethodBindPtr("CharFXTransform", "set_font", 2722037293)
   }
 }

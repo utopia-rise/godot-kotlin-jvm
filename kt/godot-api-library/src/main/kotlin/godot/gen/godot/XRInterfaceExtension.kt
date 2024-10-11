@@ -326,20 +326,20 @@ public open class XRInterfaceExtension : XRInterface() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getColorTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getColorTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterfaceExtension", "get_color_texture", 529393457)
 
-    public val getDepthTexturePtr: VoidPtr =
+    internal val getDepthTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterfaceExtension", "get_depth_texture", 529393457)
 
-    public val getVelocityTexturePtr: VoidPtr =
+    internal val getVelocityTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterfaceExtension", "get_velocity_texture", 529393457)
 
-    public val addBlitPtr: VoidPtr =
+    internal val addBlitPtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterfaceExtension", "add_blit", 258596971)
 
-    public val getRenderTargetTexturePtr: VoidPtr =
+    internal val getRenderTargetTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("XRInterfaceExtension", "get_render_target_texture", 41030802)
   }
 }

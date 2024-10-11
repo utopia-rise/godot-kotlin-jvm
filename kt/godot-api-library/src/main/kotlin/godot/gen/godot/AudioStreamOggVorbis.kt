@@ -186,47 +186,47 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
   }
 
-  internal object MethodBindings {
-    public val loadFromBufferPtr: VoidPtr =
+  public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354904730)
 
-    public val loadFromFilePtr: VoidPtr =
+    internal val loadFromFilePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797568536)
 
-    public val setPacketSequencePtr: VoidPtr =
+    internal val setPacketSequencePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence", 438882457)
 
-    public val getPacketSequencePtr: VoidPtr =
+    internal val getPacketSequencePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "get_packet_sequence", 2801636033)
 
-    public val setLoopPtr: VoidPtr =
+    internal val setLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr =
+    internal val hasLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "has_loop", 36873697)
 
-    public val setLoopOffsetPtr: VoidPtr =
+    internal val setLoopOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_loop_offset", 373806689)
 
-    public val getLoopOffsetPtr: VoidPtr =
+    internal val getLoopOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "get_loop_offset", 1740695150)
 
-    public val setBpmPtr: VoidPtr =
+    internal val setBpmPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_bpm", 373806689)
 
-    public val getBpmPtr: VoidPtr =
+    internal val getBpmPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "get_bpm", 1740695150)
 
-    public val setBeatCountPtr: VoidPtr =
+    internal val setBeatCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_beat_count", 1286410249)
 
-    public val getBeatCountPtr: VoidPtr =
+    internal val getBeatCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "get_beat_count", 3905245786)
 
-    public val setBarBeatsPtr: VoidPtr =
+    internal val setBarBeatsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "set_bar_beats", 1286410249)
 
-    public val getBarBeatsPtr: VoidPtr =
+    internal val getBarBeatsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3905245786)
   }
 }

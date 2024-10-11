@@ -44,7 +44,7 @@ public open class WeakRef : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getRefPtr: VoidPtr = Internals.getMethodBindPtr("WeakRef", "get_ref", 1214101251)
+  public object MethodBindings {
+    internal val getRefPtr: VoidPtr = Internals.getMethodBindPtr("WeakRef", "get_ref", 1214101251)
   }
 }

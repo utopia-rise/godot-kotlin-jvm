@@ -58,11 +58,11 @@ public open class AudioStreamPolyphonic : AudioStream() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPolyphonyPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1286410249)
 
-    public val getPolyphonyPtr: VoidPtr =
+    internal val getPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3905245786)
   }
 }

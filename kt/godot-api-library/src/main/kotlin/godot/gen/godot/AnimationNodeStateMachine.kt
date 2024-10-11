@@ -329,80 +329,80 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val addNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "add_node", 1980270704)
 
-    public val replaceNodePtr: VoidPtr =
+    internal val replaceNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "replace_node", 2559412862)
 
-    public val getNodePtr: VoidPtr =
+    internal val getNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_node", 625644256)
 
-    public val removeNodePtr: VoidPtr =
+    internal val removeNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "remove_node", 3304788590)
 
-    public val renameNodePtr: VoidPtr =
+    internal val renameNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "rename_node", 3740211285)
 
-    public val hasNodePtr: VoidPtr =
+    internal val hasNodePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "has_node", 2619796661)
 
-    public val getNodeNamePtr: VoidPtr =
+    internal val getNodeNamePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_node_name", 739213945)
 
-    public val setNodePositionPtr: VoidPtr =
+    internal val setNodePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "set_node_position", 1999414630)
 
-    public val getNodePositionPtr: VoidPtr =
+    internal val getNodePositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_node_position", 3100822709)
 
-    public val hasTransitionPtr: VoidPtr =
+    internal val hasTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "has_transition", 471820014)
 
-    public val addTransitionPtr: VoidPtr =
+    internal val addTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "add_transition", 795486887)
 
-    public val getTransitionPtr: VoidPtr =
+    internal val getTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_transition", 4192381260)
 
-    public val getTransitionFromPtr: VoidPtr =
+    internal val getTransitionFromPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_transition_from", 659327637)
 
-    public val getTransitionToPtr: VoidPtr =
+    internal val getTransitionToPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_transition_to", 659327637)
 
-    public val getTransitionCountPtr: VoidPtr =
+    internal val getTransitionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_transition_count", 3905245786)
 
-    public val removeTransitionByIndexPtr: VoidPtr =
+    internal val removeTransitionByIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "remove_transition_by_index", 1286410249)
 
-    public val removeTransitionPtr: VoidPtr =
+    internal val removeTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "remove_transition", 3740211285)
 
-    public val setGraphOffsetPtr: VoidPtr =
+    internal val setGraphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "set_graph_offset", 743155724)
 
-    public val getGraphOffsetPtr: VoidPtr =
+    internal val getGraphOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_graph_offset", 3341600327)
 
-    public val setStateMachineTypePtr: VoidPtr =
+    internal val setStateMachineTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "set_state_machine_type", 2584759088)
 
-    public val getStateMachineTypePtr: VoidPtr =
+    internal val getStateMachineTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "get_state_machine_type", 1140726469)
 
-    public val setAllowTransitionToSelfPtr: VoidPtr =
+    internal val setAllowTransitionToSelfPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "set_allow_transition_to_self", 2586408642)
 
-    public val isAllowTransitionToSelfPtr: VoidPtr =
+    internal val isAllowTransitionToSelfPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "is_allow_transition_to_self", 36873697)
 
-    public val setResetEndsPtr: VoidPtr =
+    internal val setResetEndsPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "set_reset_ends", 2586408642)
 
-    public val areEndsResetPtr: VoidPtr =
+    internal val areEndsResetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachine", "are_ends_reset", 36873697)
   }
 }

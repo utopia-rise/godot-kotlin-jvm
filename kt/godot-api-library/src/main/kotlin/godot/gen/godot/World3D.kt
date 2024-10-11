@@ -152,34 +152,35 @@ public open class World3D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSpacePtr: VoidPtr = Internals.getMethodBindPtr("World3D", "get_space", 2944877500)
+  public object MethodBindings {
+    internal val getSpacePtr: VoidPtr =
+        Internals.getMethodBindPtr("World3D", "get_space", 2944877500)
 
-    public val getNavigationMapPtr: VoidPtr =
+    internal val getNavigationMapPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_navigation_map", 2944877500)
 
-    public val getScenarioPtr: VoidPtr =
+    internal val getScenarioPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_scenario", 2944877500)
 
-    public val setEnvironmentPtr: VoidPtr =
+    internal val setEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "set_environment", 4143518816)
 
-    public val getEnvironmentPtr: VoidPtr =
+    internal val getEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_environment", 3082064660)
 
-    public val setFallbackEnvironmentPtr: VoidPtr =
+    internal val setFallbackEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "set_fallback_environment", 4143518816)
 
-    public val getFallbackEnvironmentPtr: VoidPtr =
+    internal val getFallbackEnvironmentPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_fallback_environment", 3082064660)
 
-    public val setCameraAttributesPtr: VoidPtr =
+    internal val setCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "set_camera_attributes", 2817810567)
 
-    public val getCameraAttributesPtr: VoidPtr =
+    internal val getCameraAttributesPtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_camera_attributes", 3921283215)
 
-    public val getDirectSpaceStatePtr: VoidPtr =
+    internal val getDirectSpaceStatePtr: VoidPtr =
         Internals.getMethodBindPtr("World3D", "get_direct_space_state", 2069328350)
   }
 }

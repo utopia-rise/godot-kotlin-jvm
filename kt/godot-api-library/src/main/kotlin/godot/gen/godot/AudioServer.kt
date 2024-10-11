@@ -603,149 +603,151 @@ public object AudioServer : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val setBusCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBusCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_count", 1286410249)
 
-    public val getBusCountPtr: VoidPtr =
+    internal val getBusCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_count", 3905245786)
 
-    public val removeBusPtr: VoidPtr =
+    internal val removeBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "remove_bus", 1286410249)
 
-    public val addBusPtr: VoidPtr = Internals.getMethodBindPtr("AudioServer", "add_bus", 1025054187)
+    internal val addBusPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioServer", "add_bus", 1025054187)
 
-    public val moveBusPtr: VoidPtr =
+    internal val moveBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "move_bus", 3937882851)
 
-    public val setBusNamePtr: VoidPtr =
+    internal val setBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_name", 501894301)
 
-    public val getBusNamePtr: VoidPtr =
+    internal val getBusNamePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_name", 844755477)
 
-    public val getBusIndexPtr: VoidPtr =
+    internal val getBusIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_index", 2458036349)
 
-    public val getBusChannelsPtr: VoidPtr =
+    internal val getBusChannelsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_channels", 923996154)
 
-    public val setBusVolumeDbPtr: VoidPtr =
+    internal val setBusVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_volume_db", 1602489585)
 
-    public val getBusVolumeDbPtr: VoidPtr =
+    internal val getBusVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_volume_db", 2339986948)
 
-    public val setBusSendPtr: VoidPtr =
+    internal val setBusSendPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_send", 3780747571)
 
-    public val getBusSendPtr: VoidPtr =
+    internal val getBusSendPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_send", 659327637)
 
-    public val setBusSoloPtr: VoidPtr =
+    internal val setBusSoloPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_solo", 300928843)
 
-    public val isBusSoloPtr: VoidPtr =
+    internal val isBusSoloPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "is_bus_solo", 1116898809)
 
-    public val setBusMutePtr: VoidPtr =
+    internal val setBusMutePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_mute", 300928843)
 
-    public val isBusMutePtr: VoidPtr =
+    internal val isBusMutePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "is_bus_mute", 1116898809)
 
-    public val setBusBypassEffectsPtr: VoidPtr =
+    internal val setBusBypassEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_bypass_effects", 300928843)
 
-    public val isBusBypassingEffectsPtr: VoidPtr =
+    internal val isBusBypassingEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "is_bus_bypassing_effects", 1116898809)
 
-    public val addBusEffectPtr: VoidPtr =
+    internal val addBusEffectPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "add_bus_effect", 4068819785)
 
-    public val removeBusEffectPtr: VoidPtr =
+    internal val removeBusEffectPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "remove_bus_effect", 3937882851)
 
-    public val getBusEffectCountPtr: VoidPtr =
+    internal val getBusEffectCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_effect_count", 3744713108)
 
-    public val getBusEffectPtr: VoidPtr =
+    internal val getBusEffectPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_effect", 726064442)
 
-    public val getBusEffectInstancePtr: VoidPtr =
+    internal val getBusEffectInstancePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_effect_instance", 1829771234)
 
-    public val swapBusEffectsPtr: VoidPtr =
+    internal val swapBusEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "swap_bus_effects", 1649997291)
 
-    public val setBusEffectEnabledPtr: VoidPtr =
+    internal val setBusEffectEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_effect_enabled", 1383440665)
 
-    public val isBusEffectEnabledPtr: VoidPtr =
+    internal val isBusEffectEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "is_bus_effect_enabled", 2522259332)
 
-    public val getBusPeakVolumeLeftDbPtr: VoidPtr =
+    internal val getBusPeakVolumeLeftDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_peak_volume_left_db", 3085491603)
 
-    public val getBusPeakVolumeRightDbPtr: VoidPtr =
+    internal val getBusPeakVolumeRightDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_bus_peak_volume_right_db", 3085491603)
 
-    public val setPlaybackSpeedScalePtr: VoidPtr =
+    internal val setPlaybackSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_playback_speed_scale", 373806689)
 
-    public val getPlaybackSpeedScalePtr: VoidPtr =
+    internal val getPlaybackSpeedScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_playback_speed_scale", 1740695150)
 
-    public val lockPtr: VoidPtr = Internals.getMethodBindPtr("AudioServer", "lock", 3218959716)
+    internal val lockPtr: VoidPtr = Internals.getMethodBindPtr("AudioServer", "lock", 3218959716)
 
-    public val unlockPtr: VoidPtr = Internals.getMethodBindPtr("AudioServer", "unlock", 3218959716)
+    internal val unlockPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioServer", "unlock", 3218959716)
 
-    public val getSpeakerModePtr: VoidPtr =
+    internal val getSpeakerModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_speaker_mode", 2549190337)
 
-    public val getMixRatePtr: VoidPtr =
+    internal val getMixRatePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_mix_rate", 1740695150)
 
-    public val getOutputDeviceListPtr: VoidPtr =
+    internal val getOutputDeviceListPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_output_device_list", 2981934095)
 
-    public val getOutputDevicePtr: VoidPtr =
+    internal val getOutputDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_output_device", 2841200299)
 
-    public val setOutputDevicePtr: VoidPtr =
+    internal val setOutputDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_output_device", 83702148)
 
-    public val getTimeToNextMixPtr: VoidPtr =
+    internal val getTimeToNextMixPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_time_to_next_mix", 1740695150)
 
-    public val getTimeSinceLastMixPtr: VoidPtr =
+    internal val getTimeSinceLastMixPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_time_since_last_mix", 1740695150)
 
-    public val getOutputLatencyPtr: VoidPtr =
+    internal val getOutputLatencyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_output_latency", 1740695150)
 
-    public val getInputDeviceListPtr: VoidPtr =
+    internal val getInputDeviceListPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_input_device_list", 2981934095)
 
-    public val getInputDevicePtr: VoidPtr =
+    internal val getInputDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "get_input_device", 2841200299)
 
-    public val setInputDevicePtr: VoidPtr =
+    internal val setInputDevicePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_input_device", 83702148)
 
-    public val setBusLayoutPtr: VoidPtr =
+    internal val setBusLayoutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_bus_layout", 3319058824)
 
-    public val generateBusLayoutPtr: VoidPtr =
+    internal val generateBusLayoutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "generate_bus_layout", 3769973890)
 
-    public val setEnableTaggingUsedAudioStreamsPtr: VoidPtr =
+    internal val setEnableTaggingUsedAudioStreamsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams", 2586408642)
 
-    public val isStreamRegisteredAsSamplePtr: VoidPtr =
+    internal val isStreamRegisteredAsSamplePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample", 500225754)
 
-    public val registerStreamAsSamplePtr: VoidPtr =
+    internal val registerStreamAsSamplePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioServer", "register_stream_as_sample", 2210767741)
   }
 }

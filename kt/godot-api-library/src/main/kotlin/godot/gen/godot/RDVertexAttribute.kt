@@ -125,35 +125,35 @@ public open class RDVertexAttribute : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLocationPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLocationPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "set_location", 1286410249)
 
-    public val getLocationPtr: VoidPtr =
+    internal val getLocationPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "get_location", 3905245786)
 
-    public val setOffsetPtr: VoidPtr =
+    internal val setOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "set_offset", 1286410249)
 
-    public val getOffsetPtr: VoidPtr =
+    internal val getOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "get_offset", 3905245786)
 
-    public val setFormatPtr: VoidPtr =
+    internal val setFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "set_format", 565531219)
 
-    public val getFormatPtr: VoidPtr =
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "get_format", 2235804183)
 
-    public val setStridePtr: VoidPtr =
+    internal val setStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "set_stride", 1286410249)
 
-    public val getStridePtr: VoidPtr =
+    internal val getStridePtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "get_stride", 3905245786)
 
-    public val setFrequencyPtr: VoidPtr =
+    internal val setFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "set_frequency", 522141836)
 
-    public val getFrequencyPtr: VoidPtr =
+    internal val getFrequencyPtr: VoidPtr =
         Internals.getMethodBindPtr("RDVertexAttribute", "get_frequency", 4154106413)
   }
 }

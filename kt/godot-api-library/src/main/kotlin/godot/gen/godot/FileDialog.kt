@@ -520,112 +520,113 @@ public open class FileDialog : ConfirmationDialog() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val clearFiltersPtr: VoidPtr =
+  public object MethodBindings {
+    internal val clearFiltersPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "clear_filters", 3218959716)
 
-    public val addFilterPtr: VoidPtr =
+    internal val addFilterPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "add_filter", 3388804757)
 
-    public val setFiltersPtr: VoidPtr =
+    internal val setFiltersPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_filters", 4015028928)
 
-    public val getFiltersPtr: VoidPtr =
+    internal val getFiltersPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_filters", 1139954409)
 
-    public val getOptionNamePtr: VoidPtr =
+    internal val getOptionNamePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_option_name", 844755477)
 
-    public val getOptionValuesPtr: VoidPtr =
+    internal val getOptionValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_option_values", 647634434)
 
-    public val getOptionDefaultPtr: VoidPtr =
+    internal val getOptionDefaultPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_option_default", 923996154)
 
-    public val setOptionNamePtr: VoidPtr =
+    internal val setOptionNamePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_option_name", 501894301)
 
-    public val setOptionValuesPtr: VoidPtr =
+    internal val setOptionValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_option_values", 3353661094)
 
-    public val setOptionDefaultPtr: VoidPtr =
+    internal val setOptionDefaultPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_option_default", 3937882851)
 
-    public val setOptionCountPtr: VoidPtr =
+    internal val setOptionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_option_count", 1286410249)
 
-    public val getOptionCountPtr: VoidPtr =
+    internal val getOptionCountPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_option_count", 3905245786)
 
-    public val addOptionPtr: VoidPtr =
+    internal val addOptionPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "add_option", 149592325)
 
-    public val getSelectedOptionsPtr: VoidPtr =
+    internal val getSelectedOptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_selected_options", 3102165223)
 
-    public val getCurrentDirPtr: VoidPtr =
+    internal val getCurrentDirPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_current_dir", 201670096)
 
-    public val getCurrentFilePtr: VoidPtr =
+    internal val getCurrentFilePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_current_file", 201670096)
 
-    public val getCurrentPathPtr: VoidPtr =
+    internal val getCurrentPathPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_current_path", 201670096)
 
-    public val setCurrentDirPtr: VoidPtr =
+    internal val setCurrentDirPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_current_dir", 83702148)
 
-    public val setCurrentFilePtr: VoidPtr =
+    internal val setCurrentFilePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_current_file", 83702148)
 
-    public val setCurrentPathPtr: VoidPtr =
+    internal val setCurrentPathPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_current_path", 83702148)
 
-    public val setModeOverridesTitlePtr: VoidPtr =
+    internal val setModeOverridesTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_mode_overrides_title", 2586408642)
 
-    public val isModeOverridingTitlePtr: VoidPtr =
+    internal val isModeOverridingTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "is_mode_overriding_title", 36873697)
 
-    public val setFileModePtr: VoidPtr =
+    internal val setFileModePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_file_mode", 3654936397)
 
-    public val getFileModePtr: VoidPtr =
+    internal val getFileModePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_file_mode", 4074825319)
 
-    public val getVboxPtr: VoidPtr = Internals.getMethodBindPtr("FileDialog", "get_vbox", 915758477)
+    internal val getVboxPtr: VoidPtr =
+        Internals.getMethodBindPtr("FileDialog", "get_vbox", 915758477)
 
-    public val getLineEditPtr: VoidPtr =
+    internal val getLineEditPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_line_edit", 4071694264)
 
-    public val setAccessPtr: VoidPtr =
+    internal val setAccessPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_access", 4104413466)
 
-    public val getAccessPtr: VoidPtr =
+    internal val getAccessPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_access", 3344081076)
 
-    public val setRootSubfolderPtr: VoidPtr =
+    internal val setRootSubfolderPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_root_subfolder", 83702148)
 
-    public val getRootSubfolderPtr: VoidPtr =
+    internal val getRootSubfolderPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_root_subfolder", 201670096)
 
-    public val setShowHiddenFilesPtr: VoidPtr =
+    internal val setShowHiddenFilesPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_show_hidden_files", 2586408642)
 
-    public val isShowingHiddenFilesPtr: VoidPtr =
+    internal val isShowingHiddenFilesPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "is_showing_hidden_files", 36873697)
 
-    public val setUseNativeDialogPtr: VoidPtr =
+    internal val setUseNativeDialogPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "set_use_native_dialog", 2586408642)
 
-    public val getUseNativeDialogPtr: VoidPtr =
+    internal val getUseNativeDialogPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "get_use_native_dialog", 36873697)
 
-    public val deselectAllPtr: VoidPtr =
+    internal val deselectAllPtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "deselect_all", 3218959716)
 
-    public val invalidatePtr: VoidPtr =
+    internal val invalidatePtr: VoidPtr =
         Internals.getMethodBindPtr("FileDialog", "invalidate", 3218959716)
   }
 }

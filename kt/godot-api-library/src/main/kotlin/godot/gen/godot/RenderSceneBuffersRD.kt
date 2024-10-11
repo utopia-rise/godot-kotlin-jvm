@@ -350,86 +350,86 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val hasTexturePtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "has_texture", 471820014)
 
-    public val createTexturePtr: VoidPtr =
+    internal val createTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 3559915770)
 
-    public val createTextureFromFormatPtr: VoidPtr =
+    internal val createTextureFromFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format", 3344669382)
 
-    public val createTextureViewPtr: VoidPtr =
+    internal val createTextureViewPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_view", 283055834)
 
-    public val getTexturePtr: VoidPtr =
+    internal val getTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture", 750006389)
 
-    public val getTextureFormatPtr: VoidPtr =
+    internal val getTextureFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_format", 371461758)
 
-    public val getTextureSlicePtr: VoidPtr =
+    internal val getTextureSlicePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice", 588440706)
 
-    public val getTextureSliceViewPtr: VoidPtr =
+    internal val getTextureSliceViewPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_view", 682451778)
 
-    public val getTextureSliceSizePtr: VoidPtr =
+    internal val getTextureSliceSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_size", 2617625368)
 
-    public val clearContextPtr: VoidPtr =
+    internal val clearContextPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "clear_context", 3304788590)
 
-    public val getColorTexturePtr: VoidPtr =
+    internal val getColorTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_color_texture", 3050822880)
 
-    public val getColorLayerPtr: VoidPtr =
+    internal val getColorLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_color_layer", 3087988589)
 
-    public val getDepthTexturePtr: VoidPtr =
+    internal val getDepthTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_texture", 3050822880)
 
-    public val getDepthLayerPtr: VoidPtr =
+    internal val getDepthLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_layer", 3087988589)
 
-    public val getVelocityTexturePtr: VoidPtr =
+    internal val getVelocityTexturePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_texture", 3050822880)
 
-    public val getVelocityLayerPtr: VoidPtr =
+    internal val getVelocityLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_layer", 3087988589)
 
-    public val getRenderTargetPtr: VoidPtr =
+    internal val getRenderTargetPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_render_target", 2944877500)
 
-    public val getViewCountPtr: VoidPtr =
+    internal val getViewCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_view_count", 3905245786)
 
-    public val getInternalSizePtr: VoidPtr =
+    internal val getInternalSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size", 3690982128)
 
-    public val getTargetSizePtr: VoidPtr =
+    internal val getTargetSizePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size", 3690982128)
 
-    public val getScaling3dModePtr: VoidPtr =
+    internal val getScaling3dModePtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode", 976778074)
 
-    public val getFsrSharpnessPtr: VoidPtr =
+    internal val getFsrSharpnessPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness", 1740695150)
 
-    public val getMsaa3dPtr: VoidPtr =
+    internal val getMsaa3dPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d", 3109158617)
 
-    public val getTextureSamplesPtr: VoidPtr =
+    internal val getTextureSamplesPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples", 407791724)
 
-    public val getScreenSpaceAaPtr: VoidPtr =
+    internal val getScreenSpaceAaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa", 641513172)
 
-    public val getUseTaaPtr: VoidPtr =
+    internal val getUseTaaPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa", 36873697)
 
-    public val getUseDebandingPtr: VoidPtr =
+    internal val getUseDebandingPtr: VoidPtr =
         Internals.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding", 36873697)
   }
 }

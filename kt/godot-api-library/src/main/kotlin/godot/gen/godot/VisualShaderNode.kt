@@ -217,38 +217,38 @@ public open class VisualShaderNode internal constructor() : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getDefaultInputPortPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getDefaultInputPortPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "get_default_input_port", 1894493699)
 
-    public val setOutputPortForPreviewPtr: VoidPtr =
+    internal val setOutputPortForPreviewPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview", 1286410249)
 
-    public val getOutputPortForPreviewPtr: VoidPtr =
+    internal val getOutputPortForPreviewPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview", 3905245786)
 
-    public val setInputPortDefaultValuePtr: VoidPtr =
+    internal val setInputPortDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value", 150923387)
 
-    public val getInputPortDefaultValuePtr: VoidPtr =
+    internal val getInputPortDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value", 4227898402)
 
-    public val removeInputPortDefaultValuePtr: VoidPtr =
+    internal val removeInputPortDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value", 1286410249)
 
-    public val clearDefaultInputValuesPtr: VoidPtr =
+    internal val clearDefaultInputValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "clear_default_input_values", 3218959716)
 
-    public val setDefaultInputValuesPtr: VoidPtr =
+    internal val setDefaultInputValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "set_default_input_values", 381264803)
 
-    public val getDefaultInputValuesPtr: VoidPtr =
+    internal val getDefaultInputValuesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "get_default_input_values", 3995934104)
 
-    public val setFramePtr: VoidPtr =
+    internal val setFramePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr =
+    internal val getFramePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNode", "get_frame", 3905245786)
   }
 }

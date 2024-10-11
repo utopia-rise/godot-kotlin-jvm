@@ -27,6 +27,7 @@ import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinReflectPackage
 import java.io.File
 import kotlin.reflect.KCallable
@@ -35,7 +36,7 @@ class SignalGenerationService : ISignalGenerationService {
 
     override fun generate(coreDir: File, apiDir: File) {
         val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
-        val signalExtFileSpec = FileSpec.builder(godotCorePackage, "SignalsExt")
+        val signalExtFileSpec = FileSpec.builder(godotExtensionPackage, "SignalsExt")
 
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
@@ -83,7 +84,7 @@ class SignalGenerationService : ISignalGenerationService {
             .indent("    ")
             .addImport(
                 "godot.extensions",
-                "connectThreadSafeVararg"
+                "connectThreadSafe"
             )
             .build()
             .writeTo(apiDir)
@@ -394,7 +395,7 @@ class SignalGenerationService : ISignalGenerationService {
 
         private const val EMIT_METHOD_NAME = "emit"
         private const val CONNECT_METHOD_NAME = "connect"
-        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafeVararg"
+        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafe"
         private const val DISCONNECT_METHOD_NAME = "disconnect"
         private const val SIGNAL_METHOD_NAME = "signal"
         private const val JAVA_CREATE_METHOD_NAME = "javaCreate"

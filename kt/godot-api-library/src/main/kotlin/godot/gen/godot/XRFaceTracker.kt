@@ -673,17 +673,17 @@ public open class XRFaceTracker : XRTracker() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getBlendShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getBlendShapePtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330010046)
 
-    public val setBlendShapePtr: VoidPtr =
+    internal val setBlendShapePtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2352588791)
 
-    public val getBlendShapesPtr: VoidPtr =
+    internal val getBlendShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675695659)
 
-    public val setBlendShapesPtr: VoidPtr =
+    internal val setBlendShapesPtr: VoidPtr =
         Internals.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2899603908)
   }
 }

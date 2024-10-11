@@ -191,50 +191,50 @@ public open class SkeletonModificationStack2D : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setupPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "setup", 3218959716)
 
-    public val executePtr: VoidPtr =
+    internal val executePtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "execute", 1005356550)
 
-    public val enableAllModificationsPtr: VoidPtr =
+    internal val enableAllModificationsPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "enable_all_modifications", 2586408642)
 
-    public val getModificationPtr: VoidPtr =
+    internal val getModificationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_modification", 2570274329)
 
-    public val addModificationPtr: VoidPtr =
+    internal val addModificationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "add_modification", 354162120)
 
-    public val deleteModificationPtr: VoidPtr =
+    internal val deleteModificationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "delete_modification", 1286410249)
 
-    public val setModificationPtr: VoidPtr =
+    internal val setModificationPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_modification", 1098262544)
 
-    public val setModificationCountPtr: VoidPtr =
+    internal val setModificationCountPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_modification_count", 1286410249)
 
-    public val getModificationCountPtr: VoidPtr =
+    internal val getModificationCountPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_modification_count", 3905245786)
 
-    public val getIsSetupPtr: VoidPtr =
+    internal val getIsSetupPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_is_setup", 36873697)
 
-    public val setEnabledPtr: VoidPtr =
+    internal val setEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_enabled", 2586408642)
 
-    public val getEnabledPtr: VoidPtr =
+    internal val getEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_enabled", 36873697)
 
-    public val setStrengthPtr: VoidPtr =
+    internal val setStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_strength", 373806689)
 
-    public val getStrengthPtr: VoidPtr =
+    internal val getStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_strength", 1740695150)
 
-    public val getSkeletonPtr: VoidPtr =
+    internal val getSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_skeleton", 1697361217)
   }
 }

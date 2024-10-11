@@ -446,59 +446,59 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPathfindingAlgorithmPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPathfindingAlgorithmPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_pathfinding_algorithm", 394560454)
 
-    public val getPathfindingAlgorithmPtr: VoidPtr =
+    internal val getPathfindingAlgorithmPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_pathfinding_algorithm", 3398491350)
 
-    public val setPathPostprocessingPtr: VoidPtr =
+    internal val setPathPostprocessingPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_postprocessing", 2267362344)
 
-    public val getPathPostprocessingPtr: VoidPtr =
+    internal val getPathPostprocessingPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_postprocessing", 3883858360)
 
-    public val setMapPtr: VoidPtr =
+    internal val setMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_map", 2722037293)
 
-    public val getMapPtr: VoidPtr =
+    internal val getMapPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_map", 2944877500)
 
-    public val setStartPositionPtr: VoidPtr =
+    internal val setStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_start_position", 3460891852)
 
-    public val getStartPositionPtr: VoidPtr =
+    internal val getStartPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_start_position", 3360562783)
 
-    public val setTargetPositionPtr: VoidPtr =
+    internal val setTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_target_position", 3460891852)
 
-    public val getTargetPositionPtr: VoidPtr =
+    internal val getTargetPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_target_position", 3360562783)
 
-    public val setNavigationLayersPtr: VoidPtr =
+    internal val setNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_navigation_layers", 1286410249)
 
-    public val getNavigationLayersPtr: VoidPtr =
+    internal val getNavigationLayersPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_navigation_layers", 3905245786)
 
-    public val setMetadataFlagsPtr: VoidPtr =
+    internal val setMetadataFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_metadata_flags", 2713846708)
 
-    public val getMetadataFlagsPtr: VoidPtr =
+    internal val getMetadataFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_metadata_flags", 1582332802)
 
-    public val setSimplifyPathPtr: VoidPtr =
+    internal val setSimplifyPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_path", 2586408642)
 
-    public val getSimplifyPathPtr: VoidPtr =
+    internal val getSimplifyPathPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_path", 36873697)
 
-    public val setSimplifyEpsilonPtr: VoidPtr =
+    internal val setSimplifyEpsilonPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_epsilon", 373806689)
 
-    public val getSimplifyEpsilonPtr: VoidPtr =
+    internal val getSimplifyEpsilonPtr: VoidPtr =
         Internals.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_epsilon", 1740695150)
   }
 }

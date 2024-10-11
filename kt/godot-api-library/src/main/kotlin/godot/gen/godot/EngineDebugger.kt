@@ -276,73 +276,74 @@ public object EngineDebugger : Object() {
     Internals.callMethod(rawPtr, MethodBindings.clearBreakpointsPtr, NIL)
   }
 
-  internal object MethodBindings {
-    public val isActivePtr: VoidPtr =
+  public object MethodBindings {
+    internal val isActivePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "is_active", 2240911060)
 
-    public val registerProfilerPtr: VoidPtr =
+    internal val registerProfilerPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "register_profiler", 3651669560)
 
-    public val unregisterProfilerPtr: VoidPtr =
+    internal val unregisterProfilerPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3304788590)
 
-    public val isProfilingPtr: VoidPtr =
+    internal val isProfilingPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "is_profiling", 2041966384)
 
-    public val hasProfilerPtr: VoidPtr =
+    internal val hasProfilerPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "has_profiler", 2041966384)
 
-    public val profilerAddFrameDataPtr: VoidPtr =
+    internal val profilerAddFrameDataPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1895267858)
 
-    public val profilerEnablePtr: VoidPtr =
+    internal val profilerEnablePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "profiler_enable", 3192561009)
 
-    public val registerMessageCapturePtr: VoidPtr =
+    internal val registerMessageCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "register_message_capture", 1874754934)
 
-    public val unregisterMessageCapturePtr: VoidPtr =
+    internal val unregisterMessageCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3304788590)
 
-    public val hasCapturePtr: VoidPtr =
+    internal val hasCapturePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "has_capture", 2041966384)
 
-    public val linePollPtr: VoidPtr =
+    internal val linePollPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "line_poll", 3218959716)
 
-    public val sendMessagePtr: VoidPtr =
+    internal val sendMessagePtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "send_message", 1209351045)
 
-    public val debugPtr: VoidPtr = Internals.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
+    internal val debugPtr: VoidPtr =
+        Internals.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
 
-    public val scriptDebugPtr: VoidPtr =
+    internal val scriptDebugPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "script_debug", 2442343672)
 
-    public val setLinesLeftPtr: VoidPtr =
+    internal val setLinesLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "set_lines_left", 1286410249)
 
-    public val getLinesLeftPtr: VoidPtr =
+    internal val getLinesLeftPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "get_lines_left", 3905245786)
 
-    public val setDepthPtr: VoidPtr =
+    internal val setDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "set_depth", 1286410249)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "get_depth", 3905245786)
 
-    public val isBreakpointPtr: VoidPtr =
+    internal val isBreakpointPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921227809)
 
-    public val isSkippingBreakpointsPtr: VoidPtr =
+    internal val isSkippingBreakpointsPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36873697)
 
-    public val insertBreakpointPtr: VoidPtr =
+    internal val insertBreakpointPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3780747571)
 
-    public val removeBreakpointPtr: VoidPtr =
+    internal val removeBreakpointPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3780747571)
 
-    public val clearBreakpointsPtr: VoidPtr =
+    internal val clearBreakpointsPtr: VoidPtr =
         Internals.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3218959716)
   }
 }

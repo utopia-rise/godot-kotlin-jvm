@@ -186,29 +186,29 @@ public open class AtlasTexture : Texture2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setAtlasPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setAtlasPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "set_atlas", 4051416890)
 
-    public val getAtlasPtr: VoidPtr =
+    internal val getAtlasPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "get_atlas", 3635182373)
 
-    public val setRegionPtr: VoidPtr =
+    internal val setRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "set_region", 2046264180)
 
-    public val getRegionPtr: VoidPtr =
+    internal val getRegionPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "get_region", 1639390495)
 
-    public val setMarginPtr: VoidPtr =
+    internal val setMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "set_margin", 2046264180)
 
-    public val getMarginPtr: VoidPtr =
+    internal val getMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "get_margin", 1639390495)
 
-    public val setFilterClipPtr: VoidPtr =
+    internal val setFilterClipPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "set_filter_clip", 2586408642)
 
-    public val hasFilterClipPtr: VoidPtr =
+    internal val hasFilterClipPtr: VoidPtr =
         Internals.getMethodBindPtr("AtlasTexture", "has_filter_clip", 36873697)
   }
 }

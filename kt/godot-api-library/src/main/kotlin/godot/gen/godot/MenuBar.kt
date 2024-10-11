@@ -273,75 +273,75 @@ public open class MenuBar : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSwitchOnHoverPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSwitchOnHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_switch_on_hover", 2586408642)
 
-    public val isSwitchOnHoverPtr: VoidPtr =
+    internal val isSwitchOnHoverPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "is_switch_on_hover", 2240911060)
 
-    public val setDisableShortcutsPtr: VoidPtr =
+    internal val setDisableShortcutsPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_disable_shortcuts", 2586408642)
 
-    public val setPreferGlobalMenuPtr: VoidPtr =
+    internal val setPreferGlobalMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_prefer_global_menu", 2586408642)
 
-    public val isPreferGlobalMenuPtr: VoidPtr =
+    internal val isPreferGlobalMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "is_prefer_global_menu", 36873697)
 
-    public val isNativeMenuPtr: VoidPtr =
+    internal val isNativeMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "is_native_menu", 36873697)
 
-    public val getMenuCountPtr: VoidPtr =
+    internal val getMenuCountPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_menu_count", 3905245786)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_language", 201670096)
 
-    public val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("MenuBar", "set_flat", 2586408642)
+    internal val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("MenuBar", "set_flat", 2586408642)
 
-    public val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("MenuBar", "is_flat", 36873697)
+    internal val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("MenuBar", "is_flat", 36873697)
 
-    public val setStartIndexPtr: VoidPtr =
+    internal val setStartIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_start_index", 1286410249)
 
-    public val getStartIndexPtr: VoidPtr =
+    internal val getStartIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_start_index", 3905245786)
 
-    public val setMenuTitlePtr: VoidPtr =
+    internal val setMenuTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_menu_title", 501894301)
 
-    public val getMenuTitlePtr: VoidPtr =
+    internal val getMenuTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_menu_title", 844755477)
 
-    public val setMenuTooltipPtr: VoidPtr =
+    internal val setMenuTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_menu_tooltip", 501894301)
 
-    public val getMenuTooltipPtr: VoidPtr =
+    internal val getMenuTooltipPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_menu_tooltip", 844755477)
 
-    public val setMenuDisabledPtr: VoidPtr =
+    internal val setMenuDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_menu_disabled", 300928843)
 
-    public val isMenuDisabledPtr: VoidPtr =
+    internal val isMenuDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "is_menu_disabled", 1116898809)
 
-    public val setMenuHiddenPtr: VoidPtr =
+    internal val setMenuHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "set_menu_hidden", 300928843)
 
-    public val isMenuHiddenPtr: VoidPtr =
+    internal val isMenuHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "is_menu_hidden", 1116898809)
 
-    public val getMenuPopupPtr: VoidPtr =
+    internal val getMenuPopupPtr: VoidPtr =
         Internals.getMethodBindPtr("MenuBar", "get_menu_popup", 2100501353)
   }
 }

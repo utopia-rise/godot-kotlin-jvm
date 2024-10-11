@@ -506,131 +506,131 @@ public open class RDPipelineDepthStencilState : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setEnableDepthTestPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setEnableDepthTestPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_test", 2586408642)
 
-    public val getEnableDepthTestPtr: VoidPtr =
+    internal val getEnableDepthTestPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_test", 36873697)
 
-    public val setEnableDepthWritePtr: VoidPtr =
+    internal val setEnableDepthWritePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_write", 2586408642)
 
-    public val getEnableDepthWritePtr: VoidPtr =
+    internal val getEnableDepthWritePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_write", 36873697)
 
-    public val setDepthCompareOperatorPtr: VoidPtr =
+    internal val setDepthCompareOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_compare_operator", 2573711505)
 
-    public val getDepthCompareOperatorPtr: VoidPtr =
+    internal val getDepthCompareOperatorPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_compare_operator", 269730778)
 
-    public val setEnableDepthRangePtr: VoidPtr =
+    internal val setEnableDepthRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_range", 2586408642)
 
-    public val getEnableDepthRangePtr: VoidPtr =
+    internal val getEnableDepthRangePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_range", 36873697)
 
-    public val setDepthRangeMinPtr: VoidPtr =
+    internal val setDepthRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_min", 373806689)
 
-    public val getDepthRangeMinPtr: VoidPtr =
+    internal val getDepthRangeMinPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_min", 1740695150)
 
-    public val setDepthRangeMaxPtr: VoidPtr =
+    internal val setDepthRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_max", 373806689)
 
-    public val getDepthRangeMaxPtr: VoidPtr =
+    internal val getDepthRangeMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_max", 1740695150)
 
-    public val setEnableStencilPtr: VoidPtr =
+    internal val setEnableStencilPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_stencil", 2586408642)
 
-    public val getEnableStencilPtr: VoidPtr =
+    internal val getEnableStencilPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_stencil", 36873697)
 
-    public val setFrontOpFailPtr: VoidPtr =
+    internal val setFrontOpFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_fail", 2092799566)
 
-    public val getFrontOpFailPtr: VoidPtr =
+    internal val getFrontOpFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_fail", 1714732389)
 
-    public val setFrontOpPassPtr: VoidPtr =
+    internal val setFrontOpPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_pass", 2092799566)
 
-    public val getFrontOpPassPtr: VoidPtr =
+    internal val getFrontOpPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_pass", 1714732389)
 
-    public val setFrontOpDepthFailPtr: VoidPtr =
+    internal val setFrontOpDepthFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_depth_fail", 2092799566)
 
-    public val getFrontOpDepthFailPtr: VoidPtr =
+    internal val getFrontOpDepthFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_depth_fail", 1714732389)
 
-    public val setFrontOpComparePtr: VoidPtr =
+    internal val setFrontOpComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare", 2573711505)
 
-    public val getFrontOpComparePtr: VoidPtr =
+    internal val getFrontOpComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare", 269730778)
 
-    public val setFrontOpCompareMaskPtr: VoidPtr =
+    internal val setFrontOpCompareMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare_mask", 1286410249)
 
-    public val getFrontOpCompareMaskPtr: VoidPtr =
+    internal val getFrontOpCompareMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare_mask", 3905245786)
 
-    public val setFrontOpWriteMaskPtr: VoidPtr =
+    internal val setFrontOpWriteMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_write_mask", 1286410249)
 
-    public val getFrontOpWriteMaskPtr: VoidPtr =
+    internal val getFrontOpWriteMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_write_mask", 3905245786)
 
-    public val setFrontOpReferencePtr: VoidPtr =
+    internal val setFrontOpReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_reference", 1286410249)
 
-    public val getFrontOpReferencePtr: VoidPtr =
+    internal val getFrontOpReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_reference", 3905245786)
 
-    public val setBackOpFailPtr: VoidPtr =
+    internal val setBackOpFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_fail", 2092799566)
 
-    public val getBackOpFailPtr: VoidPtr =
+    internal val getBackOpFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_fail", 1714732389)
 
-    public val setBackOpPassPtr: VoidPtr =
+    internal val setBackOpPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_pass", 2092799566)
 
-    public val getBackOpPassPtr: VoidPtr =
+    internal val getBackOpPassPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_pass", 1714732389)
 
-    public val setBackOpDepthFailPtr: VoidPtr =
+    internal val setBackOpDepthFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_depth_fail", 2092799566)
 
-    public val getBackOpDepthFailPtr: VoidPtr =
+    internal val getBackOpDepthFailPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_depth_fail", 1714732389)
 
-    public val setBackOpComparePtr: VoidPtr =
+    internal val setBackOpComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare", 2573711505)
 
-    public val getBackOpComparePtr: VoidPtr =
+    internal val getBackOpComparePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare", 269730778)
 
-    public val setBackOpCompareMaskPtr: VoidPtr =
+    internal val setBackOpCompareMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare_mask", 1286410249)
 
-    public val getBackOpCompareMaskPtr: VoidPtr =
+    internal val getBackOpCompareMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare_mask", 3905245786)
 
-    public val setBackOpWriteMaskPtr: VoidPtr =
+    internal val setBackOpWriteMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_write_mask", 1286410249)
 
-    public val getBackOpWriteMaskPtr: VoidPtr =
+    internal val getBackOpWriteMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_write_mask", 3905245786)
 
-    public val setBackOpReferencePtr: VoidPtr =
+    internal val setBackOpReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_reference", 1286410249)
 
-    public val getBackOpReferencePtr: VoidPtr =
+    internal val getBackOpReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_reference", 3905245786)
   }
 }

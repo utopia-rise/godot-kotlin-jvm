@@ -120,16 +120,16 @@ public open class PacketPeerDTLS : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerDTLS", "poll", 3218959716)
+  public object MethodBindings {
+    internal val pollPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerDTLS", "poll", 3218959716)
 
-    public val connectToPeerPtr: VoidPtr =
+    internal val connectToPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerDTLS", "connect_to_peer", 2880188099)
 
-    public val getStatusPtr: VoidPtr =
+    internal val getStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerDTLS", "get_status", 3248654679)
 
-    public val disconnectFromPeerPtr: VoidPtr =
+    internal val disconnectFromPeerPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeerDTLS", "disconnect_from_peer", 3218959716)
   }
 }

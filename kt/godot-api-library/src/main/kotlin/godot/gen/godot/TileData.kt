@@ -601,144 +601,146 @@ public open class TileData : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFlipHPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFlipHPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_flip_h", 2586408642)
 
-    public val getFlipHPtr: VoidPtr = Internals.getMethodBindPtr("TileData", "get_flip_h", 36873697)
+    internal val getFlipHPtr: VoidPtr =
+        Internals.getMethodBindPtr("TileData", "get_flip_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr =
+    internal val setFlipVPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_flip_v", 2586408642)
 
-    public val getFlipVPtr: VoidPtr = Internals.getMethodBindPtr("TileData", "get_flip_v", 36873697)
+    internal val getFlipVPtr: VoidPtr =
+        Internals.getMethodBindPtr("TileData", "get_flip_v", 36873697)
 
-    public val setTransposePtr: VoidPtr =
+    internal val setTransposePtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_transpose", 2586408642)
 
-    public val getTransposePtr: VoidPtr =
+    internal val getTransposePtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_transpose", 36873697)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_material", 5934680)
 
-    public val setTextureOriginPtr: VoidPtr =
+    internal val setTextureOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_texture_origin", 1130785943)
 
-    public val getTextureOriginPtr: VoidPtr =
+    internal val getTextureOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_texture_origin", 3690982128)
 
-    public val setModulatePtr: VoidPtr =
+    internal val setModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr =
+    internal val getModulatePtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_modulate", 3444240500)
 
-    public val setZIndexPtr: VoidPtr =
+    internal val setZIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_z_index", 1286410249)
 
-    public val getZIndexPtr: VoidPtr =
+    internal val getZIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_z_index", 3905245786)
 
-    public val setYSortOriginPtr: VoidPtr =
+    internal val setYSortOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_y_sort_origin", 1286410249)
 
-    public val getYSortOriginPtr: VoidPtr =
+    internal val getYSortOriginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_y_sort_origin", 3905245786)
 
-    public val setOccluderPtr: VoidPtr =
+    internal val setOccluderPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_occluder", 914399637)
 
-    public val getOccluderPtr: VoidPtr =
+    internal val getOccluderPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_occluder", 2377324099)
 
-    public val setConstantLinearVelocityPtr: VoidPtr =
+    internal val setConstantLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_constant_linear_velocity", 163021252)
 
-    public val getConstantLinearVelocityPtr: VoidPtr =
+    internal val getConstantLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_constant_linear_velocity", 2299179447)
 
-    public val setConstantAngularVelocityPtr: VoidPtr =
+    internal val setConstantAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_constant_angular_velocity", 1602489585)
 
-    public val getConstantAngularVelocityPtr: VoidPtr =
+    internal val getConstantAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_constant_angular_velocity", 2339986948)
 
-    public val setCollisionPolygonsCountPtr: VoidPtr =
+    internal val setCollisionPolygonsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_collision_polygons_count", 3937882851)
 
-    public val getCollisionPolygonsCountPtr: VoidPtr =
+    internal val getCollisionPolygonsCountPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_collision_polygons_count", 923996154)
 
-    public val addCollisionPolygonPtr: VoidPtr =
+    internal val addCollisionPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "add_collision_polygon", 1286410249)
 
-    public val removeCollisionPolygonPtr: VoidPtr =
+    internal val removeCollisionPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "remove_collision_polygon", 3937882851)
 
-    public val setCollisionPolygonPointsPtr: VoidPtr =
+    internal val setCollisionPolygonPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_collision_polygon_points", 3230546541)
 
-    public val getCollisionPolygonPointsPtr: VoidPtr =
+    internal val getCollisionPolygonPointsPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_collision_polygon_points", 103942801)
 
-    public val setCollisionPolygonOneWayPtr: VoidPtr =
+    internal val setCollisionPolygonOneWayPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_collision_polygon_one_way", 1383440665)
 
-    public val isCollisionPolygonOneWayPtr: VoidPtr =
+    internal val isCollisionPolygonOneWayPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "is_collision_polygon_one_way", 2522259332)
 
-    public val setCollisionPolygonOneWayMarginPtr: VoidPtr =
+    internal val setCollisionPolygonOneWayMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_collision_polygon_one_way_margin", 3506521499)
 
-    public val getCollisionPolygonOneWayMarginPtr: VoidPtr =
+    internal val getCollisionPolygonOneWayMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_collision_polygon_one_way_margin", 3085491603)
 
-    public val setTerrainSetPtr: VoidPtr =
+    internal val setTerrainSetPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_terrain_set", 1286410249)
 
-    public val getTerrainSetPtr: VoidPtr =
+    internal val getTerrainSetPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_terrain_set", 3905245786)
 
-    public val setTerrainPtr: VoidPtr =
+    internal val setTerrainPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_terrain", 1286410249)
 
-    public val getTerrainPtr: VoidPtr =
+    internal val getTerrainPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_terrain", 3905245786)
 
-    public val setTerrainPeeringBitPtr: VoidPtr =
+    internal val setTerrainPeeringBitPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_terrain_peering_bit", 1084452308)
 
-    public val getTerrainPeeringBitPtr: VoidPtr =
+    internal val getTerrainPeeringBitPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_terrain_peering_bit", 3831796792)
 
-    public val isValidTerrainPeeringBitPtr: VoidPtr =
+    internal val isValidTerrainPeeringBitPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit", 845723972)
 
-    public val setNavigationPolygonPtr: VoidPtr =
+    internal val setNavigationPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_navigation_polygon", 2224691167)
 
-    public val getNavigationPolygonPtr: VoidPtr =
+    internal val getNavigationPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_navigation_polygon", 2907127272)
 
-    public val setProbabilityPtr: VoidPtr =
+    internal val setProbabilityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_probability", 373806689)
 
-    public val getProbabilityPtr: VoidPtr =
+    internal val getProbabilityPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_probability", 1740695150)
 
-    public val setCustomDataPtr: VoidPtr =
+    internal val setCustomDataPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_custom_data", 402577236)
 
-    public val getCustomDataPtr: VoidPtr =
+    internal val getCustomDataPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_custom_data", 1868160156)
 
-    public val setCustomDataByLayerIdPtr: VoidPtr =
+    internal val setCustomDataByLayerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "set_custom_data_by_layer_id", 2152698145)
 
-    public val getCustomDataByLayerIdPtr: VoidPtr =
+    internal val getCustomDataByLayerIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileData", "get_custom_data_by_layer_id", 4227898402)
   }
 }

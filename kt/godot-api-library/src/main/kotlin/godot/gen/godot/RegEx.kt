@@ -223,28 +223,29 @@ public open class RegEx : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val createFromStringPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createFromStringPtr: VoidPtr =
         Internals.getMethodBindPtr("RegEx", "create_from_string", 2150300909)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "clear", 3218959716)
 
-    public val compilePtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "compile", 166001499)
+    internal val compilePtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "compile", 166001499)
 
-    public val searchPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "search", 3365977994)
+    internal val searchPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "search", 3365977994)
 
-    public val searchAllPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "search_all", 849021363)
+    internal val searchAllPtr: VoidPtr =
+        Internals.getMethodBindPtr("RegEx", "search_all", 849021363)
 
-    public val subPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "sub", 54019702)
+    internal val subPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "sub", 54019702)
 
-    public val isValidPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "is_valid", 36873697)
+    internal val isValidPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "is_valid", 36873697)
 
-    public val getPatternPtr: VoidPtr =
+    internal val getPatternPtr: VoidPtr =
         Internals.getMethodBindPtr("RegEx", "get_pattern", 201670096)
 
-    public val getGroupCountPtr: VoidPtr =
+    internal val getGroupCountPtr: VoidPtr =
         Internals.getMethodBindPtr("RegEx", "get_group_count", 3905245786)
 
-    public val getNamesPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "get_names", 1139954409)
+    internal val getNamesPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "get_names", 1139954409)
   }
 }

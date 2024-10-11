@@ -1136,213 +1136,215 @@ public open class GraphEdit : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val connectNodePtr: VoidPtr =
+  public object MethodBindings {
+    internal val connectNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "connect_node", 195065850)
 
-    public val isNodeConnectedPtr: VoidPtr =
+    internal val isNodeConnectedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_node_connected", 4216241294)
 
-    public val disconnectNodePtr: VoidPtr =
+    internal val disconnectNodePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "disconnect_node", 1933654315)
 
-    public val setConnectionActivityPtr: VoidPtr =
+    internal val setConnectionActivityPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_connection_activity", 1141899943)
 
-    public val getConnectionListPtr: VoidPtr =
+    internal val getConnectionListPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_connection_list", 3995934104)
 
-    public val getClosestConnectionAtPointPtr: VoidPtr =
+    internal val getClosestConnectionAtPointPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)
 
-    public val getConnectionsIntersectingWithRectPtr: VoidPtr =
+    internal val getConnectionsIntersectingWithRectPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2709748719)
 
-    public val clearConnectionsPtr: VoidPtr =
+    internal val clearConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "clear_connections", 3218959716)
 
-    public val forceConnectionDragEndPtr: VoidPtr =
+    internal val forceConnectionDragEndPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "force_connection_drag_end", 3218959716)
 
-    public val getScrollOffsetPtr: VoidPtr =
+    internal val getScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_scroll_offset", 3341600327)
 
-    public val setScrollOffsetPtr: VoidPtr =
+    internal val setScrollOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_scroll_offset", 743155724)
 
-    public val addValidRightDisconnectTypePtr: VoidPtr =
+    internal val addValidRightDisconnectTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type", 1286410249)
 
-    public val removeValidRightDisconnectTypePtr: VoidPtr =
+    internal val removeValidRightDisconnectTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type", 1286410249)
 
-    public val addValidLeftDisconnectTypePtr: VoidPtr =
+    internal val addValidLeftDisconnectTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type", 1286410249)
 
-    public val removeValidLeftDisconnectTypePtr: VoidPtr =
+    internal val removeValidLeftDisconnectTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type", 1286410249)
 
-    public val addValidConnectionTypePtr: VoidPtr =
+    internal val addValidConnectionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "add_valid_connection_type", 3937882851)
 
-    public val removeValidConnectionTypePtr: VoidPtr =
+    internal val removeValidConnectionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "remove_valid_connection_type", 3937882851)
 
-    public val isValidConnectionTypePtr: VoidPtr =
+    internal val isValidConnectionTypePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_valid_connection_type", 2522259332)
 
-    public val getConnectionLinePtr: VoidPtr =
+    internal val getConnectionLinePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_connection_line", 3932192302)
 
-    public val attachGraphElementToFramePtr: VoidPtr =
+    internal val attachGraphElementToFramePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame", 3740211285)
 
-    public val detachGraphElementFromFramePtr: VoidPtr =
+    internal val detachGraphElementFromFramePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame", 3304788590)
 
-    public val getElementFramePtr: VoidPtr =
+    internal val getElementFramePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_element_frame", 988084372)
 
-    public val getAttachedNodesOfFramePtr: VoidPtr =
+    internal val getAttachedNodesOfFramePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame", 689397652)
 
-    public val setPanningSchemePtr: VoidPtr =
+    internal val setPanningSchemePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_panning_scheme", 18893313)
 
-    public val getPanningSchemePtr: VoidPtr =
+    internal val getPanningSchemePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_panning_scheme", 549924446)
 
-    public val setZoomPtr: VoidPtr = Internals.getMethodBindPtr("GraphEdit", "set_zoom", 373806689)
+    internal val setZoomPtr: VoidPtr =
+        Internals.getMethodBindPtr("GraphEdit", "set_zoom", 373806689)
 
-    public val getZoomPtr: VoidPtr = Internals.getMethodBindPtr("GraphEdit", "get_zoom", 1740695150)
+    internal val getZoomPtr: VoidPtr =
+        Internals.getMethodBindPtr("GraphEdit", "get_zoom", 1740695150)
 
-    public val setZoomMinPtr: VoidPtr =
+    internal val setZoomMinPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_zoom_min", 373806689)
 
-    public val getZoomMinPtr: VoidPtr =
+    internal val getZoomMinPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_zoom_min", 1740695150)
 
-    public val setZoomMaxPtr: VoidPtr =
+    internal val setZoomMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_zoom_max", 373806689)
 
-    public val getZoomMaxPtr: VoidPtr =
+    internal val getZoomMaxPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_zoom_max", 1740695150)
 
-    public val setZoomStepPtr: VoidPtr =
+    internal val setZoomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_zoom_step", 373806689)
 
-    public val getZoomStepPtr: VoidPtr =
+    internal val getZoomStepPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_zoom_step", 1740695150)
 
-    public val setShowGridPtr: VoidPtr =
+    internal val setShowGridPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_grid", 2586408642)
 
-    public val isShowingGridPtr: VoidPtr =
+    internal val isShowingGridPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_grid", 36873697)
 
-    public val setGridPatternPtr: VoidPtr =
+    internal val setGridPatternPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_grid_pattern", 1074098205)
 
-    public val getGridPatternPtr: VoidPtr =
+    internal val getGridPatternPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_grid_pattern", 1286127528)
 
-    public val setSnappingEnabledPtr: VoidPtr =
+    internal val setSnappingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_snapping_enabled", 2586408642)
 
-    public val isSnappingEnabledPtr: VoidPtr =
+    internal val isSnappingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_snapping_enabled", 36873697)
 
-    public val setSnappingDistancePtr: VoidPtr =
+    internal val setSnappingDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_snapping_distance", 1286410249)
 
-    public val getSnappingDistancePtr: VoidPtr =
+    internal val getSnappingDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_snapping_distance", 3905245786)
 
-    public val setConnectionLinesCurvaturePtr: VoidPtr =
+    internal val setConnectionLinesCurvaturePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature", 373806689)
 
-    public val getConnectionLinesCurvaturePtr: VoidPtr =
+    internal val getConnectionLinesCurvaturePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature", 1740695150)
 
-    public val setConnectionLinesThicknessPtr: VoidPtr =
+    internal val setConnectionLinesThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness", 373806689)
 
-    public val getConnectionLinesThicknessPtr: VoidPtr =
+    internal val getConnectionLinesThicknessPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness", 1740695150)
 
-    public val setConnectionLinesAntialiasedPtr: VoidPtr =
+    internal val setConnectionLinesAntialiasedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased", 2586408642)
 
-    public val isConnectionLinesAntialiasedPtr: VoidPtr =
+    internal val isConnectionLinesAntialiasedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased", 36873697)
 
-    public val setMinimapSizePtr: VoidPtr =
+    internal val setMinimapSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_minimap_size", 743155724)
 
-    public val getMinimapSizePtr: VoidPtr =
+    internal val getMinimapSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_minimap_size", 3341600327)
 
-    public val setMinimapOpacityPtr: VoidPtr =
+    internal val setMinimapOpacityPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_minimap_opacity", 373806689)
 
-    public val getMinimapOpacityPtr: VoidPtr =
+    internal val getMinimapOpacityPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_minimap_opacity", 1740695150)
 
-    public val setMinimapEnabledPtr: VoidPtr =
+    internal val setMinimapEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_minimap_enabled", 2586408642)
 
-    public val isMinimapEnabledPtr: VoidPtr =
+    internal val isMinimapEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_minimap_enabled", 36873697)
 
-    public val setShowMenuPtr: VoidPtr =
+    internal val setShowMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_menu", 2586408642)
 
-    public val isShowingMenuPtr: VoidPtr =
+    internal val isShowingMenuPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_menu", 36873697)
 
-    public val setShowZoomLabelPtr: VoidPtr =
+    internal val setShowZoomLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_zoom_label", 2586408642)
 
-    public val isShowingZoomLabelPtr: VoidPtr =
+    internal val isShowingZoomLabelPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_zoom_label", 36873697)
 
-    public val setShowGridButtonsPtr: VoidPtr =
+    internal val setShowGridButtonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_grid_buttons", 2586408642)
 
-    public val isShowingGridButtonsPtr: VoidPtr =
+    internal val isShowingGridButtonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons", 36873697)
 
-    public val setShowZoomButtonsPtr: VoidPtr =
+    internal val setShowZoomButtonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons", 2586408642)
 
-    public val isShowingZoomButtonsPtr: VoidPtr =
+    internal val isShowingZoomButtonsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons", 36873697)
 
-    public val setShowMinimapButtonPtr: VoidPtr =
+    internal val setShowMinimapButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_minimap_button", 2586408642)
 
-    public val isShowingMinimapButtonPtr: VoidPtr =
+    internal val isShowingMinimapButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_minimap_button", 36873697)
 
-    public val setShowArrangeButtonPtr: VoidPtr =
+    internal val setShowArrangeButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_show_arrange_button", 2586408642)
 
-    public val isShowingArrangeButtonPtr: VoidPtr =
+    internal val isShowingArrangeButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_showing_arrange_button", 36873697)
 
-    public val setRightDisconnectsPtr: VoidPtr =
+    internal val setRightDisconnectsPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_right_disconnects", 2586408642)
 
-    public val isRightDisconnectsEnabledPtr: VoidPtr =
+    internal val isRightDisconnectsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36873697)
 
-    public val getMenuHboxPtr: VoidPtr =
+    internal val getMenuHboxPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3590609951)
 
-    public val arrangeNodesPtr: VoidPtr =
+    internal val arrangeNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "arrange_nodes", 3218959716)
 
-    public val setSelectedPtr: VoidPtr =
+    internal val setSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("GraphEdit", "set_selected", 1078189570)
   }
 }

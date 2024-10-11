@@ -121,29 +121,29 @@ public open class CapsuleMesh : PrimitiveMesh() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr =
+    internal val getRadiusPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr =
+    internal val setHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "get_height", 1740695150)
 
-    public val setRadialSegmentsPtr: VoidPtr =
+    internal val setRadialSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "set_radial_segments", 1286410249)
 
-    public val getRadialSegmentsPtr: VoidPtr =
+    internal val getRadialSegmentsPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "get_radial_segments", 3905245786)
 
-    public val setRingsPtr: VoidPtr =
+    internal val setRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr =
+    internal val getRingsPtr: VoidPtr =
         Internals.getMethodBindPtr("CapsuleMesh", "get_rings", 3905245786)
   }
 }

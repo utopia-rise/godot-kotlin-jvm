@@ -86,11 +86,11 @@ public open class PlaceholderTexture3D : Texture3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560364750)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2785653706)
   }
 }

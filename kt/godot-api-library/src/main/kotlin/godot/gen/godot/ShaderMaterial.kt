@@ -86,17 +86,17 @@ public open class ShaderMaterial : Material() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setShaderPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setShaderPtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderMaterial", "set_shader", 3341921675)
 
-    public val getShaderPtr: VoidPtr =
+    internal val getShaderPtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderMaterial", "get_shader", 2078273437)
 
-    public val setShaderParameterPtr: VoidPtr =
+    internal val setShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderMaterial", "set_shader_parameter", 3776071444)
 
-    public val getShaderParameterPtr: VoidPtr =
+    internal val getShaderParameterPtr: VoidPtr =
         Internals.getMethodBindPtr("ShaderMaterial", "get_shader_parameter", 2760726917)
   }
 }

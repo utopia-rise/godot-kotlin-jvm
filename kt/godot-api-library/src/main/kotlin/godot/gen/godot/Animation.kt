@@ -1125,224 +1125,226 @@ public open class Animation : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val addTrackPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addTrackPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "add_track", 3843682357)
 
-    public val removeTrackPtr: VoidPtr =
+    internal val removeTrackPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "remove_track", 1286410249)
 
-    public val getTrackCountPtr: VoidPtr =
+    internal val getTrackCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "get_track_count", 3905245786)
 
-    public val trackGetTypePtr: VoidPtr =
+    internal val trackGetTypePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_type", 3445944217)
 
-    public val trackGetPathPtr: VoidPtr =
+    internal val trackGetPathPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_path", 408788394)
 
-    public val trackSetPathPtr: VoidPtr =
+    internal val trackSetPathPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_path", 2761262315)
 
-    public val findTrackPtr: VoidPtr =
+    internal val findTrackPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "find_track", 245376003)
 
-    public val trackMoveUpPtr: VoidPtr =
+    internal val trackMoveUpPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_move_up", 1286410249)
 
-    public val trackMoveDownPtr: VoidPtr =
+    internal val trackMoveDownPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_move_down", 1286410249)
 
-    public val trackMoveToPtr: VoidPtr =
+    internal val trackMoveToPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_move_to", 3937882851)
 
-    public val trackSwapPtr: VoidPtr =
+    internal val trackSwapPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_swap", 3937882851)
 
-    public val trackSetImportedPtr: VoidPtr =
+    internal val trackSetImportedPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_imported", 300928843)
 
-    public val trackIsImportedPtr: VoidPtr =
+    internal val trackIsImportedPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_is_imported", 1116898809)
 
-    public val trackSetEnabledPtr: VoidPtr =
+    internal val trackSetEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_enabled", 300928843)
 
-    public val trackIsEnabledPtr: VoidPtr =
+    internal val trackIsEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_is_enabled", 1116898809)
 
-    public val positionTrackInsertKeyPtr: VoidPtr =
+    internal val positionTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "position_track_insert_key", 2540608232)
 
-    public val rotationTrackInsertKeyPtr: VoidPtr =
+    internal val rotationTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "rotation_track_insert_key", 4165004800)
 
-    public val scaleTrackInsertKeyPtr: VoidPtr =
+    internal val scaleTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "scale_track_insert_key", 2540608232)
 
-    public val blendShapeTrackInsertKeyPtr: VoidPtr =
+    internal val blendShapeTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "blend_shape_track_insert_key", 1534913637)
 
-    public val positionTrackInterpolatePtr: VoidPtr =
+    internal val positionTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "position_track_interpolate", 3530011197)
 
-    public val rotationTrackInterpolatePtr: VoidPtr =
+    internal val rotationTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "rotation_track_interpolate", 2915876792)
 
-    public val scaleTrackInterpolatePtr: VoidPtr =
+    internal val scaleTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "scale_track_interpolate", 3530011197)
 
-    public val blendShapeTrackInterpolatePtr: VoidPtr =
+    internal val blendShapeTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "blend_shape_track_interpolate", 2482365182)
 
-    public val trackInsertKeyPtr: VoidPtr =
+    internal val trackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_insert_key", 808952278)
 
-    public val trackRemoveKeyPtr: VoidPtr =
+    internal val trackRemoveKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_remove_key", 3937882851)
 
-    public val trackRemoveKeyAtTimePtr: VoidPtr =
+    internal val trackRemoveKeyAtTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_remove_key_at_time", 1602489585)
 
-    public val trackSetKeyValuePtr: VoidPtr =
+    internal val trackSetKeyValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_key_value", 2060538656)
 
-    public val trackSetKeyTransitionPtr: VoidPtr =
+    internal val trackSetKeyTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_key_transition", 3506521499)
 
-    public val trackSetKeyTimePtr: VoidPtr =
+    internal val trackSetKeyTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_key_time", 3506521499)
 
-    public val trackGetKeyTransitionPtr: VoidPtr =
+    internal val trackGetKeyTransitionPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_key_transition", 3085491603)
 
-    public val trackGetKeyCountPtr: VoidPtr =
+    internal val trackGetKeyCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_key_count", 923996154)
 
-    public val trackGetKeyValuePtr: VoidPtr =
+    internal val trackGetKeyValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_key_value", 678354945)
 
-    public val trackGetKeyTimePtr: VoidPtr =
+    internal val trackGetKeyTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_key_time", 3085491603)
 
-    public val trackFindKeyPtr: VoidPtr =
+    internal val trackFindKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_find_key", 4230953007)
 
-    public val trackSetInterpolationTypePtr: VoidPtr =
+    internal val trackSetInterpolationTypePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_interpolation_type", 4112932513)
 
-    public val trackGetInterpolationTypePtr: VoidPtr =
+    internal val trackGetInterpolationTypePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_interpolation_type", 1530756894)
 
-    public val trackSetInterpolationLoopWrapPtr: VoidPtr =
+    internal val trackSetInterpolationLoopWrapPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap", 300928843)
 
-    public val trackGetInterpolationLoopWrapPtr: VoidPtr =
+    internal val trackGetInterpolationLoopWrapPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap", 1116898809)
 
-    public val trackIsCompressedPtr: VoidPtr =
+    internal val trackIsCompressedPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "track_is_compressed", 1116898809)
 
-    public val valueTrackSetUpdateModePtr: VoidPtr =
+    internal val valueTrackSetUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "value_track_set_update_mode", 2854058312)
 
-    public val valueTrackGetUpdateModePtr: VoidPtr =
+    internal val valueTrackGetUpdateModePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "value_track_get_update_mode", 1440326473)
 
-    public val valueTrackInterpolatePtr: VoidPtr =
+    internal val valueTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "value_track_interpolate", 747269075)
 
-    public val methodTrackGetNamePtr: VoidPtr =
+    internal val methodTrackGetNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "method_track_get_name", 351665558)
 
-    public val methodTrackGetParamsPtr: VoidPtr =
+    internal val methodTrackGetParamsPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "method_track_get_params", 2345056839)
 
-    public val bezierTrackInsertKeyPtr: VoidPtr =
+    internal val bezierTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_insert_key", 3656773645)
 
-    public val bezierTrackSetKeyValuePtr: VoidPtr =
+    internal val bezierTrackSetKeyValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_set_key_value", 3506521499)
 
-    public val bezierTrackSetKeyInHandlePtr: VoidPtr =
+    internal val bezierTrackSetKeyInHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle", 1719223284)
 
-    public val bezierTrackSetKeyOutHandlePtr: VoidPtr =
+    internal val bezierTrackSetKeyOutHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle", 1719223284)
 
-    public val bezierTrackGetKeyValuePtr: VoidPtr =
+    internal val bezierTrackGetKeyValuePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_get_key_value", 3085491603)
 
-    public val bezierTrackGetKeyInHandlePtr: VoidPtr =
+    internal val bezierTrackGetKeyInHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle", 3016396712)
 
-    public val bezierTrackGetKeyOutHandlePtr: VoidPtr =
+    internal val bezierTrackGetKeyOutHandlePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle", 3016396712)
 
-    public val bezierTrackInterpolatePtr: VoidPtr =
+    internal val bezierTrackInterpolatePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "bezier_track_interpolate", 1900462983)
 
-    public val audioTrackInsertKeyPtr: VoidPtr =
+    internal val audioTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_insert_key", 4021027286)
 
-    public val audioTrackSetKeyStreamPtr: VoidPtr =
+    internal val audioTrackSetKeyStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_set_key_stream", 3886397084)
 
-    public val audioTrackSetKeyStartOffsetPtr: VoidPtr =
+    internal val audioTrackSetKeyStartOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_set_key_start_offset", 3506521499)
 
-    public val audioTrackSetKeyEndOffsetPtr: VoidPtr =
+    internal val audioTrackSetKeyEndOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_set_key_end_offset", 3506521499)
 
-    public val audioTrackGetKeyStreamPtr: VoidPtr =
+    internal val audioTrackGetKeyStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_get_key_stream", 635277205)
 
-    public val audioTrackGetKeyStartOffsetPtr: VoidPtr =
+    internal val audioTrackGetKeyStartOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_get_key_start_offset", 3085491603)
 
-    public val audioTrackGetKeyEndOffsetPtr: VoidPtr =
+    internal val audioTrackGetKeyEndOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_get_key_end_offset", 3085491603)
 
-    public val audioTrackSetUseBlendPtr: VoidPtr =
+    internal val audioTrackSetUseBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_set_use_blend", 300928843)
 
-    public val audioTrackIsUseBlendPtr: VoidPtr =
+    internal val audioTrackIsUseBlendPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "audio_track_is_use_blend", 1116898809)
 
-    public val animationTrackInsertKeyPtr: VoidPtr =
+    internal val animationTrackInsertKeyPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "animation_track_insert_key", 158676774)
 
-    public val animationTrackSetKeyAnimationPtr: VoidPtr =
+    internal val animationTrackSetKeyAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "animation_track_set_key_animation", 117615382)
 
-    public val animationTrackGetKeyAnimationPtr: VoidPtr =
+    internal val animationTrackGetKeyAnimationPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "animation_track_get_key_animation", 351665558)
 
-    public val setLengthPtr: VoidPtr =
+    internal val setLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "get_length", 1740695150)
 
-    public val setLoopModePtr: VoidPtr =
+    internal val setLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "set_loop_mode", 3155355575)
 
-    public val getLoopModePtr: VoidPtr =
+    internal val getLoopModePtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "get_loop_mode", 1988889481)
 
-    public val setStepPtr: VoidPtr = Internals.getMethodBindPtr("Animation", "set_step", 373806689)
+    internal val setStepPtr: VoidPtr =
+        Internals.getMethodBindPtr("Animation", "set_step", 373806689)
 
-    public val getStepPtr: VoidPtr = Internals.getMethodBindPtr("Animation", "get_step", 1740695150)
+    internal val getStepPtr: VoidPtr =
+        Internals.getMethodBindPtr("Animation", "get_step", 1740695150)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("Animation", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("Animation", "clear", 3218959716)
 
-    public val copyTrackPtr: VoidPtr =
+    internal val copyTrackPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "copy_track", 148001024)
 
-    public val compressPtr: VoidPtr =
+    internal val compressPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "compress", 3608408117)
 
-    public val isCaptureIncludedPtr: VoidPtr =
+    internal val isCaptureIncludedPtr: VoidPtr =
         Internals.getMethodBindPtr("Animation", "is_capture_included", 36873697)
   }
 }

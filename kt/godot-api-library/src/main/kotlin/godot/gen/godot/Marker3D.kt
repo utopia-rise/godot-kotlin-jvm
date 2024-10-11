@@ -54,11 +54,11 @@ public open class Marker3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setGizmoExtentsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setGizmoExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373806689)
 
-    public val getGizmoExtentsPtr: VoidPtr =
+    internal val getGizmoExtentsPtr: VoidPtr =
         Internals.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1740695150)
   }
 }

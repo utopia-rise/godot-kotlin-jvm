@@ -100,23 +100,23 @@ public open class GLTFAnimation : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getOriginalNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getOriginalNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "get_original_name", 2841200299)
 
-    public val setOriginalNamePtr: VoidPtr =
+    internal val setOriginalNamePtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "set_original_name", 83702148)
 
-    public val getLoopPtr: VoidPtr =
+    internal val getLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "get_loop", 36873697)
 
-    public val setLoopPtr: VoidPtr =
+    internal val setLoopPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "set_loop", 2586408642)
 
-    public val getAdditionalDataPtr: VoidPtr =
+    internal val getAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "get_additional_data", 2138907829)
 
-    public val setAdditionalDataPtr: VoidPtr =
+    internal val setAdditionalDataPtr: VoidPtr =
         Internals.getMethodBindPtr("GLTFAnimation", "set_additional_data", 3776071444)
   }
 }

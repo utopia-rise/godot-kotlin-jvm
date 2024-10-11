@@ -226,65 +226,65 @@ public open class ImporterMeshInstance3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setMeshPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh", 2255166972)
 
-    public val getMeshPtr: VoidPtr =
+    internal val getMeshPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh", 3161779525)
 
-    public val setSkinPtr: VoidPtr =
+    internal val setSkinPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_skin", 3971435618)
 
-    public val getSkinPtr: VoidPtr =
+    internal val getSkinPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_skin", 2074563878)
 
-    public val setSkeletonPathPtr: VoidPtr =
+    internal val setSkeletonPathPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path", 1348162250)
 
-    public val getSkeletonPathPtr: VoidPtr =
+    internal val getSkeletonPathPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path", 4075236667)
 
-    public val setLayerMaskPtr: VoidPtr =
+    internal val setLayerMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_layer_mask", 1286410249)
 
-    public val getLayerMaskPtr: VoidPtr =
+    internal val getLayerMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_layer_mask", 3905245786)
 
-    public val setCastShadowsSettingPtr: VoidPtr =
+    internal val setCastShadowsSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_cast_shadows_setting", 856677339)
 
-    public val getCastShadowsSettingPtr: VoidPtr =
+    internal val getCastShadowsSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_cast_shadows_setting", 3383019359)
 
-    public val setVisibilityRangeEndMarginPtr: VoidPtr =
+    internal val setVisibilityRangeEndMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end_margin", 373806689)
 
-    public val getVisibilityRangeEndMarginPtr: VoidPtr =
+    internal val getVisibilityRangeEndMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end_margin", 1740695150)
 
-    public val setVisibilityRangeEndPtr: VoidPtr =
+    internal val setVisibilityRangeEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end", 373806689)
 
-    public val getVisibilityRangeEndPtr: VoidPtr =
+    internal val getVisibilityRangeEndPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end", 1740695150)
 
-    public val setVisibilityRangeBeginMarginPtr: VoidPtr =
+    internal val setVisibilityRangeBeginMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin_margin", 373806689)
 
-    public val getVisibilityRangeBeginMarginPtr: VoidPtr =
+    internal val getVisibilityRangeBeginMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin_margin", 1740695150)
 
-    public val setVisibilityRangeBeginPtr: VoidPtr =
+    internal val setVisibilityRangeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin", 373806689)
 
-    public val getVisibilityRangeBeginPtr: VoidPtr =
+    internal val getVisibilityRangeBeginPtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin", 1740695150)
 
-    public val setVisibilityRangeFadeModePtr: VoidPtr =
+    internal val setVisibilityRangeFadeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_fade_mode", 1440117808)
 
-    public val getVisibilityRangeFadeModePtr: VoidPtr =
+    internal val getVisibilityRangeFadeModePtr: VoidPtr =
         Internals.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_fade_mode", 2067221882)
   }
 }

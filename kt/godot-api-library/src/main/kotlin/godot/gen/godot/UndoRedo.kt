@@ -425,70 +425,70 @@ public open class UndoRedo : Object() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createActionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createActionPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "create_action", 3171901514)
 
-    public val commitActionPtr: VoidPtr =
+    internal val commitActionPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "commit_action", 3216645846)
 
-    public val isCommittingActionPtr: VoidPtr =
+    internal val isCommittingActionPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "is_committing_action", 36873697)
 
-    public val addDoMethodPtr: VoidPtr =
+    internal val addDoMethodPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_do_method", 1611583062)
 
-    public val addUndoMethodPtr: VoidPtr =
+    internal val addUndoMethodPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_undo_method", 1611583062)
 
-    public val addDoPropertyPtr: VoidPtr =
+    internal val addDoPropertyPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_do_property", 1017172818)
 
-    public val addUndoPropertyPtr: VoidPtr =
+    internal val addUndoPropertyPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_undo_property", 1017172818)
 
-    public val addDoReferencePtr: VoidPtr =
+    internal val addDoReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_do_reference", 3975164845)
 
-    public val addUndoReferencePtr: VoidPtr =
+    internal val addUndoReferencePtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "add_undo_reference", 3975164845)
 
-    public val startForceKeepInMergeEndsPtr: VoidPtr =
+    internal val startForceKeepInMergeEndsPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3218959716)
 
-    public val endForceKeepInMergeEndsPtr: VoidPtr =
+    internal val endForceKeepInMergeEndsPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3218959716)
 
-    public val getHistoryCountPtr: VoidPtr =
+    internal val getHistoryCountPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_history_count", 2455072627)
 
-    public val getCurrentActionPtr: VoidPtr =
+    internal val getCurrentActionPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_current_action", 2455072627)
 
-    public val getActionNamePtr: VoidPtr =
+    internal val getActionNamePtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_action_name", 990163283)
 
-    public val clearHistoryPtr: VoidPtr =
+    internal val clearHistoryPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "clear_history", 3216645846)
 
-    public val getCurrentActionNamePtr: VoidPtr =
+    internal val getCurrentActionNamePtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_current_action_name", 201670096)
 
-    public val hasUndoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
+    internal val hasUndoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
 
-    public val hasRedoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
+    internal val hasRedoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
 
-    public val getVersionPtr: VoidPtr =
+    internal val getVersionPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_version", 3905245786)
 
-    public val setMaxStepsPtr: VoidPtr =
+    internal val setMaxStepsPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "set_max_steps", 1286410249)
 
-    public val getMaxStepsPtr: VoidPtr =
+    internal val getMaxStepsPtr: VoidPtr =
         Internals.getMethodBindPtr("UndoRedo", "get_max_steps", 3905245786)
 
-    public val redoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "redo", 2240911060)
+    internal val redoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "redo", 2240911060)
 
-    public val undoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "undo", 2240911060)
+    internal val undoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "undo", 2240911060)
   }
 }

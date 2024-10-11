@@ -131,27 +131,29 @@ public open class PacketPeer internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getVarPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeer", "get_var", 3442865206)
+  public object MethodBindings {
+    internal val getVarPtr: VoidPtr =
+        Internals.getMethodBindPtr("PacketPeer", "get_var", 3442865206)
 
-    public val putVarPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeer", "put_var", 2436251611)
+    internal val putVarPtr: VoidPtr =
+        Internals.getMethodBindPtr("PacketPeer", "put_var", 2436251611)
 
-    public val getPacketPtr: VoidPtr =
+    internal val getPacketPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "get_packet", 2115431945)
 
-    public val putPacketPtr: VoidPtr =
+    internal val putPacketPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "put_packet", 680677267)
 
-    public val getPacketErrorPtr: VoidPtr =
+    internal val getPacketErrorPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "get_packet_error", 3185525595)
 
-    public val getAvailablePacketCountPtr: VoidPtr =
+    internal val getAvailablePacketCountPtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "get_available_packet_count", 3905245786)
 
-    public val getEncodeBufferMaxSizePtr: VoidPtr =
+    internal val getEncodeBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "get_encode_buffer_max_size", 3905245786)
 
-    public val setEncodeBufferMaxSizePtr: VoidPtr =
+    internal val setEncodeBufferMaxSizePtr: VoidPtr =
         Internals.getMethodBindPtr("PacketPeer", "set_encode_buffer_max_size", 1286410249)
   }
 }

@@ -60,8 +60,8 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val sizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val sizePtr: VoidPtr =
         Internals.getMethodBindPtr("PackedDataContainerRef", "size", 3905245786)
   }
 }

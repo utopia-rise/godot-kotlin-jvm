@@ -364,57 +364,58 @@ public object ProjectSettings : Object() {
     return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
-  internal object MethodBindings {
-    public val hasSettingPtr: VoidPtr =
+  public object MethodBindings {
+    internal val hasSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "has_setting", 3927539163)
 
-    public val setSettingPtr: VoidPtr =
+    internal val setSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_setting", 402577236)
 
-    public val getSettingPtr: VoidPtr =
+    internal val getSettingPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "get_setting", 223050753)
 
-    public val getSettingWithOverridePtr: VoidPtr =
+    internal val getSettingWithOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "get_setting_with_override", 2760726917)
 
-    public val getGlobalClassListPtr: VoidPtr =
+    internal val getGlobalClassListPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2915620761)
 
-    public val setOrderPtr: VoidPtr =
+    internal val setOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_order", 2956805083)
 
-    public val getOrderPtr: VoidPtr =
+    internal val getOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "get_order", 1321353865)
 
-    public val setInitialValuePtr: VoidPtr =
+    internal val setInitialValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_initial_value", 402577236)
 
-    public val setAsBasicPtr: VoidPtr =
+    internal val setAsBasicPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_as_basic", 2678287736)
 
-    public val setAsInternalPtr: VoidPtr =
+    internal val setAsInternalPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_as_internal", 2678287736)
 
-    public val addPropertyInfoPtr: VoidPtr =
+    internal val addPropertyInfoPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "add_property_info", 4155329257)
 
-    public val setRestartIfChangedPtr: VoidPtr =
+    internal val setRestartIfChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "set_restart_if_changed", 2678287736)
 
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ProjectSettings", "clear", 83702148)
+    internal val clearPtr: VoidPtr =
+        Internals.getMethodBindPtr("ProjectSettings", "clear", 83702148)
 
-    public val localizePathPtr: VoidPtr =
+    internal val localizePathPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "localize_path", 3135753539)
 
-    public val globalizePathPtr: VoidPtr =
+    internal val globalizePathPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "globalize_path", 3135753539)
 
-    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ProjectSettings", "save", 166280745)
+    internal val savePtr: VoidPtr = Internals.getMethodBindPtr("ProjectSettings", "save", 166280745)
 
-    public val loadResourcePackPtr: VoidPtr =
+    internal val loadResourcePackPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "load_resource_pack", 708980503)
 
-    public val saveCustomPtr: VoidPtr =
+    internal val saveCustomPtr: VoidPtr =
         Internals.getMethodBindPtr("ProjectSettings", "save_custom", 166001499)
   }
 }

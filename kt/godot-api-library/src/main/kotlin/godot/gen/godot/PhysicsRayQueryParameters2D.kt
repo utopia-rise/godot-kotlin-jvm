@@ -275,50 +275,50 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
   }
 
-  internal object MethodBindings {
-    public val createPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "create", 3196569324)
 
-    public val setFromPtr: VoidPtr =
+    internal val setFromPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_from", 743155724)
 
-    public val getFromPtr: VoidPtr =
+    internal val getFromPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_from", 3341600327)
 
-    public val setToPtr: VoidPtr =
+    internal val setToPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_to", 743155724)
 
-    public val getToPtr: VoidPtr =
+    internal val getToPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_to", 3341600327)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_collision_mask", 3905245786)
 
-    public val setExcludePtr: VoidPtr =
+    internal val setExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_exclude", 381264803)
 
-    public val getExcludePtr: VoidPtr =
+    internal val getExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "get_exclude", 3995934104)
 
-    public val setCollideWithBodiesPtr: VoidPtr =
+    internal val setCollideWithBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collide_with_bodies", 2586408642)
 
-    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+    internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_collide_with_bodies_enabled", 36873697)
 
-    public val setCollideWithAreasPtr: VoidPtr =
+    internal val setCollideWithAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_collide_with_areas", 2586408642)
 
-    public val isCollideWithAreasEnabledPtr: VoidPtr =
+    internal val isCollideWithAreasEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_collide_with_areas_enabled", 36873697)
 
-    public val setHitFromInsidePtr: VoidPtr =
+    internal val setHitFromInsidePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_hit_from_inside", 2586408642)
 
-    public val isHitFromInsideEnabledPtr: VoidPtr =
+    internal val isHitFromInsideEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_hit_from_inside_enabled", 36873697)
   }
 }

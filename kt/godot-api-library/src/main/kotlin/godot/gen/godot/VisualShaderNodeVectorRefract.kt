@@ -26,5 +26,5 @@ public open class VisualShaderNodeVectorRefract : VisualShaderNodeVectorBase() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

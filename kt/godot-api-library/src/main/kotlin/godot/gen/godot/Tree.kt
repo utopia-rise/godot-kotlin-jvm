@@ -891,183 +891,186 @@ public open class Tree : Control() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "clear", 3218959716)
+  public object MethodBindings {
+    internal val clearPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "clear", 3218959716)
 
-    public val createItemPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "create_item", 528467046)
+    internal val createItemPtr: VoidPtr =
+        Internals.getMethodBindPtr("Tree", "create_item", 528467046)
 
-    public val getRootPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_root", 1514277247)
+    internal val getRootPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_root", 1514277247)
 
-    public val setColumnCustomMinimumWidthPtr: VoidPtr =
+    internal val setColumnCustomMinimumWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_custom_minimum_width", 3937882851)
 
-    public val setColumnExpandPtr: VoidPtr =
+    internal val setColumnExpandPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_expand", 300928843)
 
-    public val setColumnExpandRatioPtr: VoidPtr =
+    internal val setColumnExpandRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_expand_ratio", 3937882851)
 
-    public val setColumnClipContentPtr: VoidPtr =
+    internal val setColumnClipContentPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_clip_content", 300928843)
 
-    public val isColumnExpandingPtr: VoidPtr =
+    internal val isColumnExpandingPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_column_expanding", 1116898809)
 
-    public val isColumnClippingContentPtr: VoidPtr =
+    internal val isColumnClippingContentPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_column_clipping_content", 1116898809)
 
-    public val getColumnExpandRatioPtr: VoidPtr =
+    internal val getColumnExpandRatioPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_expand_ratio", 923996154)
 
-    public val getColumnWidthPtr: VoidPtr =
+    internal val getColumnWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_width", 923996154)
 
-    public val setHideRootPtr: VoidPtr =
+    internal val setHideRootPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_hide_root", 2586408642)
 
-    public val isRootHiddenPtr: VoidPtr =
+    internal val isRootHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_root_hidden", 36873697)
 
-    public val getNextSelectedPtr: VoidPtr =
+    internal val getNextSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_next_selected", 873446299)
 
-    public val getSelectedPtr: VoidPtr =
+    internal val getSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_selected", 1514277247)
 
-    public val setSelectedPtr: VoidPtr =
+    internal val setSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_selected", 2662547442)
 
-    public val getSelectedColumnPtr: VoidPtr =
+    internal val getSelectedColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_selected_column", 3905245786)
 
-    public val getPressedButtonPtr: VoidPtr =
+    internal val getPressedButtonPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_pressed_button", 3905245786)
 
-    public val setSelectModePtr: VoidPtr =
+    internal val setSelectModePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_select_mode", 3223887270)
 
-    public val getSelectModePtr: VoidPtr =
+    internal val getSelectModePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_select_mode", 100748571)
 
-    public val deselectAllPtr: VoidPtr =
+    internal val deselectAllPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "deselect_all", 3218959716)
 
-    public val setColumnsPtr: VoidPtr =
+    internal val setColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_columns", 1286410249)
 
-    public val getColumnsPtr: VoidPtr =
+    internal val getColumnsPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_columns", 3905245786)
 
-    public val getEditedPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_edited", 1514277247)
+    internal val getEditedPtr: VoidPtr =
+        Internals.getMethodBindPtr("Tree", "get_edited", 1514277247)
 
-    public val getEditedColumnPtr: VoidPtr =
+    internal val getEditedColumnPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_edited_column", 3905245786)
 
-    public val editSelectedPtr: VoidPtr =
+    internal val editSelectedPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "edit_selected", 2595650253)
 
-    public val getCustomPopupRectPtr: VoidPtr =
+    internal val getCustomPopupRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_custom_popup_rect", 1639390495)
 
-    public val getItemAreaRectPtr: VoidPtr =
+    internal val getItemAreaRectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_item_area_rect", 47968679)
 
-    public val getItemAtPositionPtr: VoidPtr =
+    internal val getItemAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_item_at_position", 4193340126)
 
-    public val getColumnAtPositionPtr: VoidPtr =
+    internal val getColumnAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_at_position", 3820158470)
 
-    public val getDropSectionAtPositionPtr: VoidPtr =
+    internal val getDropSectionAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_drop_section_at_position", 3820158470)
 
-    public val getButtonIdAtPositionPtr: VoidPtr =
+    internal val getButtonIdAtPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_button_id_at_position", 3820158470)
 
-    public val ensureCursorIsVisiblePtr: VoidPtr =
+    internal val ensureCursorIsVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "ensure_cursor_is_visible", 3218959716)
 
-    public val setColumnTitlesVisiblePtr: VoidPtr =
+    internal val setColumnTitlesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_titles_visible", 2586408642)
 
-    public val areColumnTitlesVisiblePtr: VoidPtr =
+    internal val areColumnTitlesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "are_column_titles_visible", 36873697)
 
-    public val setColumnTitlePtr: VoidPtr =
+    internal val setColumnTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_title", 501894301)
 
-    public val getColumnTitlePtr: VoidPtr =
+    internal val getColumnTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_title", 844755477)
 
-    public val setColumnTitleAlignmentPtr: VoidPtr =
+    internal val setColumnTitleAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_title_alignment", 3276431499)
 
-    public val getColumnTitleAlignmentPtr: VoidPtr =
+    internal val getColumnTitleAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_title_alignment", 4171562184)
 
-    public val setColumnTitleDirectionPtr: VoidPtr =
+    internal val setColumnTitleDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_title_direction", 1707680378)
 
-    public val getColumnTitleDirectionPtr: VoidPtr =
+    internal val getColumnTitleDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_title_direction", 4235602388)
 
-    public val setColumnTitleLanguagePtr: VoidPtr =
+    internal val setColumnTitleLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_column_title_language", 501894301)
 
-    public val getColumnTitleLanguagePtr: VoidPtr =
+    internal val getColumnTitleLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_column_title_language", 844755477)
 
-    public val getScrollPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_scroll", 3341600327)
+    internal val getScrollPtr: VoidPtr =
+        Internals.getMethodBindPtr("Tree", "get_scroll", 3341600327)
 
-    public val scrollToItemPtr: VoidPtr =
+    internal val scrollToItemPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "scroll_to_item", 1314737213)
 
-    public val setHScrollEnabledPtr: VoidPtr =
+    internal val setHScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_h_scroll_enabled", 2586408642)
 
-    public val isHScrollEnabledPtr: VoidPtr =
+    internal val isHScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_h_scroll_enabled", 36873697)
 
-    public val setVScrollEnabledPtr: VoidPtr =
+    internal val setVScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_v_scroll_enabled", 2586408642)
 
-    public val isVScrollEnabledPtr: VoidPtr =
+    internal val isVScrollEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36873697)
 
-    public val setHideFoldingPtr: VoidPtr =
+    internal val setHideFoldingPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_hide_folding", 2586408642)
 
-    public val isFoldingHiddenPtr: VoidPtr =
+    internal val isFoldingHiddenPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_folding_hidden", 36873697)
 
-    public val setEnableRecursiveFoldingPtr: VoidPtr =
+    internal val setEnableRecursiveFoldingPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_enable_recursive_folding", 2586408642)
 
-    public val isRecursiveFoldingEnabledPtr: VoidPtr =
+    internal val isRecursiveFoldingEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36873697)
 
-    public val setDropModeFlagsPtr: VoidPtr =
+    internal val setDropModeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_drop_mode_flags", 1286410249)
 
-    public val getDropModeFlagsPtr: VoidPtr =
+    internal val getDropModeFlagsPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_drop_mode_flags", 3905245786)
 
-    public val setAllowRmbSelectPtr: VoidPtr =
+    internal val setAllowRmbSelectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_allow_rmb_select", 2586408642)
 
-    public val getAllowRmbSelectPtr: VoidPtr =
+    internal val getAllowRmbSelectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_allow_rmb_select", 36873697)
 
-    public val setAllowReselectPtr: VoidPtr =
+    internal val setAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_allow_reselect", 2586408642)
 
-    public val getAllowReselectPtr: VoidPtr =
+    internal val getAllowReselectPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_allow_reselect", 36873697)
 
-    public val setAllowSearchPtr: VoidPtr =
+    internal val setAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "set_allow_search", 2586408642)
 
-    public val getAllowSearchPtr: VoidPtr =
+    internal val getAllowSearchPtr: VoidPtr =
         Internals.getMethodBindPtr("Tree", "get_allow_search", 36873697)
   }
 }

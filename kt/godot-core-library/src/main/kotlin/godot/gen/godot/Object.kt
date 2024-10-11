@@ -1106,130 +1106,131 @@ public open class Object : KtObject() {
     public final const val NOTIFICATION_EXTENSION_RELOADED: Long = 2
   }
 
-  internal object MethodBindings {
-    public val getClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_class", 201670096)
+  public object MethodBindings {
+    internal val getClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_class", 201670096)
 
-    public val isClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "is_class", 3927539163)
+    internal val isClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "is_class", 3927539163)
 
-    public val setPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set", 3776071444)
+    internal val setPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set", 3776071444)
 
-    public val getPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get", 2760726917)
+    internal val getPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get", 2760726917)
 
-    public val setIndexedPtr: VoidPtr =
+    internal val setIndexedPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "set_indexed", 3500910842)
 
-    public val getIndexedPtr: VoidPtr =
+    internal val getIndexedPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_indexed", 4006125091)
 
-    public val getPropertyListPtr: VoidPtr =
+    internal val getPropertyListPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_property_list", 3995934104)
 
-    public val getMethodListPtr: VoidPtr =
+    internal val getMethodListPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_method_list", 3995934104)
 
-    public val propertyCanRevertPtr: VoidPtr =
+    internal val propertyCanRevertPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "property_can_revert", 2619796661)
 
-    public val propertyGetRevertPtr: VoidPtr =
+    internal val propertyGetRevertPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "property_get_revert", 2760726917)
 
-    public val notificationPtr: VoidPtr =
+    internal val notificationPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "notification", 4023243586)
 
-    public val toStringPtr: VoidPtr = Internals.getMethodBindPtr("Object", "to_string", 2841200299)
+    internal val toStringPtr: VoidPtr =
+        Internals.getMethodBindPtr("Object", "to_string", 2841200299)
 
-    public val getInstanceIdPtr: VoidPtr =
+    internal val getInstanceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_instance_id", 3905245786)
 
-    public val setScriptPtr: VoidPtr =
+    internal val setScriptPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "set_script", 1114965689)
 
-    public val getScriptPtr: VoidPtr =
+    internal val getScriptPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_script", 1214101251)
 
-    public val setMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set_meta", 3776071444)
+    internal val setMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set_meta", 3776071444)
 
-    public val removeMetaPtr: VoidPtr =
+    internal val removeMetaPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "remove_meta", 3304788590)
 
-    public val getMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_meta", 3990617847)
+    internal val getMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_meta", 3990617847)
 
-    public val hasMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "has_meta", 2619796661)
+    internal val hasMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "has_meta", 2619796661)
 
-    public val getMetaListPtr: VoidPtr =
+    internal val getMetaListPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_meta_list", 3995934104)
 
-    public val addUserSignalPtr: VoidPtr =
+    internal val addUserSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "add_user_signal", 85656714)
 
-    public val hasUserSignalPtr: VoidPtr =
+    internal val hasUserSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "has_user_signal", 2619796661)
 
-    public val removeUserSignalPtr: VoidPtr =
+    internal val removeUserSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "remove_user_signal", 3304788590)
 
-    public val emitSignalPtr: VoidPtr =
+    internal val emitSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "emit_signal", 4047867050)
 
-    public val callPtr: VoidPtr = Internals.getMethodBindPtr("Object", "call", 3400424181)
+    internal val callPtr: VoidPtr = Internals.getMethodBindPtr("Object", "call", 3400424181)
 
-    public val callDeferredPtr: VoidPtr =
+    internal val callDeferredPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "call_deferred", 3400424181)
 
-    public val setDeferredPtr: VoidPtr =
+    internal val setDeferredPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "set_deferred", 3776071444)
 
-    public val callvPtr: VoidPtr = Internals.getMethodBindPtr("Object", "callv", 1260104456)
+    internal val callvPtr: VoidPtr = Internals.getMethodBindPtr("Object", "callv", 1260104456)
 
-    public val hasMethodPtr: VoidPtr =
+    internal val hasMethodPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "has_method", 2619796661)
 
-    public val getMethodArgumentCountPtr: VoidPtr =
+    internal val getMethodArgumentCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_method_argument_count", 2458036349)
 
-    public val hasSignalPtr: VoidPtr =
+    internal val hasSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "has_signal", 2619796661)
 
-    public val getSignalListPtr: VoidPtr =
+    internal val getSignalListPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_signal_list", 3995934104)
 
-    public val getSignalConnectionListPtr: VoidPtr =
+    internal val getSignalConnectionListPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_signal_connection_list", 3147814860)
 
-    public val getIncomingConnectionsPtr: VoidPtr =
+    internal val getIncomingConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "get_incoming_connections", 3995934104)
 
-    public val connectPtr: VoidPtr = Internals.getMethodBindPtr("Object", "connect", 1518946055)
+    internal val connectPtr: VoidPtr = Internals.getMethodBindPtr("Object", "connect", 1518946055)
 
-    public val disconnectPtr: VoidPtr =
+    internal val disconnectPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "disconnect", 1874754934)
 
-    public val isConnectedPtr: VoidPtr =
+    internal val isConnectedPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "is_connected", 768136979)
 
-    public val setBlockSignalsPtr: VoidPtr =
+    internal val setBlockSignalsPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "set_block_signals", 2586408642)
 
-    public val isBlockingSignalsPtr: VoidPtr =
+    internal val isBlockingSignalsPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "is_blocking_signals", 36873697)
 
-    public val notifyPropertyListChangedPtr: VoidPtr =
+    internal val notifyPropertyListChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "notify_property_list_changed", 3218959716)
 
-    public val setMessageTranslationPtr: VoidPtr =
+    internal val setMessageTranslationPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "set_message_translation", 2586408642)
 
-    public val canTranslateMessagesPtr: VoidPtr =
+    internal val canTranslateMessagesPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "can_translate_messages", 36873697)
 
-    public val trPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr", 2475554935)
+    internal val trPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr", 2475554935)
 
-    public val trNPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr_n", 4021311862)
+    internal val trNPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr_n", 4021311862)
 
-    public val isQueuedForDeletionPtr: VoidPtr =
+    internal val isQueuedForDeletionPtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "is_queued_for_deletion", 36873697)
 
-    public val cancelFreePtr: VoidPtr =
+    internal val cancelFreePtr: VoidPtr =
         Internals.getMethodBindPtr("Object", "cancel_free", 3218959716)
   }
 }

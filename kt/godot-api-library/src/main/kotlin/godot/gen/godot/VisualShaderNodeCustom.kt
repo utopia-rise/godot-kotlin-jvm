@@ -269,8 +269,8 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getOptionIndexPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getOptionIndexPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeCustom", "get_option_index", 923996154)
   }
 }

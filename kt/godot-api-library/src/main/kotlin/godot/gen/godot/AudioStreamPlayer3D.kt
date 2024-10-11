@@ -641,146 +641,146 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setStreamPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_stream", 2210767741)
 
-    public val getStreamPtr: VoidPtr =
+    internal val getStreamPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_stream", 160907539)
 
-    public val setVolumeDbPtr: VoidPtr =
+    internal val setVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_volume_db", 373806689)
 
-    public val getVolumeDbPtr: VoidPtr =
+    internal val getVolumeDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_volume_db", 1740695150)
 
-    public val setUnitSizePtr: VoidPtr =
+    internal val setUnitSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_unit_size", 373806689)
 
-    public val getUnitSizePtr: VoidPtr =
+    internal val getUnitSizePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_unit_size", 1740695150)
 
-    public val setMaxDbPtr: VoidPtr =
+    internal val setMaxDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_max_db", 373806689)
 
-    public val getMaxDbPtr: VoidPtr =
+    internal val getMaxDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_max_db", 1740695150)
 
-    public val setPitchScalePtr: VoidPtr =
+    internal val setPitchScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_pitch_scale", 373806689)
 
-    public val getPitchScalePtr: VoidPtr =
+    internal val getPitchScalePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_pitch_scale", 1740695150)
 
-    public val playPtr: VoidPtr =
+    internal val playPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "play", 1958160172)
 
-    public val seekPtr: VoidPtr =
+    internal val seekPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "seek", 373806689)
 
-    public val stopPtr: VoidPtr =
+    internal val stopPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "stop", 3218959716)
 
-    public val isPlayingPtr: VoidPtr =
+    internal val isPlayingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "is_playing", 36873697)
 
-    public val getPlaybackPositionPtr: VoidPtr =
+    internal val getPlaybackPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_position", 191475506)
 
-    public val setBusPtr: VoidPtr =
+    internal val setBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_bus", 3304788590)
 
-    public val getBusPtr: VoidPtr =
+    internal val getBusPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_bus", 2002593661)
 
-    public val setAutoplayPtr: VoidPtr =
+    internal val setAutoplayPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_autoplay", 2586408642)
 
-    public val isAutoplayEnabledPtr: VoidPtr =
+    internal val isAutoplayEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "is_autoplay_enabled", 36873697)
 
-    public val setMaxDistancePtr: VoidPtr =
+    internal val setMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_max_distance", 373806689)
 
-    public val getMaxDistancePtr: VoidPtr =
+    internal val getMaxDistancePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_max_distance", 1740695150)
 
-    public val setAreaMaskPtr: VoidPtr =
+    internal val setAreaMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_area_mask", 1286410249)
 
-    public val getAreaMaskPtr: VoidPtr =
+    internal val getAreaMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_area_mask", 3905245786)
 
-    public val setEmissionAnglePtr: VoidPtr =
+    internal val setEmissionAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle", 373806689)
 
-    public val getEmissionAnglePtr: VoidPtr =
+    internal val getEmissionAnglePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle", 1740695150)
 
-    public val setEmissionAngleEnabledPtr: VoidPtr =
+    internal val setEmissionAngleEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_enabled", 2586408642)
 
-    public val isEmissionAngleEnabledPtr: VoidPtr =
+    internal val isEmissionAngleEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "is_emission_angle_enabled", 36873697)
 
-    public val setEmissionAngleFilterAttenuationDbPtr: VoidPtr =
+    internal val setEmissionAngleFilterAttenuationDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_filter_attenuation_db", 373806689)
 
-    public val getEmissionAngleFilterAttenuationDbPtr: VoidPtr =
+    internal val getEmissionAngleFilterAttenuationDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle_filter_attenuation_db", 1740695150)
 
-    public val setAttenuationFilterCutoffHzPtr: VoidPtr =
+    internal val setAttenuationFilterCutoffHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_cutoff_hz", 373806689)
 
-    public val getAttenuationFilterCutoffHzPtr: VoidPtr =
+    internal val getAttenuationFilterCutoffHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_cutoff_hz", 1740695150)
 
-    public val setAttenuationFilterDbPtr: VoidPtr =
+    internal val setAttenuationFilterDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_db", 373806689)
 
-    public val getAttenuationFilterDbPtr: VoidPtr =
+    internal val getAttenuationFilterDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_db", 1740695150)
 
-    public val setAttenuationModelPtr: VoidPtr =
+    internal val setAttenuationModelPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_model", 2988086229)
 
-    public val getAttenuationModelPtr: VoidPtr =
+    internal val getAttenuationModelPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_model", 3035106060)
 
-    public val setDopplerTrackingPtr: VoidPtr =
+    internal val setDopplerTrackingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_doppler_tracking", 3968161450)
 
-    public val getDopplerTrackingPtr: VoidPtr =
+    internal val getDopplerTrackingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_doppler_tracking", 1702418664)
 
-    public val setStreamPausedPtr: VoidPtr =
+    internal val setStreamPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_stream_paused", 2586408642)
 
-    public val getStreamPausedPtr: VoidPtr =
+    internal val getStreamPausedPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_paused", 36873697)
 
-    public val setMaxPolyphonyPtr: VoidPtr =
+    internal val setMaxPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_max_polyphony", 1286410249)
 
-    public val getMaxPolyphonyPtr: VoidPtr =
+    internal val getMaxPolyphonyPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_max_polyphony", 3905245786)
 
-    public val setPanningStrengthPtr: VoidPtr =
+    internal val setPanningStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_panning_strength", 373806689)
 
-    public val getPanningStrengthPtr: VoidPtr =
+    internal val getPanningStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_panning_strength", 1740695150)
 
-    public val hasStreamPlaybackPtr: VoidPtr =
+    internal val hasStreamPlaybackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "has_stream_playback", 2240911060)
 
-    public val getStreamPlaybackPtr: VoidPtr =
+    internal val getStreamPlaybackPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_playback", 210135309)
 
-    public val setPlaybackTypePtr: VoidPtr =
+    internal val setPlaybackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "set_playback_type", 725473817)
 
-    public val getPlaybackTypePtr: VoidPtr =
+    internal val getPlaybackTypePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_type", 4011264623)
   }
 }

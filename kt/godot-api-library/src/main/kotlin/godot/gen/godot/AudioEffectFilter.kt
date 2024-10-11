@@ -137,29 +137,29 @@ public open class AudioEffectFilter : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCutoffPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCutoffPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "set_cutoff", 373806689)
 
-    public val getCutoffPtr: VoidPtr =
+    internal val getCutoffPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "get_cutoff", 1740695150)
 
-    public val setResonancePtr: VoidPtr =
+    internal val setResonancePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "set_resonance", 373806689)
 
-    public val getResonancePtr: VoidPtr =
+    internal val getResonancePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "get_resonance", 1740695150)
 
-    public val setGainPtr: VoidPtr =
+    internal val setGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "set_gain", 373806689)
 
-    public val getGainPtr: VoidPtr =
+    internal val getGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "get_gain", 1740695150)
 
-    public val setDbPtr: VoidPtr =
+    internal val setDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "set_db", 771740901)
 
-    public val getDbPtr: VoidPtr =
+    internal val getDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectFilter", "get_db", 3981721890)
   }
 }

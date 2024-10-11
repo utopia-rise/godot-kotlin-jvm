@@ -131,35 +131,35 @@ public open class TileMapPattern : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCellPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCellPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "set_cell", 2224802556)
 
-    public val hasCellPtr: VoidPtr =
+    internal val hasCellPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "has_cell", 3900751641)
 
-    public val removeCellPtr: VoidPtr =
+    internal val removeCellPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "remove_cell", 4153096796)
 
-    public val getCellSourceIdPtr: VoidPtr =
+    internal val getCellSourceIdPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "get_cell_source_id", 2485466453)
 
-    public val getCellAtlasCoordsPtr: VoidPtr =
+    internal val getCellAtlasCoordsPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "get_cell_atlas_coords", 3050897911)
 
-    public val getCellAlternativeTilePtr: VoidPtr =
+    internal val getCellAlternativeTilePtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "get_cell_alternative_tile", 2485466453)
 
-    public val getUsedCellsPtr: VoidPtr =
+    internal val getUsedCellsPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "get_used_cells", 3995934104)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "get_size", 3690982128)
 
-    public val setSizePtr: VoidPtr =
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "set_size", 1130785943)
 
-    public val isEmptyPtr: VoidPtr =
+    internal val isEmptyPtr: VoidPtr =
         Internals.getMethodBindPtr("TileMapPattern", "is_empty", 36873697)
   }
 }

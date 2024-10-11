@@ -141,29 +141,29 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCullMaskPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr =
+    internal val getCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_cull_mask", 3905245786)
 
-    public val setStrengthPtr: VoidPtr =
+    internal val setStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_strength", 373806689)
 
-    public val getStrengthPtr: VoidPtr =
+    internal val getStrengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_strength", 1740695150)
 
-    public val setAttenuationPtr: VoidPtr =
+    internal val setAttenuationPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_attenuation", 373806689)
 
-    public val getAttenuationPtr: VoidPtr =
+    internal val getAttenuationPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_attenuation", 1740695150)
 
-    public val setDirectionalityPtr: VoidPtr =
+    internal val setDirectionalityPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_directionality", 373806689)
 
-    public val getDirectionalityPtr: VoidPtr =
+    internal val getDirectionalityPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_directionality", 1740695150)
   }
 }

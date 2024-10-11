@@ -160,21 +160,23 @@ public open class FogVolume : VisualInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("FogVolume", "set_size", 3460891852)
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("FogVolume", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("FogVolume", "get_size", 3360562783)
+    internal val getSizePtr: VoidPtr =
+        Internals.getMethodBindPtr("FogVolume", "get_size", 3360562783)
 
-    public val setShapePtr: VoidPtr =
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("FogVolume", "set_shape", 1416323362)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("FogVolume", "get_shape", 3920334604)
 
-    public val setMaterialPtr: VoidPtr =
+    internal val setMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("FogVolume", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
+    internal val getMaterialPtr: VoidPtr =
         Internals.getMethodBindPtr("FogVolume", "get_material", 5934680)
   }
 }

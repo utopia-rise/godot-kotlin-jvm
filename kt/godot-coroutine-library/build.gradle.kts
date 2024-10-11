@@ -35,7 +35,8 @@ dependencies {
 tasks {
     // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
     getByName("sourcesJar") {
-        dependsOn(":godot-library-core:sourcesJar")
+        dependsOn(":godot-core-library:sourcesJar")
+        dependsOn(":godot-api-library:sourcesJar")
     }
 }
 

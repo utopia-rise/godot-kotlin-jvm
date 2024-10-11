@@ -85,11 +85,11 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionBox3D", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr =
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollisionBox3D", "get_size", 3360562783)
   }
 }

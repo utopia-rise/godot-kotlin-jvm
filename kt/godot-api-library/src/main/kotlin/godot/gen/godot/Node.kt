@@ -2718,321 +2718,333 @@ public open class Node : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val printOrphanNodesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val printOrphanNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
 
-    public val addSiblingPtr: VoidPtr =
+    internal val addSiblingPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "add_sibling", 2570952461)
 
-    public val setNamePtr: VoidPtr = Internals.getMethodBindPtr("Node", "set_name", 83702148)
+    internal val setNamePtr: VoidPtr = Internals.getMethodBindPtr("Node", "set_name", 83702148)
 
-    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_name", 2002593661)
+    internal val getNamePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_name", 2002593661)
 
-    public val addChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "add_child", 3863233950)
+    internal val addChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "add_child", 3863233950)
 
-    public val removeChildPtr: VoidPtr =
+    internal val removeChildPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "remove_child", 1078189570)
 
-    public val reparentPtr: VoidPtr = Internals.getMethodBindPtr("Node", "reparent", 3685795103)
+    internal val reparentPtr: VoidPtr = Internals.getMethodBindPtr("Node", "reparent", 3685795103)
 
-    public val getChildCountPtr: VoidPtr =
+    internal val getChildCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_child_count", 894402480)
 
-    public val getChildrenPtr: VoidPtr =
+    internal val getChildrenPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_children", 873284517)
 
-    public val getChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_child", 541253412)
+    internal val getChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_child", 541253412)
 
-    public val hasNodePtr: VoidPtr = Internals.getMethodBindPtr("Node", "has_node", 861721659)
+    internal val hasNodePtr: VoidPtr = Internals.getMethodBindPtr("Node", "has_node", 861721659)
 
-    public val getNodePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_node", 2734337346)
+    internal val getNodePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_node", 2734337346)
 
-    public val getNodeOrNullPtr: VoidPtr =
+    internal val getNodeOrNullPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_node_or_null", 2734337346)
 
-    public val getParentPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_parent", 3160264692)
+    internal val getParentPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "get_parent", 3160264692)
 
-    public val findChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "find_child", 2008217037)
+    internal val findChildPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "find_child", 2008217037)
 
-    public val findChildrenPtr: VoidPtr =
+    internal val findChildrenPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "find_children", 2560337219)
 
-    public val findParentPtr: VoidPtr =
+    internal val findParentPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "find_parent", 1140089439)
 
-    public val hasNodeAndResourcePtr: VoidPtr =
+    internal val hasNodeAndResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "has_node_and_resource", 861721659)
 
-    public val getNodeAndResourcePtr: VoidPtr =
+    internal val getNodeAndResourcePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_node_and_resource", 502563882)
 
-    public val isInsideTreePtr: VoidPtr =
+    internal val isInsideTreePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_inside_tree", 36873697)
 
-    public val isPartOfEditedScenePtr: VoidPtr =
+    internal val isPartOfEditedScenePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_part_of_edited_scene", 36873697)
 
-    public val isAncestorOfPtr: VoidPtr =
+    internal val isAncestorOfPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_ancestor_of", 3093956946)
 
-    public val isGreaterThanPtr: VoidPtr =
+    internal val isGreaterThanPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_greater_than", 3093956946)
 
-    public val getPathPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_path", 4075236667)
+    internal val getPathPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_path", 4075236667)
 
-    public val getPathToPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_path_to", 498846349)
+    internal val getPathToPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "get_path_to", 498846349)
 
-    public val addToGroupPtr: VoidPtr =
+    internal val addToGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "add_to_group", 3683006648)
 
-    public val removeFromGroupPtr: VoidPtr =
+    internal val removeFromGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "remove_from_group", 3304788590)
 
-    public val isInGroupPtr: VoidPtr = Internals.getMethodBindPtr("Node", "is_in_group", 2619796661)
+    internal val isInGroupPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "is_in_group", 2619796661)
 
-    public val moveChildPtr: VoidPtr = Internals.getMethodBindPtr("Node", "move_child", 3315886247)
+    internal val moveChildPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "move_child", 3315886247)
 
-    public val getGroupsPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_groups", 3995934104)
+    internal val getGroupsPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "get_groups", 3995934104)
 
-    public val setOwnerPtr: VoidPtr = Internals.getMethodBindPtr("Node", "set_owner", 1078189570)
+    internal val setOwnerPtr: VoidPtr = Internals.getMethodBindPtr("Node", "set_owner", 1078189570)
 
-    public val getOwnerPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_owner", 3160264692)
+    internal val getOwnerPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_owner", 3160264692)
 
-    public val getIndexPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_index", 894402480)
+    internal val getIndexPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_index", 894402480)
 
-    public val printTreePtr: VoidPtr = Internals.getMethodBindPtr("Node", "print_tree", 3218959716)
+    internal val printTreePtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "print_tree", 3218959716)
 
-    public val printTreePrettyPtr: VoidPtr =
+    internal val printTreePrettyPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "print_tree_pretty", 3218959716)
 
-    public val getTreeStringPtr: VoidPtr =
+    internal val getTreeStringPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_tree_string", 2841200299)
 
-    public val getTreeStringPrettyPtr: VoidPtr =
+    internal val getTreeStringPrettyPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_tree_string_pretty", 2841200299)
 
-    public val setSceneFilePathPtr: VoidPtr =
+    internal val setSceneFilePathPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_scene_file_path", 83702148)
 
-    public val getSceneFilePathPtr: VoidPtr =
+    internal val getSceneFilePathPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_scene_file_path", 201670096)
 
-    public val propagateNotificationPtr: VoidPtr =
+    internal val propagateNotificationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "propagate_notification", 1286410249)
 
-    public val propagateCallPtr: VoidPtr =
+    internal val propagateCallPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "propagate_call", 1871007965)
 
-    public val setPhysicsProcessPtr: VoidPtr =
+    internal val setPhysicsProcessPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_physics_process", 2586408642)
 
-    public val getPhysicsProcessDeltaTimePtr: VoidPtr =
+    internal val getPhysicsProcessDeltaTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_physics_process_delta_time", 1740695150)
 
-    public val isPhysicsProcessingPtr: VoidPtr =
+    internal val isPhysicsProcessingPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_physics_processing", 36873697)
 
-    public val getProcessDeltaTimePtr: VoidPtr =
+    internal val getProcessDeltaTimePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_delta_time", 1740695150)
 
-    public val setProcessPtr: VoidPtr =
+    internal val setProcessPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process", 2586408642)
 
-    public val setProcessPriorityPtr: VoidPtr =
+    internal val setProcessPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_priority", 1286410249)
 
-    public val getProcessPriorityPtr: VoidPtr =
+    internal val getProcessPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_priority", 3905245786)
 
-    public val setPhysicsProcessPriorityPtr: VoidPtr =
+    internal val setPhysicsProcessPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_physics_process_priority", 1286410249)
 
-    public val getPhysicsProcessPriorityPtr: VoidPtr =
+    internal val getPhysicsProcessPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_physics_process_priority", 3905245786)
 
-    public val isProcessingPtr: VoidPtr =
+    internal val isProcessingPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing", 36873697)
 
-    public val setProcessInputPtr: VoidPtr =
+    internal val setProcessInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_input", 2586408642)
 
-    public val isProcessingInputPtr: VoidPtr =
+    internal val isProcessingInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing_input", 36873697)
 
-    public val setProcessShortcutInputPtr: VoidPtr =
+    internal val setProcessShortcutInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_shortcut_input", 2586408642)
 
-    public val isProcessingShortcutInputPtr: VoidPtr =
+    internal val isProcessingShortcutInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing_shortcut_input", 36873697)
 
-    public val setProcessUnhandledInputPtr: VoidPtr =
+    internal val setProcessUnhandledInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_unhandled_input", 2586408642)
 
-    public val isProcessingUnhandledInputPtr: VoidPtr =
+    internal val isProcessingUnhandledInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing_unhandled_input", 36873697)
 
-    public val setProcessUnhandledKeyInputPtr: VoidPtr =
+    internal val setProcessUnhandledKeyInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_unhandled_key_input", 2586408642)
 
-    public val isProcessingUnhandledKeyInputPtr: VoidPtr =
+    internal val isProcessingUnhandledKeyInputPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing_unhandled_key_input", 36873697)
 
-    public val setProcessModePtr: VoidPtr =
+    internal val setProcessModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_mode", 1841290486)
 
-    public val getProcessModePtr: VoidPtr =
+    internal val getProcessModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_mode", 739966102)
 
-    public val canProcessPtr: VoidPtr = Internals.getMethodBindPtr("Node", "can_process", 36873697)
+    internal val canProcessPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "can_process", 36873697)
 
-    public val setProcessThreadGroupPtr: VoidPtr =
+    internal val setProcessThreadGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_thread_group", 2275442745)
 
-    public val getProcessThreadGroupPtr: VoidPtr =
+    internal val getProcessThreadGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_thread_group", 1866404740)
 
-    public val setProcessThreadMessagesPtr: VoidPtr =
+    internal val setProcessThreadMessagesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_thread_messages", 1357280998)
 
-    public val getProcessThreadMessagesPtr: VoidPtr =
+    internal val getProcessThreadMessagesPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_thread_messages", 4228993612)
 
-    public val setProcessThreadGroupOrderPtr: VoidPtr =
+    internal val setProcessThreadGroupOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_thread_group_order", 1286410249)
 
-    public val getProcessThreadGroupOrderPtr: VoidPtr =
+    internal val getProcessThreadGroupOrderPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_process_thread_group_order", 3905245786)
 
-    public val setDisplayFoldedPtr: VoidPtr =
+    internal val setDisplayFoldedPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_display_folded", 2586408642)
 
-    public val isDisplayedFoldedPtr: VoidPtr =
+    internal val isDisplayedFoldedPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_displayed_folded", 36873697)
 
-    public val setProcessInternalPtr: VoidPtr =
+    internal val setProcessInternalPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_process_internal", 2586408642)
 
-    public val isProcessingInternalPtr: VoidPtr =
+    internal val isProcessingInternalPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_processing_internal", 36873697)
 
-    public val setPhysicsProcessInternalPtr: VoidPtr =
+    internal val setPhysicsProcessInternalPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_physics_process_internal", 2586408642)
 
-    public val isPhysicsProcessingInternalPtr: VoidPtr =
+    internal val isPhysicsProcessingInternalPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_physics_processing_internal", 36873697)
 
-    public val setPhysicsInterpolationModePtr: VoidPtr =
+    internal val setPhysicsInterpolationModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_physics_interpolation_mode", 3202404928)
 
-    public val getPhysicsInterpolationModePtr: VoidPtr =
+    internal val getPhysicsInterpolationModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_physics_interpolation_mode", 2920385216)
 
-    public val isPhysicsInterpolatedPtr: VoidPtr =
+    internal val isPhysicsInterpolatedPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_physics_interpolated", 36873697)
 
-    public val isPhysicsInterpolatedAndEnabledPtr: VoidPtr =
+    internal val isPhysicsInterpolatedAndEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_physics_interpolated_and_enabled", 36873697)
 
-    public val resetPhysicsInterpolationPtr: VoidPtr =
+    internal val resetPhysicsInterpolationPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "reset_physics_interpolation", 3218959716)
 
-    public val setAutoTranslateModePtr: VoidPtr =
+    internal val setAutoTranslateModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_auto_translate_mode", 776149714)
 
-    public val getAutoTranslateModePtr: VoidPtr =
+    internal val getAutoTranslateModePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_auto_translate_mode", 2498906432)
 
-    public val getWindowPtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_window", 1757182445)
+    internal val getWindowPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "get_window", 1757182445)
 
-    public val getLastExclusiveWindowPtr: VoidPtr =
+    internal val getLastExclusiveWindowPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_last_exclusive_window", 1757182445)
 
-    public val getTreePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_tree", 2958820483)
+    internal val getTreePtr: VoidPtr = Internals.getMethodBindPtr("Node", "get_tree", 2958820483)
 
-    public val createTweenPtr: VoidPtr =
+    internal val createTweenPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "create_tween", 3426978995)
 
-    public val duplicatePtr: VoidPtr = Internals.getMethodBindPtr("Node", "duplicate", 3511555459)
+    internal val duplicatePtr: VoidPtr = Internals.getMethodBindPtr("Node", "duplicate", 3511555459)
 
-    public val replaceByPtr: VoidPtr = Internals.getMethodBindPtr("Node", "replace_by", 2570952461)
+    internal val replaceByPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "replace_by", 2570952461)
 
-    public val setSceneInstanceLoadPlaceholderPtr: VoidPtr =
+    internal val setSceneInstanceLoadPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_scene_instance_load_placeholder", 2586408642)
 
-    public val getSceneInstanceLoadPlaceholderPtr: VoidPtr =
+    internal val getSceneInstanceLoadPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_scene_instance_load_placeholder", 36873697)
 
-    public val setEditableInstancePtr: VoidPtr =
+    internal val setEditableInstancePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_editable_instance", 2731852923)
 
-    public val isEditableInstancePtr: VoidPtr =
+    internal val isEditableInstancePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_editable_instance", 3093956946)
 
-    public val getViewportPtr: VoidPtr =
+    internal val getViewportPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_viewport", 3596683776)
 
-    public val queueFreePtr: VoidPtr = Internals.getMethodBindPtr("Node", "queue_free", 3218959716)
+    internal val queueFreePtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "queue_free", 3218959716)
 
-    public val requestReadyPtr: VoidPtr =
+    internal val requestReadyPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "request_ready", 3218959716)
 
-    public val isNodeReadyPtr: VoidPtr =
+    internal val isNodeReadyPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_node_ready", 36873697)
 
-    public val setMultiplayerAuthorityPtr: VoidPtr =
+    internal val setMultiplayerAuthorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_multiplayer_authority", 972357352)
 
-    public val getMultiplayerAuthorityPtr: VoidPtr =
+    internal val getMultiplayerAuthorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_multiplayer_authority", 3905245786)
 
-    public val isMultiplayerAuthorityPtr: VoidPtr =
+    internal val isMultiplayerAuthorityPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_multiplayer_authority", 36873697)
 
-    public val getMultiplayerPtr: VoidPtr =
+    internal val getMultiplayerPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_multiplayer", 406750475)
 
-    public val rpcConfigPtr: VoidPtr = Internals.getMethodBindPtr("Node", "rpc_config", 3776071444)
+    internal val rpcConfigPtr: VoidPtr =
+        Internals.getMethodBindPtr("Node", "rpc_config", 3776071444)
 
-    public val setEditorDescriptionPtr: VoidPtr =
+    internal val setEditorDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_editor_description", 83702148)
 
-    public val getEditorDescriptionPtr: VoidPtr =
+    internal val getEditorDescriptionPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "get_editor_description", 201670096)
 
-    public val setUniqueNameInOwnerPtr: VoidPtr =
+    internal val setUniqueNameInOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_unique_name_in_owner", 2586408642)
 
-    public val isUniqueNameInOwnerPtr: VoidPtr =
+    internal val isUniqueNameInOwnerPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "is_unique_name_in_owner", 36873697)
 
-    public val atrPtr: VoidPtr = Internals.getMethodBindPtr("Node", "atr", 3344478075)
+    internal val atrPtr: VoidPtr = Internals.getMethodBindPtr("Node", "atr", 3344478075)
 
-    public val atrNPtr: VoidPtr = Internals.getMethodBindPtr("Node", "atr_n", 259354841)
+    internal val atrNPtr: VoidPtr = Internals.getMethodBindPtr("Node", "atr_n", 259354841)
 
-    public val rpcPtr: VoidPtr = Internals.getMethodBindPtr("Node", "rpc", 4047867050)
+    internal val rpcPtr: VoidPtr = Internals.getMethodBindPtr("Node", "rpc", 4047867050)
 
-    public val rpcIdPtr: VoidPtr = Internals.getMethodBindPtr("Node", "rpc_id", 361499283)
+    internal val rpcIdPtr: VoidPtr = Internals.getMethodBindPtr("Node", "rpc_id", 361499283)
 
-    public val updateConfigurationWarningsPtr: VoidPtr =
+    internal val updateConfigurationWarningsPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "update_configuration_warnings", 3218959716)
 
-    public val callDeferredThreadGroupPtr: VoidPtr =
+    internal val callDeferredThreadGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "call_deferred_thread_group", 3400424181)
 
-    public val setDeferredThreadGroupPtr: VoidPtr =
+    internal val setDeferredThreadGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_deferred_thread_group", 3776071444)
 
-    public val notifyDeferredThreadGroupPtr: VoidPtr =
+    internal val notifyDeferredThreadGroupPtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "notify_deferred_thread_group", 1286410249)
 
-    public val callThreadSafePtr: VoidPtr =
+    internal val callThreadSafePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "call_thread_safe", 3400424181)
 
-    public val setThreadSafePtr: VoidPtr =
+    internal val setThreadSafePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "set_thread_safe", 3776071444)
 
-    public val notifyThreadSafePtr: VoidPtr =
+    internal val notifyThreadSafePtr: VoidPtr =
         Internals.getMethodBindPtr("Node", "notify_thread_safe", 1286410249)
   }
 }

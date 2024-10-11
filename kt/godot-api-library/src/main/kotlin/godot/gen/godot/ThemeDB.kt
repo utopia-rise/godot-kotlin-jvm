@@ -131,41 +131,41 @@ public object ThemeDB : Object() {
     return (Internals.readReturnValue(OBJECT) as StyleBox?)
   }
 
-  internal object MethodBindings {
-    public val getDefaultThemePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getDefaultThemePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_default_theme", 754276358)
 
-    public val getProjectThemePtr: VoidPtr =
+    internal val getProjectThemePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_project_theme", 754276358)
 
-    public val setFallbackBaseScalePtr: VoidPtr =
+    internal val setFallbackBaseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "set_fallback_base_scale", 373806689)
 
-    public val getFallbackBaseScalePtr: VoidPtr =
+    internal val getFallbackBaseScalePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_fallback_base_scale", 191475506)
 
-    public val setFallbackFontPtr: VoidPtr =
+    internal val setFallbackFontPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "set_fallback_font", 1262170328)
 
-    public val getFallbackFontPtr: VoidPtr =
+    internal val getFallbackFontPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_fallback_font", 3656929885)
 
-    public val setFallbackFontSizePtr: VoidPtr =
+    internal val setFallbackFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "set_fallback_font_size", 1286410249)
 
-    public val getFallbackFontSizePtr: VoidPtr =
+    internal val getFallbackFontSizePtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_fallback_font_size", 2455072627)
 
-    public val setFallbackIconPtr: VoidPtr =
+    internal val setFallbackIconPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "set_fallback_icon", 4051416890)
 
-    public val getFallbackIconPtr: VoidPtr =
+    internal val getFallbackIconPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_fallback_icon", 255860311)
 
-    public val setFallbackStyleboxPtr: VoidPtr =
+    internal val setFallbackStyleboxPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "set_fallback_stylebox", 2797200388)
 
-    public val getFallbackStyleboxPtr: VoidPtr =
+    internal val getFallbackStyleboxPtr: VoidPtr =
         Internals.getMethodBindPtr("ThemeDB", "get_fallback_stylebox", 496040854)
   }
 }

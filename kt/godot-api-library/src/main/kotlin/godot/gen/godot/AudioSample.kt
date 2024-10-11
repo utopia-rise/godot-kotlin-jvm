@@ -25,5 +25,5 @@ public open class AudioSample : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

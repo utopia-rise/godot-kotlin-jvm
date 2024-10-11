@@ -90,20 +90,20 @@ public open class AudioEffectRecord : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setRecordingActivePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setRecordingActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectRecord", "set_recording_active", 2586408642)
 
-    public val isRecordingActivePtr: VoidPtr =
+    internal val isRecordingActivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectRecord", "is_recording_active", 36873697)
 
-    public val setFormatPtr: VoidPtr =
+    internal val setFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectRecord", "set_format", 60648488)
 
-    public val getFormatPtr: VoidPtr =
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectRecord", "get_format", 3151724922)
 
-    public val getRecordingPtr: VoidPtr =
+    internal val getRecordingPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectRecord", "get_recording", 2964110865)
   }
 }

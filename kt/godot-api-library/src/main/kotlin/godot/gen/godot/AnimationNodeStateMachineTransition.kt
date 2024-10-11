@@ -329,59 +329,59 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setSwitchModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setSwitchModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_switch_mode", 2074906633)
 
-    public val getSwitchModePtr: VoidPtr =
+    internal val getSwitchModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_switch_mode", 2138562085)
 
-    public val setAdvanceModePtr: VoidPtr =
+    internal val setAdvanceModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_mode", 1210869868)
 
-    public val getAdvanceModePtr: VoidPtr =
+    internal val getAdvanceModePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_mode", 61101689)
 
-    public val setAdvanceConditionPtr: VoidPtr =
+    internal val setAdvanceConditionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_condition", 3304788590)
 
-    public val getAdvanceConditionPtr: VoidPtr =
+    internal val getAdvanceConditionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_condition", 2002593661)
 
-    public val setXfadeTimePtr: VoidPtr =
+    internal val setXfadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_time", 373806689)
 
-    public val getXfadeTimePtr: VoidPtr =
+    internal val getXfadeTimePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_time", 1740695150)
 
-    public val setXfadeCurvePtr: VoidPtr =
+    internal val setXfadeCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_curve", 270443179)
 
-    public val getXfadeCurvePtr: VoidPtr =
+    internal val getXfadeCurvePtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve", 2460114913)
 
-    public val setBreakLoopAtEndPtr: VoidPtr =
+    internal val setBreakLoopAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end", 2586408642)
 
-    public val isLoopBrokenAtEndPtr: VoidPtr =
+    internal val isLoopBrokenAtEndPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end", 36873697)
 
-    public val setResetPtr: VoidPtr =
+    internal val setResetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset", 2586408642)
 
-    public val isResetPtr: VoidPtr =
+    internal val isResetPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_reset", 36873697)
 
-    public val setPriorityPtr: VoidPtr =
+    internal val setPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_priority", 1286410249)
 
-    public val getPriorityPtr: VoidPtr =
+    internal val getPriorityPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_priority", 3905245786)
 
-    public val setAdvanceExpressionPtr: VoidPtr =
+    internal val setAdvanceExpressionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_expression", 83702148)
 
-    public val getAdvanceExpressionPtr: VoidPtr =
+    internal val getAdvanceExpressionPtr: VoidPtr =
         Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_expression", 201670096)
   }
 }

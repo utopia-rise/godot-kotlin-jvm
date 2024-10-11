@@ -184,35 +184,35 @@ public open class CollisionShape2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setShapePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "set_shape", 771364740)
 
-    public val getShapePtr: VoidPtr =
+    internal val getShapePtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "get_shape", 522005891)
 
-    public val setDisabledPtr: VoidPtr =
+    internal val setDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "set_disabled", 2586408642)
 
-    public val isDisabledPtr: VoidPtr =
+    internal val isDisabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "is_disabled", 36873697)
 
-    public val setOneWayCollisionPtr: VoidPtr =
+    internal val setOneWayCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2586408642)
 
-    public val isOneWayCollisionEnabledPtr: VoidPtr =
+    internal val isOneWayCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36873697)
 
-    public val setOneWayCollisionMarginPtr: VoidPtr =
+    internal val setOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373806689)
 
-    public val getOneWayCollisionMarginPtr: VoidPtr =
+    internal val getOneWayCollisionMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
 
-    public val setDebugColorPtr: VoidPtr =
+    internal val setDebugColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)
 
-    public val getDebugColorPtr: VoidPtr =
+    internal val getDebugColorPtr: VoidPtr =
         Internals.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3444240500)
   }
 }

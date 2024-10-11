@@ -164,23 +164,23 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
   public companion object
 
-  internal object MethodBindings {
-    public val setButtonMaskPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setButtonMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "set_button_mask", 3950145251)
 
-    public val getButtonMaskPtr: VoidPtr =
+    internal val getButtonMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "get_button_mask", 2512161324)
 
-    public val setPositionPtr: VoidPtr =
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "set_position", 743155724)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "get_position", 3341600327)
 
-    public val setGlobalPositionPtr: VoidPtr =
+    internal val setGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "set_global_position", 743155724)
 
-    public val getGlobalPositionPtr: VoidPtr =
+    internal val getGlobalPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("InputEventMouse", "get_global_position", 3341600327)
   }
 }

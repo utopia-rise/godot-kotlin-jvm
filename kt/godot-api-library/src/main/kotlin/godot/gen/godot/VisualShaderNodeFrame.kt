@@ -196,41 +196,41 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTitlePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83702148)
 
-    public val getTitlePtr: VoidPtr =
+    internal val getTitlePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201670096)
 
-    public val setTintColorEnabledPtr: VoidPtr =
+    internal val setTintColorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2586408642)
 
-    public val isTintColorEnabledPtr: VoidPtr =
+    internal val isTintColorEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36873697)
 
-    public val setTintColorPtr: VoidPtr =
+    internal val setTintColorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2920490490)
 
-    public val getTintColorPtr: VoidPtr =
+    internal val getTintColorPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3444240500)
 
-    public val setAutoshrinkEnabledPtr: VoidPtr =
+    internal val setAutoshrinkEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2586408642)
 
-    public val isAutoshrinkEnabledPtr: VoidPtr =
+    internal val isAutoshrinkEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36873697)
 
-    public val addAttachedNodePtr: VoidPtr =
+    internal val addAttachedNodePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1286410249)
 
-    public val removeAttachedNodePtr: VoidPtr =
+    internal val removeAttachedNodePtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1286410249)
 
-    public val setAttachedNodesPtr: VoidPtr =
+    internal val setAttachedNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3614634198)
 
-    public val getAttachedNodesPtr: VoidPtr =
+    internal val getAttachedNodesPtr: VoidPtr =
         Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1930428628)
   }
 }

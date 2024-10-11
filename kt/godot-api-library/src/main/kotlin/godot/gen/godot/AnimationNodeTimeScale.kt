@@ -26,5 +26,5 @@ public open class AnimationNodeTimeScale : AnimationNode() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

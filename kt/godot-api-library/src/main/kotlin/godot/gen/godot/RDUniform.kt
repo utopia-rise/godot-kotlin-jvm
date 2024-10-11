@@ -104,24 +104,24 @@ public open class RDUniform : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setUniformTypePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setUniformTypePtr: VoidPtr =
         Internals.getMethodBindPtr("RDUniform", "set_uniform_type", 1664894931)
 
-    public val getUniformTypePtr: VoidPtr =
+    internal val getUniformTypePtr: VoidPtr =
         Internals.getMethodBindPtr("RDUniform", "get_uniform_type", 475470040)
 
-    public val setBindingPtr: VoidPtr =
+    internal val setBindingPtr: VoidPtr =
         Internals.getMethodBindPtr("RDUniform", "set_binding", 1286410249)
 
-    public val getBindingPtr: VoidPtr =
+    internal val getBindingPtr: VoidPtr =
         Internals.getMethodBindPtr("RDUniform", "get_binding", 3905245786)
 
-    public val addIdPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "add_id", 2722037293)
+    internal val addIdPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "add_id", 2722037293)
 
-    public val clearIdsPtr: VoidPtr =
+    internal val clearIdsPtr: VoidPtr =
         Internals.getMethodBindPtr("RDUniform", "clear_ids", 3218959716)
 
-    public val getIdsPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
+    internal val getIdsPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
   }
 }

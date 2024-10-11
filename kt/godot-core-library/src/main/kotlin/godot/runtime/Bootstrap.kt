@@ -5,6 +5,7 @@ import godot.core.TypeManager
 import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.registration.ClassRegistry
+import godot.registration.Entry
 import godot.util.JVMLogging
 import java.io.File
 import java.net.URL

@@ -58,11 +58,11 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
 
   public companion object
 
-  internal object MethodBindings {
-    public val createFromImagesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createFromImagesPtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTextureLayered", "create_from_images", 2785773503)
 
-    public val updateLayerPtr: VoidPtr =
+    internal val updateLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("ImageTextureLayered", "update_layer", 3331733361)
   }
 }

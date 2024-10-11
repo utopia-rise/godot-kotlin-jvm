@@ -25,5 +25,5 @@ public open class Panel : Control() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

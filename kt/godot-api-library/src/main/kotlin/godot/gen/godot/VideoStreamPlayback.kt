@@ -142,8 +142,8 @@ public open class VideoStreamPlayback : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val mixAudioPtr: VoidPtr =
+  public object MethodBindings {
+    internal val mixAudioPtr: VoidPtr =
         Internals.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
   }
 }

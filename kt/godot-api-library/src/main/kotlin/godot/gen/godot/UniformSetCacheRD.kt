@@ -47,8 +47,8 @@ public open class UniformSetCacheRD : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val getCachePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getCachePtr: VoidPtr =
         Internals.getMethodBindPtr("UniformSetCacheRD", "get_cache", 658571723)
   }
 }

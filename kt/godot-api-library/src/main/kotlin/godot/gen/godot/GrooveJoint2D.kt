@@ -79,17 +79,17 @@ public open class GrooveJoint2D : Joint2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GrooveJoint2D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("GrooveJoint2D", "get_length", 1740695150)
 
-    public val setInitialOffsetPtr: VoidPtr =
+    internal val setInitialOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GrooveJoint2D", "set_initial_offset", 373806689)
 
-    public val getInitialOffsetPtr: VoidPtr =
+    internal val getInitialOffsetPtr: VoidPtr =
         Internals.getMethodBindPtr("GrooveJoint2D", "get_initial_offset", 1740695150)
   }
 }

@@ -130,29 +130,29 @@ public open class Skeleton2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getBoneCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getBoneCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "get_bone_count", 3905245786)
 
-    public val getBonePtr: VoidPtr =
+    internal val getBonePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "get_bone", 2556267111)
 
-    public val getSkeletonPtr: VoidPtr =
+    internal val getSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "get_skeleton", 2944877500)
 
-    public val setModificationStackPtr: VoidPtr =
+    internal val setModificationStackPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "set_modification_stack", 3907307132)
 
-    public val getModificationStackPtr: VoidPtr =
+    internal val getModificationStackPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "get_modification_stack", 2107508396)
 
-    public val executeModificationsPtr: VoidPtr =
+    internal val executeModificationsPtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "execute_modifications", 1005356550)
 
-    public val setBoneLocalPoseOverridePtr: VoidPtr =
+    internal val setBoneLocalPoseOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "set_bone_local_pose_override", 555457532)
 
-    public val getBoneLocalPoseOverridePtr: VoidPtr =
+    internal val getBoneLocalPoseOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("Skeleton2D", "get_bone_local_pose_override", 2995540667)
   }
 }

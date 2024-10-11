@@ -60,14 +60,14 @@ public open class AudioListener2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val makeCurrentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val makeCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener2D", "make_current", 3218959716)
 
-    public val clearCurrentPtr: VoidPtr =
+    internal val clearCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener2D", "clear_current", 3218959716)
 
-    public val isCurrentPtr: VoidPtr =
+    internal val isCurrentPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioListener2D", "is_current", 36873697)
   }
 }

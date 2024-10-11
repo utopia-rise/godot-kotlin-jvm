@@ -83,17 +83,17 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setValuePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setValuePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "set_value", 1114965689)
 
-    public val getValuePtr: VoidPtr =
+    internal val getValuePtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "get_value", 1214101251)
 
-    public val setConstantIdPtr: VoidPtr =
+    internal val setConstantIdPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "set_constant_id", 1286410249)
 
-    public val getConstantIdPtr: VoidPtr =
+    internal val getConstantIdPtr: VoidPtr =
         Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "get_constant_id", 3905245786)
   }
 }

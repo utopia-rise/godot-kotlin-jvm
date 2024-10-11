@@ -188,14 +188,14 @@ public open class AESContext : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val startPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "start", 3122411423)
+  public object MethodBindings {
+    internal val startPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "start", 3122411423)
 
-    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "update", 527836100)
+    internal val updatePtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "update", 527836100)
 
-    public val getIvStatePtr: VoidPtr =
+    internal val getIvStatePtr: VoidPtr =
         Internals.getMethodBindPtr("AESContext", "get_iv_state", 2115431945)
 
-    public val finishPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "finish", 3218959716)
+    internal val finishPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "finish", 3218959716)
   }
 }

@@ -166,59 +166,59 @@ public open class AudioEffectChorus : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setVoiceCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setVoiceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_count", 1286410249)
 
-    public val getVoiceCountPtr: VoidPtr =
+    internal val getVoiceCountPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_count", 3905245786)
 
-    public val setVoiceDelayMsPtr: VoidPtr =
+    internal val setVoiceDelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_delay_ms", 1602489585)
 
-    public val getVoiceDelayMsPtr: VoidPtr =
+    internal val getVoiceDelayMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_delay_ms", 2339986948)
 
-    public val setVoiceRateHzPtr: VoidPtr =
+    internal val setVoiceRateHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_rate_hz", 1602489585)
 
-    public val getVoiceRateHzPtr: VoidPtr =
+    internal val getVoiceRateHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_rate_hz", 2339986948)
 
-    public val setVoiceDepthMsPtr: VoidPtr =
+    internal val setVoiceDepthMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_depth_ms", 1602489585)
 
-    public val getVoiceDepthMsPtr: VoidPtr =
+    internal val getVoiceDepthMsPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_depth_ms", 2339986948)
 
-    public val setVoiceLevelDbPtr: VoidPtr =
+    internal val setVoiceLevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_level_db", 1602489585)
 
-    public val getVoiceLevelDbPtr: VoidPtr =
+    internal val getVoiceLevelDbPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_level_db", 2339986948)
 
-    public val setVoiceCutoffHzPtr: VoidPtr =
+    internal val setVoiceCutoffHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_cutoff_hz", 1602489585)
 
-    public val getVoiceCutoffHzPtr: VoidPtr =
+    internal val getVoiceCutoffHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_cutoff_hz", 2339986948)
 
-    public val setVoicePanPtr: VoidPtr =
+    internal val setVoicePanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_voice_pan", 1602489585)
 
-    public val getVoicePanPtr: VoidPtr =
+    internal val getVoicePanPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_voice_pan", 2339986948)
 
-    public val setWetPtr: VoidPtr =
+    internal val setWetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_wet", 373806689)
 
-    public val getWetPtr: VoidPtr =
+    internal val getWetPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_wet", 1740695150)
 
-    public val setDryPtr: VoidPtr =
+    internal val setDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "set_dry", 373806689)
 
-    public val getDryPtr: VoidPtr =
+    internal val getDryPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectChorus", "get_dry", 1740695150)
   }
 }

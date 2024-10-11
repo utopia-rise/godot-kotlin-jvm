@@ -71,11 +71,11 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCullMaskPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollision3D", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr =
+    internal val getCullMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("GPUParticlesCollision3D", "get_cull_mask", 3905245786)
   }
 }

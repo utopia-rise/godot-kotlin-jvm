@@ -82,17 +82,17 @@ public open class SeparationRayShape3D : Shape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setLengthPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SeparationRayShape3D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr =
+    internal val getLengthPtr: VoidPtr =
         Internals.getMethodBindPtr("SeparationRayShape3D", "get_length", 1740695150)
 
-    public val setSlideOnSlopePtr: VoidPtr =
+    internal val setSlideOnSlopePtr: VoidPtr =
         Internals.getMethodBindPtr("SeparationRayShape3D", "set_slide_on_slope", 2586408642)
 
-    public val getSlideOnSlopePtr: VoidPtr =
+    internal val getSlideOnSlopePtr: VoidPtr =
         Internals.getMethodBindPtr("SeparationRayShape3D", "get_slide_on_slope", 36873697)
   }
 }

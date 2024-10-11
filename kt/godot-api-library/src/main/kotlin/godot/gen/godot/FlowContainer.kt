@@ -202,32 +202,32 @@ public open class FlowContainer : Container() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getLineCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getLineCountPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "get_line_count", 3905245786)
 
-    public val setAlignmentPtr: VoidPtr =
+    internal val setAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "set_alignment", 575250951)
 
-    public val getAlignmentPtr: VoidPtr =
+    internal val getAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "get_alignment", 3749743559)
 
-    public val setLastWrapAlignmentPtr: VoidPtr =
+    internal val setLastWrapAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2899697495)
 
-    public val getLastWrapAlignmentPtr: VoidPtr =
+    internal val getLastWrapAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3743456014)
 
-    public val setVerticalPtr: VoidPtr =
+    internal val setVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "set_vertical", 2586408642)
 
-    public val isVerticalPtr: VoidPtr =
+    internal val isVerticalPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "is_vertical", 36873697)
 
-    public val setReverseFillPtr: VoidPtr =
+    internal val setReverseFillPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2586408642)
 
-    public val isReverseFillPtr: VoidPtr =
+    internal val isReverseFillPtr: VoidPtr =
         Internals.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36873697)
   }
 }

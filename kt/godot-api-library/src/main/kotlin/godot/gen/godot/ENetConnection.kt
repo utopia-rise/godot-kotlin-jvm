@@ -393,58 +393,59 @@ public open class ENetConnection : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val createHostBoundPtr: VoidPtr =
+  public object MethodBindings {
+    internal val createHostBoundPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "create_host_bound", 1515002313)
 
-    public val createHostPtr: VoidPtr =
+    internal val createHostPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "create_host", 117198950)
 
-    public val destroyPtr: VoidPtr =
+    internal val destroyPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "destroy", 3218959716)
 
-    public val connectToHostPtr: VoidPtr =
+    internal val connectToHostPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "connect_to_host", 2171300490)
 
-    public val servicePtr: VoidPtr =
+    internal val servicePtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "service", 2402345344)
 
-    public val flushPtr: VoidPtr = Internals.getMethodBindPtr("ENetConnection", "flush", 3218959716)
+    internal val flushPtr: VoidPtr =
+        Internals.getMethodBindPtr("ENetConnection", "flush", 3218959716)
 
-    public val bandwidthLimitPtr: VoidPtr =
+    internal val bandwidthLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "bandwidth_limit", 2302169788)
 
-    public val channelLimitPtr: VoidPtr =
+    internal val channelLimitPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "channel_limit", 1286410249)
 
-    public val broadcastPtr: VoidPtr =
+    internal val broadcastPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "broadcast", 2772371345)
 
-    public val compressPtr: VoidPtr =
+    internal val compressPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "compress", 2660215187)
 
-    public val dtlsServerSetupPtr: VoidPtr =
+    internal val dtlsServerSetupPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "dtls_server_setup", 1262296096)
 
-    public val dtlsClientSetupPtr: VoidPtr =
+    internal val dtlsClientSetupPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "dtls_client_setup", 1966198364)
 
-    public val refuseNewConnectionsPtr: VoidPtr =
+    internal val refuseNewConnectionsPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "refuse_new_connections", 2586408642)
 
-    public val popStatisticPtr: VoidPtr =
+    internal val popStatisticPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "pop_statistic", 2166904170)
 
-    public val getMaxChannelsPtr: VoidPtr =
+    internal val getMaxChannelsPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "get_max_channels", 3905245786)
 
-    public val getLocalPortPtr: VoidPtr =
+    internal val getLocalPortPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "get_local_port", 3905245786)
 
-    public val getPeersPtr: VoidPtr =
+    internal val getPeersPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "get_peers", 2915620761)
 
-    public val socketSendPtr: VoidPtr =
+    internal val socketSendPtr: VoidPtr =
         Internals.getMethodBindPtr("ENetConnection", "socket_send", 1100646812)
   }
 }

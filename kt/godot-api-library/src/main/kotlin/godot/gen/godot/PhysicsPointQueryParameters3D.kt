@@ -182,35 +182,35 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPositionPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_position", 3460891852)
 
-    public val getPositionPtr: VoidPtr =
+    internal val getPositionPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_position", 3360562783)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_collision_mask", 3905245786)
 
-    public val setExcludePtr: VoidPtr =
+    internal val setExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_exclude", 381264803)
 
-    public val getExcludePtr: VoidPtr =
+    internal val getExcludePtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_exclude", 3995934104)
 
-    public val setCollideWithBodiesPtr: VoidPtr =
+    internal val setCollideWithBodiesPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_bodies", 2586408642)
 
-    public val isCollideWithBodiesEnabledPtr: VoidPtr =
+    internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
 
-    public val setCollideWithAreasPtr: VoidPtr =
+    internal val setCollideWithAreasPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_areas", 2586408642)
 
-    public val isCollideWithAreasEnabledPtr: VoidPtr =
+    internal val isCollideWithAreasEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
   }
 }

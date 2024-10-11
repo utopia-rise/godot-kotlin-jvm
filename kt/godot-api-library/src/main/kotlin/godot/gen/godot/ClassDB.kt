@@ -358,83 +358,83 @@ public object ClassDB : Object() {
     return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
-  internal object MethodBindings {
-    public val getClassListPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getClassListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
 
-    public val getInheritersFromClassPtr: VoidPtr =
+    internal val getInheritersFromClassPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1761182771)
 
-    public val getParentClassPtr: VoidPtr =
+    internal val getParentClassPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "get_parent_class", 1965194235)
 
-    public val classExistsPtr: VoidPtr =
+    internal val classExistsPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_exists", 2619796661)
 
-    public val isParentClassPtr: VoidPtr =
+    internal val isParentClassPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "is_parent_class", 471820014)
 
-    public val canInstantiatePtr: VoidPtr =
+    internal val canInstantiatePtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "can_instantiate", 2619796661)
 
-    public val instantiatePtr: VoidPtr =
+    internal val instantiatePtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
 
-    public val classHasSignalPtr: VoidPtr =
+    internal val classHasSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
 
-    public val classGetSignalPtr: VoidPtr =
+    internal val classGetSignalPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_signal", 3061114238)
 
-    public val classGetSignalListPtr: VoidPtr =
+    internal val classGetSignalListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_signal_list", 3504980660)
 
-    public val classGetPropertyListPtr: VoidPtr =
+    internal val classGetPropertyListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
 
-    public val classGetPropertyPtr: VoidPtr =
+    internal val classGetPropertyPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
 
-    public val classSetPropertyPtr: VoidPtr =
+    internal val classSetPropertyPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_set_property", 1690314931)
 
-    public val classGetPropertyDefaultValuePtr: VoidPtr =
+    internal val classGetPropertyDefaultValuePtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2718203076)
 
-    public val classHasMethodPtr: VoidPtr =
+    internal val classHasMethodPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_has_method", 3860701026)
 
-    public val classGetMethodArgumentCountPtr: VoidPtr =
+    internal val classGetMethodArgumentCountPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3885694822)
 
-    public val classGetMethodListPtr: VoidPtr =
+    internal val classGetMethodListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
 
-    public val classGetIntegerConstantListPtr: VoidPtr =
+    internal val classGetIntegerConstantListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)
 
-    public val classHasIntegerConstantPtr: VoidPtr =
+    internal val classHasIntegerConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471820014)
 
-    public val classGetIntegerConstantPtr: VoidPtr =
+    internal val classGetIntegerConstantPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2419549490)
 
-    public val classHasEnumPtr: VoidPtr =
+    internal val classHasEnumPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_has_enum", 3860701026)
 
-    public val classGetEnumListPtr: VoidPtr =
+    internal val classGetEnumListPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_enum_list", 3031669221)
 
-    public val classGetEnumConstantsPtr: VoidPtr =
+    internal val classGetEnumConstantsPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661528303)
 
-    public val classGetIntegerConstantEnumPtr: VoidPtr =
+    internal val classGetIntegerConstantEnumPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2457504236)
 
-    public val isClassEnumBitfieldPtr: VoidPtr =
+    internal val isClassEnumBitfieldPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3860701026)
 
-    public val isClassEnabledPtr: VoidPtr =
+    internal val isClassEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ClassDB", "is_class_enabled", 2619796661)
   }
 }

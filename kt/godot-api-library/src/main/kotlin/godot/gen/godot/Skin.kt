@@ -91,37 +91,37 @@ public open class Skin : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBindCountPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBindCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "set_bind_count", 1286410249)
 
-    public val getBindCountPtr: VoidPtr =
+    internal val getBindCountPtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "get_bind_count", 3905245786)
 
-    public val addBindPtr: VoidPtr = Internals.getMethodBindPtr("Skin", "add_bind", 3616898986)
+    internal val addBindPtr: VoidPtr = Internals.getMethodBindPtr("Skin", "add_bind", 3616898986)
 
-    public val addNamedBindPtr: VoidPtr =
+    internal val addNamedBindPtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "add_named_bind", 3154712474)
 
-    public val setBindPosePtr: VoidPtr =
+    internal val setBindPosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "set_bind_pose", 3616898986)
 
-    public val getBindPosePtr: VoidPtr =
+    internal val getBindPosePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "get_bind_pose", 1965739696)
 
-    public val setBindNamePtr: VoidPtr =
+    internal val setBindNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "set_bind_name", 3780747571)
 
-    public val getBindNamePtr: VoidPtr =
+    internal val getBindNamePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "get_bind_name", 659327637)
 
-    public val setBindBonePtr: VoidPtr =
+    internal val setBindBonePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "set_bind_bone", 3937882851)
 
-    public val getBindBonePtr: VoidPtr =
+    internal val getBindBonePtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "get_bind_bone", 923996154)
 
-    public val clearBindsPtr: VoidPtr =
+    internal val clearBindsPtr: VoidPtr =
         Internals.getMethodBindPtr("Skin", "clear_binds", 3218959716)
   }
 }

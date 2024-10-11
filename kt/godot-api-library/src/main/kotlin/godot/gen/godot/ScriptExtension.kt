@@ -167,5 +167,5 @@ public open class ScriptExtension : Script() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

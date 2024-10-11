@@ -438,104 +438,104 @@ public open class SoftBody3D : MeshInstance3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getPhysicsRidPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getPhysicsRidPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_physics_rid", 2944877500)
 
-    public val setCollisionMaskPtr: VoidPtr =
+    internal val setCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_collision_mask", 1286410249)
 
-    public val getCollisionMaskPtr: VoidPtr =
+    internal val getCollisionMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_collision_mask", 3905245786)
 
-    public val setCollisionLayerPtr: VoidPtr =
+    internal val setCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_collision_layer", 1286410249)
 
-    public val getCollisionLayerPtr: VoidPtr =
+    internal val getCollisionLayerPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_collision_layer", 3905245786)
 
-    public val setCollisionMaskValuePtr: VoidPtr =
+    internal val setCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_collision_mask_value", 300928843)
 
-    public val getCollisionMaskValuePtr: VoidPtr =
+    internal val getCollisionMaskValuePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_collision_mask_value", 1116898809)
 
-    public val setCollisionLayerValuePtr: VoidPtr =
+    internal val setCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_collision_layer_value", 300928843)
 
-    public val getCollisionLayerValuePtr: VoidPtr =
+    internal val getCollisionLayerValuePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_collision_layer_value", 1116898809)
 
-    public val setParentCollisionIgnorePtr: VoidPtr =
+    internal val setParentCollisionIgnorePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_parent_collision_ignore", 1348162250)
 
-    public val getParentCollisionIgnorePtr: VoidPtr =
+    internal val getParentCollisionIgnorePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_parent_collision_ignore", 4075236667)
 
-    public val setDisableModePtr: VoidPtr =
+    internal val setDisableModePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_disable_mode", 1104158384)
 
-    public val getDisableModePtr: VoidPtr =
+    internal val getDisableModePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_disable_mode", 4135042476)
 
-    public val getCollisionExceptionsPtr: VoidPtr =
+    internal val getCollisionExceptionsPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_collision_exceptions", 2915620761)
 
-    public val addCollisionExceptionWithPtr: VoidPtr =
+    internal val addCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "add_collision_exception_with", 1078189570)
 
-    public val removeCollisionExceptionWithPtr: VoidPtr =
+    internal val removeCollisionExceptionWithPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "remove_collision_exception_with", 1078189570)
 
-    public val setSimulationPrecisionPtr: VoidPtr =
+    internal val setSimulationPrecisionPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_simulation_precision", 1286410249)
 
-    public val getSimulationPrecisionPtr: VoidPtr =
+    internal val getSimulationPrecisionPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_simulation_precision", 2455072627)
 
-    public val setTotalMassPtr: VoidPtr =
+    internal val setTotalMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_total_mass", 373806689)
 
-    public val getTotalMassPtr: VoidPtr =
+    internal val getTotalMassPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_total_mass", 191475506)
 
-    public val setLinearStiffnessPtr: VoidPtr =
+    internal val setLinearStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_linear_stiffness", 373806689)
 
-    public val getLinearStiffnessPtr: VoidPtr =
+    internal val getLinearStiffnessPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_linear_stiffness", 191475506)
 
-    public val setPressureCoefficientPtr: VoidPtr =
+    internal val setPressureCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_pressure_coefficient", 373806689)
 
-    public val getPressureCoefficientPtr: VoidPtr =
+    internal val getPressureCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_pressure_coefficient", 191475506)
 
-    public val setDampingCoefficientPtr: VoidPtr =
+    internal val setDampingCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_damping_coefficient", 373806689)
 
-    public val getDampingCoefficientPtr: VoidPtr =
+    internal val getDampingCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_damping_coefficient", 191475506)
 
-    public val setDragCoefficientPtr: VoidPtr =
+    internal val setDragCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_drag_coefficient", 373806689)
 
-    public val getDragCoefficientPtr: VoidPtr =
+    internal val getDragCoefficientPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_drag_coefficient", 191475506)
 
-    public val getPointTransformPtr: VoidPtr =
+    internal val getPointTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "get_point_transform", 871989493)
 
-    public val setPointPinnedPtr: VoidPtr =
+    internal val setPointPinnedPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_point_pinned", 3814935226)
 
-    public val isPointPinnedPtr: VoidPtr =
+    internal val isPointPinnedPtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "is_point_pinned", 1116898809)
 
-    public val setRayPickablePtr: VoidPtr =
+    internal val setRayPickablePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "set_ray_pickable", 2586408642)
 
-    public val isRayPickablePtr: VoidPtr =
+    internal val isRayPickablePtr: VoidPtr =
         Internals.getMethodBindPtr("SoftBody3D", "is_ray_pickable", 36873697)
   }
 }

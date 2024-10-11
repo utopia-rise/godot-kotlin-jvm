@@ -299,42 +299,42 @@ public open class XRPose : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHasTrackingDataPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "set_has_tracking_data", 2586408642)
 
-    public val getHasTrackingDataPtr: VoidPtr =
+    internal val getHasTrackingDataPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_has_tracking_data", 36873697)
 
-    public val setNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "set_name", 3304788590)
+    internal val setNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "set_name", 3304788590)
 
-    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "get_name", 2002593661)
+    internal val getNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "get_name", 2002593661)
 
-    public val setTransformPtr: VoidPtr =
+    internal val setTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "set_transform", 2952846383)
 
-    public val getTransformPtr: VoidPtr =
+    internal val getTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_transform", 3229777777)
 
-    public val getAdjustedTransformPtr: VoidPtr =
+    internal val getAdjustedTransformPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_adjusted_transform", 3229777777)
 
-    public val setLinearVelocityPtr: VoidPtr =
+    internal val setLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "set_linear_velocity", 3460891852)
 
-    public val getLinearVelocityPtr: VoidPtr =
+    internal val getLinearVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_linear_velocity", 3360562783)
 
-    public val setAngularVelocityPtr: VoidPtr =
+    internal val setAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "set_angular_velocity", 3460891852)
 
-    public val getAngularVelocityPtr: VoidPtr =
+    internal val getAngularVelocityPtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_angular_velocity", 3360562783)
 
-    public val setTrackingConfidencePtr: VoidPtr =
+    internal val setTrackingConfidencePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "set_tracking_confidence", 4171656666)
 
-    public val getTrackingConfidencePtr: VoidPtr =
+    internal val getTrackingConfidencePtr: VoidPtr =
         Internals.getMethodBindPtr("XRPose", "get_tracking_confidence", 2064923680)
   }
 }

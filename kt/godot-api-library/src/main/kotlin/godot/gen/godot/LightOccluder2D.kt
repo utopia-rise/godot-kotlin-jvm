@@ -102,23 +102,23 @@ public open class LightOccluder2D : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setOccluderPolygonPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setOccluderPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "set_occluder_polygon", 3258315893)
 
-    public val getOccluderPolygonPtr: VoidPtr =
+    internal val getOccluderPolygonPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "get_occluder_polygon", 3962317075)
 
-    public val setOccluderLightMaskPtr: VoidPtr =
+    internal val setOccluderLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "set_occluder_light_mask", 1286410249)
 
-    public val getOccluderLightMaskPtr: VoidPtr =
+    internal val getOccluderLightMaskPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "get_occluder_light_mask", 3905245786)
 
-    public val setAsSdfCollisionPtr: VoidPtr =
+    internal val setAsSdfCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "set_as_sdf_collision", 2586408642)
 
-    public val isSetAsSdfCollisionPtr: VoidPtr =
+    internal val isSetAsSdfCollisionPtr: VoidPtr =
         Internals.getMethodBindPtr("LightOccluder2D", "is_set_as_sdf_collision", 36873697)
   }
 }

@@ -244,50 +244,52 @@ public open class SpinBox : Range() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setHorizontalAlignmentPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "set_horizontal_alignment", 2312603777)
 
-    public val getHorizontalAlignmentPtr: VoidPtr =
+    internal val getHorizontalAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_horizontal_alignment", 341400642)
 
-    public val setSuffixPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "set_suffix", 83702148)
+    internal val setSuffixPtr: VoidPtr =
+        Internals.getMethodBindPtr("SpinBox", "set_suffix", 83702148)
 
-    public val getSuffixPtr: VoidPtr =
+    internal val getSuffixPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_suffix", 201670096)
 
-    public val setPrefixPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "set_prefix", 83702148)
+    internal val setPrefixPtr: VoidPtr =
+        Internals.getMethodBindPtr("SpinBox", "set_prefix", 83702148)
 
-    public val getPrefixPtr: VoidPtr =
+    internal val getPrefixPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_prefix", 201670096)
 
-    public val setEditablePtr: VoidPtr =
+    internal val setEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "set_editable", 2586408642)
 
-    public val setCustomArrowStepPtr: VoidPtr =
+    internal val setCustomArrowStepPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "set_custom_arrow_step", 373806689)
 
-    public val getCustomArrowStepPtr: VoidPtr =
+    internal val getCustomArrowStepPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_custom_arrow_step", 1740695150)
 
-    public val isEditablePtr: VoidPtr =
+    internal val isEditablePtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "is_editable", 36873697)
 
-    public val setUpdateOnTextChangedPtr: VoidPtr =
+    internal val setUpdateOnTextChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "set_update_on_text_changed", 2586408642)
 
-    public val getUpdateOnTextChangedPtr: VoidPtr =
+    internal val getUpdateOnTextChangedPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_update_on_text_changed", 36873697)
 
-    public val setSelectAllOnFocusPtr: VoidPtr =
+    internal val setSelectAllOnFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "set_select_all_on_focus", 2586408642)
 
-    public val isSelectAllOnFocusPtr: VoidPtr =
+    internal val isSelectAllOnFocusPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "is_select_all_on_focus", 36873697)
 
-    public val applyPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "apply", 3218959716)
+    internal val applyPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "apply", 3218959716)
 
-    public val getLineEditPtr: VoidPtr =
+    internal val getLineEditPtr: VoidPtr =
         Internals.getMethodBindPtr("SpinBox", "get_line_edit", 4071694264)
   }
 }

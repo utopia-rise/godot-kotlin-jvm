@@ -124,20 +124,20 @@ public open class XRController3D : XRNode3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val isButtonPressedPtr: VoidPtr =
+  public object MethodBindings {
+    internal val isButtonPressedPtr: VoidPtr =
         Internals.getMethodBindPtr("XRController3D", "is_button_pressed", 2619796661)
 
-    public val getInputPtr: VoidPtr =
+    internal val getInputPtr: VoidPtr =
         Internals.getMethodBindPtr("XRController3D", "get_input", 2760726917)
 
-    public val getFloatPtr: VoidPtr =
+    internal val getFloatPtr: VoidPtr =
         Internals.getMethodBindPtr("XRController3D", "get_float", 2349060816)
 
-    public val getVector2Ptr: VoidPtr =
+    internal val getVector2Ptr: VoidPtr =
         Internals.getMethodBindPtr("XRController3D", "get_vector2", 3100822709)
 
-    public val getTrackerHandPtr: VoidPtr =
+    internal val getTrackerHandPtr: VoidPtr =
         Internals.getMethodBindPtr("XRController3D", "get_tracker_hand", 4181770860)
   }
 }

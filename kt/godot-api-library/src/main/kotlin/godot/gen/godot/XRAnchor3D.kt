@@ -58,11 +58,11 @@ public open class XRAnchor3D : XRNode3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getSizePtr: VoidPtr =
+  public object MethodBindings {
+    internal val getSizePtr: VoidPtr =
         Internals.getMethodBindPtr("XRAnchor3D", "get_size", 3360562783)
 
-    public val getPlanePtr: VoidPtr =
+    internal val getPlanePtr: VoidPtr =
         Internals.getMethodBindPtr("XRAnchor3D", "get_plane", 2753500971)
   }
 }

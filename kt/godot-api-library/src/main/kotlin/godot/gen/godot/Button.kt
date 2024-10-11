@@ -344,73 +344,73 @@ public open class Button : BaseButton() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_text", 83702148)
+  public object MethodBindings {
+    internal val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "get_text", 201670096)
+    internal val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "get_text", 201670096)
 
-    public val setTextOverrunBehaviorPtr: VoidPtr =
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_text_overrun_behavior", 1008890932)
 
-    public val getTextOverrunBehaviorPtr: VoidPtr =
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_text_overrun_behavior", 3779142101)
 
-    public val setAutowrapModePtr: VoidPtr =
+    internal val setAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_autowrap_mode", 3289138044)
 
-    public val getAutowrapModePtr: VoidPtr =
+    internal val getAutowrapModePtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
 
-    public val setTextDirectionPtr: VoidPtr =
+    internal val setTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_text_direction", 119160795)
 
-    public val getTextDirectionPtr: VoidPtr =
+    internal val getTextDirectionPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr =
+    internal val setLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr =
+    internal val getLanguagePtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_language", 201670096)
 
-    public val setButtonIconPtr: VoidPtr =
+    internal val setButtonIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_button_icon", 4051416890)
 
-    public val getButtonIconPtr: VoidPtr =
+    internal val getButtonIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_button_icon", 3635182373)
 
-    public val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_flat", 2586408642)
+    internal val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_flat", 2586408642)
 
-    public val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "is_flat", 36873697)
+    internal val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "is_flat", 36873697)
 
-    public val setClipTextPtr: VoidPtr =
+    internal val setClipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_clip_text", 2586408642)
 
-    public val getClipTextPtr: VoidPtr =
+    internal val getClipTextPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_clip_text", 36873697)
 
-    public val setTextAlignmentPtr: VoidPtr =
+    internal val setTextAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_text_alignment", 2312603777)
 
-    public val getTextAlignmentPtr: VoidPtr =
+    internal val getTextAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_text_alignment", 341400642)
 
-    public val setIconAlignmentPtr: VoidPtr =
+    internal val setIconAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_icon_alignment", 2312603777)
 
-    public val getIconAlignmentPtr: VoidPtr =
+    internal val getIconAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_icon_alignment", 341400642)
 
-    public val setVerticalIconAlignmentPtr: VoidPtr =
+    internal val setVerticalIconAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1796458609)
 
-    public val getVerticalIconAlignmentPtr: VoidPtr =
+    internal val getVerticalIconAlignmentPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3274884059)
 
-    public val setExpandIconPtr: VoidPtr =
+    internal val setExpandIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "set_expand_icon", 2586408642)
 
-    public val isExpandIconPtr: VoidPtr =
+    internal val isExpandIconPtr: VoidPtr =
         Internals.getMethodBindPtr("Button", "is_expand_icon", 36873697)
   }
 }

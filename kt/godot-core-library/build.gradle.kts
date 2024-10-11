@@ -66,7 +66,7 @@ publishing {
                 name.set("${project.name}-$targetSuffix")
                 description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")
             }
-            artifactId = "godot-library-core-$targetSuffix"
+            artifactId = "godot-core-library-$targetSuffix"
             description = "Contains godot core classes as kotlin classes and jvm cpp interaction code."
             artifact(tasks.jar)
             artifact(tasks.getByName("sourcesJar"))

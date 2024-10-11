@@ -28,5 +28,5 @@ public open class XRControllerTracker : XRPositionalTracker() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

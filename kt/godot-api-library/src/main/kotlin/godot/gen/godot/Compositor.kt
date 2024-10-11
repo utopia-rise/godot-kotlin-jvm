@@ -53,11 +53,11 @@ public open class Compositor : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setCompositorEffectsPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setCompositorEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("Compositor", "set_compositor_effects", 381264803)
 
-    public val getCompositorEffectsPtr: VoidPtr =
+    internal val getCompositorEffectsPtr: VoidPtr =
         Internals.getMethodBindPtr("Compositor", "get_compositor_effects", 3995934104)
   }
 }

@@ -131,8 +131,8 @@ public open class MovieWriter : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val addWriterPtr: VoidPtr =
+  public object MethodBindings {
+    internal val addWriterPtr: VoidPtr =
         Internals.getMethodBindPtr("MovieWriter", "add_writer", 4023702871)
   }
 }

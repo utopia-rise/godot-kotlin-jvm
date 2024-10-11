@@ -146,25 +146,26 @@ public open class Texture3D : Texture() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val getFormatPtr: VoidPtr =
+  public object MethodBindings {
+    internal val getFormatPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "get_format", 3847873762)
 
-    public val getWidthPtr: VoidPtr =
+    internal val getWidthPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr =
+    internal val getHeightPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "get_height", 3905245786)
 
-    public val getDepthPtr: VoidPtr =
+    internal val getDepthPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "get_depth", 3905245786)
 
-    public val hasMipmapsPtr: VoidPtr =
+    internal val hasMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "has_mipmaps", 36873697)
 
-    public val getDataPtr: VoidPtr = Internals.getMethodBindPtr("Texture3D", "get_data", 3995934104)
+    internal val getDataPtr: VoidPtr =
+        Internals.getMethodBindPtr("Texture3D", "get_data", 3995934104)
 
-    public val createPlaceholderPtr: VoidPtr =
+    internal val createPlaceholderPtr: VoidPtr =
         Internals.getMethodBindPtr("Texture3D", "create_placeholder", 121922552)
   }
 }

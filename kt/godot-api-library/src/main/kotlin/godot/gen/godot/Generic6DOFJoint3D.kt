@@ -230,41 +230,41 @@ public open class Generic6DOFJoint3D : Joint3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setParamXPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setParamXPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_param_x", 2018184242)
 
-    public val getParamXPtr: VoidPtr =
+    internal val getParamXPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_param_x", 2599835054)
 
-    public val setParamYPtr: VoidPtr =
+    internal val setParamYPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_param_y", 2018184242)
 
-    public val getParamYPtr: VoidPtr =
+    internal val getParamYPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_param_y", 2599835054)
 
-    public val setParamZPtr: VoidPtr =
+    internal val setParamZPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_param_z", 2018184242)
 
-    public val getParamZPtr: VoidPtr =
+    internal val getParamZPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_param_z", 2599835054)
 
-    public val setFlagXPtr: VoidPtr =
+    internal val setFlagXPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_x", 2451594564)
 
-    public val getFlagXPtr: VoidPtr =
+    internal val getFlagXPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_x", 2122427807)
 
-    public val setFlagYPtr: VoidPtr =
+    internal val setFlagYPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_y", 2451594564)
 
-    public val getFlagYPtr: VoidPtr =
+    internal val getFlagYPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_y", 2122427807)
 
-    public val setFlagZPtr: VoidPtr =
+    internal val setFlagZPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_z", 2451594564)
 
-    public val getFlagZPtr: VoidPtr =
+    internal val getFlagZPtr: VoidPtr =
         Internals.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_z", 2122427807)
   }
 }

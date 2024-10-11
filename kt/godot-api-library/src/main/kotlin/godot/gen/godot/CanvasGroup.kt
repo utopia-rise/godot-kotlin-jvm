@@ -134,23 +134,23 @@ public open class CanvasGroup : Node2D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFitMarginPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFitMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "set_fit_margin", 373806689)
 
-    public val getFitMarginPtr: VoidPtr =
+    internal val getFitMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "get_fit_margin", 1740695150)
 
-    public val setClearMarginPtr: VoidPtr =
+    internal val setClearMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "set_clear_margin", 373806689)
 
-    public val getClearMarginPtr: VoidPtr =
+    internal val getClearMarginPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "get_clear_margin", 1740695150)
 
-    public val setUseMipmapsPtr: VoidPtr =
+    internal val setUseMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "set_use_mipmaps", 2586408642)
 
-    public val isUsingMipmapsPtr: VoidPtr =
+    internal val isUsingMipmapsPtr: VoidPtr =
         Internals.getMethodBindPtr("CanvasGroup", "is_using_mipmaps", 36873697)
   }
 }

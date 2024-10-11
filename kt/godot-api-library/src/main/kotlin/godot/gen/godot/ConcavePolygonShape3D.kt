@@ -99,17 +99,17 @@ public open class ConcavePolygonShape3D : Shape3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFacesPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("ConcavePolygonShape3D", "set_faces", 334873810)
 
-    public val getFacesPtr: VoidPtr =
+    internal val getFacesPtr: VoidPtr =
         Internals.getMethodBindPtr("ConcavePolygonShape3D", "get_faces", 497664490)
 
-    public val setBackfaceCollisionEnabledPtr: VoidPtr =
+    internal val setBackfaceCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled", 2586408642)
 
-    public val isBackfaceCollisionEnabledPtr: VoidPtr =
+    internal val isBackfaceCollisionEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled", 36873697)
   }
 }

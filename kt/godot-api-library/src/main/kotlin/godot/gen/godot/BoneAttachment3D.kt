@@ -157,38 +157,38 @@ public open class BoneAttachment3D : Node3D() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setBoneNamePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "set_bone_name", 83702148)
 
-    public val getBoneNamePtr: VoidPtr =
+    internal val getBoneNamePtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "get_bone_name", 201670096)
 
-    public val setBoneIdxPtr: VoidPtr =
+    internal val setBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "set_bone_idx", 1286410249)
 
-    public val getBoneIdxPtr: VoidPtr =
+    internal val getBoneIdxPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "get_bone_idx", 3905245786)
 
-    public val onSkeletonUpdatePtr: VoidPtr =
+    internal val onSkeletonUpdatePtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update", 3218959716)
 
-    public val setOverridePosePtr: VoidPtr =
+    internal val setOverridePosePtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "set_override_pose", 2586408642)
 
-    public val getOverridePosePtr: VoidPtr =
+    internal val getOverridePosePtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "get_override_pose", 36873697)
 
-    public val setUseExternalSkeletonPtr: VoidPtr =
+    internal val setUseExternalSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "set_use_external_skeleton", 2586408642)
 
-    public val getUseExternalSkeletonPtr: VoidPtr =
+    internal val getUseExternalSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "get_use_external_skeleton", 36873697)
 
-    public val setExternalSkeletonPtr: VoidPtr =
+    internal val setExternalSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "set_external_skeleton", 1348162250)
 
-    public val getExternalSkeletonPtr: VoidPtr =
+    internal val getExternalSkeletonPtr: VoidPtr =
         Internals.getMethodBindPtr("BoneAttachment3D", "get_external_skeleton", 4075236667)
   }
 }

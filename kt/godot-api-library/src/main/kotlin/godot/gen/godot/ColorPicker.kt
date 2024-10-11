@@ -453,89 +453,89 @@ public open class ColorPicker : VBoxContainer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPickColorPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPickColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_pick_color", 2920490490)
 
-    public val getPickColorPtr: VoidPtr =
+    internal val getPickColorPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "get_pick_color", 3444240500)
 
-    public val setDeferredModePtr: VoidPtr =
+    internal val setDeferredModePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_deferred_mode", 2586408642)
 
-    public val isDeferredModePtr: VoidPtr =
+    internal val isDeferredModePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "is_deferred_mode", 36873697)
 
-    public val setColorModePtr: VoidPtr =
+    internal val setColorModePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_color_mode", 1579114136)
 
-    public val getColorModePtr: VoidPtr =
+    internal val getColorModePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "get_color_mode", 392907674)
 
-    public val setEditAlphaPtr: VoidPtr =
+    internal val setEditAlphaPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_edit_alpha", 2586408642)
 
-    public val isEditingAlphaPtr: VoidPtr =
+    internal val isEditingAlphaPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "is_editing_alpha", 36873697)
 
-    public val setCanAddSwatchesPtr: VoidPtr =
+    internal val setCanAddSwatchesPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_can_add_swatches", 2586408642)
 
-    public val areSwatchesEnabledPtr: VoidPtr =
+    internal val areSwatchesEnabledPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "are_swatches_enabled", 36873697)
 
-    public val setPresetsVisiblePtr: VoidPtr =
+    internal val setPresetsVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_presets_visible", 2586408642)
 
-    public val arePresetsVisiblePtr: VoidPtr =
+    internal val arePresetsVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "are_presets_visible", 36873697)
 
-    public val setModesVisiblePtr: VoidPtr =
+    internal val setModesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_modes_visible", 2586408642)
 
-    public val areModesVisiblePtr: VoidPtr =
+    internal val areModesVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "are_modes_visible", 36873697)
 
-    public val setSamplerVisiblePtr: VoidPtr =
+    internal val setSamplerVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_sampler_visible", 2586408642)
 
-    public val isSamplerVisiblePtr: VoidPtr =
+    internal val isSamplerVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "is_sampler_visible", 36873697)
 
-    public val setSlidersVisiblePtr: VoidPtr =
+    internal val setSlidersVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_sliders_visible", 2586408642)
 
-    public val areSlidersVisiblePtr: VoidPtr =
+    internal val areSlidersVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "are_sliders_visible", 36873697)
 
-    public val setHexVisiblePtr: VoidPtr =
+    internal val setHexVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_hex_visible", 2586408642)
 
-    public val isHexVisiblePtr: VoidPtr =
+    internal val isHexVisiblePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "is_hex_visible", 36873697)
 
-    public val addPresetPtr: VoidPtr =
+    internal val addPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "add_preset", 2920490490)
 
-    public val erasePresetPtr: VoidPtr =
+    internal val erasePresetPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "erase_preset", 2920490490)
 
-    public val getPresetsPtr: VoidPtr =
+    internal val getPresetsPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "get_presets", 1392750486)
 
-    public val addRecentPresetPtr: VoidPtr =
+    internal val addRecentPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "add_recent_preset", 2920490490)
 
-    public val eraseRecentPresetPtr: VoidPtr =
+    internal val eraseRecentPresetPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "erase_recent_preset", 2920490490)
 
-    public val getRecentPresetsPtr: VoidPtr =
+    internal val getRecentPresetsPtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "get_recent_presets", 1392750486)
 
-    public val setPickerShapePtr: VoidPtr =
+    internal val setPickerShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "set_picker_shape", 3981373861)
 
-    public val getPickerShapePtr: VoidPtr =
+    internal val getPickerShapePtr: VoidPtr =
         Internals.getMethodBindPtr("ColorPicker", "get_picker_shape", 1143229889)
   }
 }

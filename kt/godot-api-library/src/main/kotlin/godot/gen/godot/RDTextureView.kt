@@ -141,35 +141,35 @@ public open class RDTextureView : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setFormatOverridePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setFormatOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "set_format_override", 565531219)
 
-    public val getFormatOverridePtr: VoidPtr =
+    internal val getFormatOverridePtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "get_format_override", 2235804183)
 
-    public val setSwizzleRPtr: VoidPtr =
+    internal val setSwizzleRPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "set_swizzle_r", 3833362581)
 
-    public val getSwizzleRPtr: VoidPtr =
+    internal val getSwizzleRPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "get_swizzle_r", 4150792614)
 
-    public val setSwizzleGPtr: VoidPtr =
+    internal val setSwizzleGPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "set_swizzle_g", 3833362581)
 
-    public val getSwizzleGPtr: VoidPtr =
+    internal val getSwizzleGPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "get_swizzle_g", 4150792614)
 
-    public val setSwizzleBPtr: VoidPtr =
+    internal val setSwizzleBPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "set_swizzle_b", 3833362581)
 
-    public val getSwizzleBPtr: VoidPtr =
+    internal val getSwizzleBPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "get_swizzle_b", 4150792614)
 
-    public val setSwizzleAPtr: VoidPtr =
+    internal val setSwizzleAPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "set_swizzle_a", 3833362581)
 
-    public val getSwizzleAPtr: VoidPtr =
+    internal val getSwizzleAPtr: VoidPtr =
         Internals.getMethodBindPtr("RDTextureView", "get_swizzle_a", 4150792614)
   }
 }

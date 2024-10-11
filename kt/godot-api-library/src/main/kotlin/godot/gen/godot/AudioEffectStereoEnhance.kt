@@ -93,23 +93,23 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setPanPulloutPtr: VoidPtr =
+  public object MethodBindings {
+    internal val setPanPulloutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373806689)
 
-    public val getPanPulloutPtr: VoidPtr =
+    internal val getPanPulloutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1740695150)
 
-    public val setTimePulloutPtr: VoidPtr =
+    internal val setTimePulloutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373806689)
 
-    public val getTimePulloutPtr: VoidPtr =
+    internal val getTimePulloutPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1740695150)
 
-    public val setSurroundPtr: VoidPtr =
+    internal val setSurroundPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373806689)
 
-    public val getSurroundPtr: VoidPtr =
+    internal val getSurroundPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1740695150)
   }
 }

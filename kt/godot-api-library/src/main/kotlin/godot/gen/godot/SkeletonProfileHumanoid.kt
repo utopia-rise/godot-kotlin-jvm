@@ -84,5 +84,5 @@ public open class SkeletonProfileHumanoid : SkeletonProfile() {
 
   public companion object
 
-  internal object MethodBindings
+  public object MethodBindings
 }

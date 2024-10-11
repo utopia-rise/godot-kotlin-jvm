@@ -184,35 +184,35 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val setModePtr: VoidPtr =
+  public object MethodBindings {
+    internal val setModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1314744793)
 
-    public val getModePtr: VoidPtr =
+    internal val getModePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809118343)
 
-    public val setPreGainPtr: VoidPtr =
+    internal val setPreGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373806689)
 
-    public val getPreGainPtr: VoidPtr =
+    internal val getPreGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1740695150)
 
-    public val setKeepHfHzPtr: VoidPtr =
+    internal val setKeepHfHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373806689)
 
-    public val getKeepHfHzPtr: VoidPtr =
+    internal val getKeepHfHzPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1740695150)
 
-    public val setDrivePtr: VoidPtr =
+    internal val setDrivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373806689)
 
-    public val getDrivePtr: VoidPtr =
+    internal val getDrivePtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1740695150)
 
-    public val setPostGainPtr: VoidPtr =
+    internal val setPostGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373806689)
 
-    public val getPostGainPtr: VoidPtr =
+    internal val getPostGainPtr: VoidPtr =
         Internals.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1740695150)
   }
 }

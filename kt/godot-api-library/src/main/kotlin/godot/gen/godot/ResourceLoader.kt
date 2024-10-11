@@ -303,40 +303,40 @@ public object ResourceLoader : Object() {
     }
   }
 
-  internal object MethodBindings {
-    public val loadThreadedRequestPtr: VoidPtr =
+  public object MethodBindings {
+    internal val loadThreadedRequestPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3614384323)
 
-    public val loadThreadedGetStatusPtr: VoidPtr =
+    internal val loadThreadedGetStatusPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4137685479)
 
-    public val loadThreadedGetPtr: VoidPtr =
+    internal val loadThreadedGetPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1748875256)
 
-    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("ResourceLoader", "load", 3358495409)
+    internal val loadPtr: VoidPtr = Internals.getMethodBindPtr("ResourceLoader", "load", 3358495409)
 
-    public val getRecognizedExtensionsForTypePtr: VoidPtr =
+    internal val getRecognizedExtensionsForTypePtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3538744774)
 
-    public val addResourceFormatLoaderPtr: VoidPtr =
+    internal val addResourceFormatLoaderPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2896595483)
 
-    public val removeResourceFormatLoaderPtr: VoidPtr =
+    internal val removeResourceFormatLoaderPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405397102)
 
-    public val setAbortOnMissingResourcesPtr: VoidPtr =
+    internal val setAbortOnMissingResourcesPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2586408642)
 
-    public val getDependenciesPtr: VoidPtr =
+    internal val getDependenciesPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "get_dependencies", 3538744774)
 
-    public val hasCachedPtr: VoidPtr =
+    internal val hasCachedPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
 
-    public val existsPtr: VoidPtr =
+    internal val existsPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
 
-    public val getResourceUidPtr: VoidPtr =
+    internal val getResourceUidPtr: VoidPtr =
         Internals.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
   }
 }

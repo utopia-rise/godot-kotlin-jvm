@@ -20,7 +20,7 @@ import godot.core.Signal6
 import godot.core.Signal7
 import godot.core.Signal8
 import godot.core.Signal9
-import godot.core.connectThreadSafe
+import godot.extension.connectThreadSafe
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.coroutines.resume
