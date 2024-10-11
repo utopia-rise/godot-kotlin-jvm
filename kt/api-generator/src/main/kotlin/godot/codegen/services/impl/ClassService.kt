@@ -8,7 +8,9 @@ import godot.codegen.models.ApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.models.ReturnValue
+import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
+import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.repositories.ClassRepository
 import godot.codegen.repositories.SingletonRepository
 import godot.codegen.services.IClassGraphService
@@ -19,7 +21,7 @@ class ClassService(
     private val classRepository: ClassRepository,
     private val singletonRepository: SingletonRepository,
     private val classGraphService: IClassGraphService
-) : IClassService{
+) : IClassService {
     private val singletons = singletonRepository
         .list()
         .map {
@@ -40,60 +42,55 @@ class ClassService(
 
     override fun getClasses() = classes
 
-    override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {
-        fun inner(className: String, propertyName: String, isSetter: Boolean) {
-            val clazz = classRepository.findByClassName(className) ?: throw NoMatchingClassFoundException(className)
-            val property = clazz.properties.first { it.name == propertyName }
+    private fun findGetterSetterInAncestor(clazz: EnrichedClass, property: EnrichedProperty, isSetter: Boolean) {
+        val methodName: String
+        val returnType: String
+        val arguments: List<Argument>
 
-            val setter = property.internal.setter
-
-            if (isSetter && setter == null) return
-
-            val methodName = if (isSetter) setter!! else property.internal.getter
-            val returnType = if (isSetter) "" else property.type
-            val arguments = if (isSetter) {
-                listOf(Argument(property.name, property.type, null, null))
-            } else {
-                listOf()
-            }
-
-            val method = EnrichedMethod(
-                Method(
-                    name = methodName,
-                    isConst = false,
-                    isVararg = false,
-                    isVirtual = false,
-                    isStatic = false,
-                    hash = 0,
-                    hashCompatibility = listOf(),
-                    returnValue = ReturnValue(returnType, null),
-                    returnType = null,
-                    arguments = arguments,
-                    description = null,
-                    briefDescription = null
-                ),
-                clazz.engineClassDBIndexName
-            )
-
-            val parentClassAndMethod = classGraphService.getMethodFromAncestor(clazz, method)
-            val hasValidAccessor = if (isSetter) property.hasValidSetterInClass else property.hasValidGetterInClass
-            if (parentClassAndMethod != null && !hasValidAccessor) {
-                if (isSetter) {
-                    property.setterMethod = parentClassAndMethod.second
-                } else {
-                    property.getterMethod = parentClassAndMethod.second
-                }
-            }
+        if (isSetter) {
+            if(property.setterMethod != null) return
+            methodName = property.internal.setter ?: return // Early return if the property doesn't have a setter.
+            returnType = ""
+            arguments = listOf(Argument(property.name, property.type, null, null))
+        } else {
+            if(property.getterMethod != null) return
+            methodName = property.internal.getter // No need to check, a property always has at least a getter.
+            returnType = property.type
+            arguments = listOf()
         }
 
-        inner(className, propertyName, true)
-        inner(className, propertyName, false)
+        val method = EnrichedMethod(
+            Method(
+                name = methodName,
+                isConst = false,
+                isVararg = false,
+                isVirtual = false,
+                isStatic = false,
+                hash = 0,
+                hashCompatibility = listOf(),
+                returnValue = ReturnValue(returnType, null),
+                returnType = null,
+                arguments = arguments,
+                description = null,
+                briefDescription = null
+            )
+        )
+
+        val parentClassAndMethod = classGraphService.getMethodFromAncestor(clazz, method)
+        val hasValidAccessor = if (isSetter) property.hasValidSetterInClass else property.hasValidGetterInClass
+        if (parentClassAndMethod != null && !hasValidAccessor) {
+            if (isSetter) {
+                property.setterMethod = parentClassAndMethod.second
+            } else {
+                property.getterMethod = parentClassAndMethod.second
+            }
+        }
     }
 
     override fun findGetSetMethodsAndUpdateProperties() {
-        for (enrichedClass in classRepository.list()) {
-            for (property in enrichedClass.properties) {
-                for (method in enrichedClass.methods) {
+        for (clazz in classRepository.list()) {
+            for (property in clazz.properties) {
+                for (method in clazz.methods) {
                     if (property.name == "") continue
 
                     when (method.name) {
@@ -106,6 +103,7 @@ class ClassService(
 
                             property.getterMethod = method
                         }
+
                         property.setter -> {
                             if (method.getTypeClassName().className != UNIT || method.arguments.size > 2 || method.internal.isVirtual) continue
 
@@ -117,6 +115,8 @@ class ClassService(
                         }
                     }
                 }
+                findGetterSetterInAncestor(clazz, property, false)
+                findGetterSetterInAncestor(clazz, property, true)
             }
         }
     }
