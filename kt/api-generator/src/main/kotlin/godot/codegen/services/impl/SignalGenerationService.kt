@@ -83,7 +83,7 @@ class SignalGenerationService : ISignalGenerationService {
             )
             .indent("    ")
             .addImport(
-                "godot.extensions",
+                "godot.extension",
                 "connectThreadSafe"
             )
             .build()

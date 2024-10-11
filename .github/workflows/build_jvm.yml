@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jvm_godot-bootstrap_release
-          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          path: modules/kotlin_jvm/kt/godot-library/godot-api-library/build/libs/godot-bootstrap.jar
 
       - name: Upload entry-generator artifact
         uses: actions/upload-artifact@v4
@@ -99,7 +99,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jvm_godot-bootstrap_debug
-          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          path: modules/kotlin_jvm/kt/godot-library/godot-api-library/build/libs/godot-bootstrap.jar
 
       - name: Verify ide plugin
         run: |

@@ -1,6 +1,6 @@
 @file:JvmName("ObjectExt")
 
-package godot.extensions
+package godot.extension
 
 
 import godot.Object
