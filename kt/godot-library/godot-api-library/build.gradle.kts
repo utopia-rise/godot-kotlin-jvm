@@ -30,7 +30,7 @@ dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
     api(kotlin("reflect", version = libs.versions.kotlin.get()))
-    compileOnly(project(":godot-core-library"))
+    api(project(":godot-core-library"))
 }
 
 
