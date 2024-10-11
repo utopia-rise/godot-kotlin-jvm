@@ -45,7 +45,7 @@ tasks {
                     "- [${commit.abbreviatedId}]($link) ${commit.shortMessage}"
                 }
 
-            project.buildDir.resolve("changelog.md").also {
+            project.layout.buildDirectory.asFile.get().resolve("changelog.md").also {
                 if (!it.parentFile.exists()) {
                     it.parentFile.mkdirs()
                 }
