@@ -13,10 +13,10 @@ jobs:
         with:
           fetch-depth: 0 # clone whole history -> needed for generation of changelog
 
-      - uses: actions/setup-java@v4
+      - name: Setup JAVA_HOME
+        uses: ./.github/actions/setup-java-home
         with:
-          distribution: temurin
-          java-version: 17
+          version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
