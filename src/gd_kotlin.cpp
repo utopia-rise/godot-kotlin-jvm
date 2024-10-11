@@ -206,7 +206,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
         Error err;
         Ref<DirAccess> dir_access {DirAccess::open(RES_DIRECTORY, &err)};
-        JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Error copy file from %s to %s"., file_res_path, file_user_path);
+        JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Error copy file from %s to %s.", file_res_path, file_user_path);
 
         dir_access->copy(file_res_path, file_user_path);
 
