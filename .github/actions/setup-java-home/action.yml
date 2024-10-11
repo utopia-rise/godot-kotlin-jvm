@@ -10,7 +10,12 @@ runs:
   steps:
     - name: Setup JAVA_HOME on Linux or macOS
       if: runner.os != 'Windows'
-      run: echo "JAVA_HOME=\${JAVA_HOME_${{ inputs.version }}_X64:-\$JAVA_HOME_${{ inputs.version }}_arm64}" >> $GITHUB_ENV
+      run:
+        if [ -n "$JAVA_HOME_${{ inputs.version }}_X64" ]; then
+          echo "JAVA_HOME=$JAVA_HOME_${{ inputs.version }}_X64" >> $GITHUB_ENV
+        else
+          echo "JAVA_HOME=$JAVA_HOME_${{ inputs.version }}_arm64" >> $GITHUB_ENV
+        fi
       shell: bash
 
     - name: Setup JAVA_HOME on Windows
