@@ -16,8 +16,16 @@ This project is in Beta. While you can fully use the binding, please note that t
 
 ## Project templates and demos
 
+This is a minimal list to start off with a new Godot Kotlin/JVM project:
+
 - [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
 - [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
+
+### Quick overview
+
+For a quick overview on the bindings, watch our presentation "*Godot Game Development Leveraging Kotlin by Pierre-Thomas Meisels, Tristan Grespinet, and Cedric Hippmann*", live-streamed during the JetBrains GameDev Days 2024.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0YVD9Zuei80?si=FFlX6xaWJmWWLPJh&amp;start=9753" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### What's not working
 
