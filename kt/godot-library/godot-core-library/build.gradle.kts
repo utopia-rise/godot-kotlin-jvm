@@ -20,9 +20,9 @@ kotlinDefinitions {
 
 apiGenerator {
     sourceJson.set(project.file("$rootDir/api-generator/src/main/resources/api.json"))
-    coreOutputDir.set(project.file("$rootDir/godot-core-library/src/main/kotlin/godot/gen"))
-    apiOutputDir.set(project.file("$rootDir/godot-api-library/src/main/kotlin/godot/gen"))
-    coroutineOutputDir.set(project.file("$rootDir/godot-coroutine-library/src/main/kotlin/gen"))
+    coreOutputDir.set(project.file("$rootDir/godot-library/godot-core-library/src/main/kotlin/godot/gen"))
+    apiOutputDir.set(project.file("$rootDir/godot-library/godot-api-library/src/main/kotlin/godot/gen"))
+    coroutineOutputDir.set(project.file("$rootDir/godot-library/godot-coroutine-library/src/main/kotlin/gen"))
 }
 
 kotlin {

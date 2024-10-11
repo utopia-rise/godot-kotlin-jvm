@@ -2,7 +2,6 @@ package godot.util
 
 import godot.core.KtObject
 import godot.core.TypeManager
-import godot.core.TypeManager.engineSingletonsNames
 import godot.core.VariantConverter
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext

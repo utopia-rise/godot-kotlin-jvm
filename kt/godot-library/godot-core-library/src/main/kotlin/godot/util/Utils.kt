@@ -4,7 +4,6 @@
 package godot.util
 
 import godot.core.ObjectID
-import java.util.*
 
 typealias RealT = Double
 typealias NaturalT = Int

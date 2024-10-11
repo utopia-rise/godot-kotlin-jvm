@@ -6,7 +6,6 @@ package godot.core
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.reflect.KFunction
 import kotlin.reflect.KProperty
 
 @Suppress("MemberVisibilityCanBePrivate")

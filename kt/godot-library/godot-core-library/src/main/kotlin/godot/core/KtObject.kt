@@ -66,7 +66,7 @@ abstract class KtObject {
     protected abstract fun new(scriptIndex: Int)
 
     @Suppress("NOTHING_TO_INLINE")
-    internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
+    internal inline fun callConstructor(classIndex: Int, scriptIndex: Int) {
         MemoryManager.createNativeObject(classIndex, this, scriptIndex)
         TransferContext.initializeKtObject(this)
     }
