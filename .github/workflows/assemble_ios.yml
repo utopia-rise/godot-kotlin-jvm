@@ -51,7 +51,7 @@ jobs:
       - name: Setup MoltenVK build cache
         uses: ./modules/kotlin_jvm/.github/actions/cache
         with:
-          key: ${{ matrix.cache-name }}
+          key: assemble_ios_moltenvk_cache
           path: |
             MoltenVk/Package
             MoltenVk/External
