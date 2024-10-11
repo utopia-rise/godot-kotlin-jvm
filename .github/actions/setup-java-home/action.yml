@@ -16,6 +16,7 @@ runs:
         else
           echo "JAVA_HOME=$JAVA_HOME_${{ inputs.version }}_arm64" >> $GITHUB_ENV
         fi
+        echo "Set java home to: $JAVA_HOME"
       shell: bash
 
     - name: Setup JAVA_HOME on Windows
@@ -27,4 +28,5 @@ runs:
         else {
           echo "JAVA_HOME=$env:JAVA_HOME_${{ inputs.version }}_arm64" >> $env:GITHUB_ENV
         }
+        echo "Set java home to: $env:JAVA_HOME"
       shell: pwsh
