@@ -30,7 +30,8 @@ properties = [
 	dictionary
 ]
 functions = [
-    greeting,
+    _ready,
+	greeting,
 	connect_and_trigger_signal,
 	signal_callback
 ]

@@ -19,6 +19,7 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
+import godot.annotation.Range
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
@@ -39,7 +40,6 @@ import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
-import godot.registration.Range
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime
