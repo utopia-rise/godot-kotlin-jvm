@@ -20,14 +20,14 @@ class ClassService(
     private val singletonRepository: SingletonRepository,
     private val classGraphService: IClassGraphService
 ) : IClassService{
-    override fun getSingletons() = singletonRepository
+    private val singletons = singletonRepository
         .list()
         .map {
             classRepository.findByClassName(it.type)?.copy(it.name) ?: throw NoMatchingClassFoundException(it.type)
         }
         .filter { it.apiType == ApiType.CORE }
 
-    override fun getClasses() = classRepository
+    private val classes = classRepository
         .list()
         .filter {
             for (singleton in singletonRepository.list()) {
@@ -35,6 +35,10 @@ class ClassService(
             }
             it.apiType == ApiType.CORE
         }
+
+    override fun getSingletons() = singletons
+
+    override fun getClasses() = classes
 
     override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {
         fun inner(className: String, propertyName: String, isSetter: Boolean) {
