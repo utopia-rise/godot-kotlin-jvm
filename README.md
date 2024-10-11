@@ -35,9 +35,7 @@ or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_shar
 
 ## Important Notes
 
-This version of the binding is currently **Alpha**! This means that the bindings are not
-production-ready. However, if you are curious in using Kotlin in Godot, this is a good opportunity
-to help us in improving the project!
+This version of the binding is currently in **Beta**! While you can fully use the binding, please note that there might still be breaking API changes. We welcome any suggestions you have for improving the project and its API.
 
 To be able to use this binding, you need to download our custom editor build and export templates from the [GitHub releases page](https://github.com/utopia-rise/godot-kotlin-jvm/releases)! The official godot binaries will NOT work!
 
