@@ -39,7 +39,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
-import godot.extensions.getNodeAs
+import godot.extension.getNodeAs
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime

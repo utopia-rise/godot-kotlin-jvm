@@ -3,7 +3,7 @@ package godot.tests
 import godot.Node
 import godot.PackedScene
 import godot.ResourceLoader
-import godot.extensions.asStatic
+import godot.extension.asStatic
 
 
 object GodotStaticDelegateTest {
