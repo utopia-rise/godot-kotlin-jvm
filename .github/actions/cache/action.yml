@@ -37,8 +37,14 @@ runs:
       uses: actions/github-script@v7.0.1
       with:
         script: |
-          const ref = process.env.GITHUB_REF.replace(/\//g, '_');
-          core.exportVariable('PREPARED_REF', ref);
+          let branch = '';
+          // Check if it is a PR
+          if (process.env.GITHUB_HEAD_REF) {
+            branch = process.env.GITHUB_HEAD_REF.replace(/\//g, '_'); // Use head ref for PRs
+          } else {
+            branch = process.env.GITHUB_REF.split('/').slice(2).join('_'); // Standard ref
+          }
+          core.exportVariable('PREPARED_REF', branch);
 
     - name: Setup s3 cache
       id: cache_setup
