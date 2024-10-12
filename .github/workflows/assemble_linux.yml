@@ -28,6 +28,14 @@ jobs:
           - name: Create editor zip debug
             target: debug
             arch: x86_64
+
+          - name: Create editor zip release
+            target: release
+            arch: arm64
+
+          - name: Create editor zip debug
+            target: debug
+            arch: arm64
     steps:
       - name: Download ${{ matrix.target }} editor
         uses: actions/download-artifact@v4

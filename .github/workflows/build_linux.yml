@@ -42,6 +42,31 @@ jobs:
             target: template_debug
             sconsflags: ''
 
+          - name: Build editor release arm64 (target=editor)
+            cache-name: editor_release_linux_arm64
+            target: editor
+            sconsflags: arch=arm64
+
+          - name: Build editor debug (target=editor, debug_symbols=true )
+            cache-name: editor_debug_linux_arm64
+            target: editor
+            sconsflags: arch=arm64 debug_symbols=true
+
+          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_linux_arm64
+            target: editor
+            sconsflags: arch=arm64 dev_build=yes debug_symbols=true
+
+          - name: Build release template arm64
+            cache-name: export_template_release_linux_arm64
+            target: template_release
+            sconsflags: arch=arm64
+
+          - name: Build debug template arm64
+            cache-name: export_template_debug_linux_arm64
+            target: template_debug
+            sconsflags: arch=arm64
+
     steps:
       - name: Maximize build space
         uses: AdityaGarg8/remove-unwanted-software@v4.1

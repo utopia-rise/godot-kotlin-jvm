@@ -51,6 +51,36 @@ jobs:
             should-clean: false
             sconsflags: ''
 
+          - name: Build editor release (target=editor)
+            cache-name: editor_release_windows_arm64
+            target: editor
+            should-clean: true
+            sconsflags: arch=arm64
+
+          - name: Build editor debug (target=editor, debug_symbols=true )
+            cache-name: editor_debug_windows_arm64
+            target: editor
+            should-clean: false
+            sconsflags: arch=arm64 debug_symbols=true
+
+          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
+            cache-name: editor_dev_windows_arm64
+            target: editor
+            should-clean: false
+            sconsflags: arch=arm64 dev_build=yes debug_symbols=true
+
+          - name: Build release template
+            cache-name: export_template_release_windows_arm64
+            target: template_release
+            should-clean: true
+            sconsflags: arch=arm64
+
+          - name: Build debug template
+            cache-name: export_template_debug_windows_arm64
+            target: template_debug
+            should-clean: false
+            sconsflags: arch=arm64
+
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
