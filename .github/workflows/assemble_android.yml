@@ -36,10 +36,10 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
-      - name: Setup JAVA_HOME
-        uses: ./modules/kotlin_jvm/.github/actions/setup-java-home
+      - uses: actions/setup-java@v4
         with:
-          version: ${{ inputs.jvm-version }}
+          distribution: temurin
+          java-version: ${{ inputs.jvm-version }}
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
