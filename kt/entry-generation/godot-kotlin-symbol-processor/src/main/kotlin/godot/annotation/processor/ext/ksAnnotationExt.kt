@@ -12,14 +12,11 @@ import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.annotation.Tool
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
@@ -30,16 +27,13 @@ import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
 import godot.entrygenerator.model.GodotAnnotation
 import godot.entrygenerator.model.GodotBaseTypeAnnotation
+import godot.entrygenerator.model.GodotMemberAnnotation
+import godot.entrygenerator.model.GodotScriptAnnotation
 import godot.entrygenerator.model.IntFlagHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RangeHintAnnotation
-import godot.entrygenerator.model.RegisterClassAnnotation
-import godot.entrygenerator.model.RegisterConstructorAnnotation
-import godot.entrygenerator.model.RegisterFunctionAnnotation
-import godot.entrygenerator.model.RegisterPropertyAnnotation
-import godot.entrygenerator.model.RegisterSignalAnnotation
 import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.Sync
@@ -92,14 +86,11 @@ internal val KSAnnotation.rpcChannel: Int
 
 internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
     return when (fqNameUnsafe) {
-        RegisterClass::class.qualifiedName -> RegisterClassAnnotation(
+        GodotScript::class.qualifiedName -> GodotScriptAnnotation(
             customName = arguments.first().value as? String,
             symbolProcessorSource = this
         )
-        RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation(this)
-        RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation(this)
-        RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation(this)
-        RegisterSignal::class.qualifiedName -> RegisterSignalAnnotation(this)
+        GodotMember::class.qualifiedName -> GodotMemberAnnotation(this)
         Tool::class.qualifiedName -> ToolAnnotation(this)
         Export::class.qualifiedName -> ExportAnnotation(this)
         Rpc::class.qualifiedName -> RpcAnnotation(

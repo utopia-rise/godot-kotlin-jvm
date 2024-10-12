@@ -1,8 +1,8 @@
 package godot.tests.binding
 
 import godot.Node
-import godot.annotation.RegisterClass
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 class BindingB : Node() {
 }

@@ -2,16 +2,15 @@ package godot.tests.library.hierarchical
 
 import godot.Node3D
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 class Simple: Node3D() {
 
     @Export
-    @RegisterProperty
     var testProperty = "Hello from hierarchical-library-test!"
-    @RegisterFunction
+
+    @GodotMember
     fun provideGreeting(): String = testProperty
 }

@@ -1,8 +1,8 @@
 package godot.tests.instance
 
 import godot.Node
-import godot.annotation.RegisterClass
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 class NodeInstance : Node() {
 }

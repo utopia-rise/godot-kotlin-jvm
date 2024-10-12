@@ -1,40 +1,39 @@
 package godot.tests.callable
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.core.NativeCallable
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class CallableMethodBindTest: Node() {
-    @RegisterProperty
+    @GodotMember
     var methodBinds: VariantArray<Int> = variantArrayOf(-1, -1, -1)
 
-    @RegisterFunction
+    @GodotMember
     fun callWithMethodWithAllBinds() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun callWithMethodWithTwoBinds() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun callWithMethodWithOneBind() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun callWithMethodWithNoBind() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun readySignalMethodBindTest(a: Int, b: Int, c: Int) {
         GD.print("Called with args: $a, $b, $c")
         methodBinds = variantArrayOf(a, b, c)

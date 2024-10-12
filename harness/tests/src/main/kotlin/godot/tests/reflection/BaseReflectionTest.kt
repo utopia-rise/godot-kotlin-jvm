@@ -1,15 +1,15 @@
 package godot.tests.reflection
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import kotlin.reflect.full.hasAnnotation
 
-@RegisterClass
+@GodotScript
 class BaseReflectionTest: Node() {
 
-    @RegisterFunction
+    @GodotMember
     fun hasRegisterClassAnnotation(): Boolean {
-        return BaseReflectionTest::class.hasAnnotation<RegisterClass>()
+        return BaseReflectionTest::class.hasAnnotation<GodotScript>()
     }
 }

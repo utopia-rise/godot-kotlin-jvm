@@ -14,14 +14,13 @@ import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.File
 import godot.annotation.FloatRange
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.annotation.IntFlag
 import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
@@ -49,21 +48,18 @@ enum class TestEnum {
     ENUM_2
 }
 
-@RegisterClass
+@GodotScript
 class Invocation : Node3D() {
     @Export
-    @RegisterProperty
     lateinit var button: Button
 
     @Export
-    @RegisterProperty
     var enumList = listOf(TestEnum.ENUM_1)
 
-    @RegisterProperty
+    @GodotMember
     var vectorList = PackedVector3Array()
 
     @Export
-    @RegisterProperty
     var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
     // Can't export nullable coretypes
@@ -78,62 +74,55 @@ class Invocation : Node3D() {
     //@RegisterProperty
     //var lateinitString: String? = null
 
-    @RegisterProperty
+    @GodotMember
     lateinit var registerObject: OtherScript
 
-    @RegisterProperty
+    @GodotMember
     var registerObjectNullable: OtherScript? = null
 
-    @RegisterProperty
+    @GodotMember
     var registerObjectNullablePreInit: OtherScript? = OtherScript()
         set(value) {
             field?.free()
             field = value
         }
 
-    @RegisterProperty
+    @GodotMember
     var registerObjectNonNullablePreInit: OtherScript = OtherScript()
         set(value) {
             field.free()
             field = value
         }
 
-    @RegisterProperty
+    @GodotMember
     var vector = Vector3()
 
     @Export
-    @RegisterProperty
     var x = 0
 
     @Export
-    @RegisterProperty
     var y = 0.0
 
     @Export
-    @RegisterProperty
     var z = 0.0f
 
     @Export
-    @RegisterProperty
     var customName = "Idonthaveanyidea"
 
     //references in default values are allowed if the property is NOT exported
     private val otherScriptReference = OtherScript()
     private fun provideOtherScriptReference() = otherScriptReference
 
-    @RegisterProperty
+    @GodotMember
     var invocation = provideOtherScriptReference()
 
     @Export
-    @RegisterProperty
     var enumTest = TestEnum.ENUM_1
 
     @Export
-    @RegisterProperty
     var resourceTest = NavigationMesh()
 
     @Export
-    @RegisterProperty
     var jvmId: Int = 0
         get() = hashCode()
         set(value) {
@@ -141,145 +130,114 @@ class Invocation : Node3D() {
         }
 
     @Export
-    @RegisterProperty
     var testArrayAny = VariantArray<Any>()
 
     @Export
-    @RegisterProperty
     var navMeshes = variantArrayOf(NavigationMesh())
 
     @Export
-    @RegisterProperty
     var nullableArray = variantArrayOf(NavigationMesh(), null)
 
     @Export
-    @RegisterProperty
     var anyToAnyDictionary = Dictionary<Any, Any>()
 
     @Export
-    @RegisterProperty
     var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
 
     @Export
-    @RegisterProperty
     var nullableDictionary = dictionaryOf(
         "notnull" to NavigationMesh(),
         "null" to null
     )
 
     @Export
-    @RegisterProperty
     var color = Color()
 
     @Export
-    @RegisterProperty
     var rid = RID()
 
     @Export
-    @RegisterProperty
     var packedByteArray = PackedByteArray()
 
     @Export
-    @RegisterProperty
     var packedInt32Array = PackedInt32Array()
 
     @Export
-    @RegisterProperty
     var packedFloat64Array = PackedFloat64Array()
 
     @Export
-    @RegisterProperty
     var packedColorArray = PackedColorArray()
 
     @Export
-    @RegisterProperty
     var packedStringArray = PackedStringArray()
 
     @Export
-    @RegisterProperty
     var packedVector2Array = PackedVector2Array()
 
     @Export
-    @RegisterProperty
     var packedVector3Array = PackedVector3Array()
 
     @Export
-    @RegisterProperty
     @IntRange(1, 2)
     var p1 = 1
 
     @Export
-    @RegisterProperty
     @LongRange(1L, 2L)
     var p1_1 = 1L
 
     @Export
-    @RegisterProperty
     @FloatRange(1f, 2f)
     var p2 = 1f
 
     @Export
-    @RegisterProperty
     @DoubleRange(1.0, 2.0)
     var p3 = 1.0
 
     @Export
-    @RegisterProperty
     @DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
     var p4 = 1.0
 
     @Export
-    @RegisterProperty
     @FloatRange(1f, 2f)
     var p5 = 1f
 
     @Export
-    @RegisterProperty
     @EnumTypeHint
     var p6 = TestEnum.ENUM_1
 
     @Export
-    @RegisterProperty
     @ExpEasing
     var p7 = 1f
 
     @Export
-    @RegisterProperty
     @ExpEasing
     var p8 = 1.0
 
     @Export
-    @RegisterProperty
     @EnumFlag
     var p9 = setOf(TestEnum.ENUM_1)
 
     @Export
-    @RegisterProperty
     @EnumFlag
     var p10 = mutableSetOf(TestEnum.ENUM_1)
 
     @Export
-    @RegisterProperty
     @EnumFlag
     var p11 = mutableSetOf<TestEnum>()
 
     @Export
-    @RegisterProperty
     @IntFlag
     var p12 = 1 or 2 and 3
 
     @Export
-    @RegisterProperty
     @File
     var p13 = "someFile"
 
     @Export
-    @RegisterProperty
     @Dir
     var p14 = "someDir"
 
     @Export
-    @RegisterProperty
     @MultilineText
     var p15 = """
 		some
@@ -288,60 +246,54 @@ class Invocation : Node3D() {
 	""".trimIndent()
 
     @Export
-    @RegisterProperty
     @PlaceHolderText
     var p16 = "some placeholderText"
 
     @Export
-    @RegisterProperty
     @ColorNoAlpha
     var p17 = Color()
 
     @Export
-    @RegisterProperty
     var stringtemplation = "blubb ${17 + 25}"
 
     @Export
-    @RegisterProperty
     var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
 
     @Export
-    @RegisterProperty
     var asciiString = ""
 
     @Export
-    @RegisterProperty
     var utf8String = ""
 
-    @RegisterFunction
+    @GodotMember
     fun intValue(value: Int) = value
 
-    @RegisterFunction
+    @GodotMember
     fun longValue(value: Long) = value
 
-    @RegisterFunction
+    @GodotMember
     fun floatValue(value: Float) = value
 
-    @RegisterFunction
+    @GodotMember
     fun doubleValue(value: Double) = value
 
-    @RegisterFunction
+    @GodotMember
     fun booleanValue(value: Boolean) = value
 
-    @RegisterFunction
+    @GodotMember
     fun stringValue(value: String) = value
 
-    @RegisterFunction
+    @GodotMember
     fun intAddition(a: Int, b: Int) = a + b
 
-    @RegisterFunction
+    @GodotMember
     fun initNullables() {
         registerObject = OtherScript()
         registerObjectNullable = OtherScript()
         hasInitializedLateInits = true
     }
 
-    @RegisterFunction
+    @GodotMember
     override fun _enterTree() {
         //TODO: uncomment once https://github.com/utopia-rise/godot-kotlin-jvm/issues/86 is fixed
 //        GD.print("Hello", "Hello")
@@ -355,7 +307,7 @@ class Invocation : Node3D() {
         println("CustomName is $customName")
     }
 
-    @RegisterFunction
+    @GodotMember
     override fun _ready() {
         val formerName = name
         println("Name is: $name")
@@ -400,50 +352,50 @@ class Invocation : Node3D() {
         registerObjectNonNullablePreInit.free()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun getRidId() = rid.id
 
-    @RegisterFunction
+    @GodotMember
     fun getNavMeshRid() = resourceTest.getRid()
 
-    @RegisterFunction
+    @GodotMember
     fun appendToAnyDict(key: Any, value: Any) {
         anyToAnyDictionary[key] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun removeFromAnyDict(key: Any) {
         anyToAnyDictionary.remove(key)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun getFromAnyDict(key: Any) = anyToAnyDictionary[key]
 
-    @RegisterFunction
+    @GodotMember
     fun anyDictSize() = anyToAnyDictionary.size
 
-    @RegisterFunction
+    @GodotMember
     fun appendToStringNavMeshDict(key: String, value: NavigationMesh) {
         navMeshesDictionary[key] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun removeFromStringNavMeshDict(key: String) {
         navMeshesDictionary.remove(key)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun getFromStringNavMeshDict(key: String) = navMeshesDictionary[key]
 
-    @RegisterFunction
+    @GodotMember
     fun stringNavMeshDictSize() = navMeshesDictionary.size
 
-    @RegisterFunction
+    @GodotMember
     fun appendToStringNavMeshNullableDict(key: String, value: NavigationMesh) {
         nullableDictionary[key] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun removeFromStringNavMeshNullableDict(key: String) {
         nullableDictionary.remove(key)
     }
@@ -452,150 +404,150 @@ class Invocation : Node3D() {
 //	@RegisterFunction
 //	fun getFromStringNavMeshNullableDict(key: String) = nullableDictionary[key]
 
-    @RegisterFunction
+    @GodotMember
     fun stringNavMeshNullableDictSize() = nullableDictionary.size
 
-    @RegisterFunction
+    @GodotMember
     fun appendNullableStandardNavMesh() = nullableArray.append(NavigationMesh())
 
-    @RegisterFunction
+    @GodotMember
     fun appendNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.append(navigationMesh)
 
-    @RegisterFunction
+    @GodotMember
     fun removeNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.remove(navigationMesh)
 
-    @RegisterFunction
+    @GodotMember
     fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.removeAt(index)
 
 //	TODO: This will fail to register as we cannot register nullable return type
 //	@RegisterFunction
 //	fun getNullableNavMeshFromArray(index: Int) = nullableArray[index]
 
-    @RegisterFunction
+    @GodotMember
     fun nullableNavMeshesSize() = nullableArray.size
 
-    @RegisterFunction
+    @GodotMember
     fun appendStandardNavMesh() = navMeshes.append(NavigationMesh())
 
-    @RegisterFunction
+    @GodotMember
     fun appendNavMesh(navigationMesh: NavigationMesh) = navMeshes.append(navigationMesh)
 
-    @RegisterFunction
+    @GodotMember
     fun removeNavMesh(navigationMesh: NavigationMesh) = navMeshes.remove(navigationMesh)
 
-    @RegisterFunction
+    @GodotMember
     fun removeNavMeshWithIndex(index: Int) = navMeshes.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getNavMeshFromArray(index: Int) = navMeshes[index]
 
-    @RegisterFunction
+    @GodotMember
     fun navMeshesSize() = navMeshes.size
 
-    @RegisterFunction
+    @GodotMember
     fun appendAnyToArray(any: Any) = testArrayAny.append(any)
 
-    @RegisterFunction
+    @GodotMember
     fun removeAnyFromArray(any: Any) = testArrayAny.remove(any)
 
-    @RegisterFunction
+    @GodotMember
     fun getAnyFromArray(index: Int) = testArrayAny[index]
 
-    @RegisterFunction
+    @GodotMember
     fun arrayAnySize() = testArrayAny.size
 
-    @RegisterFunction
+    @GodotMember
     fun countNameshInstance(navigationMesh: NavigationMesh) = navMeshes.count(navigationMesh)
 
-    @RegisterFunction
+    @GodotMember
     fun getNavMeshCount() = navMeshes.count()
 
     //Type cast checks
-    @RegisterFunction
+    @GodotMember
     fun parentIsNode3D() = getParent() is Node3D
 
-    @RegisterFunction
+    @GodotMember
     fun isObjectNode3D(obj: Object) = obj is Node3D
 
-    @RegisterFunction
+    @GodotMember
     fun otherJvmId(invocation: Invocation) = invocation.jvmId
 
-    @RegisterFunction
+    @GodotMember
     fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
-    @RegisterFunction
+    @GodotMember
     fun addByteToPackedArray(byte: Byte) = packedByteArray.append(byte)
 
-    @RegisterFunction
+    @GodotMember
     fun addByteArrayToPackedArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteByteFromPackedArray(index: Int) = packedByteArray.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getByteFromPackedArray(index: Int) = packedByteArray[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setByteInPackedArray(index: Int, value: Byte) {
         packedByteArray[index] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeBytePackedArray(newSize: Int) {
         packedByteArray.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addColorToPackedArray(color: Color) = packedColorArray.append(color)
 
-    @RegisterFunction
+    @GodotMember
     fun addColorArrayToPackedArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteColorFromPackedArray(index: Int) = packedColorArray.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getColorFromPackedArray(index: Int) = packedColorArray[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setColorInPackedArray(index: Int, color: Color) {
         packedColorArray[index] = color
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeColorPackedArray(newSize: Int) {
         packedColorArray.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addIntToPackedArray(int: Int) = packedInt32Array.append(int)
 
-    @RegisterFunction
+    @GodotMember
     fun addIntArrayToPackedArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteIntFromPackedArray(index: Int) = packedInt32Array.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getIntFromPackedArray(index: Int) = packedInt32Array[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setIntInPackedArray(index: Int, value: Int) {
         packedInt32Array[index] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeIntPackedArray(newSize: Int) {
         packedInt32Array.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addRealToPackedArray(realT: RealT) = packedFloat64Array.append(realT)
 
-    @RegisterFunction
+    @GodotMember
     fun addRealArrayToPackedArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
 
-    @RegisterFunction
+    @GodotMember
     fun readStringFromByteArray() {
 
         val asciiArray = testString.toByteArray(Charsets.US_ASCII)
@@ -613,94 +565,94 @@ class Invocation : Node3D() {
         utf8String = packed2.getStringFromUtf8()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun deleteRealFromPackedArray(index: Int) = packedFloat64Array.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getRealFromPackedArray(index: Int) = packedFloat64Array[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setRealInPackedArray(index: Int, value: Double) {
         packedFloat64Array[index] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeRealPackedArray(newSize: Int) {
         packedFloat64Array.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addStringToPackedArray(string: String) = packedStringArray.append(string)
 
-    @RegisterFunction
+    @GodotMember
     fun addStringArrayToPackedArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteStringFromPackedArray(index: Int) = packedStringArray.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getStringFromPackedArray(index: Int) = packedStringArray[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setStringInPackedArray(index: Int, value: String) {
         packedStringArray[index] = value
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeStringPackedArray(newSize: Int) {
         packedStringArray.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addVector2ToPackedArray(vector2: Vector2) = packedVector2Array.append(vector2)
 
-    @RegisterFunction
+    @GodotMember
     fun addVector2ArrayToPackedArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteVector2FromPackedArray(index: Int) = packedVector2Array.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getVector2FromPackedArray(index: Int) = packedVector2Array[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setVector2InPackedArray(index: Int, vector2: Vector2) {
         packedVector2Array[index] = vector2
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeVector2PackedArray(newSize: Int) {
         packedVector2Array.resize(newSize)
     }
 
-    @RegisterFunction
+    @GodotMember
     fun addVector3ToPackedArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
-    @RegisterFunction
+    @GodotMember
     fun addVector3ArrayToPackedArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
-    @RegisterFunction
+    @GodotMember
     fun deleteVector3FromPackedArray(index: Int) = packedVector3Array.removeAt(index)
 
-    @RegisterFunction
+    @GodotMember
     fun getVector3FromPackedArray(index: Int) = packedVector3Array[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setVector3InPackedArray(index: Int, vector3: Vector3) {
         packedVector3Array[index] = vector3
     }
 
-    @RegisterFunction
+    @GodotMember
     fun resizeVector3PackedArray(newSize: Int) {
         packedVector3Array.resize(newSize)
     }
 
     // Singleton tests
 
-    @RegisterFunction
+    @GodotMember
     fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
         XRServer.getInstanceId() == arvrServer.getInstanceId()
 
-    @RegisterFunction
+    @GodotMember
     fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }
