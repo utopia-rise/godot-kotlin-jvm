@@ -1,9 +1,6 @@
 package godot.coroutines
 
-import godot.core.Callable
-import godot.core.asCallable
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import kotlinx.coroutines.async
 
 
 /**
@@ -15,14 +12,11 @@ import kotlin.coroutines.resume
  *
  * @param block the code block to execute at the end of the frame
  */
-public suspend inline fun <R> awaitMainThread(
+suspend inline fun <R> awaitMainThread(
     crossinline block: () -> R
-): R = suspendCancellableCoroutine { continuation ->
-    Callable(
-        {
-            if (continuation.isActive) {
-                continuation.resume(block())
-            }
-        }.asCallable()
-    ).callDeferred()
+): R {
+    val job = GodotCoroutine.async(GodotDispatchers.MainThread) {
+        block()
+    }
+    return job.await()
 }
