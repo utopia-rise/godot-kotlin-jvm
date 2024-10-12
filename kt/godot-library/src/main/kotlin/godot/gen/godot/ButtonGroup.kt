@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -33,6 +34,7 @@ public open class ButtonGroup : Resource() {
   /**
    * Emitted when one of the buttons of the group is pressed.
    */
+  @GodotApiMember
   public val pressed: Signal1<BaseButton> by Signal1
 
   /**

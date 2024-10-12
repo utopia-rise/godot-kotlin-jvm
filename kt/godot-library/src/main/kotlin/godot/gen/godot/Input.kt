@@ -7,6 +7,7 @@
 package godot
 
 import godot.MouseButtonMaskValue
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -53,6 +54,7 @@ public object Input : Object() {
   /**
    * Emitted when a joypad device has been connected or disconnected.
    */
+  @GodotApiMember
   @JvmStatic
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 

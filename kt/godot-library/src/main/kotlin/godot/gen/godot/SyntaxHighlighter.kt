@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -36,6 +37,7 @@ public open class SyntaxHighlighter : Resource() {
    * Virtual method which can be overridden to return syntax highlighting data.
    * See [getLineSyntaxHighlighting] for more details.
    */
+  @GodotApiMember
   public open fun _getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_line_syntax_highlighting is not implemented for SyntaxHighlighter")
   }
@@ -43,12 +45,14 @@ public open class SyntaxHighlighter : Resource() {
   /**
    * Virtual method which can be overridden to clear any local caches.
    */
+  @GodotApiMember
   public open fun _clearHighlightingCache(): Unit {
   }
 
   /**
    * Virtual method which can be overridden to update any local caches.
    */
+  @GodotApiMember
   public open fun _updateCache(): Unit {
   }
 

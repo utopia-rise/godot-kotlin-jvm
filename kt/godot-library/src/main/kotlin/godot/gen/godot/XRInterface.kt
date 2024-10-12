@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -54,6 +55,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * boundary or entering a new play area, the player changing the play area mode, the world scale
    * changing or the player resetting their headset orientation.
    */
+  @GodotApiMember
   public val playAreaChanged: Signal1<Long> by Signal1
 
   /**

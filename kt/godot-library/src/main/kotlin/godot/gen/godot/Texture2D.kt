@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -47,6 +48,7 @@ public open class Texture2D : Texture() {
   /**
    * Called when the [Texture2D]'s width is queried.
    */
+  @GodotApiMember
   public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture2D")
   }
@@ -54,6 +56,7 @@ public open class Texture2D : Texture() {
   /**
    * Called when the [Texture2D]'s height is queried.
    */
+  @GodotApiMember
   public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture2D")
   }
@@ -62,6 +65,7 @@ public open class Texture2D : Texture() {
    * Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)`
    * position.
    */
+  @GodotApiMember
   public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
     throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
   }
@@ -69,6 +73,7 @@ public open class Texture2D : Texture() {
   /**
    * Called when the presence of an alpha channel in the [Texture2D] is queried.
    */
+  @GodotApiMember
   public open fun _hasAlpha(): Boolean {
     throw NotImplementedError("_has_alpha is not implemented for Texture2D")
   }
@@ -80,6 +85,7 @@ public open class Texture2D : Texture() {
    * row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
+  @GodotApiMember
   public open fun _draw(
     toCanvasItem: RID,
     pos: Vector2,
@@ -95,6 +101,7 @@ public open class Texture2D : Texture() {
    * 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
+  @GodotApiMember
   public open fun _drawRect(
     toCanvasItem: RID,
     rect: Rect2,
@@ -111,6 +118,7 @@ public open class Texture2D : Texture() {
    * instead of row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
+  @GodotApiMember
   public open fun _drawRectRegion(
     toCanvasItem: RID,
     rect: Rect2,

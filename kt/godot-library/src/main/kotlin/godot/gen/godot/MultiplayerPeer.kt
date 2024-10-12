@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -36,11 +37,13 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Emitted when a remote peer connects.
    */
+  @GodotApiMember
   public val peerConnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when a remote peer has disconnected.
    */
+  @GodotApiMember
   public val peerDisconnected: Signal1<Long> by Signal1
 
   /**

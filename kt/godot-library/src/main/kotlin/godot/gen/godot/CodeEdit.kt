@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -53,22 +54,26 @@ public open class CodeEdit : TextEdit() {
    * Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a
    * removed is emitted at the old line.
    */
+  @GodotApiMember
   public val breakpointToggled: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user requests code completion.
    */
+  @GodotApiMember
   public val codeCompletionRequested: Signal0 by Signal0
 
   /**
    * Emitted when the user has clicked on a valid symbol.
    */
+  @GodotApiMember
   public val symbolLookup: Signal3<String, Long, Long> by Signal3
 
   /**
    * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by
    * calling [setSymbolLookupWordAsValid].
    */
+  @GodotApiMember
   public val symbolValidate: Signal1<String> by Signal1
 
   /**
@@ -306,6 +311,7 @@ public open class CodeEdit : TextEdit() {
    * Override this method to define how the selected entry should be inserted. If [replace] is
    * `true`, any existing text should be replaced.
    */
+  @GodotApiMember
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
   }
 
@@ -313,6 +319,7 @@ public open class CodeEdit : TextEdit() {
    * Override this method to define what happens when the user requests code completion. If [force]
    * is `true`, any checks should be bypassed.
    */
+  @GodotApiMember
   public open fun _requestCodeCompletion(force: Boolean): Unit {
   }
 
@@ -321,6 +328,7 @@ public open class CodeEdit : TextEdit() {
    * Both [candidates] and the return is a [Array] of [Dictionary], see [getCodeCompletionOption]
    * for [Dictionary] content.
    */
+  @GodotApiMember
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
       VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_filter_code_completion_candidates is not implemented for CodeEdit")

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -53,6 +54,7 @@ public object ProjectSettings : Object() {
   /**
    * Emitted when any setting is changed, up to once per process frame.
    */
+  @GodotApiMember
   @JvmStatic
   public val settingsChanged: Signal0 by Signal0
 

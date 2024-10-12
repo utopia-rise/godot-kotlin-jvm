@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
@@ -29,12 +30,14 @@ public open class EngineProfiler : RefCounted() {
   /**
    * Called when the profiler is enabled/disabled, along with a set of [options].
    */
+  @GodotApiMember
   public open fun _toggle(enable: Boolean, options: VariantArray<Any?>): Unit {
   }
 
   /**
    * Called when data is added to profiler using [EngineDebugger.profilerAddFrameData].
    */
+  @GodotApiMember
   public open fun _addFrame(`data`: VariantArray<Any?>): Unit {
   }
 
@@ -43,6 +46,7 @@ public open class EngineProfiler : RefCounted() {
    * current frame. All time values are in seconds. Lower values represent faster processing times and
    * are therefore considered better.
    */
+  @GodotApiMember
   public open fun _tick(
     frameTime: Double,
     processTime: Double,

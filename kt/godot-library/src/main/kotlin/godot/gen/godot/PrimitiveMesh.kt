@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -133,6 +134,7 @@ public open class PrimitiveMesh : Mesh() {
    * [Array] where each element is another Array of values required for the mesh (see the
    * [Mesh.ArrayType] constants).
    */
+  @GodotApiMember
   public open fun _createMeshArray(): VariantArray<Any?> {
     throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
   }

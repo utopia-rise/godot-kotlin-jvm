@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -41,6 +42,7 @@ public open class ScrollContainer : Container() {
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
+  @GodotApiMember
   public val scrollStarted: Signal0 by Signal0
 
   /**
@@ -50,6 +52,7 @@ public open class ScrollContainer : Container() {
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
+  @GodotApiMember
   public val scrollEnded: Signal0 by Signal0
 
   /**

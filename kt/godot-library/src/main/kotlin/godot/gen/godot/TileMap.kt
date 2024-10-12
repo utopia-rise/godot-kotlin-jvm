@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -52,6 +53,7 @@ public open class TileMap : Node2D() {
   /**
    * Emitted when the [TileSet] of this TileMap changes.
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**
@@ -134,6 +136,7 @@ public open class TileMap : Node2D() {
    * **Note:** If the result of this function should changed, use [notifyRuntimeTileDataUpdate] to
    * notify the TileMap it needs an update.
    */
+  @GodotApiMember
   public open fun _useTileDataRuntimeUpdate(layer: Int, coords: Vector2i): Boolean {
     throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMap")
   }
@@ -148,6 +151,7 @@ public open class TileMap : Node2D() {
    * **Note:** If the properties of [tileData] object should change over time, use
    * [notifyRuntimeTileDataUpdate] to notify the TileMap it needs an update.
    */
+  @GodotApiMember
   public open fun _tileDataRuntimeUpdate(
     layer: Int,
     coords: Vector2i,

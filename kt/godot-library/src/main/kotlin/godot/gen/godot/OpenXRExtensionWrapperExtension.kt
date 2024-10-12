@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -39,6 +40,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * - If the `bool *` points to a boolean, the boolean will be updated to `true` if the extension
    * is enabled.
    */
+  @GodotApiMember
   public open fun _getRequestedExtensions(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_requested_extensions is not implemented for OpenXRExtensionWrapperExtension")
   }
@@ -49,6 +51,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
+  @GodotApiMember
   public open fun _getCompositionLayerCount(): Int {
     throw NotImplementedError("_get_composition_layer_count is not implemented for OpenXRExtensionWrapperExtension")
   }
@@ -59,6 +62,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
+  @GodotApiMember
   public open fun _getCompositionLayer(index: Int): Long {
     throw NotImplementedError("_get_composition_layer is not implemented for OpenXRExtensionWrapperExtension")
   }
@@ -71,6 +75,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
+  @GodotApiMember
   public open fun _getCompositionLayerOrder(index: Int): Int {
     throw NotImplementedError("_get_composition_layer_order is not implemented for OpenXRExtensionWrapperExtension")
   }
@@ -79,6 +84,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Returns a [PackedStringArray] of positional tracker names that are used within the extension
    * wrapper.
    */
+  @GodotApiMember
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
     throw NotImplementedError("_get_suggested_tracker_names is not implemented for OpenXRExtensionWrapperExtension")
   }
@@ -90,30 +96,35 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * system. The controller data is used to setup action maps for users who may have access to the
    * relevant hardware.
    */
+  @GodotApiMember
   public open fun _onRegisterMetadata(): Unit {
   }
 
   /**
    * Called before the OpenXR instance is created.
    */
+  @GodotApiMember
   public open fun _onBeforeInstanceCreated(): Unit {
   }
 
   /**
    * Called right after the OpenXR instance is created.
    */
+  @GodotApiMember
   public open fun _onInstanceCreated(instance: Long): Unit {
   }
 
   /**
    * Called right before the OpenXR instance is destroyed.
    */
+  @GodotApiMember
   public open fun _onInstanceDestroyed(): Unit {
   }
 
   /**
    * Called right after the OpenXR session is created.
    */
+  @GodotApiMember
   public open fun _onSessionCreated(session: Long): Unit {
   }
 
@@ -122,30 +133,35 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * processing steps of the main loop. During this step controller data is queried and made available
    * to game logic.
    */
+  @GodotApiMember
   public open fun _onProcess(): Unit {
   }
 
   /**
    * Called right before the XR viewports begin their rendering step.
    */
+  @GodotApiMember
   public open fun _onPreRender(): Unit {
   }
 
   /**
    * Called right after the main swapchains are (re)created.
    */
+  @GodotApiMember
   public open fun _onMainSwapchainsCreated(): Unit {
   }
 
   /**
    * Called right before the OpenXR session is destroyed.
    */
+  @GodotApiMember
   public open fun _onSessionDestroyed(): Unit {
   }
 
   /**
    * Called when the OpenXR session state is changed to idle.
    */
+  @GodotApiMember
   public open fun _onStateIdle(): Unit {
   }
 
@@ -153,6 +169,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called when the OpenXR session state is changed to ready. This means OpenXR is ready to set up
    * the session.
    */
+  @GodotApiMember
   public open fun _onStateReady(): Unit {
   }
 
@@ -160,6 +177,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called when the OpenXR session state is changed to synchronized. OpenXR also returns to this
    * state when the application loses focus.
    */
+  @GodotApiMember
   public open fun _onStateSynchronized(): Unit {
   }
 
@@ -167,6 +185,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called when the OpenXR session state is changed to visible. This means OpenXR is now ready to
    * receive frames.
    */
+  @GodotApiMember
   public open fun _onStateVisible(): Unit {
   }
 
@@ -174,24 +193,28 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called when the OpenXR session state is changed to focused. This state is the active state when
    * the game runs.
    */
+  @GodotApiMember
   public open fun _onStateFocused(): Unit {
   }
 
   /**
    * Called when the OpenXR session state is changed to stopping.
    */
+  @GodotApiMember
   public open fun _onStateStopping(): Unit {
   }
 
   /**
    * Called when the OpenXR session state is changed to loss pending.
    */
+  @GodotApiMember
   public open fun _onStateLossPending(): Unit {
   }
 
   /**
    * Called when the OpenXR session state is changed to exiting.
    */
+  @GodotApiMember
   public open fun _onStateExiting(): Unit {
   }
 
@@ -199,6 +222,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Gets an array of [Dictionary]s that represent properties, just like [Object.GetPropertyList],
    * that will be added to [OpenXRCompositionLayer] nodes.
    */
+  @GodotApiMember
   public open fun _getViewportCompositionLayerExtensionProperties():
       VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_viewport_composition_layer_extension_properties is not implemented for OpenXRExtensionWrapperExtension")
@@ -208,6 +232,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Gets a [Dictionary] containing the default values for the properties returned by
    * [_getViewportCompositionLayerExtensionProperties].
    */
+  @GodotApiMember
   public open fun _getViewportCompositionLayerExtensionPropertyDefaults(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_viewport_composition_layer_extension_property_defaults is not implemented for OpenXRExtensionWrapperExtension")
   }

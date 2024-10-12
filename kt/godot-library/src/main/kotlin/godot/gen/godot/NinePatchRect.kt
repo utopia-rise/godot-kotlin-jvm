@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
@@ -37,6 +38,7 @@ public open class NinePatchRect : Control() {
   /**
    * Emitted when the node's texture changes.
    */
+  @GodotApiMember
   public val textureChanged: Signal0 by Signal0
 
   /**

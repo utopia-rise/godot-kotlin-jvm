@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
@@ -294,6 +295,7 @@ public open class AStarGrid2D : RefCounted() {
    * Called when estimating the cost between a point and the path's ending point.
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
+  @GodotApiMember
   public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
   }
@@ -302,6 +304,7 @@ public open class AStarGrid2D : RefCounted() {
    * Called when computing the cost between two connected points.
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
+  @GodotApiMember
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }

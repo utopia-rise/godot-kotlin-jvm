@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Basis
@@ -58,11 +59,13 @@ public open class GridMap : Node3D() {
   /**
    * Emitted when [cellSize] changes.
    */
+  @GodotApiMember
   public val cellSizeChanged: Signal1<Vector3> by Signal1
 
   /**
    * Emitted when the [MeshLibrary] of this GridMap changes.
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**

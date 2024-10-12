@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -63,17 +64,20 @@ public open class LineEdit : Control() {
   /**
    * Emitted when the text changes.
    */
+  @GodotApiMember
   public val textChanged: Signal1<String> by Signal1
 
   /**
    * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to
    * fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
    */
+  @GodotApiMember
   public val textChangeRejected: Signal1<String> by Signal1
 
   /**
    * Emitted when the user presses [KEY_ENTER] on the [LineEdit].
    */
+  @GodotApiMember
   public val textSubmitted: Signal1<String> by Signal1
 
   /**

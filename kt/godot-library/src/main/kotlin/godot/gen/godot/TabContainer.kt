@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -40,37 +41,44 @@ public open class TabContainer : Container() {
   /**
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
+  @GodotApiMember
   public val activeTabRearranged: Signal1<Long> by Signal1
 
   /**
    * Emitted when switching to another tab.
    */
+  @GodotApiMember
   public val tabChanged: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is clicked, even if it is the current tab.
    */
+  @GodotApiMember
   public val tabClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is hovered by the mouse.
    */
+  @GodotApiMember
   public val tabHovered: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is selected via click, directional input, or script, even if it is the
    * current tab.
    */
+  @GodotApiMember
   public val tabSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user clicks on the button icon on this tab.
    */
+  @GodotApiMember
   public val tabButtonPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when the [TabContainer]'s [Popup] button is clicked. See [setPopup] for details.
    */
+  @GodotApiMember
   public val prePopupPressed: Signal0 by Signal0
 
   /**

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -38,11 +39,13 @@ public open class Range : Control() {
    * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
    * emitted when [value] is set directly via code.
    */
+  @GodotApiMember
   public val valueChanged: Signal1<Double> by Signal1
 
   /**
    * Emitted when [minValue], [maxValue], [page], or [step] change.
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**
@@ -168,6 +171,7 @@ public open class Range : Control() {
    * Called when the [Range]'s value is changed (following the same conditions as [signal
    * value_changed]).
    */
+  @GodotApiMember
   public open fun _valueChanged(newValue: Double): Unit {
   }
 

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.StringName
@@ -35,6 +36,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Override this method to customize what happens when the playback starts at the given position,
    * such as by calling [AudioStreamPlayer.play].
    */
+  @GodotApiMember
   public open fun _start(fromPos: Double): Unit {
   }
 
@@ -42,6 +44,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Override this method to customize what happens when the playback is stopped, such as by calling
    * [AudioStreamPlayer.stop].
    */
+  @GodotApiMember
   public open fun _stop(): Unit {
   }
 
@@ -49,6 +52,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Overridable method. Should return `true` if this playback is active and playing its audio
    * stream.
    */
+  @GodotApiMember
   public open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
   }
@@ -57,6 +61,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Overridable method. Should return how many times this audio stream has looped. Most built-in
    * playbacks always return `0`.
    */
+  @GodotApiMember
   public open fun _getLoopCount(): Int {
     throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
   }
@@ -64,6 +69,7 @@ public open class AudioStreamPlayback : RefCounted() {
   /**
    * Overridable method. Should return the current progress along the audio stream, in seconds.
    */
+  @GodotApiMember
   public open fun _getPlaybackPosition(): Double {
     throw NotImplementedError("_get_playback_position is not implemented for AudioStreamPlayback")
   }
@@ -72,6 +78,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Override this method to customize what happens when seeking this audio stream at the given
    * [position], such as by calling [AudioStreamPlayer.seek].
    */
+  @GodotApiMember
   public open fun _seek(position: Double): Unit {
   }
 
@@ -80,18 +87,21 @@ public open class AudioStreamPlayback : RefCounted() {
    * [AudioServer.setEnableTaggingUsedAudioStreams] has been set to `true`. Editor plugins may use this
    * method to "tag" the current position along the audio stream and display it in a preview.
    */
+  @GodotApiMember
   public open fun _tagUsedStreams(): Unit {
   }
 
   /**
    * Set the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
+  @GodotApiMember
   public open fun _setParameter(name: StringName, `value`: Any?): Unit {
   }
 
   /**
    * Return the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
+  @GodotApiMember
   public open fun _getParameter(name: StringName): Any? {
     throw NotImplementedError("_get_parameter is not implemented for AudioStreamPlayback")
   }

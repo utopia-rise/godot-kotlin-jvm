@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -39,6 +40,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s format is queried.
    */
+  @GodotApiMember
   public open fun _getFormat(): Image.Format {
     throw NotImplementedError("_get_format is not implemented for Texture3D")
   }
@@ -46,6 +48,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s width is queried.
    */
+  @GodotApiMember
   public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture3D")
   }
@@ -53,6 +56,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s height is queried.
    */
+  @GodotApiMember
   public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture3D")
   }
@@ -60,6 +64,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s depth is queried.
    */
+  @GodotApiMember
   public open fun _getDepth(): Int {
     throw NotImplementedError("_get_depth is not implemented for Texture3D")
   }
@@ -67,6 +72,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the presence of mipmaps in the [Texture3D] is queried.
    */
+  @GodotApiMember
   public open fun _hasMipmaps(): Boolean {
     throw NotImplementedError("_has_mipmaps is not implemented for Texture3D")
   }
@@ -74,6 +80,7 @@ public open class Texture3D : Texture() {
   /**
    * Called when the [Texture3D]'s data is queried.
    */
+  @GodotApiMember
   public open fun _getData(): VariantArray<Image> {
     throw NotImplementedError("_get_data is not implemented for Texture3D")
   }

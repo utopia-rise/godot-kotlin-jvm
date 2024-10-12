@@ -47,6 +47,7 @@ import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.GODOT_API_MEMBER
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -398,6 +399,8 @@ class GenerationService(
                 signalClass.typeName
             )
             .addKdoc(signal)
+            // add entry generation helper marker to distinguish user signals from api signals
+            .addAnnotation(GODOT_API_MEMBER)
             .delegate(
                 "%T",
                 ClassName(godotCorePackage, "Signal" + arguments.size)
@@ -578,17 +581,21 @@ class GenerationService(
             modifiers.add(KModifier.OVERRIDE)
         }
 
+        val generatedFunBuilder = FunSpec
+            .builder(method.name)
+            .applyJvmNameIfNecessary(method.name)
+
         // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
         if (method.internal.isVirtual) {
             modifiers.add(KModifier.OPEN)
+
+            // add entry generation helper marker to find overridden functions to register
+            generatedFunBuilder.addAnnotation(GODOT_API_MEMBER)
         } else {
             modifiers.add(KModifier.FINAL)
         }
 
-        val generatedFunBuilder = FunSpec
-            .builder(method.name)
-            .addModifiers(modifiers)
-            .applyJvmNameIfNecessary(method.name)
+        generatedFunBuilder.addModifiers(modifiers)
 
         val methodTypeName = method.getCastedType()
         val shouldReturn = method.getTypeClassName().typeName != UNIT

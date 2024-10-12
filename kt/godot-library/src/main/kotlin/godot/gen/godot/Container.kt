@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
@@ -31,11 +32,13 @@ public open class Container : Control() {
   /**
    * Emitted when children are going to be sorted.
    */
+  @GodotApiMember
   public val preSortChildren: Signal0 by Signal0
 
   /**
    * Emitted when sorting the children is needed.
    */
+  @GodotApiMember
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -49,6 +52,7 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
+  @GodotApiMember
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
     throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
   }
@@ -60,6 +64,7 @@ public open class Container : Control() {
    * **Note:** Having no size flags is equal to having [Control.SIZE_SHRINK_BEGIN]. As such, this
    * value is always implicitly allowed.
    */
+  @GodotApiMember
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
     throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
   }

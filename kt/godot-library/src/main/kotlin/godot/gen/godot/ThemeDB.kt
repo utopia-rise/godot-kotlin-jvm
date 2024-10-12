@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -35,6 +36,7 @@ public object ThemeDB : Object() {
    * Emitted when one of the fallback values had been changed. Use it to refresh the look of
    * controls that may rely on the fallback theme items.
    */
+  @GodotApiMember
   @JvmStatic
   public val fallbackChanged: Signal0 by Signal0
 

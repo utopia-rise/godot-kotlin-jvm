@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -51,6 +52,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Emitted when [currentAnimation] changes.
    */
+  @GodotApiMember
   public val currentAnimationChanged: Signal1<String> by Signal1
 
   /**
@@ -59,6 +61,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** The signal is not emitted when the animation is changed via [AnimationPlayer.play] or
    * by an [AnimationTree].
    */
+  @GodotApiMember
   public val animationChanged: Signal2<StringName, StringName> by Signal2
 
   /**

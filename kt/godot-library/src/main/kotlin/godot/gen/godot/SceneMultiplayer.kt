@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -56,18 +57,21 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * [getAuthenticatingPeers]), and only authentication data will be sent or received. See [sendAuth]
    * for sending authentication data.
    */
+  @GodotApiMember
   public val peerAuthenticating: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] disconnects from a peer for
    * which authentication had not yet completed. See [signal peer_authenticating].
    */
+  @GodotApiMember
   public val peerAuthenticationFailed: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] receives a [packet] with
    * custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
    */
+  @GodotApiMember
   public val peerPacket: Signal2<Long, PackedByteArray> by Signal2
 
   /**

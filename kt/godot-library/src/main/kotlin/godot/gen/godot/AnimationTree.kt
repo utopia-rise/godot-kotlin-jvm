@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -34,6 +35,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * Emitted when the [animPlayer] is changed.
    */
+  @GodotApiMember
   public val animationPlayerChanged: Signal0 by Signal0
 
   /**

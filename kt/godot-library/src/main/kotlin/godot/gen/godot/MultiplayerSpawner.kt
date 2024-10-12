@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -42,12 +43,14 @@ public open class MultiplayerSpawner : Node() {
    * Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only
    * called on puppets.
    */
+  @GodotApiMember
   public val despawned: Signal1<Node> by Signal1
 
   /**
    * Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only
    * called on puppets.
    */
+  @GodotApiMember
   public val spawned: Signal1<Node> by Signal1
 
   /**

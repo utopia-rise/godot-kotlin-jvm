@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
@@ -37,11 +38,13 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * Emitted when the VisibleOnScreenNotifier2D enters the screen.
    */
+  @GodotApiMember
   public val screenEntered: Signal0 by Signal0
 
   /**
    * Emitted when the VisibleOnScreenNotifier2D exits the screen.
    */
+  @GodotApiMember
   public val screenExited: Signal0 by Signal0
 
   /**

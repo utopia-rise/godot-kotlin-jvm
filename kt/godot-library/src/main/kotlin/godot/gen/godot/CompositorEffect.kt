@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -141,6 +142,7 @@ public open class CompositorEffect : Resource() {
    * match the effect callback type you've specified in [effectCallbackType]. [renderData] provides
    * access to the rendering state, it is only valid during rendering and should not be stored.
    */
+  @GodotApiMember
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
   }
 

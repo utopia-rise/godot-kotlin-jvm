@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -18,10 +19,12 @@ public open class PacketPeerExtension : PacketPeer() {
     callConstructor(ENGINECLASS_PACKETPEEREXTENSION, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getAvailablePacketCount(): Int {
     throw NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")
   }
 
+  @GodotApiMember
   public open fun _getMaxPacketSize(): Int {
     throw NotImplementedError("_get_max_packet_size is not implemented for PacketPeerExtension")
   }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -175,6 +176,7 @@ public object RenderingServer : Object() {
   /**
    * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
    */
+  @GodotApiMember
   @JvmStatic
   public val framePreDraw: Signal0 by Signal0
 
@@ -182,6 +184,7 @@ public object RenderingServer : Object() {
    * Emitted at the end of the frame, after the RenderingServer has finished updating all the
    * Viewports.
    */
+  @GodotApiMember
   @JvmStatic
   public val framePostDraw: Signal0 by Signal0
 

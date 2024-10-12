@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
@@ -35,6 +36,7 @@ public object GDExtensionManager : Object() {
   /**
    * Emitted after the editor has finished reloading one or more extensions.
    */
+  @GodotApiMember
   @JvmStatic
   public val extensionsReloaded: Signal0 by Signal0
 

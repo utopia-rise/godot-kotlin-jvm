@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -102,9 +103,11 @@ public open class StyleBox : Resource() {
     callConstructor(ENGINECLASS_STYLEBOX, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
   }
 
+  @GodotApiMember
   public open fun _getDrawRect(rect: Rect2): Rect2 {
     throw NotImplementedError("_get_draw_rect is not implemented for StyleBox")
   }
@@ -115,10 +118,12 @@ public open class StyleBox : Resource() {
    * This method can be overridden to add another size restriction. A combination of the default
    * behavior and the output of this method will be used, to account for both sizes.
    */
+  @GodotApiMember
   public open fun _getMinimumSize(): Vector2 {
     throw NotImplementedError("_get_minimum_size is not implemented for StyleBox")
   }
 
+  @GodotApiMember
   public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
     throw NotImplementedError("_test_mask is not implemented for StyleBox")
   }

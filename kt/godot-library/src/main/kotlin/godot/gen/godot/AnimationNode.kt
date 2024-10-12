@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -62,6 +63,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine],
    * [AnimationNodeBlendTree] and [AnimationNodeTransition].
    */
+  @GodotApiMember
   public val treeChanged: Signal0 by Signal0
 
   /**
@@ -70,6 +72,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
    * [AnimationNodeBlendTree].
    */
+  @GodotApiMember
   public val animationNodeRenamed: Signal3<Long, String, String> by Signal3
 
   /**
@@ -78,6 +81,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
    * [AnimationNodeBlendTree].
    */
+  @GodotApiMember
   public val animationNodeRemoved: Signal2<Long, String> by Signal2
 
   /**
@@ -99,6 +103,7 @@ public open class AnimationNode : Resource() {
    * When inheriting from [AnimationRootNode], implement this virtual method to return all child
    * animation nodes in order as a `name: node` dictionary.
    */
+  @GodotApiMember
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
   }
@@ -109,6 +114,7 @@ public open class AnimationNode : Resource() {
    * nodes, given a resource can be reused in multiple trees. Format is similar to
    * [Object.getPropertyList].
    */
+  @GodotApiMember
   public open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
   }
@@ -117,6 +123,7 @@ public open class AnimationNode : Resource() {
    * When inheriting from [AnimationRootNode], implement this virtual method to return a child
    * animation node by its [name].
    */
+  @GodotApiMember
   public open fun _getChildByName(name: StringName): AnimationNode? {
     throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
   }
@@ -126,6 +133,7 @@ public open class AnimationNode : Resource() {
    * value of a [parameter]. Parameters are custom local memory used for your animation nodes, given a
    * resource can be reused in multiple trees.
    */
+  @GodotApiMember
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
     throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
   }
@@ -135,6 +143,7 @@ public open class AnimationNode : Resource() {
    * [parameter] is read-only. Parameters are custom local memory used for your animation nodes, given
    * a resource can be reused in multiple trees.
    */
+  @GodotApiMember
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
     throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
   }
@@ -147,6 +156,7 @@ public open class AnimationNode : Resource() {
    * [getParameter] and [setParameter] to modify local memory.
    * This function should return the delta.
    */
+  @GodotApiMember
   public open fun _process(
     time: Double,
     seek: Boolean,
@@ -160,6 +170,7 @@ public open class AnimationNode : Resource() {
    * When inheriting from [AnimationRootNode], implement this virtual method to override the text
    * caption for this animation node.
    */
+  @GodotApiMember
   public open fun _getCaption(): String {
     throw NotImplementedError("_get_caption is not implemented for AnimationNode")
   }
@@ -168,6 +179,7 @@ public open class AnimationNode : Resource() {
    * When inheriting from [AnimationRootNode], implement this virtual method to return whether the
    * blend tree editor should display filter editing on this animation node.
    */
+  @GodotApiMember
   public open fun _hasFilter(): Boolean {
     throw NotImplementedError("_has_filter is not implemented for AnimationNode")
   }

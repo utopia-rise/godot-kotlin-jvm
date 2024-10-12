@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -51,43 +52,51 @@ public open class SceneTree : MainLoop() {
   /**
    * Emitted any time the tree's hierarchy changes (nodes being moved, renamed, etc.).
    */
+  @GodotApiMember
   public val treeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [Node.processMode] of any node inside the tree is changed. Only emitted in the
    * editor, to update the visibility of disabled nodes.
    */
+  @GodotApiMember
   public val treeProcessModeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [node] enters this tree.
    */
+  @GodotApiMember
   public val nodeAdded: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node] exits this tree.
    */
+  @GodotApiMember
   public val nodeRemoved: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node]'s [Node.name] is changed.
    */
+  @GodotApiMember
   public val nodeRenamed: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node]'s [Node.updateConfigurationWarnings] is called. Only emitted in the
    * editor.
    */
+  @GodotApiMember
   public val nodeConfigurationWarningChanged: Signal1<Node> by Signal1
 
   /**
    * Emitted immediately before [Node.Process] is called on every node in this tree.
    */
+  @GodotApiMember
   public val processFrame: Signal0 by Signal0
 
   /**
    * Emitted immediately before [Node.PhysicsProcess] is called on every node in this tree.
    */
+  @GodotApiMember
   public val physicsFrame: Signal0 by Signal0
 
   /**

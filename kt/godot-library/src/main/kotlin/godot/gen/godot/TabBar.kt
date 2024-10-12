@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
@@ -41,21 +42,25 @@ public open class TabBar : Control() {
    * Emitted when a tab is selected via click, directional input, or script, even if it is the
    * current tab.
    */
+  @GodotApiMember
   public val tabSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when switching to another tab.
    */
+  @GodotApiMember
   public val tabChanged: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is clicked, even if it is the current tab.
    */
+  @GodotApiMember
   public val tabClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is right-clicked. [selectWithRmb] must be enabled.
    */
+  @GodotApiMember
   public val tabRmbClicked: Signal1<Long> by Signal1
 
   /**
@@ -72,21 +77,25 @@ public open class TabBar : Control() {
    * GetNode<TabBar>("TabBar").TabClosePressed += GetNode<TabBar>("TabBar").RemoveTab;
    * ```
    */
+  @GodotApiMember
   public val tabClosePressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab's right button is pressed. See [setTabButtonIcon].
    */
+  @GodotApiMember
   public val tabButtonPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is hovered by the mouse.
    */
+  @GodotApiMember
   public val tabHovered: Signal1<Long> by Signal1
 
   /**
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
+  @GodotApiMember
   public val activeTabRearranged: Signal1<Long> by Signal1
 
   /**

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -50,6 +51,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the name of this interface.
    */
+  @GodotApiMember
   public open fun _getName(): StringName {
     throw NotImplementedError("_get_name is not implemented for XRInterfaceExtension")
   }
@@ -57,6 +59,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the capabilities of this interface.
    */
+  @GodotApiMember
   public open fun _getCapabilities(): Long {
     throw NotImplementedError("_get_capabilities is not implemented for XRInterfaceExtension")
   }
@@ -64,6 +67,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns `true` if this interface has been initialized.
    */
+  @GodotApiMember
   public open fun _isInitialized(): Boolean {
     throw NotImplementedError("_is_initialized is not implemented for XRInterfaceExtension")
   }
@@ -71,6 +75,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Initializes the interface, returns `true` on success.
    */
+  @GodotApiMember
   public open fun _initialize(): Boolean {
     throw NotImplementedError("_initialize is not implemented for XRInterfaceExtension")
   }
@@ -78,12 +83,14 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Uninitialize the interface.
    */
+  @GodotApiMember
   public open fun _uninitialize(): Unit {
   }
 
   /**
    * Returns a [Dictionary] with system information related to this interface.
    */
+  @GodotApiMember
   public open fun _getSystemInfo(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_system_info is not implemented for XRInterfaceExtension")
   }
@@ -91,6 +98,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns `true` if this interface supports this play area mode.
    */
+  @GodotApiMember
   public open fun _supportsPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     throw NotImplementedError("_supports_play_area_mode is not implemented for XRInterfaceExtension")
   }
@@ -98,6 +106,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the play area mode that sets up our play area.
    */
+  @GodotApiMember
   public open fun _getPlayAreaMode(): XRInterface.PlayAreaMode {
     throw NotImplementedError("_get_play_area_mode is not implemented for XRInterfaceExtension")
   }
@@ -105,6 +114,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Set the play area mode for this interface.
    */
+  @GodotApiMember
   public open fun _setPlayAreaMode(mode: XRInterface.PlayAreaMode): Boolean {
     throw NotImplementedError("_set_play_area_mode is not implemented for XRInterfaceExtension")
   }
@@ -112,6 +122,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable).
    */
+  @GodotApiMember
   public open fun _getPlayArea(): PackedVector3Array {
     throw NotImplementedError("_get_play_area is not implemented for XRInterfaceExtension")
   }
@@ -120,6 +131,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the size of our render target for this interface, this overrides the size of the
    * [Viewport] marked as the xr viewport.
    */
+  @GodotApiMember
   public open fun _getRenderTargetSize(): Vector2 {
     throw NotImplementedError("_get_render_target_size is not implemented for XRInterfaceExtension")
   }
@@ -127,6 +139,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic.
    */
+  @GodotApiMember
   public open fun _getViewCount(): Long {
     throw NotImplementedError("_get_view_count is not implemented for XRInterfaceExtension")
   }
@@ -134,6 +147,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the [Transform3D] that positions the [XRCamera3D] in the world.
    */
+  @GodotApiMember
   public open fun _getCameraTransform(): Transform3D {
     throw NotImplementedError("_get_camera_transform is not implemented for XRInterfaceExtension")
   }
@@ -141,6 +155,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [Transform3D] for a given view.
    */
+  @GodotApiMember
   public open fun _getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
     throw NotImplementedError("_get_transform_for_view is not implemented for XRInterfaceExtension")
   }
@@ -148,6 +163,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns the projection matrix for the given view as a [PackedFloat64Array].
    */
+  @GodotApiMember
   public open fun _getProjectionForView(
     view: Long,
     aspect: Double,
@@ -157,6 +173,7 @@ public open class XRInterfaceExtension : XRInterface() {
     throw NotImplementedError("_get_projection_for_view is not implemented for XRInterfaceExtension")
   }
 
+  @GodotApiMember
   public open fun _getVrsTexture(): RID {
     throw NotImplementedError("_get_vrs_texture is not implemented for XRInterfaceExtension")
   }
@@ -165,6 +182,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Called if this [XRInterfaceExtension] is active before our physics and game process is called.
    * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
+  @GodotApiMember
   public open fun _process(): Unit {
   }
 
@@ -172,6 +190,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces
    * will sync tracking at this point in time.
    */
+  @GodotApiMember
   public open fun _preRender(): Unit {
   }
 
@@ -180,6 +199,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR
    * interface may return `false` if the user has taken off their headset and we can pause rendering.
    */
+  @GodotApiMember
   public open fun _preDrawViewport(renderTarget: RID): Boolean {
     throw NotImplementedError("_pre_draw_viewport is not implemented for XRInterfaceExtension")
   }
@@ -187,12 +207,14 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Called after the XR [Viewport] draw logic has completed.
    */
+  @GodotApiMember
   public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2): Unit {
   }
 
   /**
    * Called if interface is active and queues have been submitted.
    */
+  @GodotApiMember
   public open fun _endFrame(): Unit {
   }
 
@@ -200,6 +222,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns a [PackedStringArray] with tracker names configured by this interface. Note that user
    * configuration can override this list.
    */
+  @GodotApiMember
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
     throw NotImplementedError("_get_suggested_tracker_names is not implemented for XRInterfaceExtension")
   }
@@ -208,6 +231,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns a [PackedStringArray] with pose names configured by this interface. Note that user
    * configuration can override this list.
    */
+  @GodotApiMember
   public open fun _getSuggestedPoseNames(trackerName: StringName): PackedStringArray {
     throw NotImplementedError("_get_suggested_pose_names is not implemented for XRInterfaceExtension")
   }
@@ -215,6 +239,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Returns a [XRInterface.TrackingStatus] specifying the current status of our tracking.
    */
+  @GodotApiMember
   public open fun _getTrackingStatus(): XRInterface.TrackingStatus {
     throw NotImplementedError("_get_tracking_status is not implemented for XRInterfaceExtension")
   }
@@ -222,6 +247,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Triggers a haptic pulse to be emitted on the specified tracker.
    */
+  @GodotApiMember
   public open fun _triggerHapticPulse(
     actionName: String,
     trackerName: StringName,
@@ -235,6 +261,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Return `true` if anchor detection is enabled for this interface.
    */
+  @GodotApiMember
   public open fun _getAnchorDetectionIsEnabled(): Boolean {
     throw NotImplementedError("_get_anchor_detection_is_enabled is not implemented for XRInterfaceExtension")
   }
@@ -242,6 +269,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Enables anchor detection on this interface if supported.
    */
+  @GodotApiMember
   public open fun _setAnchorDetectionIsEnabled(enabled: Boolean): Unit {
   }
 
@@ -249,6 +277,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should
    * be presented as the background on an AR capable device (if applicable).
    */
+  @GodotApiMember
   public open fun _getCameraFeedId(): Int {
     throw NotImplementedError("_get_camera_feed_id is not implemented for XRInterfaceExtension")
   }
@@ -256,6 +285,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Return color texture into which to render (if applicable).
    */
+  @GodotApiMember
   public open fun _getColorTexture(): RID {
     throw NotImplementedError("_get_color_texture is not implemented for XRInterfaceExtension")
   }
@@ -263,6 +293,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Return depth texture into which to render (if applicable).
    */
+  @GodotApiMember
   public open fun _getDepthTexture(): RID {
     throw NotImplementedError("_get_depth_texture is not implemented for XRInterfaceExtension")
   }
@@ -270,6 +301,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Return velocity texture into which to render (if applicable).
    */
+  @GodotApiMember
   public open fun _getVelocityTexture(): RID {
     throw NotImplementedError("_get_velocity_texture is not implemented for XRInterfaceExtension")
   }

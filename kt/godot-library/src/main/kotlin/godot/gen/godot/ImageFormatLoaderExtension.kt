@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
@@ -34,6 +35,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * Returns the list of file extensions for this image format. Files with the given extensions will
    * be treated as image file and loaded using this class.
    */
+  @GodotApiMember
   public open fun _getRecognizedExtensions(): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ImageFormatLoaderExtension")
   }
@@ -41,6 +43,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   /**
    * Loads the content of [fileaccess] into the provided [image].
    */
+  @GodotApiMember
   public open fun _loadImage(
     image: Image?,
     fileaccess: FileAccess?,

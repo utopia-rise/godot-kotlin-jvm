@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -48,12 +49,14 @@ public open class WebRTCPeerConnection : RefCounted() {
    * an answer). The parameters are meant to be passed to [setLocalDescription] on this object, and
    * sent to the remote peer over the signaling server.
    */
+  @GodotApiMember
   public val sessionDescriptionCreated: Signal2<String, String> by Signal2
 
   /**
    * Emitted when a new ICE candidate has been created. The three parameters are meant to be passed
    * to the remote peer over the signaling server.
    */
+  @GodotApiMember
   public val iceCandidateCreated: Signal3<String, Long, String> by Signal3
 
   /**
@@ -62,6 +65,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * The object will be an instance of [WebRTCDataChannel]. You must keep a reference of it or it
    * will be closed automatically. See [createDataChannel].
    */
+  @GodotApiMember
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {

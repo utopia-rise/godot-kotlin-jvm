@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -53,6 +54,7 @@ public open class GraphNode : GraphElement() {
   /**
    * Emitted when any GraphNode's slot is updated.
    */
+  @GodotApiMember
   public val slotUpdated: Signal1<Long> by Signal1
 
   /**
@@ -82,6 +84,7 @@ public open class GraphNode : GraphElement() {
     callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _drawPort(
     slotIndex: Int,
     position: Vector2i,

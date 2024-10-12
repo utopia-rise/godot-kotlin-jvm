@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
@@ -36,6 +37,7 @@ public open class VideoStreamPlayback : Resource() {
    * Stops playback. May be called multiple times before [_play], or in response to
    * [VideoStreamPlayer.stop]. [_isPlaying] should return false once stopped.
    */
+  @GodotApiMember
   public open fun _stop(): Unit {
   }
 
@@ -44,12 +46,14 @@ public open class VideoStreamPlayback : Resource() {
    * manual playback may also invoke [_stop] multiple times before this method is called. [_isPlaying]
    * should return true once playing.
    */
+  @GodotApiMember
   public open fun _play(): Unit {
   }
 
   /**
    * Returns the playback state, as determined by calls to [_play] and [_stop].
    */
+  @GodotApiMember
   public open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for VideoStreamPlayback")
   }
@@ -58,12 +62,14 @@ public open class VideoStreamPlayback : Resource() {
    * Set the paused status of video playback. [_isPaused] must return [paused]. Called in response
    * to the [VideoStreamPlayer.paused] setter.
    */
+  @GodotApiMember
   public open fun _setPaused(paused: Boolean): Unit {
   }
 
   /**
    * Returns the paused status, as set by [_setPaused].
    */
+  @GodotApiMember
   public open fun _isPaused(): Boolean {
     throw NotImplementedError("_is_paused is not implemented for VideoStreamPlayback")
   }
@@ -71,6 +77,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Returns the video duration in seconds, if known, or 0 if unknown.
    */
+  @GodotApiMember
   public open fun _getLength(): Double {
     throw NotImplementedError("_get_length is not implemented for VideoStreamPlayback")
   }
@@ -79,6 +86,7 @@ public open class VideoStreamPlayback : Resource() {
    * Return the current playback timestamp. Called in response to the
    * [VideoStreamPlayer.streamPosition] getter.
    */
+  @GodotApiMember
   public open fun _getPlaybackPosition(): Double {
     throw NotImplementedError("_get_playback_position is not implemented for VideoStreamPlayback")
   }
@@ -86,6 +94,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
+  @GodotApiMember
   public open fun _seek(time: Double): Unit {
   }
 
@@ -93,12 +102,14 @@ public open class VideoStreamPlayback : Resource() {
    * Select the audio track [idx]. Called when playback starts, and in response to the
    * [VideoStreamPlayer.audioTrack] setter.
    */
+  @GodotApiMember
   public open fun _setAudioTrack(idx: Int): Unit {
   }
 
   /**
    * Allocates a [Texture2D] in which decoded video frames will be drawn.
    */
+  @GodotApiMember
   public open fun _getTexture(): Texture2D? {
     throw NotImplementedError("_get_texture is not implemented for VideoStreamPlayback")
   }
@@ -107,12 +118,14 @@ public open class VideoStreamPlayback : Resource() {
    * Ticks video playback for [delta] seconds. Called every frame as long as [_isPaused] and
    * [_isPlaying] return true.
    */
+  @GodotApiMember
   public open fun _update(delta: Double): Unit {
   }
 
   /**
    * Returns the number of audio channels.
    */
+  @GodotApiMember
   public open fun _getChannels(): Int {
     throw NotImplementedError("_get_channels is not implemented for VideoStreamPlayback")
   }
@@ -120,6 +133,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Returns the audio sample rate used for mixing.
    */
+  @GodotApiMember
   public open fun _getMixRate(): Int {
     throw NotImplementedError("_get_mix_rate is not implemented for VideoStreamPlayback")
   }

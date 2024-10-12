@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -37,6 +38,7 @@ public open class XRNode3D : Node3D() {
    * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being
    * tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
    */
+  @GodotApiMember
   public val trackingChanged: Signal1<Boolean> by Signal1
 
   /**

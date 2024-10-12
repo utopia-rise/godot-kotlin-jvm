@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -38,16 +39,19 @@ public open class ColorPickerButton : Button() {
   /**
    * Emitted when the color changes.
    */
+  @GodotApiMember
   public val colorChanged: Signal1<Color> by Signal1
 
   /**
    * Emitted when the [ColorPicker] is closed.
    */
+  @GodotApiMember
   public val popupClosed: Signal0 by Signal0
 
   /**
    * Emitted when the [ColorPicker] is created (the button is pressed for the first time).
    */
+  @GodotApiMember
   public val pickerCreated: Signal0 by Signal0
 
   /**

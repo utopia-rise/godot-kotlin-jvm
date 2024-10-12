@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -49,37 +50,44 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
+  @GodotApiMember
   public val poseChanged: Signal1<XRPose> by Signal1
 
   /**
    * Emitted when a pose tracked by this tracker stops getting updated tracking data.
    */
+  @GodotApiMember
   public val poseLostTracking: Signal1<XRPose> by Signal1
 
   /**
    * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs
    * to be mapped to buttons.
    */
+  @GodotApiMember
   public val buttonPressed: Signal1<String> by Signal1
 
   /**
    * Emitted when a button on this tracker is released.
    */
+  @GodotApiMember
   public val buttonReleased: Signal1<String> by Signal1
 
   /**
    * Emitted when a trigger or similar input on this tracker changes value.
    */
+  @GodotApiMember
   public val inputFloatChanged: Signal2<String, Double> by Signal2
 
   /**
    * Emitted when a thumbstick or thumbpad on this tracker moves.
    */
+  @GodotApiMember
   public val inputVector2Changed: Signal2<String, Vector2> by Signal2
 
   /**
    * Emitted when the profile of our tracker changes.
    */
+  @GodotApiMember
   public val profileChanged: Signal1<String> by Signal1
 
   /**

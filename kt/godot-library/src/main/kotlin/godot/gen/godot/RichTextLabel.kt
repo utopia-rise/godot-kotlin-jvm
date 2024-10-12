@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -84,21 +85,25 @@ public open class RichTextLabel : Control() {
    *     OS.shell_open(str(meta))
    * ```
    */
+  @GodotApiMember
   public val metaClicked: Signal1<Any> by Signal1
 
   /**
    * Triggers when the mouse enters a meta tag.
    */
+  @GodotApiMember
   public val metaHoverStarted: Signal1<Any> by Signal1
 
   /**
    * Triggers when the mouse exits a meta tag.
    */
+  @GodotApiMember
   public val metaHoverEnded: Signal1<Any> by Signal1
 
   /**
    * Triggered when the document is fully loaded.
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   /**

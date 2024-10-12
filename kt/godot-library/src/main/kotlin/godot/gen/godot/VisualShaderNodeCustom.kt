@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
@@ -46,6 +47,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**, but recommended. If not overridden, the node will be
    * named as "Unnamed".
    */
+  @GodotApiMember
   public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for VisualShaderNodeCustom")
   }
@@ -55,6 +57,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Shader Editor's members dialog.
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getDescription(): String {
     throw NotImplementedError("_get_description is not implemented for VisualShaderNodeCustom")
   }
@@ -65,6 +68,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**. If not overridden, the node will be filed under the
    * "Addons" category.
    */
+  @GodotApiMember
   public open fun _getCategory(): String {
     throw NotImplementedError("_get_category is not implemented for VisualShaderNodeCustom")
   }
@@ -74,6 +78,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Shader Editor's members dialog.
    * Defining this method is **optional**. If not overridden, no return icon is shown.
    */
+  @GodotApiMember
   public open fun _getReturnIconType(): VisualShaderNode.PortType {
     throw NotImplementedError("_get_return_icon_type is not implemented for VisualShaderNodeCustom")
   }
@@ -82,6 +87,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the number of input ports of the associated custom node.
    * Defining this method is **required**. If not overridden, the node has no input ports.
    */
+  @GodotApiMember
   public open fun _getInputPortCount(): Int {
     throw NotImplementedError("_get_input_port_count is not implemented for VisualShaderNodeCustom")
   }
@@ -92,6 +98,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**, but recommended. If not overridden, input ports will
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
+  @GodotApiMember
   public open fun _getInputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
   }
@@ -103,6 +110,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**, but recommended. If not overridden, input ports are named
    * as `"in" + str(port)`.
    */
+  @GodotApiMember
   public open fun _getInputPortName(port: Int): String {
     throw NotImplementedError("_get_input_port_name is not implemented for VisualShaderNodeCustom")
   }
@@ -113,6 +121,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **required**. If not overridden, the node has no default values for
    * their input ports.
    */
+  @GodotApiMember
   public open fun _getInputPortDefaultValue(port: Int): Any? {
     throw NotImplementedError("_get_input_port_default_value is not implemented for VisualShaderNodeCustom")
   }
@@ -124,6 +133,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**. If not overridden, the connection will be created to the
    * first valid port.
    */
+  @GodotApiMember
   public open fun _getDefaultInputPort(type: VisualShaderNode.PortType): Int {
     throw NotImplementedError("_get_default_input_port is not implemented for VisualShaderNodeCustom")
   }
@@ -132,6 +142,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the number of output ports of the associated custom node.
    * Defining this method is **required**. If not overridden, the node has no output ports.
    */
+  @GodotApiMember
   public open fun _getOutputPortCount(): Int {
     throw NotImplementedError("_get_output_port_count is not implemented for VisualShaderNodeCustom")
   }
@@ -142,6 +153,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**, but recommended. If not overridden, output ports will
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
+  @GodotApiMember
   public open fun _getOutputPortType(port: Int): VisualShaderNode.PortType {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
   }
@@ -153,6 +165,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Defining this method is **optional**, but recommended. If not overridden, output ports are
    * named as `"out" + str(port)`.
    */
+  @GodotApiMember
   public open fun _getOutputPortName(port: Int): String {
     throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
   }
@@ -161,6 +174,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the number of the properties.
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getPropertyCount(): Int {
     throw NotImplementedError("_get_property_count is not implemented for VisualShaderNodeCustom")
   }
@@ -169,6 +183,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the names of the property of the associated custom node.
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getPropertyName(index: Int): String {
     throw NotImplementedError("_get_property_name is not implemented for VisualShaderNodeCustom")
   }
@@ -177,6 +192,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to define the default index of the property of the associated custom node.
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getPropertyDefaultIndex(index: Int): Int {
     throw NotImplementedError("_get_property_default_index is not implemented for VisualShaderNodeCustom")
   }
@@ -186,6 +202,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * custom node.
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getPropertyOptions(index: Int): PackedStringArray {
     throw NotImplementedError("_get_property_options is not implemented for VisualShaderNodeCustom")
   }
@@ -202,6 +219,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * [type] (see [VisualShader.Type]).
    * Defining this method is **required**.
    */
+  @GodotApiMember
   public open fun _getCode(
     inputVars: VariantArray<String>,
     outputVars: VariantArray<String>,
@@ -221,6 +239,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * [type] (see [VisualShader.Type]).
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getFuncCode(mode: Shader.Mode, type: VisualShader.Type): String {
     throw NotImplementedError("_get_func_code is not implemented for VisualShaderNodeCustom")
   }
@@ -235,6 +254,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * You can customize the generated code based on the shader [mode] (see [Shader.Mode]).
    * Defining this method is **optional**.
    */
+  @GodotApiMember
   public open fun _getGlobalCode(mode: Shader.Mode): String {
     throw NotImplementedError("_get_global_code is not implemented for VisualShaderNodeCustom")
   }
@@ -243,6 +263,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Override this method to enable high-end mark in the Visual Shader Editor's members dialog.
    * Defining this method is **optional**. If not overridden, it's `false`.
    */
+  @GodotApiMember
   public open fun _isHighend(): Boolean {
     throw NotImplementedError("_is_highend is not implemented for VisualShaderNodeCustom")
   }
@@ -252,6 +273,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * [mode] (see [Shader.Mode]) and/or [type] (see [VisualShader.Type]).
    * Defining this method is **optional**. If not overridden, it's `true`.
    */
+  @GodotApiMember
   public open fun _isAvailable(mode: Shader.Mode, type: VisualShader.Type): Boolean {
     throw NotImplementedError("_is_available is not implemented for VisualShaderNodeCustom")
   }

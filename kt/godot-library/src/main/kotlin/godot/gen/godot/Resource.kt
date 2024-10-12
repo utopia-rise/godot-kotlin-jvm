@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -49,11 +50,13 @@ public open class Resource : RefCounted() {
    * **Note:** This signal is not emitted automatically for properties of custom resources. If
    * necessary, a setter needs to be created to emit the signal.
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**
    * Emitted by a newly duplicated resource with [resourceLocalToScene] set to `true`.
    */
+  @GodotApiMember
   public val setupLocalToSceneRequested: Signal0 by Signal0
 
   /**
@@ -138,6 +141,7 @@ public open class Resource : RefCounted() {
    *     damage = randi_range(10, 40)
    * [/codeblock]
    */
+  @GodotApiMember
   public open fun _setupLocalToScene(): Unit {
   }
 

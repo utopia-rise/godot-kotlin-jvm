@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -73,6 +74,7 @@ public open class Material : Resource() {
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally by various editor tools. Used to access the RID of the [Material]'s [Shader].
    */
+  @GodotApiMember
   public open fun _getShaderRid(): RID {
     throw NotImplementedError("_get_shader_rid is not implemented for Material")
   }
@@ -81,6 +83,7 @@ public open class Material : Resource() {
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally by various editor tools.
    */
+  @GodotApiMember
   public open fun _getShaderMode(): Shader.Mode {
     throw NotImplementedError("_get_shader_mode is not implemented for Material")
   }
@@ -89,6 +92,7 @@ public open class Material : Resource() {
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally to determine if [nextPass] should be shown in the editor or not.
    */
+  @GodotApiMember
   public open fun _canDoNextPass(): Boolean {
     throw NotImplementedError("_can_do_next_pass is not implemented for Material")
   }
@@ -97,6 +101,7 @@ public open class Material : Resource() {
    * Only exposed for the purpose of overriding. You cannot call this function directly. Used
    * internally to determine if [renderPriority] should be shown in the editor or not.
    */
+  @GodotApiMember
   public open fun _canUseRenderPriority(): Boolean {
     throw NotImplementedError("_can_use_render_priority is not implemented for Material")
   }

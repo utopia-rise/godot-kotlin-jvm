@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -46,6 +47,7 @@ public open class VideoStream : Resource() {
    * Called when the video starts playing, to initialize and return a subclass of
    * [VideoStreamPlayback].
    */
+  @GodotApiMember
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")
   }

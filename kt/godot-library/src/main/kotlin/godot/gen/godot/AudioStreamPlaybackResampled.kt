@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -23,6 +24,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getStreamSamplingRate(): Float {
     throw NotImplementedError("_get_stream_sampling_rate is not implemented for AudioStreamPlaybackResampled")
   }

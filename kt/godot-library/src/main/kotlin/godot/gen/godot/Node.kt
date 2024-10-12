@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -103,17 +104,20 @@ public open class Node : Object() {
   /**
    * Emitted when the node is considered ready, after [_ready] is called.
    */
+  @GodotApiMember
   public val ready: Signal0 by Signal0
 
   /**
    * Emitted when the node's [name] is changed, if the node is inside the tree.
    */
+  @GodotApiMember
   public val renamed: Signal0 by Signal0
 
   /**
    * Emitted when the node enters the tree.
    * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
+  @GodotApiMember
   public val treeEntered: Signal0 by Signal0
 
   /**
@@ -122,12 +126,14 @@ public open class Node : Object() {
    * This signal is emitted *after* the node's [_exitTree], and *before* the related
    * [NOTIFICATION_EXIT_TREE].
    */
+  @GodotApiMember
   public val treeExiting: Signal0 by Signal0
 
   /**
    * Emitted after the node exits the tree and is no longer active.
    * This signal is emitted *after* the related [NOTIFICATION_EXIT_TREE] notification.
    */
+  @GodotApiMember
   public val treeExited: Signal0 by Signal0
 
   /**
@@ -136,6 +142,7 @@ public open class Node : Object() {
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [signal
    * tree_entered].
    */
+  @GodotApiMember
   public val childEnteredTree: Signal1<Node> by Signal1
 
   /**
@@ -145,12 +152,14 @@ public open class Node : Object() {
    * When this signal is received, the child [node] is still accessible inside the tree. This signal
    * is emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATION_EXIT_TREE].
    */
+  @GodotApiMember
   public val childExitingTree: Signal1<Node> by Signal1
 
   /**
    * Emitted when the list of children is changed. This happens when child nodes are added, moved or
    * removed.
    */
+  @GodotApiMember
   public val childOrderChanged: Signal0 by Signal0
 
   /**
@@ -158,11 +167,13 @@ public open class Node : Object() {
    * This signal is emitted *after* [node] has been added as a child of the original parent node,
    * but *before* all original child nodes have been reparented to [node].
    */
+  @GodotApiMember
   public val replacingBy: Signal1<Node> by Signal1
 
   /**
    * Emitted when the node's editor description field changed.
    */
+  @GodotApiMember
   public val editorDescriptionChanged: Signal1<Node> by Signal1
 
   /**
@@ -596,6 +607,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
+  @GodotApiMember
   public open fun _process(delta: Double): Unit {
   }
 
@@ -609,6 +621,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
+  @GodotApiMember
   public open fun _physicsProcess(delta: Double): Unit {
   }
 
@@ -618,6 +631,7 @@ public open class Node : Object() {
    * called first, and then that of the children.
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
+  @GodotApiMember
   public open fun _enterTree(): Unit {
   }
 
@@ -629,6 +643,7 @@ public open class Node : Object() {
    * [signal tree_exiting]. To get notified when the node has already left the active tree, connect to
    * the [signal tree_exited].
    */
+  @GodotApiMember
   public open fun _exitTree(): Unit {
   }
 
@@ -645,6 +660,7 @@ public open class Node : Object() {
    * bypassed by requesting another call with [requestReady], which may be called anywhere before
    * adding the node again.
    */
+  @GodotApiMember
   public open fun _ready(): Unit {
   }
 
@@ -666,6 +682,7 @@ public open class Node : Object() {
    *         return []
    * [/codeblock]
    */
+  @GodotApiMember
   public open fun _getConfigurationWarnings(): PackedStringArray {
     throw NotImplementedError("_get_configuration_warnings is not implemented for Node")
   }
@@ -682,6 +699,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
+  @GodotApiMember
   public open fun _input(event: InputEvent?): Unit {
   }
 
@@ -698,6 +716,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * orphan).
    */
+  @GodotApiMember
   public open fun _shortcutInput(event: InputEvent?): Unit {
   }
 
@@ -716,6 +735,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
+  @GodotApiMember
   public open fun _unhandledInput(event: InputEvent?): Unit {
   }
 
@@ -736,6 +756,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
+  @GodotApiMember
   public open fun _unhandledKeyInput(event: InputEvent?): Unit {
   }
 

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -68,44 +69,52 @@ public open class GraphEdit : Control() {
    * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode]
    * [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
    */
+  @GodotApiMember
   public val connectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
   /**
    * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and
    * [toPort] of [toNode] [GraphNode] is attempted to be removed.
    */
+  @GodotApiMember
   public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
   /**
    * Emitted when user drags a connection from an output port into the empty space of the graph.
    */
+  @GodotApiMember
   public val connectionToEmpty: Signal3<StringName, Long, Vector2> by Signal3
 
   /**
    * Emitted when user drags a connection from an input port into the empty space of the graph.
    */
+  @GodotApiMember
   public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by Signal3
 
   /**
    * Emitted at the beginning of a connection drag.
    */
+  @GodotApiMember
   public val connectionDragStarted: Signal3<StringName, Long, Boolean> by Signal3
 
   /**
    * Emitted at the end of a connection drag.
    */
+  @GodotApiMember
   public val connectionDragEnded: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In
    * general, this signal indicates that the selected [GraphElement]s should be copied.
    */
+  @GodotApiMember
   public val copyNodesRequest: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In
    * general, this signal indicates that previously copied [GraphElement]s should be pasted.
    */
+  @GodotApiMember
   public val pasteNodesRequest: Signal0 by Signal0
 
   /**
@@ -113,6 +122,7 @@ public open class GraphEdit : Control() {
    * default). In general, this signal indicates that the selected [GraphElement]s should be
    * duplicated.
    */
+  @GodotApiMember
   public val duplicateNodesRequest: Signal0 by Signal0
 
   /**
@@ -121,37 +131,44 @@ public open class GraphEdit : Control() {
    * [nodes] is an array of node names that should be removed. These usually include all selected
    * nodes.
    */
+  @GodotApiMember
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by Signal1
 
   /**
    * Emitted when the given [GraphElement] node is selected.
    */
+  @GodotApiMember
   public val nodeSelected: Signal1<Node> by Signal1
 
   /**
    * Emitted when the given [GraphElement] node is deselected.
    */
+  @GodotApiMember
   public val nodeDeselected: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [GraphFrame] [frame] is resized to [newRect].
    */
+  @GodotApiMember
   public val frameRectChanged: Signal2<GraphFrame, Vector2> by Signal2
 
   /**
    * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is
    * the position of the mouse pointer when the signal is sent.
    */
+  @GodotApiMember
   public val popupRequest: Signal1<Vector2> by Signal1
 
   /**
    * Emitted at the beginning of a [GraphElement]'s movement.
    */
+  @GodotApiMember
   public val beginNodeMove: Signal0 by Signal0
 
   /**
    * Emitted at the end of a [GraphElement]'s movement.
    */
+  @GodotApiMember
   public val endNodeMove: Signal0 by Signal0
 
   /**
@@ -159,12 +176,14 @@ public open class GraphEdit : Control() {
    * they were not previously attached to any other one.
    * [elements] is an array of [GraphElement]s to be attached.
    */
+  @GodotApiMember
   public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by Signal2
 
   /**
    * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
    * code.
    */
+  @GodotApiMember
   public val scrollOffsetChanged: Signal1<Vector2> by Signal1
 
   /**
@@ -496,6 +515,7 @@ public open class GraphEdit : Control() {
    *     return rect.has_point(mouse_position)
    * [/codeblock]
    */
+  @GodotApiMember
   public open fun _isInInputHotzone(
     inNode: Object?,
     inPort: Int,
@@ -519,6 +539,7 @@ public open class GraphEdit : Control() {
    *     return rect.has_point(mouse_position)
    * [/codeblock]
    */
+  @GodotApiMember
   public open fun _isInOutputHotzone(
     inNode: Object?,
     inPort: Int,
@@ -530,6 +551,7 @@ public open class GraphEdit : Control() {
   /**
    * Virtual method which can be overridden to customize how connections are drawn.
    */
+  @GodotApiMember
   public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2):
       PackedVector2Array {
     throw NotImplementedError("_get_connection_line is not implemented for GraphEdit")
@@ -557,6 +579,7 @@ public open class GraphEdit : Control() {
    * }
    * ```
    */
+  @GodotApiMember
   public open fun _isNodeHoverValid(
     fromNode: StringName,
     fromPort: Int,

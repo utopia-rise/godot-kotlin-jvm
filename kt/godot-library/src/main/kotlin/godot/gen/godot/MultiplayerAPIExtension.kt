@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.StringName
@@ -107,6 +108,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.poll].
    */
+  @GodotApiMember
   public open fun _poll(): Error {
     throw NotImplementedError("_poll is not implemented for MultiplayerAPIExtension")
   }
@@ -114,12 +116,14 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
+  @GodotApiMember
   public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
   }
 
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is retrieved.
    */
+  @GodotApiMember
   public open fun _getMultiplayerPeer(): MultiplayerPeer? {
     throw NotImplementedError("_get_multiplayer_peer is not implemented for MultiplayerAPIExtension")
   }
@@ -127,6 +131,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.getUniqueId].
    */
+  @GodotApiMember
   public open fun _getUniqueId(): Int {
     throw NotImplementedError("_get_unique_id is not implemented for MultiplayerAPIExtension")
   }
@@ -134,6 +139,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.getPeers].
    */
+  @GodotApiMember
   public open fun _getPeerIds(): PackedInt32Array {
     throw NotImplementedError("_get_peer_ids is not implemented for MultiplayerAPIExtension")
   }
@@ -141,6 +147,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.rpc].
    */
+  @GodotApiMember
   public open fun _rpc(
     peer: Int,
     `object`: Object?,
@@ -153,6 +160,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.getRemoteSenderId].
    */
+  @GodotApiMember
   public open fun _getRemoteSenderId(): Int {
     throw NotImplementedError("_get_remote_sender_id is not implemented for MultiplayerAPIExtension")
   }
@@ -160,6 +168,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
+  @GodotApiMember
   public open fun _objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_add is not implemented for MultiplayerAPIExtension")
   }
@@ -167,6 +176,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
+  @GodotApiMember
   public open fun _objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_remove is not implemented for MultiplayerAPIExtension")
   }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
@@ -83,47 +84,56 @@ public open class Tree : Control() {
   /**
    * Emitted when an item is selected.
    */
+  @GodotApiMember
   public val itemSelected: Signal0 by Signal0
 
   /**
    * Emitted when a cell is selected.
    */
+  @GodotApiMember
   public val cellSelected: Signal0 by Signal0
 
   /**
    * Emitted instead of [signal item_selected] if [selectMode] is set to [SELECT_MULTI].
    */
+  @GodotApiMember
   public val multiSelected: Signal3<TreeItem, Long, Boolean> by Signal3
 
   /**
    * Emitted when an item is selected with a mouse button.
    */
+  @GodotApiMember
   public val itemMouseSelected: Signal2<Vector2, Long> by Signal2
 
   /**
    * Emitted when a mouse button is clicked in the empty space of the tree.
    */
+  @GodotApiMember
   public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
    * Emitted when an item is edited.
    */
+  @GodotApiMember
   public val itemEdited: Signal0 by Signal0
 
   /**
    * Emitted when an item with [TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
    */
+  @GodotApiMember
   public val customItemClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the
    * item is double-clicked, see [signal item_activated].
    */
+  @GodotApiMember
   public val itemIconDoubleClicked: Signal0 by Signal0
 
   /**
    * Emitted when an item is collapsed by a click on the folding arrow.
    */
+  @GodotApiMember
   public val itemCollapsed: Signal1<TreeItem> by Signal1
 
   /**
@@ -132,33 +142,39 @@ public open class Tree : Control() {
    * will be processed is as follows: the item that invoked the method, children of that item, and
    * finally parents of that item.
    */
+  @GodotApiMember
   public val checkPropagatedToItem: Signal2<TreeItem, Long> by Signal2
 
   /**
    * Emitted when a button on the tree was pressed (see [TreeItem.addButton]).
    */
+  @GodotApiMember
   public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by Signal4
 
   /**
    * Emitted when a cell with the [TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
    */
+  @GodotApiMember
   public val customPopupEdited: Signal1<Boolean> by Signal1
 
   /**
    * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using
    * [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
    */
+  @GodotApiMember
   public val itemActivated: Signal0 by Signal0
 
   /**
    * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or
    * [MOUSE_BUTTON_RIGHT].
    */
+  @GodotApiMember
   public val columnTitleClicked: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when a left mouse button click does not select any item.
    */
+  @GodotApiMember
   public val nothingSelected: Signal0 by Signal0
 
   /**

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -38,11 +39,13 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   /**
    * Emitted when the [VisibleOnScreenNotifier3D] enters the screen.
    */
+  @GodotApiMember
   public val screenEntered: Signal0 by Signal0
 
   /**
    * Emitted when the [VisibleOnScreenNotifier3D] exits the screen.
    */
+  @GodotApiMember
   public val screenExited: Signal0 by Signal0
 
   /**

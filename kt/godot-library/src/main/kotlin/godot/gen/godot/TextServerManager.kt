@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -37,12 +38,14 @@ public object TextServerManager : Object() {
   /**
    * Emitted when a new interface has been added.
    */
+  @GodotApiMember
   @JvmStatic
   public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
+  @GodotApiMember
   @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt64Array
@@ -91,6 +92,7 @@ public open class AStar3D : RefCounted() {
    * Called when estimating the cost between a point and the path's ending point.
    * Note that this function is hidden in the default [AStar3D] class.
    */
+  @GodotApiMember
   public open fun _estimateCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar3D")
   }
@@ -99,6 +101,7 @@ public open class AStar3D : RefCounted() {
    * Called when computing the cost between two connected points.
    * Note that this function is hidden in the default [AStar3D] class.
    */
+  @GodotApiMember
   public open fun _computeCost(fromId: Long, toId: Long): Float {
     throw NotImplementedError("_compute_cost is not implemented for AStar3D")
   }

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -58,6 +59,7 @@ public open class Window : Viewport() {
    * Emitted when the [Window] is currently focused and receives any input, passing the received
    * event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
+  @GodotApiMember
   public val windowInput: Signal1<InputEvent> by Signal1
 
   /**
@@ -74,6 +76,7 @@ public open class Window : Viewport() {
    *     print(files)
    * [/codeblock]
    */
+  @GodotApiMember
   public val filesDropped: Signal1<PackedStringArray> by Signal1
 
   /**
@@ -81,6 +84,7 @@ public open class Window : Viewport() {
    * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
    * it's currently focused or not.
    */
+  @GodotApiMember
   public val mouseEntered: Signal0 by Signal0
 
   /**
@@ -88,16 +92,19 @@ public open class Window : Viewport() {
    * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
    * it's currently focused or not.
    */
+  @GodotApiMember
   public val mouseExited: Signal0 by Signal0
 
   /**
    * Emitted when the [Window] gains focus.
    */
+  @GodotApiMember
   public val focusEntered: Signal0 by Signal0
 
   /**
    * Emitted when the [Window] loses its focus.
    */
+  @GodotApiMember
   public val focusExited: Signal0 by Signal0
 
   /**
@@ -105,27 +112,32 @@ public open class Window : Viewport() {
    * clicks outside the window.
    * This signal can be used to handle window closing, e.g. by connecting it to [hide].
    */
+  @GodotApiMember
   public val closeRequested: Signal0 by Signal0
 
   /**
    * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right
    * after [Node.NOTIFICATION_WM_GO_BACK_REQUEST].
    */
+  @GodotApiMember
   public val goBackRequested: Signal0 by Signal0
 
   /**
    * Emitted when [Window] is made visible or disappears.
    */
+  @GodotApiMember
   public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Emitted right after [popup] call, before the [Window] appears or does anything.
    */
+  @GodotApiMember
   public val aboutToPopup: Signal0 by Signal0
 
   /**
    * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
+  @GodotApiMember
   public val themeChanged: Signal0 by Signal0
 
   /**
@@ -133,12 +145,14 @@ public open class Window : Viewport() {
    * from a Retina display to a lower resolution one).
    * **Note:** Only implemented on macOS.
    */
+  @GodotApiMember
   public val dpiChanged: Signal0 by Signal0
 
   /**
    * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen
    * mode, or extend-to-title flag is changed.
    */
+  @GodotApiMember
   public val titlebarChanged: Signal0 by Signal0
 
   /**
@@ -712,6 +726,7 @@ public open class Window : Viewport() {
    * Virtual method to be implemented by the user. Overrides the value returned by
    * [getContentsMinimumSize].
    */
+  @GodotApiMember
   public open fun _getContentsMinimumSize(): Vector2 {
     throw NotImplementedError("_get_contents_minimum_size is not implemented for Window")
   }
