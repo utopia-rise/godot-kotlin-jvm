@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -53,6 +54,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */
+  @GodotApiMember
   public val timeout: Signal0 by Signal0
 
   /**

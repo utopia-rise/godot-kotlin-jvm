@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
@@ -45,6 +46,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Emitted when the audio stops playing.
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   /**

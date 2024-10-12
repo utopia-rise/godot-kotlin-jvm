@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
@@ -38,16 +39,19 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Emitted when the color is changed.
    */
+  @GodotApiMember
   public val colorChanged: Signal1<Color> by Signal1
 
   /**
    * Emitted when a preset is added.
    */
+  @GodotApiMember
   public val presetAdded: Signal1<Color> by Signal1
 
   /**
    * Emitted when a preset is removed.
    */
+  @GodotApiMember
   public val presetRemoved: Signal1<Color> by Signal1
 
   /**

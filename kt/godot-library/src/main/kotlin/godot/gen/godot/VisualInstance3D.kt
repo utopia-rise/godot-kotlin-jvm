@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.RID
@@ -93,6 +94,7 @@ public open class VisualInstance3D : Node3D() {
     callConstructor(ENGINECLASS_VISUALINSTANCE3D, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getAabb(): AABB {
     throw NotImplementedError("_get_aabb is not implemented for VisualInstance3D")
   }

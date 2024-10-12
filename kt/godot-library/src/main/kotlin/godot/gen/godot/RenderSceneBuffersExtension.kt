@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.Float
@@ -25,24 +26,28 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   /**
    * Implement this in GDExtension to handle the (re)sizing of a viewport.
    */
+  @GodotApiMember
   public open fun _configure(config: RenderSceneBuffersConfiguration?): Unit {
   }
 
   /**
    * Implement this in GDExtension to record a new FSR sharpness value.
    */
+  @GodotApiMember
   public open fun _setFsrSharpness(fsrSharpness: Float): Unit {
   }
 
   /**
    * Implement this in GDExtension to change the texture mipmap bias.
    */
+  @GodotApiMember
   public open fun _setTextureMipmapBias(textureMipmapBias: Float): Unit {
   }
 
   /**
    * Implement this in GDExtension to react to the debanding flag changing.
    */
+  @GodotApiMember
   public open fun _setUseDebanding(useDebanding: Boolean): Unit {
   }
 

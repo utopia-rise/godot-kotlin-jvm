@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
 import godot.core.StringName
@@ -40,6 +41,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Emitted when the input port information is changed.
    */
+  @GodotApiMember
   public val nodeChanged: Signal1<StringName> by Signal1
 
   /**

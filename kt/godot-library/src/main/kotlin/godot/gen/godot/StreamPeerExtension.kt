@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -18,6 +19,7 @@ public open class StreamPeerExtension : StreamPeer() {
     callConstructor(ENGINECLASS_STREAMPEEREXTENSION, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getAvailableBytes(): Int {
     throw NotImplementedError("_get_available_bytes is not implemented for StreamPeerExtension")
   }
