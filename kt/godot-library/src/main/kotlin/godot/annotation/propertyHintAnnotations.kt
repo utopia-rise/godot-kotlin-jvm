@@ -14,7 +14,7 @@ The following annotations are implemented based on https://github.com/godotengin
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class IntRange(
     val min: Int,
     val max: Int,
@@ -32,7 +32,7 @@ annotation class IntRange(
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class LongRange(
     val min: Long,
     val max: Long,
@@ -50,7 +50,7 @@ annotation class LongRange(
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class FloatRange(
     val min: Float,
     val max: Float,
@@ -68,7 +68,7 @@ annotation class FloatRange(
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class DoubleRange(
     val min: Double,
     val max: Double,
@@ -86,7 +86,7 @@ annotation class DoubleRange(
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class EnumTypeHint
 
 /**
@@ -94,7 +94,7 @@ annotation class EnumTypeHint
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly: Boolean = true)
 
 /**
@@ -102,7 +102,7 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Lenght(val lenght: Int = -1)
 
 /**
@@ -114,7 +114,7 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class EnumFlag
 
 /**
@@ -124,7 +124,7 @@ annotation class EnumFlag
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class IntFlag(vararg val names: String)
 
 /**
@@ -132,7 +132,7 @@ annotation class IntFlag(vararg val names: String)
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Layers2DRender
 
 /**
@@ -140,7 +140,7 @@ annotation class IntFlag(vararg val names: String)
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Layers2DPhysics
 
 /**
@@ -148,7 +148,7 @@ annotation class IntFlag(vararg val names: String)
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Layers3DRender
 
 /**
@@ -156,7 +156,7 @@ annotation class IntFlag(vararg val names: String)
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Layers3DPhysics
 
 /**
@@ -164,7 +164,7 @@ annotation class IntFlag(vararg val names: String)
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class File(vararg val extensions: String = [], val global: Boolean = false)
 
 /**
@@ -172,7 +172,7 @@ annotation class File(vararg val extensions: String = [], val global: Boolean = 
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class Dir(val global: Boolean = false)
 
 /**
@@ -180,7 +180,7 @@ annotation class Dir(val global: Boolean = false)
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class MultilineText
 
 /**
@@ -188,7 +188,7 @@ annotation class MultilineText
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class PlaceHolderText
 
 /**
@@ -196,7 +196,7 @@ annotation class PlaceHolderText
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Export
 annotation class ColorNoAlpha
 
 /**
@@ -204,7 +204,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class ImageCompressLossy
 
 /**
@@ -212,7 +212,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class ImageCompressLossLess
 
 /**
@@ -220,7 +220,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class ObjectId
 
 /**
@@ -228,7 +228,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class TypeString(val baseTypeAsString: String)
 
 /**
@@ -236,7 +236,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class NodePathToEditedNode
 
 /**
@@ -244,7 +244,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class MethodOfVariantType
 
 /**
@@ -252,7 +252,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class MethodOfBaseType
 
 /**
@@ -260,7 +260,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class MethodOfInstance
 
 /**
@@ -268,7 +268,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class MethodOfScript
 
 /**
@@ -276,7 +276,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class PropertyOfVariantType
 
 /**
@@ -284,7 +284,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class PropertyOfBaseType
 
 /**
@@ -292,7 +292,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class PropertyOfInstance
 
 /**
@@ -300,12 +300,12 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class PropertyOfScript
 
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class ObjectTooBig
 
 /**
@@ -313,7 +313,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class NodePathValidTypes
 
 /**
@@ -321,7 +321,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class SaveFile(vararg val extensions: String = [])
 
 /**
@@ -329,7 +329,7 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class IntIsObjectId
 
 /**
@@ -337,5 +337,5 @@ annotation class ColorNoAlpha
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
-//@GodotMember
+//@Export
 //annotation class Max

@@ -72,7 +72,6 @@ public class JavaTestClass extends Node {
 
     public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
 
-    @GodotMember
     @Override
     public void _ready() {
         // Check if Singletons have the correct syntax, without Single.INSTANCE

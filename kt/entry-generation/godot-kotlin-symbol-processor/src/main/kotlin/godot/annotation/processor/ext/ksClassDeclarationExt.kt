@@ -32,7 +32,8 @@ internal fun KSClassDeclaration.mapToClazz(
         .map { it.mapToClazz(settings) }
         .toList()
     val mappedAnnotations = annotations
-        .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
+        .flatMap { it.mapToAnnotation(this) }
+        .filterIsInstance<ClassAnnotation>()
         .toList()
 
     val registeredFunctions = getAllFunctions()

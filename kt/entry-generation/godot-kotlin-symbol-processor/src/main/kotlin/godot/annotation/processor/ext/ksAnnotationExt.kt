@@ -84,23 +84,37 @@ internal val KSAnnotation.rpcTransferModeEnum: TransferMode
 internal val KSAnnotation.rpcChannel: Int
     get() = (arguments.firstOrNull { it.name?.asString() == "transferChannel" }?.value ?: arguments[3].value) as Int
 
-internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
+internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): List<GodotAnnotation> {
     return when (fqNameUnsafe) {
-        GodotScript::class.qualifiedName -> GodotScriptAnnotation(
-            customName = arguments.first().value as? String,
-            symbolProcessorSource = this
+        GodotScript::class.qualifiedName -> listOf(
+            GodotScriptAnnotation(
+                customName = arguments.first().value as? String,
+                symbolProcessorSource = this
+            )
         )
-        GodotMember::class.qualifiedName -> GodotMemberAnnotation(this)
-        Tool::class.qualifiedName -> ToolAnnotation(this)
-        Export::class.qualifiedName -> ExportAnnotation(this)
-        Rpc::class.qualifiedName -> RpcAnnotation(
-            rpcMode = rpcModeEnum,
-            sync = rpcSyncEnum,
-            transferMode = rpcTransferModeEnum,
-            transferChannel = rpcChannel,
-            symbolProcessorSource = this
+        GodotMember::class.qualifiedName -> listOf(
+            GodotMemberAnnotation(this)
         )
-        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) //is internal
+        Tool::class.qualifiedName -> listOf(
+            ToolAnnotation(this)
+        )
+        Export::class.qualifiedName -> listOf(
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        Rpc::class.qualifiedName -> listOf(
+            RpcAnnotation(
+                rpcMode = rpcModeEnum,
+                sync = rpcSyncEnum,
+                transferMode = rpcTransferModeEnum,
+                transferChannel = rpcChannel,
+                symbolProcessorSource = this
+            ),
+            GodotMemberAnnotation(this),
+        )
+        "godot.annotation.GodotBaseType" -> listOf(
+            GodotBaseTypeAnnotation(this) //is internal
+        )
         EnumFlag::class.qualifiedName -> {
             val setType = (parentDeclaration as KSPropertyDeclaration).type.resolve()
             require(setType.declaration.qualifiedName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) ?: false) {
@@ -120,48 +134,100 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): God
                 .map { it.simpleName.asString() }
                 .toList()
 
-            EnumFlagHintStringAnnotation(enumValueNames = enumValueNames, source = this)
+            listOf(
+                EnumFlagHintStringAnnotation(enumValueNames = enumValueNames, source = this),
+                ExportAnnotation(this),
+                GodotMemberAnnotation(this),
+            )
         }
-        IntFlag::class.qualifiedName -> IntFlagHintAnnotation(
-            @Suppress("UNCHECKED_CAST")
-            (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList(),
-            this
+        IntFlag::class.qualifiedName -> listOf(
+            IntFlagHintAnnotation(
+                @Suppress("UNCHECKED_CAST")
+                (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList(),
+                this
+            ),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
         )
-        MultilineText::class.qualifiedName -> MultilineTextHintAnnotation(this)
-        PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation(this)
-        ColorNoAlpha::class.qualifiedName -> ColorNoAlphaHintAnnotation(this)
-        godot.annotation.IntRange::class.qualifiedName -> provideRangeHintAnnotation(-1)
-        godot.annotation.LongRange::class.qualifiedName -> provideRangeHintAnnotation(-1L)
-        godot.annotation.FloatRange::class.qualifiedName -> provideRangeHintAnnotation(-1f)
-        godot.annotation.DoubleRange::class.qualifiedName -> provideRangeHintAnnotation(-1.0)
-        EnumTypeHint::class.qualifiedName -> null
+        MultilineText::class.qualifiedName -> listOf(
+            MultilineTextHintAnnotation(this),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        PlaceHolderText::class.qualifiedName -> listOf(
+            PlaceHolderTextHintAnnotation(this),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        ColorNoAlpha::class.qualifiedName -> listOf(
+            ColorNoAlphaHintAnnotation(this),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        godot.annotation.IntRange::class.qualifiedName -> listOf(
+            provideRangeHintAnnotation(-1),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        godot.annotation.LongRange::class.qualifiedName -> listOf(
+            provideRangeHintAnnotation(-1L),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        godot.annotation.FloatRange::class.qualifiedName -> listOf(
+            provideRangeHintAnnotation(-1f),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        godot.annotation.DoubleRange::class.qualifiedName -> listOf(
+            provideRangeHintAnnotation(-1.0),
+            ExportAnnotation(this),
+            GodotMemberAnnotation(this),
+        )
+        EnumTypeHint::class.qualifiedName -> emptyList()
         ExpEasing::class.qualifiedName -> {
             val attenuation = ((arguments.firstOrNull { it.name?.asString() == "attenuation" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
             val isPositiveOnly = ((arguments.firstOrNull { it.name?.asString() == "isPositiveOnly" }?.value ?: arguments[1].value) as? Boolean) ?: false
-            ExpEasingHintAnnotation(
-                attenuation = attenuation,
-                isPositiveOnly = isPositiveOnly,
-                source = this
+
+            listOf(
+                ExpEasingHintAnnotation(
+                    attenuation = attenuation,
+                    isPositiveOnly = isPositiveOnly,
+                    source = this
+                ),
+                ExportAnnotation(this),
+                GodotMemberAnnotation(this),
             )
         }
         godot.annotation.File::class.qualifiedName -> {
             @Suppress("UNCHECKED_CAST")
             val extensions = ((arguments.firstOrNull { it.name?.asString() == "extensions" }?.value ?: arguments.firstOrNull()?.value) as? ArrayList<String>)?.toList() ?: emptyList()
             val global = ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments[1].value) as? Boolean) ?: false
-            FileHintAnnotation(
-                extensions = extensions,
-                global = global,
-                source = this
+
+            listOf(
+                FileHintAnnotation(
+                    extensions = extensions,
+                    global = global,
+                    source = this
+                ),
+                ExportAnnotation(this),
+                GodotMemberAnnotation(this),
             )
         }
         Dir::class.qualifiedName -> {
-            val global = ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
-            DirHintAnnotation(
-                global = global,
-                source = this
+            val global =
+                ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments.firstOrNull()?.value) as? Boolean) ?: false
+
+            listOf(
+                DirHintAnnotation(
+                    global = global,
+                    source = this
+                ),
+                ExportAnnotation(this),
+                GodotMemberAnnotation(this),
             )
         }
-        else -> null
+        else -> emptyList()
     }
 }
 

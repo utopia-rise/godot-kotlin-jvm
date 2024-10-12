@@ -1,7 +1,7 @@
 package godot.intellij.plugin.extension
 
 import com.intellij.psi.PsiClass
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
 import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.FileExtensions
 import org.jetbrains.kotlin.asJava.toLightClass
@@ -29,7 +29,7 @@ fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
         name
     }
 
-    val customName = getAnnotation(REGISTER_CLASS_ANNOTATION)
+    val customName = getAnnotation(GODOT_SCRIPT_ANNOTATION)
         ?.findAttributeValue("className")
         ?.text
         ?.removeSurrounding("\"")
@@ -43,7 +43,7 @@ fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
 fun KtClass.getRegistrationFilePath(): String? = this.toLightClass()?.getRegistrationFilePath()
 
 fun PsiClass.getRegistrationFilePath(): String? {
-    return if (annotations.any { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION }) {
+    return if (annotations.any { annotation -> annotation.qualifiedName == GODOT_SCRIPT_ANNOTATION }) {
         val fqName = qualifiedName ?: return null
         val registeredName = getRegisteredClassName()?.second ?: return null
 

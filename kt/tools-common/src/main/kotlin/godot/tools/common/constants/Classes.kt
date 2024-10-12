@@ -47,11 +47,8 @@ object GodotKotlinJvmTypes {
         const val coreTypeHelper = "CoreTypeHelper"
         const val coreTypeLocalCopy = "CoreTypeLocalCopy"
 
-        const val registerClass = "RegisterClass"
-        const val registerConstructor = "RegisterConstructor"
-        const val registerProperty = "RegisterProperty"
-        const val registerFunction = "RegisterFunction"
-        const val registerSignal = "RegisterSignal"
+        const val godotScript = "GodotScript"
+        const val godotMember = "GodotMember"
 
         const val tool = "Tool"
         const val export = "Export"
