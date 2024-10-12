@@ -1,32 +1,43 @@
 #ifndef GODOT_JVM_PATHS_H
 #define GODOT_JVM_PATHS_H
 
-static constexpr const char* DESKTOP_BOOTSTRAP_FILE {"jvm/godot-bootstrap.jar"};
-static constexpr const char* DESKTOP_USER_CODE_FILE {"jvm/main.jar"};
+// Needs this as a macro if we want to append it to all other paths.
+#define JVM_DIRECTORY "jvm/"
 
-static constexpr const char* LINUX_GRAAL_NATIVE_IMAGE_FILE {"jvm/usercode.so"};
-static constexpr const char* LINUX_EMBEDDED_JRE_ARM_DIRECTORY {"jvm/jre-arm64-linux"};
-static constexpr const char* LINUX_EMBEDDED_JRE_AMD_DIRECTORY {"jvm/jre-amd64-linux"};
+static constexpr const char* USER_DIRECTORY {"user://"};
+static constexpr const char* RES_DIRECTORY {"res://"};
+
+static constexpr const char* EDITOR_BOOTSTRAP_PATH {"godot-bootstrap.jar"};
+static constexpr const char* ENTRY_DIRECTORY {"res://build/generated/ksp"};
+static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
+
+
+static constexpr const char* DESKTOP_BOOTSTRAP_FILE {JVM_DIRECTORY "godot-bootstrap.jar"};
+static constexpr const char* DESKTOP_USER_CODE_FILE {JVM_DIRECTORY "main.jar"};
+
+static constexpr const char* LINUX_GRAAL_NATIVE_IMAGE_FILE {JVM_DIRECTORY "usercode.so"};
+static constexpr const char* LINUX_EMBEDDED_JRE_ARM_DIRECTORY {JVM_DIRECTORY "jre-arm64-linux"};
+static constexpr const char* LINUX_EMBEDDED_JRE_AMD_DIRECTORY {JVM_DIRECTORY "jre-amd64-linux"};
 static constexpr const char* LINUX_RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.so"};
 
-static constexpr const char* WINDOWS_GRAAL_NATIVE_IMAGE_FILE {"jvm/usercode.dll"};
-static constexpr const char* WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY {"jvm/jre-arm64-windows"};
-static constexpr const char* WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY {"jvm/jre-amd64-windows"};
+static constexpr const char* WINDOWS_GRAAL_NATIVE_IMAGE_FILE {JVM_DIRECTORY "usercode.dll"};
+static constexpr const char* WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY {JVM_DIRECTORY "jre-arm64-windows"};
+static constexpr const char* WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY {JVM_DIRECTORY "jre-amd64-windows"};
 static constexpr const char* WINDOWS_RELATIVE_JVM_LIB_PATH {"bin/server/jvm.dll"};
 
-static constexpr const char* MACOS_GRAAL_NATIVE_IMAGE_FILE {"jvm/usercode.dylib"};
-static constexpr const char* MACOS_EMBEDDED_JRE_ARM_DIRECTORY {"jvm/jre-arm64-macos"};
-static constexpr const char* MACOS_EMBEDDED_JRE_AMD_DIRECTORY {"jvm/jre-amd64-macos"};
+static constexpr const char* MACOS_GRAAL_NATIVE_IMAGE_FILE {JVM_DIRECTORY "usercode.dylib"};
+static constexpr const char* MACOS_EMBEDDED_JRE_ARM_DIRECTORY {JVM_DIRECTORY "jre-arm64-macos"};
+static constexpr const char* MACOS_EMBEDDED_JRE_AMD_DIRECTORY {JVM_DIRECTORY "jre-amd64-macos"};
 static constexpr const char* MACOS_RELATIVE_JVM_LIB_PATH {"lib/server/libjvm.dylib"};
 
-static constexpr const char* ANDROID_BOOTSTRAP_FILE {"jvm/godot-bootstrap-dex.jar"};
-static constexpr const char* ANDROID_USER_CODE_FILE {"jvm/main-dex.jar"};
+static constexpr const char* ANDROID_BOOTSTRAP_FILE {JVM_DIRECTORY "godot-bootstrap-dex.jar"};
+static constexpr const char* ANDROID_USER_CODE_FILE {JVM_DIRECTORY "main-dex.jar"};
 static constexpr const char* ANDROID_GRAAL_NATIVE_IMAGE_FILE {""};
 static constexpr const char* ANDROID_RELATIVE_JVM_LIB_PATH {""};
 
 static constexpr const char* IOS_BOOTSTRAP_FILE {""};
 static constexpr const char* IOS_USER_CODE_FILE {""};
-static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {"jvm/usercode.a"};
+static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {JVM_DIRECTORY "usercode.a"};
 static constexpr const char* IOS_RELATIVE_JVM_LIB_PATH {""};
 
 #ifdef X11_ENABLED
@@ -83,12 +94,5 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {IOS_GRAAL_NATIVE_IMAGE_FIL
 static constexpr const char* RELATIVE_JVM_LIB_PATH {IOS_RELATIVE_JVM_LIB_PATH};
 
 #endif
-
-static constexpr const char* ENTRY_DIRECTORY {"res://build/generated/ksp"};
-static constexpr const char* USER_DIRECTORY {"user://"};
-static constexpr const char* RES_DIRECTORY {"res://"};
-
-static constexpr const char* EDITOR_BOOTSTRAP_PATH {"godot-bootstrap.jar"};
-static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
 
 #endif// GODOT_JVM_PATHS_H

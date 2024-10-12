@@ -204,7 +204,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
 #endif
         Ref<DirAccess> dir_access {DirAccess::open(USER_DIRECTORY)};
-        dir_access->make_dir("jvm");
+        dir_access->make_dir(JVM_DIRECTORY);
         dir_access->copy(file_res_path, file_user_path);
 #ifndef __ANDROID__
     }
