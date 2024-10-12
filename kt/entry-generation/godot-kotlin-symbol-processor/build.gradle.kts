@@ -39,9 +39,9 @@ publishing {
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs += listOf(
-                "-opt-in=com.google.devtools.ksp.KspExperimental" // needed for resolve by package path
+        compilerOptions {
+            freeCompilerArgs.addAll(
+                "-opt-in=com.google.devtools.ksp.KspExperimental", // needed for resolve by package path
             )
         }
     }

@@ -141,7 +141,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
     MessageQueue::get_singleton()->push_callable(callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload));
 #endif
-    JVM_DEV_LOG("JVM are now loaded.");
+    JVM_DEV_LOG("JVM scripts are now loaded.");
 }
 
 Ref<NamedScript> JvmScriptManager::get_named_script_from_index(int p_index) const {
