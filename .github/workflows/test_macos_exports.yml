@@ -89,7 +89,7 @@ jobs:
       - name: Create JRE
         run: |
           cd harness/tests/
-          $JAVA_HOME/bin/jlink --add-modules java.base,java.logging --output jre-arm64-macos
+          jlink --add-modules java.base,java.logging --output jre-arm64-macos
           mkdir jre-amd64-macos #create a fake jre dir for amd64 so the export is happy. The test will run on arm anyways
 
       - name: Export tests debug
