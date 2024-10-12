@@ -1,10 +1,8 @@
 package godot.tests.signal
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -17,33 +15,24 @@ import godot.core.signal1
 import godot.core.signal2
 import godot.tests.subpackage.OtherScript
 
-@RegisterClass
+@GodotScript
 class SignalTest : Node() {
-    @RegisterSignal
     val noParamSignalDelegate by signal0()
 
-    @RegisterSignal
     val oneParamSignalDelegate by signal1<Boolean>("refresh")
 
-    @RegisterSignal
     val twoParamSignalDelegate by signal2<String, SignalTest>("str", "inv")
 
-
-    @RegisterSignal
     val noParamSignalField = Signal0("noParamSignalField")
 
-    @RegisterSignal
     val oneParamSignalField = Signal1<Boolean>("oneParamSignalField","refresh")
 
-    @RegisterSignal
     val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField","str", "inv")
 
-    @RegisterProperty
+    @GodotMember
     var otherScript = OtherScript()
 
-    @RegisterFunction
     override fun _ready() {
-
         noParamSignalDelegate.connect(otherScript, OtherScript::hookNoParam)
         oneParamSignalDelegate.connect(otherScript, OtherScript::hookOneParam)
         twoParamSignalDelegate.connect(otherScript, OtherScript::hookTwoParam)
@@ -76,14 +65,13 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterSignal
     val signalWithMultipleTargets by signal1<Vector2>("vector2")
 
     //To store values emitted by signals
-    @RegisterProperty
+    @GodotMember
     var array: VariantArray<Vector2> = VariantArray()
 
-    @RegisterFunction
+    @GodotMember
     fun targetFunctionOne(vector2: Vector2) {
         array.append(vector2)
         //call GodotAPI to insert different parameters in the stack.
@@ -95,7 +83,7 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterFunction
+    @GodotMember
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }

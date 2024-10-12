@@ -11,6 +11,7 @@ package godot.annotation
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
+@GodotMember
 annotation class Rpc(
     val rpcMode: RpcMode = RpcMode.AUTHORITY,
     val sync: Sync = Sync.NO_SYNC,

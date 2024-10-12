@@ -1,44 +1,40 @@
 package godot.tests
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.core.Signal3
 import godot.core.asCallable
 import godot.core.connect
 import godot.core.signal0
 import godot.core.signal3
 
-@RegisterClass
+@GodotScript
 class LambdaCallableTest : Node() {
 
-    @RegisterSignal
     val signalNoParam by signal0()
 
-    @RegisterProperty
+    @GodotMember
     var hasSignalNoParamBeenTriggered = false
 
-    @RegisterSignal
     val signalWithParams: Signal3<String, Long, Node> by signal3("str", "long", "node")
 
-    @RegisterProperty
+    @GodotMember
     var signalString: String = ""
 
-    @RegisterProperty
+    @GodotMember
     var signalLong: Long = Long.MIN_VALUE
 
-    @RegisterProperty
+    @GodotMember
     lateinit var signalNode: Node
 
-    @RegisterProperty
+    @GodotMember
     var ktCallable = { str: String -> ktCallableString = str }.asCallable()
 
-    @RegisterProperty
+    @GodotMember
     var ktCallableString: String = ""
 
-    @RegisterFunction
+    @GodotMember
     override fun _ready() {
         signalNoParam.connect {
             hasSignalNoParamBeenTriggered = true
@@ -51,12 +47,12 @@ class LambdaCallableTest : Node() {
         }
     }
 
-    @RegisterFunction
+    @GodotMember
     fun emitSignalNoParam() {
         signalNoParam.emit()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun emitSignalWithParam(str: String, long: Long, node: Node) {
         signalWithParams.emit(str, long, node)
     }

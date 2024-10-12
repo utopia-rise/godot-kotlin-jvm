@@ -7,4 +7,4 @@ package godot.annotation
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class GodotApiMember
+annotation class GodotApiMember

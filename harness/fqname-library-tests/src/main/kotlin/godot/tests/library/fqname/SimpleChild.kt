@@ -1,7 +1,7 @@
 package godot.tests.library.fqname
 
-import godot.annotation.RegisterClass
+import godot.annotation.GodotScript
 
 
-@RegisterClass
+@GodotScript
 class SimpleChild: Simple() {}

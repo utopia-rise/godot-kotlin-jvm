@@ -1,6 +1,5 @@
 package godot.entrygenerator.checks
 
-import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
 
@@ -10,7 +9,6 @@ class PropertyMutablilityCheck(logger: Logger, sourceFiles: List<SourceFile>): B
         sourceFiles
             .flatMap { it.registeredClasses }
             .flatMap { it.properties }
-            .filter { registeredProperty -> registeredProperty.annotations.filterIsInstance<RegisterPropertyAnnotation>().isNotEmpty() }
             .forEach { registeredProperty ->
                 if (!registeredProperty.isMutable) {
                     hasIssue = true

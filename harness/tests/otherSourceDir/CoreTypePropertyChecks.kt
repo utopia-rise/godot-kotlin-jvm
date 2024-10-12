@@ -1,10 +1,10 @@
 import godot.Node
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.core.Vector3
 
-@RegisterClass
+@GodotScript
 class CoreTypePropertyChecks: Node() {
     // not allowed cases are commented out so that the compilation runs. Otherwise, our compiler checks trigger a build failure
     // to test out these checks, uncomment the cases
@@ -16,7 +16,6 @@ class CoreTypePropertyChecks: Node() {
 
     // allowed
     @Export
-    @RegisterProperty
     var exportedNormalCoreType: Vector3 = Vector3.ZERO
 
     // not allowed
@@ -24,6 +23,6 @@ class CoreTypePropertyChecks: Node() {
 //    lateinit var lateinitCoreType: Vector3
 
     // allowed
-    @RegisterProperty
+    @GodotMember
     var normalCoreType: Vector3 = Vector3.ZERO
 }

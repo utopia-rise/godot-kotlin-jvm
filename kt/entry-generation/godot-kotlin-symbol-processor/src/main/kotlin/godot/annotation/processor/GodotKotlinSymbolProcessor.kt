@@ -53,7 +53,7 @@ class GodotKotlinSymbolProcessor(
             settings = provideSettingsFromArguments()
         }
 
-        val currentProcessingRound = ProcessingRound.values().getOrNull(processingRound)
+        val currentProcessingRound = ProcessingRound.entries.getOrNull(processingRound)
             ?: return emptyList<KSAnnotated>().also {
                 kspLogger.warn("Unexpected processing round: $processingRound. Only expecting ${ProcessingRound.values().size} rounds. No op.")
             }

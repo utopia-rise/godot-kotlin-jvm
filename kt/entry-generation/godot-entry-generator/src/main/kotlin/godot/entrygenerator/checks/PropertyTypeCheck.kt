@@ -6,7 +6,6 @@ import godot.entrygenerator.ext.isGodotPrimitive
 import godot.entrygenerator.ext.isKotlinCollection
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isRefCounted
-import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
 
@@ -16,9 +15,6 @@ class PropertyTypeCheck(logger: Logger, sourceFiles: List<SourceFile>) : BaseChe
         sourceFiles
             .flatMap { it.registeredClasses }
             .flatMap { it.properties }
-            .filter { registeredProperty ->
-                registeredProperty.annotations.filterIsInstance<RegisterPropertyAnnotation>().isNotEmpty()
-            }
             .forEach { exportedProperty ->
                 if (
                     !exportedProperty.type.isGodotPrimitive()

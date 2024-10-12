@@ -6,7 +6,7 @@ import com.google.devtools.ksp.symbol.KSDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeAlias
 import com.google.devtools.ksp.symbol.KSTypeReference
-import godot.annotation.RegisterClass
+import godot.annotation.GodotScript
 import godot.annotation.processor.Settings
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
@@ -56,10 +56,10 @@ internal fun KSType.provideRegisteredClassName(
 internal fun KSDeclaration.provideRegisteredClassName(
     settings: Settings,
 ): String? {
-    val registerClassAnnotation = annotations
-        .firstOrNull { it.fqNameUnsafe == RegisterClass::class.qualifiedName }
+    val godotScriptAnnotation = annotations
+        .firstOrNull { it.fqNameUnsafe == GodotScript::class.qualifiedName }
 
-    val customName = registerClassAnnotation
+    val customName = godotScriptAnnotation
         ?.arguments
         ?.first()
         ?.value as? String
