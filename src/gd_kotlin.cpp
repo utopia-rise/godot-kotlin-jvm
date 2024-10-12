@@ -60,8 +60,7 @@ bool GDKotlin::load_dynamic_lib() {
                   false,
                   "Cannot find Graal VM user code native image! /n This usually happens when you "
                   "define that your project should be executed using graalvm but did not "
-                  "successfully "
-                  "compile your project and thus usercode.(sh, dll, dylib) cannot be found."
+                  "successfully compile your project and thus usercode.(sh, dll, dylib) cannot be found."
                 );
             }
             break;
@@ -100,7 +99,7 @@ String GDKotlin::get_path_to_embedded_jvm() {
       .get_base_dir()
 #if defined(MACOS_ENABLED)
       .path_join("../PlugIns/")
-      .path_join(String(HOST_EMBEDDED_JRE_DIRECTORY).get_file()) //Only use the last subdir, as the export doesn't keep the relative path
+      .path_join(String(HOST_EMBEDDED_JRE_DIRECTORY).get_file()) // Only use the last subdir, as the export doesn't keep the relative path
 #else
       .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
 #endif
@@ -177,8 +176,7 @@ void GDKotlin::set_jvm_options() {
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
         JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
-                        "not "
-                        "launch properly");
+                        "not launch properly");
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
 }
@@ -203,7 +201,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     // if we don't do this, subsequent app starts where the files already exist, error out
 
     String file_user_path_global {ProjectSettings::get_singleton()->globalize_path(file_user_path)};
-    unlink(file_user_path_global.utf8().get_data());// we do not really care about errors here
+    unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
 #endif
         Ref<DirAccess> dir_access {DirAccess::open(USER_DIRECTORY)};
         dir_access->make_dir("jvm");
@@ -219,7 +217,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 bool GDKotlin::load_bootstrap() {
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        return true;// Bootstrap already part of the image
+        return true; // Bootstrap already part of the image
     }
 
     jni::Env env {jni::Jvm::current_env()};

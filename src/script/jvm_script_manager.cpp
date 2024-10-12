@@ -216,7 +216,7 @@ void JvmScriptManager::finalize() {
     singleton->path_scripts.clear();
     singleton->path_scripts_map.clear();
 
-    //memdelete(singleton);
+    memdelete(singleton);
 }
 
 JvmScriptManager* JvmScriptManager::get_instance() {

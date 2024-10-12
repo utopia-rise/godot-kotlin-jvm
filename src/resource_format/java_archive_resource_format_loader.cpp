@@ -29,7 +29,7 @@ Ref<Resource> JavaArchiveFormatLoader::load(
   float* r_progress,
   ResourceFormatLoader::CacheMode p_cache_mode
 ) {
-    JVM_LOG_VERBOSE(vformat("Loading usercode file at: %s", p_path));
+    JVM_LOG_VERBOSE(vformat("Loading Java Archive at: %s", p_path));
     Ref<JavaArchive> ref;
     ref.instantiate();
 
