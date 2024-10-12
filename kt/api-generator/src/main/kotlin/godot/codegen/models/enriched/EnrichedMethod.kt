@@ -11,7 +11,7 @@ import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.extensions.convertToCamelCase
 
-class EnrichedMethod(val internal: Method, engineClassIndexName: String) : CallableTrait, IDocumented {
+class EnrichedMethod(val internal: Method) : CallableTrait, IDocumented {
     override val arguments = internal.arguments?.toEnriched() ?: listOf()
     override val isVararg = internal.isVararg
     val name: String
@@ -36,7 +36,7 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
     override val description = internal.description
 }
 
-fun List<Method>.toEnriched(engineClassIndexName: String) = map { EnrichedMethod(it, engineClassIndexName) }
+fun List<Method>.toEnriched() = map { EnrichedMethod(it) }
 
 fun EnrichedMethod.isSameSignature(other: EnrichedMethod): Boolean {
     val otherInternal = other.internal

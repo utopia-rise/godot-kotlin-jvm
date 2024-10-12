@@ -17,7 +17,6 @@ val jvmReservedMethods = listOf(
             arguments = null,
             description = null,
             briefDescription = null
-        ),
-        ""
+        )
     )
 )
