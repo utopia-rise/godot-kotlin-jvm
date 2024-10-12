@@ -1,0 +1,37 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.util.Internals
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+
+private const val ENGINE_CLASS_ANIMATIONROOTNODE_INDEX: Int = 71
+
+/**
+ * [AnimationRootNode] is a base class for [AnimationNode]s that hold a complete animation. A
+ * complete animation refers to the output of an [AnimationNodeOutput] in an [AnimationNodeBlendTree]
+ * or the output of another [AnimationRootNode]. Used for [AnimationTree.treeRoot] or in other
+ * [AnimationRootNode]s.
+ * Examples of built-in root nodes include [AnimationNodeBlendTree] (allows blending nodes between
+ * each other using various modes), [AnimationNodeStateMachine] (allows to configure blending and
+ * transitions between nodes using a state machine pattern), [AnimationNodeBlendSpace2D] (allows linear
+ * blending between **three** [AnimationNode]s), [AnimationNodeBlendSpace1D] (allows linear blending
+ * only between **two** [AnimationNode]s).
+ */
+@GodotBaseType
+public open class AnimationRootNode : AnimationNode() {
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONROOTNODE_INDEX, scriptIndex)
+  }
+
+  public companion object
+
+  public object MethodBindings
+}

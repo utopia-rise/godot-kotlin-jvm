@@ -1,0 +1,63 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.RID
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser._RID
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_TEXTURE3DRD_INDEX: Int = 653
+
+/**
+ * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
+ * texture for materials, meshes, etc.
+ */
+@GodotBaseType
+public open class Texture3DRD : Texture3D() {
+  /**
+   * The RID of the texture object created on the [RenderingDevice].
+   */
+  public final inline var textureRdRid: RID
+    @JvmName("textureRdRidProperty")
+    get() = getTextureRdRid()
+    @JvmName("textureRdRidProperty")
+    set(`value`) {
+      setTextureRdRid(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTURE3DRD_INDEX, scriptIndex)
+  }
+
+  public final fun setTextureRdRid(textureRdRid: RID): Unit {
+    Internals.writeArguments(_RID to textureRdRid)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+  }
+
+  public final fun getTextureRdRid(): RID {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setTextureRdRidPtr: VoidPtr =
+        Internals.getMethodBindPtr("Texture3DRD", "set_texture_rd_rid", 2722037293)
+
+    internal val getTextureRdRidPtr: VoidPtr =
+        Internals.getMethodBindPtr("Texture3DRD", "get_texture_rd_rid", 2944877500)
+  }
+}

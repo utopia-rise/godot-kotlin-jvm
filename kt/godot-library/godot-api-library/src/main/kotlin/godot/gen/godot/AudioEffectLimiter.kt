@@ -1,0 +1,149 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.NIL
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Double
+import kotlin.Float
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX: Int = 98
+
+/**
+ * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
+ * over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects
+ * of clipping.
+ * Soft clipping starts to reduce the peaks a little below the threshold level and progressively
+ * increases its effect as the input level increases such that the threshold is never exceeded.
+ */
+@GodotBaseType
+public open class AudioEffectLimiter : AudioEffect() {
+  /**
+   * The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1.
+   */
+  public final inline var ceilingDb: Float
+    @JvmName("ceilingDbProperty")
+    get() = getCeilingDb()
+    @JvmName("ceilingDbProperty")
+    set(`value`) {
+      setCeilingDb(value)
+    }
+
+  /**
+   * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to
+   * 0.
+   */
+  public final inline var thresholdDb: Float
+    @JvmName("thresholdDbProperty")
+    get() = getThresholdDb()
+    @JvmName("thresholdDbProperty")
+    set(`value`) {
+      setThresholdDb(value)
+    }
+
+  /**
+   * Applies a gain to the limited waves, in decibels. Value can range from 0 to 6.
+   */
+  public final inline var softClipDb: Float
+    @JvmName("softClipDbProperty")
+    get() = getSoftClipDb()
+    @JvmName("softClipDbProperty")
+    set(`value`) {
+      setSoftClipDb(value)
+    }
+
+  public final inline var softClipRatio: Float
+    @JvmName("softClipRatioProperty")
+    get() = getSoftClipRatio()
+    @JvmName("softClipRatioProperty")
+    set(`value`) {
+      setSoftClipRatio(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX, scriptIndex)
+  }
+
+  public final fun setCeilingDb(ceiling: Float): Unit {
+    Internals.writeArguments(DOUBLE to ceiling.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+  }
+
+  public final fun getCeilingDb(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setThresholdDb(threshold: Float): Unit {
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
+  }
+
+  public final fun getThresholdDb(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setSoftClipDb(softClip: Float): Unit {
+    Internals.writeArguments(DOUBLE to softClip.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
+  }
+
+  public final fun getSoftClipDb(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setSoftClipRatio(softClip: Float): Unit {
+    Internals.writeArguments(DOUBLE to softClip.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
+  }
+
+  public final fun getSoftClipRatio(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setCeilingDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373806689)
+
+    internal val getCeilingDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1740695150)
+
+    internal val setThresholdDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373806689)
+
+    internal val getThresholdDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1740695150)
+
+    internal val setSoftClipDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373806689)
+
+    internal val getSoftClipDbPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1740695150)
+
+    internal val setSoftClipRatioPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373806689)
+
+    internal val getSoftClipRatioPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1740695150)
+  }
+}

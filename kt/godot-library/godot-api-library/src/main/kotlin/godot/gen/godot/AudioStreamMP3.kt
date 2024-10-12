@@ -1,0 +1,221 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.PackedByteArray
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Int
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_AUDIOSTREAMMP3_INDEX: Int = 118
+
+/**
+ * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ */
+@GodotBaseType
+public open class AudioStreamMP3 : AudioStream() {
+  /**
+   * Contains the audio data in bytes.
+   * You can load a file without having to import it beforehand using the code snippet below. Keep
+   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
+   * (hundreds of megabytes or more).
+   *
+   * gdscript:
+   * ```gdscript
+   * func load_mp3(path):
+   *     var file = FileAccess.open(path, FileAccess.READ)
+   *     var sound = AudioStreamMP3.new()
+   *     sound.data = file.get_buffer(file.get_length())
+   *     return sound
+   * ```
+   * csharp:
+   * ```csharp
+   * public AudioStreamMP3 LoadMP3(string path)
+   * {
+   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   *     var sound = new AudioStreamMP3();
+   *     sound.Data = file.GetBuffer(file.GetLength());
+   *     return sound;
+   * }
+   * ```
+   */
+  public final inline var `data`: PackedByteArray
+    @JvmName("dataProperty")
+    get() = getData()
+    @JvmName("dataProperty")
+    set(`value`) {
+      setData(value)
+    }
+
+  public final inline var bpm: Double
+    @JvmName("bpmProperty")
+    get() = getBpm()
+    @JvmName("bpmProperty")
+    set(`value`) {
+      setBpm(value)
+    }
+
+  public final inline var beatCount: Int
+    @JvmName("beatCountProperty")
+    get() = getBeatCount()
+    @JvmName("beatCountProperty")
+    set(`value`) {
+      setBeatCount(value)
+    }
+
+  public final inline var barBeats: Int
+    @JvmName("barBeatsProperty")
+    get() = getBarBeats()
+    @JvmName("barBeatsProperty")
+    set(`value`) {
+      setBarBeats(value)
+    }
+
+  /**
+   * If `true`, the stream will automatically loop when it reaches the end.
+   */
+  public final inline var loop: Boolean
+    @JvmName("loopProperty")
+    get() = hasLoop()
+    @JvmName("loopProperty")
+    set(`value`) {
+      setLoop(value)
+    }
+
+  /**
+   * Time in seconds at which the stream starts after being looped.
+   */
+  public final inline var loopOffset: Double
+    @JvmName("loopOffsetProperty")
+    get() = getLoopOffset()
+    @JvmName("loopOffsetProperty")
+    set(`value`) {
+      setLoopOffset(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMMP3_INDEX, scriptIndex)
+  }
+
+  public final fun setData(`data`: PackedByteArray): Unit {
+    Internals.writeArguments(PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+  }
+
+  public final fun getData(): PackedByteArray {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  public final fun setLoop(enable: Boolean): Unit {
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+  }
+
+  public final fun hasLoop(): Boolean {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setLoopOffset(seconds: Double): Unit {
+    Internals.writeArguments(DOUBLE to seconds)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+  }
+
+  public final fun getLoopOffset(): Double {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
+  }
+
+  public final fun setBpm(bpm: Double): Unit {
+    Internals.writeArguments(DOUBLE to bpm)
+    Internals.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+  }
+
+  public final fun getBpm(): Double {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
+  }
+
+  public final fun setBeatCount(count: Int): Unit {
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+  }
+
+  public final fun getBeatCount(): Int {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setBarBeats(count: Int): Unit {
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+  }
+
+  public final fun getBarBeats(): Int {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setDataPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
+
+    internal val getDataPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "get_data", 2362200018)
+
+    internal val setLoopPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_loop", 2586408642)
+
+    internal val hasLoopPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "has_loop", 36873697)
+
+    internal val setLoopOffsetPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_loop_offset", 373806689)
+
+    internal val getLoopOffsetPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "get_loop_offset", 1740695150)
+
+    internal val setBpmPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_bpm", 373806689)
+
+    internal val getBpmPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "get_bpm", 1740695150)
+
+    internal val setBeatCountPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_beat_count", 1286410249)
+
+    internal val getBeatCountPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "get_beat_count", 3905245786)
+
+    internal val setBarBeatsPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "set_bar_beats", 1286410249)
+
+    internal val getBarBeatsPtr: VoidPtr =
+        Internals.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
+  }
+}

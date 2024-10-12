@@ -1,0 +1,52 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.util.Internals
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+
+private const val ENGINE_CLASS_MARGINCONTAINER_INDEX: Int = 360
+
+/**
+ * [MarginContainer] adds an adjustable margin on each side of its child controls. The margins are
+ * added around all children, not around each individual one. To control the [MarginContainer]'s
+ * margins, use the `margin_*` theme properties listed below.
+ * **Note:** The margin sizes are theme overrides, not normal properties. This is an example of how
+ * to change them in code:
+ *
+ * gdscript:
+ * ```gdscript
+ * # This code sample assumes the current script is extending MarginContainer.
+ * var margin_value = 100
+ * add_theme_constant_override("margin_top", margin_value)
+ * add_theme_constant_override("margin_left", margin_value)
+ * add_theme_constant_override("margin_bottom", margin_value)
+ * add_theme_constant_override("margin_right", margin_value)
+ * ```
+ * csharp:
+ * ```csharp
+ * // This code sample assumes the current script is extending MarginContainer.
+ * int marginValue = 100;
+ * AddThemeConstantOverride("margin_top", marginValue);
+ * AddThemeConstantOverride("margin_left", marginValue);
+ * AddThemeConstantOverride("margin_bottom", marginValue);
+ * AddThemeConstantOverride("margin_right", marginValue);
+ * ```
+ */
+@GodotBaseType
+public open class MarginContainer : Container() {
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_MARGINCONTAINER_INDEX, scriptIndex)
+  }
+
+  public companion object
+
+  public object MethodBindings
+}

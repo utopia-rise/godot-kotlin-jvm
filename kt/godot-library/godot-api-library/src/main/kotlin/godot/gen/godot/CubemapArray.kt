@@ -1,0 +1,53 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.VariantParser.OBJECT
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+
+private const val ENGINE_CLASS_CUBEMAPARRAY_INDEX: Int = 215
+
+/**
+ * [CubemapArray]s are made of an array of [Cubemap]s. Like [Cubemap]s, they are made of multiple
+ * textures, the amount of which must be divisible by 6 (one for each face of the cube).
+ * The primary benefit of [CubemapArray]s is that they can be accessed in shader code using a single
+ * texture reference. In other words, you can pass multiple [Cubemap]s into a shader using a single
+ * [CubemapArray]. [Cubemap]s are allocated in adjacent cache regions on the GPU, which makes
+ * [CubemapArray]s the most efficient way to store multiple [Cubemap]s.
+ * **Note:** Godot uses [CubemapArray]s internally for many effects, including the [Sky] if you set
+ * [ProjectSettings.rendering/reflections/skyReflections/textureArrayReflections] to `true`. To create
+ * such a texture file yourself, reimport your image files using the import presets of the File System
+ * dock.
+ * **Note:** [CubemapArray] is not supported in the OpenGL 3 rendering backend.
+ */
+@GodotBaseType
+public open class CubemapArray : ImageTextureLayered() {
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_CUBEMAPARRAY_INDEX, scriptIndex)
+  }
+
+  /**
+   * Creates a placeholder version of this resource ([PlaceholderCubemapArray]).
+   */
+  public final fun createPlaceholder(): Resource? {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val createPlaceholderPtr: VoidPtr =
+        Internals.getMethodBindPtr("CubemapArray", "create_placeholder", 121922552)
+  }
+}

@@ -7,8 +7,8 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.core.signal0
-import godot.extensions.call
-import godot.extensions.callDeferred
+import godot.extension.call
+import godot.extension.callDeferred
 
 @RegisterClass
 class FuncRefTest : Node() {

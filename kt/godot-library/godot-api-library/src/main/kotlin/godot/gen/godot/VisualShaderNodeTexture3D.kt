@@ -1,0 +1,63 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE3D_INDEX: Int = 780
+
+/**
+ * Performs a lookup operation on the provided texture, with support for multiple texture sources to
+ * choose from.
+ */
+@GodotBaseType
+public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
+  /**
+   * A source texture. Used if [VisualShaderNodeSample3D.source] is set to
+   * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
+   */
+  public final inline var texture: Texture3D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
+    set(`value`) {
+      setTexture(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETEXTURE3D_INDEX, scriptIndex)
+  }
+
+  public final fun setTexture(`value`: Texture3D?): Unit {
+    Internals.writeArguments(OBJECT to value)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): Texture3D? {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture3D?)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setTexturePtr: VoidPtr =
+        Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "set_texture", 1188404210)
+
+    internal val getTexturePtr: VoidPtr =
+        Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "get_texture", 373985333)
+  }
+}

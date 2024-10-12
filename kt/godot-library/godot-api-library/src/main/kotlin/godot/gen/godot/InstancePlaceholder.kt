@@ -1,0 +1,95 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.String
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmOverloads
+
+private const val ENGINE_CLASS_INSTANCEPLACEHOLDER_INDEX: Int = 330
+
+/**
+ * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it
+ * to be replaced by an [InstancePlaceholder] when running the game, this will not replace the node in
+ * the editor. This makes it possible to delay actually loading the scene until calling
+ * [createInstance]. This is useful to avoid loading large scenes all at once by loading parts of it
+ * selectively.
+ * The [InstancePlaceholder] does not have a transform. This causes any child nodes to be positioned
+ * relatively to the [Viewport] from point (0,0), rather than their parent as displayed in the editor.
+ * Replacing the placeholder with a scene with a transform will transform children relatively to their
+ * parent again.
+ */
+@GodotBaseType
+public open class InstancePlaceholder internal constructor() : Node() {
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_INSTANCEPLACEHOLDER_INDEX, scriptIndex)
+  }
+
+  /**
+   * Returns the list of properties that will be applied to the node when [createInstance] is
+   * called.
+   * If [withOrder] is `true`, a key named `.order` (note the leading period) is added to the
+   * dictionary. This `.order` key is an [Array] of [String] property names specifying the order in
+   * which properties will be applied (with index 0 being the first).
+   */
+  @JvmOverloads
+  public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
+    Internals.writeArguments(BOOL to withOrder)
+    Internals.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
+  /**
+   * Call this method to actually load in the node. The created node will be placed as a sibling
+   * *above* the [InstancePlaceholder] in the scene tree. The [Node]'s reference is also returned for
+   * convenience.
+   * **Note:** [createInstance] is not thread-safe. Use [Object.callDeferred] if calling from a
+   * thread.
+   */
+  @JvmOverloads
+  public final fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
+      Node? {
+    Internals.writeArguments(BOOL to replace, OBJECT to customScene)
+    Internals.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
+  }
+
+  /**
+   * Gets the path to the [PackedScene] resource file that is loaded by default when calling
+   * [createInstance]. Not thread-safe. Use [Object.callDeferred] if calling from a thread.
+   */
+  public final fun getInstancePath(): String {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val getStoredValuesPtr: VoidPtr =
+        Internals.getMethodBindPtr("InstancePlaceholder", "get_stored_values", 2230153369)
+
+    internal val createInstancePtr: VoidPtr =
+        Internals.getMethodBindPtr("InstancePlaceholder", "create_instance", 3794612210)
+
+    internal val getInstancePathPtr: VoidPtr =
+        Internals.getMethodBindPtr("InstancePlaceholder", "get_instance_path", 201670096)
+  }
+}

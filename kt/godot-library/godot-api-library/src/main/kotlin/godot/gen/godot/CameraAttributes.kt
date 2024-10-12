@@ -1,0 +1,190 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.NIL
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_CAMERAATTRIBUTES_INDEX: Int = 163
+
+/**
+ * Controls camera-specific attributes such as depth of field and exposure override.
+ * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
+ * depth of field that will be used by all cameras without their own [CameraAttributes], including the
+ * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
+ * [WorldEnvironment]. When used in [VoxelGI] or [LightmapGI], only the exposure settings will be used.
+ * See also [Environment] for general 3D environment settings.
+ * This is a pure virtual class that is inherited by [CameraAttributesPhysical] and
+ * [CameraAttributesPractical].
+ */
+@GodotBaseType
+public open class CameraAttributes : Resource() {
+  /**
+   * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter
+   * image. Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
+   * enabled. When [autoExposureEnabled] this can be used as a method of exposure compensation,
+   * doubling the value will increase the exposure value (measured in EV100) by 1 stop.
+   */
+  public final inline var exposureSensitivity: Float
+    @JvmName("exposureSensitivityProperty")
+    get() = getExposureSensitivity()
+    @JvmName("exposureSensitivityProperty")
+    set(`value`) {
+      setExposureSensitivity(value)
+    }
+
+  /**
+   * Multiplier for the exposure amount. A higher value results in a brighter image.
+   */
+  public final inline var exposureMultiplier: Float
+    @JvmName("exposureMultiplierProperty")
+    get() = getExposureMultiplier()
+    @JvmName("exposureMultiplierProperty")
+    set(`value`) {
+      setExposureMultiplier(value)
+    }
+
+  /**
+   * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the
+   * renderer will automatically determine the exposure setting to adapt to the scene's illumination
+   * and the observed light.
+   */
+  public final inline var autoExposureEnabled: Boolean
+    @JvmName("autoExposureEnabledProperty")
+    get() = isAutoExposureEnabled()
+    @JvmName("autoExposureEnabledProperty")
+    set(`value`) {
+      setAutoExposureEnabled(value)
+    }
+
+  /**
+   * The scale of the auto exposure effect. Affects the intensity of auto exposure.
+   */
+  public final inline var autoExposureScale: Float
+    @JvmName("autoExposureScaleProperty")
+    get() = getAutoExposureScale()
+    @JvmName("autoExposureScaleProperty")
+    set(`value`) {
+      setAutoExposureScale(value)
+    }
+
+  /**
+   * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto
+   * exposure.
+   */
+  public final inline var autoExposureSpeed: Float
+    @JvmName("autoExposureSpeedProperty")
+    get() = getAutoExposureSpeed()
+    @JvmName("autoExposureSpeedProperty")
+    set(`value`) {
+      setAutoExposureSpeed(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERAATTRIBUTES_INDEX, scriptIndex)
+  }
+
+  public final fun setExposureMultiplier(multiplier: Float): Unit {
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExposureMultiplierPtr, NIL)
+  }
+
+  public final fun getExposureMultiplier(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setExposureSensitivity(sensitivity: Float): Unit {
+    Internals.writeArguments(DOUBLE to sensitivity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExposureSensitivityPtr, NIL)
+  }
+
+  public final fun getExposureSensitivity(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureEnabledPtr, NIL)
+  }
+
+  public final fun isAutoExposureEnabled(): Boolean {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
+    Internals.writeArguments(DOUBLE to exposureSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
+  }
+
+  public final fun getAutoExposureSpeed(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureScale(exposureGrey: Float): Unit {
+    Internals.writeArguments(DOUBLE to exposureGrey.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureScalePtr, NIL)
+  }
+
+  public final fun getAutoExposureScale(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setExposureMultiplierPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373806689)
+
+    internal val getExposureMultiplierPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1740695150)
+
+    internal val setExposureSensitivityPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373806689)
+
+    internal val getExposureSensitivityPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1740695150)
+
+    internal val setAutoExposureEnabledPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2586408642)
+
+    internal val isAutoExposureEnabledPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36873697)
+
+    internal val setAutoExposureSpeedPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373806689)
+
+    internal val getAutoExposureSpeedPtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1740695150)
+
+    internal val setAutoExposureScalePtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373806689)
+
+    internal val getAutoExposureScalePtr: VoidPtr =
+        Internals.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1740695150)
+  }
+}

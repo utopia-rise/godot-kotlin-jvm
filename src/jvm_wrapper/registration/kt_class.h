@@ -12,7 +12,7 @@
 
 const int MAX_CONSTRUCTOR_SIZE = MAX_CONSTRUCTOR_ARG_COUNT + 1;
 
-JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JVM_CLASS(KtClass)
 
     // clang-format off
@@ -34,10 +34,10 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
         INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        INIT_JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
+        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/registration/KtFunction;")
+        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
+        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/registration/KtSignalInfo;")
+        INIT_JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/registration/KtConstructor;")
         INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )

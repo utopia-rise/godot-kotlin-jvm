@@ -15,7 +15,7 @@ import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 
 object PropertyTypeHintProvider {
 
@@ -24,20 +24,20 @@ object PropertyTypeHintProvider {
     ): ClassName {
         return when {
             registeredProperty.type.fqName == Int::class.qualifiedName -> if (registeredProperty.annotations.hasAnnotation<IntFlagHintAnnotation>()) {
-                ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_FLAGS")
+                ClassName("$godotPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_FLAGS")
             } else {
                 JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             }
             registeredProperty.type.fqName == String::class.qualifiedName -> when {
                 registeredProperty.annotations.hasAnnotation<MultilineTextHintAnnotation>() -> {
                     ClassName(
-                        "$godotApiPackage.${GodotTypes.propertyHint}",
+                        "$godotPackage.${GodotTypes.propertyHint}",
                         "PROPERTY_HINT_MULTILINE_TEXT"
                     )
                 }
                 registeredProperty.annotations.hasAnnotation<PlaceHolderTextHintAnnotation>() -> {
                     ClassName(
-                        "$godotApiPackage.${GodotTypes.propertyHint}",
+                        "$godotPackage.${GodotTypes.propertyHint}",
                         "PROPERTY_HINT_PLACEHOLDER_TEXT"
                     )
                 }
@@ -58,22 +58,22 @@ object PropertyTypeHintProvider {
             ).getPropertyTypeHint()
 
             registeredProperty.type.isRefCounted() -> ClassName(
-                "$godotApiPackage.${GodotTypes.propertyHint}",
+                "$godotPackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_RESOURCE_TYPE"
             )
 
             registeredProperty.type.isCompatibleList() -> JvmArrayTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) -> ClassName(
-                "$godotApiPackage.${GodotTypes.propertyHint}",
+                "$godotPackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_RESOURCE_TYPE"
             )
 
             registeredProperty.type.isNodeType() -> ClassName(
-                "$godotApiPackage.${GodotTypes.propertyHint}",
+                "$godotPackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_NODE_TYPE"
             )
 
-            else -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
+            else -> ClassName("$godotPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
         }
     }
 }

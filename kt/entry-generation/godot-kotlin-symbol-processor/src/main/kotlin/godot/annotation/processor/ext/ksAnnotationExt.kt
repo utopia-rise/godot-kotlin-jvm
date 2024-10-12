@@ -58,9 +58,9 @@ internal val KSAnnotation.rangeEnum: Range
         ?.asString()
         ?.let { enumFqName ->
             when (enumFqName) {
-                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.NONE.name}" -> Range.NONE
-                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.OR_GREATER.name}" -> Range.OR_GREATER
-                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.OR_LESSER.name}" -> Range.OR_LESSER
+                "${godot.annotation.Range::class.qualifiedName}.${godot.annotation.Range.NONE.name}" -> Range.NONE
+                "${godot.annotation.Range::class.qualifiedName}.${godot.annotation.Range.OR_GREATER.name}" -> Range.OR_GREATER
+                "${godot.annotation.Range::class.qualifiedName}.${godot.annotation.Range.OR_LESSER.name}" -> Range.OR_LESSER
                 else -> throw IllegalArgumentException("Unknown enum $enumFqName for hint annotation IntRange")
             }
         } ?: Range.NONE

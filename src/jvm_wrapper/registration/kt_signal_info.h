@@ -5,7 +5,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_property.h"
 
-JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.core.KtSignalInfo") {
+JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.registration.KtSignalInfo") {
     JVM_CLASS(KtSignalInfo)
 
     // clang-format off
@@ -14,7 +14,7 @@ JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.core.KtSignalInfo") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
+        INIT_JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/registration/KtPropertyInfo;")
     )
     // clang-format on
 

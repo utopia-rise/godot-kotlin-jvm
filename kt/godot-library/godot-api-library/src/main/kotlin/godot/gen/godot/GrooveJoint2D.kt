@@ -1,0 +1,95 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot
+
+import godot.`annotation`.GodotBaseType
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.NIL
+import godot.util.Internals
+import godot.util.VoidPtr
+import kotlin.Double
+import kotlin.Float
+import kotlin.Int
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+private const val ENGINE_CLASS_GROOVEJOINT2D_INDEX: Int = 291
+
+/**
+ * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
+ * example, a [StaticBody2D] representing a piston base can be attached to a [RigidBody2D] representing
+ * the piston head, moving up and down.
+ */
+@GodotBaseType
+public open class GrooveJoint2D : Joint2D() {
+  /**
+   * The groove's length. The groove is from the joint's origin towards [length] along the joint's
+   * local Y axis.
+   */
+  public final inline var length: Float
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
+    set(`value`) {
+      setLength(value)
+    }
+
+  /**
+   * The body B's initial anchor position defined by the joint's origin and a local offset
+   * [initialOffset] along the joint's Y axis (along the groove).
+   */
+  public final inline var initialOffset: Float
+    @JvmName("initialOffsetProperty")
+    get() = getInitialOffset()
+    @JvmName("initialOffsetProperty")
+    set(`value`) {
+      setInitialOffset(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    Internals.callConstructor(this, ENGINE_CLASS_GROOVEJOINT2D_INDEX, scriptIndex)
+  }
+
+  public final fun setLength(length: Float): Unit {
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public final fun getLength(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setInitialOffset(offset: Float): Unit {
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+  }
+
+  public final fun getInitialOffset(): Float {
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setLengthPtr: VoidPtr =
+        Internals.getMethodBindPtr("GrooveJoint2D", "set_length", 373806689)
+
+    internal val getLengthPtr: VoidPtr =
+        Internals.getMethodBindPtr("GrooveJoint2D", "get_length", 1740695150)
+
+    internal val setInitialOffsetPtr: VoidPtr =
+        Internals.getMethodBindPtr("GrooveJoint2D", "set_initial_offset", 373806689)
+
+    internal val getInitialOffsetPtr: VoidPtr =
+        Internals.getMethodBindPtr("GrooveJoint2D", "get_initial_offset", 1740695150)
+  }
+}

@@ -41,7 +41,7 @@ import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
 import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER__RID
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.variantParserPackage
 import java.util.*
@@ -124,7 +124,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
         type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
         type == GodotTypes.callable -> ClassTypeNameWrapper(GODOT_CALLABLE_BASE)
         isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
-        else -> ClassTypeNameWrapper(ClassName(godotApiPackage, type!!))
+        else -> ClassTypeNameWrapper(ClassName(godotPackage, type!!))
     }
 
     if (this is NullableTrait) {
