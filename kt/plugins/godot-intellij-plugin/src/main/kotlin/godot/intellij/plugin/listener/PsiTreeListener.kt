@@ -15,7 +15,7 @@ import com.intellij.psi.PsiTreeChangeEvent
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCache
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
 import godot.intellij.plugin.data.model.ResPath
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
@@ -80,7 +80,7 @@ class PsiTreeListener(
                         }
 
                         containingClasses
-                            .filter { clazz -> clazz.annotations.any { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION } }
+                            .filter { clazz -> clazz.annotations.any { annotation -> annotation.qualifiedName == GODOT_SCRIPT_ANNOTATION } }
                             .forEach { registeredClass ->
                                 val module = containingFile.module ?: return@forEach
                                 val simpleName = registeredClass.qualifiedName?.substringAfterLast(".") ?: return@forEach

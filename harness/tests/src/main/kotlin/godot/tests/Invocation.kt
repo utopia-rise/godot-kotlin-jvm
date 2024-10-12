@@ -293,7 +293,6 @@ class Invocation : Node3D() {
         hasInitializedLateInits = true
     }
 
-    @GodotMember
     override fun _enterTree() {
         //TODO: uncomment once https://github.com/utopia-rise/godot-kotlin-jvm/issues/86 is fixed
 //        GD.print("Hello", "Hello")
@@ -307,7 +306,6 @@ class Invocation : Node3D() {
         println("CustomName is $customName")
     }
 
-    @GodotMember
     override fun _ready() {
         val formerName = name
         println("Name is: $name")

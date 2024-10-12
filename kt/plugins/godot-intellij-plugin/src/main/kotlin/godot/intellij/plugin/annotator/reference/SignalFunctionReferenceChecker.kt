@@ -3,7 +3,7 @@ package godot.intellij.plugin.annotator.reference
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.psi.util.parentOfType
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_MEMBER_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
@@ -47,7 +47,7 @@ object SignalFunctionReferenceChecker {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            if (targetFunction != null && targetFunction.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null) {
+            if (targetFunction != null && targetFunction.findAnnotation(FqName(GODOT_MEMBER_ANNOTATION)) == null) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.signal.connection.connectedFunctionNotRegistered"),
                     element,

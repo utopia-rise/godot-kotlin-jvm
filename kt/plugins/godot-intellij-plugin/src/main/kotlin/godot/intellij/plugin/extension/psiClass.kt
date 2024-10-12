@@ -1,10 +1,9 @@
 package godot.intellij.plugin.extension
 
 import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
@@ -37,7 +36,7 @@ fun PsiClass.anyPropertyHasAnnotation(annotationFqName: String) = when(this) {
 }
 
 val PsiClass.isRegistered: Boolean
-    get() = getAnnotation(REGISTER_CLASS_ANNOTATION) != null
+    get() = getAnnotation(GODOT_SCRIPT_ANNOTATION) != null
 
 
 fun PsiClass.resolveToDescriptor(): ClassDescriptor? {

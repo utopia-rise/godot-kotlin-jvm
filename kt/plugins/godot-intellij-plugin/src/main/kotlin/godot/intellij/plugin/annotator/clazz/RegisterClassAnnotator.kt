@@ -6,16 +6,14 @@ import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.annotator.base.BaseAnnotator
 import godot.intellij.plugin.annotator.general.checkNotGeneric
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_MEMBER_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
 import godot.intellij.plugin.data.model.TOOL_ANNOTATION
 import godot.intellij.plugin.extension.anyFunctionHasAnnotation
 import godot.intellij.plugin.extension.anyPropertyHasAnnotation
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isAbstract
+import godot.intellij.plugin.extension.isRegistered
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.registeredClassNameCache
 import godot.intellij.plugin.extension.resolveToDescriptor
@@ -34,7 +32,7 @@ class RegisterClassAnnotator : BaseAnnotator {
     override fun checkElement(element: PsiElement, holder: AnnotationHolder) {
         when(element) {
             is PsiClass -> {
-                if (element.getAnnotation(REGISTER_CLASS_ANNOTATION) == null) {
+                if (!element.isRegistered()) {
                     val errorLocation = element.nameIdentifier ?: element.navigationElement
                     if (element.getAnnotation(TOOL_ANNOTATION) != null) {
                         holder.registerProblem(
@@ -43,21 +41,21 @@ class RegisterClassAnnotator : BaseAnnotator {
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (!element.isAbstract && element.anyPropertyHasAnnotation(REGISTER_PROPERTY_ANNOTATION)) {
+                    if (!element.isAbstract && element.anyPropertyHasAnnotation(GODOT_MEMBER_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
                             errorLocation,
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (!element.isAbstract && element.anyPropertyHasAnnotation(REGISTER_SIGNAL_ANNOTATION)) {
+                    if (!element.isAbstract && element.anyPropertyHasAnnotation(GODOT_MEMBER_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
                             errorLocation,
                             classNotRegisteredQuickFix
                         )
                     }
-                    if (!element.isAbstract && element.anyFunctionHasAnnotation(REGISTER_FUNCTION_ANNOTATION)) {
+                    if (!element.isAbstract && element.anyFunctionHasAnnotation(GODOT_MEMBER_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
                             errorLocation,
@@ -100,7 +98,7 @@ class RegisterClassAnnotator : BaseAnnotator {
     private fun checkConstructorParameterCount(psiClass: PsiClass, holder: AnnotationHolder) {
         psiClass
             .constructors
-            .filter { it.getAnnotation(REGISTER_CONSTRUCTOR_ANNOTATION) != null }
+            .filter { it.getAnnotation(GODOT_MEMBER_ANNOTATION) != null }
             .forEach { ktConstructor ->
                 if (ktConstructor.parameterList.parametersCount > Constraints.MAX_CONSTRUCTOR_ARG_COUNT) {
                     holder.registerProblem(
@@ -114,10 +112,10 @@ class RegisterClassAnnotator : BaseAnnotator {
     private fun checkConstructorOverloading(psiClass: PsiClass, holder: AnnotationHolder) {
         val constructors = psiClass
             .constructors
-            .filter { it.getAnnotation(REGISTER_CONSTRUCTOR_ANNOTATION) != null }
+            .filter { it.getAnnotation(GODOT_MEMBER_ANNOTATION) != null }
 
         val constructorsByArgCount = constructors
-            .filter { it.getAnnotation(REGISTER_CONSTRUCTOR_ANNOTATION) != null }
+            .filter { it.getAnnotation(GODOT_MEMBER_ANNOTATION) != null }
             .groupBy { it.parameterList.parametersCount }
 
         if (constructorsByArgCount.size != constructors.size) {
@@ -143,7 +141,7 @@ class RegisterClassAnnotator : BaseAnnotator {
             ?: return
 
         if (fqNames.size > 1 || (fqNames.size == 1 && !fqNames.contains(fqName))) {
-            val registerClassAnnotation = psiClass.getAnnotation(REGISTER_CLASS_ANNOTATION)
+            val registerClassAnnotation = psiClass.getAnnotation(GODOT_SCRIPT_ANNOTATION)
             val psiElement = if (registerClassAnnotation == null) {
                 psiClass.nameIdentifier ?: psiClass.navigationElement
             } else {

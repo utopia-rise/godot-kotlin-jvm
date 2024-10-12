@@ -8,7 +8,11 @@ package godot.annotation
  *
  * The property needs to have the @[RegisterProperty] annotation added as well
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(
+    AnnotationTarget.PROPERTY,
+    AnnotationTarget.FIELD,
+    AnnotationTarget.ANNOTATION_CLASS,
+)
 @Retention(AnnotationRetention.RUNTIME)
 @GodotMember
 annotation class Export

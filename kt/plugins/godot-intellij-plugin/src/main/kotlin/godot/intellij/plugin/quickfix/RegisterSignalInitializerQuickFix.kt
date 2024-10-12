@@ -4,9 +4,7 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.tools.common.constants.godotCorePackage
-import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtModifierListOwner
 import org.jetbrains.kotlin.psi.KtProperty
@@ -25,7 +23,7 @@ class RegisterSignalInitializerQuickFix : LocalQuickFix {
         val property = propertyPsi.replace(newProperty)
         property.add(delegate)
 
-        (property as KtModifierListOwner).addAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION))
+        require(property is KtModifierListOwner)
 
         val importDirective = factory.createImportDirective(ImportPath(FqName("$godotCorePackage.signal"), false))
         val imports = property.containingKtFile.importList

@@ -20,7 +20,8 @@ internal fun KSFunctionDeclaration.mapToRegisteredConstructor(
             ksValueParameter.mapToValueParameter(settings)
         },
         annotations = annotations
-            .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
+            .flatMap { it.mapToAnnotation(this) }
+            .filterIsInstance<ConstructorAnnotation>()
             .toList(),
         symbolProcessorSource = this
     )
@@ -33,7 +34,9 @@ internal fun KSFunctionDeclaration.mapToRegisteredFunction(
 ): RegisteredFunction? {
     val fqName = qualifiedName?.asString() ?: return null
     val parameters = parameters.map { it.mapToValueParameter(settings) }
-    val annotations = annotations.mapNotNull { it.mapToAnnotation(this) as? FunctionAnnotation }
+    val annotations = annotations
+        .flatMap { it.mapToAnnotation(this) }
+        .filterIsInstance<FunctionAnnotation>()
     return RegisteredFunction(
         fqName = fqName,
         isOverridee = this.modifiers.contains(Modifier.OVERRIDE),
