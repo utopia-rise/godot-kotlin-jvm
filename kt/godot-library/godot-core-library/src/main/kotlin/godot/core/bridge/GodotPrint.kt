@@ -40,11 +40,11 @@ object GodotPrint {
         pushWarning()
     }
 
-    internal external fun print()
-    internal external fun printRich()
-    internal external fun printVerbose()
-    internal external fun printErr()
-    internal external fun printRaw()
-    internal external fun pushError()
-    internal external fun pushWarning()
+    external fun print()
+    external fun printRich()
+    external fun printVerbose()
+    external fun printErr()
+    external fun printRaw()
+    external fun pushError()
+    external fun pushWarning()
 }

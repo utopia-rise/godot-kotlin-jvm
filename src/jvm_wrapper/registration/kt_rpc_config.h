@@ -6,7 +6,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "scene/main/multiplayer_api.h"
 
-JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
+JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.registration.KtRpcConfig") {
     JVM_CLASS(KtRpcConfig)
 
     // clang-format off

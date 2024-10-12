@@ -4,7 +4,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_object.h"
 
-JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
+JVM_INSTANCE_WRAPPER(KtConstructor, "godot.registration.KtConstructor") {
     JVM_CLASS(KtConstructor)
 
     // clang-format off

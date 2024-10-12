@@ -691,14 +691,14 @@
     "name" : "godot.runtime.Bootstrap",
     "methods" : [
       { "name" : "<init>", "parameterTypes" : [] },
-      { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
+      { "name" : "loadClasses", "parameterTypes" : ["godot.registration.KtClass[]"] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
       { "name" : "init", "parameterTypes": ["java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
       { "name" : "finish", "parameterTypes" : [] }
     ]
   },
   {
-    "name":"godot.core.KtClass",
+    "name":"godot.registration.KtClass",
     "methods":[
       {"name":"getRelativeSourcePath","parameterTypes":[] },
       {"name":"getCompilationTimeRelativeRegistrationFilePath","parameterTypes":[] },
@@ -714,7 +714,7 @@
     ]
   },
   {
-    "name": "godot.core.KtConstructor",
+    "name": "godot.registration.KtConstructor",
     "methods": [
       {"name": "getParameterCount", "parameterTypes": []},
       {"name": "construct", "parameterTypes": ["long", "long"]}
@@ -729,7 +729,7 @@
     ]
   },
   {
-    "name":"godot.core.KtFunction",
+    "name":"godot.registration.KtFunction",
     "methods":[
       {"name":"getFunctionInfo","parameterTypes":[] },
       {"name":"getParameterCount","parameterTypes":[] },
@@ -738,7 +738,7 @@
     ]
   },
   {
-    "name":"godot.core.KtFunctionInfo",
+    "name":"godot.registration.KtFunctionInfo",
     "methods":[
       {"name":"getArguments","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] },
@@ -747,7 +747,7 @@
     ]
   },
   {
-    "name":"godot.core.KtProperty",
+    "name":"godot.registration.KtProperty",
     "methods":[
       {"name":"getKtPropertyInfo","parameterTypes":[] },
       {"name":"callGet","parameterTypes":["godot.core.KtObject"] },
@@ -755,7 +755,7 @@
     ]
   },
   {
-    "name":"godot.core.KtPropertyInfo",
+    "name":"godot.registration.KtPropertyInfo",
     "methods":[
       {"name":"getClassName","parameterTypes":[] },
       {"name":"getHint","parameterTypes":[] },
@@ -766,14 +766,14 @@
     ]
   },
   {
-    "name":"godot.core.KtSignalInfo",
+    "name":"godot.registration.KtSignalInfo",
     "methods":[
       {"name":"getArguments","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] }
     ]
   },
   {
-    "name":"godot.core.KtRpcConfig",
+    "name":"godot.registration.KtRpcConfig",
     "methods":[
       {"name":"getRpcModeId","parameterTypes":[] },
       {"name":"getRpcCallLocal","parameterTypes":[] },

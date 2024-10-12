@@ -28,7 +28,7 @@ import godot.core.Signal8
 import godot.core.Signal9
 import godot.core.asCallable
 import godot.core.toGodotName
-import godot.extensions.connectThreadSafe
+import godot.extension.connectThreadSafe
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
