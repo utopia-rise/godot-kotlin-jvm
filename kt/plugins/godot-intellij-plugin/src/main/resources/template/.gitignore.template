@@ -4,4 +4,4 @@
 .kotlin
 .idea
 build
-jre
+jvm
