@@ -5,6 +5,7 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
 import godot.common.interop.nullObjectID
 import godot.common.interop.nullptr
+import godot.annotation.GodotApiMember
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import kotlincompile.definitions.GodotJvmBuildConfig
@@ -80,6 +81,7 @@ abstract class KtObject: IdentityPointer {
     }
 
     @Suppress("FunctionName")
+    @GodotApiMember
     open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
