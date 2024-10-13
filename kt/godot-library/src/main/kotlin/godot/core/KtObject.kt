@@ -96,6 +96,7 @@ abstract class KtObject: IdentityPointer {
      * By the time a RefCounted counter reaches 0, its JVM instance has already being GCed and can't be used anymore.
      */
     @Suppress("FunctionName")
+    @GodotApiMember
     open fun _onDestroy() = Unit
 
     fun free() {
