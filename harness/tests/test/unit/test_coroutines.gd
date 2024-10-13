@@ -36,6 +36,14 @@ func test_coroutine_await():
     test_script.signal_without_parameter.emit()
     await get_tree().create_timer(1).timeout
     assert_eq(test_script.step, 8, "Property should be 8 when coroutine is resumed.")
+    
+    test_script.start_coroutine_with_physics_frame()
+    await get_tree().physics_frame
+    assert_eq(test_script.step, 10, "Property should be 10 when coroutine is resumed.")
+    
+    test_script.start_coroutine_with_process_frame()
+    await get_tree().process_frame
+    assert_eq(test_script.step, 12, "Property should be 12 when coroutine is resumed.")
 
     test_script.run_on_main_thread_from_background_thread()
     var run_on_main_thread_from_background_thread_success = await test_script.run_on_main_thread_from_background_thread_finished
@@ -45,4 +53,5 @@ func test_coroutine_await():
     var async_load_resource_success = await test_script.async_load_resource_finished
     assert_true(async_load_resource_success, "Resource should be loaded")
 
+    await get_tree().create_timer(1).timeout
     test_script.free()
