@@ -5,6 +5,9 @@ package godot.annotation
  *
  * @param customName Register the class name with this string rather than with `fully_qualified_ClassName`. **Note:** If this class name is already registered, a compilation error will be thrown! So make sure your custom class name is unique!
  */
-@Target(AnnotationTarget.CLASS)
+@Target(
+    AnnotationTarget.CLASS,
+    AnnotationTarget.ANNOTATION_CLASS
+)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class GodotScript(val customName: String = "")

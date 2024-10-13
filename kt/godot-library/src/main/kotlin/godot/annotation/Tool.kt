@@ -8,4 +8,5 @@ package godot.annotation
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@GodotScript
 annotation class Tool

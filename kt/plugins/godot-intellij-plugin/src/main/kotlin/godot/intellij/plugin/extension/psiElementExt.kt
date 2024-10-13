@@ -30,14 +30,14 @@ import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 fun PsiElement.isRegistered(): Boolean {
     return when (this) {
         is KtAnnotated -> when (this) {
-            is KtClass -> hasRegistrationAnnotation()
+            is KtClass -> hasRegistrationAnnotation() && !this.isAnnotation()
             is KtProperty -> hasRegistrationAnnotation() || isSignal() || overridesRegistered()
             is KtFunction -> hasRegistrationAnnotation() || overridesGodotApiFunction() || overridesRegistered()
             else -> false
         }
 
         is PsiModifierListOwner -> when(this) {
-            is PsiClass -> hasRegistrationAnnotation()
+            is PsiClass -> hasRegistrationAnnotation() && !this.isAnnotationType
             is PsiField -> hasRegistrationAnnotation() || isSignal() || overridesRegistered()
             is PsiMethod -> hasRegistrationAnnotation() || overridesGodotApiFunction() || overridesRegistered()
             else -> false
