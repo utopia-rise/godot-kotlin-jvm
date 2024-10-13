@@ -12,9 +12,6 @@ object ConstructorRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
         registeredClass
             .constructors
-            .filter { registeredConstructor ->
-                registeredConstructor.parameters.isEmpty()
-            }
             .forEach { registeredConstructor ->
                 val ctorParamsCount = registeredConstructor.parameters.size
 
