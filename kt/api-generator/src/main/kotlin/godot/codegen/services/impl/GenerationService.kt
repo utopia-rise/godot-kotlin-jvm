@@ -43,7 +43,6 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
@@ -53,6 +52,7 @@ import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
+import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
@@ -674,6 +674,9 @@ class GenerationService(
         addFunction(
             FunSpec.builder("_onDestroy")
                 .addModifiers(KModifier.OVERRIDE, KModifier.FINAL)
+                // needed as we override the base function.
+                // in order for the entry gen to detect that this is not a user override, we need to declare this override an api member
+                .addAnnotation(GODOT_API_MEMBER)
                 .returns(Unit::class)
                 .addStatement("")
                 .build()

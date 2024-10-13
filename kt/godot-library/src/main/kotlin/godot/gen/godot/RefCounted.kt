@@ -6,7 +6,8 @@
 
 package godot
 
-import godot.`annotation`.GodotBaseType
+import godot.annotation.GodotApiMember
+import godot.annotation.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -17,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import godot.util.VoidPtr
 
 /**
  * Base class for any object that keeps a reference count. [Resource] and many other helper objects
@@ -43,6 +45,7 @@ public open class RefCounted : Object() {
     callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
   }
 
+  @GodotApiMember
   public final override fun _onDestroy(): Unit {
 
   }
