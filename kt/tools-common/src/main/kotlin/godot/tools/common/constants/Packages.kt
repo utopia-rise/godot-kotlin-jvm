@@ -3,11 +3,11 @@ package godot.tools.common.constants
 
 const val godotApiPackage = "godot"
 const val godotCorePackage = "godot.core"
-const val godotInteropPackage = "godot.common.interop"
 const val godotMemoryPackage = "godot.core.memory"
 const val godotCoroutinePackage = "godot.coroutines"
 const val godotAnnotationPackage = "godot.annotation"
-const val godotUtilPackage = "godot.util"
+const val godotInteropPackage = "godot.common.interop"
+const val godotUtilPackage = "godot.common.util"
 
 const val godotRegistrationPackage = "godot.registration"
 const val godotEntryBasePackage = "godot.entry"
