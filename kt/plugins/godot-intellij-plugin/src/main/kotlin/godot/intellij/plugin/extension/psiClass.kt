@@ -1,17 +1,16 @@
 package godot.intellij.plugin.extension
 
 import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
-import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
-import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.caches.resolve.util.getJavaClassDescriptor
-import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
+import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
+import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 
 val PsiClass.isAbstract: Boolean
     get() = when(this) {
@@ -19,27 +18,25 @@ val PsiClass.isAbstract: Boolean
         else -> isInterface || modifierList?.hasModifierProperty(PsiModifier.ABSTRACT) ?: false
     }
 
-fun PsiClass.anyFunctionHasAnnotation(annotationFqName: String) = this
-    .methods
-    .filterIsInstance<PsiMethod>()
-    .any { declaration ->
-        declaration.getAnnotation(annotationFqName) != null
-    }
-
-fun PsiClass.anyPropertyHasAnnotation(annotationFqName: String) = when(this) {
-    is KtUltraLightClass -> (this.kotlinOrigin as? KtClass)?.getProperties()?.any { property -> property.findAnnotation(FqName(annotationFqName)) != null } == true
-    else -> this
-        .fields
-        .any { declaration ->
-            declaration.getAnnotation(annotationFqName) != null
-        }
+fun PsiClass.isAnyMemberRegistered(): Boolean {
+    return this.methods.any { it.isRegistered() } || this.methods.any { it.isRegistered() }
 }
 
-val PsiClass.isRegistered: Boolean
-    get() = getAnnotation(GODOT_SCRIPT_ANNOTATION) != null
+fun PsiClass.extendsGodotType(): Boolean {
+    return this
+        .resolveToDescriptor()
+        ?.getAllSuperclassesWithoutAny()
+        ?.any { it.fqNameSafe.asString() == "$godotCorePackage.${GodotKotlinJvmTypes.ktObject}" } == true
+}
 
+fun PsiClass.hasDefaultConstructor(): Boolean {
+    return when(this) {
+        is KtClass -> this.constructors.any { it.parameters.isEmpty() }
+        else -> this.constructors.isEmpty() || this.constructors.any { it.parameters.isEmpty() }
+    }
+}
 
-fun PsiClass.resolveToDescriptor(): ClassDescriptor? {
+private fun PsiClass.resolveToDescriptor(): ClassDescriptor? {
     return when(this) {
         is KtClass -> resolveToDescriptorIfAny()
         else -> getJavaClassDescriptor()
