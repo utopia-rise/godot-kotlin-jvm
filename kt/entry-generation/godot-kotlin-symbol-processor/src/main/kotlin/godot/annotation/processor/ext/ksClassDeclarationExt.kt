@@ -5,6 +5,7 @@ import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
 import com.google.devtools.ksp.isAbstract
 import com.google.devtools.ksp.isPublic
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
@@ -38,7 +39,7 @@ internal fun KSClassDeclaration.mapToClazz(
 
     val registeredFunctions = getAllFunctions()
         .filter { function ->
-            function.hasAnnotation(GodotMember::class) || function.overridesApiFunction()
+            function.hasAnnotation(GodotMember::class) || function.overridesApiFunction() || function.overridesRegisteredFunction()
         }
         .mapNotNull { it.mapToRegisteredFunction(this, settings) }
         .toList()
@@ -67,7 +68,7 @@ internal fun KSClassDeclaration.mapToClazz(
         .map { it.mapToRegisteredSignal(declaredProperties.toList(), settings) }
         .toList()
 
-    val shouldBeRegistered = hasRegistrationAnnotation() ||
+    val shouldBeRegistered = (classKind != ClassKind.ANNOTATION_CLASS && hasRegistrationAnnotation()) ||
         isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
         isAbstractAndInheritsGodotBaseClass()
 
@@ -150,6 +151,10 @@ private fun KSFunctionDeclaration.overridesApiFunction(isOveridee: Boolean = fal
             return overridee.overridesApiFunction(true)
         }
     }
+}
+
+private fun KSFunctionDeclaration.overridesRegisteredFunction(): Boolean {
+    return hasAnnotation(GodotMember::class) || (findOverridee() as? KSFunctionDeclaration)?.overridesRegisteredFunction() == true
 }
 
 private fun KSPropertyDeclaration.overridesRegisteredProperty(): Boolean {
