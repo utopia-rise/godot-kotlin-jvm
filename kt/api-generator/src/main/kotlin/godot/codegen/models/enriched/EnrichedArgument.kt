@@ -7,8 +7,8 @@ import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.WithDefaultValueTrait
 import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.extensions.convertToCamelCase
-import godot.tools.common.extensions.escapeKotlinReservedNames
+import godot.common.extensions.convertToCamelCase
+import godot.common.extensions.escapeKotlinReservedNames
 
 class EnrichedArgument(val internal: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
     val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()

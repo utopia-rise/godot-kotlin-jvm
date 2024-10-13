@@ -6,7 +6,7 @@ import godot.intellij.plugin.data.model.IncomingSignalConnectionDataContainer
 import godot.intellij.plugin.data.model.OutgoingSignalConnectionDataContainer
 import godot.intellij.plugin.extension.asResPath
 import godot.tools.common.constants.FileExtensions
-import godot.tools.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToCamelCase
 
 class SignalConnectionCache {
     private val incomingSignalConnectionDataContainers: MutableMap<String, MutableMap<String, List<IncomingSignalConnectionDataContainer>>> =

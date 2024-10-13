@@ -16,21 +16,16 @@ kotlin {
     jvmToolchain(11)
 }
 
-dependencies {
-    implementation(libs.kotlinPoet)
-    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
-}
-
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
         val godotToolsCommonGenerator by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
-                description.set("Godot common module for all tools.")
+                description.set("Godot common module other libraries.")
             }
             artifactId = project.name
-            description = "Godot common module for all tools."
+            description = "Godot common module other libraries."
             from(components.getByName("java"))
         }
     }

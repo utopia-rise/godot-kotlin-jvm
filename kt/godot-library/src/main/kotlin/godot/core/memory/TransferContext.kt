@@ -4,7 +4,7 @@ import godot.core.KtObject
 import godot.core.LongStringQueue
 import godot.core.ObjectID
 import godot.core.VariantConverter
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocal
 import kotlincompile.definitions.GodotJvmBuildConfig

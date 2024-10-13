@@ -1,4 +1,4 @@
-package godot.tools.common.extensions
+package godot.common.extensions
 
 import java.util.*
 

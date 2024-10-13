@@ -5,7 +5,7 @@ import godot.codegen.models.Class
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
-import godot.tools.common.extensions.escapeUnderscore
+import godot.common.extensions.escapeUnderscore
 import java.util.*
 
 class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {

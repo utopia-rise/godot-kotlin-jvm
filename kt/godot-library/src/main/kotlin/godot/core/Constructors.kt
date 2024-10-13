@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocal
 

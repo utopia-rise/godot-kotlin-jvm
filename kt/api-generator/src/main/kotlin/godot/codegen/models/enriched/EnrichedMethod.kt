@@ -7,9 +7,9 @@ import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.IDocumented
 import godot.codegen.workarounds.sanitizeApiType
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToCamelCase
 
 class EnrichedMethod(val internal: Method) : CallableTrait, IDocumented {
     override val arguments = internal.arguments?.toEnriched() ?: listOf()

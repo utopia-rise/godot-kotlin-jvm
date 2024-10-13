@@ -21,7 +21,7 @@ import godot.intellij.plugin.extension.registeredClassNameCache
 import godot.intellij.plugin.extension.resolveToDescriptor
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.base.util.module

@@ -50,6 +50,11 @@ jobs:
       - name: Publish tools-common
         shell: sh
         run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :common:publish
+
+      - name: Publish tools-common
+        shell: sh
+        run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :tools-common:publish
 
       - name: Publish godot-build-props

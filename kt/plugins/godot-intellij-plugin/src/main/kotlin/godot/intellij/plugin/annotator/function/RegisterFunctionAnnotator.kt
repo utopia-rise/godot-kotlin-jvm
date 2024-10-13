@@ -11,7 +11,7 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import org.jetbrains.kotlin.asJava.toLightMethods
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny

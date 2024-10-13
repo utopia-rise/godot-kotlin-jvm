@@ -9,7 +9,7 @@ import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser
-import godot.tools.common.extensions.convertToSnakeCase
+import godot.common.extensions.convertToSnakeCase
 import godot.util.LRUCache
 import godot.util.VoidPtr
 import java.util.concurrent.ConcurrentHashMap

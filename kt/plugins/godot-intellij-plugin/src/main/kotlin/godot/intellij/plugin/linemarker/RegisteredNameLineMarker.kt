@@ -20,7 +20,7 @@ import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isAbstract
 import godot.intellij.plugin.extension.isInGodotRoot
-import godot.tools.common.extensions.convertToSnakeCase
+import godot.common.extensions.convertToSnakeCase
 import org.jetbrains.kotlin.idea.refactoring.isAbstract
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtTokens
