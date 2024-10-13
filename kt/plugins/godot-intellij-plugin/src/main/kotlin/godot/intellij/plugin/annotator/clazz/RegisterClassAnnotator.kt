@@ -32,7 +32,7 @@ class RegisterClassAnnotator : BaseAnnotator {
     override fun checkElement(element: PsiElement, holder: AnnotationHolder) {
         when(element) {
             is PsiClass -> {
-                if (!element.isRegistered()) {
+                if (!element.isRegistered() || element.isAnnotationType) {
                     val errorLocation = element.nameIdentifier ?: element.navigationElement
                     if (element.getAnnotation(TOOL_ANNOTATION) != null) {
                         holder.registerProblem(

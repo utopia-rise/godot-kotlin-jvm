@@ -177,39 +177,30 @@ class Invocation : Node3D() {
     @Export
     var packedVector3Array = PackedVector3Array()
 
-    @Export
     @IntRange(1, 2)
     var p1 = 1
 
-    @Export
     @LongRange(1L, 2L)
     var p1_1 = 1L
 
-    @Export
     @FloatRange(1f, 2f)
     var p2 = 1f
 
-    @Export
     @DoubleRange(1.0, 2.0)
     var p3 = 1.0
 
-    @Export
     @DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
     var p4 = 1.0
 
-    @Export
     @FloatRange(1f, 2f)
     var p5 = 1f
 
-    @Export
     @EnumTypeHint
     var p6 = TestEnum.ENUM_1
 
-    @Export
     @ExpEasing
     var p7 = 1f
 
-    @Export
     @ExpEasing
     var p8 = 1.0
 
@@ -217,27 +208,21 @@ class Invocation : Node3D() {
     @EnumFlag
     var p9 = setOf(TestEnum.ENUM_1)
 
-    @Export
     @EnumFlag
     var p10 = mutableSetOf(TestEnum.ENUM_1)
 
-    @Export
     @EnumFlag
     var p11 = mutableSetOf<TestEnum>()
 
-    @Export
     @IntFlag
     var p12 = 1 or 2 and 3
 
-    @Export
     @File
     var p13 = "someFile"
 
-    @Export
     @Dir
     var p14 = "someDir"
 
-    @Export
     @MultilineText
     var p15 = """
 		some
@@ -245,11 +230,9 @@ class Invocation : Node3D() {
 		text
 	""".trimIndent()
 
-    @Export
     @PlaceHolderText
     var p16 = "some placeholderText"
 
-    @Export
     @ColorNoAlpha
     var p17 = Color()
 
@@ -306,6 +289,7 @@ class Invocation : Node3D() {
         println("CustomName is $customName")
     }
 
+    
     override fun _ready() {
         val formerName = name
         println("Name is: $name")
