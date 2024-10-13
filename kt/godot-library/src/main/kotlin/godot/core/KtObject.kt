@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.GodotApiMember
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -78,6 +79,7 @@ abstract class KtObject {
     }
 
     @Suppress("FunctionName")
+    @GodotApiMember
     open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
