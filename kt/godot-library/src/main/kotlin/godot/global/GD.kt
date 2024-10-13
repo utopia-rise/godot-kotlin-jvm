@@ -15,7 +15,7 @@ import godot.core.PackedVector3Array
 import godot.core.memory.MemoryManager
 import godot.extensions.asStatic
 import godot.extensions.loadAs
-import godot.util.nullptr
+import godot.common.interop.nullptr
 
 
 object GD : GDMath, GDCore, GDRandom, GDPrint {
@@ -32,7 +32,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     @JvmStatic
     fun isInstanceValid(instance: Object?): Boolean {
         if (instance != null) {
-            return instance.rawPtr != nullptr && MemoryManager.isInstanceValid(instance)
+            return instance.ptr != nullptr && MemoryManager.isInstanceValid(instance)
         }
         return false
     }

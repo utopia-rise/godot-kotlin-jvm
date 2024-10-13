@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -17,7 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -57,7 +57,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
       Error {
     TransferContext.writeArguments(ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createServerPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -73,7 +73,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createClientPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -85,7 +85,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createMeshPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -103,7 +103,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     unreliableLifetime: Int = 1,
   ): Error {
     TransferContext.writeArguments(OBJECT to peer, LONG to peerId.toLong(), LONG to unreliableLifetime.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPeerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.addPeerPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -114,7 +114,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun removePeer(peerId: Int): Unit {
     TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePeerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removePeerPtr, NIL)
   }
 
   /**
@@ -122,7 +122,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun hasPeer(peerId: Int): Boolean {
     TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPeerPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasPeerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -134,7 +134,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun getPeer(peerId: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getPeerPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -144,7 +144,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun getPeers(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getPeersPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

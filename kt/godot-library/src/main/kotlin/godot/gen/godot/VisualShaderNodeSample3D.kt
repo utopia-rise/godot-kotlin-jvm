@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -40,12 +40,12 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   public final fun setSource(`value`: Source): Unit {
     TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -19,7 +20,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -78,7 +78,7 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.isButtonPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -88,7 +88,7 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getInputPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -98,7 +98,7 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFloatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -108,7 +108,7 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getVector2Ptr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getVector2Ptr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -117,7 +117,7 @@ public open class XRController3D : XRNode3D() {
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
@@ -40,7 +40,7 @@ public open class GDScript : Script() {
    */
   public final fun new(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.newPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -91,34 +91,34 @@ public open class MeshTexture : Texture2D() {
 
   public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setImageSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setImageSizePtr, NIL)
   }
 
   public final fun getImageSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getImageSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setBaseTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBaseTexturePtr, NIL)
   }
 
   public final fun getBaseTexture(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getBaseTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 

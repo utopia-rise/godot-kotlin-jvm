@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
@@ -16,7 +17,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -38,7 +38,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getTravel(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getTravelPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -47,7 +47,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getRemainder(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemainderPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getRemainderPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -56,7 +56,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -65,7 +65,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionNormalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -74,7 +74,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getColliderVelocity(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderVelocityPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -84,7 +84,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getColliderId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -93,7 +93,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -102,7 +102,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -111,7 +111,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getColliderShape(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -120,7 +120,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionLocalShape(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLocalShapePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionLocalShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -129,7 +129,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionDepth(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionDepthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -139,7 +139,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -149,7 +149,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    */
   public final fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

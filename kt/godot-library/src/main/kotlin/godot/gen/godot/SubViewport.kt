@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -154,56 +154,56 @@ public open class SubViewport : Viewport() {
 
   public final fun setSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverride(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSize2dOverridePtr, NIL)
   }
 
   public final fun getSize2dOverride(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverrideStretch(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
   }
 
   public final fun isSize2dOverrideStretchEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearMode(mode: ClearMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setClearModePtr, NIL)
   }
 
   public final fun getClearMode(): ClearMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getClearModePtr, LONG)
     return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -2,10 +2,10 @@
 
 package godot.core
 
-import godot.util.RealT
-import godot.util.isEqualApprox
-import godot.util.lerp
-import godot.util.toRealT
+import godot.common.util.RealT
+import godot.common.util.isEqualApprox
+import godot.common.util.lerp
+import godot.common.util.toRealT
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min

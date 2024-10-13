@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -102,67 +102,67 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
 
   public final fun setHint(hint: Hint): Unit {
     TransferContext.writeArguments(LONG to hint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
 
   public final fun getHint(): Hint {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun getMin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMax(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun getMax(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStep(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun getStep(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

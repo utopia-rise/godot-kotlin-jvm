@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -47,12 +47,12 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlipFacesPtr, NIL)
   }
 
   public final fun getFlipFaces(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFlipFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

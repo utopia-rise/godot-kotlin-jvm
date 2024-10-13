@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -120,7 +120,7 @@ public open class AcceptDialog : Window() {
    */
   public final fun getOkButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getOkButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -131,29 +131,29 @@ public open class AcceptDialog : Window() {
    */
   public final fun getLabel(): Label? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLabelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Label?)
   }
 
   public final fun setHideOnOk(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnOkPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHideOnOkPtr, NIL)
   }
 
   public final fun getHideOnOk(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHideOnOkPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getHideOnOkPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCloseOnEscape(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCloseOnEscapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCloseOnEscapePtr, NIL)
   }
 
   public final fun getCloseOnEscape(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCloseOnEscapePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getCloseOnEscapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -170,7 +170,7 @@ public open class AcceptDialog : Window() {
     action: String = "",
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.addButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.addButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -181,7 +181,7 @@ public open class AcceptDialog : Window() {
    */
   public final fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.addCancelButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.addCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -192,7 +192,7 @@ public open class AcceptDialog : Window() {
    */
   public final fun removeButton(button: Button?): Unit {
     TransferContext.writeArguments(OBJECT to button)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeButtonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeButtonPtr, NIL)
   }
 
   /**
@@ -201,39 +201,39 @@ public open class AcceptDialog : Window() {
    */
   public final fun registerTextEnter(lineEdit: LineEdit?): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerTextEnterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerTextEnterPtr, NIL)
   }
 
   public final fun setText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAutowrap(autowrap: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autowrap)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapPtr, NIL)
   }
 
   public final fun hasAutowrap(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAutowrapPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasAutowrapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOkButtonText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOkButtonTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOkButtonTextPtr, NIL)
   }
 
   public final fun getOkButtonText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getOkButtonTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

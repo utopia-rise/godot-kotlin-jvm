@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -69,12 +69,12 @@ public open class LightmapGIData : Resource() {
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {
     TransferContext.writeArguments(ARRAY to lightTextures)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapTexturesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLightmapTexturesPtr, NIL)
   }
 
   public final fun getLightmapTextures(): VariantArray<TextureLayered> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapTexturesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLightmapTexturesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
@@ -88,7 +88,7 @@ public open class LightmapGIData : Resource() {
    */
   public final fun setUsesSphericalHarmonics(usesSphericalHarmonics: Boolean): Unit {
     TransferContext.writeArguments(BOOL to usesSphericalHarmonics)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
   }
 
   /**
@@ -97,7 +97,7 @@ public open class LightmapGIData : Resource() {
    */
   public final fun isUsingSphericalHarmonics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -111,7 +111,7 @@ public open class LightmapGIData : Resource() {
     subInstance: Int,
   ): Unit {
     TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addUserPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addUserPtr, NIL)
   }
 
   /**
@@ -119,7 +119,7 @@ public open class LightmapGIData : Resource() {
    */
   public final fun getUserCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUserCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUserCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -128,7 +128,7 @@ public open class LightmapGIData : Resource() {
    */
   public final fun getUserPath(userIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to userIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getUserPathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getUserPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -137,17 +137,17 @@ public open class LightmapGIData : Resource() {
    */
   public final fun clearUsers(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearUsersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearUsersPtr, NIL)
   }
 
   public final fun setLightTexture(lightTexture: TextureLayered?): Unit {
     TransferContext.writeArguments(OBJECT to lightTexture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLightTexturePtr, NIL)
   }
 
   public final fun getLightTexture(): TextureLayered? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLightTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 

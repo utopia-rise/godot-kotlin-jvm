@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -59,7 +59,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun canGetBuffer(frames: Int): Boolean {
     TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canGetBufferPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.canGetBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -72,7 +72,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun getBuffer(frames: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -83,17 +83,17 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun clearBuffer(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 
   public final fun setBufferLength(bufferLengthSeconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -102,7 +102,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -111,7 +111,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun getDiscardedFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiscardedFramesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDiscardedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -120,7 +120,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun getBufferLengthFrames(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthFramesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -129,7 +129,7 @@ public open class AudioEffectCapture : AudioEffect() {
    */
   public final fun getPushedFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPushedFramesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPushedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

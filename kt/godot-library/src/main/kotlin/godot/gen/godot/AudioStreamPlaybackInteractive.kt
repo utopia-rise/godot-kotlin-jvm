@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -33,7 +33,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
    */
   public final fun switchToClipByName(clipName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to clipName)
-    TransferContext.callMethod(rawPtr, MethodBindings.switchToClipByNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.switchToClipByNamePtr, NIL)
   }
 
   /**
@@ -41,7 +41,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
    */
   public final fun switchToClip(clipIndex: Int): Unit {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.switchToClipPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.switchToClipPtr, NIL)
   }
 
   public companion object

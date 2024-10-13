@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.TypeManager
@@ -17,7 +18,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -61,24 +61,24 @@ public open class XRVRS : Object() {
 
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
 
   public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVrsStrengthPtr, NIL)
   }
 
   /**
@@ -89,7 +89,7 @@ public open class XRVRS : Object() {
    */
   public final fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
     TransferContext.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeVrsTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.makeVrsTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

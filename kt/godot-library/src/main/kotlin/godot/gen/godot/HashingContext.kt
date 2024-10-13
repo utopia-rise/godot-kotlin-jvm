@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -87,7 +87,7 @@ public open class HashingContext : RefCounted() {
    */
   public final fun start(type: HashType): Error {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -96,7 +96,7 @@ public open class HashingContext : RefCounted() {
    */
   public final fun update(chunk: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.updatePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -105,7 +105,7 @@ public open class HashingContext : RefCounted() {
    */
   public final fun finish(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 

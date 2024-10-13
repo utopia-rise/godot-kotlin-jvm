@@ -5,8 +5,8 @@ package godot.core
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.common.constants.Constraints
-import godot.util.VoidPtr
-import godot.util.threadLocal
+import godot.common.interop.VoidPtr
+import godot.common.util.threadLocal
 
 abstract class KtConstructor<T : KtObject>(
     vararg argsTypes: VariantConverter

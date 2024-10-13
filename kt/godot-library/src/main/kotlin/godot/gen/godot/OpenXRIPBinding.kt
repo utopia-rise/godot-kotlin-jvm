@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -61,12 +61,12 @@ public open class OpenXRIPBinding : Resource() {
 
   public final fun setAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
   }
 
   public final fun getAction(): OpenXRAction? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getActionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAction?)
   }
 
@@ -75,18 +75,18 @@ public open class OpenXRIPBinding : Resource() {
    */
   public final fun getPathCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPathCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPaths(paths: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathsPtr, NIL)
   }
 
   public final fun getPaths(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -95,7 +95,7 @@ public open class OpenXRIPBinding : Resource() {
    */
   public final fun hasPath(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPathPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -104,7 +104,7 @@ public open class OpenXRIPBinding : Resource() {
    */
   public final fun addPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addPathPtr, NIL)
   }
 
   /**
@@ -112,7 +112,7 @@ public open class OpenXRIPBinding : Resource() {
    */
   public final fun removePath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.removePathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removePathPtr, NIL)
   }
 
   public companion object

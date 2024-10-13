@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -43,7 +43,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun getTilesCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTilesCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTilesCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -52,7 +52,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun getTileId(index: Int): Vector2i {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileIdPtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getTileIdPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -61,7 +61,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun hasTile(atlasCoords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasTilePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasTilePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -73,7 +73,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun getAlternativeTilesCount(atlasCoords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlternativeTilesCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlternativeTilesCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -82,7 +82,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun getAlternativeTileId(atlasCoords: Vector2i, index: Int): Int {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlternativeTileIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlternativeTileIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -92,7 +92,7 @@ public open class TileSetSource internal constructor() : Resource() {
    */
   public final fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAlternativeTilePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasAlternativeTilePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

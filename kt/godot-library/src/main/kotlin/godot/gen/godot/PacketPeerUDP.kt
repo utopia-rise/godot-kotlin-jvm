@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -52,7 +52,7 @@ public open class PacketPeerUDP : PacketPeer() {
     recvBufSize: Int = 65536,
   ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, LONG to recvBufSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.bindPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -61,7 +61,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
 
   /**
@@ -102,7 +102,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun wait(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.waitPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -111,7 +111,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun isBound(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBoundPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBoundPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -128,7 +128,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun connectToHost(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.connectToHostPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -138,7 +138,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun isSocketConnected(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSocketConnectedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSocketConnectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -148,7 +148,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun getPacketIp(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketIpPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketIpPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -158,7 +158,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun getPacketPort(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketPortPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -167,7 +167,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -179,7 +179,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun setDestAddress(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDestAddressPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.setDestAddressPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -191,7 +191,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun setBroadcastEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBroadcastEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBroadcastEnabledPtr, NIL)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, MethodBindings.joinMulticastGroupPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.joinMulticastGroupPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -214,7 +214,7 @@ public open class PacketPeerUDP : PacketPeer() {
    */
   public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, MethodBindings.leaveMulticastGroupPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.leaveMulticastGroupPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

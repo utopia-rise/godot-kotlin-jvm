@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
@@ -14,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,7 +52,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public final fun setVertex(vertexId: Int, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVertexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVertexPtr, NIL)
   }
 
   /**
@@ -60,7 +60,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public final fun setNormal(vertexId: Int, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNormalPtr, NIL)
   }
 
   /**
@@ -68,7 +68,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    */
   public final fun setAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAabbPtr, NIL)
   }
 
   public companion object

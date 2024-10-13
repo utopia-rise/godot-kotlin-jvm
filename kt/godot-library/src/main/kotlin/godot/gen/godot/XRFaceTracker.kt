@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -56,7 +56,7 @@ public open class XRFaceTracker : XRTracker() {
    */
   public final fun getBlendShape(blendShape: BlendShapeEntry): Float {
     TransferContext.writeArguments(LONG to blendShape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendShapePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -65,18 +65,18 @@ public open class XRFaceTracker : XRTracker() {
    */
   public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
     TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendShapePtr, NIL)
   }
 
   public final fun getBlendShapes(): PackedFloat32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendShapes(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendShapesPtr, NIL)
   }
 
   public enum class BlendShapeEntry(

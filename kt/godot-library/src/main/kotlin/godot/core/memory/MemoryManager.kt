@@ -5,13 +5,13 @@ package godot.core.memory
 import godot.core.KtObject
 import godot.core.NativeCoreType
 import godot.core.NodePath
-import godot.core.ObjectID
+import godot.common.interop.ObjectID
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser
 import godot.common.extensions.convertToSnakeCase
-import godot.util.LRUCache
-import godot.util.VoidPtr
+import godot.common.util.LRUCache
+import godot.common.interop.VoidPtr
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -177,7 +177,7 @@ internal object MemoryManager {
 
         // We create a wrapper to replace the script instance, if it doesn't exist already.
         val wrapper = KtObject(
-            scriptInstance.rawPtr,
+            scriptInstance.ptr,
             id,
             TypeManager.engineTypesConstructors[constructorIndex],
         )
@@ -223,10 +223,10 @@ internal object MemoryManager {
         }
     }
 
-    fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.objectID.id)
+    fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.ptr, ktObject.objectID.id)
 
     fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantParser) {
-        val rawPtr = nativeCoreType._handle
+        val rawPtr = nativeCoreType.ptr
         nativeCoreTypeMap[rawPtr] = NativeCoreBinding(nativeCoreType, variantType)
     }
 

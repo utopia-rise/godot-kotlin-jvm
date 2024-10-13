@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -87,7 +87,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
   public final fun setAabb(rect: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAabbPtr, NIL)
   }
 
   /**
@@ -98,7 +98,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    */
   public final fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

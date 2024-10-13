@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -63,34 +63,34 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
 
   public final fun setComparisonType(type: ComparisonType): Unit {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setComparisonTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setComparisonTypePtr, NIL)
   }
 
   public final fun getComparisonType(): ComparisonType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getComparisonTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getComparisonTypePtr, LONG)
     return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
     TransferContext.writeArguments(LONG to func.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCondition(condition: Condition): Unit {
     TransferContext.writeArguments(LONG to condition.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConditionPtr, NIL)
   }
 
   public final fun getCondition(): Condition {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConditionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConditionPtr, LONG)
     return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

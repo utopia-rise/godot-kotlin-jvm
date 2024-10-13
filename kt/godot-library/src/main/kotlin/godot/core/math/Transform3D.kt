@@ -4,7 +4,7 @@ package godot.core
 
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
-import godot.util.RealT
+import godot.common.util.RealT
 import kotlincompile.definitions.GodotJvmBuildConfig
 
 class Transform3D(

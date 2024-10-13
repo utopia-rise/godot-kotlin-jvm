@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -46,12 +46,12 @@ public open class AudioStreamPolyphonic : AudioStream() {
 
   public final fun setPolyphony(voices: Int): Unit {
     TransferContext.writeArguments(LONG to voices.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPolyphonyPtr, NIL)
   }
 
   public final fun getPolyphony(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

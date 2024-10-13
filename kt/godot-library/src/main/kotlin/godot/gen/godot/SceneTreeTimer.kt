@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
@@ -72,12 +72,12 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
 
   public final fun setTimeLeft(time: Double): Unit {
     TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTimeLeftPtr, NIL)
   }
 
   public final fun getTimeLeft(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTimeLeftPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 

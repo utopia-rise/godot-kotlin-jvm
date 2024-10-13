@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -67,34 +67,34 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
 
   public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseAllSurfaces(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseAllSurfacesPtr, NIL)
   }
 
   public final fun isUseAllSurfaces(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUseAllSurfacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSurfaceIndex(surfaceIndex: Int): Unit {
     TransferContext.writeArguments(LONG to surfaceIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSurfaceIndexPtr, NIL)
   }
 
   public final fun getSurfaceIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

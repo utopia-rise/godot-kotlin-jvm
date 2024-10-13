@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -182,7 +182,7 @@ public open class DTLSServer : RefCounted() {
    */
   public final fun setup(serverOptions: TLSOptions?): Error {
     TransferContext.writeArguments(OBJECT to serverOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.setupPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -195,7 +195,7 @@ public open class DTLSServer : RefCounted() {
    */
   public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
-    TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PacketPeerDTLS?)
   }
 

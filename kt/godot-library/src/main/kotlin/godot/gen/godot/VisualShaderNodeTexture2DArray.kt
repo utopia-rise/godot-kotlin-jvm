@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -40,12 +40,12 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
 
   public final fun setTextureArray(`value`: Texture2DArray?): Unit {
     TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureArrayPtr, NIL)
   }
 
   public final fun getTextureArray(): Texture2DArray? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureArrayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2DArray?)
   }
 

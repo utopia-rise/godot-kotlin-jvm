@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -17,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -90,34 +90,34 @@ public open class GLTFDocument : Resource() {
 
   public final fun setImageFormat(imageFormat: String): Unit {
     TransferContext.writeArguments(STRING to imageFormat)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImageFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setImageFormatPtr, NIL)
   }
 
   public final fun getImageFormat(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getImageFormatPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLossyQuality(lossyQuality: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lossyQuality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLossyQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLossyQualityPtr, NIL)
   }
 
   public final fun getLossyQuality(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLossyQualityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
     TransferContext.writeArguments(LONG to rootNodeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRootNodeModePtr, NIL)
   }
 
   public final fun getRootNodeMode(): RootNodeMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootNodeModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
     return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -134,7 +134,7 @@ public open class GLTFDocument : Resource() {
     basePath: String = "",
   ): Error {
     TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromFilePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.appendFromFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -151,7 +151,7 @@ public open class GLTFDocument : Resource() {
     flags: Long = 0,
   ): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromBufferPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.appendFromBufferPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -166,7 +166,7 @@ public open class GLTFDocument : Resource() {
     flags: Long = 0,
   ): Error {
     TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromScenePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.appendFromScenePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -182,7 +182,7 @@ public open class GLTFDocument : Resource() {
     removeImmutableTracks: Boolean = true,
   ): Node? {
     TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateScenePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.generateScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -191,7 +191,7 @@ public open class GLTFDocument : Resource() {
    */
   public final fun generateBuffer(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -203,7 +203,7 @@ public open class GLTFDocument : Resource() {
    */
   public final fun writeToFilesystem(state: GLTFState?, path: String): Error {
     TransferContext.writeArguments(OBJECT to state, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.writeToFilesystemPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.writeToFilesystemPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

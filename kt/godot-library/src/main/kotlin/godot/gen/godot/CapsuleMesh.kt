@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -76,45 +76,45 @@ public open class CapsuleMesh : PrimitiveMesh() {
 
   public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
     TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
   public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
   }
 
   public final fun getRings(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

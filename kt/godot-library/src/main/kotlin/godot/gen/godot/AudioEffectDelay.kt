@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -179,144 +179,144 @@ public open class AudioEffectDelay : AudioEffect() {
 
   public final fun setDry(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDryPtr, NIL)
   }
 
   public final fun getDry(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Active(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1ActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap1ActivePtr, NIL)
   }
 
   public final fun isTap1Active(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTap1ActivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isTap1ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap1DelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1DelayMsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap1DelayMsPtr, NIL)
   }
 
   public final fun getTap1DelayMs(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1LevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1LevelDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap1LevelDbPtr, NIL)
   }
 
   public final fun getTap1LevelDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Pan(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1PanPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap1PanPtr, NIL)
   }
 
   public final fun getTap1Pan(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1PanPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap1PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Active(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2ActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap2ActivePtr, NIL)
   }
 
   public final fun isTap2Active(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTap2ActivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isTap2ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap2DelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2DelayMsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap2DelayMsPtr, NIL)
   }
 
   public final fun getTap2DelayMs(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2LevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2LevelDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap2LevelDbPtr, NIL)
   }
 
   public final fun getTap2LevelDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Pan(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2PanPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTap2PanPtr, NIL)
   }
 
   public final fun getTap2Pan(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2PanPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTap2PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackActive(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFeedbackActivePtr, NIL)
   }
 
   public final fun isFeedbackActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFeedbackActivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFeedbackActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFeedbackDelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackDelayMsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFeedbackDelayMsPtr, NIL)
   }
 
   public final fun getFeedbackDelayMs(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLevelDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFeedbackLevelDbPtr, NIL)
   }
 
   public final fun getFeedbackLevelDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLowpass(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLowpassPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFeedbackLowpassPtr, NIL)
   }
 
   public final fun getFeedbackLowpass(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

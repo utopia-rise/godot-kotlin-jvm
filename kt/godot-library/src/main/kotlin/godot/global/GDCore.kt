@@ -11,7 +11,7 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.VariantArray
-import godot.util.toRealT
+import godot.common.util.toRealT
 
 internal interface GDCore {
 

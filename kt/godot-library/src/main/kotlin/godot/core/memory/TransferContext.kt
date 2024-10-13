@@ -2,11 +2,11 @@ package godot.core.memory
 
 import godot.core.KtObject
 import godot.core.LongStringQueue
-import godot.core.ObjectID
+import godot.common.interop.ObjectID
 import godot.core.VariantConverter
 import godot.common.constants.Constraints
-import godot.util.VoidPtr
-import godot.util.threadLocal
+import godot.common.interop.VoidPtr
+import godot.common.util.threadLocal
 import kotlincompile.definitions.GodotJvmBuildConfig
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -85,7 +85,7 @@ internal object TransferContext {
 
     fun initializeKtObject(obj: KtObject) {
         buffer.rewind()
-        obj.rawPtr = buffer.long
+        obj.ptr = buffer.long
         obj.objectID = ObjectID(buffer.long)
     }
 

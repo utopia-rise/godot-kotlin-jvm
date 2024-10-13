@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -17,7 +18,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -121,56 +121,56 @@ public open class StyleBoxLine : StyleBox() {
 
   public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setThickness(thickness: Int): Unit {
     TransferContext.writeArguments(LONG to thickness.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setThicknessPtr, NIL)
   }
 
   public final fun getThickness(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getThicknessPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setGrowBegin(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGrowBeginPtr, NIL)
   }
 
   public final fun getGrowBegin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGrowBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGrowEnd(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGrowEndPtr, NIL)
   }
 
   public final fun getGrowEnd(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGrowEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

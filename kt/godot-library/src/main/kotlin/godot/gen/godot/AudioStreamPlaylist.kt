@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -590,12 +590,12 @@ public open class AudioStreamPlaylist : AudioStream() {
 
   public final fun setStreamCount(streamCount: Int): Unit {
     TransferContext.writeArguments(LONG to streamCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamCountPtr, NIL)
   }
 
   public final fun getStreamCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStreamCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -604,7 +604,7 @@ public open class AudioStreamPlaylist : AudioStream() {
    */
   public final fun getBpm(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -613,7 +613,7 @@ public open class AudioStreamPlaylist : AudioStream() {
    */
   public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setListStreamPtr, NIL)
   }
 
   /**
@@ -621,40 +621,40 @@ public open class AudioStreamPlaylist : AudioStream() {
    */
   public final fun getListStream(streamIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getListStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   public final fun setShuffle(shuffle: Boolean): Unit {
     TransferContext.writeArguments(BOOL to shuffle)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShufflePtr, NIL)
   }
 
   public final fun getShuffle(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getShufflePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFadeTime(dec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to dec.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFadeTimePtr, NIL)
   }
 
   public final fun getFadeTime(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
 
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

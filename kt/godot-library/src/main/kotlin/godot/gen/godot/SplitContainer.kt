@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -85,12 +85,12 @@ public open class SplitContainer : Container() {
 
   public final fun setSplitOffset(offset: Int): Unit {
     TransferContext.writeArguments(LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSplitOffsetPtr, NIL)
   }
 
   public final fun getSplitOffset(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -100,39 +100,39 @@ public open class SplitContainer : Container() {
    */
   public final fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
   public final fun setCollapsed(collapsed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to collapsed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollapsedPtr, NIL)
   }
 
   public final fun isCollapsed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDraggerVisibilityPtr, NIL)
   }
 
   public final fun getDraggerVisibility(): DraggerVisibility {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDraggerVisibilityPtr, LONG)
     return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

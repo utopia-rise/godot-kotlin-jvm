@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -80,29 +80,29 @@ public open class SkeletonModifier3D : Node3D() {
    */
   public final fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
   }
 
   public final fun isActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInfluence(influence: Float): Unit {
     TransferContext.writeArguments(DOUBLE to influence.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInfluencePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInfluencePtr, NIL)
   }
 
   public final fun getInfluence(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInfluencePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

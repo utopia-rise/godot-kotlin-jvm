@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -130,34 +130,34 @@ public open class StaticBody3D : PhysicsBody3D() {
 
   public final fun setConstantLinearVelocity(vel: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vel)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
 
   public final fun setConstantAngularVelocity(vel: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vel)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
 
   public final fun getConstantLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getConstantAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
     TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
 
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 

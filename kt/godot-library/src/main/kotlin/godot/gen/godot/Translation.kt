@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -69,12 +69,12 @@ public open class Translation : Resource() {
 
   public final fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLocalePtr, NIL)
   }
 
   public final fun getLocale(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -90,7 +90,7 @@ public open class Translation : Resource() {
     context: StringName = StringName(""),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMessagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addMessagePtr, NIL)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class Translation : Resource() {
     context: StringName = StringName(""),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPluralMessagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addPluralMessagePtr, NIL)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class Translation : Resource() {
   public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
       StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getMessagePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -132,7 +132,7 @@ public open class Translation : Resource() {
     context: StringName = StringName(""),
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPluralMessagePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getPluralMessagePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -143,7 +143,7 @@ public open class Translation : Resource() {
   public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
       Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseMessagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.eraseMessagePtr, NIL)
   }
 
   /**
@@ -151,7 +151,7 @@ public open class Translation : Resource() {
    */
   public final fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -160,8 +160,7 @@ public open class Translation : Resource() {
    */
   public final fun getTranslatedMessageList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTranslatedMessageListPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getTranslatedMessageListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -170,7 +169,7 @@ public open class Translation : Resource() {
    */
   public final fun getMessageCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessageCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMessageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

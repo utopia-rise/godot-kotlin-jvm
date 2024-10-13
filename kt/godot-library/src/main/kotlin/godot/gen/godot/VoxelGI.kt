@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -17,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -138,45 +138,45 @@ public open class VoxelGI : VisualInstance3D() {
 
   public final fun setProbeData(`data`: VoxelGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setProbeDataPtr, NIL)
   }
 
   public final fun getProbeData(): VoxelGIData? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getProbeDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VoxelGIData?)
   }
 
   public final fun setSubdiv(subdiv: Subdiv): Unit {
     TransferContext.writeArguments(LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSubdivPtr, NIL)
   }
 
   public final fun getSubdiv(): Subdiv {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSubdivPtr, LONG)
     return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
@@ -196,7 +196,7 @@ public open class VoxelGI : VisualInstance3D() {
   @JvmOverloads
   public final fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class VoxelGI : VisualInstance3D() {
    */
   public final fun debugBake(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.debugBakePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.debugBakePtr, NIL)
   }
 
   public enum class Subdiv(

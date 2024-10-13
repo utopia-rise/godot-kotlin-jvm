@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal1
 import godot.core.StringName
@@ -18,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -56,7 +56,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun addInterface(`interface`: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
-    TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addInterfacePtr, NIL)
   }
 
   /**
@@ -65,7 +65,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getInterfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -76,7 +76,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun removeInterface(`interface`: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeInterfacePtr, NIL)
   }
 
   /**
@@ -85,7 +85,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun getInterface(idx: Int): TextServer? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextServer?)
   }
 
@@ -95,7 +95,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -105,7 +105,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.findInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextServer?)
   }
 
@@ -115,7 +115,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun setPrimaryInterface(index: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to index)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
 
   /**
@@ -124,7 +124,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public final fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextServer?)
   }
 

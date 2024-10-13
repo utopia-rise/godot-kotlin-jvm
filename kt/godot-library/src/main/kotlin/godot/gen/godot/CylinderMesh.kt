@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -124,78 +124,78 @@ public open class CylinderMesh : PrimitiveMesh() {
 
   public final fun setTopRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTopRadiusPtr, NIL)
   }
 
   public final fun getTopRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTopRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBottomRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBottomRadiusPtr, NIL)
   }
 
   public final fun getBottomRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBottomRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
     TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
   public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
   }
 
   public final fun getRings(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCapTop(capTop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to capTop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCapTopPtr, NIL)
   }
 
   public final fun isCapTop(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCapTopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCapBottom(capBottom: Boolean): Unit {
     TransferContext.writeArguments(BOOL to capBottom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCapBottomPtr, NIL)
   }
 
   public final fun isCapBottom(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCapBottomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

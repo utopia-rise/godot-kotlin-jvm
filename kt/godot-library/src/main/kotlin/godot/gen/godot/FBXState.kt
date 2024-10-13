@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -41,13 +41,13 @@ public open class FBXState : GLTFState() {
 
   public final fun getAllowGeometryHelperNodes(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }
 
   public companion object

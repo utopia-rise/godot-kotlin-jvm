@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -97,35 +97,35 @@ public open class ReferenceRect : Control() {
 
   public final fun getBorderColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getBorderColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBorderColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBorderColorPtr, NIL)
   }
 
   public final fun getBorderWidth(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBorderWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBorderWidthPtr, NIL)
   }
 
   public final fun getEditorOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEditorOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorOnly(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditorOnlyPtr, NIL)
   }
 
   public companion object

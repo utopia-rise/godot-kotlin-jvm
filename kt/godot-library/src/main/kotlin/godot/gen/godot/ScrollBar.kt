@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -49,12 +49,12 @@ public open class ScrollBar internal constructor() : Range() {
 
   public final fun setCustomStep(step: Float): Unit {
     TransferContext.writeArguments(DOUBLE to step.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomStepPtr, NIL)
   }
 
   public final fun getCustomStep(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

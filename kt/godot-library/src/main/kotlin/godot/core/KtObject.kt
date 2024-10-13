@@ -1,16 +1,18 @@
 package godot.core
 
+import godot.common.interop.IdentityPointer
+import godot.common.interop.ObjectID
+import godot.common.interop.VoidPtr
+import godot.common.interop.nullObjectID
+import godot.common.interop.nullptr
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
-import godot.util.nullObjectID
-import godot.util.nullptr
 import kotlincompile.definitions.GodotJvmBuildConfig
 
 class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
 
 @Suppress("LeakingThis")
-abstract class KtObject {
+abstract class KtObject: IdentityPointer {
 
     /** Used to prevent the new method to be executed when called from instantiateWith
      * Instead we use the values set in that class  */
@@ -24,7 +26,7 @@ abstract class KtObject {
         }
     }
 
-    var rawPtr: VoidPtr = nullptr
+    override var ptr: VoidPtr = nullptr
         set(value) {
             if (GodotJvmBuildConfig.DEBUG) {
                 require(field == nullptr) {
@@ -34,7 +36,7 @@ abstract class KtObject {
             field = value
         }
 
-    var objectID: ObjectID = nullObjectID
+    override var objectID: ObjectID = nullObjectID
         set(value) {
             if (GodotJvmBuildConfig.DEBUG) {
                 require(field == nullObjectID) {
@@ -51,7 +53,7 @@ abstract class KtObject {
 
         if (config.ptr != nullptr) {
             // Native object already exists, so we know the id and ptr without going back to the other side.
-            rawPtr = config.ptr
+            ptr = config.ptr
             objectID = config.objectID
             config.reset()
             // We don't need to register the instance to the MemoryManager, it is the responsibility of the caller.
@@ -95,7 +97,7 @@ abstract class KtObject {
     open fun _onDestroy() = Unit
 
     fun free() {
-        MemoryManager.freeObject(rawPtr)
+        MemoryManager.freeObject(ptr)
     }
 
     internal companion object {

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Transform2D
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -225,62 +225,62 @@ public open class FontVariation : Font() {
 
   public final fun setBaseFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBaseFontPtr, NIL)
   }
 
   public final fun getBaseFont(): Font? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getBaseFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to coords)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVariationOpentypePtr, NIL)
   }
 
   public final fun getVariationOpentype(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setVariationEmbolden(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVariationEmboldenPtr, NIL)
   }
 
   public final fun getVariationEmbolden(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVariationFaceIndex(faceIndex: Int): Unit {
     TransferContext.writeArguments(LONG to faceIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVariationFaceIndexPtr, NIL)
   }
 
   public final fun getVariationFaceIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVariationFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVariationTransform(transform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVariationTransformPtr, NIL)
   }
 
   public final fun getVariationTransform(): Transform2D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
+    TransferContext.callMethod(ptr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to features)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOpentypeFeaturesPtr, NIL)
   }
 
   /**
@@ -289,17 +289,17 @@ public open class FontVariation : Font() {
    */
   public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpacingPtr, NIL)
   }
 
   public final fun setBaselineOffset(baselineOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBaselineOffsetPtr, NIL)
   }
 
   public final fun getBaselineOffset(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

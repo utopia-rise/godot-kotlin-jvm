@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -14,7 +15,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -72,18 +72,18 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun getDefaultInputPort(type: PortType): Int {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputPortPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultInputPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutputPortForPreview(port: Int): Unit {
     TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutputPortForPreviewPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutputPortForPreviewPtr, NIL)
   }
 
   public final fun getOutputPortForPreview(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortForPreviewPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOutputPortForPreviewPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -97,7 +97,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     prevValue: Any? = null,
   ): Unit {
     TransferContext.writeArguments(LONG to port.toLong(), ANY to value, ANY to prevValue)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputPortDefaultValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInputPortDefaultValuePtr, NIL)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun getInputPortDefaultValue(port: Int): Any? {
     TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortDefaultValuePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getInputPortDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -114,7 +114,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun removeInputPortDefaultValue(port: Int): Unit {
     TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeInputPortDefaultValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeInputPortDefaultValuePtr, NIL)
   }
 
   /**
@@ -122,7 +122,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun clearDefaultInputValues(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearDefaultInputValuesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearDefaultInputValuesPtr, NIL)
   }
 
   /**
@@ -131,7 +131,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun setDefaultInputValues(values: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to values)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultInputValuesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultInputValuesPtr, NIL)
   }
 
   /**
@@ -140,18 +140,18 @@ public open class VisualShaderNode internal constructor() : Resource() {
    */
   public final fun getDefaultInputValues(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setFrame(frame: Int): Unit {
     TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFramePtr, NIL)
   }
 
   public final fun getFrame(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

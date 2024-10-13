@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.KtObject
@@ -25,7 +26,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -107,7 +107,7 @@ public open class Object : KtObject() {
   @JvmName("getGodotClass")
   public final fun getClass(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClassPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -133,7 +133,7 @@ public open class Object : KtObject() {
    */
   public final fun isClass(`class`: String): Boolean {
     TransferContext.writeArguments(STRING to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -160,7 +160,7 @@ public open class Object : KtObject() {
    */
   public final fun `set`(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPtr, NIL)
   }
 
   /**
@@ -186,7 +186,7 @@ public open class Object : KtObject() {
    */
   public final fun `get`(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -216,7 +216,7 @@ public open class Object : KtObject() {
    */
   public final fun setIndexed(propertyPath: NodePath, `value`: Any?): Unit {
     TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndexedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIndexedPtr, NIL)
   }
 
   /**
@@ -247,7 +247,7 @@ public open class Object : KtObject() {
    */
   public final fun getIndexed(propertyPath: NodePath): Any? {
     TransferContext.writeArguments(NODE_PATH to propertyPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexedPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getIndexedPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -267,7 +267,7 @@ public open class Object : KtObject() {
    */
   public final fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropertyListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -285,7 +285,7 @@ public open class Object : KtObject() {
    */
   public final fun getMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMethodListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -298,7 +298,7 @@ public open class Object : KtObject() {
    */
   public final fun propertyCanRevert(`property`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyCanRevertPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.propertyCanRevertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -311,7 +311,7 @@ public open class Object : KtObject() {
    */
   public final fun propertyGetRevert(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetRevertPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.propertyGetRevertPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -347,7 +347,7 @@ public open class Object : KtObject() {
   @JvmOverloads
   public final fun notification(what: Int, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what.toLong(), BOOL to reversed)
-    TransferContext.callMethod(rawPtr, MethodBindings.notificationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.notificationPtr, NIL)
   }
 
   /**
@@ -356,7 +356,7 @@ public open class Object : KtObject() {
    */
   public final override fun toString(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toStringPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.toStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -368,7 +368,7 @@ public open class Object : KtObject() {
    */
   public final fun getInstanceId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -380,7 +380,7 @@ public open class Object : KtObject() {
    */
   public final fun setScript(script: Any?): Unit {
     TransferContext.writeArguments(ANY to script)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScriptPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScriptPtr, NIL)
   }
 
   /**
@@ -388,7 +388,7 @@ public open class Object : KtObject() {
    */
   public final fun getScript(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getScriptPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -405,7 +405,7 @@ public open class Object : KtObject() {
    */
   public final fun setMeta(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMetaPtr, NIL)
   }
 
   /**
@@ -419,7 +419,7 @@ public open class Object : KtObject() {
    */
   public final fun removeMeta(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeMetaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeMetaPtr, NIL)
   }
 
   /**
@@ -434,7 +434,7 @@ public open class Object : KtObject() {
   @JvmOverloads
   public final fun getMeta(name: StringName, default: Any? = null): Any? {
     TransferContext.writeArguments(STRING_NAME to name, ANY to default)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetaPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getMetaPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -449,7 +449,7 @@ public open class Object : KtObject() {
    */
   public final fun hasMeta(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMetaPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasMetaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -458,7 +458,7 @@ public open class Object : KtObject() {
    */
   public final fun getMetaList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetaListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMetaListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
@@ -495,7 +495,7 @@ public open class Object : KtObject() {
   public final fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUserSignalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addUserSignalPtr, NIL)
   }
 
   /**
@@ -504,7 +504,7 @@ public open class Object : KtObject() {
    */
   public final fun hasUserSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasUserSignalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasUserSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -514,7 +514,7 @@ public open class Object : KtObject() {
    */
   public final fun removeUserSignal(signal: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeUserSignalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeUserSignalPtr, NIL)
   }
 
   /**
@@ -541,7 +541,7 @@ public open class Object : KtObject() {
    */
   public final fun emitSignal(signal: StringName, vararg __var_args: Any?): Error {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.emitSignalPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.emitSignalPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -566,7 +566,7 @@ public open class Object : KtObject() {
    */
   public final fun call(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.callPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -610,7 +610,7 @@ public open class Object : KtObject() {
    */
   public final fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callDeferredPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.callDeferredPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -647,7 +647,7 @@ public open class Object : KtObject() {
    */
   public final fun setDeferred(`property`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeferredPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDeferredPtr, NIL)
   }
 
   /**
@@ -672,7 +672,7 @@ public open class Object : KtObject() {
    */
   public final fun callv(method: StringName, argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to argArray)
-    TransferContext.callMethod(rawPtr, MethodBindings.callvPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.callvPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -684,7 +684,7 @@ public open class Object : KtObject() {
    */
   public final fun hasMethod(method: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMethodPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasMethodPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -696,7 +696,7 @@ public open class Object : KtObject() {
    */
   public final fun getMethodArgumentCount(method: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMethodArgumentCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMethodArgumentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -708,7 +708,7 @@ public open class Object : KtObject() {
    */
   public final fun hasSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSignalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -719,7 +719,7 @@ public open class Object : KtObject() {
    */
   public final fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSignalListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -733,7 +733,7 @@ public open class Object : KtObject() {
   public final fun getSignalConnectionList(signal: StringName):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSignalConnectionListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSignalConnectionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -746,7 +746,7 @@ public open class Object : KtObject() {
    */
   public final fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIncomingConnectionsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getIncomingConnectionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -912,7 +912,7 @@ public open class Object : KtObject() {
     flags: Long = 0,
   ): Error {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.connectPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -922,7 +922,7 @@ public open class Object : KtObject() {
    */
   public final fun disconnect(signal: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.disconnectPtr, NIL)
   }
 
   /**
@@ -933,7 +933,7 @@ public open class Object : KtObject() {
    */
   public final fun isConnected(signal: StringName, callable: Callable): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.isConnectedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isConnectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -943,7 +943,7 @@ public open class Object : KtObject() {
    */
   public final fun setBlockSignals(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlockSignalsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlockSignalsPtr, NIL)
   }
 
   /**
@@ -951,7 +951,7 @@ public open class Object : KtObject() {
    */
   public final fun isBlockingSignals(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBlockingSignalsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBlockingSignalsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -961,7 +961,7 @@ public open class Object : KtObject() {
    */
   public final fun notifyPropertyListChanged(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.notifyPropertyListChangedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.notifyPropertyListChangedPtr, NIL)
   }
 
   /**
@@ -970,7 +970,7 @@ public open class Object : KtObject() {
    */
   public final fun setMessageTranslation(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMessageTranslationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMessageTranslationPtr, NIL)
   }
 
   /**
@@ -979,7 +979,7 @@ public open class Object : KtObject() {
    */
   public final fun canTranslateMessages(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canTranslateMessagesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.canTranslateMessagesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -999,7 +999,7 @@ public open class Object : KtObject() {
   @JvmOverloads
   public final fun tr(message: StringName, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.trPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.trPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -1026,7 +1026,7 @@ public open class Object : KtObject() {
     context: StringName = StringName(""),
   ): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.trNPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.trNPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -1035,7 +1035,7 @@ public open class Object : KtObject() {
    */
   public final fun isQueuedForDeletion(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isQueuedForDeletionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isQueuedForDeletionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1046,7 +1046,7 @@ public open class Object : KtObject() {
    */
   public final fun cancelFree(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cancelFreePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cancelFreePtr, NIL)
   }
 
   public enum class ConnectFlags(

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
@@ -17,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -84,34 +84,34 @@ public open class XRNode3D : Node3D() {
 
   public final fun setTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerPtr, NIL)
   }
 
   public final fun getTracker(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setPoseName(pose: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to pose)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPoseNamePtr, NIL)
   }
 
   public final fun getPoseName(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getPoseNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setShowWhenTracked(show: Boolean): Unit {
     TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShowWhenTrackedPtr, NIL)
   }
 
   public final fun getShowWhenTracked(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getShowWhenTrackedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -120,7 +120,7 @@ public open class XRNode3D : Node3D() {
    */
   public final fun getIsActive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsActivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getIsActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -129,7 +129,7 @@ public open class XRNode3D : Node3D() {
    */
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -139,7 +139,7 @@ public open class XRNode3D : Node3D() {
    */
   public final fun getPose(): XRPose? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as XRPose?)
   }
 
@@ -160,7 +160,7 @@ public open class XRNode3D : Node3D() {
     delaySec: Double,
   ): Unit {
     TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
-    TransferContext.callMethod(rawPtr, MethodBindings.triggerHapticPulsePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
 
   public companion object

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -17,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -186,77 +186,77 @@ public open class GradientTexture2D : Texture2D() {
 
   public final fun setGradient(gradient: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
   }
 
   public final fun getGradient(): Gradient? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getGradientPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setHeight(height: Int): Unit {
     TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun setUseHdr(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseHdrPtr, NIL)
   }
 
   public final fun isUsingHdr(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingHdrPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFill(fill: Fill): Unit {
     TransferContext.writeArguments(LONG to fill.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFillPtr, NIL)
   }
 
   public final fun getFill(): Fill {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFillPtr, LONG)
     return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFillFrom(fillFrom: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to fillFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillFromPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFillFromPtr, NIL)
   }
 
   public final fun getFillFrom(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillFromPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getFillFromPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFillTo(fillTo: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to fillTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillToPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFillToPtr, NIL)
   }
 
   public final fun getFillTo(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillToPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getFillToPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeat(repeat: Repeat): Unit {
     TransferContext.writeArguments(LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRepeatPtr, NIL)
   }
 
   public final fun getRepeat(): Repeat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRepeatPtr, LONG)
     return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -96,56 +96,56 @@ public open class OpenXRHand : Node3D() {
 
   public final fun setHand(hand: Hands): Unit {
     TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHandPtr, NIL)
   }
 
   public final fun getHand(): Hands {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHandPtr, LONG)
     return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to handSkeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHandSkeletonPtr, NIL)
   }
 
   public final fun getHandSkeleton(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setMotionRange(motionRange: MotionRange): Unit {
     TransferContext.writeArguments(LONG to motionRange.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMotionRangePtr, NIL)
   }
 
   public final fun getMotionRange(): MotionRange {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMotionRangePtr, LONG)
     return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
     TransferContext.writeArguments(LONG to skeletonRig.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSkeletonRigPtr, NIL)
   }
 
   public final fun getSkeletonRig(): SkeletonRig {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSkeletonRigPtr, LONG)
     return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
     TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

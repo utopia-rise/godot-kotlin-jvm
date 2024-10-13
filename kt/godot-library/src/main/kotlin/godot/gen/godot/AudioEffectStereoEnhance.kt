@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -59,34 +59,34 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
 
   public final fun setPanPullout(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPanPulloutPtr, NIL)
   }
 
   public final fun getPanPullout(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPanPulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTimePullout(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTimePulloutPtr, NIL)
   }
 
   public final fun getTimePullout(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTimePulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSurround(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSurroundPtr, NIL)
   }
 
   public final fun getSurround(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSurroundPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

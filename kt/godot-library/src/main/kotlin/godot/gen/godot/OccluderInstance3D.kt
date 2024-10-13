@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -117,12 +117,12 @@ public open class OccluderInstance3D : VisualInstance3D() {
 
   public final fun setBakeMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBakeMaskPtr, NIL)
   }
 
   public final fun getBakeMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBakeMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -132,7 +132,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
    */
   public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBakeMaskValuePtr, NIL)
   }
 
   /**
@@ -141,29 +141,29 @@ public open class OccluderInstance3D : VisualInstance3D() {
    */
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getBakeMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to simplificationDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
   }
 
   public final fun getBakeSimplificationDistance(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOccluder(occluder: Occluder3D?): Unit {
     TransferContext.writeArguments(OBJECT to occluder)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOccluderPtr, NIL)
   }
 
   public final fun getOccluder(): Occluder3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getOccluderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Occluder3D?)
   }
 

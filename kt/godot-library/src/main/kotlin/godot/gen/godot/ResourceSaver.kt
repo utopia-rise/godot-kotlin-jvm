@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -55,7 +55,7 @@ public object ResourceSaver : Object() {
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): Error {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -65,8 +65,7 @@ public object ResourceSaver : Object() {
   @JvmStatic
   public final fun getRecognizedExtensions(type: Resource?): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -81,7 +80,7 @@ public object ResourceSaver : Object() {
   public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
       false): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
-    TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addResourceFormatSaverPtr, NIL)
   }
 
   /**
@@ -90,7 +89,7 @@ public object ResourceSaver : Object() {
   @JvmStatic
   public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }
 
   public sealed interface SaverFlags {

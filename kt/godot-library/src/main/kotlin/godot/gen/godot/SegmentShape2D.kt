@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -104,23 +104,23 @@ public open class SegmentShape2D : Shape2D() {
 
   public final fun setA(a: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to a)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAPtr, NIL)
   }
 
   public final fun getA(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getAPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setB(b: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to b)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBPtr, NIL)
   }
 
   public final fun getB(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getBPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

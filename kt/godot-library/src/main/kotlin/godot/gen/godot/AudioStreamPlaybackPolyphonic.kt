@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -58,7 +58,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     bus: StringName = StringName("Master"),
   ): Long {
     TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble(), LONG to playbackType.id, STRING_NAME to bus)
-    TransferContext.callMethod(rawPtr, MethodBindings.playStreamPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.playStreamPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -68,7 +68,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   public final fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamVolumePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamVolumePtr, NIL)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   public final fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPitchScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamPitchScalePtr, NIL)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   public final fun isStreamPlaying(stream: Long): Boolean {
     TransferContext.writeArguments(LONG to stream)
-    TransferContext.callMethod(rawPtr, MethodBindings.isStreamPlayingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isStreamPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -95,7 +95,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   public final fun stopStream(stream: Long): Unit {
     TransferContext.writeArguments(LONG to stream)
-    TransferContext.callMethod(rawPtr, MethodBindings.stopStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.stopStreamPtr, NIL)
   }
 
   public companion object {

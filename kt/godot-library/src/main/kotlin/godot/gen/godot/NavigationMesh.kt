@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
@@ -25,7 +26,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -400,34 +400,34 @@ public open class NavigationMesh : Resource() {
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
     TransferContext.writeArguments(LONG to samplePartitionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplePartitionTypePtr, NIL)
   }
 
   public final fun getSamplePartitionType(): SamplePartitionType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
     return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
     TransferContext.writeArguments(LONG to geometryType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
 
   public final fun getParsedGeometryType(): ParsedGeometryType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
     return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -437,7 +437,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -446,239 +446,239 @@ public open class NavigationMesh : Resource() {
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSourceGeometryMode(mask: SourceGeometryMode): Unit {
     TransferContext.writeArguments(LONG to mask.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
 
   public final fun getSourceGeometryMode(): SourceGeometryMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
     return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGroupName(mask: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSourceGroupNamePtr, NIL)
   }
 
   public final fun getSourceGroupName(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setCellSize(cellSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCellSizePtr, NIL)
   }
 
   public final fun getCellSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCellHeight(cellHeight: Float): Unit {
     TransferContext.writeArguments(DOUBLE to cellHeight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCellHeightPtr, NIL)
   }
 
   public final fun getCellHeight(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCellHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderSize(borderSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBorderSizePtr, NIL)
   }
 
   public final fun getBorderSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBorderSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentHeight(agentHeight: Float): Unit {
     TransferContext.writeArguments(DOUBLE to agentHeight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAgentHeightPtr, NIL)
   }
 
   public final fun getAgentHeight(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAgentHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentRadius(agentRadius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAgentRadiusPtr, NIL)
   }
 
   public final fun getAgentRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAgentRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentMaxClimb(agentMaxClimb: Float): Unit {
     TransferContext.writeArguments(DOUBLE to agentMaxClimb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAgentMaxClimbPtr, NIL)
   }
 
   public final fun getAgentMaxClimb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentMaxSlope(agentMaxSlope: Float): Unit {
     TransferContext.writeArguments(DOUBLE to agentMaxSlope.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAgentMaxSlopePtr, NIL)
   }
 
   public final fun getAgentMaxSlope(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionMinSize(regionMinSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to regionMinSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRegionMinSizePtr, NIL)
   }
 
   public final fun getRegionMinSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRegionMinSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionMergeSize(regionMergeSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to regionMergeSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRegionMergeSizePtr, NIL)
   }
 
   public final fun getRegionMergeSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeMaxLength(edgeMaxLength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to edgeMaxLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEdgeMaxLengthPtr, NIL)
   }
 
   public final fun getEdgeMaxLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeMaxError(edgeMaxError: Float): Unit {
     TransferContext.writeArguments(DOUBLE to edgeMaxError.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEdgeMaxErrorPtr, NIL)
   }
 
   public final fun getEdgeMaxError(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVerticesPerPolygon(verticesPerPolygon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to verticesPerPolygon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticesPerPolygonPtr, NIL)
   }
 
   public final fun getVerticesPerPolygon(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDetailSampleDistance(detailSampleDist: Float): Unit {
     TransferContext.writeArguments(DOUBLE to detailSampleDist.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDetailSampleDistancePtr, NIL)
   }
 
   public final fun getDetailSampleDistance(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDetailSampleMaxError(detailSampleMaxError: Float): Unit {
     TransferContext.writeArguments(DOUBLE to detailSampleMaxError.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
   }
 
   public final fun getDetailSampleMaxError(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFilterLowHangingObstacles(filterLowHangingObstacles: Boolean): Unit {
     TransferContext.writeArguments(BOOL to filterLowHangingObstacles)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
   }
 
   public final fun getFilterLowHangingObstacles(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterLedgeSpans(filterLedgeSpans: Boolean): Unit {
     TransferContext.writeArguments(BOOL to filterLedgeSpans)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilterLedgeSpansPtr, NIL)
   }
 
   public final fun getFilterLedgeSpans(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans: Boolean): Unit {
     TransferContext.writeArguments(BOOL to filterWalkableLowHeightSpans)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
   }
 
   public final fun getFilterWalkableLowHeightSpans(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterBakingAabb(bakingAabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to bakingAabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilterBakingAabbPtr, NIL)
   }
 
   public final fun getFilterBakingAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
+    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to bakingAabbOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
   }
 
   public final fun getFilterBakingAabbOffset(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -687,7 +687,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun setVertices(vertices: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticesPtr, NIL)
   }
 
   /**
@@ -695,7 +695,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -704,7 +704,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun addPolygon(polygon: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addPolygonPtr, NIL)
   }
 
   /**
@@ -712,7 +712,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun getPolygonCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPolygonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -721,7 +721,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -730,7 +730,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun clearPolygons(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
   /**
@@ -739,7 +739,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun createFromMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.createFromMeshPtr, NIL)
   }
 
   /**
@@ -747,7 +747,7 @@ public open class NavigationMesh : Resource() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   public enum class SamplePartitionType(

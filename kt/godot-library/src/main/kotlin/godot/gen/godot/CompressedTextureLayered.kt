@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -42,13 +42,13 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
    */
   public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getLoadPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

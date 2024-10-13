@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -17,7 +18,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -92,45 +92,45 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {
     TransferContext.writeArguments(OBJECT to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLayerViewportPtr, NIL)
   }
 
   public final fun getLayerViewport(): SubViewport? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLayerViewportPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SubViewport?)
   }
 
   public final fun setEnableHolePunch(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableHolePunchPtr, NIL)
   }
 
   public final fun getEnableHolePunch(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableHolePunchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortOrder(order: Int): Unit {
     TransferContext.writeArguments(LONG to order.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSortOrderPtr, NIL)
   }
 
   public final fun getSortOrder(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSortOrderPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAlphaBlend(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaBlendPtr, NIL)
   }
 
   public final fun getAlphaBlend(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,7 +140,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    */
   public final fun isNativelySupported(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isNativelySupportedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isNativelySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -151,7 +151,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    */
   public final fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectsRayPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.intersectsRayPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

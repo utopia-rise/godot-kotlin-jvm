@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -58,28 +58,28 @@ public open class CollisionShape3D : Node3D() {
    */
   public final fun resourceChanged(resource: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.resourceChangedPtr, NIL)
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   public final fun setDisabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -89,7 +89,7 @@ public open class CollisionShape3D : Node3D() {
    */
   public final fun makeConvexFromSiblings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
   public companion object

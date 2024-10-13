@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
 
   public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
 
   public final fun getOpType(): OpType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeParticleRandomness.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

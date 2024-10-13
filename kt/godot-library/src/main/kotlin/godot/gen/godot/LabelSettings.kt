@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
@@ -19,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -241,100 +241,100 @@ public open class LabelSettings : Resource() {
 
   public final fun setLineSpacing(spacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to spacing.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
   public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
   }
 
   public final fun getFont(): Font? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFontSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontSizePtr, NIL)
   }
 
   public final fun getFontSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFontColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontColorPtr, NIL)
   }
 
   public final fun getFontColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getFontColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setOutlineSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
   public final fun getOutlineSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOutlineSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutlineColorPtr, NIL)
   }
 
   public final fun getOutlineColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getOutlineColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowSizePtr, NIL)
   }
 
   public final fun getShadowSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getShadowSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShadowColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowColorPtr, NIL)
   }
 
   public final fun getShadowColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowOffsetPtr, NIL)
   }
 
   public final fun getShadowOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getShadowOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

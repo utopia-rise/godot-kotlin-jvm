@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -20,7 +21,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -188,89 +188,89 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   public final fun setFrom(from: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to from)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFromPtr, NIL)
   }
 
   public final fun getFrom(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getFromPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTo(to: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to to)
-    TransferContext.callMethod(rawPtr, MethodBindings.setToPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setToPtr, NIL)
   }
 
   public final fun getTo(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getToPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
     TransferContext.writeArguments(LONG to collisionMask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
     TransferContext.writeArguments(ARRAY to exclude)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
   }
 
   public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getExcludePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitFromInside(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHitFromInsidePtr, NIL)
   }
 
   public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitBackFaces(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHitBackFacesPtr, NIL)
   }
 
   public final fun isHitBackFacesEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

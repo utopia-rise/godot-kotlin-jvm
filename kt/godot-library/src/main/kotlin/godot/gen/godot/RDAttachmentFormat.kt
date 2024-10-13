@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -62,34 +62,34 @@ public open class RDAttachmentFormat : RefCounted() {
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplesPtr, NIL)
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUsageFlags(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUsageFlagsPtr, NIL)
   }
 
   public final fun getUsageFlags(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUsageFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -143,7 +143,7 @@ public open class Resource : RefCounted() {
 
   public final fun setPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathPtr, NIL)
   }
 
   /**
@@ -152,23 +152,23 @@ public open class Resource : RefCounted() {
    */
   public final fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.takeOverPathPtr, NIL)
   }
 
   public final fun getPath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
   }
 
   public final fun getName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -179,18 +179,18 @@ public open class Resource : RefCounted() {
    */
   public final fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setLocalToScene(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLocalToScenePtr, NIL)
   }
 
   public final fun isLocalToScene(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isLocalToScenePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -201,7 +201,7 @@ public open class Resource : RefCounted() {
    */
   public final fun getLocalScene(): Node? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLocalScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -212,17 +212,17 @@ public open class Resource : RefCounted() {
    */
   public final fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
   public final fun setSceneUniqueId(id: String): Unit {
     TransferContext.writeArguments(STRING to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSceneUniqueIdPtr, NIL)
   }
 
   public final fun getSceneUniqueId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getSceneUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -242,7 +242,7 @@ public open class Resource : RefCounted() {
    */
   public final fun emitChanged(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.emitChangedPtr, NIL)
   }
 
   /**
@@ -262,7 +262,7 @@ public open class Resource : RefCounted() {
   @JvmOverloads
   public final fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
-    TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 

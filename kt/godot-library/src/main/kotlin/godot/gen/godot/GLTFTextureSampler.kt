@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -76,46 +76,46 @@ public open class GLTFTextureSampler : Resource() {
 
   public final fun getMagFilter(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMagFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMagFilter(filterMode: Int): Unit {
     TransferContext.writeArguments(LONG to filterMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMagFilterPtr, NIL)
   }
 
   public final fun getMinFilter(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMinFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMinFilter(filterMode: Int): Unit {
     TransferContext.writeArguments(LONG to filterMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinFilterPtr, NIL)
   }
 
   public final fun getWrapS(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWrapSPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapS(wrapMode: Int): Unit {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWrapSPtr, NIL)
   }
 
   public final fun getWrapT(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWrapTPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapT(wrapMode: Int): Unit {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWrapTPtr, NIL)
   }
 
   public companion object

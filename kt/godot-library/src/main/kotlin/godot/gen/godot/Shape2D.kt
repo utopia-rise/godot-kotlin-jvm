@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedVector2Array
 import godot.core.RID
@@ -25,7 +26,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -61,12 +61,12 @@ public open class Shape2D internal constructor() : Resource() {
 
   public final fun setCustomSolverBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomSolverBiasPtr, NIL)
   }
 
   public final fun getCustomSolverBias(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -81,7 +81,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(rawPtr, MethodBindings.collidePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.collidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -100,7 +100,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeMotion: Vector2,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(rawPtr, MethodBindings.collideWithMotionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -121,8 +121,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(rawPtr, MethodBindings.collideAndGetContactsPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.collideAndGetContactsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -148,7 +147,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeMotion: Vector2,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(rawPtr, MethodBindings.collideWithMotionAndGetContactsPtr,
+    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionAndGetContactsPtr,
         PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -159,7 +158,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public final fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
@@ -167,7 +166,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -17,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -44,7 +44,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasActionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -54,7 +54,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
@@ -66,7 +66,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addActionPtr, NIL)
   }
 
   /**
@@ -75,7 +75,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.eraseActionPtr, NIL)
   }
 
   /**
@@ -84,7 +84,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionSetDeadzone(action: StringName, deadzone: Float): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.actionSetDeadzonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.actionSetDeadzonePtr, NIL)
   }
 
   /**
@@ -93,7 +93,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionGetDeadzone(action: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -103,7 +103,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionAddEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionAddEventPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.actionAddEventPtr, NIL)
   }
 
   /**
@@ -112,7 +112,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.actionHasEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -122,7 +122,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionEraseEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.actionEraseEventPtr, NIL)
   }
 
   /**
@@ -131,7 +131,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionEraseEvents(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.actionEraseEventsPtr, NIL)
   }
 
   /**
@@ -143,7 +143,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionGetEventsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.actionGetEventsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<InputEvent>)
   }
 
@@ -162,7 +162,7 @@ public object InputMap : Object() {
     exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.eventIsActionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.eventIsActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -172,7 +172,7 @@ public object InputMap : Object() {
   @JvmStatic
   public final fun loadFromProjectSettings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromProjectSettingsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }
 
   internal object MethodBindings {

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedInt32Array
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -122,45 +122,45 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   public final fun setTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
 
   public final fun getTitle(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
 
   public final fun isTintColorEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isTintColorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTintColorPtr, NIL)
   }
 
   public final fun getTintColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getTintColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAutoshrinkEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -170,7 +170,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    */
   public final fun addAttachedNode(node: Int): Unit {
     TransferContext.writeArguments(LONG to node.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addAttachedNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addAttachedNodePtr, NIL)
   }
 
   /**
@@ -179,17 +179,17 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    */
   public final fun removeAttachedNode(node: Int): Unit {
     TransferContext.writeArguments(LONG to node.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAttachedNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeAttachedNodePtr, NIL)
   }
 
   public final fun setAttachedNodes(attachedNodes: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to attachedNodes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAttachedNodesPtr, NIL)
   }
 
   public final fun getAttachedNodes(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 

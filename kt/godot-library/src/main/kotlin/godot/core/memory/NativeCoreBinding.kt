@@ -9,7 +9,7 @@ internal class NativeCoreBinding(
     ref: NativeCoreType,
     val variantType: VariantParser
 ) : WeakReference<NativeCoreType>(ref, queue) {
-    val ptr = ref._handle
+    val ptr = ref.ptr
 
     companion object {
         /** Queue to be notified when the GC runs on NativeCoreTypes.*/

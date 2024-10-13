@@ -4,10 +4,10 @@ package godot.core
 
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
-import godot.util.CMP_EPSILON
-import godot.util.RealT
-import godot.util.isEqualApprox
-import godot.util.toRealT
+import godot.common.util.CMP_EPSILON
+import godot.common.util.RealT
+import godot.common.util.isEqualApprox
+import godot.common.util.toRealT
 import kotlin.math.abs
 
 class Plane(

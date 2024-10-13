@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -46,12 +46,12 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
 
   public final fun setFactor(factor: Float): Unit {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFactorPtr, NIL)
   }
 
   public final fun getFactor(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

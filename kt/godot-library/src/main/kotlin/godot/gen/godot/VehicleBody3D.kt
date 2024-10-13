@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -87,34 +87,34 @@ public open class VehicleBody3D : RigidBody3D() {
 
   public final fun setEngineForce(engineForce: Float): Unit {
     TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEngineForcePtr, NIL)
   }
 
   public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEngineForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
     TransferContext.writeArguments(DOUBLE to brake.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBrakePtr, NIL)
   }
 
   public final fun getBrake(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBrakePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
     TransferContext.writeArguments(DOUBLE to steering.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSteeringPtr, NIL)
   }
 
   public final fun getSteering(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSteeringPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

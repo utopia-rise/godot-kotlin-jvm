@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -29,7 +29,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
 
   public final fun beginResample(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.beginResamplePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.beginResamplePtr, NIL)
   }
 
   public companion object

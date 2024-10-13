@@ -2,10 +2,10 @@
 
 package godot.core
 
-import godot.util.PI
-import godot.util.SQRT12
-import godot.util.TAU
-import godot.util.isEqualApprox
+import godot.common.util.PI
+import godot.common.util.SQRT12
+import godot.common.util.TAU
+import godot.common.util.isEqualApprox
 import org.junit.Test
 
 class TestTransform2D {

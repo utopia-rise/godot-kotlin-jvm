@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -65,34 +65,34 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
 
   public final fun setSource(`value`: Source): Unit {
     TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(`value`: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
     TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

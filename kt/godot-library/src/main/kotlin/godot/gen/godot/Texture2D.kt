@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.RID
 import godot.core.Rect2
@@ -21,7 +22,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -126,7 +126,7 @@ public open class Texture2D : Texture() {
    */
   public final fun getWidth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -135,7 +135,7 @@ public open class Texture2D : Texture() {
    */
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -144,7 +144,7 @@ public open class Texture2D : Texture() {
    */
   public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -153,7 +153,7 @@ public open class Texture2D : Texture() {
    */
   public final fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAlphaPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -169,7 +169,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
@@ -184,7 +184,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawRectPtr, NIL)
   }
 
   /**
@@ -200,7 +200,7 @@ public open class Texture2D : Texture() {
     clipUv: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawRectRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawRectRegionPtr, NIL)
   }
 
   /**
@@ -212,7 +212,7 @@ public open class Texture2D : Texture() {
    */
   public final fun getImage(): Image? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImagePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -221,7 +221,7 @@ public open class Texture2D : Texture() {
    */
   public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 

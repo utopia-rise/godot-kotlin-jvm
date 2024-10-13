@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -40,12 +40,12 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
 
   public final fun setOperator(op: Operator): Unit {
     TransferContext.writeArguments(LONG to op.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
 
   public final fun getOperator(): Operator {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOperatorPtr, LONG)
     return VisualShaderNodeVectorOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

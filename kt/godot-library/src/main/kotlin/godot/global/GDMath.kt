@@ -5,13 +5,13 @@ package godot.global
 import godot.core.Color
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.DB2NEPER
-import godot.util.NEPER2DB
-import godot.util.TAU
-import godot.util.fposmod
-import godot.util.isEqualApprox
-import godot.util.isZeroApprox
-import godot.util.toRealT
+import godot.common.util.DB2NEPER
+import godot.common.util.NEPER2DB
+import godot.common.util.TAU
+import godot.common.util.fposmod
+import godot.common.util.isEqualApprox
+import godot.common.util.isZeroApprox
+import godot.common.util.toRealT
 import kotlin.math.pow
 import kotlin.math.sign
 

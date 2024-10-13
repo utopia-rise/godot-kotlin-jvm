@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -38,7 +38,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public final fun createFromImages(images: VariantArray<Image>): Error {
     TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createFromImagesPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -52,7 +52,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    */
   public final fun updateLayer(image: Image?, layer: Int): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.updateLayerPtr, NIL)
   }
 
   public companion object

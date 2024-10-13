@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -46,7 +46,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.idToTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -56,7 +56,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
-    TransferContext.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.textToIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -68,7 +68,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun createId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -78,7 +78,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasIdPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -90,7 +90,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addIdPtr, NIL)
   }
 
   /**
@@ -101,7 +101,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIdPtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getIdPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -122,7 +122,7 @@ public object ResourceUID : Object() {
   @JvmStatic
   public final fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeIdPtr, NIL)
   }
 
   internal object MethodBindings {

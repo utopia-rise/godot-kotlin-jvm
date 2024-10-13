@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -17,7 +18,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -256,122 +256,122 @@ public open class PhysicalSkyMaterial : Material() {
 
   public final fun setRayleighCoefficient(rayleigh: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rayleigh.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRayleighCoefficientPtr, NIL)
   }
 
   public final fun getRayleighCoefficient(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRayleighColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRayleighColorPtr, NIL)
   }
 
   public final fun getRayleighColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getRayleighColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setMieCoefficient(mie: Float): Unit {
     TransferContext.writeArguments(DOUBLE to mie.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMieCoefficientPtr, NIL)
   }
 
   public final fun getMieCoefficient(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMieCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMieEccentricity(eccentricity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to eccentricity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMieEccentricityPtr, NIL)
   }
 
   public final fun getMieEccentricity(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMieEccentricityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMieColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMieColorPtr, NIL)
   }
 
   public final fun getMieColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getMieColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTurbidity(turbidity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to turbidity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTurbidityPtr, NIL)
   }
 
   public final fun getTurbidity(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTurbidityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunDiskScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSunDiskScalePtr, NIL)
   }
 
   public final fun getSunDiskScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSunDiskScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGroundColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGroundColorPtr, NIL)
   }
 
   public final fun getGroundColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getGroundColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEnergyMultiplier(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseDebanding(useDebanding: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useDebanding)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseDebandingPtr, NIL)
   }
 
   public final fun getUseDebanding(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNightSky(nightSky: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to nightSky)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNightSkyPtr, NIL)
   }
 
   public final fun getNightSky(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNightSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 

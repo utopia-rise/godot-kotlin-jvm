@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -48,12 +48,12 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
 
   public final fun setInputName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInputNamePtr, NIL)
   }
 
   public final fun getInputName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getInputNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -63,7 +63,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    */
   public final fun getInputRealName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputRealNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getInputRealNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -31,61 +31,61 @@ public open class Skin : Resource() {
 
   public final fun setBindCount(bindCount: Int): Unit {
     TransferContext.writeArguments(LONG to bindCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindCountPtr, NIL)
   }
 
   public final fun getBindCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBindCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun addBind(bone: Int, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bone.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBindPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addBindPtr, NIL)
   }
 
   public final fun addNamedBind(name: String, pose: Transform3D): Unit {
     TransferContext.writeArguments(STRING to name, TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, MethodBindings.addNamedBindPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addNamedBindPtr, NIL)
   }
 
   public final fun setBindPose(bindIndex: Int, pose: Transform3D): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindPosePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindPosePtr, NIL)
   }
 
   public final fun getBindPose(bindIndex: Int): Transform3D {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindPosePtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getBindPosePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setBindName(bindIndex: Int, name: StringName): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindNamePtr, NIL)
   }
 
   public final fun getBindName(bindIndex: Int): StringName {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getBindNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBindBone(bindIndex: Int, bone: Int): Unit {
     TransferContext.writeArguments(LONG to bindIndex.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindBonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindBonePtr, NIL)
   }
 
   public final fun getBindBone(bindIndex: Int): Int {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindBonePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBindBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun clearBinds(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBindsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearBindsPtr, NIL)
   }
 
   public companion object

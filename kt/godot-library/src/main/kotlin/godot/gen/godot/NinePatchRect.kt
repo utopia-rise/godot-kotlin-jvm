@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -18,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -183,12 +183,12 @@ public open class NinePatchRect : Control() {
 
   public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -197,7 +197,7 @@ public open class NinePatchRect : Control() {
    */
   public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPatchMarginPtr, NIL)
   }
 
   /**
@@ -205,51 +205,51 @@ public open class NinePatchRect : Control() {
    */
   public final fun getPatchMargin(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPatchMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRegionRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRegionRectPtr, NIL)
   }
 
   public final fun getRegionRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setDrawCenter(drawCenter: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawCenter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
   public final fun getHAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
   public final fun getVAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

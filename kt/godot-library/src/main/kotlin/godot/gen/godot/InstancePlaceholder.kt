@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -50,7 +50,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   @JvmOverloads
   public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getStoredValuesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -65,7 +65,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   public final fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
       Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
-    TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.createInstancePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -75,7 +75,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   public final fun getInstancePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getInstancePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

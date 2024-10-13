@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
@@ -13,13 +13,13 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
@@ -28,7 +28,7 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
      */
     constructor(from: PackedInt64Array) {
         TransferContext.writeArguments(VariantParser.PACKED_INT_64_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
@@ -37,7 +37,7 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
      */
     constructor(from: VariantArray<Long>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
@@ -45,7 +45,7 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
      * Constructs a new [PackedInt64Array] from an existing Kotlin [LongArray] or Java long[].
      */
     constructor(from: LongArray) {
-        _handle = Bridge.engine_convert_to_godot(from)
+        ptr = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
@@ -68,10 +68,10 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
-    fun toLongArray(): LongArray = Bridge.engine_convert_to_jvm(_handle)
+    fun toLongArray(): LongArray = Bridge.engine_convert_to_jvm(ptr)
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {

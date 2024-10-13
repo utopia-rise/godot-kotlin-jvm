@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -74,23 +74,23 @@ public open class SubViewportContainer : Container() {
 
   public final fun setStretch(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStretchPtr, NIL)
   }
 
   public final fun isStretchEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStretchShrink(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStretchShrinkPtr, NIL)
   }
 
   public final fun getStretchShrink(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStretchShrinkPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

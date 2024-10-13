@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -17,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -138,29 +138,29 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setNavigationMesh(navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationMeshPtr, NIL)
   }
 
   public final fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -171,7 +171,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -179,29 +179,29 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setUseEdgeConnections(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
   }
 
   public final fun getUseEdgeConnections(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
     TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
   public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -211,7 +211,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -229,29 +229,29 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun getRegionRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRegionRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnterCost(enterCost: Float): Unit {
     TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnterCostPtr, NIL)
   }
 
   public final fun getEnterCost(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEnterCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTravelCost(travelCost: Float): Unit {
     TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTravelCostPtr, NIL)
   }
 
   public final fun getTravelCost(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTravelCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -267,7 +267,7 @@ public open class NavigationRegion3D : Node3D() {
   @JvmOverloads
   public final fun bakeNavigationMesh(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bakeNavigationMeshPtr, NIL)
   }
 
   /**
@@ -275,7 +275,7 @@ public open class NavigationRegion3D : Node3D() {
    */
   public final fun isBaking(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBakingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBakingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

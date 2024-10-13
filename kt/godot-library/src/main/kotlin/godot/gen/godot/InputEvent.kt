@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.TypeManager
@@ -21,7 +22,6 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -57,12 +57,12 @@ public open class InputEvent internal constructor() : Resource() {
 
   public final fun setDevice(device: Int): Unit {
     TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDevicePtr, NIL)
   }
 
   public final fun getDevice(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDevicePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -74,7 +74,7 @@ public open class InputEvent internal constructor() : Resource() {
   @JvmOverloads
   public final fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -96,7 +96,7 @@ public open class InputEvent internal constructor() : Resource() {
     exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isActionPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -109,7 +109,7 @@ public open class InputEvent internal constructor() : Resource() {
   @JvmOverloads
   public final fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionReleasedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isActionReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -122,7 +122,7 @@ public open class InputEvent internal constructor() : Resource() {
   @JvmOverloads
   public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getActionStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -131,7 +131,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun isCanceled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCanceledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCanceledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -144,7 +144,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -154,7 +154,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun isReleased(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isReleasedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -170,7 +170,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun isEcho(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEchoPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEchoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -179,7 +179,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun asText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.asTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -193,7 +193,7 @@ public open class InputEvent internal constructor() : Resource() {
   @JvmOverloads
   public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMatchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -202,7 +202,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun isActionType(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionTypePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isActionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -214,7 +214,7 @@ public open class InputEvent internal constructor() : Resource() {
    */
   public final fun accumulate(withEvent: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
-    TransferContext.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.accumulatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -227,7 +227,7 @@ public open class InputEvent internal constructor() : Resource() {
   @JvmOverloads
   public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
-    TransferContext.callMethod(rawPtr, MethodBindings.xformedByPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.xformedByPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
   }
 

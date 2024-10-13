@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
@@ -14,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -75,35 +75,35 @@ public open class XRTracker internal constructor() : RefCounted() {
 
   public final fun getTrackerType(): XRServer.TrackerType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerTypePtr, LONG)
     return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTrackerType(type: XRServer.TrackerType): Unit {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerTypePtr, NIL)
   }
 
   public final fun getTrackerName(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTrackerName(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerNamePtr, NIL)
   }
 
   public final fun getTrackerDesc(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerDescPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTrackerDesc(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerDescPtr, NIL)
   }
 
   public companion object

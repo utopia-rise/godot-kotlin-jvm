@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.util.snapped
+import godot.common.util.snapped
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt

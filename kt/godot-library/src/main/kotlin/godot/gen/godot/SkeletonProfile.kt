@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform3D
@@ -20,7 +21,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -102,34 +102,34 @@ public open class SkeletonProfile : Resource() {
 
   public final fun setRootBone(boneName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
   }
 
   public final fun getRootBone(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setScaleBaseBone(boneName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaleBaseBonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScaleBaseBonePtr, NIL)
   }
 
   public final fun getScaleBaseBone(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setGroupSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroupSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGroupSizePtr, NIL)
   }
 
   public final fun getGroupSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getGroupSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -139,7 +139,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getGroupName(groupIdx: Int): StringName {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getGroupNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -149,7 +149,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), STRING_NAME to groupName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroupNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGroupNamePtr, NIL)
   }
 
   /**
@@ -158,7 +158,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getTexture(groupIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -168,17 +168,17 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setTexture(groupIdx: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun setBoneSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneSizePtr, NIL)
   }
 
   public final fun getBoneSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -187,7 +187,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun findBone(boneName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.findBonePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.findBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -197,7 +197,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getBoneName(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -207,7 +207,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
   }
 
   /**
@@ -216,7 +216,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getBoneParent(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneParentPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneParentPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -226,7 +226,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneParent)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneParentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneParentPtr, NIL)
   }
 
   /**
@@ -234,7 +234,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getTailDirection(boneIdx: Int): TailDirection {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTailDirectionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTailDirectionPtr, LONG)
     return SkeletonProfile.TailDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -245,7 +245,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTailDirectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTailDirectionPtr, NIL)
   }
 
   /**
@@ -253,7 +253,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getBoneTail(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneTailPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneTailPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -262,7 +262,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneTail)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneTailPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneTailPtr, NIL)
   }
 
   /**
@@ -270,7 +270,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getReferencePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getReferencePosePtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getReferencePosePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -279,7 +279,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReferencePosePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setReferencePosePtr, NIL)
   }
 
   /**
@@ -289,7 +289,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getHandleOffset(boneIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandleOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getHandleOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -300,7 +300,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR2 to handleOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandleOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHandleOffsetPtr, NIL)
   }
 
   /**
@@ -308,7 +308,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun getGroup(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getGroupPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -317,7 +317,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setGroup(boneIdx: Int, group: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroupPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGroupPtr, NIL)
   }
 
   /**
@@ -327,7 +327,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun isRequired(boneIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isRequiredPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRequiredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -336,7 +336,7 @@ public open class SkeletonProfile : Resource() {
    */
   public final fun setRequired(boneIdx: Int, required: Boolean): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to required)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRequiredPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRequiredPtr, NIL)
   }
 
   public enum class TailDirection(

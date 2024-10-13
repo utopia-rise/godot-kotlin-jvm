@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -40,7 +40,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public final fun getSkeleton(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -53,7 +53,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    */
   public final fun getSkin(): Skin? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 

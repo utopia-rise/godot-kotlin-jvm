@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -67,34 +67,34 @@ public open class OccluderPolygon2D : Resource() {
 
   public final fun setClosed(closed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to closed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
   }
 
   public final fun isClosed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
     TransferContext.writeArguments(LONG to cullMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
 
   public final fun getCullMode(): CullMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
     return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
 
   public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

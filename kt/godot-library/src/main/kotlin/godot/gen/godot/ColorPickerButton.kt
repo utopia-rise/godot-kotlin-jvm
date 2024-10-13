@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Signal0
 import godot.core.Signal1
@@ -18,7 +19,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -103,12 +103,12 @@ public open class ColorPickerButton : Button() {
 
   public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPickColorPtr, NIL)
   }
 
   public final fun getPickColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getPickColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -119,7 +119,7 @@ public open class ColorPickerButton : Button() {
    */
   public final fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPickerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ColorPicker?)
   }
 
@@ -131,18 +131,18 @@ public open class ColorPickerButton : Button() {
    */
   public final fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
     TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditAlphaPtr, NIL)
   }
 
   public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEditingAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

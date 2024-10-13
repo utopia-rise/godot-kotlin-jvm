@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -71,34 +71,34 @@ public open class Sky : Resource() {
 
   public final fun setRadianceSize(size: RadianceSize): Unit {
     TransferContext.writeArguments(LONG to size.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadianceSizePtr, NIL)
   }
 
   public final fun getRadianceSize(): RadianceSize {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRadianceSizePtr, LONG)
     return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProcessMode(mode: ProcessMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setProcessModePtr, NIL)
   }
 
   public final fun getProcessMode(): ProcessMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getProcessModePtr, LONG)
     return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 

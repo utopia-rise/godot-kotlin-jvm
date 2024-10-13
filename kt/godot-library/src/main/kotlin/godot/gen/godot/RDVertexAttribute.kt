@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -69,56 +69,56 @@ public open class RDVertexAttribute : RefCounted() {
 
   public final fun setLocation(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLocationPtr, NIL)
   }
 
   public final fun getLocation(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLocationPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOffset(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStride(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStridePtr, NIL)
   }
 
   public final fun getStride(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
   }
 
   public final fun getFrequency(): RenderingDevice.VertexFrequency {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrequencyPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFrequencyPtr, LONG)
     return RenderingDevice.VertexFrequency.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

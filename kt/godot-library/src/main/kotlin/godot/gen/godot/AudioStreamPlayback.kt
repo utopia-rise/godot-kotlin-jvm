@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -102,7 +102,7 @@ public open class AudioStreamPlayback : RefCounted() {
    */
   public final fun setSamplePlayback(playbackSample: AudioSamplePlayback?): Unit {
     TransferContext.writeArguments(OBJECT to playbackSample)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplePlaybackPtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class AudioStreamPlayback : RefCounted() {
    */
   public final fun getSamplePlayback(): AudioSamplePlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getSamplePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioSamplePlayback?)
   }
 

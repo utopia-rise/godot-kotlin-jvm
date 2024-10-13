@@ -5,7 +5,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 import kotlin.reflect.KFunction
 import kotlin.reflect.KProperty
 
@@ -13,31 +13,31 @@ class StringName : NativeCoreType {
 
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     //CONSTRUCTORS
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     constructor(string: String) {
         TransferContext.writeArguments(VariantParser.STRING to string)
-        _handle = Bridge.engine_call_constructor_string()
+        ptr = Bridge.engine_call_constructor_string()
         MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     constructor(stringName: StringName) {
         TransferContext.writeArguments(VariantParser.STRING_NAME to stringName)
-        _handle = Bridge.engine_call_copy_constructor()
+        ptr = Bridge.engine_call_copy_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     override fun toString(): String {
         TransferContext.writeArguments()
-        Bridge.engine_call_operator_string(_handle)
+        Bridge.engine_call_operator_string(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 

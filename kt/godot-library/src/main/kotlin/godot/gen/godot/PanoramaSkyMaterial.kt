@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -73,34 +73,34 @@ public open class PanoramaSkyMaterial : Material() {
 
   public final fun setPanorama(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPanoramaPtr, NIL)
   }
 
   public final fun getPanorama(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFilteringEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilteringEnabledPtr, NIL)
   }
 
   public final fun isFilteringEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFilteringEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEnergyMultiplier(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

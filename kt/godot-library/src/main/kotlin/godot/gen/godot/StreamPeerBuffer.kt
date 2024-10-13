@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
@@ -14,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -51,7 +51,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun seek(position: Int): Unit {
     TransferContext.writeArguments(LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
 
   /**
@@ -59,7 +59,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun getSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -68,7 +68,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun getPosition(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -77,17 +77,17 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun resize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
   }
 
   public final fun setDataArray(`data`: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDataArrayPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDataArrayPtr, NIL)
   }
 
   public final fun getDataArray(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -96,7 +96,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -104,7 +104,7 @@ public open class StreamPeerBuffer : StreamPeer() {
    */
   public final fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerBuffer?)
   }
 

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,7 +32,7 @@ public open class RenderData internal constructor() : Object() {
    */
   public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneBuffers?)
   }
 
@@ -41,7 +41,7 @@ public open class RenderData internal constructor() : Object() {
    */
   public final fun getRenderSceneData(): RenderSceneData? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneDataPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderSceneDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneData?)
   }
 
@@ -51,7 +51,7 @@ public open class RenderData internal constructor() : Object() {
    */
   public final fun getEnvironment(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -61,7 +61,7 @@ public open class RenderData internal constructor() : Object() {
    */
   public final fun getCameraAttributes(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

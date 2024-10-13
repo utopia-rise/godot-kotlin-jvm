@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -18,7 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -344,210 +344,210 @@ public open class LightmapGI : VisualInstance3D() {
 
   public final fun setLightData(`data`: LightmapGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLightDataPtr, NIL)
   }
 
   public final fun getLightData(): LightmapGIData? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLightDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as LightmapGIData?)
   }
 
   public final fun setBakeQuality(bakeQuality: BakeQuality): Unit {
     TransferContext.writeArguments(LONG to bakeQuality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBakeQualityPtr, NIL)
   }
 
   public final fun getBakeQuality(): BakeQuality {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBakeQualityPtr, LONG)
     return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBounces(bounces: Int): Unit {
     TransferContext.writeArguments(LONG to bounces.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBouncesPtr, NIL)
   }
 
   public final fun getBounces(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBouncesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBounceIndirectEnergy(bounceIndirectEnergy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bounceIndirectEnergy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
   }
 
   public final fun getBounceIndirectEnergy(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGenerateProbes(subdivision: GenerateProbes): Unit {
     TransferContext.writeArguments(LONG to subdivision.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGenerateProbesPtr, NIL)
   }
 
   public final fun getGenerateProbes(): GenerateProbes {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getGenerateProbesPtr, LONG)
     return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBiasPtr, NIL)
   }
 
   public final fun getBias(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnvironmentMode(mode: EnvironmentMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentModePtr, NIL)
   }
 
   public final fun getEnvironmentMode(): EnvironmentMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentModePtr, LONG)
     return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnvironmentCustomSky(sky: Sky?): Unit {
     TransferContext.writeArguments(OBJECT to sky)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
   }
 
   public final fun getEnvironmentCustomSky(): Sky? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Sky?)
   }
 
   public final fun setEnvironmentCustomColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
   }
 
   public final fun getEnvironmentCustomColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnvironmentCustomEnergy(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
   }
 
   public final fun getEnvironmentCustomEnergy(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTexelScale(texelScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to texelScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexelScalePtr, NIL)
   }
 
   public final fun getTexelScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTexelScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxTextureSize(maxTextureSize: Int): Unit {
     TransferContext.writeArguments(LONG to maxTextureSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxTextureSizePtr, NIL)
   }
 
   public final fun getMaxTextureSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxTextureSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setUseDenoiser(useDenoiser: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useDenoiser)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseDenoiserPtr, NIL)
   }
 
   public final fun isUsingDenoiser(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingDenoiserPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDenoiserStrength(denoiserStrength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to denoiserStrength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDenoiserStrengthPtr, NIL)
   }
 
   public final fun getDenoiserStrength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDenoiserRange(denoiserRange: Int): Unit {
     TransferContext.writeArguments(LONG to denoiserRange.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDenoiserRangePtr, NIL)
   }
 
   public final fun getDenoiserRange(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDenoiserRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInterior(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInteriorPtr, NIL)
   }
 
   public final fun isInterior(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDirectional(directional: Boolean): Unit {
     TransferContext.writeArguments(BOOL to directional)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDirectionalPtr, NIL)
   }
 
   public final fun isDirectional(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDirectionalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseTextureForBounces(useTextureForBounces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useTextureForBounces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseTextureForBouncesPtr, NIL)
   }
 
   public final fun isUsingTextureForBounces(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 

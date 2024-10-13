@@ -2,7 +2,7 @@ package godot.core
 
 import godot.core.memory.TransferContext
 import godot.common.constants.Constraints
-import godot.util.threadLocal
+import godot.common.util.threadLocal
 
 internal open class ParametersReader {
     val paramsArray by threadLocal {

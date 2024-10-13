@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -24,7 +25,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -111,24 +111,24 @@ public open class XRPositionalTracker : XRTracker() {
 
   public final fun getTrackerProfile(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerProfilePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTrackerProfile(profile: String): Unit {
     TransferContext.writeArguments(STRING to profile)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerProfilePtr, NIL)
   }
 
   public final fun getTrackerHand(): TrackerHand {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTrackerHand(hand: TrackerHand): Unit {
     TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackerHandPtr, NIL)
   }
 
   /**
@@ -136,7 +136,7 @@ public open class XRPositionalTracker : XRTracker() {
    */
   public final fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasPosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -145,7 +145,7 @@ public open class XRPositionalTracker : XRTracker() {
    */
   public final fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as XRPose?)
   }
 
@@ -156,7 +156,7 @@ public open class XRPositionalTracker : XRTracker() {
    */
   public final fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.invalidatePosePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.invalidatePosePtr, NIL)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class XRPositionalTracker : XRTracker() {
     trackingConfidence: XRPose.TrackingConfidence,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPosePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPosePtr, NIL)
   }
 
   /**
@@ -180,7 +180,7 @@ public open class XRPositionalTracker : XRTracker() {
    */
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getInputPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -190,7 +190,7 @@ public open class XRPositionalTracker : XRTracker() {
    */
   public final fun setInput(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInputPtr, NIL)
   }
 
   public enum class TrackerHand(

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
@@ -21,7 +22,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -37,47 +37,47 @@ public open class PolygonPathFinder : Resource() {
 
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
-    TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
   }
 
   public final fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, MethodBindings.findPathPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.findPathPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIntersectionsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getIntersectionsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getClosestPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.isPointInsidePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPointInsidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPointPenalty(idx: Int, penalty: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to penalty.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointPenaltyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPointPenaltyPtr, NIL)
   }
 
   public final fun getPointPenalty(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPenaltyPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPointPenaltyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getBounds(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

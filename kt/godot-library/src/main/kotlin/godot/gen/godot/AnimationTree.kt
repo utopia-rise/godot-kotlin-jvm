@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -76,34 +76,34 @@ public open class AnimationTree : AnimationMixer() {
 
   public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {
     TransferContext.writeArguments(OBJECT to animationNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTreeRootPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTreeRootPtr, NIL)
   }
 
   public final fun getTreeRoot(): AnimationRootNode? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTreeRootPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTreeRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AnimationRootNode?)
   }
 
   public final fun setAdvanceExpressionBaseNode(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
   }
 
   public final fun getAdvanceExpressionBaseNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setAnimationPlayer(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPlayerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAnimationPlayerPtr, NIL)
   }
 
   public final fun getAnimationPlayer(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -112,7 +112,7 @@ public open class AnimationTree : AnimationMixer() {
    */
   public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
   /**
@@ -120,7 +120,7 @@ public open class AnimationTree : AnimationMixer() {
    */
   public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

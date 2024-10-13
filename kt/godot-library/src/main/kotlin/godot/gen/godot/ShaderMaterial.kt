@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
@@ -14,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
@@ -50,12 +50,12 @@ public open class ShaderMaterial : Material() {
 
   public final fun setShader(shader: Shader?): Unit {
     TransferContext.writeArguments(OBJECT to shader)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShaderPtr, NIL)
   }
 
   public final fun getShader(): Shader? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShaderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shader?)
   }
 
@@ -71,7 +71,7 @@ public open class ShaderMaterial : Material() {
    */
   public final fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShaderParameterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShaderParameterPtr, NIL)
   }
 
   /**
@@ -79,7 +79,7 @@ public open class ShaderMaterial : Material() {
    */
   public final fun getShaderParameter(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

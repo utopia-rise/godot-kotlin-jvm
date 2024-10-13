@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -70,34 +70,34 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
 
   public final fun setBufferLength(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTapBackPos(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTapBackPosPtr, NIL)
   }
 
   public final fun getTapBackPos(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTapBackPosPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
     TransferContext.writeArguments(LONG to size.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFftSizePtr, NIL)
   }
 
   public final fun getFftSize(): FFTSize {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
     return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

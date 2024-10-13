@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -102,67 +102,67 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   public final fun setHint(hint: Hint): Unit {
     TransferContext.writeArguments(LONG to hint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
 
   public final fun getHint(): Hint {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun getMin(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMax(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun getMax(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStep(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun getStep(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStepPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

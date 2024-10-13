@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
@@ -14,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -158,7 +158,7 @@ public open class RDShaderSPIRV : Resource() {
   public final fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
       Unit {
     TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStageBytecodePtr, NIL)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -179,7 +179,7 @@ public open class RDShaderSPIRV : Resource() {
   public final fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
       Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStageCompileErrorPtr, NIL)
   }
 
   /**
@@ -189,7 +189,7 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getStageCompileErrorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

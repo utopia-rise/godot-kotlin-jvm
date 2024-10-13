@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -99,29 +99,29 @@ public open class SpringArm3D : Node3D() {
    */
   public final fun getHitLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHitLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getHitLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
   }
 
   public final fun getLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
@@ -131,7 +131,7 @@ public open class SpringArm3D : Node3D() {
    */
   public final fun addExcludedObject(RID: RID): Unit {
     TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExcludedObjectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addExcludedObjectPtr, NIL)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class SpringArm3D : Node3D() {
    */
   public final fun removeExcludedObject(RID: RID): Boolean {
     TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExcludedObjectPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.removeExcludedObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -149,28 +149,28 @@ public open class SpringArm3D : Node3D() {
    */
   public final fun clearExcludedObjects(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearExcludedObjectsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearExcludedObjectsPtr, NIL)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

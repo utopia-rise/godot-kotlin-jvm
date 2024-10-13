@@ -1,7 +1,7 @@
 package godot.core
 
-import godot.util.isEqualApprox
-import godot.util.toRealT
+import godot.common.util.isEqualApprox
+import godot.common.util.toRealT
 import org.junit.Test
 
 class TestColor {

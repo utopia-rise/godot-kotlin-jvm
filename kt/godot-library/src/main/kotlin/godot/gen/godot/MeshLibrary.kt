@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -43,7 +43,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun createItem(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createItemPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.createItemPtr, NIL)
   }
 
   /**
@@ -53,7 +53,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemName(id: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemNamePtr, NIL)
   }
 
   /**
@@ -61,7 +61,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemMesh(id: Int, mesh: Mesh?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemMeshPtr, NIL)
   }
 
   /**
@@ -69,7 +69,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemMeshTransform(id: Int, meshTransform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to meshTransform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemMeshTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemMeshTransformPtr, NIL)
   }
 
   /**
@@ -77,7 +77,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemNavigationMesh(id: Int, navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemNavigationMeshPtr, NIL)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemNavigationMeshTransform(id: Int, navigationMesh: Transform3D): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationMeshTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemNavigationMeshTransformPtr, NIL)
   }
 
   /**
@@ -93,7 +93,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemNavigationLayers(id: Int, navigationLayers: Long): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationLayersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemNavigationLayersPtr, NIL)
   }
 
   /**
@@ -103,7 +103,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemShapes(id: Int, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), ARRAY to shapes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemShapesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemShapesPtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemPreview(id: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemPreviewPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setItemPreviewPtr, NIL)
   }
 
   /**
@@ -119,7 +119,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemName(id: Int): String {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getItemNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -128,7 +128,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemMesh(id: Int): Mesh? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getItemMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
@@ -137,7 +137,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemMeshTransform(id: Int): Transform3D {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemMeshTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getItemMeshTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -146,7 +146,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemNavigationMesh(id: Int): NavigationMesh? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getItemNavigationMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
   }
 
@@ -155,8 +155,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemNavigationMeshTransform(id: Int): Transform3D {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationMeshTransformPtr,
-        TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getItemNavigationMeshTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -165,7 +164,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemNavigationLayers(id: Int): Long {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationLayersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getItemNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -175,7 +174,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemShapes(id: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemShapesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getItemShapesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -187,7 +186,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemPreview(id: Int): Texture2D? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemPreviewPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getItemPreviewPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -196,7 +195,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun removeItem(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
   }
 
   /**
@@ -204,7 +203,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun findItemByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findItemByNamePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.findItemByNamePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -213,7 +212,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -221,7 +220,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getItemList(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemListPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getItemListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -230,7 +229,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun getLastUnusedItemId(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLastUnusedItemIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLastUnusedItemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

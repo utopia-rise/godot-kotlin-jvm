@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -51,7 +51,7 @@ public open class ZIPPacker : RefCounted() {
   public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       Error {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -61,7 +61,7 @@ public open class ZIPPacker : RefCounted() {
    */
   public final fun startFile(path: String): Error {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.startFilePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.startFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -71,7 +71,7 @@ public open class ZIPPacker : RefCounted() {
    */
   public final fun writeFile(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.writeFilePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.writeFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -81,7 +81,7 @@ public open class ZIPPacker : RefCounted() {
    */
   public final fun closeFile(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closeFilePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.closeFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -90,7 +90,7 @@ public open class ZIPPacker : RefCounted() {
    */
   public final fun close(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

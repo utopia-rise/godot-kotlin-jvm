@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -93,45 +93,45 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
 
   public final fun getTargetNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setTargetMinimumDistance(minimumDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to minimumDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMinimumDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetMinimumDistancePtr, NIL)
   }
 
   public final fun getTargetMinimumDistance(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTargetMaximumDistance(maximumDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to maximumDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMaximumDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetMaximumDistancePtr, NIL)
   }
 
   public final fun getTargetMaximumDistance(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlipBendDirection(flipDirection: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipDirection)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlipBendDirectionPtr, NIL)
   }
 
   public final fun getFlipBendDirection(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFlipBendDirectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,7 +140,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun setJointOneBone2dNode(bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointOneBone2dNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointOneBone2dNodePtr, NIL)
   }
 
   /**
@@ -148,7 +148,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun getJointOneBone2dNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -158,7 +158,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun setJointOneBoneIdx(boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointOneBoneIdxPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointOneBoneIdxPtr, NIL)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun getJointOneBoneIdx(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBoneIdxPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getJointOneBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -176,7 +176,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun setJointTwoBone2dNode(bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTwoBone2dNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointTwoBone2dNodePtr, NIL)
   }
 
   /**
@@ -184,7 +184,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun getJointTwoBone2dNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -194,7 +194,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun setJointTwoBoneIdx(boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTwoBoneIdxPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointTwoBoneIdxPtr, NIL)
   }
 
   /**
@@ -203,7 +203,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    */
   public final fun getJointTwoBoneIdx(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

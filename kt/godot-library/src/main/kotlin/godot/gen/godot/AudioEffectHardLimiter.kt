@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -69,34 +69,34 @@ public open class AudioEffectHardLimiter : AudioEffect() {
 
   public final fun setCeilingDb(ceiling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCeilingDbPtr, NIL)
   }
 
   public final fun getCeilingDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCeilingDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPreGainDb(pPreGain: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPreGainDbPtr, NIL)
   }
 
   public final fun getPreGainDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPreGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRelease(pRelease: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setReleasePtr, NIL)
   }
 
   public final fun getRelease(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getReleasePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Basis
 import godot.core.Callable
@@ -61,7 +62,6 @@ import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -201,7 +201,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dCreate(image: Image?): RID {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -217,7 +217,7 @@ public object RenderingServer : Object() {
   public final fun texture2dLayeredCreate(layers: VariantArray<Image>,
       layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayeredCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dLayeredCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -234,7 +234,7 @@ public object RenderingServer : Object() {
     `data`: VariantArray<Image>,
   ): RID {
     TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to mipmaps, ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture3dCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture3dCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -244,7 +244,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureProxyCreate(base: RID): RID {
     TransferContext.writeArguments(_RID to base)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureProxyCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.textureProxyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -262,7 +262,7 @@ public object RenderingServer : Object() {
     layer: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to texture, OBJECT to image, LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dUpdatePtr, NIL)
   }
 
   /**
@@ -275,7 +275,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture3dUpdate(texture: RID, `data`: VariantArray<Image>): Unit {
     TransferContext.writeArguments(_RID to texture, ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture3dUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.texture3dUpdatePtr, NIL)
   }
 
   /**
@@ -284,7 +284,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureProxyUpdate(texture: RID, proxyTo: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to proxyTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureProxyUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.textureProxyUpdatePtr, NIL)
   }
 
   /**
@@ -299,7 +299,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dPlaceholderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -313,7 +313,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dLayeredPlaceholderCreate(layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(LONG to layeredType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayeredPlaceholderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dLayeredPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -328,7 +328,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture3dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.texture3dPlaceholderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.texture3dPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -344,7 +344,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dGet(texture: RID): Image? {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dGetPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dGetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -354,7 +354,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dLayerGet(texture: RID, layer: Int): Image? {
     TransferContext.writeArguments(_RID to texture, LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayerGetPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.texture2dLayerGetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -364,7 +364,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture3dGet(texture: RID): VariantArray<Image> {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.texture3dGetPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.texture3dGetPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
@@ -375,7 +375,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureReplace(texture: RID, byTexture: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to byTexture)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureReplacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.textureReplacePtr, NIL)
   }
 
   @JvmStatic
@@ -385,19 +385,19 @@ public object RenderingServer : Object() {
     height: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to texture, LONG to width.toLong(), LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.textureSetSizeOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.textureSetSizeOverridePtr, NIL)
   }
 
   @JvmStatic
   public final fun textureSetPath(texture: RID, path: String): Unit {
     TransferContext.writeArguments(_RID to texture, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureSetPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.textureSetPathPtr, NIL)
   }
 
   @JvmStatic
   public final fun textureGetPath(texture: RID): String {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureGetPathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.textureGetPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -407,14 +407,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureGetFormat(texture: RID): Image.Format {
     TransferContext.writeArguments(_RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureGetFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.textureGetFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmStatic
   public final fun textureSetForceRedrawIfVisible(texture: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to texture, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureSetForceRedrawIfVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.textureSetForceRedrawIfVisiblePtr, NIL)
   }
 
   /**
@@ -426,7 +426,7 @@ public object RenderingServer : Object() {
   public final fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
       RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY): RID {
     TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureRdCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.textureRdCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -437,7 +437,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureGetRdTexture(texture: RID, srgb: Boolean = false): RID {
     TransferContext.writeArguments(_RID to texture, BOOL to srgb)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureGetRdTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.textureGetRdTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -451,7 +451,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureGetNativeHandle(texture: RID, srgb: Boolean = false): Long {
     TransferContext.writeArguments(_RID to texture, BOOL to srgb)
-    TransferContext.callMethod(rawPtr, MethodBindings.textureGetNativeHandlePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.textureGetNativeHandlePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -465,7 +465,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun shaderCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.shaderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -475,7 +475,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun shaderSetCode(shader: RID, code: String): Unit {
     TransferContext.writeArguments(_RID to shader, STRING to code)
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderSetCodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.shaderSetCodePtr, NIL)
   }
 
   /**
@@ -485,7 +485,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun shaderSetPathHint(shader: RID, path: String): Unit {
     TransferContext.writeArguments(_RID to shader, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderSetPathHintPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.shaderSetPathHintPtr, NIL)
   }
 
   /**
@@ -494,7 +494,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun shaderGetCode(shader: RID): String {
     TransferContext.writeArguments(_RID to shader)
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderGetCodePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.shaderGetCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -504,7 +504,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getShaderParameterList(shader: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shader)
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getShaderParameterListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -515,7 +515,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun shaderGetParameterDefault(shader: RID, name: StringName): Any? {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderGetParameterDefaultPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.shaderGetParameterDefaultPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -532,7 +532,7 @@ public object RenderingServer : Object() {
     index: Int = 0,
   ): Unit {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name, _RID to texture, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderSetDefaultTextureParameterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.shaderSetDefaultTextureParameterPtr, NIL)
   }
 
   /**
@@ -547,7 +547,7 @@ public object RenderingServer : Object() {
     index: Int = 0,
   ): RID {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.shaderGetDefaultTextureParameterPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.shaderGetDefaultTextureParameterPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -561,7 +561,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun materialCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.materialCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.materialCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -571,7 +571,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun materialSetShader(shaderMaterial: RID, shader: RID): Unit {
     TransferContext.writeArguments(_RID to shaderMaterial, _RID to shader)
-    TransferContext.callMethod(rawPtr, MethodBindings.materialSetShaderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.materialSetShaderPtr, NIL)
   }
 
   /**
@@ -584,7 +584,7 @@ public object RenderingServer : Object() {
     `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to material, STRING_NAME to parameter, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.materialSetParamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.materialSetParamPtr, NIL)
   }
 
   /**
@@ -593,7 +593,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun materialGetParam(material: RID, parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to material, STRING_NAME to parameter)
-    TransferContext.callMethod(rawPtr, MethodBindings.materialGetParamPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.materialGetParamPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -603,7 +603,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun materialSetRenderPriority(material: RID, priority: Int): Unit {
     TransferContext.writeArguments(_RID to material, LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.materialSetRenderPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.materialSetRenderPriorityPtr, NIL)
   }
 
   /**
@@ -612,7 +612,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun materialSetNextPass(material: RID, nextMaterial: RID): Unit {
     TransferContext.writeArguments(_RID to material, _RID to nextMaterial)
-    TransferContext.callMethod(rawPtr, MethodBindings.materialSetNextPassPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.materialSetNextPassPtr, NIL)
   }
 
   @JvmOverloads
@@ -620,7 +620,7 @@ public object RenderingServer : Object() {
   public final fun meshCreateFromSurfaces(surfaces: VariantArray<Dictionary<Any?, Any?>>,
       blendShapeCount: Int = 0): RID {
     TransferContext.writeArguments(ARRAY to surfaces, LONG to blendShapeCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshCreateFromSurfacesPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.meshCreateFromSurfacesPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -636,7 +636,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.meshCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.meshCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -650,7 +650,7 @@ public object RenderingServer : Object() {
     arrayIndex: Int,
   ): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatOffsetPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -662,7 +662,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatVertexStridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatVertexStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -675,8 +675,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetFormatNormalTangentStride(format: ArrayFormat, vertexCount: Int):
       Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatNormalTangentStridePtr,
-        LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatNormalTangentStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -687,7 +686,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetFormatAttributeStride(format: ArrayFormat, vertexCount: Int):
       Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatAttributeStridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatAttributeStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -697,14 +696,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSurfaceGetFormatSkinStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatSkinStridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatSkinStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmStatic
   public final fun meshAddSurface(mesh: RID, surface: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(_RID to mesh, DICTIONARY to surface)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshAddSurfacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshAddSurfacePtr, NIL)
   }
 
   @JvmOverloads
@@ -718,7 +717,7 @@ public object RenderingServer : Object() {
     compressFormat: ArrayFormat = RenderingServer.ArrayFormat.ARRAY_FLAG_FORMAT_VERSION_1,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshAddSurfaceFromArraysPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshAddSurfaceFromArraysPtr, NIL)
   }
 
   /**
@@ -727,7 +726,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshGetBlendShapeCount(mesh: RID): Int {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshGetBlendShapeCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshGetBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -737,7 +736,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSetBlendShapeMode(mesh: RID, mode: BlendShapeMode): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSetBlendShapeModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSetBlendShapeModePtr, NIL)
   }
 
   /**
@@ -746,7 +745,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshGetBlendShapeMode(mesh: RID): BlendShapeMode {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshGetBlendShapeModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshGetBlendShapeModePtr, LONG)
     return RenderingServer.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -760,7 +759,7 @@ public object RenderingServer : Object() {
     material: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceSetMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceSetMaterialPtr, NIL)
   }
 
   /**
@@ -769,14 +768,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSurfaceGetMaterial(mesh: RID, surface: Int): RID {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetMaterialPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetMaterialPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun meshGetSurface(mesh: RID, surface: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshGetSurfacePtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.meshGetSurfacePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -786,7 +785,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSurfaceGetArrays(mesh: RID, surface: Int): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetArraysPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -797,7 +796,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetBlendShapeArrays(mesh: RID, surface: Int):
       VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetBlendShapeArraysPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetBlendShapeArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
@@ -807,7 +806,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshGetSurfaceCount(mesh: RID): Int {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshGetSurfaceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.meshGetSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -817,7 +816,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshSetCustomAabb(mesh: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to mesh, godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSetCustomAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSetCustomAabbPtr, NIL)
   }
 
   /**
@@ -826,7 +825,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshGetCustomAabb(mesh: RID): AABB {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshGetCustomAabbPtr,
+    TransferContext.callMethod(ptr, MethodBindings.meshGetCustomAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -837,7 +836,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshClear(mesh: RID): Unit {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshClearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshClearPtr, NIL)
   }
 
   @JvmStatic
@@ -848,7 +847,7 @@ public object RenderingServer : Object() {
     `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateVertexRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateVertexRegionPtr, NIL)
   }
 
   @JvmStatic
@@ -859,7 +858,7 @@ public object RenderingServer : Object() {
     `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateAttributeRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateAttributeRegionPtr, NIL)
   }
 
   @JvmStatic
@@ -870,13 +869,13 @@ public object RenderingServer : Object() {
     `data`: PackedByteArray,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceUpdateSkinRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateSkinRegionPtr, NIL)
   }
 
   @JvmStatic
   public final fun meshSetShadowMesh(mesh: RID, shadowMesh: RID): Unit {
     TransferContext.writeArguments(_RID to mesh, _RID to shadowMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.meshSetShadowMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.meshSetShadowMeshPtr, NIL)
   }
 
   /**
@@ -891,7 +890,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -905,7 +904,7 @@ public object RenderingServer : Object() {
     customDataFormat: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to instances.toLong(), LONG to transformFormat.id, BOOL to colorFormat, BOOL to customDataFormat)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshAllocateDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshAllocateDataPtr, NIL)
   }
 
   /**
@@ -914,7 +913,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetInstanceCount(multimesh: RID): Int {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetInstanceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetInstanceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -924,7 +923,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshSetMesh(multimesh: RID, mesh: RID): Unit {
     TransferContext.writeArguments(_RID to multimesh, _RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetMeshPtr, NIL)
   }
 
   /**
@@ -937,7 +936,7 @@ public object RenderingServer : Object() {
     transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceSetTransformPtr, NIL)
   }
 
   /**
@@ -951,7 +950,7 @@ public object RenderingServer : Object() {
     transform: Transform2D,
   ): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong(), TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceSetTransform2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceSetTransform2dPtr, NIL)
   }
 
   /**
@@ -965,7 +964,7 @@ public object RenderingServer : Object() {
     color: Color,
   ): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceSetColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceSetColorPtr, NIL)
   }
 
   /**
@@ -979,7 +978,7 @@ public object RenderingServer : Object() {
     customData: Color,
   ): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong(), COLOR to customData)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceSetCustomDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceSetCustomDataPtr, NIL)
   }
 
   /**
@@ -988,7 +987,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetMesh(multimesh: RID): RID {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetMeshPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetMeshPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -999,7 +998,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetAabbPtr,
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -1010,7 +1009,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshSetCustomAabb(multimesh: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to multimesh, godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetCustomAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetCustomAabbPtr, NIL)
   }
 
   /**
@@ -1019,7 +1018,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetCustomAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetCustomAabbPtr,
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetCustomAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -1030,7 +1029,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstanceGetTransform(multimesh: RID, index: Int): Transform3D {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceGetTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1041,8 +1040,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstanceGetTransform2d(multimesh: RID, index: Int): Transform2D {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetTransform2dPtr,
-        TRANSFORM2D)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceGetTransform2dPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -1052,7 +1050,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstanceGetColor(multimesh: RID, index: Int): Color {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceGetColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -1062,7 +1060,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstanceGetCustomData(multimesh: RID, index: Int): Color {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetCustomDataPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceGetCustomDataPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -1073,7 +1071,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshSetVisibleInstances(multimesh: RID, visible: Int): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to visible.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetVisibleInstancesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetVisibleInstancesPtr, NIL)
   }
 
   /**
@@ -1082,7 +1080,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetVisibleInstances(multimesh: RID): Int {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetVisibleInstancesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetVisibleInstancesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1110,7 +1108,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshSetBuffer(multimesh: RID, buffer: PackedFloat32Array): Unit {
     TransferContext.writeArguments(_RID to multimesh, PACKED_FLOAT_32_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetBufferPtr, NIL)
   }
 
   /**
@@ -1123,7 +1121,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetBuffer(multimesh: RID): PackedFloat32Array {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetBufferPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetBufferPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
@@ -1136,7 +1134,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skeletonCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1148,7 +1146,7 @@ public object RenderingServer : Object() {
     is2dSkeleton: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to skeleton, LONG to bones.toLong(), BOOL to is2dSkeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonAllocateDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonAllocateDataPtr, NIL)
   }
 
   /**
@@ -1157,7 +1155,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skeletonGetBoneCount(skeleton: RID): Int {
     TransferContext.writeArguments(_RID to skeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonGetBoneCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonGetBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1171,7 +1169,7 @@ public object RenderingServer : Object() {
     transform: Transform3D,
   ): Unit {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonBoneSetTransformPtr, NIL)
   }
 
   /**
@@ -1180,7 +1178,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skeletonBoneGetTransform(skeleton: RID, bone: Int): Transform3D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneGetTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonBoneGetTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1194,7 +1192,7 @@ public object RenderingServer : Object() {
     transform: Transform2D,
   ): Unit {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong(), TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneSetTransform2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonBoneSetTransform2dPtr, NIL)
   }
 
   /**
@@ -1203,14 +1201,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skeletonBoneGetTransform2d(skeleton: RID, bone: Int): Transform2D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneGetTransform2dPtr, TRANSFORM2D)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonBoneGetTransform2dPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   @JvmStatic
   public final fun skeletonSetBaseTransform2d(skeleton: RID, baseTransform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to skeleton, TRANSFORM2D to baseTransform)
-    TransferContext.callMethod(rawPtr, MethodBindings.skeletonSetBaseTransform2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skeletonSetBaseTransform2dPtr, NIL)
   }
 
   /**
@@ -1225,7 +1223,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun directionalLightCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.directionalLightCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.directionalLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1241,7 +1239,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun omniLightCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.omniLightCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.omniLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1256,7 +1254,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun spotLightCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.spotLightCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.spotLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1266,7 +1264,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetColor(light: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to light, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetColorPtr, NIL)
   }
 
   /**
@@ -1280,7 +1278,7 @@ public object RenderingServer : Object() {
     `value`: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to light, LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetParamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetParamPtr, NIL)
   }
 
   /**
@@ -1289,7 +1287,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetShadow(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetShadowPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetShadowPtr, NIL)
   }
 
   /**
@@ -1299,7 +1297,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetProjector(light: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to light, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetProjectorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetProjectorPtr, NIL)
   }
 
   /**
@@ -1309,7 +1307,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetNegative(light: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetNegativePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetNegativePtr, NIL)
   }
 
   /**
@@ -1319,7 +1317,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetCullMask(light: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetCullMaskPtr, NIL)
   }
 
   /**
@@ -1336,7 +1334,7 @@ public object RenderingServer : Object() {
     length: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin.toDouble(), DOUBLE to shadow.toDouble(), DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetDistanceFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetDistanceFadePtr, NIL)
   }
 
   /**
@@ -1348,7 +1346,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetReverseCullFaceMode(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetReverseCullFaceModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetReverseCullFaceModePtr, NIL)
   }
 
   /**
@@ -1357,7 +1355,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetBakeMode(light: RID, bakeMode: LightBakeMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to bakeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetBakeModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetBakeModePtr, NIL)
   }
 
   /**
@@ -1367,7 +1365,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightSetMaxSdfgiCascade(light: RID, cascade: Long): Unit {
     TransferContext.writeArguments(_RID to light, LONG to cascade)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightSetMaxSdfgiCascadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetMaxSdfgiCascadePtr, NIL)
   }
 
   /**
@@ -1377,7 +1375,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightOmniSetShadowMode(light: RID, mode: LightOmniShadowMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightOmniSetShadowModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightOmniSetShadowModePtr, NIL)
   }
 
   /**
@@ -1388,7 +1386,7 @@ public object RenderingServer : Object() {
   public final fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode):
       Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightDirectionalSetShadowModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetShadowModePtr, NIL)
   }
 
   /**
@@ -1398,7 +1396,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightDirectionalSetBlendSplits(light: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightDirectionalSetBlendSplitsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetBlendSplitsPtr, NIL)
   }
 
   /**
@@ -1409,7 +1407,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightDirectionalSetSkyMode(light: RID, mode: LightDirectionalSkyMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightDirectionalSetSkyModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetSkyModePtr, NIL)
   }
 
   /**
@@ -1419,7 +1417,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightProjectorsSetFilter(filter: LightProjectorFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightProjectorsSetFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightProjectorsSetFilterPtr, NIL)
   }
 
   /**
@@ -1430,7 +1428,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun positionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.positionalSoftShadowFilterSetQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.positionalSoftShadowFilterSetQualityPtr, NIL)
   }
 
   /**
@@ -1441,7 +1439,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun directionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.directionalSoftShadowFilterSetQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.directionalSoftShadowFilterSetQualityPtr, NIL)
   }
 
   /**
@@ -1452,7 +1450,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun directionalShadowAtlasSetSize(size: Int, is16bits: Boolean): Unit {
     TransferContext.writeArguments(LONG to size.toLong(), BOOL to is16bits)
-    TransferContext.callMethod(rawPtr, MethodBindings.directionalShadowAtlasSetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.directionalShadowAtlasSetSizePtr, NIL)
   }
 
   /**
@@ -1467,7 +1465,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1478,7 +1476,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetUpdateModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetUpdateModePtr, NIL)
   }
 
   /**
@@ -1488,7 +1486,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetIntensity(probe: RID, intensity: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetIntensityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetIntensityPtr, NIL)
   }
 
   /**
@@ -1498,7 +1496,7 @@ public object RenderingServer : Object() {
   public final fun reflectionProbeSetAmbientMode(probe: RID, mode: ReflectionProbeAmbientMode):
       Unit {
     TransferContext.writeArguments(_RID to probe, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetAmbientModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetAmbientModePtr, NIL)
   }
 
   /**
@@ -1508,7 +1506,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetAmbientColor(probe: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to probe, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetAmbientColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetAmbientColorPtr, NIL)
   }
 
   /**
@@ -1518,7 +1516,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetAmbientEnergy(probe: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetAmbientEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetAmbientEnergyPtr, NIL)
   }
 
   /**
@@ -1528,7 +1526,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetMaxDistance(probe: RID, distance: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetMaxDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetMaxDistancePtr, NIL)
   }
 
   /**
@@ -1538,7 +1536,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetSize(probe: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to probe, VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetSizePtr, NIL)
   }
 
   /**
@@ -1548,7 +1546,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetOriginOffset(probe: RID, offset: Vector3): Unit {
     TransferContext.writeArguments(_RID to probe, VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetOriginOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetOriginOffsetPtr, NIL)
   }
 
   /**
@@ -1557,7 +1555,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetAsInterior(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetAsInteriorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetAsInteriorPtr, NIL)
   }
 
   /**
@@ -1567,7 +1565,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetEnableBoxProjection(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetEnableBoxProjectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetEnableBoxProjectionPtr, NIL)
   }
 
   /**
@@ -1577,7 +1575,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetEnableShadows(probe: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to probe, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetEnableShadowsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetEnableShadowsPtr, NIL)
   }
 
   /**
@@ -1587,7 +1585,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetCullMask(probe: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetCullMaskPtr, NIL)
   }
 
   /**
@@ -1597,7 +1595,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetReflectionMask(probe: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetReflectionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetReflectionMaskPtr, NIL)
   }
 
   /**
@@ -1608,7 +1606,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetResolution(probe: RID, resolution: Int): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to resolution.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetResolutionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetResolutionPtr, NIL)
   }
 
   /**
@@ -1619,7 +1617,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetMeshLodThreshold(probe: RID, pixels: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to pixels.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetMeshLodThresholdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetMeshLodThresholdPtr, NIL)
   }
 
   /**
@@ -1634,7 +1632,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.decalCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.decalCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1644,7 +1642,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetSize(decal: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to decal, VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetSizePtr, NIL)
   }
 
   /**
@@ -1658,7 +1656,7 @@ public object RenderingServer : Object() {
     texture: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to decal, LONG to type.id, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetTexturePtr, NIL)
   }
 
   /**
@@ -1668,7 +1666,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetEmissionEnergy(decal: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetEmissionEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetEmissionEnergyPtr, NIL)
   }
 
   /**
@@ -1678,7 +1676,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetAlbedoMix(decal: RID, albedoMix: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to albedoMix.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetAlbedoMixPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetAlbedoMixPtr, NIL)
   }
 
   /**
@@ -1688,7 +1686,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetModulate(decal: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to decal, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetModulatePtr, NIL)
   }
 
   /**
@@ -1697,7 +1695,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetCullMask(decal: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to decal, LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetCullMaskPtr, NIL)
   }
 
   /**
@@ -1712,7 +1710,7 @@ public object RenderingServer : Object() {
     length: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin.toDouble(), DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetDistanceFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetDistanceFadePtr, NIL)
   }
 
   /**
@@ -1726,7 +1724,7 @@ public object RenderingServer : Object() {
     below: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to above.toDouble(), DOUBLE to below.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetFadePtr, NIL)
   }
 
   /**
@@ -1736,7 +1734,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalSetNormalFade(decal: RID, fade: Float): Unit {
     TransferContext.writeArguments(_RID to decal, DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.decalSetNormalFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalSetNormalFadePtr, NIL)
   }
 
   /**
@@ -1746,7 +1744,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun decalsSetFilter(filter: DecalFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.decalsSetFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.decalsSetFilterPtr, NIL)
   }
 
   /**
@@ -1760,7 +1758,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun giSetUseHalfResolution(halfResolution: Boolean): Unit {
     TransferContext.writeArguments(BOOL to halfResolution)
-    TransferContext.callMethod(rawPtr, MethodBindings.giSetUseHalfResolutionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.giSetUseHalfResolutionPtr, NIL)
   }
 
   /**
@@ -1774,7 +1772,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1790,48 +1788,48 @@ public object RenderingServer : Object() {
     levelCounts: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(_RID to voxelGi, TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3I to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiAllocateDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiAllocateDataPtr, NIL)
   }
 
   @JvmStatic
   public final fun voxelGiGetOctreeSize(voxelGi: RID): Vector3i {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeSizePtr, VECTOR3I)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetOctreeSizePtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   @JvmStatic
   public final fun voxelGiGetOctreeCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeCellsPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetOctreeCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   @JvmStatic
   public final fun voxelGiGetDataCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDataCellsPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetDataCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   @JvmStatic
   public final fun voxelGiGetDistanceField(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDistanceFieldPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetDistanceFieldPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   @JvmStatic
   public final fun voxelGiGetLevelCounts(voxelGi: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetLevelCountsPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetLevelCountsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   @JvmStatic
   public final fun voxelGiGetToCellXform(voxelGi: RID): Transform3D {
     TransferContext.writeArguments(_RID to voxelGi)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetToCellXformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiGetToCellXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1841,7 +1839,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetDynamicRange(voxelGi: RID, range: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to range.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetDynamicRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetDynamicRangePtr, NIL)
   }
 
   /**
@@ -1850,7 +1848,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetPropagation(voxelGi: RID, amount: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetPropagationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetPropagationPtr, NIL)
   }
 
   /**
@@ -1859,7 +1857,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetEnergy(voxelGi: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetEnergyPtr, NIL)
   }
 
   /**
@@ -1871,7 +1869,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetBakedExposureNormalization(voxelGi: RID, bakedExposure: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bakedExposure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetBakedExposureNormalizationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetBakedExposureNormalizationPtr, NIL)
   }
 
   /**
@@ -1880,7 +1878,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetBiasPtr, NIL)
   }
 
   /**
@@ -1889,7 +1887,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetNormalBias(voxelGi: RID, bias: Float): Unit {
     TransferContext.writeArguments(_RID to voxelGi, DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetNormalBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetNormalBiasPtr, NIL)
   }
 
   /**
@@ -1898,7 +1896,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetInterior(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetInteriorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetInteriorPtr, NIL)
   }
 
   /**
@@ -1907,7 +1905,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetUseTwoBounces(voxelGi: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to voxelGi, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetUseTwoBouncesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetUseTwoBouncesPtr, NIL)
   }
 
   /**
@@ -1917,7 +1915,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun voxelGiSetQuality(quality: VoxelGIQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.voxelGiSetQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.voxelGiSetQualityPtr, NIL)
   }
 
   /**
@@ -1931,7 +1929,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightmapCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1947,19 +1945,19 @@ public object RenderingServer : Object() {
     usesSh: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to lightmap, _RID to light, BOOL to usesSh)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetTexturesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetTexturesPtr, NIL)
   }
 
   @JvmStatic
   public final fun lightmapSetProbeBounds(lightmap: RID, bounds: AABB): Unit {
     TransferContext.writeArguments(_RID to lightmap, godot.core.VariantParser.AABB to bounds)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeBoundsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeBoundsPtr, NIL)
   }
 
   @JvmStatic
   public final fun lightmapSetProbeInterior(lightmap: RID, interior: Boolean): Unit {
     TransferContext.writeArguments(_RID to lightmap, BOOL to interior)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeInteriorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeInteriorPtr, NIL)
   }
 
   @JvmStatic
@@ -1971,13 +1969,13 @@ public object RenderingServer : Object() {
     bspTree: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(_RID to lightmap, PACKED_VECTOR3_ARRAY to points, PACKED_COLOR_ARRAY to pointSh, PACKED_INT_32_ARRAY to tetrahedra, PACKED_INT_32_ARRAY to bspTree)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeCaptureDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeCaptureDataPtr, NIL)
   }
 
   @JvmStatic
   public final fun lightmapGetProbeCapturePoints(lightmap: RID): PackedVector3Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCapturePointsPtr,
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCapturePointsPtr,
         PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -1985,15 +1983,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightmapGetProbeCaptureSh(lightmap: RID): PackedColorArray {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureShPtr,
-        PACKED_COLOR_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureShPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   @JvmStatic
   public final fun lightmapGetProbeCaptureTetrahedra(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr,
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr,
         PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -2001,7 +1998,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightmapGetProbeCaptureBspTree(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureBspTreePtr,
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureBspTreePtr,
         PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -2016,13 +2013,13 @@ public object RenderingServer : Object() {
   public final fun lightmapSetBakedExposureNormalization(lightmap: RID, bakedExposure: Float):
       Unit {
     TransferContext.writeArguments(_RID to lightmap, DOUBLE to bakedExposure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetBakedExposureNormalizationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetBakedExposureNormalizationPtr, NIL)
   }
 
   @JvmStatic
   public final fun lightmapSetProbeCaptureUpdateSpeed(speed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeCaptureUpdateSpeedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeCaptureUpdateSpeedPtr, NIL)
   }
 
   /**
@@ -2041,7 +2038,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2052,7 +2049,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetMode(particles: RID, mode: ParticlesMode): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetModePtr, NIL)
   }
 
   /**
@@ -2062,7 +2059,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetEmitting(particles: RID, emitting: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to emitting)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetEmittingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetEmittingPtr, NIL)
   }
 
   /**
@@ -2071,7 +2068,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesGetEmitting(particles: RID): Boolean {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesGetEmittingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesGetEmittingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2082,7 +2079,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetAmount(particles: RID, amount: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetAmountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetAmountPtr, NIL)
   }
 
   /**
@@ -2091,7 +2088,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetAmountRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetAmountRatioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetAmountRatioPtr, NIL)
   }
 
   /**
@@ -2100,7 +2097,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetLifetime(particles: RID, lifetime: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to lifetime)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetLifetimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetLifetimePtr, NIL)
   }
 
   /**
@@ -2109,7 +2106,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetOneShot(particles: RID, oneShot: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to oneShot)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetOneShotPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetOneShotPtr, NIL)
   }
 
   /**
@@ -2120,7 +2117,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetPreProcessTime(particles: RID, time: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetPreProcessTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetPreProcessTimePtr, NIL)
   }
 
   /**
@@ -2129,7 +2126,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetExplosivenessRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetExplosivenessRatioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetExplosivenessRatioPtr, NIL)
   }
 
   /**
@@ -2139,7 +2136,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetRandomnessRatio(particles: RID, ratio: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetRandomnessRatioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetRandomnessRatioPtr, NIL)
   }
 
   /**
@@ -2149,7 +2146,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetInterpToEnd(particles: RID, factor: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to factor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetInterpToEndPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetInterpToEndPtr, NIL)
   }
 
   /**
@@ -2159,7 +2156,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetEmitterVelocity(particles: RID, velocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to particles, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetEmitterVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetEmitterVelocityPtr, NIL)
   }
 
   /**
@@ -2169,7 +2166,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetCustomAabb(particles: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to particles, godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetCustomAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetCustomAabbPtr, NIL)
   }
 
   /**
@@ -2178,7 +2175,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetSpeedScale(particles: RID, scale: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetSpeedScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetSpeedScalePtr, NIL)
   }
 
   /**
@@ -2188,7 +2185,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetUseLocalCoordinates(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetUseLocalCoordinatesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetUseLocalCoordinatesPtr, NIL)
   }
 
   /**
@@ -2199,7 +2196,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetProcessMaterial(particles: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetProcessMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetProcessMaterialPtr, NIL)
   }
 
   /**
@@ -2209,13 +2206,13 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetFixedFps(particles: RID, fps: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to fps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetFixedFpsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetFixedFpsPtr, NIL)
   }
 
   @JvmStatic
   public final fun particlesSetInterpolate(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetInterpolatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetInterpolatePtr, NIL)
   }
 
   /**
@@ -2225,20 +2222,20 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetFractionalDelta(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetFractionalDeltaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetFractionalDeltaPtr, NIL)
   }
 
   @JvmStatic
   public final fun particlesSetCollisionBaseSize(particles: RID, size: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetCollisionBaseSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetCollisionBaseSizePtr, NIL)
   }
 
   @JvmStatic
   public final fun particlesSetTransformAlign(particles: RID, align: ParticlesTransformAlign):
       Unit {
     TransferContext.writeArguments(_RID to particles, LONG to align.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetTransformAlignPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetTransformAlignPtr, NIL)
   }
 
   /**
@@ -2252,14 +2249,14 @@ public object RenderingServer : Object() {
     lengthSec: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable, DOUBLE to lengthSec.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetTrailsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetTrailsPtr, NIL)
   }
 
   @JvmStatic
   public final fun particlesSetTrailBindPoses(particles: RID, bindPoses: VariantArray<Transform3D>):
       Unit {
     TransferContext.writeArguments(_RID to particles, ARRAY to bindPoses)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetTrailBindPosesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetTrailBindPosesPtr, NIL)
   }
 
   /**
@@ -2268,7 +2265,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesIsInactive(particles: RID): Boolean {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesIsInactivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesIsInactivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2280,7 +2277,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesRequestProcess(particles: RID): Unit {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesRequestProcessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesRequestProcessPtr, NIL)
   }
 
   /**
@@ -2289,13 +2286,13 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesRestart(particles: RID): Unit {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesRestartPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesRestartPtr, NIL)
   }
 
   @JvmStatic
   public final fun particlesSetSubemitter(particles: RID, subemitterParticles: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to subemitterParticles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetSubemitterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetSubemitterPtr, NIL)
   }
 
   /**
@@ -2311,7 +2308,7 @@ public object RenderingServer : Object() {
     emitFlags: Long,
   ): Unit {
     TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to emitFlags)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesEmitPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesEmitPtr, NIL)
   }
 
   /**
@@ -2321,7 +2318,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to order.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetDrawOrderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetDrawOrderPtr, NIL)
   }
 
   /**
@@ -2330,7 +2327,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetDrawPasses(particles: RID, count: Int): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetDrawPassesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetDrawPassesPtr, NIL)
   }
 
   /**
@@ -2344,7 +2341,7 @@ public object RenderingServer : Object() {
     mesh: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to particles, LONG to pass.toLong(), _RID to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetDrawPassMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetDrawPassMeshPtr, NIL)
   }
 
   /**
@@ -2354,7 +2351,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesGetCurrentAabb(particles: RID): AABB {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesGetCurrentAabbPtr,
+    TransferContext.callMethod(ptr, MethodBindings.particlesGetCurrentAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -2365,7 +2362,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetEmissionTransform(particles: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to particles, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesSetEmissionTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetEmissionTransformPtr, NIL)
   }
 
   /**
@@ -2377,7 +2374,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2389,7 +2386,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetCollisionType(particlesCollision: RID,
       type: ParticlesCollisionType): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetCollisionTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetCollisionTypePtr, NIL)
   }
 
   /**
@@ -2400,7 +2397,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionSetCullMask(particlesCollision: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetCullMaskPtr, NIL)
   }
 
   /**
@@ -2411,7 +2408,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionSetSphereRadius(particlesCollision: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetSphereRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetSphereRadiusPtr, NIL)
   }
 
   /**
@@ -2424,7 +2421,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetBoxExtents(particlesCollision: RID, extents: Vector3):
       Unit {
     TransferContext.writeArguments(_RID to particlesCollision, VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetBoxExtentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetBoxExtentsPtr, NIL)
   }
 
   /**
@@ -2435,8 +2432,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetAttractorStrength(particlesCollision: RID, strength: Float):
       Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetAttractorStrengthPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorStrengthPtr, NIL)
   }
 
   /**
@@ -2448,8 +2444,8 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetAttractorDirectionality(particlesCollision: RID,
       amount: Float): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr,
-        MethodBindings.particlesCollisionSetAttractorDirectionalityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorDirectionalityPtr,
+        NIL)
   }
 
   /**
@@ -2461,7 +2457,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetAttractorAttenuation(particlesCollision: RID, curve: Float):
       Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to curve.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetAttractorAttenuationPtr,
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorAttenuationPtr,
         NIL)
   }
 
@@ -2473,7 +2469,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionSetFieldTexture(particlesCollision: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetFieldTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetFieldTexturePtr, NIL)
   }
 
   /**
@@ -2484,7 +2480,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionHeightFieldUpdate(particlesCollision: RID): Unit {
     TransferContext.writeArguments(_RID to particlesCollision)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionHeightFieldUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionHeightFieldUpdatePtr, NIL)
   }
 
   /**
@@ -2495,7 +2491,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
       resolution: ParticlesCollisionHeightfieldResolution): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to resolution.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionSetHeightFieldResolutionPtr,
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetHeightFieldResolutionPtr,
         NIL)
   }
 
@@ -2509,7 +2505,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun fogVolumeCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.fogVolumeCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.fogVolumeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2521,7 +2517,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun fogVolumeSetShape(fogVolume: RID, shape: FogVolumeShape): Unit {
     TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.fogVolumeSetShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.fogVolumeSetShapePtr, NIL)
   }
 
   /**
@@ -2532,7 +2528,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun fogVolumeSetSize(fogVolume: RID, size: Vector3): Unit {
     TransferContext.writeArguments(_RID to fogVolume, VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.fogVolumeSetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.fogVolumeSetSizePtr, NIL)
   }
 
   /**
@@ -2542,7 +2538,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun fogVolumeSetMaterial(fogVolume: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to fogVolume, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.fogVolumeSetMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.fogVolumeSetMaterialPtr, NIL)
   }
 
   /**
@@ -2558,14 +2554,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun visibilityNotifierCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.visibilityNotifierCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun visibilityNotifierSetAabb(notifier: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to notifier, godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierSetAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.visibilityNotifierSetAabbPtr, NIL)
   }
 
   @JvmStatic
@@ -2575,7 +2571,7 @@ public object RenderingServer : Object() {
     exitCallable: Callable,
   ): Unit {
     TransferContext.writeArguments(_RID to notifier, CALLABLE to enterCallable, CALLABLE to exitCallable)
-    TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierSetCallbacksPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.visibilityNotifierSetCallbacksPtr, NIL)
   }
 
   /**
@@ -2589,7 +2585,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun occluderCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.occluderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.occluderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2604,7 +2600,7 @@ public object RenderingServer : Object() {
     indices: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(_RID to occluder, PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.occluderSetMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.occluderSetMeshPtr, NIL)
   }
 
   /**
@@ -2617,7 +2613,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.cameraCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2633,7 +2629,7 @@ public object RenderingServer : Object() {
     zFar: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to camera, DOUBLE to fovyDegrees.toDouble(), DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetPerspectivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetPerspectivePtr, NIL)
   }
 
   /**
@@ -2648,7 +2644,7 @@ public object RenderingServer : Object() {
     zFar: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to camera, DOUBLE to size.toDouble(), DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetOrthogonalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetOrthogonalPtr, NIL)
   }
 
   /**
@@ -2664,7 +2660,7 @@ public object RenderingServer : Object() {
     zFar: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to camera, DOUBLE to size.toDouble(), VECTOR2 to offset, DOUBLE to zNear.toDouble(), DOUBLE to zFar.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetFrustumPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetFrustumPtr, NIL)
   }
 
   /**
@@ -2673,7 +2669,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetTransform(camera: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to camera, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetTransformPtr, NIL)
   }
 
   /**
@@ -2683,7 +2679,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetCullMask(camera: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to camera, LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetCullMaskPtr, NIL)
   }
 
   /**
@@ -2692,7 +2688,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetEnvironment(camera: RID, env: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to env)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetEnvironmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetEnvironmentPtr, NIL)
   }
 
   /**
@@ -2701,7 +2697,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetCameraAttributes(camera: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to effects)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetCameraAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetCameraAttributesPtr, NIL)
   }
 
   /**
@@ -2710,7 +2706,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetCompositor(camera: RID, compositor: RID): Unit {
     TransferContext.writeArguments(_RID to camera, _RID to compositor)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetCompositorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetCompositorPtr, NIL)
   }
 
   /**
@@ -2720,7 +2716,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraSetUseVerticalAspect(camera: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to camera, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetUseVerticalAspectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraSetUseVerticalAspectPtr, NIL)
   }
 
   /**
@@ -2733,7 +2729,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.viewportCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2743,7 +2739,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUseXr(viewport: RID, useXr: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to useXr)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseXrPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUseXrPtr, NIL)
   }
 
   /**
@@ -2756,7 +2752,7 @@ public object RenderingServer : Object() {
     height: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to width.toLong(), LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetSizePtr, NIL)
   }
 
   /**
@@ -2765,7 +2761,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetActive(viewport: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetActivePtr, NIL)
   }
 
   /**
@@ -2774,7 +2770,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetParentViewport(viewport: RID, parentViewport: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to parentViewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetParentViewportPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetParentViewportPtr, NIL)
   }
 
   /**
@@ -2805,7 +2801,7 @@ public object RenderingServer : Object() {
     screen: Int = 0,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, RECT2 to rect, LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportAttachToScreenPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportAttachToScreenPtr, NIL)
   }
 
   /**
@@ -2822,7 +2818,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetRenderDirectToScreen(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetRenderDirectToScreenPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetRenderDirectToScreenPtr, NIL)
   }
 
   /**
@@ -2832,7 +2828,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetCanvasCullMask(viewport: RID, canvasCullMask: Long): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to canvasCullMask)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetCanvasCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetCanvasCullMaskPtr, NIL)
   }
 
   /**
@@ -2846,7 +2842,7 @@ public object RenderingServer : Object() {
   public final fun viewportSetScaling3dMode(viewport: RID, scaling3dMode: ViewportScaling3DMode):
       Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to scaling3dMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetScaling3dModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetScaling3dModePtr, NIL)
   }
 
   /**
@@ -2863,7 +2859,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetScaling3dScale(viewport: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetScaling3dScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetScaling3dScalePtr, NIL)
   }
 
   /**
@@ -2874,7 +2870,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetFsrSharpness(viewport: RID, sharpness: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to sharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetFsrSharpnessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetFsrSharpnessPtr, NIL)
   }
 
   /**
@@ -2892,7 +2888,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetTextureMipmapBias(viewport: RID, mipmapBias: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to mipmapBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetTextureMipmapBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetTextureMipmapBiasPtr, NIL)
   }
 
   /**
@@ -2901,7 +2897,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to updateMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUpdateModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUpdateModePtr, NIL)
   }
 
   /**
@@ -2912,7 +2908,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportGetUpdateMode(viewport: RID): ViewportUpdateMode {
     TransferContext.writeArguments(_RID to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetUpdateModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetUpdateModePtr, LONG)
     return RenderingServer.ViewportUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2922,7 +2918,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to clearMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetClearModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetClearModePtr, NIL)
   }
 
   /**
@@ -2931,7 +2927,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportGetRenderTarget(viewport: RID): RID {
     TransferContext.writeArguments(_RID to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetRenderTargetPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetRenderTargetPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2941,7 +2937,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportGetTexture(viewport: RID): RID {
     TransferContext.writeArguments(_RID to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2951,7 +2947,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetDisable3d(viewport: RID, disable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetDisable3dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDisable3dPtr, NIL)
   }
 
   /**
@@ -2960,7 +2956,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetDisable2d(viewport: RID, disable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetDisable2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDisable2dPtr, NIL)
   }
 
   /**
@@ -2974,7 +2970,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetEnvironmentMode(viewport: RID, mode: ViewportEnvironmentMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetEnvironmentModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetEnvironmentModePtr, NIL)
   }
 
   /**
@@ -2983,7 +2979,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportAttachCamera(viewport: RID, camera: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to camera)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportAttachCameraPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportAttachCameraPtr, NIL)
   }
 
   /**
@@ -2993,7 +2989,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetScenario(viewport: RID, scenario: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetScenarioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetScenarioPtr, NIL)
   }
 
   /**
@@ -3002,7 +2998,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportAttachCanvas(viewport: RID, canvas: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to canvas)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportAttachCanvasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportAttachCanvasPtr, NIL)
   }
 
   /**
@@ -3011,7 +3007,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportRemoveCanvas(viewport: RID, canvas: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to canvas)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportRemoveCanvasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportRemoveCanvasPtr, NIL)
   }
 
   /**
@@ -3023,7 +3019,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetSnap2dTransformsToPixel(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetSnap2dTransformsToPixelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetSnap2dTransformsToPixelPtr, NIL)
   }
 
   /**
@@ -3035,7 +3031,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetSnap2dVerticesToPixel(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetSnap2dVerticesToPixelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetSnap2dVerticesToPixelPtr, NIL)
   }
 
   /**
@@ -3046,7 +3042,7 @@ public object RenderingServer : Object() {
   public final fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
       filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetDefaultCanvasItemTextureFilterPtr,
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureFilterPtr,
         NIL)
   }
 
@@ -3058,7 +3054,7 @@ public object RenderingServer : Object() {
   public final fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
       repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetDefaultCanvasItemTextureRepeatPtr,
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureRepeatPtr,
         NIL)
   }
 
@@ -3072,7 +3068,7 @@ public object RenderingServer : Object() {
     offset: Transform2D,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to canvas, TRANSFORM2D to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetCanvasTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetCanvasTransformPtr, NIL)
   }
 
   /**
@@ -3088,7 +3084,7 @@ public object RenderingServer : Object() {
     sublayer: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to canvas, LONG to layer.toLong(), LONG to sublayer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetCanvasStackingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetCanvasStackingPtr, NIL)
   }
 
   /**
@@ -3097,7 +3093,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetTransparentBackground(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetTransparentBackgroundPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetTransparentBackgroundPtr, NIL)
   }
 
   /**
@@ -3106,7 +3102,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetGlobalCanvasTransform(viewport: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to viewport, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetGlobalCanvasTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetGlobalCanvasTransformPtr, NIL)
   }
 
   /**
@@ -3122,7 +3118,7 @@ public object RenderingServer : Object() {
     scale: ViewportSDFScale,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to oversize.id, LONG to scale.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetSdfOversizeAndScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetSdfOversizeAndScalePtr, NIL)
   }
 
   /**
@@ -3143,7 +3139,7 @@ public object RenderingServer : Object() {
     use16Bits: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to size.toLong(), BOOL to use16Bits)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetPositionalShadowAtlasSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetPositionalShadowAtlasSizePtr, NIL)
   }
 
   /**
@@ -3157,7 +3153,7 @@ public object RenderingServer : Object() {
     subdivision: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to quadrant.toLong(), LONG to subdivision.toLong())
-    TransferContext.callMethod(rawPtr,
+    TransferContext.callMethod(ptr,
         MethodBindings.viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr, NIL)
   }
 
@@ -3168,7 +3164,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetMsaa3dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetMsaa3dPtr, NIL)
   }
 
   /**
@@ -3178,7 +3174,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetMsaa2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetMsaa2dPtr, NIL)
   }
 
   /**
@@ -3198,7 +3194,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseHdr2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUseHdr2dPtr, NIL)
   }
 
   /**
@@ -3207,7 +3203,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetScreenSpaceAa(viewport: RID, mode: ViewportScreenSpaceAA): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetScreenSpaceAaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetScreenSpaceAaPtr, NIL)
   }
 
   /**
@@ -3217,7 +3213,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUseTaa(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseTaaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUseTaaPtr, NIL)
   }
 
   /**
@@ -3227,7 +3223,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUseDebanding(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseDebandingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUseDebandingPtr, NIL)
   }
 
   /**
@@ -3237,7 +3233,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetUseOcclusionCulling(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetUseOcclusionCullingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetUseOcclusionCullingPtr, NIL)
   }
 
   /**
@@ -3247,7 +3243,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetOcclusionRaysPerThread(raysPerThread: Int): Unit {
     TransferContext.writeArguments(LONG to raysPerThread.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetOcclusionRaysPerThreadPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetOcclusionRaysPerThreadPtr, NIL)
   }
 
   /**
@@ -3259,8 +3255,7 @@ public object RenderingServer : Object() {
       fun viewportSetOcclusionCullingBuildQuality(quality: ViewportOcclusionCullingBuildQuality):
       Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetOcclusionCullingBuildQualityPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetOcclusionCullingBuildQualityPtr, NIL)
   }
 
   /**
@@ -3292,7 +3287,7 @@ public object RenderingServer : Object() {
     info: ViewportRenderInfo,
   ): Int {
     TransferContext.writeArguments(_RID to viewport, LONG to type.id, LONG to info.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetRenderInfoPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetRenderInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -3302,7 +3297,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to draw.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetDebugDrawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDebugDrawPtr, NIL)
   }
 
   /**
@@ -3313,7 +3308,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetMeasureRenderTime(viewport: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetMeasureRenderTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetMeasureRenderTimePtr, NIL)
   }
 
   /**
@@ -3329,7 +3324,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportGetMeasuredRenderTimeCpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetMeasuredRenderTimeCpuPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetMeasuredRenderTimeCpuPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -3350,7 +3345,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportGetMeasuredRenderTimeGpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetMeasuredRenderTimeGpuPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.viewportGetMeasuredRenderTimeGpuPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -3361,7 +3356,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetVrsMode(viewport: RID, mode: ViewportVRSMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetVrsModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetVrsModePtr, NIL)
   }
 
   /**
@@ -3375,7 +3370,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetVrsUpdateMode(viewport: RID, mode: ViewportVRSUpdateMode): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetVrsUpdateModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetVrsUpdateModePtr, NIL)
   }
 
   /**
@@ -3385,7 +3380,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetVrsTexture(viewport: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetVrsTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetVrsTexturePtr, NIL)
   }
 
   /**
@@ -3397,7 +3392,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skyCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.skyCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.skyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -3408,7 +3403,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skySetRadianceSize(sky: RID, radianceSize: Int): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to radianceSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.skySetRadianceSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skySetRadianceSizePtr, NIL)
   }
 
   /**
@@ -3417,7 +3412,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skySetMode(sky: RID, mode: SkyMode): Unit {
     TransferContext.writeArguments(_RID to sky, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.skySetModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skySetModePtr, NIL)
   }
 
   /**
@@ -3426,7 +3421,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun skySetMaterial(sky: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to sky, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.skySetMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.skySetMaterialPtr, NIL)
   }
 
   /**
@@ -3451,7 +3446,7 @@ public object RenderingServer : Object() {
     size: Vector2i,
   ): Image? {
     TransferContext.writeArguments(_RID to sky, DOUBLE to energy.toDouble(), BOOL to bakeIrradiance, VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.skyBakePanoramaPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.skyBakePanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -3464,7 +3459,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun compositorEffectCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.compositorEffectCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -3474,7 +3469,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun compositorEffectSetEnabled(effect: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to effect, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.compositorEffectSetEnabledPtr, NIL)
   }
 
   /**
@@ -3488,7 +3483,7 @@ public object RenderingServer : Object() {
     callback: Callable,
   ): Unit {
     TransferContext.writeArguments(_RID to effect, LONG to callbackType.id, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.compositorEffectSetCallbackPtr, NIL)
   }
 
   /**
@@ -3501,7 +3496,7 @@ public object RenderingServer : Object() {
     `set`: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to effect, LONG to flag.id, BOOL to set)
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetFlagPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.compositorEffectSetFlagPtr, NIL)
   }
 
   /**
@@ -3513,7 +3508,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun compositorCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.compositorCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -3525,7 +3520,7 @@ public object RenderingServer : Object() {
   public final fun compositorSetCompositorEffects(compositor: RID, effects: VariantArray<RID>):
       Unit {
     TransferContext.writeArguments(_RID to compositor, ARRAY to effects)
-    TransferContext.callMethod(rawPtr, MethodBindings.compositorSetCompositorEffectsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.compositorSetCompositorEffectsPtr, NIL)
   }
 
   /**
@@ -3538,7 +3533,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.environmentCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -3548,7 +3543,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetBackground(env: RID, bg: EnvironmentBG): Unit {
     TransferContext.writeArguments(_RID to env, LONG to bg.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetBackgroundPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetBackgroundPtr, NIL)
   }
 
   /**
@@ -3558,7 +3553,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSky(env: RID, sky: RID): Unit {
     TransferContext.writeArguments(_RID to env, _RID to sky)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSkyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSkyPtr, NIL)
   }
 
   /**
@@ -3567,7 +3562,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSkyCustomFov(env: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to env, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSkyCustomFovPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSkyCustomFovPtr, NIL)
   }
 
   /**
@@ -3577,7 +3572,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSkyOrientation(env: RID, orientation: Basis): Unit {
     TransferContext.writeArguments(_RID to env, BASIS to orientation)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSkyOrientationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSkyOrientationPtr, NIL)
   }
 
   /**
@@ -3587,7 +3582,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetBgColor(env: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetBgColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetBgColorPtr, NIL)
   }
 
   /**
@@ -3600,7 +3595,7 @@ public object RenderingServer : Object() {
     exposureValue: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, DOUBLE to multiplier.toDouble(), DOUBLE to exposureValue.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetBgEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetBgEnergyPtr, NIL)
   }
 
   /**
@@ -3609,7 +3604,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetCanvasMaxLayer(env: RID, maxLayer: Int): Unit {
     TransferContext.writeArguments(_RID to env, LONG to maxLayer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetCanvasMaxLayerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetCanvasMaxLayerPtr, NIL)
   }
 
   /**
@@ -3628,7 +3623,7 @@ public object RenderingServer : Object() {
         RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG,
   ): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy.toDouble(), DOUBLE to skyContibution.toDouble(), LONG to reflectionSource.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetAmbientLightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetAmbientLightPtr, NIL)
   }
 
   /**
@@ -3652,7 +3647,7 @@ public object RenderingServer : Object() {
     glowMap: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, PACKED_FLOAT_32_ARRAY to levels, DOUBLE to intensity.toDouble(), DOUBLE to strength.toDouble(), DOUBLE to mix.toDouble(), DOUBLE to bloomThreshold.toDouble(), LONG to blendMode.id, DOUBLE to hdrBleedThreshold.toDouble(), DOUBLE to hdrBleedScale.toDouble(), DOUBLE to hdrLuminanceCap.toDouble(), DOUBLE to glowMapStrength.toDouble(), _RID to glowMap)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetGlowPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetGlowPtr, NIL)
   }
 
   /**
@@ -3667,7 +3662,7 @@ public object RenderingServer : Object() {
     white: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure.toDouble(), DOUBLE to white.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetTonemapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetTonemapPtr, NIL)
   }
 
   /**
@@ -3685,7 +3680,7 @@ public object RenderingServer : Object() {
     colorCorrection: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to brightness.toDouble(), DOUBLE to contrast.toDouble(), DOUBLE to saturation.toDouble(), BOOL to use1dColorCorrection, _RID to colorCorrection)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetAdjustmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetAdjustmentPtr, NIL)
   }
 
   /**
@@ -3702,7 +3697,7 @@ public object RenderingServer : Object() {
     depthTolerance: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to maxSteps.toLong(), DOUBLE to fadeIn.toDouble(), DOUBLE to fadeOut.toDouble(), DOUBLE to depthTolerance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsrPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsrPtr, NIL)
   }
 
   /**
@@ -3723,7 +3718,7 @@ public object RenderingServer : Object() {
     aoChannelAffect: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to radius.toDouble(), DOUBLE to intensity.toDouble(), DOUBLE to power.toDouble(), DOUBLE to detail.toDouble(), DOUBLE to horizon.toDouble(), DOUBLE to sharpness.toDouble(), DOUBLE to lightAffect.toDouble(), DOUBLE to aoChannelAffect.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsaoPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsaoPtr, NIL)
   }
 
   /**
@@ -3746,7 +3741,7 @@ public object RenderingServer : Object() {
     fogMode: EnvironmentFogMode = RenderingServer.EnvironmentFogMode.ENV_FOG_MODE_EXPONENTIAL,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble(), LONG to fogMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetFogPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetFogPtr, NIL)
   }
 
   /**
@@ -3768,7 +3763,7 @@ public object RenderingServer : Object() {
     probeBias: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to cascades.toLong(), DOUBLE to minCellSize.toDouble(), LONG to yScale.id, BOOL to useOcclusion, DOUBLE to bounceFeedback.toDouble(), BOOL to readSky, DOUBLE to energy.toDouble(), DOUBLE to normalBias.toDouble(), DOUBLE to probeBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSdfgiPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiPtr, NIL)
   }
 
   /**
@@ -3793,7 +3788,7 @@ public object RenderingServer : Object() {
     skyAffect: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density.toDouble(), COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy.toDouble(), DOUBLE to anisotropy.toDouble(), DOUBLE to length.toDouble(), DOUBLE to pDetailSpread.toDouble(), DOUBLE to giInject.toDouble(), BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount.toDouble(), DOUBLE to ambientInject.toDouble(), DOUBLE to skyAffect.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetVolumetricFogPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetVolumetricFogPtr, NIL)
   }
 
   /**
@@ -3803,14 +3798,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentGlowSetUseBicubicUpscale(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentGlowSetUseBicubicUpscalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentGlowSetUseBicubicUpscalePtr, NIL)
   }
 
   @JvmStatic
   public final fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality):
       Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsrRoughnessQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsrRoughnessQualityPtr, NIL)
   }
 
   /**
@@ -3827,7 +3822,7 @@ public object RenderingServer : Object() {
     fadeoutTo: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsaoQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsaoQualityPtr, NIL)
   }
 
   /**
@@ -3844,7 +3839,7 @@ public object RenderingServer : Object() {
     fadeoutTo: Float,
   ): Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSsilQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsilQualityPtr, NIL)
   }
 
   /**
@@ -3854,7 +3849,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSdfgiRayCount(rayCount: EnvironmentSDFGIRayCount): Unit {
     TransferContext.writeArguments(LONG to rayCount.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSdfgiRayCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiRayCountPtr, NIL)
   }
 
   /**
@@ -3865,7 +3860,7 @@ public object RenderingServer : Object() {
   public final fun environmentSetSdfgiFramesToConverge(frames: EnvironmentSDFGIFramesToConverge):
       Unit {
     TransferContext.writeArguments(LONG to frames.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSdfgiFramesToConvergePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiFramesToConvergePtr, NIL)
   }
 
   /**
@@ -3878,8 +3873,7 @@ public object RenderingServer : Object() {
       fun environmentSetSdfgiFramesToUpdateLight(frames: EnvironmentSDFGIFramesToUpdateLight):
       Unit {
     TransferContext.writeArguments(LONG to frames.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetSdfgiFramesToUpdateLightPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiFramesToUpdateLightPtr, NIL)
   }
 
   /**
@@ -3890,7 +3884,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetVolumetricFogVolumeSize(size: Int, depth: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to depth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetVolumetricFogVolumeSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetVolumetricFogVolumeSizePtr, NIL)
   }
 
   /**
@@ -3900,8 +3894,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetVolumetricFogFilterActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentSetVolumetricFogFilterActivePtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetVolumetricFogFilterActivePtr, NIL)
   }
 
   /**
@@ -3924,7 +3917,7 @@ public object RenderingServer : Object() {
     size: Vector2i,
   ): Image? {
     TransferContext.writeArguments(_RID to environment, BOOL to bakeIrradiance, VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.environmentBakePanoramaPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.environmentBakePanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -3942,7 +3935,7 @@ public object RenderingServer : Object() {
     limit: Float,
   ): Unit {
     TransferContext.writeArguments(BOOL to enable, DOUBLE to amount.toDouble(), DOUBLE to limit.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenSpaceRoughnessLimiterSetActivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.screenSpaceRoughnessLimiterSetActivePtr, NIL)
   }
 
   /**
@@ -3952,7 +3945,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun subSurfaceScatteringSetQuality(quality: SubSurfaceScatteringQuality): Unit {
     TransferContext.writeArguments(LONG to quality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.subSurfaceScatteringSetQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.subSurfaceScatteringSetQualityPtr, NIL)
   }
 
   /**
@@ -3963,7 +3956,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun subSurfaceScatteringSetScale(scale: Float, depthScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble(), DOUBLE to depthScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.subSurfaceScatteringSetScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.subSurfaceScatteringSetScalePtr, NIL)
   }
 
   /**
@@ -3977,7 +3970,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraAttributesCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -3990,7 +3983,7 @@ public object RenderingServer : Object() {
   public final fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean):
       Unit {
     TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesSetDofBlurQualityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetDofBlurQualityPtr, NIL)
   }
 
   /**
@@ -4000,7 +3993,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesSetDofBlurBokehShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetDofBlurBokehShapePtr, NIL)
   }
 
   /**
@@ -4019,7 +4012,7 @@ public object RenderingServer : Object() {
     amount: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to cameraAttributes, BOOL to farEnable, DOUBLE to farDistance.toDouble(), DOUBLE to farTransition.toDouble(), BOOL to nearEnable, DOUBLE to nearDistance.toDouble(), DOUBLE to nearTransition.toDouble(), DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesSetDofBlurPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetDofBlurPtr, NIL)
   }
 
   /**
@@ -4045,7 +4038,7 @@ public object RenderingServer : Object() {
     normalization: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to cameraAttributes, DOUBLE to multiplier.toDouble(), DOUBLE to normalization.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesSetExposurePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetExposurePtr, NIL)
   }
 
   /**
@@ -4062,7 +4055,7 @@ public object RenderingServer : Object() {
     scale: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to cameraAttributes, BOOL to enable, DOUBLE to minSensitivity.toDouble(), DOUBLE to maxSensitivity.toDouble(), DOUBLE to speed.toDouble(), DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesSetAutoExposurePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetAutoExposurePtr, NIL)
   }
 
   /**
@@ -4075,7 +4068,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun scenarioCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.scenarioCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.scenarioCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4085,7 +4078,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun scenarioSetEnvironment(scenario: RID, environment: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to environment)
-    TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetEnvironmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.scenarioSetEnvironmentPtr, NIL)
   }
 
   /**
@@ -4095,7 +4088,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun scenarioSetFallbackEnvironment(scenario: RID, environment: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to environment)
-    TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetFallbackEnvironmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.scenarioSetFallbackEnvironmentPtr, NIL)
   }
 
   /**
@@ -4105,7 +4098,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun scenarioSetCameraAttributes(scenario: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to effects)
-    TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetCameraAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.scenarioSetCameraAttributesPtr, NIL)
   }
 
   /**
@@ -4114,7 +4107,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun scenarioSetCompositor(scenario: RID, compositor: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to compositor)
-    TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetCompositorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.scenarioSetCompositorPtr, NIL)
   }
 
   /**
@@ -4128,7 +4121,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceCreate2(base: RID, scenario: RID): RID {
     TransferContext.writeArguments(_RID to base, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceCreate2Ptr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.instanceCreate2Ptr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4145,7 +4138,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.instanceCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4158,7 +4151,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetBase(instance: RID, base: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to base)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetBasePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetBasePtr, NIL)
   }
 
   /**
@@ -4168,7 +4161,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetScenario(instance: RID, scenario: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetScenarioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetScenarioPtr, NIL)
   }
 
   /**
@@ -4178,7 +4171,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetLayerMask(instance: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetLayerMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetLayerMaskPtr, NIL)
   }
 
   /**
@@ -4192,7 +4185,7 @@ public object RenderingServer : Object() {
     useAabbCenter: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to sortingOffset.toDouble(), BOOL to useAabbCenter)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetPivotDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetPivotDataPtr, NIL)
   }
 
   /**
@@ -4201,7 +4194,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetTransform(instance: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to instance, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetTransformPtr, NIL)
   }
 
   /**
@@ -4211,7 +4204,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceAttachObjectInstanceId(instance: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceAttachObjectInstanceIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceAttachObjectInstanceIdPtr, NIL)
   }
 
   /**
@@ -4224,7 +4217,7 @@ public object RenderingServer : Object() {
     weight: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to shape.toLong(), DOUBLE to weight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetBlendShapeWeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetBlendShapeWeightPtr, NIL)
   }
 
   /**
@@ -4238,7 +4231,7 @@ public object RenderingServer : Object() {
     material: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to surface.toLong(), _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetSurfaceOverrideMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetSurfaceOverrideMaterialPtr, NIL)
   }
 
   /**
@@ -4247,7 +4240,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetVisible(instance: RID, visible: Boolean): Unit {
     TransferContext.writeArguments(_RID to instance, BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetVisiblePtr, NIL)
   }
 
   /**
@@ -4265,7 +4258,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometrySetTransparency(instance: RID, transparency: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to transparency.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetTransparencyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetTransparencyPtr, NIL)
   }
 
   /**
@@ -4275,7 +4268,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetCustomAabb(instance: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to instance, godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetCustomAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetCustomAabbPtr, NIL)
   }
 
   /**
@@ -4284,7 +4277,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceAttachSkeleton(instance: RID, skeleton: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to skeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceAttachSkeletonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceAttachSkeletonPtr, NIL)
   }
 
   /**
@@ -4295,7 +4288,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetExtraVisibilityMargin(instance: RID, margin: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetExtraVisibilityMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetExtraVisibilityMarginPtr, NIL)
   }
 
   /**
@@ -4304,7 +4297,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetVisibilityParent(instance: RID, parent: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to parent)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetVisibilityParentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetVisibilityParentPtr, NIL)
   }
 
   /**
@@ -4315,7 +4308,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceSetIgnoreCulling(instance: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to instance, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceSetIgnoreCullingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetIgnoreCullingPtr, NIL)
   }
 
   /**
@@ -4328,7 +4321,7 @@ public object RenderingServer : Object() {
     enabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetFlagPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetFlagPtr, NIL)
   }
 
   /**
@@ -4339,7 +4332,7 @@ public object RenderingServer : Object() {
   public final fun instanceGeometrySetCastShadowsSetting(instance: RID,
       shadowCastingSetting: ShadowCastingSetting): Unit {
     TransferContext.writeArguments(_RID to instance, LONG to shadowCastingSetting.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetCastShadowsSettingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetCastShadowsSettingPtr, NIL)
   }
 
   /**
@@ -4349,7 +4342,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometrySetMaterialOverride(instance: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetMaterialOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetMaterialOverridePtr, NIL)
   }
 
   /**
@@ -4359,7 +4352,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometrySetMaterialOverlay(instance: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetMaterialOverlayPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetMaterialOverlayPtr, NIL)
   }
 
   /**
@@ -4376,7 +4369,7 @@ public object RenderingServer : Object() {
     fadeMode: VisibilityRangeFadeMode,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), DOUBLE to minMargin.toDouble(), DOUBLE to maxMargin.toDouble(), LONG to fadeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetVisibilityRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetVisibilityRangePtr, NIL)
   }
 
   /**
@@ -4392,7 +4385,7 @@ public object RenderingServer : Object() {
     lightmapSlice: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, _RID to lightmap, RECT2 to lightmapUvScale, LONG to lightmapSlice.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetLightmapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetLightmapPtr, NIL)
   }
 
   /**
@@ -4402,7 +4395,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometrySetLodBias(instance: RID, lodBias: Float): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to lodBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetLodBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetLodBiasPtr, NIL)
   }
 
   /**
@@ -4416,7 +4409,7 @@ public object RenderingServer : Object() {
     `value`: Any?,
   ): Unit {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometrySetShaderParameterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetShaderParameterPtr, NIL)
   }
 
   /**
@@ -4427,7 +4420,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometryGetShaderParameter(instance: RID, parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometryGetShaderParameterPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometryGetShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -4439,7 +4432,7 @@ public object RenderingServer : Object() {
   public final fun instanceGeometryGetShaderParameterDefaultValue(instance: RID,
       parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.callMethod(ptr,
         MethodBindings.instanceGeometryGetShaderParameterDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -4454,8 +4447,7 @@ public object RenderingServer : Object() {
   public final fun instanceGeometryGetShaderParameterList(instance: RID):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to instance)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometryGetShaderParameterListPtr,
-        ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometryGetShaderParameterListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -4472,7 +4464,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.instancesCullAabbPtr, PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.instancesCullAabbPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -4493,7 +4485,7 @@ public object RenderingServer : Object() {
     scenario: RID = RID(),
   ): PackedInt64Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.instancesCullRayPtr, PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.instancesCullRayPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -4511,7 +4503,7 @@ public object RenderingServer : Object() {
   public final fun instancesCullConvex(convex: VariantArray<Plane>, scenario: RID = RID()):
       PackedInt64Array {
     TransferContext.writeArguments(ARRAY to convex, _RID to scenario)
-    TransferContext.callMethod(rawPtr, MethodBindings.instancesCullConvexPtr, PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.instancesCullConvexPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -4527,7 +4519,7 @@ public object RenderingServer : Object() {
     imageSize: Vector2i,
   ): VariantArray<Image> {
     TransferContext.writeArguments(_RID to base, ARRAY to materialOverrides, VECTOR2I to imageSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeRenderUv2Ptr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.bakeRenderUv2Ptr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
@@ -4541,7 +4533,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4555,7 +4547,7 @@ public object RenderingServer : Object() {
     mirroring: Vector2,
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, _RID to item, VECTOR2 to mirroring)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetItemMirroringPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasSetItemMirroringPtr, NIL)
   }
 
   /**
@@ -4570,7 +4562,7 @@ public object RenderingServer : Object() {
     repeatTimes: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to item, VECTOR2 to repeatSize, LONG to repeatTimes.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetItemRepeatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasSetItemRepeatPtr, NIL)
   }
 
   /**
@@ -4579,13 +4571,13 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasSetModulate(canvas: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvas, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasSetModulatePtr, NIL)
   }
 
   @JvmStatic
   public final fun canvasSetDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetDisableScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasSetDisableScalePtr, NIL)
   }
 
   /**
@@ -4599,7 +4591,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasTextureCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasTextureCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4615,7 +4607,7 @@ public object RenderingServer : Object() {
     texture: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to channel.id, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureSetChannelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetChannelPtr, NIL)
   }
 
   /**
@@ -4630,7 +4622,7 @@ public object RenderingServer : Object() {
     shininess: Float,
   ): Unit {
     TransferContext.writeArguments(_RID to canvasTexture, COLOR to baseColor, DOUBLE to shininess.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureSetShadingParametersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetShadingParametersPtr, NIL)
   }
 
   /**
@@ -4641,7 +4633,7 @@ public object RenderingServer : Object() {
   public final fun canvasTextureSetTextureFilter(canvasTexture: RID,
       filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureSetTextureFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetTextureFilterPtr, NIL)
   }
 
   /**
@@ -4652,7 +4644,7 @@ public object RenderingServer : Object() {
   public final fun canvasTextureSetTextureRepeat(canvasTexture: RID,
       repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to canvasTexture, LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureSetTextureRepeatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetTextureRepeatPtr, NIL)
   }
 
   /**
@@ -4665,7 +4657,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4676,7 +4668,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetParent(item: RID, parent: RID): Unit {
     TransferContext.writeArguments(_RID to item, _RID to parent)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetParentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetParentPtr, NIL)
   }
 
   /**
@@ -4687,7 +4679,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemSetDefaultTextureFilter(item: RID, filter: CanvasItemTextureFilter):
       Unit {
     TransferContext.writeArguments(_RID to item, LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetDefaultTextureFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDefaultTextureFilterPtr, NIL)
   }
 
   /**
@@ -4698,7 +4690,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemSetDefaultTextureRepeat(item: RID, repeat: CanvasItemTextureRepeat):
       Unit {
     TransferContext.writeArguments(_RID to item, LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetDefaultTextureRepeatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDefaultTextureRepeatPtr, NIL)
   }
 
   /**
@@ -4707,7 +4699,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetVisible(item: RID, visible: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetVisiblePtr, NIL)
   }
 
   /**
@@ -4717,7 +4709,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetLightMask(item: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to mask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetLightMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetLightMaskPtr, NIL)
   }
 
   /**
@@ -4727,7 +4719,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetVisibilityLayer(item: RID, visibilityLayer: Long): Unit {
     TransferContext.writeArguments(_RID to item, LONG to visibilityLayer)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetVisibilityLayerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetVisibilityLayerPtr, NIL)
   }
 
   /**
@@ -4738,7 +4730,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetTransformPtr, NIL)
   }
 
   /**
@@ -4752,7 +4744,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetClip(item: RID, clip: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to clip)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetClipPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetClipPtr, NIL)
   }
 
   /**
@@ -4763,7 +4755,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetDistanceFieldMode(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetDistanceFieldModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDistanceFieldModePtr, NIL)
   }
 
   /**
@@ -4780,7 +4772,7 @@ public object RenderingServer : Object() {
     rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
   ): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to useCustomRect, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetCustomRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetCustomRectPtr, NIL)
   }
 
   /**
@@ -4790,7 +4782,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetModulate(item: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to item, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetModulatePtr, NIL)
   }
 
   /**
@@ -4800,7 +4792,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetSelfModulate(item: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to item, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetSelfModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetSelfModulatePtr, NIL)
   }
 
   /**
@@ -4810,7 +4802,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetDrawBehindParent(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetDrawBehindParentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDrawBehindParentPtr, NIL)
   }
 
   /**
@@ -4819,7 +4811,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetInterpolated(item: RID, interpolated: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to interpolated)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetInterpolatedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetInterpolatedPtr, NIL)
   }
 
   /**
@@ -4830,7 +4822,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemResetPhysicsInterpolation(item: RID): Unit {
     TransferContext.writeArguments(_RID to item)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemResetPhysicsInterpolationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemResetPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -4842,8 +4834,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemTransformPhysicsInterpolation(item: RID, transform: Transform2D):
       Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemTransformPhysicsInterpolationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemTransformPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -4861,7 +4852,7 @@ public object RenderingServer : Object() {
     antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width.toDouble(), BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddLinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddLinePtr, NIL)
   }
 
   /**
@@ -4878,7 +4869,7 @@ public object RenderingServer : Object() {
     antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble(), BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddPolylinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddPolylinePtr, NIL)
   }
 
   /**
@@ -4895,7 +4886,7 @@ public object RenderingServer : Object() {
     antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble(), BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddMultilinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddMultilinePtr, NIL)
   }
 
   /**
@@ -4911,7 +4902,7 @@ public object RenderingServer : Object() {
     antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, COLOR to color, BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddRectPtr, NIL)
   }
 
   /**
@@ -4928,7 +4919,7 @@ public object RenderingServer : Object() {
     antialiased: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, VECTOR2 to pos, DOUBLE to radius.toDouble(), COLOR to color, BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddCirclePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddCirclePtr, NIL)
   }
 
   /**
@@ -4946,7 +4937,7 @@ public object RenderingServer : Object() {
     transpose: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, BOOL to tile, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddTextureRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddTextureRectPtr, NIL)
   }
 
   /**
@@ -4965,7 +4956,7 @@ public object RenderingServer : Object() {
     scale: Float = 1.0f,
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, LONG to outlineSize.toLong(), DOUBLE to pxRange.toDouble(), DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddMsdfTextureRectRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddMsdfTextureRectRegionPtr, NIL)
   }
 
   /**
@@ -4980,7 +4971,7 @@ public object RenderingServer : Object() {
     modulate: Color,
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddLcdTextureRectRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddLcdTextureRectRegionPtr, NIL)
   }
 
   /**
@@ -4999,7 +4990,7 @@ public object RenderingServer : Object() {
     clipUv: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, _RID to texture, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddTextureRectRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddTextureRectRegionPtr, NIL)
   }
 
   /**
@@ -5020,7 +5011,7 @@ public object RenderingServer : Object() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to item, RECT2 to rect, RECT2 to source, _RID to texture, VECTOR2 to topleft, VECTOR2 to bottomright, LONG to xAxisMode.id, LONG to yAxisMode.id, BOOL to drawCenter, COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddNinePatchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddNinePatchPtr, NIL)
   }
 
   /**
@@ -5036,7 +5027,7 @@ public object RenderingServer : Object() {
     texture: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddPrimitivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddPrimitivePtr, NIL)
   }
 
   /**
@@ -5054,7 +5045,7 @@ public object RenderingServer : Object() {
     texture: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddPolygonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddPolygonPtr, NIL)
   }
 
   /**
@@ -5077,7 +5068,7 @@ public object RenderingServer : Object() {
     count: Int = -1,
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_INT_32_ARRAY to indices, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs, PACKED_INT_32_ARRAY to bones, PACKED_FLOAT_32_ARRAY to weights, _RID to texture, LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddTriangleArrayPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddTriangleArrayPtr, NIL)
   }
 
   /**
@@ -5094,7 +5085,7 @@ public object RenderingServer : Object() {
     texture: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to item, _RID to mesh, TRANSFORM2D to transform, COLOR to modulate, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddMeshPtr, NIL)
   }
 
   /**
@@ -5109,7 +5100,7 @@ public object RenderingServer : Object() {
     texture: RID = RID(),
   ): Unit {
     TransferContext.writeArguments(_RID to item, _RID to mesh, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddMultimeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddMultimeshPtr, NIL)
   }
 
   /**
@@ -5122,7 +5113,7 @@ public object RenderingServer : Object() {
     texture: RID,
   ): Unit {
     TransferContext.writeArguments(_RID to item, _RID to particles, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddParticlesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddParticlesPtr, NIL)
   }
 
   /**
@@ -5131,7 +5122,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemAddSetTransform(item: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddSetTransformPtr, NIL)
   }
 
   /**
@@ -5141,7 +5132,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemAddClipIgnore(item: RID, ignore: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddClipIgnorePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddClipIgnorePtr, NIL)
   }
 
   /**
@@ -5159,7 +5150,7 @@ public object RenderingServer : Object() {
     offset: Double = 0.0,
   ): Unit {
     TransferContext.writeArguments(_RID to item, DOUBLE to animationLength, DOUBLE to sliceBegin, DOUBLE to sliceEnd, DOUBLE to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddAnimationSlicePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddAnimationSlicePtr, NIL)
   }
 
   /**
@@ -5170,7 +5161,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetSortChildrenByY(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetSortChildrenByYPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetSortChildrenByYPtr, NIL)
   }
 
   /**
@@ -5179,7 +5170,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetZIndex(item: RID, zIndex: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to zIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetZIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetZIndexPtr, NIL)
   }
 
   /**
@@ -5188,7 +5179,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetZAsRelativeToParent(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetZAsRelativeToParentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetZAsRelativeToParentPtr, NIL)
   }
 
   /**
@@ -5201,7 +5192,7 @@ public object RenderingServer : Object() {
     rect: Rect2,
   ): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetCopyToBackbufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetCopyToBackbufferPtr, NIL)
   }
 
   /**
@@ -5210,7 +5201,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemClear(item: RID): Unit {
     TransferContext.writeArguments(_RID to item)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemClearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemClearPtr, NIL)
   }
 
   /**
@@ -5219,7 +5210,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetDrawIndex(item: RID, index: Int): Unit {
     TransferContext.writeArguments(_RID to item, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetDrawIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDrawIndexPtr, NIL)
   }
 
   /**
@@ -5229,7 +5220,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetMaterial(item: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to item, _RID to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetMaterialPtr, NIL)
   }
 
   /**
@@ -5238,7 +5229,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetUseParentMaterial(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetUseParentMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetUseParentMaterialPtr, NIL)
   }
 
   /**
@@ -5257,7 +5248,7 @@ public object RenderingServer : Object() {
     exitCallable: Callable,
   ): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enable, RECT2 to area, CALLABLE to enterCallable, CALLABLE to exitCallable)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetVisibilityNotifierPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetVisibilityNotifierPtr, NIL)
   }
 
   /**
@@ -5277,7 +5268,7 @@ public object RenderingServer : Object() {
     blurMipmaps: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(_RID to item, LONG to mode.id, DOUBLE to clearMargin.toDouble(), BOOL to fitEmpty, DOUBLE to fitMargin.toDouble(), BOOL to blurMipmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetCanvasGroupModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetCanvasGroupModePtr, NIL)
   }
 
   /**
@@ -5289,7 +5280,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun debugCanvasItemGetRect(item: RID): Rect2 {
     TransferContext.writeArguments(_RID to item)
-    TransferContext.callMethod(rawPtr, MethodBindings.debugCanvasItemGetRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.debugCanvasItemGetRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
@@ -5303,7 +5294,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5313,7 +5304,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightAttachToCanvas(light: RID, canvas: RID): Unit {
     TransferContext.writeArguments(_RID to light, _RID to canvas)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightAttachToCanvasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightAttachToCanvasPtr, NIL)
   }
 
   /**
@@ -5322,7 +5313,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetEnabled(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetEnabledPtr, NIL)
   }
 
   /**
@@ -5331,7 +5322,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetTextureScale(light: RID, scale: Float): Unit {
     TransferContext.writeArguments(_RID to light, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetTextureScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetTextureScalePtr, NIL)
   }
 
   /**
@@ -5340,7 +5331,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetTransform(light: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to light, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetTransformPtr, NIL)
   }
 
   /**
@@ -5349,7 +5340,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetTexture(light: RID, texture: RID): Unit {
     TransferContext.writeArguments(_RID to light, _RID to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetTexturePtr, NIL)
   }
 
   /**
@@ -5358,7 +5349,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetTextureOffset(light: RID, offset: Vector2): Unit {
     TransferContext.writeArguments(_RID to light, VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetTextureOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetTextureOffsetPtr, NIL)
   }
 
   /**
@@ -5367,7 +5358,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetColor(light: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to light, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetColorPtr, NIL)
   }
 
   /**
@@ -5376,7 +5367,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetHeight(light: RID, height: Float): Unit {
     TransferContext.writeArguments(_RID to light, DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetHeightPtr, NIL)
   }
 
   /**
@@ -5385,7 +5376,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetEnergy(light: RID, energy: Float): Unit {
     TransferContext.writeArguments(_RID to light, DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetEnergyPtr, NIL)
   }
 
   /**
@@ -5399,7 +5390,7 @@ public object RenderingServer : Object() {
     maxZ: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to light, LONG to minZ.toLong(), LONG to maxZ.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetZRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetZRangePtr, NIL)
   }
 
   /**
@@ -5412,7 +5403,7 @@ public object RenderingServer : Object() {
     maxLayer: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to light, LONG to minLayer.toLong(), LONG to maxLayer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetLayerRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetLayerRangePtr, NIL)
   }
 
   /**
@@ -5421,7 +5412,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetItemCullMask(light: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetItemCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetItemCullMaskPtr, NIL)
   }
 
   /**
@@ -5431,7 +5422,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetItemShadowCullMask(light: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetItemShadowCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetItemShadowCullMaskPtr, NIL)
   }
 
   /**
@@ -5440,7 +5431,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetModePtr, NIL)
   }
 
   /**
@@ -5449,7 +5440,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetShadowEnabled(light: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetShadowEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetShadowEnabledPtr, NIL)
   }
 
   /**
@@ -5458,7 +5449,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
     TransferContext.writeArguments(_RID to light, LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetShadowFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetShadowFilterPtr, NIL)
   }
 
   /**
@@ -5467,7 +5458,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetShadowColor(light: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to light, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetShadowColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetShadowColorPtr, NIL)
   }
 
   /**
@@ -5476,7 +5467,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetShadowSmooth(light: RID, smooth: Float): Unit {
     TransferContext.writeArguments(_RID to light, DOUBLE to smooth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetShadowSmoothPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetShadowSmoothPtr, NIL)
   }
 
   /**
@@ -5486,7 +5477,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetBlendModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetBlendModePtr, NIL)
   }
 
   /**
@@ -5495,7 +5486,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightSetInterpolated(light: RID, interpolated: Boolean): Unit {
     TransferContext.writeArguments(_RID to light, BOOL to interpolated)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetInterpolatedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightSetInterpolatedPtr, NIL)
   }
 
   /**
@@ -5506,7 +5497,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightResetPhysicsInterpolation(light: RID): Unit {
     TransferContext.writeArguments(_RID to light)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightResetPhysicsInterpolationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightResetPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -5518,8 +5509,7 @@ public object RenderingServer : Object() {
   public final fun canvasLightTransformPhysicsInterpolation(light: RID, transform: Transform2D):
       Unit {
     TransferContext.writeArguments(_RID to light, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightTransformPhysicsInterpolationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightTransformPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -5533,7 +5523,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5543,7 +5533,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderAttachToCanvas(occluder: RID, canvas: RID): Unit {
     TransferContext.writeArguments(_RID to occluder, _RID to canvas)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderAttachToCanvasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderAttachToCanvasPtr, NIL)
   }
 
   /**
@@ -5552,7 +5542,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderSetEnabled(occluder: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to occluder, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetEnabledPtr, NIL)
   }
 
   /**
@@ -5561,13 +5551,13 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderSetPolygon(occluder: RID, polygon: RID): Unit {
     TransferContext.writeArguments(_RID to occluder, _RID to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetPolygonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetPolygonPtr, NIL)
   }
 
   @JvmStatic
   public final fun canvasLightOccluderSetAsSdfCollision(occluder: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to occluder, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetAsSdfCollisionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetAsSdfCollisionPtr, NIL)
   }
 
   /**
@@ -5576,7 +5566,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderSetTransform(occluder: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to occluder, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetTransformPtr, NIL)
   }
 
   /**
@@ -5585,7 +5575,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderSetLightMask(occluder: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to occluder, LONG to mask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetLightMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetLightMaskPtr, NIL)
   }
 
   /**
@@ -5594,7 +5584,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderSetInterpolated(occluder: RID, interpolated: Boolean): Unit {
     TransferContext.writeArguments(_RID to occluder, BOOL to interpolated)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetInterpolatedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetInterpolatedPtr, NIL)
   }
 
   /**
@@ -5605,8 +5595,8 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderResetPhysicsInterpolation(occluder: RID): Unit {
     TransferContext.writeArguments(_RID to occluder)
-    TransferContext.callMethod(rawPtr,
-        MethodBindings.canvasLightOccluderResetPhysicsInterpolationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderResetPhysicsInterpolationPtr,
+        NIL)
   }
 
   /**
@@ -5618,7 +5608,7 @@ public object RenderingServer : Object() {
   public final fun canvasLightOccluderTransformPhysicsInterpolation(occluder: RID,
       transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to occluder, TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr,
+    TransferContext.callMethod(ptr,
         MethodBindings.canvasLightOccluderTransformPhysicsInterpolationPtr, NIL)
   }
 
@@ -5633,7 +5623,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasOccluderPolygonCreate(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasOccluderPolygonCreatePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.canvasOccluderPolygonCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5647,7 +5637,7 @@ public object RenderingServer : Object() {
     closed: Boolean,
   ): Unit {
     TransferContext.writeArguments(_RID to occluderPolygon, PACKED_VECTOR2_ARRAY to shape, BOOL to closed)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasOccluderPolygonSetShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasOccluderPolygonSetShapePtr, NIL)
   }
 
   /**
@@ -5657,7 +5647,7 @@ public object RenderingServer : Object() {
   public final fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
       mode: CanvasOccluderPolygonCullMode): Unit {
     TransferContext.writeArguments(_RID to occluderPolygon, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasOccluderPolygonSetCullModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasOccluderPolygonSetCullModePtr, NIL)
   }
 
   /**
@@ -5667,7 +5657,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasSetShadowTextureSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetShadowTextureSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasSetShadowTextureSizePtr, NIL)
   }
 
   /**
@@ -5681,7 +5671,7 @@ public object RenderingServer : Object() {
     defaultValue: Any?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, ANY to defaultValue)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterAddPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterAddPtr, NIL)
   }
 
   /**
@@ -5690,7 +5680,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterRemove(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterRemovePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterRemovePtr, NIL)
   }
 
   /**
@@ -5704,7 +5694,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterGetList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterGetListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterGetListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
@@ -5714,7 +5704,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterSet(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterSetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterSetPtr, NIL)
   }
 
   /**
@@ -5724,7 +5714,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterSetOverride(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterSetOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterSetOverridePtr, NIL)
   }
 
   /**
@@ -5738,7 +5728,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterGet(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterGetPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterGetPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -5753,7 +5743,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun globalShaderParameterGetType(name: StringName): GlobalShaderParameterType {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterGetTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterGetTypePtr, LONG)
     return RenderingServer.GlobalShaderParameterType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -5765,7 +5755,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.freeRidPtr, NIL)
   }
 
   /**
@@ -5774,7 +5764,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun requestFrameDrawnCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.requestFrameDrawnCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.requestFrameDrawnCallbackPtr, NIL)
   }
 
   /**
@@ -5784,7 +5774,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun hasChanged(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasChangedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasChangedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -5808,7 +5798,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getRenderingInfo(info: RenderingInfo): Long {
     TransferContext.writeArguments(LONG to info.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderingInfoPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderingInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -5822,7 +5812,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getVideoAdapterName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -5833,7 +5823,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getVideoAdapterVendor(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterVendorPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterVendorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -5848,7 +5838,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getVideoAdapterType(): RenderingDevice.DeviceType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterTypePtr, LONG)
     return RenderingDevice.DeviceType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -5862,7 +5852,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getVideoAdapterApiVersion(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterApiVersionPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterApiVersionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -5877,7 +5867,7 @@ public object RenderingServer : Object() {
     radius: Float,
   ): RID {
     TransferContext.writeArguments(LONG to latitudes.toLong(), LONG to longitudes.toLong(), DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.makeSphereMeshPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.makeSphereMeshPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5888,7 +5878,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getTestCube(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTestCubePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getTestCubePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5906,7 +5896,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getTestTexture(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTestTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getTestTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5924,7 +5914,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getWhiteTexture(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWhiteTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getWhiteTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -5943,7 +5933,7 @@ public object RenderingServer : Object() {
     useFilter: Boolean = true,
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, COLOR to color, BOOL to scale, BOOL to useFilter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBootImagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBootImagePtr, NIL)
   }
 
   /**
@@ -5953,7 +5943,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getDefaultClearColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultClearColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultClearColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -5964,7 +5954,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun setDefaultClearColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultClearColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultClearColorPtr, NIL)
   }
 
   /**
@@ -5974,7 +5964,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasOsFeaturePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasOsFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -5985,20 +5975,20 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun setDebugGenerateWireframes(generate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to generate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugGenerateWireframesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDebugGenerateWireframesPtr, NIL)
   }
 
   @JvmStatic
   public final fun isRenderLoopEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRenderLoopEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRenderLoopEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   @JvmStatic
   public final fun setRenderLoopEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderLoopEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRenderLoopEnabledPtr, NIL)
   }
 
   /**
@@ -6009,7 +5999,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getFrameSetupTimeCpu(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameSetupTimeCpuPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFrameSetupTimeCpuPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -6020,7 +6010,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun forceSync(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceSyncPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.forceSyncPtr, NIL)
   }
 
   /**
@@ -6030,7 +6020,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun forceDraw(swapBuffers: Boolean = true, frameStep: Double = 0.0): Unit {
     TransferContext.writeArguments(BOOL to swapBuffers, DOUBLE to frameStep)
-    TransferContext.callMethod(rawPtr, MethodBindings.forceDrawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.forceDrawPtr, NIL)
   }
 
   /**
@@ -6041,7 +6031,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderingDevicePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderingDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
 
@@ -6054,7 +6044,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createLocalRenderingDevicePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.createLocalRenderingDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
 
@@ -6064,7 +6054,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun isOnRenderThread(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnRenderThreadPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isOnRenderThreadPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -6077,7 +6067,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun callOnRenderThread(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.callOnRenderThreadPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.callOnRenderThreadPtr, NIL)
   }
 
   /**
@@ -6086,7 +6076,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun hasFeature(feature: Features): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

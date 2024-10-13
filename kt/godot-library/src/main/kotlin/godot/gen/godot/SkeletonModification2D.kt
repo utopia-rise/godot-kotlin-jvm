@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -84,12 +84,12 @@ public open class SkeletonModification2D : Resource() {
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -99,7 +99,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
@@ -110,7 +110,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public final fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIsSetupPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIsSetupPtr, NIL)
   }
 
   /**
@@ -118,18 +118,18 @@ public open class SkeletonModification2D : Resource() {
    */
   public final fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExecutionMode(executionMode: Int): Unit {
     TransferContext.writeArguments(LONG to executionMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExecutionModePtr, NIL)
   }
 
   public final fun getExecutionMode(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getExecutionModePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -144,7 +144,7 @@ public open class SkeletonModification2D : Resource() {
     invert: Boolean,
   ): Float {
     TransferContext.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
-    TransferContext.callMethod(rawPtr, MethodBindings.clampAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.clampAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -154,7 +154,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public final fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawGizmo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorDrawGizmoPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditorDrawGizmoPtr, NIL)
   }
 
   /**
@@ -163,7 +163,7 @@ public open class SkeletonModification2D : Resource() {
    */
   public final fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

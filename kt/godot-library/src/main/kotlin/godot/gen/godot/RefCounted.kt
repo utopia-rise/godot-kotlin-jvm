@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -54,7 +54,7 @@ public open class RefCounted : Object() {
    */
   public final fun initRef(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.initRefPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.initRefPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -64,7 +64,7 @@ public open class RefCounted : Object() {
    */
   public final fun reference(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.referencePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.referencePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -74,7 +74,7 @@ public open class RefCounted : Object() {
    */
   public final fun unreference(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unreferencePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.unreferencePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -83,7 +83,7 @@ public open class RefCounted : Object() {
    */
   public final fun getReferenceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getReferenceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -100,34 +100,34 @@ public open class CanvasGroup : Node2D() {
 
   public final fun setFitMargin(fitMargin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFitMarginPtr, NIL)
   }
 
   public final fun getFitMargin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFitMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearMargin(clearMargin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setClearMarginPtr, NIL)
   }
 
   public final fun getClearMargin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getClearMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useMipmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseMipmapsPtr, NIL)
   }
 
   public final fun isUsingMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

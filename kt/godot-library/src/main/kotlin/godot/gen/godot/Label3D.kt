@@ -10,6 +10,7 @@ import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -24,7 +25,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -496,233 +496,232 @@ public open class Label3D : GeometryInstance3D() {
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
   public final fun getVerticalAlignment(): VerticalAlignment {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVerticalAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setModulate(modulate: Color): Unit {
     TransferContext.writeArguments(COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setOutlineModulate(modulate: Color): Unit {
     TransferContext.writeArguments(COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutlineModulatePtr, NIL)
   }
 
   public final fun getOutlineModulate(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getOutlineModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTextDirection(direction: TextServer.Direction): Unit {
     TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): TextServer.Direction {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
     TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
     TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setUppercase(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUppercasePtr, NIL)
   }
 
   public final fun isUppercase(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUppercasePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRenderPriorityPtr, NIL)
   }
 
   public final fun getRenderPriority(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineRenderPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
   }
 
   public final fun getOutlineRenderPriority(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
   }
 
   public final fun getFont(): Font? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFontSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontSizePtr, NIL)
   }
 
   public final fun getFontSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineSize(outlineSize: Int): Unit {
     TransferContext.writeArguments(LONG to outlineSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
   public final fun getOutlineSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOutlineSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLineSpacing(lineSpacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
   public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPixelSize(pixelSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPixelSizePtr, NIL)
   }
 
   public final fun getPixelSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPixelSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -731,7 +730,7 @@ public open class Label3D : GeometryInstance3D() {
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDrawFlagPtr, NIL)
   }
 
   /**
@@ -739,84 +738,84 @@ public open class Label3D : GeometryInstance3D() {
    */
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getDrawFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBillboardModePtr, NIL)
   }
 
   public final fun getBillboardMode(): BaseMaterial3D.BillboardMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBillboardModePtr, LONG)
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaCutModePtr, NIL)
   }
 
   public final fun getAlphaCutMode(): AlphaCutMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaCutModePtr, LONG)
     return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
   public final fun getAlphaScissorThreshold(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
   public final fun getAlphaHashScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
     TransferContext.writeArguments(LONG to alphaAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
   public final fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingPtr, LONG)
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
     TransferContext.writeArguments(DOUBLE to edge.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): BaseMaterial3D.TextureFilter {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
     return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -826,7 +825,7 @@ public open class Label3D : GeometryInstance3D() {
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }
 

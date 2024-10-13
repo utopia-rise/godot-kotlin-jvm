@@ -9,6 +9,7 @@ package godot
 import godot.TextServer.JustificationFlagValue
 import godot.TextServer.LineBreakFlagValue
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.RID
@@ -32,7 +33,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -193,61 +193,61 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   public final fun setDirection(direction: TextServer.Direction): Unit {
     TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDirectionPtr, NIL)
   }
 
   public final fun getDirection(): TextServer.Direction {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCustomPunctuation(customPunctuation: String): Unit {
     TransferContext.writeArguments(STRING to customPunctuation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomPunctuationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomPunctuationPtr, NIL)
   }
 
   public final fun getCustomPunctuation(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomPunctuationPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomPunctuationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOrientation(orientation: TextServer.Orientation): Unit {
     TransferContext.writeArguments(LONG to orientation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
 
   public final fun getOrientation(): TextServer.Orientation {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOrientationPtr, LONG)
     return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPreserveInvalid(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveInvalidPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPreserveInvalidPtr, NIL)
   }
 
   public final fun getPreserveInvalid(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveInvalidPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getPreserveInvalidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPreserveControl(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveControlPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPreserveControlPtr, NIL)
   }
 
   public final fun getPreserveControl(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveControlPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getPreserveControlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -258,7 +258,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBidiOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBidiOverridePtr, NIL)
   }
 
   /**
@@ -274,7 +274,7 @@ public open class TextParagraph : RefCounted() {
     language: String = "",
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize.toLong(), RECT2 to dropcapMargins, STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDropcapPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.setDropcapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -283,7 +283,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun clearDropcap(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearDropcapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearDropcapPtr, NIL)
   }
 
   /**
@@ -298,7 +298,7 @@ public open class TextParagraph : RefCounted() {
     meta: Any? = null,
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize.toLong(), STRING to language, ANY to meta)
-    TransferContext.callMethod(rawPtr, MethodBindings.addStringPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.addStringPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -315,7 +315,7 @@ public open class TextParagraph : RefCounted() {
     baseline: Float = 0.0f,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length.toLong(), DOUBLE to baseline.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addObjectPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.addObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -330,18 +330,18 @@ public open class TextParagraph : RefCounted() {
     baseline: Float = 0.0f,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.resizeObjectPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.resizeObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
 
   public final fun getAlignment(): HorizontalAlignment {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -350,61 +350,61 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun tabAlign(tabStops: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
-    TransferContext.callMethod(rawPtr, MethodBindings.tabAlignPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.tabAlignPtr, NIL)
   }
 
   public final fun setBreakFlags(flags: TextServer.LineBreakFlag): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBreakFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBreakFlagsPtr, NIL)
   }
 
   public final fun getBreakFlags(): TextServer.LineBreakFlag {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBreakFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBreakFlagsPtr, LONG)
     return LineBreakFlagValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(flags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEllipsisChar(char: String): Unit {
     TransferContext.writeArguments(STRING to char)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEllipsisCharPtr, NIL)
   }
 
   public final fun getEllipsisChar(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getEllipsisCharPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -413,7 +413,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getNonWrappedSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNonWrappedSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getNonWrappedSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -422,7 +422,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -431,7 +431,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -440,7 +440,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineRid(line: Int): RID {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getLineRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -449,7 +449,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getDropcapRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDropcapRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getDropcapRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -458,18 +458,18 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxLinesVisible(maxLinesVisible: Int): Unit {
     TransferContext.writeArguments(LONG to maxLinesVisible.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxLinesVisiblePtr, NIL)
   }
 
   public final fun getMaxLinesVisible(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxLinesVisiblePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -478,7 +478,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineObjects(line: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineObjectsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLineObjectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -487,7 +487,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineObjectRect(line: Int, key: Any?): Rect2 {
     TransferContext.writeArguments(LONG to line.toLong(), ANY to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineObjectRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getLineObjectRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
@@ -496,7 +496,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineSize(line: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getLineSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -505,7 +505,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineRange(line: Int): Vector2i {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineRangePtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getLineRangePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -515,7 +515,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineAscent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineAscentPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineAscentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -525,7 +525,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineDescent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineDescentPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineDescentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -534,7 +534,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineWidth(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -543,7 +543,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineUnderlinePosition(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlinePositionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineUnderlinePositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -552,7 +552,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getLineUnderlineThickness(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlineThicknessPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLineUnderlineThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -561,7 +561,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getDropcapSize(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDropcapSizePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getDropcapSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -570,7 +570,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun getDropcapLines(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDropcapLinesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDropcapLinesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -586,7 +586,7 @@ public open class TextParagraph : RefCounted() {
     dcColor: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
@@ -602,7 +602,7 @@ public open class TextParagraph : RefCounted() {
     dcColor: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, COLOR to dcColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawOutlinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawOutlinePtr, NIL)
   }
 
   /**
@@ -617,7 +617,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawLinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawLinePtr, NIL)
   }
 
   /**
@@ -633,7 +633,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), LONG to outlineSize.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawLineOutlinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawLineOutlinePtr, NIL)
   }
 
   /**
@@ -647,7 +647,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawDropcapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawDropcapPtr, NIL)
   }
 
   /**
@@ -662,7 +662,7 @@ public open class TextParagraph : RefCounted() {
     color: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawDropcapOutlinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.drawDropcapOutlinePtr, NIL)
   }
 
   /**
@@ -671,7 +671,7 @@ public open class TextParagraph : RefCounted() {
    */
   public final fun hitTest(coords: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to coords)
-    TransferContext.callMethod(rawPtr, MethodBindings.hitTestPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.hitTestPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

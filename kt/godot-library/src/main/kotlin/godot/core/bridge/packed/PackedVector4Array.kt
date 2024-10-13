@@ -4,20 +4,20 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
     override val bridge = Bridge
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = bridge.engine_call_constructor()
+        ptr = bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
     }
 
@@ -26,7 +26,7 @@ class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
      */
     constructor(from: PackedVector4Array) {
         TransferContext.writeArguments(VariantParser.PACKED_VECTOR4_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
     }
 
@@ -35,7 +35,7 @@ class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
      */
     constructor(from: VariantArray<Vector4>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
     }
 
@@ -58,7 +58,7 @@ class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
     @Suppress("LocalVariableName")

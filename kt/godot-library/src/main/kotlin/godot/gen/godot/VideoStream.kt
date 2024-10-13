@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
@@ -52,12 +52,12 @@ public open class VideoStream : Resource() {
 
   public final fun setFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFilePtr, NIL)
   }
 
   public final fun getFile(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getFilePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

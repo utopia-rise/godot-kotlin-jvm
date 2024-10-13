@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedFloat32Array
@@ -24,7 +25,6 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -174,67 +174,67 @@ public open class MultiMesh : Resource() {
 
   public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseColors(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseColorsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseColorsPtr, NIL)
   }
 
   public final fun isUsingColors(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingColorsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingColorsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseCustomData(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseCustomDataPtr, NIL)
   }
 
   public final fun isUsingCustomData(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomDataPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingCustomDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTransformFormat(format: TransformFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTransformFormatPtr, NIL)
   }
 
   public final fun getTransformFormat(): TransformFormat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTransformFormatPtr, LONG)
     return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setInstanceCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceCountPtr, NIL)
   }
 
   public final fun getInstanceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVisibleInstanceCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleInstanceCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVisibleInstanceCountPtr, NIL)
   }
 
   public final fun getVisibleInstanceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleInstanceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVisibleInstanceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -243,7 +243,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun setInstanceTransform(instance: Int, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceTransformPtr, NIL)
   }
 
   /**
@@ -251,7 +251,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun setInstanceTransform2d(instance: Int, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransform2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceTransform2dPtr, NIL)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun getInstanceTransform(instance: Int): Transform3D {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -268,7 +268,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun getInstanceTransform2d(instance: Int): Transform2D {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransform2dPtr, TRANSFORM2D)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceTransform2dPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -284,7 +284,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun setInstanceColor(instance: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceColorPtr, NIL)
   }
 
   /**
@@ -292,7 +292,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun getInstanceColor(instance: Int): Color {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -307,7 +307,7 @@ public open class MultiMesh : Resource() {
    */
   public final fun setInstanceCustomData(instance: Int, customData: Color): Unit {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to customData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCustomDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceCustomDataPtr, NIL)
   }
 
   /**
@@ -315,19 +315,18 @@ public open class MultiMesh : Resource() {
    */
   public final fun getInstanceCustomData(instance: Int): Color {
     TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCustomDataPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceCustomDataPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -336,19 +335,19 @@ public open class MultiMesh : Resource() {
    */
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getBuffer(): PackedFloat32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBuffer(buffer: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
 
   public enum class TransformFormat(

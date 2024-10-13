@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
@@ -38,7 +38,7 @@ public open class MethodTweener : Tweener() {
    */
   public final fun setDelay(delay: Double): MethodTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
@@ -48,7 +48,7 @@ public open class MethodTweener : Tweener() {
    */
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener? {
     TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
@@ -58,7 +58,7 @@ public open class MethodTweener : Tweener() {
    */
   public final fun setEase(ease: Tween.EaseType): MethodTweener? {
     TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 

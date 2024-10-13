@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
@@ -19,7 +20,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -84,45 +84,45 @@ public open class NavigationPathQueryResult2D : RefCounted() {
 
   public final fun setPath(path: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathPtr, NIL)
   }
 
   public final fun getPath(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPathPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setPathTypes(pathTypes: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathTypesPtr, NIL)
   }
 
   public final fun getPathTypes(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setPathRids(pathRids: VariantArray<RID>): Unit {
     TransferContext.writeArguments(ARRAY to pathRids)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathRidsPtr, NIL)
   }
 
   public final fun getPathRids(): VariantArray<RID> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPathRidsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
     TransferContext.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathOwnerIdsPtr, NIL)
   }
 
   public final fun getPathOwnerIds(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -132,7 +132,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
    */
   public final fun reset(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 
   public enum class PathSegmentType(

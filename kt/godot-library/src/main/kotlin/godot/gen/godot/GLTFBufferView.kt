@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -119,74 +119,74 @@ public open class GLTFBufferView : Resource() {
    */
   public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getBuffer(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBuffer(buffer: Int): Unit {
     TransferContext.writeArguments(LONG to buffer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
 
   public final fun getByteOffset(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteOffset(byteOffset: Int): Unit {
     TransferContext.writeArguments(LONG to byteOffset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
   public final fun getByteLength(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getByteLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteLength(byteLength: Int): Unit {
     TransferContext.writeArguments(LONG to byteLength.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setByteLengthPtr, NIL)
   }
 
   public final fun getByteStride(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getByteStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteStride(byteStride: Int): Unit {
     TransferContext.writeArguments(LONG to byteStride.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteStridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setByteStridePtr, NIL)
   }
 
   public final fun getIndices(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndices(indices: Boolean): Unit {
     TransferContext.writeArguments(BOOL to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
   }
 
   public final fun getVertexAttributes(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getVertexAttributesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVertexAttributes(isAttributes: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVertexAttributesPtr, NIL)
   }
 
   public companion object

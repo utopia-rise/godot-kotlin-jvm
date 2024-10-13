@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -86,12 +86,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   public final fun setRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRectPtr, NIL)
   }
 
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
@@ -103,7 +103,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    */
   public final fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

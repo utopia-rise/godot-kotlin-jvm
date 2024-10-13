@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -63,34 +63,34 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
 
   public final fun getOpType(): OpType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
     TransferContext.writeArguments(LONG to func.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
   public final fun getFunction(): Function {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPrecision(precision: Precision): Unit {
     TransferContext.writeArguments(LONG to precision.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPrecisionPtr, NIL)
   }
 
   public final fun getPrecision(): Precision {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrecisionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPrecisionPtr, LONG)
     return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

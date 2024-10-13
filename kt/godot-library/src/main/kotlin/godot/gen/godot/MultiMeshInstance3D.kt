@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -43,12 +43,12 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMultimeshPtr, NIL)
   }
 
   public final fun getMultimesh(): MultiMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMultimeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 

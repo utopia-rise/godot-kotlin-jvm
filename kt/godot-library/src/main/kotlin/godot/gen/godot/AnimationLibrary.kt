@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -63,7 +63,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun addAnimation(name: StringName, animation: Animation?): Error {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.addAnimationPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -72,7 +72,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeAnimationPtr, NIL)
   }
 
   /**
@@ -80,7 +80,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.renameAnimationPtr, NIL)
   }
 
   /**
@@ -88,7 +88,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -98,7 +98,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getAnimationPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Animation?)
   }
 
@@ -107,7 +107,7 @@ public open class AnimationLibrary : Resource() {
    */
   public final fun getAnimationList(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getAnimationListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 

@@ -5,8 +5,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
-import kotlin.reflect.KFunction
+import godot.common.interop.VoidPtr
 import kotlin.reflect.KProperty
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -14,26 +13,26 @@ class NodePath : NativeCoreType {
 
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     //CONSTRUCTORS
 
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     constructor(from: String) {
         TransferContext.writeArguments(VariantParser.STRING to from)
-        _handle = Bridge.engine_call_constructor_string()
+        ptr = Bridge.engine_call_constructor_string()
         MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     constructor(from: NodePath) {
         TransferContext.writeArguments(VariantParser.NODE_PATH to from)
-        _handle = Bridge.engine_call_constructor_node_path()
+        ptr = Bridge.engine_call_constructor_node_path()
         MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
@@ -42,7 +41,7 @@ class NodePath : NativeCoreType {
     //PROPERTIES
     val path: String
         get() {
-            Bridge.engine_call_path(_handle)
+            Bridge.engine_call_path(ptr)
             return TransferContext.readReturnValue(VariantParser.STRING) as String
         }
 
@@ -51,7 +50,7 @@ class NodePath : NativeCoreType {
      * name (defaults to resolving from the current node).
      */
     fun getAsPropertyPath(): NodePath {
-        Bridge.engine_call_getAsPropertyPath(_handle)
+        Bridge.engine_call_getAsPropertyPath(ptr)
         return TransferContext.readReturnValue(VariantParser.NODE_PATH) as NodePath
     }
 
@@ -60,7 +59,7 @@ class NodePath : NativeCoreType {
      */
     fun getName(idx: Int): String {
         TransferContext.writeArguments(VariantCaster.INT to idx)
-        Bridge.engine_call_getName(_handle)
+        Bridge.engine_call_getName(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -68,7 +67,7 @@ class NodePath : NativeCoreType {
      * Get the number of node names which make up the path.
      */
     fun getNameCount(): Int {
-        Bridge.engine_call_getNameCount(_handle)
+        Bridge.engine_call_getNameCount(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -77,7 +76,7 @@ class NodePath : NativeCoreType {
      */
     fun getSubname(idx: Int): String {
         TransferContext.writeArguments(VariantCaster.INT to idx)
-        Bridge.engine_call_getSubname(_handle)
+        Bridge.engine_call_getSubname(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -85,7 +84,7 @@ class NodePath : NativeCoreType {
      * Get the number of resource names in the path.
      */
     fun getSubnameCount(): Int {
-        Bridge.engine_call_getSubnameCount(_handle)
+        Bridge.engine_call_getSubnameCount(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -93,7 +92,7 @@ class NodePath : NativeCoreType {
      * Return true if the node path is absolute (not relative).
      */
     fun isAbsolute(): Boolean {
-        Bridge.engine_call_isAbsolute(_handle)
+        Bridge.engine_call_isAbsolute(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -101,7 +100,7 @@ class NodePath : NativeCoreType {
      * Returns the 32-bit hash value representing the NodePath's contents.
      */
     fun hash(): Int {
-        Bridge.engine_call_hash(_handle)
+        Bridge.engine_call_hash(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -109,7 +108,7 @@ class NodePath : NativeCoreType {
      * Return true if the node path is empty.
      */
     fun isEmpty(): Boolean {
-        Bridge.engine_call_isEmpty(_handle)
+        Bridge.engine_call_isEmpty(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -117,7 +116,7 @@ class NodePath : NativeCoreType {
      * Returns all paths concatenated with a slash character (/) as separator without subnames.
      */
     fun getConcatenatedNames(): StringName {
-        Bridge.engine_call_getConcatenatedNames(_handle)
+        Bridge.engine_call_getConcatenatedNames(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
@@ -126,7 +125,7 @@ class NodePath : NativeCoreType {
      * in a node path.
      */
     fun getConcatenatedSubnames(): StringName {
-        Bridge.engine_call_getConcatenatedSubnames(_handle)
+        Bridge.engine_call_getConcatenatedSubnames(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
@@ -135,7 +134,7 @@ class NodePath : NativeCoreType {
     override fun equals(other: Any?): Boolean {
         return if (other is NodePath) {
             TransferContext.writeArguments(VariantParser.NODE_PATH to other)
-            Bridge.engine_call_equals(_handle)
+            Bridge.engine_call_equals(ptr)
             return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
         } else {
             false
@@ -143,7 +142,7 @@ class NodePath : NativeCoreType {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
     override fun toString(): String {

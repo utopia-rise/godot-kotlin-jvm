@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -64,34 +64,34 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   public final fun setSource(`value`: Source): Unit {
     TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCubeMap(`value`: Cubemap?): Unit {
     TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCubeMapPtr, NIL)
   }
 
   public final fun getCubeMap(): Cubemap? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCubeMapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Cubemap?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
     TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

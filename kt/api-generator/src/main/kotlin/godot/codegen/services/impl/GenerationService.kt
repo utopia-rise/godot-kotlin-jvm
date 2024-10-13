@@ -18,7 +18,6 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
-import godot.codegen.constants.VOID_PTR
 import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.ClassGenerationException
 import godot.codegen.extensions.applyJvmNameIfNecessary
@@ -57,6 +56,7 @@ import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
+import godot.tools.common.constants.VOID_PTR
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import java.util.*
@@ -853,7 +853,7 @@ class GenerationService(
         val rawPtr = if (isStatic) {
             "0" //nullpointer
         } else {
-            "rawPtr"
+            "ptr"
         }
 
         addStatement(

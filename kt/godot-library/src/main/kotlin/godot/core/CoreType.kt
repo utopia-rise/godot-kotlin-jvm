@@ -1,6 +1,7 @@
 package godot.core
 
-import godot.util.VoidPtr
+import godot.common.interop.ValuePointer
+import godot.common.interop.VoidPtr
 
 /**
  * This interface should not be inherited within user code.
@@ -9,6 +10,6 @@ import godot.util.VoidPtr
  */
 interface CoreType
 
-abstract class NativeCoreType : CoreType {
-    internal var _handle: VoidPtr = 0
+abstract class NativeCoreType : CoreType, ValuePointer {
+    override var ptr: VoidPtr = 0
 }

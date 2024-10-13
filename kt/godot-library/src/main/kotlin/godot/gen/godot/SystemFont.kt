@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -218,156 +218,156 @@ public open class SystemFont : Font() {
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
     TransferContext.writeArguments(LONG to antialiasing.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAntialiasingPtr, NIL)
   }
 
   public final fun getAntialiasing(): TextServer.FontAntialiasing {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasingPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disableEmbeddedBitmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
   }
 
   public final fun getDisableEmbeddedBitmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to generateMipmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGenerateMipmapsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGenerateMipmapsPtr, NIL)
   }
 
   public final fun getGenerateMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getGenerateMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allowSystemFallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSystemFallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAllowSystemFallbackPtr, NIL)
   }
 
   public final fun isAllowSystemFallback(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
     TransferContext.writeArguments(BOOL to forceAutohinter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setForceAutohinterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setForceAutohinterPtr, NIL)
   }
 
   public final fun isForceAutohinter(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isForceAutohinterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
     TransferContext.writeArguments(LONG to hinting.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
   }
 
   public final fun getHinting(): TextServer.Hinting {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintingPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHintingPtr, LONG)
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
       Unit {
     TransferContext.writeArguments(LONG to subpixelPositioning.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubpixelPositioningPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
 
   public final fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubpixelPositioningPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
     TransferContext.writeArguments(BOOL to msdf)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
   }
 
   public final fun isMultichannelSignedDistanceField(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
     TransferContext.writeArguments(LONG to msdfPixelRange.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
 
   public final fun getMsdfPixelRange(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMsdfPixelRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMsdfSize(msdfSize: Int): Unit {
     TransferContext.writeArguments(LONG to msdfSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMsdfSizePtr, NIL)
   }
 
   public final fun getMsdfSize(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMsdfSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOversampling(oversampling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
   }
 
   public final fun getOversampling(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFontNames(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setFontNames(names: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontNamesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontNamesPtr, NIL)
   }
 
   public final fun getFontItalic(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFontItalicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFontItalic(italic: Boolean): Unit {
     TransferContext.writeArguments(BOOL to italic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontItalicPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontItalicPtr, NIL)
   }
 
   public final fun setFontWeight(weight: Int): Unit {
     TransferContext.writeArguments(LONG to weight.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontWeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontWeightPtr, NIL)
   }
 
   public final fun setFontStretch(stretch: Int): Unit {
     TransferContext.writeArguments(LONG to stretch.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontStretchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFontStretchPtr, NIL)
   }
 
   public companion object

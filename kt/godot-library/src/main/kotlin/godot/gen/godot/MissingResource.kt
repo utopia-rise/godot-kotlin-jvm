@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -58,23 +58,23 @@ public open class MissingResource : Resource() {
 
   public final fun setOriginalClass(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOriginalClassPtr, NIL)
   }
 
   public final fun getOriginalClass(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getOriginalClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setRecordingProperties(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRecordingPropertiesPtr, NIL)
   }
 
   public final fun isRecordingProperties(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRecordingPropertiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

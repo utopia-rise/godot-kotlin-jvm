@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
@@ -16,7 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -52,7 +52,7 @@ public open class Thread : RefCounted() {
   public final fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
       Error {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -62,7 +62,7 @@ public open class Thread : RefCounted() {
    */
   public final fun getId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -73,7 +73,7 @@ public open class Thread : RefCounted() {
    */
   public final fun isStarted(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStartedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isStartedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -84,7 +84,7 @@ public open class Thread : RefCounted() {
    */
   public final fun isAlive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAlivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAlivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -98,7 +98,7 @@ public open class Thread : RefCounted() {
    */
   public final fun waitToFinish(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.waitToFinishPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.waitToFinishPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

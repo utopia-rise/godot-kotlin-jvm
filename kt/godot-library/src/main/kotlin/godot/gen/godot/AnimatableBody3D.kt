@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -47,12 +47,12 @@ public open class AnimatableBody3D : StaticBody3D() {
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSyncToPhysicsPtr, NIL)
   }
 
   public final fun isSyncToPhysicsEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

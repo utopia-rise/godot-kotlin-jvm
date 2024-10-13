@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.RID
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -103,7 +103,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun setBase(base: RID): Unit {
     TransferContext.writeArguments(_RID to base)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBasePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBasePtr, NIL)
   }
 
   /**
@@ -112,7 +112,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun getBase(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBasePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getBasePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -123,18 +123,18 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun getInstance(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setLayerMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLayerMaskPtr, NIL)
   }
 
   public final fun getLayerMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLayerMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -144,7 +144,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLayerMaskValuePtr, NIL)
   }
 
   /**
@@ -153,29 +153,29 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getLayerMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortingOffset(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSortingOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSortingOffsetPtr, NIL)
   }
 
   public final fun getSortingOffset(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSortingOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSortingUseAabbCenter(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
   }
 
   public final fun isSortingUseAabbCenter(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -184,7 +184,7 @@ public open class VisualInstance3D : Node3D() {
    */
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

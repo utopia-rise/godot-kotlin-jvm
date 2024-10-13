@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -36,7 +36,7 @@ public open class X509Certificate : Resource() {
    */
   public final fun save(path: String): Error {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -45,7 +45,7 @@ public open class X509Certificate : Resource() {
    */
   public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -55,7 +55,7 @@ public open class X509Certificate : Resource() {
    */
   public final fun saveToString(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -64,7 +64,7 @@ public open class X509Certificate : Resource() {
    */
   public final fun loadFromString(string: String): Error {
     TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadFromStringPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

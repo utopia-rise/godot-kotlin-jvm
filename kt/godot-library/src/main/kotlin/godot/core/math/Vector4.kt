@@ -2,12 +2,12 @@
 
 package godot.core
 
-import godot.util.RealT
-import godot.util.cubicInterpolateInTime
-import godot.util.fposmod
-import godot.util.isEqualApprox
-import godot.util.snapped
-import godot.util.toRealT
+import godot.common.util.RealT
+import godot.common.util.cubicInterpolateInTime
+import godot.common.util.fposmod
+import godot.common.util.isEqualApprox
+import godot.common.util.snapped
+import godot.common.util.toRealT
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor

@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -44,12 +44,12 @@ public open class ShaderInclude : Resource() {
 
   public final fun setCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCodePtr, NIL)
   }
 
   public final fun getCode(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

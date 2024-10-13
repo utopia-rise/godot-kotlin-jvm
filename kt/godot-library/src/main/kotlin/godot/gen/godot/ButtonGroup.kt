@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -15,7 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -55,7 +55,7 @@ public open class ButtonGroup : Resource() {
    */
   public final fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPressedButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BaseButton?)
   }
 
@@ -65,18 +65,18 @@ public open class ButtonGroup : Resource() {
    */
   public final fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
 
   public final fun setAllowUnpress(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAllowUnpressPtr, NIL)
   }
 
   public final fun isAllowUnpress(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAllowUnpressPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

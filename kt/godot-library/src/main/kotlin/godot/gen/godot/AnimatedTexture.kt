@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -107,56 +107,56 @@ public open class AnimatedTexture : Texture2D() {
 
   public final fun setFrames(frames: Int): Unit {
     TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFramesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFramesPtr, NIL)
   }
 
   public final fun getFrames(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurrentFrame(frame: Int): Unit {
     TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFramePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCurrentFramePtr, NIL)
   }
 
   public final fun getCurrentFrame(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFramePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPause(pause: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pause)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPausePtr, NIL)
   }
 
   public final fun getPause(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPausePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getPausePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneShot(oneShot: Boolean): Unit {
     TransferContext.writeArguments(BOOL to oneShot)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun getOneShot(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSpeedScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun getSpeedScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -168,7 +168,7 @@ public open class AnimatedTexture : Texture2D() {
    */
   public final fun setFrameTexture(frame: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFrameTexturePtr, NIL)
   }
 
   /**
@@ -176,7 +176,7 @@ public open class AnimatedTexture : Texture2D() {
    */
   public final fun getFrameTexture(frame: Int): Texture2D? {
     TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getFrameTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -186,7 +186,7 @@ public open class AnimatedTexture : Texture2D() {
    */
   public final fun setFrameDuration(frame: Int, duration: Float): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to duration.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameDurationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFrameDurationPtr, NIL)
   }
 
   /**
@@ -194,7 +194,7 @@ public open class AnimatedTexture : Texture2D() {
    */
   public final fun getFrameDuration(frame: Int): Float {
     TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameDurationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFrameDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

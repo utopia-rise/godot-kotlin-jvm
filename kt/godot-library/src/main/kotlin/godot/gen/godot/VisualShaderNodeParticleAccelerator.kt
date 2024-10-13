@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
 
   public final fun setMode(mode: Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

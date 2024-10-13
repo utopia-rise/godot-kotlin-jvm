@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -61,25 +61,25 @@ public open class World2D : Resource() {
 
   public final fun getCanvas(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getSpace(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getDirectSpaceState(): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState2D?)
   }
 

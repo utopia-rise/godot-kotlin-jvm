@@ -4,7 +4,6 @@ package godot.core
 
 import godot.core.memory.TransferContext
 import godot.common.extensions.convertToSnakeCase
-import godot.util.GodotLogging
 
 data class KtFunctionInfo(
     val name: String,

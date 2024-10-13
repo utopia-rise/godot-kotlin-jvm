@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -124,34 +124,34 @@ public open class Timer : Node() {
 
   public final fun setWaitTime(timeSec: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWaitTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWaitTimePtr, NIL)
   }
 
   public final fun getWaitTime(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWaitTimePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getWaitTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun isOneShot(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOneShotPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutostart(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutostartPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutostartPtr, NIL)
   }
 
   public final fun hasAutostart(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAutostartPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasAutostartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -163,7 +163,7 @@ public open class Timer : Node() {
   @JvmOverloads
   public final fun start(timeSec: Double = -1.0): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
   }
 
   /**
@@ -171,17 +171,17 @@ public open class Timer : Node() {
    */
   public final fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
     TransferContext.writeArguments(BOOL to paused)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPausedPtr, NIL)
   }
 
   public final fun isPaused(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -190,24 +190,24 @@ public open class Timer : Node() {
    */
   public final fun isStopped(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStoppedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isStoppedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTimeLeft(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTimeLeftPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setTimerProcessCallback(callback: TimerProcessCallback): Unit {
     TransferContext.writeArguments(LONG to callback.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimerProcessCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTimerProcessCallbackPtr, NIL)
   }
 
   public final fun getTimerProcessCallback(): TimerProcessCallback {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimerProcessCallbackPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTimerProcessCallbackPtr, LONG)
     return Timer.TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

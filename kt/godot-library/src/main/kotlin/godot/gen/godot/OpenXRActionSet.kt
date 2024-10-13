@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -74,23 +74,23 @@ public open class OpenXRActionSet : Resource() {
 
   public final fun setLocalizedName(localizedName: String): Unit {
     TransferContext.writeArguments(STRING to localizedName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLocalizedNamePtr, NIL)
   }
 
   public final fun getLocalizedName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLocalizedNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPriorityPtr, NIL)
   }
 
   public final fun getPriority(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -99,18 +99,18 @@ public open class OpenXRActionSet : Resource() {
    */
   public final fun getActionCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getActionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setActions(actions: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to actions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setActionsPtr, NIL)
   }
 
   public final fun getActions(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -119,7 +119,7 @@ public open class OpenXRActionSet : Resource() {
    */
   public final fun addAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addActionPtr, NIL)
   }
 
   /**
@@ -127,7 +127,7 @@ public open class OpenXRActionSet : Resource() {
    */
   public final fun removeAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeActionPtr, NIL)
   }
 
   public companion object

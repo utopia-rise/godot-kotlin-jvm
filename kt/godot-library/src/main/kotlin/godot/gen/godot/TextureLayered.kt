@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -89,7 +89,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -99,7 +99,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getLayeredType(): LayeredType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayeredTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLayeredTypePtr, LONG)
     return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -108,7 +108,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getWidth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -117,7 +117,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -126,7 +126,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getLayers(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -135,7 +135,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -144,7 +144,7 @@ public open class TextureLayered : Texture() {
    */
   public final fun getLayerData(layer: Int): Image? {
     TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerDataPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLayerDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 

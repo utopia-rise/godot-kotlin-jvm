@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -35,7 +35,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public final fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D?):
       Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeldModificationStackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHeldModificationStackPtr, NIL)
   }
 
   /**
@@ -43,7 +43,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public final fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeldModificationStackPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getHeldModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 

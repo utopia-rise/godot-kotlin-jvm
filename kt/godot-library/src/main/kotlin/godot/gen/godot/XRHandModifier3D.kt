@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -58,23 +58,23 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
 
   public final fun setHandTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHandTrackerPtr, NIL)
   }
 
   public final fun getHandTracker(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getHandTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
     TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

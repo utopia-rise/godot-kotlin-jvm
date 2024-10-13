@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
 import godot.core.TypeManager
@@ -18,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
@@ -50,7 +50,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public final fun intersectPoint(parameters: PhysicsPointQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectPointPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.intersectPointPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -71,7 +71,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public final fun intersectRay(parameters: PhysicsRayQueryParameters3D?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectRayPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.intersectRayPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -91,7 +91,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public final fun intersectShape(parameters: PhysicsShapeQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectShapePtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.intersectShapePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -107,7 +107,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public final fun castMotion(parameters: PhysicsShapeQueryParameters3D?): PackedFloat32Array {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
@@ -125,7 +125,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public final fun collideShape(parameters: PhysicsShapeQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Vector3> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.collideShapePtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.collideShapePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3>)
   }
 
@@ -145,7 +145,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    */
   public final fun getRestInfo(parameters: PhysicsShapeQueryParameters3D?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRestInfoPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getRestInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.StringName
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.String
@@ -83,46 +83,46 @@ public open class GLTFMesh : Resource() {
 
   public final fun getOriginalName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
     TransferContext.writeArguments(STRING to originalName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
   public final fun getMesh(): ImporterMesh? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getBlendWeights(): PackedFloat32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to blendWeights)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendWeightsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendWeightsPtr, NIL)
   }
 
   public final fun getInstanceMaterials(): VariantArray<Material> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
   public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
     TransferContext.writeArguments(ARRAY to instanceMaterials)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceMaterialsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceMaterialsPtr, NIL)
   }
 
   /**
@@ -134,7 +134,7 @@ public open class GLTFMesh : Resource() {
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -146,7 +146,7 @@ public open class GLTFMesh : Resource() {
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object
