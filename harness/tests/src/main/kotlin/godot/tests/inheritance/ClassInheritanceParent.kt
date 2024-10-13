@@ -44,6 +44,7 @@ open class ClassInheritanceParent : Node() {
     @GodotMember
     var notificationCallBitFlag = 0
 
+    @GodotMember
     override fun _notification(): GodotNotification = godotNotification {
         GD.print("Called ClassInheritanceParent::_notification on $this with $it")
         notificationCallBitFlag = notificationCallBitFlag or 1
