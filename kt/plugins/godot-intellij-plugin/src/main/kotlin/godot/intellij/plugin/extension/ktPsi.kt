@@ -16,8 +16,8 @@ fun KtProperty.type(): KotlinType? = (this.resolveToDescriptorIfAny() as? Callab
 
 fun PsiElement.isSignal(): Boolean {
     return when(this) {
-        is KtProperty -> this.type()?.getKotlinTypeFqName(false) == "$godotCorePackage.${GodotKotlinJvmTypes.signal}"
-        is PsiField -> this.type.canonicalText == "$godotCorePackage.${GodotKotlinJvmTypes.signal}"
+        is KtProperty -> this.type()?.getKotlinTypeFqName(false)?.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}") == true
+        is PsiField -> this.type.canonicalText.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}")
         else -> false
     }
 }
