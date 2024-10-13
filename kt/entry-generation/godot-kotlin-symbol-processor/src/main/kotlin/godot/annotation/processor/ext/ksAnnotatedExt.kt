@@ -19,12 +19,16 @@ fun <T : Annotation> KSAnnotated.hasAnnotation(annotationClass: KClass<T>): Bool
         }
 }
 
-fun <T : Annotation> KSAnnotation.hasAnnotation(annotationClass: KClass<T>): Boolean {
-    return this.fqNameUnsafe == annotationClass.qualifiedName || this
+fun <T : Annotation> KSAnnotation.hasAnnotation(annotationClass: KClass<T>, alreadyEvaluated: MutableList<KSAnnotation> = mutableListOf()): Boolean {
+    val annotationsOnAnnotation = this
         .annotationType
+        .resolve()
+        .declaration
         .annotations
+        .filterNot { alreadyEvaluated.contains(it) }
         .toList()
-        .any { it.hasAnnotation(annotationClass) }
+
+    return this.fqNameUnsafe == annotationClass.qualifiedName || annotationsOnAnnotation.any { it.hasAnnotation(annotationClass, alreadyEvaluated.apply { add(this@hasAnnotation) }) }
 }
 
 fun KSAnnotated.hasRegistrationAnnotation(): Boolean {
