@@ -11,7 +11,6 @@ class CoreTypePropertyChecks: Node() {
 
     // not allowed
 //    @Export
-//    @RegisterProperty
 //    lateinit var exportedLateinitCoreType: Vector3
 
     // allowed
@@ -19,7 +18,7 @@ class CoreTypePropertyChecks: Node() {
     var exportedNormalCoreType: Vector3 = Vector3.ZERO
 
     // not allowed
-//    @RegisterProperty
+//    @GodotMember
 //    lateinit var lateinitCoreType: Vector3
 
     // allowed

@@ -1,7 +1,7 @@
-To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
+To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@GodotScript`.
 
 ```kt
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
     // ...
 }
@@ -13,7 +13,7 @@ Each registered classes will generate its own .gdj files. For more information, 
 
 Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
 
-By default, we register your classes with the name you give them. While beign a simple approach and enough in most cases,
+By default, we register your classes with the name you give them. While being a simple approach and enough in most cases,
 this can lead to naming conflicts if you have classes in different packages with the same name. For example:
 
 - `com.package.a.MyClass`
@@ -25,7 +25,7 @@ So you are responsible for making sure that classes have a unique name.
 We do however provide you with some assistance:
 
 - We have compile time checks in place which should let the *build fail* if classes would end up having the same name.
-- The `@RegisterClass` annotation lets you define a custom registration name: `@RegisterClass("CustomRegistrationName")`.
+- The `@GodotScript` annotation lets you define a custom registration name: `@GodotScript("CustomRegistrationName")`.
 - Register the class names with the fully qualified name: `com.mygame.MyClass` will be registered as: `com_mygame_MyClass`. This can be configured with:
     ```kotlin
     godot {
@@ -93,7 +93,7 @@ If you want to be notified when initialization and destruction of your class' in
 and override the `_onDestroy` function respectively.
 
 ```kt
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
     init {
         println("Initializing RotatingCube!")
@@ -110,7 +110,6 @@ class RotatingCube: Node3D() {
 Checking if an object is an instance of a particular type can be done via the `is` operator.
 
 ```kt
-@RegisterFunction
 override fun _ready() {
     val parent = getParent()
     if (parent is CollisionShape) {
@@ -128,7 +127,6 @@ This also works for any type you define.
     If you are sure that an object is always an instance of some type, then you can take advantage of Kotlin's [contracts](https://kotlinlang.org/docs/reference/whatsnew13.html#contracts) feature. This allows you to avoid having nested `if`s.
 
     ```kt
-    @RegisterFunction
     override fun _ready() {
         val parent = getParent()
         require(parent is CollisionShape)
@@ -140,7 +138,7 @@ This also works for any type you define.
 ## Constructors
 
 Godot requires you to have a default constructor on your classes.
-You can define additional constructors but you have to register them by annothing them with `@RegisterConstructor`.
+You can define additional constructors, but you have to register them by annotating them with `@GodotMember`.
 Default constructors, on the other hand, are always registered automatically.
 
 Constructors can also have **a maximum of 8 arguments** and must have a unique argument count as constructor overloading is not yet supported.
@@ -148,7 +146,7 @@ This limitation is only for registered constructors.
 
 ### Instantiate Kotlin script classes in GDScript
 
-From GDScript it is possible to create an instance of a Kotlin class using the default constructor:
+From GDScript, it is possible to create an instance of a Kotlin class using the default constructor:
 
 ```kt
 var instance := YourKotlinClass.new()
@@ -161,24 +159,24 @@ var instance := load("res://gdj/YourClass.gdj").new(oneArg, anotherArg)
 ```
 
 !!! info
-    The limitation of max 16 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked by the binding. The more arguments, the more unpacking is needed which means more overhead.
+    The limitation of max 8 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked by the binding. The more arguments, the more unpacking is needed which means more overhead.
 
 
 ## Customization
 
 You can customize to some extent how your class should be registered in Godot.
 
-The `@RegisterClass` annotation takes only one argument:
+The `@GodotScript` annotation takes only one argument:
 
-- **className**: If set, the class will be registered with the provided name.
+- **customName**: If set, the class will be registered with the provided name.
 
 !!! warning "Unique class names"
-    If you specify the `className` in the annotation, you have to make sure that this name is unique! We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#! It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error.
+    If you specify the `customName` in the annotation, you have to make sure that this name is unique! We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#! It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error.
 
 
 ## Tool Mode
 
-Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).
+Annotate your class with `@Tool` to make it a tool class.
 
 !!! Caution
     This is currently not implemented.

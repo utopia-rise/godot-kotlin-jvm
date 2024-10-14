@@ -1,13 +1,13 @@
 Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`.
-To register a property annotate it with `@RegisterProperty`.
+To register a property annotate it with `@GodotMember`.
 
 ```kotlin
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
-    @RegisterProperty
+    @GodotMember
     var someString: String = "Hello there :-)"
 
-    @RegisterProperty
+    @GodotMember
     var propertyWithDefaultValue: Float = 2f
 }
 ```
@@ -19,24 +19,22 @@ your properties are actually registered as `snake_case`. So a property `someFlag
 
 ## Core type specifics
 
-Godot core type always need to have a value. Hence you cannot register properties of core types (like `Vector3`) with lateinit.
+Godot core type always need to have a value. Hence, you cannot register properties of core types (like `Vector3`) with lateinit.
 
 ## Exporting properties
 
-A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it with `@Export`.
+A property can be exported (a.k.a. make it visible in the Godot editor) by annotating it with `@Export`.
 A property can be exported if it is a core type, a primitive or inherits from `godot.RefCounted`.
 
 ```kotlin
-@RegisterClass
+@GodotMember
 class RotatingCube: Node3D() {
     @Export
-    @RegisterProperty
     var speed: Float = 2f
 }
 ```
 
 Exported properties can have default values (`2f` in the example above) which will be used as a default value by the `inspector`.
-A default value can **only** contain compile time constants and only references to compile time constants.
 
 !!! danger
     If you set a default value in code and a different value in the `inspector` the value of the latter will override the value in code after `init` and before `_enter_tree`.
@@ -44,7 +42,7 @@ A default value can **only** contain compile time constants and only references 
 ## Type hint registration
 
 This module provides a plethora of annotations for defining property type hints.
-These annotations controls how Godot display the property in the inspector.
+These annotations control how Godot display the property in the inspector.
 Each property hint annotation can only be added to certain types of properties.
 Using the wrong annotation will make the compilation fail. These will only take effect if the property is exported.
 
