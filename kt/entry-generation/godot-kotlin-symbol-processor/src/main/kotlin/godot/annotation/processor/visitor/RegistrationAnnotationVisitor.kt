@@ -13,7 +13,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
 /**
- * Collects [GodotScript], [RegisterConstructor], [GodotMember], [RegisterProperty], [RegisterSignal] annotations
+ * Collects [GodotScript], [GodotMember] annotations
  * for registrar generation and entry generation
  */
 internal class RegistrationAnnotationVisitor(
