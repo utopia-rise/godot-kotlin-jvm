@@ -369,7 +369,7 @@ void GDKotlin::finalize_down_to(State target_state) {
 #endif
 }
 
-#ifdef DYNAMIC_JVM
+#ifdef TOOLS_ENABLED
 void GDKotlin::reload_user_code() {
     if (user_configuration.vm_type == jni::JvmType::JVM) {
         finalize_down_to(BOOTSTRAP_LOADED);

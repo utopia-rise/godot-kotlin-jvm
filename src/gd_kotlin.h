@@ -76,7 +76,7 @@ public:
     void initialize_up_to(State target_state);
     void finalize_down_to(State target_state);
 
-#ifdef DYNAMIC_JVM
+#ifdef TOOLS_ENABLED
     void reload_user_code();
 #endif
 
