@@ -19,7 +19,7 @@ kotlin {
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotToolsCommonGenerator by creating(MavenPublication::class) {
+        val godotCommonGenerator by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Godot common module other libraries.")
