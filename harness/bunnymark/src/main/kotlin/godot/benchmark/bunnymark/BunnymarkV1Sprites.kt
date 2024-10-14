@@ -1,17 +1,20 @@
 package godot.benchmark.bunnymark
 
-import godot.core.*
-import godot.*
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterSignal
-import godot.signals.signal
+import godot.Node2D
+import godot.RandomNumberGenerator
+import godot.ResourceLoader
+import godot.Sprite2D
+import godot.Texture2D
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
+import godot.core.Vector2
+import godot.core.signal1
 
-@RegisterClass("BunnymarkV1Sprites")
+
+@GodotScript("BunnymarkV1Sprites")
 class BunnymarkV1Sprites : Node2D() {
 
-	@RegisterSignal
-	val benchmarkFinished by signal<Int>("bunnyCount")
+	val benchmarkFinished by signal1<Int>("bunnyCount")
 
 	private data class Bunny(var sprite: Sprite2D, var speed: Vector2)
 
@@ -22,12 +25,10 @@ class BunnymarkV1Sprites : Node2D() {
 
 	private lateinit var screenSize: Vector2
 
-	@RegisterFunction
 	override fun _ready() {
 		randomNumberGenerator.randomize()
 	}
 
-	@RegisterFunction
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 
@@ -69,7 +70,7 @@ class BunnymarkV1Sprites : Node2D() {
 		}
 	}
 
-	@RegisterFunction
+	@GodotMember
 	fun addBunny() {
 		val bunny = Sprite2D()
 		bunny.texture = bunnyTexture
@@ -83,7 +84,7 @@ class BunnymarkV1Sprites : Node2D() {
 		)
 	}
 
-	@RegisterFunction
+	@GodotMember
 	fun removeBunny() {
 		if (bunnies.size == 0) return
 		val bunny = bunnies[bunnies.size - 1]
@@ -92,7 +93,7 @@ class BunnymarkV1Sprites : Node2D() {
         bunny.sprite.queueFree()
 	}
 
-	@RegisterFunction
+	@GodotMember
 	fun finish() {
         benchmarkFinished.emit(bunnies.size)
 	}
