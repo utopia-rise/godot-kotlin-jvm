@@ -75,12 +75,12 @@ jobs:
       - name: Publish godot-library debug
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Pdebug
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-core-library:publish -Pdebug
 
       - name: Publish godot-library release
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Prelease
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-core-library:publish -Prelease
 
       - name: Publish godot-coroutine-library debug
         shell: sh

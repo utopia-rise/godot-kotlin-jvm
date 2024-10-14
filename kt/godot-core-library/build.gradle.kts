@@ -20,7 +20,7 @@ kotlinDefinitions {
 
 apiGenerator {
     sourceJson.set(project.file("$rootDir/api-generator/src/main/resources/api.json"))
-    coreOutputDir.set(project.file("$rootDir/godot-library/src/main/kotlin/godot/gen"))
+    coreOutputDir.set(project.file("$rootDir/godot-core-library/src/main/kotlin/godot/gen"))
     coroutineOutputDir.set(project.file("$rootDir/godot-coroutine-library/src/main/kotlin/gen"))
 }
 
@@ -90,7 +90,7 @@ publishing {
                 name.set("${project.name}-$targetSuffix")
                 description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")
             }
-            artifactId = "godot-library-$targetSuffix"
+            artifactId = "godot-core-library-$targetSuffix"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
             artifact(tasks.jar)
             artifact(tasks.getByName("sourcesJar"))

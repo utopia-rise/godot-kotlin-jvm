@@ -26,7 +26,7 @@ java {
 }
 
 dependencies {
-    compileOnly(project(":godot-library"))
+    compileOnly(project(":godot-core-library"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
 }
@@ -34,7 +34,7 @@ dependencies {
 tasks {
     // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
     getByName("sourcesJar") {
-        dependsOn(":godot-library:sourcesJar")
+        dependsOn(":godot-core-library:sourcesJar")
     }
 }
 
