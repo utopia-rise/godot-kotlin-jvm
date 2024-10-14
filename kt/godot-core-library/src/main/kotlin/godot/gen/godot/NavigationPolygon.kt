@@ -14,7 +14,7 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.StringName
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,7 +26,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

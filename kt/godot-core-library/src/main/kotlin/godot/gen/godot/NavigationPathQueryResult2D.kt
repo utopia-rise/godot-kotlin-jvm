@@ -12,14 +12,14 @@ import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
 import godot.core.RID
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

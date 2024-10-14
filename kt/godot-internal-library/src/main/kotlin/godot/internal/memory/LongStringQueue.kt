@@ -1,8 +1,8 @@
-package godot.core
+package godot.internal.memory
 
 import java.util.*
 
-internal object LongStringQueue {
+object LongStringQueue {
 
     // If changed, remember to change also max_string_size in long_string_queue.cpp and the StringTest.kt
     var stringMaxSize = 512

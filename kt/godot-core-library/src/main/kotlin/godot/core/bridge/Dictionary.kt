@@ -4,8 +4,8 @@ package godot.core
 
 import godot.annotation.CoreTypeHelper
 import godot.common.interop.VoidPtr
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.util.MapIterator
 import godot.common.util.isNullable
 import kotlincompile.definitions.GodotJvmBuildConfig

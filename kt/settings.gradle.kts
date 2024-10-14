@@ -41,8 +41,10 @@ includeBuild("api-generator") {
     }
 }
 
+include("godot-internal-library")
 include("godot-core-library")
 include("godot-coroutine-library")
+
 
 subdir("entry-generation") {
     include("godot-kotlin-symbol-processor")

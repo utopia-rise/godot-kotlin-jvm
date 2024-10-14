@@ -1,17 +1,16 @@
 @file:Suppress("unused")
 
-package godot.core.memory
+package godot.internal.memory
 
-import godot.core.KtObject
-import godot.core.NativeCoreType
-import godot.core.NodePath
+import godot.common.interop.IdentityPointer
 import godot.common.interop.ObjectID
-import godot.core.StringName
-import godot.core.TypeManager
-import godot.core.VariantParser
-import godot.common.extensions.convertToSnakeCase
-import godot.common.util.LRUCache
+import godot.common.interop.ValuePointer
+import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
+import godot.internal.memory.binding.GodotBinding
+import godot.internal.memory.binding.NativeCoreBinding
+import godot.internal.memory.binding.RefCountedBinding
+import godot.internal.reflection.TypeManager
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -19,7 +18,7 @@ import kotlin.concurrent.write
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-internal object MemoryManager {
+object MemoryManager {
 
     /** With those constants, the manager can handle up to 30_000 items at once in the allowed time.
      *  You can compute the number of iterations it takes to process everything with the following formula:
@@ -56,7 +55,8 @@ internal object MemoryManager {
     }
 
     /** Base capacity for caches.*/
-    private const val CACHE_INITIAL_CAPACITY = 512
+    // TODO: Set the initial capacity from the command line.
+    const val CACHE_INITIAL_CAPACITY = 512
 
     /** Base capacity for several binding containers.*/
     private const val BINDING_INITIAL_CAPACITY = 4096
@@ -69,7 +69,7 @@ internal object MemoryManager {
     /** List of references to decrement.*/
     private val deadReferences = mutableListOf<RefCountedBinding>()
 
-    /** Pointers to NativeCoreType.*/
+    /** Pointers to ValuePointer.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreBinding>(BINDING_INITIAL_CAPACITY)
 
     /** List of references to decrement.*/
@@ -78,58 +78,6 @@ internal object MemoryManager {
     /** List of cleanup callbacks. When the game closes, they will be called.*/
     private var cleanupCallbacks = mutableListOf<() -> Unit>()
 
-    // Create an LRU cache for StringName and NodePath objects based on a String key.
-    // TODO: Set the initial capacity from the command line.
-    private val stringNameCache = LRUCache<String, StringName>(CACHE_INITIAL_CAPACITY)
-    private val nodePathCache = LRUCache<String, NodePath>(CACHE_INITIAL_CAPACITY)
-
-    /**
-     * Take a String, cache it, and return it as a StringName.
-     */
-    fun getOrCreateStringName(key: String): StringName {
-        return synchronized(stringNameCache) {
-            stringNameCache.getOrPut(key) {
-                // Cache miss, so create and return new instance.
-                StringName(key)
-            }
-        }
-    }
-
-    /**
-     * Take a CamelCase String, cache it and return a snakeCase version of it as a StringName, used internally for methods and property names
-     */
-    fun getOrCreateGodotName(key: String): StringName {
-        return synchronized(stringNameCache) {
-            stringNameCache.getOrPut(key) {
-                // Cache miss, so create and return new instance.
-                StringName(key.convertToSnakeCase())
-            }
-        }
-    }
-
-    /**
-     * Take a String, cache it and return it as a NodePath.
-     */
-    fun getOrCreateNodePath(key: String): NodePath {
-        return synchronized(nodePathCache) {
-            nodePathCache.getOrPut(key) {
-                // Cache miss, so create and return new instance.
-                NodePath(key)
-            }
-        }
-    }
-
-    /**
-     * Take a CamelCase String, cache it and return a snakeCase version of it as a NodePath.
-     */
-    fun getOrCreateGodotPath(key: String): NodePath {
-        return synchronized(nodePathCache) {
-            nodePathCache.getOrPut(key) {
-                // Cache miss, so create and return new instance.
-                NodePath(key.convertToSnakeCase())
-            }
-        }
-    }
 
     fun registerCallback(callback: () -> Unit) {
         cleanupCallbacks.add(callback)
@@ -138,15 +86,15 @@ internal object MemoryManager {
     /**
      * The godot object has just been created. We can directly add it to ObjectDB because we know the slot is free.
      */
-    fun registerNewInstance(instance: KtObject) = lock.write {
+    fun registerNewInstance(instance: IdentityPointer) = lock.write {
         ObjectDB[instance.objectID] = GodotBinding.create(instance)
     }
 
     /**
      * Create a script on top of an existing native object. We need additional checks to find if a twin wrapper exists.
      */
-    inline fun <T : KtObject> createScript(ptr: VoidPtr, id: Long, constructor: () -> T): T {
-        val instance = KtObject(ptr, id, constructor)
+    fun <T : IdentityPointer> createScript(ptr: VoidPtr, id: Long, constructor: () -> T): T {
+        val instance = IdentityPointer(ptr, id, constructor)
 
         val objectId = ObjectID(id)
 
@@ -176,7 +124,7 @@ internal object MemoryManager {
         }
 
         // We create a wrapper to replace the script instance, if it doesn't exist already.
-        val wrapper = KtObject(
+        val wrapper = IdentityPointer(
             scriptInstance.ptr,
             id,
             TypeManager.engineTypesConstructors[constructorIndex],
@@ -197,7 +145,7 @@ internal object MemoryManager {
         ObjectDB.remove(ObjectID(id))
     }
 
-    fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): KtObject {
+    fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): IdentityPointer {
         val objectID = ObjectID(id)
 
         val instance = lock.read {
@@ -216,16 +164,16 @@ internal object MemoryManager {
                 newInstance
             } else {
                 val constructor = TypeManager.engineTypesConstructors[constructorIndex]
-                KtObject(ptr, id, constructor).also {
+                IdentityPointer(ptr, id, constructor).also {
                     ObjectDB[objectID] = GodotBinding.create(it)
                 }
             }
         }
     }
 
-    fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.ptr, ktObject.objectID.id)
+    fun isInstanceValid(ktObject: IdentityPointer) = checkInstance(ktObject.ptr, ktObject.objectID.id)
 
-    fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantParser) {
+    fun registerNativeCoreType(nativeCoreType: ValuePointer, variantType: VariantConverter) {
         val rawPtr = nativeCoreType.ptr
         nativeCoreTypeMap[rawPtr] = NativeCoreBinding(nativeCoreType, variantType)
     }
@@ -296,7 +244,7 @@ internal object MemoryManager {
     }
 
     /**
-     * Remove dead [NativeCoreType] from native memory.
+     * Remove dead [ValuePointer] from native memory.
      * The GC happening in waves, not everything is processed at once, we process the dead native cores over several frames when necessary.
      */
     private fun removeNativeCoreTypes() {
@@ -346,14 +294,12 @@ internal object MemoryManager {
 
             unrefNativeCoreTypes(pointerArray, variantTypeArray)
         }
-
-        stringNameCache.values.clear()
-        nodePathCache.values.clear()
+        
         nativeCoreTypeMap.clear()
     }
 
     external fun getSingleton(classIndex: Int)
-    external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
+    external fun createNativeObject(classIndex: Int, instance: IdentityPointer, scriptIndex: Int)
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     external fun releaseBinding(instanceId: Long)
     external fun freeObject(rawPtr: VoidPtr)

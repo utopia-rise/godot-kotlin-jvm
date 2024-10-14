@@ -3,11 +3,12 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
 import godot.common.util.isNullable
+import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass

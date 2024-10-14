@@ -246,6 +246,6 @@ val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Ann
 val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)
 
 val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.transferContext)
-val TYPE_MANAGER = ClassName(godotCorePackage, GodotKotlinJvmTypes.typeManager)
+val TYPE_MANAGER = ClassName(godotReflectionPackage, GodotKotlinJvmTypes.typeManager)
 val OBJECT_ID = ClassName(godotInteropPackage, GodotKotlinJvmTypes.objectID)
 val VOID_PTR = ClassName(godotInteropPackage, "VoidPtr")

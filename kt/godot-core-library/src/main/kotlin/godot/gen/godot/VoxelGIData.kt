@@ -12,7 +12,7 @@ import godot.core.AABB
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -21,7 +21,7 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

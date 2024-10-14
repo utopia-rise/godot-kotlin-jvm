@@ -11,7 +11,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.NodePath
 import godot.core.Signal1
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
@@ -19,7 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

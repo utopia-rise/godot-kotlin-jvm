@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -18,7 +17,7 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -43,7 +42,7 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

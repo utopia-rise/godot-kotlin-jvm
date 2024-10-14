@@ -16,7 +16,7 @@ import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -31,7 +31,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

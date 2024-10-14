@@ -6,7 +6,7 @@ import godot.Object
 import godot.RefCounted
 import godot.core.Callable
 import godot.core.VariantArray
-import godot.core.memory.MemoryManager
+import godot.internal.memory.MemoryManager
 import godot.core.Signal
 import godot.core.asCachedStringName
 import godot.core.toGodotName

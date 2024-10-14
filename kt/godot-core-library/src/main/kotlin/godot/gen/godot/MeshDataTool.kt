@@ -12,7 +12,7 @@ import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -25,7 +25,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

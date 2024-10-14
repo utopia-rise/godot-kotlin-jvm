@@ -1,6 +1,4 @@
-package godot.core
-
-import godot.global.GD
+package godot.internal.logging
 
 private const val ESCAPE = '\u001B'
 private const val RESET = "$ESCAPE[0m"
@@ -23,13 +21,13 @@ private enum class PrintColor(baseCode: Int) {
     val background: String = "$ESCAPE[${baseCode + BG_JUMP}m"
 }
 
-internal object GodotLogging {
-    fun info(message: String) = GD.print("Godot-JVM: ", message)
-    fun warning(message: String) = GD.pushWarning("Godot-JVM: ", message)
-    fun error(message: String) = GD.printErr("Godot-JVM: ", message)
+object GodotLogging {
+    fun info(message: String) = GodotPrint.print("Godot-JVM: $message")
+    fun warning(message: String) = GodotPrint.pushWarning("Godot-JVM: $message")
+    fun error(message: String) = GodotPrint.printErr("Godot-JVM: $message")
 }
 
-internal object JVMLogging {
+object JVMLogging {
     fun info(message: String) = println("Godot-JVM: $message")
     fun warning(message: String) = println("${PrintColor.YELLOW.foreground}$message$RESET")
     fun error(message: String) = System.err.println("Godot-JVM:  $message")

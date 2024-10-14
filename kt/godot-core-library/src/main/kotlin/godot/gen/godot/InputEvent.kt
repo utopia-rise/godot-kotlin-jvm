@@ -10,7 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform2D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,7 +21,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

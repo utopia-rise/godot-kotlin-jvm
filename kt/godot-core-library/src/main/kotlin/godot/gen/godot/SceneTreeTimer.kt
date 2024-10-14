@@ -9,10 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress

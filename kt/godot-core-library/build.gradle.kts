@@ -38,6 +38,7 @@ dependencies {
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
     api(kotlin("reflect", version = libs.versions.kotlin.get()))
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    implementation(project(":godot-internal-library"))
     testImplementation("junit", "junit", "4.12")
 }
 

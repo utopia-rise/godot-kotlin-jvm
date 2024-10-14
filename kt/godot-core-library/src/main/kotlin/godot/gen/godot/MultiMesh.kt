@@ -15,7 +15,7 @@ import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.Transform2D
 import godot.core.Transform3D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -24,7 +24,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

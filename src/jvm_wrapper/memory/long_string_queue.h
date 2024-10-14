@@ -3,7 +3,7 @@
 
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
-JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.core.LongStringQueue") {
+JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.internal.memory.LongStringQueue") {
     SINGLETON_CLASS(LongStringQueue)
     // clang-format off
     JNI_VOID_METHOD(QUEUE_STRING)

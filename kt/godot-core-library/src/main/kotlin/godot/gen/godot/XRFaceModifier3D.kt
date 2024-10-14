@@ -10,11 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.StringName
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

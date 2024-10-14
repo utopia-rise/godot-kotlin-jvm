@@ -13,7 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Basis
 import godot.core.RID
 import godot.core.Transform3D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BASIS
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -24,7 +24,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

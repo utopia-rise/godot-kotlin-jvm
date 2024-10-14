@@ -5,8 +5,9 @@ import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
 import godot.common.interop.nullObjectID
 import godot.common.interop.nullptr
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
+import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
 
 class GodotNotification internal constructor(val block: Any.(Int) -> Unit)

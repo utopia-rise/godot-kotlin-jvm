@@ -1,9 +1,11 @@
 package godot.core
 
 import godot.Object
-import godot.core.memory.MemoryManager
+import godot.common.interop.VariantConverter
 import godot.common.interop.nullptr
 import godot.common.util.toRealT
+import godot.internal.memory.LongStringQueue
+import godot.internal.memory.MemoryManager
 import java.nio.ByteBuffer
 
 private var ByteBuffer.bool: Boolean
@@ -102,13 +104,6 @@ private var ByteBuffer.variantType: Int
     set(value) {
         putInt(value)
     }
-
-sealed interface VariantConverter {
-    val id: Int
-
-    fun toKotlin(buffer: ByteBuffer): Any?
-    fun toGodot(buffer: ByteBuffer, any: Any?)
-}
 
 enum class VariantParser(override val id: Int) : VariantConverter {
     NIL(0) {

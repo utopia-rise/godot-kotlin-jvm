@@ -5,8 +5,8 @@ package godot.core
 
 import godot.Object
 import godot.common.interop.ObjectID
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
 import kotlin.reflect.KCallable
 

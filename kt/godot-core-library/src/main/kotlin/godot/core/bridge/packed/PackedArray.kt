@@ -2,9 +2,9 @@
 
 package godot.core
 
-import godot.core.memory.TransferContext
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
+import godot.internal.memory.TransferContext
 
 abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constructor() : NativeCoreType(), Iterable<T> {
     internal abstract val bridge: PackedArrayBridge

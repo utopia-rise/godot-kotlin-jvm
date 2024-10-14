@@ -11,7 +11,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -22,7 +22,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int

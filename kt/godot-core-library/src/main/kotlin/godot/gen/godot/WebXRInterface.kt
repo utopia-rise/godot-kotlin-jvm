@@ -11,7 +11,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -20,7 +20,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

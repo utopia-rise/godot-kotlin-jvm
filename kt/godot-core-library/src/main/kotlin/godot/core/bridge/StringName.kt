@@ -3,9 +3,12 @@
 
 package godot.core
 
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.common.extensions.convertToSnakeCase
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
+import godot.common.util.LRUCache
+import godot.internal.memory.MemoryManager.CACHE_INITIAL_CAPACITY
 import kotlin.reflect.KFunction
 import kotlin.reflect.KProperty
 
@@ -64,6 +67,40 @@ class StringName : NativeCoreType {
 
         external fun engine_call_operator_string(_handle: VoidPtr)
     }
+
+    internal companion object{
+        private val stringNameCache = LRUCache<String, StringName>(CACHE_INITIAL_CAPACITY)
+
+        init {
+            MemoryManager.registerCallback {
+                stringNameCache.clear()
+            }
+        }
+
+        /**
+         * Take a String, cache it, and return it as a StringName.
+         */
+        fun getOrCreateStringName(key: String): StringName {
+            return synchronized(stringNameCache) {
+                stringNameCache.getOrPut(key) {
+                    // Cache miss, so create and return new instance.
+                    StringName(key)
+                }
+            }
+        }
+
+        /**
+         * Take a CamelCase String, cache it and return a snakeCase version of it as a StringName, used internally for methods and property names
+         */
+        fun getOrCreateGodotName(key: String): StringName {
+            return synchronized(stringNameCache) {
+                stringNameCache.getOrPut(key) {
+                    // Cache miss, so create and return new instance.
+                    StringName(key.convertToSnakeCase())
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -77,27 +114,27 @@ fun String.asStringName(): StringName {
  * Convert String to StringName and cache it for future calls.
  */
 fun String.asCachedStringName(): StringName {
-    return MemoryManager.getOrCreateStringName(this)
+    return StringName.getOrCreateStringName(this)
 }
 
 /**
  * Convert a snake_case version of the String to StringName and cache it for future calls.
  */
 fun String.toGodotName(): StringName {
-    return MemoryManager.getOrCreateGodotName(this)
+    return StringName.getOrCreateGodotName(this)
 }
 
 /**
  * Convert a snake_case version of the property's name to StringName and cache it for future calls.
  */
 fun KProperty<*>.toGodotName(): StringName {
-    return MemoryManager.getOrCreateGodotName(this.name)
+    return StringName.getOrCreateGodotName(this.name)
 }
 
 /**
  * Convert a snake_case version of the function's name to StringName and cache it for future calls.
  */
 fun KFunction<*>.toGodotName(): StringName {
-    return MemoryManager.getOrCreateGodotName(this.name)
+    return StringName.getOrCreateGodotName(this.name)
 }
 

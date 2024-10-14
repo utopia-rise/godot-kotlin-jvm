@@ -3,9 +3,12 @@
 
 package godot.core
 
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.common.extensions.convertToSnakeCase
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.interop.VoidPtr
+import godot.common.util.LRUCache
+import godot.internal.memory.MemoryManager.CACHE_INITIAL_CAPACITY
 import kotlin.reflect.KProperty
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -168,6 +171,40 @@ class NodePath : NativeCoreType {
         external fun engine_call_getConcatenatedSubnames(_handle: VoidPtr)
         external fun engine_call_equals(_handle: VoidPtr)
     }
+
+    internal companion object{
+        private val nodePathCache = LRUCache<String, NodePath>(CACHE_INITIAL_CAPACITY)
+
+        init {
+            MemoryManager.registerCallback {
+                nodePathCache.clear()
+            }
+        }
+
+        /**
+         * Take a String, cache it and return it as a NodePath.
+         */
+        fun getOrCreateNodePath(key: String): NodePath {
+            return synchronized(nodePathCache) {
+                nodePathCache.getOrPut(key) {
+                    // Cache miss, so create and return new instance.
+                    NodePath(key)
+                }
+            }
+        }
+
+        /**
+         * Take a CamelCase String, cache it and return a snakeCase version of it as a NodePath.
+         */
+        fun getOrCreateGodotPath(key: String): NodePath {
+            return synchronized(nodePathCache) {
+                nodePathCache.getOrPut(key) {
+                    // Cache miss, so create and return new instance.
+                    NodePath(key.convertToSnakeCase())
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -188,19 +225,19 @@ fun StringName.asNodePath(): NodePath {
  * Convert String to NodePath and cache it for future calls.
  */
 fun String.asCachedNodePath(): NodePath {
-    return MemoryManager.getOrCreateNodePath(this)
+    return NodePath.getOrCreateNodePath(this)
 }
 
 /**
  * Convert a snake_case version of the String to NodePath and cache it for future calls.
  */
 fun String.toGodotPath(): NodePath {
-    return MemoryManager.getOrCreateGodotPath(this)
+    return NodePath.getOrCreateGodotPath(this)
 }
 
 /**
  * Convert a snake_case version of the property's name to NodePath and cache it for future calls.
  */
 fun KProperty<*>.toGodotPath(): NodePath {
-    return MemoryManager.getOrCreateGodotPath(this.name)
+    return NodePath.getOrCreateGodotPath(this.name)
 }

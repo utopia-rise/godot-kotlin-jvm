@@ -11,7 +11,7 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.PackedVector3Array
 import godot.core.Transform3D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,7 +21,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

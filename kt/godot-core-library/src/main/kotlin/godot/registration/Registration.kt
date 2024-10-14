@@ -29,8 +29,8 @@ import godot.core.KtProperty
 import godot.core.KtPropertyInfo
 import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
-import godot.core.TypeManager
-import godot.core.VariantConverter
+import godot.internal.reflection.TypeManager
+import godot.common.interop.VariantConverter
 import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf

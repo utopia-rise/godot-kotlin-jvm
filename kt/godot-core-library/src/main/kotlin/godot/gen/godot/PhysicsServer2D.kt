@@ -11,7 +11,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.RID
 import godot.core.Transform2D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -23,7 +23,7 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

@@ -1,17 +1,15 @@
-package godot.core.memory
+package godot.internal.memory
 
-import godot.core.KtObject
-import godot.core.LongStringQueue
 import godot.common.interop.ObjectID
-import godot.core.VariantConverter
 import godot.common.constants.Constraints
+import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
 import godot.common.util.threadLocal
 import kotlincompile.definitions.GodotJvmBuildConfig
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-internal object TransferContext {
+object TransferContext {
     private val bufferSize: Int
         get() {
             /**

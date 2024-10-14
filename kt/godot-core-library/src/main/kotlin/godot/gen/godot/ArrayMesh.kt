@@ -6,7 +6,6 @@
 
 package godot
 
-import godot.Mesh.ArrayFormatValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
@@ -16,7 +15,7 @@ import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -28,7 +27,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int

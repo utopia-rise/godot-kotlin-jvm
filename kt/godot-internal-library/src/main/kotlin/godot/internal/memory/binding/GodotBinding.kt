@@ -1,19 +1,19 @@
-package godot.core.memory
+package godot.internal.memory.binding
 
-import godot.core.KtObject
+import godot.common.interop.IdentityPointer
 import godot.common.interop.ObjectID
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-internal interface GodotBinding {
+interface GodotBinding {
     val objectID: ObjectID
-    val instance: KtObject?
+    val instance: IdentityPointer?
 
     companion object {
         /** Queue to be notified when the GC runs on References.*/
-        val queue = ReferenceQueue<KtObject>()
+        val queue = ReferenceQueue<IdentityPointer>()
 
-        fun create(instance: KtObject): GodotBinding {
+        fun create(instance: IdentityPointer): GodotBinding {
             val id = instance.objectID
             return if (id.isReference) {
                 RefCountedBinding(instance, queue, id)
@@ -24,18 +24,18 @@ internal interface GodotBinding {
     }
 }
 
-internal class RefCountedBinding(
-    instance: KtObject,
-    queue: ReferenceQueue<KtObject>,
+class RefCountedBinding(
+    instance: IdentityPointer,
+    queue: ReferenceQueue<IdentityPointer>,
     override val objectID: ObjectID
-) : WeakReference<KtObject>(instance, queue), GodotBinding {
+) : WeakReference<IdentityPointer>(instance, queue), GodotBinding {
 
-    override val instance: KtObject?
+    override val instance: IdentityPointer?
         get() = this.get()
 }
 
-internal class ObjectBinding(
-    override val instance: KtObject,
+class ObjectBinding(
+    override val instance: IdentityPointer,
     override val objectID: ObjectID
 ) : GodotBinding
 

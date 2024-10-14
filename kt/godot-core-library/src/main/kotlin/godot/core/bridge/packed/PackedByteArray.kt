@@ -2,9 +2,9 @@
 
 package godot.core
 
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
 import godot.common.interop.VoidPtr
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedByteArray : PackedArray<PackedByteArray, Byte> {

@@ -14,7 +14,7 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
 import godot.core.Transform2D
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
@@ -27,7 +27,7 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

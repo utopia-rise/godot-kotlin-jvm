@@ -2,9 +2,10 @@
 
 package godot.core
 
-import godot.core.memory.MemoryManager
-import godot.core.memory.TransferContext
+import godot.internal.memory.MemoryManager
+import godot.internal.memory.TransferContext
 import godot.common.constants.Constraints
+import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
 import godot.common.util.threadLocal
 

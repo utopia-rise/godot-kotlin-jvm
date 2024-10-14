@@ -27,7 +27,7 @@ java {
 
 dependencies {
     compileOnly(project(":godot-core-library"))
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
 }
 

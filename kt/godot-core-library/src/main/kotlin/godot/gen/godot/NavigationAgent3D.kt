@@ -17,7 +17,7 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -28,7 +28,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

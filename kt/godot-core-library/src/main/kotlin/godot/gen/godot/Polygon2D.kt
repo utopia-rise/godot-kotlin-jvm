@@ -15,7 +15,7 @@ import godot.core.NodePath
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -30,7 +30,7 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

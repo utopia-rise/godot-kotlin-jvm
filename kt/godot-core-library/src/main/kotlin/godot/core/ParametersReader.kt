@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import godot.common.constants.Constraints
 import godot.common.util.threadLocal
 

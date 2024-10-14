@@ -14,7 +14,7 @@ import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.StringName
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -25,7 +25,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float

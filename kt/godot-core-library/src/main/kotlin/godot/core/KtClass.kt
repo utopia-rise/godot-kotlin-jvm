@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.TransferContext
+import godot.internal.memory.TransferContext
 
 @Suppress("unused")
 data class KtClass<T : KtObject>(

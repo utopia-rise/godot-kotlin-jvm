@@ -1,12 +1,12 @@
 package godot.runtime
 
 import godot.core.KtClass
-import godot.core.TypeManager
+import godot.internal.reflection.TypeManager
 import godot.core.VariantParser
 import godot.core.variantMapper
+import godot.internal.logging.JVMLogging
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import godot.core.JVMLogging
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader

@@ -9,7 +9,7 @@
 #include <jni.h>
 
 // clang-format off
-JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
+JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
     SINGLETON_CLASS(MemoryManager)
 
     JNI_OBJECT_METHOD(SYNC_MEMORY)
