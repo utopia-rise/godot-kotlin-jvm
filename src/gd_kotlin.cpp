@@ -10,21 +10,113 @@
 #include <core/io/resource_loader.h>
 #include <main/main.h>
 
-#define CHECK_AND_SET_STATE(cond, new_state) \
-    if (cond) {                              \
-        state = State::new_state;            \
-    } else {                                 \
-        return;                              \
-    }
-
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
 }
 
-GDKotlin::State GDKotlin::get_state() {
-    return state;
+const JvmUserConfiguration& GDKotlin::get_configuration() {
+    return user_configuration;
 }
+
+#ifdef DYNAMIC_JVM
+bool GDKotlin::load_dynamic_lib() {
+    String path_to_jvm_lib;
+    switch (user_configuration.vm_type) {
+        case jni::JvmType::JVM:
+            if (String embedded_jvm = get_path_to_embedded_jvm(); FileAccess::exists(embedded_jvm)) {
+                path_to_jvm_lib = embedded_jvm;
+            }
+#ifdef TOOLS_ENABLED
+            else if (String environment_jvm = get_path_to_environment_jvm();
+                     !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
+                JVM_LOG_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                                "documentation if you don't know how to do that");
+                path_to_jvm_lib = environment_jvm;
+            } else {
+#ifdef MACOS_ENABLED
+                JVM_ERR_FAIL_V_MSG(
+                  false,
+                  "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
+                  "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
+                  "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
+                );
+#else
+                JVM_ERR_FAIL_V_MSG(false, "The environment variable JAVA_HOME is not found and there is no embedded JRE.");
+#endif
+            }
+#else
+            else {
+                JVM_ERR_FAIL_V_MSG(false, "No embedded JRE found at: %s!", get_path_to_embedded_jvm());
+            }
+#endif
+
+            break;
+        case jni::JvmType::GRAAL_NATIVE_IMAGE:
+            if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
+                path_to_jvm_lib = native_jvm;
+            } else {
+                JVM_ERR_FAIL_V_MSG(
+                  false,
+                  "Cannot find Graal VM user code native image! /n This usually happens when you "
+                  "define that your project should be executed using graalvm but did not "
+                  "successfully compile your project and thus usercode.(sh, dll, dylib) cannot be found."
+                );
+            }
+            break;
+        default:
+            // Sanity check. Should never happen
+            JVM_DEV_ASSERT(false, "Tried to load a VM that's neither the JVM nor Graal Native Image");
+    }
+
+    if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
+        JVM_ERR_FAIL_V_MSG(false, vformat("Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib));
+    }
+    return true;
+}
+
+#ifdef TOOLS_ENABLED
+String GDKotlin::get_path_to_embedded_jvm() {
+    String godot_path {String(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
+    return ProjectSettings::get_singleton()->globalize_path(godot_path);
+}
+
+String GDKotlin::get_path_to_native_image() {
+    return ProjectSettings::get_singleton()->globalize_path(GRAAL_NATIVE_IMAGE_FILE);
+}
+
+String GDKotlin::get_path_to_environment_jvm() {
+    String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
+    if (javaHome.is_empty()) { return javaHome; }
+    return javaHome.path_join(RELATIVE_JVM_LIB_PATH);
+}
+
+#else
+
+String GDKotlin::get_path_to_embedded_jvm() {
+    return OS::get_singleton()
+      ->get_executable_path()
+      .get_base_dir()
+#if defined(MACOS_ENABLED)
+      .path_join("../PlugIns/")
+      .path_join(String(HOST_EMBEDDED_JRE_DIRECTORY).get_file()) // Only use the last subdir, as the export doesn't keep the relative path
+#else
+      .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
+#endif
+      .path_join(RELATIVE_JVM_LIB_PATH);
+}
+
+String GDKotlin::get_path_to_native_image() {
+    return ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE));
+}
+#endif
+
+void GDKotlin::unload_dynamic_lib() {
+    if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
+        JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
+    }
+}
+#endif
 
 void GDKotlin::fetch_user_configuration() {
     bool invalid_file_content = false;
@@ -83,8 +175,8 @@ void GDKotlin::set_jvm_options() {
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
-        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not "
-                    "launch properly");
+        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
+                        "not launch properly");
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
 }
@@ -98,12 +190,12 @@ void GDKotlin::set_jvm_options() {
 #endif
 
 String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
-    String file_res_path {String(BUILD_DIRECTORY) + file_name};
+    String file_res_path {String(RES_DIRECTORY) + file_name};
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
 #ifndef __ANDROID__
     if (!FileAccess::exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
-        JVM_LOG_VERBOSE("%s file has changed. Copying it from res:// to user://.", file_name);
+        JVM_LOG_VERBOSE("%s file has changed. Copying it from %s to %s.", file_name, file_res_path, file_user_path);
 #else
     // as per suggestion of https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading, we first delete existing files and then copy them again
     // if we don't do this, subsequent app starts where the files already exist, error out
@@ -111,14 +203,9 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     String file_user_path_global {ProjectSettings::get_singleton()->globalize_path(file_user_path)};
     unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
 #endif
-
-    Error err;
-    Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
-
-    JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Cannot open %s file in res://.", file_name);
-
-    dir_access->copy(file_res_path, file_user_path);
-
+        Ref<DirAccess> dir_access {DirAccess::open(USER_DIRECTORY)};
+        dir_access->make_dir(JVM_DIRECTORY);
+        dir_access->copy(file_res_path, file_user_path);
 #ifndef __ANDROID__
     }
 #endif
@@ -130,12 +217,12 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 bool GDKotlin::load_bootstrap() {
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        return true;// Bootstrap already part of the image
+        return true; // Bootstrap already part of the image
     }
 
     jni::Env env {jni::Jvm::current_env()};
 #ifdef TOOLS_ENABLED
-    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(BOOTSTRAP_FILE)};
+    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(EDITOR_BOOTSTRAP_PATH)};
     constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot "
                                       "editor executable!"};
 #else
@@ -155,7 +242,7 @@ bool GDKotlin::initialize_core_library() {
     callable_middleman = memnew(Object);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (!JvmManager::initialize_jni_classes(env, bootstrap_class_loader)) { return false; }
+    if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) { return false; }
 
     if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
@@ -178,17 +265,32 @@ bool GDKotlin::load_user_code() {
         return true;
     } else {
 #ifdef TOOLS_ENABLED
-        String user_code_path {String(BUILD_DIRECTORY) + String(USER_CODE_FILE)};
+        String user_code_path {String(RES_DIRECTORY).path_join(USER_CODE_FILE)};
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
+
+        if (!FileAccess::exists(user_code_path)) {
+            String message {"No main.jar detected at %s. No classes will be loaded. Build the gradle "
+                            "project to load classes"};
+#ifdef TOOLS_ENABLED
+            JVM_LOG_WARNING(message, user_code_path);
+            return false;
+#elif defined DEBUG_ENABLED
+            JVM_ERR_FAIL_V_MSG(false, message, user_code_path);
+#endif
+        }
+
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
-        // TODO: Rework this part when cpp reloading done, can't check what's happening in the Kotlin code from here.
+        jar.instantiate();
+        jar->set_path(user_code_path, true);
+
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
           ProjectSettings::get_singleton()->globalize_path(user_code_path),
           bootstrap_class_loader->get_wrapped()
         );
+
         bootstrap->init(
           env,
           project_path,
@@ -200,152 +302,78 @@ bool GDKotlin::load_user_code() {
     }
 }
 
-void GDKotlin::init() {
-    fetch_user_configuration();
-    set_jvm_options();
-
-#ifdef DYNAMIC_JVM
-    CHECK_AND_SET_STATE(load_dynamic_lib(), JVM_LIBRARY_LOADED)
-    CHECK_AND_SET_STATE(JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options), JVM_STARTED)
-#else
-    CHECK_AND_SET_STATE(JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options), JVM_STARTED)
-#endif
-
-    CHECK_AND_SET_STATE(load_bootstrap(), BOOTSTRAP_LOADED)
-    CHECK_AND_SET_STATE(initialize_core_library(), CORE_LIBRARY_INITIALIZED)
-    CHECK_AND_SET_STATE(load_user_code(), JVM_SCRIPTS_INITIALIZED)
+void GDKotlin::unload_user_code() {
+    jni::Env env {jni::Jvm::current_env()};
+    bootstrap->finish(env);
+    TypeManager::get_instance().clear();
+    jar.unref();
 }
 
-void GDKotlin::finish() {
-    if (state >= State::JVM_SCRIPTS_INITIALIZED) {
-        jni::Env env {jni::Jvm::current_env()};
-        bootstrap->finish(env);
-        JvmScriptManager::get_instance()->clear();
-        TypeManager::get_instance().clear();
-    }
+void GDKotlin::finalize_core_library() {
+    jni::Env env {jni::Jvm::current_env()};
 
-    if (state >= State::CORE_LIBRARY_INITIALIZED) {
-        jni::Env env {jni::Jvm::current_env()};
-        MemoryManager::get_instance().clean_up(env);
-        JvmManager::destroy_jni_classes();
-        memdelete(callable_middleman);
-        callable_middleman = nullptr;
-    }
+    MemoryManager::get_instance().clean_up(env);
 
-    if (state >= State::BOOTSTRAP_LOADED) {
-        delete bootstrap;
-        bootstrap = nullptr;
-        delete bootstrap_class_loader;
-        bootstrap_class_loader = nullptr;
-    }
-
-    if (state >= State::JVM_STARTED) { JvmManager::close_jvm(); }
-#ifdef DYNAMIC_JVM
-    if (state >= State::JVM_LIBRARY_LOADED) { unload_dynamic_lib(); }
-#endif
-
-    state = State::NOT_STARTED;
+    JvmManager::finalize_jvm_wrappers(env, bootstrap_class_loader);
+    memdelete(callable_middleman);
+    callable_middleman = nullptr;
 }
 
-const JvmUserConfiguration& GDKotlin::get_configuration() {
-    return user_configuration;
+void GDKotlin::unload_boostrap() {
+    delete bootstrap;
+    bootstrap = nullptr;
+    delete bootstrap_class_loader;
+    bootstrap_class_loader = nullptr;
 }
 
+#define SET_LOADING_STATE(cond, new_state, target_state) \
+    if (state < State::new_state) {                      \
+        if (!cond) { return; }                           \
+        state = State::new_state;                        \
+        if (new_state == target_state) { return; }       \
+    }
+
+void GDKotlin::initialize_up_to(State target_state) {
+    if (state == State::NOT_STARTED) {
+        fetch_user_configuration();
+        set_jvm_options();
+    }
+
 #ifdef DYNAMIC_JVM
-bool GDKotlin::load_dynamic_lib() {
-    String path_to_jvm_lib;
-    switch (user_configuration.vm_type) {
-        case jni::JvmType::JVM:
-            if (String embedded_jvm = get_path_to_embedded_jvm(); FileAccess::exists(embedded_jvm)) {
-                path_to_jvm_lib = embedded_jvm;
-            }
-#ifdef TOOLS_ENABLED
-            else if (String environment_jvm = get_path_to_environment_jvm();
-                     !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
-                JVM_LOG_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
-                                    "documentation if you don't know how to do that");
-                path_to_jvm_lib = environment_jvm;
-            } else {
-#ifdef MACOS_ENABLED
-                JVM_ERR_FAIL_V_MSG(
-                  false,
-                  "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
-                  "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
-                  "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
-                );
+    SET_LOADING_STATE(load_dynamic_lib(), JVM_LIBRARY_LOADED, target_state)
+    SET_LOADING_STATE(JvmManager::initialize_or_get_jvm(jvm_dynamic_library_handle, user_configuration, jvm_options), JVM_STARTED, target_state)
 #else
-                JVM_ERR_FAIL_V_MSG(false, "The environment variable JAVA_HOME is not found and there is no embedded JRE.");
+    SET_LOADING_STATE(JvmManager::initialize_or_get_jvm(nullptr, user_configuration, jvm_options), JVM_STARTED, target_state)
 #endif
-            }
-#else
-            else {
-                JVM_ERR_FAIL_V_MSG(false, "No embedded JRE found at: %s!", get_path_to_embedded_jvm());
-            }
-#endif
+    SET_LOADING_STATE(load_bootstrap(), BOOTSTRAP_LOADED, target_state)
+    SET_LOADING_STATE(initialize_core_library(), CORE_LIBRARY_INITIALIZED, target_state)
+    SET_LOADING_STATE(load_user_code(), JVM_SCRIPTS_INITIALIZED, target_state)
+}
 
-            break;
-        case jni::JvmType::GRAAL_NATIVE_IMAGE:
-            if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
-                path_to_jvm_lib = native_jvm;
-            } else {
-                JVM_ERR_FAIL_V_MSG(
-                  false,
-                  "Cannot find Graal VM user code native image! /n This usually happens when you "
-                  "define that your project should be executed using graalvm but did not "
-                  "successfully "
-                  "compile your project and thus usercode.(sh, dll, dylib) cannot be found."
-                );
-            }
-            break;
-        default:
-            // Sanity check. Should never happen
-            JVM_DEV_ASSERT(false, "Tried to load a VM that's neither the JVM nor Graal Native Image");
+#define UNSET_LOADING_STATE(function, new_state, target_state) \
+    if (state > State::new_state) {                            \
+        function;                                              \
+        state = State::new_state;                              \
+        if (new_state == target_state) { return; }             \
     }
 
-    if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
-        JVM_ERR_FAIL_V_MSG(false, "Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib);
-    }
-    return true;
+void GDKotlin::finalize_down_to(State target_state) {
+    UNSET_LOADING_STATE(unload_user_code(), CORE_LIBRARY_INITIALIZED, target_state)
+    UNSET_LOADING_STATE(finalize_core_library(), BOOTSTRAP_LOADED, target_state)
+    UNSET_LOADING_STATE(unload_boostrap(), JVM_STARTED, target_state)
+#ifdef DYNAMIC_JVM
+    UNSET_LOADING_STATE(JvmManager::close_jvm(), JVM_LIBRARY_LOADED, target_state)
+    UNSET_LOADING_STATE(unload_dynamic_lib(), NOT_STARTED, target_state)
+#else
+    UNSET_LOADING_STATE(JvmManager::close_jvm(), NOT_STARTED, target_state)
+#endif
 }
 
 #ifdef TOOLS_ENABLED
-String GDKotlin::get_path_to_embedded_jvm() {
-    String godot_path {String(RES_DIRECTORY).path_join(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
-    return ProjectSettings::get_singleton()->globalize_path(godot_path);
-}
-
-String GDKotlin::get_path_to_native_image() {
-    String godot_path {String(BUILD_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_FILE)};
-    return ProjectSettings::get_singleton()->globalize_path(godot_path);
-}
-
-String GDKotlin::get_path_to_environment_jvm() {
-    String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
-    if (javaHome.is_empty()) { return javaHome; }
-    return javaHome.path_join(RELATIVE_JVM_LIB_PATH);
-}
-
-#else
-
-String GDKotlin::get_path_to_embedded_jvm() {
-    return OS::get_singleton()
-      ->get_executable_path()
-      .get_base_dir()
-#if defined(MACOS_ENABLED)
-      .path_join("../PlugIns/")
-#endif
-      .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
-      .path_join(RELATIVE_JVM_LIB_PATH);
-}
-
-String GDKotlin::get_path_to_native_image() {
-    return ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(GRAAL_NATIVE_IMAGE_FILE));
-}
-#endif
-
-void GDKotlin::unload_dynamic_lib() {
-    if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
-        JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
+void GDKotlin::reload_user_code() {
+    if (user_configuration.vm_type == jni::JvmType::JVM) {
+        finalize_down_to(BOOTSTRAP_LOADED);
+        initialize_up_to(JVM_SCRIPTS_INITIALIZED);
     }
 }
 #endif
@@ -406,8 +434,9 @@ void GDKotlin::validate_state() {
     if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
 
     if (invalid) {
-        finish();
+        finalize_down_to(NOT_STARTED);
         OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
     }
 }
+
 #endif

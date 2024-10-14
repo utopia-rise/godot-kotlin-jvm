@@ -5,11 +5,15 @@
 #include "lifecycle/jvm_manager.h"
 #include "lifecycle/jvm_options.h"
 #include "lifecycle/jvm_user_configuration.h"
+#include "resource_format/java_archive.h"
 
 #include <core/string/ustring.h>
 
 class GDKotlin {
     friend class GdjLanguage;
+#ifdef TOOLS_ENABLED
+    friend class GodotKotlinJvmEditor;
+#endif
 
 public:
     // Values should be in the correct initialization order, the number matters.
@@ -30,6 +34,7 @@ private:
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
+    Ref<JavaArchive> jar; // We keep a Reference to the jar in memory because the Godot editor require a resource to be in cache to reload.
     Object* callable_middleman; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
 
     void fetch_user_configuration();
@@ -42,17 +47,22 @@ private:
 #ifdef DYNAMIC_JVM
     void* jvm_dynamic_library_handle {nullptr};
     bool load_dynamic_lib();
+    void unload_dynamic_lib();
 #ifdef TOOLS_ENABLED
     static String get_path_to_environment_jvm();
 #endif
     static String get_path_to_embedded_jvm();
     static String get_path_to_native_image();
-    void unload_dynamic_lib();
 #endif
 
     bool load_bootstrap();
+    void unload_boostrap();
+
     bool initialize_core_library();
+    void finalize_core_library();
+
     bool load_user_code();
+    void unload_user_code();
 
 public:
     GDKotlin() = default;
@@ -62,11 +72,13 @@ public:
 
     static GDKotlin& get_instance();
     const JvmUserConfiguration& get_configuration();
-    State get_state();
 
-    void init();
+    void initialize_up_to(State target_state);
+    void finalize_down_to(State target_state);
 
-    void finish();
+#ifdef TOOLS_ENABLED
+    void reload_user_code();
+#endif
 
     //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
     Object* get_callable_middleman() const;

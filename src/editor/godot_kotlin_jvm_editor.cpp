@@ -3,17 +3,17 @@
 #include "godot_kotlin_jvm_editor.h"
 
 #include "editor/build/build_manager.h"
+#include "lifecycle/paths.h"
 #include "project/project_generator.h"
 #include "strings.h"
 
 #include <core/config/project_settings.h>
 #include <editor/editor_interface.h>
 #include <editor/filesystem_dock.h>
-
-
+#include <gd_kotlin.h>
 
 void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
-    switch(option_id) {
+    switch (option_id) {
         case GENERATE_PROJECT:
             project_dialog->popup_centered();
             break;
@@ -30,6 +30,24 @@ void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
 
 void GodotKotlinJvmEditor::on_build_project_pressed() {
     BuildManager::get_instance().build_project_non_blocking();
+}
+
+void GodotKotlinJvmEditor::on_build_finished() {
+    MessageQueue::get_singleton()->push_callable(
+      callable_mp(get_editor_interface()->get_resource_file_system(), &EditorFileSystem::scan_changes)
+    );
+}
+
+void GodotKotlinJvmEditor::on_filesystem_change() {
+    if (GDKotlin::get_instance().state == GDKotlin::State::JVM_SCRIPTS_INITIALIZED) { return; }
+
+    // We check for changes in the file system in case the main.jar has been added (not reloaded, just was not present when the editor started)
+    if (GDKotlin::get_instance().state == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
+        String user_code_path {String(RES_DIRECTORY).path_join(USER_CODE_FILE)};
+        if (FileAccess::exists(user_code_path)) {
+            GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
+        }
+    }
 }
 
 bool GodotKotlinJvmEditor::build() {
@@ -68,12 +86,13 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             project_dialog->set_text(generate_project);
 
             project_dialog->get_ok_button()->set_text(generate_missing);
-            project_dialog->get_ok_button()->connect("pressed", callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(false));
-            project_dialog
-              ->add_button(generate_all)
+            project_dialog->get_ok_button()->connect(
+              "pressed",
+              callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(false)
+            );
+            project_dialog->add_button(generate_all)
               ->connect("pressed", callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(true));
             project_dialog->add_cancel_button(generate_nothing);
-
 
             about_pop_menu->hide();
             about_pop_menu->connect(SNAME("id_pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_menu_option_pressed));
@@ -91,6 +110,11 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             editor_base_control->add_child(build_dialog);
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
+
+            get_editor_interface()->get_resource_file_system()->connect(
+              SNAME("filesystem_changed"),
+              callable_mp(this, &GodotKotlinJvmEditor::on_filesystem_change)
+            );
 
             break;
 

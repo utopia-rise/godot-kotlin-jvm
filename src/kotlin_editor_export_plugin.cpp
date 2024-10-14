@@ -26,9 +26,9 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     bool is_android_export {p_features.has("android")};
     bool is_ios_export {p_features.has("ios")};
 
-    bool is_arm64 {p_features.has("arm64")};
-    bool is_x64 {p_features.has("x86_64")};
     bool is_universal {p_features.has("universal")};
+    bool is_arm64 {p_features.has("arm64") || is_universal};
+    bool is_x64 {p_features.has("x86_64") || is_universal};
 
     bool export_all {p_features.has(all_jvm_feature)};
     bool export_graal {p_features.has(graal_feature) || export_all};
@@ -36,85 +36,86 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
     if (is_desktop_export) {
         if (export_jvm) {
-            // files for all jvm desktop targets (bootstrap.jar and main.jar)
-            files_to_add.push_back(String(BUILD_DIRECTORY).path_join(DESKTOP_BOOTSTRAP_FILE));
-            files_to_add.push_back(String(BUILD_DIRECTORY).path_join(DESKTOP_USER_CODE_FILE));
-
             // add embedded jre
             if (is_macos_export) {
                 // on macos the embedded jre needs to be added as a plugin file
-                if (is_arm64 || is_universal) {
-                    String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
+                if (is_arm64) {
+                    String jre_path {String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
-                if (is_x64 || is_universal) {
-                    String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
+                if (is_x64) {
+                    String jre_path {String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
 
-                if (!is_arm64 && !is_x64 && !is_universal) {
-                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
+                if (!is_arm64 && !is_x64) {
+                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
+                                     "supported by Godot Kotlin/JVM!");
                 }
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
-                String jre_dir;
-                String target_dir;
+                String jre_dir {RES_DIRECTORY};
+                String target_dir {p_path.get_base_dir()};
 
                 if (is_arm64) {
                     if (is_linux_export) {
-                        jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
-                        target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
+                        jre_dir = jre_dir.path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
+                        target_dir = target_dir.path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                     if (is_windows_export) {
-                        jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
-                        target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
+                        jre_dir = jre_dir.path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
+                        target_dir = target_dir.path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                 }
                 if (is_x64) {
                     if (is_linux_export) {
-                        jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
-                        target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
+                        jre_dir = jre_dir.path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
+                        target_dir = target_dir.path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                     if (is_windows_export) {
-                        jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
-                        target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
+                        jre_dir = jre_dir.path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
+                        target_dir = target_dir.path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                 }
                 if (!is_arm64 && !is_x64) {
-                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
+                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
+                                     "supported by Godot Kotlin/JVM!");
                 }
-                if(jre_dir.is_empty() || target_dir.is_empty()) {
+                if (jre_dir.is_empty() || target_dir.is_empty()) {
                     JVM_ERR_FAIL_MSG("Could not find a jre directory for the current export configuration");
                 }
 
                 // copy the jre to res
                 Error error;
                 Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
-                if (error != OK) {
-                    JVM_ERR_FAIL_MSG("Cannot open directory %s", jre_dir);
-                }
+                if (error != OK) { JVM_ERR_FAIL_MSG("Cannot open directory %s", jre_dir); }
                 if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
-                    JVM_ERR_FAIL_MSG("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink for the platform you want to export.", jre_dir);
+                    JVM_ERR_FAIL_MSG(
+                      "Cannot copy %s folder to export folder, please make sure you created a JRE directory at the "
+                      "root of your project using jlink for the platform you want to export.",
+                      jre_dir
+                    );
                 }
             } else {
-                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only supported desktop targets are linux, macos and windows");
+                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only "
+                                 "supported desktop targets are linux, macos and windows");
             }
         }
 
         // graal native image (usercode.(so, dll, dylib))
         if (export_graal) {
             if (is_windows_export) {
-                files_to_add.push_back(String(BUILD_DIRECTORY) + WINDOWS_GRAAL_NATIVE_IMAGE_FILE);
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(WINDOWS_GRAAL_NATIVE_IMAGE_FILE));
             } else if (is_linux_export) {
-                files_to_add.push_back(String(BUILD_DIRECTORY) + LINUX_GRAAL_NATIVE_IMAGE_FILE);
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(LINUX_GRAAL_NATIVE_IMAGE_FILE));
             } else if (is_macos_export) {
-                files_to_add.push_back(String(BUILD_DIRECTORY) + MACOS_GRAAL_NATIVE_IMAGE_FILE);
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(MACOS_GRAAL_NATIVE_IMAGE_FILE));
             } else {
                 JVM_ERR_FAIL_MSG("Export target platform is not supported for graalvm export");
             }
@@ -129,11 +130,11 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
-        files_to_add.push_back(String(BUILD_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(BUILD_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
+        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
+        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
-        String base_ios_build_dir {String(BUILD_DIRECTORY).path_join("ios") };
+        String base_ios_build_dir {String(RES_DIRECTORY).path_join(JVM_DIRECTORY).path_join("ios")};
         String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk").path_join(ios_jdk_version)};
 
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
@@ -144,9 +145,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         add_ios_project_static_lib(
           ProjectSettings::get_singleton()->globalize_path(base_ios_jdk_dir.path_join("libjvm-release.a"))
         );
-        add_ios_project_static_lib(
-          ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
-        );
+        add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE)));
     } else {
         JVM_ERR_FAIL_MSG("Godot Kotlin/JVM doesn't handle this platform");
     }

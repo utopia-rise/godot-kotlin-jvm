@@ -5,8 +5,9 @@
 # Ignore Gradle build output directory
 build
 
-# Ignore Intellij directory
-.idea
+graal/godot-kotlin-graal-jni-config.json
 
-# Ignore embedded jre
-jre
+*.log
+/.godot/
+/test_output.txt
+/jvm/
