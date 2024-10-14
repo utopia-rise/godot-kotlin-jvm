@@ -25,6 +25,8 @@ functions = [
 	start_coroutine_with_one_parameter,
 	start_coroutine_with_many_parameters,
 	start_coroutine_undispatched,
+	start_coroutine_with_physics_frame,
+	start_coroutine_with_process_frame,
 	run_on_main_thread_from_background_thread,
 	async_load_resource
 ]

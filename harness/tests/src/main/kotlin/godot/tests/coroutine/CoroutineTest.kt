@@ -12,10 +12,12 @@ import godot.core.Vector2
 import godot.core.signal0
 import godot.core.signal1
 import godot.core.signal4
-import godot.coroutines.godotCoroutine
 import godot.coroutines.await
 import godot.coroutines.awaitLoadAs
 import godot.coroutines.awaitMainThread
+import godot.coroutines.awaitPhysicsFrame
+import godot.coroutines.awaitProcessFrame
+import godot.coroutines.godotCoroutine
 import godot.global.GD
 import kotlinx.coroutines.CoroutineStart
 
@@ -59,6 +61,22 @@ class CoroutineTest : Object() {
         step = 7
         signalWithoutParameter.await()
         step = 8
+    }
+
+    @RegisterFunction
+    fun startCoroutineWithPhysicsFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
+        step = 9
+        awaitPhysicsFrame {
+            step = 10
+        }
+    }
+
+    @RegisterFunction
+    fun startCoroutineWithProcessFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
+        step = 11
+        awaitProcessFrame {
+            step = 12
+        }
     }
 
     @RegisterSignal
