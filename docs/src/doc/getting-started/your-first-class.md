@@ -4,21 +4,19 @@ Let's create a file `src/main/kotlin/com/yourcompany/game/Simple.kt` with the fo
 package com.yourcompany.game
 
 import godot.Node3D
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class Simple: Node3D() {
 
-    @RegisterFunction
     override fun _ready() {
         GD.print("Hello world!")
     }
 }
 ```
 
-The [classes](../user-guide/classes.md) section covers in details what we did here, but for now `@RegisterClass` will register the class to Godot. Now we can trigger a build.
+The [classes](../user-guide/classes.md) section covers in details what we did here, but for now `@GodotScript` will register the class to Godot. Now we can trigger a build.
 
 ```shell
 ./gradlew build

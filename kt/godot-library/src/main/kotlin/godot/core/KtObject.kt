@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.GodotApiMember
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -78,6 +79,7 @@ abstract class KtObject {
     }
 
     @Suppress("FunctionName")
+    @GodotApiMember
     open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
@@ -87,11 +89,12 @@ abstract class KtObject {
     @JvmName("godotNotification")
     protected fun <T : KtObject> javaGodotNotification(obj: T, block: T.(Int) -> Unit) = obj.godotNotification(block)
 
-    @Suppress("FunctionName")
     /**
      * Called automatically when the Object is destroyed. Note that this method is not available for RefCounted or any of its child class.
      * By the time a RefCounted counter reaches 0, its JVM instance has already being GCed and can't be used anymore.
      */
+    @Suppress("FunctionName")
+    @GodotApiMember
     open fun _onDestroy() = Unit
 
     fun free() {

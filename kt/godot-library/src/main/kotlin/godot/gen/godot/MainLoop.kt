@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal2
 import kotlin.Boolean
@@ -82,6 +83,7 @@ public open class MainLoop : Object() {
   /**
    * Emitted when a user responds to a permission request.
    */
+  @GodotApiMember
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
@@ -91,6 +93,7 @@ public open class MainLoop : Object() {
   /**
    * Called once during initialization.
    */
+  @GodotApiMember
   public open fun _initialize(): Unit {
   }
 
@@ -100,6 +103,7 @@ public open class MainLoop : Object() {
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
    */
+  @GodotApiMember
   public open fun _physicsProcess(delta: Double): Boolean {
     throw NotImplementedError("_physics_process is not implemented for MainLoop")
   }
@@ -110,6 +114,7 @@ public open class MainLoop : Object() {
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
    */
+  @GodotApiMember
   public open fun _process(delta: Double): Boolean {
     throw NotImplementedError("_process is not implemented for MainLoop")
   }
@@ -117,6 +122,7 @@ public open class MainLoop : Object() {
   /**
    * Called before the program exits.
    */
+  @GodotApiMember
   public open fun _finalize(): Unit {
   }
 

@@ -1,25 +1,23 @@
 package godot.tests.rpctests
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.annotation.Rpc
 import godot.annotation.Sync
 
-@RegisterClass("RPCTests")
+@GodotScript("RPCTests")
 class RpcTests : Node() {
 
-    @RegisterProperty
+    @GodotMember
     var remoteSyncCalled: Boolean = false
 
     @Rpc(sync = Sync.SYNC)
-    @RegisterFunction
     fun remoteSyncTest(called: Boolean) {
         remoteSyncCalled = called
     }
 
-    @RegisterFunction
+    @GodotMember
     fun triggerFunctionRemoteSyncCall() {
         rpc(::remoteSyncTest, true)
     }

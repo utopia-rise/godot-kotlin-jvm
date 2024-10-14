@@ -7,7 +7,7 @@ You can define a abstract class and register it's members the same way as you do
 Under the hood, we only register your normal classes, and let them register all members your abstract class defines.
 
 !!! info
-    For this reason, the `@RegisterClass` annotation is optional for abstract classes.
+    For this reason, the `@GodotScript` annotation is optional for abstract classes.
 
 !!! warning
     As in Kotlin, you cannot instantiate abstract classes directly from any other scripting language like GDScript! In fact, godot does not even know (or care) that your abstract class exists.
@@ -17,22 +17,20 @@ Under the hood, we only register your normal classes, and let them register all 
 Abstract class definition:
 
 ```kotlin
-// register class annotation is optional for abstract classes
+// @GodotScript annotation is optional for abstract classes
 abstract class AbstractClassInheritanceParent: Node() {
 
     @Export
-    @RegisterProperty
     var registeredExportedPropertyInAbstractClass = false
 
-    @RegisterSignal
     val signalInAbstractClass by signal<String>("blubb")
 
-    @RegisterFunction
+    @GodotMember
     fun functionInAbstractClassWithDefaultImplementation() {
         // some implementation
     }
 
-    @RegisterFunction
+    @GodotMember
     abstract fun abstractFunction()
 }
 ```
@@ -40,14 +38,11 @@ abstract class AbstractClassInheritanceParent: Node() {
 Child class definition:
 
 ```kotlin
-@RegisterClass
+@GodotScript
 class AbstractClassInheritanceChild: AbstractClassInheritanceParent() {
-    @RegisterFunction
+    // registered automatically as the abstract class already defines the annotation
     override fun abstractFunction() {
         // some implementation
     }
 }
 ```
-
-!!! warning "Registration of overridden members"
-    As you can see in the example; you need to explicitly register any member in the child class which you override from the abstract parent class. Otherwise they will not be registered and thus are not known to godot.

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
 import godot.core.TypeManager
@@ -31,6 +32,7 @@ public open class SplitContainer : Container() {
   /**
    * Emitted when the dragger is dragged by user.
    */
+  @GodotApiMember
   public val dragged: Signal1<Long> by Signal1
 
   /**

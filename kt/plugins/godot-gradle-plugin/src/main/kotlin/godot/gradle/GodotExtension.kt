@@ -47,7 +47,7 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * Defines whether classes should be registered with the full fqName or just with their simple name. Defaults to false
      *
-     * **Note:** the custom class name in the `@RegisterClass` annotation takes precedence over this property!
+     * **Note:** the custom class name in the `@GodotScript` annotation takes precedence over this property!
      *
      * Examples:
      *

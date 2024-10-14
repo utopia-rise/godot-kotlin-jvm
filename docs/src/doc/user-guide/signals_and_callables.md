@@ -14,12 +14,10 @@ In both case, you have to provide the name of the signal parameters as strings f
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@GodotScript
 class MyScript: Node() {
-    @RegisterSignal
     val mySignal by signal1<Boolean>("reverse")
     
-    @RegisterSignal
     val mySignal = Signal1<Boolean>("mySignal", "reverse")
 }
 ```
@@ -27,9 +25,8 @@ class MyScript: Node() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@GodotScript
 public MyScript extends Node {
-    @RegisterSignal
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse"); // Only one way to do it in Java.
 }
 ```
@@ -90,17 +87,16 @@ Note that the connected method has to be a registered to Godot.
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@GodotScript
 class SomeObject: Object() {
-    @RegisterFunction
+    @GodotMember
     fun onReverseChanged(reverse: Boolean) {
         println("Value of reverse has changed: $reverse")
     }
 }
 
-@RegisterClass
+@GodotScript
 class AnotherObject: Object() { 
-    @RegisterSignal
     val mySignal by signal1<Boolean>("reverse")
     
     private val targetObject = SomeObject()
@@ -118,17 +114,16 @@ class AnotherObject: Object() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@GodotScript
 public class SomeObject extends Object {
-    @RegisterFunction
+    @GodotMember
     public void onReverseChanged(boolean reverse) {
         System.out.println("Value of reverse has changed: " + reverse);
     }
 }
 
-@RegisterClass
+@GodotScript
 public class AnotherObject extends Object {
-    @RegisterSignal
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse");
 
     private SomeObject targetObject = new SomeObject();

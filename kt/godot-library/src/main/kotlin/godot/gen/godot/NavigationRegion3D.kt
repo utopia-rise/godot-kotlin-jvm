@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Signal0
@@ -50,11 +51,13 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Notifies when the [NavigationMesh] has changed.
    */
+  @GodotApiMember
   public val navigationMeshChanged: Signal0 by Signal0
 
   /**
    * Notifies when the navigation mesh bake operation is completed.
    */
+  @GodotApiMember
   public val bakeFinished: Signal0 by Signal0
 
   /**

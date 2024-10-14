@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.Signal0
@@ -39,11 +40,13 @@ public open class Sprite2D : Node2D() {
   /**
    * Emitted when the [frame] changes.
    */
+  @GodotApiMember
   public val frameChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [texture] changes.
    */
+  @GodotApiMember
   public val textureChanged: Signal0 by Signal0
 
   /**

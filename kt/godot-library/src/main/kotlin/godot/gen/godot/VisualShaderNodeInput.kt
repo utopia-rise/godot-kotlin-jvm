@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -28,6 +29,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   /**
    * Emitted when input is changed via [inputName].
    */
+  @GodotApiMember
   public val inputTypeChanged: Signal0 by Signal0
 
   /**

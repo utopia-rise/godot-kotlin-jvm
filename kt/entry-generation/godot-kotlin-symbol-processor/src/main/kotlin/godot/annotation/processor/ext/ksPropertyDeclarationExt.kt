@@ -21,7 +21,8 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
         "Qualified name for a registered property declaration cannot be null"
     }
     val annotations = annotations
-        .mapNotNull { it.mapToAnnotation(this) as? PropertyAnnotation }
+        .flatMap { it.mapToAnnotation(this) }
+        .filterIsInstance<PropertyAnnotation>()
         .toMutableList()
         .also { declaredAnnotations ->
             declaredAnnotations.addAll(
@@ -29,7 +30,8 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
                     ?.let { overridee ->
                         overridee
                             .annotations
-                            .mapNotNull { it.mapToAnnotation(overridee) as? PropertyAnnotation }
+                            .flatMap { it.mapToAnnotation(overridee) }
+                            .filterIsInstance<PropertyAnnotation>()
                     }
                     ?: emptySequence()
             )
@@ -96,7 +98,8 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(
         "Qualified name for a registered property declaration cannot be null"
     }
     val annotations = annotations
-        .mapNotNull { it.mapToAnnotation(this) as? PropertyAnnotation }
+        .flatMap { it.mapToAnnotation(this) }
+        .filterIsInstance<PropertyAnnotation>()
 
     val mappedType = requireNotNull(type.mapToType(settings)) {
         "type of property $fqName cannot be null"

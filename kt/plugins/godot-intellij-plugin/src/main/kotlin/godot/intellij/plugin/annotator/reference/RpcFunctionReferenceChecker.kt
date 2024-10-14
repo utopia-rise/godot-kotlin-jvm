@@ -2,7 +2,7 @@ package godot.intellij.plugin.annotator.reference
 
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_MEMBER_ANNOTATION
 import godot.intellij.plugin.data.model.RPC_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
@@ -52,7 +52,7 @@ object RpcFunctionReferenceChecker {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(GODOT_MEMBER_ANNOTATION))
             val rpcAnnotation = targetFunction?.findAnnotation(FqName(RPC_ANNOTATION))
 
             when {

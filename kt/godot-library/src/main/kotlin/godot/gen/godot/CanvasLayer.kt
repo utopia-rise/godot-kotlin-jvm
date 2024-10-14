@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Signal0
@@ -54,6 +55,7 @@ public open class CanvasLayer : Node() {
   /**
    * Emitted when visibility of the layer is changed. See [visible].
    */
+  @GodotApiMember
   public val visibilityChanged: Signal0 by Signal0
 
   /**

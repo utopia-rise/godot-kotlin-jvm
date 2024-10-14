@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -44,6 +45,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns `true` if the server supports a feature.
    */
+  @GodotApiMember
   public open fun _hasFeature(feature: TextServer.Feature): Boolean {
     throw NotImplementedError("_has_feature is not implemented for TextServerExtension")
   }
@@ -52,6 +54,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the name of the server interface.
    */
+  @GodotApiMember
   public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for TextServerExtension")
   }
@@ -60,6 +63,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns text server features, see [TextServer.Feature].
    */
+  @GodotApiMember
   public open fun _getFeatures(): Long {
     throw NotImplementedError("_get_features is not implemented for TextServerExtension")
   }
@@ -68,6 +72,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Frees an object created by this [TextServer].
    */
+  @GodotApiMember
   public open fun _freeRid(rid: RID): Unit {
   }
 
@@ -75,6 +80,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns `true` if [rid] is valid resource owned by this text server.
    */
+  @GodotApiMember
   public open fun _has(rid: RID): Boolean {
     throw NotImplementedError("_has is not implemented for TextServerExtension")
   }
@@ -83,6 +89,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Loads optional TextServer database (e.g. ICU break iterators and dictionaries).
    */
+  @GodotApiMember
   public open fun _loadSupportData(filename: String): Boolean {
     throw NotImplementedError("_load_support_data is not implemented for TextServerExtension")
   }
@@ -91,6 +98,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename.
    */
+  @GodotApiMember
   public open fun _getSupportDataFilename(): String {
     throw NotImplementedError("_get_support_data_filename is not implemented for TextServerExtension")
   }
@@ -99,6 +107,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns TextServer database (e.g. ICU break iterators and dictionaries) description.
    */
+  @GodotApiMember
   public open fun _getSupportDataInfo(): String {
     throw NotImplementedError("_get_support_data_info is not implemented for TextServerExtension")
   }
@@ -107,6 +116,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file.
    */
+  @GodotApiMember
   public open fun _saveSupportData(filename: String): Boolean {
     throw NotImplementedError("_save_support_data is not implemented for TextServerExtension")
   }
@@ -115,6 +125,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns `true` if locale is right-to-left.
    */
+  @GodotApiMember
   public open fun _isLocaleRightToLeft(locale: String): Boolean {
     throw NotImplementedError("_is_locale_right_to_left is not implemented for TextServerExtension")
   }
@@ -123,6 +134,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Converts readable feature, variation, script, or language name to OpenType tag.
    */
+  @GodotApiMember
   public open fun _nameToTag(name: String): Long {
     throw NotImplementedError("_name_to_tag is not implemented for TextServerExtension")
   }
@@ -131,6 +143,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Converts OpenType tag to readable feature, variation, script, or language name.
    */
+  @GodotApiMember
   public open fun _tagToName(tag: Long): String {
     throw NotImplementedError("_tag_to_name is not implemented for TextServerExtension")
   }
@@ -139,6 +152,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Creates a new, empty font cache entry resource.
    */
+  @GodotApiMember
   public open fun _createFont(): RID {
     throw NotImplementedError("_create_font is not implemented for TextServerExtension")
   }
@@ -147,6 +161,7 @@ public open class TextServerExtension : TextServer() {
    * Optional, implement if font supports extra spacing or baseline offset.
    * Creates a new variation existing font which is reusing the same glyph cache and font data.
    */
+  @GodotApiMember
   public open fun _createFontLinkedVariation(fontRid: RID): RID {
     throw NotImplementedError("_create_font_linked_variation is not implemented for TextServerExtension")
   }
@@ -155,6 +170,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets font source data, e.g contents of the dynamic font source file.
    */
+  @GodotApiMember
   public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
   }
 
@@ -162,6 +178,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets an active face index in the TrueType / OpenType collection.
    */
+  @GodotApiMember
   public open fun _fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
   }
 
@@ -169,6 +186,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns an active face index in the TrueType / OpenType collection.
    */
+  @GodotApiMember
   public open fun _fontGetFaceIndex(fontRid: RID): Long {
     throw NotImplementedError("_font_get_face_index is not implemented for TextServerExtension")
   }
@@ -177,6 +195,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns number of faces in the TrueType / OpenType collection.
    */
+  @GodotApiMember
   public open fun _fontGetFaceCount(fontRid: RID): Long {
     throw NotImplementedError("_font_get_face_count is not implemented for TextServerExtension")
   }
@@ -185,6 +204,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets the font style flags, see [TextServer.FontStyle].
    */
+  @GodotApiMember
   public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle): Unit {
   }
 
@@ -192,6 +212,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font style flags, see [TextServer.FontStyle].
    */
+  @GodotApiMember
   public open fun _fontGetStyle(fontRid: RID): TextServer.FontStyle {
     throw NotImplementedError("_font_get_style is not implemented for TextServerExtension")
   }
@@ -200,6 +221,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets the font family name.
    */
+  @GodotApiMember
   public open fun _fontSetName(fontRid: RID, name: String): Unit {
   }
 
@@ -207,6 +229,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font family name.
    */
+  @GodotApiMember
   public open fun _fontGetName(fontRid: RID): String {
     throw NotImplementedError("_font_get_name is not implemented for TextServerExtension")
   }
@@ -216,6 +239,7 @@ public open class TextServerExtension : TextServer() {
    * Returns [Dictionary] with OpenType font name strings (localized font names, version,
    * description, license information, sample text, etc.).
    */
+  @GodotApiMember
   public open fun _fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_get_ot_name_strings is not implemented for TextServerExtension")
   }
@@ -224,6 +248,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets the font style name.
    */
+  @GodotApiMember
   public open fun _fontSetStyleName(fontRid: RID, nameStyle: String): Unit {
   }
 
@@ -231,6 +256,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font style name.
    */
+  @GodotApiMember
   public open fun _fontGetStyleName(fontRid: RID): String {
     throw NotImplementedError("_font_get_style_name is not implemented for TextServerExtension")
   }
@@ -240,6 +266,7 @@ public open class TextServerExtension : TextServer() {
    * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
+  @GodotApiMember
   public open fun _fontSetWeight(fontRid: RID, weight: Long): Unit {
   }
 
@@ -248,6 +275,7 @@ public open class TextServerExtension : TextServer() {
    * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
+  @GodotApiMember
   public open fun _fontGetWeight(fontRid: RID): Long {
     throw NotImplementedError("_font_get_weight is not implemented for TextServerExtension")
   }
@@ -257,6 +285,7 @@ public open class TextServerExtension : TextServer() {
    * Sets font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
    * `200&#37;`.
    */
+  @GodotApiMember
   public open fun _fontSetStretch(fontRid: RID, stretch: Long): Unit {
   }
 
@@ -265,6 +294,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
    * and `200&#37;`.
    */
+  @GodotApiMember
   public open fun _fontGetStretch(fontRid: RID): Long {
     throw NotImplementedError("_font_get_stretch is not implemented for TextServerExtension")
   }
@@ -273,6 +303,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets font anti-aliasing mode.
    */
+  @GodotApiMember
   public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing):
       Unit {
   }
@@ -281,6 +312,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font anti-aliasing mode.
    */
+  @GodotApiMember
   public open fun _fontGetAntialiasing(fontRid: RID): TextServer.FontAntialiasing {
     throw NotImplementedError("_font_get_antialiasing is not implemented for TextServerExtension")
   }
@@ -289,6 +321,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * If set to `true`, embedded font bitmap loading is disabled.
    */
+  @GodotApiMember
   public open fun _fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean):
       Unit {
   }
@@ -297,6 +330,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns whether the font's embedded bitmap loading is disabled.
    */
+  @GodotApiMember
   public open fun _fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
     throw NotImplementedError("_font_get_disable_embedded_bitmaps is not implemented for TextServerExtension")
   }
@@ -305,6 +339,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * If set to `true` font texture mipmap generation is enabled.
    */
+  @GodotApiMember
   public open fun _fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
   }
 
@@ -312,6 +347,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if font texture mipmap generation is enabled.
    */
+  @GodotApiMember
   public open fun _fontGetGenerateMipmaps(fontRid: RID): Boolean {
     throw NotImplementedError("_font_get_generate_mipmaps is not implemented for TextServerExtension")
   }
@@ -325,6 +361,7 @@ public open class TextServerExtension : TextServer() {
    * available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at
    * small sizes.
    */
+  @GodotApiMember
   public open fun _fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
   }
 
@@ -333,6 +370,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data.
    */
+  @GodotApiMember
   public open fun _fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
     throw NotImplementedError("_font_is_multichannel_signed_distance_field is not implemented for TextServerExtension")
   }
@@ -342,6 +380,7 @@ public open class TextServerExtension : TextServer() {
    * Sets the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
+  @GodotApiMember
   public open fun _fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
   }
 
@@ -350,6 +389,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
+  @GodotApiMember
   public open fun _fontGetMsdfPixelRange(fontRid: RID): Long {
     throw NotImplementedError("_font_get_msdf_pixel_range is not implemented for TextServerExtension")
   }
@@ -358,6 +398,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets source font size used to generate MSDF textures.
    */
+  @GodotApiMember
   public open fun _fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
   }
 
@@ -365,6 +406,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns source font size used to generate MSDF textures.
    */
+  @GodotApiMember
   public open fun _fontGetMsdfSize(fontRid: RID): Long {
     throw NotImplementedError("_font_get_msdf_size is not implemented for TextServerExtension")
   }
@@ -374,6 +416,7 @@ public open class TextServerExtension : TextServer() {
    * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used
    * for all font sizes.
    */
+  @GodotApiMember
   public open fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
   }
 
@@ -381,6 +424,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns bitmap font fixed size.
    */
+  @GodotApiMember
   public open fun _fontGetFixedSize(fontRid: RID): Long {
     throw NotImplementedError("_font_get_fixed_size is not implemented for TextServerExtension")
   }
@@ -389,6 +433,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero.
    */
+  @GodotApiMember
   public open fun _fontSetFixedSizeScaleMode(fontRid: RID,
       fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
   }
@@ -397,6 +442,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns bitmap font scaling mode.
    */
+  @GodotApiMember
   public open fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
     throw NotImplementedError("_font_get_fixed_size_scale_mode is not implemented for TextServerExtension")
   }
@@ -405,6 +451,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
+  @GodotApiMember
   public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
   }
 
@@ -412,6 +459,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if system fonts can be automatically used as fallbacks.
    */
+  @GodotApiMember
   public open fun _fontIsAllowSystemFallback(fontRid: RID): Boolean {
     throw NotImplementedError("_font_is_allow_system_fallback is not implemented for TextServerExtension")
   }
@@ -420,6 +468,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
+  @GodotApiMember
   public open fun _fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
   }
 
@@ -427,6 +476,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if auto-hinting is supported and preferred over font built-in hinting.
    */
+  @GodotApiMember
   public open fun _fontIsForceAutohinter(fontRid: RID): Boolean {
     throw NotImplementedError("_font_is_force_autohinter is not implemented for TextServerExtension")
   }
@@ -435,6 +485,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
+  @GodotApiMember
   public open fun _fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
   }
 
@@ -442,6 +493,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
+  @GodotApiMember
   public open fun _fontGetHinting(fontRid: RID): TextServer.Hinting {
     throw NotImplementedError("_font_get_hinting is not implemented for TextServerExtension")
   }
@@ -450,6 +502,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets font subpixel glyph positioning mode.
    */
+  @GodotApiMember
   public open fun _fontSetSubpixelPositioning(fontRid: RID,
       subpixelPositioning: TextServer.SubpixelPositioning): Unit {
   }
@@ -458,6 +511,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font subpixel glyph positioning mode.
    */
+  @GodotApiMember
   public open fun _fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
     throw NotImplementedError("_font_get_subpixel_positioning is not implemented for TextServerExtension")
   }
@@ -466,6 +520,7 @@ public open class TextServerExtension : TextServer() {
    * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines.
    * Negative values reduce the outline thickness.
    */
+  @GodotApiMember
   public open fun _fontSetEmbolden(fontRid: RID, strength: Double): Unit {
   }
 
@@ -473,6 +528,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font embolden strength.
    */
+  @GodotApiMember
   public open fun _fontGetEmbolden(fontRid: RID): Double {
     throw NotImplementedError("_font_get_embolden is not implemented for TextServerExtension")
   }
@@ -482,6 +538,7 @@ public open class TextServerExtension : TextServer() {
    * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
    * relative to the font size).
    */
+  @GodotApiMember
   public open fun _fontSetSpacing(
     fontRid: RID,
     spacing: TextServer.SpacingType,
@@ -494,6 +551,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
    * font size).
    */
+  @GodotApiMember
   public open fun _fontGetSpacing(fontRid: RID, spacing: TextServer.SpacingType): Long {
     throw NotImplementedError("_font_get_spacing is not implemented for TextServerExtension")
   }
@@ -502,6 +560,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets extra baseline offset (as a fraction of font height).
    */
+  @GodotApiMember
   public open fun _fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
   }
 
@@ -509,6 +568,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns extra baseline offset (as a fraction of font height).
    */
+  @GodotApiMember
   public open fun _fontGetBaselineOffset(fontRid: RID): Double {
     throw NotImplementedError("_font_get_baseline_offset is not implemented for TextServerExtension")
   }
@@ -518,6 +578,7 @@ public open class TextServerExtension : TextServer() {
    * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
    * rotating glyphs.
    */
+  @GodotApiMember
   public open fun _fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
   }
 
@@ -525,6 +586,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns 2D transform applied to the font outlines.
    */
+  @GodotApiMember
   public open fun _fontGetTransform(fontRid: RID): Transform2D {
     throw NotImplementedError("_font_get_transform is not implemented for TextServerExtension")
   }
@@ -533,6 +595,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets variation coordinates for the specified font cache entry.
    */
+  @GodotApiMember
   public open fun _fontSetVariationCoordinates(fontRid: RID,
       variationCoordinates: Dictionary<Any?, Any?>): Unit {
   }
@@ -541,6 +604,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns variation coordinates for the specified font cache entry.
    */
+  @GodotApiMember
   public open fun _fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_get_variation_coordinates is not implemented for TextServerExtension")
   }
@@ -550,6 +614,7 @@ public open class TextServerExtension : TextServer() {
    * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
    * by dynamic fonts only.
    */
+  @GodotApiMember
   public open fun _fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
   }
 
@@ -558,6 +623,7 @@ public open class TextServerExtension : TextServer() {
    * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
    * Used by dynamic fonts only.
    */
+  @GodotApiMember
   public open fun _fontGetOversampling(fontRid: RID): Double {
     throw NotImplementedError("_font_get_oversampling is not implemented for TextServerExtension")
   }
@@ -567,6 +633,7 @@ public open class TextServerExtension : TextServer() {
    * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
    * size.
    */
+  @GodotApiMember
   public open fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     throw NotImplementedError("_font_get_size_cache_list is not implemented for TextServerExtension")
   }
@@ -575,6 +642,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes all font sizes from the cache entry.
    */
+  @GodotApiMember
   public open fun _fontClearSizeCache(fontRid: RID): Unit {
   }
 
@@ -582,6 +650,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes specified font size from the cache entry.
    */
+  @GodotApiMember
   public open fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
   }
 
@@ -589,6 +658,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets the font ascent (number of pixels above the baseline).
    */
+  @GodotApiMember
   public open fun _fontSetAscent(
     fontRid: RID,
     size: Long,
@@ -600,6 +670,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the font ascent (number of pixels above the baseline).
    */
+  @GodotApiMember
   public open fun _fontGetAscent(fontRid: RID, size: Long): Double {
     throw NotImplementedError("_font_get_ascent is not implemented for TextServerExtension")
   }
@@ -608,6 +679,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets the font descent (number of pixels below the baseline).
    */
+  @GodotApiMember
   public open fun _fontSetDescent(
     fontRid: RID,
     size: Long,
@@ -619,6 +691,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the font descent (number of pixels below the baseline).
    */
+  @GodotApiMember
   public open fun _fontGetDescent(fontRid: RID, size: Long): Double {
     throw NotImplementedError("_font_get_descent is not implemented for TextServerExtension")
   }
@@ -627,6 +700,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets pixel offset of the underline below the baseline.
    */
+  @GodotApiMember
   public open fun _fontSetUnderlinePosition(
     fontRid: RID,
     size: Long,
@@ -638,6 +712,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns pixel offset of the underline below the baseline.
    */
+  @GodotApiMember
   public open fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
     throw NotImplementedError("_font_get_underline_position is not implemented for TextServerExtension")
   }
@@ -646,6 +721,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets thickness of the underline in pixels.
    */
+  @GodotApiMember
   public open fun _fontSetUnderlineThickness(
     fontRid: RID,
     size: Long,
@@ -657,6 +733,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns thickness of the underline in pixels.
    */
+  @GodotApiMember
   public open fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
     throw NotImplementedError("_font_get_underline_thickness is not implemented for TextServerExtension")
   }
@@ -665,6 +742,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets scaling factor of the color bitmap font.
    */
+  @GodotApiMember
   public open fun _fontSetScale(
     fontRid: RID,
     size: Long,
@@ -676,6 +754,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns scaling factor of the color bitmap font.
    */
+  @GodotApiMember
   public open fun _fontGetScale(fontRid: RID, size: Long): Double {
     throw NotImplementedError("_font_get_scale is not implemented for TextServerExtension")
   }
@@ -684,6 +763,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns number of textures used by font cache entry.
    */
+  @GodotApiMember
   public open fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
     throw NotImplementedError("_font_get_texture_count is not implemented for TextServerExtension")
   }
@@ -692,6 +772,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes all textures from font cache entry.
    */
+  @GodotApiMember
   public open fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit {
   }
 
@@ -699,6 +780,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes specified texture from the cache entry.
    */
+  @GodotApiMember
   public open fun _fontRemoveTexture(
     fontRid: RID,
     size: Vector2i,
@@ -710,6 +792,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets font cache texture image data.
    */
+  @GodotApiMember
   public open fun _fontSetTextureImage(
     fontRid: RID,
     size: Vector2i,
@@ -722,6 +805,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns font cache texture image data.
    */
+  @GodotApiMember
   public open fun _fontGetTextureImage(
     fontRid: RID,
     size: Vector2i,
@@ -734,6 +818,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets array containing glyph packing data.
    */
+  @GodotApiMember
   public open fun _fontSetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
@@ -746,6 +831,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns array containing glyph packing data.
    */
+  @GodotApiMember
   public open fun _fontGetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
@@ -758,6 +844,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns list of rendered glyphs in the cache entry.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
     throw NotImplementedError("_font_get_glyph_list is not implemented for TextServerExtension")
   }
@@ -766,6 +853,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes all rendered glyph information from the cache entry.
    */
+  @GodotApiMember
   public open fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
   }
 
@@ -773,6 +861,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Removes specified rendered glyph information from the cache entry.
    */
+  @GodotApiMember
   public open fun _fontRemoveGlyph(
     fontRid: RID,
     size: Vector2i,
@@ -784,6 +873,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns glyph advance (offset of the next glyph).
    */
+  @GodotApiMember
   public open fun _fontGetGlyphAdvance(
     fontRid: RID,
     size: Long,
@@ -796,6 +886,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets glyph advance (offset of the next glyph).
    */
+  @GodotApiMember
   public open fun _fontSetGlyphAdvance(
     fontRid: RID,
     size: Long,
@@ -808,6 +899,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns glyph offset from the baseline.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
@@ -820,6 +912,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets glyph offset from the baseline.
    */
+  @GodotApiMember
   public open fun _fontSetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
@@ -832,6 +925,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns size of the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphSize(
     fontRid: RID,
     size: Vector2i,
@@ -844,6 +938,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets size of the glyph.
    */
+  @GodotApiMember
   public open fun _fontSetGlyphSize(
     fontRid: RID,
     size: Vector2i,
@@ -856,6 +951,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns rectangle in the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
@@ -868,6 +964,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets rectangle in the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontSetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
@@ -880,6 +977,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns index of the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
@@ -892,6 +990,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets index of the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontSetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
@@ -904,6 +1003,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns resource ID of the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphTextureRid(
     fontRid: RID,
     size: Vector2i,
@@ -916,6 +1016,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns size of the cache texture containing the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphTextureSize(
     fontRid: RID,
     size: Vector2i,
@@ -928,6 +1029,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns outline contours of the glyph.
    */
+  @GodotApiMember
   public open fun _fontGetGlyphContours(
     fontRid: RID,
     size: Long,
@@ -940,6 +1042,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns list of the kerning overrides.
    */
+  @GodotApiMember
   public open fun _fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
     throw NotImplementedError("_font_get_kerning_list is not implemented for TextServerExtension")
   }
@@ -948,6 +1051,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Removes all kerning overrides.
    */
+  @GodotApiMember
   public open fun _fontClearKerningMap(fontRid: RID, size: Long): Unit {
   }
 
@@ -955,6 +1059,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Removes kerning override for the pair of glyphs.
    */
+  @GodotApiMember
   public open fun _fontRemoveKerning(
     fontRid: RID,
     size: Long,
@@ -966,6 +1071,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets kerning for the pair of glyphs.
    */
+  @GodotApiMember
   public open fun _fontSetKerning(
     fontRid: RID,
     size: Long,
@@ -978,6 +1084,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns kerning for the pair of glyphs.
    */
+  @GodotApiMember
   public open fun _fontGetKerning(
     fontRid: RID,
     size: Long,
@@ -990,6 +1097,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the glyph index of a [char], optionally modified by the [variationSelector].
    */
+  @GodotApiMember
   public open fun _fontGetGlyphIndex(
     fontRid: RID,
     size: Long,
@@ -1003,6 +1111,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid.
    */
+  @GodotApiMember
   public open fun _fontGetCharFromGlyphIndex(
     fontRid: RID,
     size: Long,
@@ -1015,6 +1124,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns `true` if a Unicode [char] is available in the font.
    */
+  @GodotApiMember
   public open fun _fontHasChar(fontRid: RID, char: Long): Boolean {
     throw NotImplementedError("_font_has_char is not implemented for TextServerExtension")
   }
@@ -1023,6 +1133,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns a string containing all the characters available in the font.
    */
+  @GodotApiMember
   public open fun _fontGetSupportedChars(fontRid: RID): String {
     throw NotImplementedError("_font_get_supported_chars is not implemented for TextServerExtension")
   }
@@ -1031,6 +1142,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Renders the range of characters to the font cache texture.
    */
+  @GodotApiMember
   public open fun _fontRenderRange(
     fontRid: RID,
     size: Vector2i,
@@ -1043,6 +1155,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Renders specified glyph to the font cache texture.
    */
+  @GodotApiMember
   public open fun _fontRenderGlyph(
     fontRid: RID,
     size: Vector2i,
@@ -1054,6 +1167,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size].
    */
+  @GodotApiMember
   public open fun _fontDrawGlyph(
     fontRid: RID,
     canvas: RID,
@@ -1069,6 +1183,7 @@ public open class TextServerExtension : TextServer() {
    * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
    * [fontRid] at the size [size].
    */
+  @GodotApiMember
   public open fun _fontDrawGlyphOutline(
     fontRid: RID,
     canvas: RID,
@@ -1085,6 +1200,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true`, if font supports given language
    * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
+  @GodotApiMember
   public open fun _fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     throw NotImplementedError("_font_is_language_supported is not implemented for TextServerExtension")
   }
@@ -1093,6 +1209,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Adds override for [_fontIsLanguageSupported].
    */
+  @GodotApiMember
   public open fun _fontSetLanguageSupportOverride(
     fontRid: RID,
     language: String,
@@ -1104,6 +1221,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if support override is enabled for the [language].
    */
+  @GodotApiMember
   public open fun _fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
     throw NotImplementedError("_font_get_language_support_override is not implemented for TextServerExtension")
   }
@@ -1112,6 +1230,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Remove language support override.
    */
+  @GodotApiMember
   public open fun _fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
   }
 
@@ -1119,6 +1238,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns list of language support overrides.
    */
+  @GodotApiMember
   public open fun _fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
     throw NotImplementedError("_font_get_language_support_overrides is not implemented for TextServerExtension")
   }
@@ -1127,6 +1247,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true`, if font supports given script (ISO 15924 code).
    */
+  @GodotApiMember
   public open fun _fontIsScriptSupported(fontRid: RID, script: String): Boolean {
     throw NotImplementedError("_font_is_script_supported is not implemented for TextServerExtension")
   }
@@ -1135,6 +1256,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Adds override for [_fontIsScriptSupported].
    */
+  @GodotApiMember
   public open fun _fontSetScriptSupportOverride(
     fontRid: RID,
     script: String,
@@ -1146,6 +1268,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if support override is enabled for the [script].
    */
+  @GodotApiMember
   public open fun _fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
     throw NotImplementedError("_font_get_script_support_override is not implemented for TextServerExtension")
   }
@@ -1154,6 +1277,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Removes script support override.
    */
+  @GodotApiMember
   public open fun _fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
   }
 
@@ -1161,6 +1285,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns list of script support overrides.
    */
+  @GodotApiMember
   public open fun _fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
     throw NotImplementedError("_font_get_script_support_overrides is not implemented for TextServerExtension")
   }
@@ -1169,6 +1294,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets font OpenType feature set override.
    */
+  @GodotApiMember
   public open fun _fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
       Unit {
   }
@@ -1177,6 +1303,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns font OpenType feature set override.
    */
+  @GodotApiMember
   public open fun _fontGetOpentypeFeatureOverrides(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_get_opentype_feature_overrides is not implemented for TextServerExtension")
   }
@@ -1185,6 +1312,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the dictionary of the supported OpenType features.
    */
+  @GodotApiMember
   public open fun _fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_supported_feature_list is not implemented for TextServerExtension")
   }
@@ -1193,6 +1321,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the dictionary of the supported OpenType variation coordinates.
    */
+  @GodotApiMember
   public open fun _fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("_font_supported_variation_list is not implemented for TextServerExtension")
   }
@@ -1201,6 +1330,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the font oversampling factor, shared by all fonts in the TextServer.
    */
+  @GodotApiMember
   public open fun _fontGetGlobalOversampling(): Double {
     throw NotImplementedError("_font_get_global_oversampling is not implemented for TextServerExtension")
   }
@@ -1209,6 +1339,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets oversampling factor, shared by all font in the TextServer.
    */
+  @GodotApiMember
   public open fun _fontSetGlobalOversampling(oversampling: Double): Unit {
   }
 
@@ -1217,6 +1348,7 @@ public open class TextServerExtension : TextServer() {
    * Returns size of the replacement character (box with character hexadecimal code that is drawn in
    * place of invalid characters).
    */
+  @GodotApiMember
   public open fun _getHexCodeBoxSize(size: Long, index: Long): Vector2 {
     throw NotImplementedError("_get_hex_code_box_size is not implemented for TextServerExtension")
   }
@@ -1225,6 +1357,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Draws box displaying character hexadecimal code.
    */
+  @GodotApiMember
   public open fun _drawHexCodeBox(
     canvas: RID,
     size: Long,
@@ -1238,6 +1371,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Creates a new buffer for complex text layout, with the given [direction] and [orientation].
    */
+  @GodotApiMember
   public open fun _createShapedText(direction: TextServer.Direction,
       orientation: TextServer.Orientation): RID {
     throw NotImplementedError("_create_shaped_text is not implemented for TextServerExtension")
@@ -1247,6 +1381,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Clears text buffer (removes text and inline objects).
    */
+  @GodotApiMember
   public open fun _shapedTextClear(shaped: RID): Unit {
   }
 
@@ -1255,6 +1390,7 @@ public open class TextServerExtension : TextServer() {
    * Sets desired text direction. If set to [TextServer.DIRECTION_AUTO], direction will be detected
    * based on the buffer contents and current locale.
    */
+  @GodotApiMember
   public open fun _shapedTextSetDirection(shaped: RID, direction: TextServer.Direction): Unit {
   }
 
@@ -1262,6 +1398,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns direction of the text.
    */
+  @GodotApiMember
   public open fun _shapedTextGetDirection(shaped: RID): TextServer.Direction {
     throw NotImplementedError("_shaped_text_get_direction is not implemented for TextServerExtension")
   }
@@ -1270,6 +1407,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
+  @GodotApiMember
   public open fun _shapedTextGetInferredDirection(shaped: RID): TextServer.Direction {
     throw NotImplementedError("_shaped_text_get_inferred_direction is not implemented for TextServerExtension")
   }
@@ -1278,6 +1416,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Overrides BiDi for the structured text.
    */
+  @GodotApiMember
   public open fun _shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
   }
 
@@ -1286,6 +1425,7 @@ public open class TextServerExtension : TextServer() {
    * Sets custom punctuation character list, used for word breaking. If set to empty string, server
    * defaults are used.
    */
+  @GodotApiMember
   public open fun _shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
   }
 
@@ -1294,6 +1434,7 @@ public open class TextServerExtension : TextServer() {
    * Returns custom punctuation character list, used for word breaking. If set to empty string,
    * server defaults are used.
    */
+  @GodotApiMember
   public open fun _shapedTextGetCustomPunctuation(shaped: RID): String {
     throw NotImplementedError("_shaped_text_get_custom_punctuation is not implemented for TextServerExtension")
   }
@@ -1302,6 +1443,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets ellipsis character used for text clipping.
    */
+  @GodotApiMember
   public open fun _shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
   }
 
@@ -1309,6 +1451,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns ellipsis character used for text clipping.
    */
+  @GodotApiMember
   public open fun _shapedTextGetCustomEllipsis(shaped: RID): Long {
     throw NotImplementedError("_shaped_text_get_custom_ellipsis is not implemented for TextServerExtension")
   }
@@ -1317,6 +1460,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets desired text orientation.
    */
+  @GodotApiMember
   public open fun _shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation):
       Unit {
   }
@@ -1325,6 +1469,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns text orientation.
    */
+  @GodotApiMember
   public open fun _shapedTextGetOrientation(shaped: RID): TextServer.Orientation {
     throw NotImplementedError("_shaped_text_get_orientation is not implemented for TextServerExtension")
   }
@@ -1334,6 +1479,7 @@ public open class TextServerExtension : TextServer() {
    * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise
    * nothing is displayed.
    */
+  @GodotApiMember
   public open fun _shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
   }
 
@@ -1342,6 +1488,7 @@ public open class TextServerExtension : TextServer() {
    * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid
    * characters.
    */
+  @GodotApiMember
   public open fun _shapedTextGetPreserveInvalid(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_get_preserve_invalid is not implemented for TextServerExtension")
   }
@@ -1350,6 +1497,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * If set to `true` text buffer will display control characters.
    */
+  @GodotApiMember
   public open fun _shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
   }
 
@@ -1357,6 +1505,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if text buffer is configured to display control characters.
    */
+  @GodotApiMember
   public open fun _shapedTextGetPreserveControl(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_get_preserve_control is not implemented for TextServerExtension")
   }
@@ -1365,6 +1514,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Sets extra spacing added between glyphs or lines in pixels.
    */
+  @GodotApiMember
   public open fun _shapedTextSetSpacing(
     shaped: RID,
     spacing: TextServer.SpacingType,
@@ -1376,6 +1526,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns extra spacing added between glyphs or lines in pixels.
    */
+  @GodotApiMember
   public open fun _shapedTextGetSpacing(shaped: RID, spacing: TextServer.SpacingType): Long {
     throw NotImplementedError("_shaped_text_get_spacing is not implemented for TextServerExtension")
   }
@@ -1384,6 +1535,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Adds text span and font to draw it to the text buffer.
    */
+  @GodotApiMember
   public open fun _shapedTextAddString(
     shaped: RID,
     text: String,
@@ -1401,6 +1553,7 @@ public open class TextServerExtension : TextServer() {
    * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
    * as [length] object replacement characters.
    */
+  @GodotApiMember
   public open fun _shapedTextAddObject(
     shaped: RID,
     key: Any?,
@@ -1416,6 +1569,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Sets new size and alignment of embedded object.
    */
+  @GodotApiMember
   public open fun _shapedTextResizeObject(
     shaped: RID,
     key: Any?,
@@ -1430,6 +1584,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns number of text spans added using [_shapedTextAddString] or [_shapedTextAddObject].
    */
+  @GodotApiMember
   public open fun _shapedGetSpanCount(shaped: RID): Long {
     throw NotImplementedError("_shaped_get_span_count is not implemented for TextServerExtension")
   }
@@ -1438,6 +1593,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns text span metadata.
    */
+  @GodotApiMember
   public open fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     throw NotImplementedError("_shaped_get_span_meta is not implemented for TextServerExtension")
   }
@@ -1446,6 +1602,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Changes text span font, font size, and OpenType features, without changing the text.
    */
+  @GodotApiMember
   public open fun _shapedSetSpanUpdateFont(
     shaped: RID,
     index: Long,
@@ -1460,6 +1617,7 @@ public open class TextServerExtension : TextServer() {
    * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
    * objects).
    */
+  @GodotApiMember
   public open fun _shapedTextSubstr(
     shaped: RID,
     start: Long,
@@ -1472,6 +1630,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the parent buffer from which the substring originates.
    */
+  @GodotApiMember
   public open fun _shapedTextGetParent(shaped: RID): RID {
     throw NotImplementedError("_shaped_text_get_parent is not implemented for TextServerExtension")
   }
@@ -1480,6 +1639,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Adjusts text width to fit to specified width, returns new text width.
    */
+  @GodotApiMember
   public open fun _shapedTextFitToWidth(
     shaped: RID,
     width: Double,
@@ -1492,6 +1652,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Aligns shaped text to the given tab-stops.
    */
+  @GodotApiMember
   public open fun _shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
     throw NotImplementedError("_shaped_text_tab_align is not implemented for TextServerExtension")
   }
@@ -1500,6 +1661,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.
    */
+  @GodotApiMember
   public open fun _shapedTextShape(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_shape is not implemented for TextServerExtension")
   }
@@ -1509,6 +1671,7 @@ public open class TextServerExtension : TextServer() {
    * Updates break points in the shaped text. This method is called by default implementation of
    * text breaking functions.
    */
+  @GodotApiMember
   public open fun _shapedTextUpdateBreaks(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_update_breaks is not implemented for TextServerExtension")
   }
@@ -1518,6 +1681,7 @@ public open class TextServerExtension : TextServer() {
    * Updates justification points in the shaped text. This method is called by default
    * implementation of text justification functions.
    */
+  @GodotApiMember
   public open fun _shapedTextUpdateJustificationOps(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_update_justification_ops is not implemented for TextServerExtension")
   }
@@ -1526,6 +1690,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns `true` if buffer is successfully shaped.
    */
+  @GodotApiMember
   public open fun _shapedTextIsReady(shaped: RID): Boolean {
     throw NotImplementedError("_shaped_text_is_ready is not implemented for TextServerExtension")
   }
@@ -1534,6 +1699,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns number of glyphs in the buffer.
    */
+  @GodotApiMember
   public open fun _shapedTextGetGlyphCount(shaped: RID): Long {
     throw NotImplementedError("_shaped_text_get_glyph_count is not implemented for TextServerExtension")
   }
@@ -1542,6 +1708,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns substring buffer character range in the parent buffer.
    */
+  @GodotApiMember
   public open fun _shapedTextGetRange(shaped: RID): Vector2i {
     throw NotImplementedError("_shaped_text_get_range is not implemented for TextServerExtension")
   }
@@ -1550,6 +1717,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Breaks text to the lines and columns. Returns character ranges for each segment.
    */
+  @GodotApiMember
   public open fun _shapedTextGetLineBreaksAdv(
     shaped: RID,
     width: PackedFloat32Array,
@@ -1564,6 +1732,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Breaks text to the lines and returns character ranges for each line.
    */
+  @GodotApiMember
   public open fun _shapedTextGetLineBreaks(
     shaped: RID,
     width: Double,
@@ -1578,6 +1747,7 @@ public open class TextServerExtension : TextServer() {
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
    * characters are used for breaking (see [TextServer.GraphemeFlag]).
    */
+  @GodotApiMember
   public open fun _shapedTextGetWordBreaks(
     shaped: RID,
     graphemeFlags: TextServer.GraphemeFlag,
@@ -1590,6 +1760,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the position of the overrun trim.
    */
+  @GodotApiMember
   public open fun _shapedTextGetTrimPos(shaped: RID): Long {
     throw NotImplementedError("_shaped_text_get_trim_pos is not implemented for TextServerExtension")
   }
@@ -1598,6 +1769,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns position of the ellipsis.
    */
+  @GodotApiMember
   public open fun _shapedTextGetEllipsisPos(shaped: RID): Long {
     throw NotImplementedError("_shaped_text_get_ellipsis_pos is not implemented for TextServerExtension")
   }
@@ -1606,6 +1778,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns number of glyphs in the ellipsis.
    */
+  @GodotApiMember
   public open fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
     throw NotImplementedError("_shaped_text_get_ellipsis_glyph_count is not implemented for TextServerExtension")
   }
@@ -1614,6 +1787,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Trims text if it exceeds the given width.
    */
+  @GodotApiMember
   public open fun _shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double,
@@ -1625,6 +1799,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns array of inline objects.
    */
+  @GodotApiMember
   public open fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
     throw NotImplementedError("_shaped_text_get_objects is not implemented for TextServerExtension")
   }
@@ -1633,6 +1808,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns bounding rectangle of the inline object.
    */
+  @GodotApiMember
   public open fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     throw NotImplementedError("_shaped_text_get_object_rect is not implemented for TextServerExtension")
   }
@@ -1641,6 +1817,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the character range of the inline object.
    */
+  @GodotApiMember
   public open fun _shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
     throw NotImplementedError("_shaped_text_get_object_range is not implemented for TextServerExtension")
   }
@@ -1649,6 +1826,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns the glyph index of the inline object.
    */
+  @GodotApiMember
   public open fun _shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
     throw NotImplementedError("_shaped_text_get_object_glyph is not implemented for TextServerExtension")
   }
@@ -1657,6 +1835,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns size of the text.
    */
+  @GodotApiMember
   public open fun _shapedTextGetSize(shaped: RID): Vector2 {
     throw NotImplementedError("_shaped_text_get_size is not implemented for TextServerExtension")
   }
@@ -1666,6 +1845,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
    * left of baseline for vertical).
    */
+  @GodotApiMember
   public open fun _shapedTextGetAscent(shaped: RID): Double {
     throw NotImplementedError("_shaped_text_get_ascent is not implemented for TextServerExtension")
   }
@@ -1675,6 +1855,7 @@ public open class TextServerExtension : TextServer() {
    * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
    * right of baseline for vertical).
    */
+  @GodotApiMember
   public open fun _shapedTextGetDescent(shaped: RID): Double {
     throw NotImplementedError("_shaped_text_get_descent is not implemented for TextServerExtension")
   }
@@ -1683,6 +1864,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
+  @GodotApiMember
   public open fun _shapedTextGetWidth(shaped: RID): Double {
     throw NotImplementedError("_shaped_text_get_width is not implemented for TextServerExtension")
   }
@@ -1691,6 +1873,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns pixel offset of the underline below the baseline.
    */
+  @GodotApiMember
   public open fun _shapedTextGetUnderlinePosition(shaped: RID): Double {
     throw NotImplementedError("_shaped_text_get_underline_position is not implemented for TextServerExtension")
   }
@@ -1699,6 +1882,7 @@ public open class TextServerExtension : TextServer() {
    * **Required.**
    * Returns thickness of the underline.
    */
+  @GodotApiMember
   public open fun _shapedTextGetUnderlineThickness(shaped: RID): Double {
     throw NotImplementedError("_shaped_text_get_underline_thickness is not implemented for TextServerExtension")
   }
@@ -1707,6 +1891,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns dominant direction of in the range of text.
    */
+  @GodotApiMember
   public open fun _shapedTextGetDominantDirectionInRange(
     shaped: RID,
     start: Long,
@@ -1719,6 +1904,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns selection rectangles for the specified character range.
    */
+  @GodotApiMember
   public open fun _shapedTextGetSelection(
     shaped: RID,
     start: Long,
@@ -1731,6 +1917,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns grapheme index at the specified pixel offset at the baseline, or `-1` if none is found.
    */
+  @GodotApiMember
   public open fun _shapedTextHitTestGrapheme(shaped: RID, coord: Double): Long {
     throw NotImplementedError("_shaped_text_hit_test_grapheme is not implemented for TextServerExtension")
   }
@@ -1740,6 +1927,7 @@ public open class TextServerExtension : TextServer() {
    * Returns caret character offset at the specified pixel offset at the baseline. This function
    * always returns a valid position.
    */
+  @GodotApiMember
   public open fun _shapedTextHitTestPosition(shaped: RID, coord: Double): Long {
     throw NotImplementedError("_shaped_text_hit_test_position is not implemented for TextServerExtension")
   }
@@ -1750,6 +1938,7 @@ public open class TextServerExtension : TextServer() {
    * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
    * vertical layout).
    */
+  @GodotApiMember
   public open fun _shapedTextDraw(
     shaped: RID,
     canvas: RID,
@@ -1766,6 +1955,7 @@ public open class TextServerExtension : TextServer() {
    * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
    * baseline (for vertical layout).
    */
+  @GodotApiMember
   public open fun _shapedTextDrawOutline(
     shaped: RID,
     canvas: RID,
@@ -1781,6 +1971,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns composite character's bounds as offsets from the start of the line.
    */
+  @GodotApiMember
   public open fun _shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
     throw NotImplementedError("_shaped_text_get_grapheme_bounds is not implemented for TextServerExtension")
   }
@@ -1789,6 +1980,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns grapheme end position closest to the [pos].
    */
+  @GodotApiMember
   public open fun _shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
     throw NotImplementedError("_shaped_text_next_grapheme_pos is not implemented for TextServerExtension")
   }
@@ -1797,6 +1989,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns grapheme start position closest to the [pos].
    */
+  @GodotApiMember
   public open fun _shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
     throw NotImplementedError("_shaped_text_prev_grapheme_pos is not implemented for TextServerExtension")
   }
@@ -1805,6 +1998,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns array of the composite character boundaries.
    */
+  @GodotApiMember
   public open fun _shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
     throw NotImplementedError("_shaped_text_get_character_breaks is not implemented for TextServerExtension")
   }
@@ -1813,6 +2007,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns composite character end position closest to the [pos].
    */
+  @GodotApiMember
   public open fun _shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
     throw NotImplementedError("_shaped_text_next_character_pos is not implemented for TextServerExtension")
   }
@@ -1821,6 +2016,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns composite character start position closest to the [pos].
    */
+  @GodotApiMember
   public open fun _shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
     throw NotImplementedError("_shaped_text_prev_character_pos is not implemented for TextServerExtension")
   }
@@ -1829,6 +2025,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns composite character position closest to the [pos].
    */
+  @GodotApiMember
   public open fun _shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
     throw NotImplementedError("_shaped_text_closest_character_pos is not implemented for TextServerExtension")
   }
@@ -1837,6 +2034,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
    */
+  @GodotApiMember
   public open fun _formatNumber(number: String, language: String): String {
     throw NotImplementedError("_format_number is not implemented for TextServerExtension")
   }
@@ -1845,6 +2043,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
    */
+  @GodotApiMember
   public open fun _parseNumber(number: String, language: String): String {
     throw NotImplementedError("_parse_number is not implemented for TextServerExtension")
   }
@@ -1853,6 +2052,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns percent sign used in the [language].
    */
+  @GodotApiMember
   public open fun _percentSign(language: String): String {
     throw NotImplementedError("_percent_sign is not implemented for TextServerExtension")
   }
@@ -1861,6 +2061,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Strips diacritics from the string.
    */
+  @GodotApiMember
   public open fun _stripDiacritics(string: String): String {
     throw NotImplementedError("_strip_diacritics is not implemented for TextServerExtension")
   }
@@ -1869,10 +2070,12 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if [string] is a valid identifier.
    */
+  @GodotApiMember
   public open fun _isValidIdentifier(string: String): Boolean {
     throw NotImplementedError("_is_valid_identifier is not implemented for TextServerExtension")
   }
 
+  @GodotApiMember
   public open fun _isValidLetter(unicode: Long): Boolean {
     throw NotImplementedError("_is_valid_letter is not implemented for TextServerExtension")
   }
@@ -1882,6 +2085,7 @@ public open class TextServerExtension : TextServer() {
    * Returns an array of the word break boundaries. Elements in the returned array are the offsets
    * of the start and end of words. Therefore the length of the array is always even.
    */
+  @GodotApiMember
   public open fun _stringGetWordBreaks(
     string: String,
     language: String,
@@ -1894,6 +2098,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns array of the composite character boundaries.
    */
+  @GodotApiMember
   public open fun _stringGetCharacterBreaks(string: String, language: String): PackedInt32Array {
     throw NotImplementedError("_string_get_character_breaks is not implemented for TextServerExtension")
   }
@@ -1903,6 +2108,7 @@ public open class TextServerExtension : TextServer() {
    * Returns index of the first string in [dict] which is visually confusable with the [string], or
    * `-1` if none is found.
    */
+  @GodotApiMember
   public open fun _isConfusable(string: String, dict: PackedStringArray): Long {
     throw NotImplementedError("_is_confusable is not implemented for TextServerExtension")
   }
@@ -1911,6 +2117,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns `true` if [string] is likely to be an attempt at confusing the reader.
    */
+  @GodotApiMember
   public open fun _spoofCheck(string: String): Boolean {
     throw NotImplementedError("_spoof_check is not implemented for TextServerExtension")
   }
@@ -1919,6 +2126,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the string converted to uppercase.
    */
+  @GodotApiMember
   public open fun _stringToUpper(string: String, language: String): String {
     throw NotImplementedError("_string_to_upper is not implemented for TextServerExtension")
   }
@@ -1927,6 +2135,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the string converted to lowercase.
    */
+  @GodotApiMember
   public open fun _stringToLower(string: String, language: String): String {
     throw NotImplementedError("_string_to_lower is not implemented for TextServerExtension")
   }
@@ -1935,6 +2144,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * Returns the string converted to title case.
    */
+  @GodotApiMember
   public open fun _stringToTitle(string: String, language: String): String {
     throw NotImplementedError("_string_to_title is not implemented for TextServerExtension")
   }
@@ -1944,6 +2154,7 @@ public open class TextServerExtension : TextServer() {
    * Default implementation of the BiDi algorithm override function. See
    * [TextServer.StructuredTextParser] for more info.
    */
+  @GodotApiMember
   public open fun _parseStructuredText(
     parserType: TextServer.StructuredTextParser,
     args: VariantArray<Any?>,
@@ -1956,6 +2167,7 @@ public open class TextServerExtension : TextServer() {
    * **Optional.**
    * This method is called before text server is unregistered.
    */
+  @GodotApiMember
   public open fun _cleanup(): Unit {
   }
 

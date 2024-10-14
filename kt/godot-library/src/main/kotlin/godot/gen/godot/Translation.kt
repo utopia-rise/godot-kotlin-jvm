@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -51,6 +52,7 @@ public open class Translation : Resource() {
   /**
    * Virtual method to override [getPluralMessage].
    */
+  @GodotApiMember
   public open fun _getPluralMessage(
     srcMessage: StringName,
     srcPluralMessage: StringName,
@@ -63,6 +65,7 @@ public open class Translation : Resource() {
   /**
    * Virtual method to override [getMessage].
    */
+  @GodotApiMember
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
     throw NotImplementedError("_get_message is not implemented for Translation")
   }

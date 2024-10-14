@@ -1,35 +1,35 @@
 package godot.tests.coretypes
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotMember
+import godot.annotation.GodotScript
 import godot.core.Basis
 import godot.core.Quaternion
 import godot.core.Vector3
 
-@RegisterClass
+@GodotScript
 class BasisTest : Node() {
 
-    @RegisterFunction
+    @GodotMember
     fun getFromBasis(basis: Basis, index: Int) = basis[index]
 
-    @RegisterFunction
+    @GodotMember
     fun setInBasis(basis: Basis, index: Int, vector3: Vector3): Basis {
         basis[index] = vector3
         return basis
     }
 
-    @RegisterFunction
+    @GodotMember
     fun getRotationQuat(basis: Basis): Quaternion {
         return basis.getRotationQuaternion()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun newJvmBasis(): Basis {
         return Basis()
     }
 
-    @RegisterFunction
+    @GodotMember
     fun isEqualApproxJvm(a: Basis, b: Basis): Boolean {
         return a.isEqualApprox(b)
     }

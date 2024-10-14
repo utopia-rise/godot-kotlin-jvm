@@ -152,12 +152,11 @@ You can implement [_notification](https://docs.godotengine.org/en/stable/classes
 and have class hierarchy notification call without using `super` call, as in GDScript and C++. However, the syntax is a bit different:
 
 ```kotlin
-@RegisterFunction
 override fun _notification() = godotNotification {
   // ...
 }
 ```  
-Currently this feature except abstract classes.  
+Currently, this feature does not work for abstract classes.  
 
 ## StringName and NodePath
 

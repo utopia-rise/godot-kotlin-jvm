@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.NodePath
@@ -58,6 +59,7 @@ public open class Node3D : Node() {
   /**
    * Emitted when node visibility changes.
    */
+  @GodotApiMember
   public val visibilityChanged: Signal0 by Signal0
 
   /**

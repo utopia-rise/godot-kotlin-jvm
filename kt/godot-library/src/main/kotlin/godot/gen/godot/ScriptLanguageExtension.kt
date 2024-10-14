@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
@@ -26,44 +27,55 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     callConstructor(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _init(): Unit {
   }
 
+  @GodotApiMember
   public open fun _getType(): String {
     throw NotImplementedError("_get_type is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getExtension(): String {
     throw NotImplementedError("_get_extension is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _finish(): Unit {
   }
 
+  @GodotApiMember
   public open fun _getReservedWords(): PackedStringArray {
     throw NotImplementedError("_get_reserved_words is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _isControlFlowKeyword(keyword: String): Boolean {
     throw NotImplementedError("_is_control_flow_keyword is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getCommentDelimiters(): PackedStringArray {
     throw NotImplementedError("_get_comment_delimiters is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getDocCommentDelimiters(): PackedStringArray {
     throw NotImplementedError("_get_doc_comment_delimiters is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getStringDelimiters(): PackedStringArray {
     throw NotImplementedError("_get_string_delimiters is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _makeTemplate(
     template: String,
     className: String,
@@ -72,14 +84,17 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_make_template is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getBuiltInTemplates(`object`: StringName): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_built_in_templates is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _isUsingTemplates(): Boolean {
     throw NotImplementedError("_is_using_templates is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _validate(
     script: String,
     path: String,
@@ -91,26 +106,32 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_validate is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _validatePath(path: String): String {
     throw NotImplementedError("_validate_path is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _createScript(): Object? {
     throw NotImplementedError("_create_script is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _hasNamedClasses(): Boolean {
     throw NotImplementedError("_has_named_classes is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _supportsBuiltinMode(): Boolean {
     throw NotImplementedError("_supports_builtin_mode is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _supportsDocumentation(): Boolean {
     throw NotImplementedError("_supports_documentation is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _canInheritFromFile(): Boolean {
     throw NotImplementedError("_can_inherit_from_file is not implemented for ScriptLanguageExtension")
   }
@@ -119,10 +140,12 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    * Returns the line where the function is defined in the code, or `-1` if the function is not
    * present.
    */
+  @GodotApiMember
   public open fun _findFunction(function: String, code: String): Int {
     throw NotImplementedError("_find_function is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _makeFunction(
     className: String,
     functionName: String,
@@ -131,10 +154,12 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_make_function is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _canMakeFunction(): Boolean {
     throw NotImplementedError("_can_make_function is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _openInExternalEditor(
     script: Script?,
     line: Int,
@@ -143,14 +168,17 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_open_in_external_editor is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _overridesExternalEditor(): Boolean {
     throw NotImplementedError("_overrides_external_editor is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _preferredFileNameCasing(): ScriptLanguage.ScriptNameCasing {
     throw NotImplementedError("_preferred_file_name_casing is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _completeCode(
     code: String,
     path: String,
@@ -159,6 +187,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_complete_code is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _lookupCode(
     code: String,
     symbol: String,
@@ -168,6 +197,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_lookup_code is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _autoIndentCode(
     code: String,
     fromLine: Int,
@@ -176,33 +206,42 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_auto_indent_code is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _addGlobalConstant(name: StringName, `value`: Any?): Unit {
   }
 
+  @GodotApiMember
   public open fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit {
   }
 
+  @GodotApiMember
   public open fun _removeNamedGlobalConstant(name: StringName): Unit {
   }
 
+  @GodotApiMember
   public open fun _threadEnter(): Unit {
   }
 
+  @GodotApiMember
   public open fun _threadExit(): Unit {
   }
 
+  @GodotApiMember
   public open fun _debugGetError(): String {
     throw NotImplementedError("_debug_get_error is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetStackLevelCount(): Int {
     throw NotImplementedError("_debug_get_stack_level_count is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetStackLevelLine(level: Int): Int {
     throw NotImplementedError("_debug_get_stack_level_line is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetStackLevelFunction(level: Int): String {
     throw NotImplementedError("_debug_get_stack_level_function is not implemented for ScriptLanguageExtension")
   }
@@ -210,10 +249,12 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    * Returns the source associated with a given debug stack position.
    */
+  @GodotApiMember
   public open fun _debugGetStackLevelSource(level: Int): String {
     throw NotImplementedError("_debug_get_stack_level_source is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetStackLevelLocals(
     level: Int,
     maxSubitems: Int,
@@ -222,6 +263,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_debug_get_stack_level_locals is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetStackLevelMembers(
     level: Int,
     maxSubitems: Int,
@@ -230,10 +272,12 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_debug_get_stack_level_members is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetGlobals(maxSubitems: Int, maxDepth: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_globals is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugParseStackLevelExpression(
     level: Int,
     expression: String,
@@ -243,48 +287,61 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_debug_parse_stack_level_expression is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _debugGetCurrentStackInfo(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_debug_get_current_stack_info is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _reloadAllScripts(): Unit {
   }
 
+  @GodotApiMember
   public open fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
   }
 
+  @GodotApiMember
   public open fun _getRecognizedExtensions(): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getPublicFunctions(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_public_functions is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getPublicConstants(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_public_constants is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getPublicAnnotations(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_public_annotations is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _profilingStart(): Unit {
   }
 
+  @GodotApiMember
   public open fun _profilingStop(): Unit {
   }
 
+  @GodotApiMember
   public open fun _profilingSetSaveNativeCalls(enable: Boolean): Unit {
   }
 
+  @GodotApiMember
   public open fun _frame(): Unit {
   }
 
+  @GodotApiMember
   public open fun _handlesGlobalClassType(type: String): Boolean {
     throw NotImplementedError("_handles_global_class_type is not implemented for ScriptLanguageExtension")
   }
 
+  @GodotApiMember
   public open fun _getGlobalClassName(path: String): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_global_class_name is not implemented for ScriptLanguageExtension")
   }

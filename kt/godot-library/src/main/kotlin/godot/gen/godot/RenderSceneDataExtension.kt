@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Projection
 import godot.core.RID
@@ -29,6 +30,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
   /**
    * Implement this in GDExtension to return the camera [Transform3D].
    */
+  @GodotApiMember
   public open fun _getCamTransform(): Transform3D {
     throw NotImplementedError("_get_cam_transform is not implemented for RenderSceneDataExtension")
   }
@@ -36,6 +38,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
   /**
    * Implement this in GDExtension to return the camera [Projection].
    */
+  @GodotApiMember
   public open fun _getCamProjection(): Projection {
     throw NotImplementedError("_get_cam_projection is not implemented for RenderSceneDataExtension")
   }
@@ -43,6 +46,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
   /**
    * Implement this in GDExtension to return the view count.
    */
+  @GodotApiMember
   public open fun _getViewCount(): Long {
     throw NotImplementedError("_get_view_count is not implemented for RenderSceneDataExtension")
   }
@@ -50,6 +54,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
   /**
    * Implement this in GDExtension to return the eye offset for the given [view].
    */
+  @GodotApiMember
   public open fun _getViewEyeOffset(view: Long): Vector3 {
     throw NotImplementedError("_get_view_eye_offset is not implemented for RenderSceneDataExtension")
   }
@@ -57,6 +62,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
   /**
    * Implement this in GDExtension to return the view [Projection] for the given [view].
    */
+  @GodotApiMember
   public open fun _getViewProjection(view: Long): Projection {
     throw NotImplementedError("_get_view_projection is not implemented for RenderSceneDataExtension")
   }
@@ -65,6 +71,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
    * Implement this in GDExtension to return the [RID] of the uniform buffer containing the scene
    * data as a UBO.
    */
+  @GodotApiMember
   public open fun _getUniformBuffer(): RID {
     throw NotImplementedError("_get_uniform_buffer is not implemented for RenderSceneDataExtension")
   }

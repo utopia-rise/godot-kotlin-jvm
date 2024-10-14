@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -45,6 +46,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * Emitted every time the blend space's triangles are created, removed, or when one of their
    * vertices changes position.
    */
+  @GodotApiMember
   public val trianglesUpdated: Signal0 by Signal0
 
   /**

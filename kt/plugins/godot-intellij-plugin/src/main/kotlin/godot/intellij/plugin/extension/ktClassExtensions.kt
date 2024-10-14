@@ -1,7 +1,7 @@
 package godot.intellij.plugin.extension
 
 import com.intellij.psi.PsiClass
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.GODOT_SCRIPT_ANNOTATION
 import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
 import godot.tools.common.constants.FileExtensions
 import org.jetbrains.kotlin.asJava.toLightClass
@@ -12,9 +12,9 @@ import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 
 /**
- * Gets custom name defined in `@RegisterClass` annotation if defined, fqName or simple name otherwise
+ * Gets custom name defined in `@GodotScript` annotation if defined, fqName or simple name otherwise
  *
- * @return fqName to registered class name or `null` if not annotated with `@RegisterClass`
+ * @return fqName to registered class name or `null` if not annotated with `@GodotScript`
  */
 fun KtClass.getRegisteredClassName(): Pair<String, String>? = this.toLightClass()?.getRegisteredClassName()
 
@@ -29,7 +29,7 @@ fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
         name
     }
 
-    val customName = getAnnotation(REGISTER_CLASS_ANNOTATION)
+    val customName = getAnnotation(GODOT_SCRIPT_ANNOTATION)
         ?.findAttributeValue("className")
         ?.text
         ?.removeSurrounding("\"")
@@ -43,7 +43,7 @@ fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
 fun KtClass.getRegistrationFilePath(): String? = this.toLightClass()?.getRegistrationFilePath()
 
 fun PsiClass.getRegistrationFilePath(): String? {
-    return if (annotations.any { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION }) {
+    return if (annotations.any { annotation -> annotation.qualifiedName == GODOT_SCRIPT_ANNOTATION }) {
         val fqName = qualifiedName ?: return null
         val registeredName = getRegisteredClassName()?.second ?: return null
 

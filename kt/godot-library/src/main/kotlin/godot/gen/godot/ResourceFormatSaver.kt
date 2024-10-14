@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import kotlin.Boolean
@@ -37,6 +38,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * with [ResourceSaver.SaverFlags] constants.
    * Returns [OK] on success, or an [Error] constant in case of failure.
    */
+  @GodotApiMember
   public open fun _save(
     resource: Resource?,
     path: String,
@@ -49,6 +51,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * Sets a new UID for the resource at the given [path]. Returns [OK] on success, or an [Error]
    * constant in case of failure.
    */
+  @GodotApiMember
   public open fun _setUid(path: String, uid: Long): Error {
     throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")
   }
@@ -56,6 +59,7 @@ public open class ResourceFormatSaver : RefCounted() {
   /**
    * Returns whether the given resource object can be saved by this saver.
    */
+  @GodotApiMember
   public open fun _recognize(resource: Resource?): Boolean {
     throw NotImplementedError("_recognize is not implemented for ResourceFormatSaver")
   }
@@ -64,6 +68,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * Returns the list of extensions available for saving the resource object, provided it is
    * recognized (see [_recognize]).
    */
+  @GodotApiMember
   public open fun _getRecognizedExtensions(resource: Resource?): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
   }
@@ -73,6 +78,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * If this method is not implemented, the default behavior returns whether the path's extension is
    * within the ones provided by [_getRecognizedExtensions].
    */
+  @GodotApiMember
   public open fun _recognizePath(resource: Resource?, path: String): Boolean {
     throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")
   }
