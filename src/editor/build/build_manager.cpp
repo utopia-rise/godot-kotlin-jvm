@@ -49,11 +49,9 @@ bool BuildManager::build_project_blocking() {
         // When in blocking mode, only make the window appears when it fails
         GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log);
         return false;
-    } else {
-        GodotKotlinJvmEditor::get_instance()->on_build_finished();
-        return true;
     }
-
+    GodotKotlinJvmEditor::get_instance()->on_build_finished();
+    return true;
 }
 
 void BuildManager::build_task(void* p_userdata) {
