@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -114,67 +114,67 @@ public open class AudioStreamMP3 : AudioStream() {
 
   public final fun setData(`data`: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
 
   public final fun getData(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setLoop(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
 
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoopOffset(seconds: Double): Unit {
     TransferContext.writeArguments(DOUBLE to seconds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLoopOffsetPtr, NIL)
   }
 
   public final fun getLoopOffset(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLoopOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBpm(bpm: Double): Unit {
     TransferContext.writeArguments(DOUBLE to bpm)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBpmPtr, NIL)
   }
 
   public final fun getBpm(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBeatCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBeatCountPtr, NIL)
   }
 
   public final fun getBeatCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBeatCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBarBeats(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBarBeatsPtr, NIL)
   }
 
   public final fun getBarBeats(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBarBeatsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

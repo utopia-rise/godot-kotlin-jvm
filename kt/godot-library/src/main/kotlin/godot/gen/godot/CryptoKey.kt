@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -41,7 +41,7 @@ public open class CryptoKey : Resource() {
   @JvmOverloads
   public final fun save(path: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -52,7 +52,7 @@ public open class CryptoKey : Resource() {
   @JvmOverloads
   public final fun load(path: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -61,7 +61,7 @@ public open class CryptoKey : Resource() {
    */
   public final fun isPublicOnly(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPublicOnlyPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPublicOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -72,7 +72,7 @@ public open class CryptoKey : Resource() {
   @JvmOverloads
   public final fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -83,7 +83,7 @@ public open class CryptoKey : Resource() {
   @JvmOverloads
   public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadFromStringPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

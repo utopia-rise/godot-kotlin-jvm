@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Basis
 import godot.core.Dictionary
 import godot.core.Quaternion
@@ -23,7 +24,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -318,7 +318,7 @@ public open class GLTFPhysicsBody : Resource() {
    */
   public final fun toNode(): CollisionObject3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CollisionObject3D?)
   }
 
@@ -328,96 +328,96 @@ public open class GLTFPhysicsBody : Resource() {
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBodyType(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTypePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getBodyTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setBodyType(bodyType: String): Unit {
     TransferContext.writeArguments(STRING to bodyType)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBodyTypePtr, NIL)
   }
 
   public final fun getMass(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMass(mass: Float): Unit {
     TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMassPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to linearVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to angularVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getCenterOfMass(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCenterOfMass(centerOfMass: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to centerOfMass)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCenterOfMassPtr, NIL)
   }
 
   public final fun getInertiaDiagonal(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setInertiaDiagonal(inertiaDiagonal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to inertiaDiagonal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaDiagonalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInertiaDiagonalPtr, NIL)
   }
 
   public final fun getInertiaOrientation(): Quaternion {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
+    TransferContext.callMethod(ptr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setInertiaOrientation(inertiaOrientation: Quaternion): Unit {
     TransferContext.writeArguments(QUATERNION to inertiaOrientation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaOrientationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInertiaOrientationPtr, NIL)
   }
 
   public final fun getInertiaTensor(): Basis {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaTensorPtr, BASIS)
+    TransferContext.callMethod(ptr, MethodBindings.getInertiaTensorPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
   public final fun setInertiaTensor(inertiaTensor: Basis): Unit {
     TransferContext.writeArguments(BASIS to inertiaTensor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInertiaTensorPtr, NIL)
   }
 
   public companion object {

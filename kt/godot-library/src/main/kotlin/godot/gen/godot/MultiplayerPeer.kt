@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -92,23 +92,23 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   public final fun setTransferChannel(channel: Int): Unit {
     TransferContext.writeArguments(LONG to channel.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTransferChannelPtr, NIL)
   }
 
   public final fun getTransferChannel(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTransferChannelPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTransferMode(mode: TransferMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransferModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTransferModePtr, NIL)
   }
 
   public final fun getTransferMode(): TransferMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransferModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTransferModePtr, LONG)
     return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -121,7 +121,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun setTargetPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPeerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetPeerPtr, NIL)
   }
 
   /**
@@ -130,7 +130,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun getPacketPeer(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketPeerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketPeerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -140,7 +140,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun getPacketChannel(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketChannelPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketChannelPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -150,7 +150,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun getPacketMode(): TransferMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketModePtr, LONG)
     return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -159,7 +159,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun poll(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
   /**
@@ -168,7 +168,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun close(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
 
   /**
@@ -178,7 +178,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   @JvmOverloads
   public final fun disconnectPeer(peer: Int, force: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to peer.toLong(), BOOL to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectPeerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.disconnectPeerPtr, NIL)
   }
 
   /**
@@ -186,7 +186,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionStatusPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionStatusPtr, LONG)
     return MultiplayerPeer.ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -195,7 +195,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun getUniqueId(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUniqueIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -204,18 +204,18 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun generateUniqueId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateUniqueIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.generateUniqueIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRefuseNewConnections(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
   }
 
   public final fun isRefusingNewConnections(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -226,7 +226,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   public final fun isServerRelaySupported(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isServerRelaySupportedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isServerRelaySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -64,23 +64,23 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
 
   public final fun setEnableMode(mode: EnableMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableModePtr, NIL)
   }
 
   public final fun getEnableMode(): EnableMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableModePtr, LONG)
     return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableNodePath(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableNodePathPtr, NIL)
   }
 
   public final fun getEnableNodePath(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 

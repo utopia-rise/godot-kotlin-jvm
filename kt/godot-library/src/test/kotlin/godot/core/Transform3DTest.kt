@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.util.PI
+import godot.common.util.PI
 import org.junit.Test
 
 class TestTransform3D {

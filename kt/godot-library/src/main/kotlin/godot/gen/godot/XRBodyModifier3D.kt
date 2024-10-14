@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -70,34 +70,34 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
 
   public final fun setBodyTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTrackerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBodyTrackerPtr, NIL)
   }
 
   public final fun getBodyTracker(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBodyUpdate(bodyUpdate: BodyUpdate): Unit {
     TransferContext.writeArguments(LONG to bodyUpdate.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBodyUpdatePtr, NIL)
   }
 
   public final fun getBodyUpdate(): BodyUpdate {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyUpdatePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBodyUpdatePtr, LONG)
     return BodyUpdateValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
     TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

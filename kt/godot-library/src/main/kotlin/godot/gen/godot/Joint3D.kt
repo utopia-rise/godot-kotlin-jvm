@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -86,45 +86,45 @@ public open class Joint3D internal constructor() : Node3D() {
 
   public final fun setNodeA(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNodeAPtr, NIL)
   }
 
   public final fun getNodeA(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeAPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setNodeB(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNodeBPtr, NIL)
   }
 
   public final fun getNodeB(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeBPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setSolverPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSolverPriorityPtr, NIL)
   }
 
   public final fun getSolverPriority(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSolverPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -133,7 +133,7 @@ public open class Joint3D internal constructor() : Node3D() {
    */
   public final fun getRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

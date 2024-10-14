@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -135,7 +135,7 @@ public open class VideoStreamPlayback : Resource() {
     offset: Int = 0,
   ): Int {
     TransferContext.writeArguments(LONG to numFrames.toLong(), PACKED_FLOAT_32_ARRAY to buffer, LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.mixAudioPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.mixAudioPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

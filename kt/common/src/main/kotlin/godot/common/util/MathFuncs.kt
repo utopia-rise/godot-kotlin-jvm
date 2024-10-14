@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE", "FloatingPointLiteralPrecision")
 
-package godot.util
+package godot.common.util
 
 import kotlin.math.abs
 import kotlin.math.floor
@@ -63,19 +63,19 @@ fun RealT.fposmod(b: RealT): RealT {
     return value
 }
 
-internal fun snapped(value: NaturalT, step: NaturalT) = if (step != 0) {
+fun snapped(value: NaturalT, step: NaturalT) = if (step != 0) {
     (floor(value.toRealT() / step.toRealT() + 0.5) * step).toNaturalT()
 } else {
     value
 }
 
-internal fun snapped(value: RealT, step: RealT) = if (step != 0.0) {
+fun snapped(value: RealT, step: RealT) = if (step != 0.0) {
     floor(value / step + 0.5) * step
 } else {
     value
 }
 
-internal fun bezierDerivative(start: RealT, control1: RealT, control2: RealT, end: RealT, t: RealT): RealT {
+fun bezierDerivative(start: RealT, control1: RealT, control2: RealT, end: RealT, t: RealT): RealT {
     /* Formula from Wikipedia article on Bezier curves. */
     val omt = 1.0 - t
     val omt2 = omt * omt
@@ -84,7 +84,7 @@ internal fun bezierDerivative(start: RealT, control1: RealT, control2: RealT, en
     return (control1 - start) * 3.0f * omt2 + (control2 - control1) * 6.0f * omt * t + (end - control2) * 3.0f * t2
 }
 
-internal fun bezierInterpolate(start: RealT, control1: RealT, control2: RealT, end: RealT, t: RealT): RealT {
+fun bezierInterpolate(start: RealT, control1: RealT, control2: RealT, end: RealT, t: RealT): RealT {
     /* Formula from Wikipedia article on Bezier curves. */
     val omt: Double = 1.0 - t
     val omt2 = omt * omt
@@ -95,7 +95,7 @@ internal fun bezierInterpolate(start: RealT, control1: RealT, control2: RealT, e
     return start * omt3 + control1 * omt2 * t * 3.0 + control2 * omt * t2 * 3.0 + end * t3
 }
 
-internal fun cubicInterpolate(
+fun cubicInterpolate(
     from: Double,
     to: Double,
     pre: Double,
@@ -110,7 +110,7 @@ internal fun cubicInterpolate(
 inline fun lerp(from: Float, to: Float, weight: Float) = from + (to - from) * weight
 inline fun lerp(from: Double, to: Double, weight: Double) = from + (to - from) * weight
 
-internal fun lerpAngle(from: RealT, to: RealT, weight: RealT): RealT {
+fun lerpAngle(from: RealT, to: RealT, weight: RealT): RealT {
     var difference = (to - from).rem(TAU)
     difference = (2 * difference).rem(TAU) - difference
     return from + difference * weight;

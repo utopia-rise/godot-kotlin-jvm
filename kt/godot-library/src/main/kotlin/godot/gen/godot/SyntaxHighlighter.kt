@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.TypeManager
 import godot.core.VariantParser.DICTIONARY
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -73,7 +73,7 @@ public open class SyntaxHighlighter : Resource() {
    */
   public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -84,7 +84,7 @@ public open class SyntaxHighlighter : Resource() {
    */
   public final fun updateCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updateCachePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.updateCachePtr, NIL)
   }
 
   /**
@@ -93,7 +93,7 @@ public open class SyntaxHighlighter : Resource() {
    */
   public final fun clearHighlightingCache(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearHighlightingCachePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
 
   /**
@@ -101,7 +101,7 @@ public open class SyntaxHighlighter : Resource() {
    */
   public final fun getTextEdit(): TextEdit? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextEditPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }
 

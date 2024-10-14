@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -18,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -162,56 +162,56 @@ public open class GraphElement : Container() {
 
   public final fun setResizable(resizable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to resizable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setResizablePtr, NIL)
   }
 
   public final fun isResizable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isResizablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggable(draggable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to draggable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDraggablePtr, NIL)
   }
 
   public final fun isDraggable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDraggablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectable(selectable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to selectable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSelectablePtr, NIL)
   }
 
   public final fun isSelectable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelected(selected: Boolean): Unit {
     TransferContext.writeArguments(BOOL to selected)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
 
   public final fun isSelected(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPositionOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPositionOffsetPtr, NIL)
   }
 
   public final fun getPositionOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

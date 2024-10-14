@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -51,12 +51,12 @@ public open class OmniLight3D : Light3D() {
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowModePtr, NIL)
   }
 
   public final fun getShadowMode(): ShadowMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getShadowModePtr, LONG)
     return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

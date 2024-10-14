@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -19,7 +20,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -196,100 +196,100 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
   public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
     TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
   public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
     return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
     TransferContext.writeArguments(LONG to pathPostprocessing.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 
   public final fun getPathPostprocessing(): PathPostProcessing {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
     return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMap(map: RID): Unit {
     TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMapPtr, NIL)
   }
 
   public final fun getMap(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setStartPosition(startPosition: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to startPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStartPositionPtr, NIL)
   }
 
   public final fun getStartPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getStartPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTargetPosition(targetPosition: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to targetPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
     TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
   public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMetadataFlagsPtr, NIL)
   }
 
   public final fun getMetadataFlags(): PathMetadataFlags {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMetadataFlagsPtr, LONG)
     return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSimplifyPath(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSimplifyPathPtr, NIL)
   }
 
   public final fun getSimplifyPath(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getSimplifyPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSimplifyEpsilon(epsilon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
 
   public final fun getSimplifyEpsilon(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

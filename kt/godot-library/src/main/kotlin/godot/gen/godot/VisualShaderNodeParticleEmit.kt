@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -42,12 +42,12 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
 
   public final fun setFlags(flags: EmitFlags): Unit {
     TransferContext.writeArguments(LONG to flags.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlagsPtr, NIL)
   }
 
   public final fun getFlags(): EmitFlags {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFlagsPtr, LONG)
     return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

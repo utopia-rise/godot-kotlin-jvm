@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -41,7 +41,7 @@ public open class Semaphore : RefCounted() {
   @JvmName("semaphoreWait")
   public final fun wait(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.waitPtr, NIL)
   }
 
   /**
@@ -50,7 +50,7 @@ public open class Semaphore : RefCounted() {
    */
   public final fun tryWait(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.tryWaitPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.tryWaitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -59,7 +59,7 @@ public open class Semaphore : RefCounted() {
    */
   public final fun post(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.postPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.postPtr, NIL)
   }
 
   public companion object

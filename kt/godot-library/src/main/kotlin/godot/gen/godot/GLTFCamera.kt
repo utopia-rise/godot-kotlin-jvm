@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -102,7 +102,7 @@ public open class GLTFCamera : Resource() {
    */
   public final fun toNode(): Camera3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
 
@@ -111,63 +111,63 @@ public open class GLTFCamera : Resource() {
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getPerspective(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getPerspectivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPerspective(perspective: Boolean): Unit {
     TransferContext.writeArguments(BOOL to perspective)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPerspectivePtr, NIL)
   }
 
   public final fun getFov(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFov(fov: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fov.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFovPtr, NIL)
   }
 
   public final fun getSizeMag(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSizeMagPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSizeMag(sizeMag: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sizeMag.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizeMagPtr, NIL)
   }
 
   public final fun getDepthFar(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDepthFarPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthFar(zdepthFar: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zdepthFar.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDepthFarPtr, NIL)
   }
 
   public final fun getDepthNear(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDepthNearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthNear(zdepthNear: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zdepthNear.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDepthNearPtr, NIL)
   }
 
   public companion object {

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -93,56 +93,56 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   public final fun setMode(mode: Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPreGain(preGain: Float): Unit {
     TransferContext.writeArguments(DOUBLE to preGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPreGainPtr, NIL)
   }
 
   public final fun getPreGain(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPreGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setKeepHfHz(keepHfHz: Float): Unit {
     TransferContext.writeArguments(DOUBLE to keepHfHz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepHfHzPtr, NIL)
   }
 
   public final fun getKeepHfHz(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getKeepHfHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDrive(drive: Float): Unit {
     TransferContext.writeArguments(DOUBLE to drive.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDrivePtr, NIL)
   }
 
   public final fun getDrive(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDrivePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPostGain(postGain: Float): Unit {
     TransferContext.writeArguments(DOUBLE to postGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPostGainPtr, NIL)
   }
 
   public final fun getPostGain(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPostGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

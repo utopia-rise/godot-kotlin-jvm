@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
@@ -28,7 +29,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -107,7 +107,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCellMode(column: Int, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCellModePtr, NIL)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCellMode(column: Int): TreeCellMode {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCellModePtr, LONG)
     return TreeItem.TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -127,7 +127,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setEditMultiline(column: Int, multiline: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to multiline)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditMultilinePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditMultilinePtr, NIL)
   }
 
   /**
@@ -135,7 +135,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isEditMultiline(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditMultilinePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEditMultilinePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -144,7 +144,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setChecked(column: Int, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to checked)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCheckedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCheckedPtr, NIL)
   }
 
   /**
@@ -153,7 +153,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setIndeterminate(column: Int, indeterminate: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to indeterminate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIndeterminatePtr, NIL)
   }
 
   /**
@@ -161,7 +161,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isChecked(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isCheckedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCheckedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -170,7 +170,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isIndeterminate(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isIndeterminatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -184,7 +184,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun propagateCheck(column: Int, emitSignal: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to emitSignal)
-    TransferContext.callMethod(rawPtr, MethodBindings.propagateCheckPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.propagateCheckPtr, NIL)
   }
 
   /**
@@ -192,7 +192,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setText(column: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
 
   /**
@@ -200,7 +200,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getText(column: Int): String {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -209,7 +209,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setTextDirection(column: Int, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   /**
@@ -217,7 +217,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getTextDirection(column: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -227,7 +227,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   /**
@@ -236,7 +236,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -247,7 +247,7 @@ public open class TreeItem internal constructor() : Object() {
   public final fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
       Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   /**
@@ -256,7 +256,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -266,7 +266,7 @@ public open class TreeItem internal constructor() : Object() {
   public final fun setStructuredTextBidiOverride(column: Int,
       parser: TextServer.StructuredTextParser): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   /**
@@ -274,7 +274,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getStructuredTextBidiOverride(column: Int): TextServer.StructuredTextParser {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -284,7 +284,7 @@ public open class TreeItem internal constructor() : Object() {
   public final fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>):
       Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   /**
@@ -292,8 +292,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getStructuredTextBidiOverrideOptions(column: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -303,7 +302,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setLanguage(column: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
 
   /**
@@ -311,7 +310,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getLanguage(column: Int): String {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -320,7 +319,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setSuffix(column: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSuffixPtr, NIL)
   }
 
   /**
@@ -328,7 +327,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getSuffix(column: Int): String {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getSuffixPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -337,7 +336,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setIcon(column: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIconPtr, NIL)
   }
 
   /**
@@ -345,7 +344,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getIcon(column: Int): Texture2D? {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -354,7 +353,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setIconRegion(column: Int, region: Rect2): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), RECT2 to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconRegionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIconRegionPtr, NIL)
   }
 
   /**
@@ -362,7 +361,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getIconRegion(column: Int): Rect2 {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconRegionPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getIconRegionPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
@@ -373,7 +372,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setIconMaxWidth(column: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconMaxWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIconMaxWidthPtr, NIL)
   }
 
   /**
@@ -381,7 +380,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getIconMaxWidth(column: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconMaxWidthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getIconMaxWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -390,7 +389,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setIconModulate(column: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIconModulatePtr, NIL)
   }
 
   /**
@@ -398,7 +397,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getIconModulate(column: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconModulatePtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getIconModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -407,7 +406,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setRange(column: Int, `value`: Double): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRangePtr, NIL)
   }
 
   /**
@@ -415,7 +414,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getRange(column: Int): Double {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -434,7 +433,7 @@ public open class TreeItem internal constructor() : Object() {
     expr: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRangeConfigPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRangeConfigPtr, NIL)
   }
 
   /**
@@ -443,7 +442,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getRangeConfig(column: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getRangeConfigPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getRangeConfigPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -453,7 +452,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setMetadata(column: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetadataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMetadataPtr, NIL)
   }
 
   /**
@@ -461,7 +460,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getMetadata(column: Int): Any? {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetadataPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -476,7 +475,7 @@ public open class TreeItem internal constructor() : Object() {
     callback: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to `object`, STRING_NAME to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomDrawPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomDrawPtr, NIL)
   }
 
   /**
@@ -488,7 +487,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomDrawCallback(column: Int, callback: Callable): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomDrawCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomDrawCallbackPtr, NIL)
   }
 
   /**
@@ -496,18 +495,18 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCustomDrawCallback(column: Int): Callable {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDrawCallbackPtr, CALLABLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomDrawCallbackPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   public final fun setCollapsed(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollapsedPtr, NIL)
   }
 
   public final fun isCollapsed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -516,7 +515,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCollapsedRecursive(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedRecursivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollapsedRecursivePtr, NIL)
   }
 
   /**
@@ -526,18 +525,18 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
     TransferContext.writeArguments(BOOL to onlyVisible)
-    TransferContext.callMethod(rawPtr, MethodBindings.isAnyCollapsedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAnyCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVisible(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
 
   public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -546,7 +545,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisibleInTreePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVisibleInTreePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -555,17 +554,17 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun uncollapseTree(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.uncollapseTreePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.uncollapseTreePtr, NIL)
   }
 
   public final fun setCustomMinimumHeight(height: Int): Unit {
     TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomMinimumHeightPtr, NIL)
   }
 
   public final fun getCustomMinimumHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumHeightPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomMinimumHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -574,7 +573,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setSelectable(column: Int, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to selectable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSelectablePtr, NIL)
   }
 
   /**
@@ -582,7 +581,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isSelectable(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -591,7 +590,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isSelected(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -600,7 +599,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun select(column: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
 
   /**
@@ -608,7 +607,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun deselect(column: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
   }
 
   /**
@@ -616,7 +615,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setEditable(column: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
   }
 
   /**
@@ -624,7 +623,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isEditable(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEditablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -633,7 +632,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomColor(column: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomColorPtr, NIL)
   }
 
   /**
@@ -641,7 +640,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCustomColor(column: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -650,7 +649,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun clearCustomColor(column: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCustomColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearCustomColorPtr, NIL)
   }
 
   /**
@@ -658,7 +657,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomFont(column: Int, font: Font?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomFontPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomFontPtr, NIL)
   }
 
   /**
@@ -666,7 +665,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCustomFont(column: Int): Font? {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomFontPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
@@ -675,7 +674,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomFontSize(column: Int, fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to fontSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomFontSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomFontSizePtr, NIL)
   }
 
   /**
@@ -683,7 +682,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCustomFontSize(column: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomFontSizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -697,7 +696,7 @@ public open class TreeItem internal constructor() : Object() {
     justOutline: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to color, BOOL to justOutline)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomBgColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomBgColorPtr, NIL)
   }
 
   /**
@@ -705,7 +704,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun clearCustomBgColor(column: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCustomBgColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearCustomBgColorPtr, NIL)
   }
 
   /**
@@ -713,7 +712,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getCustomBgColor(column: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomBgColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -722,7 +721,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomAsButton(column: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAsButtonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomAsButtonPtr, NIL)
   }
 
   /**
@@ -730,7 +729,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isCustomSetAsButton(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isCustomSetAsButtonPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCustomSetAsButtonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -750,7 +749,7 @@ public open class TreeItem internal constructor() : Object() {
     tooltipText: String = "",
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to button, LONG to id.toLong(), BOOL to disabled, STRING to tooltipText)
-    TransferContext.callMethod(rawPtr, MethodBindings.addButtonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addButtonPtr, NIL)
   }
 
   /**
@@ -758,7 +757,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButtonCount(column: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -767,7 +766,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButtonTooltipText(column: Int, buttonIndex: Int): String {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonTooltipTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonTooltipTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -776,7 +775,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButtonId(column: Int, buttonIndex: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -786,7 +785,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButtonById(column: Int, id: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonByIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonByIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -796,7 +795,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButtonColor(column: Int, id: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -805,7 +804,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getButton(column: Int, buttonIndex: Int): Texture2D? {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -818,7 +817,7 @@ public open class TreeItem internal constructor() : Object() {
     tooltip: String,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonTooltipTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonTooltipTextPtr, NIL)
   }
 
   /**
@@ -830,7 +829,7 @@ public open class TreeItem internal constructor() : Object() {
     button: Texture2D?,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), OBJECT to button)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonPtr, NIL)
   }
 
   /**
@@ -838,7 +837,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun eraseButton(column: Int, buttonIndex: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseButtonPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.eraseButtonPtr, NIL)
   }
 
   /**
@@ -850,7 +849,7 @@ public open class TreeItem internal constructor() : Object() {
     disabled: Boolean,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonDisabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonDisabledPtr, NIL)
   }
 
   /**
@@ -862,7 +861,7 @@ public open class TreeItem internal constructor() : Object() {
     color: Color,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonColorPtr, NIL)
   }
 
   /**
@@ -870,7 +869,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun isButtonDisabled(column: Int, buttonIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isButtonDisabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isButtonDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -879,7 +878,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setTooltipText(column: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTooltipTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTooltipTextPtr, NIL)
   }
 
   /**
@@ -887,7 +886,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getTooltipText(column: Int): String {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTooltipTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTooltipTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -896,7 +895,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextAlignmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextAlignmentPtr, NIL)
   }
 
   /**
@@ -904,7 +903,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getTextAlignment(column: Int): HorizontalAlignment {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextAlignmentPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -913,7 +912,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setExpandRight(column: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandRightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExpandRightPtr, NIL)
   }
 
   /**
@@ -921,18 +920,18 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getExpandRight(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpandRightPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getExpandRightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDisableFolding(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisableFoldingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDisableFoldingPtr, NIL)
   }
 
   public final fun isFoldingDisabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFoldingDisabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFoldingDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -944,7 +943,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun createChild(index: Int = -1): TreeItem? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createChildPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.createChildPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -954,7 +953,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun addChild(child: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to child)
-    TransferContext.callMethod(rawPtr, MethodBindings.addChildPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addChildPtr, NIL)
   }
 
   /**
@@ -966,7 +965,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun removeChild(child: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to child)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeChildPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeChildPtr, NIL)
   }
 
   /**
@@ -974,7 +973,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getTree(): Tree? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTreePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTreePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tree?)
   }
 
@@ -983,7 +982,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getNext(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -992,7 +991,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrevPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPrevPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1001,7 +1000,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getParent(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getParentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1010,7 +1009,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getFirstChild(): TreeItem? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFirstChildPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getFirstChildPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1023,7 +1022,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun getNextInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextInTreePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNextInTreePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1036,7 +1035,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun getPrevInTree(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrevInTreePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPrevInTreePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1049,7 +1048,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun getNextVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextVisiblePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNextVisiblePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1062,7 +1061,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public final fun getPrevVisible(wrap: Boolean = false): TreeItem? {
     TransferContext.writeArguments(BOOL to wrap)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrevVisiblePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPrevVisiblePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1073,7 +1072,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getChild(index: Int): TreeItem? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getChildPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getChildPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
 
@@ -1082,7 +1081,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getChildCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getChildCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getChildCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1091,7 +1090,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getChildren(): VariantArray<TreeItem> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getChildrenPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TreeItem>)
   }
 
@@ -1101,7 +1100,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun getIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1111,7 +1110,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun moveBefore(item: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveBeforePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.moveBeforePtr, NIL)
   }
 
   /**
@@ -1120,7 +1119,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun moveAfter(item: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveAfterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.moveAfterPtr, NIL)
   }
 
   /**
@@ -1129,7 +1128,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callRecursivePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.callRecursivePtr, NIL)
   }
 
   public enum class TreeCellMode(

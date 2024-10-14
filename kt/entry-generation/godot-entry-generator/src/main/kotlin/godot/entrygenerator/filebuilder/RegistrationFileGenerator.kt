@@ -1,7 +1,7 @@
 package godot.entrygenerator.filebuilder
 
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
-import godot.tools.common.extensions.convertToSnakeCase
+import godot.common.extensions.convertToSnakeCase
 import java.io.BufferedWriter
 
 class RegistrationFileGenerator(

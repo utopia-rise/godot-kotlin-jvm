@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -22,7 +23,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -52,7 +52,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -61,7 +61,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeType(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeTypePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeTypePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -70,7 +70,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeName(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -81,7 +81,7 @@ public open class SceneState internal constructor() : RefCounted() {
   @JvmOverloads
   public final fun getNodePath(idx: Int, forParent: Boolean = false): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to forParent)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -90,7 +90,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeOwnerPath(idx: Int): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeOwnerPathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeOwnerPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -99,7 +99,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun isNodeInstancePlaceholder(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isNodeInstancePlaceholderPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isNodeInstancePlaceholderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -109,7 +109,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeInstancePlaceholder(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeInstancePlaceholderPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeInstancePlaceholderPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -119,7 +119,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeInstance(idx: Int): PackedScene? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeInstancePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeInstancePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PackedScene?)
   }
 
@@ -128,7 +128,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeGroups(idx: Int): PackedStringArray {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeGroupsPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeGroupsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -140,7 +140,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodeIndex(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -151,7 +151,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodePropertyCount(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePropertyCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -160,7 +160,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodePropertyName(idx: Int, propIdx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to propIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePropertyNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -169,7 +169,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getNodePropertyValue(idx: Int, propIdx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to propIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePropertyValuePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -180,7 +180,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -189,7 +189,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionSource(idx: Int): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionSourcePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionSourcePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -198,7 +198,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionSignal(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionSignalPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionSignalPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -208,7 +208,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionTarget(idx: Int): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionTargetPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionTargetPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -217,7 +217,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionMethod(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionMethodPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionMethodPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -226,7 +226,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionFlags(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -235,7 +235,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionBinds(idx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionBindsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionBindsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -244,7 +244,7 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   public final fun getConnectionUnbinds(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionUnbindsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionUnbindsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

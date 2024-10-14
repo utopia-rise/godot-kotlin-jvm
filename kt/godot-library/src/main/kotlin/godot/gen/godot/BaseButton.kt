@@ -8,6 +8,7 @@ package godot
 
 import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -193,12 +193,12 @@ public open class BaseButton : Control() {
 
   public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -210,7 +210,7 @@ public open class BaseButton : Control() {
    */
   public final fun setPressedNoSignal(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedNoSignalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedNoSignalPtr, NIL)
   }
 
   /**
@@ -218,62 +218,62 @@ public open class BaseButton : Control() {
    */
   public final fun isHovered(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHoveredPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isHoveredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setToggleMode(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setToggleModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setToggleModePtr, NIL)
   }
 
   public final fun isToggleMode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isToggleModePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isToggleModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutInTooltip(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutInTooltipPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShortcutInTooltipPtr, NIL)
   }
 
   public final fun isShortcutInTooltipEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActionMode(mode: ActionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setActionModePtr, NIL)
   }
 
   public final fun getActionMode(): ActionMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getActionModePtr, LONG)
     return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setButtonMask(mask: MouseButtonMask): Unit {
     TransferContext.writeArguments(LONG to mask.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
   public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -284,51 +284,51 @@ public open class BaseButton : Control() {
    */
   public final fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDrawModePtr, LONG)
     return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepPressedOutside(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepPressedOutsidePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepPressedOutsidePtr, NIL)
   }
 
   public final fun isKeepPressedOutside(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutFeedback(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutFeedbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShortcutFeedbackPtr, NIL)
   }
 
   public final fun isShortcutFeedback(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutFeedbackPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isShortcutFeedbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {
     TransferContext.writeArguments(OBJECT to shortcut)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShortcutPtr, NIL)
   }
 
   public final fun getShortcut(): Shortcut? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShortcutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 
   public final fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
     TransferContext.writeArguments(OBJECT to buttonGroup)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonGroupPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonGroupPtr, NIL)
   }
 
   public final fun getButtonGroup(): ButtonGroup? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonGroupPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonGroupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ButtonGroup?)
   }
 

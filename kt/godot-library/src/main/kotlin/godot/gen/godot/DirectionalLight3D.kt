@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -70,34 +70,34 @@ public open class DirectionalLight3D : Light3D() {
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowModePtr, NIL)
   }
 
   public final fun getShadowMode(): ShadowMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getShadowModePtr, LONG)
     return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendSplits(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendSplitsPtr, NIL)
   }
 
   public final fun isBlendSplitsEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSkyMode(mode: SkyMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSkyModePtr, NIL)
   }
 
   public final fun getSkyMode(): SkyMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSkyModePtr, LONG)
     return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

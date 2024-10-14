@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -141,12 +141,12 @@ public open class GraphFrame : GraphElement() {
 
   public final fun setTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
 
   public final fun getTitle(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -157,62 +157,62 @@ public open class GraphFrame : GraphElement() {
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   public final fun setAutoshrinkEnabled(shrink: Boolean): Unit {
     TransferContext.writeArguments(BOOL to shrink)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
     TransferContext.writeArguments(LONG to autoshrinkMargin.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkMarginPtr, NIL)
   }
 
   public final fun getAutoshrinkMargin(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoshrinkMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDragMargin(dragMargin: Int): Unit {
     TransferContext.writeArguments(LONG to dragMargin.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDragMarginPtr, NIL)
   }
 
   public final fun getDragMargin(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDragMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
 
   public final fun isTintColorEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isTintColorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTintColorPtr, NIL)
   }
 
   public final fun getTintColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getTintColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -61,12 +61,12 @@ public open class OpenXRInteractionProfile : Resource() {
 
   public final fun setInteractionProfilePath(interactionProfilePath: String): Unit {
     TransferContext.writeArguments(STRING to interactionProfilePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInteractionProfilePathPtr, NIL)
   }
 
   public final fun getInteractionProfilePath(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getInteractionProfilePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -75,7 +75,7 @@ public open class OpenXRInteractionProfile : Resource() {
    */
   public final fun getBindingCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBindingCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -84,18 +84,18 @@ public open class OpenXRInteractionProfile : Resource() {
    */
   public final fun getBinding(index: Int): OpenXRIPBinding? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getBindingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBinding?)
   }
 
   public final fun setBindings(bindings: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to bindings)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindingsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindingsPtr, NIL)
   }
 
   public final fun getBindings(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getBindingsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 

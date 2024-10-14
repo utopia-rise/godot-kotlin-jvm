@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
 
   public final fun setDegreesMode(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDegreesModePtr, NIL)
   }
 
   public final fun isDegreesMode(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDegreesModePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDegreesModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

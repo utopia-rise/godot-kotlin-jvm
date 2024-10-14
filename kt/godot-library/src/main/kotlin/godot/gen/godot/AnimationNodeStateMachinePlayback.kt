@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -16,7 +17,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -58,7 +58,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   @JvmOverloads
   public final fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode, BOOL to resetOnTeleport)
-    TransferContext.callMethod(rawPtr, MethodBindings.travelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.travelPtr, NIL)
   }
 
   /**
@@ -68,7 +68,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   @JvmOverloads
   public final fun start(node: StringName, reset: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to node, BOOL to reset)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
   }
 
   /**
@@ -77,7 +77,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun next(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.nextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.nextPtr, NIL)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -93,7 +93,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -104,7 +104,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNodePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -113,7 +113,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun getCurrentPlayPosition(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPlayPositionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentPlayPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -126,7 +126,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun getCurrentLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -135,7 +135,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun getFadingFromNode(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadingFromNodePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getFadingFromNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -144,7 +144,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public final fun getTravelPath(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelPathPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getTravelPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 

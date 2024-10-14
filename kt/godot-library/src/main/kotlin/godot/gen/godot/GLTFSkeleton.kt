@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.TypeManager
@@ -18,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -67,41 +67,41 @@ public open class GLTFSkeleton : Resource() {
 
   public final fun getJoints(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setJoints(joints: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to joints)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointsPtr, NIL)
   }
 
   public final fun getRoots(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setRoots(roots: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to roots)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRootsPtr, NIL)
   }
 
   public final fun getGodotSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGodotSkeletonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getGodotSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun getUniqueNames(): VariantArray<String> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueNamesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getUniqueNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   public final fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
     TransferContext.writeArguments(ARRAY to uniqueNames)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUniqueNamesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUniqueNamesPtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class GLTFSkeleton : Resource() {
    */
   public final fun getGodotBoneNode(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGodotBoneNodePtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.getGodotBoneNodePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -122,18 +122,18 @@ public open class GLTFSkeleton : Resource() {
    */
   public final fun setGodotBoneNode(godotBoneNode: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to godotBoneNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGodotBoneNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGodotBoneNodePtr, NIL)
   }
 
   public final fun getBoneAttachmentCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneAttachmentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getBoneAttachment(idx: Int): BoneAttachment3D? {
     TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneAttachmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BoneAttachment3D?)
   }
 

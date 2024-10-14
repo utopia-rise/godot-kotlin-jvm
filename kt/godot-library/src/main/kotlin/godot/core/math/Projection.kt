@@ -10,7 +10,7 @@ import godot.global.GD.atan
 import godot.global.GD.cos
 import godot.global.GD.sin
 import godot.global.GD.tan
-import godot.util.RealT
+import godot.common.util.RealT
 import kotlin.math.abs
 
 class Projection(

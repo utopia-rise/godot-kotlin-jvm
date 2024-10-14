@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
@@ -18,7 +19,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -189,101 +189,101 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   public final fun getRenderTarget(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderTargetPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setRenderTarget(renderTarget: RID): Unit {
     TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRenderTargetPtr, NIL)
   }
 
   public final fun getInternalSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInternalSizePtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getInternalSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setInternalSize(internalSize: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to internalSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInternalSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInternalSizePtr, NIL)
   }
 
   public final fun getTargetSize(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setTargetSize(targetSize: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to targetSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetSizePtr, NIL)
   }
 
   public final fun getViewCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setViewCount(viewCount: Long): Unit {
     TransferContext.writeArguments(LONG to viewCount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setViewCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setViewCountPtr, NIL)
   }
 
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setScaling3dMode(scaling3dMode: RenderingServer.ViewportScaling3DMode): Unit {
     TransferContext.writeArguments(LONG to scaling3dMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScaling3dModePtr, NIL)
   }
 
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMsaa3d(msaa3d: RenderingServer.ViewportMSAA): Unit {
     TransferContext.writeArguments(LONG to msaa3d.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMsaa3dPtr, NIL)
   }
 
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: RenderingServer.ViewportScreenSpaceAA): Unit {
     TransferContext.writeArguments(LONG to screenSpaceAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
 
   public final fun getFsrSharpness(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFsrSharpness(fsrSharpness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fsrSharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFsrSharpnessPtr, NIL)
   }
 
   public final fun getTextureMipmapBias(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to textureMipmapBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
 
   public companion object

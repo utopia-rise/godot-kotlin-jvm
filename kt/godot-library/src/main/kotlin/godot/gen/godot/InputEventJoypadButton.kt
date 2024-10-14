@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -65,29 +65,29 @@ public open class InputEventJoypadButton : InputEvent() {
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
     TransferContext.writeArguments(LONG to buttonIndex.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
 
   public final fun getButtonIndex(): JoyButton {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonIndexPtr, LONG)
     return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPressure(pressure: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pressure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressurePtr, NIL)
   }
 
   public final fun getPressure(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPressurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
   public companion object

@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
 
   public final fun setParameterName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setParameterNamePtr, NIL)
   }
 
   public final fun getParameterName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -18,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -109,7 +109,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     lossyQuality: Float = 0.8f,
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromImagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.createFromImagePtr, NIL)
   }
 
   /**
@@ -117,7 +117,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -126,29 +126,29 @@ public open class PortableCompressedTexture2D : Texture2D() {
    */
   public final fun getCompressionMode(): CompressionMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompressionModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCompressionModePtr, LONG)
     return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSizeOverride(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
   }
 
   public final fun getSizeOverride(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getSizeOverridePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setKeepCompressedBuffer(keep: Boolean): Unit {
     TransferContext.writeArguments(BOOL to keep)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepCompressedBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepCompressedBufferPtr, NIL)
   }
 
   public final fun isKeepingCompressedBuffer(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

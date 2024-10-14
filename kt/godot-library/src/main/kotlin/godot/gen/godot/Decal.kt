@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -20,7 +21,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -341,12 +341,12 @@ public open class Decal : VisualInstance3D() {
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -373,7 +373,7 @@ public open class Decal : VisualInstance3D() {
    */
   public final fun setTexture(type: DecalTexture, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
   /**
@@ -399,117 +399,117 @@ public open class Decal : VisualInstance3D() {
    */
   public final fun getTexture(type: DecalTexture): Texture2D? {
     TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionEnergy(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEmissionEnergyPtr, NIL)
   }
 
   public final fun getEmissionEnergy(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlbedoMix(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoMixPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlbedoMixPtr, NIL)
   }
 
   public final fun getAlbedoMix(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoMixPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAlbedoMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setModulate(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setUpperFade(fade: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpperFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUpperFadePtr, NIL)
   }
 
   public final fun getUpperFade(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpperFadePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getUpperFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLowerFade(fade: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowerFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLowerFadePtr, NIL)
   }
 
   public final fun getLowerFade(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLowerFadePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLowerFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalFade(fade: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNormalFadePtr, NIL)
   }
 
   public final fun getNormalFade(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalFadePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getNormalFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableDistanceFade(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableDistanceFadePtr, NIL)
   }
 
   public final fun isDistanceFadeEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDistanceFadeBegin(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeBeginPtr, NIL)
   }
 
   public final fun getDistanceFadeBegin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeLength(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeLengthPtr, NIL)
   }
 
   public final fun getDistanceFadeLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCullMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

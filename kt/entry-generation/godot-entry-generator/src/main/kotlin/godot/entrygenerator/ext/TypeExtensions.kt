@@ -39,7 +39,7 @@ import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
-import godot.tools.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToCamelCase
 import java.util.*
 
 //TODO: make compatible with other languages

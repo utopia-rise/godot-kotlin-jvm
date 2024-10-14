@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -18,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -91,7 +91,7 @@ public open class Expression : RefCounted() {
   public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       Error {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
-    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.parsePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -109,7 +109,7 @@ public open class Expression : RefCounted() {
     constCallsOnly: Boolean = false,
   ): Any? {
     TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.executePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -118,7 +118,7 @@ public open class Expression : RefCounted() {
    */
   public final fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasExecuteFailedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasExecuteFailedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -127,7 +127,7 @@ public open class Expression : RefCounted() {
    */
   public final fun getErrorText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getErrorTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -41,12 +41,12 @@ public open class AudioEffectPanner : AudioEffect() {
 
   public final fun setPan(cpanume: Float): Unit {
     TransferContext.writeArguments(DOUBLE to cpanume.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPanPtr, NIL)
   }
 
   public final fun getPan(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

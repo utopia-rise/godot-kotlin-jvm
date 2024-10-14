@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.TypeManager
@@ -14,7 +15,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -217,7 +217,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    */
   public final fun getOpenxrApi(): OpenXRAPIExtension? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpenxrApiPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getOpenxrApiPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAPIExtension?)
   }
 
@@ -226,7 +226,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    */
   public final fun registerExtensionWrapper(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.registerExtensionWrapperPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerExtensionWrapperPtr, NIL)
   }
 
   public companion object

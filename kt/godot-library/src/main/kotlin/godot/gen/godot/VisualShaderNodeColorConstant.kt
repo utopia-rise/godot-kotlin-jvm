@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -68,12 +68,12 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
 
   public final fun setConstant(constant: Color): Unit {
     TransferContext.writeArguments(COLOR to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 

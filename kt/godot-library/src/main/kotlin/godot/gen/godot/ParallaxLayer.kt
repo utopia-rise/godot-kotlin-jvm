@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -175,34 +175,34 @@ public open class ParallaxLayer : Node2D() {
 
   public final fun setMotionScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMotionScalePtr, NIL)
   }
 
   public final fun getMotionScale(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getMotionScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotionOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMotionOffsetPtr, NIL)
   }
 
   public final fun getMotionOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getMotionOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMirroring(mirror: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to mirror)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMirroringPtr, NIL)
   }
 
   public final fun getMirroring(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getMirroringPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

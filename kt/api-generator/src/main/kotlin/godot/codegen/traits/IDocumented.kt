@@ -3,7 +3,7 @@ package godot.codegen.traits
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
-import godot.tools.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToCamelCase
 
 private const val constantTitle = "constant"
 

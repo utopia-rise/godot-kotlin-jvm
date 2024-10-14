@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Signal1
@@ -22,7 +23,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -212,7 +212,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.animationSetNextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.animationSetNextPtr, NIL)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun animationGetNext(animationFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animationFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.animationGetNextPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.animationGetNextPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -233,7 +233,7 @@ public open class AnimationPlayer : AnimationMixer() {
     sec: Double,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo, DOUBLE to sec)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendTimePtr, NIL)
   }
 
   /**
@@ -241,63 +241,63 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getBlendTime(animationFrom: StringName, animationTo: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendTimePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDefaultBlendTime(sec: Double): Unit {
     TransferContext.writeArguments(DOUBLE to sec)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBlendTimePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultBlendTimePtr, NIL)
   }
 
   public final fun getDefaultBlendTime(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutoCapture(autoCapture: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCapture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCapturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoCapturePtr, NIL)
   }
 
   public final fun isAutoCapture(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoCapturePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAutoCapturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoCaptureDuration(autoCaptureDuration: Double): Unit {
     TransferContext.writeArguments(DOUBLE to autoCaptureDuration)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureDurationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoCaptureDurationPtr, NIL)
   }
 
   public final fun getAutoCaptureDuration(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutoCaptureTransitionType(autoCaptureTransitionType: Tween.TransitionType):
       Unit {
     TransferContext.writeArguments(LONG to autoCaptureTransitionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
   }
 
   public final fun getAutoCaptureTransitionType(): Tween.TransitionType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
     return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAutoCaptureEaseType(autoCaptureEaseType: Tween.EaseType): Unit {
     TransferContext.writeArguments(LONG to autoCaptureEaseType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
   }
 
   public final fun getAutoCaptureEaseType(): Tween.EaseType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
     return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -322,7 +322,7 @@ public open class AnimationPlayer : AnimationMixer() {
     fromEnd: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
-    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -334,7 +334,7 @@ public open class AnimationPlayer : AnimationMixer() {
   public final fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0):
       Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
-    TransferContext.callMethod(rawPtr, MethodBindings.playBackwardsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.playBackwardsPtr, NIL)
   }
 
   /**
@@ -365,7 +365,7 @@ public open class AnimationPlayer : AnimationMixer() {
     easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd, LONG to transType.id, LONG to easeType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.playWithCapturePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.playWithCapturePtr, NIL)
   }
 
   /**
@@ -376,7 +376,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun pause(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
   }
 
   /**
@@ -388,7 +388,7 @@ public open class AnimationPlayer : AnimationMixer() {
   @JvmOverloads
   public final fun stop(keepState: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to keepState)
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -397,29 +397,29 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCurrentAnimation(animation: String): Unit {
     TransferContext.writeArguments(STRING to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentAnimationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCurrentAnimationPtr, NIL)
   }
 
   public final fun getCurrentAnimation(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAssignedAnimation(animation: String): Unit {
     TransferContext.writeArguments(STRING to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAssignedAnimationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAssignedAnimationPtr, NIL)
   }
 
   public final fun getAssignedAnimation(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAssignedAnimationPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getAssignedAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -431,7 +431,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun queue(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.queuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.queuePtr, NIL)
   }
 
   /**
@@ -439,7 +439,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getQueue(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getQueuePtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getQueuePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -448,17 +448,17 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun clearQueue(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearQueuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearQueuePtr, NIL)
   }
 
   public final fun setSpeedScale(speed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun getSpeedScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -470,41 +470,41 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoplay(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
 
   public final fun getAutoplay(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoplayPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setMovieQuitOnFinishEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMovieQuitOnFinishEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMovieQuitOnFinishEnabledPtr, NIL)
   }
 
   public final fun isMovieQuitOnFinishEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getCurrentAnimationPosition(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getCurrentAnimationLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -525,7 +525,7 @@ public open class AnimationPlayer : AnimationMixer() {
     updateOnly: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to seconds, BOOL to update, BOOL to updateOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
 
   /**
@@ -533,7 +533,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
   /**
@@ -541,7 +541,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -550,7 +550,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMethodCallModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMethodCallModePtr, NIL)
   }
 
   /**
@@ -558,7 +558,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getMethodCallMode(): AnimationMethodCallMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMethodCallModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMethodCallModePtr, LONG)
     return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -567,7 +567,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun setRoot(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRootPtr, NIL)
   }
 
   /**
@@ -575,7 +575,7 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun getRoot(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getRootPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 

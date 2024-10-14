@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -61,7 +61,7 @@ public open class PCKPacker : RefCounted() {
     encryptDirectory: Boolean = false,
   ): Error {
     TransferContext.writeArguments(STRING to pckName, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
-    TransferContext.callMethod(rawPtr, MethodBindings.pckStartPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.pckStartPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -76,7 +76,7 @@ public open class PCKPacker : RefCounted() {
     encrypt: Boolean = false,
   ): Error {
     TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
-    TransferContext.callMethod(rawPtr, MethodBindings.addFilePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.addFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -87,7 +87,7 @@ public open class PCKPacker : RefCounted() {
   @JvmOverloads
   public final fun flush(verbose: Boolean = false): Error {
     TransferContext.writeArguments(BOOL to verbose)
-    TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.flushPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

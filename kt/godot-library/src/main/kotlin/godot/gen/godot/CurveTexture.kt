@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -69,28 +69,28 @@ public open class CurveTexture : Texture2D() {
 
   public final fun setWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setTextureMode(textureMode: TextureMode): Unit {
     TransferContext.writeArguments(LONG to textureMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureModePtr, NIL)
   }
 
   public final fun getTextureMode(): TextureMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
     return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -18,6 +18,7 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinPoet)
+    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
 }
 
 publishing {

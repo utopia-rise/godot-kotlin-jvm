@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -51,12 +51,12 @@ public open class Shortcut : Resource() {
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to events)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEventsPtr, NIL)
   }
 
   public final fun getEvents(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getEventsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -65,7 +65,7 @@ public open class Shortcut : Resource() {
    */
   public final fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasValidEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -74,7 +74,7 @@ public open class Shortcut : Resource() {
    */
   public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.matchesEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -83,7 +83,7 @@ public open class Shortcut : Resource() {
    */
   public final fun getAsText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

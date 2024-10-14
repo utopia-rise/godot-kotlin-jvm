@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
@@ -12,13 +12,13 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
@@ -27,7 +27,7 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
      */
     constructor(from: PackedFloat64Array) {
         TransferContext.writeArguments(VariantParser.PACKED_FLOAT_64_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
@@ -36,7 +36,7 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
      */
     constructor(from: VariantArray<Double>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
@@ -44,7 +44,7 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
      * Constructs a new [PackedFloat64Array] from an existing Kotlin [DoubleArray] or Java double[].
      */
     constructor(from: DoubleArray) {
-        _handle = Bridge.engine_convert_to_godot(from)
+        ptr = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
@@ -67,10 +67,10 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
-    fun toDoubleArray(): DoubleArray = Bridge.engine_convert_to_jvm(_handle)
+    fun toDoubleArray(): DoubleArray = Bridge.engine_convert_to_jvm(ptr)
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {

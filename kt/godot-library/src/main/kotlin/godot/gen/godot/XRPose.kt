@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
@@ -20,7 +21,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -194,34 +194,34 @@ public open class XRPose : RefCounted() {
 
   public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasTrackingData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setName(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
   }
 
   public final fun getName(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
 
   public final fun getTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -231,40 +231,40 @@ public open class XRPose : RefCounted() {
    */
   public final fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setLinearVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
     TransferContext.writeArguments(LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTrackingConfidencePtr, NIL)
   }
 
   public final fun getTrackingConfidence(): TrackingConfidence {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackingConfidencePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackingConfidencePtr, LONG)
     return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

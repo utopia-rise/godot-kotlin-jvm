@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -70,28 +70,28 @@ public open class GradientTexture1D : Texture2D() {
 
   public final fun setGradient(gradient: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
   }
 
   public final fun getGradient(): Gradient? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getGradientPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setUseHdr(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseHdrPtr, NIL)
   }
 
   public final fun isUsingHdr(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingHdrPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -37,7 +37,7 @@ dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
     api(kotlin("reflect", version = libs.versions.kotlin.get()))
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     testImplementation("junit", "junit", "4.12")
 }
 

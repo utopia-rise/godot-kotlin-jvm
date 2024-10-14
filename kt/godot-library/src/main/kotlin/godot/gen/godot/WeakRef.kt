@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
@@ -37,7 +37,7 @@ public open class WeakRef : RefCounted() {
    */
   public final fun getRef(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRefPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getRefPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

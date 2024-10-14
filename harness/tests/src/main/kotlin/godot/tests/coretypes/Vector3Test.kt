@@ -4,7 +4,7 @@ import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.Vector3
-import godot.util.RealT
+import godot.common.util.RealT
 
 @RegisterClass
 class Vector3Test : Node() {

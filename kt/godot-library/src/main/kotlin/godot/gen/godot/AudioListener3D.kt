@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -35,7 +35,7 @@ public open class AudioListener3D : Node3D() {
    */
   public final fun makeCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.makeCurrentPtr, NIL)
   }
 
   /**
@@ -43,7 +43,7 @@ public open class AudioListener3D : Node3D() {
    */
   public final fun clearCurrent(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearCurrentPtr, NIL)
   }
 
   /**
@@ -53,7 +53,7 @@ public open class AudioListener3D : Node3D() {
    */
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -62,7 +62,7 @@ public open class AudioListener3D : Node3D() {
    */
   public final fun getListenerTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getListenerTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getListenerTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 

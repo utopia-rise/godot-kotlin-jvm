@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -42,7 +42,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun addResource(name: StringName, resource: Resource?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
-    TransferContext.callMethod(rawPtr, MethodBindings.addResourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addResourcePtr, NIL)
   }
 
   /**
@@ -50,7 +50,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun removeResource(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeResourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeResourcePtr, NIL)
   }
 
   /**
@@ -58,7 +58,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun renameResource(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, MethodBindings.renameResourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.renameResourcePtr, NIL)
   }
 
   /**
@@ -66,7 +66,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun hasResource(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasResourcePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasResourcePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -75,7 +75,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun getResource(name: StringName): Resource? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getResourcePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getResourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
@@ -84,7 +84,7 @@ public open class ResourcePreloader : Node() {
    */
   public final fun getResourceList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

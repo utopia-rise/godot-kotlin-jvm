@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.TypeManager
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -63,7 +63,7 @@ public object NavigationMeshGenerator : Object() {
   @JvmStatic
   public final fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
   }
 
   /**
@@ -72,7 +72,7 @@ public object NavigationMeshGenerator : Object() {
   @JvmStatic
   public final fun clear(navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -96,7 +96,7 @@ public object NavigationMeshGenerator : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -111,7 +111,7 @@ public object NavigationMeshGenerator : Object() {
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
   }
 
   internal object MethodBindings {

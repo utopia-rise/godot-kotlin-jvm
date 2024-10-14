@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.StringName
@@ -22,7 +23,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -150,7 +150,7 @@ public open class GLTFLight : Resource() {
    */
   public final fun toNode(): Light3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Light3D?)
   }
 
@@ -159,85 +159,85 @@ public open class GLTFLight : Resource() {
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getIntensity(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIntensityPtr, NIL)
   }
 
   public final fun getLightType(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getLightTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLightType(lightType: String): Unit {
     TransferContext.writeArguments(STRING to lightType)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLightTypePtr, NIL)
   }
 
   public final fun getRange(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRange(range: Float): Unit {
     TransferContext.writeArguments(DOUBLE to range.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRangePtr, NIL)
   }
 
   public final fun getInnerConeAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInnerConeAngle(innerConeAngle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to innerConeAngle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInnerConeAnglePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInnerConeAnglePtr, NIL)
   }
 
   public final fun getOuterConeAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOuterConeAngle(outerConeAngle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to outerConeAngle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOuterConeAnglePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOuterConeAnglePtr, NIL)
   }
 
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object {

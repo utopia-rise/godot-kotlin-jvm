@@ -59,6 +59,12 @@ subdir("utils") {
     include("godot-build-props")
 }
 
+includeBuild("common") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:common")).using(project(":"))
+    }
+}
+
 includeBuild("tools-common") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:tools-common")).using(project(":"))

@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -42,12 +42,12 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
 
   public final fun setDescription(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDescriptionPtr, NIL)
   }
 
   public final fun getDescription(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getDescriptionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

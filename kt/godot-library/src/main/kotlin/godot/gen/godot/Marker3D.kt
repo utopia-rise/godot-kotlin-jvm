@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -42,12 +42,12 @@ public open class Marker3D : Node3D() {
 
   public final fun setGizmoExtents(extents: Float): Unit {
     TransferContext.writeArguments(DOUBLE to extents.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGizmoExtentsPtr, NIL)
   }
 
   public final fun getGizmoExtents(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

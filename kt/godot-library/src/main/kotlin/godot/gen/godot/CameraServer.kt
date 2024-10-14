@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -15,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -55,7 +55,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public final fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getFeedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraFeed?)
   }
 
@@ -65,7 +65,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public final fun getFeedCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFeedCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -75,7 +75,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public final fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.feedsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
   }
 
@@ -85,7 +85,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public final fun addFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addFeedPtr, NIL)
   }
 
   /**
@@ -94,7 +94,7 @@ public object CameraServer : Object() {
   @JvmStatic
   public final fun removeFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeFeedPtr, NIL)
   }
 
   public enum class FeedImage(

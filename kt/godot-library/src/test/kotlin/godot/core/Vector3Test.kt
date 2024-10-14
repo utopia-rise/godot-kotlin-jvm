@@ -2,10 +2,10 @@
 
 package godot.core
 
-import godot.util.SQRT12
-import godot.util.SQRT2
-import godot.util.TAU
-import godot.util.isEqualApprox
+import godot.common.util.SQRT12
+import godot.common.util.SQRT2
+import godot.common.util.TAU
+import godot.common.util.isEqualApprox
 import org.junit.Test
 
 private const val SQRT3 = 1.7320508075688772935274463415059

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -49,7 +49,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadExtensionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.loadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -63,7 +63,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadExtensionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.reloadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -74,7 +74,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.unloadExtensionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.unloadExtensionPtr, LONG)
     return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -85,7 +85,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isExtensionLoadedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -95,7 +95,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -106,7 +106,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public final fun getExtension(path: String): GDExtension? {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getExtensionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as GDExtension?)
   }
 

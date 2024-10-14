@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -37,7 +37,7 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public final fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBandGainDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBandGainDbPtr, NIL)
   }
 
   /**
@@ -45,7 +45,7 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public final fun getBandGainDb(bandIdx: Int): Float {
     TransferContext.writeArguments(LONG to bandIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBandGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -54,7 +54,7 @@ public open class AudioEffectEQ : AudioEffect() {
    */
   public final fun getBandCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBandCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -8,12 +8,12 @@ package godot
 
 import godot.KeyModifierMaskValue
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -91,12 +91,12 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
   }
 
   public final fun isCommandOrControlAutoremap(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -106,51 +106,51 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    */
   public final fun isCommandOrControlPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCommandOrControlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAltPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAltPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAltPressedPtr, NIL)
   }
 
   public final fun isAltPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAltPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAltPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShiftPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShiftPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShiftPressedPtr, NIL)
   }
 
   public final fun isShiftPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShiftPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isShiftPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCtrlPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCtrlPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCtrlPressedPtr, NIL)
   }
 
   public final fun isCtrlPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCtrlPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCtrlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMetaPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetaPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMetaPressedPtr, NIL)
   }
 
   public final fun isMetaPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMetaPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMetaPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -159,7 +159,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    */
   public final fun getModifiersMask(): KeyModifierMask {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModifiersMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getModifiersMaskPtr, LONG)
     return KeyModifierMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 

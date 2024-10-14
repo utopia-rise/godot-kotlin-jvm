@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -118,44 +118,44 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
   public final fun setIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIndexPtr, NIL)
   }
 
   public final fun getIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun setCanceled(canceled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to canceled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCanceledPtr, NIL)
   }
 
   public final fun setDoubleTap(doubleTap: Boolean): Unit {
     TransferContext.writeArguments(BOOL to doubleTap)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDoubleTapPtr, NIL)
   }
 
   public final fun isDoubleTap(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDoubleTapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

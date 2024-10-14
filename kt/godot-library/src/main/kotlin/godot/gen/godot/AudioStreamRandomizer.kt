@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -88,7 +88,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     weight: Float = 1.0f,
   ): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to stream, DOUBLE to weight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addStreamPtr, NIL)
   }
 
   /**
@@ -96,7 +96,7 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun moveStream(indexFrom: Int, indexTo: Int): Unit {
     TransferContext.writeArguments(LONG to indexFrom.toLong(), LONG to indexTo.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.moveStreamPtr, NIL)
   }
 
   /**
@@ -104,7 +104,7 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun removeStream(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeStreamPtr, NIL)
   }
 
   /**
@@ -112,7 +112,7 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun setStream(index: Int, stream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to stream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
   }
 
   /**
@@ -120,7 +120,7 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun getStream(index: Int): AudioStream? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
@@ -130,7 +130,7 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun setStreamProbabilityWeight(index: Int, weight: Float): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to weight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamProbabilityWeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamProbabilityWeightPtr, NIL)
   }
 
   /**
@@ -138,51 +138,51 @@ public open class AudioStreamRandomizer : AudioStream() {
    */
   public final fun getStreamProbabilityWeight(index: Int): Float {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamProbabilityWeightPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getStreamProbabilityWeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStreamsCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamsCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStreamsCountPtr, NIL)
   }
 
   public final fun getStreamsCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamsCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStreamsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRandomPitch(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRandomPitchPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRandomPitchPtr, NIL)
   }
 
   public final fun getRandomPitch(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRandomPitchPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRandomPitchPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRandomVolumeOffsetDb(dbOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to dbOffset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRandomVolumeOffsetDbPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRandomVolumeOffsetDbPtr, NIL)
   }
 
   public final fun getRandomVolumeOffsetDb(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRandomVolumeOffsetDbPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRandomVolumeOffsetDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPlaybackMode(mode: PlaybackMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPlaybackModePtr, NIL)
   }
 
   public final fun getPlaybackMode(): PlaybackMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPlaybackModePtr, LONG)
     return AudioStreamRandomizer.PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

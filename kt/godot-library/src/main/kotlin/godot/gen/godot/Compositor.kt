@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -41,12 +41,12 @@ public open class Compositor : Resource() {
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
     TransferContext.writeArguments(ARRAY to compositorEffects)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCompositorEffectsPtr, NIL)
   }
 
   public final fun getCompositorEffects(): VariantArray<CompositorEffect> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getCompositorEffectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<CompositorEffect>)
   }
 

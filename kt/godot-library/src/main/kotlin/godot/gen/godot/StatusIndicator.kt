@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Signal2
@@ -19,7 +20,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -87,45 +87,45 @@ public open class StatusIndicator : Node() {
 
   public final fun setTooltip(tooltip: String): Unit {
     TransferContext.writeArguments(STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTooltipPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTooltipPtr, NIL)
   }
 
   public final fun getTooltip(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTooltipPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setIcon(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIconPtr, NIL)
   }
 
   public final fun getIcon(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
 
   public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMenu(menu: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to menu)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMenuPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMenuPtr, NIL)
   }
 
   public final fun getMenu(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMenuPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getMenuPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -135,7 +135,7 @@ public open class StatusIndicator : Node() {
    */
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

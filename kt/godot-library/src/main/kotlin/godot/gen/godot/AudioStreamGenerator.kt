@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -126,23 +126,23 @@ public open class AudioStreamGenerator : AudioStream() {
 
   public final fun setMixRate(hz: Float): Unit {
     TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMixRatePtr, NIL)
   }
 
   public final fun getMixRate(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

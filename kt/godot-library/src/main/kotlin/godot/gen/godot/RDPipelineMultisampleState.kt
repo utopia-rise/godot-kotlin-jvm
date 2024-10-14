@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -15,7 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -116,67 +116,67 @@ public open class RDPipelineMultisampleState : RefCounted() {
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSampleCountPtr, NIL)
   }
 
   public final fun getSampleCount(): RenderingDevice.TextureSamples {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSampleCountPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableSampleShading(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableSampleShadingPtr, NIL)
   }
 
   public final fun getEnableSampleShading(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableSampleShadingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinSampleShading(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinSampleShadingPtr, NIL)
   }
 
   public final fun getMinSampleShading(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableAlphaToCoverage(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
   }
 
   public final fun getEnableAlphaToCoverage(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableAlphaToOne(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableAlphaToOnePtr, NIL)
   }
 
   public final fun getEnableAlphaToOne(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSampleMasks(masks: VariantArray<Long>): Unit {
     TransferContext.writeArguments(ARRAY to masks)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSampleMasksPtr, NIL)
   }
 
   public final fun getSampleMasks(): VariantArray<Long> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSampleMasksPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 

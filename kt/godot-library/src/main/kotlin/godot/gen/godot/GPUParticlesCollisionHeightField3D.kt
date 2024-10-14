@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -16,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -123,45 +123,45 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
     TransferContext.writeArguments(LONG to resolution.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
   }
 
   public final fun getResolution(): Resolution {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
     return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to updateMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
   public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFollowCameraEnabledPtr, NIL)
   }
 
   public final fun isFollowCameraEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

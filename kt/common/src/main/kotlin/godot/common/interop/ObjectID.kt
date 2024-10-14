@@ -1,4 +1,6 @@
-package godot.core
+package godot.common.interop
+
+val nullObjectID = ObjectID(-1L)
 
 @JvmInline
 value class ObjectID(val id: Long) {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.TypeManager
@@ -22,7 +23,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -54,7 +54,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun addBlendShape(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBlendShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addBlendShapePtr, NIL)
   }
 
   /**
@@ -62,7 +62,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -71,7 +71,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getBlendShapeName(blendShapeIdx: Int): String {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendShapeNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -80,7 +80,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendShapeModePtr, NIL)
   }
 
   /**
@@ -88,7 +88,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getBlendShapeMode(): Mesh.BlendShapeMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBlendShapeModePtr, LONG)
     return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -131,7 +131,7 @@ public open class ImporterMesh : Resource() {
     flags: Long = 0,
   ): Unit {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSurfacePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addSurfacePtr, NIL)
   }
 
   /**
@@ -139,7 +139,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -148,7 +148,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfacePrimitiveType(surfaceIdx: Int): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfacePrimitiveTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfacePrimitiveTypePtr, LONG)
     return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -157,7 +157,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceName(surfaceIdx: Int): String {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -167,7 +167,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceArrays(surfaceIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceArraysPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -177,7 +177,7 @@ public open class ImporterMesh : Resource() {
   public final fun getSurfaceBlendShapeArrays(surfaceIdx: Int, blendShapeIdx: Int):
       VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to blendShapeIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceBlendShapeArraysPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceBlendShapeArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -186,7 +186,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceLodCount(surfaceIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceLodCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -195,7 +195,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceLodSize(surfaceIdx: Int, lodIdx: Int): Float {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceLodSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -204,7 +204,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceLodIndices(surfaceIdx: Int, lodIdx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodIndicesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceLodIndicesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -213,7 +213,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceMaterial(surfaceIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceMaterialPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
@@ -222,7 +222,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceFormat(surfaceIdx: Int): Long {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSurfaceFormatPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -231,7 +231,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun setSurfaceName(surfaceIdx: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSurfaceNamePtr, NIL)
   }
 
   /**
@@ -239,7 +239,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun setSurfaceMaterial(surfaceIdx: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceMaterialPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSurfaceMaterialPtr, NIL)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class ImporterMesh : Resource() {
     boneTransformArray: VariantArray<Any?>,
   ): Unit {
     TransferContext.writeArguments(DOUBLE to normalMergeAngle.toDouble(), DOUBLE to normalSplitAngle.toDouble(), ARRAY to boneTransformArray)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateLodsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.generateLodsPtr, NIL)
   }
 
   /**
@@ -271,7 +271,7 @@ public open class ImporterMesh : Resource() {
   @JvmOverloads
   public final fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to baseMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
@@ -280,7 +280,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -288,7 +288,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun setLightmapSizeHint(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
 
   /**
@@ -296,7 +296,7 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getLightmapSizeHint(): Vector2i {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
+    TransferContext.callMethod(ptr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 

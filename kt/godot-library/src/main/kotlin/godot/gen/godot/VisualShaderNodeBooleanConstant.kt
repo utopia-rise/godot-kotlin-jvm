@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
 
   public final fun setConstant(constant: Boolean): Unit {
     TransferContext.writeArguments(BOOL to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

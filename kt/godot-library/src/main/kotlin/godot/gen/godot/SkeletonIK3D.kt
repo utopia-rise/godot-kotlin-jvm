@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.Transform3D
@@ -24,7 +25,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -251,78 +251,78 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
 
   public final fun setRootBone(rootBone: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to rootBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
   }
 
   public final fun getRootBone(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTipBone(tipBone: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to tipBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTipBonePtr, NIL)
   }
 
   public final fun getTipBone(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTipBonePtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getTipBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTargetTransform(target: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to target)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetTransformPtr, NIL)
   }
 
   public final fun getTargetTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setTargetNode(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
 
   public final fun getTargetNode(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setOverrideTipBasis(`override`: Boolean): Unit {
     TransferContext.writeArguments(BOOL to override)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOverrideTipBasisPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOverrideTipBasisPtr, NIL)
   }
 
   public final fun isOverrideTipBasis(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOverrideTipBasisPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isOverrideTipBasisPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseMagnet(use: Boolean): Unit {
     TransferContext.writeArguments(BOOL to use)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseMagnetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseMagnetPtr, NIL)
   }
 
   public final fun isUsingMagnet(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMagnetPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingMagnetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMagnetPosition(localPosition: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to localPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMagnetPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMagnetPositionPtr, NIL)
   }
 
   public final fun getMagnetPosition(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagnetPositionPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getMagnetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -333,7 +333,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    */
   public final fun getParentSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentSkeletonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getParentSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
@@ -344,29 +344,29 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    */
   public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinDistance(minDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to minDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinDistancePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinDistancePtr, NIL)
   }
 
   public final fun getMinDistance(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinDistancePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMinDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxIterations(iterations: Int): Unit {
     TransferContext.writeArguments(LONG to iterations.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxIterationsPtr, NIL)
   }
 
   public final fun getMaxIterations(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxIterationsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxIterationsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -378,7 +378,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   @JvmOverloads
   public final fun start(oneTime: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to oneTime)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
   }
 
   /**
@@ -387,17 +387,17 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    */
   public final fun stop(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setInterpolation(interpolation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to interpolation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInterpolationPtr, NIL)
   }
 
   public final fun getInterpolation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getInterpolationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

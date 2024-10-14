@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -41,12 +41,12 @@ public open class Texture3DRD : Texture3D() {
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {
     TransferContext.writeArguments(_RID to textureRdRid)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureRdRidPtr, NIL)
   }
 
   public final fun getTextureRdRid(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

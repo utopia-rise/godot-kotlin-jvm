@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -15,7 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -140,62 +140,62 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun isRootShape(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRootShapePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRootShapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOperation(operation: Operation): Unit {
     TransferContext.writeArguments(LONG to operation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOperationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOperationPtr, NIL)
   }
 
   public final fun getOperation(): Operation {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOperationPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOperationPtr, LONG)
     return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnap(snap: Float): Unit {
     TransferContext.writeArguments(DOUBLE to snap.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSnapPtr, NIL)
   }
 
   public final fun getSnap(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSnapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseCollision(operation: Boolean): Unit {
     TransferContext.writeArguments(BOOL to operation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseCollisionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseCollisionPtr, NIL)
   }
 
   public final fun isUsingCollision(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCollisionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
   }
 
   public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -205,7 +205,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -214,7 +214,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -224,7 +224,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
 
   /**
@@ -233,29 +233,29 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionPriority(priority: Float): Unit {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionPriorityPtr, NIL)
   }
 
   public final fun getCollisionPriority(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCalculateTangents(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCalculateTangentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCalculateTangentsPtr, NIL)
   }
 
   public final fun isCalculatingTangents(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCalculatingTangentsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCalculatingTangentsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -265,7 +265,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    */
   public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 

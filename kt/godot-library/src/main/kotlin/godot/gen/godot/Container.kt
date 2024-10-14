@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal0
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -70,7 +70,7 @@ public open class Container : Control() {
    */
   public final fun queueSort(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.queueSortPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.queueSortPtr, NIL)
   }
 
   /**
@@ -79,7 +79,7 @@ public open class Container : Control() {
    */
   public final fun fitChildInRect(child: Control?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.fitChildInRectPtr, NIL)
   }
 
   public companion object {

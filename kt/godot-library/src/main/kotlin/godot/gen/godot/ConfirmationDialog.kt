@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -58,18 +58,18 @@ public open class ConfirmationDialog : AcceptDialog() {
    */
   public final fun getCancelButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   public final fun setCancelButtonText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCancelButtonTextPtr, NIL)
   }
 
   public final fun getCancelButtonText(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getCancelButtonTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

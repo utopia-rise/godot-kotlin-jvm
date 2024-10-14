@@ -10,13 +10,13 @@ import godot.MouseButtonMaskValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -130,34 +130,34 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
   public final fun setButtonMask(buttonMask: MouseButtonMask): Unit {
     TransferContext.writeArguments(LONG to buttonMask.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
   public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGlobalPosition(globalPosition: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to globalPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
   public final fun getGlobalPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

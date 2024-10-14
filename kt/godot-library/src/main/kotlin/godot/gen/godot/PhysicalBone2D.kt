@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -107,29 +107,29 @@ public open class PhysicalBone2D : RigidBody2D() {
    */
   public final fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getJointPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Joint2D?)
   }
 
   public final fun getAutoConfigureJoint(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoConfigureJointPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoConfigureJoint(autoConfigureJoint: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoConfigureJoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoConfigureJointPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoConfigureJointPtr, NIL)
   }
 
   public final fun setSimulatePhysics(simulatePhysics: Boolean): Unit {
     TransferContext.writeArguments(BOOL to simulatePhysics)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimulatePhysicsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSimulatePhysicsPtr, NIL)
   }
 
   public final fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getSimulatePhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -139,40 +139,40 @@ public open class PhysicalBone2D : RigidBody2D() {
    */
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBone2dNodepath(nodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to nodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodepathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBone2dNodepathPtr, NIL)
   }
 
   public final fun getBone2dNodepath(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBone2dIndex(boneIndex: Int): Unit {
     TransferContext.writeArguments(LONG to boneIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBone2dIndexPtr, NIL)
   }
 
   public final fun getBone2dIndex(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBone2dIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFollowBoneWhenSimulating(followBone: Boolean): Unit {
     TransferContext.writeArguments(BOOL to followBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
   }
 
   public final fun getFollowBoneWhenSimulating(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

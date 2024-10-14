@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -166,67 +166,67 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun setKeycode(keycode: Key): Unit {
     TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeycodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setKeycodePtr, NIL)
   }
 
   public final fun getKeycode(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getKeycodePtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPhysicalKeycode(physicalKeycode: Key): Unit {
     TransferContext.writeArguments(LONG to physicalKeycode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalKeycodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPhysicalKeycodePtr, NIL)
   }
 
   public final fun getPhysicalKeycode(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicalKeycodePtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeyLabel(keyLabel: Key): Unit {
     TransferContext.writeArguments(LONG to keyLabel.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeyLabelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setKeyLabelPtr, NIL)
   }
 
   public final fun getKeyLabel(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getKeyLabelPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUnicode(unicode: Long): Unit {
     TransferContext.writeArguments(LONG to unicode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUnicodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUnicodePtr, NIL)
   }
 
   public final fun getUnicode(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnicodePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUnicodePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLocation(location: KeyLocation): Unit {
     TransferContext.writeArguments(LONG to location.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLocationPtr, NIL)
   }
 
   public final fun getLocation(): KeyLocation {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLocationPtr, LONG)
     return KeyLocation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEcho(echo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to echo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEchoPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEchoPtr, NIL)
   }
 
   /**
@@ -237,7 +237,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun getKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodeWithModifiersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -250,7 +250,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun getPhysicalKeycodeWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodeWithModifiersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicalKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -263,7 +263,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun getKeyLabelWithModifiers(): Key {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelWithModifiersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getKeyLabelWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -272,7 +272,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun asTextKeycode(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextKeycodePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.asTextKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -281,7 +281,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun asTextPhysicalKeycode(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextPhysicalKeycodePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.asTextPhysicalKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -290,7 +290,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun asTextKeyLabel(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextKeyLabelPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.asTextKeyLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -300,7 +300,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    */
   public final fun asTextLocation(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextLocationPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.asTextLocationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

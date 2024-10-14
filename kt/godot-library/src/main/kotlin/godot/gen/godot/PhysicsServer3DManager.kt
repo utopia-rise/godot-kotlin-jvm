@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.TypeManager
 import godot.core.VariantParser.CALLABLE
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -40,7 +40,7 @@ public object PhysicsServer3DManager : Object() {
   @JvmStatic
   public final fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerServerPtr, NIL)
   }
 
   /**
@@ -50,7 +50,7 @@ public object PhysicsServer3DManager : Object() {
   @JvmStatic
   public final fun setDefaultServer(name: String, priority: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDefaultServerPtr, NIL)
   }
 
   internal object MethodBindings {

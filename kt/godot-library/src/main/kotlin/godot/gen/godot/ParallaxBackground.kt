@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -240,67 +240,67 @@ public open class ParallaxBackground : CanvasLayer() {
 
   public final fun setScrollOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
   public final fun getScrollOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollBaseOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollBaseOffsetPtr, NIL)
   }
 
   public final fun getScrollBaseOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollBaseScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollBaseScalePtr, NIL)
   }
 
   public final fun getScrollBaseScale(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitBegin(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLimitBeginPtr, NIL)
   }
 
   public final fun getLimitBegin(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getLimitBeginPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitEnd(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLimitEndPtr, NIL)
   }
 
   public final fun getLimitEnd(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getLimitEndPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setIgnoreCameraZoom(ignore: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
   }
 
   public final fun isIgnoreCameraZoom(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

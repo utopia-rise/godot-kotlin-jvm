@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -15,7 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -106,7 +106,7 @@ public open class AudioStream : Resource() {
    */
   public final fun getLength(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -116,7 +116,7 @@ public open class AudioStream : Resource() {
    */
   public final fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMonophonicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -128,7 +128,7 @@ public open class AudioStream : Resource() {
    */
   public final fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.instantiatePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
@@ -138,7 +138,7 @@ public open class AudioStream : Resource() {
    */
   public final fun canBeSampled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.canBeSampledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -147,7 +147,7 @@ public open class AudioStream : Resource() {
    */
   public final fun generateSample(): AudioSample? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.generateSamplePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioSample?)
   }
 
@@ -156,7 +156,7 @@ public open class AudioStream : Resource() {
    */
   public final fun isMetaStream(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMetaStreamPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

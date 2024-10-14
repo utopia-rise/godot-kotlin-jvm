@@ -8,11 +8,11 @@ package godot
 
 import godot.RenderingDevice.TextureUsageBitsValue
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -129,111 +129,111 @@ public open class RDTextureFormat : RefCounted() {
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setWidth(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeight(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun getDepth(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setArrayLayers(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setArrayLayersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setArrayLayersPtr, NIL)
   }
 
   public final fun getArrayLayers(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getArrayLayersPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getArrayLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMipmaps(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMipmapsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMipmapsPtr, NIL)
   }
 
   public final fun getMipmaps(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMipmapsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureType(pMember: RenderingDevice.TextureType): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): RenderingDevice.TextureType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return RenderingDevice.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplesPtr, NIL)
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUsageBits(pMember: RenderingDevice.TextureUsageBits): Unit {
     TransferContext.writeArguments(LONG to pMember.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsageBitsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUsageBitsPtr, NIL)
   }
 
   public final fun getUsageBits(): RenderingDevice.TextureUsageBits {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUsageBitsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getUsageBitsPtr, LONG)
     return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.addShareableFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
   public final fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeShareableFormatPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeShareableFormatPtr, NIL)
   }
 
   public companion object

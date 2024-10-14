@@ -3,8 +3,8 @@
 package godot.core
 
 import godot.Side
-import godot.util.isEqualApprox
-import godot.util.isZeroApprox
+import godot.common.util.isEqualApprox
+import godot.common.util.isZeroApprox
 import org.junit.Test
 
 class TestRect2 {

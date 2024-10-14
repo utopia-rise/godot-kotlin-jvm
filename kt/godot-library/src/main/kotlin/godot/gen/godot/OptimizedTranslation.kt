@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,7 +31,7 @@ public open class OptimizedTranslation : Translation() {
    */
   public final fun generate(from: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(rawPtr, MethodBindings.generatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.generatePtr, NIL)
   }
 
   public companion object

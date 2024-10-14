@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -40,12 +40,12 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
 
   public final fun setConstant(constant: Int): Unit {
     TransferContext.writeArguments(LONG to constant.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

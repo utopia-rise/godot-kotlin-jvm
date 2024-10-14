@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -44,7 +44,7 @@ public open class Mutex : RefCounted() {
    */
   public final fun lock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.lockPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lockPtr, NIL)
   }
 
   /**
@@ -53,7 +53,7 @@ public open class Mutex : RefCounted() {
    */
   public final fun tryLock(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.tryLockPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.tryLockPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -66,7 +66,7 @@ public open class Mutex : RefCounted() {
    */
   public final fun unlock(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unlockPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.unlockPtr, NIL)
   }
 
   public companion object

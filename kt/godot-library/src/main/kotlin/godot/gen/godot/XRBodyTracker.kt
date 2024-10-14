@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -59,23 +59,23 @@ public open class XRBodyTracker : XRPositionalTracker() {
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBodyFlags(flags: BodyFlags): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBodyFlagsPtr, NIL)
   }
 
   public final fun getBodyFlags(): BodyFlags {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getBodyFlagsPtr, LONG)
     return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -84,7 +84,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    */
   public final fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
     TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointFlagsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointFlagsPtr, NIL)
   }
 
   /**
@@ -93,7 +93,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    */
   public final fun getJointFlags(joint: Joint): JointFlags {
     TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointFlagsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getJointFlagsPtr, LONG)
     return JointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -102,7 +102,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    */
   public final fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setJointTransformPtr, NIL)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    */
   public final fun getJointTransform(joint: Joint): Transform3D {
     TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 

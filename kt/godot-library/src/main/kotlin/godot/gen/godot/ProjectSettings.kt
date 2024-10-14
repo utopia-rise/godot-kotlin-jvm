@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal0
 import godot.core.StringName
@@ -21,7 +22,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -66,7 +66,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasSettingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -89,7 +89,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSettingPtr, NIL)
   }
 
   /**
@@ -118,7 +118,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getSettingPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -143,7 +143,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun getSettingWithOverride(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSettingWithOverridePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getSettingWithOverridePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -161,7 +161,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalClassListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalClassListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -171,7 +171,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setOrder(name: String, position: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOrderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setOrderPtr, NIL)
   }
 
   /**
@@ -180,7 +180,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun getOrder(name: String): Int {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getOrderPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getOrderPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -190,7 +190,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setInitialValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInitialValuePtr, NIL)
   }
 
   /**
@@ -201,7 +201,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsBasicPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAsBasicPtr, NIL)
   }
 
   /**
@@ -212,7 +212,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsInternalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAsInternalPtr, NIL)
   }
 
   /**
@@ -253,7 +253,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addPropertyInfoPtr, NIL)
   }
 
   /**
@@ -265,7 +265,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun setRestartIfChanged(name: String, restart: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to restart)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRestartIfChangedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRestartIfChangedPtr, NIL)
   }
 
   /**
@@ -274,7 +274,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun clear(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -284,7 +284,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.localizePathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.localizePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -312,7 +312,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalizePathPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.globalizePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -325,7 +325,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun save(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -346,7 +346,7 @@ public object ProjectSettings : Object() {
     offset: Int = 0,
   ): Boolean {
     TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.loadResourcePackPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.loadResourcePackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -359,7 +359,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public final fun saveCustom(`file`: String): Error {
     TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.saveCustomPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -55,23 +55,23 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
   public final fun setParameterName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setParameterNamePtr, NIL)
   }
 
   public final fun getParameterName(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setQualifier(qualifier: Qualifier): Unit {
     TransferContext.writeArguments(LONG to qualifier.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setQualifierPtr, NIL)
   }
 
   public final fun getQualifier(): Qualifier {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getQualifierPtr, LONG)
     return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

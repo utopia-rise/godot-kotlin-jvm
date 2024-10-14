@@ -1,8 +1,8 @@
 package godot.core
 
 import godot.EulerOrder
-import godot.util.PI
-import godot.util.SQRT12
+import godot.common.util.PI
+import godot.common.util.SQRT12
 import org.junit.Test
 
 class TestBasis {

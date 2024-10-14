@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -36,7 +36,7 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
    */
   public final fun getPortType(): VisualShaderNode.PortType {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getPortTypePtr, LONG)
     return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

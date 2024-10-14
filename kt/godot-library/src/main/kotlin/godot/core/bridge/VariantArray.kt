@@ -5,9 +5,9 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.IndexedIterator
-import godot.util.VoidPtr
-import godot.util.isNullable
+import godot.common.util.IndexedIterator
+import godot.common.interop.VoidPtr
+import godot.common.util.isNullable
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
@@ -24,7 +24,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     @PublishedApi
     internal constructor(handle: VoidPtr, converter: VariantConverter) {
         variantConverter = converter
-        _handle = handle
+        ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.ARRAY)
     }
 
@@ -41,7 +41,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         }
 
         this.variantConverter = variantConverter!!
-        _handle = if (variantConverter != VariantCaster.ANY) {
+        ptr = if (variantConverter != VariantCaster.ANY) {
             TransferContext.writeArguments(
                 VariantCaster.INT to variantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[parameterClazz] ?: -1),
@@ -61,7 +61,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     override val size: Int
         get() {
-            Bridge.engine_call_size(_handle)
+            Bridge.engine_call_size(ptr)
             return TransferContext.readReturnValue(VariantCaster.INT) as Int
         }
 
@@ -70,7 +70,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     constructor(other: VariantArray<T>) {
         this.variantConverter = other.variantConverter
-        this._handle = other._handle
+        this.ptr = other.ptr
         MemoryManager.registerNativeCoreType(this, VariantParser.ARRAY)
     }
 
@@ -91,14 +91,14 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Clears the array. This is equivalent to using resize with a size of 0.
      */
     override fun clear() {
-        Bridge.engine_call_clear(_handle)
+        Bridge.engine_call_clear(ptr)
     }
 
     /**
      * Returns true if the array is empty.
      */
     override fun isEmpty(): Boolean {
-        Bridge.engine_call_isEmpty(_handle)
+        Bridge.engine_call_isEmpty(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -106,7 +106,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns true if the array is read-only.
      */
     fun isReadOnly(): Boolean {
-        Bridge.engine_call_isReadOnly(_handle)
+        Bridge.engine_call_isReadOnly(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -115,7 +115,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * type safety for the [get] operator.
      */
     fun isTyped(): Boolean {
-        Bridge.engine_call_isTyped(_handle)
+        Bridge.engine_call_isTyped(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -123,7 +123,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns a hashed integer value representing the array contents.
      */
     fun hash(): Int {
-        Bridge.engine_call_hash(_handle)
+        Bridge.engine_call_hash(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -131,7 +131,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Reverses the order of the elements in the array.
      */
     fun invert() {
-        Bridge.engine_call_reverse(_handle)
+        Bridge.engine_call_reverse(ptr)
     }
 
     override fun remove(element: T): Boolean {
@@ -148,7 +148,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun removeAt(position: Int) {
         TransferContext.writeArguments(VariantCaster.INT to position)
-        Bridge.engine_call_removeAt(_handle)
+        Bridge.engine_call_removeAt(ptr)
     }
 
     override fun removeAll(elements: Collection<T>): Boolean {
@@ -165,7 +165,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun resize(size: Int) {
         TransferContext.writeArguments(VariantCaster.INT to size)
-        Bridge.engine_call_resize(_handle)
+        Bridge.engine_call_resize(ptr)
     }
 
     override fun retainAll(elements: Collection<T>): Boolean {
@@ -187,7 +187,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Call @randomize to ensure that a new seed will be used each time if you want non-reproducible shuffling.
      */
     fun shuffle() {
-        Bridge.engine_call_shuffle(_handle)
+        Bridge.engine_call_shuffle(ptr)
     }
 
 
@@ -195,7 +195,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Sorts the array.
      */
     fun sort() {
-        Bridge.engine_call_sort(_handle)
+        Bridge.engine_call_sort(ptr)
     }
 
     /**
@@ -204,7 +204,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun sortCustom(obj: KtObject, func: String) {
         TransferContext.writeArguments(VariantParser.OBJECT to obj, VariantParser.STRING to func)
-        Bridge.engine_call_sortCustom(_handle)
+        Bridge.engine_call_sortCustom(ptr)
     }
 
     //API
@@ -225,7 +225,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun all(callable: Callable): Boolean {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
-        Bridge.engine_call_all(_handle)
+        Bridge.engine_call_all(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -245,7 +245,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun any(callable: Callable): Boolean {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
-        Bridge.engine_call_any(_handle)
+        Bridge.engine_call_any(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -254,7 +254,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun append(value: T) {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_append(_handle)
+        Bridge.engine_call_append(ptr)
     }
 
     /**
@@ -262,14 +262,14 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun appendArray(array: VariantArray<T>) {
         TransferContext.writeArguments(VariantParser.ARRAY to array)
-        Bridge.engine_call_appendArray(_handle)
+        Bridge.engine_call_appendArray(ptr)
     }
 
     /**
      * Returns the last element of the array. Prints an error and returns `null` if the array is empty.
      */
     fun back(): T {
-        Bridge.engine_call_back(_handle)
+        Bridge.engine_call_back(ptr)
         return TransferContext.readReturnValue(variantConverter) as T
     }
 
@@ -282,7 +282,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     @JvmOverloads
     fun bsearch(value: T, before: Boolean = true): Int {
         TransferContext.writeArguments(variantConverter to value, VariantParser.BOOL to before)
-        Bridge.engine_call_bsearch(_handle)
+        Bridge.engine_call_bsearch(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -299,7 +299,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
             variantConverter to value, VariantParser.OBJECT to obj,
             VariantParser.STRING to func, VariantParser.BOOL to before
         )
-        Bridge.engine_call_bsearchCustom(_handle)
+        Bridge.engine_call_bsearchCustom(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -308,7 +308,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun count(value: T): Int {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_count(_handle)
+        Bridge.engine_call_count(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -321,7 +321,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun duplicate(deep: Boolean): VariantArray<T> {
         TransferContext.writeArguments(VariantParser.BOOL to deep)
-        Bridge.engine_call_duplicate(_handle)
+        Bridge.engine_call_duplicate(ptr)
         return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<T>).also {
             it.variantConverter = variantConverter
         }
@@ -332,7 +332,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun erase(value: T) {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_erase(_handle)
+        Bridge.engine_call_erase(ptr)
     }
 
     /**
@@ -344,7 +344,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun fill(value: T) {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_fill(_handle)
+        Bridge.engine_call_fill(ptr)
     }
 
     /**
@@ -357,7 +357,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun filter(callable: Callable): VariantArray<T> {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
-        Bridge.engine_call_filter(_handle)
+        Bridge.engine_call_filter(ptr)
         return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<T>).also {
             it.variantConverter = variantConverter
         }
@@ -369,7 +369,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun find(what: T, from: Int): Int {
         TransferContext.writeArguments(variantConverter to what, VariantCaster.INT to from)
-        Bridge.engine_call_find(_handle)
+        Bridge.engine_call_find(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -377,7 +377,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns the first element of the array, or null if the array is empty.
      */
     fun front(): T? {
-        Bridge.engine_call_front(_handle)
+        Bridge.engine_call_front(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -390,7 +390,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns a class name of a typed [VariantArray] of type [VariantParser.OBJECT].
      */
     fun getTypedClassName(): StringName {
-        Bridge.engine_call_getTypedClassName(_handle)
+        Bridge.engine_call_getTypedClassName(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
@@ -398,7 +398,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns the script associated with a typed array tied to a class name.
      */
     fun getTypedScript(): Any {
-        Bridge.engine_call_getTypedScript(_handle)
+        Bridge.engine_call_getTypedScript(ptr)
         return TransferContext.readReturnValue(VariantCaster.ANY) as Any
     }
 
@@ -407,7 +407,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun has(value: T): Boolean {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_has(_handle)
+        Bridge.engine_call_has(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -417,7 +417,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun insert(position: Int, value: T) {
         TransferContext.writeArguments(VariantCaster.INT to position, variantConverter to value)
-        Bridge.engine_call_insert(_handle)
+        Bridge.engine_call_insert(ptr)
     }
 
     /**
@@ -428,7 +428,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun map(callable: Callable): VariantArray<Any?> {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable)
-        Bridge.engine_call_map(_handle)
+        Bridge.engine_call_map(ptr)
         return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<Any?>).also {
             it.variantConverter = VariantCaster.ANY
         }
@@ -439,7 +439,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * If the elements can't be compared, null is returned.
      */
     fun max(): T? {
-        Bridge.engine_call_max(_handle)
+        Bridge.engine_call_max(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -448,7 +448,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * If the elements can't be compared, null is returned.
      */
     fun min(): T? {
-        Bridge.engine_call_min(_handle)
+        Bridge.engine_call_min(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -456,7 +456,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns a random value from the target array.
      */
     fun pickRandom(): T? {
-        Bridge.engine_call_pickRandom(_handle)
+        Bridge.engine_call_pickRandom(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -465,7 +465,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns null if the array is empty.
      */
     fun popBack(): T? {
-        Bridge.engine_call_popBack(_handle)
+        Bridge.engine_call_popBack(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -474,7 +474,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns null if the array is empty.
      */
     fun popFront(): T? {
-        Bridge.engine_call_popFront(_handle)
+        Bridge.engine_call_popFront(ptr)
         return TransferContext.readReturnValue(variantConverter) as T?
     }
 
@@ -483,7 +483,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun pushBack(value: T) {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_pushBack(_handle)
+        Bridge.engine_call_pushBack(ptr)
     }
 
     /**
@@ -491,12 +491,12 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun pushFront(value: T) {
         TransferContext.writeArguments(variantConverter to value)
-        Bridge.engine_call_pushFront(_handle)
+        Bridge.engine_call_pushFront(ptr)
     }
 
     fun reduce(callable: Callable, accum: Any?): Any? {
         TransferContext.writeArguments(VariantParser.CALLABLE to callable, VariantCaster.ANY to accum)
-        Bridge.engine_call_reduce(_handle)
+        Bridge.engine_call_reduce(ptr)
         return TransferContext.readReturnValue(VariantCaster.ANY)
     }
 
@@ -507,7 +507,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun rfind(what: T, from: Int): Int {
         TransferContext.writeArguments(variantConverter to what, VariantCaster.INT to from)
-        Bridge.engine_call_rfind(_handle)
+        Bridge.engine_call_rfind(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -527,7 +527,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
             VariantCaster.INT to begin, VariantCaster.INT to end,
             VariantCaster.INT to step, VariantParser.BOOL to deep
         )
-        Bridge.engine_call_slice(_handle)
+        Bridge.engine_call_slice(ptr)
         return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<T>).also {
             it.variantConverter = variantConverter
         }
@@ -537,7 +537,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     //UTILITIES
     operator fun set(idx: Int, data: T) {
         TransferContext.writeArguments(VariantCaster.INT to idx, variantConverter to data)
-        Bridge.engine_call_operator_set(_handle)
+        Bridge.engine_call_operator_set(ptr)
     }
 
     @CoreTypeHelper
@@ -550,7 +550,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     operator fun get(idx: Int): T {
         TransferContext.writeArguments(VariantCaster.INT to idx)
-        Bridge.engine_call_operator_get(_handle)
+        Bridge.engine_call_operator_get(ptr)
         return TransferContext.readReturnValue(variantConverter) as T
     }
 
@@ -586,7 +586,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
     override fun toString(): String {

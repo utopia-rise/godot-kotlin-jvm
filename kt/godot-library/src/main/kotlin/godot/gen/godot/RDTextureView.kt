@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -85,56 +85,56 @@ public open class RDTextureView : RefCounted() {
 
   public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFormatOverridePtr, NIL)
   }
 
   public final fun getFormatOverride(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatOverridePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatOverridePtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSwizzleR(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleRPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSwizzleRPtr, NIL)
   }
 
   public final fun getSwizzleR(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleRPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSwizzleRPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSwizzleG(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleGPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSwizzleGPtr, NIL)
   }
 
   public final fun getSwizzleG(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleGPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSwizzleGPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSwizzleB(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleBPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSwizzleBPtr, NIL)
   }
 
   public final fun getSwizzleB(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleBPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSwizzleBPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSwizzleA(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleAPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSwizzleAPtr, NIL)
   }
 
   public final fun getSwizzleA(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleAPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSwizzleAPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat64Array
 import godot.core.PackedStringArray
@@ -27,7 +28,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -276,19 +276,19 @@ public open class XRInterfaceExtension : XRInterface() {
 
   public final fun getColorTexture(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getColorTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getDepthTexture(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getDepthTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getVelocityTexture(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getVelocityTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -310,7 +310,7 @@ public open class XRInterfaceExtension : XRInterface() {
     aspectRatio: Double,
   ): Unit {
     TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBlitPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addBlitPtr, NIL)
   }
 
   /**
@@ -319,7 +319,7 @@ public open class XRInterfaceExtension : XRInterface() {
    */
   public final fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetTexturePtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getRenderTargetTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

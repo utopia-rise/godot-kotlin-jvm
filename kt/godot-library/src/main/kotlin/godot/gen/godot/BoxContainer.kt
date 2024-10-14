@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -61,29 +61,29 @@ public open class BoxContainer : Container() {
    */
   public final fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.addSpacerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
 
   public final fun getAlignment(): AlignmentMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
     return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

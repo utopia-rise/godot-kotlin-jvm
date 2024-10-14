@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -41,12 +41,12 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
 
   public final fun setWindowId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWindowIdPtr, NIL)
   }
 
   public final fun getWindowId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
@@ -16,7 +17,6 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -50,7 +50,7 @@ public open class ZIPReader : RefCounted() {
    */
   public final fun `open`(path: String): Error {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -59,7 +59,7 @@ public open class ZIPReader : RefCounted() {
    */
   public final fun close(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -69,7 +69,7 @@ public open class ZIPReader : RefCounted() {
    */
   public final fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -80,7 +80,7 @@ public open class ZIPReader : RefCounted() {
   @JvmOverloads
   public final fun readFile(path: String, caseSensitive: Boolean = true): PackedByteArray {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(rawPtr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -91,7 +91,7 @@ public open class ZIPReader : RefCounted() {
   @JvmOverloads
   public final fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.fileExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Plane
 import godot.core.TypeManager
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,7 +42,7 @@ public open class XRAnchor3D : XRNode3D() {
    */
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -51,7 +51,7 @@ public open class XRAnchor3D : XRNode3D() {
    */
   public final fun getPlane(): Plane {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
+    TransferContext.callMethod(ptr, MethodBindings.getPlanePtr, PLANE)
     return (TransferContext.readReturnValue(PLANE) as Plane)
   }
 

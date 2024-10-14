@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -56,7 +56,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    */
   public final fun addFormatLoader(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.addFormatLoaderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addFormatLoaderPtr, NIL)
   }
 
   /**
@@ -64,7 +64,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    */
   public final fun removeFormatLoader(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.removeFormatLoaderPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
 
   public companion object

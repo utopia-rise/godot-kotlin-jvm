@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -49,7 +49,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun isServer(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isServerPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isServerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -58,7 +58,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun isUnsafeClient(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUnsafeClientPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUnsafeClientPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -68,7 +68,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun getCommonNameOverride(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCommonNameOverridePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getCommonNameOverridePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -78,7 +78,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun getTrustedCaChain(): X509Certificate? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrustedCaChainPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTrustedCaChainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
 
@@ -87,7 +87,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun getPrivateKey(): CryptoKey? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrivateKeyPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPrivateKeyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CryptoKey?)
   }
 
@@ -96,7 +96,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    */
   public final fun getOwnCertificate(): X509Certificate? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOwnCertificatePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getOwnCertificatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
 

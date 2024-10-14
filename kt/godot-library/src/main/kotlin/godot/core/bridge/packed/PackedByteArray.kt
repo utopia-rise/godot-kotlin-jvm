@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedByteArray : PackedArray<PackedByteArray, Byte> {
@@ -35,7 +35,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
 
     //INTERNALS
     internal constructor(handle: VoidPtr) {
-        this._handle = handle
+        this.ptr = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
@@ -44,7 +44,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * Constructs an empty PackedByteArray.
      */
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
@@ -53,7 +53,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     constructor(from: PackedByteArray) {
         TransferContext.writeArguments(VariantParser.PACKED_BYTE_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
@@ -62,7 +62,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     constructor(from: VariantArray<Byte>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
@@ -70,7 +70,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * Constructs a new [PackedByteArray] from an existing Kotlin [ByteArray] or Java byte[].
      */
     constructor(from: ByteArray) {
-        _handle = Bridge.engine_convert_to_godot(from)
+        ptr = Bridge.engine_convert_to_godot(from)
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
@@ -82,7 +82,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
     @JvmOverloads
     fun compress(compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PackedByteArray {
         TransferContext.writeArguments(VariantCaster.INT to compressionMode.ordinal)
-        Bridge.engine_call_compress(_handle)
+        Bridge.engine_call_compress(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
@@ -92,7 +92,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeDouble(byteOffset: Int): Double {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_double(_handle)
+        Bridge.engine_call_decode_double(ptr)
         return TransferContext.readReturnValue(VariantParser.DOUBLE) as Double
     }
 
@@ -102,7 +102,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeFloat(byteOffset: Int): Float {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_float(_handle)
+        Bridge.engine_call_decode_float(ptr)
         return TransferContext.readReturnValue(VariantCaster.FLOAT) as Float
     }
 
@@ -112,7 +112,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeHalf(byteOffset: Int): Float {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_half(_handle)
+        Bridge.engine_call_decode_half(ptr)
         return TransferContext.readReturnValue(VariantCaster.FLOAT) as Float
     }
 
@@ -122,7 +122,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeS16(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_s16(_handle)
+        Bridge.engine_call_decode_s16(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -132,7 +132,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeS32(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_s32(_handle)
+        Bridge.engine_call_decode_s32(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -142,7 +142,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeS64(byteOffset: Int): Long {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_s64(_handle)
+        Bridge.engine_call_decode_s64(ptr)
         return TransferContext.readReturnValue(VariantParser.LONG) as Long
     }
 
@@ -152,7 +152,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeS8(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_s8(_handle)
+        Bridge.engine_call_decode_s8(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -162,7 +162,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeU16(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_u16(_handle)
+        Bridge.engine_call_decode_u16(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -172,7 +172,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeU32(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_u32(_handle)
+        Bridge.engine_call_decode_u32(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -182,7 +182,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeU64(byteOffset: Int): Long {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_u64(_handle)
+        Bridge.engine_call_decode_u64(ptr)
         return TransferContext.readReturnValue(VariantParser.LONG) as Long
     }
 
@@ -192,7 +192,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeU8(byteOffset: Int): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset)
-        Bridge.engine_call_decode_u8(_handle)
+        Bridge.engine_call_decode_u8(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -202,7 +202,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeVar(byteOffset: Int, allowObjects: Boolean = false): Any {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.BOOL to allowObjects)
-        Bridge.engine_call_decode_var(_handle)
+        Bridge.engine_call_decode_var(ptr)
         return TransferContext.readReturnValue(VariantCaster.ANY) as Any
     }
 
@@ -212,7 +212,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun decodeVarSize(byteOffset: Int, allowObjects: Boolean = false): Int {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.BOOL to allowObjects)
-        Bridge.engine_call_decode_var(_handle)
+        Bridge.engine_call_decode_var(ptr)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
@@ -230,7 +230,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
             VariantCaster.INT to bufferSize,
             VariantCaster.INT to compressionMode.ordinal
         )
-        Bridge.engine_call_decompress(_handle)
+        Bridge.engine_call_decompress(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
@@ -249,7 +249,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
             VariantCaster.INT to maxOutputSize,
             VariantCaster.INT to compressionMode.ordinal
         )
-        Bridge.engine_call_decompress_dynamic(_handle)
+        Bridge.engine_call_decompress_dynamic(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
@@ -259,7 +259,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeDouble(byteOffset: Int, value: Double) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.DOUBLE to value)
-        Bridge.engine_call_encode_double(_handle)
+        Bridge.engine_call_encode_double(ptr)
     }
 
     /**
@@ -268,7 +268,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeFloat(byteOffset: Int, value: Float) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.FLOAT to value)
-        Bridge.engine_call_encode_double(_handle)
+        Bridge.engine_call_encode_double(ptr)
     }
 
     /**
@@ -277,7 +277,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeHalf(byteOffset: Int, value: Float) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.FLOAT to value)
-        Bridge.engine_call_encode_double(_handle)
+        Bridge.engine_call_encode_double(ptr)
     }
 
     /**
@@ -286,7 +286,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeS16(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_s16(_handle)
+        Bridge.engine_call_decode_s16(ptr)
     }
 
     /**
@@ -295,7 +295,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeS32(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_s32(_handle)
+        Bridge.engine_call_decode_s32(ptr)
     }
 
     /**
@@ -304,7 +304,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeS64(byteOffset: Int, value: Long) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.LONG to value)
-        Bridge.engine_call_decode_s64(_handle)
+        Bridge.engine_call_decode_s64(ptr)
     }
 
     /**
@@ -313,7 +313,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeS8(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_s8(_handle)
+        Bridge.engine_call_decode_s8(ptr)
     }
 
     /**
@@ -322,7 +322,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeU16(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_u16(_handle)
+        Bridge.engine_call_decode_u16(ptr)
     }
 
     /**
@@ -331,7 +331,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeU32(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_u32(_handle)
+        Bridge.engine_call_decode_u32(ptr)
     }
 
     /**
@@ -340,7 +340,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeU64(byteOffset: Int, value: Long) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.LONG to value)
-        Bridge.engine_call_decode_u64(_handle)
+        Bridge.engine_call_decode_u64(ptr)
     }
 
     /**
@@ -349,7 +349,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      */
     fun encodeU8(byteOffset: Int, value: Int) {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantCaster.INT to value)
-        Bridge.engine_call_decode_u8(_handle)
+        Bridge.engine_call_decode_u8(ptr)
     }
 
     /**
@@ -363,7 +363,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
             VariantCaster.ANY to value,
             VariantParser.BOOL to allowObjects
         )
-        Bridge.engine_call_encode_var(_handle)
+        Bridge.engine_call_encode_var(ptr)
     }
 
     /**
@@ -374,7 +374,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * For parsing user input always use get_string_from_utf8.
      */
     fun getStringFromAscii(): String {
-        Bridge.engine_call_get_string_from_ascii(_handle)
+        Bridge.engine_call_get_string_from_ascii(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -383,7 +383,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * string if source array is not valid UTF-16 string.
      */
     fun getStringFromUtf16(): String {
-        Bridge.engine_call_get_string_from_utf16(_handle)
+        Bridge.engine_call_get_string_from_utf16(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -392,7 +392,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * not valid UTF-32 string.
      */
     fun getStringFromUtf32(): String {
-        Bridge.engine_call_get_string_from_utf32(_handle)
+        Bridge.engine_call_get_string_from_utf32(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -401,7 +401,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * Returns empty string if source array is not valid wide string.
      */
     fun getStringFromWchar(): String {
-        Bridge.engine_call_get_string_from_wchar(_handle)
+        Bridge.engine_call_get_string_from_wchar(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
@@ -412,13 +412,13 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * For user input this function should always be preferred.
      */
     fun getStringFromUtf8(): String {
-        Bridge.engine_call_get_string_from_utf8(_handle)
+        Bridge.engine_call_get_string_from_utf8(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
     fun hasEncodedVar(byteOffset: Int, allowObjects: Boolean = false): Boolean {
         TransferContext.writeArguments(VariantCaster.INT to byteOffset, VariantParser.BOOL to allowObjects)
-        Bridge.engine_call_has_encoded_var(_handle)
+        Bridge.engine_call_has_encoded_var(ptr)
         return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
@@ -426,24 +426,24 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
      * Returns a hexadecimal representation of this array as a String.
      */
     fun hexEncode(): String {
-        Bridge.engine_call_hex_encode(_handle)
+        Bridge.engine_call_hex_encode(ptr)
         return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
     fun toPackedFloat32Array(): PackedFloat32Array {
-        Bridge.engine_call_to_float32_array(_handle)
+        Bridge.engine_call_to_float32_array(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_FLOAT_32_ARRAY) as PackedFloat32Array
     }
     fun toPackedFloat64Array(): PackedFloat64Array {
-        Bridge.engine_call_to_float64_array(_handle)
+        Bridge.engine_call_to_float64_array(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_FLOAT_64_ARRAY) as PackedFloat64Array
     }
     fun toPackedInt32Array(): PackedInt32Array {
-        Bridge.engine_call_to_int32_array(_handle)
+        Bridge.engine_call_to_int32_array(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_INT_32_ARRAY) as PackedInt32Array
     }
     fun toPackedInt64Array(): PackedInt64Array {
-        Bridge.engine_call_to_int64_array(_handle)
+        Bridge.engine_call_to_int64_array(ptr)
         return TransferContext.readReturnValue(VariantParser.PACKED_INT_64_ARRAY) as PackedInt64Array
     }
 
@@ -467,10 +467,10 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
-    fun toByteArray(): ByteArray = Bridge.engine_convert_to_jvm(_handle)
+    fun toByteArray(): ByteArray = Bridge.engine_convert_to_jvm(ptr)
 
     @Suppress("FunctionName", "LocalVariableName")
     internal object Bridge : PackedArrayBridge {

@@ -47,6 +47,11 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
+      - name: Publish common
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :common:publish
+
       - name: Publish tools-common
         shell: sh
         run: |

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -16,7 +17,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -41,7 +41,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushFramePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.pushFramePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -51,7 +51,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun canPushBuffer(amount: Int): Boolean {
     TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canPushBufferPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.canPushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -62,7 +62,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun pushBuffer(frames: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushBufferPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.pushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -72,7 +72,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -82,7 +82,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun getSkips(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkipsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSkipsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -91,7 +91,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    */
   public final fun clearBuffer(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 
   public companion object

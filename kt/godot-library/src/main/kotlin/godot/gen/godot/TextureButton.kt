@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -156,111 +156,111 @@ public open class TextureButton : BaseButton() {
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureNormalPtr, NIL)
   }
 
   public final fun setTexturePressed(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePressedPtr, NIL)
   }
 
   public final fun setTextureHover(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureHoverPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureHoverPtr, NIL)
   }
 
   public final fun setTextureDisabled(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureDisabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureDisabledPtr, NIL)
   }
 
   public final fun setTextureFocused(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFocusedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureFocusedPtr, NIL)
   }
 
   public final fun setClickMask(mask: BitMap?): Unit {
     TransferContext.writeArguments(OBJECT to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClickMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setClickMaskPtr, NIL)
   }
 
   public final fun setIgnoreTextureSize(ignore: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTextureSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setIgnoreTextureSizePtr, NIL)
   }
 
   public final fun setStretchMode(mode: StretchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
   }
 
   public final fun setFlipH(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlipHPtr, NIL)
   }
 
   public final fun isFlippedH(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFlippedHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlipVPtr, NIL)
   }
 
   public final fun isFlippedV(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isFlippedVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTextureNormal(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureNormalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTexturePressed(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePressedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureHover(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureHoverPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureHoverPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureDisabled(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureDisabledPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureDisabledPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureFocused(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFocusedPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureFocusedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getClickMask(): BitMap? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClickMaskPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getClickMaskPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BitMap?)
   }
 
   public final fun getIgnoreTextureSize(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
     return TextureButton.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

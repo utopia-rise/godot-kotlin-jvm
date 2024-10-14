@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -105,7 +105,7 @@ public open class RDShaderSource : RefCounted() {
    */
   public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStageSourcePtr, NIL)
   }
 
   /**
@@ -115,18 +115,18 @@ public open class RDShaderSource : RefCounted() {
    */
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getStageSourcePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
     TransferContext.writeArguments(LONG to language.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): RenderingDevice.ShaderLanguage {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, LONG)
     return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

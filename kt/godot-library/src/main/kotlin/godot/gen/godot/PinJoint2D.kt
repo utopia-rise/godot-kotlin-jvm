@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -101,67 +101,67 @@ public open class PinJoint2D : Joint2D() {
 
   public final fun setSoftness(softness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to softness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSoftnessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSoftnessPtr, NIL)
   }
 
   public final fun getSoftness(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSoftnessPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSoftnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitLower(angularLimitLower: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angularLimitLower.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitLowerPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAngularLimitLowerPtr, NIL)
   }
 
   public final fun getAngularLimitLower(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitUpper(angularLimitUpper: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angularLimitUpper.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitUpperPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAngularLimitUpperPtr, NIL)
   }
 
   public final fun getAngularLimitUpper(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorTargetVelocity(motorTargetVelocity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to motorTargetVelocity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotorTargetVelocityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMotorTargetVelocityPtr, NIL)
   }
 
   public final fun getMotorTargetVelocity(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotorEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMotorEnabledPtr, NIL)
   }
 
   public final fun isMotorEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMotorEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMotorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAngularLimitEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAngularLimitEnabledPtr, NIL)
   }
 
   public final fun isAngularLimitEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

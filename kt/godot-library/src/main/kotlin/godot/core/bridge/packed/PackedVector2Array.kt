@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
@@ -13,13 +13,13 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
 
     //INTERNALS
     internal constructor(@Suppress("LocalVariableName") _handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = bridge.engine_call_constructor()
+        ptr = bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
@@ -28,7 +28,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
      */
     constructor(from: PackedVector2Array) {
         TransferContext.writeArguments(VariantParser.PACKED_VECTOR2_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
@@ -37,7 +37,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
      */
     constructor(from: VariantArray<Vector2>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
@@ -60,7 +60,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
 

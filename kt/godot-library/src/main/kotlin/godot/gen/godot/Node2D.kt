@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -19,7 +20,6 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -334,56 +334,56 @@ public open class Node2D : CanvasItem() {
 
   public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun setRotation(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
   }
 
   public final fun setRotationDegrees(degrees: Float): Unit {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRotationDegreesPtr, NIL)
   }
 
   public final fun setSkew(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSkewPtr, NIL)
   }
 
   public final fun setScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getRotation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRotationDegrees(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRotationDegreesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getSkew(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSkewPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getScale(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -392,7 +392,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun rotate(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.rotatePtr, NIL)
   }
 
   /**
@@ -402,7 +402,7 @@ public open class Node2D : CanvasItem() {
   @JvmOverloads
   public final fun moveLocalX(delta: Float, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveLocalXPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.moveLocalXPtr, NIL)
   }
 
   /**
@@ -412,7 +412,7 @@ public open class Node2D : CanvasItem() {
   @JvmOverloads
   public final fun moveLocalY(delta: Float, scaled: Boolean = false): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveLocalYPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.moveLocalYPtr, NIL)
   }
 
   /**
@@ -420,7 +420,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun translate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.translatePtr, NIL)
   }
 
   /**
@@ -428,7 +428,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun globalTranslate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalTranslatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.globalTranslatePtr, NIL)
   }
 
   /**
@@ -436,72 +436,72 @@ public open class Node2D : CanvasItem() {
    */
   public final fun applyScale(ratio: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to ratio)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.applyScalePtr, NIL)
   }
 
   public final fun setGlobalPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
   public final fun getGlobalPosition(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGlobalRotation(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalRotationPtr, NIL)
   }
 
   public final fun setGlobalRotationDegrees(degrees: Float): Unit {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
   }
 
   public final fun getGlobalRotation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getGlobalRotationDegrees(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalRotationDegreesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlobalSkew(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalSkewPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalSkewPtr, NIL)
   }
 
   public final fun getGlobalSkew(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalSkewPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalSkewPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlobalScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalScalePtr, NIL)
   }
 
   public final fun getGlobalScale(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalScalePtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTransform(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
 
   public final fun setGlobalTransform(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGlobalTransformPtr, NIL)
   }
 
   /**
@@ -512,7 +512,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun lookAt(point: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.lookAtPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.lookAtPtr, NIL)
   }
 
   /**
@@ -522,7 +522,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun getAngleTo(point: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngleToPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAngleToPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -534,7 +534,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun toLocal(globalPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to globalPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toLocalPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.toLocalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -547,7 +547,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun toGlobal(localPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toGlobalPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.toGlobalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -556,7 +556,7 @@ public open class Node2D : CanvasItem() {
    */
   public final fun getRelativeTransformToParent(parent: Node?): Transform2D {
     TransferContext.writeArguments(OBJECT to parent)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRelativeTransformToParentPtr, TRANSFORM2D)
+    TransferContext.callMethod(ptr, MethodBindings.getRelativeTransformToParentPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 

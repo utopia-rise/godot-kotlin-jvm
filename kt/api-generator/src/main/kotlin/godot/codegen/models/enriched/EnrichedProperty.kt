@@ -9,7 +9,7 @@ import godot.codegen.traits.IDocumented
 import godot.codegen.traits.NullableTrait
 import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToCamelCase
 
 class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, IDocumented {
     val name = internal.name.convertToCamelCase()

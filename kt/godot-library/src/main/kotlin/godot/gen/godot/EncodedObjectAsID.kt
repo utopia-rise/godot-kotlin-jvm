@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -45,12 +45,12 @@ public open class EncodedObjectAsID : RefCounted() {
 
   public final fun setObjectId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setObjectIdPtr, NIL)
   }
 
   public final fun getObjectId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getObjectIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

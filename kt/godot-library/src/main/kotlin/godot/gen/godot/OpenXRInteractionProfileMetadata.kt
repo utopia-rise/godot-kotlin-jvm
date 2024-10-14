@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -36,7 +36,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    */
   public final fun registerProfileRename(oldName: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to oldName, STRING to newName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerProfileRenamePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerProfileRenamePtr, NIL)
   }
 
   /**
@@ -55,7 +55,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrExtensionName: String,
   ): Unit {
     TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerTopLevelPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerTopLevelPathPtr, NIL)
   }
 
   /**
@@ -73,7 +73,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrExtensionName: String,
   ): Unit {
     TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerInteractionProfilePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerInteractionProfilePtr, NIL)
   }
 
   /**
@@ -96,7 +96,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     actionType: OpenXRAction.ActionType,
   ): Unit {
     TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerIoPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.registerIoPathPtr, NIL)
   }
 
   public companion object

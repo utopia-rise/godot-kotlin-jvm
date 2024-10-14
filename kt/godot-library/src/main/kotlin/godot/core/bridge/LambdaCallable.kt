@@ -3,8 +3,7 @@
 package godot.core
 
 import godot.core.memory.TransferContext
-import godot.util.GodotLogging
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 abstract class LambdaCallable<R : Any?>(
     internal val variantConverter: VariantConverter,

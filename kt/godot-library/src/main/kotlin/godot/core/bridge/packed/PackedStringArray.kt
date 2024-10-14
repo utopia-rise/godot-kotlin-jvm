@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedStringArray : PackedArray<PackedStringArray, String> {
@@ -13,13 +13,13 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
@@ -28,7 +28,7 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
      */
     constructor(from: PackedStringArray) {
         TransferContext.writeArguments(VariantParser.PACKED_STRING_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
@@ -37,7 +37,7 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
      */
     constructor(from: VariantArray<String>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
@@ -60,7 +60,7 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
 

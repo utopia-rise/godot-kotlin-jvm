@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Plane
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PLANE
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,12 +70,12 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
   public final fun setPlane(plane: Plane): Unit {
     TransferContext.writeArguments(PLANE to plane)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPlanePtr, NIL)
   }
 
   public final fun getPlane(): Plane {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
+    TransferContext.callMethod(ptr, MethodBindings.getPlanePtr, PLANE)
     return (TransferContext.readReturnValue(PLANE) as Plane)
   }
 

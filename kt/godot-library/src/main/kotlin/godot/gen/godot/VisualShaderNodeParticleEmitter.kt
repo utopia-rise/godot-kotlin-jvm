@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -42,12 +42,12 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
 
   public final fun setMode2d(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMode2dPtr, NIL)
   }
 
   public final fun isMode2d(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isMode2dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

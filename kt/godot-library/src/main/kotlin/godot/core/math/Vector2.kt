@@ -2,17 +2,17 @@
 
 package godot.core
 
-import godot.util.CMP_EPSILON
-import godot.util.RealT
-import godot.util.bezierDerivative
-import godot.util.bezierInterpolate
-import godot.util.cubicInterpolateInTime
-import godot.util.fposmod
-import godot.util.isEqualApprox
-import godot.util.isZeroApprox
-import godot.util.lerp
-import godot.util.snapped
-import godot.util.toRealT
+import godot.common.util.CMP_EPSILON
+import godot.common.util.RealT
+import godot.common.util.bezierDerivative
+import godot.common.util.bezierInterpolate
+import godot.common.util.cubicInterpolateInTime
+import godot.common.util.fposmod
+import godot.common.util.isEqualApprox
+import godot.common.util.isZeroApprox
+import godot.common.util.lerp
+import godot.common.util.snapped
+import godot.common.util.toRealT
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.atan2

@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -45,12 +45,12 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
 
   public final fun setExpression(expression: String): Unit {
     TransferContext.writeArguments(STRING to expression)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpressionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExpressionPtr, NIL)
   }
 
   public final fun getExpression(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getExpressionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

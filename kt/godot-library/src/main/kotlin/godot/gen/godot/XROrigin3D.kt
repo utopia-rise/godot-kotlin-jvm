@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -67,23 +67,23 @@ public open class XROrigin3D : Node3D() {
 
   public final fun setWorldScale(worldScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to worldScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setWorldScalePtr, NIL)
   }
 
   public final fun getWorldScale(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getWorldScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCurrent(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCurrentPtr, NIL)
   }
 
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

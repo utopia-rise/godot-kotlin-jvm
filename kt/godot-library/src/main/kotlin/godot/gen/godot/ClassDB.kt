@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -21,7 +22,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -46,7 +46,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun getClassList(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -56,8 +56,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun getInheritersFromClass(`class`: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInheritersFromClassPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getInheritersFromClassPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -67,7 +66,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun getParentClass(`class`: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentClassPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.getParentClassPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -77,7 +76,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classExists(`class`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.classExistsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.classExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -87,7 +86,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun isParentClass(`class`: StringName, inherits: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to inherits)
-    TransferContext.callMethod(rawPtr, MethodBindings.isParentClassPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isParentClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -98,7 +97,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun canInstantiate(`class`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -108,7 +107,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun instantiate(`class`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.instantiatePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -118,7 +117,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classHasSignal(`class`: StringName, signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasSignalPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.classHasSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -130,7 +129,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetSignal(`class`: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetSignalPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -143,7 +142,7 @@ public object ClassDB : Object() {
   public final fun classGetSignalList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -156,7 +155,7 @@ public object ClassDB : Object() {
   public final fun classGetPropertyList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -166,7 +165,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetProperty(`object`: Object?, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetPropertyPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -180,7 +179,7 @@ public object ClassDB : Object() {
     `value`: Any?,
   ): Error {
     TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.classSetPropertyPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -190,7 +189,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetPropertyDefaultValue(`class`: StringName, `property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -206,7 +205,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.classHasMethodPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -222,7 +221,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Int {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -238,7 +237,7 @@ public object ClassDB : Object() {
   public final fun classGetMethodList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodListPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -250,7 +249,7 @@ public object ClassDB : Object() {
   public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantListPtr,
+    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantListPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -261,7 +260,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classHasIntegerConstant(`class`: StringName, name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasIntegerConstantPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.classHasIntegerConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -272,7 +271,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetIntegerConstant(`class`: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -287,7 +286,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasEnumPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.classHasEnumPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -299,7 +298,7 @@ public object ClassDB : Object() {
   public final fun classGetEnumList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -314,7 +313,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -329,7 +328,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
+    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -345,7 +344,7 @@ public object ClassDB : Object() {
     noInheritance: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -355,7 +354,7 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun isClassEnabled(`class`: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isClassEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedVector3Array
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -72,7 +72,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
    */
   public final fun setFaces(faces: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFacesPtr, NIL)
   }
 
   /**
@@ -81,18 +81,18 @@ public open class ConcavePolygonShape3D : Shape3D() {
    */
   public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
   }
 
   public final fun isBackfaceCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

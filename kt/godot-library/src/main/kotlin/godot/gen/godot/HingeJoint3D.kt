@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -38,7 +38,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
   /**
@@ -46,7 +46,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public final fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -55,7 +55,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public final fun setFlag(flag: Flag, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
 
   /**
@@ -63,7 +63,7 @@ public open class HingeJoint3D : Joint3D() {
    */
   public final fun getFlag(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

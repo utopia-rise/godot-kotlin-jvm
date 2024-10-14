@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.StringName
 import godot.core.TypeManager
@@ -20,7 +21,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -69,7 +69,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun getMonitor(monitor: Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMonitorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -143,7 +143,7 @@ public object Performance : Object() {
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.addCustomMonitorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addCustomMonitorPtr, NIL)
   }
 
   /**
@@ -153,7 +153,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeCustomMonitorPtr, NIL)
   }
 
   /**
@@ -162,7 +162,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasCustomMonitorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -173,7 +173,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -184,7 +184,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMonitorModificationTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -194,7 +194,7 @@ public object Performance : Object() {
   @JvmStatic
   public final fun getCustomMonitorNames(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 

@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
@@ -13,13 +13,13 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
-        this._handle = _handle
+        this.ptr = _handle
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = Bridge.engine_call_constructor()
+        ptr = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
@@ -28,7 +28,7 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
      */
     constructor(from: PackedVector3Array) {
         TransferContext.writeArguments(VariantParser.PACKED_VECTOR3_ARRAY to from)
-        _handle = Bridge.engine_call_constructor_packed_array()
+        ptr = Bridge.engine_call_constructor_packed_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
@@ -37,7 +37,7 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
      */
     constructor(from: VariantArray<Vector3>) {
         TransferContext.writeArguments(VariantParser.ARRAY to from)
-        _handle = Bridge.engine_call_constructor_array()
+        ptr = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
@@ -60,7 +60,7 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
     }
 
     override fun hashCode(): Int {
-        return _handle.hashCode()
+        return ptr.hashCode()
     }
 
 

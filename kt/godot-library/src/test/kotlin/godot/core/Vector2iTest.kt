@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.util.isEqualApprox
+import godot.common.util.isEqualApprox
 import org.junit.Test
 import kotlin.math.sqrt
 

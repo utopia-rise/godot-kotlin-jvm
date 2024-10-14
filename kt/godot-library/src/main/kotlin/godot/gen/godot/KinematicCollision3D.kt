@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
@@ -16,7 +17,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -43,7 +43,7 @@ public open class KinematicCollision3D : RefCounted() {
    */
   public final fun getTravel(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getTravelPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -52,7 +52,7 @@ public open class KinematicCollision3D : RefCounted() {
    */
   public final fun getRemainder(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemainderPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getRemainderPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -61,7 +61,7 @@ public open class KinematicCollision3D : RefCounted() {
    */
   public final fun getDepth(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -70,7 +70,7 @@ public open class KinematicCollision3D : RefCounted() {
    */
   public final fun getCollisionCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -81,7 +81,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getPosition(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -92,7 +92,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getNormal(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -104,7 +104,7 @@ public open class KinematicCollision3D : RefCounted() {
   public final fun getAngle(collisionIndex: Int = 0, upDirection: Vector3 = Vector3(0, 1, 0)):
       Float {
     TransferContext.writeArguments(LONG to collisionIndex.toLong(), VECTOR3 to upDirection)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -115,7 +115,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getLocalShape(collisionIndex: Int = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getLocalShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -126,7 +126,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getCollider(collisionIndex: Int = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -137,7 +137,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getColliderId(collisionIndex: Int = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderIdPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -148,7 +148,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getColliderRid(collisionIndex: Int = 0): RID {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -158,7 +158,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getColliderShape(collisionIndex: Int = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -169,7 +169,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getColliderShapeIndex(collisionIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapeIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderShapeIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -180,7 +180,7 @@ public open class KinematicCollision3D : RefCounted() {
   @JvmOverloads
   public final fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderVelocityPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 

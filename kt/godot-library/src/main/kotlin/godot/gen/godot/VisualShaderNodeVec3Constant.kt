@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -67,12 +67,12 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
 
   public final fun setConstant(constant: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 

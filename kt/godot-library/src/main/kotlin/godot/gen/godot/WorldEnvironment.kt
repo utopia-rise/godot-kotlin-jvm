@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -68,34 +68,34 @@ public open class WorldEnvironment : Node() {
 
   public final fun setEnvironment(env: Environment?): Unit {
     TransferContext.writeArguments(OBJECT to env)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
   public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun setCompositor(compositor: Compositor?): Unit {
     TransferContext.writeArguments(OBJECT to compositor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCompositorPtr, NIL)
   }
 
   public final fun getCompositor(): Compositor? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCompositorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Compositor?)
   }
 

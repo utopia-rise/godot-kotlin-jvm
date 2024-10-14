@@ -1,7 +1,7 @@
-package godot.util
+package godot.common.util
 
 @Suppress("UNCHECKED_CAST")
-internal class IndexedIterator<T>(
+class IndexedIterator<T>(
         private var size: () -> Int,
         private val getter: (Int) -> T,
         private val eraser: (Int) -> Unit
@@ -23,7 +23,7 @@ internal class IndexedIterator<T>(
     }
 }
 
-internal class Entry<K, V>(
+class Entry<K, V>(
         override val key: K,
         private val getter: (K) -> V,
         private val setter: (K, V) -> Unit
@@ -42,7 +42,7 @@ internal class Entry<K, V>(
 }
 
 @Suppress("UNCHECKED_CAST")
-internal class MapIterator<K, V>(
+class MapIterator<K, V>(
         private val keyIterator: MutableIterator<K>,
         private val getter: (K) -> V,
         private val setter: (K, V) -> Unit,

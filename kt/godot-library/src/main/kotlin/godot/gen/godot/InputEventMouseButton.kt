@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -96,44 +96,44 @@ public open class InputEventMouseButton : InputEventMouse() {
 
   public final fun setFactor(factor: Float): Unit {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFactorPtr, NIL)
   }
 
   public final fun getFactor(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
     TransferContext.writeArguments(LONG to buttonIndex.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
 
   public final fun getButtonIndex(): MouseButton {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getButtonIndexPtr, LONG)
     return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun setCanceled(canceled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to canceled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCanceledPtr, NIL)
   }
 
   public final fun setDoubleClick(doubleClick: Boolean): Unit {
     TransferContext.writeArguments(BOOL to doubleClick)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDoubleClickPtr, NIL)
   }
 
   public final fun isDoubleClick(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isDoubleClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

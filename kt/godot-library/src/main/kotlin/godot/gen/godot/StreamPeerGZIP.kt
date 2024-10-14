@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -45,7 +45,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   @JvmOverloads
   public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.startCompressionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.startCompressionPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -56,7 +56,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   @JvmOverloads
   public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.startDecompressionPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.startDecompressionPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -65,7 +65,7 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   public final fun finish(): Error {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.finishPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -74,7 +74,7 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   public companion object

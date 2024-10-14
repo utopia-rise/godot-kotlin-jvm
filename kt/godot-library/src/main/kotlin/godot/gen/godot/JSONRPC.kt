@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
@@ -17,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -42,7 +42,7 @@ public open class JSONRPC : Object() {
 
   public final fun setScope(scope: String, target: Object?): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScopePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScopePtr, NIL)
   }
 
   /**
@@ -57,13 +57,13 @@ public open class JSONRPC : Object() {
   @JvmOverloads
   public final fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
-    TransferContext.callMethod(rawPtr, MethodBindings.processActionPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.processActionPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.processStringPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.processStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -82,7 +82,7 @@ public open class JSONRPC : Object() {
     id: Any?,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeRequestPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.makeRequestPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -94,7 +94,7 @@ public open class JSONRPC : Object() {
    */
   public final fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeResponsePtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.makeResponsePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -106,7 +106,7 @@ public open class JSONRPC : Object() {
    */
   public final fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeNotificationPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.makeNotificationPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -124,7 +124,7 @@ public open class JSONRPC : Object() {
     id: Any? = null,
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to code.toLong(), STRING to message, ANY to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeResponseErrorPtr, DICTIONARY)
+    TransferContext.callMethod(ptr, MethodBindings.makeResponseErrorPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -96,45 +96,45 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
 
   public final fun setCullMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStrengthPtr, NIL)
   }
 
   public final fun getStrength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttenuation(attenuation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to attenuation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAttenuationPtr, NIL)
   }
 
   public final fun getAttenuation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAttenuationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDirectionality(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDirectionalityPtr, NIL)
   }
 
   public final fun getDirectionality(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDirectionalityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

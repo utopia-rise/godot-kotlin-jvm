@@ -34,8 +34,8 @@ import godot.core.VariantConverter
 import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
-import godot.tools.common.constants.Constraints
-import godot.tools.common.extensions.convertToSnakeCase
+import godot.common.constants.Constraints
+import godot.common.extensions.convertToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10

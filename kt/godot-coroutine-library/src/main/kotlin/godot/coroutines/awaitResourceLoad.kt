@@ -6,7 +6,7 @@ import godot.ResourceLoader
 import godot.ResourceLoader.CacheMode
 import godot.core.variantArrayOf
 import godot.global.GD
-import godot.util.RealT
+import godot.common.util.RealT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

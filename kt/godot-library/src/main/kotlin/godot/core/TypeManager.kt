@@ -1,7 +1,7 @@
 package godot.core
 
 import godot.Object
-import godot.util.VoidPtr
+import godot.common.interop.VoidPtr
 import kotlin.reflect.KClass
 
 internal object TypeManager {

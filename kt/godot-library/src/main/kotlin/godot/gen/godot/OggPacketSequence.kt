@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedInt64Array
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -15,7 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -69,35 +69,35 @@ public open class OggPacketSequence : Resource() {
 
   public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {
     TransferContext.writeArguments(ARRAY to packetData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPacketDataPtr, NIL)
   }
 
   public final fun getPacketData(): VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketDataPtr, ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketDataPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
   public final fun setPacketGranulePositions(granulePositions: PackedInt64Array): Unit {
     TransferContext.writeArguments(PACKED_INT_64_ARRAY to granulePositions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPacketGranulePositionsPtr, NIL)
   }
 
   public final fun getPacketGranulePositions(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketGranulePositionsPtr,
+    TransferContext.callMethod(ptr, MethodBindings.getPacketGranulePositionsPtr,
         PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public final fun setSamplingRate(samplingRate: Float): Unit {
     TransferContext.writeArguments(DOUBLE to samplingRate.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplingRatePtr, NIL)
   }
 
   public final fun getSamplingRate(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplingRatePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSamplingRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -106,7 +106,7 @@ public open class OggPacketSequence : Resource() {
    */
   public final fun getLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

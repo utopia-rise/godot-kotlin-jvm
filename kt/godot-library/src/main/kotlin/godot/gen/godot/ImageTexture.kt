@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -14,7 +15,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -62,7 +62,7 @@ public open class ImageTexture : Texture2D() {
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -74,7 +74,7 @@ public open class ImageTexture : Texture2D() {
    */
   public final fun setImage(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setImagePtr, NIL)
   }
 
   /**
@@ -87,7 +87,7 @@ public open class ImageTexture : Texture2D() {
    */
   public final fun update(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class ImageTexture : Texture2D() {
    */
   public final fun setSizeOverride(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
   }
 
   public companion object {

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.NodePath
 import godot.core.Signal1
@@ -19,7 +20,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -99,7 +99,7 @@ public open class MultiplayerSpawner : Node() {
    */
   public final fun addSpawnableScene(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSpawnableScenePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addSpawnableScenePtr, NIL)
   }
 
   /**
@@ -107,7 +107,7 @@ public open class MultiplayerSpawner : Node() {
    */
   public final fun getSpawnableSceneCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableSceneCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSpawnableSceneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -116,7 +116,7 @@ public open class MultiplayerSpawner : Node() {
    */
   public final fun getSpawnableScene(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableScenePtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getSpawnableScenePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -125,7 +125,7 @@ public open class MultiplayerSpawner : Node() {
    */
   public final fun clearSpawnableScenes(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearSpawnableScenesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearSpawnableScenesPtr, NIL)
   }
 
   /**
@@ -137,41 +137,41 @@ public open class MultiplayerSpawner : Node() {
   @JvmOverloads
   public final fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.spawnPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.spawnPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   public final fun getSpawnPath(): NodePath {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnPathPtr, NODE_PATH)
+    TransferContext.callMethod(ptr, MethodBindings.getSpawnPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setSpawnPath(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnPathPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpawnPathPtr, NIL)
   }
 
   public final fun getSpawnLimit(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnLimitPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSpawnLimitPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSpawnLimit(limit: Long): Unit {
     TransferContext.writeArguments(LONG to limit)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnLimitPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpawnLimitPtr, NIL)
   }
 
   public final fun getSpawnFunction(): Callable {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   public final fun setSpawnFunction(spawnFunction: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to spawnFunction)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnFunctionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSpawnFunctionPtr, NIL)
   }
 
   public companion object

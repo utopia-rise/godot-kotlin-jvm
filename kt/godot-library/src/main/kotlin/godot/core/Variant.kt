@@ -2,8 +2,8 @@ package godot.core
 
 import godot.Object
 import godot.core.memory.MemoryManager
-import godot.util.nullptr
-import godot.util.toRealT
+import godot.common.interop.nullptr
+import godot.common.util.toRealT
 import java.nio.ByteBuffer
 
 private var ByteBuffer.bool: Boolean
@@ -94,7 +94,7 @@ private var ByteBuffer.obj: KtObject?
         return MemoryManager.getInstanceOrCreate(ptr, id, constructorIndex)
     }
     set(value) {
-        putLong(value?.rawPtr ?: nullptr)
+        putLong(value?.ptr ?: nullptr)
     }
 
 private var ByteBuffer.variantType: Int
@@ -384,7 +384,7 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
             if (any is NativeCallable) {
                 buffer.bool = false
-                buffer.putLong(any._handle)
+                buffer.putLong(any.ptr)
             } else {
                 require(any is LambdaCallable<*>)
                 buffer.bool = true
@@ -551,6 +551,6 @@ sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
 
 private inline fun <reified T : NativeCoreType> toGodotNativeCoreType(buffer: ByteBuffer, any: Any?) {
     require(any is T)
-    buffer.putLong(any._handle)
+    buffer.putLong(any.ptr)
 }
 

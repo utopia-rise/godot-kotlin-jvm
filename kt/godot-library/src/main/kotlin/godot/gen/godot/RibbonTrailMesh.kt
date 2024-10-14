@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -107,67 +107,67 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
 
   public final fun setSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSections(sections: Int): Unit {
     TransferContext.writeArguments(LONG to sections.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSectionsPtr, NIL)
   }
 
   public final fun getSections(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSectionLength(sectionLength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSectionLengthPtr, NIL)
   }
 
   public final fun getSectionLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSectionLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSectionSegments(sectionSegments: Int): Unit {
     TransferContext.writeArguments(LONG to sectionSegments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionSegmentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSectionSegmentsPtr, NIL)
   }
 
   public final fun getSectionSegments(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionSegmentsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSectionSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setShape(shape: Shape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, LONG)
     return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

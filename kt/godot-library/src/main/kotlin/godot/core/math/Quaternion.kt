@@ -3,14 +3,14 @@
 package godot.core
 
 import godot.EulerOrder
-import godot.util.CMP_EPSILON
-import godot.util.RealT
-import godot.util.cubicInterpolate
-import godot.util.cubicInterpolateInTime
-import godot.util.isEqualApprox
-import godot.util.isZeroApprox
-import godot.util.signbit
-import godot.util.toRealT
+import godot.common.util.CMP_EPSILON
+import godot.common.util.RealT
+import godot.common.util.cubicInterpolate
+import godot.common.util.cubicInterpolateInTime
+import godot.common.util.isEqualApprox
+import godot.common.util.isZeroApprox
+import godot.common.util.signbit
+import godot.common.util.toRealT
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.acos

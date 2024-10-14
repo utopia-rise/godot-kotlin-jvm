@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
@@ -21,7 +22,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -153,7 +153,7 @@ public open class VoxelGIData : Resource() {
     levelCounts: PackedInt32Array,
   ): Unit {
     TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
-    TransferContext.callMethod(rawPtr, MethodBindings.allocatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.allocatePtr, NIL)
   }
 
   /**
@@ -164,114 +164,114 @@ public open class VoxelGIData : Resource() {
    */
   public final fun getBounds(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getOctreeSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOctreeSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getOctreeSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getToCellXform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun getOctreeCells(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getDataCells(): PackedByteArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getLevelCounts(): PackedInt32Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setDynamicRange(dynamicRange: Float): Unit {
     TransferContext.writeArguments(DOUBLE to dynamicRange.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDynamicRangePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDynamicRangePtr, NIL)
   }
 
   public final fun getDynamicRange(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDynamicRangePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDynamicRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnergy(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnergyPtr, NIL)
   }
 
   public final fun getEnergy(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBiasPtr, NIL)
   }
 
   public final fun getBias(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalBiasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNormalBiasPtr, NIL)
   }
 
   public final fun getNormalBias(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalBiasPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getNormalBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPropagation(propagation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to propagation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPropagationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPropagationPtr, NIL)
   }
 
   public final fun getPropagation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropagationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPropagationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInterior(interior: Boolean): Unit {
     TransferContext.writeArguments(BOOL to interior)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setInteriorPtr, NIL)
   }
 
   public final fun isInterior(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseTwoBounces(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTwoBouncesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseTwoBouncesPtr, NIL)
   }
 
   public final fun isUsingTwoBounces(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

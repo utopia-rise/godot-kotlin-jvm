@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
@@ -20,7 +21,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -93,7 +93,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.addNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addNodePtr, NIL)
   }
 
   /**
@@ -101,7 +101,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AnimationNode?)
   }
 
@@ -110,7 +110,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeNodePtr, NIL)
   }
 
   /**
@@ -118,7 +118,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
-    TransferContext.callMethod(rawPtr, MethodBindings.renameNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.renameNodePtr, NIL)
   }
 
   /**
@@ -126,7 +126,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasNodePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.hasNodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,7 +140,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     outputNode: StringName,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong(), STRING_NAME to outputNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.connectNodePtr, NIL)
   }
 
   /**
@@ -148,7 +148,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectNodePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.disconnectNodePtr, NIL)
   }
 
   /**
@@ -156,7 +156,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodePositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setNodePositionPtr, NIL)
   }
 
   /**
@@ -164,18 +164,18 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   public final fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getNodePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGraphOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
   }
 
   public final fun getGraphOffset(): Vector2 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
+    TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

@@ -2,7 +2,7 @@ package godot.entrygenerator.checks
 
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
-import godot.tools.common.constants.Constraints
+import godot.common.constants.Constraints
 
 class ConstructorArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger, sourceFiles) {
     override fun execute(): Boolean {

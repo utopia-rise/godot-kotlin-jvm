@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
@@ -15,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -156,100 +156,100 @@ public open class TouchScreenButton : Node2D() {
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureNormalPtr, NIL)
   }
 
   public final fun getTextureNormal(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTextureNormalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTexturePressed(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTexturePressedPtr, NIL)
   }
 
   public final fun getTexturePressed(): Texture2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getTexturePressedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setBitmask(bitmask: BitMap?): Unit {
     TransferContext.writeArguments(OBJECT to bitmask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBitmaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBitmaskPtr, NIL)
   }
 
   public final fun getBitmask(): BitMap? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBitmaskPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getBitmaskPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BitMap?)
   }
 
   public final fun setShape(shape: Shape2D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape2D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setShapeCentered(bool: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bool)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapeCenteredPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapeCenteredPtr, NIL)
   }
 
   public final fun isShapeCentered(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShapeCenteredPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isShapeCenteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShapeVisible(bool: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bool)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapeVisiblePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapeVisiblePtr, NIL)
   }
 
   public final fun isShapeVisible(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShapeVisiblePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isShapeVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAction(action: String): Unit {
     TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
   }
 
   public final fun getAction(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING)
+    TransferContext.callMethod(ptr, MethodBindings.getActionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setVisibilityMode(mode: VisibilityMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityModePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVisibilityModePtr, NIL)
   }
 
   public final fun getVisibilityMode(): VisibilityMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityModePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getVisibilityModePtr, LONG)
     return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPassbyPress(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPassbyPressPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPassbyPressPtr, NIL)
   }
 
   public final fun isPassbyPressEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -258,7 +258,7 @@ public open class TouchScreenButton : Node2D() {
    */
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

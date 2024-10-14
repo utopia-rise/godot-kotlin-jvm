@@ -7,12 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -90,56 +90,56 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
 
   public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCentralHorizontalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
   }
 
   public final fun getCentralHorizontalAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUpperVerticalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUpperVerticalAnglePtr, NIL)
   }
 
   public final fun getUpperVerticalAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLowerVerticalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setLowerVerticalAnglePtr, NIL)
   }
 
   public final fun getLowerVerticalAngle(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackSegments(segments: Long): Unit {
     TransferContext.writeArguments(LONG to segments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
 
   public final fun getFallbackSegments(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getFallbackSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

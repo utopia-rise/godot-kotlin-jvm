@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
@@ -18,7 +19,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -40,7 +40,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getCamTransform(): Transform3D {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -50,7 +50,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getCamProjection(): Projection {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamProjectionPtr, PROJECTION)
+    TransferContext.callMethod(ptr, MethodBindings.getCamProjectionPtr, PROJECTION)
     return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
@@ -59,7 +59,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getViewCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -69,7 +69,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getViewEyeOffset(view: Long): Vector3 {
     TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -80,7 +80,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getViewProjection(view: Long): Projection {
     TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewProjectionPtr, PROJECTION)
+    TransferContext.callMethod(ptr, MethodBindings.getViewProjectionPtr, PROJECTION)
     return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
@@ -89,7 +89,7 @@ public open class RenderSceneData internal constructor() : Object() {
    */
   public final fun getUniformBuffer(): RID {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniformBufferPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getUniformBufferPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

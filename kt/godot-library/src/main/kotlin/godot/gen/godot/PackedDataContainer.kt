@@ -7,11 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -57,7 +57,7 @@ public open class PackedDataContainer : Resource() {
    */
   public final fun pack(`value`: Any?): Error {
     TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.packPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -66,7 +66,7 @@ public open class PackedDataContainer : Resource() {
    */
   public final fun size(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.sizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

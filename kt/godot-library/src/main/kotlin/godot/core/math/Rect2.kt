@@ -5,7 +5,7 @@ package godot.core
 import godot.Side
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
-import godot.util.RealT
+import godot.common.util.RealT
 import kotlin.math.max
 import kotlin.math.min
 

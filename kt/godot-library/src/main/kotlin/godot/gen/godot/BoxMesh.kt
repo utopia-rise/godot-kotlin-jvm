@@ -9,13 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -108,45 +108,45 @@ public open class BoxMesh : PrimitiveMesh() {
 
   public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSubdivideWidth(subdivide: Int): Unit {
     TransferContext.writeArguments(LONG to subdivide.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
 
   public final fun getSubdivideWidth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSubdivideWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideHeight(divisions: Int): Unit {
     TransferContext.writeArguments(LONG to divisions.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSubdivideHeightPtr, NIL)
   }
 
   public final fun getSubdivideHeight(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSubdivideHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(divisions: Int): Unit {
     TransferContext.writeArguments(LONG to divisions.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
 
   public final fun getSubdivideDepth(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getSubdivideDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -64,7 +64,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     outBandwidth: Int = 0,
   ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createServerPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -94,7 +94,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     localPort: Int = 0,
   ): Error {
     TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createClientPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -108,7 +108,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun createMesh(uniqueId: Int): Error {
     TransferContext.writeArguments(LONG to uniqueId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.createMeshPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -118,7 +118,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun addMeshPeer(peerId: Int, host: ENetConnection?): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.addMeshPeerPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -129,12 +129,12 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBindIpPtr, NIL)
   }
 
   public final fun getHost(): ENetConnection? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getHostPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ENetConnection?)
   }
 
@@ -143,7 +143,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    */
   public final fun getPeer(id: Int): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getPeerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 

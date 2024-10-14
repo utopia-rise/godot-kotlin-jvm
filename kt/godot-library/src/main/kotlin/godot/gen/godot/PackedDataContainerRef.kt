@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -53,7 +53,7 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
    */
   public final fun size(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.sizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

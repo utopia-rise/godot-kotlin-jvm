@@ -7,13 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -221,111 +221,111 @@ public open class VehicleWheel3D : Node3D() {
 
   public final fun setRadius(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionRestLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionRestLengthPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSuspensionRestLengthPtr, NIL)
   }
 
   public final fun getSuspensionRestLength(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionTravel(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionTravelPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSuspensionTravelPtr, NIL)
   }
 
   public final fun getSuspensionTravel(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionStiffness(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionStiffnessPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSuspensionStiffnessPtr, NIL)
   }
 
   public final fun getSuspensionStiffness(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionMaxForce(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionMaxForcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSuspensionMaxForcePtr, NIL)
   }
 
   public final fun getSuspensionMaxForce(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingCompression(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingCompressionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDampingCompressionPtr, NIL)
   }
 
   public final fun getDampingCompression(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingCompressionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDampingCompressionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingRelaxation(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingRelaxationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDampingRelaxationPtr, NIL)
   }
 
   public final fun getDampingRelaxation(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseAsTraction(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAsTractionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseAsTractionPtr, NIL)
   }
 
   public final fun isUsedAsTraction(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsTractionPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsedAsTractionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseAsSteering(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAsSteeringPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseAsSteeringPtr, NIL)
   }
 
   public final fun isUsedAsSteering(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsSteeringPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsedAsSteeringPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFrictionSlip(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionSlipPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setFrictionSlipPtr, NIL)
   }
 
   public final fun getFrictionSlip(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionSlipPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getFrictionSlipPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -334,7 +334,7 @@ public open class VehicleWheel3D : Node3D() {
    */
   public final fun isInContact(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInContactPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isInContactPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -346,18 +346,18 @@ public open class VehicleWheel3D : Node3D() {
    */
   public final fun getContactBody(): Node3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContactBodyPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getContactBodyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node3D?)
   }
 
   public final fun setRollInfluence(rollInfluence: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rollInfluence.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRollInfluencePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setRollInfluencePtr, NIL)
   }
 
   public final fun getRollInfluence(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRollInfluencePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRollInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -368,7 +368,7 @@ public open class VehicleWheel3D : Node3D() {
    */
   public final fun getSkidinfo(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkidinfoPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSkidinfoPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -377,40 +377,40 @@ public open class VehicleWheel3D : Node3D() {
    */
   public final fun getRpm(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRpmPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getRpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {
     TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEngineForcePtr, NIL)
   }
 
   public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getEngineForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
     TransferContext.writeArguments(DOUBLE to brake.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBrakePtr, NIL)
   }
 
   public final fun getBrake(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getBrakePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
     TransferContext.writeArguments(DOUBLE to steering.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setSteeringPtr, NIL)
   }
 
   public final fun getSteering(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getSteeringPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

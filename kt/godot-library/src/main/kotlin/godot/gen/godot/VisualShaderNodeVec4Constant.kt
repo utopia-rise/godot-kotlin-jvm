@@ -9,12 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Quaternion
 import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.QUATERNION
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -67,12 +67,12 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
 
   public final fun setConstant(constant: Quaternion): Unit {
     TransferContext.writeArguments(QUATERNION to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Quaternion {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
+    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 

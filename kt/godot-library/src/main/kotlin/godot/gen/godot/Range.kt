@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.TypeManager
@@ -15,7 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -173,43 +173,43 @@ public open class Range : Control() {
 
   public final fun getValue(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getMin(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getMax(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getStep(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getPage(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPagePtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getPagePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getAsRatio(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAsRatioPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getAsRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setValue(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setValuePtr, NIL)
   }
 
   /**
@@ -218,75 +218,75 @@ public open class Range : Control() {
    */
   public final fun setValueNoSignal(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValueNoSignalPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setValueNoSignalPtr, NIL)
   }
 
   public final fun setMin(minimum: Double): Unit {
     TransferContext.writeArguments(DOUBLE to minimum)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun setMax(maximum: Double): Unit {
     TransferContext.writeArguments(DOUBLE to maximum)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun setStep(step: Double): Unit {
     TransferContext.writeArguments(DOUBLE to step)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun setPage(pagesize: Double): Unit {
     TransferContext.writeArguments(DOUBLE to pagesize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPagePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPagePtr, NIL)
   }
 
   public final fun setAsRatio(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsRatioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAsRatioPtr, NIL)
   }
 
   public final fun setUseRoundedValues(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseRoundedValuesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setUseRoundedValuesPtr, NIL)
   }
 
   public final fun isUsingRoundedValues(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingRoundedValuesPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isUsingRoundedValuesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExpRatio(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpRatioPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExpRatioPtr, NIL)
   }
 
   public final fun isRatioExp(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRatioExpPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isRatioExpPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowGreater(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowGreaterPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAllowGreaterPtr, NIL)
   }
 
   public final fun isGreaterAllowed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGreaterAllowedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isGreaterAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowLesser(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowLesserPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setAllowLesserPtr, NIL)
   }
 
   public final fun isLesserAllowed(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLesserAllowedPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isLesserAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -297,7 +297,7 @@ public open class Range : Control() {
    */
   public final fun share(with: Node?): Unit {
     TransferContext.writeArguments(OBJECT to with)
-    TransferContext.callMethod(rawPtr, MethodBindings.sharePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.sharePtr, NIL)
   }
 
   /**
@@ -305,7 +305,7 @@ public open class Range : Control() {
    */
   public final fun unshare(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unsharePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.unsharePtr, NIL)
   }
 
   public companion object

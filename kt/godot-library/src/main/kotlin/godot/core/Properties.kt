@@ -3,7 +3,6 @@ package godot.core
 import godot.PropertyHint
 import godot.PropertyUsageFlags
 import godot.core.memory.TransferContext
-import godot.util.GodotLogging
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(

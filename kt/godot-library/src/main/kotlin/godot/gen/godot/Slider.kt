@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.TypeManager
@@ -14,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -92,45 +92,45 @@ public open class Slider internal constructor() : Range() {
 
   public final fun setTicks(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTicksPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTicksPtr, NIL)
   }
 
   public final fun getTicks(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getTicksPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getTicksOnBorders(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksOnBordersPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getTicksOnBordersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTicksOnBorders(ticksOnBorder: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ticksOnBorder)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTicksOnBordersPtr, NIL)
   }
 
   public final fun setEditable(editable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to editable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
   }
 
   public final fun isEditable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEditablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScrollable(scrollable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to scrollable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollablePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollablePtr, NIL)
   }
 
   public final fun isScrollable(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScrollablePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isScrollablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

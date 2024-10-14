@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.RID
 import godot.core.TypeManager
@@ -22,7 +23,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -227,61 +227,61 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun resourceChanged(resource: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.resourceChangedPtr, NIL)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   public final fun setTargetPosition(localPoint: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector3 {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxResults(maxResults: Int): Unit {
     TransferContext.writeArguments(LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxResultsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setMaxResultsPtr, NIL)
   }
 
   public final fun getMaxResults(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxResultsPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getMaxResultsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -291,7 +291,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollidingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -302,7 +302,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getCollisionCount(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -314,7 +314,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun forceShapecastUpdate(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceShapecastUpdatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.forceShapecastUpdatePtr, NIL)
   }
 
   /**
@@ -323,7 +323,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getCollider(index: Int): Object? {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -332,7 +332,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getColliderRid(index: Int): RID {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -342,7 +342,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getColliderShape(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -353,7 +353,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getCollisionPoint(index: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionPointPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -362,7 +362,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getCollisionNormal(index: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -372,7 +372,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getClosestCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestCollisionSafeFractionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getClosestCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -385,7 +385,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getClosestCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestCollisionUnsafeFractionPtr, DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getClosestCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -394,7 +394,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addExceptionRidPtr, NIL)
   }
 
   /**
@@ -403,7 +403,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun addException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
 
   /**
@@ -411,7 +411,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeExceptionRidPtr, NIL)
   }
 
   /**
@@ -420,7 +420,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun removeException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }
 
   /**
@@ -428,17 +428,17 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun clearExceptions(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -448,7 +448,7 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -457,51 +457,51 @@ public open class ShapeCast3D : Node3D() {
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExcludeParentBody(mask: Boolean): Unit {
     TransferContext.writeArguments(BOOL to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
 
   public final fun getExcludeParentBody(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.getExcludeParentBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
     TransferContext.writeArguments(COLOR to debugShapeCustomColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugShapeCustomColorPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setDebugShapeCustomColorPtr, NIL)
   }
 
   public final fun getDebugShapeCustomColor(): Color {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugShapeCustomColorPtr, COLOR)
+    TransferContext.callMethod(ptr, MethodBindings.getDebugShapeCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
