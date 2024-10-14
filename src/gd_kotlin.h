@@ -34,7 +34,7 @@ private:
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
-    Ref<JavaArchive> jar;
+    Ref<JavaArchive> jar; // We keep a Reference to the jar in memory because the Godot editor require a resource to be in cache to reload.
     Object* callable_middleman; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
 
     void fetch_user_configuration();
