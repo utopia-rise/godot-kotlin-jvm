@@ -79,6 +79,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+    secrets: inherit
 
   build-linux:
     name: 🐧 Build Linux
@@ -87,6 +88,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+    secrets: inherit
 
   test-linux:
     name: 🐧 Test Linux
@@ -98,6 +100,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+    secrets: inherit
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
@@ -109,3 +112,5 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit

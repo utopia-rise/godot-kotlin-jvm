@@ -14,8 +14,7 @@ concurrency:
 
 jobs:
   build-windows:
-    # Windows 10 with latest image
-    runs-on: windows-latest
+    runs-on: windows-2019
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -64,9 +63,16 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
+        uses: ./modules/kotlin_jvm/.github/actions/cache
         with:
-          cache-name: ${{ matrix.cache-name }}
+          key: ${{ matrix.cache-name }}
+          path: "${{github.workspace}}/.scons-cache/"
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+          s3-user-readonly: ${{ secrets.S3_USER_READONLY }}
+          s3-password-readonly: ${{ secrets.S3_PASSWORD_READONLY }}
         continue-on-error: true
 
       - name: Setup python and scons

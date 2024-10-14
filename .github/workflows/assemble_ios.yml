@@ -24,6 +24,11 @@ jobs:
           repository: godotengine/godot
           ref: ${{ inputs.godot-version }}
 
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
       # Python must be kept below 3.12
       #https://github.com/KhronosGroup/MoltenVK/blob/3b9e335fe8fc8a72cf6099acbd54128889445c0a/.github/workflows/CI.yml#L44
       - name: Setup python and scons
@@ -31,11 +36,39 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Download ios export template binaries
+      - name: Download ios export template binaries debug
         uses: actions/download-artifact@v4
         with:
-          name: export_template_ios_all
+          name: export_template_debug_ios_arm64
           path: "./"
+
+      - name: Download ios export template binaries release
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_release_ios_arm64
+          path: "./"
+
+      - name: Setup MoltenVK build cache
+        uses: ./modules/kotlin_jvm/.github/actions/cache
+        with:
+          key: assemble_ios_moltenvk_cache
+          path: |
+            MoltenVk/Package
+            MoltenVk/External
+            MoltenVk/xcuserdata
+            MoltenVk/project.xcworkspace
+            MoltenVk/*.xccheckout
+            MoltenVk/*.xcscmblueprint
+            MoltenVk/build
+            MoltenVk/*.o
+            MoltenVk/*.a
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+          s3-user-readonly: ${{ secrets.S3_USER_READONLY }}
+          s3-password-readonly: ${{ secrets.S3_PASSWORD_READONLY }}
+        continue-on-error: true
 
       - name: Clone MoltenVK
         uses: actions/checkout@v4

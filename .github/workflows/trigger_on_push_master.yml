@@ -32,6 +32,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+    secrets: inherit
 
   build-android:
     name: 🤖 Build and Assemble Android
@@ -42,6 +43,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   build-ios:
     name: 🍏 Build iOS
@@ -50,6 +52,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+    secrets: inherit
 
   build-linux:
     name: 🐧 Build Linux
@@ -58,6 +61,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+    secrets: inherit
 
   build-macos:
     name: 🍎 Build macOS
@@ -66,6 +70,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+    secrets: inherit
 
   build-windows:
     name: 🪟 Build Windows
@@ -74,6 +79,17 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+    secrets: inherit
+
+  assemble-android:
+    name: 🤖 Assemble android
+    uses: ./.github/workflows/assemble_android.yml
+    needs:
+      - setup-build-variables
+      - build-android
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
     name: 🍎 Assemble macos
@@ -97,6 +113,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   assemble-linux:
     name: 🐧 Assemble linux
@@ -127,7 +144,7 @@ jobs:
     uses: ./.github/workflows/assemble_export_templates.yml
     needs:
       - setup-build-variables
-      - build-android # uploads finished export template directly
+      - assemble-android
       - assemble-ios # export templates need to be packed into xcode project
       - build-linux # uploads finished export template directly
       - assemble-macos # export templates need to be packed into app
