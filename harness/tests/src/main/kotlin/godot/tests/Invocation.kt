@@ -64,14 +64,12 @@ class Invocation : Node3D() {
 
     // Can't export nullable coretypes
     //@Export
-    //@RegisterProperty
     //var nullableLong: Long? = null
 
     private var hasInitializedLateInits = false
 
     // Can't export nullable coretypes
     //@Export
-    //@RegisterProperty
     //var lateinitString: String? = null
 
     @GodotMember
@@ -383,7 +381,7 @@ class Invocation : Node3D() {
     }
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@RegisterFunction
+//	@GodotMember
 //	fun getFromStringNavMeshNullableDict(key: String) = nullableDictionary[key]
 
     @GodotMember
@@ -402,7 +400,7 @@ class Invocation : Node3D() {
     fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.removeAt(index)
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@RegisterFunction
+//	@GodotMember
 //	fun getNullableNavMeshFromArray(index: Int) = nullableArray[index]
 
     @GodotMember

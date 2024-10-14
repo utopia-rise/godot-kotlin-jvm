@@ -29,7 +29,6 @@ class RegisterSignalAnnotator : Annotator {
         if (element is KtProperty && element.isSignal()) {
             checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
             checkMutability(element, holder)
-            checkRegisteredType(element, holder)
         }
     }
 
@@ -40,17 +39,6 @@ class RegisterSignalAnnotator : Annotator {
                 errorLocation = ktProperty.valOrVarKeyword,
                 quickFixes = arrayOf(mutabilityQuickFix),
                 problemHighlightType = ProblemHighlightType.WARNING,
-            )
-        }
-    }
-
-    private fun checkRegisteredType(ktProperty: KtProperty, holder: AnnotationHolder) {
-        val type = ktProperty.type() ?: return
-        if (!type.getKotlinTypeFqName(false).startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) {
-            holder.registerProblem(
-                message = GodotPluginBundle.message("problem.signal.wrongType"),
-                errorLocation = getInitializerProblemLocation(ktProperty),
-                quickFixes = arrayOf(useDelegateQuickFix)
             )
         }
     }

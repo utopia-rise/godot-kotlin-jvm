@@ -12,9 +12,9 @@ import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 
 /**
- * Gets custom name defined in `@RegisterClass` annotation if defined, fqName or simple name otherwise
+ * Gets custom name defined in `@GodotScript` annotation if defined, fqName or simple name otherwise
  *
- * @return fqName to registered class name or `null` if not annotated with `@RegisterClass`
+ * @return fqName to registered class name or `null` if not annotated with `@GodotScript`
  */
 fun KtClass.getRegisteredClassName(): Pair<String, String>? = this.toLightClass()?.getRegisteredClassName()
 
