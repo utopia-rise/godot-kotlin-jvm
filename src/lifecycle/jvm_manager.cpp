@@ -96,19 +96,20 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 }
 
 bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
-    Bootstrap::initialize_jni_binding(p_env, class_loader);
-    KtObject::initialize_jni_binding(p_env, class_loader);
-    KtPropertyInfo::initialize_jni_binding(p_env, class_loader);
-    KtProperty::initialize_jni_binding(p_env, class_loader);
-    KtConstructor::initialize_jni_binding(p_env, class_loader);
-    KtSignalInfo::initialize_jni_binding(p_env, class_loader);
-    KtRpcConfig::initialize_jni_binding(p_env, class_loader);
-    KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
-    KtFunction::initialize_jni_binding(p_env, class_loader);
-    KtClass::initialize_jni_binding(p_env, class_loader);
-    LambdaCallable::initialize_jni_binding(p_env, class_loader);
+    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
 
-    bool ret = TransferContext::initialize(p_env, class_loader)
+    return  Bootstrap::initialize(p_env, class_loader)
+            && KtObject::initialize(p_env, class_loader)
+            && KtPropertyInfo::initialize(p_env, class_loader)
+            && KtProperty::initialize(p_env, class_loader)
+            && KtConstructor::initialize(p_env, class_loader)
+            && KtSignalInfo::initialize(p_env, class_loader)
+            && KtRpcConfig::initialize(p_env, class_loader)
+            && KtFunctionInfo::initialize(p_env, class_loader)
+            && KtFunction::initialize(p_env, class_loader)
+            && KtClass::initialize(p_env, class_loader)
+            && LambdaCallable::initialize(p_env, class_loader)
+            && TransferContext::initialize(p_env, class_loader)
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
             && MemoryManager::initialize(p_env, class_loader)
@@ -130,10 +131,6 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
-
-    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
-
-    return ret;
 }
 
 void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
