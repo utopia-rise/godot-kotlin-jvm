@@ -25,6 +25,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
 
 void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
     ProjectGenerator::generate_jvm_files(erase_existing);
+    get_editor_interface()->get_resource_file_system()->scan();
     project_dialog->hide();
 }
 
