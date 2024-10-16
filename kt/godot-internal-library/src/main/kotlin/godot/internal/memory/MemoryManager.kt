@@ -7,9 +7,10 @@ import godot.common.interop.ObjectID
 import godot.common.interop.NativePointer
 import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
-import godot.internal.memory.binding.GodotBinding
+import godot.internal.memory.binding.Binding
 import godot.internal.memory.binding.NativeCoreBinding
 import godot.internal.memory.binding.RefCountedBinding
+import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -63,7 +64,10 @@ object MemoryManager {
     private val lock = ReentrantReadWriteLock()
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = HashMap<ObjectID, GodotBinding>(BINDING_INITIAL_CAPACITY)
+    private val ObjectDB = HashMap<ObjectID, Binding>(BINDING_INITIAL_CAPACITY)
+
+    /** Pointers to Godot objects.*/
+    private val refCountedLinks = HashMap<RefCountedBinding, NativeWrapper>(BINDING_INITIAL_CAPACITY)
 
     /** List of references to decrement.*/
     private val deadReferences = mutableListOf<RefCountedBinding>()
@@ -85,34 +89,32 @@ object MemoryManager {
     /**
      * The Godot native object has just been created. We can directly add it to ObjectDB because we know the slot is free.
      */
-    fun registerNewNativeObject(binding: GodotBinding) = lock.write {
-        ObjectDB[binding.objectID] = binding
-        binding
+    fun registerNewNativeObject(nativeWrapper: NativeWrapper) = lock.write {
+        ObjectDB[nativeWrapper.objectID] = Binding.create(nativeWrapper)
     }
 
     /**
      * Check if a native object already has a wrapper, if not, we create it.
      */
-    fun getInstanceOrCreate(id: ObjectID, constructor: () -> NativeWrapper): NativeWrapper {
-
-        return lock.read {
-            // We first try to get a match.
-            ObjectDB[id]?.instance
-        } ?: lock.write {
-            // Fallback to creating the wrapper.
-            // We check a second time in a write lock in case it got created after the read lock by another thread
-            ObjectDB[id]?.instance ?: constructor().also { ObjectDB[id] = it.memoryBinding as GodotBinding }
-        }
+    fun getInstanceOrCreate(id: ObjectID, constructor: () -> NativeWrapper) = lock.read {
+        // We first try to get a match.
+        ObjectDB[id]?.instance
+    } ?: lock.write {
+        // Fallback to creating the wrapper.
+        // We check a second time in a write lock in case it got created after the read lock by another thread
+        ObjectDB[id]?.instance ?: constructor().also { ObjectDB[id] = Binding.create(it) }
     }
 
     /**
-     * Create a script on top of an existing native object. We need additional checks to find if a twin exists.
+     * Create a script on top of an existing native object. It's usually called when adding/removing scripts. If RefCounted, we need to link the old and new instance together
      */
-    fun registerExistingNativeObject(binding: GodotBinding) = lock.write {
-        val oldBinding = ObjectDB.put(binding.objectID, binding)
+    fun registerExistingNativeObject(nativeWrapper: NativeWrapper) = lock.write {
+        val objectId = nativeWrapper.objectID
+        val oldBinding = ObjectDB.put(objectId, Binding.create(nativeWrapper))
 
-        if (oldBinding != null) {
-            oldBinding.instance = binding.instance
+        // If an old binding exist, it means that we added/removed a script and create a link between the 2 bindings.
+        if (oldBinding != null && objectId.isReference) {
+            refCountedLinks[oldBinding as RefCountedBinding] = nativeWrapper
         }
     }
 
@@ -123,7 +125,7 @@ object MemoryManager {
         ObjectDB.remove(ObjectID(id))
     }
 
-    fun isInstanceValid(ktObject: NativeWrapper) = checkInstance(ktObject.ptr, ktObject.memoryBinding.objectID.id)
+    fun isInstanceValid(ktObject: NativeWrapper) = checkInstance(ktObject.ptr, ktObject.objectID.id)
 
     fun registerNativeCoreType(nativeCoreType: NativePointer, variantType: VariantConverter) {
         val rawPtr = nativeCoreType.ptr
@@ -153,7 +155,7 @@ object MemoryManager {
     private fun getDeadReferences(): LongArray {
         // Pool all dead references first, so we can know the amount of work to do.
         while (true) {
-            val ref = ((GodotBinding.queue.poll() ?: break) as RefCountedBinding)
+            val ref = ((Binding.queue.poll() ?: break) as RefCountedBinding)
             deadReferences.add(ref)
         }
 
@@ -184,6 +186,9 @@ object MemoryManager {
                 val decrement = it === otherRef
                 if (decrement) {
                     ObjectDB.remove(objectID)
+                } else {
+                    // The binding is not in the ObjectDB, it can because it's a Twin of a more recent wrapper. In this case, we remove the link.
+                    refCountedLinks.remove(it)
                 }
                 decrement
             }

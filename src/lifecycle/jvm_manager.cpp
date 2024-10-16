@@ -4,7 +4,6 @@
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/godot_print_bridge.h"
-#include "jvm_wrapper/bridge/jvm_stack_trace.h"
 #include "jvm_wrapper/bridge/lambda_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"

@@ -1,6 +1,5 @@
 package godot.core
 
-import godot.common.interop.Binding
 import godot.common.interop.NativeWrapper
 import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
@@ -8,7 +7,6 @@ import godot.common.interop.nullObjectID
 import godot.common.interop.nullptr
 import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
-import godot.internal.memory.binding.GodotBinding
 import godot.internal.reflection.TypeManager
 import kotlin.contracts.ExperimentalContracts
 
@@ -31,7 +29,7 @@ abstract class KtObject : NativeWrapper {
     }
 
     final override val ptr: VoidPtr
-    final override val memoryBinding: Binding
+    final override val objectID: ObjectID
 
     init {
         val config = initConfig.get()
@@ -39,7 +37,7 @@ abstract class KtObject : NativeWrapper {
         if (config.ptr != nullptr) {
             // Native object already exists, so we know the id and ptr without going back to the other side.
             ptr = config.ptr
-            memoryBinding = GodotBinding.create(this, config.objectID)
+            objectID = config.objectID
             config.reset()
             // We don't need to register the instance to the MemoryManager, it is the responsibility of the caller.
         } else {
@@ -48,9 +46,9 @@ abstract class KtObject : NativeWrapper {
             new(TypeManager.userTypeToId[this::class] ?: -1)
             TransferContext.unsafeRead { buffer ->
                 ptr = buffer.getLong()
-                memoryBinding = GodotBinding.create(this, ObjectID(buffer.getLong()))
+                objectID = ObjectID(buffer.getLong())
             }
-            MemoryManager.registerNewNativeObject(memoryBinding as GodotBinding)
+            MemoryManager.registerNewNativeObject(this)
         }
 
     }
@@ -77,10 +75,10 @@ abstract class KtObject : NativeWrapper {
     }
 
     private fun removeScript(constructorIndex: Int) {
-        createScriptInstance(ptr, memoryBinding.objectID,  TypeManager.engineTypesConstructors[constructorIndex] as () -> KtObject)
+        createScriptInstance(ptr, objectID,  TypeManager.engineTypesConstructors[constructorIndex])
     }
 
-    override fun equals(other: Any?) = this === other || (other is KtObject && ptr == other.ptr)
+    override fun equals(other: Any?) = this === other || (other is KtObject && objectID == other.objectID)
 
     override fun hashCode() = ptr.toInt()
 
@@ -93,9 +91,9 @@ abstract class KtObject : NativeWrapper {
         }
 
         /** When using this constructor, the newly created instances doesn't register itself to the MemoryManager, the caller must do it.*/
-        inline fun <T : KtObject> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
+        inline fun <T : NativeWrapper> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
             val obj = constructor()
-            MemoryManager.registerExistingNativeObject(obj.memoryBinding as GodotBinding)
+            MemoryManager.registerExistingNativeObject(obj)
             obj
         }
 

@@ -1,43 +1,39 @@
 package godot.internal.memory.binding
 
-import godot.common.interop.Binding
 import godot.common.interop.NativeWrapper
 import godot.common.interop.ObjectID
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-interface GodotBinding: Binding {
-    override var instance: NativeWrapper?
+interface Binding {
+    val instance: NativeWrapper?
 
     companion object {
-        val queue = ReferenceQueue<ObjectBinding>()
+        val queue = ReferenceQueue<NativeWrapper>()
 
-        fun create(instance: NativeWrapper, objectID: ObjectID): GodotBinding {
-            return if (objectID.isReference) {
-                RefCountedBinding(instance, objectID, queue)
+        fun create(instance: NativeWrapper): Binding {
+            return if (instance.objectID.isReference) {
+                RefCountedBinding(instance, queue)
             } else {
-                ObjectBinding(instance, objectID)
+                ObjectBinding(instance)
             }
         }
     }
 }
 
 class ObjectBinding(
-    override var instance: NativeWrapper?,
-    override val objectID: ObjectID
-) : GodotBinding
+    override val instance: NativeWrapper,
+) : Binding
 
 class RefCountedBinding(
     instance: NativeWrapper,
-    override val objectID: ObjectID,
-    queue: ReferenceQueue<ObjectBinding>,
-) : WeakReference<ObjectBinding>(ObjectBinding(instance, objectID), queue), GodotBinding {
+    queue: ReferenceQueue<NativeWrapper>,
+) : WeakReference<NativeWrapper>(instance, queue), Binding {
 
-    override var instance: NativeWrapper?
-        get() = this.get()?.instance
-        set(value) {
-            this.get()?.instance = value
-        }
+    val objectID: ObjectID = instance.objectID
+
+    override val instance: NativeWrapper?
+        get() = this.get()
 }
 
 

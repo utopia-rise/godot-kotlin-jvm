@@ -7,11 +7,6 @@ interface NativePointer {
     val ptr: VoidPtr
 }
 
-interface Binding {
-    val objectID: ObjectID
-    val instance: NativeWrapper?
-}
-
 interface NativeWrapper: NativePointer {
-    val memoryBinding: Binding
+    val objectID: ObjectID
 }
