@@ -9,6 +9,9 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -16,7 +19,6 @@ import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -31,7 +33,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -264,7 +265,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_ITEMLIST, this, scriptIndex)
   }
 
   /**

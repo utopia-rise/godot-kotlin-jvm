@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.Signal0
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
@@ -122,7 +123,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RESOURCE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RESOURCE, this, scriptIndex)
   }
 
   /**

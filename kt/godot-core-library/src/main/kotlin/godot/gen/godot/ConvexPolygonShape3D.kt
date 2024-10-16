@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector3Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -50,7 +51,7 @@ public open class ConvexPolygonShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_CONVEXPOLYGONSHAPE3D, this, scriptIndex)
   }
 
   public final fun setPoints(points: PackedVector3Array): Unit {

@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.StringName
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -30,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICALBONESIMULATOR3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PHYSICALBONESIMULATOR3D, this, scriptIndex)
   }
 
   /**

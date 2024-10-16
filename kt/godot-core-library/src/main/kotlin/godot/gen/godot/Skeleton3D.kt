@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.Quaternion
@@ -15,7 +18,6 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -31,7 +33,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -135,7 +136,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETON3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_SKELETON3D, this, scriptIndex)
   }
 
   /**

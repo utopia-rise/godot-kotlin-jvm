@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -67,7 +68,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, this, scriptIndex)
   }
 
   public final fun setPitchScale(rate: Float): Unit {

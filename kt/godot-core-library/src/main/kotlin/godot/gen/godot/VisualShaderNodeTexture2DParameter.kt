@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -17,7 +18,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTexture2DParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE2DPARAMETER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE2DPARAMETER, this,
+        scriptIndex)
   }
 
   public companion object

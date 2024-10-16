@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -35,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RichTextEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RICHTEXTEFFECT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RICHTEXTEFFECT, this, scriptIndex)
   }
 
   /**

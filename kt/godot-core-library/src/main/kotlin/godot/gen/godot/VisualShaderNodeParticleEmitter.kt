@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -37,7 +38,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, this, scriptIndex)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {

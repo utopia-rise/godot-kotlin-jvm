@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -23,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, this, scriptIndex)
   }
 
   public open fun _getName(): String {

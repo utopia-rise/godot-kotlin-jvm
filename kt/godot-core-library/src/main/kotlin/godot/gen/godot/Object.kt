@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Dictionary
@@ -14,7 +17,6 @@ import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.StringName
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -25,7 +27,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -96,7 +97,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OBJECT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_OBJECT, this, scriptIndex)
   }
 
   /**

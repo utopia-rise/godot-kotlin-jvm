@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -85,7 +86,7 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TEXTURERECT, this, scriptIndex)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

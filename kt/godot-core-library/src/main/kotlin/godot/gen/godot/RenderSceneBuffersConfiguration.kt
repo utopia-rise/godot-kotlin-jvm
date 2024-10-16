@@ -9,16 +9,17 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -136,7 +137,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION, this, scriptIndex)
   }
 
   /**

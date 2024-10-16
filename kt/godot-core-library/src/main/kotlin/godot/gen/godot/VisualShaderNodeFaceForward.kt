@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFACEFORWARD, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEFACEFORWARD, this, scriptIndex)
   }
 
   public companion object

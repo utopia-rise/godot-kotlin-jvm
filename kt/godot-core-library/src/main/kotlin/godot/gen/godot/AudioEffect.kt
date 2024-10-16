@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -24,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOEFFECT, this, scriptIndex)
   }
 
   /**

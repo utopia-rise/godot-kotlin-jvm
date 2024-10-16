@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -40,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ZIPPACKER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_ZIPPACKER, this, scriptIndex)
   }
 
   /**

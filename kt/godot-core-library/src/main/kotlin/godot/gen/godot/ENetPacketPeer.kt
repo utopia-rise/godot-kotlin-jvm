@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -37,7 +38,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ENETPACKETPEER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_ENETPACKETPEER, this, scriptIndex)
   }
 
   /**

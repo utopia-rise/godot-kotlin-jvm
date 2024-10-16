@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.PackedVector2Array
@@ -14,7 +17,6 @@ import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -28,7 +30,6 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -76,7 +77,7 @@ public object NavigationServer2D : Object() {
   public val navigationDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
+    MemoryManager.getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
   }
 
   /**

@@ -79,7 +79,6 @@
       { "name" : "syncMemory","parameterTypes" : ["long[]"] },
       { "name" : "cleanUp","parameterTypes" : [] },
       { "name" : "deleteObject", "parameterTypes" : ["long"] },
-      { "name" : "removeScript", "parameterTypes" : ["long", "int"] },
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
       { "name" : "releaseBinding", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreTypes", "parameterTypes" : ["long[]", "int[]"] },
@@ -778,7 +777,8 @@
   {
     "name":"godot.core.KtObject",
     "methods":[
-      {"name":"_onDestroy","parameterTypes":[] }
+      {"name":"_onDestroy","parameterTypes":[] },
+      {"name" : "removeScript", "parameterTypes" : ["int"] }
     ]
   }
 ]

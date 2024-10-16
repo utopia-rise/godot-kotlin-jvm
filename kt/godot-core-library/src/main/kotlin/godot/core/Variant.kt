@@ -1,11 +1,11 @@
 package godot.core
 
 import godot.Object
+import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.common.interop.nullptr
 import godot.common.util.toRealT
 import godot.internal.memory.LongStringQueue
-import godot.internal.memory.MemoryManager
 import java.nio.ByteBuffer
 
 private var ByteBuffer.bool: Boolean
@@ -93,7 +93,7 @@ private var ByteBuffer.obj: KtObject?
             return null
         }
 
-        return MemoryManager.getInstanceOrCreate(ptr, id, constructorIndex)
+        return KtObject.getOrCreate(ptr, ObjectID(id), constructorIndex)
     }
     set(value) {
         putLong(value?.ptr ?: nullptr)

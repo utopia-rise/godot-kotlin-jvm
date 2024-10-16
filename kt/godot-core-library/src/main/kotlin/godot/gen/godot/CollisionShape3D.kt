@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -50,7 +51,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COLLISIONSHAPE3D, this, scriptIndex)
   }
 
   /**

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -14,7 +15,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GdjScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GDJSCRIPT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_GDJSCRIPT, this, scriptIndex)
   }
 
   public companion object

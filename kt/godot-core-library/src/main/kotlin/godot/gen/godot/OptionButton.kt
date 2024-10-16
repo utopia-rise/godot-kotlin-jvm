@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -96,7 +97,7 @@ public open class OptionButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPTIONBUTTON, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_OPTIONBUTTON, this, scriptIndex)
   }
 
   /**

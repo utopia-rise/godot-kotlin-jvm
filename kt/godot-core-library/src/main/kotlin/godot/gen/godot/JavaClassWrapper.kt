@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -27,7 +28,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
+    MemoryManager.getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
   }
 
   /**

@@ -176,7 +176,7 @@ class NodePath : NativeCoreType {
         private val nodePathCache = LRUCache<String, NodePath>(CACHE_INITIAL_CAPACITY)
 
         init {
-            MemoryManager.registerCallback {
+            MemoryManager.registerCallback(true) {
                 nodePathCache.clear()
             }
         }

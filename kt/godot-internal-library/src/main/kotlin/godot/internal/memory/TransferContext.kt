@@ -1,6 +1,5 @@
 package godot.internal.memory
 
-import godot.common.interop.ObjectID
 import godot.common.constants.Constraints
 import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
@@ -8,6 +7,9 @@ import godot.common.util.threadLocal
 import kotlincompile.definitions.GodotJvmBuildConfig
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 object TransferContext {
     private val bufferSize: Int
@@ -22,55 +24,55 @@ object TransferContext {
             return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4
         }
 
-    private val buffer by threadLocal<ByteBuffer> {
+    @PublishedApi
+    internal val buffer by threadLocal<ByteBuffer> {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }
 
-    fun writeArguments(vararg values: Pair<VariantConverter, Any?>) {
-        buffer.rewind()
-        buffer.putInt(values.size)
+    fun writeArguments(vararg values: Pair<VariantConverter, Any?>) = buffer.let {
+        it.rewind()
+        it.putInt(values.size)
         for (value in values) {
-            value.first.toGodot(buffer, value.second)
+            value.first.toGodot(it, value.second)
         }
     }
 
-    fun readSingleArgument(variantConverter: VariantConverter): Any? {
-        buffer.rewind()
-        val argsSize = buffer.int
+    fun readSingleArgument(variantConverter: VariantConverter) = buffer.let {
+        it.rewind()
+        val argsSize = it.getInt()
         if (GodotJvmBuildConfig.DEBUG) {
             require(argsSize == 1) {
                 "Expecting 1 parameter, but got $argsSize instead."
             }
         }
-        return variantConverter.toKotlin(buffer)
+        variantConverter.toKotlin(it)
     }
 
-    fun readArguments(variantConverters: Array<VariantConverter>, returnArray: Array<Any?>) {
-        buffer.rewind()
-        val argsSize = buffer.int
-        val argumentCount = variantConverters.size
+    fun readArguments(variantConverters: Array<VariantConverter>, returnArray: Array<Any?>) = buffer.let {
+        it.rewind()
+        val argsSize = it.getInt()
         if (GodotJvmBuildConfig.DEBUG) {
+            val argumentCount = variantConverters.size
             require(argsSize == argumentCount) {
                 "Expecting $argumentCount parameter(s), but got $argsSize instead."
             }
         }
-
         // Assume that variantTypes and areNullable have the same size and that returnArray is big enough
         for (i in 0 until argsSize) {
-            returnArray[i] = variantConverters[i].toKotlin(buffer)
+            returnArray[i] = variantConverters[i].toKotlin(it)
         }
     }
 
-    fun writeReturnValue(value: Any?, type: VariantConverter) {
-        buffer.rewind()
-        type.toGodot(buffer, value)
+    fun writeReturnValue(value: Any?, type: VariantConverter) = buffer.let {
+        it.rewind()
+        type.toGodot(it, value)
     }
 
-    fun readReturnValue(type: VariantConverter): Any? {
-        buffer.rewind()
-        return type.toKotlin(buffer)
+    fun readReturnValue(type: VariantConverter) = buffer.let {
+        it.rewind()
+        type.toKotlin(it)
     }
 
     fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantConverter) {
@@ -81,10 +83,15 @@ object TransferContext {
         )
     }
 
-    fun initializeKtObject(obj: KtObject) {
-        buffer.rewind()
-        obj.ptr = buffer.long
-        obj.objectID = ObjectID(buffer.long)
+    @ExperimentalContracts
+    inline fun unsafeRead(block: (ByteBuffer) -> Unit) {
+        contract {
+            callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+        }
+        buffer.let {
+            it.rewind()
+            block(it)
+        }
     }
 
     private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)

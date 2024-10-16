@@ -52,6 +52,7 @@ import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
+import godot.tools.common.constants.MEMORY_MANAGER
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
@@ -656,7 +657,7 @@ class GenerationService(
         .builder("${method.name}Ptr", VOID_PTR)
         .initializer(
             "%T.getMethodBindPtr(%S,·%S,·%L)",
-            ClassName("godot.core", "TypeManager"),
+            TYPE_MANAGER,
             enrichedClass.internal.name,
             method.internal.name,
             method.internal.hash
@@ -727,7 +728,8 @@ class GenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "callConstructor(%M, scriptIndex)",
+                    "%T.createNativeObject(%M, this, scriptIndex)",
+                    MEMORY_MANAGER,
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .build()
@@ -741,7 +743,8 @@ class GenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "getSingleton(%M)",
+                    "%T.getSingleton(%M)",
+                    MEMORY_MANAGER,
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .build()

@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -30,7 +31,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, this,
+        scriptIndex)
   }
 
   public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {

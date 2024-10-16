@@ -9,6 +9,9 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedStringArray
@@ -17,7 +20,6 @@ import godot.core.Rect2i
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -32,7 +34,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -575,7 +576,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WINDOW, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_WINDOW, this, scriptIndex)
   }
 
   /**

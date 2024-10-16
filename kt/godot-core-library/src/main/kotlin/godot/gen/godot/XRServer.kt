@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal0
@@ -14,7 +17,6 @@ import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -26,7 +28,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -86,7 +87,7 @@ public object XRServer : Object() {
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_XRSERVER)
+    MemoryManager.getSingleton(ENGINECLASS_XRSERVER)
   }
 
   @JvmStatic

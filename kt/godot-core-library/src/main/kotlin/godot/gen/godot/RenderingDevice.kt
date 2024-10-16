@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedByteArray
@@ -14,7 +17,6 @@ import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -33,7 +35,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -69,7 +70,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERINGDEVICE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RENDERINGDEVICE, this, scriptIndex)
   }
 
   /**

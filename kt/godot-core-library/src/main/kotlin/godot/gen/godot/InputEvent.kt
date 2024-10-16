@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,7 +23,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -52,7 +53,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_INPUTEVENT, this, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {

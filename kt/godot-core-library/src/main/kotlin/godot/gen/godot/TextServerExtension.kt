@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedByteArray
@@ -37,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVEREXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TEXTSERVEREXTENSION, this, scriptIndex)
   }
 
   /**

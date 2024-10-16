@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -34,7 +35,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COMPRESSEDTEXTURELAYERED, this, scriptIndex)
   }
 
   /**

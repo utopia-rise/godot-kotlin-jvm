@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -24,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CheckBox : Button() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CHECKBOX, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_CHECKBOX, this, scriptIndex)
   }
 
   public companion object

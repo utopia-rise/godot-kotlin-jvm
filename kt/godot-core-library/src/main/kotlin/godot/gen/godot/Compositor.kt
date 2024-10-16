@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -36,7 +37,7 @@ public open class Compositor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPOSITOR, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COMPOSITOR, this, scriptIndex)
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {

@@ -9,13 +9,14 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -161,7 +162,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MOBILEVRINTERFACE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_MOBILEVRINTERFACE, this, scriptIndex)
   }
 
   /**

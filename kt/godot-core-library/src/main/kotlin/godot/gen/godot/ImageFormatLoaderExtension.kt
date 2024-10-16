@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -27,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMAGEFORMATLOADEREXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_IMAGEFORMATLOADEREXTENSION, this, scriptIndex)
   }
 
   /**

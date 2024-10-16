@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -24,7 +26,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -74,7 +75,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object NativeMenu : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NATIVEMENU)
+    MemoryManager.getSingleton(ENGINECLASS_NATIVEMENU)
   }
 
   /**

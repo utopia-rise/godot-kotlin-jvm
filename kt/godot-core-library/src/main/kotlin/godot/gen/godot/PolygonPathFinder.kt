@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,7 +23,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -32,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POLYGONPATHFINDER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_POLYGONPATHFINDER, this, scriptIndex)
   }
 
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {

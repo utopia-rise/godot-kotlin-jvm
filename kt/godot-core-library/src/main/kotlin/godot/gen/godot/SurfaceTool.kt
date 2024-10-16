@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
@@ -17,7 +20,6 @@ import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -38,7 +40,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -86,7 +87,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SURFACETOOL, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_SURFACETOOL, this, scriptIndex)
   }
 
   /**

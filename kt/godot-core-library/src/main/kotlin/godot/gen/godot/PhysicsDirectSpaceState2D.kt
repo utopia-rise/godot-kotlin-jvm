@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -18,7 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
@@ -32,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D, this, scriptIndex)
   }
 
   /**

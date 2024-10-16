@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CompressedCubemapArray : CompressedTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDCUBEMAPARRAY, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COMPRESSEDCUBEMAPARRAY, this, scriptIndex)
   }
 
   public companion object

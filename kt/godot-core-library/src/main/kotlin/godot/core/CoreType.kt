@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.common.interop.ValuePointer
+import godot.common.interop.NativePointer
 import godot.common.interop.VoidPtr
 import godot.common.interop.nullptr
 
@@ -11,6 +11,6 @@ import godot.common.interop.nullptr
  */
 interface CoreType
 
-abstract class NativeCoreType : CoreType, ValuePointer {
+abstract class NativeCoreType : CoreType, NativePointer {
     override var ptr: VoidPtr = nullptr
 }

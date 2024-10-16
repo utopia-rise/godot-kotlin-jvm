@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.RID
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -23,7 +25,6 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -67,7 +68,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer2D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PHYSICSSERVER2D)
+    MemoryManager.getSingleton(ENGINECLASS_PHYSICSSERVER2D)
   }
 
   /**

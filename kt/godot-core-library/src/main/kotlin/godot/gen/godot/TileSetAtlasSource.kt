@@ -9,10 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,7 +24,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -113,7 +114,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILESETATLASSOURCE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TILESETATLASSOURCE, this, scriptIndex)
   }
 
   /**

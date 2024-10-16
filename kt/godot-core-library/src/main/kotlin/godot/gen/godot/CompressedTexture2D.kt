@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -46,7 +47,7 @@ public open class CompressedTexture2D : Texture2D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COMPRESSEDTEXTURE2D, this, scriptIndex)
   }
 
   /**

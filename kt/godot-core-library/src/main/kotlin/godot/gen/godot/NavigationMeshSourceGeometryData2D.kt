@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +55,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D, this,
+        scriptIndex)
   }
 
   /**

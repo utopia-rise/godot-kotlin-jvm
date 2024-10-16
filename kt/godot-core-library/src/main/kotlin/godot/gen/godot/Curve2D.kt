@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,7 +21,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -62,7 +63,7 @@ public open class Curve2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CURVE2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_CURVE2D, this, scriptIndex)
   }
 
   public final fun getPointCount(): Int {

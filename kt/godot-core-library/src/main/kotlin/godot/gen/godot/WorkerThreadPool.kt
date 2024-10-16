@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -77,7 +78,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object WorkerThreadPool : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_WORKERTHREADPOOL)
+    MemoryManager.getSingleton(ENGINECLASS_WORKERTHREADPOOL)
   }
 
   /**

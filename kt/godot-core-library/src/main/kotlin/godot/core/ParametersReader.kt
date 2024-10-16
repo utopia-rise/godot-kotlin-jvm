@@ -2,6 +2,7 @@ package godot.core
 
 import godot.internal.memory.TransferContext
 import godot.common.constants.Constraints
+import godot.common.interop.VariantConverter
 import godot.common.util.threadLocal
 
 internal open class ParametersReader {

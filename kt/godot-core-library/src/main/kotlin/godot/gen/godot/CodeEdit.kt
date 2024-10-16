@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -14,7 +17,6 @@ import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal3
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -28,7 +30,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -299,7 +300,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CODEEDIT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_CODEEDIT, this, scriptIndex)
   }
 
   /**

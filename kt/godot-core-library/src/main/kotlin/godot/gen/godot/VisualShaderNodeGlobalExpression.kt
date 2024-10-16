@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeGlobalExpression : VisualShaderNodeExpression() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION, this,
+        scriptIndex)
   }
 
   public companion object

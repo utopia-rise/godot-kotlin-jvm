@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -17,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeDeterminant : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEDETERMINANT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEDETERMINANT, this, scriptIndex)
   }
 
   public companion object

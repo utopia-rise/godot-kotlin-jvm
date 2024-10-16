@@ -7,18 +7,19 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -87,7 +88,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRADIENT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_GRADIENT, this, scriptIndex)
   }
 
   /**

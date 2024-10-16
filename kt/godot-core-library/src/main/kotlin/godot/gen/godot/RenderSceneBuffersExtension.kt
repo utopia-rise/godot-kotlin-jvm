@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEBUFFERSEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RENDERSCENEBUFFERSEXTENSION, this, scriptIndex)
   }
 
   /**

@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -41,7 +42,7 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMSYNCHRONIZED, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMSYNCHRONIZED, this, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

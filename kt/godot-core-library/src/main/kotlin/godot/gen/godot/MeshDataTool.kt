@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -25,7 +27,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -88,7 +89,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHDATATOOL, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_MESHDATATOOL, this, scriptIndex)
   }
 
   /**

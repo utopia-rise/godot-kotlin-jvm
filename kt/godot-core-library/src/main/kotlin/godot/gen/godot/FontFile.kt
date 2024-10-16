@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedByteArray
@@ -14,7 +17,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -33,7 +35,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -327,7 +328,7 @@ public open class FontFile : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FONTFILE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_FONTFILE, this, scriptIndex)
   }
 
   /**

@@ -7,19 +7,20 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -79,7 +80,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, this, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector2Array): Unit {

@@ -7,10 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TEXTURE2DARRAY, this, scriptIndex)
   }
 
   /**

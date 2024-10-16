@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.VariantArray
@@ -21,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPTEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_SCRIPTEXTENSION, this, scriptIndex)
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {

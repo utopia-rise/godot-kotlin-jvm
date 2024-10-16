@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -56,7 +57,7 @@ public open class World2D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_WORLD2D, this, scriptIndex)
   }
 
   public final fun getCanvas(): RID {

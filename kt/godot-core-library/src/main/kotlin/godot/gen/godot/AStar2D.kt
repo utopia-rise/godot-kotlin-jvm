@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,7 +21,6 @@ import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -39,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AStar2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ASTAR2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_ASTAR2D, this, scriptIndex)
   }
 
   /**

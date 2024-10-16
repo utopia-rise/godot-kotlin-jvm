@@ -212,10 +212,7 @@ void MemoryManager::try_promotion(JvmInstance* script_instance) {
     to_demote_mutex.unlock();
 }
 
-void MemoryManager::script_instance_removed(jni::Env& p_env, uint64_t id, uint32_t constructor_index) {
-    jvalue args[2] = {jni::to_jni_arg(id), jni::to_jni_arg(constructor_index)};
-    wrapped.call_void_method(p_env, REMOVE_SCRIPT, args);
-}
+
 
 void MemoryManager::direct_object_deletion(jni::Env& p_env, Object* p_obj) {
     jvalue args[1] = {jni::to_jni_arg(p_obj->get_instance_id().operator uint64_t())};

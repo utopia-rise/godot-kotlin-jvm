@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -101,7 +102,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERAPIEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_MULTIPLAYERAPIEXTENSION, this, scriptIndex)
   }
 
   /**

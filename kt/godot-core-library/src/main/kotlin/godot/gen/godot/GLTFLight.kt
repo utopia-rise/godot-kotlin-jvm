@@ -9,11 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.StringName
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
@@ -22,7 +24,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -118,7 +119,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFLIGHT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_GLTFLIGHT, this, scriptIndex)
   }
 
   /**

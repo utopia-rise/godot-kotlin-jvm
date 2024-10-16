@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -14,7 +15,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackPlaylist internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKPLAYLIST, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACKPLAYLIST, this, scriptIndex)
   }
 
   public companion object

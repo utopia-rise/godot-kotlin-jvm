@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -15,7 +16,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PACKETPEEREXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PACKETPEEREXTENSION, this, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Int {

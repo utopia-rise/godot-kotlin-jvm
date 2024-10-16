@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
 import godot.core.RID
@@ -14,7 +17,6 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal3
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,7 +25,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser._RID
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -156,7 +157,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONOBJECT2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_COLLISIONOBJECT2D, this, scriptIndex)
   }
 
   /**

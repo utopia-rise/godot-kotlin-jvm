@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 package godot
 
-import godot.internal.reflection.TypeManager
+import godot.`internal`.reflection.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.variantMapper
 import kotlin.Unit

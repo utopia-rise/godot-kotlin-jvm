@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.LONG
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -37,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODECUSTOM, this, scriptIndex)
   }
 
   /**

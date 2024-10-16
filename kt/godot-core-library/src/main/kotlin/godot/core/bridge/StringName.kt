@@ -72,7 +72,7 @@ class StringName : NativeCoreType {
         private val stringNameCache = LRUCache<String, StringName>(CACHE_INITIAL_CAPACITY)
 
         init {
-            MemoryManager.registerCallback {
+            MemoryManager.registerCallback(true) {
                 stringNameCache.clear()
             }
         }

@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.StringName
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.internal.memory.TransferContext
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -118,7 +119,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, this, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {

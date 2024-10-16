@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat64Array
@@ -17,7 +20,6 @@ import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -27,7 +29,6 @@ import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -44,7 +45,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACEEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_XRINTERFACEEXTENSION, this, scriptIndex)
   }
 
   /**

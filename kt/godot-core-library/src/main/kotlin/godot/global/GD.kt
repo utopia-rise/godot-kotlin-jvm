@@ -92,6 +92,6 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * Useful when you have to free third party resources or terminate non-daemon threads.
      * */
     fun callWhenClosing(callback: () -> Unit) {
-        MemoryManager.registerCallback(callback)
+        MemoryManager.registerCallback(false, callback)
     }
 }

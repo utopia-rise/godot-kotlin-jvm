@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
 import godot.core.Signal1
-import godot.internal.reflection.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -20,7 +22,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -227,7 +228,7 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TABBAR, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TABBAR, this, scriptIndex)
   }
 
   public final fun setTabCount(count: Int): Unit {

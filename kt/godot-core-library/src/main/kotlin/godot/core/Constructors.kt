@@ -2,9 +2,9 @@
 
 package godot.core
 
-import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.constants.Constraints
+import godot.common.interop.ObjectID
 import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
 import godot.common.util.threadLocal
@@ -16,10 +16,10 @@ abstract class KtConstructor<T : KtObject>(
     val parameterTypes: Array<VariantConverter> = argsTypes.toList().toTypedArray()
     abstract operator fun invoke(): T
 
-    fun construct(rawPtr: VoidPtr, instanceId: Long) = MemoryManager.createScript(rawPtr, instanceId) {
+    fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.createScriptInstance(rawPtr, ObjectID(instanceId)) {
         TransferContext.readArguments(parameterTypes, paramsArray)
-        val instance = invoke()
         resetParamsArray()
+        val instance = invoke()
         instance
     }
 

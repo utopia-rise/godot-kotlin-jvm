@@ -9,12 +9,14 @@ package godot
 import godot.TextServer.JustificationFlagValue
 import godot.TextServer.LineBreakFlagValue
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -32,7 +34,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -185,7 +186,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTPARAGRAPH, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TEXTPARAGRAPH, this, scriptIndex)
   }
 
   /**

@@ -10,6 +10,9 @@ import godot.NavigationPathQueryParameters2D.PathMetadataFlagsValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -17,7 +20,6 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -28,7 +30,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -449,7 +450,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONAGENT2D, this, scriptIndex)
   }
 
   /**

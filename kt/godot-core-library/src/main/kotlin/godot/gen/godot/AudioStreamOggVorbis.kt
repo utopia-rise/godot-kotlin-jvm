@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -94,7 +95,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMOGGVORBIS, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMOGGVORBIS, this, scriptIndex)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {

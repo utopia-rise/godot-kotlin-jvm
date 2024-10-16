@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -18,7 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -79,7 +80,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_EXPRESSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_EXPRESSION, this, scriptIndex)
   }
 
   /**

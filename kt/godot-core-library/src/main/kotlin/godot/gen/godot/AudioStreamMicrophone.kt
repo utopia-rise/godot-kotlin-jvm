@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -22,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamMicrophone : AudioStream() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMMICROPHONE, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMMICROPHONE, this, scriptIndex)
   }
 
   public companion object

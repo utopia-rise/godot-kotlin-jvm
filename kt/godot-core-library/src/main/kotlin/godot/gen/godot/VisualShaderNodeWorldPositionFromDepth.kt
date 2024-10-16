@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -18,7 +19,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH, this,
+        scriptIndex)
   }
 
   public companion object

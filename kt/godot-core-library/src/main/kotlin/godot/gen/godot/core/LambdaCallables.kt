@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.common.interop.VariantConverter
 import godot.core.VariantParser.NIL
 import java.lang.Class
 import kotlin.Any

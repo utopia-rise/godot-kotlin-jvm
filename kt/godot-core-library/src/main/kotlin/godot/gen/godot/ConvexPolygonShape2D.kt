@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,7 +53,7 @@ public open class ConvexPolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_CONVEXPOLYGONSHAPE2D, this, scriptIndex)
   }
 
   /**

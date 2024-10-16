@@ -7,10 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -20,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, this, scriptIndex)
   }
 
   public open fun _getStreamSamplingRate(): Float {

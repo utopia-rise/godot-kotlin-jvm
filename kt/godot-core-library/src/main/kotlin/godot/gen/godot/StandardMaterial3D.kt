@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STANDARDMATERIAL3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_STANDARDMATERIAL3D, this, scriptIndex)
   }
 
   public companion object

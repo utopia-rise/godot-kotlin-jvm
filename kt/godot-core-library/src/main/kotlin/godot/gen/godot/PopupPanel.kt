@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PopupPanel : Popup() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POPUPPANEL, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_POPUPPANEL, this, scriptIndex)
   }
 
   public companion object

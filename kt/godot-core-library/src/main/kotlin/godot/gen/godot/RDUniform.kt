@@ -7,15 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -50,7 +51,7 @@ public open class RDUniform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RDUNIFORM, this, scriptIndex)
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {

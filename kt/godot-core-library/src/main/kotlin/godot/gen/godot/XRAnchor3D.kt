@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Plane
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -33,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRANCHOR3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_XRANCHOR3D, this, scriptIndex)
   }
 
   /**

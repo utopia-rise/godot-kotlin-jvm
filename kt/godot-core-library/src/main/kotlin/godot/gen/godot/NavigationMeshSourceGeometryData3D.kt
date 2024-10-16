@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,7 +25,6 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Float
@@ -62,7 +63,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D, this,
+        scriptIndex)
   }
 
   /**

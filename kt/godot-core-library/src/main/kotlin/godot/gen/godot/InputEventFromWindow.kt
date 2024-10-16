@@ -7,11 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -36,7 +37,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_INPUTEVENTFROMWINDOW, this, scriptIndex)
   }
 
   public final fun setWindowId(id: Long): Unit {

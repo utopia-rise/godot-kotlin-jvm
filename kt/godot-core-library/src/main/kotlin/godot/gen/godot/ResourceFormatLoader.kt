@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -36,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RESOURCEFORMATLOADER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RESOURCEFORMATLOADER, this, scriptIndex)
   }
 
   /**

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
@@ -23,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ENGINEPROFILER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_ENGINEPROFILER, this, scriptIndex)
   }
 
   /**

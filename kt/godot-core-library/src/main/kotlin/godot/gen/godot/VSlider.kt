@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VSlider : Slider() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VSLIDER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_VSLIDER, this, scriptIndex)
   }
 
   public companion object

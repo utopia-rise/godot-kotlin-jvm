@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Signal0
 import kotlin.Int
 import kotlin.Suppress
@@ -24,7 +25,7 @@ public open class Popup : Window() {
   public val popupHide: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POPUP, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_POPUP, this, scriptIndex)
   }
 
   public companion object

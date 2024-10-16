@@ -7,9 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -17,7 +19,6 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -43,7 +44,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCMULTIPLAYERPEER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_WEBRTCMULTIPLAYERPEER, this, scriptIndex)
   }
 
   /**

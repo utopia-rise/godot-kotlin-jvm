@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.Vector2
@@ -27,7 +28,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION, this,
+        scriptIndex)
   }
 
   /**

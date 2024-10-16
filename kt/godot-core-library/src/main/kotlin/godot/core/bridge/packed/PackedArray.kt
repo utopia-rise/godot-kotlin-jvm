@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.common.interop.VariantConverter
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
 import godot.internal.memory.TransferContext

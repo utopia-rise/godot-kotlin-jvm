@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -18,7 +21,6 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Transform2D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -43,7 +45,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -74,7 +75,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_TEXTSERVER, this, scriptIndex)
   }
 
   /**

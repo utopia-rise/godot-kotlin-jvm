@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Basis
@@ -27,7 +30,6 @@ import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.Transform3D
-import godot.internal.reflection.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -61,7 +63,6 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
-import godot.internal.memory.TransferContext
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -186,7 +187,7 @@ public object RenderingServer : Object() {
   public val framePostDraw: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RENDERINGSERVER)
+    MemoryManager.getSingleton(ENGINECLASS_RENDERINGSERVER)
   }
 
   /**

@@ -1,41 +1,44 @@
 package godot.internal.memory.binding
 
-import godot.common.interop.IdentityPointer
+import godot.common.interop.Binding
+import godot.common.interop.NativeWrapper
 import godot.common.interop.ObjectID
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-interface GodotBinding {
-    val objectID: ObjectID
-    val instance: IdentityPointer?
+interface GodotBinding: Binding {
+    override var instance: NativeWrapper?
 
     companion object {
-        /** Queue to be notified when the GC runs on References.*/
-        val queue = ReferenceQueue<IdentityPointer>()
+        val queue = ReferenceQueue<ObjectBinding>()
 
-        fun create(instance: IdentityPointer): GodotBinding {
-            val id = instance.objectID
-            return if (id.isReference) {
-                RefCountedBinding(instance, queue, id)
+        fun create(instance: NativeWrapper, objectID: ObjectID): GodotBinding {
+            return if (objectID.isReference) {
+                RefCountedBinding(instance, objectID, queue)
             } else {
-                ObjectBinding(instance, id)
+                ObjectBinding(instance, objectID)
             }
         }
     }
 }
 
-class RefCountedBinding(
-    instance: IdentityPointer,
-    queue: ReferenceQueue<IdentityPointer>,
-    override val objectID: ObjectID
-) : WeakReference<IdentityPointer>(instance, queue), GodotBinding {
-
-    override val instance: IdentityPointer?
-        get() = this.get()
-}
-
 class ObjectBinding(
-    override val instance: IdentityPointer,
+    override var instance: NativeWrapper?,
     override val objectID: ObjectID
 ) : GodotBinding
+
+class RefCountedBinding(
+    instance: NativeWrapper,
+    override val objectID: ObjectID,
+    queue: ReferenceQueue<ObjectBinding>,
+) : WeakReference<ObjectBinding>(ObjectBinding(instance, objectID), queue), GodotBinding {
+
+    override var instance: NativeWrapper?
+        get() = this.get()?.instance
+        set(value) {
+            this.get()?.instance = value
+        }
+}
+
+
 

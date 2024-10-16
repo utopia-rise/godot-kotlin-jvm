@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import godot.core.Basis
 import godot.core.RID
 import godot.core.Transform3D
@@ -28,7 +29,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION, this,
+        scriptIndex)
   }
 
   public open fun _getTotalGravity(): Vector3 {

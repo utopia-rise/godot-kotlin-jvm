@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.NodePath
@@ -14,7 +17,6 @@ import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Signal1
 import godot.core.Signal2
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
@@ -23,7 +25,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
-import godot.internal.memory.TransferContext
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -179,7 +180,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENEMULTIPLAYER, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_SCENEMULTIPLAYER, this, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

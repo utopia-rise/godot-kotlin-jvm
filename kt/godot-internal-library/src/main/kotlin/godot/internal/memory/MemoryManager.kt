@@ -2,15 +2,14 @@
 
 package godot.internal.memory
 
-import godot.common.interop.IdentityPointer
+import godot.common.interop.NativeWrapper
 import godot.common.interop.ObjectID
-import godot.common.interop.ValuePointer
+import godot.common.interop.NativePointer
 import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
 import godot.internal.memory.binding.GodotBinding
 import godot.internal.memory.binding.NativeCoreBinding
 import godot.internal.memory.binding.RefCountedBinding
-import godot.internal.reflection.TypeManager
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -76,66 +75,45 @@ object MemoryManager {
     private val deadNativeCores = mutableListOf<NativeCoreBinding>()
 
     /** List of cleanup callbacks. When the game closes, they will be called.*/
-    private var cleanupCallbacks = mutableListOf<() -> Unit>()
+    private var cleanupCallbacks = mutableListOf<Pair<Boolean, () -> Unit>>()
 
 
-    fun registerCallback(callback: () -> Unit) {
-        cleanupCallbacks.add(callback)
+    fun registerCallback(persistAfterReload: Boolean = false, callback: () -> Unit) {
+        cleanupCallbacks.add(persistAfterReload to callback)
     }
 
     /**
-     * The godot object has just been created. We can directly add it to ObjectDB because we know the slot is free.
+     * The Godot native object has just been created. We can directly add it to ObjectDB because we know the slot is free.
      */
-    fun registerNewInstance(instance: IdentityPointer) = lock.write {
-        ObjectDB[instance.objectID] = GodotBinding.create(instance)
+    fun registerNewNativeObject(binding: GodotBinding) = lock.write {
+        ObjectDB[binding.objectID] = binding
+        binding
     }
 
     /**
-     * Create a script on top of an existing native object. We need additional checks to find if a twin wrapper exists.
+     * Check if a native object already has a wrapper, if not, we create it.
      */
-    fun <T : IdentityPointer> createScript(ptr: VoidPtr, id: Long, constructor: () -> T): T {
-        val instance = IdentityPointer(ptr, id, constructor)
+    fun getInstanceOrCreate(id: ObjectID, constructor: () -> NativeWrapper): NativeWrapper {
 
-        val objectId = ObjectID(id)
-
-        return lock.write {
-            val binding = ObjectDB.put(objectId, GodotBinding.create(instance))
-
-            if (binding != null) {
-                val wrapper = binding.instance
-                wrapper?.twin = instance
-                instance.twin = wrapper
-            }
-            instance
+        return lock.read {
+            // We first try to get a match.
+            ObjectDB[id]?.instance
+        } ?: lock.write {
+            // Fallback to creating the wrapper.
+            // We check a second time in a write lock in case it got created after the read lock by another thread
+            ObjectDB[id]?.instance ?: constructor().also { ObjectDB[id] = it.memoryBinding as GodotBinding }
         }
     }
 
     /**
-     * Remove the existing Script instance from the ObjectDB and replace it from the matching wrapper.
+     * Create a script on top of an existing native object. We need additional checks to find if a twin exists.
      */
-    fun removeScript(id: Long, constructorIndex: Int) = lock.write {
-        val objectID = ObjectID(id)
-        val scriptInstance = ObjectDB[objectID]!!.instance!!
+    fun registerExistingNativeObject(binding: GodotBinding) = lock.write {
+        val oldBinding = ObjectDB.put(binding.objectID, binding)
 
-        val twin = scriptInstance.twin
-        if (twin != null) {
-            ObjectDB[objectID] = GodotBinding.create(twin)
-            return //The script had previously a wrapper, we can reuse it.
+        if (oldBinding != null) {
+            oldBinding.instance = binding.instance
         }
-
-        // We create a wrapper to replace the script instance, if it doesn't exist already.
-        val wrapper = IdentityPointer(
-            scriptInstance.ptr,
-            id,
-            TypeManager.engineTypesConstructors[constructorIndex],
-        )
-
-        ObjectDB[objectID] = GodotBinding.create(wrapper)
-
-        // Still set the twin as a security if users keep a reference of the scriptInstance somewhere (even if they shouldn't, but it's valid from a JVM point of view).
-        // It will prevent segfault in such case.
-        wrapper.twin = scriptInstance
-        scriptInstance.twin = scriptInstance
     }
 
     /**
@@ -145,35 +123,9 @@ object MemoryManager {
         ObjectDB.remove(ObjectID(id))
     }
 
-    fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): IdentityPointer {
-        val objectID = ObjectID(id)
+    fun isInstanceValid(ktObject: NativeWrapper) = checkInstance(ktObject.ptr, ktObject.memoryBinding.objectID.id)
 
-        val instance = lock.read {
-            ObjectDB[objectID]?.instance
-        }
-
-        if (instance != null) {
-            return instance
-        }
-
-        // We didn't find a matching instance, we create it then.
-        return lock.write {
-            // We check a second time in a write lock in case it got created after the read lock by another thread
-            val newInstance = ObjectDB[objectID]?.instance
-            if (newInstance != null) {
-                newInstance
-            } else {
-                val constructor = TypeManager.engineTypesConstructors[constructorIndex]
-                IdentityPointer(ptr, id, constructor).also {
-                    ObjectDB[objectID] = GodotBinding.create(it)
-                }
-            }
-        }
-    }
-
-    fun isInstanceValid(ktObject: IdentityPointer) = checkInstance(ktObject.ptr, ktObject.objectID.id)
-
-    fun registerNativeCoreType(nativeCoreType: ValuePointer, variantType: VariantConverter) {
+    fun registerNativeCoreType(nativeCoreType: NativePointer, variantType: VariantConverter) {
         val rawPtr = nativeCoreType.ptr
         nativeCoreTypeMap[rawPtr] = NativeCoreBinding(nativeCoreType, variantType)
     }
@@ -244,7 +196,7 @@ object MemoryManager {
     }
 
     /**
-     * Remove dead [ValuePointer] from native memory.
+     * Remove dead [NativePointer] from native memory.
      * The GC happening in waves, not everything is processed at once, we process the dead native cores over several frames when necessary.
      */
     private fun removeNativeCoreTypes() {
@@ -270,9 +222,10 @@ object MemoryManager {
     }
 
     fun cleanUp() {
-        for (callback in cleanupCallbacks) {
+        for ((_, callback) in cleanupCallbacks) {
             callback.invoke()
         }
+        cleanupCallbacks = cleanupCallbacks.filter { it.first }.toMutableList() // One shot are not kept to avoid keeping dead classes after reloading.
 
         // Get through all remaining [Objects] instances and remove their bindings
         for (objectID in ObjectDB.keys) {
@@ -294,12 +247,12 @@ object MemoryManager {
 
             unrefNativeCoreTypes(pointerArray, variantTypeArray)
         }
-        
+
         nativeCoreTypeMap.clear()
     }
 
     external fun getSingleton(classIndex: Int)
-    external fun createNativeObject(classIndex: Int, instance: IdentityPointer, scriptIndex: Int)
+    external fun createNativeObject(classIndex: Int, instance: NativeWrapper, scriptIndex: Int)
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     external fun releaseBinding(instanceId: Long)
     external fun freeObject(rawPtr: VoidPtr)

@@ -7,12 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -54,7 +55,7 @@ public open class MeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHINSTANCE2D, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_MESHINSTANCE2D, this, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

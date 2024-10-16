@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderCubemapArray : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERCUBEMAPARRAY, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_PLACEHOLDERCUBEMAPARRAY, this, scriptIndex)
   }
 
   public companion object

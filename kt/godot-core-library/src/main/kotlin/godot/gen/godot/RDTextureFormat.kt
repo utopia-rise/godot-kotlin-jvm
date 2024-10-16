@@ -8,11 +8,12 @@ package godot
 
 import godot.RenderingDevice.TextureUsageBitsValue
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.MemoryManager
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.internal.memory.TransferContext
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -124,7 +125,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDTEXTUREFORMAT, scriptIndex)
+    MemoryManager.createNativeObject(ENGINECLASS_RDTEXTUREFORMAT, this, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
