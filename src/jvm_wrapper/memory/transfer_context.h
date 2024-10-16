@@ -5,7 +5,7 @@
 #include "kt_variant.h"
 
 // clang-format off
-JVM_SINGLETON_WRAPPER(TransferContext, "godot.core.memory.TransferContext") {
+JVM_SINGLETON_WRAPPER(TransferContext, "godot.internal.memory.TransferContext") {
     SINGLETON_CLASS(TransferContext)
 
     JNI_OBJECT_METHOD(GET_BUFFER)

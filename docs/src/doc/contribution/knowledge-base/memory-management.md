@@ -82,7 +82,7 @@ the counter of the C++ `RefCounted` and free it.
 
 ### Cyclical references
 
-`Wrapper` and `Script Instance` all holds references to each other, linking their lifetimes to each other.
+`Wrapper` and `Script Instance` can hold references to each other, linking their lifetimes.
 Even if the manager can freely switch between wrapper and script instance when necessary, this is not the case for regular user code.
 Someone can hold a reference to a wrapper when another part of the code is going to set a script on the native object, creating a script instance in the process.
-In such case, we need to make sure that this wrapper reference can also keep the script alive.
+In such case, we need to make sure that this older wrapper reference can also keep the new script alive.

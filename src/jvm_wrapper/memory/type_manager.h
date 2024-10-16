@@ -7,11 +7,11 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 // clang-format off
-JVM_SINGLETON_WRAPPER(TypeManager, "godot.core.TypeManager") {
+JVM_SINGLETON_WRAPPER(TypeManager, "godot.internal.reflection.TypeManager") {
     SINGLETON_CLASS(TypeManager)
 
     INIT_JNI_BINDINGS(
-        INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;J)J",TypeManager::get_method_bind_ptr)
+        INIT_NATIVE_METHOD("getMethodBindPtr", "(Ljava/lang/String;Ljava/lang/String;J)J",TypeManager::get_method_bind_ptr)
     )
 
 public:

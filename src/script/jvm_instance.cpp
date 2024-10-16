@@ -24,9 +24,8 @@ JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object
 JvmInstance::~JvmInstance() {
     jni::Env env {jni::Jvm::current_env()};
     if (delete_flag) {
-        MemoryManager::get_instance().script_instance_removed(
+        kt_object->script_instance_removed(
           env,
-          owner->get_instance_id(),
           KotlinBindingManager::get_instance_binding(owner)->get_constructor_id()
         );
     }
