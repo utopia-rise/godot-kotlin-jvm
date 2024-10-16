@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -175,7 +174,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_DTLSSERVER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_DTLSSERVER, scriptIndex)
   }
 
   /**

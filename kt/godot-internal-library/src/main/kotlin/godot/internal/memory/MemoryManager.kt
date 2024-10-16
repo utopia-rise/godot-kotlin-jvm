@@ -10,7 +10,6 @@ import godot.common.interop.VoidPtr
 import godot.internal.memory.binding.Binding
 import godot.internal.memory.binding.NativeCoreBinding
 import godot.internal.memory.binding.RefCountedBinding
-import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -256,11 +255,8 @@ object MemoryManager {
         nativeCoreTypeMap.clear()
     }
 
-    external fun getSingleton(classIndex: Int)
-    external fun createNativeObject(classIndex: Int, instance: NativeWrapper, scriptIndex: Int)
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     external fun releaseBinding(instanceId: Long)
-    external fun freeObject(rawPtr: VoidPtr)
     external fun unrefNativeCoreTypes(pointerArray: LongArray, variantTypeArray: IntArray)
     external fun querySync()
 }

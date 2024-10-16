@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -207,7 +206,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_BUTTON, this, scriptIndex)
+    createNativeObject(ENGINECLASS_BUTTON, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

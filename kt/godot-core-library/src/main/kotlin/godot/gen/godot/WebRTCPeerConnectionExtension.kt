@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.core.Dictionary
 import kotlin.Any
 import kotlin.Int
@@ -19,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION, this, scriptIndex)
+    createNativeObject(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION, scriptIndex)
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {

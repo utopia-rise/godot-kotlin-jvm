@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_SPOTLIGHT3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_SPOTLIGHT3D, scriptIndex)
   }
 
   public companion object

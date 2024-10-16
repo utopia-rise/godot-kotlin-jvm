@@ -10,7 +10,6 @@ import godot.NavigationPathQueryParameters3D.PathMetadataFlagsValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -497,7 +496,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONAGENT3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
   }
 
   /**

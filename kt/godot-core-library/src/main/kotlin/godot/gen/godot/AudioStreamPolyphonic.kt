@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -42,7 +41,7 @@ public open class AudioStreamPolyphonic : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, this, scriptIndex)
+    createNativeObject(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, scriptIndex)
   }
 
   public final fun setPolyphony(voices: Int): Unit {

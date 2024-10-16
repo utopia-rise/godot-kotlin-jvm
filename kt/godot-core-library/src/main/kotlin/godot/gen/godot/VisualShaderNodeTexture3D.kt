@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -37,7 +36,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE3D, scriptIndex)
   }
 
   public final fun setTexture(`value`: Texture3D?): Unit {

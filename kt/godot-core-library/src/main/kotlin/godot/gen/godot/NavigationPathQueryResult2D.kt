@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -80,7 +79,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector2Array): Unit {

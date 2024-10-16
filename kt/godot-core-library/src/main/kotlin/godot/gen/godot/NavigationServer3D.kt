@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -83,7 +82,7 @@ public object NavigationServer3D : Object() {
   public val avoidanceDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
+    getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
   }
 
   /**

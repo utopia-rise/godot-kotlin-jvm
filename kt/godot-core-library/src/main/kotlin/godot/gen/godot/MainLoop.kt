@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.core.Signal2
 import kotlin.Boolean
 import kotlin.Double
@@ -86,7 +85,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_MAINLOOP, this, scriptIndex)
+    createNativeObject(ENGINECLASS_MAINLOOP, scriptIndex)
   }
 
   /**

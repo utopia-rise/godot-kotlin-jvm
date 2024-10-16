@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -38,7 +37,7 @@ public open class InputEventShortcut : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_INPUTEVENTSHORTCUT, this, scriptIndex)
+    createNativeObject(ENGINECLASS_INPUTEVENTSHORTCUT, scriptIndex)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {

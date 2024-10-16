@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -47,7 +46,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.getSingleton(ENGINECLASS_CAMERASERVER)
+    getSingleton(ENGINECLASS_CAMERASERVER)
   }
 
   /**

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -26,8 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER, this,
-        scriptIndex)
+    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER, scriptIndex)
   }
 
   /**

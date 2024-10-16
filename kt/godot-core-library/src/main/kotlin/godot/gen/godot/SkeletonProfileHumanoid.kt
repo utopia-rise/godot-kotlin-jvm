@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -77,7 +76,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_SKELETONPROFILEHUMANOID, this, scriptIndex)
+    createNativeObject(ENGINECLASS_SKELETONPROFILEHUMANOID, scriptIndex)
   }
 
   public companion object

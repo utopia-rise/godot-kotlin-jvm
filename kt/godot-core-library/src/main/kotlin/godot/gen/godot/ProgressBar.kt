@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -73,7 +72,7 @@ public open class ProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_PROGRESSBAR, this, scriptIndex)
+    createNativeObject(ENGINECLASS_PROGRESSBAR, scriptIndex)
   }
 
   public final fun setFillMode(mode: Int): Unit {

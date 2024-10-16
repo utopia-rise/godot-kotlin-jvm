@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -42,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Texture2D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_TEXTURE2D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_TEXTURE2D, scriptIndex)
   }
 
   /**

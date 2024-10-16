@@ -82,10 +82,7 @@
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
       { "name" : "releaseBinding", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreTypes", "parameterTypes" : ["long[]", "int[]"] },
-      { "name" : "querySync", "parameterTypes" : [] },
-      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
-      { "name" : "getSingleton", "parameterTypes" : ["int"] },
-      { "name" : "freeObject", "parameterTypes" : ["long"] }
+      { "name" : "querySync", "parameterTypes" : [] }
     ]
   },
   {
@@ -778,6 +775,9 @@
     "name":"godot.core.KtObject",
     "methods":[
       {"name":"_onDestroy","parameterTypes":[] },
+      {"name" : "createNativeObject", "parameterTypes" : ["int", "int"] },
+      {"name" : "getSingleton", "parameterTypes" : ["int"] },
+      {"name" : "freeObject", "parameterTypes" : ["long"] },
       {"name" : "removeScript", "parameterTypes" : ["int"] }
     ]
   }

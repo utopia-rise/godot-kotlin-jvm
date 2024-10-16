@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -65,7 +64,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_RDVERTEXATTRIBUTE, this, scriptIndex)
+    createNativeObject(ENGINECLASS_RDVERTEXATTRIBUTE, scriptIndex)
   }
 
   public final fun setLocation(pMember: Long): Unit {

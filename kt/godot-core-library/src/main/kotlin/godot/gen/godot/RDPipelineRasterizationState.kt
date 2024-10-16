@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -158,7 +157,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE, this, scriptIndex)
+    createNativeObject(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE, scriptIndex)
   }
 
   public final fun setEnableDepthClamp(pMember: Boolean): Unit {

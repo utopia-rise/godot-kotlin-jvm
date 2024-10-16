@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -16,7 +15,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_STREAMPEEREXTENSION, this, scriptIndex)
+    createNativeObject(ENGINECLASS_STREAMPEEREXTENSION, scriptIndex)
   }
 
   public open fun _getAvailableBytes(): Int {

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -75,7 +74,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_TEXTSERVER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_TEXTSERVER, scriptIndex)
   }
 
   /**

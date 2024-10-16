@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -152,7 +151,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_TOUCHSCREENBUTTON, this, scriptIndex)
+    createNativeObject(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

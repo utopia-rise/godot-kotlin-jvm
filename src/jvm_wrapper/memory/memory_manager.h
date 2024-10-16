@@ -23,9 +23,6 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("unrefNativeCoreTypes", "([J[I)V", MemoryManager::unref_native_core_types)
         INIT_NATIVE_METHOD("querySync", "()V", MemoryManager::query_sync)
-        INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", MemoryManager::create_native_object)
-        INIT_NATIVE_METHOD("getSingleton", "(I)V", MemoryManager::get_singleton)
-        INIT_NATIVE_METHOD("freeObject", "(J)V", MemoryManager::free_object)
         INIT_NATIVE_METHOD("releaseBinding", "(J)V", MemoryManager::release_binding)
       )
 
@@ -38,9 +35,6 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static void unref_native_core_types(JNIEnv* p_raw_env, jobject p_instance, jobject p_ptr_array, jobject p_var_type_array);
     static void query_sync(JNIEnv* p_raw_env, jobject p_instance);
-    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
-    static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
-    static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     static void release_binding(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 
 public:

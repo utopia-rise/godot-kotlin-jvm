@@ -8,7 +8,6 @@ package godot
 
 import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -110,7 +109,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.getSingleton(ENGINECLASS_DISPLAYSERVER)
+    getSingleton(ENGINECLASS_DISPLAYSERVER)
   }
 
   /**

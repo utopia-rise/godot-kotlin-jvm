@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -44,8 +43,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, this,
-        scriptIndex)
+    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {

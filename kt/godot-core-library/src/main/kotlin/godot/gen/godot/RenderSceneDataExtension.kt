@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
@@ -24,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_RENDERSCENEDATAEXTENSION, this, scriptIndex)
+    createNativeObject(ENGINECLASS_RENDERSCENEDATAEXTENSION, scriptIndex)
   }
 
   /**

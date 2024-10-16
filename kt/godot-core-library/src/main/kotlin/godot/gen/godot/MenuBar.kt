@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -99,7 +98,7 @@ public open class MenuBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_MENUBAR, this, scriptIndex)
+    createNativeObject(ENGINECLASS_MENUBAR, scriptIndex)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {

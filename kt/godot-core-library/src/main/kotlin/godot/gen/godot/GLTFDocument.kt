@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -86,7 +85,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_GLTFDOCUMENT, this, scriptIndex)
+    createNativeObject(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {

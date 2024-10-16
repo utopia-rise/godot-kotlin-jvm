@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -81,7 +80,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_SPLITCONTAINER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_SPLITCONTAINER, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {

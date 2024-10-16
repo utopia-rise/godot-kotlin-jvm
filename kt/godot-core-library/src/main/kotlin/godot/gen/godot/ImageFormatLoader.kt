@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -22,7 +21,7 @@ import kotlin.jvm.JvmInline
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_IMAGEFORMATLOADER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_IMAGEFORMATLOADER, scriptIndex)
   }
 
   public sealed interface LoaderFlags {

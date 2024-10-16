@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -88,7 +87,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_MULTIPLAYERPEER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {

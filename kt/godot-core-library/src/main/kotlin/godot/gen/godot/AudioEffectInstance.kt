@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -23,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_AUDIOEFFECTINSTANCE, this, scriptIndex)
+    createNativeObject(ENGINECLASS_AUDIOEFFECTINSTANCE, scriptIndex)
   }
 
   /**

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -164,7 +163,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYER, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

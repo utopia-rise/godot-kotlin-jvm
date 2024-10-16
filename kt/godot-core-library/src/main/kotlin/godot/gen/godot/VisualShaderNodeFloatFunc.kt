@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -36,7 +35,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATFUNC, this, scriptIndex)
+    createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATFUNC, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

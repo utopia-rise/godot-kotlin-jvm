@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -61,7 +60,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_VISIBLEONSCREENENABLER3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {

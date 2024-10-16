@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -37,7 +36,7 @@ public open class CenterContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_CENTERCONTAINER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_CENTERCONTAINER, scriptIndex)
   }
 
   public final fun setUseTopLeft(enable: Boolean): Unit {

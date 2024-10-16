@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -31,7 +30,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
+    getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
   }
 
   /**

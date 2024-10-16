@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -56,7 +55,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_XRFACEMODIFIER3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

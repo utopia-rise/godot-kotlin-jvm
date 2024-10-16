@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -25,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderTexture2DArray : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY, this, scriptIndex)
+    createNativeObject(ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY, scriptIndex)
   }
 
   public companion object

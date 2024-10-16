@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -58,7 +57,7 @@ public open class PacketPeerStream : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_PACKETPEERSTREAM, this, scriptIndex)
+    createNativeObject(ENGINECLASS_PACKETPEERSTREAM, scriptIndex)
   }
 
   public final fun setStreamPeer(peer: StreamPeer?): Unit {

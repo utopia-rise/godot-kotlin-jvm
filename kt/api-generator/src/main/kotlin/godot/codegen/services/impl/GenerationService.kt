@@ -728,8 +728,7 @@ class GenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "%T.createNativeObject(%M, this, scriptIndex)",
-                    MEMORY_MANAGER,
+                    "createNativeObject(%M, scriptIndex)",
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .build()
@@ -743,8 +742,7 @@ class GenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "%T.getSingleton(%M)",
-                    MEMORY_MANAGER,
+                    "getSingleton(%M)",
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .build()

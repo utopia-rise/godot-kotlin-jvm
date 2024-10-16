@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -270,7 +269,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, this, scriptIndex)
+    createNativeObject(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, scriptIndex)
   }
 
   public final fun setEnableDepthTest(pMember: Boolean): Unit {

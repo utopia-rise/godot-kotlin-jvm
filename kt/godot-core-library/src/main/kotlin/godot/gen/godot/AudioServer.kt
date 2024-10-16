@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -53,7 +52,7 @@ public object AudioServer : Object() {
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.getSingleton(ENGINECLASS_AUDIOSERVER)
+    getSingleton(ENGINECLASS_AUDIOSERVER)
   }
 
   @JvmStatic

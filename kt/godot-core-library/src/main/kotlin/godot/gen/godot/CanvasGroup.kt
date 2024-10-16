@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -96,7 +95,7 @@ public open class CanvasGroup : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_CANVASGROUP, this, scriptIndex)
+    createNativeObject(ENGINECLASS_CANVASGROUP, scriptIndex)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {

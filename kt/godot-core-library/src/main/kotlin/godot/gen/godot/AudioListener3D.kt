@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -28,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_AUDIOLISTENER3D, this, scriptIndex)
+    createNativeObject(ENGINECLASS_AUDIOLISTENER3D, scriptIndex)
   }
 
   /**

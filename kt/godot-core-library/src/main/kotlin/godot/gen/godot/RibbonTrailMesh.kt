@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -103,7 +102,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_RIBBONTRAILMESH, this, scriptIndex)
+    createNativeObject(ENGINECLASS_RIBBONTRAILMESH, scriptIndex)
   }
 
   public final fun setSize(size: Float): Unit {

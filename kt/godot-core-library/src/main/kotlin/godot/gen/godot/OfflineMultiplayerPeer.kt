@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -22,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OfflineMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_OFFLINEMULTIPLAYERPEER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_OFFLINEMULTIPLAYERPEER, scriptIndex)
   }
 
   public companion object

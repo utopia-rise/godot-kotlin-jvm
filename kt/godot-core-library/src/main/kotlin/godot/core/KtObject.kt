@@ -64,23 +64,26 @@ abstract class KtObject : NativeWrapper {
     @JvmName("godotNotification")
     protected fun <T : KtObject> javaGodotNotification(obj: T, block: T.(Int) -> Unit) = obj.godotNotification(block)
 
+    fun free() = freeObject(ptr)
+
     /**
      * Called automatically when the Object is destroyed. Note that this method is not available for RefCounted or any of its child class.
      * By the time a RefCounted counter reaches 0, its JVM instance has already being GCed and can't be used anymore.
      */
     open fun _onDestroy() = Unit
 
-    fun free() {
-        MemoryManager.freeObject(ptr)
-    }
+
+    override fun equals(other: Any?) = this === other || (other is KtObject && objectID == other.objectID)
+    override fun hashCode() = ptr.toInt()
+
 
     private fun removeScript(constructorIndex: Int) {
         createScriptInstance(ptr, objectID,  TypeManager.engineTypesConstructors[constructorIndex])
     }
 
-    override fun equals(other: Any?) = this === other || (other is KtObject && objectID == other.objectID)
-
-    override fun hashCode() = ptr.toInt()
+    protected external fun createNativeObject(classIndex: Int, scriptIndex: Int)
+    protected external fun getSingleton(classIndex: Int)
+    private external fun freeObject(rawPtr: VoidPtr)
 
     internal companion object {
         private val initConfig = ThreadLocal.withInitial { InitConfiguration() }

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -21,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeBlend2 : AnimationNodeSync() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_ANIMATIONNODEBLEND2, this, scriptIndex)
+    createNativeObject(ENGINECLASS_ANIMATIONNODEBLEND2, scriptIndex)
   }
 
   public companion object

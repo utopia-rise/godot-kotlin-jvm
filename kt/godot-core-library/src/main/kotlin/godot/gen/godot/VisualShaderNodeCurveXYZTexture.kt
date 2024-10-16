@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -35,7 +34,7 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE, this, scriptIndex)
+    createNativeObject(ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE, scriptIndex)
   }
 
   public final fun setTexture(texture: CurveXYZTexture?): Unit {

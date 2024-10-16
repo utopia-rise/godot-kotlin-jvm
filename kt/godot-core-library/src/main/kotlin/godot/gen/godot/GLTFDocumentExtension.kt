@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
@@ -31,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_GLTFDOCUMENTEXTENSION, this, scriptIndex)
+    createNativeObject(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
   }
 
   /**

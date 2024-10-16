@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -175,7 +174,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS, this, scriptIndex)
+    createNativeObject(ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS, scriptIndex)
   }
 
   public final fun setMaxConcavity(maxConcavity: Float): Unit {

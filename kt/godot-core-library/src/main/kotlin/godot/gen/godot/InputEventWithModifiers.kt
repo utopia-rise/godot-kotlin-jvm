@@ -8,7 +8,6 @@ package godot
 
 import godot.KeyModifierMaskValue
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -87,7 +86,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_INPUTEVENTWITHMODIFIERS, this, scriptIndex)
+    createNativeObject(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -60,7 +59,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_XRHANDTRACKER, this, scriptIndex)
+    createNativeObject(ENGINECLASS_XRHANDTRACKER, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

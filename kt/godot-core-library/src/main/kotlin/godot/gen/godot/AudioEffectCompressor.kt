@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.MemoryManager
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
@@ -119,7 +118,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    MemoryManager.createNativeObject(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, this, scriptIndex)
+    createNativeObject(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {
