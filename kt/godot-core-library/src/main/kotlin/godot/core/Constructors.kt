@@ -18,8 +18,8 @@ abstract class KtConstructor<T : KtObject>(
 
     fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.createScriptInstance(rawPtr, ObjectID(instanceId)) {
         TransferContext.readArguments(parameterTypes, paramsArray)
-        resetParamsArray()
         val instance = invoke()
+        resetParamsArray()
         instance
     }
 
