@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
+import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
@@ -22,8 +23,9 @@ import godot.tools.common.constants.kotlinxCoroutinePackage
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val connect = MemberName(godotCorePackage, "connectThreadSafe")
+private const val connectThreadSafe = "connectThreadSafe"
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
+private const val cancel = "cancel"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
@@ -120,14 +122,26 @@ object AwaitGenerationService : IAwaitGenerationService {
             1 -> lambdaParameters
             else -> "SignalArguments$argCount($lambdaParameters)"
         }
+        val lambdaParametersWithType = buildString {
+            for (i in 0 until argCount) {
+                if (i != 0) {
+                    append(",·")
+                }
+                append("p$i:·P$i")
+            }
+        }
 
         return this
             .beginControlFlow("return·%M", suspendCancellableCoroutine)
             .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
-            .beginControlFlow("%M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt())", connect, GODOT_OBJECT)
-            .addStatement("$lambdaParameters·->")
+            .beginControlFlow("%L(", connectThreadSafe)
+            .addStatement("$lambdaParametersWithType·->")
             .addStatement("cont.%M($resumeParameters)", resume)
             .endControlFlow()
+            .beginControlFlow(".%M", AS_CALLABLE_UTIL_FUNCTION)
+            .addStatement("cont.%L()", cancel)
+            .endControlFlow()
+            .addCode(",·%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt())", GODOT_OBJECT)
             .endControlFlow()
     }
 }

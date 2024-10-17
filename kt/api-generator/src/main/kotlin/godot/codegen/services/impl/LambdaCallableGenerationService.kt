@@ -14,6 +14,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.ILambdaCallableGenerationService
 import godot.codegen.utils.GenericClassNameInfo
 import godot.tools.common.constants.GodotFunctions
@@ -25,21 +26,21 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
         val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
 
+        val onDestroyCallLambdaType = LambdaTypeName.get(returnType = UNIT).copy(nullable = true)
+
         for (argCount in 0..maxArgumentCount) {
-            val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
+            val ktCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
                 .classBuilder(ktCallableClassName)
                 .superclass(
-                    KT_CALLABLE_CLASS_NAME
+                    LAMBDA_CALLABLE_CLASS_NAME
                         .parameterizedBy(returnTypeParameter)
                 )
 
             val argumentRange = 0..<argCount
 
-            classBuilder
-                .addSuperclassConstructorParameter(
-                    VARIANT_TYPE_ARGUMENT_NAME
-                )
+            classBuilder.addSuperclassConstructorParameter(VARIANT_TYPE_ARGUMENT_NAME)
+            classBuilder.addSuperclassConstructorParameter(ON_CANCEL_CALL_ARGUMENT_NAME)
 
             for (index in argumentRange) {
                 classBuilder.addSuperclassConstructorParameter("p${index}Type")
@@ -121,6 +122,17 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                             .build()
                     )
             }
+
+            primaryConstructor
+                .addParameter(
+                    ParameterSpec
+                        .builder(
+                            ON_CANCEL_CALL_ARGUMENT_NAME,
+                            onDestroyCallLambdaType
+                        )
+                        .defaultValue("null")
+                        .build()
+                )
 
             primaryConstructor
                 .addParameter(
@@ -221,7 +233,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
             var removedTypeVariables = 0
             while (typeVariables.isNotEmpty()) {
                 val bindReturnType =
-                    ClassName(godotCorePackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+                    ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
                 classBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
@@ -238,6 +250,8 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                                 for (index in (0..<removedTypeVariables)) {
                                     append(",·p${index}Type")
                                 }
+
+                                append(",·$ON_CANCEL_CALL_ARGUMENT_NAME")
 
                                 append(")·{·")
 
@@ -278,23 +292,31 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                     .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addModifiers(KModifier.INLINE)
-                    .addParameter(
-                        ParameterSpec
-                            .builder(
-                                FUNCTION_PARAMETER_NAME,
-                                lambdaTypeName
-                            )
-                            .addModifiers(KModifier.NOINLINE)
-                            .build()
+                    .addParameters(
+                        listOf(
+                            ParameterSpec
+                                .builder(ON_CANCEL_CALL_ARGUMENT_NAME, onDestroyCallLambdaType)
+                                .addModifiers(KModifier.NOINLINE)
+                                .defaultValue("null")
+                                .build(),
+                            ParameterSpec
+                                .builder(
+                                    FUNCTION_PARAMETER_NAME,
+                                    lambdaTypeName
+                                )
+                                .addModifiers(KModifier.NOINLINE)
+                                .build()
+                        )
                     )
                     .addCode(
                         CodeBlock.of(
                             buildString {
-                                append("return·$KT_CALLABLE_NAME$argCount(")
+                                append("return·$LAMBDA_CALLABLE_NAME$argCount(")
                                 append("%M.getOrDefault(%T::class,·%T),·")
                                 for (typeParameter in typeVariableNames) {
                                     append("%M[%T::class]!!,·")
                                 }
+                                append("$ON_CANCEL_CALL_ARGUMENT_NAME,·")
                                 append(FUNCTION_PARAMETER_NAME)
                                 append(')')
                             },
@@ -319,7 +341,14 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addModifiers(KModifier.INLINE)
                         .receiver(lambdaTypeName)
-                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount(this)")
+                        .addParameter(
+                            ParameterSpec
+                                .builder(ON_CANCEL_CALL_ARGUMENT_NAME, onDestroyCallLambdaType)
+                                .addModifiers(KModifier.NOINLINE)
+                                .defaultValue("null")
+                                .build()
+                        )
+                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount($ON_CANCEL_CALL_ARGUMENT_NAME,·this)")
                         .build()
                 )
         }
@@ -365,11 +394,12 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                     .addCode(
                         CodeBlock.of(
                             buildString {
-                                append("return·$KT_CALLABLE_NAME$argCount(")
+                                append("return·$LAMBDA_CALLABLE_NAME$argCount(")
                                 append("%M.getOrDefault(%T.getOrCreateKotlinClass(returnClass),·%T),·")
                                 genericClassNameInfo.toParameterSpecList().forEach {
                                     append("%M[%T.getOrCreateKotlinClass(${it.name}Class)]!!,·")
                                 }
+                                append("null,·")
                                 append(FUNCTION_PARAMETER_NAME)
                                 append(')')
                             },
@@ -397,11 +427,12 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
 
     private companion object {
         const val FUNCTION_PARAMETER_NAME = "function"
-        const val KT_CALLABLE_NAME = "LambdaCallable"
+        const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
         const val CALLABLE_FUNCTION_NAME = "callable"
         const val JAVA_CREATE_METHOD_NAME = "javaCreate"
         const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
-        val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
+        const val ON_CANCEL_CALL_ARGUMENT_NAME = "onCancelCall"
+        val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_NAME)
         val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
 
         //Java
