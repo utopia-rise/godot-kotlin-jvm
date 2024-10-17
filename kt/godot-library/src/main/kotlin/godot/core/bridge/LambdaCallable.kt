@@ -7,6 +7,7 @@ import godot.common.interop.VoidPtr
 
 abstract class LambdaCallable<R : Any?>(
     internal val variantConverter: VariantConverter,
+    internal val onDestroyCall: (() -> Unit)?,
     vararg parameterTypes: VariantConverter
 ) : Callable {
     private val types: Array<VariantConverter> = parameterTypes.toList().toTypedArray()
@@ -34,15 +35,27 @@ abstract class LambdaCallable<R : Any?>(
         ret
     }
 
+    fun onDestroy() = onDestroyCall!!()
+
     internal abstract fun invokeKt(): R
 
     internal companion object : ParametersReader()
 
-    internal fun wrapInCustomCallable(): VoidPtr = Bridge.wrap_in_custom_callable(this, variantConverter.id, hashCode())
+    internal fun wrapInCustomCallable(): VoidPtr = Bridge.wrap_in_custom_callable(
+        this,
+        variantConverter.id,
+        hashCode(),
+        onDestroyCall != null
+    )
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun wrap_in_custom_callable(instance: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun wrap_in_custom_callable(
+            instance: LambdaCallable<*>,
+            variantTypeOrdinal: Int,
+            hashCode: Int,
+            hasOnDestroy: Boolean
+        ): VoidPtr
     }
 }
 
