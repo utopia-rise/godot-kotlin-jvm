@@ -4,6 +4,7 @@ package godot.tests.coroutine
 import godot.api.Object
 import godot.api.PackedScene
 import godot.api.ResourceLoader
+import godot.api.Timer
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
@@ -20,6 +21,8 @@ import godot.coroutines.awaitProcessFrame
 import godot.coroutines.godotCoroutine
 import godot.global.GD
 import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 
 @RegisterClass
 class CoroutineTest : Object() {
@@ -35,6 +38,12 @@ class CoroutineTest : Object() {
 
     @RegisterProperty
     var step: Int = 0
+
+    @RegisterProperty
+    var wasChildCancelled = false
+
+    @RegisterProperty
+    var wasParentCancelled = true
 
     @RegisterFunction
     fun startCoroutineWithoutParameter() = godotCoroutine {
@@ -125,5 +134,20 @@ class CoroutineTest : Object() {
                 asyncLoadResourceFinished.emit(resource != null)
             }
         }
+    }
+
+    @RegisterFunction
+    fun cancelCoroutine() = godotCoroutine {
+        val timer = Timer()
+        timer.autostart = true
+        val job = async {
+            timer.start(3.0)
+            timer.timeout.await()
+        }
+        delay(1000)
+        timer.queueFree()
+        delay(1000)
+        wasChildCancelled = job.isCancelled
+        wasParentCancelled = false
     }
 }

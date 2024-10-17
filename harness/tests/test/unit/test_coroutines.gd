@@ -52,6 +52,11 @@ func test_coroutine_await():
     test_script.async_load_resource()
     var async_load_resource_success = await test_script.async_load_resource_finished
     assert_true(async_load_resource_success, "Resource should be loaded")
+    
+    test_script.cancel_coroutine()
+    await get_tree().create_timer(4).timeout
+    assert_true(test_script.was_child_cancelled, "Coroutine children should have been cancelled")
+    assert_false(test_script.was_parent_cancelled, "Coroutine parent should not have been cancelled")
 
     await get_tree().create_timer(1).timeout
     test_script.free()
