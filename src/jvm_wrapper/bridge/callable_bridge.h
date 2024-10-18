@@ -11,7 +11,7 @@ namespace bridges {
         INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-            INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/LambdaCallable;II)J", CallableBridge::engine_call_constructor_kt_custom_callable)
+            INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/LambdaCallable;IIZ)J", CallableBridge::engine_call_constructor_kt_custom_callable)
             INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
             INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
             INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
@@ -39,7 +39,10 @@ namespace bridges {
 
         static uintptr_t engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance);
 
-        static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance, jint p_variant_type_ordinal, jint p_hash_code);
+        static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
+                                                                    jobject p_kt_custom_callable_instance,
+                                                                    jint p_variant_type_ordinal, jint p_hash_code,
+                                                                    jboolean p_has_on_destroy);
 
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
