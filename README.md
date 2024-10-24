@@ -57,7 +57,9 @@ and the [setup](https://godot-kotl.in/en/stable/contribution/setup/) sections.
 JetBrains is helping us to develop this project by providing development tools to maintainers.
 Intellij IDEA is our IDE of choice for Kotlin development and we strongly recommend using it.
 
-[![jblogo](.README/jetbrains.svg)](https://www.jetbrains.com/)
+<a href="https://jetbrains.com">
+    <img width="256" alt="JetBrains logo" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png" />
+</a>
 
 ## Special thanks
 
