@@ -25,7 +25,10 @@ This is a minimal list to start off with a new Godot Kotlin/JVM project:
 
 For a quick overview on the bindings, watch our presentation "*Godot Game Development Leveraging Kotlin by Pierre-Thomas Meisels, Tristan Grespinet, and Cedric Hippmann*", live-streamed during the JetBrains GameDev Days 2024.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0YVD9Zuei80?si=FFlX6xaWJmWWLPJh&amp;start=9753" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Td7JbrGGa8o?si=lsmxnOJZmIiqpVk5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+!!! info
+    Please note that the project is currently under active development. As a result, some code shown in the video may not be functioning, as it may have changed since the video was recorded.
 
 ### What's not working
 
