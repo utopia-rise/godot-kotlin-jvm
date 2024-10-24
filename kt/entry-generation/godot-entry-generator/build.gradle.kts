@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation(project(":godot-library"))
+    implementation(project(":godot-core-library"))
     implementation(libs.kotlinPoet)
 }
 

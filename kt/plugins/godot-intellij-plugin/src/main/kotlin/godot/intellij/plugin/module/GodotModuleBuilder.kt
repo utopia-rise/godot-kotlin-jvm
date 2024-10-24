@@ -254,7 +254,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
                         .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                         .let { content ->
-                            if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-library")) {
+                            if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-core-library")) {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
                                     "id(\"com.utopia-rise.godot-kotlin-jvm\")"

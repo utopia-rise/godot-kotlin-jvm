@@ -72,15 +72,25 @@ jobs:
         run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-kotlin-symbol-processor:publish
 
-      - name: Publish godot-library debug
+      - name: Publish godot-internal-library debug
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Pdebug
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-internal-library:publish -Pdebug
 
-      - name: Publish godot-library release
+      - name: Publish godot-internal-library release
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-library:publish -Prelease
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-internal-library:publish -Prelease
+
+      - name: Publish godot-core-library debug
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-core-library:publish -Pdebug
+
+      - name: Publish godot-core-library release
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-core-library:publish -Prelease
 
       - name: Publish godot-coroutine-library debug
         shell: sh

@@ -20,6 +20,7 @@ import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotInteropPackage
 
 class LambdaCallableGenerationService : ILambdaCallableGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
@@ -80,7 +81,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 )
 
             val variantConverterClassName = ClassName(
-                godotCorePackage,
+                godotInteropPackage,
                 GodotKotlinJvmTypes.variantConverter
             )
 

@@ -35,7 +35,7 @@ val Project.isRelease: Boolean
     get() = hasProperty("release")
 
 val Project.godotLibraryArtifactName: String
-    get() = "godot-library-${if (isRelease) "release" else "debug"}"
+    get() = "godot-core-library-${if (isRelease) "release" else "debug"}"
 
 val Project.godotCoroutineLibraryArtifactName: String
     get() = "godot-coroutine-library-${if (isRelease) "release" else "debug"}"
