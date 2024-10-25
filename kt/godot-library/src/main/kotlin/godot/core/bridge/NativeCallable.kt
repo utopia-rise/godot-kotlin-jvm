@@ -31,7 +31,7 @@ class NativeCallable : NativeCoreType, Callable {
 
     internal constructor(lambdaCallable: LambdaCallable<*>) {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
-        ptr = Bridge.engine_call_constructor_kt_custom_callable(lambdaCallable, lambdaCallable.variantConverter.id, lambdaCallable.hashCode())
+        ptr = Bridge.engine_call_constructor_kt_custom_callable(lambdaCallable, lambdaCallable.variantConverter.id, lambdaCallable.hashCode(), lambdaCallable.onCancelCall != null)
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
@@ -147,7 +147,7 @@ class NativeCallable : NativeCoreType, Callable {
     object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_object_string_name(): VoidPtr
-        external fun engine_call_constructor_kt_custom_callable(callable: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun engine_call_constructor_kt_custom_callable(callable: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int, hasOnCancel: Boolean): VoidPtr
         external fun engine_call_copy_constructor(): VoidPtr
 
         external fun engine_call_bind(_handle: VoidPtr)
