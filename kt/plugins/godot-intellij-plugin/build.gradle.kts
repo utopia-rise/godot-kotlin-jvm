@@ -36,7 +36,7 @@ group = "com.utopia-rise"
 val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(22)
 }
 
 dependencies {

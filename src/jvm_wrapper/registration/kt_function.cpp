@@ -9,6 +9,7 @@ KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));
     parameter_count = wrapped.call_int_method(p_env, GET_PARAMETER_COUNT);
     has_return_value = method_info->return_val->type != Variant::NIL || (method_info->return_val->usage & PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
+    invoke_stub = get_invoke_stub(p_env);
 }
 
 KtFunction::~KtFunction() {
@@ -35,17 +36,21 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
 }
 
-void KtFunction::invoke(jni::Env& p_env, const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret) {
+InvokeFunction KtFunction::get_invoke_stub(jni::Env & p_env) {
+    return reinterpret_cast<InvokeFunction>(wrapped.call_long_method(p_env, GET_INVOKE_STUB));
+}
+
+void KtFunction::invoke(jni::Env& p_env, const KtObject* kt_object, const uint64_t id, const Variant** p_args, int args_count, Variant& r_ret) {
     TransferContext& transferContext = TransferContext::get_instance();
     transferContext.write_args(p_env, p_args, args_count);
-    jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
 
     if (has_return_value) {
+        jvalue call_args[1] = {jni::to_jni_arg(kt_object->get_wrapped())};
         jni::JObject ret = wrapped.call_object_method<false>(p_env, INVOKE_WITH_RETURN, call_args);
         transferContext.read_return_value(p_env, r_ret);
         ret.delete_local_ref(p_env);
     } else {
-        wrapped.call_void_method<false>(p_env, INVOKE, call_args);
+        invoke_stub(id);
     }
 }
 

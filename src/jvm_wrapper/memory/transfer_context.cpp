@@ -27,6 +27,12 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     return &shared_buffer;
 }
 
+void TransferContext::create_icall_stub(jni::Env& p_env) {
+    uintptr_t ptr = reinterpret_cast<uintptr_t>(&TransferContext::icall);
+    jvalue call_args[1] = {jni::to_jni_arg(ptr)};
+    wrapped.call_object_method(p_env, ICALL_STUB, call_args);
+}
+
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     BufferToVariant::read_variant(buffer, r_ret);
@@ -59,7 +65,7 @@ void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
+void TransferContext::icall(uint64_t j_ptr, uint64_t j_method_ptr) {
     if (unlikely(stack_offset == -1)) {
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
@@ -67,7 +73,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         stack_offset = 0;
     }
 
-    jni::Env env {rawEnv};
+    jni::Env env {jni::Jvm::current_env()};
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
     uint32_t args_size {read_args_size(buffer)};

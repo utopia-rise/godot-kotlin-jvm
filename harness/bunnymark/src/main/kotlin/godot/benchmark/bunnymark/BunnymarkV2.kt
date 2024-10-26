@@ -5,13 +5,12 @@ import godot.*
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterSignal
-import godot.signals.signal
 
 @RegisterClass("BunnymarkV2")
 class BunnymarkV2 : Node2D() {
 
 	@RegisterSignal
-	val benchmarkFinished by signal<Int>("bunnyCount")
+	val benchmarkFinished by signal1<Int>("bunnyCount")
 
 	private val gravity = 500
 	private val bunnySpeeds = mutableListOf<Vector2>()

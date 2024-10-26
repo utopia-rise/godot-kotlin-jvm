@@ -25,6 +25,9 @@ void JvmOptions::add_jmx_option(uint16_t p_port) {
     options.push_back("-Dcom.sun.management.jmxremote.local.only=false");
     options.push_back("-Dcom.sun.management.jmxremote.authenticate=false");
     options.push_back("-Dcom.sun.management.jmxremote.ssl=false");
+    options.push_back("--enable-preview");
+    options.push_back("--add-modules jdk.incubator.foreign");
+    options.push_back("--enable-native-access=ALL-UNNAMED");
     JVM_LOG_VERBOSE("Started JMX on port: %s", jvm_jmx_port);
 }
 

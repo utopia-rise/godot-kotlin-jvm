@@ -12,6 +12,8 @@ supertypes = [
 	godot.Node,
 	godot.Object,
 	godot.core.KtObject,
+	godot.common.interop.IdentityPointer,
+	godot.common.interop.ValuePointer,
 	kotlin.Any
 ]
 signals = [

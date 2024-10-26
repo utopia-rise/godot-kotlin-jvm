@@ -8,13 +8,13 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterSignal
 import godot.core.Vector2
-import godot.signals.signal
+import godot.core.signal1
 
 @RegisterClass("BunnymarkV1DrawTexture")
 class BunnymarkV1DrawTexture : Node2D() {
 
 	@RegisterSignal
-	val benchmarkFinished by signal<Int>("bunnyCount")
+	val benchmarkFinished by signal1<Int>("bunnyCount")
 
 	data class Bunny(var position: Vector2, var speed: Vector2)
 

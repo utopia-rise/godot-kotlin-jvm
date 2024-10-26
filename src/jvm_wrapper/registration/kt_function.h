@@ -6,6 +6,8 @@
 #include "kt_property.h"
 #include "kt_rpc_config.h"
 
+using InvokeFunction = void (*)(uint64_t);
+
 JVM_INSTANCE_WRAPPER(KtFunctionInfo, "godot.core.KtFunctionInfo") {
     JVM_CLASS(KtFunctionInfo)
 
@@ -43,12 +45,15 @@ JVM_INSTANCE_WRAPPER(KtFunction, "godot.core.KtFunction") {
     JNI_INT_METHOD(GET_PARAMETER_COUNT)
     JNI_VOID_METHOD(INVOKE)
     JNI_OBJECT_METHOD(INVOKE_WITH_RETURN)
+    JNI_LONG_METHOD(GET_INVOKE_STUB)
+
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")
         INIT_JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
         INIT_JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)V")
         INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "(Lgodot/core/KtObject;)Ljava/lang/Object;")
+        INIT_JNI_METHOD(GET_INVOKE_STUB, "getInvokeStub", "()J")
     )
     // clang-format on
 
@@ -56,6 +61,7 @@ private:
     int parameter_count;
     KtFunctionInfo* method_info;
     bool has_return_value;
+    void (*invoke_stub)(uint64_t);
 
 public:
     explicit KtFunction(jni::Env& p_env, jni::JObject p_wrapped);
@@ -68,7 +74,9 @@ public:
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
 
-    void invoke(jni::Env& p_env, const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret);
+    InvokeFunction get_invoke_stub(jni::Env & p_env);
+
+    void invoke(jni::Env& p_env, const KtObject* kt_object, const uint64_t id, const Variant** p_args, int args_count, Variant& r_ret);
 };
 
 #endif// GODOT_JVM_KT_FUNCTION_H
