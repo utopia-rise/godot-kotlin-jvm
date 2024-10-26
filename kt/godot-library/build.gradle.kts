@@ -25,12 +25,23 @@ apiGenerator {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(22)
 }
 
 java {
     withSourcesJar()
     withJavadocJar()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = "22"  // Make sure this matches the JVM version
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("--enable-preview")
+    options.release.set(22)  // Match the Java version you are using
 }
 
 dependencies {

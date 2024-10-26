@@ -1,13 +1,18 @@
 package godot.core.memory
 
-import godot.core.KtObject
-import godot.core.LongStringQueue
-import godot.common.interop.ObjectID
-import godot.core.VariantConverter
 import godot.common.constants.Constraints
+import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
 import godot.common.util.threadLocal
+import godot.core.KtObject
+import godot.core.LongStringQueue
+import godot.core.VariantConverter
 import kotlincompile.definitions.GodotJvmBuildConfig
+import java.lang.foreign.FunctionDescriptor
+import java.lang.foreign.Linker
+import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
+import java.lang.invoke.MethodHandle
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -76,11 +81,7 @@ internal object TransferContext {
     }
 
     fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantConverter) {
-        icall(
-            ptr,
-            methodPtr,
-            expectedReturnType.id
-        )
+        handle.invoke(ptr, methodPtr)
     }
 
     fun initializeKtObject(obj: KtObject) {
@@ -89,5 +90,12 @@ internal object TransferContext {
         obj.objectID = ObjectID(buffer.long)
     }
 
-    private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)
+
+    lateinit var handle: MethodHandle
+
+    fun createIcallStub(icallAddress: VoidPtr) {
+        val segment = MemorySegment.ofAddress(icallAddress)
+        val descriptor = FunctionDescriptor.ofVoid(ValueLayout.JAVA_LONG, ValueLayout.JAVA_LONG)
+        handle = Linker.nativeLinker().downcallHandle(segment, descriptor)
+    }
 }

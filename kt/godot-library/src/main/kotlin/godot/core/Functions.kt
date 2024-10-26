@@ -4,6 +4,16 @@ package godot.core
 
 import godot.core.memory.TransferContext
 import godot.common.extensions.convertToSnakeCase
+import godot.common.interop.VoidPtr
+import godot.core.memory.MemoryManager
+import java.lang.foreign.Arena
+import java.lang.foreign.FunctionDescriptor
+import java.lang.foreign.Linker
+import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
+import java.lang.invoke.MethodHandle
+import java.lang.invoke.MethodHandles
+import java.lang.invoke.MethodType
 
 data class KtFunctionInfo(
     val name: String,
@@ -31,7 +41,8 @@ abstract class KtFunction<T : KtObject, R : Any?>(
     private val types: Array<VariantConverter> = parameterTypes.toList().toTypedArray()
     val registrationName = functionInfo.name.convertToSnakeCase()
 
-    fun invoke(instance: T): Unit = withParameters(types) {
+    fun invoke(id: Long): Unit = withParameters(types) {
+        val instance = MemoryManager.getScriptInstance(id) as T
         try {
             invokeKt(instance)
         } catch (t: Throwable) {
@@ -51,7 +62,21 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         ret
     }
 
-    internal companion object : ParametersReader()
+    fun getInvokeStub() = linker.upcallStub(
+            mh.bindTo(this),
+            FunctionDescriptor.ofVoid(ValueLayout.JAVA_LONG),
+            Arena.global()
+        ).address()
+
+    internal companion object : ParametersReader() {
+        private val linker = Linker.nativeLinker()
+
+        private val mh: MethodHandle = MethodHandles.lookup().findVirtual(
+            KtFunction::class.java,
+            "invoke",
+            MethodType.methodType(Void.TYPE, Long::class.javaPrimitiveType),
+        )
+    }
 
     internal abstract fun invokeKt(instance: T): R
 }

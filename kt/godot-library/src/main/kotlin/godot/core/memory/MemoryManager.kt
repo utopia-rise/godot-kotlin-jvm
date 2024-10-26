@@ -197,6 +197,11 @@ internal object MemoryManager {
         ObjectDB.remove(ObjectID(id))
     }
 
+    fun getScriptInstance(id: Long) =  lock.read {
+            ObjectDB[ObjectID(id)]!!.instance!!
+    }
+
+
     fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): KtObject {
         val objectID = ObjectID(id)
 

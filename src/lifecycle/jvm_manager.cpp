@@ -96,9 +96,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 }
 
 bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
-    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
-
-    return  Bootstrap::initialize(p_env, class_loader)
+    bool ret =  Bootstrap::initialize(p_env, class_loader)
             && KtObject::initialize(p_env, class_loader)
             && KtPropertyInfo::initialize(p_env, class_loader)
             && KtProperty::initialize(p_env, class_loader)
@@ -131,6 +129,11 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
+
+    TransferContext::get_instance().create_icall_stub(p_env);
+    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
+
+    return ret;
 }
 
 void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {

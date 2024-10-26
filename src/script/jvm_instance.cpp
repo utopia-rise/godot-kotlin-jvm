@@ -52,7 +52,7 @@ bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
         const int arg_count = 2;
         Variant name = p_name;
         const Variant* args[arg_count] {&name, &p_value};
-        function->invoke(env, kt_object, args, arg_count, ret);
+        function->invoke(env, kt_object, owner->get_instance_id(), args, arg_count, ret);
         return true;
     }
 
@@ -79,7 +79,7 @@ bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
-        function->invoke(env, kt_object, args, arg_count, r_ret);
+        function->invoke(env, kt_object, owner->get_instance_id(), args, arg_count, r_ret);
         return true;
     }
 
@@ -107,7 +107,7 @@ void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
 
     if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
         Variant ret_var;
-        function->invoke(env, kt_object, {}, 0, ret_var);
+        function->invoke(env, kt_object, owner->get_instance_id(), {}, 0, ret_var);
         Array ret_array = ret_var;
         for (int i = 0; i < ret_array.size(); ++i) {
             p_properties->push_back(PropertyInfo::from_dict(ret_array.get(i)));
@@ -137,7 +137,7 @@ Variant JvmInstance::callp(const StringName& p_method, const Variant** p_args, i
     KtFunction* function {kt_class->get_method(p_method)};
     Variant ret_var;
     if (function) {
-        function->invoke(env, kt_object, p_args, p_argcount, ret_var);
+        function->invoke(env, kt_object, owner->get_instance_id(), p_args, p_argcount, ret_var);
     } else {
         r_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
     }
@@ -159,7 +159,7 @@ void JvmInstance::validate_property(PropertyInfo& p_property) const {
         Variant property_arg = (Dictionary) p_property;
         const int arg_count {1};
         const Variant* args[arg_count] = {&property_arg};
-        function->invoke(env, kt_object, args, arg_count, ret_var);
+        function->invoke(env, kt_object, owner->get_instance_id(), args, arg_count, ret_var);
         p_property = PropertyInfo::from_dict(property_arg);
     }
 }
@@ -248,7 +248,7 @@ bool JvmInstance::property_can_revert(const StringName& p_name) const {
         Variant ret;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
-        function->invoke(env, kt_object, args, arg_count, ret);
+        function->invoke(env, kt_object, owner->get_instance_id(), args, arg_count, ret);
         return ret.operator bool();
     }
 
@@ -262,7 +262,7 @@ bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) 
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
-        function->invoke(env, kt_object, args, arg_count, r_ret);
+        function->invoke(env, kt_object, owner->get_instance_id(), args, arg_count, r_ret);
         return true;
     }
 
