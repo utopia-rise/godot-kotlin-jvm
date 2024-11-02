@@ -14,7 +14,7 @@ import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.File
 import godot.annotation.FloatRange
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.annotation.IntFlag
 import godot.annotation.IntRange
@@ -56,7 +56,7 @@ class Invocation : Node3D() {
     @Export
     var enumList = listOf(TestEnum.ENUM_1)
 
-    @GodotMember
+    @Member
     var vectorList = PackedVector3Array()
 
     @Export
@@ -72,27 +72,27 @@ class Invocation : Node3D() {
     //@Export
     //var lateinitString: String? = null
 
-    @GodotMember
+    @Member
     lateinit var registerObject: OtherScript
 
-    @GodotMember
+    @Member
     var registerObjectNullable: OtherScript? = null
 
-    @GodotMember
+    @Member
     var registerObjectNullablePreInit: OtherScript? = OtherScript()
         set(value) {
             field?.free()
             field = value
         }
 
-    @GodotMember
+    @Member
     var registerObjectNonNullablePreInit: OtherScript = OtherScript()
         set(value) {
             field.free()
             field = value
         }
 
-    @GodotMember
+    @Member
     var vector = Vector3()
 
     @Export
@@ -111,7 +111,7 @@ class Invocation : Node3D() {
     private val otherScriptReference = OtherScript()
     private fun provideOtherScriptReference() = otherScriptReference
 
-    @GodotMember
+    @Member
     var invocation = provideOtherScriptReference()
 
     @Export
@@ -246,28 +246,28 @@ class Invocation : Node3D() {
     @Export
     var utf8String = ""
 
-    @GodotMember
+    @Member
     fun intValue(value: Int) = value
 
-    @GodotMember
+    @Member
     fun longValue(value: Long) = value
 
-    @GodotMember
+    @Member
     fun floatValue(value: Float) = value
 
-    @GodotMember
+    @Member
     fun doubleValue(value: Double) = value
 
-    @GodotMember
+    @Member
     fun booleanValue(value: Boolean) = value
 
-    @GodotMember
+    @Member
     fun stringValue(value: String) = value
 
-    @GodotMember
+    @Member
     fun intAddition(a: Int, b: Int) = a + b
 
-    @GodotMember
+    @Member
     fun initNullables() {
         registerObject = OtherScript()
         registerObjectNullable = OtherScript()
@@ -332,202 +332,202 @@ class Invocation : Node3D() {
         registerObjectNonNullablePreInit.free()
     }
 
-    @GodotMember
+    @Member
     fun getRidId() = rid.id
 
-    @GodotMember
+    @Member
     fun getNavMeshRid() = resourceTest.getRid()
 
-    @GodotMember
+    @Member
     fun appendToAnyDict(key: Any, value: Any) {
         anyToAnyDictionary[key] = value
     }
 
-    @GodotMember
+    @Member
     fun removeFromAnyDict(key: Any) {
         anyToAnyDictionary.remove(key)
     }
 
-    @GodotMember
+    @Member
     fun getFromAnyDict(key: Any) = anyToAnyDictionary[key]
 
-    @GodotMember
+    @Member
     fun anyDictSize() = anyToAnyDictionary.size
 
-    @GodotMember
+    @Member
     fun appendToStringNavMeshDict(key: String, value: NavigationMesh) {
         navMeshesDictionary[key] = value
     }
 
-    @GodotMember
+    @Member
     fun removeFromStringNavMeshDict(key: String) {
         navMeshesDictionary.remove(key)
     }
 
-    @GodotMember
+    @Member
     fun getFromStringNavMeshDict(key: String) = navMeshesDictionary[key]
 
-    @GodotMember
+    @Member
     fun stringNavMeshDictSize() = navMeshesDictionary.size
 
-    @GodotMember
+    @Member
     fun appendToStringNavMeshNullableDict(key: String, value: NavigationMesh) {
         nullableDictionary[key] = value
     }
 
-    @GodotMember
+    @Member
     fun removeFromStringNavMeshNullableDict(key: String) {
         nullableDictionary.remove(key)
     }
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@GodotMember
+//	@Member
 //	fun getFromStringNavMeshNullableDict(key: String) = nullableDictionary[key]
 
-    @GodotMember
+    @Member
     fun stringNavMeshNullableDictSize() = nullableDictionary.size
 
-    @GodotMember
+    @Member
     fun appendNullableStandardNavMesh() = nullableArray.append(NavigationMesh())
 
-    @GodotMember
+    @Member
     fun appendNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.append(navigationMesh)
 
-    @GodotMember
+    @Member
     fun removeNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.remove(navigationMesh)
 
-    @GodotMember
+    @Member
     fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.removeAt(index)
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@GodotMember
+//	@Member
 //	fun getNullableNavMeshFromArray(index: Int) = nullableArray[index]
 
-    @GodotMember
+    @Member
     fun nullableNavMeshesSize() = nullableArray.size
 
-    @GodotMember
+    @Member
     fun appendStandardNavMesh() = navMeshes.append(NavigationMesh())
 
-    @GodotMember
+    @Member
     fun appendNavMesh(navigationMesh: NavigationMesh) = navMeshes.append(navigationMesh)
 
-    @GodotMember
+    @Member
     fun removeNavMesh(navigationMesh: NavigationMesh) = navMeshes.remove(navigationMesh)
 
-    @GodotMember
+    @Member
     fun removeNavMeshWithIndex(index: Int) = navMeshes.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getNavMeshFromArray(index: Int) = navMeshes[index]
 
-    @GodotMember
+    @Member
     fun navMeshesSize() = navMeshes.size
 
-    @GodotMember
+    @Member
     fun appendAnyToArray(any: Any) = testArrayAny.append(any)
 
-    @GodotMember
+    @Member
     fun removeAnyFromArray(any: Any) = testArrayAny.remove(any)
 
-    @GodotMember
+    @Member
     fun getAnyFromArray(index: Int) = testArrayAny[index]
 
-    @GodotMember
+    @Member
     fun arrayAnySize() = testArrayAny.size
 
-    @GodotMember
+    @Member
     fun countNameshInstance(navigationMesh: NavigationMesh) = navMeshes.count(navigationMesh)
 
-    @GodotMember
+    @Member
     fun getNavMeshCount() = navMeshes.count()
 
     //Type cast checks
-    @GodotMember
+    @Member
     fun parentIsNode3D() = getParent() is Node3D
 
-    @GodotMember
+    @Member
     fun isObjectNode3D(obj: Object) = obj is Node3D
 
-    @GodotMember
+    @Member
     fun otherJvmId(invocation: Invocation) = invocation.jvmId
 
-    @GodotMember
+    @Member
     fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
-    @GodotMember
+    @Member
     fun addByteToPackedArray(byte: Byte) = packedByteArray.append(byte)
 
-    @GodotMember
+    @Member
     fun addByteArrayToPackedArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
-    @GodotMember
+    @Member
     fun deleteByteFromPackedArray(index: Int) = packedByteArray.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getByteFromPackedArray(index: Int) = packedByteArray[index]
 
-    @GodotMember
+    @Member
     fun setByteInPackedArray(index: Int, value: Byte) {
         packedByteArray[index] = value
     }
 
-    @GodotMember
+    @Member
     fun resizeBytePackedArray(newSize: Int) {
         packedByteArray.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addColorToPackedArray(color: Color) = packedColorArray.append(color)
 
-    @GodotMember
+    @Member
     fun addColorArrayToPackedArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
-    @GodotMember
+    @Member
     fun deleteColorFromPackedArray(index: Int) = packedColorArray.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getColorFromPackedArray(index: Int) = packedColorArray[index]
 
-    @GodotMember
+    @Member
     fun setColorInPackedArray(index: Int, color: Color) {
         packedColorArray[index] = color
     }
 
-    @GodotMember
+    @Member
     fun resizeColorPackedArray(newSize: Int) {
         packedColorArray.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addIntToPackedArray(int: Int) = packedInt32Array.append(int)
 
-    @GodotMember
+    @Member
     fun addIntArrayToPackedArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
-    @GodotMember
+    @Member
     fun deleteIntFromPackedArray(index: Int) = packedInt32Array.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getIntFromPackedArray(index: Int) = packedInt32Array[index]
 
-    @GodotMember
+    @Member
     fun setIntInPackedArray(index: Int, value: Int) {
         packedInt32Array[index] = value
     }
 
-    @GodotMember
+    @Member
     fun resizeIntPackedArray(newSize: Int) {
         packedInt32Array.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addRealToPackedArray(realT: RealT) = packedFloat64Array.append(realT)
 
-    @GodotMember
+    @Member
     fun addRealArrayToPackedArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
 
-    @GodotMember
+    @Member
     fun readStringFromByteArray() {
 
         val asciiArray = testString.toByteArray(Charsets.US_ASCII)
@@ -545,94 +545,94 @@ class Invocation : Node3D() {
         utf8String = packed2.getStringFromUtf8()
     }
 
-    @GodotMember
+    @Member
     fun deleteRealFromPackedArray(index: Int) = packedFloat64Array.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getRealFromPackedArray(index: Int) = packedFloat64Array[index]
 
-    @GodotMember
+    @Member
     fun setRealInPackedArray(index: Int, value: Double) {
         packedFloat64Array[index] = value
     }
 
-    @GodotMember
+    @Member
     fun resizeRealPackedArray(newSize: Int) {
         packedFloat64Array.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addStringToPackedArray(string: String) = packedStringArray.append(string)
 
-    @GodotMember
+    @Member
     fun addStringArrayToPackedArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
-    @GodotMember
+    @Member
     fun deleteStringFromPackedArray(index: Int) = packedStringArray.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getStringFromPackedArray(index: Int) = packedStringArray[index]
 
-    @GodotMember
+    @Member
     fun setStringInPackedArray(index: Int, value: String) {
         packedStringArray[index] = value
     }
 
-    @GodotMember
+    @Member
     fun resizeStringPackedArray(newSize: Int) {
         packedStringArray.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addVector2ToPackedArray(vector2: Vector2) = packedVector2Array.append(vector2)
 
-    @GodotMember
+    @Member
     fun addVector2ArrayToPackedArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
-    @GodotMember
+    @Member
     fun deleteVector2FromPackedArray(index: Int) = packedVector2Array.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getVector2FromPackedArray(index: Int) = packedVector2Array[index]
 
-    @GodotMember
+    @Member
     fun setVector2InPackedArray(index: Int, vector2: Vector2) {
         packedVector2Array[index] = vector2
     }
 
-    @GodotMember
+    @Member
     fun resizeVector2PackedArray(newSize: Int) {
         packedVector2Array.resize(newSize)
     }
 
-    @GodotMember
+    @Member
     fun addVector3ToPackedArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
-    @GodotMember
+    @Member
     fun addVector3ArrayToPackedArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
-    @GodotMember
+    @Member
     fun deleteVector3FromPackedArray(index: Int) = packedVector3Array.removeAt(index)
 
-    @GodotMember
+    @Member
     fun getVector3FromPackedArray(index: Int) = packedVector3Array[index]
 
-    @GodotMember
+    @Member
     fun setVector3InPackedArray(index: Int, vector3: Vector3) {
         packedVector3Array[index] = vector3
     }
 
-    @GodotMember
+    @Member
     fun resizeVector3PackedArray(newSize: Int) {
         packedVector3Array.resize(newSize)
     }
 
     // Singleton tests
 
-    @GodotMember
+    @Member
     fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
         XRServer.getInstanceId() == arvrServer.getInstanceId()
 
-    @GodotMember
+    @Member
     fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }

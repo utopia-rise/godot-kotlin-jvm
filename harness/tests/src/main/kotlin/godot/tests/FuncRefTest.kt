@@ -1,7 +1,7 @@
 package godot.tests
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.annotation.Rpc
 import godot.core.signal0
@@ -13,60 +13,60 @@ class FuncRefTest : Node() {
 
     val test by signal0()
 
-    @GodotMember
+    @Member
     var blubb: Boolean = false
 
-    @GodotMember
+    @Member
     var callFlag = false
 
-    @GodotMember
+    @Member
     var callWithParamFlag = false
 
-    @GodotMember
+    @Member
     var signalCallFlag = false
 
-    @GodotMember
+    @Member
     override fun _ready() {
         test.connect(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
-    @GodotMember
+    @Member
     fun testSignalCallback() {
         signalCallFlag = true
     }
 
-    @GodotMember
+    @Member
     fun testSignalCall() {
         test.emit()
     }
 
-    @GodotMember
+    @Member
     fun withoutParamCallback() {
         callFlag = true
     }
 
-    @GodotMember
+    @Member
     fun testCallWithoutParam() {
         call(this::withoutParamCallback)
     }
 
-    @GodotMember
+    @Member
     fun testCallDeferredWithoutParam() {
         callDeferred(this::withoutParamCallback)
     }
 
-    @GodotMember
+    @Member
     fun withParamCallback(flag: Boolean) {
         callWithParamFlag = flag
     }
 
-    @GodotMember
+    @Member
     fun testCallWithParam() {
         call(this::withParamCallback, true)
     }
 
-    @GodotMember
+    @Member
     fun testCallDeferredWithParam() {
         callDeferred(this::withParamCallback, true)
     }

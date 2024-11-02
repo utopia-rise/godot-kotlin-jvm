@@ -4,7 +4,7 @@ package godot.tests.coroutine
 import godot.Object
 import godot.PackedScene
 import godot.ResourceLoader
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.Vector2
 import godot.core.signal0
@@ -29,37 +29,37 @@ class CoroutineTest : Object() {
 
     val signalWithManyParameters by signal4<Int, Float, Vector2, String>("int", "float", "vector2", "string")
 
-    @GodotMember
+    @Member
     var step: Int = 0
 
-    @GodotMember
+    @Member
     fun startCoroutineWithoutParameter() = godotCoroutine {
         step = 1
         signalWithoutParameter.await()
         step = 2
     }
 
-    @GodotMember
+    @Member
     fun startCoroutineWithOneParameter() = godotCoroutine {
         step = 3
         step = signalWithOneParameter.await()
     }
 
-    @GodotMember
+    @Member
     fun startCoroutineWithManyParameters() = godotCoroutine {
         step = 5
         val (int, _, _, _) = signalWithManyParameters.await()
         step = int
     }
 
-    @GodotMember
+    @Member
     fun startCoroutineUndispatched() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 7
         signalWithoutParameter.await()
         step = 8
     }
 
-    @GodotMember
+    @Member
     fun startCoroutineWithPhysicsFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 9
         awaitPhysicsFrame {
@@ -67,7 +67,7 @@ class CoroutineTest : Object() {
         }
     }
 
-    @GodotMember
+    @Member
     fun startCoroutineWithProcessFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 11
         awaitProcessFrame {
@@ -75,10 +75,10 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterSignal
+    @Member
     val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>("is_test_successful")
 
-    @GodotMember
+    @Member
     fun runOnMainThreadFromBackgroundThread() {
         val thread = Thread.currentThread().name
 
@@ -107,7 +107,7 @@ class CoroutineTest : Object() {
 
     val asyncLoadResourceFinished by signal1<Boolean>("is_test_successful")
 
-    @GodotMember
+    @Member
     fun asyncLoadResource() {
         godotCoroutine {
             val resource = ResourceLoader.awaitLoadAs<PackedScene>("res://Spatial.tscn") { progress ->

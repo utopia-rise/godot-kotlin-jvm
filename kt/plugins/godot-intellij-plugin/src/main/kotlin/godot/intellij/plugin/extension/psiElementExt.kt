@@ -61,7 +61,7 @@ private fun KtFunction.overridesRegistered(): Boolean {
 
 private fun KtAnnotated.hasRegistrationAnnotation(): Boolean {
     return this.resolveAllAnnotationsRecursively().any {
-        it.fqName?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.godotMember}"
+        it.fqName?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.member}"
             || it.fqName?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.godotScript}"
     }
 }
@@ -96,7 +96,7 @@ private fun PsiModifierListOwner.hasRegistrationAnnotation(): Boolean {
 
 private fun PsiAnnotation.isRegistrationAnnotation(alreadyResolvedAnnotations: MutableList<PsiAnnotation> = mutableListOf()): Boolean {
     return this.qualifiedName == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.godotScript}" ||
-        this.qualifiedName == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.godotMember}" ||
+        this.qualifiedName == "$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.member}" ||
         run {
             val annotationsOnAnnotation = this.resolveAnnotationType()?.annotations ?: return false
             annotationsOnAnnotation

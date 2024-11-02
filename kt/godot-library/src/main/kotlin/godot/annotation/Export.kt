@@ -14,5 +14,5 @@ package godot.annotation
     AnnotationTarget.ANNOTATION_CLASS,
 )
 @Retention(AnnotationRetention.RUNTIME)
-@GodotMember
+@Member
 annotation class Export

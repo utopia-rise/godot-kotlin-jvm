@@ -48,7 +48,7 @@ object GodotKotlinJvmTypes {
         const val coreTypeLocalCopy = "CoreTypeLocalCopy"
 
         const val godotScript = "GodotScript"
-        const val godotMember = "GodotMember"
+        const val member = "Member"
 
         const val tool = "Tool"
         const val export = "Export"

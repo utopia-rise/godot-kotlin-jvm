@@ -1,7 +1,7 @@
 package godot.tests.inheritance
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.GodotNotification
 import godot.core.signal1
@@ -17,31 +17,31 @@ open class ClassInheritanceParent : Node() {
 
     //---------------- Here to check ------------------
 
-    @GodotMember
+    @Member
     var closedFunctionHasBeenCalled = false
 
-    @GodotMember
+    @Member
     var parentOpenFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
-    @GodotMember
+    @Member
     var closedVar = 0
 
-    @GodotMember
+    @Member
     open var openVar = 0
 
-    @GodotMember
+    @Member
     fun closedFunction() {
         closedFunctionHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     open fun openFunction() {
         parentOpenFunctionHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     var notificationCallBitFlag = 0
 
     override fun _notification(): GodotNotification = godotNotification {

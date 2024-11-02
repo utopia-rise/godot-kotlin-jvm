@@ -1,6 +1,6 @@
 import godot.Node
 import godot.annotation.Export
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.Vector3
 
@@ -18,10 +18,10 @@ class CoreTypePropertyChecks: Node() {
     var exportedNormalCoreType: Vector3 = Vector3.ZERO
 
     // not allowed
-//    @GodotMember
+//    @Member
 //    lateinit var lateinitCoreType: Vector3
 
     // allowed
-    @GodotMember
+    @Member
     var normalCoreType: Vector3 = Vector3.ZERO
 }

@@ -10,7 +10,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import godot.annotation.GodotApiMember
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.processor.Settings
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
@@ -29,7 +29,8 @@ internal fun KSClassDeclaration.mapToClazz(
         "Qualified name for class declaration of a registered type or it's super types cannot be null! KSClassDeclaration: $this"
     }
     val supertypeDeclarations = getAllSuperTypes()
-        .mapNotNull { it.declaration as? KSClassDeclaration } //we're only interested in classes not interfaces
+        .mapNotNull { it.declaration as? KSClassDeclaration }
+        .filter { it.classKind == ClassKind.CLASS } //we're only interested in classes not interfaces
         .map { it.mapToClazz(settings) }
         .toList()
     val mappedAnnotations = annotations
@@ -39,7 +40,7 @@ internal fun KSClassDeclaration.mapToClazz(
 
     val registeredFunctions = getAllFunctions()
         .filter { function ->
-            function.hasAnnotation(GodotMember::class) || function.overridesApiFunction() || function.overridesRegisteredFunction()
+            function.hasAnnotation(Member::class) || function.overridesApiFunction() || function.overridesRegisteredFunction()
         }
         .mapNotNull { it.mapToRegisteredFunction(this, settings) }
         .toList()
@@ -50,23 +51,19 @@ internal fun KSClassDeclaration.mapToClazz(
         .filter { property ->
             property.hasRegistrationAnnotation() || property.overridesRegisteredProperty()
         }
+        .filter { property -> !property.isSignal() }
         .map {
             it.mapToRegisteredProperty(settings)
         }
         .toList()
     val registeredSignals = allProperties
         .filter { property ->
-            property
-                .type
-                .resolve()
-                .declaration
-                .qualifiedName
-                ?.asString()
-                ?.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}") == true
-                && !property.hasAnnotation(GodotApiMember::class)
+            property.isSignal()
         }
         .map { it.mapToRegisteredSignal(declaredProperties.toList(), settings) }
         .toList()
+        .toList()
+
 
     val shouldBeRegistered = (classKind != ClassKind.ANNOTATION_CLASS && hasRegistrationAnnotation()) ||
         isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
@@ -80,7 +77,7 @@ internal fun KSClassDeclaration.mapToClazz(
         val registeredConstructors = getConstructors()
             .filter { it.isPublic() }
             .filter { constructor ->
-                constructor.hasAnnotation(GodotMember::class) ||
+                constructor.hasAnnotation(Member::class) ||
                     constructor.parameters.isEmpty()
             }
             .map { it.mapToRegisteredConstructor(settings) }
@@ -113,6 +110,15 @@ internal fun KSClassDeclaration.mapToClazz(
         )
     }
 }
+
+private fun KSPropertyDeclaration.isSignal() = (this
+    .type
+    .resolve()
+    .declaration
+    .qualifiedName
+    ?.asString()
+    ?.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}") == true
+    && !this.hasAnnotation(GodotApiMember::class))
 
 internal fun KSClassDeclaration.isAbstractAndContainsRegisteredMembers(
     registeredFunctions: List<RegisteredFunction>,
@@ -154,9 +160,9 @@ private fun KSFunctionDeclaration.overridesApiFunction(isOveridee: Boolean = fal
 }
 
 private fun KSFunctionDeclaration.overridesRegisteredFunction(): Boolean {
-    return hasAnnotation(GodotMember::class) || (findOverridee() as? KSFunctionDeclaration)?.overridesRegisteredFunction() == true
+    return hasAnnotation(Member::class) || (findOverridee() as? KSFunctionDeclaration)?.overridesRegisteredFunction() == true
 }
 
 private fun KSPropertyDeclaration.overridesRegisteredProperty(): Boolean {
-    return hasAnnotation(GodotMember::class) || findOverridee()?.overridesRegisteredProperty() == true
+    return hasAnnotation(Member::class) || findOverridee()?.overridesRegisteredProperty() == true
 }

@@ -2,7 +2,7 @@ package godot.tests.inheritance
 
 import godot.Node
 import godot.annotation.Export
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.core.signal1
 import godot.core.signal2
 
@@ -18,22 +18,22 @@ abstract class AbstractClassInheritanceParent : Node() {
 
     //---------------- Here to check ------------------
 
-    @GodotMember
+    @Member
     var closedFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
-    @GodotMember
+    @Member
     var closedVar = 0
 
-    @GodotMember
+    @Member
     open var openVar = 0
 
-    @GodotMember
+    @Member
     fun closedFunction() {
         closedFunctionHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     abstract fun openFunction()
 }

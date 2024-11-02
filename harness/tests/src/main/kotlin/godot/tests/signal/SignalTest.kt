@@ -1,7 +1,7 @@
 package godot.tests.signal
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.Signal0
 import godot.core.Signal1
@@ -29,7 +29,7 @@ class SignalTest : Node() {
 
     val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField","str", "inv")
 
-    @GodotMember
+    @Member
     var otherScript = OtherScript()
 
     override fun _ready() {
@@ -68,10 +68,10 @@ class SignalTest : Node() {
     val signalWithMultipleTargets by signal1<Vector2>("vector2")
 
     //To store values emitted by signals
-    @GodotMember
+    @Member
     var array: VariantArray<Vector2> = VariantArray()
 
-    @GodotMember
+    @Member
     fun targetFunctionOne(vector2: Vector2) {
         array.append(vector2)
         //call GodotAPI to insert different parameters in the stack.
@@ -83,7 +83,7 @@ class SignalTest : Node() {
     }
 
 
-    @GodotMember
+    @Member
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }

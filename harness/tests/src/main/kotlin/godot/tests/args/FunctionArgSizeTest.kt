@@ -1,7 +1,7 @@
 package godot.tests.args
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.VariantArray
 import godot.core.variantArrayOf
@@ -9,12 +9,12 @@ import godot.core.variantArrayOf
 @GodotScript
 class FunctionArgSizeTest : Node() {
 
-    @GodotMember
+    @Member
     fun arg0(): VariantArray<Any> {
         return variantArrayOf()
     }
 
-    @GodotMember
+    @Member
     fun arg1(
         p1: String,
     ): VariantArray<Any> {
@@ -23,7 +23,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg2(
         p1: String,
         p2: String,
@@ -34,7 +34,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg3(
         p1: String,
         p2: String,
@@ -47,7 +47,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg4(
         p1: String,
         p2: String,
@@ -62,7 +62,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg5(
         p1: String,
         p2: String,
@@ -79,7 +79,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg6(
         p1: String,
         p2: String,
@@ -98,7 +98,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg7(
         p1: String,
         p2: String,
@@ -119,7 +119,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg8(
         p1: String,
         p2: String,
@@ -142,7 +142,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg9(
         p1: String,
         p2: String,
@@ -167,7 +167,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg10(
         p1: String,
         p2: String,
@@ -194,7 +194,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg11(
         p1: String,
         p2: String,
@@ -223,7 +223,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg12(
         p1: String,
         p2: String,
@@ -254,7 +254,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg13(
         p1: String,
         p2: String,
@@ -287,7 +287,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg14(
         p1: String,
         p2: String,
@@ -322,7 +322,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg15(
         p1: String,
         p2: String,
@@ -359,7 +359,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @GodotMember
+    @Member
     fun arg16(
         p1: String,
         p2: String,

@@ -1,7 +1,7 @@
 package godot.tests
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.Signal3
 import godot.core.asCallable
@@ -14,27 +14,27 @@ class LambdaCallableTest : Node() {
 
     val signalNoParam by signal0()
 
-    @GodotMember
+    @Member
     var hasSignalNoParamBeenTriggered = false
 
     val signalWithParams: Signal3<String, Long, Node> by signal3("str", "long", "node")
 
-    @GodotMember
+    @Member
     var signalString: String = ""
 
-    @GodotMember
+    @Member
     var signalLong: Long = Long.MIN_VALUE
 
-    @GodotMember
+    @Member
     lateinit var signalNode: Node
 
-    @GodotMember
+    @Member
     var ktCallable = { str: String -> ktCallableString = str }.asCallable()
 
-    @GodotMember
+    @Member
     var ktCallableString: String = ""
 
-    @GodotMember
+    @Member
     override fun _ready() {
         signalNoParam.connect {
             hasSignalNoParamBeenTriggered = true
@@ -47,12 +47,12 @@ class LambdaCallableTest : Node() {
         }
     }
 
-    @GodotMember
+    @Member
     fun emitSignalNoParam() {
         signalNoParam.emit()
     }
 
-    @GodotMember
+    @Member
     fun emitSignalWithParam(str: String, long: Long, node: Node) {
         signalWithParams.emit(str, long, node)
     }

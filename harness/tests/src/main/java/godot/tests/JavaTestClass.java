@@ -5,7 +5,7 @@ import godot.Node;
 import godot.RenderingServer;
 import godot.annotation.EnumTypeHint;
 import godot.annotation.Export;
-import godot.annotation.GodotMember;
+import godot.annotation.Member;
 import godot.annotation.GodotScript;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
@@ -47,18 +47,18 @@ public class JavaTestClass extends Node {
     @Export
     public Button exportedButton;
 
-    @GodotMember
+    @Member
     public String greeting() {
         return "Hello from java";
     }
 
-    @GodotMember
+    @Member
     public boolean signalEmitted = false;
 
-    @GodotMember
+    @Member
     public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
 
-    @GodotMember
+    @Member
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
     public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
@@ -79,7 +79,7 @@ public class JavaTestClass extends Node {
         RenderingServer.getDefaultClearColor();
     }
 
-    @GodotMember
+    @Member
     public void connectAndTriggerSignal() {
         connect(
                 StringNames.asStringName("test_signal"),
@@ -100,7 +100,7 @@ public class JavaTestClass extends Node {
         );
     }
 
-    @GodotMember
+    @Member
     public void signalCallback() {
         signalEmitted = true;
     }

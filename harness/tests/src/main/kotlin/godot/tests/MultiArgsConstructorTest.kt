@@ -3,44 +3,44 @@ package godot.tests
 import godot.NavigationMesh
 import godot.Node
 import godot.Object
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.VariantArray
 
 @GodotScript
 class MultiArgsConstructorTest : Node {
 
-    @GodotMember
+    @Member
     var defaultConstructorHasBeenCalled = false
 
-    @GodotMember
+    @Member
     var oneArgConstructorHasBeenCalled = false
 
-    @GodotMember
+    @Member
     var threeArgsConstructorHasBeenCalled = false
 
-    @GodotMember
+    @Member
     constructor() : super() {
         defaultConstructorHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     constructor(i: Int) : this() {
         oneArgConstructorHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     constructor(i: Int, s: String) : this() {
         threeArgsConstructorHasBeenCalled = true
     }
 
-    @GodotMember
+    @Member
     constructor(i: Int, s: String, obj: Object?) : this()
 
-    @GodotMember
+    @Member
     constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>) : this()
 
-    @GodotMember
+    @Member
     constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh) : this()
 
     constructor(
@@ -61,8 +61,8 @@ class MultiArgsConstructorTest : Node {
     ) : this()
 
     // constructors which should fail:
-//    @GodotMember
+//    @Member
 //    constructor(iShouldFailAsOverloadingIsNotSupported: String, s: String, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh) : this()
-//    @GodotMember
+//    @Member
 //    constructor(i: Int, s: Int, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh, tooManyArgs: String) : this()
 }

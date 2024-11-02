@@ -14,4 +14,4 @@ package godot.annotation
     AnnotationTarget.ANNOTATION_CLASS
 )
 @Retention(AnnotationRetention.RUNTIME)
-annotation class GodotMember
+annotation class Member

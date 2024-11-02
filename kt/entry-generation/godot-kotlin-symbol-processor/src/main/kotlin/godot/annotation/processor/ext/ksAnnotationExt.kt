@@ -12,7 +12,7 @@ import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
@@ -27,7 +27,7 @@ import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
 import godot.entrygenerator.model.GodotAnnotation
 import godot.entrygenerator.model.GodotBaseTypeAnnotation
-import godot.entrygenerator.model.GodotMemberAnnotation
+import godot.entrygenerator.model.MemberAnnotation
 import godot.entrygenerator.model.GodotScriptAnnotation
 import godot.entrygenerator.model.IntFlagHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
@@ -92,15 +92,15 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                 symbolProcessorSource = this
             )
         )
-        GodotMember::class.qualifiedName -> listOf(
-            GodotMemberAnnotation(this)
+        Member::class.qualifiedName -> listOf(
+            MemberAnnotation(this)
         )
         Tool::class.qualifiedName -> listOf(
             ToolAnnotation(this)
         )
         Export::class.qualifiedName -> listOf(
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         Rpc::class.qualifiedName -> listOf(
             RpcAnnotation(
@@ -110,7 +110,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                 transferChannel = rpcChannel,
                 symbolProcessorSource = this
             ),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         "godot.annotation.GodotBaseType" -> listOf(
             GodotBaseTypeAnnotation(this) //is internal
@@ -137,7 +137,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
             listOf(
                 EnumFlagHintStringAnnotation(enumValueNames = enumValueNames, source = this),
                 ExportAnnotation(this),
-                GodotMemberAnnotation(this),
+                MemberAnnotation(this),
             )
         }
         IntFlag::class.qualifiedName -> listOf(
@@ -147,42 +147,42 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                 this
             ),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         MultilineText::class.qualifiedName -> listOf(
             MultilineTextHintAnnotation(this),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         PlaceHolderText::class.qualifiedName -> listOf(
             PlaceHolderTextHintAnnotation(this),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         ColorNoAlpha::class.qualifiedName -> listOf(
             ColorNoAlphaHintAnnotation(this),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         godot.annotation.IntRange::class.qualifiedName -> listOf(
             provideRangeHintAnnotation(-1),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         godot.annotation.LongRange::class.qualifiedName -> listOf(
             provideRangeHintAnnotation(-1L),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         godot.annotation.FloatRange::class.qualifiedName -> listOf(
             provideRangeHintAnnotation(-1f),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         godot.annotation.DoubleRange::class.qualifiedName -> listOf(
             provideRangeHintAnnotation(-1.0),
             ExportAnnotation(this),
-            GodotMemberAnnotation(this),
+            MemberAnnotation(this),
         )
         EnumTypeHint::class.qualifiedName -> emptyList()
         ExpEasing::class.qualifiedName -> {
@@ -196,7 +196,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                     source = this
                 ),
                 ExportAnnotation(this),
-                GodotMemberAnnotation(this),
+                MemberAnnotation(this),
             )
         }
         godot.annotation.File::class.qualifiedName -> {
@@ -211,7 +211,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                     source = this
                 ),
                 ExportAnnotation(this),
-                GodotMemberAnnotation(this),
+                MemberAnnotation(this),
             )
         }
         Dir::class.qualifiedName -> {
@@ -224,7 +224,7 @@ internal fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): Lis
                     source = this
                 ),
                 ExportAnnotation(this),
-                GodotMemberAnnotation(this),
+                MemberAnnotation(this),
             )
         }
         else -> emptyList()

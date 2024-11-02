@@ -3,7 +3,7 @@ package godot.annotation.processor.visitor
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSVisitorVoid
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.annotation.processor.Settings
 import godot.annotation.processor.ext.hasCompilationErrors
@@ -13,7 +13,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
 /**
- * Collects [GodotScript], [GodotMember] annotations
+ * Collects [GodotScript], [Member] annotations
  * for registrar generation and entry generation
  */
 internal class RegistrationAnnotationVisitor(

@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-class GodotMemberAnnotation(override val symbolProcessorSource: Any) : FunctionAnnotation
+class MemberAnnotation(override val symbolProcessorSource: Any) : FunctionAnnotation

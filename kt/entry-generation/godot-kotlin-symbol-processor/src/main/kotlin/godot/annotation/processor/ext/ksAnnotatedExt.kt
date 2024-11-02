@@ -3,7 +3,7 @@ package godot.annotation.processor.ext
 import com.google.devtools.ksp.isAnnotationPresent
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSAnnotation
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import kotlin.reflect.KClass
 
@@ -33,5 +33,5 @@ fun <T : Annotation> KSAnnotation.hasAnnotation(annotationClass: KClass<T>, alre
 
 fun KSAnnotated.hasRegistrationAnnotation(): Boolean {
     return hasAnnotation(GodotScript::class)
-        || hasAnnotation(GodotMember::class)
+        || hasAnnotation(Member::class)
 }

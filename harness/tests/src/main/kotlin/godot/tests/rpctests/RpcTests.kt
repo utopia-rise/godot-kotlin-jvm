@@ -1,7 +1,7 @@
 package godot.tests.rpctests
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.annotation.Rpc
 import godot.annotation.Sync
@@ -9,7 +9,7 @@ import godot.annotation.Sync
 @GodotScript("RPCTests")
 class RpcTests : Node() {
 
-    @GodotMember
+    @Member
     var remoteSyncCalled: Boolean = false
 
     @Rpc(sync = Sync.SYNC)
@@ -17,7 +17,7 @@ class RpcTests : Node() {
         remoteSyncCalled = called
     }
 
-    @GodotMember
+    @Member
     fun triggerFunctionRemoteSyncCall() {
         rpc(::remoteSyncTest, true)
     }

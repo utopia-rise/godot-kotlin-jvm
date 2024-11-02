@@ -1,7 +1,7 @@
 package godot.tests.coretypes
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.Vector2
 import godot.core.asStringName
@@ -45,35 +45,35 @@ class StringTest : Node() {
         """.trimIndent()
 
 
-    @GodotMember
+    @Member
     fun identity(str: String) = str
 
-    @GodotMember
+    @Member
     fun fillTheBuffer(str1: String, str2: String, str3: String, str4: String, str5: String): Boolean {
         return true
     }
 
-    @GodotMember
+    @Member
     fun mixStringAndVariant(i1: Int, str1: String, vec: Vector2, str2: String, f1: Float): Boolean {
         return true
     }
 
-    @GodotMember
+    @Member
     fun getShortString() = _shortString
 
-    @GodotMember
+    @Member
     fun getLongestShortString() = _longestShortString
 
-    @GodotMember
+    @Member
     fun getShortestLongString() = _shortestLongString
 
-    @GodotMember
+    @Member
     fun getLongString() = _longString
   
-    @GodotMember
+    @Member
     fun getLength(str: String) = str.length
 
-    @GodotMember
+    @Member
     fun getAsStringName(str: String) = str.asStringName()
 
 }

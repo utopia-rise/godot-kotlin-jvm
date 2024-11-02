@@ -1,6 +1,6 @@
 package godot.tests.inheritance
 
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.signal2
 
@@ -11,14 +11,14 @@ class AbstractClassInheritanceChild : AbstractClassInheritanceParent() {
 
     //---------------- Here to check ------------------
 
-    @GodotMember
+    @Member
     var childOpenFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
     override var openVar: Int = 100
 
-    @GodotMember
+    @Member
     override fun openFunction() {
         childOpenFunctionHasBeenCalled = true
     }

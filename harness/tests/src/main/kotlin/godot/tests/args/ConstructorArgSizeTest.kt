@@ -1,7 +1,7 @@
 package godot.tests.args
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.VariantArray
 import godot.core.variantArrayOf
@@ -10,14 +10,14 @@ import godot.core.variantArrayOf
 class ConstructorArgSizeTest(): Node() {
     private val receivedConstructorArgs: VariantArray<Any> = variantArrayOf()
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
     ): this() {
         receivedConstructorArgs.add(p1)
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -28,7 +28,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -41,7 +41,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -56,7 +56,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -73,7 +73,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -92,7 +92,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -113,7 +113,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -136,7 +136,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @GodotMember
+    @Member
     fun getReceivedConstructorArgs(): VariantArray<Any> {
         return receivedConstructorArgs
     }

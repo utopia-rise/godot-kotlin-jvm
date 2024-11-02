@@ -1,7 +1,7 @@
 package godot.tests.callable
 
 import godot.Node
-import godot.annotation.GodotMember
+import godot.annotation.Member
 import godot.annotation.GodotScript
 import godot.core.NativeCallable
 import godot.core.VariantArray
@@ -10,30 +10,30 @@ import godot.global.GD
 
 @GodotScript
 class CallableMethodBindTest: Node() {
-    @GodotMember
+    @Member
     var methodBinds: VariantArray<Int> = variantArrayOf(-1, -1, -1)
 
-    @GodotMember
+    @Member
     fun callWithMethodWithAllBinds() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
     }
 
-    @GodotMember
+    @Member
     fun callWithMethodWithTwoBinds() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
     }
 
-    @GodotMember
+    @Member
     fun callWithMethodWithOneBind() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
     }
 
-    @GodotMember
+    @Member
     fun callWithMethodWithNoBind() {
         NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
     }
 
-    @GodotMember
+    @Member
     fun readySignalMethodBindTest(a: Int, b: Int, c: Int) {
         GD.print("Called with args: $a, $b, $c")
         methodBinds = variantArrayOf(a, b, c)
