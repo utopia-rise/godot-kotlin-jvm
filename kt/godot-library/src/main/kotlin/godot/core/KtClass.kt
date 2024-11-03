@@ -13,7 +13,8 @@ data class KtClass<T : KtObject>(
     private val _functions: Map<String, KtFunction<T, *>>,
     private val _notificationFunctions: List<Any.(Int) -> Unit>,
     private val _signalInfos: Map<String, KtSignalInfo>,
-    val baseGodotClass: String
+    val baseGodotClass: String,
+    val isAbstract: Boolean,
 ) {
     val registeredSupertypes: Array<String>
         get() = _registeredSupertypes.toTypedArray()

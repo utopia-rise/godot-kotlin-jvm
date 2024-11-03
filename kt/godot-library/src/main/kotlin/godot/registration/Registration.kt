@@ -77,7 +77,8 @@ class ClassBuilderDsl<T : KtObject>(
     private val relativeSourcePath: String,
     private val compilationTimeRelativeRegistrationFilePath: String,
     private val superClasses: List<String>,
-    private val baseGodotClass: String
+    private val baseGodotClass: String,
+    private val isAbstract: Boolean,
 ) {
     private val constructors = mutableMapOf<Int, KtConstructor<T>>()
 
@@ -1290,7 +1291,8 @@ class ClassBuilderDsl<T : KtObject>(
             _functions = functions,
             _notificationFunctions = notificationFunctions,
             _signalInfos = signals,
-            baseGodotClass = baseGodotClass
+            baseGodotClass = baseGodotClass,
+            isAbstract = isAbstract,
         )
     }
 }
@@ -1305,6 +1307,7 @@ class ClassRegistry(
     fun <T : KtObject> registerClass(
         superClass: List<String>,
         kClass: KClass<out KtObject>,
+        isAbstract: Boolean = false,
         isTool: Boolean = false,
         baseGodotClass: String,
         registeredName: String,
@@ -1312,7 +1315,7 @@ class ClassRegistry(
         compilationTimeRelativeRegistrationFilePath: String,
         cb: ClassBuilderDsl<T>.() -> Unit
     ) {
-        val builder = ClassBuilderDsl<T>(registeredName, relativeSourcePath, compilationTimeRelativeRegistrationFilePath, superClass, baseGodotClass)
+        val builder = ClassBuilderDsl<T>(registeredName, relativeSourcePath, compilationTimeRelativeRegistrationFilePath, superClass, baseGodotClass, isAbstract)
         builder.cb()
         TypeManager.registerUserType(registeredName, kClass)
         registerClass(builder.build())
