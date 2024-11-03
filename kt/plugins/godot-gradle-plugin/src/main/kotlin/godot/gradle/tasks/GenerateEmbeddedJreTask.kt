@@ -9,7 +9,10 @@ import java.util.*
 open class GenerateEmbeddedJreTask : DefaultTask() {
 
     @Input
-    var modules: String = "java.base,java.logging"
+    var modules: Array<String> = arrayOf(
+        "java.base",
+        "java.logging",
+    )
 
     @Input
     var outputDir: String = "jvm/jre-${getArch()}-${getOs()}"
@@ -30,13 +33,13 @@ open class GenerateEmbeddedJreTask : DefaultTask() {
         project.exec {
             it.commandLine(
                 "$javaHome/bin/jlink",
-                "--add-modules", modules,
+                "--add-modules", modules.joinToString(","),
                 "--output", outputDir,
                 *arguments,
             )
         }
 
-        logger.lifecycle("Custom JRE created in $outputDir using modules: '$modules', arguments: '${arguments.joinToString(" ")}' and java home: $javaHome")
+        logger.lifecycle("Custom JRE created in $outputDir using modules: '${modules.joinToString(",")}', arguments: '${arguments.joinToString(" ")}' and java home: $javaHome")
     }
 
     private fun getArch(): String {
