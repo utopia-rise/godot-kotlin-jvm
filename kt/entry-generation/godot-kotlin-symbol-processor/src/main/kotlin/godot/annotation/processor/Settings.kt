@@ -1,5 +1,6 @@
 package godot.annotation.processor
 
+import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import java.io.File
 
 internal data class Settings(
@@ -10,4 +11,5 @@ internal data class Settings(
     val isFqNameRegistrationEnabled: Boolean,
     val isRegistrationFileHierarchyEnabled: Boolean,
     val isRegistrationFileGenerationEnabled: Boolean,
+    var registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
 )

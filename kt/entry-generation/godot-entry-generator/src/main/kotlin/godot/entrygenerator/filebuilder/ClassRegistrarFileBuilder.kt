@@ -22,6 +22,7 @@ class ClassRegistrarFileBuilder(
     private val registeredClass: RegisteredClass,
     private val compilationTimeRelativeRegistrationFilePath: String,
     private val registrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
+    isRegistrationFileHierarchyEnabled: Boolean,
 ) {
     private val classRegistrarBuilder = TypeSpec
         .classBuilder("${registeredClass.registeredName}Registrar")
@@ -41,6 +42,7 @@ class ClassRegistrarFileBuilder(
                         .addMember("%S", registeredClass.signals.joinToString(",") { it.fqName })
                         .addMember("%S", registeredClass.properties.joinToString(",") { it.fqName })
                         .addMember("%S", registeredClass.functions.filter { it.name != GodotFunctions.notification }.joinToString(",") { it.fqName })
+                        .addMember("%L", isRegistrationFileHierarchyEnabled)
                         .build()
                 )
             }
