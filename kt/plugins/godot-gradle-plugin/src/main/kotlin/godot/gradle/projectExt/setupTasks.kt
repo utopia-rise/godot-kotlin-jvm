@@ -24,13 +24,13 @@ import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
 
 fun Project.setupTasks() {
+    tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
+        task.group = "godot-kotlin-jvm"
+        task.description = "Generates an embedded jre using jlink"
+    }
+
     afterEvaluate {
         with(it) {
-            tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
-                task.group = "godot-kotlin-jvm"
-                task.description = "Generates an embedded jre using jlink"
-            }
-
             val packageBootstrapJarTask = packageBootstrapJarTask()
             val packageMainJarTask = packageMainJarTask()
             val generateGdIgnoreFilesTask = generateGdIgnoreFilesTask()
