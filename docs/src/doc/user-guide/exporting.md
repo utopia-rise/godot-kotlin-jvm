@@ -51,6 +51,26 @@ by using `jlink` with rosetta and an amd64 JDK on an arm64 MacOS.
     For desktop exports you need to make exports based on the platform you're on, as exporting will copy the generated jre folder to
     your export. An MacOS JRE will not work on Windows, so you'll need a Windows host to export for Windows.
 
+Alternatively we provide a configurable gradle task which generates the JRE for your current host OS:
+`./gradlew generateEmbeddedJre`
+
+The task can be configured like so:
+```kotlin
+tasks.withType<GenerateEmbeddedJreTask> {
+    // the values in this example are the default values of the task
+    this.javaHome = System.getProperty("java.home") // path to your java home dir
+    this.arguments = arrayOf(
+        "--strip-debug",
+        "--no-header-files",
+        "--no-man-pages",
+    ) // arguments to pass to the jlink command
+    this.modules = arrayOf(
+        "java.base",
+        "java.logging",
+    ) // java module to include in the jre
+}
+```
+
 ## Specifics
 
 `godot-bootstrap.jar` and `main.jar` are copied into `pck` during the export process.
