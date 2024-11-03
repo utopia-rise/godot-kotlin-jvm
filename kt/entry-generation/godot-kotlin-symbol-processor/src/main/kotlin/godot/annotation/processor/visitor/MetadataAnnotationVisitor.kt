@@ -34,6 +34,7 @@ internal class MetadataAnnotationVisitor: KSVisitorVoid() {
                             signals = annotation.signals,
                             properties = annotation.properties,
                             functions = annotation.functions,
+                            isRegistrationFileHierarchyEnabled = annotation.isRegistrationFileHierarchyEnabled
                         )
                     )
                 }

@@ -56,42 +56,48 @@ internal fun KSType.provideRegisteredClassName(
 internal fun KSDeclaration.provideRegisteredClassName(
     settings: Settings,
 ): String? {
-    val registerClassAnnotation = annotations
-        .firstOrNull { it.fqNameUnsafe == RegisterClass::class.qualifiedName }
+    return settings
+        .registeredClassMetadataContainers
+        .firstOrNull { it.fqName == this.qualifiedName?.asString() }
+        ?.registeredName
+        ?: run {
+            val registerClassAnnotation = annotations
+                .firstOrNull { it.fqNameUnsafe == RegisterClass::class.qualifiedName }
 
-    val customName = registerClassAnnotation
-        ?.arguments
-        ?.first()
-        ?.value as? String
+            val customName = registerClassAnnotation
+                ?.arguments
+                ?.first()
+                ?.value as? String
 
-    val fqName = this.qualifiedName?.asString() ?: return null
+            val fqName = this.qualifiedName?.asString() ?: return null
 
-    val registeredName = if (customName.isNullOrEmpty()) {
-        if (settings.isFqNameRegistrationEnabled) {
-            fqName.replace(".", "_")
-        } else {
-            if (fqName.contains(".")) {
-                fqName.substringAfterLast(".")
+            val registeredName = if (customName.isNullOrEmpty()) {
+                if (settings.isFqNameRegistrationEnabled) {
+                    fqName.replace(".", "_")
+                } else {
+                    if (fqName.contains(".")) {
+                        fqName.substringAfterLast(".")
+                    } else {
+                        fqName
+                    }
+                }
             } else {
-                fqName
+                customName
+            }
+
+            if (settings.classPrefix != null) {
+                if (registeredName.contains("_")) {
+                    val packageName = registeredName.substringBeforeLast("_")
+                    val classNameWithPrefix = registeredName
+                        .substringAfterLast("_")
+                        .let { className -> "${settings.classPrefix.uppercase()}$className" }
+
+                    "${packageName}_$classNameWithPrefix"
+                } else {
+                    "${settings.classPrefix.uppercase()}$registeredName"
+                }
+            } else {
+                registeredName
             }
         }
-    } else {
-        customName
-    }
-
-    return if (settings.classPrefix != null) {
-        if (registeredName.contains("_")) {
-            val packageName = registeredName.substringBeforeLast("_")
-            val classNameWithPrefix = registeredName
-                .substringAfterLast("_")
-                .let { className -> "${settings.classPrefix.uppercase()}$className" }
-
-            "${packageName}_$classNameWithPrefix"
-        } else {
-            "${settings.classPrefix.uppercase()}$registeredName"
-        }
-    } else {
-        registeredName
-    }
 }
