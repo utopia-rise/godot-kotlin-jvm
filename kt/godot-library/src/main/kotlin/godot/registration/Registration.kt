@@ -1275,7 +1275,9 @@ class ClassBuilderDsl<T : KtObject>(
     }
 
     internal fun build(): KtClass<T> {
-        check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
+        if (!isAbstract) {
+            check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
+        }
         // Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1 because we have no arg constructor.
         val constructorArray = arrayOfNulls<KtConstructor<T>>(Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1)
         constructors.forEach {
