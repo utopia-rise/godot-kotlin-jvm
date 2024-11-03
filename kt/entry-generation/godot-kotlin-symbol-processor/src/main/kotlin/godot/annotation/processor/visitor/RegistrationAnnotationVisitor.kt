@@ -1,5 +1,6 @@
 package godot.annotation.processor.visitor
 
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSVisitorVoid
@@ -36,9 +37,11 @@ internal class RegistrationAnnotationVisitor(
                         if (declaration.hasCompilationErrors()) {
                             null
                         } else {
-                            val clazz = declaration.mapToClazz(settings)
-                            if (clazz is RegisteredClass) {
-                                clazz
+                            if (declaration.classKind == ClassKind.CLASS) {
+                                val clazz = declaration.mapToClazz(settings)
+                                if (clazz is RegisteredClass) {
+                                    clazz
+                                } else null
                             } else null
                         }
                     }

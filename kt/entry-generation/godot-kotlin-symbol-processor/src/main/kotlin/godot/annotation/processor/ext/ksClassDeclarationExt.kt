@@ -9,6 +9,7 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.GodotApiMember
 import godot.annotation.Member
 import godot.annotation.processor.Settings
@@ -95,7 +96,7 @@ internal fun KSClassDeclaration.mapToClazz(
             functions = registeredFunctions,
             signals = registeredSignals,
             properties = registeredProperties,
-            isAbstract = isAbstract(),
+            isAbstract = this.modifiers.contains(Modifier.ABSTRACT),
             isFqNameRegistrationEnabled = settings.isFqNameRegistrationEnabled,
             classNamePrefix = settings.classPrefix,
             symbolProcessorSource = this

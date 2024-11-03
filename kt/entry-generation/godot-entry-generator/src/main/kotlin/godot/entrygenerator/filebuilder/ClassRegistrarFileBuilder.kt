@@ -45,11 +45,6 @@ class ClassRegistrarFileBuilder(
                 )
             }
         }
-        .let { classBuilder ->
-            if (registeredClass.isAbstract) {
-                classBuilder.addKdoc("Registrar for abstract class. Does not register any members as it's only used for default value providing if any properties with default values are provided in the abstract class. Members of this abstract class are registered by the inheriting registrars")
-            } else classBuilder
-        }
 
     private val className = ClassName(registeredClass.containingPackage, registeredClass.name)
 
@@ -59,29 +54,24 @@ class ClassRegistrarFileBuilder(
         .addParameter("registry", ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
-            if (!registeredClass.isAbstract) {
-                val superClasses = registeredClass.supertypes.mapNotNull { supertype ->
-                    //Used to implement script inheritance methods, so we remove base types and abstract parents.
-                    val value = if (supertype is RegisteredClass && !supertype.isAbstract) {
-                        "\"${supertype.registeredName}\""
-                    } else {
-                        null
-                    }
-                    value
-                }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
-                funSpecBuilder.beginControlFlow(
-                    "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isTool},·%S,·%S,·%S,·%S)·{",
-                    className,
-                    className,
-                    registeredClass.godotBaseClass,
-                    registeredClass.registeredName,
-                    registeredClass.relativeSourcePath,
-                    compilationTimeRelativeRegistrationFilePath,
-                ) //START: registerClass
-            } else {
-                funSpecBuilder
-                    .addComment("Abstract classes don't need to have any members to be registered")
-            }
+            val superClasses = registeredClass.supertypes.mapNotNull { supertype ->
+                //Used to implement script inheritance methods, so we remove base types
+                val value = if (supertype is RegisteredClass) {
+                    "\"${supertype.registeredName}\""
+                } else {
+                    null
+                }
+                value
+            }.reduceOrNull { statement, name -> "$statement,$name" } ?: ""
+            funSpecBuilder.beginControlFlow(
+                "registerClass<%T>(listOf($superClasses),·%T::class,·${registeredClass.isAbstract},·${registeredClass.isTool},·%S,·%S,·%S,·%S)·{",
+                className,
+                className,
+                registeredClass.godotBaseClass,
+                registeredClass.registeredName,
+                registeredClass.relativeSourcePath,
+                compilationTimeRelativeRegistrationFilePath,
+            ) //START: registerClass
         }
 
 
@@ -92,18 +82,14 @@ class ClassRegistrarFileBuilder(
 
         if (!registeredClass.isAbstract) {
             ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-            FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-            SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-            PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
         }
+        FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+        SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+        PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
 
         classRegistrarBuilder.addFunction(
             registerClassControlFlow
-                .let { funSpecBuilder ->
-                    if (!registeredClass.isAbstract) {
-                        funSpecBuilder.endControlFlow() //END: registerClass
-                    } else funSpecBuilder
-                }
+                .endControlFlow() //END: registerClass
                 .endControlFlow() //END: with registry
                 .build()
         )
