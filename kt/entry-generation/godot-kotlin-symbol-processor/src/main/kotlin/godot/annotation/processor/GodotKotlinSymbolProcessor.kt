@@ -106,6 +106,7 @@ class GodotKotlinSymbolProcessor(
                 ?: throw IllegalStateException("No isRegistrationFileHierarchyEnabled option provided or not a boolean"),
             isRegistrationFileGenerationEnabled = options["isRegistrationFileGenerationEnabled"]?.toBooleanStrictOrNull()
                 ?: throw IllegalStateException("No isRegistrationFileGenerationEnabled option provided or not a boolean"),
+            registeredClassMetadataContainers = emptyList(),
         )
     }
 

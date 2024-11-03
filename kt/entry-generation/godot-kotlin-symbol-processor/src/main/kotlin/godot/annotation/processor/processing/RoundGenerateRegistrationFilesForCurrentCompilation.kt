@@ -41,7 +41,7 @@ internal class RoundGenerateRegistrationFilesForCurrentCompilation(
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
                     val resourcePathFromProjectRoot = provideRegistrationFilePathForInitialGenerationWithoutExtension(
-                        isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                        settings = settings,
                         fqName = metadata.fqName,
                         registeredName = metadata.registeredName,
                         compilationProjectName = settings.projectName,
