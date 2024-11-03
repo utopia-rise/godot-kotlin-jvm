@@ -2,7 +2,6 @@ package godot.entrygenerator
 
 import godot.entrygenerator.checks.ConstructorArgCountCheck
 import godot.entrygenerator.checks.ConstructorOverloadingCheck
-import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
 import godot.entrygenerator.checks.NullablePropertyCheck
@@ -106,7 +105,6 @@ object EntryGenerator {
         sourceFiles: List<SourceFile>
     ): Boolean {
         return listOf(
-            DefaultConstructorCheck(logger, sourceFiles).execute(),
             ConstructorArgCountCheck(logger, sourceFiles).execute(),
             ConstructorOverloadingCheck(logger, sourceFiles).execute(),
 
