@@ -1,16 +1,25 @@
 package godot.tools.common.constants
 
-
-const val godotApiPackage = "godot"
-const val godotCorePackage = "godot.core"
-const val godotMemoryPackage = "godot.core.memory"
-const val godotCoroutinePackage = "godot.coroutines"
-const val godotAnnotationPackage = "godot.annotation"
+//Common
 const val godotInteropPackage = "godot.common.interop"
 const val godotUtilPackage = "godot.common.util"
 
+//Internal
+const val godotMemoryPackage = "godot.internal.memory"
+const val godotReflectionPackage = "godot.internal.reflection"
+
+//Core
+const val godotApiPackage = "godot"
+const val godotCorePackage = "godot.core"
+
+const val godotAnnotationPackage = "godot.annotation"
 const val godotRegistrationPackage = "godot.registration"
 const val godotEntryBasePackage = "godot.entry"
+
+//Extensions
+const val godotCoroutinePackage = "godot.coroutines"
+
+
 
 const val variantConverterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantConverter}"
 const val variantParserPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantParser}"

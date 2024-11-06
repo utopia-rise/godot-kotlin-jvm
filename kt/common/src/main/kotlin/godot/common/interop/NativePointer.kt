@@ -3,10 +3,10 @@ package godot.common.interop
 typealias VoidPtr = Long
 const val nullptr: VoidPtr = 0L
 
-interface ValuePointer {
+interface NativePointer {
     val ptr: VoidPtr
 }
 
-interface IdentityPointer: ValuePointer {
+interface NativeWrapper: NativePointer {
     val objectID: ObjectID
 }

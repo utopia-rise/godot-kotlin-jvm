@@ -3,8 +3,7 @@
 #include "jvm_wrapper/bootstrap.h"
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
-#include "jvm_wrapper/bridge/gd_print_bridge.h"
-#include "jvm_wrapper/bridge/jvm_stack_trace.h"
+#include "jvm_wrapper/bridge/godot_print_bridge.h"
 #include "jvm_wrapper/bridge/lambda_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"
@@ -96,9 +95,8 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 }
 
 bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
-    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
 
-    return  Bootstrap::initialize(p_env, class_loader)
+    bool ret =  Bootstrap::initialize(p_env, class_loader)
             && KtObject::initialize(p_env, class_loader)
             && KtPropertyInfo::initialize(p_env, class_loader)
             && KtProperty::initialize(p_env, class_loader)
@@ -113,8 +111,7 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
             && MemoryManager::initialize(p_env, class_loader)
-            && bridges::GDPrintBridge::initialize(p_env, class_loader)
-            && bridges::JvmStackTrace::initialize(p_env, class_loader)
+            && bridges::GodotPrintBridge::initialize(p_env, class_loader)
             && bridges::CallableBridge::initialize(p_env, class_loader)
             && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
@@ -131,6 +128,10 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
+
+    jni::Env::set_exception_handler(&bridges::GodotPrintBridge::print_exception_stacktrace);
+
+    return ret;
 }
 
 void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
@@ -140,8 +141,7 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     TypeManager::finalize(p_env, class_loader);
     LongStringQueue::finalize(p_env, class_loader);
     MemoryManager::finalize(p_env, class_loader);
-    bridges::JvmStackTrace::finalize(p_env, class_loader);
-    bridges::GDPrintBridge::finalize(p_env, class_loader);
+    bridges::GodotPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
     bridges::LambdaCallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);

@@ -27,6 +27,7 @@ object GodotKotlinJvmTypes {
     const val variantCaster = "VariantCaster"
     const val variantArray = "VariantArray"
     const val transferContext = "TransferContext"
+    const val memoryManager = "MemoryManager"
     const val typeManager = "TypeManager"
     const val objectID = "ObjectID"
 
@@ -246,6 +247,7 @@ val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Ann
 val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)
 
 val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.transferContext)
-val TYPE_MANAGER = ClassName(godotCorePackage, GodotKotlinJvmTypes.typeManager)
+val MEMORY_MANAGER = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.memoryManager)
+val TYPE_MANAGER = ClassName(godotReflectionPackage, GodotKotlinJvmTypes.typeManager)
 val OBJECT_ID = ClassName(godotInteropPackage, GodotKotlinJvmTypes.objectID)
 val VOID_PTR = ClassName(godotInteropPackage, "VoidPtr")

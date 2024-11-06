@@ -43,7 +43,7 @@
     "methods":[{"name":"intValue","parameterTypes":[] }]
   },
   {
-    "name" : "godot.core.memory.TransferContext",
+    "name" : "godot.internal.memory.TransferContext",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "name" : "godot.core.TypeManager",
+    "name" : "godot.internal.reflection.TypeManager",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "name" : "godot.core.LongStringQueue",
+    "name" : "godot.internal.memory.LongStringQueue",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
@@ -73,43 +73,33 @@
     ]
   },
   {
-    "name":"godot.core.memory.MemoryManager",
+    "name":"godot.internal.memory.MemoryManager",
     "fields":[{"name":"INSTANCE"}],
     "methods":[
       { "name" : "syncMemory","parameterTypes" : ["long[]"] },
       { "name" : "cleanUp","parameterTypes" : [] },
       { "name" : "deleteObject", "parameterTypes" : ["long"] },
-      { "name" : "removeScript", "parameterTypes" : ["long", "int"] },
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
       { "name" : "releaseBinding", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreTypes", "parameterTypes" : ["long[]", "int[]"] },
-      { "name" : "querySync", "parameterTypes" : [] },
-      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
-      { "name" : "getSingleton", "parameterTypes" : ["int"] },
-      { "name" : "freeObject", "parameterTypes" : ["long"] }
+      { "name" : "querySync", "parameterTypes" : [] }
     ]
   },
   {
-    "name":"godot.core.JvmStackTrace",
-    "fields":[{"name":"INSTANCE"}],
-    "methods":[
-      { "name" : "getExceptionStackTrace","parameterTypes" : ["java.lang.Throwable"] },
-      { "name" : "getCurrentStacktrace","parameterTypes" : [] }
-    ]
-  },
-  {
-    "name" : "godot.global.GDPrint$Bridge",
+    "name" : "godot.internal.logging.GodotPrint",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "print", "parameterTypes" : [] },
-      { "name" : "printRich", "parameterTypes" : [] },
-      { "name" : "printVerbose", "parameterTypes" : [] },
-      { "name" : "printErr", "parameterTypes" : [] },
-      { "name" : "printRaw", "parameterTypes" : [] },
-      { "name" : "pushError", "parameterTypes" : [] },
-      { "name" : "pushWarning", "parameterTypes" : [] }
+      { "name" : "print", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "printRich", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "printVerbose", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "printErr", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "printRaw", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "pushError", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "pushWarning", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "getExceptionStackTrace","parameterTypes" : ["java.lang.Throwable"] },
+      { "name" : "getCurrentStacktrace","parameterTypes" : [] }
     ]
   },
   {
@@ -784,7 +774,11 @@
   {
     "name":"godot.core.KtObject",
     "methods":[
-      {"name":"_onDestroy","parameterTypes":[] }
+      {"name":"_onDestroy","parameterTypes":[] },
+      {"name" : "createNativeObject", "parameterTypes" : ["int", "int"] },
+      {"name" : "getSingleton", "parameterTypes" : ["int"] },
+      {"name" : "freeObject", "parameterTypes" : ["long"] },
+      {"name" : "removeScript", "parameterTypes" : ["int"] }
     ]
   }
 ]
