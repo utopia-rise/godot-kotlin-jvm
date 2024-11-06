@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Rect2
@@ -38,11 +39,13 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * Emitted when the [frame] changes.
    */
+  @GodotApiMember
   public val frameChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [texture] changes.
    */
+  @GodotApiMember
   public val textureChanged: Signal0 by Signal0
 
   /**

@@ -1,13 +1,13 @@
 package godot.tests.exception
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Member
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 class ExceptionTest: Node() {
 
-    @RegisterFunction
+    @Member
     fun throwException() {
         throw RuntimeException("Test exception")
     }

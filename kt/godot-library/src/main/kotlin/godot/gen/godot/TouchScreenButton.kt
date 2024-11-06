@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -40,11 +41,13 @@ public open class TouchScreenButton : Node2D() {
   /**
    * Emitted when the button is pressed (down).
    */
+  @GodotApiMember
   public val pressed: Signal0 by Signal0
 
   /**
    * Emitted when the button is released (up).
    */
+  @GodotApiMember
   public val released: Signal0 by Signal0
 
   /**

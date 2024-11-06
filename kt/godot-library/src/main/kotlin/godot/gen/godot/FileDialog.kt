@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -40,16 +41,19 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Emitted when the user selects a file by double-clicking it or pressing the **OK** button.
    */
+  @GodotApiMember
   public val fileSelected: Signal1<String> by Signal1
 
   /**
    * Emitted when the user selects multiple files.
    */
+  @GodotApiMember
   public val filesSelected: Signal1<PackedStringArray> by Signal1
 
   /**
    * Emitted when the user selects a directory.
    */
+  @GodotApiMember
   public val dirSelected: Signal1<String> by Signal1
 
   /**

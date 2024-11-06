@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -33,6 +34,7 @@ public open class StatusIndicator : Node() {
   /**
    * Emitted when the status indicator is pressed.
    */
+  @GodotApiMember
   public val pressed: Signal2<Long, Vector2i> by Signal2
 
   /**

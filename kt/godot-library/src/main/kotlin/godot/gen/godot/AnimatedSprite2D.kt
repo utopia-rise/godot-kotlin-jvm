@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -45,21 +46,25 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Emitted when [spriteFrames] changes.
    */
+  @GodotApiMember
   public val spriteFramesChanged: Signal0 by Signal0
 
   /**
    * Emitted when [animation] changes.
    */
+  @GodotApiMember
   public val animationChanged: Signal0 by Signal0
 
   /**
    * Emitted when [frame] changes.
    */
+  @GodotApiMember
   public val frameChanged: Signal0 by Signal0
 
   /**
    * Emitted when the animation loops.
    */
+  @GodotApiMember
   public val animationLooped: Signal0 by Signal0
 
   /**
@@ -67,6 +72,7 @@ public open class AnimatedSprite2D : Node2D() {
    * animation finishes, it pauses the playback.
    * **Note:** This signal is not emitted if an animation is looping.
    */
+  @GodotApiMember
   public val animationFinished: Signal0 by Signal0
 
   /**

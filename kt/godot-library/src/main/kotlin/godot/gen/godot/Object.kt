@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -88,11 +89,13 @@ public open class Object : KtObject() {
    * **Note:** When this signal is emitted, the new script is not initialized yet. If you need to
    * access the new script, defer connections to this signal with [CONNECT_DEFERRED].
    */
+  @GodotApiMember
   public val scriptChanged: Signal0 by Signal0
 
   /**
    * Emitted when [notifyPropertyListChanged] is called.
    */
+  @GodotApiMember
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {

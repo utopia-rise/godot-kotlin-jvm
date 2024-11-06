@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -66,12 +67,14 @@ public object NavigationServer2D : Object() {
   /**
    * Emitted when a navigation map is updated, when a region moves or is modified.
    */
+  @GodotApiMember
   @JvmStatic
   public val mapChanged: Signal1<RID> by Signal1
 
   /**
    * Emitted when navigation debug settings are changed. Only available in debug builds.
    */
+  @GodotApiMember
   @JvmStatic
   public val navigationDebugChanged: Signal0 by Signal0
 

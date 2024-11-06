@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -46,18 +47,21 @@ public object XRServer : Object() {
   /**
    * Emitted when the reference frame transform changes.
    */
+  @GodotApiMember
   @JvmStatic
   public val referenceFrameChanged: Signal0 by Signal0
 
   /**
    * Emitted when a new interface has been added.
    */
+  @GodotApiMember
   @JvmStatic
   public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
+  @GodotApiMember
   @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
@@ -66,6 +70,7 @@ public object XRServer : Object() {
    * you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the
    * appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker.
    */
+  @GodotApiMember
   @JvmStatic
   public val trackerAdded: Signal2<StringName, Long> by Signal2
 
@@ -73,6 +78,7 @@ public object XRServer : Object() {
    * Emitted when an existing tracker has been updated. This can happen if the user switches
    * controllers.
    */
+  @GodotApiMember
   @JvmStatic
   public val trackerUpdated: Signal2<StringName, Long> by Signal2
 
@@ -82,6 +88,7 @@ public object XRServer : Object() {
    * active again when a new tracker becomes available (i.e. a new controller is switched on that takes
    * the place of the previous one).
    */
+  @GodotApiMember
   @JvmStatic
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 

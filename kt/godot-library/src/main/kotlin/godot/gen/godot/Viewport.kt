@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -60,12 +61,14 @@ public open class Viewport internal constructor() : Node() {
    * Emitted when the size of the viewport is changed, whether by resizing of window, or some other
    * means.
    */
+  @GodotApiMember
   public val sizeChanged: Signal0 by Signal0
 
   /**
    * Emitted when a Control node grabs keyboard focus.
    * **Note:** A Control node losing focus doesn't cause this signal to be emitted.
    */
+  @GodotApiMember
   public val guiFocusChanged: Signal1<Control> by Signal1
 
   /**

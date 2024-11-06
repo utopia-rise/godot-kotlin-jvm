@@ -1,14 +1,12 @@
 package GROUP_ID.ARTEFACT_ID
 
 import godot.Node3D
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class Simple: Node3D() {
 
-    @RegisterFunction
     override fun _ready() {
         GD.print("Hello world!")
     }

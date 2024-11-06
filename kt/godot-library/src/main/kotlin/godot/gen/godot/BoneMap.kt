@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -32,12 +33,14 @@ public open class BoneMap : Resource() {
    * This signal is emitted when change the key value in the [BoneMap]. This is used to validate
    * mapping and to update [BoneMap] editor.
    */
+  @GodotApiMember
   public val boneMapUpdated: Signal0 by Signal0
 
   /**
    * This signal is emitted when change the value in profile or change the reference of profile.
    * This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor.
    */
+  @GodotApiMember
   public val profileUpdated: Signal0 by Signal0
 
   /**

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -47,26 +48,31 @@ public open class XRController3D : XRNode3D() {
   /**
    * Emitted when a button on this controller is pressed.
    */
+  @GodotApiMember
   public val buttonPressed: Signal1<String> by Signal1
 
   /**
    * Emitted when a button on this controller is released.
    */
+  @GodotApiMember
   public val buttonReleased: Signal1<String> by Signal1
 
   /**
    * Emitted when a trigger or similar input on this controller changes value.
    */
+  @GodotApiMember
   public val inputFloatChanged: Signal2<String, Double> by Signal2
 
   /**
    * Emitted when a thumbstick or thumbpad on this controller is moved.
    */
+  @GodotApiMember
   public val inputVector2Changed: Signal2<String, Vector2> by Signal2
 
   /**
    * Emitted when the interaction profile on this controller is changed.
    */
+  @GodotApiMember
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {

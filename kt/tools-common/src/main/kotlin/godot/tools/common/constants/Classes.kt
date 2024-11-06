@@ -43,14 +43,12 @@ object GodotKotlinJvmTypes {
 
     object Annotations {
         const val godotBaseType = "GodotBaseType"
+        const val godotApiMemeber = "GodotApiMember"
         const val coreTypeHelper = "CoreTypeHelper"
         const val coreTypeLocalCopy = "CoreTypeLocalCopy"
 
-        const val registerClass = "RegisterClass"
-        const val registerConstructor = "RegisterConstructor"
-        const val registerProperty = "RegisterProperty"
-        const val registerFunction = "RegisterFunction"
-        const val registerSignal = "RegisterSignal"
+        const val godotScript = "GodotScript"
+        const val member = "Member"
 
         const val tool = "Tool"
         const val export = "Export"
@@ -242,6 +240,7 @@ val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
 val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
+val GODOT_API_MEMBER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotApiMemeber)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)
 val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)
 

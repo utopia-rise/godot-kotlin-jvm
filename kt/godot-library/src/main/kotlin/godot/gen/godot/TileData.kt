@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -49,6 +50,7 @@ public open class TileData : Object() {
   /**
    * Emitted when any of the properties are changed.
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**

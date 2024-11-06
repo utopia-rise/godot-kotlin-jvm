@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import kotlin.Int
@@ -25,6 +26,7 @@ public open class RenderDataExtension : RenderData() {
   /**
    * Implement this in GDExtension to return the implementation's [RenderSceneBuffers] object.
    */
+  @GodotApiMember
   public open fun _getRenderSceneBuffers(): RenderSceneBuffers? {
     throw NotImplementedError("_get_render_scene_buffers is not implemented for RenderDataExtension")
   }
@@ -32,6 +34,7 @@ public open class RenderDataExtension : RenderData() {
   /**
    * Implement this in GDExtension to return the implementation's [RenderSceneDataExtension] object.
    */
+  @GodotApiMember
   public open fun _getRenderSceneData(): RenderSceneData? {
     throw NotImplementedError("_get_render_scene_data is not implemented for RenderDataExtension")
   }
@@ -39,6 +42,7 @@ public open class RenderDataExtension : RenderData() {
   /**
    * Implement this in GDExtension to return the [RID] of the implementation's environment object.
    */
+  @GodotApiMember
   public open fun _getEnvironment(): RID {
     throw NotImplementedError("_get_environment is not implemented for RenderDataExtension")
   }
@@ -47,6 +51,7 @@ public open class RenderDataExtension : RenderData() {
    * Implement this in GDExtension to return the [RID] for the implementation's camera attributes
    * object.
    */
+  @GodotApiMember
   public open fun _getCameraAttributes(): RID {
     throw NotImplementedError("_get_camera_attributes is not implemented for RenderDataExtension")
   }

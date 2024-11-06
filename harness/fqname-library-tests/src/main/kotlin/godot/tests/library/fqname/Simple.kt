@@ -2,16 +2,15 @@ package godot.tests.library.fqname
 
 import godot.Node3D
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.Member
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 open class Simple: Node3D() {
 
     @Export
-    @RegisterProperty
     var testProperty = "Hello from fqname-library-test!"
-    @RegisterFunction
+
+    @Member
     fun provideGreeting(): String = testProperty
 }

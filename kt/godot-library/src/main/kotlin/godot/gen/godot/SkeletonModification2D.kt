@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -64,12 +65,14 @@ public open class SkeletonModification2D : Resource() {
    * Executes the given modification. This is where the modification performs whatever function it
    * is designed to do.
    */
+  @GodotApiMember
   public open fun _execute(delta: Double): Unit {
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
+  @GodotApiMember
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
   }
 
@@ -79,6 +82,7 @@ public open class SkeletonModification2D : Resource() {
    * **Note:** You will need to use the Skeleton2D from [SkeletonModificationStack2D.getSkeleton]
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
+  @GodotApiMember
   public open fun _drawEditorGizmo(): Unit {
   }
 

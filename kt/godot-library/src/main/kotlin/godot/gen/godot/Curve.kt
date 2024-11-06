@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -36,6 +37,7 @@ public open class Curve : Resource() {
   /**
    * Emitted when [maxValue] or [minValue] is changed.
    */
+  @GodotApiMember
   public val rangeChanged: Signal0 by Signal0
 
   /**

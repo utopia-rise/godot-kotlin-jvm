@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -85,11 +86,13 @@ public open class Control : CanvasItem() {
   /**
    * Emitted when the control changes size.
    */
+  @GodotApiMember
   public val resized: Signal0 by Signal0
 
   /**
    * Emitted when the node receives an [InputEvent].
    */
+  @GodotApiMember
   public val guiInput: Signal1<InputEvent> by Signal1
 
   /**
@@ -98,6 +101,7 @@ public open class Control : CanvasItem() {
    * it and regardless if it's currently focused or not.
    * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
+  @GodotApiMember
   public val mouseEntered: Signal0 by Signal0
 
   /**
@@ -113,31 +117,37 @@ public open class Control : CanvasItem() {
    *         # Not hovering over area.
    * [/codeblock]
    */
+  @GodotApiMember
   public val mouseExited: Signal0 by Signal0
 
   /**
    * Emitted when the node gains focus.
    */
+  @GodotApiMember
   public val focusEntered: Signal0 by Signal0
 
   /**
    * Emitted when the node loses focus.
    */
+  @GodotApiMember
   public val focusExited: Signal0 by Signal0
 
   /**
    * Emitted when one of the size flags changes. See [sizeFlagsHorizontal] and [sizeFlagsVertical].
    */
+  @GodotApiMember
   public val sizeFlagsChanged: Signal0 by Signal0
 
   /**
    * Emitted when the node's minimum size changes.
    */
+  @GodotApiMember
   public val minimumSizeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
+  @GodotApiMember
   public val themeChanged: Signal0 by Signal0
 
   /**
@@ -788,6 +798,7 @@ public open class Control : CanvasItem() {
    * **Note:** If you want to check if a point is inside the control, you can use
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
    */
+  @GodotApiMember
   public open fun _hasPoint(point: Vector2): Boolean {
     throw NotImplementedError("_has_point is not implemented for Control")
   }
@@ -798,6 +809,7 @@ public open class Control : CanvasItem() {
    * order. Ranges should cover full source [text] without overlaps. BiDi algorithm will be used on
    * each range separately.
    */
+  @GodotApiMember
   public open fun _structuredTextParser(args: VariantArray<Any?>, text: String):
       VariantArray<Vector3i> {
     throw NotImplementedError("_structured_text_parser is not implemented for Control")
@@ -812,6 +824,7 @@ public open class Control : CanvasItem() {
    * already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be
    * used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
    */
+  @GodotApiMember
   public open fun _getMinimumSize(): Vector2 {
     throw NotImplementedError("_get_minimum_size is not implemented for Control")
   }
@@ -822,6 +835,7 @@ public open class Control : CanvasItem() {
    * resting over this control. See [getTooltip].
    * **Note:** If this method returns an empty [String], no tooltip is displayed.
    */
+  @GodotApiMember
   public open fun _getTooltip(atPosition: Vector2): String {
     throw NotImplementedError("_get_tooltip is not implemented for Control")
   }
@@ -853,6 +867,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
+  @GodotApiMember
   public open fun _getDragData(atPosition: Vector2): Any? {
     throw NotImplementedError("_get_drag_data is not implemented for Control")
   }
@@ -880,6 +895,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
+  @GodotApiMember
   public open fun _canDropData(atPosition: Vector2, `data`: Any?): Boolean {
     throw NotImplementedError("_can_drop_data is not implemented for Control")
   }
@@ -911,6 +927,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
+  @GodotApiMember
   public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
   }
 
@@ -970,6 +987,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
+  @GodotApiMember
   public open fun _makeCustomTooltip(forText: String): Object? {
     throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
   }
@@ -1009,6 +1027,7 @@ public open class Control : CanvasItem() {
    * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
    * **Note:** Event position is relative to the control origin.
    */
+  @GodotApiMember
   public open fun _guiInput(event: InputEvent?): Unit {
   }
 

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -68,6 +69,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
+  @GodotApiMember
   public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
@@ -85,6 +87,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
+  @GodotApiMember
   public val bodyShapeExited: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
@@ -93,6 +96,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
+  @GodotApiMember
   public val bodyEntered: Signal1<Node> by Signal1
 
   /**
@@ -101,6 +105,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
+  @GodotApiMember
   public val bodyExited: Signal1<Node> by Signal1
 
   /**
@@ -109,6 +114,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is
    * used.
    */
+  @GodotApiMember
   public val sleepingStateChanged: Signal0 by Signal0
 
   /**
@@ -525,6 +531,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
+  @GodotApiMember
   public open fun _integrateForces(state: PhysicsDirectBodyState2D?): Unit {
   }
 

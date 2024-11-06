@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -139,6 +140,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * Emitted by [isSessionSupported] to indicate if the given [sessionMode] is supported or not.
    */
+  @GodotApiMember
   public val sessionSupported: Signal2<String, Boolean> by Signal2
 
   /**
@@ -146,6 +148,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * At this point, it's safe to do `get_viewport().use_xr = true` to instruct Godot to start
    * rendering to the XR device.
    */
+  @GodotApiMember
   public val sessionStarted: Signal0 by Signal0
 
   /**
@@ -154,6 +157,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * At this point, you should do `get_viewport().use_xr = false` to instruct Godot to resume
    * rendering to the screen.
    */
+  @GodotApiMember
   public val sessionEnded: Signal0 by Signal0
 
   /**
@@ -161,6 +165,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * [message] may optionally contain an error message from WebXR, or an empty string if no message
    * is available.
    */
+  @GodotApiMember
   public val sessionFailed: Signal1<String> by Signal1
 
   /**
@@ -168,6 +173,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val selectstart: Signal1<Long> by Signal1
 
   /**
@@ -175,6 +181,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val select: Signal1<Long> by Signal1
 
   /**
@@ -182,6 +189,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val selectend: Signal1<Long> by Signal1
 
   /**
@@ -189,6 +197,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val squeezestart: Signal1<Long> by Signal1
 
   /**
@@ -196,6 +205,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val squeeze: Signal1<Long> by Signal1
 
   /**
@@ -203,11 +213,13 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
+  @GodotApiMember
   public val squeezeend: Signal1<Long> by Signal1
 
   /**
    * Emitted when [visibilityState] has changed.
    */
+  @GodotApiMember
   public val visibilityStateChanged: Signal0 by Signal0
 
   /**
@@ -218,11 +230,13 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/reset_event]WebXR's
    * XRReferenceSpace reset event[/url] for more information.
    */
+  @GodotApiMember
   public val referenceSpaceReset: Signal0 by Signal0
 
   /**
    * Emitted after the display's refresh rate has changed.
    */
+  @GodotApiMember
   public val displayRefreshRateChanged: Signal0 by Signal0
 
   /**

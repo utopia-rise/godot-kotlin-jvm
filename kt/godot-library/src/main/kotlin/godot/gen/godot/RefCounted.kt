@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -43,6 +44,7 @@ public open class RefCounted : Object() {
     callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
   }
 
+  @GodotApiMember
   public final override fun _onDestroy(): Unit {
 
   }

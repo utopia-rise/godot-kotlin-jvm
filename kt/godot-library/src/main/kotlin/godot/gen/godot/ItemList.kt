@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -73,11 +74,13 @@ public open class ItemList : Control() {
    * Triggered when specified item has been selected.
    * [allowReselect] must be enabled to reselect an item.
    */
+  @GodotApiMember
   public val itemSelected: Signal1<Long> by Signal1
 
   /**
    * Triggered when any mouse click is issued within the rect of the list but on empty space.
    */
+  @GodotApiMember
   public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
@@ -85,17 +88,20 @@ public open class ItemList : Control() {
    * The click position is also provided to allow appropriate popup of context menus at the correct
    * location.
    */
+  @GodotApiMember
   public val itemClicked: Signal3<Long, Vector2, Long> by Signal3
 
   /**
    * Triggered when a multiple selection is altered on a list allowing multiple selection.
    */
+  @GodotApiMember
   public val multiSelected: Signal2<Long, Boolean> by Signal2
 
   /**
    * Triggered when specified list item is activated via double-clicking or by pressing
    * [kbd]Enter[/kbd].
    */
+  @GodotApiMember
   public val itemActivated: Signal1<Long> by Signal1
 
   /**

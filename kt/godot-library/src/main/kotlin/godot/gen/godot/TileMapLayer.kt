@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
@@ -55,6 +56,7 @@ public open class TileMapLayer : Node2D() {
    * executing complex processing in a connected function, and consider delaying it to the end of the
    * frame instead (i.e. calling [Object.callDeferred]).
    */
+  @GodotApiMember
   public val changed: Signal0 by Signal0
 
   /**
@@ -203,6 +205,7 @@ public open class TileMapLayer : Node2D() {
    * **Note:** If the result of this function should change, use [notifyRuntimeTileDataUpdate] to
    * notify the [TileMapLayer] it needs an update.
    */
+  @GodotApiMember
   public open fun _useTileDataRuntimeUpdate(coords: Vector2i): Boolean {
     throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMapLayer")
   }
@@ -217,6 +220,7 @@ public open class TileMapLayer : Node2D() {
    * **Note:** If the properties of [tileData] object should change over time, use
    * [notifyRuntimeTileDataUpdate] to notify the [TileMapLayer] it needs an update.
    */
+  @GodotApiMember
   public open fun _tileDataRuntimeUpdate(coords: Vector2i, tileData: TileData?): Unit {
   }
 

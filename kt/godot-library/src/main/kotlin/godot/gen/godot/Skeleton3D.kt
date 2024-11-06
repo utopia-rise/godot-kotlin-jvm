@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
@@ -58,6 +59,7 @@ public open class Skeleton3D : Node3D() {
    * **Note:** During the update process, this signal is not fired, so modification by
    * [SkeletonModifier3D] is not detected.
    */
+  @GodotApiMember
   public val poseUpdated: Signal0 by Signal0
 
   /**
@@ -67,19 +69,23 @@ public open class Skeleton3D : Node3D() {
    * completion of the processing of each [SkeletonModifier3D], use [signal
    * SkeletonModifier3D.modification_processed].
    */
+  @GodotApiMember
   public val skeletonUpdated: Signal0 by Signal0
 
   /**
    * Emitted when the bone at [boneIdx] is toggled with [setBoneEnabled]. Use [isBoneEnabled] to
    * check the new value.
    */
+  @GodotApiMember
   public val boneEnabledChanged: Signal1<Long> by Signal1
 
+  @GodotApiMember
   public val boneListChanged: Signal0 by Signal0
 
   /**
    * Emitted when the value of [showRestOnly] changes.
    */
+  @GodotApiMember
   public val showRestOnlyChanged: Signal0 by Signal0
 
   /**

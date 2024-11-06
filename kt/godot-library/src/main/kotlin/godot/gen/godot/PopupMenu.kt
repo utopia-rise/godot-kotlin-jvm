@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -61,22 +62,26 @@ public open class PopupMenu : Popup() {
    * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the
    * corresponding index instead.
    */
+  @GodotApiMember
   public val idPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user navigated to an item of some [id] using the [ProjectSettings.input/uiUp]
    * or [ProjectSettings.input/uiDown] input action.
    */
+  @GodotApiMember
   public val idFocused: Signal1<Long> by Signal1
 
   /**
    * Emitted when an item of some [index] is pressed or its accelerator is activated.
    */
+  @GodotApiMember
   public val indexPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when any item is added, modified or removed.
    */
+  @GodotApiMember
   public val menuChanged: Signal0 by Signal0
 
   /**

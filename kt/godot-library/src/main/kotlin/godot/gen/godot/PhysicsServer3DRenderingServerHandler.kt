@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -30,6 +31,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    * specified by [vertexId].
    * **Note:** The [vertex] parameter used to be of type `const void*` prior to Godot 4.2.
    */
+  @GodotApiMember
   public open fun _setVertex(vertexId: Int, vertex: Vector3): Unit {
   }
 
@@ -38,12 +40,14 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    * specified by [vertexId].
    * **Note:** The [normal] parameter used to be of type `const void*` prior to Godot 4.2.
    */
+  @GodotApiMember
   public open fun _setNormal(vertexId: Int, normal: Vector3): Unit {
   }
 
   /**
    * Called by the [PhysicsServer3D] to set the bounding box for the [SoftBody3D].
    */
+  @GodotApiMember
   public open fun _setAabb(aabb: AABB): Unit {
   }
 

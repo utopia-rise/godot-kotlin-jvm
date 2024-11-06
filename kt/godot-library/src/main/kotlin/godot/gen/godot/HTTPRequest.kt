@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
@@ -197,6 +198,7 @@ public open class HTTPRequest : Node() {
   /**
    * Emitted when a request is completed.
    */
+  @GodotApiMember
   public val requestCompleted: Signal4<Long, Long, PackedStringArray, PackedByteArray> by Signal4
 
   /**

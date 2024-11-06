@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -68,6 +69,7 @@ public open class SubViewportContainer : Container() {
    * to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is
    * not implemented, all events are propagated to SubViewports.
    */
+  @GodotApiMember
   public open fun _propagateInputEvent(event: InputEvent?): Boolean {
     throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
   }

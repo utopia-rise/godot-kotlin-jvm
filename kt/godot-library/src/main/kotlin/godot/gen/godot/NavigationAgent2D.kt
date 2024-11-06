@@ -9,6 +9,7 @@ package godot
 import godot.NavigationPathQueryParameters2D.PathMetadataFlagsValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -57,6 +58,7 @@ public open class NavigationAgent2D : Node() {
    * - because navigation map has changed.
    * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
+  @GodotApiMember
   public val pathChanged: Signal0 by Signal0
 
   /**
@@ -67,6 +69,7 @@ public open class NavigationAgent2D : Node() {
    * It may not always be possible to reach the target but it should always be possible to reach the
    * final position. See [getFinalPosition].
    */
+  @GodotApiMember
   public val targetReached: Signal0 by Signal0
 
   /**
@@ -79,6 +82,7 @@ public open class NavigationAgent2D : Node() {
    * - `rid`: The [RID] of the containing navigation primitive (region or link).
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
+  @GodotApiMember
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
@@ -95,6 +99,7 @@ public open class NavigationAgent2D : Node() {
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink2D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
+  @GodotApiMember
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
@@ -103,12 +108,14 @@ public open class NavigationAgent2D : Node() {
    * of the path is reached. This signal is emitted only once per loaded path.
    * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
+  @GodotApiMember
   public val navigationFinished: Signal0 by Signal0
 
   /**
    * Notifies when the collision avoidance velocity is calculated. Emitted every update as long as
    * [avoidanceEnabled] is `true` and the agent has a navigation map.
    */
+  @GodotApiMember
   public val velocityComputed: Signal1<Vector2> by Signal1
 
   /**

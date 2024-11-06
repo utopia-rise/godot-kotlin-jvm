@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -47,6 +48,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Emitted when all active particles have finished processing. When [oneShot] is disabled,
    * particles will process continuously, so this is never emitted.
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   /**

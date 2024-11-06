@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -35,16 +36,19 @@ public open class AnimationLibrary : Resource() {
   /**
    * Emitted when an [Animation] is added, under the key [name].
    */
+  @GodotApiMember
   public val animationAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an [Animation] stored with the key [name] is removed.
    */
+  @GodotApiMember
   public val animationRemoved: Signal1<StringName> by Signal1
 
   /**
    * Emitted when the key for an [Animation] is changed, from [name] to [toName].
    */
+  @GodotApiMember
   public val animationRenamed: Signal2<StringName, StringName> by Signal2
 
   /**
@@ -52,6 +56,7 @@ public open class AnimationLibrary : Resource() {
    * changed paths. [name] is the key of the animation that was changed.
    * See also [signal Resource.changed], which this acts as a relay for.
    */
+  @GodotApiMember
   public val animationChanged: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {

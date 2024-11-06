@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -48,6 +49,7 @@ public object JavaScriptBridge : Object() {
    * activated because a previous version is active. See [pwaUpdate] to force the update to take place
    * immediately.
    */
+  @GodotApiMember
   @JvmStatic
   public val pwaUpdateAvailable: Signal0 by Signal0
 

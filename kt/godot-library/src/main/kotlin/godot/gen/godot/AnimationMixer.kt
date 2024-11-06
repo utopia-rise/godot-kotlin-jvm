@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
@@ -51,38 +52,45 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Notifies when an animation list is changed.
    */
+  @GodotApiMember
   public val animationListChanged: Signal0 by Signal0
 
   /**
    * Notifies when the animation libraries have changed.
    */
+  @GodotApiMember
   public val animationLibrariesUpdated: Signal0 by Signal0
 
   /**
    * Notifies when an animation finished playing.
    * **Note:** This signal is not emitted if an animation is looping.
    */
+  @GodotApiMember
   public val animationFinished: Signal1<StringName> by Signal1
 
   /**
    * Notifies when an animation starts playing.
    */
+  @GodotApiMember
   public val animationStarted: Signal1<StringName> by Signal1
 
   /**
    * Notifies when the caches have been cleared, either automatically, or manually via
    * [clearCaches].
    */
+  @GodotApiMember
   public val cachesCleared: Signal0 by Signal0
 
   /**
    * Notifies when the blending result related have been applied to the target objects.
    */
+  @GodotApiMember
   public val mixerApplied: Signal0 by Signal0
 
   /**
    * Notifies when the property related process have been updated.
    */
+  @GodotApiMember
   public val mixerUpdated: Signal0 by Signal0
 
   /**
@@ -224,6 +232,7 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * A virtual function for processing after getting a key during playback.
    */
+  @GodotApiMember
   public open fun _postProcessKeyValue(
     animation: Animation?,
     track: Int,

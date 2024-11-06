@@ -1,26 +1,23 @@
 package godot.tests.args
 
 import godot.Node
-import godot.Resource
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
-import godot.annotation.RegisterFunction
-import godot.core.Dictionary
+import godot.annotation.Member
+import godot.annotation.GodotScript
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 
-@RegisterClass
+@GodotScript
 class ConstructorArgSizeTest(): Node() {
     private val receivedConstructorArgs: VariantArray<Any> = variantArrayOf()
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
     ): this() {
         receivedConstructorArgs.add(p1)
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -31,7 +28,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -44,7 +41,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -59,7 +56,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -76,7 +73,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -95,7 +92,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -116,7 +113,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterConstructor
+    @Member
     constructor(
         p1: String,
         p2: String,
@@ -139,7 +136,7 @@ class ConstructorArgSizeTest(): Node() {
         }
     }
 
-    @RegisterFunction
+    @Member
     fun getReceivedConstructorArgs(): VariantArray<Any> {
         return receivedConstructorArgs
     }

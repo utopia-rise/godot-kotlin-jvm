@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -33,6 +34,7 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
   }
 
+  @GodotApiMember
   public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
     throw NotImplementedError("_get_closest_point_to_object_volume is not implemented for PhysicsDirectSpaceState3DExtension")
   }

@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -61,11 +62,13 @@ public open class TextEdit : Control() {
   /**
    * Emitted when [clear] is called or [text] is set.
    */
+  @GodotApiMember
   public val textSet: Signal0 by Signal0
 
   /**
    * Emitted when the text changes.
    */
+  @GodotApiMember
   public val textChanged: Signal0 by Signal0
 
   /**
@@ -73,26 +76,31 @@ public open class TextEdit : Control() {
    * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less
    * than [fromLine].
    */
+  @GodotApiMember
   public val linesEditedFrom: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when any caret changes position.
    */
+  @GodotApiMember
   public val caretChanged: Signal0 by Signal0
 
   /**
    * Emitted when a gutter is clicked.
    */
+  @GodotApiMember
   public val gutterClicked: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when a gutter is added.
    */
+  @GodotApiMember
   public val gutterAdded: Signal0 by Signal0
 
   /**
    * Emitted when a gutter is removed.
    */
+  @GodotApiMember
   public val gutterRemoved: Signal0 by Signal0
 
   /**
@@ -576,30 +584,35 @@ public open class TextEdit : Control() {
    * Override this method to define what happens when the user types in the provided key
    * [unicodeChar].
    */
+  @GodotApiMember
   public open fun _handleUnicodeInput(unicodeChar: Int, caretIndex: Int): Unit {
   }
 
   /**
    * Override this method to define what happens when the user presses the backspace key.
    */
+  @GodotApiMember
   public open fun _backspace(caretIndex: Int): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a cut operation.
    */
+  @GodotApiMember
   public open fun _cut(caretIndex: Int): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a copy operation.
    */
+  @GodotApiMember
   public open fun _copy(caretIndex: Int): Unit {
   }
 
   /**
    * Override this method to define what happens when the user performs a paste operation.
    */
+  @GodotApiMember
   public open fun _paste(caretIndex: Int): Unit {
   }
 
@@ -608,6 +621,7 @@ public open class TextEdit : Control() {
    * middle mouse button.
    * **Note:** This method is only implemented on Linux.
    */
+  @GodotApiMember
   public open fun _pastePrimaryClipboard(caretIndex: Int): Unit {
   }
 

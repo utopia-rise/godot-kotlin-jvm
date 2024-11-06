@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -32,12 +33,14 @@ public open class Slider internal constructor() : Range() {
    * Emitted when dragging is started. This is emitted before the corresponding [signal
    * Range.value_changed] signal.
    */
+  @GodotApiMember
   public val dragStarted: Signal0 by Signal0
 
   /**
    * Emitted when dragging stops. If [valueChanged] is true, [Range.value] is different from the
    * value when you started the dragging.
    */
+  @GodotApiMember
   public val dragEnded: Signal1<Boolean> by Signal1
 
   /**

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Transform3D
@@ -375,6 +376,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
+  @GodotApiMember
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
   }
 

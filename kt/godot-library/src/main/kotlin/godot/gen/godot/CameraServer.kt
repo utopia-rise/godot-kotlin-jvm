@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -36,12 +37,14 @@ public object CameraServer : Object() {
   /**
    * Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
    */
+  @GodotApiMember
   @JvmStatic
   public val cameraFeedAdded: Signal1<Long> by Signal1
 
   /**
    * Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged).
    */
+  @GodotApiMember
   @JvmStatic
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 

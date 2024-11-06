@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -50,17 +51,20 @@ public open class MultiplayerSynchronizer : Node() {
    * Emitted when a new synchronization state is received by this synchronizer after the properties
    * have been updated.
    */
+  @GodotApiMember
   public val synchronized: Signal0 by Signal0
 
   /**
    * Emitted when a new delta synchronization state is received by this synchronizer after the
    * properties have been updated.
    */
+  @GodotApiMember
   public val deltaSynchronized: Signal0 by Signal0
 
   /**
    * Emitted when visibility of [forPeer] is updated. See [updateVisibility].
    */
+  @GodotApiMember
   public val visibilityChanged: Signal1<Long> by Signal1
 
   /**

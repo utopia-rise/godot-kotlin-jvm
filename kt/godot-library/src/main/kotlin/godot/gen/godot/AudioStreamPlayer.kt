@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -42,6 +43,7 @@ public open class AudioStreamPlayer : Node() {
    * Emitted when a sound finishes playing without interruptions. This signal is *not* emitted when
    * calling [stop], or when exiting the tree while sounds are playing.
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   /**

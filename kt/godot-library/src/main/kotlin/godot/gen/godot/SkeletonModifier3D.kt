@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -36,6 +37,7 @@ public open class SkeletonModifier3D : Node3D() {
    * **Note:** If you want to get the modified bone pose by the modifier, you must use
    * [Skeleton3D.getBonePose] or [Skeleton3D.getBoneGlobalPose] at the moment this signal is fired.
    */
+  @GodotApiMember
   public val modificationProcessed: Signal0 by Signal0
 
   /**
@@ -72,6 +74,7 @@ public open class SkeletonModifier3D : Node3D() {
    * [_processModification] must not apply [influence] to bone poses because the [Skeleton3D]
    * automatically applies influence to all bone poses set by the modifier.
    */
+  @GodotApiMember
   public open fun _processModification(): Unit {
   }
 

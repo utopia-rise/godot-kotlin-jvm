@@ -1,75 +1,72 @@
 package godot.tests
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Member
+import godot.annotation.GodotScript
 import godot.annotation.Rpc
 import godot.core.signal0
 import godot.extensions.call
 import godot.extensions.callDeferred
 
-@RegisterClass
+@GodotScript
 class FuncRefTest : Node() {
 
-    @RegisterSignal
     val test by signal0()
 
-    @RegisterProperty
+    @Member
     var blubb: Boolean = false
 
-    @RegisterProperty
+    @Member
     var callFlag = false
 
-    @RegisterProperty
+    @Member
     var callWithParamFlag = false
 
-    @RegisterProperty
+    @Member
     var signalCallFlag = false
 
-    @RegisterFunction
+    @Member
     override fun _ready() {
         test.connect(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
-    @RegisterFunction
+    @Member
     fun testSignalCallback() {
         signalCallFlag = true
     }
 
-    @RegisterFunction
+    @Member
     fun testSignalCall() {
         test.emit()
     }
 
-    @RegisterFunction
+    @Member
     fun withoutParamCallback() {
         callFlag = true
     }
 
-    @RegisterFunction
+    @Member
     fun testCallWithoutParam() {
         call(this::withoutParamCallback)
     }
 
-    @RegisterFunction
+    @Member
     fun testCallDeferredWithoutParam() {
         callDeferred(this::withoutParamCallback)
     }
 
-    @RegisterFunction
+    @Member
     fun withParamCallback(flag: Boolean) {
         callWithParamFlag = flag
     }
 
-    @RegisterFunction
+    @Member
     fun testCallWithParam() {
         call(this::withParamCallback, true)
     }
 
-    @RegisterFunction
+    @Member
     fun testCallDeferredWithParam() {
         callDeferred(this::withParamCallback, true)
     }

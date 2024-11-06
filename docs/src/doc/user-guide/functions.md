@@ -1,12 +1,12 @@
 Any Kotlin function can be registered as long as its parameters and return type can be converted to a `Variant`.
-To register a function annotate it with `@RegisterFunction`.
+To register a function annotate it with `@GodotMember`.
 
 ```kotlin
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
-    @RegisterFunction
-    override fun _ready() {
-        println("I am ready!")
+    @GodotMember
+    fun myFunction() {
+        println("Hello")
     }
 }
 ```
@@ -21,17 +21,11 @@ Therefore, a function called `doSomething()` in Kotlin is usable in GDScript as 
 
 Virtual functions (like `_ready`, `_process` and `_physics_process`) are declared as overridable functions.
 The default implementation throws a `NotImplementedException`, so you have to override it if you plan to expose
-a virtual function to Godot. Remember, just overriding is not enough to use that function - you have to explicitly
-register it as well with `@RegisterFunction`.
+a virtual function to Godot. Virtual functions are registered automatically and do not require an explicit `@GodotMember`
+annotation.
 
 ## Arguments count
 
 Godot limits the allowed argument count of functions to `16`. Thus, this binding also has this limitation.
 If you want to pass more than 16 parameters in a function, you need to wrap them in a container
 (like a custom container class or a `VariantArray` or `Dictionary`).
-
-## Customization
-
-You can customize to some extent how your functions should be registered in Godot. The `@RegisterFunction` annotation takes one argument:
-
-- **rpcMode**: Default: `RPCMode.DISABLED`

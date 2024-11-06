@@ -3,71 +3,62 @@ package godot.tests;
 import godot.Button;
 import godot.Node;
 import godot.RenderingServer;
-import godot.annotation.*;
+import godot.annotation.EnumTypeHint;
+import godot.annotation.Export;
+import godot.annotation.Member;
+import godot.annotation.GodotScript;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
 
-@RegisterClass
+@GodotScript
 public class JavaTestClass extends Node {
-    @RegisterSignal
     public Signal0 testSignal = Signal0.create(this, "test_signal");
 
-    @RegisterSignal
     public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2", "param1", "param2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
-//    @RegisterSignal
 //    public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
-    @RegisterProperty
     @EnumTypeHint
     public JavaEnum javaEnum = JavaEnum.JAVA_ENUM_1;
 
     @Export
-    @RegisterProperty
     public int exportedInt = 1;
 
     @Export
-    @RegisterProperty
     public long exportedLong = 1L;
 
     @Export
-    @RegisterProperty
     public float exportedFloat = 1f;
 
     @Export
-    @RegisterProperty
     public double exportedDouble = 1.0;
 
     @Export
-    @RegisterProperty
     public boolean exportedBoolean = true;
 
     @Export
-    @RegisterProperty
     public String exportedString = "blubb";
 
     @Export
-    @RegisterProperty
     public byte exportedByte = 1;
 
     @Export
-    @RegisterProperty
     public Button exportedButton;
 
-    @RegisterFunction
+    @Member
     public String greeting() {
         return "Hello from java";
     }
 
-    @RegisterProperty
+    @Member
     public boolean signalEmitted = false;
 
-    @RegisterProperty
+    @Member
     public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
 
-    @RegisterProperty
+    @Member
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
     public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
@@ -80,7 +71,6 @@ public class JavaTestClass extends Node {
 
     public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
 
-    @RegisterFunction
     @Override
     public void _ready() {
         // Check if Singletons have the correct syntax, without Single.INSTANCE
@@ -89,7 +79,7 @@ public class JavaTestClass extends Node {
         RenderingServer.getDefaultClearColor();
     }
 
-    @RegisterFunction
+    @Member
     public void connectAndTriggerSignal() {
         connect(
                 StringNames.asStringName("test_signal"),
@@ -110,7 +100,7 @@ public class JavaTestClass extends Node {
         );
     }
 
-    @RegisterFunction
+    @Member
     public void signalCallback() {
         signalEmitted = true;
     }

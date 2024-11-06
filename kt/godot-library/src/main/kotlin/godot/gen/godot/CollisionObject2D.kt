@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
@@ -47,6 +48,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
+  @GodotApiMember
   public val inputEvent: Signal3<Node, InputEvent, Long> by Signal3
 
   /**
@@ -58,6 +60,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
    * [CollisionObject2D] in question.
    */
+  @GodotApiMember
   public val mouseEntered: Signal0 by Signal0
 
   /**
@@ -69,6 +72,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
    * [CollisionObject2D] in question.
    */
+  @GodotApiMember
   public val mouseExited: Signal0 by Signal0
 
   /**
@@ -76,6 +80,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to
    * be `true` and at least one [collisionLayer] bit to be set.
    */
+  @GodotApiMember
   public val mouseShapeEntered: Signal1<Long> by Signal1
 
   /**
@@ -83,6 +88,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be set.
    */
+  @GodotApiMember
   public val mouseShapeExited: Signal1<Long> by Signal1
 
   /**
@@ -165,6 +171,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * **Note:** [_inputEvent] requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be set.
    */
+  @GodotApiMember
   public open fun _inputEvent(
     viewport: Viewport?,
     event: InputEvent?,
@@ -177,6 +184,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * be `true` and at least one [collisionLayer] bit to be set. Note that moving between different
    * shapes within a single [CollisionObject2D] won't cause this function to be called.
    */
+  @GodotApiMember
   public open fun _mouseEnter(): Unit {
   }
 
@@ -185,6 +193,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes
    * within a single [CollisionObject2D] won't cause this function to be called.
    */
+  @GodotApiMember
   public open fun _mouseExit(): Unit {
   }
 
@@ -193,6 +202,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to
    * be `true` and at least one [collisionLayer] bit to be called.
    */
+  @GodotApiMember
   public open fun _mouseShapeEnter(shapeIdx: Int): Unit {
   }
 
@@ -201,6 +211,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be called.
    */
+  @GodotApiMember
   public open fun _mouseShapeExit(shapeIdx: Int): Unit {
   }
 

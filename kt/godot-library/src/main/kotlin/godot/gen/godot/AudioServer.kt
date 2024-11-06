@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
@@ -42,12 +43,14 @@ public object AudioServer : Object() {
   /**
    * Emitted when an audio bus is added, deleted, or moved.
    */
+  @GodotApiMember
   @JvmStatic
   public val busLayoutChanged: Signal0 by Signal0
 
   /**
    * Emitted when the audio bus at [busIndex] is renamed from [oldName] to [newName].
    */
+  @GodotApiMember
   @JvmStatic
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 

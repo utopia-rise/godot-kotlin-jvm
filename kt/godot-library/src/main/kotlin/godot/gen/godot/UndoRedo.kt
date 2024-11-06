@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -135,6 +136,7 @@ public open class UndoRedo : Object() {
   /**
    * Called when [undo] or [redo] was called.
    */
+  @GodotApiMember
   public val versionChanged: Signal0 by Signal0
 
   /**

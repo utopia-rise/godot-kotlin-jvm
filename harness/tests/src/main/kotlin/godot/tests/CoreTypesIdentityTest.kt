@@ -1,72 +1,80 @@
 package godot.tests
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.core.*
+import godot.annotation.Member
+import godot.annotation.GodotScript
+import godot.core.AABB
+import godot.core.Basis
+import godot.core.Color
+import godot.core.Plane
+import godot.core.Quaternion
+import godot.core.Rect2
+import godot.core.Transform2D
+import godot.core.Transform3D
+import godot.core.Vector2
+import godot.core.Vector3
 
-@RegisterClass
+@GodotScript
 class CoreTypesIdentityTest : Node() {
 
-    @RegisterProperty
+    @Member
     var aabb = AABB(Vector3(1, 1, 1), Vector3(2, 2, 2))
 
-    @RegisterProperty
+    @Member
     var basis = Basis(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8))
 
-    @RegisterProperty
+    @Member
     var color = Color(0.1, 0.2, 0.3, 0.4)
 
-    @RegisterProperty
+    @Member
     var plane = Plane(1, 2, 3, 4)
 
-    @RegisterProperty
+    @Member
     var quaternion = Quaternion(1, 2, 3, 4)
 
-    @RegisterProperty
+    @Member
     var rect2 = Rect2(1.0, 2.0, 3.0, 4.0)
 
-    @RegisterProperty
+    @Member
     var transform3D =
         Transform3D(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8), Vector3(9, 10, 11))
 
-    @RegisterProperty
+    @Member
     var transform2D = Transform2D(0, 1, 2, 3, 4, 5)
 
-    @RegisterProperty
+    @Member
     var vector2 = Vector2(1, 2)
 
-    @RegisterProperty
+    @Member
     var vector3 = Vector3(1, 2, 3)
 
-    @RegisterFunction
+    @Member
     fun aabb(aabb: AABB) = aabb
 
-    @RegisterFunction
+    @Member
     fun basis(basis: Basis) = basis
 
-    @RegisterFunction
+    @Member
     fun color(color: Color) = color
 
-    @RegisterFunction
+    @Member
     fun plane(plane: Plane) = plane
 
-    @RegisterFunction
+    @Member
     fun quat(quaternion: Quaternion) = quaternion
 
-    @RegisterFunction
+    @Member
     fun rect2(rect2: Rect2) = rect2
 
-    @RegisterFunction
+    @Member
     fun transform(transform3D: Transform3D) = transform3D
 
-    @RegisterFunction
+    @Member
     fun transform2D(transform2D: Transform2D) = transform2D
 
-    @RegisterFunction
+    @Member
     fun vector2(vector2: Vector2) = vector2
 
-    @RegisterFunction
+    @Member
     fun vector3(vector3: Vector3) = vector3
 }

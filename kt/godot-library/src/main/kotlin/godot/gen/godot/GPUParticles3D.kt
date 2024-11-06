@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.AABB
@@ -53,6 +54,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   /**

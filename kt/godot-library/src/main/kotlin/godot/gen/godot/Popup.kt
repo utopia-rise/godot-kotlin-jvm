@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import kotlin.Int
@@ -21,6 +22,7 @@ public open class Popup : Window() {
   /**
    * Emitted when the popup is hidden.
    */
+  @GodotApiMember
   public val popupHide: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {

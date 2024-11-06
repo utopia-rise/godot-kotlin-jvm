@@ -1,22 +1,20 @@
 package godot.tests.args
 
 import godot.Node
-import godot.Resource
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.core.Dictionary
+import godot.annotation.Member
+import godot.annotation.GodotScript
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 
-@RegisterClass
+@GodotScript
 class FunctionArgSizeTest : Node() {
 
-    @RegisterFunction
+    @Member
     fun arg0(): VariantArray<Any> {
         return variantArrayOf()
     }
 
-    @RegisterFunction
+    @Member
     fun arg1(
         p1: String,
     ): VariantArray<Any> {
@@ -25,7 +23,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg2(
         p1: String,
         p2: String,
@@ -36,7 +34,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg3(
         p1: String,
         p2: String,
@@ -49,7 +47,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg4(
         p1: String,
         p2: String,
@@ -64,7 +62,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg5(
         p1: String,
         p2: String,
@@ -81,7 +79,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg6(
         p1: String,
         p2: String,
@@ -100,7 +98,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg7(
         p1: String,
         p2: String,
@@ -121,7 +119,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg8(
         p1: String,
         p2: String,
@@ -144,7 +142,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg9(
         p1: String,
         p2: String,
@@ -169,7 +167,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg10(
         p1: String,
         p2: String,
@@ -196,7 +194,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg11(
         p1: String,
         p2: String,
@@ -225,7 +223,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg12(
         p1: String,
         p2: String,
@@ -256,7 +254,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg13(
         p1: String,
         p2: String,
@@ -289,7 +287,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg14(
         p1: String,
         p2: String,
@@ -324,7 +322,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg15(
         p1: String,
         p2: String,
@@ -361,7 +359,7 @@ class FunctionArgSizeTest : Node() {
         )
     }
 
-    @RegisterFunction
+    @Member
     fun arg16(
         p1: String,
         p2: String,

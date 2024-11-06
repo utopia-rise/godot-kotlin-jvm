@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -35,16 +36,19 @@ public open class AcceptDialog : Window() {
   /**
    * Emitted when the dialog is accepted, i.e. the OK button is pressed.
    */
+  @GodotApiMember
   public val confirmed: Signal0 by Signal0
 
   /**
    * Emitted when the dialog is closed or the button created with [addCancelButton] is pressed.
    */
+  @GodotApiMember
   public val canceled: Signal0 by Signal0
 
   /**
    * Emitted when a custom button is pressed. See [addButton].
    */
+  @GodotApiMember
   public val customAction: Signal1<StringName> by Signal1
 
   /**

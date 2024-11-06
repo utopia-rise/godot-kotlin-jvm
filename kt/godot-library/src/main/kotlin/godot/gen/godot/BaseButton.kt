@@ -7,6 +7,7 @@
 package godot
 
 import godot.MouseButtonMaskValue
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -35,22 +36,26 @@ public open class BaseButton : Control() {
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */
+  @GodotApiMember
   public val pressed: Signal0 by Signal0
 
   /**
    * Emitted when the button stops being held down.
    */
+  @GodotApiMember
   public val buttonUp: Signal0 by Signal0
 
   /**
    * Emitted when the button starts being held down.
    */
+  @GodotApiMember
   public val buttonDown: Signal0 by Signal0
 
   /**
    * Emitted when the button was just toggled between pressed and normal states (only if
    * [toggleMode] is active). The new state is contained in the [toggledOn] argument.
    */
+  @GodotApiMember
   public val toggled: Signal1<Boolean> by Signal1
 
   /**
@@ -182,12 +187,14 @@ public open class BaseButton : Control() {
    * Called when the button is pressed. If you need to know the button's pressed state (and
    * [toggleMode] is active), use [_toggled] instead.
    */
+  @GodotApiMember
   public open fun _pressed(): Unit {
   }
 
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
+  @GodotApiMember
   public open fun _toggled(toggledOn: Boolean): Unit {
   }
 

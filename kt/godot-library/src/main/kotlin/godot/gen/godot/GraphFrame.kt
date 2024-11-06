@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -40,6 +41,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * Emitted when [autoshrinkEnabled] or [autoshrinkMargin] changes.
    */
+  @GodotApiMember
   public val autoshrinkChanged: Signal0 by Signal0
 
   /**

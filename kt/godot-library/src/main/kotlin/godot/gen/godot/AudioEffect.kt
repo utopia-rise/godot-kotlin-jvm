@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -45,6 +46,7 @@ public open class AudioEffect : Resource() {
    * instance. Depending on the implementation this allows the effect instance to listen for changes at
    * run-time and be modified accordingly.
    */
+  @GodotApiMember
   public open fun _instantiate(): AudioEffectInstance? {
     throw NotImplementedError("_instantiate is not implemented for AudioEffect")
   }

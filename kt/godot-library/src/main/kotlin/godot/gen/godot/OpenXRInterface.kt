@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Quaternion
@@ -49,42 +50,50 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Informs our OpenXR session has been started.
    */
+  @GodotApiMember
   public val sessionBegun: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is stopping.
    */
+  @GodotApiMember
   public val sessionStopping: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session now has focus.
    */
+  @GodotApiMember
   public val sessionFocussed: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is now visible (output is being sent to the HMD).
    */
+  @GodotApiMember
   public val sessionVisible: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is in the process of being lost.
    */
+  @GodotApiMember
   public val sessionLossPending: Signal0 by Signal0
 
   /**
    * Informs our OpenXR instance is exiting.
    */
+  @GodotApiMember
   public val instanceExiting: Signal0 by Signal0
 
   /**
    * Informs the user queued a recenter of the player position.
    */
+  @GodotApiMember
   public val poseRecentered: Signal0 by Signal0
 
   /**
    * Informs the user the HMD refresh rate has changed.
    * **Note:** Only emitted if XR runtime supports the refresh rate extension.
    */
+  @GodotApiMember
   public val refreshRateChanged: Signal1<Double> by Signal1
 
   /**

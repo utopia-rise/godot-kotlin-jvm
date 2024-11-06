@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal0
@@ -43,6 +44,7 @@ public open class SkeletonProfile : Resource() {
    * **Note:** This signal is not connected directly to editor to simplify the reference, instead it
    * is passed on to editor through the [BoneMap].
    */
+  @GodotApiMember
   public val profileUpdated: Signal0 by Signal0
 
   /**

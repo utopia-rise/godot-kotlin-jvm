@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Callable
@@ -167,18 +168,21 @@ public open class Tween : RefCounted() {
    * Emitted when one step of the [Tween] is complete, providing the step index. One step is either
    * a single [Tweener] or a group of [Tweener]s running in parallel.
    */
+  @GodotApiMember
   public val stepFinished: Signal1<Long> by Signal1
 
   /**
    * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is
    * not emitted after the final loop, use [signal finished] instead for this case.
    */
+  @GodotApiMember
   public val loopFinished: Signal1<Long> by Signal1
 
   /**
    * Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to
    * infinite looping (see [setLoops]).
    */
+  @GodotApiMember
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {

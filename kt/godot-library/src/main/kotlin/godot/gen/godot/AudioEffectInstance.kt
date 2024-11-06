@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.Int
@@ -30,6 +31,7 @@ public open class AudioEffectInstance : RefCounted() {
    * Should return `true` to force the [AudioServer] to always call [_process], even if the bus has
    * been muted or cannot otherwise be heard.
    */
+  @GodotApiMember
   public open fun _processSilence(): Boolean {
     throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
   }

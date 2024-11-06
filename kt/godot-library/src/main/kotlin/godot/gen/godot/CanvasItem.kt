@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Color
@@ -72,22 +73,26 @@ public open class CanvasItem internal constructor() : Node() {
    * notification, and *before* [_draw] is called.
    * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
+  @GodotApiMember
   public val draw: Signal0 by Signal0
 
   /**
    * Emitted when the visibility (hidden/visible) changes.
    */
+  @GodotApiMember
   public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Emitted when becoming hidden.
    */
+  @GodotApiMember
   public val hidden: Signal0 by Signal0
 
   /**
    * Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action
    * is taking place that may have impacted these boundaries (e.g. changing [Sprite2D.texture]).
    */
+  @GodotApiMember
   public val itemRectChanged: Signal0 by Signal0
 
   /**
@@ -345,6 +350,7 @@ public open class CanvasItem internal constructor() : Node() {
    * manually or by the engine).
    * Corresponds to the [NOTIFICATION_DRAW] notification in [Object.Notification].
    */
+  @GodotApiMember
   public open fun _draw(): Unit {
   }
 

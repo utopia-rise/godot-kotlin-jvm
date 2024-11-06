@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.TypeManager
@@ -65,6 +66,7 @@ public open class MovieWriter : Object() {
    * value returned must be specified in Hz. Defaults to 48000 Hz if [_getAudioMixRate] is not
    * overridden.
    */
+  @GodotApiMember
   public open fun _getAudioMixRate(): Long {
     throw NotImplementedError("_get_audio_mix_rate is not implemented for MovieWriter")
   }
@@ -74,6 +76,7 @@ public open class MovieWriter : Object() {
    * This can affect the number of output channels in the resulting audio file/stream. Defaults to
    * [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
+  @GodotApiMember
   public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
     throw NotImplementedError("_get_audio_speaker_mode is not implemented for MovieWriter")
   }
@@ -90,6 +93,7 @@ public open class MovieWriter : Object() {
    *     return path.get_extension().to_lower() == "mkv"
    * [/codeblock]
    */
+  @GodotApiMember
   public open fun _handlesFile(path: String): Boolean {
     throw NotImplementedError("_handles_file is not implemented for MovieWriter")
   }
@@ -100,6 +104,7 @@ public open class MovieWriter : Object() {
    * settings or using the `--fixed-fps <fps>`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
    */
+  @GodotApiMember
   public open fun _writeBegin(
     movieSize: Vector2i,
     fps: Long,
@@ -114,6 +119,7 @@ public open class MovieWriter : Object() {
    * **Note:** Pressing [kbd]Ctrl + C[/kbd] on the terminal running the editor/project does *not*
    * result in [_writeEnd] being called.
    */
+  @GodotApiMember
   public open fun _writeEnd(): Unit {
   }
 

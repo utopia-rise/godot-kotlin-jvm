@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -34,6 +35,7 @@ public open class AudioStream : Resource() {
   /**
    * Signal to be emitted to notify when the parameter list changed.
    */
+  @GodotApiMember
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -45,6 +47,7 @@ public open class AudioStream : Resource() {
    * a new [AudioStreamPlayback] created when the stream is played (such as by an
    * [AudioStreamPlayer])..
    */
+  @GodotApiMember
   public open fun _instantiatePlayback(): AudioStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for AudioStream")
   }
@@ -52,6 +55,7 @@ public open class AudioStream : Resource() {
   /**
    * Override this method to customize the name assigned to this audio stream. Unused by the engine.
    */
+  @GodotApiMember
   public open fun _getStreamName(): String {
     throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
   }
@@ -60,6 +64,7 @@ public open class AudioStream : Resource() {
    * Override this method to customize the returned value of [getLength]. Should return the length
    * of this audio stream, in seconds.
    */
+  @GodotApiMember
   public open fun _getLength(): Double {
     throw NotImplementedError("_get_length is not implemented for AudioStream")
   }
@@ -68,6 +73,7 @@ public open class AudioStream : Resource() {
    * Override this method to customize the returned value of [isMonophonic]. Should return `true` if
    * this audio stream only supports one channel.
    */
+  @GodotApiMember
   public open fun _isMonophonic(): Boolean {
     throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
   }
@@ -78,6 +84,7 @@ public open class AudioStream : Resource() {
    * Ideally, the returned value should be based off the stream's sample rate
    * ([AudioStreamWAV.mixRate], for example).
    */
+  @GodotApiMember
   public open fun _getBpm(): Double {
     throw NotImplementedError("_get_bpm is not implemented for AudioStream")
   }
@@ -88,6 +95,7 @@ public open class AudioStream : Resource() {
    * Ideally, the returned value should be based off the stream's sample rate
    * ([AudioStreamWAV.mixRate], for example).
    */
+  @GodotApiMember
   public open fun _getBeatCount(): Int {
     throw NotImplementedError("_get_beat_count is not implemented for AudioStream")
   }
@@ -97,6 +105,7 @@ public open class AudioStream : Resource() {
    * property info description format (see [Object.getPropertyList]). Additionally, the default value
    * for this parameter must be added tho each dictionary in "default_value" field.
    */
+  @GodotApiMember
   public open fun _getParameterList(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_parameter_list is not implemented for AudioStream")
   }

@@ -3,33 +3,22 @@ package godot.annotation.processor.visitor
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSVisitorVoid
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Member
+import godot.annotation.GodotScript
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.fqNameUnsafe
 import godot.annotation.processor.ext.hasCompilationErrors
+import godot.annotation.processor.ext.hasRegistrationAnnotation
 import godot.annotation.processor.ext.mapToClazz
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 
 /**
- * Collects [RegisterClass], [RegisterConstructor], [RegisterFunction], [RegisterProperty], [RegisterSignal] annotations
+ * Collects [GodotScript], [Member] annotations
  * for registrar generation and entry generation
  */
 internal class RegistrationAnnotationVisitor(
     private val settings: Settings,
 ) : KSVisitorVoid() {
-
-    private val registerAnnotations = listOf(
-        RegisterClass::class.qualifiedName!!,
-        RegisterConstructor::class.qualifiedName!!,
-        RegisterFunction::class.qualifiedName!!,
-        RegisterProperty::class.qualifiedName!!,
-        RegisterSignal::class.qualifiedName!!
-    )
 
     private val _registeredClassToKSFileMap: MutableMap<RegisteredClass, KSFile> = mutableMapOf()
     val registeredClassToKSFileMap: Map<RegisteredClass, KSFile> = _registeredClassToKSFileMap
@@ -53,7 +42,7 @@ internal class RegistrationAnnotationVisitor(
                             } else null
                         }
                     }
-                    else -> if (declaration.annotations.any { registerAnnotations.contains(it.fqNameUnsafe) }) {
+                    else -> if (declaration.hasRegistrationAnnotation()) {
                         throw IllegalStateException("${declaration.qualifiedName} was registered top level. Only classes can be registered top level.")
                     } else {
                         null

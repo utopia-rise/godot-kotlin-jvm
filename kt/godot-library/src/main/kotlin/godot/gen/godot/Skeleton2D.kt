@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -40,6 +41,7 @@ public open class Skeleton2D : Node2D() {
    * Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used
    * internally within the skeleton.
    */
+  @GodotApiMember
   public val boneSetupChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {

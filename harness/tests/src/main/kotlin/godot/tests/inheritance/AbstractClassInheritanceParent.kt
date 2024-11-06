@@ -2,9 +2,7 @@ package godot.tests.inheritance
 
 import godot.Node
 import godot.annotation.Export
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Member
 import godot.core.signal1
 import godot.core.signal2
 
@@ -12,33 +10,30 @@ import godot.core.signal2
 abstract class AbstractClassInheritanceParent : Node() {
 
     @Export
-    @RegisterProperty
     var registeredExportedPropertyInParent = false
 
-    @RegisterSignal
     val testNotOverridden by signal1<String>("blubb")
 
-    @RegisterSignal
     open val testOverridden  by signal2<String, Int>("blubb", "habbalubb")
 
     //---------------- Here to check ------------------
 
-    @RegisterProperty
+    @Member
     var closedFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
-    @RegisterProperty
+    @Member
     var closedVar = 0
 
-    @RegisterProperty
+    @Member
     open var openVar = 0
 
-    @RegisterFunction
+    @Member
     fun closedFunction() {
         closedFunctionHasBeenCalled = true
     }
 
-    @RegisterFunction
+    @Member
     abstract fun openFunction()
 }

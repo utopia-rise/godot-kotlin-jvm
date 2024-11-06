@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
@@ -43,6 +44,7 @@ public open class OptionButton : Button() {
    * passed as argument.
    * [allowReselect] must be enabled to reselect an item.
    */
+  @GodotApiMember
   public val itemSelected: Signal1<Long> by Signal1
 
   /**
@@ -50,6 +52,7 @@ public open class OptionButton : Button() {
    * [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as
    * argument.
    */
+  @GodotApiMember
   public val itemFocused: Signal1<Long> by Signal1
 
   /**

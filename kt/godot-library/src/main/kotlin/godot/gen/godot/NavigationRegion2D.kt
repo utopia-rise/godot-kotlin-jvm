@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.RID
@@ -51,11 +52,13 @@ public open class NavigationRegion2D : Node2D() {
    * Emitted when the used navigation polygon is replaced or changes to the internals of the current
    * navigation polygon are committed.
    */
+  @GodotApiMember
   public val navigationPolygonChanged: Signal0 by Signal0
 
   /**
    * Emitted when a navigation polygon bake operation is completed.
    */
+  @GodotApiMember
   public val bakeFinished: Signal0 by Signal0
 
   /**

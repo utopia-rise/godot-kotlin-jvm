@@ -6,6 +6,7 @@
 
 package godot
 
+import godot.`annotation`.GodotApiMember
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedInt32Array
@@ -50,30 +51,35 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * ID of the new peer. Clients get notified when other clients connect to the same server. Upon
    * connecting to a server, a client also receives this signal for the server (with ID being 1).
    */
+  @GodotApiMember
   public val peerConnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from a peer. Clients get
    * notified when other clients disconnect from the same server.
    */
+  @GodotApiMember
   public val peerDisconnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only
    * emitted on clients.
    */
+  @GodotApiMember
   public val connectedToServer: Signal0 by Signal0
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a
    * server. Only emitted on clients.
    */
+  @GodotApiMember
   public val connectionFailed: Signal0 by Signal0
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from server. Only emitted on
    * clients.
    */
+  @GodotApiMember
   public val serverDisconnected: Signal0 by Signal0
 
   /**
