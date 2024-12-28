@@ -39,6 +39,8 @@ dependencies {
     implementation(project(":godot-build-props"))
     implementation(project(":godot-plugins-common"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+
+    implementation(project(":godot-class-graph-symbol-processor"))
 }
 
 tasks {

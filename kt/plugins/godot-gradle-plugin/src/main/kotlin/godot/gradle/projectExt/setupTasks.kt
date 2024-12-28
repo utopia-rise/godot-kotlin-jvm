@@ -7,6 +7,7 @@ import godot.gradle.tasks.android.createBootstrapDexJarTask
 import godot.gradle.tasks.android.createMainDexFileTask
 import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
+import godot.gradle.tasks.classGraphSymbolsProcess
 import godot.gradle.tasks.createCopyJarsTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
@@ -23,6 +24,8 @@ import godot.gradle.tasks.setupAfterIdeaSyncTasks
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
+import org.gradle.api.tasks.compile.JavaCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.setupTasks() {
     tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
@@ -32,9 +35,21 @@ fun Project.setupTasks() {
 
     afterEvaluate {
         with(it) {
+            tasks.withType(JavaCompile::class.java) { javaCompile ->
+                javaCompile.options.compilerArgs.add("-parameters")
+            }
+
+            tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
+                kotlinCompile.compilerOptions {
+                    javaParameters.set(true)
+                }
+            }
+
             val packageBootstrapJarTask = packageBootstrapJarTask()
             val packageMainJarTask = packageMainJarTask()
             val generateGdIgnoreFilesTask = generateGdIgnoreFilesTask()
+
+            classGraphSymbolsProcess(packageMainJarTask)
 
             // START: android specific tasks
             val checkD8ToolAccessibleTask = checkD8ToolAccessibleTask()
