@@ -1,0 +1,40 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import versioninfo.fullGodotKotlinJvmVersion
+
+plugins {
+    alias(libs.plugins.kotlin.jvm)
+    id("com.utopia-rise.godot-publish")
+    id("com.utopia-rise.versioninfo")
+}
+
+kotlin {
+    jvmToolchain(11)
+}
+
+dependencies {
+    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation(project(":godot-core-library"))
+    implementation(project(":godot-entry-generator"))
+    implementation(libs.classGraph)
+}
+
+publishing {
+    publications {
+        @Suppress("UNUSED_VARIABLE")
+        val godotClassGraphSymbolProcessor by creating(MavenPublication::class) {
+            pom {
+                name.set(project.name)
+                description.set("Godot ClassGraph symbol processor")
+            }
+            artifactId = project.name
+            description = "Godot ClassGraph symbol processor"
+            from(components.getByName("java"))
+        }
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs += "-Xcontext-receivers"
+    }
+}
