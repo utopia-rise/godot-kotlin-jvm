@@ -48,6 +48,7 @@ include("godot-coroutine-library")
 
 subdir("entry-generation") {
     include("godot-kotlin-symbol-processor")
+    include("godot-class-graph-symbol-processor")
     include("godot-entry-generator")
 }
 
