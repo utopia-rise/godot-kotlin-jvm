@@ -20,6 +20,7 @@ gradlePlugin {
 }
 
 dependencies {
+    implementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation(libs.kotlinPoet)
     implementation(libs.jacksonDataBind)

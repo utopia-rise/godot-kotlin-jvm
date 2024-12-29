@@ -16,17 +16,18 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.services.ILambdaCallableGenerationService
 import godot.codegen.utils.GenericClassNameInfo
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotInteropPackage
+import java.io.File
 
 class LambdaCallableGenerationService : ILambdaCallableGenerationService {
-    override fun generate(maxArgumentCount: Int): FileSpec {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
+    override fun generate(outputDir: File) {
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
 
-        for (argCount in 0..maxArgumentCount) {
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
                 .classBuilder(ktCallableClassName)
@@ -81,7 +82,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 )
 
             val variantConverterClassName = ClassName(
-                godotInteropPackage,
+                godotCorePackage,
                 GodotKotlinJvmTypes.variantConverter
             )
 
@@ -330,8 +331,8 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                 .build()
         )
-
-        return callableFileSpec.build()
+            .build()
+            .writeTo(outputDir)
     }
 
     // JAVA BRIDGE FUNCTION

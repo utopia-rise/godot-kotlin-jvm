@@ -10,6 +10,7 @@ const val godotReflectionPackage = "godot.internal.reflection"
 
 //Core
 const val godotPackage = "godot"
+const val godotInternalPackage = "godot.internal"
 const val godotCorePackage = "godot.core"
 const val godotApiPackage = "godot.api"
 const val godotExtensionPackage = "godot.extension"

@@ -9,7 +9,6 @@ import godot.codegen.models.enriched.toEnriched
 import godot.codegen.repositories.ClassRepository
 import godot.codegen.repositories.SingletonRepository
 import godot.codegen.services.impl.ClassGraphService
-import godot.codegen.services.impl.ClassService
 import godot.codegen.singletons
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach

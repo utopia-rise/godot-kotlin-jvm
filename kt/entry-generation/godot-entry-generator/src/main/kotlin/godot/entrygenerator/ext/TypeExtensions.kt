@@ -34,12 +34,12 @@ import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_PARSER__RID
-import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
 import godot.common.extensions.convertToCamelCase
+import godot.tools.common.constants.godotApiPackage
 import java.util.*
 
 //TODO: make compatible with other languages
@@ -100,14 +100,14 @@ fun Type.isCoreType(): Boolean {
 }
 
 fun Type.isNodeType(): Boolean {
-    return fqName == "$godotPackage.${GodotTypes.node}" || allSuperTypes.any { supertype -> supertype.fqName == "$godotPackage.${GodotTypes.node}" }
+    return fqName == "$godotApiPackage.${GodotTypes.node}" || allSuperTypes.any { supertype -> supertype.fqName == "$godotApiPackage.${GodotTypes.node}" }
 }
 
 fun Type.baseGodotType(): Type? {
-    return if (fqName.startsWith(godotPackage)) {
+    return if (fqName.startsWith(godotApiPackage)) {
         this
     } else {
-        allSuperTypes.firstOrNull { supertype -> supertype.fqName.startsWith(godotPackage) }
+        allSuperTypes.firstOrNull { supertype -> supertype.fqName.startsWith(godotApiPackage) }
     }
 }
 
@@ -125,13 +125,13 @@ fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackag
 
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 
-fun Type.isRefCounted(): Boolean = fqName == "$godotPackage.${GodotKotlinJvmTypes.refCounted}" || this
+fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotPackage.${GodotKotlinJvmTypes.refCounted}" }
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
 
-fun Type.isResource(): Boolean = fqName == "$godotPackage.${GodotKotlinJvmTypes.resource}" || this
+fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotPackage.${GodotKotlinJvmTypes.resource}" }
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Int::class.qualifiedName,

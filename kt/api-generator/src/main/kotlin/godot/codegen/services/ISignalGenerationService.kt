@@ -1,7 +1,7 @@
 package godot.codegen.services
 
-import com.squareup.kotlinpoet.FileSpec
+import java.io.File
 
 interface ISignalGenerationService {
-    fun generate(maxArgumentCount: Int): FileSpec
+    fun generate(outputDir: File)
 }
