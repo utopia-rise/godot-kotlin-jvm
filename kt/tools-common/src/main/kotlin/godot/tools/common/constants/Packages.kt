@@ -9,8 +9,10 @@ const val godotMemoryPackage = "godot.internal.memory"
 const val godotReflectionPackage = "godot.internal.reflection"
 
 //Core
-const val godotApiPackage = "godot"
+const val godotPackage = "godot"
 const val godotCorePackage = "godot.core"
+const val godotApiPackage = "godot.api"
+const val godotExtensionPackage = "godot.extension"
 
 const val godotAnnotationPackage = "godot.annotation"
 const val godotRegistrationPackage = "godot.registration"

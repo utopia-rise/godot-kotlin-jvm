@@ -28,7 +28,7 @@ import godot.codegen.services.impl.LambdaCallableGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import godot.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import java.io.File
 
 fun File.generateApiFrom(jsonSource: File) {
@@ -53,7 +53,7 @@ fun File.generateApiFrom(jsonSource: File) {
 
     //TODO: generateEngineTypesRegistration
 
-    val engineIndexFile = FileSpec.builder(godotApiPackage, "EngineIndexes")
+    val engineIndexFile = FileSpec.builder(godotPackage, "EngineIndexes")
     val registrationFileSpec = RegistrationFileSpec()
 
     //We first generate singletons so that their index in engine types and engine singleton lists are same.
@@ -74,7 +74,7 @@ fun File.generateApiFrom(jsonSource: File) {
 
     for (enum in enumService.getGlobalEnums()) {
         val enumAndExtensions = generationService.generateEnum(enum)
-        val fileBuilder = FileSpec.builder(godotApiPackage, enum.name)
+        val fileBuilder = FileSpec.builder(godotPackage, enum.name)
         for (typeSpec in enumAndExtensions.first) {
             fileBuilder.addType(typeSpec)
         }

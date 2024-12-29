@@ -52,13 +52,12 @@ import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
-import godot.tools.common.constants.MEMORY_MANAGER
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.VOID_PTR
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import java.util.*
 
@@ -76,7 +75,7 @@ class GenerationService(
         val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
         val classTypeBuilder = TypeSpec
             .objectBuilder(singletonTypeName.className)
-            .superclass(ClassName(godotApiPackage, baseClass))
+            .superclass(ClassName(godotPackage, baseClass))
 
         classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
@@ -103,7 +102,7 @@ class GenerationService(
 
         val baseClass = clazz.inherits
         if (!baseClass.isNullOrEmpty()) {
-            classTypeBuilder.superclass(ClassName(godotApiPackage, baseClass))
+            classTypeBuilder.superclass(ClassName(godotPackage, baseClass))
         }
 
         classTypeBuilder.generateClassConstructor(clazz.engineClassDBIndexName)
@@ -194,7 +193,7 @@ class GenerationService(
             .build()
 
         val fileBuilder = FileSpec
-            .builder(godotApiPackage, generatedClass.name ?: throw ClassGenerationException(enrichedClass))
+            .builder(godotPackage, generatedClass.name ?: throw ClassGenerationException(enrichedClass))
             .addType(generatedClass)
 
         for (enumExtension in enumExtensions) {
@@ -227,9 +226,9 @@ class GenerationService(
     override fun generateEnum(enum: EnrichedEnum, containingClassName: String?): Pair<List<TypeSpec>, List<FunSpec>> {
         return if (enum.internal.isBitField) {
             val packageName = if (enum.encapsulatingType == null) {
-                godotApiPackage
+                godotPackage
             } else {
-                "$godotApiPackage.${enum.encapsulatingType.type}"
+                "$godotPackage.${enum.encapsulatingType.type}"
             }
 
             val bitFieldInterfaceName = ClassName(packageName, enum.name)
@@ -343,7 +342,7 @@ class GenerationService(
             val companion = TypeSpec.companionObjectBuilder()
                 .addFunction(
                     FunSpec.builder("from")
-                        .returns(ClassName("${godotApiPackage}.${containingClassName ?: ""}", enum.name))
+                        .returns(ClassName("${godotPackage}.${containingClassName ?: ""}", enum.name))
                         .addParameter("value", Long::class)
                         .addStatement("return·entries.single·{·it.%N·==·%N·}", "id", "value")
                         .build()
@@ -729,7 +728,7 @@ class GenerationService(
                 .returns(Unit::class)
                 .addStatement(
                     "createNativeObject(%M, scriptIndex)",
-                    MemberName(godotApiPackage, classIndexName),
+                    MemberName(godotPackage, classIndexName),
                 )
                 .build()
         )
@@ -743,7 +742,7 @@ class GenerationService(
                 .returns(Unit::class)
                 .addStatement(
                     "getSingleton(%M)",
-                    MemberName(godotApiPackage, classIndexName),
+                    MemberName(godotPackage, classIndexName),
                 )
                 .build()
         )
@@ -965,9 +964,9 @@ class GenerationService(
         isOperator: Boolean = false
     ) {
         val packageName = if (enum.encapsulatingType == null) {
-            godotApiPackage
+            godotPackage
         } else {
-            "$godotApiPackage.${enum.encapsulatingType.type}"
+            "$godotPackage.${enum.encapsulatingType.type}"
         }
 
         val bitFieldInterfaceName = ClassName(packageName, enum.name)
@@ -1023,9 +1022,9 @@ class GenerationService(
             isOperator: Boolean = false
         ): List<FunSpec> {
             val packageName = if (enum.encapsulatingType == null) {
-                godotApiPackage
+                godotPackage
             } else {
-                "$godotApiPackage.${enum.encapsulatingType.type}"
+                "$godotPackage.${enum.encapsulatingType.type}"
             }
 
             val bitFieldInterfaceName = ClassName(packageName, enum.name)
