@@ -6,12 +6,12 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.addFormatLoaderPtr
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.PackedStringArray
 import godot.core.VariantParser.NIL
 import godot.removeFormatLoaderPtr

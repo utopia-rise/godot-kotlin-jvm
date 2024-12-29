@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -14,6 +13,7 @@ import godot.changeDirPtr
 import godot.common.interop.VoidPtr
 import godot.copyAbsolutePtr
 import godot.copyPtr
+import godot.core.Error
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG

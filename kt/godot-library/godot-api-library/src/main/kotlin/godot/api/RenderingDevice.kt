@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -28,6 +27,7 @@ import godot.computeListSetPushConstantPtr
 import godot.computePipelineCreatePtr
 import godot.computePipelineIsValidPtr
 import godot.core.Color
+import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedInt64Array

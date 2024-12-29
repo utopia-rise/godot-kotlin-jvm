@@ -2,6 +2,7 @@ package godot.gradle
 
 import godot.codegen.generateApiFrom
 import godot.codegen.generateCoroutine
+import godot.codegen.generateSignalAndCallable
 import org.gradle.api.DefaultTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -47,6 +48,7 @@ open class GenerateAPI : DefaultTask() {
             coreOutput,
             apiOutput,
         )
+        generateSignalAndCallable(coreOutput)
 
         val coroutineOutput = coroutineOutputDir.get().asFile
         coroutineOutput.deleteRecursively()
@@ -61,6 +63,7 @@ class ApiGeneratorPlugin : Plugin<Project> {
             task.sourceJson.set(extension.sourceJson)
             task.coreOutputDir.set(extension.coreOutputDir)
             task.apiOutputDir.set(extension.apiOutputDir)
+            task.extensionOutputDir.set(extension.extensionOutputDir)
             task.coroutineOutputDir.set(extension.coroutineOutputDir)
 
             task.group = "godot-jvm"

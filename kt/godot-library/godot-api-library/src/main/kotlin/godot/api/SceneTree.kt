@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -15,6 +14,7 @@ import godot.callGroupPtr
 import godot.changeSceneToFilePtr
 import godot.changeSceneToPackedPtr
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1

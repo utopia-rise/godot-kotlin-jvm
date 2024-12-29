@@ -6,9 +6,9 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import kotlin.Any

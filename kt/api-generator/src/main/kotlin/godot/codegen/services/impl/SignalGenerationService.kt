@@ -35,10 +35,10 @@ import kotlin.reflect.KCallable
 class SignalGenerationService : ISignalGenerationService {
 
     override fun generate(outputDir: File) {
-        val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
+        val signalFileSpec = FileSpec.builder(godotExtensionPackage, "Signals")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotExtensionPackage, "$SIGNAL_CLASS_NAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
             signalFileSpec.addType(generateSignalClass(argCount, genericClassNameInfo))

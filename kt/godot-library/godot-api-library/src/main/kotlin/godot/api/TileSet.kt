@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.VariantType
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
@@ -33,6 +32,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
+import godot.core.VariantType
 import godot.core.Vector2i
 import godot.getAlternativeLevelTileProxyPtr
 import godot.getCoordsLevelTileProxyPtr

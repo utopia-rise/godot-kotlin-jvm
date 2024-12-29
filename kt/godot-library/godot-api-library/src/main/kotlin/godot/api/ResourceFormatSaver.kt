@@ -6,8 +6,8 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
+import godot.core.Error
 import godot.core.PackedStringArray
 import kotlin.Boolean
 import kotlin.Int

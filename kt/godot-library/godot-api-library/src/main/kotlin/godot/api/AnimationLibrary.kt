@@ -6,12 +6,12 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.addAnimationPtr
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName

@@ -49,7 +49,7 @@ fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
 
 }
 
-fun generateExtension(outputDir: File) {
+fun generateSignalAndCallable(outputDir: File) {
     LambdaCallableGenerationService().generate(outputDir)
     SignalGenerationService().generate(outputDir)
 }

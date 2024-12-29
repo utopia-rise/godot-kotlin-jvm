@@ -26,16 +26,10 @@ java {
 }
 
 dependencies {
-    compileOnly(project(":godot-api-library"))
+    compileOnly("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    compileOnly(project(":godot-internal-library"))
     compileOnly(project(":godot-core-library"))
-    implementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
-}
-
-tasks {
-    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
-    getByName("sourcesJar") {
-        dependsOn(":godot-api-library:sourcesJar")
-    }
+    compileOnly(project(":godot-api-library"))
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

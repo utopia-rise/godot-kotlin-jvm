@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -25,6 +24,7 @@ import godot.convertPtr
 import godot.copyFromPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.Rect2i
 import godot.core.VariantParser.BOOL

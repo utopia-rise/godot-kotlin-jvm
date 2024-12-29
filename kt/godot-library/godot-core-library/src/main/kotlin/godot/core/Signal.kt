@@ -1,8 +1,7 @@
 package godot.core
 
-import godot.Node
+import godot.api.Node
 import godot.api.Object
-import godot.global.GD
 import godot.common.extensions.convertToSnakeCase
 
 private val connectMethodName = "connect".asStringName()

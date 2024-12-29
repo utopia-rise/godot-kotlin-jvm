@@ -41,6 +41,8 @@ includeBuild("api-generator") {
     }
 }
 
+include("godot-library")
+
 subdir("godot-library") {
     include("godot-internal-library")
     include("godot-core-library")

@@ -6,11 +6,11 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -32,8 +32,8 @@ import godot.getRemoteSenderIdPtr
 import godot.getUniqueIdPtr
 import godot.hasMultiplayerPeerPtr
 import godot.isServerPtr
-import godot.api.ObjectConfigurationAddPtr
-import godot.api.ObjectConfigurationRemovePtr
+import godot.objectConfigurationAddPtr
+import godot.objectConfigurationRemovePtr
 import godot.pollPtr
 import godot.rpcPtr
 import godot.setDefaultInterfacePtr

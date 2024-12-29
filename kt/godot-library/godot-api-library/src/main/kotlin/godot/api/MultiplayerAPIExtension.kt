@@ -6,8 +6,8 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
+import godot.core.Error
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray

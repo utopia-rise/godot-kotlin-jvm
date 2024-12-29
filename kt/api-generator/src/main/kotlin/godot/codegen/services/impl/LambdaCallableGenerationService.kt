@@ -21,14 +21,16 @@ import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotInteropPackage
+import godot.tools.common.constants.godotExtensionPackage
 import java.io.File
 
 class LambdaCallableGenerationService : ILambdaCallableGenerationService {
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
+        val callableFileSpec = FileSpec.builder(godotExtensionPackage, "Callables")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
+            val ktCallableClassName = ClassName(godotExtensionPackage, "$KT_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
                 .classBuilder(ktCallableClassName)
                 .superclass(
@@ -82,7 +84,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 )
 
             val variantConverterClassName = ClassName(
-                godotCorePackage,
+                godotInteropPackage,
                 GodotKotlinJvmTypes.variantConverter
             )
 
@@ -223,7 +225,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
             var removedTypeVariables = 0
             while (typeVariables.isNotEmpty()) {
                 val bindReturnType =
-                    ClassName(godotCorePackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+                    ClassName(godotExtensionPackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
                 classBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
@@ -337,7 +339,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
 
     // JAVA BRIDGE FUNCTION
     private fun generateKtCallableCompanion(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
-        val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
+        val variantMapperMember = MemberName(godotExtensionPackage, "variantMapper")
 
         return TypeSpec
             .companionObjectBuilder()

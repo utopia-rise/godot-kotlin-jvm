@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
@@ -20,6 +19,7 @@ import godot.common.interop.VoidPtr
 import godot.connectNodesForcedPtr
 import godot.connectNodesPtr
 import godot.core.Dictionary
+import godot.core.Error
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray

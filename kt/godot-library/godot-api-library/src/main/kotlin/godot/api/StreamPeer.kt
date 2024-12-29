@@ -6,11 +6,11 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY

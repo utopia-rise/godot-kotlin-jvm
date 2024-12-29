@@ -1,8 +1,9 @@
 @file:Suppress("PackageDirectoryMismatch", "UNCHECKED_CAST")
 
-package godot.core
+package godot.extension
 
 import godot.common.interop.VariantConverter
+import godot.core.LambdaCallable
 import godot.core.VariantParser.NIL
 import java.lang.Class
 import kotlin.Any
@@ -13,8 +14,8 @@ import kotlin.jvm.JvmStatic
 import kotlin.jvm.`internal`.Reflection
 
 public class LambdaCallable0<R> @PublishedApi internal constructor(
-    variantConverter: VariantConverter,
-    private val function: () -> R,
+  variantConverter: VariantConverter,
+  private val function: () -> R,
 ) : LambdaCallable<R>(variantConverter) {
   public override fun invokeKt(): R = function()
 
@@ -31,7 +32,7 @@ public class LambdaCallable0<R> @PublishedApi internal constructor(
 }
 
 public inline fun <reified R> callable0(noinline function: () -> R) =
-    LambdaCallable0(variantMapper.getOrDefault(R::class, NIL), function)
+    LambdaCallable0(godot.core.variantMapper.getOrDefault(R::class, NIL), function)
 
 public inline fun <reified R> (() -> R).asCallable() = callable0(this)
 
@@ -61,7 +62,7 @@ public class LambdaCallable1<P0, R> @PublishedApi internal constructor(
 }
 
 public inline fun <reified P0, reified R> callable1(noinline function: (p0: P0) -> R) =
-    LambdaCallable1(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, function)
+    LambdaCallable1(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, function)
 
 public inline fun <reified P0, reified R> ((p0: P0) -> R).asCallable() = callable1(this)
 
@@ -96,7 +97,7 @@ public class LambdaCallable2<P0, P1, R> @PublishedApi internal constructor(
 
 public inline fun <reified P0, reified P1, reified R> callable2(noinline function: (p0: P0,
     p1: P1) -> R) =
-    LambdaCallable2(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, function)
+    LambdaCallable2(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified R> ((p0: P0, p1: P1) -> R).asCallable() =
     callable2(this)
@@ -159,7 +160,7 @@ public inline fun <reified P0, reified P1, reified P2, reified R> callable3(noin
   p1: P1,
   p2: P2,
 ) -> R) =
-    LambdaCallable3(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, function)
+    LambdaCallable3(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified R> ((
   p0: P0,
@@ -239,7 +240,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ca
   p2: P2,
   p3: P3,
 ) -> R) =
-    LambdaCallable4(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, function)
+    LambdaCallable4(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
   p0: P0,
@@ -335,7 +336,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
 ) -> R) =
-    LambdaCallable5(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, function)
+    LambdaCallable5(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R> ((
   p0: P0,
@@ -448,7 +449,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
 ) -> R) =
-    LambdaCallable6(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, function)
+    LambdaCallable6(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     R> ((
@@ -580,7 +581,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
 ) -> R) =
-    LambdaCallable7(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, function)
+    LambdaCallable7(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified R> ((
@@ -733,7 +734,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
 ) -> R) =
-    LambdaCallable8(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, function)
+    LambdaCallable8(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified R> ((
@@ -907,7 +908,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
 ) -> R) =
-    LambdaCallable9(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, function)
+    LambdaCallable9(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified R> ((
@@ -1102,7 +1103,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
 ) -> R) =
-    LambdaCallable10(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, function)
+    LambdaCallable10(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified R> ((
@@ -1320,7 +1321,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
 ) -> R) =
-    LambdaCallable11(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, function)
+    LambdaCallable11(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified R> ((
@@ -1562,7 +1563,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
 ) -> R) =
-    LambdaCallable12(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, function)
+    LambdaCallable12(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, godot.core.variantMapper[P11::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified R> ((
@@ -1828,7 +1829,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
 ) -> R) =
-    LambdaCallable13(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, function)
+    LambdaCallable13(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, godot.core.variantMapper[P11::class]!!, godot.core.variantMapper[P12::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified R> ((
@@ -2119,7 +2120,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
 ) -> R) =
-    LambdaCallable14(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, function)
+    LambdaCallable14(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, godot.core.variantMapper[P11::class]!!, godot.core.variantMapper[P12::class]!!, godot.core.variantMapper[P13::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -2437,7 +2438,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
 ) -> R) =
-    LambdaCallable15(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, function)
+    LambdaCallable15(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, godot.core.variantMapper[P11::class]!!, godot.core.variantMapper[P12::class]!!, godot.core.variantMapper[P13::class]!!, godot.core.variantMapper[P14::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -2782,7 +2783,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
   p15: P15,
 ) -> R) =
-    LambdaCallable16(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!, function)
+    LambdaCallable16(godot.core.variantMapper.getOrDefault(R::class, NIL), godot.core.variantMapper[P0::class]!!, godot.core.variantMapper[P1::class]!!, godot.core.variantMapper[P2::class]!!, godot.core.variantMapper[P3::class]!!, godot.core.variantMapper[P4::class]!!, godot.core.variantMapper[P5::class]!!, godot.core.variantMapper[P6::class]!!, godot.core.variantMapper[P7::class]!!, godot.core.variantMapper[P8::class]!!, godot.core.variantMapper[P9::class]!!, godot.core.variantMapper[P10::class]!!, godot.core.variantMapper[P11::class]!!, godot.core.variantMapper[P12::class]!!, godot.core.variantMapper[P13::class]!!, godot.core.variantMapper[P14::class]!!, godot.core.variantMapper[P15::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,

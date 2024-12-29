@@ -6,7 +6,6 @@
 
 package godot.api
 
-import godot.Error
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -14,6 +13,7 @@ import godot.clearPtr
 import godot.common.interop.VoidPtr
 import godot.completeAuthPtr
 import godot.core.Callable
+import godot.core.Error
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array

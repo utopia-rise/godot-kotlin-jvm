@@ -24,7 +24,7 @@ const val godotCoroutinePackage = "godot.coroutines"
 
 
 
-const val variantConverterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantConverter}"
+const val variantConverterPackage = "$godotInteropPackage.${GodotKotlinJvmTypes.variantConverter}"
 const val variantParserPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantParser}"
 const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantCaster}"
 
