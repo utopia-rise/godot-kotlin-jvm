@@ -8,6 +8,23 @@ package godot.extension
 
 import godot.api.Object
 import godot.core.Callable
+import godot.core.Signal0
+import godot.core.Signal1
+import godot.core.Signal10
+import godot.core.Signal11
+import godot.core.Signal12
+import godot.core.Signal13
+import godot.core.Signal14
+import godot.core.Signal15
+import godot.core.Signal16
+import godot.core.Signal2
+import godot.core.Signal3
+import godot.core.Signal4
+import godot.core.Signal5
+import godot.core.Signal6
+import godot.core.Signal7
+import godot.core.Signal8
+import godot.core.Signal9
 import godot.core.asCallable
 import godot.core.toGodotName
 import godot.extension.connectThreadSafe

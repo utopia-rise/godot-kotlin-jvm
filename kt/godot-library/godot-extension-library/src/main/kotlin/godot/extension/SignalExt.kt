@@ -1,4 +1,4 @@
-package godot.extensions
+package godot.extension
 
 import godot.core.Callable
 import godot.core.Signal

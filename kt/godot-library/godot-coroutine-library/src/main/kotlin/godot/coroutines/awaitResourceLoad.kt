@@ -1,9 +1,9 @@
 package godot.coroutines
 
-import godot.Error
-import godot.Resource
-import godot.ResourceLoader
-import godot.ResourceLoader.CacheMode
+import godot.core.Error
+import godot.api.Resource
+import godot.api.ResourceLoader
+import godot.api.ResourceLoader.CacheMode
 import godot.core.variantArrayOf
 import godot.global.GD
 import godot.common.util.RealT

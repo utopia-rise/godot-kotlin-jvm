@@ -1,6 +1,6 @@
 @file:JvmName("ObjectUtils")
 
-package godot.extensions
+package godot.extension
 
 import godot.api.Object
 import godot.api.RefCounted

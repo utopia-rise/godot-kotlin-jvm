@@ -88,7 +88,7 @@ object SignalGenerationService : ISignalGenerationService {
         val signalFileSpec = FileSpec.builder(godotExtensionPackage, "SignalUtils")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotExtensionPackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
             signalFileSpec.addFunction(generateThreadSafeExtension(argCount, genericClassNameInfo))

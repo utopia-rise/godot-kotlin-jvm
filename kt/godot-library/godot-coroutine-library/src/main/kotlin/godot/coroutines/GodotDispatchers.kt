@@ -1,9 +1,9 @@
 package godot.coroutines
 
-import godot.Engine
+import godot.api.Engine
 import godot.api.Object
-import godot.SceneTree
-import godot.WorkerThreadPool
+import godot.api.SceneTree
+import godot.api.WorkerThreadPool
 import godot.core.Callable
 import godot.core.asCallable
 import godot.core.connect
