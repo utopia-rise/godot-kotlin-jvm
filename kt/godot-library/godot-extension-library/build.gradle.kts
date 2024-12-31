@@ -32,6 +32,17 @@ dependencies {
     compileOnly(project(":godot-api-library"))
 }
 
+tasks {
+    compileKotlin {
+        dependsOn(":godot-library:generateAPI")
+    }
+
+    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
+    withType<Jar> {
+        dependsOn(":godot-library:generateAPI")
+    }
+}
+
 val targetSuffix = if (isRelease) "release" else "debug"
 
 publishing {
