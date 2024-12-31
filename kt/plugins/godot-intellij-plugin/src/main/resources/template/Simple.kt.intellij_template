@@ -1,6 +1,6 @@
 package GROUP_ID.ARTEFACT_ID
 
-import godot.Node3D
+import godot.api.Node3D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.global.GD

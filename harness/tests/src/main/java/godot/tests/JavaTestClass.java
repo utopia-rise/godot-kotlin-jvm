@@ -1,7 +1,7 @@
 package godot.tests;
 
 import godot.Button;
-import godot.Node;
+import godot.api.Node;
 import godot.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;

@@ -1,8 +1,8 @@
 package godot.tests.static
 
-import godot.DirAccess
-import godot.Node
-import godot.ProjectSettings
+import godot.api.DirAccess
+import godot.api.Node
+import godot.api.ProjectSettings
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.Color

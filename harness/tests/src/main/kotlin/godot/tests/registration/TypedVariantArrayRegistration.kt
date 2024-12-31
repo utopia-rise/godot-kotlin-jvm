@@ -1,8 +1,8 @@
 package godot.tests.registration
 
-import godot.Button
-import godot.Node
-import godot.Texture
+import godot.api.Button
+import godot.api.Node
+import godot.api.Texture
 import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterProperty
