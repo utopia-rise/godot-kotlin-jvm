@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.InlineAlignment
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array

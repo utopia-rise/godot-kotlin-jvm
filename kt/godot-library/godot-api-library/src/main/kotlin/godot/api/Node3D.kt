@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Basis
+import godot.core.EulerOrder
 import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.Signal0

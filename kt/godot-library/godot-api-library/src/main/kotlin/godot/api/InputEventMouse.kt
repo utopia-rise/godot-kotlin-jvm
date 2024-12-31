@@ -11,8 +11,9 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.MouseButtonMaskValue
 import godot.common.interop.VoidPtr
+import godot.core.MouseButtonMask
+import godot.core.MouseButtonMaskValue
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2

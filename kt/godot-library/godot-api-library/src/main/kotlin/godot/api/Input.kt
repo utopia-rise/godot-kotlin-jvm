@@ -9,9 +9,14 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.MouseButtonMaskValue
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.JoyAxis
+import godot.core.JoyButton
+import godot.core.Key
+import godot.core.MouseButton
+import godot.core.MouseButtonMask
+import godot.core.MouseButtonMaskValue
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.VariantArray

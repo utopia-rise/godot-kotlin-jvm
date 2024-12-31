@@ -1,4 +1,4 @@
-package godot.codegen.utils
+package godot.codegen.poet
 
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.ClassName

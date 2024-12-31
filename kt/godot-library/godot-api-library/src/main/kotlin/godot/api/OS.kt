@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.Key
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantArray

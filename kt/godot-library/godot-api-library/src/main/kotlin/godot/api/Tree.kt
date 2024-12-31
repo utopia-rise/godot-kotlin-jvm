@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.HorizontalAlignment
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.Signal1

@@ -13,6 +13,7 @@ import godot.api.TextServer.FontStyleValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.HorizontalAlignment
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.VariantArray

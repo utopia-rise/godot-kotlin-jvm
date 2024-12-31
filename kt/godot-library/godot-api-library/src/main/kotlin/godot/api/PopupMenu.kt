@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.Key
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY

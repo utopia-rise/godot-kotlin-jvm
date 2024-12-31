@@ -13,6 +13,8 @@ import godot.api.TextServer.JustificationFlagValue
 import godot.api.TextServer.LineBreakFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.HorizontalAlignment
+import godot.core.InlineAlignment
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2

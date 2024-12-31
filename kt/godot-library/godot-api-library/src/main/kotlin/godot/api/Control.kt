@@ -16,6 +16,7 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Rect2
+import godot.core.Side
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName

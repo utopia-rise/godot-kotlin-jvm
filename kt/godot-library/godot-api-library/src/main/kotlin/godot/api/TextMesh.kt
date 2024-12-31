@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
+import godot.core.HorizontalAlignment
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,6 +24,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.VerticalAlignment
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

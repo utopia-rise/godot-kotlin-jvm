@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.HorizontalAlignment
 import godot.core.Rect2
 import godot.core.StringName
 import godot.core.VariantArray

@@ -15,14 +15,13 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.services.ILambdaCallableGenerationService
-import godot.codegen.utils.GenericClassNameInfo
+import godot.codegen.poet.GenericClassNameInfo
 import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotInteropPackage
-import godot.tools.common.constants.godotExtensionPackage
 import java.io.File
 
 

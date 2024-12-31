@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.HorizontalAlignment
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
 import godot.core.RID

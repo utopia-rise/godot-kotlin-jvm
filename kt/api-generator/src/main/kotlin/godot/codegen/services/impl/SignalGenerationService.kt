@@ -19,7 +19,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
-import godot.codegen.utils.GenericClassNameInfo
+import godot.codegen.poet.GenericClassNameInfo
 import godot.common.constants.Constraints
 import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_CALLABLE
