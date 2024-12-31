@@ -1,8 +1,8 @@
 package godot.tests;
 
-import godot.Button;
+import godot.api.Button;
 import godot.api.Node;
-import godot.RenderingServer;
+import godot.api.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;

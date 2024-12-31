@@ -17,6 +17,7 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
 import godot.tools.common.constants.VARIANT_PARSER_NIL
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotRegistrationPackage
@@ -130,18 +131,18 @@ object FunctionRegistrationGenerator {
     private fun getRpcModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.rpcMode) {
             null,
-            RpcMode.DISABLED -> ClassName("$godotPackage.${GodotTypes.rpcMode}", "RPC_MODE_DISABLED")
-            RpcMode.ANY -> ClassName("$godotPackage.${GodotTypes.rpcMode}", "RPC_MODE_ANY_PEER")
-            RpcMode.AUTHORITY -> ClassName("$godotPackage.${GodotTypes.rpcMode}", "RPC_MODE_AUTHORITY")
+            RpcMode.DISABLED -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_DISABLED")
+            RpcMode.ANY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_ANY_PEER")
+            RpcMode.AUTHORITY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_AUTHORITY")
         }
     }
 
     private fun getRpcTransferModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferMode) {
             null,
-            TransferMode.RELIABLE -> ClassName("$godotPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_RELIABLE")
-            TransferMode.UNRELIABLE -> ClassName("$godotPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE")
-            TransferMode.UNRELIABLE_ORDERED -> ClassName("$godotPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE_ORDERED")
+            TransferMode.RELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_RELIABLE")
+            TransferMode.UNRELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE")
+            TransferMode.UNRELIABLE_ORDERED -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE_ORDERED")
         }
     }
 

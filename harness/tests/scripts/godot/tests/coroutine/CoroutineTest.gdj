@@ -6,7 +6,7 @@ fqName = godot.tests.coroutine.CoroutineTest
 relativeSourcePath = src/main/kotlin/godot/tests/coroutine/CoroutineTest.kt
 baseType = Object
 supertypes = [
-    godot.Object,
+    godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

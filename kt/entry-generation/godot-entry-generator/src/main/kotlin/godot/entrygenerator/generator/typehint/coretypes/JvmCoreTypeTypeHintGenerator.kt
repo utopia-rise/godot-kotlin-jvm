@@ -6,6 +6,7 @@ import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotPackage
 
 class JvmCoreTypeTypeHintGenerator(
@@ -13,12 +14,12 @@ class JvmCoreTypeTypeHintGenerator(
 ) : PropertyTypeHintGenerator(registeredProperty) {
     override fun getPropertyTypeHint(): ClassName {
         return when (propertyHintAnnotation) {
-            is ColorNoAlphaHintAnnotation -> ClassName("$godotPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_COLOR_NO_ALPHA")
+            is ColorNoAlphaHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_COLOR_NO_ALPHA")
             //TODO: implement ImageCompressLossy
             //TODO: implement ImageCompressLossLess
             //TODO: implement NodePathToEditedNode
             //TODO: implement NodePathValidTypes
-            null -> ClassName("$godotPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
+            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }

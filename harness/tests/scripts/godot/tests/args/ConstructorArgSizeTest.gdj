@@ -6,8 +6,8 @@ fqName = godot.tests.args.ConstructorArgSizeTest
 relativeSourcePath = src/main/kotlin/godot/tests/args/ConstructorArgSizeTest.kt
 baseType = Node
 supertypes = [
-    godot.Node,
-	godot.Object,
+    godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,
