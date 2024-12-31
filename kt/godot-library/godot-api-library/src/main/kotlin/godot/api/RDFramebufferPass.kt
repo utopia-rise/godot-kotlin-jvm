@@ -14,16 +14,6 @@ import godot.core.PackedInt32Array
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
-import godot.getColorAttachmentsPtr
-import godot.getDepthAttachmentPtr
-import godot.getInputAttachmentsPtr
-import godot.getPreserveAttachmentsPtr
-import godot.getResolveAttachmentsPtr
-import godot.setColorAttachmentsPtr
-import godot.setDepthAttachmentPtr
-import godot.setInputAttachmentsPtr
-import godot.setPreserveAttachmentsPtr
-import godot.setResolveAttachmentsPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

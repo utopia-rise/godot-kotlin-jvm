@@ -19,15 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.createFromImagePtr
-import godot.getCompressionModePtr
-import godot.getFormatPtr
-import godot.getSizeOverridePtr
-import godot.isKeepingAllCompressedBuffersPtr
-import godot.isKeepingCompressedBufferPtr
-import godot.setKeepAllCompressedBuffersPtr
-import godot.setKeepCompressedBufferPtr
-import godot.setSizeOverridePtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int

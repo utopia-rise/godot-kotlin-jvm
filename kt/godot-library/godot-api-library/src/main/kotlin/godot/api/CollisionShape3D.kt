@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getShapePtr
-import godot.isDisabledPtr
-import godot.makeConvexFromSiblingsPtr
-import godot.resourceChangedPtr
-import godot.setDisabledPtr
-import godot.setShapePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

@@ -4,14 +4,14 @@ package godot.core
 
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
-import godot.global.GD
-import godot.global.GD.acos
-import godot.global.GD.atan
-import godot.global.GD.cos
-import godot.global.GD.sin
-import godot.global.GD.tan
 import godot.common.util.RealT
+import godot.common.util.isZeroApprox
 import kotlin.math.abs
+import kotlin.math.acos
+import kotlin.math.atan
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.tan
 
 class Projection(
     p_x: Vector4,
@@ -834,7 +834,7 @@ class Projection(
 
             /** Product of pivots, gives determinant when finished  */
             determinant *= pivotValue
-            if (GD.isZeroApprox(determinant)) {
+            if (determinant.isZeroApprox()) {
                 return
                 /** Matrix is singular (zero determinant).  */
             }

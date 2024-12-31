@@ -16,10 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getDistancePtr
-import godot.getNormalPtr
-import godot.setDistancePtr
-import godot.setNormalPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

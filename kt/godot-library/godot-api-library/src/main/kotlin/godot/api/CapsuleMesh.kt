@@ -13,14 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getHeightPtr
-import godot.getRadialSegmentsPtr
-import godot.getRadiusPtr
-import godot.getRingsPtr
-import godot.setHeightPtr
-import godot.setRadialSegmentsPtr
-import godot.setRadiusPtr
-import godot.setRingsPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

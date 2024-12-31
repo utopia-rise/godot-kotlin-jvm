@@ -13,14 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFillModePtr
-import godot.isEditorPreviewIndeterminateEnabledPtr
-import godot.isIndeterminatePtr
-import godot.isPercentageShownPtr
-import godot.setEditorPreviewIndeterminatePtr
-import godot.setFillModePtr
-import godot.setIndeterminatePtr
-import godot.setShowPercentagePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

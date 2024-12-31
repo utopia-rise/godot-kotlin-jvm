@@ -12,10 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.getReferenceCountPtr
-import godot.initRefPtr
-import godot.referencePtr
-import godot.unreferencePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

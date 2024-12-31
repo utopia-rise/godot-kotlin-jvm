@@ -16,12 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getLocalPortPtr
-import godot.isConnectionAvailablePtr
-import godot.isListeningPtr
-import godot.listenPtr
-import godot.stopPtr
-import godot.takeConnectionPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

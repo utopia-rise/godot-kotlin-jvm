@@ -9,17 +9,12 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.closeFilePtr
-import godot.closePtr
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.openPtr
-import godot.startFilePtr
-import godot.writeFilePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

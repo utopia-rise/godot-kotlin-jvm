@@ -15,14 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getBakeMaskPtr
-import godot.getBakeMaskValuePtr
-import godot.getBakeSimplificationDistancePtr
-import godot.getOccluderPtr
-import godot.setBakeMaskPtr
-import godot.setBakeMaskValuePtr
-import godot.setBakeSimplificationDistancePtr
-import godot.setOccluderPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

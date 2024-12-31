@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addActionPtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -17,14 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getActionCountPtr
-import godot.getActionsPtr
-import godot.getLocalizedNamePtr
-import godot.getPriorityPtr
-import godot.removeActionPtr
-import godot.setActionsPtr
-import godot.setLocalizedNamePtr
-import godot.setPriorityPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

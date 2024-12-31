@@ -14,8 +14,6 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.switchToClipByNamePtr
-import godot.switchToClipPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

@@ -16,8 +16,6 @@ import godot.core.AABB
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.isOnScreenPtr
-import godot.setAabbPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

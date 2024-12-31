@@ -1,7 +1,5 @@
 package godot.core
 
-import godot.PropertyHint
-import godot.PropertyUsageFlags
 import godot.common.interop.VariantConverter
 import godot.internal.logging.GodotLogging
 import godot.internal.memory.TransferContext

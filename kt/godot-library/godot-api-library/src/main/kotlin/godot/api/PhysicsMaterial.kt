@@ -13,14 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getBouncePtr
-import godot.getFrictionPtr
-import godot.isAbsorbentPtr
-import godot.isRoughPtr
-import godot.setAbsorbentPtr
-import godot.setBouncePtr
-import godot.setFrictionPtr
-import godot.setRoughPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.getViewportPathInScenePtr
-import godot.setViewportPathInScenePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

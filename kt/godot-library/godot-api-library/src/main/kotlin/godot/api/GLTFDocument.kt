@@ -9,9 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.appendFromBufferPtr
-import godot.appendFromFilePtr
-import godot.appendFromScenePtr
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.PackedByteArray
@@ -22,17 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.generateBufferPtr
-import godot.generateScenePtr
-import godot.getImageFormatPtr
-import godot.getLossyQualityPtr
-import godot.getRootNodeModePtr
-import godot.registerGltfDocumentExtensionPtr
-import godot.setImageFormatPtr
-import godot.setLossyQualityPtr
-import godot.setRootNodeModePtr
-import godot.unregisterGltfDocumentExtensionPtr
-import godot.writeToFilesystemPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

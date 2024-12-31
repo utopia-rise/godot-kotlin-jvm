@@ -19,12 +19,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getPickColorPtr
-import godot.getPickerPtr
-import godot.getPopupPtr
-import godot.isEditingAlphaPtr
-import godot.setEditAlphaPtr
-import godot.setPickColorPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

@@ -2,7 +2,6 @@
 
 package godot.core
 
-import godot.Side
 import org.junit.Test
 
 class TestRect2i {

@@ -9,18 +9,12 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.base64ToRawPtr
-import godot.base64ToUtf8Ptr
-import godot.base64ToVariantPtr
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.rawToBase64Ptr
-import godot.utf8ToBase64Ptr
-import godot.variantToBase64Ptr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -38,7 +32,7 @@ private const val ENGINECLASS_MARSHALLS: Int = 16
 @GodotBaseType
 public object Marshalls : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_MARSHALLS)
+    getSingleton(ENGINECLASS_MARSHALLS)
   }
 
   /**

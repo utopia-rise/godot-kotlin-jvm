@@ -46,13 +46,14 @@ fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     generationService.generateCore(coreDir)
     generationService.generateApi(apiDir)
 
-
+    LambdaCallableGenerationService.generate(coreDir)
+    SignalGenerationService.generateCore(coreDir)
 }
 
-fun generateSignalAndCallable(outputDir: File) {
-    LambdaCallableGenerationService().generate(outputDir)
-    SignalGenerationService().generate(outputDir)
+fun generateExtension(outputDir: File) {
+    SignalGenerationService.generateExtension(outputDir)
 }
+
 fun generateCoroutine(outputDir: File) {
     AwaitGenerationService.generate(outputDir)
 }

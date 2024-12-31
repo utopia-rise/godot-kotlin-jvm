@@ -17,16 +17,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.getCurrentLengthPtr
-import godot.getCurrentNodePtr
-import godot.getCurrentPlayPositionPtr
-import godot.getFadingFromNodePtr
-import godot.getTravelPathPtr
-import godot.isPlayingPtr
-import godot.nextPtr
-import godot.startPtr
-import godot.stopPtr
-import godot.travelPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

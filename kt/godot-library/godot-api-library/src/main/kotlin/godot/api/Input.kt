@@ -9,9 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.actionPressPtr
-import godot.actionReleasePtr
-import godot.addJoyMappingPtr
 import godot.api.MouseButtonMaskValue
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
@@ -31,57 +28,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.flushBufferedEventsPtr
-import godot.getAccelerometerPtr
-import godot.getActionRawStrengthPtr
-import godot.getActionStrengthPtr
-import godot.getAxisPtr
-import godot.getConnectedJoypadsPtr
-import godot.getCurrentCursorShapePtr
-import godot.getGravityPtr
-import godot.getGyroscopePtr
-import godot.getJoyAxisPtr
-import godot.getJoyGuidPtr
-import godot.getJoyInfoPtr
-import godot.getJoyNamePtr
-import godot.getJoyVibrationDurationPtr
-import godot.getJoyVibrationStrengthPtr
-import godot.getLastMouseScreenVelocityPtr
-import godot.getLastMouseVelocityPtr
-import godot.getMagnetometerPtr
-import godot.getMouseButtonMaskPtr
-import godot.getMouseModePtr
-import godot.getVectorPtr
-import godot.isActionJustPressedPtr
-import godot.isActionJustReleasedPtr
-import godot.isActionPressedPtr
-import godot.isAnythingPressedPtr
-import godot.isEmulatingMouseFromTouchPtr
-import godot.isEmulatingTouchFromMousePtr
-import godot.isJoyButtonPressedPtr
-import godot.isJoyKnownPtr
-import godot.isKeyLabelPressedPtr
-import godot.isKeyPressedPtr
-import godot.isMouseButtonPressedPtr
-import godot.isPhysicalKeyPressedPtr
-import godot.isUsingAccumulatedInputPtr
-import godot.parseInputEventPtr
-import godot.removeJoyMappingPtr
-import godot.setAccelerometerPtr
-import godot.setCustomMouseCursorPtr
-import godot.setDefaultCursorShapePtr
-import godot.setEmulateMouseFromTouchPtr
-import godot.setEmulateTouchFromMousePtr
-import godot.setGravityPtr
-import godot.setGyroscopePtr
-import godot.setMagnetometerPtr
-import godot.setMouseModePtr
-import godot.setUseAccumulatedInputPtr
-import godot.shouldIgnoreDevicePtr
-import godot.startJoyVibrationPtr
-import godot.stopJoyVibrationPtr
-import godot.vibrateHandheldPtr
-import godot.warpMousePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -113,7 +59,7 @@ public object Input : Object() {
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_INPUT)
+    getSingleton(ENGINECLASS_INPUT)
   }
 
   /**

@@ -15,8 +15,6 @@ import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getOpenxrApiPtr
-import godot.registerExtensionWrapperPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

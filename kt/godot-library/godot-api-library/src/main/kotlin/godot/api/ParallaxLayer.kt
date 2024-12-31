@@ -15,12 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getMirroringPtr
-import godot.getMotionOffsetPtr
-import godot.getMotionScalePtr
-import godot.setMirroringPtr
-import godot.setMotionOffsetPtr
-import godot.setMotionScalePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

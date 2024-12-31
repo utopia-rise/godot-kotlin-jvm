@@ -14,9 +14,6 @@ import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.finishPtr
-import godot.startPtr
-import godot.updatePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

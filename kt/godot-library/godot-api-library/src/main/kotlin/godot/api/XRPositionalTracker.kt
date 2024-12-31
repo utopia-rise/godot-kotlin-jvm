@@ -25,16 +25,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.getInputPtr
-import godot.getPosePtr
-import godot.getTrackerHandPtr
-import godot.getTrackerProfilePtr
-import godot.hasPosePtr
-import godot.invalidatePosePtr
-import godot.setInputPtr
-import godot.setPosePtr
-import godot.setTrackerHandPtr
-import godot.setTrackerProfilePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

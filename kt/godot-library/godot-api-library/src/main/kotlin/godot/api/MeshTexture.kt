@@ -16,12 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getBaseTexturePtr
-import godot.getImageSizePtr
-import godot.getMeshPtr
-import godot.setBaseTexturePtr
-import godot.setImageSizePtr
-import godot.setMeshPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

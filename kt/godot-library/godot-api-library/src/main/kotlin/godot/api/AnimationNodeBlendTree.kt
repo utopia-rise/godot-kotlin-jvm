@@ -11,9 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addNodePtr
 import godot.common.interop.VoidPtr
-import godot.connectNodePtr
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -23,15 +21,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.disconnectNodePtr
-import godot.getGraphOffsetPtr
-import godot.getNodePositionPtr
-import godot.getNodePtr
-import godot.hasNodePtr
-import godot.removeNodePtr
-import godot.renameNodePtr
-import godot.setGraphOffsetPtr
-import godot.setNodePositionPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -15,11 +15,6 @@ import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.findProfileBoneNamePtr
-import godot.getProfilePtr
-import godot.getSkeletonBoneNamePtr
-import godot.setProfilePtr
-import godot.setSkeletonBoneNamePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

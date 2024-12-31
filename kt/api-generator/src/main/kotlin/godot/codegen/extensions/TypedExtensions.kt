@@ -54,6 +54,7 @@ fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type 
 fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s ->
     s == this.type
 } != null
+
 fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
 fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false

@@ -17,12 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getConstantAngularVelocityPtr
-import godot.getConstantLinearVelocityPtr
-import godot.getPhysicsMaterialOverridePtr
-import godot.setConstantAngularVelocityPtr
-import godot.setConstantLinearVelocityPtr
-import godot.setPhysicsMaterialOverridePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

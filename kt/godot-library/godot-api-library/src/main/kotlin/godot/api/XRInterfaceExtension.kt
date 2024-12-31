@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addBlitPtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat64Array
@@ -29,10 +28,6 @@ import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.getColorTexturePtr
-import godot.getDepthTexturePtr
-import godot.getRenderTargetTexturePtr
-import godot.getVelocityTexturePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

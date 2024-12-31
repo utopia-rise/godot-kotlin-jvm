@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getWorldScalePtr
-import godot.isCurrentPtr
-import godot.setCurrentPtr
-import godot.setWorldScalePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

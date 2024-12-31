@@ -15,11 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.createFromImagePtr
-import godot.getFormatPtr
-import godot.setImagePtr
-import godot.setSizeOverridePtr
-import godot.updatePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

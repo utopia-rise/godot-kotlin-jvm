@@ -13,11 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getCustomSolverBiasPtr
-import godot.getDebugMeshPtr
-import godot.getMarginPtr
-import godot.setCustomSolverBiasPtr
-import godot.setMarginPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

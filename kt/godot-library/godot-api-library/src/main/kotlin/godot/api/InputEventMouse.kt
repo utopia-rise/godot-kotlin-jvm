@@ -17,12 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getButtonMaskPtr
-import godot.getGlobalPositionPtr
-import godot.getPositionPtr
-import godot.setButtonMaskPtr
-import godot.setGlobalPositionPtr
-import godot.setPositionPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

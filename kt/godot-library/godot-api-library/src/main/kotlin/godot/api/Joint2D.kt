@@ -17,15 +17,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
-import godot.getBiasPtr
-import godot.getExcludeNodesFromCollisionPtr
-import godot.getNodeAPtr
-import godot.getNodeBPtr
-import godot.getRidPtr
-import godot.setBiasPtr
-import godot.setExcludeNodesFromCollisionPtr
-import godot.setNodeAPtr
-import godot.setNodeBPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

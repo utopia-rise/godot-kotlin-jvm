@@ -15,10 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.getBlendShapePtr
-import godot.getBlendShapesPtr
-import godot.setBlendShapePtr
-import godot.setBlendShapesPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

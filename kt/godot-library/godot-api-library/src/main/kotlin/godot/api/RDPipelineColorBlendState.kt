@@ -19,14 +19,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getAttachmentsPtr
-import godot.getBlendConstantPtr
-import godot.getEnableLogicOpPtr
-import godot.getLogicOpPtr
-import godot.setAttachmentsPtr
-import godot.setBlendConstantPtr
-import godot.setEnableLogicOpPtr
-import godot.setLogicOpPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

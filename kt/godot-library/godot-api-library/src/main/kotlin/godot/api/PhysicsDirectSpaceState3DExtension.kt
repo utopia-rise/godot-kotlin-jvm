@@ -14,7 +14,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.isBodyExcludedFromQueryPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError

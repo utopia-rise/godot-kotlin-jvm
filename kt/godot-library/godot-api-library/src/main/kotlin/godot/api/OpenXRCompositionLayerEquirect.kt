@@ -13,16 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getCentralHorizontalAnglePtr
-import godot.getFallbackSegmentsPtr
-import godot.getLowerVerticalAnglePtr
-import godot.getRadiusPtr
-import godot.getUpperVerticalAnglePtr
-import godot.setCentralHorizontalAnglePtr
-import godot.setFallbackSegmentsPtr
-import godot.setLowerVerticalAnglePtr
-import godot.setRadiusPtr
-import godot.setUpperVerticalAnglePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

@@ -16,10 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getDefaultValuePtr
-import godot.isDefaultValueEnabledPtr
-import godot.setDefaultValueEnabledPtr
-import godot.setDefaultValuePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

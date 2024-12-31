@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addAttachedNodePtr
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedInt32Array
@@ -21,17 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getAttachedNodesPtr
-import godot.getTintColorPtr
-import godot.getTitlePtr
-import godot.isAutoshrinkEnabledPtr
-import godot.isTintColorEnabledPtr
-import godot.removeAttachedNodePtr
-import godot.setAttachedNodesPtr
-import godot.setAutoshrinkEnabledPtr
-import godot.setTintColorEnabledPtr
-import godot.setTintColorPtr
-import godot.setTitlePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String

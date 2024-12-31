@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.canPushBufferPtr
-import godot.clearBufferPtr
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
@@ -19,10 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getFramesAvailablePtr
-import godot.getSkipsPtr
-import godot.pushBufferPtr
-import godot.pushFramePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getTimeLeftPtr
-import godot.setTimeLeftPtr
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress

@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.getTextureRdRidPtr
-import godot.setTextureRdRidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

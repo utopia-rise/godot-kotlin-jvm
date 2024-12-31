@@ -20,14 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser._RID
-import godot.executeModificationsPtr
-import godot.getBoneCountPtr
-import godot.getBoneLocalPoseOverridePtr
-import godot.getBonePtr
-import godot.getModificationStackPtr
-import godot.getSkeletonPtr
-import godot.setBoneLocalPoseOverridePtr
-import godot.setModificationStackPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int

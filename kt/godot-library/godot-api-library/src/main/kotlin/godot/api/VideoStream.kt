@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getFilePtr
-import godot.setFilePtr
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String

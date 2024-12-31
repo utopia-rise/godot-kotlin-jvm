@@ -15,13 +15,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.createPlaceholderPtr
-import godot.getDataPtr
-import godot.getDepthPtr
-import godot.getFormatPtr
-import godot.getHeightPtr
-import godot.getWidthPtr
-import godot.hasMipmapsPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

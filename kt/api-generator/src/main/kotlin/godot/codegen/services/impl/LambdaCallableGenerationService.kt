@@ -25,12 +25,26 @@ import godot.tools.common.constants.godotInteropPackage
 import godot.tools.common.constants.godotExtensionPackage
 import java.io.File
 
-class LambdaCallableGenerationService : ILambdaCallableGenerationService {
+
+
+object LambdaCallableGenerationService : ILambdaCallableGenerationService {
+    private const val FUNCTION_PARAMETER_NAME = "function"
+    private const val KT_CALLABLE_NAME = "LambdaCallable"
+    private const val CALLABLE_FUNCTION_NAME = "callable"
+    private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
+    private const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
+    private val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
+    private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
+
+    //Java
+    private val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
+    private val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
+
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotExtensionPackage, "Callables")
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val ktCallableClassName = ClassName(godotExtensionPackage, "$KT_CALLABLE_NAME$argCount")
+            val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
                 .classBuilder(ktCallableClassName)
                 .superclass(
@@ -225,7 +239,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
             var removedTypeVariables = 0
             while (typeVariables.isNotEmpty()) {
                 val bindReturnType =
-                    ClassName(godotExtensionPackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+                    ClassName(godotCorePackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
                 classBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
@@ -339,7 +353,7 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
 
     // JAVA BRIDGE FUNCTION
     private fun generateKtCallableCompanion(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
-        val variantMapperMember = MemberName(godotExtensionPackage, "variantMapper")
+        val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
 
         return TypeSpec
             .companionObjectBuilder()
@@ -397,19 +411,5 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                     .build()
             )
             .build()
-    }
-
-    private companion object {
-        const val FUNCTION_PARAMETER_NAME = "function"
-        const val KT_CALLABLE_NAME = "LambdaCallable"
-        const val CALLABLE_FUNCTION_NAME = "callable"
-        const val JAVA_CREATE_METHOD_NAME = "javaCreate"
-        const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
-        val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
-        val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
-
-        //Java
-        val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
-        val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
     }
 }

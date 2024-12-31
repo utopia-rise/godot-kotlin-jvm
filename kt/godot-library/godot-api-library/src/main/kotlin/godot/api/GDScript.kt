@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantCaster.ANY
-import godot.newPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress

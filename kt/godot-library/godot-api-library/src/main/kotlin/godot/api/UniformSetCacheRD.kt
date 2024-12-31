@@ -15,7 +15,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser._RID
-import godot.getCachePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

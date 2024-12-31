@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getOriginalClassPtr
-import godot.getOriginalScenePtr
-import godot.isRecordingPropertiesPtr
-import godot.setOriginalClassPtr
-import godot.setOriginalScenePtr
-import godot.setRecordingPropertiesPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.String

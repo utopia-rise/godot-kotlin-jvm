@@ -16,12 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getBindingCountPtr
-import godot.getBindingPtr
-import godot.getBindingsPtr
-import godot.getInteractionProfilePathPtr
-import godot.setBindingsPtr
-import godot.setInteractionProfilePathPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

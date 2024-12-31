@@ -28,6 +28,7 @@ dependencies {
     compileOnly("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     compileOnly(project(":godot-internal-library"))
     testImplementation("junit", "junit", "4.12")
+    testImplementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
 }
 
 

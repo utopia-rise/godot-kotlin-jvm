@@ -15,8 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Plane
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PLANE
-import godot.getPlanePtr
-import godot.setPlanePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

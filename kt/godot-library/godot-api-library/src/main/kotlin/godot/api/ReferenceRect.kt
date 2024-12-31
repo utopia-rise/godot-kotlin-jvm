@@ -17,12 +17,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getBorderColorPtr
-import godot.getBorderWidthPtr
-import godot.getEditorOnlyPtr
-import godot.setBorderColorPtr
-import godot.setBorderWidthPtr
-import godot.setEditorOnlyPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

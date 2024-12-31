@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getPolyphonyPtr
-import godot.setPolyphonyPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

@@ -15,16 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getMaterialPtr
-import godot.getRadialSegmentsPtr
-import godot.getRadiusPtr
-import godot.getRingsPtr
-import godot.getSmoothFacesPtr
-import godot.setMaterialPtr
-import godot.setRadialSegmentsPtr
-import godot.setRadiusPtr
-import godot.setRingsPtr
-import godot.setSmoothFacesPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.asRelativePtr
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.VariantCaster.ANY
@@ -17,12 +16,6 @@ import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.fromCurrentPtr
-import godot.fromPtr
-import godot.setCustomInterpolatorPtr
-import godot.setDelayPtr
-import godot.setEasePtr
-import godot.setTransPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Int

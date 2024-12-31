@@ -20,15 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.getPathOwnerIdsPtr
-import godot.getPathPtr
-import godot.getPathRidsPtr
-import godot.getPathTypesPtr
-import godot.resetPtr
-import godot.setPathOwnerIdsPtr
-import godot.setPathPtr
-import godot.setPathRidsPtr
-import godot.setPathTypesPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

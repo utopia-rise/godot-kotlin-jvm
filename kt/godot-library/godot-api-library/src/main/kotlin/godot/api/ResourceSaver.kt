@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addResourceFormatSaverPtr
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.PackedStringArray
@@ -19,9 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getRecognizedExtensionsPtr
-import godot.removeResourceFormatSaverPtr
-import godot.savePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -62,7 +58,7 @@ public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = 
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_RESOURCESAVER)
+    getSingleton(ENGINECLASS_RESOURCESAVER)
   }
 
   /**

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clearSurfacesPtr
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Plane
@@ -22,15 +21,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.surfaceAddVertex2dPtr
-import godot.surfaceAddVertexPtr
-import godot.surfaceBeginPtr
-import godot.surfaceEndPtr
-import godot.surfaceSetColorPtr
-import godot.surfaceSetNormalPtr
-import godot.surfaceSetTangentPtr
-import godot.surfaceSetUv2Ptr
-import godot.surfaceSetUvPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

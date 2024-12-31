@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.registerInteractionProfilePtr
-import godot.registerIoPathPtr
-import godot.registerProfileRenamePtr
-import godot.registerTopLevelPathPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

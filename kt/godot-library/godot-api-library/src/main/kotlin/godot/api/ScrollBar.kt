@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getCustomStepPtr
-import godot.setCustomStepPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

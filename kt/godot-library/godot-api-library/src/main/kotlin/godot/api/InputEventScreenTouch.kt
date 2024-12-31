@@ -17,14 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getIndexPtr
-import godot.getPositionPtr
-import godot.isDoubleTapPtr
-import godot.setCanceledPtr
-import godot.setDoubleTapPtr
-import godot.setIndexPtr
-import godot.setPositionPtr
-import godot.setPressedPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

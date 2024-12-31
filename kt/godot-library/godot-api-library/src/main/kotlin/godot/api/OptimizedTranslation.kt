@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.generatePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

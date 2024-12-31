@@ -12,12 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFormatPtr
-import godot.getSamplesPtr
-import godot.getUsageFlagsPtr
-import godot.setFormatPtr
-import godot.setSamplesPtr
-import godot.setUsageFlagsPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

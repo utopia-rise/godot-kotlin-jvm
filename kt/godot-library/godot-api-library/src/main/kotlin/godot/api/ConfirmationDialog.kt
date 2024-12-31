@@ -13,9 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getCancelButtonPtr
-import godot.getCancelButtonTextPtr
-import godot.setCancelButtonTextPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

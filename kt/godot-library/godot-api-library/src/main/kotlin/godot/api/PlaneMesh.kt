@@ -18,16 +18,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.getCenterOffsetPtr
-import godot.getOrientationPtr
-import godot.getSizePtr
-import godot.getSubdivideDepthPtr
-import godot.getSubdivideWidthPtr
-import godot.setCenterOffsetPtr
-import godot.setOrientationPtr
-import godot.setSizePtr
-import godot.setSubdivideDepthPtr
-import godot.setSubdivideWidthPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

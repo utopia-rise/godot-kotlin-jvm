@@ -20,16 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getAdditionalDataPtr
-import godot.getBlendWeightsPtr
-import godot.getInstanceMaterialsPtr
-import godot.getMeshPtr
-import godot.getOriginalNamePtr
-import godot.setAdditionalDataPtr
-import godot.setBlendWeightsPtr
-import godot.setInstanceMaterialsPtr
-import godot.setMeshPtr
-import godot.setOriginalNamePtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.String

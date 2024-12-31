@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getParamPtr
-import godot.setParamPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

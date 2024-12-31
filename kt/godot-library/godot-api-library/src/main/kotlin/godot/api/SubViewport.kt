@@ -17,16 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.getClearModePtr
-import godot.getSize2dOverridePtr
-import godot.getSizePtr
-import godot.getUpdateModePtr
-import godot.isSize2dOverrideStretchEnabledPtr
-import godot.setClearModePtr
-import godot.setSize2dOverridePtr
-import godot.setSize2dOverrideStretchPtr
-import godot.setSizePtr
-import godot.setUpdateModePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

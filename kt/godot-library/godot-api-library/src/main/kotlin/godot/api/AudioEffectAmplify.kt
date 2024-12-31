@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getVolumeDbPtr
-import godot.setVolumeDbPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

@@ -17,12 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getExtensionPtr
-import godot.getLoadedExtensionsPtr
-import godot.isExtensionLoadedPtr
-import godot.loadExtensionPtr
-import godot.reloadExtensionPtr
-import godot.unloadExtensionPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -47,7 +41,7 @@ public object GDExtensionManager : Object() {
   public val extensionsReloaded: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_GDEXTENSIONMANAGER)
+    getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
   }
 
   /**

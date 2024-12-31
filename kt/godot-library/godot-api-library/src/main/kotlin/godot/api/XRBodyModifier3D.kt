@@ -14,12 +14,6 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.getBodyTrackerPtr
-import godot.getBodyUpdatePtr
-import godot.getBoneUpdatePtr
-import godot.setBodyTrackerPtr
-import godot.setBodyUpdatePtr
-import godot.setBoneUpdatePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

@@ -15,10 +15,6 @@ import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
-import godot.getFaceTrackerPtr
-import godot.getTargetPtr
-import godot.setFaceTrackerPtr
-import godot.setTargetPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

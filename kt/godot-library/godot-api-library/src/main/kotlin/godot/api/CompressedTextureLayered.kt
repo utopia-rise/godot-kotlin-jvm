@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.getLoadPathPtr
-import godot.loadPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

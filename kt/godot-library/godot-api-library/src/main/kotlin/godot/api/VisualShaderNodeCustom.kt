@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.LONG
-import godot.getOptionIndexPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

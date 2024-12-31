@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFftSizePtr
-import godot.getOversamplingPtr
-import godot.getPitchScalePtr
-import godot.setFftSizePtr
-import godot.setOversamplingPtr
-import godot.setPitchScalePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

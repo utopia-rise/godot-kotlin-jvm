@@ -18,11 +18,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.getVrsMinRadiusPtr
-import godot.getVrsStrengthPtr
-import godot.makeVrsTexturePtr
-import godot.setVrsMinRadiusPtr
-import godot.setVrsStrengthPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

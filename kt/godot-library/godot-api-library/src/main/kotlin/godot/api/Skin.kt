@@ -9,9 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addBindPtr
-import godot.addNamedBindPtr
-import godot.clearBindsPtr
 import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.Transform3D
@@ -20,14 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
-import godot.getBindBonePtr
-import godot.getBindCountPtr
-import godot.getBindNamePtr
-import godot.getBindPosePtr
-import godot.setBindBonePtr
-import godot.setBindCountPtr
-import godot.setBindNamePtr
-import godot.setBindPosePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getLengthPtr
-import godot.getSlideOnSlopePtr
-import godot.setLengthPtr
-import godot.setSlideOnSlopePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

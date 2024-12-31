@@ -15,9 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.createInstancePtr
-import godot.getInstancePathPtr
-import godot.getStoredValuesPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

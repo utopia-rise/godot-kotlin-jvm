@@ -17,16 +17,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getDiffuseFactorPtr
-import godot.getDiffuseImgPtr
-import godot.getGlossFactorPtr
-import godot.getSpecGlossImgPtr
-import godot.getSpecularFactorPtr
-import godot.setDiffuseFactorPtr
-import godot.setDiffuseImgPtr
-import godot.setGlossFactorPtr
-import godot.setSpecGlossImgPtr
-import godot.setSpecularFactorPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

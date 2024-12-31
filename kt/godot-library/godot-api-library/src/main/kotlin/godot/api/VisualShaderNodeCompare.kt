@@ -12,12 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getComparisonTypePtr
-import godot.getConditionPtr
-import godot.getFunctionPtr
-import godot.setComparisonTypePtr
-import godot.setConditionPtr
-import godot.setFunctionPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

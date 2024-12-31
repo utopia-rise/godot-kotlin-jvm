@@ -1,6 +1,5 @@
 package godot.core
 
-import godot.EulerOrder
 import godot.common.util.PI
 import godot.common.util.SQRT12
 import org.junit.Test

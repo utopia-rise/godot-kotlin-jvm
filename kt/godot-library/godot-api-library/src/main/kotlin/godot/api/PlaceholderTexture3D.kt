@@ -15,8 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3I
 import godot.core.Vector3i
-import godot.getSizePtr
-import godot.setSizePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

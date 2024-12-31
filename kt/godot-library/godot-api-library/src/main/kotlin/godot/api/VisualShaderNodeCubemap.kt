@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getCubeMapPtr
-import godot.getSourcePtr
-import godot.getTextureTypePtr
-import godot.setCubeMapPtr
-import godot.setSourcePtr
-import godot.setTextureTypePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

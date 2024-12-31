@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addIceCandidatePtr
-import godot.closePtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
@@ -24,16 +22,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.createDataChannelPtr
-import godot.createOfferPtr
-import godot.getConnectionStatePtr
-import godot.getGatheringStatePtr
-import godot.getSignalingStatePtr
-import godot.initializePtr
-import godot.pollPtr
-import godot.setDefaultExtensionPtr
-import godot.setLocalDescriptionPtr
-import godot.setRemoteDescriptionPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

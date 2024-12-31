@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.mixAudioPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

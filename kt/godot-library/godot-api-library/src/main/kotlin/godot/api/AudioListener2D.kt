@@ -9,12 +9,9 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clearCurrentPtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.isCurrentPtr
-import godot.makeCurrentPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clearBreakpointsPtr
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.StringName
@@ -22,28 +21,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.debugPtr
-import godot.getDepthPtr
-import godot.getLinesLeftPtr
-import godot.hasCapturePtr
-import godot.hasProfilerPtr
-import godot.insertBreakpointPtr
-import godot.isActivePtr
-import godot.isBreakpointPtr
-import godot.isProfilingPtr
-import godot.isSkippingBreakpointsPtr
-import godot.linePollPtr
-import godot.profilerAddFrameDataPtr
-import godot.profilerEnablePtr
-import godot.registerMessageCapturePtr
-import godot.registerProfilerPtr
-import godot.removeBreakpointPtr
-import godot.scriptDebugPtr
-import godot.sendMessagePtr
-import godot.setDepthPtr
-import godot.setLinesLeftPtr
-import godot.unregisterMessageCapturePtr
-import godot.unregisterProfilerPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -63,7 +40,7 @@ private const val ENGINECLASS_ENGINEDEBUGGER: Int = 20
 @GodotBaseType
 public object EngineDebugger : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_ENGINEDEBUGGER)
+    getSingleton(ENGINECLASS_ENGINEDEBUGGER)
   }
 
   /**

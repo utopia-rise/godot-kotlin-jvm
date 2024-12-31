@@ -15,17 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getBpmPtr
-import godot.getFadeTimePtr
-import godot.getListStreamPtr
-import godot.getShufflePtr
-import godot.getStreamCountPtr
-import godot.hasLoopPtr
-import godot.setFadeTimePtr
-import godot.setListStreamPtr
-import godot.setLoopPtr
-import godot.setShufflePtr
-import godot.setStreamCountPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

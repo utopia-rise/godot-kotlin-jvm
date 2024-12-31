@@ -15,12 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.getCullModePtr
-import godot.getPolygonPtr
-import godot.isClosedPtr
-import godot.setClosedPtr
-import godot.setCullModePtr
-import godot.setPolygonPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

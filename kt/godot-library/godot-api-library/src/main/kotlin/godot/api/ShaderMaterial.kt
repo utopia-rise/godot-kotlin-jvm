@@ -15,10 +15,6 @@ import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.getShaderParameterPtr
-import godot.getShaderPtr
-import godot.setShaderParameterPtr
-import godot.setShaderPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress

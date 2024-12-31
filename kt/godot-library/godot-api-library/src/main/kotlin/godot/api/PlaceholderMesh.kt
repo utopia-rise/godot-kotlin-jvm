@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.VariantParser.NIL
-import godot.setAabbPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

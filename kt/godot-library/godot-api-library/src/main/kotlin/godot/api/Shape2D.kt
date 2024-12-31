@@ -9,10 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.collideAndGetContactsPtr
-import godot.collidePtr
-import godot.collideWithMotionAndGetContactsPtr
-import godot.collideWithMotionPtr
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.PackedVector2Array
@@ -30,10 +26,6 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.drawPtr
-import godot.getCustomSolverBiasPtr
-import godot.getRectPtr
-import godot.setCustomSolverBiasPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

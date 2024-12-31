@@ -25,43 +25,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getArchitectureNamePtr
-import godot.getAuthorInfoPtr
-import godot.getCopyrightInfoPtr
-import godot.getDonorInfoPtr
-import godot.getFramesDrawnPtr
-import godot.getFramesPerSecondPtr
-import godot.getLicenseInfoPtr
-import godot.getLicenseTextPtr
-import godot.getMainLoopPtr
-import godot.getMaxFpsPtr
-import godot.getMaxPhysicsStepsPerFramePtr
-import godot.getPhysicsFramesPtr
-import godot.getPhysicsInterpolationFractionPtr
-import godot.getPhysicsJitterFixPtr
-import godot.getPhysicsTicksPerSecondPtr
-import godot.getProcessFramesPtr
-import godot.getScriptLanguageCountPtr
-import godot.getScriptLanguagePtr
-import godot.getSingletonListPtr
-import godot.getSingletonPtr
-import godot.getTimeScalePtr
-import godot.getVersionInfoPtr
-import godot.getWriteMoviePathPtr
-import godot.hasSingletonPtr
-import godot.isEditorHintPtr
-import godot.isInPhysicsFramePtr
-import godot.isPrintingErrorMessagesPtr
-import godot.registerScriptLanguagePtr
-import godot.registerSingletonPtr
-import godot.setMaxFpsPtr
-import godot.setMaxPhysicsStepsPerFramePtr
-import godot.setPhysicsJitterFixPtr
-import godot.setPhysicsTicksPerSecondPtr
-import godot.setPrintErrorMessagesPtr
-import godot.setTimeScalePtr
-import godot.unregisterScriptLanguagePtr
-import godot.unregisterSingletonPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -82,7 +45,7 @@ private const val ENGINECLASS_ENGINE: Int = 14
 @GodotBaseType
 public object Engine : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_ENGINE)
+    getSingleton(ENGINECLASS_ENGINE)
   }
 
   @JvmStatic

@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getLanguagePtr
-import godot.getStageSourcePtr
-import godot.setLanguagePtr
-import godot.setStageSourcePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

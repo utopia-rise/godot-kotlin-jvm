@@ -9,16 +9,11 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addSpacerPtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getAlignmentPtr
-import godot.isVerticalPtr
-import godot.setAlignmentPtr
-import godot.setVerticalPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.getCameraAttributesPtr
-import godot.getEnvironmentPtr
-import godot.getRenderSceneBuffersPtr
-import godot.getRenderSceneDataPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

@@ -17,11 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getBaseErrorPtr
-import godot.getSpirvPtr
-import godot.getVersionListPtr
-import godot.setBaseErrorPtr
-import godot.setBytecodePtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

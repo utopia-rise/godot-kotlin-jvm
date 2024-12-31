@@ -13,16 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getDrivePtr
-import godot.getKeepHfHzPtr
-import godot.getModePtr
-import godot.getPostGainPtr
-import godot.getPreGainPtr
-import godot.setDrivePtr
-import godot.setKeepHfHzPtr
-import godot.setModePtr
-import godot.setPostGainPtr
-import godot.setPreGainPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

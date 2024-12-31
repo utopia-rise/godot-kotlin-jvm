@@ -17,16 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getLeftToRightPtr
-import godot.getSizePtr
-import godot.getSubdivideDepthPtr
-import godot.getSubdivideHeightPtr
-import godot.getSubdivideWidthPtr
-import godot.setLeftToRightPtr
-import godot.setSizePtr
-import godot.setSubdivideDepthPtr
-import godot.setSubdivideHeightPtr
-import godot.setSubdivideWidthPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

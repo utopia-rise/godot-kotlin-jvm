@@ -16,10 +16,6 @@ import godot.core.Rect2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import godot.getCopyModePtr
-import godot.getRectPtr
-import godot.setCopyModePtr
-import godot.setRectPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

@@ -14,10 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFlagPtr
-import godot.getParamPtr
-import godot.setFlagPtr
-import godot.setParamPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

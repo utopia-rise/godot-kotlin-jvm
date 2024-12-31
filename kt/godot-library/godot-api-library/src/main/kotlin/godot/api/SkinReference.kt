@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.getSkeletonPtr
-import godot.getSkinPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

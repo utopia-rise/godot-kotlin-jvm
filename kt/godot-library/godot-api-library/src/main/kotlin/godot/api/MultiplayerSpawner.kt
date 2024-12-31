@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addSpawnableScenePtr
-import godot.clearSpawnableScenesPtr
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.NodePath
@@ -22,15 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getSpawnFunctionPtr
-import godot.getSpawnLimitPtr
-import godot.getSpawnPathPtr
-import godot.getSpawnableSceneCountPtr
-import godot.getSpawnableScenePtr
-import godot.setSpawnFunctionPtr
-import godot.setSpawnLimitPtr
-import godot.setSpawnPathPtr
-import godot.spawnPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

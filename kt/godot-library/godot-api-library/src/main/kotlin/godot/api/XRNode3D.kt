@@ -18,16 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getHasTrackingDataPtr
-import godot.getIsActivePtr
-import godot.getPoseNamePtr
-import godot.getPosePtr
-import godot.getShowWhenTrackedPtr
-import godot.getTrackerPtr
-import godot.setPoseNamePtr
-import godot.setShowWhenTrackedPtr
-import godot.setTrackerPtr
-import godot.triggerHapticPulsePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

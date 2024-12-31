@@ -12,12 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getCameraAttributesPtr
-import godot.getCompositorPtr
-import godot.getEnvironmentPtr
-import godot.setCameraAttributesPtr
-import godot.setCompositorPtr
-import godot.setEnvironmentPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

@@ -15,13 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getItemCountPtr
-import godot.getPopupPtr
-import godot.isSwitchOnHoverPtr
-import godot.setDisableShortcutsPtr
-import godot.setItemCountPtr
-import godot.setSwitchOnHoverPtr
-import godot.showPopupPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

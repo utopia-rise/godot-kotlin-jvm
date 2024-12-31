@@ -15,14 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
-import godot.getBodyFlagsPtr
-import godot.getHasTrackingDataPtr
-import godot.getJointFlagsPtr
-import godot.getJointTransformPtr
-import godot.setBodyFlagsPtr
-import godot.setHasTrackingDataPtr
-import godot.setJointFlagsPtr
-import godot.setJointTransformPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -12,9 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.postPtr
-import godot.tryWaitPtr
-import godot.waitPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

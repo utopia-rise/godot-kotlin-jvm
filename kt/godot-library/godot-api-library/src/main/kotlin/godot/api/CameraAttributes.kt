@@ -13,16 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getAutoExposureScalePtr
-import godot.getAutoExposureSpeedPtr
-import godot.getExposureMultiplierPtr
-import godot.getExposureSensitivityPtr
-import godot.isAutoExposureEnabledPtr
-import godot.setAutoExposureEnabledPtr
-import godot.setAutoExposureScalePtr
-import godot.setAutoExposureSpeedPtr
-import godot.setExposureMultiplierPtr
-import godot.setExposureSensitivityPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

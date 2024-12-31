@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.getPointsPtr
-import godot.setPointsPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

@@ -14,16 +14,6 @@ import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.getCameraAttributesPtr
-import godot.getDirectSpaceStatePtr
-import godot.getEnvironmentPtr
-import godot.getFallbackEnvironmentPtr
-import godot.getNavigationMapPtr
-import godot.getScenarioPtr
-import godot.getSpacePtr
-import godot.setCameraAttributesPtr
-import godot.setEnvironmentPtr
-import godot.setFallbackEnvironmentPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

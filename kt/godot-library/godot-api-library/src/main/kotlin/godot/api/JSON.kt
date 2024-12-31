@@ -16,14 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getDataPtr
-import godot.getErrorLinePtr
-import godot.getErrorMessagePtr
-import godot.getParsedTextPtr
-import godot.parsePtr
-import godot.parseStringPtr
-import godot.setDataPtr
-import godot.stringifyPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

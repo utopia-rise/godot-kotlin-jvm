@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.convertToImagePtr
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantArray
@@ -23,18 +22,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.createFromImageAlphaPtr
-import godot.createPtr
-import godot.getBitPtr
-import godot.getBitvPtr
-import godot.getSizePtr
-import godot.getTrueBitCountPtr
-import godot.growMaskPtr
-import godot.opaqueToPolygonsPtr
-import godot.resizePtr
-import godot.setBitPtr
-import godot.setBitRectPtr
-import godot.setBitvPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int

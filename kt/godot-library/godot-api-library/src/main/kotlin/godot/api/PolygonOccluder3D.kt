@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.getPolygonPtr
-import godot.setPolygonPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

@@ -15,8 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
-import godot.getColorPtr
-import godot.setColorPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

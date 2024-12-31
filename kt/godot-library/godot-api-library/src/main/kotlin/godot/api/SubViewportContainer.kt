@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getStretchShrinkPtr
-import godot.isStretchEnabledPtr
-import godot.setStretchPtr
-import godot.setStretchShrinkPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

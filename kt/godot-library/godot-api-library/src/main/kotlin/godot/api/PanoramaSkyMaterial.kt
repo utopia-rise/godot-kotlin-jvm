@@ -14,12 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getEnergyMultiplierPtr
-import godot.getPanoramaPtr
-import godot.isFilteringEnabledPtr
-import godot.setEnergyMultiplierPtr
-import godot.setFilteringEnabledPtr
-import godot.setPanoramaPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

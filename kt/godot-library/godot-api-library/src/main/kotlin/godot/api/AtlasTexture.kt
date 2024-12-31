@@ -17,14 +17,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.getAtlasPtr
-import godot.getMarginPtr
-import godot.getRegionPtr
-import godot.hasFilterClipPtr
-import godot.setAtlasPtr
-import godot.setFilterClipPtr
-import godot.setMarginPtr
-import godot.setRegionPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

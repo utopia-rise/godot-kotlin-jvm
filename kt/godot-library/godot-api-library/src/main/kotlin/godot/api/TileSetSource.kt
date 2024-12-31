@@ -14,12 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.getAlternativeTileIdPtr
-import godot.getAlternativeTilesCountPtr
-import godot.getTileIdPtr
-import godot.getTilesCountPtr
-import godot.hasAlternativeTilePtr
-import godot.hasTilePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

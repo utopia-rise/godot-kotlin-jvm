@@ -16,27 +16,6 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.getDateDictFromSystemPtr
-import godot.getDateDictFromUnixTimePtr
-import godot.getDateStringFromSystemPtr
-import godot.getDateStringFromUnixTimePtr
-import godot.getDatetimeDictFromDatetimeStringPtr
-import godot.getDatetimeDictFromSystemPtr
-import godot.getDatetimeDictFromUnixTimePtr
-import godot.getDatetimeStringFromDatetimeDictPtr
-import godot.getDatetimeStringFromSystemPtr
-import godot.getDatetimeStringFromUnixTimePtr
-import godot.getOffsetStringFromOffsetMinutesPtr
-import godot.getTicksMsecPtr
-import godot.getTicksUsecPtr
-import godot.getTimeDictFromSystemPtr
-import godot.getTimeDictFromUnixTimePtr
-import godot.getTimeStringFromSystemPtr
-import godot.getTimeStringFromUnixTimePtr
-import godot.getTimeZoneFromSystemPtr
-import godot.getUnixTimeFromDatetimeDictPtr
-import godot.getUnixTimeFromDatetimeStringPtr
-import godot.getUnixTimeFromSystemPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -72,7 +51,7 @@ private const val ENGINECLASS_TIME: Int = 21
 @GodotBaseType
 public object Time : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_TIME)
+    getSingleton(ENGINECLASS_TIME)
   }
 
   /**

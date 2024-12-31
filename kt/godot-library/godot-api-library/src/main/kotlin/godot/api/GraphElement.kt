@@ -19,16 +19,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getPositionOffsetPtr
-import godot.isDraggablePtr
-import godot.isResizablePtr
-import godot.isSelectablePtr
-import godot.isSelectedPtr
-import godot.setDraggablePtr
-import godot.setPositionOffsetPtr
-import godot.setResizablePtr
-import godot.setSelectablePtr
-import godot.setSelectedPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

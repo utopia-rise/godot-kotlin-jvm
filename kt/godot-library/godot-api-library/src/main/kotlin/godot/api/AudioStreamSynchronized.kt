@@ -14,12 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getStreamCountPtr
-import godot.getSyncStreamPtr
-import godot.getSyncStreamVolumePtr
-import godot.setStreamCountPtr
-import godot.setSyncStreamPtr
-import godot.setSyncStreamVolumePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

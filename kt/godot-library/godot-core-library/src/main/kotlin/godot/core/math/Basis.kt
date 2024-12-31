@@ -2,7 +2,6 @@
 
 package godot.core
 
-import godot.EulerOrder
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.common.util.CMP_EPSILON
@@ -197,7 +196,7 @@ class Basis() : CoreType {
     constructor(axis: Vector3, angle: RealT) : this() {
         // Rotation matrix from axis and angle, see https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle
         if (GodotJvmBuildConfig.DEBUG) {
-            require(axis.isNormalized()) { "The axis Vector3 $axis must be normalized."}
+            require(axis.isNormalized()) { "The axis Vector3 $axis must be normalized." }
         }
 
         val axiSq = Vector3(axis.x * axis.x, axis.y * axis.y, axis.z * axis.z)

@@ -16,16 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.getBuildModePtr
-import godot.getOneWayCollisionMarginPtr
-import godot.getPolygonPtr
-import godot.isDisabledPtr
-import godot.isOneWayCollisionEnabledPtr
-import godot.setBuildModePtr
-import godot.setDisabledPtr
-import godot.setOneWayCollisionMarginPtr
-import godot.setOneWayCollisionPtr
-import godot.setPolygonPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

@@ -2,7 +2,6 @@
 
 package godot.core
 
-import godot.Side
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.common.util.RealT

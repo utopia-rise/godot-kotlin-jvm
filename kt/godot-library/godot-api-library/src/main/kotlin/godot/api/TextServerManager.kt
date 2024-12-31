@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addInterfacePtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal1
@@ -20,13 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.findInterfacePtr
-import godot.getInterfaceCountPtr
-import godot.getInterfacePtr
-import godot.getInterfacesPtr
-import godot.getPrimaryInterfacePtr
-import godot.removeInterfacePtr
-import godot.setPrimaryInterfacePtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -57,7 +49,7 @@ public object TextServerManager : Object() {
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_TEXTSERVERMANAGER)
+    getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
   }
 
   /**

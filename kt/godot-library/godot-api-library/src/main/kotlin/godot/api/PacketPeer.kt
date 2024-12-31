@@ -17,14 +17,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.getAvailablePacketCountPtr
-import godot.getEncodeBufferMaxSizePtr
-import godot.getPacketErrorPtr
-import godot.getPacketPtr
-import godot.getVarPtr
-import godot.putPacketPtr
-import godot.putVarPtr
-import godot.setEncodeBufferMaxSizePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

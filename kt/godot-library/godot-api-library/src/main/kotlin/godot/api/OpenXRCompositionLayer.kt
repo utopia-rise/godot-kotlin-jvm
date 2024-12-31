@@ -18,16 +18,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.getAlphaBlendPtr
-import godot.getEnableHolePunchPtr
-import godot.getLayerViewportPtr
-import godot.getSortOrderPtr
-import godot.intersectsRayPtr
-import godot.isNativelySupportedPtr
-import godot.setAlphaBlendPtr
-import godot.setEnableHolePunchPtr
-import godot.setLayerViewportPtr
-import godot.setSortOrderPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

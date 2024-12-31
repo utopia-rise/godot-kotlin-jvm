@@ -14,12 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getMeshPtr
-import godot.getSurfaceIndexPtr
-import godot.isUseAllSurfacesPtr
-import godot.setMeshPtr
-import godot.setSurfaceIndexPtr
-import godot.setUseAllSurfacesPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

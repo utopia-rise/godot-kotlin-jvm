@@ -19,16 +19,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.getAnimationPathPtr
-import godot.getCellSizePtr
-import godot.getColorPtr
-import godot.getRadiusPtr
-import godot.getZeroYPtr
-import godot.setAnimationPathPtr
-import godot.setCellSizePtr
-import godot.setColorPtr
-import godot.setRadiusPtr
-import godot.setZeroYPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

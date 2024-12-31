@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addUserPtr
-import godot.clearUsersPtr
 import godot.common.interop.VoidPtr
 import godot.core.NodePath
 import godot.core.Rect2
@@ -22,14 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.getLightTexturePtr
-import godot.getLightmapTexturesPtr
-import godot.getUserCountPtr
-import godot.getUserPathPtr
-import godot.isUsingSphericalHarmonicsPtr
-import godot.setLightTexturePtr
-import godot.setLightmapTexturesPtr
-import godot.setUsesSphericalHarmonicsPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

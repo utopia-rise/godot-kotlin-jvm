@@ -9,14 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.actionAddEventPtr
-import godot.actionEraseEventPtr
-import godot.actionEraseEventsPtr
-import godot.actionGetDeadzonePtr
-import godot.actionGetEventsPtr
-import godot.actionHasEventPtr
-import godot.actionSetDeadzonePtr
-import godot.addActionPtr
 import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.VariantArray
@@ -26,11 +18,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.eraseActionPtr
-import godot.eventIsActionPtr
-import godot.getActionsPtr
-import godot.hasActionPtr
-import godot.loadFromProjectSettingsPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -50,7 +37,7 @@ private const val ENGINECLASS_INPUTMAP: Int = 19
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_INPUTMAP)
+    getSingleton(ENGINECLASS_INPUTMAP)
   }
 
   /**

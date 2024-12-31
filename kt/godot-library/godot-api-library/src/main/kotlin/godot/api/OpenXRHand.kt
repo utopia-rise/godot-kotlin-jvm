@@ -14,16 +14,6 @@ import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.getBoneUpdatePtr
-import godot.getHandPtr
-import godot.getHandSkeletonPtr
-import godot.getMotionRangePtr
-import godot.getSkeletonRigPtr
-import godot.setBoneUpdatePtr
-import godot.setHandPtr
-import godot.setHandSkeletonPtr
-import godot.setMotionRangePtr
-import godot.setSkeletonRigPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

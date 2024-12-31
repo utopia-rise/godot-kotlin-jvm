@@ -16,10 +16,6 @@ import godot.core.Color
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
-import godot.getDefaultValuePtr
-import godot.isDefaultValueEnabledPtr
-import godot.setDefaultValueEnabledPtr
-import godot.setDefaultValuePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

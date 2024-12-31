@@ -16,9 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.getSizePtr
-import godot.setLayersPtr
-import godot.setSizePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

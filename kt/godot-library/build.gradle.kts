@@ -22,7 +22,7 @@ apiGenerator {
     sourceJson.set(project.file("$rootDir/api-generator/src/main/resources/api.json"))
     coreOutputDir.set(project.file("$rootDir/godot-library/godot-core-library/src/main/kotlin/gen"))
     apiOutputDir.set(project.file("$rootDir/godot-library/godot-api-library/src/main/kotlin/"))
-    extensionOutputDir.set(project.file("$rootDir/godot-library/godot-core-library/src/main/kotlin/gen"))
+    extensionOutputDir.set(project.file("$rootDir/godot-library/godot-extension-library/src/main/kotlin/gen"))
     coroutineOutputDir.set(project.file("$rootDir/godot-library/godot-coroutine-library/src/main/kotlin/gen"))
 }
 
@@ -52,8 +52,10 @@ tasks {
     compileKotlin {
         dependsOn(generateAPI)
     }
-
-    build.get().finalizedBy(shadowJar)
+    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
+    withType<Jar> {
+        dependsOn(generateAPI)
+    }
 
     @Suppress("UNUSED_VARIABLE")
     val jar by getting {
@@ -64,11 +66,7 @@ tasks {
         }
         finalizedBy(shadowJar)
     }
-
-    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
-    withType<Jar> {
-        dependsOn(generateAPI)
-    }
+    build.get().finalizedBy(shadowJar)
 
     val copyBootstrapJar by creating(Copy::class.java) {
         group = "godot-jvm"

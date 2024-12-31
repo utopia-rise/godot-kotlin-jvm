@@ -13,9 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.setDelayPtr
-import godot.setEasePtr
-import godot.setTransPtr
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress

@@ -9,19 +9,11 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addIdPtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.createIdPtr
-import godot.getIdPathPtr
-import godot.hasIdPtr
-import godot.idToTextPtr
-import godot.removeIdPtr
-import godot.setIdPtr
-import godot.textToIdPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -47,7 +39,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_RESOURCEUID)
+    getSingleton(ENGINECLASS_RESOURCEUID)
   }
 
   /**

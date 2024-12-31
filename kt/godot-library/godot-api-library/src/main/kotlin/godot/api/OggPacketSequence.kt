@@ -16,13 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
-import godot.getLengthPtr
-import godot.getPacketDataPtr
-import godot.getPacketGranulePositionsPtr
-import godot.getSamplingRatePtr
-import godot.setPacketDataPtr
-import godot.setPacketGranulePositionsPtr
-import godot.setSamplingRatePtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float

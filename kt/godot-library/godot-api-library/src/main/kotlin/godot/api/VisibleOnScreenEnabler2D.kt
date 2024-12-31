@@ -14,10 +14,6 @@ import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.getEnableModePtr
-import godot.getEnableNodePathPtr
-import godot.setEnableModePtr
-import godot.setEnableNodePathPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

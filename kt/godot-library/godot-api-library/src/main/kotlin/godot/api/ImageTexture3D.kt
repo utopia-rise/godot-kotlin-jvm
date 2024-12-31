@@ -16,8 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.createPtr
-import godot.updatePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

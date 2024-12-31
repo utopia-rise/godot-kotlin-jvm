@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.alertPtr
-import godot.closeMidiInputsPtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
@@ -25,78 +23,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.crashPtr
-import godot.createInstancePtr
-import godot.createProcessPtr
-import godot.delayMsecPtr
-import godot.delayUsecPtr
-import godot.executePtr
-import godot.executeWithPipePtr
-import godot.findKeycodeFromStringPtr
-import godot.getCacheDirPtr
-import godot.getCmdlineArgsPtr
-import godot.getCmdlineUserArgsPtr
-import godot.getConfigDirPtr
-import godot.getConnectedMidiInputsPtr
-import godot.getDataDirPtr
-import godot.getDistributionNamePtr
-import godot.getEntropyPtr
-import godot.getEnvironmentPtr
-import godot.getExecutablePathPtr
-import godot.getGrantedPermissionsPtr
-import godot.getKeycodeStringPtr
-import godot.getLocaleLanguagePtr
-import godot.getLocalePtr
-import godot.getLowProcessorUsageModeSleepUsecPtr
-import godot.getMainThreadIdPtr
-import godot.getMemoryInfoPtr
-import godot.getModelNamePtr
-import godot.getNamePtr
-import godot.getProcessExitCodePtr
-import godot.getProcessIdPtr
-import godot.getProcessorCountPtr
-import godot.getProcessorNamePtr
-import godot.getRestartOnExitArgumentsPtr
-import godot.getStaticMemoryPeakUsagePtr
-import godot.getStaticMemoryUsagePtr
-import godot.getSystemCaCertificatesPtr
-import godot.getSystemDirPtr
-import godot.getSystemFontPathForTextPtr
-import godot.getSystemFontPathPtr
-import godot.getSystemFontsPtr
-import godot.getThreadCallerIdPtr
-import godot.getUniqueIdPtr
-import godot.getUserDataDirPtr
-import godot.getVersionPtr
-import godot.getVideoAdapterDriverInfoPtr
-import godot.hasEnvironmentPtr
-import godot.hasFeaturePtr
-import godot.isDebugBuildPtr
-import godot.isDeltaSmoothingEnabledPtr
-import godot.isInLowProcessorUsageModePtr
-import godot.isKeycodeUnicodePtr
-import godot.isProcessRunningPtr
-import godot.isRestartOnExitSetPtr
-import godot.isSandboxedPtr
-import godot.isStdoutVerbosePtr
-import godot.isUserfsPersistentPtr
-import godot.killPtr
-import godot.moveToTrashPtr
-import godot.openMidiInputsPtr
-import godot.readStringFromStdinPtr
-import godot.requestPermissionPtr
-import godot.requestPermissionsPtr
-import godot.revokeGrantedPermissionsPtr
-import godot.setDeltaSmoothingPtr
-import godot.setEnvironmentPtr
-import godot.setLowProcessorUsageModePtr
-import godot.setLowProcessorUsageModeSleepUsecPtr
-import godot.setRestartOnExitPtr
-import godot.setThreadNamePtr
-import godot.setUseFileAccessSaveAndSwapPtr
-import godot.shellOpenPtr
-import godot.shellShowInFileManagerPtr
-import godot.unsetEnvironmentPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -120,7 +46,7 @@ private const val ENGINECLASS_OS: Int = 13
 @GodotBaseType
 public object OS : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_OS)
+    getSingleton(ENGINECLASS_OS)
   }
 
   /**

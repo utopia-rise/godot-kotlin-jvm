@@ -17,13 +17,6 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getEndPtr
-import godot.getGroupCountPtr
-import godot.getNamesPtr
-import godot.getStartPtr
-import godot.getStringPtr
-import godot.getStringsPtr
-import godot.getSubjectPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

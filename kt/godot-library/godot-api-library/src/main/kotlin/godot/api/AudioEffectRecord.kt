@@ -14,11 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getFormatPtr
-import godot.getRecordingPtr
-import godot.isRecordingActivePtr
-import godot.setFormatPtr
-import godot.setRecordingActivePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

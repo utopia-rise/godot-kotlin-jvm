@@ -19,12 +19,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.getCamProjectionPtr
-import godot.getCamTransformPtr
-import godot.getUniformBufferPtr
-import godot.getViewCountPtr
-import godot.getViewEyeOffsetPtr
-import godot.getViewProjectionPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

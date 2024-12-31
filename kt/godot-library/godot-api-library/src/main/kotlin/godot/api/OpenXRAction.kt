@@ -15,12 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getActionTypePtr
-import godot.getLocalizedNamePtr
-import godot.getToplevelPathsPtr
-import godot.setActionTypePtr
-import godot.setLocalizedNamePtr
-import godot.setToplevelPathsPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

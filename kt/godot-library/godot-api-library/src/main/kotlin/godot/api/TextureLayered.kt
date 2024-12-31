@@ -13,13 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.getFormatPtr
-import godot.getHeightPtr
-import godot.getLayerDataPtr
-import godot.getLayeredTypePtr
-import godot.getLayersPtr
-import godot.getWidthPtr
-import godot.hasMipmapsPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

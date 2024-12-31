@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addExcludedObjectPtr
-import godot.clearExcludedObjectsPtr
 import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.BOOL
@@ -19,16 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.getCollisionMaskPtr
-import godot.getHitLengthPtr
-import godot.getLengthPtr
-import godot.getMarginPtr
-import godot.getShapePtr
-import godot.removeExcludedObjectPtr
-import godot.setCollisionMaskPtr
-import godot.setLengthPtr
-import godot.setMarginPtr
-import godot.setShapePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

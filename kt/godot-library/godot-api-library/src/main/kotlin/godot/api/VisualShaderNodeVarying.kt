@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getVaryingNamePtr
-import godot.getVaryingTypePtr
-import godot.setVaryingNamePtr
-import godot.setVaryingTypePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

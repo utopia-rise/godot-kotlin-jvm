@@ -2,13 +2,11 @@
 
 package godot.core
 
-import godot.Side
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.max
 import kotlin.math.min
-
 
 private typealias Point2i = Vector2i
 private typealias Size2i = Vector2i

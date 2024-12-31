@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addIdPtr
-import godot.clearIdsPtr
 import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantArray
@@ -18,11 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.getBindingPtr
-import godot.getIdsPtr
-import godot.getUniformTypePtr
-import godot.setBindingPtr
-import godot.setUniformTypePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

@@ -17,11 +17,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.isSimulatingPhysicsPtr
-import godot.physicalBonesAddCollisionExceptionPtr
-import godot.physicalBonesRemoveCollisionExceptionPtr
-import godot.physicalBonesStartSimulationPtr
-import godot.physicalBonesStopSimulationPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

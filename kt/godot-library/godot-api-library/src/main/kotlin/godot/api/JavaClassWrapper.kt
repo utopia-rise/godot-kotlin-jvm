@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.wrapPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -30,7 +29,7 @@ private const val ENGINECLASS_JAVACLASSWRAPPER: Int = 26
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_JAVACLASSWRAPPER)
+    getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
   }
 
   /**

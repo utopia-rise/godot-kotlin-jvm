@@ -16,8 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.createFromImagesPtr
-import godot.updateLayerPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

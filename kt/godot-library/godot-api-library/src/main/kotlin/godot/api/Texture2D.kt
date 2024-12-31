@@ -22,15 +22,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.createPlaceholderPtr
-import godot.drawPtr
-import godot.drawRectPtr
-import godot.drawRectRegionPtr
-import godot.getHeightPtr
-import godot.getImagePtr
-import godot.getSizePtr
-import godot.getWidthPtr
-import godot.hasAlphaPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -12,10 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getInitialOffsetPtr
-import godot.getLengthPtr
-import godot.setInitialOffsetPtr
-import godot.setLengthPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

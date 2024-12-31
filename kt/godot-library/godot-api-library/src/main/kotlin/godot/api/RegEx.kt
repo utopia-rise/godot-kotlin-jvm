@@ -9,9 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clearPtr
 import godot.common.interop.VoidPtr
-import godot.compilePtr
 import godot.core.Error
 import godot.core.PackedStringArray
 import godot.core.VariantArray
@@ -22,14 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.createFromStringPtr
-import godot.getGroupCountPtr
-import godot.getNamesPtr
-import godot.getPatternPtr
-import godot.isValidPtr
-import godot.searchAllPtr
-import godot.searchPtr
-import godot.subPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

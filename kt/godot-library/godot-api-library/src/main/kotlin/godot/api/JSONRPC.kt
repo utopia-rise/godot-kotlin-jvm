@@ -18,13 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.makeNotificationPtr
-import godot.makeRequestPtr
-import godot.makeResponseErrorPtr
-import godot.makeResponsePtr
-import godot.processActionPtr
-import godot.processStringPtr
-import godot.setScopePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

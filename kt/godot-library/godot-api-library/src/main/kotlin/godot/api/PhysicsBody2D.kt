@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addCollisionExceptionWithPtr
 import godot.common.interop.VoidPtr
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -21,11 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getCollisionExceptionsPtr
-import godot.getGravityPtr
-import godot.moveAndCollidePtr
-import godot.removeCollisionExceptionWithPtr
-import godot.testMovePtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int

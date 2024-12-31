@@ -14,16 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getHeightPtr
-import godot.getIsHemispherePtr
-import godot.getRadialSegmentsPtr
-import godot.getRadiusPtr
-import godot.getRingsPtr
-import godot.setHeightPtr
-import godot.setIsHemispherePtr
-import godot.setRadialSegmentsPtr
-import godot.setRadiusPtr
-import godot.setRingsPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

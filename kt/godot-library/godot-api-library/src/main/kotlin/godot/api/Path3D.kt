@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getCurvePtr
-import godot.setCurvePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

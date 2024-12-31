@@ -14,11 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getButtonIndexPtr
-import godot.getPressurePtr
-import godot.setButtonIndexPtr
-import godot.setPressedPtr
-import godot.setPressurePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getClearMarginPtr
-import godot.getFitMarginPtr
-import godot.isUsingMipmapsPtr
-import godot.setClearMarginPtr
-import godot.setFitMarginPtr
-import godot.setUseMipmapsPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

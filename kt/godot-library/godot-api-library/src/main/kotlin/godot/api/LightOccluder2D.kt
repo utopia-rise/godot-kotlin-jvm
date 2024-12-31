@@ -14,12 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getOccluderLightMaskPtr
-import godot.getOccluderPolygonPtr
-import godot.isSetAsSdfCollisionPtr
-import godot.setAsSdfCollisionPtr
-import godot.setOccluderLightMaskPtr
-import godot.setOccluderPolygonPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

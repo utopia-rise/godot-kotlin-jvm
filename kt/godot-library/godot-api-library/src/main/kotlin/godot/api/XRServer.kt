@@ -9,10 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addInterfacePtr
-import godot.addTrackerPtr
-import godot.centerOnHmdPtr
-import godot.clearReferenceFramePtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Signal0
@@ -31,22 +27,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
-import godot.findInterfacePtr
-import godot.getHmdTransformPtr
-import godot.getInterfaceCountPtr
-import godot.getInterfacePtr
-import godot.getInterfacesPtr
-import godot.getPrimaryInterfacePtr
-import godot.getReferenceFramePtr
-import godot.getTrackerPtr
-import godot.getTrackersPtr
-import godot.getWorldOriginPtr
-import godot.getWorldScalePtr
-import godot.removeInterfacePtr
-import godot.removeTrackerPtr
-import godot.setPrimaryInterfacePtr
-import godot.setWorldOriginPtr
-import godot.setWorldScalePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -108,7 +88,7 @@ public object XRServer : Object() {
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_XRSERVER)
+    getSingleton(ENGINECLASS_XRSERVER)
   }
 
   @JvmStatic

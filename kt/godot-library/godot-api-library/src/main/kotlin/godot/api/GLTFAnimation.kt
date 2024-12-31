@@ -16,12 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getAdditionalDataPtr
-import godot.getLoopPtr
-import godot.getOriginalNamePtr
-import godot.setAdditionalDataPtr
-import godot.setLoopPtr
-import godot.setOriginalNamePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

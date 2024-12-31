@@ -21,15 +21,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.drawPtr
-import godot.getContentMarginPtr
-import godot.getCurrentItemDrawnPtr
-import godot.getMarginPtr
-import godot.getMinimumSizePtr
-import godot.getOffsetPtr
-import godot.setContentMarginAllPtr
-import godot.setContentMarginPtr
-import godot.testMaskPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

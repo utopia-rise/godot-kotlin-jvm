@@ -20,15 +20,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.getImage3dPtr
-import godot.getImagePtr
-import godot.getNoise1dPtr
-import godot.getNoise2dPtr
-import godot.getNoise2dvPtr
-import godot.getNoise3dPtr
-import godot.getNoise3dvPtr
-import godot.getSeamlessImage3dPtr
-import godot.getSeamlessImagePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

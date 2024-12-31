@@ -2,7 +2,6 @@
 
 package godot.core
 
-import godot.Side
 import godot.common.util.isEqualApprox
 import godot.common.util.isZeroApprox
 import org.junit.Test

@@ -13,14 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getCutoffPtr
-import godot.getDbPtr
-import godot.getGainPtr
-import godot.getResonancePtr
-import godot.setCutoffPtr
-import godot.setDbPtr
-import godot.setGainPtr
-import godot.setResonancePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

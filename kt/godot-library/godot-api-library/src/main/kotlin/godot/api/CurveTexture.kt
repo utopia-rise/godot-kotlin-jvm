@@ -13,11 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getCurvePtr
-import godot.getTextureModePtr
-import godot.setCurvePtr
-import godot.setTextureModePtr
-import godot.setWidthPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

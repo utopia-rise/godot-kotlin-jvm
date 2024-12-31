@@ -19,17 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
-import godot.getBoneAttachmentCountPtr
-import godot.getBoneAttachmentPtr
-import godot.getGodotBoneNodePtr
-import godot.getGodotSkeletonPtr
-import godot.getJointsPtr
-import godot.getRootsPtr
-import godot.getUniqueNamesPtr
-import godot.setGodotBoneNodePtr
-import godot.setJointsPtr
-import godot.setRootsPtr
-import godot.setUniqueNamesPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

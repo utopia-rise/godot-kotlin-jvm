@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.loadFromStringPtr
-import godot.loadPtr
-import godot.savePtr
-import godot.saveToStringPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

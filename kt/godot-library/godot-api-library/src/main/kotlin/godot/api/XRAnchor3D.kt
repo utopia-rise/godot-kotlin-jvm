@@ -14,8 +14,6 @@ import godot.core.Plane
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getPlanePtr
-import godot.getSizePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

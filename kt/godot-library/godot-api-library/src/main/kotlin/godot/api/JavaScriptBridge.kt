@@ -22,14 +22,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.createCallbackPtr
-import godot.createObjectPtr
-import godot.downloadBufferPtr
-import godot.evalPtr
-import godot.forceFsSyncPtr
-import godot.getInterfacePtr
-import godot.pwaNeedsUpdatePtr
-import godot.pwaUpdatePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -63,7 +55,7 @@ public object JavaScriptBridge : Object() {
   public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_JAVASCRIPTBRIDGE)
+    getSingleton(ENGINECLASS_JAVASCRIPTBRIDGE)
   }
 
   /**

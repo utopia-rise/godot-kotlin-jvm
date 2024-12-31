@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clearCachePtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedStringArray
@@ -19,15 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.eraseResolveItemPtr
-import godot.getLocalAddressesPtr
-import godot.getLocalInterfacesPtr
-import godot.getResolveItemAddressPtr
-import godot.getResolveItemAddressesPtr
-import godot.getResolveItemStatusPtr
-import godot.resolveHostnameAddressesPtr
-import godot.resolveHostnamePtr
-import godot.resolveHostnameQueueItemPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -58,7 +48,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_IP)
+    getSingleton(ENGINECLASS_IP)
   }
 
   /**

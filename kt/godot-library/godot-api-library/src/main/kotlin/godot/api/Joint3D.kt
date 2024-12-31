@@ -17,15 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
-import godot.getExcludeNodesFromCollisionPtr
-import godot.getNodeAPtr
-import godot.getNodeBPtr
-import godot.getRidPtr
-import godot.getSolverPriorityPtr
-import godot.setExcludeNodesFromCollisionPtr
-import godot.setNodeAPtr
-import godot.setNodeBPtr
-import godot.setSolverPriorityPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

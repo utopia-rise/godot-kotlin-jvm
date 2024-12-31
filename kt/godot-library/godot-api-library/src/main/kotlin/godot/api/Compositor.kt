@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
-import godot.getCompositorEffectsPtr
-import godot.setCompositorEffectsPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

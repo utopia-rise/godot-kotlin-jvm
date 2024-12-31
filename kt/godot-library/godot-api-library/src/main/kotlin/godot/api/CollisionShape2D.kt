@@ -18,16 +18,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getDebugColorPtr
-import godot.getOneWayCollisionMarginPtr
-import godot.getShapePtr
-import godot.isDisabledPtr
-import godot.isOneWayCollisionEnabledPtr
-import godot.setDebugColorPtr
-import godot.setDisabledPtr
-import godot.setOneWayCollisionMarginPtr
-import godot.setOneWayCollisionPtr
-import godot.setShapePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

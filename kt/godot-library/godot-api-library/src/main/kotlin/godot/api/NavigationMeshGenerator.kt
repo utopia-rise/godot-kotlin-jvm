@@ -9,15 +9,11 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.bakeFromSourceGeometryDataPtr
-import godot.bakePtr
-import godot.clearPtr
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.parseSourceGeometryDataPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -60,7 +56,7 @@ private const val ENGINECLASS_NAVIGATIONMESHGENERATOR: Int = 6
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_NAVIGATIONMESHGENERATOR)
+    getSingleton(ENGINECLASS_NAVIGATIONMESHGENERATOR)
   }
 
   /**

@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getSamplePlaybackPtr
-import godot.setSamplePlaybackPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

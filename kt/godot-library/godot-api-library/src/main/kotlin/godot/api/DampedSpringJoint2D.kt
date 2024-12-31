@@ -12,14 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getDampingPtr
-import godot.getLengthPtr
-import godot.getRestLengthPtr
-import godot.getStiffnessPtr
-import godot.setDampingPtr
-import godot.setLengthPtr
-import godot.setRestLengthPtr
-import godot.setStiffnessPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

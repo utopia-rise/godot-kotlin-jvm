@@ -16,10 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getButtonsPtr
-import godot.getPressedButtonPtr
-import godot.isAllowUnpressPtr
-import godot.setAllowUnpressPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

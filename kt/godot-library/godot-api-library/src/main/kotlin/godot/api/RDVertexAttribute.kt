@@ -12,16 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFormatPtr
-import godot.getFrequencyPtr
-import godot.getLocationPtr
-import godot.getOffsetPtr
-import godot.getStridePtr
-import godot.setFormatPtr
-import godot.setFrequencyPtr
-import godot.setLocationPtr
-import godot.setOffsetPtr
-import godot.setStridePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

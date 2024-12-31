@@ -17,11 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.isStreamPlayingPtr
-import godot.playStreamPtr
-import godot.setStreamPitchScalePtr
-import godot.setStreamVolumePtr
-import godot.stopStreamPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int

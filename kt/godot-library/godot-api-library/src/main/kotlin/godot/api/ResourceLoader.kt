@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addResourceFormatLoaderPtr
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.PackedStringArray
@@ -21,17 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.existsPtr
-import godot.getDependenciesPtr
-import godot.getRecognizedExtensionsForTypePtr
-import godot.getResourceUidPtr
-import godot.hasCachedPtr
-import godot.loadPtr
-import godot.loadThreadedGetPtr
-import godot.loadThreadedGetStatusPtr
-import godot.loadThreadedRequestPtr
-import godot.removeResourceFormatLoaderPtr
-import godot.setAbortOnMissingResourcesPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -55,7 +43,7 @@ private const val ENGINECLASS_RESOURCELOADER: Int = 11
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_RESOURCELOADER)
+    getSingleton(ENGINECLASS_RESOURCELOADER)
   }
 
   /**

@@ -14,8 +14,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.getIndicesPtr
-import godot.getVerticesPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

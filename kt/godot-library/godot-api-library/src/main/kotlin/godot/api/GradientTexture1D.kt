@@ -14,11 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getGradientPtr
-import godot.isUsingHdrPtr
-import godot.setGradientPtr
-import godot.setUseHdrPtr
-import godot.setWidthPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

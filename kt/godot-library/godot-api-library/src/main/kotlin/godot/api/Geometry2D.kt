@@ -9,10 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.clipPolygonsPtr
-import godot.clipPolylineWithPolygonPtr
 import godot.common.interop.VoidPtr
-import godot.convexHullPtr
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
@@ -27,26 +24,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.decomposePolygonInConvexPtr
-import godot.excludePolygonsPtr
-import godot.getClosestPointToSegmentPtr
-import godot.getClosestPointToSegmentUncappedPtr
-import godot.getClosestPointsBetweenSegmentsPtr
-import godot.intersectPolygonsPtr
-import godot.intersectPolylineWithPolygonPtr
-import godot.isPointInCirclePtr
-import godot.isPointInPolygonPtr
-import godot.isPolygonClockwisePtr
-import godot.lineIntersectsLinePtr
-import godot.makeAtlasPtr
-import godot.mergePolygonsPtr
-import godot.offsetPolygonPtr
-import godot.offsetPolylinePtr
-import godot.pointIsInsideTrianglePtr
-import godot.segmentIntersectsCirclePtr
-import godot.segmentIntersectsSegmentPtr
-import godot.triangulateDelaunayPtr
-import godot.triangulatePolygonPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -67,7 +44,7 @@ private const val ENGINECLASS_GEOMETRY2D: Int = 9
 @GodotBaseType
 public object Geometry2D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_GEOMETRY2D)
+    getSingleton(ENGINECLASS_GEOMETRY2D)
   }
 
   /**

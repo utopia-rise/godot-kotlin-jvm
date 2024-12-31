@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.beginResamplePtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import kotlin.Float

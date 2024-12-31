@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getAxisPtr
-import godot.getAxisValuePtr
-import godot.setAxisPtr
-import godot.setAxisValuePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

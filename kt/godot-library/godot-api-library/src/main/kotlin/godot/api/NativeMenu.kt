@@ -9,16 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addCheckItemPtr
-import godot.addIconCheckItemPtr
-import godot.addIconItemPtr
-import godot.addIconRadioCheckItemPtr
-import godot.addItemPtr
-import godot.addMultistateItemPtr
-import godot.addRadioCheckItemPtr
-import godot.addSeparatorPtr
-import godot.addSubmenuItemPtr
-import godot.clearPtr
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.RID
@@ -35,62 +25,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.createMenuPtr
-import godot.findItemIndexWithSubmenuPtr
-import godot.findItemIndexWithTagPtr
-import godot.findItemIndexWithTextPtr
-import godot.freeMenuPtr
-import godot.getItemAcceleratorPtr
-import godot.getItemCallbackPtr
-import godot.getItemCountPtr
-import godot.getItemIconPtr
-import godot.getItemIndentationLevelPtr
-import godot.getItemKeyCallbackPtr
-import godot.getItemMaxStatesPtr
-import godot.getItemStatePtr
-import godot.getItemSubmenuPtr
-import godot.getItemTagPtr
-import godot.getItemTextPtr
-import godot.getItemTooltipPtr
-import godot.getMinimumWidthPtr
-import godot.getPopupCloseCallbackPtr
-import godot.getPopupOpenCallbackPtr
-import godot.getSizePtr
-import godot.getSystemMenuNamePtr
-import godot.getSystemMenuPtr
-import godot.hasFeaturePtr
-import godot.hasMenuPtr
-import godot.hasSystemMenuPtr
-import godot.isItemCheckablePtr
-import godot.isItemCheckedPtr
-import godot.isItemDisabledPtr
-import godot.isItemHiddenPtr
-import godot.isItemRadioCheckablePtr
-import godot.isOpenedPtr
-import godot.isSystemMenuPtr
-import godot.popupPtr
-import godot.removeItemPtr
-import godot.setInterfaceDirectionPtr
-import godot.setItemAcceleratorPtr
-import godot.setItemCallbackPtr
-import godot.setItemCheckablePtr
-import godot.setItemCheckedPtr
-import godot.setItemDisabledPtr
-import godot.setItemHiddenPtr
-import godot.setItemHoverCallbacksPtr
-import godot.setItemIconPtr
-import godot.setItemIndentationLevelPtr
-import godot.setItemKeyCallbackPtr
-import godot.setItemMaxStatesPtr
-import godot.setItemRadioCheckablePtr
-import godot.setItemStatePtr
-import godot.setItemSubmenuPtr
-import godot.setItemTagPtr
-import godot.setItemTextPtr
-import godot.setItemTooltipPtr
-import godot.setMinimumWidthPtr
-import godot.setPopupCloseCallbackPtr
-import godot.setPopupOpenCallbackPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -142,7 +76,7 @@ private const val ENGINECLASS_NATIVEMENU: Int = 31
 @GodotBaseType
 public object NativeMenu : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_NATIVEMENU)
+    getSingleton(ENGINECLASS_NATIVEMENU)
   }
 
   /**

@@ -15,18 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getDefaultThemePtr
-import godot.getFallbackBaseScalePtr
-import godot.getFallbackFontPtr
-import godot.getFallbackFontSizePtr
-import godot.getFallbackIconPtr
-import godot.getFallbackStyleboxPtr
-import godot.getProjectThemePtr
-import godot.setFallbackBaseScalePtr
-import godot.setFallbackFontPtr
-import godot.setFallbackFontSizePtr
-import godot.setFallbackIconPtr
-import godot.setFallbackStyleboxPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -53,7 +41,7 @@ public object ThemeDB : Object() {
   public val fallbackChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_THEMEDB)
+    getSingleton(ENGINECLASS_THEMEDB)
   }
 
   /**

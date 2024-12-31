@@ -15,9 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.setAabbPtr
-import godot.setNormalPtr
-import godot.setVertexPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

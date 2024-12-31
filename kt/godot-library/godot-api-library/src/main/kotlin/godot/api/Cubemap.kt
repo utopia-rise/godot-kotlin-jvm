@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.OBJECT
-import godot.createPlaceholderPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

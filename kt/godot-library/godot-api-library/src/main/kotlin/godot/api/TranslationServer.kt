@@ -9,10 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addTranslationPtr
-import godot.clearPtr
 import godot.common.interop.VoidPtr
-import godot.compareLocalesPtr
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -22,26 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getAllCountriesPtr
-import godot.getAllLanguagesPtr
-import godot.getAllScriptsPtr
-import godot.getCountryNamePtr
-import godot.getLanguageNamePtr
-import godot.getLoadedLocalesPtr
-import godot.getLocaleNamePtr
-import godot.getLocalePtr
-import godot.getScriptNamePtr
-import godot.getToolLocalePtr
-import godot.getTranslationObjectPtr
-import godot.isPseudolocalizationEnabledPtr
-import godot.pseudolocalizePtr
-import godot.reloadPseudolocalizationPtr
-import godot.removeTranslationPtr
-import godot.setLocalePtr
-import godot.setPseudolocalizationEnabledPtr
-import godot.standardizeLocalePtr
-import godot.translatePluralPtr
-import godot.translatePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -60,7 +37,7 @@ private const val ENGINECLASS_TRANSLATIONSERVER: Int = 17
 @GodotBaseType
 public object TranslationServer : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_TRANSLATIONSERVER)
+    getSingleton(ENGINECLASS_TRANSLATIONSERVER)
   }
 
   /**

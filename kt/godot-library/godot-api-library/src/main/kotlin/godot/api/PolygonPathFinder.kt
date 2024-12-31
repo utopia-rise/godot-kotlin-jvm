@@ -22,14 +22,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.findPathPtr
-import godot.getBoundsPtr
-import godot.getClosestPointPtr
-import godot.getIntersectionsPtr
-import godot.getPointPenaltyPtr
-import godot.isPointInsidePtr
-import godot.setPointPenaltyPtr
-import godot.setupPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

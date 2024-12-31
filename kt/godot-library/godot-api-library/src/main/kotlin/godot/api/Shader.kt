@@ -19,12 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getCodePtr
-import godot.getDefaultTextureParameterPtr
-import godot.getModePtr
-import godot.getShaderUniformListPtr
-import godot.setCodePtr
-import godot.setDefaultTextureParameterPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

@@ -20,10 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.executePtr
-import godot.getErrorTextPtr
-import godot.hasExecuteFailedPtr
-import godot.parsePtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

@@ -780,7 +780,7 @@ class ApiGenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "getSingleton(this, %M)",
+                    "getSingleton(%M)",
                     MemberName(godotApiPackage, classIndexName),
                 )
                 .build()
@@ -915,7 +915,7 @@ class ApiGenerationService(
             "%T.callMethod($ptr, %T.%M, %T)",
             TRANSFER_CONTEXT,
             clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName),
-            MemberName("godot", callable.voidPtrVariableName),
+            MemberName(godotApiPackage, callable.voidPtrVariableName),
             returnTypeVariantTypeClass
         )
 

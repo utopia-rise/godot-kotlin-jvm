@@ -16,10 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getSizePtr
-import godot.getTexturePtr
-import godot.setSizePtr
-import godot.setTexturePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

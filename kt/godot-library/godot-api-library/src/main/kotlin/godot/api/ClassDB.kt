@@ -9,25 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.canInstantiatePtr
-import godot.classExistsPtr
-import godot.classGetEnumConstantsPtr
-import godot.classGetEnumListPtr
-import godot.classGetIntegerConstantEnumPtr
-import godot.classGetIntegerConstantListPtr
-import godot.classGetIntegerConstantPtr
-import godot.classGetMethodArgumentCountPtr
-import godot.classGetMethodListPtr
-import godot.classGetPropertyDefaultValuePtr
-import godot.classGetPropertyListPtr
-import godot.classGetPropertyPtr
-import godot.classGetSignalListPtr
-import godot.classGetSignalPtr
-import godot.classHasEnumPtr
-import godot.classHasIntegerConstantPtr
-import godot.classHasMethodPtr
-import godot.classHasSignalPtr
-import godot.classSetPropertyPtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
@@ -42,13 +23,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
-import godot.getClassListPtr
-import godot.getInheritersFromClassPtr
-import godot.getParentClassPtr
-import godot.instantiatePtr
-import godot.isClassEnabledPtr
-import godot.isClassEnumBitfieldPtr
-import godot.isParentClassPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -66,7 +40,7 @@ private const val ENGINECLASS_CLASSDB: Int = 15
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_CLASSDB)
+    getSingleton(ENGINECLASS_CLASSDB)
   }
 
   /**

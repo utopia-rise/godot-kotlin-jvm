@@ -13,9 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getInputNamePtr
-import godot.getInputRealNamePtr
-import godot.setInputNamePtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

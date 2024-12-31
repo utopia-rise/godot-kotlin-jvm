@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getShadowModePtr
-import godot.getSkyModePtr
-import godot.isBlendSplitsEnabledPtr
-import godot.setBlendSplitsPtr
-import godot.setShadowModePtr
-import godot.setSkyModePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

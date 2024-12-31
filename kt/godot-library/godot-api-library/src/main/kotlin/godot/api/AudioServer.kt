@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addBusEffectPtr
-import godot.addBusPtr
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.Signal0
@@ -24,53 +22,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.generateBusLayoutPtr
-import godot.getBusChannelsPtr
-import godot.getBusCountPtr
-import godot.getBusEffectCountPtr
-import godot.getBusEffectInstancePtr
-import godot.getBusEffectPtr
-import godot.getBusIndexPtr
-import godot.getBusNamePtr
-import godot.getBusPeakVolumeLeftDbPtr
-import godot.getBusPeakVolumeRightDbPtr
-import godot.getBusSendPtr
-import godot.getBusVolumeDbPtr
-import godot.getInputDeviceListPtr
-import godot.getInputDevicePtr
-import godot.getMixRatePtr
-import godot.getOutputDeviceListPtr
-import godot.getOutputDevicePtr
-import godot.getOutputLatencyPtr
-import godot.getPlaybackSpeedScalePtr
-import godot.getSpeakerModePtr
-import godot.getTimeSinceLastMixPtr
-import godot.getTimeToNextMixPtr
-import godot.isBusBypassingEffectsPtr
-import godot.isBusEffectEnabledPtr
-import godot.isBusMutePtr
-import godot.isBusSoloPtr
-import godot.isStreamRegisteredAsSamplePtr
-import godot.lockPtr
-import godot.moveBusPtr
-import godot.registerStreamAsSamplePtr
-import godot.removeBusEffectPtr
-import godot.removeBusPtr
-import godot.setBusBypassEffectsPtr
-import godot.setBusCountPtr
-import godot.setBusEffectEnabledPtr
-import godot.setBusLayoutPtr
-import godot.setBusMutePtr
-import godot.setBusNamePtr
-import godot.setBusSendPtr
-import godot.setBusSoloPtr
-import godot.setBusVolumeDbPtr
-import godot.setEnableTaggingUsedAudioStreamsPtr
-import godot.setInputDevicePtr
-import godot.setOutputDevicePtr
-import godot.setPlaybackSpeedScalePtr
-import godot.swapBusEffectsPtr
-import godot.unlockPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -103,7 +54,7 @@ public object AudioServer : Object() {
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_AUDIOSERVER)
+    getSingleton(ENGINECLASS_AUDIOSERVER)
   }
 
   @JvmStatic

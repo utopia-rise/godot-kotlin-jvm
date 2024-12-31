@@ -9,12 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.buildBoxPlanesPtr
-import godot.buildCapsulePlanesPtr
-import godot.buildCylinderPlanesPtr
-import godot.clipPolygonPtr
 import godot.common.interop.VoidPtr
-import godot.computeConvexMeshPointsPtr
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
@@ -28,16 +23,6 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getClosestPointToSegmentPtr
-import godot.getClosestPointToSegmentUncappedPtr
-import godot.getClosestPointsBetweenSegmentsPtr
-import godot.getTriangleBarycentricCoordsPtr
-import godot.rayIntersectsTrianglePtr
-import godot.segmentIntersectsConvexPtr
-import godot.segmentIntersectsCylinderPtr
-import godot.segmentIntersectsSpherePtr
-import godot.segmentIntersectsTrianglePtr
-import godot.tetrahedralizeDelaunayPtr
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -55,7 +40,7 @@ private const val ENGINECLASS_GEOMETRY3D: Int = 10
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_GEOMETRY3D)
+    getSingleton(ENGINECLASS_GEOMETRY3D)
   }
 
   /**

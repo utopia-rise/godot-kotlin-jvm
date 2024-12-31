@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.applyRestPtr
 import godot.common.interop.VoidPtr
 import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
@@ -19,16 +18,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM2D
-import godot.getAutocalculateLengthAndAnglePtr
-import godot.getBoneAnglePtr
-import godot.getIndexInSkeletonPtr
-import godot.getLengthPtr
-import godot.getRestPtr
-import godot.getSkeletonRestPtr
-import godot.setAutocalculateLengthAndAnglePtr
-import godot.setBoneAnglePtr
-import godot.setLengthPtr
-import godot.setRestPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

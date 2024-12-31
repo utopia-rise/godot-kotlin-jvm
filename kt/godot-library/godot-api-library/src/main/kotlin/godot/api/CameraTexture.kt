@@ -13,12 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getCameraActivePtr
-import godot.getCameraFeedIdPtr
-import godot.getWhichFeedPtr
-import godot.setCameraActivePtr
-import godot.setCameraFeedIdPtr
-import godot.setWhichFeedPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

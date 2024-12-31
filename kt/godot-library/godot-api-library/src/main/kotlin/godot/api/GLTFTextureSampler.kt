@@ -12,14 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getMagFilterPtr
-import godot.getMinFilterPtr
-import godot.getWrapSPtr
-import godot.getWrapTPtr
-import godot.setMagFilterPtr
-import godot.setMinFilterPtr
-import godot.setWrapSPtr
-import godot.setWrapTPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

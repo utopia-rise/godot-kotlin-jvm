@@ -13,8 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
-import godot.packPtr
-import godot.sizePtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long

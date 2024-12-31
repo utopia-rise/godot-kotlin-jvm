@@ -32,13 +32,35 @@ import godot.tools.common.constants.kotlinReflectPackage
 import java.io.File
 import kotlin.reflect.KCallable
 
-class SignalGenerationService : ISignalGenerationService {
+object SignalGenerationService : ISignalGenerationService {
 
-    override fun generate(outputDir: File) {
-        val signalFileSpec = FileSpec.builder(godotExtensionPackage, "Signals")
+    private const val SIGNAL_CLASS_NAME = "Signal"
+    private const val INSTANCE_PARAMETER = "instance"
+    private const val NAME_PARAMETER = "name"
+    private const val PROPERTY_PARAMETER = "property"
+    private const val TARGET_PARAMETER_NAME = "target"
+    private const val METHOD_PARAMETER_NAME = "method"
+    private const val FLAGS_PARAMETER_NAME = "flags"
+    private const val THIS_REF_PARAMETER_NAME = "thisRef"
+
+    private const val EMIT_METHOD_NAME = "emit"
+    private const val CONNECT_METHOD_NAME = "connect"
+    private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafe"
+    private const val DISCONNECT_METHOD_NAME = "disconnect"
+    private const val SIGNAL_METHOD_NAME = "signal"
+    private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
+
+    private const val DELEGATE_PROPERTY_NAME = "delegate"
+
+    private val propertyClassname = ClassName(kotlinReflectPackage, "KProperty").parameterizedBy(STAR)
+    private val readOnlyPropertyClassName = ClassName("kotlin.properties", "ReadOnlyProperty")
+    private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
+
+    override fun generateCore(outputDir: File) {
+        val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotExtensionPackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
             signalFileSpec.addType(generateSignalClass(argCount, genericClassNameInfo))
@@ -46,6 +68,28 @@ class SignalGenerationService : ISignalGenerationService {
             signalFileSpec.addFunction(generateFakeSignalConstructor(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalDelegate(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, false))
+        }
+
+        signalFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(Suppress::class)
+                    .addMember("\"PackageDirectoryMismatch\"")
+                    .addMember("\"NOTHING_TO_INLINE\"")
+                    .addMember("\"UNUSED_PARAMETER\"")
+                    .build()
+            )
+            .indent("    ")
+            .build()
+            .writeTo(outputDir)
+    }
+
+    override fun generateExtension(outputDir: File) {
+        val signalFileSpec = FileSpec.builder(godotExtensionPackage, "SignalUtils")
+
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
+            val signalClassName = ClassName(godotExtensionPackage, "$SIGNAL_CLASS_NAME$argCount")
+            val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
             signalFileSpec.addFunction(generateThreadSafeExtension(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, true))
@@ -360,29 +404,5 @@ class SignalGenerationService : ISignalGenerationService {
                 }
             )
             .build()
-    }
-
-    companion object {
-        private const val SIGNAL_CLASS_NAME = "Signal"
-        private const val INSTANCE_PARAMETER = "instance"
-        private const val NAME_PARAMETER = "name"
-        private const val PROPERTY_PARAMETER = "property"
-        private const val TARGET_PARAMETER_NAME = "target"
-        private const val METHOD_PARAMETER_NAME = "method"
-        private const val FLAGS_PARAMETER_NAME = "flags"
-        private const val THIS_REF_PARAMETER_NAME = "thisRef"
-
-        private const val EMIT_METHOD_NAME = "emit"
-        private const val CONNECT_METHOD_NAME = "connect"
-        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafe"
-        private const val DISCONNECT_METHOD_NAME = "disconnect"
-        private const val SIGNAL_METHOD_NAME = "signal"
-        private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
-
-        private const val DELEGATE_PROPERTY_NAME = "delegate"
-
-        private val propertyClassname = ClassName(kotlinReflectPackage, "KProperty").parameterizedBy(STAR)
-        private val readOnlyPropertyClassName = ClassName("kotlin.properties", "ReadOnlyProperty")
-        private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
     }
 }

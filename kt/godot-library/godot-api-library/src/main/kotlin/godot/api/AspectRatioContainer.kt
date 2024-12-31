@@ -13,14 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getAlignmentHorizontalPtr
-import godot.getAlignmentVerticalPtr
-import godot.getRatioPtr
-import godot.getStretchModePtr
-import godot.setAlignmentHorizontalPtr
-import godot.setAlignmentVerticalPtr
-import godot.setRatioPtr
-import godot.setStretchModePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

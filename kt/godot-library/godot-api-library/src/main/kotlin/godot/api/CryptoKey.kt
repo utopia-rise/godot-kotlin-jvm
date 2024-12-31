@@ -14,11 +14,6 @@ import godot.core.Error
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.isPublicOnlyPtr
-import godot.loadFromStringPtr
-import godot.loadPtr
-import godot.savePtr
-import godot.saveToStringPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

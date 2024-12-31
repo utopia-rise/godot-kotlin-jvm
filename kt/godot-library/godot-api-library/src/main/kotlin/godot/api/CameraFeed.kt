@@ -18,14 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM2D
-import godot.getDatatypePtr
-import godot.getIdPtr
-import godot.getNamePtr
-import godot.getPositionPtr
-import godot.getTransformPtr
-import godot.isActivePtr
-import godot.setActivePtr
-import godot.setTransformPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

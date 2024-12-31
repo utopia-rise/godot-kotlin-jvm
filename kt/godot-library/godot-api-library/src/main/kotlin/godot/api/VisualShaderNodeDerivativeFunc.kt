@@ -12,12 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFunctionPtr
-import godot.getOpTypePtr
-import godot.getPrecisionPtr
-import godot.setFunctionPtr
-import godot.setOpTypePtr
-import godot.setPrecisionPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

@@ -9,7 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.addPeerPtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
@@ -20,13 +19,6 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.createClientPtr
-import godot.createMeshPtr
-import godot.createServerPtr
-import godot.getPeerPtr
-import godot.getPeersPtr
-import godot.hasPeerPtr
-import godot.removePeerPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

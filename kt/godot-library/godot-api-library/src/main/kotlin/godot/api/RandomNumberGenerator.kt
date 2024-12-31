@@ -15,17 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.getSeedPtr
-import godot.getStatePtr
-import godot.randWeightedPtr
-import godot.randfPtr
-import godot.randfRangePtr
-import godot.randfnPtr
-import godot.randiPtr
-import godot.randiRangePtr
-import godot.randomizePtr
-import godot.setSeedPtr
-import godot.setStatePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

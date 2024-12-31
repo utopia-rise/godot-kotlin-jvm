@@ -15,10 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.getStageBytecodePtr
-import godot.getStageCompileErrorPtr
-import godot.setStageBytecodePtr
-import godot.setStageCompileErrorPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

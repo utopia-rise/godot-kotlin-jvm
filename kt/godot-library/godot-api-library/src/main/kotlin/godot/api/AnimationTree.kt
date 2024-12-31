@@ -16,14 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
-import godot.getAdvanceExpressionBaseNodePtr
-import godot.getAnimationPlayerPtr
-import godot.getProcessCallbackPtr
-import godot.getTreeRootPtr
-import godot.setAdvanceExpressionBaseNodePtr
-import godot.setAnimationPlayerPtr
-import godot.setProcessCallbackPtr
-import godot.setTreeRootPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

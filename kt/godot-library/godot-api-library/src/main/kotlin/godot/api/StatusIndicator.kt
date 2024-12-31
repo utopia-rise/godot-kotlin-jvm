@@ -20,15 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.Vector2i
-import godot.getIconPtr
-import godot.getMenuPtr
-import godot.getRectPtr
-import godot.getTooltipPtr
-import godot.isVisiblePtr
-import godot.setIconPtr
-import godot.setMenuPtr
-import godot.setTooltipPtr
-import godot.setVisiblePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

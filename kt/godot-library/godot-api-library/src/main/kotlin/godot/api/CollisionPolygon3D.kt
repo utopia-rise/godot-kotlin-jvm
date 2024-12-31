@@ -15,14 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.getDepthPtr
-import godot.getMarginPtr
-import godot.getPolygonPtr
-import godot.isDisabledPtr
-import godot.setDepthPtr
-import godot.setDisabledPtr
-import godot.setMarginPtr
-import godot.setPolygonPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

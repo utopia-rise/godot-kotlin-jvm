@@ -12,16 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getDepthPtr
-import godot.getFeedbackPtr
-import godot.getRangeMaxHzPtr
-import godot.getRangeMinHzPtr
-import godot.getRateHzPtr
-import godot.setDepthPtr
-import godot.setFeedbackPtr
-import godot.setRangeMaxHzPtr
-import godot.setRangeMinHzPtr
-import godot.setRateHzPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

@@ -15,11 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getInfluencePtr
-import godot.getSkeletonPtr
-import godot.isActivePtr
-import godot.setActivePtr
-import godot.setInfluencePtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

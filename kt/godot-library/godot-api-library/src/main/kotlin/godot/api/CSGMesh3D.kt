@@ -12,10 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.getMaterialPtr
-import godot.getMeshPtr
-import godot.setMaterialPtr
-import godot.setMeshPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

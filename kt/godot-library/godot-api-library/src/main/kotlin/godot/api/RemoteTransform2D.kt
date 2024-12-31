@@ -14,17 +14,6 @@ import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.forceUpdateCachePtr
-import godot.getRemoteNodePtr
-import godot.getUpdatePositionPtr
-import godot.getUpdateRotationPtr
-import godot.getUpdateScalePtr
-import godot.getUseGlobalCoordinatesPtr
-import godot.setRemoteNodePtr
-import godot.setUpdatePositionPtr
-import godot.setUpdateRotationPtr
-import godot.setUpdateScalePtr
-import godot.setUseGlobalCoordinatesPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

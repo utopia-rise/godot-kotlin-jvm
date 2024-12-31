@@ -20,11 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getFloatPtr
-import godot.getInputPtr
-import godot.getTrackerHandPtr
-import godot.getVector2Ptr
-import godot.isButtonPressedPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double

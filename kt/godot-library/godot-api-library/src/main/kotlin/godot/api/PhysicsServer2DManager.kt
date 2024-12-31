@@ -15,8 +15,6 @@ import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.registerServerPtr
-import godot.setDefaultServerPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -34,7 +32,7 @@ private const val ENGINECLASS_PHYSICSSERVER2DMANAGER: Int = 4
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(this, ENGINECLASS_PHYSICSSERVER2DMANAGER)
+    getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
   }
 
   /**

@@ -16,8 +16,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.fitChildInRectPtr
-import godot.queueSortPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError

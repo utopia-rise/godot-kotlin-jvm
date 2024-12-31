@@ -14,12 +14,6 @@ import godot.core.RID
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.createPlaceholderPtr
-import godot.getNextPassPtr
-import godot.getRenderPriorityPtr
-import godot.inspectNativeShaderCodePtr
-import godot.setNextPassPtr
-import godot.setRenderPriorityPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

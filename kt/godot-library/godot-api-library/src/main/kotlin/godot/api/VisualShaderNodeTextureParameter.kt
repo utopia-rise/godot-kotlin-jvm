@@ -12,16 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getColorDefaultPtr
-import godot.getTextureFilterPtr
-import godot.getTextureRepeatPtr
-import godot.getTextureSourcePtr
-import godot.getTextureTypePtr
-import godot.setColorDefaultPtr
-import godot.setTextureFilterPtr
-import godot.setTextureRepeatPtr
-import godot.setTextureSourcePtr
-import godot.setTextureTypePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

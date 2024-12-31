@@ -16,17 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
-import godot.getBoneIdxPtr
-import godot.getBoneNamePtr
-import godot.getExternalSkeletonPtr
-import godot.getOverridePosePtr
-import godot.getUseExternalSkeletonPtr
-import godot.onSkeletonUpdatePtr
-import godot.setBoneIdxPtr
-import godot.setBoneNamePtr
-import godot.setExternalSkeletonPtr
-import godot.setOverridePosePtr
-import godot.setUseExternalSkeletonPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getDescriptionPtr
-import godot.setDescriptionPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

@@ -13,15 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getAlignmentPtr
-import godot.getLastWrapAlignmentPtr
-import godot.getLineCountPtr
-import godot.isReverseFillPtr
-import godot.isVerticalPtr
-import godot.setAlignmentPtr
-import godot.setLastWrapAlignmentPtr
-import godot.setReverseFillPtr
-import godot.setVerticalPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.EulerOrder
+import godot.core.EulerOrder
 import godot.common.util.CMP_EPSILON
 import godot.common.util.RealT
 import godot.common.util.cubicInterpolate

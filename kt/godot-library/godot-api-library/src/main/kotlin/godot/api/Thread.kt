@@ -18,12 +18,6 @@ import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.getIdPtr
-import godot.isAlivePtr
-import godot.isStartedPtr
-import godot.setThreadSafetyChecksEnabledPtr
-import godot.startPtr
-import godot.waitToFinishPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

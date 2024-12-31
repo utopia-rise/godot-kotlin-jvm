@@ -1,6 +1,6 @@
 package godot.registration
 
-import godot.PropertyHint
+import godot.core.PropertyHint
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty

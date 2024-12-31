@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.getFactorPtr
-import godot.setFactorPtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

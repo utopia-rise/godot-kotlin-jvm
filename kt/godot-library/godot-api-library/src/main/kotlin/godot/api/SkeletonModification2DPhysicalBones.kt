@@ -17,13 +17,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.fetchPhysicalBonesPtr
-import godot.getPhysicalBoneChainLengthPtr
-import godot.getPhysicalBoneNodePtr
-import godot.setPhysicalBoneChainLengthPtr
-import godot.setPhysicalBoneNodePtr
-import godot.startSimulationPtr
-import godot.stopSimulationPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

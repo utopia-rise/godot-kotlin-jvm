@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getBillboardTypePtr
-import godot.isKeepScaleEnabledPtr
-import godot.setBillboardTypePtr
-import godot.setKeepScaleEnabledPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

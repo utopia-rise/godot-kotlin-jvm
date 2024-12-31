@@ -17,12 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getTextureOffsetPtr
-import godot.getTexturePtr
-import godot.getTextureScalePtr
-import godot.setTextureOffsetPtr
-import godot.setTexturePtr
-import godot.setTextureScalePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

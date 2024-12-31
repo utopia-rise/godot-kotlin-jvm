@@ -12,16 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getFormatOverridePtr
-import godot.getSwizzleAPtr
-import godot.getSwizzleBPtr
-import godot.getSwizzleGPtr
-import godot.getSwizzleRPtr
-import godot.setFormatOverridePtr
-import godot.setSwizzleAPtr
-import godot.setSwizzleBPtr
-import godot.setSwizzleGPtr
-import godot.setSwizzleRPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress

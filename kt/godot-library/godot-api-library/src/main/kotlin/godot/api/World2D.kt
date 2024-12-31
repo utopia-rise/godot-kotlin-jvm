@@ -13,10 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.getCanvasPtr
-import godot.getDirectSpaceStatePtr
-import godot.getNavigationMapPtr
-import godot.getSpacePtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

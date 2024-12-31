@@ -15,14 +15,6 @@ import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.getTicksOnBordersPtr
-import godot.getTicksPtr
-import godot.isEditablePtr
-import godot.isScrollablePtr
-import godot.setEditablePtr
-import godot.setScrollablePtr
-import godot.setTicksOnBordersPtr
-import godot.setTicksPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

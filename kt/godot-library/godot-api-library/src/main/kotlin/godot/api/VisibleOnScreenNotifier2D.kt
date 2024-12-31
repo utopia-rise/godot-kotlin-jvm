@@ -17,9 +17,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import godot.getRectPtr
-import godot.isOnScreenPtr
-import godot.setRectPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

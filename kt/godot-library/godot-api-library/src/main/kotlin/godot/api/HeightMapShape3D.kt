@@ -16,15 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.getMapDataPtr
-import godot.getMapDepthPtr
-import godot.getMapWidthPtr
-import godot.getMaxHeightPtr
-import godot.getMinHeightPtr
-import godot.setMapDataPtr
-import godot.setMapDepthPtr
-import godot.setMapWidthPtr
-import godot.updateMapDataFromImagePtr
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int

@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.getMagnitudeForFrequencyRangePtr
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long

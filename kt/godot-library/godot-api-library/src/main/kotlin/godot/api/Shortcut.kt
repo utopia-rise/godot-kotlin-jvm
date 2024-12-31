@@ -16,11 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.getAsTextPtr
-import godot.getEventsPtr
-import godot.hasValidEventPtr
-import godot.matchesEventPtr
-import godot.setEventsPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int

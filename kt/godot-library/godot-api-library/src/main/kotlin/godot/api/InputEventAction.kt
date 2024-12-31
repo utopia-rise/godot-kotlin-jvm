@@ -16,13 +16,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.getActionPtr
-import godot.getEventIndexPtr
-import godot.getStrengthPtr
-import godot.setActionPtr
-import godot.setEventIndexPtr
-import godot.setPressedPtr
-import godot.setStrengthPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float

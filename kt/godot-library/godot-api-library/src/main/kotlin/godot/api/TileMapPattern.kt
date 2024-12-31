@@ -17,16 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.getCellAlternativeTilePtr
-import godot.getCellAtlasCoordsPtr
-import godot.getCellSourceIdPtr
-import godot.getSizePtr
-import godot.getUsedCellsPtr
-import godot.hasCellPtr
-import godot.isEmptyPtr
-import godot.removeCellPtr
-import godot.setCellPtr
-import godot.setSizePtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

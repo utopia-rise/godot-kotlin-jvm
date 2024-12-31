@@ -12,8 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.isUsingSyncPtr
-import godot.setUseSyncPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

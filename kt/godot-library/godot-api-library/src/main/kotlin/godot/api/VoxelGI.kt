@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.bakePtr
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -19,15 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.debugBakePtr
-import godot.getCameraAttributesPtr
-import godot.getProbeDataPtr
-import godot.getSizePtr
-import godot.getSubdivPtr
-import godot.setCameraAttributesPtr
-import godot.setProbeDataPtr
-import godot.setSizePtr
-import godot.setSubdivPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

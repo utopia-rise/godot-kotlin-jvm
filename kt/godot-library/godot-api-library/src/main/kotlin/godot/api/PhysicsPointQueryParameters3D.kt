@@ -20,16 +20,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getCollisionMaskPtr
-import godot.getExcludePtr
-import godot.getPositionPtr
-import godot.isCollideWithAreasEnabledPtr
-import godot.isCollideWithBodiesEnabledPtr
-import godot.setCollideWithAreasPtr
-import godot.setCollideWithBodiesPtr
-import godot.setCollisionMaskPtr
-import godot.setExcludePtr
-import godot.setPositionPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long

@@ -15,12 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.getTrackerDescPtr
-import godot.getTrackerNamePtr
-import godot.getTrackerTypePtr
-import godot.setTrackerDescPtr
-import godot.setTrackerNamePtr
-import godot.setTrackerTypePtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String

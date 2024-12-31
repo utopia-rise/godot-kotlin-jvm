@@ -15,8 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.getConstantPtr
-import godot.setConstantPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit

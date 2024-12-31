@@ -14,10 +14,6 @@ import godot.core.PackedVector3Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.getFacesPtr
-import godot.isBackfaceCollisionEnabledPtr
-import godot.setBackfaceCollisionEnabledPtr
-import godot.setFacesPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress

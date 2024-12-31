@@ -9,8 +9,6 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.castMotionPtr
-import godot.collideShapePtr
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
@@ -21,10 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.Vector2
-import godot.getRestInfoPtr
-import godot.intersectPointPtr
-import godot.intersectRayPtr
-import godot.intersectShapePtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
