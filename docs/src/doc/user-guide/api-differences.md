@@ -55,7 +55,7 @@ Contrary to what you might be used to from GDScript or C#, this binding requires
 and which members of those classes should be exposed to Godot.  
 This requires a bit more code but enables to properly define visibility across languages and restrict access to values 
 which you might not want to expose.  
-See the individual sections in the `user-guide` in this documentation to see how to register your [classes](https://godot-kotl.in/en/stable/user-guide/classes), members, and [functions](https://godot-kotl.in/en/stable/user-guide/functions/) so
+See the individual sections in the `user-guide` in this documentation to see how to register your [classes](https://godot-kotl.in/en/stable/user-guide/classes), [properties](https://godot-kotl.in/en/stable/user-guide/properties/), and [functions](https://godot-kotl.in/en/stable/user-guide/functions/) so
 you can use them from godot and other scripting languages.
 
 ## Instance types and singletons
