@@ -39,6 +39,18 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         }
         .map { it.mapFieldToRegisteredSignal(settings) }
 
+    val duplicateConstructorArgumentCount = constructorInfo
+        .groupBy { it.parameterInfo.size }
+        .toList()
+        .firstOrNull { it.second.size > 1 }
+        ?.first
+
+    if (duplicateConstructorArgumentCount != null) {
+        throw Exception(
+            "Cannot have more than one constructor with $duplicateConstructorArgumentCount arguments in registered class $fqName"
+        )
+    }
+
     val constructors = constructorInfo
         .filter { constructor ->
             constructor.isPublic &&

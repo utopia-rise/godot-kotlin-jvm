@@ -63,8 +63,21 @@ internal fun KSClassDeclaration.mapToClazz(
     val relativeSourcePath = absoluteSourcePath?.relativeTo(settings.projectBaseDir)?.invariantSeparatorsPath ?: ""
 
     return if (shouldBeRegistered) {
+        val constructors = getConstructors()
 
-        val registeredConstructors = getConstructors()
+        val duplicateConstructorArgumentCount = constructors
+            .groupBy { it.parameters.size }
+            .toList()
+            .firstOrNull { it.second.size > 1 }
+            ?.first
+
+        if (duplicateConstructorArgumentCount != null) {
+            throw Exception(
+                "Cannot have more than one constructor with $duplicateConstructorArgumentCount arguments in registered class $fqName"
+            )
+        }
+
+        val registeredConstructors = constructors
             .filter { it.isPublic() }
             .filter { constructor ->
                 constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
