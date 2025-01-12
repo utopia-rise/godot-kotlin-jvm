@@ -30,53 +30,10 @@ object ConstructorRegistrationGenerator {
                 } else {
                     val templateArgs = mutableListOf<Any>()
                     val templateString = buildString {
-                        append("{")
-                        registeredConstructor.parameters.forEachIndexed { index, valueParameter ->
-                            append("%L:·%T")
-                            templateArgs.add(valueParameter.name)
-                            templateArgs.add(
-                                valueParameter.type.toTypeName()
-                            ) //setting nullables explicitly to false in case of type parameters for generic types, setting nullability later
-
-                            if (valueParameter.typeArguments.isNotEmpty()) {
-                                append("<")
-                                append(
-                                    valueParameter.typeArguments.joinToString(",·") { typeArgument ->
-                                        templateArgs.add(
-                                            ClassName(
-                                                typeArgument.fqName.substringBeforeLast("."),
-                                                typeArgument.fqName.substringAfterLast(".")
-                                            )
-                                        )
-                                        if (typeArgument.isNullable) {
-                                            "%T?"
-                                        } else {
-                                            "%T"
-                                        }
-                                    }
-                                )
-                                append(">")
-                            }
-
-                            if (valueParameter.type.isNullable) {
-                                append("?") //setting nullability now and not earlier in case of type parameters for generic types
-                            }
-
-                            if (index != registeredConstructor.parameters.size - 1) {
-                                append(",·")
-                            }
-                        }
-
-                        append("·->·%T(")
+                        append("::%T")
                         templateArgs.add(className)
 
-                        registeredConstructor.parameters.forEachIndexed { index, valueParameter ->
-                            append(valueParameter.name)
-                            if (index != registeredConstructor.parameters.size - 1) {
-                                append(",·")
-                            }
-                        }
-                        append(")},·")
+                        append(",·")
 
                         registeredConstructor.parameters.forEachIndexed { index, valueParameter ->
                             append("%T")
