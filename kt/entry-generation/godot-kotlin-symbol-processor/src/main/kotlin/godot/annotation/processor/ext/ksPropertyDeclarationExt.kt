@@ -7,12 +7,7 @@ import com.google.devtools.ksp.symbol.Modifier
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.Settings
 import godot.entrygenerator.ext.hasAnnotation
-import godot.entrygenerator.model.EnumAnnotation
-import godot.entrygenerator.model.EnumHintStringAnnotation
-import godot.entrygenerator.model.EnumListHintStringAnnotation
-import godot.entrygenerator.model.PropertyAnnotation
-import godot.entrygenerator.model.RegisteredProperty
-import godot.entrygenerator.model.RegisteredSignal
+import godot.entrygenerator.model.*
 
 internal fun KSPropertyDeclaration.mapToRegisteredProperty(
     settings: Settings,
@@ -79,7 +74,7 @@ internal fun KSPropertyDeclaration.mapToRegisteredProperty(
 
     return RegisteredProperty(
         fqName = fqName,
-        type = mappedType,
+        type = PropertyType(mappedType, type.resolve().isMarkedNullable),
         isMutable = isMutable,
         isLateinit = modifiers.contains(Modifier.LATEINIT),
         isOverridee = findOverridee() != null,

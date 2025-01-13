@@ -6,6 +6,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Settings
+import godot.annotation.processor.classgraph.constants.JVM_OBJECT
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.RegisteredClass
@@ -13,7 +14,7 @@ import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.ScanResult
-import org.jetbrains.annotations.NotNull
+import io.github.classgraph.TypeArgument
 
 context(ScanResult)
 fun ClassInfo.mapToClazz(settings: Settings): Clazz {
@@ -31,13 +32,13 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         .filter { fieldInfo ->
             fieldInfo.hasAnnotation(RegisterProperty::class.java, this)
         }
-        .map { it.mapToRegisteredProperty(settings) }
+        .map { it.mapToRegisteredProperty(settings, this) }
 
     val signals = fieldInfo
         .filter { fieldInfo ->
             fieldInfo.hasAnnotation(RegisterSignal::class.java, this)
         }
-        .map { it.mapFieldToRegisteredSignal(settings) }
+        .map { it.mapFieldToRegisteredSignal(settings, this) }
 
     val duplicateConstructorArgumentCount = constructorInfo
         .groupBy { it.parameterInfo.size }
@@ -137,25 +138,19 @@ internal fun ClassInfo.provideRegisteredClassName(
 }
 
 // TODO: remove when https://github.com/classgraph/classgraph/issues/703 is fixed
-internal fun getJavaLangObjectType(isNullable: Boolean, settings: Settings): Type {
-    val fqName = "java.lang.Object"
+internal fun getJavaLangObjectType(settings: Settings): Type {
+    val fqName = JVM_OBJECT
     return Type(
         fqName = fqName,
         kind = TypeKind.CLASS,
-        isNullable = isNullable,
         supertypes = listOf(),
         arguments = { listOf() },
         registeredName = { getDefaultRegisteredName(fqName, settings) }
     )
 }
 
-context(ScanResult)
-internal fun ClassInfo.mapToType(settings: Settings, nullable: Boolean): Type {
-    val fqName = name
-
-    val superTypes = superclasses.map { it.mapToType(settings, nullable) }
-
-    val typeKind = when {
+val ClassInfo.typeKind: TypeKind
+    get() = when {
         isAnnotation -> TypeKind.ANNOTATION_CLASS
         isInterface -> TypeKind.INTERFACE
         isEnum -> TypeKind.ENUM_CLASS
@@ -163,17 +158,15 @@ internal fun ClassInfo.mapToType(settings: Settings, nullable: Boolean): Type {
         else -> TypeKind.UNKNOWN
     }
 
+context(ScanResult)
+internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Settings): Type {
+    val superTypes = superclasses.map { it.mapToType(listOf(), settings) }
+
     return Type(
-        fqName = fqName,
+        fqName = name,
         kind = typeKind,
-        isNullable = hasAnnotation(NotNull::class.java),
         supertypes = superTypes,
-        arguments = { getTypeParameters(settings) },
+        arguments = { typeArguments.map { it.getType(settings) } },
         registeredName = { provideRegisteredClassName(settings) },
     )
 }
-
-context(ScanResult)
-internal fun ClassInfo.getTypeParameters(settings: Settings): List<Type> = typeDescriptor
-    .typeParameters
-    .map { it.typeClassInfo.mapToType(settings, false) } //TODO: See how to manage nullables
