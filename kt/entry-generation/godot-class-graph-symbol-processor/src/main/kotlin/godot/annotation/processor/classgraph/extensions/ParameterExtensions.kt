@@ -9,13 +9,10 @@ import io.github.classgraph.ScanResult
 context(ScanResult)
 fun MethodParameterInfo.mapToValueParameter(settings: Settings): ValueParameter {
     val typeDescriptor = TypeDescriptor(this)
+    val type = typeDescriptor.getMappedType(settings)
     return ValueParameter(
         name,
-        typeDescriptor.getMappedType(settings),
-        if (typeDescriptor.isPrimitive || typeDescriptor.isObject) {
-            listOf()
-        } else {
-            typeDescriptor.typeClassInfo.getTypeParameters(settings)
-        }
+        type,
+        type.arguments()
     )
 }

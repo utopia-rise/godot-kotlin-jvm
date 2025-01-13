@@ -54,9 +54,10 @@ private fun MethodInfo.isOverrideInHierarchyOf(classInfo: ClassInfo): Boolean {
 
 context(ScanResult)
 fun MethodInfo.mapToRegisteredConstructor(settings: Settings): RegisteredConstructor {
+    val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
     return RegisteredConstructor(
         fqName = fqdn,
-        parameters = parameterInfo.map { it.mapToValueParameter(settings) },
+        parameters = parameters,
         annotations = annotationInfo
             .mapNotNull { it.mapToGodotAnnotation(settings) as? ConstructorAnnotation },
         symbolProcessorSource = this
