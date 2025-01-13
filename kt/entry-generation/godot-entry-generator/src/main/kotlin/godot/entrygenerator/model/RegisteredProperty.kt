@@ -2,7 +2,7 @@ package godot.entrygenerator.model
 
 data class RegisteredProperty(
     val fqName: String,
-    val type: Type,
+    val type: PropertyType,
     val isMutable: Boolean = true,
     val isLateinit: Boolean = false,
     val isOverridee: Boolean = false,
