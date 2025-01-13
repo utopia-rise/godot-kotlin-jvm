@@ -1,83 +1,93 @@
 package godot.annotation.processor.classgraph.models
 
 import godot.annotation.processor.classgraph.Settings
+import godot.annotation.processor.classgraph.constants.*
 import godot.annotation.processor.classgraph.extensions.getJavaLangObjectType
+import godot.annotation.processor.classgraph.extensions.hasAnnotation
 import godot.annotation.processor.classgraph.extensions.mapToType
+import godot.entrygenerator.model.PropertyType
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import io.github.classgraph.ClassInfo
+import io.github.classgraph.ClassRefTypeSignature
 import io.github.classgraph.FieldInfo
 import io.github.classgraph.MethodInfo
 import io.github.classgraph.MethodParameterInfo
 import io.github.classgraph.ScanResult
+import io.github.classgraph.TypeArgument
 import io.github.classgraph.TypeSignature
 import org.jetbrains.annotations.NotNull
 
 class TypeDescriptor private constructor(
-    private val value: TypeSignature,
+    private val descriptor: TypeSignature,
+    val typeArguments: List<TypeArgument>,
     private val nullable: Boolean,
+    val isLateInit: Boolean,
     private val descriptorType: DescriptorType
 ) {
-    constructor(fieldInfo: FieldInfo) : this(
+    constructor(fieldInfo: FieldInfo, classInfo: ClassInfo) : this(
         fieldInfo.typeDescriptor,
-        !fieldInfo.hasAnnotation(NotNull::class.java),
+        (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+        !fieldInfo.hasAnnotation(NotNull::class.java, classInfo),
+        fieldInfo.hasAnnotation("kotlin.Lateinit", classInfo),
         FieldType(fieldInfo.name)
     )
 
     constructor(parameterInfo: MethodParameterInfo) : this(
         parameterInfo.typeDescriptor,
+        (parameterInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         !parameterInfo.hasAnnotation(NotNull::class.java),
+        false,
         ParameterType(parameterInfo.name)
     )
 
     constructor(methodInfo: MethodInfo) : this(
         methodInfo.typeDescriptor.resultType,
+        (methodInfo.typeSignature?.resultType as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         !methodInfo.hasAnnotation(NotNull::class.java),
+        false,
         MethodType(methodInfo.name)
     )
 
-    private val primitiveType = when(value.toString()) {
-        "boolean", "int", "long", "float", "double", "byte", "short", "java.lang.String" -> {
-            val fqName = value.toString()
+    private val primitiveType = when(descriptor.toString()) {
+        BOOLEAN, INT, LONG, FLOAT, DOUBLE, BYTE, SHORT, STRING -> {
+            val fqName = descriptor.toString()
             Type(
                 fqName = fqName,
                 kind = TypeKind.UNKNOWN,
-                isNullable = nullable,
                 supertypes = listOf(),
                 arguments = { listOf() },
                 registeredName = { fqName }
             )
         }
-        "void" -> null
+        VOID -> null
         else -> null
     }
 
+    private val isJvmPrimitive: Boolean = jvmPrimitives.contains(descriptor.toString())
+
     val isPrimitive = primitiveType != null
-    val isVoid = value.toString() == "void"
-    val isObject = value.toString() == "java.lang.Object"
+    val isVoid = descriptor.toString() == VOID
+    val isObject = descriptor.toString() == JVM_OBJECT
 
     context(ScanResult)
     val typeClassInfo: ClassInfo
-        get() = this@ScanResult.getClassInfo(value.toString())
+        get() = this@ScanResult.getClassInfo(descriptor.toString())
+
+//    val typeArguments = signature.
 
     context(ScanResult)
     fun getMappedType(settings: Settings): Type = primitiveType ?: if (isObject) {
-        getJavaLangObjectType(nullable, settings)
+        getJavaLangObjectType(settings)
     } else {
-        typeClassInfo.mapToType(settings, nullable)
+        typeClassInfo.mapToType(typeArguments, settings)
     }
 
     context(ScanResult)
-    val enumValues: List<String>
-        get() {
-            val classInfo = typeClassInfo
-            require(classInfo.isEnum) {
-                "Content type of enumFlag set has to be of class kind ENUM but was class kind ${classInfo.name}. $descriptorType"
-            }
-            return classInfo.fieldInfo
-                .filter { it.isEnum }
-                .map { it.name }
-        }
+    fun getMappedPropertyType(settings: Settings): PropertyType = PropertyType(
+        getMappedType(settings),
+        !isJvmPrimitive && !isLateInit && nullable
+    )
 
     private sealed interface DescriptorType {
         val name: String
