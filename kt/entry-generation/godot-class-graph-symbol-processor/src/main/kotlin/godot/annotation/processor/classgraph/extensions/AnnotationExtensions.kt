@@ -18,6 +18,7 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.annotation.Tool
 import godot.annotation.TransferMode
+import godot.annotation.processor.classgraph.constants.SET
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
@@ -39,7 +40,9 @@ import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisterSignalAnnotation
 import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.ToolAnnotation
+import io.github.classgraph.AnnotationEnumValue
 import io.github.classgraph.AnnotationInfo
+import io.github.classgraph.ClassRefTypeSignature
 import io.github.classgraph.FieldInfo
 import io.github.classgraph.ScanResult
 
@@ -69,7 +72,21 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
             require(parentDeclaration is FieldInfo) {
                 "EnumFlag annotation should be placed on property."
             }
-            val enumValues = TypeDescriptor(parentDeclaration).enumValues
+
+            val typeDescriptor = parentDeclaration.typeSignature
+
+            require(typeDescriptor is ClassRefTypeSignature)
+
+            require(typeDescriptor.fullyQualifiedClassName == SET) {
+                "Property annotated with EnumFlag should be of type $SET"
+            }
+
+            val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
+
+            val enumValues = this@ScanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
+                .fieldInfo
+                .filter { it.typeDescriptor == typeArgument }
+                .map { it.name }
             EnumFlagHintStringAnnotation(enumValueNames = enumValues, source = this)
         }
         IntFlag::class.java.name -> IntFlagHintAnnotation(
@@ -131,10 +148,10 @@ private fun AnnotationInfo.getTransferMode(): godot.entrygenerator.model.Transfe
 
 @Suppress("UNCHECKED_CAST")
 private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: T): RangeHintAnnotation<T> {
-    val start = parameterValues.getValue("start") as T
-    val end = parameterValues.getValue("end") as T
+    val start = parameterValues.getValue("min") as T
+    val end = parameterValues.getValue("max") as T
     val step = parameterValues.getValue("step") as? T ?: stepDefault
-    val or = Range.NONE // Adjust this logic based on available data
+    val or = Range.valueOf((parameterValues.getValue("or") as AnnotationEnumValue).valueName) // Adjust this logic based on available data
     val hideSlider = parameterValues.getValue("hideSlider") as? Boolean ?: false
     val isRadians = parameterValues.getValue("isRadians") as? Boolean ?: false
     val isDegrees = parameterValues.getValue("isDegrees") as? Boolean ?: false
