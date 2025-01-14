@@ -63,6 +63,10 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
+      - name: Apply git patch
+        run: |
+          git apply --ignore-whitespace  modules/kotlin_jvm/git.patch
+
       - name: Setup Godot build cache
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         with:
