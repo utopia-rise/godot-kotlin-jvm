@@ -50,7 +50,7 @@ object SignalRegistrationGenerator {
                 add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
                 add(argumentType.toKtVariantType())
                 add(argumentType.fqName)
-                add(argumentName)
+                add("\"$argumentName\"")
             }
         } else {
             registeredSignal.parameterNames.forEachIndexed { index, argumentName ->
@@ -60,7 +60,7 @@ object SignalRegistrationGenerator {
                 add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
                 add(argumentTypeVariantType)
                 add(argumentTypeFqName)
-                add(argumentName)
+                add("\"$argumentName\"")
             }
         }
     }.toTypedArray()

@@ -15,11 +15,11 @@ abstract class AbstractClassInheritanceParent : Node() {
     @RegisterProperty
     var registeredExportedPropertyInParent = false
 
-    @RegisterSignal
-    val testNotOverridden by signal1<String>("blubb")
+    @RegisterSignal("blubb")
+    val testNotOverridden by signal1<String>()
 
-    @RegisterSignal
-    open val testOverridden  by signal2<String, Int>("blubb", "habbalubb")
+    @RegisterSignal("blubb", "habbalubb")
+    open val testOverridden  by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 
