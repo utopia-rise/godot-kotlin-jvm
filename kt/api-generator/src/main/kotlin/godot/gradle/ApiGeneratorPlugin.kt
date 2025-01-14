@@ -2,6 +2,7 @@ package godot.gradle
 
 import godot.codegen.generateApiFrom
 import godot.codegen.generateCoroutine
+import godot.codegen.generateExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,6 +14,8 @@ import org.gradle.api.tasks.TaskAction
 open class ApiGeneratorPluginExtension(objects: ObjectFactory) {
     var sourceJson = objects.fileProperty()
     var coreOutputDir = objects.directoryProperty()
+    var apiOutputDir = objects.directoryProperty()
+    var extensionOutputDir = objects.directoryProperty()
     var coroutineOutputDir = objects.directoryProperty()
 }
 
@@ -24,17 +27,35 @@ open class GenerateAPI : DefaultTask() {
     val coreOutputDir = project.objects.directoryProperty()
 
     @OutputDirectory
+    val apiOutputDir = project.objects.directoryProperty()
+
+    @OutputDirectory
+    val extensionOutputDir = project.objects.directoryProperty()
+
+    @OutputDirectory
     val coroutineOutputDir = project.objects.directoryProperty()
 
     @TaskAction
     fun execute() {
         val coreOutput = coreOutputDir.get().asFile
         coreOutput.deleteRecursively()
-        coreOutput.generateApiFrom(sourceJson.get().asFile)
+
+        val apiOutput = apiOutputDir.get().asFile
+        apiOutput.deleteRecursively()
+
+        generateApiFrom(
+            sourceJson.get().asFile,
+            coreOutput,
+            apiOutput,
+        )
+
+        val extensionOutput = extensionOutputDir.get().asFile
+        extensionOutput.deleteRecursively()
+        generateExtension(extensionOutput)
 
         val coroutineOutput = coroutineOutputDir.get().asFile
         coroutineOutput.deleteRecursively()
-        coroutineOutput.generateCoroutine()
+        generateCoroutine(coroutineOutput)
     }
 }
 
@@ -44,6 +65,8 @@ class ApiGeneratorPlugin : Plugin<Project> {
         project.tasks.register("generateAPI", GenerateAPI::class.java) { task ->
             task.sourceJson.set(extension.sourceJson)
             task.coreOutputDir.set(extension.coreOutputDir)
+            task.apiOutputDir.set(extension.apiOutputDir)
+            task.extensionOutputDir.set(extension.extensionOutputDir)
             task.coroutineOutputDir.set(extension.coroutineOutputDir)
 
             task.group = "godot-jvm"

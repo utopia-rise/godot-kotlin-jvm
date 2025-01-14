@@ -1,6 +1,6 @@
 package godot.entrygenerator.generator.hintstring
 
-import godot.PropertyHint
+import godot.core.PropertyHint
 import godot.core.VariantParser
 import godot.entrygenerator.ext.baseGodotType
 import godot.entrygenerator.ext.getAsGodotClassName

@@ -6,8 +6,8 @@ fqName = godot.tests.packedarray.PackedArrayTest
 relativeSourcePath = src/main/kotlin/godot/tests/packedarray/PackedArrayTest.kt
 baseType = Node
 supertypes = [
-    godot.Node,
-	godot.Object,
+    godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

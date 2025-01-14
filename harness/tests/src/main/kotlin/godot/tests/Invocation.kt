@@ -1,10 +1,10 @@
 package godot.tests
 
-import godot.Button
-import godot.NavigationMesh
-import godot.Node3D
-import godot.Object
-import godot.XRServer
+import godot.api.Button
+import godot.api.NavigationMesh
+import godot.api.Node3D
+import godot.api.Object
+import godot.api.XRServer
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
@@ -38,7 +38,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
-import godot.extensions.getNodeAs
+import godot.extension.getNodeAs
 import godot.registration.Range
 import godot.tests.subpackage.OtherScript
 import godot.common.util.RealT

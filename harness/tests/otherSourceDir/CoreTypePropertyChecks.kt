@@ -1,4 +1,4 @@
-import godot.Node
+import godot.api.Node
 import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterProperty

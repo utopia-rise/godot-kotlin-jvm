@@ -18,6 +18,7 @@ import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotRegistrationPackage
 

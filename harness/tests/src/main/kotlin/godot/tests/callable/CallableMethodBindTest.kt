@@ -1,6 +1,6 @@
 package godot.tests.callable
 
-import godot.Node
+import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty

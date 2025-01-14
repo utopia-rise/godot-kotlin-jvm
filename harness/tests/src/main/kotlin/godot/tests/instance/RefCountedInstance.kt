@@ -1,6 +1,6 @@
 package godot.tests.instance
 
-import godot.RefCounted
+import godot.api.RefCounted
 import godot.annotation.RegisterClass
 
 @RegisterClass

@@ -1,6 +1,6 @@
 package godot.tests.instance
 
-import godot.Object
+import godot.api.Object
 import godot.annotation.RegisterClass
 
 @RegisterClass

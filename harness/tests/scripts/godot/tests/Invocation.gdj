@@ -6,9 +6,9 @@ fqName = godot.tests.Invocation
 relativeSourcePath = src/main/kotlin/godot/tests/Invocation.kt
 baseType = Node3D
 supertypes = [
-    godot.Node3D,
-	godot.Node,
-	godot.Object,
+    godot.api.Node3D,
+	godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

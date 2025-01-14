@@ -1,6 +1,6 @@
 package godot.tests.inheritance
 
-import godot.Node
+import godot.api.Node
 import godot.annotation.Export
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty

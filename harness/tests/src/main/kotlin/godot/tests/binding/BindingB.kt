@@ -1,6 +1,6 @@
 package godot.tests.binding
 
-import godot.Node
+import godot.api.Node
 import godot.annotation.RegisterClass
 
 @RegisterClass

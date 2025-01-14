@@ -9,8 +9,11 @@ const val godotMemoryPackage = "godot.internal.memory"
 const val godotReflectionPackage = "godot.internal.reflection"
 
 //Core
-const val godotApiPackage = "godot"
+const val godotPackage = "godot"
+const val godotInternalPackage = "godot.internal"
 const val godotCorePackage = "godot.core"
+const val godotApiPackage = "godot.api"
+const val godotExtensionPackage = "godot.extension"
 
 const val godotAnnotationPackage = "godot.annotation"
 const val godotRegistrationPackage = "godot.registration"
@@ -21,7 +24,7 @@ const val godotCoroutinePackage = "godot.coroutines"
 
 
 
-const val variantConverterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantConverter}"
+const val variantConverterPackage = "$godotInteropPackage.${GodotKotlinJvmTypes.variantConverter}"
 const val variantParserPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantParser}"
 const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantCaster}"
 

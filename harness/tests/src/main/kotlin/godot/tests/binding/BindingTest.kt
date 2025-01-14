@@ -1,6 +1,6 @@
 package godot.tests.binding
 
-import godot.Object
+import godot.api.Object
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 

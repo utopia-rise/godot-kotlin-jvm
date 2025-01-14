@@ -1,7 +1,7 @@
 package godot.codegen.services
 
-import com.squareup.kotlinpoet.FileSpec
+import java.io.File
 
 interface ILambdaCallableGenerationService {
-    fun generate(maxArgumentCount: Int): FileSpec
+    fun generate(outputDir: File)
 }

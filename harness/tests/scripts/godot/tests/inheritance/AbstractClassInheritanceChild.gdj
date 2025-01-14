@@ -7,8 +7,8 @@ relativeSourcePath = src/main/kotlin/godot/tests/inheritance/AbstractClassInheri
 baseType = Node
 supertypes = [
     godot.tests.inheritance.AbstractClassInheritanceParent,
-	godot.Node,
-	godot.Object,
+	godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

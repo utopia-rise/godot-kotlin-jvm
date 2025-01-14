@@ -15,18 +15,34 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.services.ILambdaCallableGenerationService
-import godot.codegen.utils.GenericClassNameInfo
+import godot.codegen.poet.GenericClassNameInfo
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotInteropPackage
+import java.io.File
 
-class LambdaCallableGenerationService : ILambdaCallableGenerationService {
-    override fun generate(maxArgumentCount: Int): FileSpec {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
 
-        for (argCount in 0..maxArgumentCount) {
+
+object LambdaCallableGenerationService : ILambdaCallableGenerationService {
+    private const val FUNCTION_PARAMETER_NAME = "function"
+    private const val KT_CALLABLE_NAME = "LambdaCallable"
+    private const val CALLABLE_FUNCTION_NAME = "callable"
+    private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
+    private const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
+    private val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
+    private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
+
+    //Java
+    private val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
+    private val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
+
+    override fun generate(outputDir: File) {
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "Callables")
+
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
                 .classBuilder(ktCallableClassName)
@@ -330,8 +346,8 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                 .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                 .build()
         )
-
-        return callableFileSpec.build()
+            .build()
+            .writeTo(outputDir)
     }
 
     // JAVA BRIDGE FUNCTION
@@ -394,19 +410,5 @@ class LambdaCallableGenerationService : ILambdaCallableGenerationService {
                     .build()
             )
             .build()
-    }
-
-    private companion object {
-        const val FUNCTION_PARAMETER_NAME = "function"
-        const val KT_CALLABLE_NAME = "LambdaCallable"
-        const val CALLABLE_FUNCTION_NAME = "callable"
-        const val JAVA_CREATE_METHOD_NAME = "javaCreate"
-        const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
-        val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
-        val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
-
-        //Java
-        val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
-        val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
     }
 }

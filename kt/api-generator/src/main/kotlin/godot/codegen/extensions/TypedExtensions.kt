@@ -54,6 +54,7 @@ fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type 
 fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s ->
     s == this.type
 } != null
+
 fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
 fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
@@ -73,6 +74,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
                     .toTypedArray()
             )
         }
+
         type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
             val enumType = type!!.removePrefix(enumPrefix)
@@ -80,29 +82,42 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
                 ClassTypeNameWrapper(GODOT_VARIANT_TYPE)
             } else {
                 val containerAndEnum = enumType.split('.')
-                val packageName = object : TypedTrait {
-                    override val type = containerAndEnum.first()
-                }.getTypeClassName().className.packageName
+                val enumPackage = if (containerAndEnum.size == 1 || containerAndEnum[0] == "Vector3") {
+                    godotCorePackage
+                } else {
+                    godotApiPackage
+                }
+
                 ClassTypeNameWrapper(
                     ClassName(
-                        packageName,
+                        enumPackage,
                         containerAndEnum
                     )
                 )
             }
         }
+
         isBitField() -> {
             val containerAndBitfield = type!!.removePrefix(bitfieldPrefix).split('.')
-            val packageName = object : TypedTrait {
-                override val type = containerAndBitfield.first()
-            }.getTypeClassName().className.packageName
-            ClassTypeNameWrapper(
-                ClassName(
-                    packageName,
-                    containerAndBitfield
+            if (containerAndBitfield.size == 1) {
+                //Global Enum
+                ClassTypeNameWrapper(
+                    ClassName(
+                        godotCorePackage,
+                        containerAndBitfield
+                    )
                 )
-            )
+            } else {
+                //Class Enum
+                ClassTypeNameWrapper(
+                    ClassName(
+                        godotApiPackage,
+                        containerAndBitfield
+                    )
+                )
+            }
         }
+
         type == GodotTypes.bool -> ClassTypeNameWrapper(BOOLEAN)
         type == GodotTypes.int -> ClassTypeNameWrapper(LONG)
         type == GodotTypes.float -> ClassTypeNameWrapper(DOUBLE)
@@ -117,10 +132,13 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
                     parameterType.getTypeClassName().typeName
                 )
         }
+
         type == GodotTypes.array -> ClassTypeNameWrapper(GODOT_ARRAY)
             .parameterizedBy(ANY.copy(nullable = true))
+
         type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
             .parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
+
         type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
         type == GodotTypes.callable -> ClassTypeNameWrapper(GODOT_CALLABLE_BASE)
         isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
@@ -210,7 +228,7 @@ fun <T> T.getDefaultValueKotlinString(): Pair<String, Array<Any?>>?
             type == GodotTypes.packedInt64Array ||
             type == GodotTypes.packedVector2Array ||
             type == GodotTypes.packedVector3Array
-        -> "$type()" to arrayOf()
+            -> "$type()" to arrayOf()
 
         else -> defaultValueString to arrayOf()
     }

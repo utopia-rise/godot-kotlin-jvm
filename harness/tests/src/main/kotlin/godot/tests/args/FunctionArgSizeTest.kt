@@ -1,7 +1,7 @@
 package godot.tests.args
 
-import godot.Node
-import godot.Resource
+import godot.api.Node
+import godot.api.Resource
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.Dictionary

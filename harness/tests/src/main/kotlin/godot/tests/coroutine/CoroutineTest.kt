@@ -1,9 +1,9 @@
 package godot.tests.coroutine
 
 
-import godot.Object
-import godot.PackedScene
-import godot.ResourceLoader
+import godot.api.Object
+import godot.api.PackedScene
+import godot.api.ResourceLoader
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty

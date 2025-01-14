@@ -13,27 +13,30 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
+import godot.common.constants.Constraints
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
+import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
+import java.io.File
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val connect = MemberName(godotCorePackage, "connectThreadSafe")
+private val connect = MemberName(godotExtensionPackage, "connectThreadSafe")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 
 object AwaitGenerationService : IAwaitGenerationService {
-    override fun generate(maxArgumentCount: Int): FileSpec {
+    override fun generate(output: File) {
         val awaitFile = FileSpec.builder(godotCoroutinePackage, "Await")
 
-        val allParameters = Array(maxArgumentCount) { index ->
+        val allParameters = Array(Constraints.MAX_FUNCTION_ARG_COUNT) { index ->
             TypeVariableName("P$index")
         }.toList()
 
-        for (argCount in 0..maxArgumentCount) {
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val parameters = allParameters.take(argCount)
 
             val baseReceiver = ClassName(godotCorePackage, signal + argCount)
@@ -92,7 +95,7 @@ object AwaitGenerationService : IAwaitGenerationService {
             )
         }
 
-        return awaitFile
+        awaitFile
             .addAnnotation(
                 AnnotationSpec.builder(Suppress::class)
                     .addMember("\"PackageDirectoryMismatch\", \"unused\"")
@@ -100,6 +103,7 @@ object AwaitGenerationService : IAwaitGenerationService {
             )
             .indent("    ")
             .build()
+            .writeTo(output)
     }
 
 

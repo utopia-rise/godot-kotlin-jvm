@@ -34,8 +34,14 @@ val Project.ideaExtension: IdeaModel
 val Project.isRelease: Boolean
     get() = hasProperty("release")
 
-val Project.godotLibraryArtifactName: String
+val Project.godotCoreArtifactName: String
     get() = "godot-core-library-${if (isRelease) "release" else "debug"}"
+
+val Project.godotApiArtifactName: String
+    get() = "godot-api-library-${if (isRelease) "release" else "debug"}"
+
+val Project.godotExtensionArtifactName: String
+    get() = "godot-extension-library-${if (isRelease) "release" else "debug"}"
 
 val Project.godotCoroutineLibraryArtifactName: String
     get() = "godot-coroutine-library-${if (isRelease) "release" else "debug"}"
