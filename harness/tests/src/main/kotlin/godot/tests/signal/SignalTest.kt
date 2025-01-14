@@ -22,21 +22,21 @@ class SignalTest : Node() {
     @RegisterSignal
     val noParamSignalDelegate by signal0()
 
-    @RegisterSignal
-    val oneParamSignalDelegate by signal1<Boolean>("refresh")
+    @RegisterSignal("refresh")
+    val oneParamSignalDelegate by signal1<Boolean>()
 
-    @RegisterSignal
-    val twoParamSignalDelegate by signal2<String, SignalTest>("str", "inv")
+    @RegisterSignal("str", "inv")
+    val twoParamSignalDelegate by signal2<String, SignalTest>()
 
 
-    @RegisterSignal
+    @RegisterSignal()
     val noParamSignalField = Signal0("noParamSignalField")
 
-    @RegisterSignal
-    val oneParamSignalField = Signal1<Boolean>("oneParamSignalField","refresh")
+    @RegisterSignal("refresh")
+    val oneParamSignalField = Signal1<Boolean>("oneParamSignalField")
 
-    @RegisterSignal
-    val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField","str", "inv")
+    @RegisterSignal("str", "inv")
+    val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField")
 
     @RegisterProperty
     var otherScript = OtherScript()
@@ -76,8 +76,8 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterSignal
-    val signalWithMultipleTargets by signal1<Vector2>("vector2")
+    @RegisterSignal("vector2")
+    val signalWithMultipleTargets by signal1<Vector2>()
 
     //To store values emitted by signals
     @RegisterProperty

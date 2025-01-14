@@ -27,11 +27,11 @@ class CoroutineTest : Object() {
     @RegisterSignal
     val signalWithoutParameter by signal0()
 
-    @RegisterSignal
-    val signalWithOneParameter by signal1<Int>("int")
+    @RegisterSignal("int")
+    val signalWithOneParameter by signal1<Int>()
 
-    @RegisterSignal
-    val signalWithManyParameters by signal4<Int, Float, Vector2, String>("int", "float", "vector2", "string")
+    @RegisterSignal("int", "float", "vector2", "string")
+    val signalWithManyParameters by signal4<Int, Float, Vector2, String>()
 
     @RegisterProperty
     var step: Int = 0
@@ -79,8 +79,8 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterSignal
-    val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>("is_test_successful")
+    @RegisterSignal("is_test_successful")
+    val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>()
 
     @RegisterFunction
     fun runOnMainThreadFromBackgroundThread() {
@@ -109,8 +109,8 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterSignal
-    val asyncLoadResourceFinished by signal1<Boolean>("is_test_successful")
+    @RegisterSignal("is_test_successful")
+    val asyncLoadResourceFinished by signal1<Boolean>()
 
     @RegisterFunction
     fun asyncLoadResource() {

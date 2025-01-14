@@ -10,8 +10,8 @@ import godot.global.GD
 @RegisterClass
 class ClassInheritanceChild : ClassInheritanceParent() {
 
-    @RegisterSignal
-    override val testOverridden  by signal2<String, Int>("blubb", "habbalubbb")
+    @RegisterSignal("blubb", "habbalubbb")
+    override val testOverridden  by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 

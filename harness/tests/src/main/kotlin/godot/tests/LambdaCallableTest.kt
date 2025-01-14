@@ -20,8 +20,8 @@ class LambdaCallableTest : Node() {
     @RegisterProperty
     var hasSignalNoParamBeenTriggered = false
 
-    @RegisterSignal
-    val signalWithParams: Signal3<String, Long, Node> by signal3("str", "long", "node")
+    @RegisterSignal("str", "long", "node")
+    val signalWithParams: Signal3<String, Long, Node> by signal3()
 
     @RegisterProperty
     var signalString: String = ""

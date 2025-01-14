@@ -14,4 +14,4 @@ package godot.annotation
  */
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class RegisterSignal
+annotation class RegisterSignal(vararg val parameters: String = [])
