@@ -4,8 +4,8 @@ import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.Modifier
+import godot.annotation.RegisterSignal
 import godot.annotation.processor.Settings
-import godot.annotation.processor.compiler.PsiProvider
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.EnumHintStringAnnotation
@@ -102,14 +102,11 @@ internal fun KSPropertyDeclaration.mapToRegisteredSignal(
         "type of property $fqName cannot be null"
     }
 
-    val isInheritedButNotOverridden = !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName)
-
-    val signalParameterNames = PsiProvider.provideSignalArgumentNames(
-        this,
-        if (isInheritedButNotOverridden) {
-            "${findOverridee()?.qualifiedName?.asString()}"
-        } else fqName
-    )
+    val signalParameterNames = (this.annotations.first { it.fqNameUnsafe == RegisterSignal::class.qualifiedName }
+        .arguments
+        .firstOrNull()
+        ?.value as? List<*>)
+        ?.filterIsInstance<String>() ?: listOf()
 
     return RegisteredSignal(
         fqName = fqName,
