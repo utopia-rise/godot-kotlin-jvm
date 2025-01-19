@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTGESTURE: Int = 316
-
 /**
  * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
  * can't be emulated using mouse, because they typically require multi-touch.
@@ -42,7 +40,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTGESTURE, scriptIndex)
+    createNativeObject(316, scriptIndex)
   }
 
   /**

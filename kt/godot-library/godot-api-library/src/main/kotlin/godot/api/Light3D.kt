@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LIGHT3D: Int = 349
-
 /**
  * Light3D is the *abstract* base class for light nodes. As it can't be instantiated, it shouldn't
  * be used directly. Other types of light nodes inherit from it. Light3D contains the common variables
@@ -404,7 +402,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHT3D, scriptIndex)
+    createNativeObject(349, scriptIndex)
   }
 
   /**

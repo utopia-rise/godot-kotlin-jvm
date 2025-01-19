@@ -27,8 +27,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_OPTIONBUTTON: Int = 435
-
 /**
  * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.
  * The item selected becomes the "current" item and is displayed as the button text.
@@ -98,7 +96,7 @@ public open class OptionButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPTIONBUTTON, scriptIndex)
+    createNativeObject(435, scriptIndex)
   }
 
   /**

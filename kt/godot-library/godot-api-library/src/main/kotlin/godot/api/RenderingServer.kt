@@ -75,8 +75,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_RENDERINGSERVER: Int = 34
-
 public infix fun Long.or(other: godot.api.RenderingServer.ArrayFormat): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
@@ -209,7 +207,7 @@ public object RenderingServer : Object() {
   public val framePostDraw: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RENDERINGSERVER)
+    getSingleton(32)
   }
 
   /**

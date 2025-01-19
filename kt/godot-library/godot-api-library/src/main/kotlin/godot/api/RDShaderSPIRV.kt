@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDSHADERSPIRV: Int = 519
-
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
  * code for various shader stages, as well as possible compilation error messages. SPIR-V is a
@@ -149,7 +147,7 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
+    createNativeObject(519, scriptIndex)
   }
 
   /**

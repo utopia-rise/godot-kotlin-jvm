@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDVERTEXATTRIBUTE: Int = 524
-
 /**
  * This object is used by [RenderingDevice].
  */
@@ -66,7 +64,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDVERTEXATTRIBUTE, scriptIndex)
+    createNativeObject(524, scriptIndex)
   }
 
   public final fun setLocation(pMember: Long): Unit {

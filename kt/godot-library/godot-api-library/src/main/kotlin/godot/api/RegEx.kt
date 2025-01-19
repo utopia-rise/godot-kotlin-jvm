@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_REGEX: Int = 532
-
 /**
  * A regular expression (or regex) is a compact language that can be used to recognize strings that
  * follow a specific pattern, such as URLs, email addresses, complete sentences, etc. For example, a
@@ -92,7 +90,7 @@ private const val ENGINECLASS_REGEX: Int = 532
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_REGEX, scriptIndex)
+    createNativeObject(532, scriptIndex)
   }
 
   /**

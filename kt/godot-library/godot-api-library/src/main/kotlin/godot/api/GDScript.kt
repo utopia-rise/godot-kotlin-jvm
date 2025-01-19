@@ -16,8 +16,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_GDSCRIPT: Int = 249
-
 /**
  * A script implemented in the GDScript programming language, saved with the `.gd` extension. The
  * script extends the functionality of all objects that instantiate it.
@@ -28,7 +26,7 @@ private const val ENGINECLASS_GDSCRIPT: Int = 249
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GDSCRIPT, scriptIndex)
+    createNativeObject(249, scriptIndex)
   }
 
   /**

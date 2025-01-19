@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CONVEXPOLYGONSHAPE2D: Int = 210
-
 /**
  * A 2D convex polygon shape, intended for use in physics. Used internally in [CollisionPolygon2D]
  * when it's in [CollisionPolygon2D.BUILD_SOLIDS] mode.
@@ -54,7 +52,7 @@ public open class ConvexPolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CONVEXPOLYGONSHAPE2D, scriptIndex)
+    createNativeObject(210, scriptIndex)
   }
 
   /**

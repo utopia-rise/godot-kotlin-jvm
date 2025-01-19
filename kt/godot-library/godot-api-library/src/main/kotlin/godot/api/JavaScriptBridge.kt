@@ -32,8 +32,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_JAVASCRIPTBRIDGE: Int = 27
-
 /**
  * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the
  * browser's JavaScript context. This allows interaction with embedding pages or calling third-party
@@ -55,7 +53,7 @@ public object JavaScriptBridge : Object() {
   public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_JAVASCRIPTBRIDGE)
+    getSingleton(25)
   }
 
   /**

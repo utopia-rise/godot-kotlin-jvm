@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D: Int = 473
-
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
  * parameters for [PhysicsDirectSpaceState2D.intersectRay].
@@ -125,7 +123,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D, scriptIndex)
+    createNativeObject(473, scriptIndex)
   }
 
   /**

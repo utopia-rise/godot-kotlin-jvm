@@ -20,8 +20,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURELAYERED: Int = 657
-
 /**
  * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but
  * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
@@ -34,7 +32,7 @@ private const val ENGINECLASS_TEXTURELAYERED: Int = 657
 @GodotBaseType
 public open class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURELAYERED, scriptIndex)
+    createNativeObject(657, scriptIndex)
   }
 
   /**

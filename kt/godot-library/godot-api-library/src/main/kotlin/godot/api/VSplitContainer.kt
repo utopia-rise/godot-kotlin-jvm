@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VSPLITCONTAINER: Int = 691
-
 /**
  * A container that accepts only two child controls, then arranges them vertically and creates a
  * divisor between them. The divisor can be dragged around to change the size relation between the
@@ -21,7 +19,7 @@ private const val ENGINECLASS_VSPLITCONTAINER: Int = 691
 @GodotBaseType
 public open class VSplitContainer : SplitContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VSPLITCONTAINER, scriptIndex)
+    createNativeObject(691, scriptIndex)
   }
 
   public companion object

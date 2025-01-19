@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT: Int = 516
-
 /**
  * A *specialization constant* is a way to create additional variants of shaders without actually
  * increasing the number of shader versions that are compiled. This allows improving performance by
@@ -56,7 +54,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
+    createNativeObject(516, scriptIndex)
   }
 
   public final fun setValue(`value`: Any?): Unit {

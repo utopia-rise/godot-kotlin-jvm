@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEDETERMINANT: Int = 724
-
 /**
  * Translates to `determinant(x)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeDeterminant : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEDETERMINANT, scriptIndex)
+    createNativeObject(724, scriptIndex)
   }
 
   public companion object

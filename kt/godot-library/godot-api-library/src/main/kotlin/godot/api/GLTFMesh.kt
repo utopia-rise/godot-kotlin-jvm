@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFMESH: Int = 258
-
 /**
  * GLTFMesh handles 3D mesh data imported from GLTF files. It includes properties for blend
  * channels, blend weights, instance materials, and the mesh itself.
@@ -80,7 +78,7 @@ public open class GLTFMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFMESH, scriptIndex)
+    createNativeObject(258, scriptIndex)
   }
 
   public final fun getOriginalName(): String {

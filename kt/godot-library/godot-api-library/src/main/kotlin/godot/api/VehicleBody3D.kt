@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VEHICLEBODY3D: Int = 692
-
 /**
  * This physics body implements all the physics logic needed to simulate a car. It is based on the
  * raycast vehicle system commonly found in physics engines. Aside from a [CollisionShape3D] for the
@@ -84,7 +82,7 @@ public open class VehicleBody3D : RigidBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
+    createNativeObject(692, scriptIndex)
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {

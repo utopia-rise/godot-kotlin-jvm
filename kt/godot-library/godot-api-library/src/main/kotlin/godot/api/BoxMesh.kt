@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BOXMESH: Int = 144
-
 /**
  * Generate an axis-aligned box [PrimitiveMesh].
  * The box's UV layout is arranged in a 3×2 layout that allows texturing each face individually. To
@@ -81,7 +79,7 @@ public open class BoxMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BOXMESH, scriptIndex)
+    createNativeObject(144, scriptIndex)
   }
 
   /**

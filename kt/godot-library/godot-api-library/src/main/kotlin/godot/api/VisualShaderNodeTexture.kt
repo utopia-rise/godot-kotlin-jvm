@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTURE: Int = 776
-
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to
  * choose from.
@@ -62,7 +60,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE, scriptIndex)
+    createNativeObject(776, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

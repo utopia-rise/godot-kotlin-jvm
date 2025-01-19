@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRVRS: Int = 853
-
 /**
  * This class is used by various XR interfaces to generate VRS textures that can be used to speed up
  * rendering.
@@ -58,7 +56,7 @@ public open class XRVRS : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRVRS, scriptIndex)
+    createNativeObject(853, scriptIndex)
   }
 
   public final fun getVrsMinRadius(): Float {

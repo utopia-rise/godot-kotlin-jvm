@@ -21,12 +21,10 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SCRIPTLANGUAGEEXTENSION: Int = 566
-
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, scriptIndex)
+    createNativeObject(566, scriptIndex)
   }
 
   public open fun _getName(): String {

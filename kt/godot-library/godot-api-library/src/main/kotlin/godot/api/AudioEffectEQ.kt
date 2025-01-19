@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOEFFECTEQ: Int = 89
-
 /**
  * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies
  * in audio. AudioEffectEQs are useful on the Master bus to completely master a mix and give it more
@@ -31,7 +29,7 @@ private const val ENGINECLASS_AUDIOEFFECTEQ: Int = 89
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTEQ, scriptIndex)
+    createNativeObject(89, scriptIndex)
   }
 
   /**

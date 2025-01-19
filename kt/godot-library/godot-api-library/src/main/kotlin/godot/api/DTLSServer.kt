@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_DTLSSERVER: Int = 223
-
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
  * [PacketPeerUDP] to [PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the
@@ -177,7 +175,7 @@ private const val ENGINECLASS_DTLSSERVER: Int = 223
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_DTLSSERVER, scriptIndex)
+    createNativeObject(223, scriptIndex)
   }
 
   /**

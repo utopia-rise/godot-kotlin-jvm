@@ -37,8 +37,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SCENETREE: Int = 561
-
 /**
  * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,
  * as well as scenes themselves. Nodes can be added, fetched and removed. The whole scene tree (and
@@ -246,7 +244,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCENETREE, scriptIndex)
+    createNativeObject(561, scriptIndex)
   }
 
   public final fun getRoot(): Window? {

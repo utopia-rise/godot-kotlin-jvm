@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ANIMATIONTREE: Int = 72
-
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].
  * **Note:** When linked with an [AnimationPlayer], several properties and methods of the
@@ -73,7 +71,7 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONTREE, scriptIndex)
+    createNativeObject(72, scriptIndex)
   }
 
   public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {

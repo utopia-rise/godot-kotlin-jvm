@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SPRITEFRAMES: Int = 614
-
 /**
  * Sprite frame library for an [AnimatedSprite2D] or [AnimatedSprite3D] node. Contains frames and
  * animation data for playback.
@@ -37,7 +35,7 @@ private const val ENGINECLASS_SPRITEFRAMES: Int = 614
 @GodotBaseType
 public open class SpriteFrames : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPRITEFRAMES, scriptIndex)
+    createNativeObject(614, scriptIndex)
   }
 
   /**

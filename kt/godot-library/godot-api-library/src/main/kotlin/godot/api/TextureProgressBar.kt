@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTUREPROGRESSBAR: Int = 659
-
 /**
  * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme]
  * resource. It can be used to create horizontal, vertical and radial progress bars.
@@ -238,7 +236,7 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
+    createNativeObject(659, scriptIndex)
   }
 
   /**

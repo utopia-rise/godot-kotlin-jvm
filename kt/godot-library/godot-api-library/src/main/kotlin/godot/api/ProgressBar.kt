@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PROGRESSBAR: Int = 505
-
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to
  * left.
@@ -74,7 +72,7 @@ public open class ProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PROGRESSBAR, scriptIndex)
+    createNativeObject(505, scriptIndex)
   }
 
   public final fun setFillMode(mode: Int): Unit {

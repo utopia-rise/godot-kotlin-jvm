@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_CSGCOMBINER3D: Int = 152
-
 /**
  * For complex arrangements of shapes, it is sometimes needed to add structure to your CSG nodes.
  * The CSGCombiner3D node allows you to create this structure. The node encapsulates the result of the
@@ -28,7 +26,7 @@ private const val ENGINECLASS_CSGCOMBINER3D: Int = 152
 @GodotBaseType
 public open class CSGCombiner3D : CSGShape3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGCOMBINER3D, scriptIndex)
+    createNativeObject(152, scriptIndex)
   }
 
   public companion object

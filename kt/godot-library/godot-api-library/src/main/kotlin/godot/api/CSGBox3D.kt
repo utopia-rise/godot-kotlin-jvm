@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGBOX3D: Int = 151
-
 /**
  * This node allows you to create a box for use with the CSG system.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -56,7 +54,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGBOX3D, scriptIndex)
+    createNativeObject(151, scriptIndex)
   }
 
   /**

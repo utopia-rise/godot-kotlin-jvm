@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TOUCHSCREENBUTTON: Int = 673
-
 /**
  * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for
  * gameplay use, such as a unit you have to touch to move. Unlike [Button], TouchScreenButton supports
@@ -153,7 +151,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
+    createNativeObject(673, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

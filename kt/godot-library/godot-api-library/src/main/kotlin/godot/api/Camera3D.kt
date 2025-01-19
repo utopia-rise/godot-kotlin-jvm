@@ -40,8 +40,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CAMERA3D: Int = 162
-
 /**
  * [Camera3D] is a special node that displays what is visible from its current location. Cameras
  * register themselves in the nearest [Viewport] node (when ascending the tree). Only one camera can be
@@ -249,7 +247,7 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAMERA3D, scriptIndex)
+    createNativeObject(162, scriptIndex)
   }
 
   /**

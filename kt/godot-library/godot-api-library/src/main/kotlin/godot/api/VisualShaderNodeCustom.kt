@@ -22,8 +22,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODECUSTOM: Int = 722
-
 /**
  * By inheriting this class you can create a custom [VisualShader] script addon which will be
  * automatically added to the Visual Shader Editor. The [VisualShaderNode]'s behavior is defined by
@@ -39,7 +37,7 @@ private const val ENGINECLASS_VISUALSHADERNODECUSTOM: Int = 722
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECUSTOM, scriptIndex)
+    createNativeObject(722, scriptIndex)
   }
 
   /**

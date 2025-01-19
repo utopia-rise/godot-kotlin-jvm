@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATEDSPRITE3D: Int = 46
-
 /**
  * [AnimatedSprite3D] is similar to the [Sprite3D] node, except it carries multiple textures as
  * animation [spriteFrames]. Animations are created using a [SpriteFrames] resource, which allows you
@@ -142,7 +140,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATEDSPRITE3D, scriptIndex)
+    createNativeObject(46, scriptIndex)
   }
 
   public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {

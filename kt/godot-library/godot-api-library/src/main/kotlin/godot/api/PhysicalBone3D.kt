@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICALBONE3D: Int = 457
-
 /**
  * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
  * react to physics.
@@ -244,7 +242,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICALBONE3D, scriptIndex)
+    createNativeObject(457, scriptIndex)
   }
 
   /**

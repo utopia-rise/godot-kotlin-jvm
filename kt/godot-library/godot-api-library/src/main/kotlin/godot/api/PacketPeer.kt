@@ -26,8 +26,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PACKETPEER: Int = 440
-
 /**
  * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
  * an API for sending and receiving packets both as raw data or variables. This makes it easy to
@@ -55,7 +53,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKETPEER, scriptIndex)
+    createNativeObject(440, scriptIndex)
   }
 
   /**

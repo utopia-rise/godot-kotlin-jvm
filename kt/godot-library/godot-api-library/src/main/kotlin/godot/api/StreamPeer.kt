@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_STREAMPEER: Int = 619
-
 /**
  * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
  * provides an API for sending and receiving data through streams as raw data or strings.
@@ -56,7 +54,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STREAMPEER, scriptIndex)
+    createNativeObject(619, scriptIndex)
   }
 
   /**

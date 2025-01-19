@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D: Int = 397
-
 public infix fun Long.or(other: godot.api.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
     this.or(other.flag)
 
@@ -169,7 +167,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D, scriptIndex)
+    createNativeObject(397, scriptIndex)
   }
 
   /**

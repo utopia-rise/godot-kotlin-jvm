@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MULTIPLAYERSYNCHRONIZER: Int = 386
-
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
  * Visibility can be handled directly with [setVisibilityFor] or as-needed with
@@ -137,7 +135,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
+    createNativeObject(386, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

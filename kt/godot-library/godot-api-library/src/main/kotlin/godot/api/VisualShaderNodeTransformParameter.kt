@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETRANSFORMPARAMETER: Int = 791
-
 /**
  * Translated to `uniform mat4` in the shader language.
  */
@@ -53,7 +51,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETRANSFORMPARAMETER, scriptIndex)
+    createNativeObject(791, scriptIndex)
   }
 
   /**

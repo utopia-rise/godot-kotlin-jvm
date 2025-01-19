@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D: Int = 400
-
 /**
  * This class stores the result of a 3D navigation path query from the [NavigationServer3D].
  */
@@ -81,7 +79,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D, scriptIndex)
+    createNativeObject(400, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector3Array): Unit {

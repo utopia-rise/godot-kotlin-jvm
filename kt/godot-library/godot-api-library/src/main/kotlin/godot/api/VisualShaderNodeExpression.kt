@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEEXPRESSION: Int = 727
-
 /**
  * Custom Godot Shading Language expression, with a custom number of input and output ports.
  * The provided code is directly injected into the graph's matching shader function (`vertex`,
@@ -42,7 +40,7 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEEXPRESSION, scriptIndex)
+    createNativeObject(727, scriptIndex)
   }
 
   public final fun setExpression(expression: String): Unit {

@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PRIMITIVEMESH: Int = 502
-
 /**
  * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples
  * include [BoxMesh], [CapsuleMesh], [CylinderMesh], [PlaneMesh], [PrismMesh], and [SphereMesh].
@@ -102,7 +100,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
+    createNativeObject(502, scriptIndex)
   }
 
   /**

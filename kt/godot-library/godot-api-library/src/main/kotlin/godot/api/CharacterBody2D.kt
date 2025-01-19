@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CHARACTERBODY2D: Int = 179
-
 /**
  * [CharacterBody2D] is a specialized class for physics bodies that are meant to be user-controlled.
  * They are not affected by physics at all, but they affect other physics bodies in their path. They
@@ -246,7 +244,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CHARACTERBODY2D, scriptIndex)
+    createNativeObject(179, scriptIndex)
   }
 
   /**

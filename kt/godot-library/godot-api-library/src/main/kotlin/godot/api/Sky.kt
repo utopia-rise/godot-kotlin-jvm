@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKY: Int = 600
-
 /**
  * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
  * by updating the reflection/radiance cubemaps.
@@ -68,7 +66,7 @@ public open class Sky : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKY, scriptIndex)
+    createNativeObject(600, scriptIndex)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {

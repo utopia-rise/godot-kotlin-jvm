@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODERESIZABLEBASE: Int = 766
-
 /**
  * Resizable nodes have a handle that allows the user to adjust their size as needed.
  */
@@ -40,7 +38,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODERESIZABLEBASE, scriptIndex)
+    createNativeObject(766, scriptIndex)
   }
 
   /**

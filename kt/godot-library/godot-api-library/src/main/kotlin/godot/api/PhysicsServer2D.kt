@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_PHYSICSSERVER2D: Int = 35
-
 /**
  * PhysicsServer2D is the server responsible for all 2D physics. It can directly create and
  * manipulate all physics objects:
@@ -69,7 +67,7 @@ private const val ENGINECLASS_PHYSICSSERVER2D: Int = 35
 @GodotBaseType
 public object PhysicsServer2D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PHYSICSSERVER2D)
+    getSingleton(33)
   }
 
   /**

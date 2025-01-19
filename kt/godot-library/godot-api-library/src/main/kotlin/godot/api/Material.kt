@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MATERIAL: Int = 363
-
 /**
  * [Material] is a base resource used for coloring and shading geometry. All materials inherit from
  * it and almost all [VisualInstance3D] derived nodes carry a [Material]. A few flags and parameters
@@ -68,7 +66,7 @@ public open class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MATERIAL, scriptIndex)
+    createNativeObject(363, scriptIndex)
   }
 
   /**

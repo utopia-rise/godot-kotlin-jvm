@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTURESDF: Int = 784
-
 /**
  * Translates to `texture_sdf(sdf_pos)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeTextureSDF : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURESDF, scriptIndex)
+    createNativeObject(784, scriptIndex)
   }
 
   public companion object

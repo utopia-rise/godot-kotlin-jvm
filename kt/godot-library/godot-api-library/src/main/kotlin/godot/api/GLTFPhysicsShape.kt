@@ -34,8 +34,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_GLTFPHYSICSSHAPE: Int = 261
-
 /**
  * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` GLTF
  * extensions. This class is an intermediary between the GLTF data and Godot's nodes, and it's
@@ -132,7 +130,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFPHYSICSSHAPE, scriptIndex)
+    createNativeObject(261, scriptIndex)
   }
 
   /**

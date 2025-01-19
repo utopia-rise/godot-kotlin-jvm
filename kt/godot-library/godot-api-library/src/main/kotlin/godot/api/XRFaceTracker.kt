@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRFACETRACKER: Int = 843
-
 /**
  * An instance of this object represents a tracked face and its corresponding blend shapes. The
  * blend shapes come from the
@@ -50,7 +48,7 @@ public open class XRFaceTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRFACETRACKER, scriptIndex)
+    createNativeObject(843, scriptIndex)
   }
 
   /**

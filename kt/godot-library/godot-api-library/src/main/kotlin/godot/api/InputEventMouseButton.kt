@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTMOUSEBUTTON: Int = 323
-
 /**
  * Stores information about mouse click events. See [Node.Input].
  * **Note:** On Wear OS devices, rotary input is mapped to [MOUSE_BUTTON_WHEEL_UP] and
@@ -94,7 +92,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
+    createNativeObject(323, scriptIndex)
   }
 
   public final fun setFactor(factor: Float): Unit {

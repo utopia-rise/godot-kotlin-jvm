@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PACKETPEERSTREAM: Int = 443
-
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
  * using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the
@@ -59,7 +57,7 @@ public open class PacketPeerStream : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKETPEERSTREAM, scriptIndex)
+    createNativeObject(443, scriptIndex)
   }
 
   public final fun setStreamPeer(peer: StreamPeer?): Unit {

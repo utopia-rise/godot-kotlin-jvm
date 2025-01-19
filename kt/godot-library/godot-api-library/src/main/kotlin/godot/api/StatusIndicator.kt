@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_STATUSINDICATOR: Int = 618
-
 @GodotBaseType
 public open class StatusIndicator : Node() {
   /**
@@ -84,7 +82,7 @@ public open class StatusIndicator : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STATUSINDICATOR, scriptIndex)
+    createNativeObject(618, scriptIndex)
   }
 
   public final fun setTooltip(tooltip: String): Unit {

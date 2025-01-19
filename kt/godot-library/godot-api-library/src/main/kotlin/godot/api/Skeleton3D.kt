@@ -43,8 +43,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SKELETON3D: Int = 584
-
 /**
  * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and
  * animation (see [Animation]). It can also use ragdoll physics.
@@ -137,7 +135,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETON3D, scriptIndex)
+    createNativeObject(584, scriptIndex)
   }
 
   /**

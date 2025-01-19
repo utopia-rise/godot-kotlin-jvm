@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CRYPTOKEY: Int = 213
-
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
  * [Resource].
@@ -34,7 +32,7 @@ private const val ENGINECLASS_CRYPTOKEY: Int = 213
 @GodotBaseType
 public open class CryptoKey : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CRYPTOKEY, scriptIndex)
+    createNativeObject(213, scriptIndex)
   }
 
   /**

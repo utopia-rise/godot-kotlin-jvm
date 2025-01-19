@@ -32,8 +32,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHAPECAST3D: Int = 581
-
 /**
  * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction
  * determined by [targetPosition]. This is similar to [RayCast3D], but it allows for sweeping a region
@@ -168,7 +166,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHAPECAST3D, scriptIndex)
+    createNativeObject(581, scriptIndex)
   }
 
   /**

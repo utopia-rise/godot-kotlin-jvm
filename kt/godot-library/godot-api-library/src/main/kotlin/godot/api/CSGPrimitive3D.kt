@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGPRIMITIVE3D: Int = 156
-
 /**
  * Parent class for various CSG primitives. It contains code and functionality that is common
  * between them. It cannot be used directly. Instead use one of the various classes that inherit from
@@ -44,7 +42,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
+    createNativeObject(156, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

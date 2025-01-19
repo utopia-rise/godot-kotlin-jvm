@@ -47,8 +47,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_GRAPHEDIT: Int = 285
-
 /**
  * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
  * purpose in the engine is to power the visual programming systems, such as visual shaders, but it is
@@ -429,7 +427,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRAPHEDIT, scriptIndex)
+    createNativeObject(285, scriptIndex)
   }
 
   /**

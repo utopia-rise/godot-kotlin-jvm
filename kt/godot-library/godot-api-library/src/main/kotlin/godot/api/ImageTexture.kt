@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_IMAGETEXTURE: Int = 307
-
 /**
  * A [Texture2D] based on an [Image]. For an image to be displayed, an [ImageTexture] has to be
  * created from it using the [createFromImage] method:
@@ -56,7 +54,7 @@ private const val ENGINECLASS_IMAGETEXTURE: Int = 307
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMAGETEXTURE, scriptIndex)
+    createNativeObject(307, scriptIndex)
   }
 
   /**

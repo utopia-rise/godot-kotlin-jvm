@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRPOSE: Int = 850
-
 /**
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially
  * tracked.
@@ -118,7 +116,7 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRPOSE, scriptIndex)
+    createNativeObject(850, scriptIndex)
   }
 
   /**

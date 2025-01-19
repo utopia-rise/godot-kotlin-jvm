@@ -28,8 +28,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_RESOURCESAVER: Int = 12
-
 public infix fun Long.or(other: godot.api.ResourceSaver.SaverFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.ResourceSaver.SaverFlags): Long = this.xor(other.flag)
@@ -58,7 +56,7 @@ public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = 
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RESOURCESAVER)
+    getSingleton(10)
   }
 
   /**

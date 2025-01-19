@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTSTEREOENHANCE: Int = 109
-
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
  */
@@ -56,7 +54,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE, scriptIndex)
+    createNativeObject(109, scriptIndex)
   }
 
   public final fun setPanPullout(amount: Float): Unit {

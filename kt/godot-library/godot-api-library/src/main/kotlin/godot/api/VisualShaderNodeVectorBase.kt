@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORBASE: Int = 808
-
 /**
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORBASE, scriptIndex)
+    createNativeObject(808, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

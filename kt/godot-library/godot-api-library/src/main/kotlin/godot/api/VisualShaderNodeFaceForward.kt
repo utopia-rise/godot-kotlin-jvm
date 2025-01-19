@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEFACEFORWARD: Int = 728
-
 /**
  * Translates to `faceforward(N, I, Nref)` in the shader language. The function has three vector
  * parameters: `N`, the vector to orient, `I`, the incident vector, and `Nref`, the reference vector.
@@ -22,7 +20,7 @@ private const val ENGINECLASS_VISUALSHADERNODEFACEFORWARD: Int = 728
 @GodotBaseType
 public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFACEFORWARD, scriptIndex)
+    createNativeObject(728, scriptIndex)
   }
 
   public companion object

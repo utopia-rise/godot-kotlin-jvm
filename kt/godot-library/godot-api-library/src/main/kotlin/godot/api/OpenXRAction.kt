@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OPENXRACTION: Int = 421
-
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
  * triggers, etc.) and outputs (haptics).
@@ -75,7 +73,7 @@ public open class OpenXRAction : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRACTION, scriptIndex)
+    createNativeObject(421, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISIBLEONSCREENNOTIFIER3D: Int = 703
-
 /**
  * [VisibleOnScreenNotifier3D] represents a box-shaped region of 3D space. When any part of this
  * region becomes visible on screen or in a [Camera3D]'s view, it will emit a [signal screen_entered]
@@ -60,7 +58,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISIBLEONSCREENNOTIFIER3D, scriptIndex)
+    createNativeObject(703, scriptIndex)
   }
 
   /**

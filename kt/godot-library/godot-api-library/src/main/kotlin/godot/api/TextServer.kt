@@ -56,8 +56,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TEXTSERVER: Int = 643
-
 public infix fun Long.or(other: godot.api.TextServer.JustificationFlag): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.TextServer.JustificationFlag): Long =
@@ -175,7 +173,7 @@ public operator fun Long.rem(other: godot.api.TextServer.FontStyle): Long = this
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTSERVER, scriptIndex)
+    createNativeObject(643, scriptIndex)
   }
 
   /**

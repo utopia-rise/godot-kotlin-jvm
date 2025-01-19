@@ -59,8 +59,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_DISPLAYSERVER: Int = 30
-
 /**
  * [DisplayServer] handles everything related to window management. It is separated from [OS] as a
  * single operating system may support multiple display servers.
@@ -114,7 +112,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_DISPLAYSERVER)
+    getSingleton(28)
   }
 
   /**

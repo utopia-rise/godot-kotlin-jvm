@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ANIMATIONNODESYNC: Int = 66
-
 /**
  * An animation node used to combine, mix, or blend two or more animations together while keeping
  * them synchronized within an [AnimationTree].
@@ -39,7 +37,7 @@ public open class AnimationNodeSync : AnimationNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODESYNC, scriptIndex)
+    createNativeObject(66, scriptIndex)
   }
 
   public final fun setUseSync(enable: Boolean): Unit {

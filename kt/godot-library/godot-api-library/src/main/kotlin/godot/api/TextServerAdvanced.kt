@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTSERVERADVANCED: Int = 644
-
 /**
  * An implementation of [TextServer] that uses HarfBuzz, ICU and SIL Graphite to support BiDi,
  * complex text layouts and contextual OpenType features. This is Godot's default primary [TextServer]
@@ -21,7 +19,7 @@ private const val ENGINECLASS_TEXTSERVERADVANCED: Int = 644
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTSERVERADVANCED, scriptIndex)
+    createNativeObject(644, scriptIndex)
   }
 
   public companion object

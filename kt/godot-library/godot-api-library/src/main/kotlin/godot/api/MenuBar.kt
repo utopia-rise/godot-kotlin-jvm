@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MENUBAR: Int = 364
-
 /**
  * A horizontal menu bar that creates a [MenuButton] for each [PopupMenu] child. New items are
  * created by adding [PopupMenu]s to this node.
@@ -100,7 +98,7 @@ public open class MenuBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MENUBAR, scriptIndex)
+    createNativeObject(364, scriptIndex)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {

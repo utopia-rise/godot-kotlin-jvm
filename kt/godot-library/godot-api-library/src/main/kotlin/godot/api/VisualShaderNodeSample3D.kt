@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODESAMPLE3D: Int = 770
-
 /**
  * A virtual class, use the descendants instead.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODESAMPLE3D, scriptIndex)
+    createNativeObject(770, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

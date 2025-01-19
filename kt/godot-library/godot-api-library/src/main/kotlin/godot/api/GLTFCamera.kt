@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFCAMERA: Int = 253
-
 /**
  * Represents a camera as defined by the base GLTF spec.
  */
@@ -96,7 +94,7 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFCAMERA, scriptIndex)
+    createNativeObject(253, scriptIndex)
   }
 
   /**

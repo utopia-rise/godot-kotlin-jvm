@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SKELETONIK3D: Int = 585
-
 /**
  * SkeletonIK3D is used to rotate all bones of a [Skeleton3D] bone chain a way that places the end
  * bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on
@@ -195,7 +193,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONIK3D, scriptIndex)
+    createNativeObject(585, scriptIndex)
   }
 
   /**

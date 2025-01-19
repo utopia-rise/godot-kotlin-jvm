@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RIBBONTRAILMESH: Int = 552
-
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
  * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
@@ -104,7 +102,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RIBBONTRAILMESH, scriptIndex)
+    createNativeObject(552, scriptIndex)
   }
 
   public final fun setSize(size: Float): Unit {

@@ -27,8 +27,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_INPUTMAP: Int = 19
-
 /**
  * Manages all [InputEventAction] which can be created/modified from the project settings menu
  * **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See
@@ -37,7 +35,7 @@ private const val ENGINECLASS_INPUTMAP: Int = 19
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_INPUTMAP)
+    getSingleton(17)
   }
 
   /**

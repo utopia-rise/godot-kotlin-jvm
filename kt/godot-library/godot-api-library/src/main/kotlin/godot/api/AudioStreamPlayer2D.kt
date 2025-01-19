@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYER2D: Int = 129
-
 /**
  * Plays audio that is attenuated with distance to the listener.
  * By default, audio is heard from the screen center. This can be changed by adding an
@@ -197,7 +195,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYER2D, scriptIndex)
+    createNativeObject(129, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

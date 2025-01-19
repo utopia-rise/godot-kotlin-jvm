@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PANORAMASKYMATERIAL: Int = 447
-
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
  * functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of
@@ -70,7 +68,7 @@ public open class PanoramaSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
+    createNativeObject(447, scriptIndex)
   }
 
   public final fun setPanorama(texture: Texture2D?): Unit {

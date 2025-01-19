@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_QUADOCCLUDER3D: Int = 508
-
 /**
  * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling
  * system. See also [PolygonOccluder3D] if you need to customize the quad's shape.
@@ -42,7 +40,7 @@ public open class QuadOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_QUADOCCLUDER3D, scriptIndex)
+    createNativeObject(508, scriptIndex)
   }
 
   /**

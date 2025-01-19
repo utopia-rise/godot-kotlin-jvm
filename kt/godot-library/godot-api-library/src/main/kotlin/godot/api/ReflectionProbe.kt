@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_REFLECTIONPROBE: Int = 531
-
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
  * to simulate different material roughnesses.
@@ -246,7 +244,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_REFLECTIONPROBE, scriptIndex)
+    createNativeObject(531, scriptIndex)
   }
 
   /**

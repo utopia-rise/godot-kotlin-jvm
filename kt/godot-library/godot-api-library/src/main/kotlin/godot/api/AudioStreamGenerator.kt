@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOSTREAMGENERATOR: Int = 115
-
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
  * instead, it expects a script to generate audio data for it. See also [AudioStreamGeneratorPlayback].
@@ -123,7 +121,7 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMGENERATOR, scriptIndex)
+    createNativeObject(115, scriptIndex)
   }
 
   public final fun setMixRate(hz: Float): Unit {

@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_STREAMPEERTCP: Int = 623
-
 /**
  * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
  * also is returned by a TCP server.
@@ -35,7 +33,7 @@ private const val ENGINECLASS_STREAMPEERTCP: Int = 623
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STREAMPEERTCP, scriptIndex)
+    createNativeObject(623, scriptIndex)
   }
 
   /**

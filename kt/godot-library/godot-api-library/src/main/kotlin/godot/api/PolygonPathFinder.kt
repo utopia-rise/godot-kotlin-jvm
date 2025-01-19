@@ -29,12 +29,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_POLYGONPATHFINDER: Int = 497
-
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_POLYGONPATHFINDER, scriptIndex)
+    createNativeObject(497, scriptIndex)
   }
 
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {

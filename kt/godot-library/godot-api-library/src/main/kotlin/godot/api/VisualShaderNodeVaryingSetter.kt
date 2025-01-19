@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVARYINGSETTER: Int = 801
-
 /**
  * Inputs a value to a varying defined in the shader. You need to first create a varying that can be
  * used in the given function, e.g. varying setter in Fragment shader requires a varying with mode set
@@ -21,7 +19,7 @@ private const val ENGINECLASS_VISUALSHADERNODEVARYINGSETTER: Int = 801
 @GodotBaseType
 public open class VisualShaderNodeVaryingSetter : VisualShaderNodeVarying() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVARYINGSETTER, scriptIndex)
+    createNativeObject(801, scriptIndex)
   }
 
   public companion object

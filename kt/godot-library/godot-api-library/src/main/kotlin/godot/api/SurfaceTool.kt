@@ -49,8 +49,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SURFACETOOL: Int = 632
-
 /**
  * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It
  * can be used to construct a [Mesh] from a script. All properties except indices need to be added
@@ -88,7 +86,7 @@ private const val ENGINECLASS_SURFACETOOL: Int = 632
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SURFACETOOL, scriptIndex)
+    createNativeObject(632, scriptIndex)
   }
 
   /**

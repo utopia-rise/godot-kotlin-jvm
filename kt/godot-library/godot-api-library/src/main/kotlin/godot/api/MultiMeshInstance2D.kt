@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MULTIMESHINSTANCE2D: Int = 379
-
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
  * Usage is the same as [MultiMeshInstance3D].
@@ -55,7 +53,7 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIMESHINSTANCE2D, scriptIndex)
+    createNativeObject(379, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

@@ -22,8 +22,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RESOURCEPRELOADER: Int = 551
-
 /**
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
  * resources are ready to use and can be retrieved from the preloader. You can add the resources using
@@ -34,7 +32,7 @@ private const val ENGINECLASS_RESOURCEPRELOADER: Int = 551
 @GodotBaseType
 public open class ResourcePreloader : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RESOURCEPRELOADER, scriptIndex)
+    createNativeObject(551, scriptIndex)
   }
 
   /**

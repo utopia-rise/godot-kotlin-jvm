@@ -18,8 +18,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_METHODTWEENER: Int = 373
-
 /**
  * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls
  * a method providing an interpolated value as a parameter. See [Tween.tweenMethod] for more usage
@@ -31,7 +29,7 @@ private const val ENGINECLASS_METHODTWEENER: Int = 373
 @GodotBaseType
 public open class MethodTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_METHODTWEENER, scriptIndex)
+    createNativeObject(373, scriptIndex)
   }
 
   /**

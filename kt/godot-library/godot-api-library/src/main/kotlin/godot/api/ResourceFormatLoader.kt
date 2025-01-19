@@ -20,8 +20,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RESOURCEFORMATLOADER: Int = 548
-
 /**
  * Godot loads resources in the editor or in exported games using ResourceFormatLoaders. They are
  * queried automatically via the [ResourceLoader] singleton, or when a resource with internal
@@ -39,7 +37,7 @@ private const val ENGINECLASS_RESOURCEFORMATLOADER: Int = 548
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RESOURCEFORMATLOADER, scriptIndex)
+    createNativeObject(548, scriptIndex)
   }
 
   /**

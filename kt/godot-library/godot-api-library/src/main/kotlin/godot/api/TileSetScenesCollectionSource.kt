@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE: Int = 669
-
 /**
  * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
  * instantiate an associated scene at the cell's position in the TileMap.
@@ -62,7 +60,7 @@ private const val ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE: Int = 669
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TILESETSCENESCOLLECTIONSOURCE, scriptIndex)
+    createNativeObject(669, scriptIndex)
   }
 
   /**

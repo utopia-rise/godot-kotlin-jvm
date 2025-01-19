@@ -23,8 +23,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AUDIOSTREAMRANDOMIZER: Int = 133
-
 /**
  * Picks a random AudioStream from the pool, depending on the playback mode, and applies random
  * pitch shifting and volume shifting during playback.
@@ -76,7 +74,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMRANDOMIZER, scriptIndex)
+    createNativeObject(133, scriptIndex)
   }
 
   /**

@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEDOTPRODUCT: Int = 726
-
 /**
  * Translates to `dot(a, b)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeDotProduct : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEDOTPRODUCT, scriptIndex)
+    createNativeObject(726, scriptIndex)
   }
 
   public companion object

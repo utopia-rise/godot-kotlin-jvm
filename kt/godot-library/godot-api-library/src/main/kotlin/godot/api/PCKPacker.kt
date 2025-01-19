@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PCKPACKER: Int = 436
-
 /**
  * The [PCKPacker] is used to create packages that can be loaded into a running project using
  * [ProjectSettings.loadResourcePack].
@@ -49,7 +47,7 @@ private const val ENGINECLASS_PCKPACKER: Int = 436
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PCKPACKER, scriptIndex)
+    createNativeObject(436, scriptIndex)
   }
 
   /**

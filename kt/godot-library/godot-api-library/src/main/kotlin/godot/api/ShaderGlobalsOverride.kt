@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SHADERGLOBALSOVERRIDE: Int = 575
-
 /**
  * Similar to how a [WorldEnvironment] node can be used to override the environment while a specific
  * scene is loaded, [ShaderGlobalsOverride] can be used to override global shader parameters
@@ -29,7 +27,7 @@ private const val ENGINECLASS_SHADERGLOBALSOVERRIDE: Int = 575
 @GodotBaseType
 public open class ShaderGlobalsOverride : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHADERGLOBALSOVERRIDE, scriptIndex)
+    createNativeObject(575, scriptIndex)
   }
 
   public companion object

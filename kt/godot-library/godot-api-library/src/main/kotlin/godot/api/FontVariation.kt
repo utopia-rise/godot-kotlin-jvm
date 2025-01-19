@@ -30,8 +30,6 @@ import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_FONTVARIATION: Int = 246
-
 /**
  * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType
  * features and extra spacing.
@@ -194,7 +192,7 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FONTVARIATION, scriptIndex)
+    createNativeObject(246, scriptIndex)
   }
 
   /**

@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER: Int = 755
-
 /**
  * Particle emitter nodes can be used in "start" step of particle shaders and they define the
  * starting position of the particles. Connect them to the Position output port.
@@ -39,7 +37,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
+    createNativeObject(755, scriptIndex)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {

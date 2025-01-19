@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTWITHMODIFIERS: Int = 329
-
 /**
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
  * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
@@ -89,7 +87,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
+    createNativeObject(329, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

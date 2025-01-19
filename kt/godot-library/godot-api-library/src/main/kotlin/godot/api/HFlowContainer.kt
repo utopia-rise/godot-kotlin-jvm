@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HFLOWCONTAINER: Int = 293
-
 /**
  * A variant of [FlowContainer] that can only arrange its child controls horizontally, wrapping them
  * around at the borders. This is similar to how text in a book wraps around when no more words can fit
@@ -21,7 +19,7 @@ private const val ENGINECLASS_HFLOWCONTAINER: Int = 293
 @GodotBaseType
 public open class HFlowContainer : FlowContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HFLOWCONTAINER, scriptIndex)
+    createNativeObject(293, scriptIndex)
   }
 
   public companion object

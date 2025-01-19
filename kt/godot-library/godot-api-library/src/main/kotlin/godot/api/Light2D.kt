@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LIGHT2D: Int = 348
-
 /**
  * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
  * constants), and various other parameters (range and shadows-related).
@@ -210,7 +208,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHT2D, scriptIndex)
+    createNativeObject(348, scriptIndex)
   }
 
   /**

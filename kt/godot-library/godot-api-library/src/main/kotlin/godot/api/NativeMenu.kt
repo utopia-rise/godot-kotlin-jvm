@@ -38,8 +38,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_NATIVEMENU: Int = 31
-
 /**
  * [NativeMenu] handles low-level access to the OS native global menu bar and popup menus.
  * **Note:** This is low-level API, consider using [MenuBar] with [MenuBar.preferGlobalMenu] set to
@@ -77,7 +75,7 @@ private const val ENGINECLASS_NATIVEMENU: Int = 31
 @GodotBaseType
 public object NativeMenu : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NATIVEMENU)
+    getSingleton(29)
   }
 
   /**

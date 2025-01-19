@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PLACEHOLDERTEXTURELAYERED: Int = 491
-
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -59,7 +57,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERTEXTURELAYERED, scriptIndex)
+    createNativeObject(491, scriptIndex)
   }
 
   /**

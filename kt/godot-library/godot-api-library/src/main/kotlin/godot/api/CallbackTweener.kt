@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_CALLBACKTWEENER: Int = 160
-
 /**
  * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for
  * more usage information.
@@ -29,7 +27,7 @@ private const val ENGINECLASS_CALLBACKTWEENER: Int = 160
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CALLBACKTWEENER, scriptIndex)
+    createNativeObject(160, scriptIndex)
   }
 
   /**

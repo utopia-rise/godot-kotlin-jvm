@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODECOLORPARAMETER: Int = 714
-
 /**
  * Translated to `uniform vec4` in the shader language.
  */
@@ -53,7 +51,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECOLORPARAMETER, scriptIndex)
+    createNativeObject(714, scriptIndex)
   }
 
   /**

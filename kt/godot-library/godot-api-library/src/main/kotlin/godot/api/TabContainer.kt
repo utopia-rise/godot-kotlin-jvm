@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TABCONTAINER: Int = 638
-
 /**
  * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's
  * corresponding control is made visible, while all other child controls are hidden. Ignores
@@ -206,7 +204,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TABCONTAINER, scriptIndex)
+    createNativeObject(638, scriptIndex)
   }
 
   /**

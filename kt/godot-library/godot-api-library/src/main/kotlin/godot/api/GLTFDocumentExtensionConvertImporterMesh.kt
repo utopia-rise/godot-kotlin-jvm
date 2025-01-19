@@ -11,12 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_GLTFDOCUMENTEXTENSIONCONVERTIMPORTERMESH: Int = 256
-
 @GodotBaseType
 public open class GLTFDocumentExtensionConvertImporterMesh : GLTFDocumentExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFDOCUMENTEXTENSIONCONVERTIMPORTERMESH, scriptIndex)
+    createNativeObject(256, scriptIndex)
   }
 
   public companion object

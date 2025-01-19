@@ -24,15 +24,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_MARSHALLS: Int = 16
-
 /**
  * Provides data transformation and encoding utility functions.
  */
 @GodotBaseType
 public object Marshalls : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_MARSHALLS)
+    getSingleton(14)
   }
 
   /**

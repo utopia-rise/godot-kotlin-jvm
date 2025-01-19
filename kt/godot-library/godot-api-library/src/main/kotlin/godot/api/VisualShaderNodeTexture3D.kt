@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTURE3D: Int = 780
-
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to
  * choose from.
@@ -38,7 +36,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE3D, scriptIndex)
+    createNativeObject(780, scriptIndex)
   }
 
   public final fun setTexture(`value`: Texture3D?): Unit {

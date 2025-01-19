@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEVARYING: Int = 799
-
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
  * shader to Fragment shader.
@@ -51,7 +49,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVARYING, scriptIndex)
+    createNativeObject(799, scriptIndex)
   }
 
   public final fun setVaryingName(name: String): Unit {

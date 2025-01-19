@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SPHEREMESH: Int = 604
-
 /**
  * Class representing a spherical [PrimitiveMesh].
  */
@@ -87,7 +85,7 @@ public open class SphereMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPHEREMESH, scriptIndex)
+    createNativeObject(604, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

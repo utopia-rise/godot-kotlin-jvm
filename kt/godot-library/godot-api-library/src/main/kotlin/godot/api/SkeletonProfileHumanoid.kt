@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SKELETONPROFILEHUMANOID: Int = 597
-
 /**
  * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for
  * standardization, so all parameters are read-only.
@@ -78,7 +76,7 @@ private const val ENGINECLASS_SKELETONPROFILEHUMANOID: Int = 597
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONPROFILEHUMANOID, scriptIndex)
+    createNativeObject(597, scriptIndex)
   }
 
   public companion object

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COLORRECT: Int = 194
-
 /**
  * Displays a rectangle filled with a solid [color]. If you need to display the border alone,
  * consider using a [Panel] instead.
@@ -41,7 +39,7 @@ public open class ColorRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COLORRECT, scriptIndex)
+    createNativeObject(194, scriptIndex)
   }
 
   /**

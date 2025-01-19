@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORFUNC: Int = 812
-
 /**
  * A visual shader node able to perform different functions using vectors.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORFUNC, scriptIndex)
+    createNativeObject(812, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

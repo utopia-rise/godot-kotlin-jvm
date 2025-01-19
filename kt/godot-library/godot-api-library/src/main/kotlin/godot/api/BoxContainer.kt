@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BOXCONTAINER: Int = 143
-
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them
  * automatically when their minimum size changes.
@@ -54,7 +52,7 @@ public open class BoxContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BOXCONTAINER, scriptIndex)
+    createNativeObject(143, scriptIndex)
   }
 
   /**

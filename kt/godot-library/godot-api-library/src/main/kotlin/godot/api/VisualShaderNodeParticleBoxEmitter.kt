@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEBOXEMITTER: Int = 752
-
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in box shape with the
  * specified extents.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEPARTICLEBOXEMITTER: Int = 752
 @GodotBaseType
 public open class VisualShaderNodeParticleBoxEmitter : VisualShaderNodeParticleEmitter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEBOXEMITTER, scriptIndex)
+    createNativeObject(752, scriptIndex)
   }
 
   public companion object

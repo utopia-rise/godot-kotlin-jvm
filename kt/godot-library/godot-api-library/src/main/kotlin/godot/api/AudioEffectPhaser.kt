@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTPHASER: Int = 103
-
 /**
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted
  * signals is controlled using a low-frequency oscillator.
@@ -86,7 +84,7 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTPHASER, scriptIndex)
+    createNativeObject(103, scriptIndex)
   }
 
   public final fun setRangeMinHz(hz: Float): Unit {

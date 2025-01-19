@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHORTCUT: Int = 582
-
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
  * known as hotkeys).
@@ -48,7 +46,7 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHORTCUT, scriptIndex)
+    createNativeObject(582, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {

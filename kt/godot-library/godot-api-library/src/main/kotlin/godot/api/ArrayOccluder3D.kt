@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ARRAYOCCLUDER3D: Int = 76
-
 /**
  * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion
  * culling system. This is analogous to [ArrayMesh], but for occluders.
@@ -59,7 +57,7 @@ public open class ArrayOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ARRAYOCCLUDER3D, scriptIndex)
+    createNativeObject(76, scriptIndex)
   }
 
   /**

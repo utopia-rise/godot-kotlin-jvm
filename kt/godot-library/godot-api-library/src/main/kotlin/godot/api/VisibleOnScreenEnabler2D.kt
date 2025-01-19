@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISIBLEONSCREENENABLER2D: Int = 700
-
 /**
  * [VisibleOnScreenEnabler2D] contains a rectangular region of 2D space and a target node. The
  * target node will be automatically enabled (via its [Node.processMode] property) when any part of
@@ -61,7 +59,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISIBLEONSCREENENABLER2D, scriptIndex)
+    createNativeObject(700, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {

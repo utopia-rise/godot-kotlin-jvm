@@ -23,12 +23,10 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SKIN: Int = 598
-
 @GodotBaseType
 public open class Skin : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKIN, scriptIndex)
+    createNativeObject(598, scriptIndex)
   }
 
   public final fun setBindCount(bindCount: Int): Unit {

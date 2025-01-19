@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SCROLLBAR: Int = 567
-
 /**
  * Abstract base class for scrollbars, typically used to navigate through content that extends
  * beyond the visible area of a control. Scrollbars are [Range]-based controls.
@@ -46,7 +44,7 @@ public open class ScrollBar internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCROLLBAR, scriptIndex)
+    createNativeObject(567, scriptIndex)
   }
 
   public final fun setCustomStep(step: Float): Unit {

@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PLANEMESH: Int = 492
-
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
  * default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with
@@ -94,7 +92,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLANEMESH, scriptIndex)
+    createNativeObject(492, scriptIndex)
   }
 
   /**

@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TCPSERVER: Int = 635
-
 /**
  * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
  * incoming connection.
@@ -36,7 +34,7 @@ private const val ENGINECLASS_TCPSERVER: Int = 635
 @GodotBaseType
 public open class TCPServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TCPSERVER, scriptIndex)
+    createNativeObject(635, scriptIndex)
   }
 
   /**

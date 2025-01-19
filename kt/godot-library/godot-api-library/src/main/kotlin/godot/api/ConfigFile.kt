@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CONFIGFILE: Int = 206
-
 /**
  * This helper class can be used to store [Variant] values on the filesystem using INI-style
  * formatting. The stored values are identified by a section and a key:
@@ -135,7 +133,7 @@ private const val ENGINECLASS_CONFIGFILE: Int = 206
 @GodotBaseType
 public open class ConfigFile : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CONFIGFILE, scriptIndex)
+    createNativeObject(206, scriptIndex)
   }
 
   /**

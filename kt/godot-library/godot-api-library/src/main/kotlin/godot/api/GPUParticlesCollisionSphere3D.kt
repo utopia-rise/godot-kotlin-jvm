@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D: Int = 278
-
 /**
  * A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
@@ -44,7 +42,7 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D, scriptIndex)
+    createNativeObject(278, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

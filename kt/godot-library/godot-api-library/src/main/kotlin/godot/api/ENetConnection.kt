@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ENETCONNECTION: Int = 229
-
 /**
  * ENet's purpose is to provide a relatively thin, simple and robust network communication layer on
  * top of UDP (User Datagram Protocol).
@@ -40,7 +38,7 @@ private const val ENGINECLASS_ENETCONNECTION: Int = 229
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ENETCONNECTION, scriptIndex)
+    createNativeObject(229, scriptIndex)
   }
 
   /**

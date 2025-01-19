@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER: Int = 756
-
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned
  * [mesh]. It will emit from the mesh's surfaces, either all or only the specified one.
@@ -64,7 +62,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER, scriptIndex)
+    createNativeObject(756, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BONEATTACHMENT3D: Int = 141
-
 /**
  * This node selects a bone in a [Skeleton3D] and attaches to it. This means that the
  * [BoneAttachment3D] node will either dynamically copy or override the 3D transform of the selected
@@ -72,7 +70,7 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
+    createNativeObject(141, scriptIndex)
   }
 
   public final fun setBoneName(boneName: String): Unit {

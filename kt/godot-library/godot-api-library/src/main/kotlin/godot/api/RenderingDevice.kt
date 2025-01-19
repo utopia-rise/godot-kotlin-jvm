@@ -45,8 +45,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RENDERINGDEVICE: Int = 546
-
 public infix fun Long.or(other: godot.api.RenderingDevice.BarrierMask): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
@@ -165,7 +163,7 @@ public operator fun Long.rem(other: godot.api.RenderingDevice.PipelineDynamicSta
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERINGDEVICE, scriptIndex)
+    createNativeObject(546, scriptIndex)
   }
 
   /**

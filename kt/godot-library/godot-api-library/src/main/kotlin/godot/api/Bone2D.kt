@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BONE2D: Int = 140
-
 /**
  * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
  * nodes.
@@ -55,7 +53,7 @@ public open class Bone2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BONE2D, scriptIndex)
+    createNativeObject(140, scriptIndex)
   }
 
   /**

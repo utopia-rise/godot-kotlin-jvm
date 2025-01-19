@@ -24,8 +24,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_UPNP: Int = 682
-
 /**
  * This class can be used to discover compatible [UPNPDevice]s on the local network and execute
  * commands on them, like managing port mappings (for port forwarding/NAT traversal) and querying the
@@ -144,7 +142,7 @@ public open class UPNP : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_UPNP, scriptIndex)
+    createNativeObject(682, scriptIndex)
   }
 
   /**

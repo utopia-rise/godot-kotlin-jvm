@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOSTREAMMICROPHONE: Int = 119
-
 /**
  * When used directly in an [AudioStreamPlayer] node, [AudioStreamMicrophone] plays back microphone
  * input in real-time. This can be used in conjunction with [AudioEffectCapture] to process the data or
@@ -24,7 +22,7 @@ private const val ENGINECLASS_AUDIOSTREAMMICROPHONE: Int = 119
 @GodotBaseType
 public open class AudioStreamMicrophone : AudioStream() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMMICROPHONE, scriptIndex)
+    createNativeObject(119, scriptIndex)
   }
 
   public companion object

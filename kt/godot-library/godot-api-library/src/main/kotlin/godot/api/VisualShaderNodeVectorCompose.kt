@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORCOMPOSE: Int = 809
-
 /**
  * Creates a `vec2`, `vec3` or `vec4` using scalar values that can be provided from separate inputs.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorCompose : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORCOMPOSE, scriptIndex)
+    createNativeObject(809, scriptIndex)
   }
 
   public companion object

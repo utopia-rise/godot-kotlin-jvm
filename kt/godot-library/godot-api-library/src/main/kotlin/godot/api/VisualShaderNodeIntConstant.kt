@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEINTCONSTANT: Int = 739
-
 /**
  * Translated to [code skip-lint]int[/code] in the shader language.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEINTCONSTANT, scriptIndex)
+    createNativeObject(739, scriptIndex)
   }
 
   public final fun setConstant(constant: Int): Unit {

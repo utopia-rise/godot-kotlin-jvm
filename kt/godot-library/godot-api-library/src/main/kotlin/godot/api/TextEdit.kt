@@ -47,8 +47,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TEXTEDIT: Int = 639
-
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
  * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
@@ -571,7 +569,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTEDIT, scriptIndex)
+    createNativeObject(639, scriptIndex)
   }
 
   /**

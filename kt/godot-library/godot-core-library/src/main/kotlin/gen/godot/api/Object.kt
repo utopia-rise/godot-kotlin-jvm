@@ -37,8 +37,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_OBJECT: Int = 0
-
 /**
  * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define
  * new properties, methods or signals, which are available to all inheriting classes. For example, a
@@ -99,7 +97,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OBJECT, scriptIndex)
+    createNativeObject(0, scriptIndex)
   }
 
   /**

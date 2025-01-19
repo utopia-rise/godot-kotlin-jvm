@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDSAMPLERSTATE: Int = 517
-
 /**
  * This object is used by [RenderingDevice].
  */
@@ -215,7 +213,7 @@ public open class RDSamplerState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDSAMPLERSTATE, scriptIndex)
+    createNativeObject(517, scriptIndex)
   }
 
   public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {

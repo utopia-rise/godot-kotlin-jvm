@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESATTRACTOR3D: Int = 270
-
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
  * them away from the attractor's origin.
@@ -93,7 +91,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESATTRACTOR3D, scriptIndex)
+    createNativeObject(270, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

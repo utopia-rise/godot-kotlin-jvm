@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PLACEHOLDERMESH: Int = 487
-
 /**
  * This class is used when loading a project that uses a [Mesh] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -44,7 +42,7 @@ public open class PlaceholderMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERMESH, scriptIndex)
+    createNativeObject(487, scriptIndex)
   }
 
   /**

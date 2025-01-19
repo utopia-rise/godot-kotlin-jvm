@@ -24,8 +24,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RANDOMNUMBERGENERATOR: Int = 525
-
 /**
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses
  * [url=https://www.pcg-random.org/]PCG32[/url].
@@ -90,7 +88,7 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RANDOMNUMBERGENERATOR, scriptIndex)
+    createNativeObject(525, scriptIndex)
   }
 
   public final fun setSeed(seed: Long): Unit {

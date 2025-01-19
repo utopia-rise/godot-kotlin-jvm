@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_AUDIOSERVER: Int = 28
-
 /**
  * [AudioServer] is a low-level server interface for audio access. It is in charge of creating
  * sample data (playable audio) as well as its playback via a voice interface.
@@ -54,7 +52,7 @@ public object AudioServer : Object() {
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_AUDIOSERVER)
+    getSingleton(26)
   }
 
   @JvmStatic

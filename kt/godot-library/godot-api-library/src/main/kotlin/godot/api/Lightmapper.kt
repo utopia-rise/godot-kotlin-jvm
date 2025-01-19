@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_LIGHTMAPPER: Int = 354
-
 /**
  * This class should be extended by custom lightmapper classes. Lightmappers can then be used with
  * [LightmapGI] to provide fast baked global illumination in 3D.
@@ -22,7 +20,7 @@ private const val ENGINECLASS_LIGHTMAPPER: Int = 354
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHTMAPPER, scriptIndex)
+    createNativeObject(354, scriptIndex)
   }
 
   public companion object

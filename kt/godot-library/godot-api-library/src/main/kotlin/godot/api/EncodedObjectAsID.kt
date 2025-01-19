@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ENCODEDOBJECTASID: Int = 232
-
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
  * given by [Object.getInstanceId]. This ID can then be used to retrieve the object instance with
@@ -42,7 +40,7 @@ public open class EncodedObjectAsID : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ENCODEDOBJECTASID, scriptIndex)
+    createNativeObject(232, scriptIndex)
   }
 
   public final fun setObjectId(id: Long): Unit {

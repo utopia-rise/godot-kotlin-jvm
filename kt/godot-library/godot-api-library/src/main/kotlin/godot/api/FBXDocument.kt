@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_FBXDOCUMENT: Int = 236
-
 /**
  * The FBXDocument handles FBX documents. It provides methods to append data from buffers or files,
  * generate scenes, and register/unregister document extensions.
@@ -23,7 +21,7 @@ private const val ENGINECLASS_FBXDOCUMENT: Int = 236
 @GodotBaseType
 public open class FBXDocument : GLTFDocument() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FBXDOCUMENT, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   public companion object

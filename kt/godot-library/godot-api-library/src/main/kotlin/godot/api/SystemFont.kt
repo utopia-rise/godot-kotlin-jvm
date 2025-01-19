@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SYSTEMFONT: Int = 634
-
 /**
  * [SystemFont] loads a font from a system font with the first matching name from [fontNames].
  * It will attempt to match font style, but it's not guaranteed.
@@ -215,7 +213,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SYSTEMFONT, scriptIndex)
+    createNativeObject(634, scriptIndex)
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {

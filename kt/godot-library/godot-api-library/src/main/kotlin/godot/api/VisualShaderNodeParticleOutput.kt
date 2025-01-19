@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT: Int = 758
-
 /**
  * This node defines how particles are emitted. It allows to customize e.g. position and velocity.
  * Available ports are different depending on which function this node is inside (start, process,
@@ -21,7 +19,7 @@ private const val ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT: Int = 758
 @GodotBaseType
 public open class VisualShaderNodeParticleOutput : VisualShaderNodeOutput() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT, scriptIndex)
+    createNativeObject(758, scriptIndex)
   }
 
   public companion object

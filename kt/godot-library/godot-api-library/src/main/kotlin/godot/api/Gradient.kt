@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GRADIENT: Int = 282
-
 /**
  * This resource describes a color transition by defining a set of colored points and how to
  * interpolate between them.
@@ -89,7 +87,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRADIENT, scriptIndex)
+    createNativeObject(282, scriptIndex)
   }
 
   /**

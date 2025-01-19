@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODECLAMP: Int = 710
-
 /**
  * Constrains a value to lie between `min` and `max` values.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECLAMP, scriptIndex)
+    createNativeObject(710, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

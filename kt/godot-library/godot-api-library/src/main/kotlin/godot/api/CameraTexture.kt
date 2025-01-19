@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAMERATEXTURE: Int = 167
-
 /**
  * This texture gives access to the camera texture provided by a [CameraFeed].
  * **Note:** Many cameras supply YCbCr images which need to be converted in a shader.
@@ -63,7 +61,7 @@ public open class CameraTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAMERATEXTURE, scriptIndex)
+    createNativeObject(167, scriptIndex)
   }
 
   public final fun setCameraFeedId(feedId: Int): Unit {

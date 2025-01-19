@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PLACEHOLDERCUBEMAP: Int = 484
-
 /**
  * This class replaces a [Cubemap] or a [Cubemap]-derived class in 2 conditions:
  * - In dedicated server mode, where the image data shouldn't affect game logic. This allows
@@ -24,7 +22,7 @@ private const val ENGINECLASS_PLACEHOLDERCUBEMAP: Int = 484
 @GodotBaseType
 public open class PlaceholderCubemap : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERCUBEMAP, scriptIndex)
+    createNativeObject(484, scriptIndex)
   }
 
   public companion object

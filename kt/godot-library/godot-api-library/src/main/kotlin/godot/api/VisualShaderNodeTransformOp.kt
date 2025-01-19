@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETRANSFORMOP: Int = 790
-
 /**
  * Applies [operator] to two transform (4×4 matrices) inputs.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETRANSFORMOP, scriptIndex)
+    createNativeObject(790, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

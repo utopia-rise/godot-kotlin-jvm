@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDTEXTUREFORMAT: Int = 521
-
 /**
  * This object is used by [RenderingDevice].
  */
@@ -126,7 +124,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDTEXTUREFORMAT, scriptIndex)
+    createNativeObject(521, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {

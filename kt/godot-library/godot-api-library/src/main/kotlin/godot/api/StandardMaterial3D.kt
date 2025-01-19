@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_STANDARDMATERIAL3D: Int = 615
-
 /**
  * [StandardMaterial3D]'s properties are inherited from [BaseMaterial3D]. [StandardMaterial3D] uses
  * separate textures for ambient occlusion, roughness and metallic maps. To use a single ORM map for
@@ -21,7 +19,7 @@ private const val ENGINECLASS_STANDARDMATERIAL3D: Int = 615
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STANDARDMATERIAL3D, scriptIndex)
+    createNativeObject(615, scriptIndex)
   }
 
   public companion object

@@ -34,8 +34,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TREE: Int = 675
-
 /**
  * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items
  * can be selected, expanded and collapsed. The tree can have multiple columns with custom controls
@@ -302,7 +300,7 @@ public open class Tree : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TREE, scriptIndex)
+    createNativeObject(675, scriptIndex)
   }
 
   /**

@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RENDERSCENEBUFFERSRD: Int = 542
-
 /**
  * This object manages all 3D rendering buffers for the rendering device based renderers. An
  * instance of this object is created for every viewport that has 3D rendering enabled.
@@ -44,7 +42,7 @@ private const val ENGINECLASS_RENDERSCENEBUFFERSRD: Int = 542
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERSCENEBUFFERSRD, scriptIndex)
+    createNativeObject(542, scriptIndex)
   }
 
   /**

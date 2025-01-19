@@ -36,8 +36,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADER: Int = 705
-
 /**
  * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
  * do not require coding, they share the same logic with script shaders. They use [VisualShaderNode]s
@@ -59,7 +57,7 @@ public open class VisualShader : Shader() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADER, scriptIndex)
+    createNativeObject(705, scriptIndex)
   }
 
   /**

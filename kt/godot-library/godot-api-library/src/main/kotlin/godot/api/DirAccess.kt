@@ -27,8 +27,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_DIRACCESS: Int = 226
-
 /**
  * This class is used to manage directories and their content, even outside of the project folder.
  * [DirAccess] can't be instantiated directly. Instead it is created with a static method that takes
@@ -119,7 +117,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_DIRACCESS, scriptIndex)
+    createNativeObject(226, scriptIndex)
   }
 
   /**

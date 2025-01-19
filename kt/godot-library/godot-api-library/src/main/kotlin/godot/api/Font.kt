@@ -41,8 +41,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_FONT: Int = 244
-
 /**
  * Abstract base class for different font types. It has methods for drawing text and font character
  * introspection.
@@ -64,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FONT, scriptIndex)
+    createNativeObject(244, scriptIndex)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {

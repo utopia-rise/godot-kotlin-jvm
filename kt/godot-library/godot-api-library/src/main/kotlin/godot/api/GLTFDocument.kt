@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_GLTFDOCUMENT: Int = 254
-
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then
  * be written to the filesystem, buffer, or used to create a Godot scene.
@@ -88,7 +86,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
+    createNativeObject(254, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {

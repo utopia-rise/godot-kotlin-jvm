@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SKINREFERENCE: Int = 599
-
 /**
  * An internal object containing a mapping from a [Skin] used within the context of a particular
  * [MeshInstance3D] to refer to the skeleton's [RID] in the RenderingServer.
@@ -34,7 +32,7 @@ private const val ENGINECLASS_SKINREFERENCE: Int = 599
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKINREFERENCE, scriptIndex)
+    createNativeObject(599, scriptIndex)
   }
 
   /**

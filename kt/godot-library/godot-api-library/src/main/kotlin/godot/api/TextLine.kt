@@ -44,8 +44,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TEXTLINE: Int = 640
-
 /**
  * Abstraction over [TextServer] for handling a single line of text.
  */
@@ -152,7 +150,7 @@ public open class TextLine : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTLINE, scriptIndex)
+    createNativeObject(640, scriptIndex)
   }
 
   /**

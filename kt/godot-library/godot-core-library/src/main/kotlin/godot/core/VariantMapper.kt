@@ -1,7 +1,6 @@
 package godot.core
 
-@PublishedApi
-internal val variantMapper = mutableMapOf(
+val variantMapper = mutableMapOf(
     Unit::class to VariantParser.NIL,
     Void::class to VariantParser.NIL,
     Any::class to VariantCaster.ANY,
@@ -81,8 +80,7 @@ internal val variantMapper = mutableMapOf(
     PackedVector3Array::class to VariantParser.PACKED_VECTOR3_ARRAY
 )
 
-@PublishedApi
-internal val notNullableVariantSet = hashSetOf(
+val notNullableVariantSet = hashSetOf(
     Boolean::class,
     Int::class,
     Long::class,

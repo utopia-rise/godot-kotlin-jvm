@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION: Int = 735
-
 /**
  * Custom Godot Shader Language expression, which is placed on top of the generated shader. You can
  * place various function definitions inside to call later in [VisualShaderNodeExpression]s (which are
@@ -22,7 +20,7 @@ private const val ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION: Int = 735
 @GodotBaseType
 public open class VisualShaderNodeGlobalExpression : VisualShaderNodeExpression() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION, scriptIndex)
+    createNativeObject(735, scriptIndex)
   }
 
   public companion object

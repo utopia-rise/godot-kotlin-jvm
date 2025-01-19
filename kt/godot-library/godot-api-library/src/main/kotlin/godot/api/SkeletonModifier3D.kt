@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKELETONMODIFIER3D: Int = 595
-
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
  * If there is [AnimationMixer], modification always performs after playback process of the
@@ -65,7 +63,7 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFIER3D, scriptIndex)
+    createNativeObject(595, scriptIndex)
   }
 
   /**

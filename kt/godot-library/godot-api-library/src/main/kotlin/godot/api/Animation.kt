@@ -39,8 +39,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATION: Int = 48
-
 /**
  * This resource holds data that can be used to animate anything in the engine. Animations are
  * divided into tracks and each track must be linked to a node. The state of that node can be changed
@@ -124,7 +122,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATION, scriptIndex)
+    createNativeObject(48, scriptIndex)
   }
 
   /**

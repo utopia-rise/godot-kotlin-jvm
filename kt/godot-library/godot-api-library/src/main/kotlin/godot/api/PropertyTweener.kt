@@ -22,8 +22,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PROPERTYTWEENER: Int = 506
-
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
  * more usage information.
@@ -33,7 +31,7 @@ private const val ENGINECLASS_PROPERTYTWEENER: Int = 506
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
+    createNativeObject(506, scriptIndex)
   }
 
   /**

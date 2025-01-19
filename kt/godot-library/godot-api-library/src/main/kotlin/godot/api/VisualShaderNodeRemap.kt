@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEREMAP: Int = 764
-
 /**
  * Remap will transform the input range into output range, e.g. you can change a `0..1` value to
  * `-2..2` etc. See [@GlobalScope.remap] for more details.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEREMAP: Int = 764
 @GodotBaseType
 public open class VisualShaderNodeRemap : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEREMAP, scriptIndex)
+    createNativeObject(764, scriptIndex)
   }
 
   public companion object

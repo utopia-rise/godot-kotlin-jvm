@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSDIRECTBODYSTATE2D: Int = 462
-
 /**
  * Provides direct access to a physics body in the [PhysicsServer2D], allowing safe changes to
  * physics properties. This object is passed via the direct state callback of [RigidBody2D], and is
@@ -149,7 +147,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSDIRECTBODYSTATE2D, scriptIndex)
+    createNativeObject(462, scriptIndex)
   }
 
   /**

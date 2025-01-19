@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTCAPTURE: Int = 84
-
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
  * bus into its internal ring buffer.
@@ -52,7 +50,7 @@ public open class AudioEffectCapture : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTCAPTURE, scriptIndex)
+    createNativeObject(84, scriptIndex)
   }
 
   /**

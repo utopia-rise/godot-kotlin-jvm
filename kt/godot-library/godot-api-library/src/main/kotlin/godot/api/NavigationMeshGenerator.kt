@@ -20,8 +20,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_NAVIGATIONMESHGENERATOR: Int = 6
-
 /**
  * This class is responsible for creating and clearing 3D navigation meshes used as [NavigationMesh]
  * resources inside [NavigationRegion3D]. The [NavigationMeshGenerator] has very limited to no use for
@@ -56,7 +54,7 @@ private const val ENGINECLASS_NAVIGATIONMESHGENERATOR: Int = 6
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NAVIGATIONMESHGENERATOR)
+    getSingleton(4)
   }
 
   /**

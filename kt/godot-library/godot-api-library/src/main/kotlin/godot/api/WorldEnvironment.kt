@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_WORLDENVIRONMENT: Int = 833
-
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
  * The parameters defined in the [WorldEnvironment] can be overridden by an [Environment] node set
@@ -65,7 +63,7 @@ public open class WorldEnvironment : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
+    createNativeObject(833, scriptIndex)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {

@@ -21,8 +21,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEGROUPBASE: Int = 736
-
 /**
  * Currently, has no direct usage, use the derived classes instead.
  */
@@ -30,7 +28,7 @@ private const val ENGINECLASS_VISUALSHADERNODEGROUPBASE: Int = 736
 public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
     {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEGROUPBASE, scriptIndex)
+    createNativeObject(736, scriptIndex)
   }
 
   /**

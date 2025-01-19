@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_REFERENCERECT: Int = 530
-
 /**
  * A rectangle box that displays only a colored border around its rectangle. It is used to visualize
  * the extents of a [Control].
@@ -70,7 +68,7 @@ public open class ReferenceRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_REFERENCERECT, scriptIndex)
+    createNativeObject(530, scriptIndex)
   }
 
   /**

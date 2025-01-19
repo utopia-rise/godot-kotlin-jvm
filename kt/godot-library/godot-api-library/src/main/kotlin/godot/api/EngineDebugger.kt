@@ -31,8 +31,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_ENGINEDEBUGGER: Int = 20
-
 /**
  * [EngineDebugger] handles the communication between the editor and the running game. It is active
  * in the running game. Messages can be sent/received through it. It also manages the profilers.
@@ -40,7 +38,7 @@ private const val ENGINECLASS_ENGINEDEBUGGER: Int = 20
 @GodotBaseType
 public object EngineDebugger : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_ENGINEDEBUGGER)
+    getSingleton(18)
   }
 
   /**

@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SPINBOX: Int = 607
-
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
  * numbers.
@@ -144,7 +142,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPINBOX, scriptIndex)
+    createNativeObject(607, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

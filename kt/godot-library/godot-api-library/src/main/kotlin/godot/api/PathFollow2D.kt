@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PATHFOLLOW2D: Int = 454
-
 /**
  * This node takes its parent [Path2D], and returns the coordinates of a point within it, given a
  * distance from the first vertex.
@@ -123,7 +121,7 @@ public open class PathFollow2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PATHFOLLOW2D, scriptIndex)
+    createNativeObject(454, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

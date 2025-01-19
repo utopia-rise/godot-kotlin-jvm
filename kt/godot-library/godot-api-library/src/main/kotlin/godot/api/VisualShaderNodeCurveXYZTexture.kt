@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE: Int = 721
-
 /**
  * Comes with a built-in editor for texture's curves.
  */
@@ -36,7 +34,7 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE, scriptIndex)
+    createNativeObject(721, scriptIndex)
   }
 
   public final fun setTexture(texture: CurveXYZTexture?): Unit {

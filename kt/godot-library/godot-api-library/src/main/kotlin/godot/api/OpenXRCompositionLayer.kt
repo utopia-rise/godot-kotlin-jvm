@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OPENXRCOMPOSITIONLAYER: Int = 424
-
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
  * through special projections that retain their quality. This allows for rendering clear text while
@@ -89,7 +87,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRCOMPOSITIONLAYER, scriptIndex)
+    createNativeObject(424, scriptIndex)
   }
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {

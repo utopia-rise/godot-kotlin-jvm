@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PACKETPEERUDP: Int = 444
-
 /**
  * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
@@ -34,7 +32,7 @@ private const val ENGINECLASS_PACKETPEERUDP: Int = 444
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKETPEERUDP, scriptIndex)
+    createNativeObject(444, scriptIndex)
   }
 
   /**

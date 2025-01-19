@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ENVIRONMENT: Int = 234
-
 /**
  * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
  * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
@@ -1262,7 +1260,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ENVIRONMENT, scriptIndex)
+    createNativeObject(234, scriptIndex)
   }
 
   /**

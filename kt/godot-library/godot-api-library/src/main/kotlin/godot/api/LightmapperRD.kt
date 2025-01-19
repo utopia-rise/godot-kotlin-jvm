@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_LIGHTMAPPERRD: Int = 355
-
 /**
  * LightmapperRD ("RD" stands for [RenderingDevice]) is the built-in GPU-based lightmapper for use
  * with [LightmapGI]. On most dedicated GPUs, it can bake lightmaps much faster than most CPU-based
@@ -23,7 +21,7 @@ private const val ENGINECLASS_LIGHTMAPPERRD: Int = 355
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHTMAPPERRD, scriptIndex)
+    createNativeObject(355, scriptIndex)
   }
 
   public companion object

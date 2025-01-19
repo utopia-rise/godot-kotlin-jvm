@@ -16,8 +16,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_WEAKREF: Int = 819
-
 /**
  * A weakref can hold a [RefCounted] without contributing to the reference counter. A weakref can be
  * created from an [Object] using [@GlobalScope.weakref]. If this object is not a reference, weakref
@@ -30,7 +28,7 @@ private const val ENGINECLASS_WEAKREF: Int = 819
 @GodotBaseType
 public open class WeakRef : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WEAKREF, scriptIndex)
+    createNativeObject(819, scriptIndex)
   }
 
   /**

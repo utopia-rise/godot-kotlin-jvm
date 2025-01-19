@@ -18,8 +18,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OCCLUDER3D: Int = 413
-
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
@@ -27,7 +25,7 @@ private const val ENGINECLASS_OCCLUDER3D: Int = 413
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OCCLUDER3D, scriptIndex)
+    createNativeObject(413, scriptIndex)
   }
 
   /**

@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTURELAYEREDRD: Int = 658
-
 /**
  * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
  * directly, but contains all the functions necessary for accessing the derived resource types.
@@ -38,7 +36,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURELAYEREDRD, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

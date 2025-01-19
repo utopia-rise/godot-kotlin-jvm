@@ -45,8 +45,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CANVASITEM: Int = 169
-
 /**
  * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children
  * inherit and extend their parent's transform. [CanvasItem] is extended by [Control] for GUI-related
@@ -287,7 +285,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CANVASITEM, scriptIndex)
+    createNativeObject(169, scriptIndex)
   }
 
   /**

@@ -37,8 +37,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFSTATE: Int = 265
-
 /**
  * Contains all nodes and resources of a GLTF file. This is used by [GLTFDocument] as data storage,
  * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
@@ -327,7 +325,7 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFSTATE, scriptIndex)
+    createNativeObject(265, scriptIndex)
   }
 
   /**

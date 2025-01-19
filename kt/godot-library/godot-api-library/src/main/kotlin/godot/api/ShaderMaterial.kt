@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHADERMATERIAL: Int = 577
-
 /**
  * A material that uses a custom [Shader] program to render visual items (canvas items, meshes,
  * skies, fog), or to process particles. Compared to other materials, [ShaderMaterial] gives deeper
@@ -47,7 +45,7 @@ public open class ShaderMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHADERMATERIAL, scriptIndex)
+    createNativeObject(577, scriptIndex)
   }
 
   public final fun setShader(shader: Shader?): Unit {

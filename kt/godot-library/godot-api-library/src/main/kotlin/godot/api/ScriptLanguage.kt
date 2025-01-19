@@ -12,12 +12,10 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SCRIPTLANGUAGE: Int = 565
-
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCRIPTLANGUAGE, scriptIndex)
+    createNativeObject(565, scriptIndex)
   }
 
   public enum class ScriptNameCasing(

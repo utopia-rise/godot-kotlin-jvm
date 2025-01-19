@@ -25,8 +25,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CURVE: Int = 216
-
 /**
  * This resource describes a mathematical curve by defining a set of points and tangents at each
  * point. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the
@@ -85,7 +83,7 @@ public open class Curve : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CURVE, scriptIndex)
+    createNativeObject(216, scriptIndex)
   }
 
   public final fun getPointCount(): Int {

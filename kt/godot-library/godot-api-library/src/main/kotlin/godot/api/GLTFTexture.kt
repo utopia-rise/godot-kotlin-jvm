@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFTEXTURE: Int = 266
-
 @GodotBaseType
 public open class GLTFTexture : Resource() {
   /**
@@ -47,7 +45,7 @@ public open class GLTFTexture : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFTEXTURE, scriptIndex)
+    createNativeObject(266, scriptIndex)
   }
 
   public final fun getSrcImage(): Int {

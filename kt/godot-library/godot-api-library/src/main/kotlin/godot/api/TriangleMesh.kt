@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TRIANGLEMESH: Int = 677
-
 /**
  * Mesh type used internally for collision calculations.
  */
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TRIANGLEMESH, scriptIndex)
+    createNativeObject(677, scriptIndex)
   }
 
   public companion object

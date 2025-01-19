@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTCOMPRESSOR: Int = 86
-
 /**
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain
  * threshold in Decibels. One of the main uses of a compressor is to increase the dynamic range by
@@ -120,7 +118,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
+    createNativeObject(86, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {

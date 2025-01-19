@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRTRACKER: Int = 852
-
 /**
  * This object is the base of all XR trackers.
  */
@@ -72,7 +70,7 @@ public open class XRTracker internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRTRACKER, scriptIndex)
+    createNativeObject(852, scriptIndex)
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {

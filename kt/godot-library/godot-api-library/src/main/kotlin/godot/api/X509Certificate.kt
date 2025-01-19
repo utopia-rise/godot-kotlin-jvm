@@ -19,8 +19,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_X509CERTIFICATE: Int = 834
-
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
  * like any other [Resource].
@@ -31,7 +29,7 @@ private const val ENGINECLASS_X509CERTIFICATE: Int = 834
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_X509CERTIFICATE, scriptIndex)
+    createNativeObject(834, scriptIndex)
   }
 
   /**

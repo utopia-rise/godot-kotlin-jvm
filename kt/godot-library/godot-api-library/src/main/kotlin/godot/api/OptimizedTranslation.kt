@@ -16,8 +16,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OPTIMIZEDTRANSLATION: Int = 434
-
 /**
  * An optimized translation, used by default for CSV Translations. Uses real-time compressed
  * translations, which results in very small dictionaries.
@@ -25,7 +23,7 @@ private const val ENGINECLASS_OPTIMIZEDTRANSLATION: Int = 434
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPTIMIZEDTRANSLATION, scriptIndex)
+    createNativeObject(434, scriptIndex)
   }
 
   /**

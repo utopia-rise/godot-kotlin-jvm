@@ -34,8 +34,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_THEME: Int = 661
-
 /**
  * A resource used for styling/skinning [Control] and [Window] nodes. While individual controls can
  * be styled using their local theme overrides (see [Control.addThemeColorOverride]), theme resources
@@ -95,7 +93,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_THEME, scriptIndex)
+    createNativeObject(661, scriptIndex)
   }
 
   /**

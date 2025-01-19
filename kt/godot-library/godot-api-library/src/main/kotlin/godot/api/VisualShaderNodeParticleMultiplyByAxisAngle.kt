@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE: Int = 757
-
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to
  * work with emitters.
@@ -38,7 +36,7 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE, scriptIndex)
+    createNativeObject(757, scriptIndex)
   }
 
   public final fun setDegreesMode(enabled: Boolean): Unit {

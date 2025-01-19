@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODECONSTANT: Int = 717
-
 /**
  * This is an abstract class. See the derived types for descriptions of the possible values.
  */
 @GodotBaseType
 public open class VisualShaderNodeConstant internal constructor() : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECONSTANT, scriptIndex)
+    createNativeObject(717, scriptIndex)
   }
 
   public companion object

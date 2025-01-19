@@ -34,8 +34,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONPLAYER: Int = 70
-
 /**
  * An animation player is used for general-purpose playback of animations. It contains a dictionary
  * of [AnimationLibrary] resources and custom blend times between animation transitions.
@@ -206,7 +204,7 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONPLAYER, scriptIndex)
+    createNativeObject(70, scriptIndex)
   }
 
   /**

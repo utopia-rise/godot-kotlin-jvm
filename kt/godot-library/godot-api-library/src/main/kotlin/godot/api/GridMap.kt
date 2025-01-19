@@ -40,8 +40,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_GRIDMAP: Int = 290
-
 /**
  * GridMap lets you place meshes on a grid interactively. It works both from the editor and from
  * scripts, which can help you create in-game level editors.
@@ -212,7 +210,7 @@ public open class GridMap : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRIDMAP, scriptIndex)
+    createNativeObject(290, scriptIndex)
   }
 
   /**

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURE: Int = 647
-
 /**
  * [Texture] is the base class for all texture types. Common texture types are [Texture2D] and
  * [ImageTexture]. See also [Image].
@@ -20,7 +18,7 @@ private const val ENGINECLASS_TEXTURE: Int = 647
 @GodotBaseType
 public open class Texture : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURE, scriptIndex)
+    createNativeObject(647, scriptIndex)
   }
 
   public companion object

@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTCHORUS: Int = 85
-
 /**
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source
  * and manipulate it through the filter.
@@ -63,7 +61,7 @@ public open class AudioEffectChorus : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTCHORUS, scriptIndex)
+    createNativeObject(85, scriptIndex)
   }
 
   public final fun setVoiceCount(voices: Int): Unit {

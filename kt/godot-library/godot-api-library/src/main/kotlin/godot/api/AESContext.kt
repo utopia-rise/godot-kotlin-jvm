@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AESCONTEXT: Int = 38
-
 /**
  * This class holds the context information required for encryption and decryption operations with
  * AES (Advanced Encryption Standard). Both AES-ECB and AES-CBC modes are supported.
@@ -103,7 +101,7 @@ private const val ENGINECLASS_AESCONTEXT: Int = 38
 @GodotBaseType
 public open class AESContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AESCONTEXT, scriptIndex)
+    createNativeObject(38, scriptIndex)
   }
 
   /**

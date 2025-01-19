@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOEFFECTHIGHSHELFFILTER: Int = 96
-
 /**
  * Reduces all frequencies above the [AudioEffectFilter.cutoffHz].
  */
 @GodotBaseType
 public open class AudioEffectHighShelfFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTHIGHSHELFFILTER, scriptIndex)
+    createNativeObject(96, scriptIndex)
   }
 
   public companion object

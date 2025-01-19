@@ -24,15 +24,13 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PHYSICSTESTMOTIONRESULT2D: Int = 480
-
 /**
  * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSTESTMOTIONRESULT2D, scriptIndex)
+    createNativeObject(480, scriptIndex)
   }
 
   /**

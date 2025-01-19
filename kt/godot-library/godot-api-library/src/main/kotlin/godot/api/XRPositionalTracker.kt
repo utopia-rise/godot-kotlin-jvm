@@ -35,8 +35,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRPOSITIONALTRACKER: Int = 851
-
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor
  * point. HMDs aren't represented here as they are handled internally.
@@ -108,7 +106,7 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRPOSITIONALTRACKER, scriptIndex)
+    createNativeObject(851, scriptIndex)
   }
 
   public final fun getTrackerProfile(): String {

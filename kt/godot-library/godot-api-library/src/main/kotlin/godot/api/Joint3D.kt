@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_JOINT3D: Int = 340
-
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
  * ([nodeA] and [nodeB]) and apply a constraint. If only one body is defined, it is attached to a fixed
@@ -83,7 +81,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JOINT3D, scriptIndex)
+    createNativeObject(340, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

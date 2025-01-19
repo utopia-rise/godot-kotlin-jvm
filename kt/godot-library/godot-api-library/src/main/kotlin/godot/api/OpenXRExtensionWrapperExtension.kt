@@ -22,8 +22,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OPENXREXTENSIONWRAPPEREXTENSION: Int = 428
-
 /**
  * [OpenXRExtensionWrapperExtension] allows clients to implement OpenXR extensions with GDExtension.
  * The extension should be registered with [registerExtensionWrapper].
@@ -31,7 +29,7 @@ private const val ENGINECLASS_OPENXREXTENSIONWRAPPEREXTENSION: Int = 428
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXREXTENSIONWRAPPEREXTENSION, scriptIndex)
+    createNativeObject(428, scriptIndex)
   }
 
   /**

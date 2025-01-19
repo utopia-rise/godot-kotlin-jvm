@@ -27,8 +27,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONNODEBLENDSPACE1D: Int = 57
-
 /**
  * A resource used by [AnimationNodeBlendTree].
  * [AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [AnimationRootNode]s
@@ -106,7 +104,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D, scriptIndex)
+    createNativeObject(57, scriptIndex)
   }
 
   /**

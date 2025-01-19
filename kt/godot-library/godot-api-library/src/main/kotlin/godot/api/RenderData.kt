@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RENDERDATA: Int = 536
-
 /**
  * Abstract render data object, exists for the duration of rendering a single viewport.
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
@@ -26,7 +24,7 @@ private const val ENGINECLASS_RENDERDATA: Int = 536
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERDATA, scriptIndex)
+    createNativeObject(536, scriptIndex)
   }
 
   /**

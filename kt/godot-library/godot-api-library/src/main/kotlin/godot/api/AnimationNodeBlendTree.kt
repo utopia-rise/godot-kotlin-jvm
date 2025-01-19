@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONNODEBLENDTREE: Int = 59
-
 /**
  * This animation node may contain a sub-tree of any other type animation nodes, such as
  * [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot],
@@ -57,7 +55,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODEBLENDTREE, scriptIndex)
+    createNativeObject(59, scriptIndex)
   }
 
   /**

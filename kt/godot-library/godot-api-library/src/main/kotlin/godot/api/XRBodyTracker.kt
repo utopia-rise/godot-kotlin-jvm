@@ -23,8 +23,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRBODYTRACKER: Int = 838
-
 public infix fun Long.or(other: godot.api.XRBodyTracker.BodyFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.XRBodyTracker.BodyFlags): Long = this.xor(other.flag)
@@ -94,7 +92,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRBODYTRACKER, scriptIndex)
+    createNativeObject(838, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

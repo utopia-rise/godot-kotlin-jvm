@@ -36,8 +36,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTMESH: Int = 641
-
 /**
  * Generate an [PrimitiveMesh] from the text.
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
@@ -256,7 +254,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTMESH, scriptIndex)
+    createNativeObject(641, scriptIndex)
   }
 
   /**

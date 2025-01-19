@@ -38,8 +38,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MESH: Int = 366
-
 public infix fun Long.or(other: godot.api.Mesh.ArrayFormat): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.Mesh.ArrayFormat): Long = this.xor(other.flag)
@@ -78,7 +76,7 @@ public open class Mesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MESH, scriptIndex)
+    createNativeObject(366, scriptIndex)
   }
 
   /**

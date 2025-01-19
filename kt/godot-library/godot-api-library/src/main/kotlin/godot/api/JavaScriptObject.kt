@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_JAVASCRIPTOBJECT: Int = 338
-
 /**
  * JavaScriptObject is used to interact with JavaScript objects retrieved or created via
  * [JavaScriptBridge.getInterface], [JavaScriptBridge.createObject], or
@@ -49,7 +47,7 @@ private const val ENGINECLASS_JAVASCRIPTOBJECT: Int = 338
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JAVASCRIPTOBJECT, scriptIndex)
+    createNativeObject(338, scriptIndex)
   }
 
   public companion object

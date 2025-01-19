@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_THEMEDB: Int = 25
-
 /**
  * This singleton provides access to static information about [Theme] resources used by the engine
  * and by your projects. You can fetch the default engine theme, as well as your project configured
@@ -41,7 +39,7 @@ public object ThemeDB : Object() {
   public val fallbackChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_THEMEDB)
+    getSingleton(23)
   }
 
   /**

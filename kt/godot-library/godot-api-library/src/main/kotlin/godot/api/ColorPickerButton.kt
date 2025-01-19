@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COLORPICKERBUTTON: Int = 193
-
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
  * toggle the [ColorPicker]'s visibility.
@@ -76,7 +74,7 @@ public open class ColorPickerButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COLORPICKERBUTTON, scriptIndex)
+    createNativeObject(193, scriptIndex)
   }
 
   /**

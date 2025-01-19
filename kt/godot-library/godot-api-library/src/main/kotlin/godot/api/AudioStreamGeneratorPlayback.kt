@@ -23,8 +23,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK: Int = 116
-
 /**
  * This class is meant to be used with [AudioStreamGenerator] to play back the generated audio in
  * real-time.
@@ -33,7 +31,7 @@ private const val ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK: Int = 116
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK, scriptIndex)
+    createNativeObject(116, scriptIndex)
   }
 
   /**

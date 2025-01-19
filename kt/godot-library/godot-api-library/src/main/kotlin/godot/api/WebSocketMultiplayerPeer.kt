@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_WEBSOCKETMULTIPLAYERPEER: Int = 825
-
 /**
  * Base class for WebSocket server and client, allowing them to be used as multiplayer peer for the
  * [MultiplayerAPI].
@@ -110,7 +108,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER, scriptIndex)
+    createNativeObject(825, scriptIndex)
   }
 
   /**

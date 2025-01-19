@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEFRESNEL: Int = 734
-
 /**
  * Returns falloff based on the dot product of surface normal and view direction of camera (pass
  * associated inputs to it).
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEFRESNEL: Int = 734
 @GodotBaseType
 public open class VisualShaderNodeFresnel : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFRESNEL, scriptIndex)
+    createNativeObject(734, scriptIndex)
   }
 
   public companion object

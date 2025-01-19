@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKELETONMODIFICATION2DLOOKAT: Int = 590
-
 /**
  * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for
  * moving character's head to look at the player, rotating a turret to look at a target, or any other
@@ -69,7 +67,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DLOOKAT, scriptIndex)
+    createNativeObject(590, scriptIndex)
   }
 
   public final fun setBone2dNode(bone2dNodepath: NodePath): Unit {

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VIDEOSTREAMTHEORA: Int = 697
-
 /**
  * [VideoStream] resource handling the [url=https://www.theora.org/]Ogg Theora[/url] video format
  * with `.ogv` extension. The Theora codec is decoded on the CPU.
@@ -22,7 +20,7 @@ private const val ENGINECLASS_VIDEOSTREAMTHEORA: Int = 697
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VIDEOSTREAMTHEORA, scriptIndex)
+    createNativeObject(697, scriptIndex)
   }
 
   public companion object

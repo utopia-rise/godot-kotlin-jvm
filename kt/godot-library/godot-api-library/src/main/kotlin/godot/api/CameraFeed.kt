@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAMERAFEED: Int = 166
-
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
  * Godot will start capturing frames from the camera which can then be used. See also [CameraServer].
@@ -61,7 +59,7 @@ public open class CameraFeed : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAMERAFEED, scriptIndex)
+    createNativeObject(166, scriptIndex)
   }
 
   /**

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRFACEMODIFIER3D: Int = 842
-
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
  * The
@@ -57,7 +55,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
+    createNativeObject(842, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

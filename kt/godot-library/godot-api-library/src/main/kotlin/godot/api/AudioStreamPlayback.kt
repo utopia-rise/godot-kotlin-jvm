@@ -21,8 +21,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYBACK: Int = 121
-
 /**
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
  * usage.
@@ -30,7 +28,7 @@ private const val ENGINECLASS_AUDIOSTREAMPLAYBACK: Int = 121
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACK, scriptIndex)
+    createNativeObject(121, scriptIndex)
   }
 
   /**

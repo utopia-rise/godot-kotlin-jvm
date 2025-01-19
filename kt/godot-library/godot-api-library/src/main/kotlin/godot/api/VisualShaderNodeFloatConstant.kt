@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT: Int = 729
-
 /**
  * Translated to [code skip-lint]float[/code] in the shader language.
  */
@@ -38,7 +36,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT, scriptIndex)
+    createNativeObject(729, scriptIndex)
   }
 
   public final fun setConstant(constant: Float): Unit {

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_REMOTETRANSFORM3D: Int = 535
-
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
  * remote node) in the scene.
@@ -86,7 +84,7 @@ public open class RemoteTransform3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_REMOTETRANSFORM3D, scriptIndex)
+    createNativeObject(535, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

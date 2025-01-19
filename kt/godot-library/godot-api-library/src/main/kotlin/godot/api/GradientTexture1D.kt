@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GRADIENTTEXTURE1D: Int = 283
-
 /**
  * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is
  * filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily
@@ -67,7 +65,7 @@ public open class GradientTexture1D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRADIENTTEXTURE1D, scriptIndex)
+    createNativeObject(283, scriptIndex)
   }
 
   public final fun setGradient(gradient: Gradient?): Unit {

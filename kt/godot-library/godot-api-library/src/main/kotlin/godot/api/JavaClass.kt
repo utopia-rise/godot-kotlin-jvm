@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_JAVACLASS: Int = 336
-
 /**
  * Represents an object from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
  * **Note:** This class only works on Android. For any other build, this class does nothing.
@@ -21,7 +19,7 @@ private const val ENGINECLASS_JAVACLASS: Int = 336
 @GodotBaseType
 public open class JavaClass : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JAVACLASS, scriptIndex)
+    createNativeObject(336, scriptIndex)
   }
 
   public companion object

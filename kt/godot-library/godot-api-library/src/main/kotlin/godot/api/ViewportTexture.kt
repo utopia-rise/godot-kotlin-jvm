@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VIEWPORTTEXTURE: Int = 699
-
 /**
  * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
  * used to combine the rendering of [Control], [Node2D] and [Node3D] nodes. For example, you can use
@@ -48,7 +46,7 @@ public open class ViewportTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
+    createNativeObject(699, scriptIndex)
   }
 
   public final fun setViewportPathInScene(path: NodePath): Unit {

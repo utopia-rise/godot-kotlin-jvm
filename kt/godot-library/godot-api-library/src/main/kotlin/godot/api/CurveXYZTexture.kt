@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CURVEXYZTEXTURE: Int = 220
-
 /**
  * A 1D texture where the red, green, and blue color channels correspond to points on 3 [Curve]
  * resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving
@@ -76,7 +74,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
+    createNativeObject(220, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

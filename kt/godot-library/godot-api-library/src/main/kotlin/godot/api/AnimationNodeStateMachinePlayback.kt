@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK: Int = 63
-
 /**
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
  * Retrieve with `$AnimationTree.get("parameters/playback")`.
@@ -47,7 +45,7 @@ private const val ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK: Int = 63
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK, scriptIndex)
+    createNativeObject(63, scriptIndex)
   }
 
   /**

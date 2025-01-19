@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PARALLAXLAYER: Int = 450
-
 /**
  * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set
  * to move at different speeds relative to the camera movement or the [ParallaxBackground.scrollOffset]
@@ -84,7 +82,7 @@ public open class ParallaxLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PARALLAXLAYER, scriptIndex)
+    createNativeObject(450, scriptIndex)
   }
 
   /**

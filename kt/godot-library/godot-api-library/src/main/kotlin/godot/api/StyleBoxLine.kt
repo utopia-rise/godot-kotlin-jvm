@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_STYLEBOXLINE: Int = 628
-
 /**
  * A [StyleBox] that displays a single line of a given color and thickness. The line can be either
  * horizontal or vertical. Useful for separators.
@@ -94,7 +92,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STYLEBOXLINE, scriptIndex)
+    createNativeObject(628, scriptIndex)
   }
 
   /**

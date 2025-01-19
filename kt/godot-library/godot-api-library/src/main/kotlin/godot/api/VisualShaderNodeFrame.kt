@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEFRAME: Int = 733
-
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
  * organization.
@@ -95,7 +93,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFRAME, scriptIndex)
+    createNativeObject(733, scriptIndex)
   }
 
   /**

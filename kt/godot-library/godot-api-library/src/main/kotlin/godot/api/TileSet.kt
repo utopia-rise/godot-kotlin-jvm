@@ -34,8 +34,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TILESET: Int = 667
-
 /**
  * A TileSet is a library of tiles for a [TileMap]. A TileSet handles a list of [TileSetSource],
  * each of them storing a set of tiles.
@@ -113,7 +111,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TILESET, scriptIndex)
+    createNativeObject(667, scriptIndex)
   }
 
   /**

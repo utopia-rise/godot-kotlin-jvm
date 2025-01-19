@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RENDERSCENEDATARD: Int = 545
-
 /**
  * Object holds scene data related to rendering a single frame of a viewport.
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_RENDERSCENEDATARD: Int = 545
 @GodotBaseType
 public open class RenderSceneDataRD : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERSCENEDATARD, scriptIndex)
+    createNativeObject(545, scriptIndex)
   }
 
   public companion object

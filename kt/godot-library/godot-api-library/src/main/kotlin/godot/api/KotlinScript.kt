@@ -11,12 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_KOTLINSCRIPT: Int = 344
-
 @GodotBaseType
 public open class KotlinScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_KOTLINSCRIPT, scriptIndex)
+    createNativeObject(344, scriptIndex)
   }
 
   public companion object

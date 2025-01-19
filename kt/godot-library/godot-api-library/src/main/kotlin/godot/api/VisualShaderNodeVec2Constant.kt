@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT: Int = 802
-
 /**
  * A constant [Vector2], which can be used as an input node.
  */
@@ -40,7 +38,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT, scriptIndex)
+    createNativeObject(802, scriptIndex)
   }
 
   /**

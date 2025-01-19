@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SCRIPT: Int = 563
-
 /**
  * A class stored as a resource. A script extends the functionality of all objects that instantiate
  * it.
@@ -58,7 +56,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCRIPT, scriptIndex)
+    createNativeObject(563, scriptIndex)
   }
 
   /**

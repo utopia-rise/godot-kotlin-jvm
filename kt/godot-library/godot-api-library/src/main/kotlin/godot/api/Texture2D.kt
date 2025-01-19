@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TEXTURE2D: Int = 648
-
 /**
  * A texture works by registering an image in the video hardware, which then can be used in 3D
  * models or 2D [Sprite2D] or GUI [Control].
@@ -43,7 +41,7 @@ private const val ENGINECLASS_TEXTURE2D: Int = 648
 @GodotBaseType
 public open class Texture2D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURE2D, scriptIndex)
+    createNativeObject(648, scriptIndex)
   }
 
   /**

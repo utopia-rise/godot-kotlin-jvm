@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTURE3DPARAMETER: Int = 781
-
 /**
  * Translated to `uniform sampler3D` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture3DParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE3DPARAMETER, scriptIndex)
+    createNativeObject(781, scriptIndex)
   }
 
   public companion object

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VBOXCONTAINER: Int = 686
-
 /**
  * A variant of [BoxContainer] that can only arrange its child controls vertically. Child controls
  * are rearranged automatically when their minimum size changes.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VBOXCONTAINER: Int = 686
 @GodotBaseType
 public open class VBoxContainer : BoxContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VBOXCONTAINER, scriptIndex)
+    createNativeObject(686, scriptIndex)
   }
 
   public companion object

@@ -22,8 +22,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MULTIPLAYERPEER: Int = 383
-
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
  * unique IDs to each of them. See also [MultiplayerAPI].
@@ -89,7 +87,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
+    createNativeObject(383, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {

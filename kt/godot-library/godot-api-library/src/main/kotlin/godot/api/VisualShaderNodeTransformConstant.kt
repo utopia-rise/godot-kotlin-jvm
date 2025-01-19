@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT: Int = 787
-
 /**
  * A constant [Transform3D], which can be used as an input node.
  */
@@ -40,7 +38,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT, scriptIndex)
+    createNativeObject(787, scriptIndex)
   }
 
   /**

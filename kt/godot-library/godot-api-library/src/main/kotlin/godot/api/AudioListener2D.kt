@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOLISTENER2D: Int = 110
-
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
  * location sounds are heard from. Only one [AudioListener2D] can be current. Using [makeCurrent] will
@@ -29,7 +27,7 @@ private const val ENGINECLASS_AUDIOLISTENER2D: Int = 110
 @GodotBaseType
 public open class AudioListener2D : Node2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOLISTENER2D, scriptIndex)
+    createNativeObject(110, scriptIndex)
   }
 
   /**

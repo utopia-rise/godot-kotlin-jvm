@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D: Int = 273
-
 /**
  * A box-shaped attractor with varying directions and strengths defined in it that influences
  * particles from [GPUParticles3D] nodes.
@@ -63,7 +61,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
+    createNativeObject(273, scriptIndex)
   }
 
   /**

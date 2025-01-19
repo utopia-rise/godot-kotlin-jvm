@@ -26,8 +26,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TRANSLATION: Int = 674
-
 /**
  * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
  * strings to their individual translations, and they also provide convenience methods for
@@ -47,7 +45,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TRANSLATION, scriptIndex)
+    createNativeObject(674, scriptIndex)
   }
 
   /**

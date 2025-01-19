@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SCENETREETIMER: Int = 562
-
 /**
  * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
  * [SceneTree.createTimer].
@@ -69,7 +67,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCENETREETIMER, scriptIndex)
+    createNativeObject(562, scriptIndex)
   }
 
   public final fun setTimeLeft(time: Double): Unit {

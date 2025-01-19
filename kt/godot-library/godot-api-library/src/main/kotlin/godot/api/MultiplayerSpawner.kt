@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MULTIPLAYERSPAWNER: Int = 385
-
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).
  * Also supports custom node spawns through [spawn], calling [spawnFunction] on all peers.
@@ -92,7 +90,7 @@ public open class MultiplayerSpawner : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
+    createNativeObject(385, scriptIndex)
   }
 
   /**

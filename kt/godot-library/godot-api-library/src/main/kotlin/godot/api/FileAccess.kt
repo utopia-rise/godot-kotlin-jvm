@@ -35,8 +35,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_FILEACCESS: Int = 239
-
 public infix fun Long.or(other: godot.api.FileAccess.UnixPermissionFlags): Long =
     this.or(other.flag)
 
@@ -128,7 +126,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FILEACCESS, scriptIndex)
+    createNativeObject(239, scriptIndex)
   }
 
   /**

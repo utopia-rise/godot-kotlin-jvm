@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ZIPREADER: Int = 855
-
 /**
  * This class implements a reader that can extract the content of individual files inside a zip
  * archive.
@@ -45,7 +43,7 @@ private const val ENGINECLASS_ZIPREADER: Int = 855
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ZIPREADER, scriptIndex)
+    createNativeObject(855, scriptIndex)
   }
 
   /**

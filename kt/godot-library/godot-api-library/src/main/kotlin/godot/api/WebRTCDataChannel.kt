@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_WEBRTCDATACHANNEL: Int = 820
-
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
@@ -39,7 +37,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WEBRTCDATACHANNEL, scriptIndex)
+    createNativeObject(820, scriptIndex)
   }
 
   /**

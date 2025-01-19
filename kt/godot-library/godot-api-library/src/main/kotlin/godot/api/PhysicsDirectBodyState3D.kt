@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSDIRECTBODYSTATE3D: Int = 464
-
 /**
  * Provides direct access to a physics body in the [PhysicsServer3D], allowing safe changes to
  * physics properties. This object is passed via the direct state callback of [RigidBody3D], and is
@@ -166,7 +164,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSDIRECTBODYSTATE3D, scriptIndex)
+    createNativeObject(464, scriptIndex)
   }
 
   /**

@@ -21,8 +21,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SYNTAXHIGHLIGHTER: Int = 633
-
 /**
  * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The
  * associated [TextEdit] will call into the [SyntaxHighlighter] on an as-needed basis.
@@ -31,7 +29,7 @@ private const val ENGINECLASS_SYNTAXHIGHLIGHTER: Int = 633
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SYNTAXHIGHLIGHTER, scriptIndex)
+    createNativeObject(633, scriptIndex)
   }
 
   /**

@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESCOLLISION3D: Int = 274
-
 /**
  * Particle collision shapes can be used to make particles stop or bounce against them.
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
@@ -56,7 +54,7 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
+    createNativeObject(274, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

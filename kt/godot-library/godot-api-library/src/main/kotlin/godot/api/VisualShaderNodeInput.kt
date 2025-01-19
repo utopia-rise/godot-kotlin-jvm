@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEINPUT: Int = 738
-
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
  * for the list of available built-ins for each shader type (check `Tutorials` section for link).
@@ -45,7 +43,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
+    createNativeObject(738, scriptIndex)
   }
 
   public final fun setInputName(name: String): Unit {

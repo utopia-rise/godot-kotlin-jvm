@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PANELCONTAINER: Int = 446
-
 /**
  * A container that keeps its child controls within the area of a [StyleBox]. Useful for giving
  * controls an outline.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_PANELCONTAINER: Int = 446
 @GodotBaseType
 public open class PanelContainer : Container() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PANELCONTAINER, scriptIndex)
+    createNativeObject(446, scriptIndex)
   }
 
   public companion object

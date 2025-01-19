@@ -58,6 +58,7 @@ import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.VOID_PTR
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
+import org.gradle.internal.serialize.graph.singleton
 import java.io.File
 import java.util.*
 
@@ -69,6 +70,7 @@ class ApiGenerationService(
     private val nativeStructureRepository: INativeStructureRepository
 ) : IApiGenerationService {
     private var nextEngineClassIndex = 0
+    private var nextSingletonIndex = 0
 
     override fun generateCore(outputDir: File) {
         val apiClasses = apiService.getClasses().filter {
@@ -77,6 +79,7 @@ class ApiGenerationService(
 
         for (enrichedClass in apiClasses) {
             generateClass(enrichedClass).writeTo(outputDir)
+
         }
 
         for (enum in apiService.getGlobalEnums()) {
@@ -123,14 +126,13 @@ class ApiGenerationService(
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
         val fileBuilder = FileSpec.builder(godotApiPackage, singletonClass.name)
-        fileBuilder.generateEngineIndexesForClass(singletonClass)
 
         val singletonTypeName = singletonClass.getTypeClassName()
         val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
         val singletonBuilder = TypeSpec
             .objectBuilder(singletonTypeName.className)
             .superclass(ClassName(godotApiPackage, baseClass))
-            .generateSingletonConstructor(singletonClass.engineClassDBIndexName)
+            .generateSingletonConstructor()
 
         return generateCommonsForClass(
             fileBuilder,
@@ -143,7 +145,6 @@ class ApiGenerationService(
 
     override fun generateClass(clazz: EnrichedClass): FileSpec {
         val fileBuilder = FileSpec.builder(godotApiPackage, clazz.name)
-        fileBuilder.generateEngineIndexesForClass(clazz)
 
         val className = clazz.getTypeClassName()
 
@@ -164,7 +165,7 @@ class ApiGenerationService(
             classTypeBuilder.superclass(ClassName(godotApiPackage, baseClass))
         }
 
-        classTypeBuilder.generateClassConstructor(clazz.engineClassDBIndexName)
+        classTypeBuilder.generateClassConstructor()
 
         return generateCommonsForClass(fileBuilder, classTypeBuilder, clazz, false)
     }
@@ -265,17 +266,6 @@ class ApiGenerationService(
             .generateSuppressWarnings()
             .addFileComment(GENERATED_COMMENT)
             .build()
-    }
-
-    private fun FileSpec.Builder.generateEngineIndexesForClass(clazz: EnrichedClass) {
-        addProperty(
-            PropertySpec
-                .builder(clazz.engineClassDBIndexName, INT, KModifier.CONST)
-                .initializer("%L", nextEngineClassIndex)
-                .addModifiers(KModifier.PRIVATE)
-                .build()
-        )
-        ++nextEngineClassIndex
     }
 
     override fun generateEnum(enum: EnrichedEnum, containingClassName: String?): Pair<List<TypeSpec>, List<FunSpec>> {
@@ -773,33 +763,34 @@ class ApiGenerationService(
         }
     }
 
-    private fun TypeSpec.Builder.generateSingletonConstructor(classIndexName: String): TypeSpec.Builder {
+    private fun TypeSpec.Builder.generateSingletonConstructor(): TypeSpec.Builder {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "getSingleton(%M)",
-                    MemberName(godotApiPackage, classIndexName),
+                    "getSingleton($nextSingletonIndex)"
                 )
                 .build()
         )
+        ++nextEngineClassIndex
+        ++nextSingletonIndex
         return this
     }
 
-    private fun TypeSpec.Builder.generateClassConstructor(classIndexName: String): TypeSpec.Builder {
+    private fun TypeSpec.Builder.generateClassConstructor(): TypeSpec.Builder {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "createNativeObject(%M, scriptIndex)",
-                    MemberName(godotApiPackage, classIndexName),
+                    "createNativeObject($nextEngineClassIndex, scriptIndex)"
                 )
                 .build()
         )
+        ++nextEngineClassIndex
         return this
     }
 
@@ -973,10 +964,20 @@ class ApiGenerationService(
         registrationFunc: RegistrationFileSpec.(EnrichedClass) -> Unit
     ) {
         registrationFileSpec.registrationFunc(clazz)
+        registrationFileSpec.addVariantMapping(clazz)
 
         registrationFileSpec.registerMethodsFunBuilder.addStatement(
             "%T",
             clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName)
+        )
+    }
+
+    private fun RegistrationFileSpec.addVariantMapping(enrichedClass: EnrichedClass) {
+        registerVariantMappingFunBuilder.addStatement(
+            "%M[%T::class] = %T",
+            MemberName(godotCorePackage, "variantMapper"),
+            enrichedClass.getTypeClassName().typeName,
+            enrichedClass.jvmVariantTypeValue
         )
     }
 

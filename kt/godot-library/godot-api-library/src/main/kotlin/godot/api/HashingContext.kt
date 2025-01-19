@@ -19,8 +19,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HASHINGCONTEXT: Int = 301
-
 /**
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
  * iterations. Useful for computing hashes of big files (so you don't have to load them all in memory),
@@ -81,7 +79,7 @@ private const val ENGINECLASS_HASHINGCONTEXT: Int = 301
 @GodotBaseType
 public open class HashingContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HASHINGCONTEXT, scriptIndex)
+    createNativeObject(301, scriptIndex)
   }
 
   /**

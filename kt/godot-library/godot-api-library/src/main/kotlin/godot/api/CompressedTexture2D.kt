@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COMPRESSEDTEXTURE2D: Int = 199
-
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
  * created by importing other image formats with the import system. [CompressedTexture2D] can use one
@@ -49,7 +47,7 @@ public open class CompressedTexture2D : Texture2D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COMPRESSEDTEXTURE2D, scriptIndex)
+    createNativeObject(199, scriptIndex)
   }
 
   /**

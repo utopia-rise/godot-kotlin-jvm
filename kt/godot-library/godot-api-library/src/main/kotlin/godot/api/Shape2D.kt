@@ -34,8 +34,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHAPE2D: Int = 578
-
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
  * **Performance:** Primitive shapes, especially [CircleShape2D], are fast to check collisions
@@ -58,7 +56,7 @@ public open class Shape2D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHAPE2D, scriptIndex)
+    createNativeObject(578, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

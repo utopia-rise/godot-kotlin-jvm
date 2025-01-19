@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_REMOTETRANSFORM2D: Int = 534
-
 /**
  * RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node (called the
  * remote node) in the scene.
@@ -86,7 +84,7 @@ public open class RemoteTransform2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_REMOTETRANSFORM2D, scriptIndex)
+    createNativeObject(534, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

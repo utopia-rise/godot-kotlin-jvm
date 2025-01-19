@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDATTACHMENTFORMAT: Int = 509
-
 /**
  * This object is used by [RenderingDevice].
  */
@@ -59,7 +57,7 @@ public open class RDAttachmentFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDATTACHMENTFORMAT, scriptIndex)
+    createNativeObject(509, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {

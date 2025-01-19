@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_PHYSICSSERVER3DMANAGER: Int = 5
-
 /**
  * [PhysicsServer3DManager] is the API for registering [PhysicsServer3D] implementations and for
  * setting the default implementation.
@@ -32,7 +30,7 @@ private const val ENGINECLASS_PHYSICSSERVER3DMANAGER: Int = 5
 @GodotBaseType
 public object PhysicsServer3DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PHYSICSSERVER3DMANAGER)
+    getSingleton(3)
   }
 
   /**

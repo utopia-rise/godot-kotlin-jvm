@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_RESOURCEUID: Int = 23
-
 /**
  * Resource UIDs (Unique IDentifiers) allow the engine to keep references between resources intact,
  * even if files can renamed or moved. They can be accessed with `uid://`.
@@ -39,7 +37,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RESOURCEUID)
+    getSingleton(21)
   }
 
   /**

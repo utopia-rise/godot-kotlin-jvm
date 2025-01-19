@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER: Int = 782
-
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader.
  */
@@ -83,7 +81,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
+    createNativeObject(782, scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {

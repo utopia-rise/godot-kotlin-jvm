@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_MUTEX: Int = 387
-
 /**
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [Thread]s, and
  * is equivalent to a binary [Semaphore]. It guarantees that only one thread can access a critical
@@ -36,7 +34,7 @@ private const val ENGINECLASS_MUTEX: Int = 387
 @GodotBaseType
 public open class Mutex : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MUTEX, scriptIndex)
+    createNativeObject(387, scriptIndex)
   }
 
   /**

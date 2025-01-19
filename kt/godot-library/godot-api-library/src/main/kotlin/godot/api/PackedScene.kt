@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PACKEDSCENE: Int = 439
-
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be
  * performed on the scene resource itself.
@@ -103,7 +101,7 @@ private const val ENGINECLASS_PACKEDSCENE: Int = 439
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKEDSCENE, scriptIndex)
+    createNativeObject(439, scriptIndex)
   }
 
   /**

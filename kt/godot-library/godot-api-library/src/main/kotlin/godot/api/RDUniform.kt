@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDUNIFORM: Int = 523
-
 /**
  * This object is used by [RenderingDevice].
  */
@@ -52,7 +50,7 @@ public open class RDUniform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDUNIFORM, scriptIndex)
+    createNativeObject(523, scriptIndex)
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {

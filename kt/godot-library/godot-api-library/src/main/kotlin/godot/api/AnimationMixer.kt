@@ -41,8 +41,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONMIXER: Int = 50
-
 /**
  * Base class for [AnimationPlayer] and [AnimationTree] to manage animation lists. It also has
  * general properties and methods for playback and blending.
@@ -221,7 +219,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONMIXER, scriptIndex)
+    createNativeObject(50, scriptIndex)
   }
 
   /**

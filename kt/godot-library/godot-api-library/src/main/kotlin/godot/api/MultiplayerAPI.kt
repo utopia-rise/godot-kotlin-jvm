@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MULTIPLAYERAPI: Int = 381
-
 /**
  * Base class for high-level multiplayer API implementations. See also [MultiplayerPeer].
  * By default, [SceneTree] has a reference to an implementation of this class and uses it to provide
@@ -95,7 +93,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIPLAYERAPI, scriptIndex)
+    createNativeObject(381, scriptIndex)
   }
 
   /**

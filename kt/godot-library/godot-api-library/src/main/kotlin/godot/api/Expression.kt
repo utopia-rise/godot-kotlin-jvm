@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_EXPRESSION: Int = 235
-
 /**
  * An expression can be made of any arithmetic operation, built-in math function call, method call
  * of a passed instance, or built-in type construction call.
@@ -82,7 +80,7 @@ private const val ENGINECLASS_EXPRESSION: Int = 235
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_EXPRESSION, scriptIndex)
+    createNativeObject(235, scriptIndex)
   }
 
   /**

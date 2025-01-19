@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRHANDMODIFIER3D: Int = 844
-
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
  * Positioning of hands is performed by creating an [XRNode3D] ancestor of the hand mesh driven by
@@ -55,7 +53,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRHANDMODIFIER3D, scriptIndex)
+    createNativeObject(844, scriptIndex)
   }
 
   public final fun setHandTracker(trackerName: StringName): Unit {

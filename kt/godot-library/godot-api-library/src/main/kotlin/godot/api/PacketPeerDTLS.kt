@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PACKETPEERDTLS: Int = 441
-
 /**
  * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is
  * returned by [DTLSServer.takeConnection].
@@ -37,7 +35,7 @@ private const val ENGINECLASS_PACKETPEERDTLS: Int = 441
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKETPEERDTLS, scriptIndex)
+    createNativeObject(441, scriptIndex)
   }
 
   /**

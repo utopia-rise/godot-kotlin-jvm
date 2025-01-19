@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSBODY2D: Int = 460
-
 /**
  * [PhysicsBody2D] is an abstract base class for 2D game objects affected by physics. All 2D physics
  * bodies inherit from it.
@@ -36,7 +34,7 @@ private const val ENGINECLASS_PHYSICSBODY2D: Int = 460
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSBODY2D, scriptIndex)
+    createNativeObject(460, scriptIndex)
   }
 
   /**

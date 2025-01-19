@@ -33,8 +33,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SPRITEBASE3D: Int = 613
-
 /**
  * A node that displays 2D texture information in a 3D environment. See also [Sprite3D] where many
  * other properties are defined.
@@ -287,7 +285,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPRITEBASE3D, scriptIndex)
+    createNativeObject(613, scriptIndex)
   }
 
   /**

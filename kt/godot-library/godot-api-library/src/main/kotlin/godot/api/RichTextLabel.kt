@@ -48,8 +48,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RICHTEXTLABEL: Int = 554
-
 public infix fun Long.or(other: godot.api.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.RichTextLabel.ImageUpdateMask): Long =
@@ -417,7 +415,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RICHTEXTLABEL, scriptIndex)
+    createNativeObject(554, scriptIndex)
   }
 
   /**

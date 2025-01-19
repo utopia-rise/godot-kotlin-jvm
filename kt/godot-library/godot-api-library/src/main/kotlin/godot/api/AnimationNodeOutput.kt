@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_ANIMATIONNODEOUTPUT: Int = 61
-
 /**
  * A node created automatically in an [AnimationNodeBlendTree] that outputs the final animation.
  */
 @GodotBaseType
 public open class AnimationNodeOutput : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODEOUTPUT, scriptIndex)
+    createNativeObject(61, scriptIndex)
   }
 
   public companion object

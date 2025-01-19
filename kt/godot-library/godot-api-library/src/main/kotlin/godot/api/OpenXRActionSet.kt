@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OPENXRACTIONSET: Int = 423
-
 /**
  * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows
  * games to easily change between different states that require different inputs or need to reinterpret
@@ -71,7 +69,7 @@ public open class OpenXRActionSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRACTIONSET, scriptIndex)
+    createNativeObject(423, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

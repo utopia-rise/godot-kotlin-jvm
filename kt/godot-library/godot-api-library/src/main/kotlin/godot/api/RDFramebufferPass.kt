@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDFRAMEBUFFERPASS: Int = 510
-
 /**
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
  * an index to a previously supplied list of texture attachments.
@@ -91,7 +89,7 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDFRAMEBUFFERPASS, scriptIndex)
+    createNativeObject(510, scriptIndex)
   }
 
   public final fun setColorAttachments(pMember: PackedInt32Array): Unit {

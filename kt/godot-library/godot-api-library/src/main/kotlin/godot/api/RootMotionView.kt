@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ROOTMOTIONVIEW: Int = 557
-
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to
  * a character. When working with 3D animations, a popular technique is for animators to use the root
@@ -99,7 +97,7 @@ public open class RootMotionView : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ROOTMOTIONVIEW, scriptIndex)
+    createNativeObject(557, scriptIndex)
   }
 
   /**

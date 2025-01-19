@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONOBSTACLE2D: Int = 395
-
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
  * can not cross or overlap.
@@ -139,7 +137,7 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONOBSTACLE2D, scriptIndex)
+    createNativeObject(395, scriptIndex)
   }
 
   /**

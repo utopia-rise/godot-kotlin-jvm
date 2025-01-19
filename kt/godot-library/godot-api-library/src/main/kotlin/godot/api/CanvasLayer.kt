@@ -33,8 +33,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CANVASLAYER: Int = 171
-
 /**
  * [CanvasItem]-derived nodes that are direct or indirect children of a [CanvasLayer] will be drawn
  * in that layer. The layer is a numeric index that defines the draw order. The default 2D scene
@@ -170,7 +168,7 @@ public open class CanvasLayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CANVASLAYER, scriptIndex)
+    createNativeObject(171, scriptIndex)
   }
 
   /**

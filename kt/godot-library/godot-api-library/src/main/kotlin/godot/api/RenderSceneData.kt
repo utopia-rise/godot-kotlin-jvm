@@ -24,8 +24,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RENDERSCENEDATA: Int = 543
-
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
@@ -33,7 +31,7 @@ private const val ENGINECLASS_RENDERSCENEDATA: Int = 543
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERSCENEDATA, scriptIndex)
+    createNativeObject(543, scriptIndex)
   }
 
   /**

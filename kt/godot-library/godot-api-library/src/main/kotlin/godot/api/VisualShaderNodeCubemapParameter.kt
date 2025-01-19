@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODECUBEMAPPARAMETER: Int = 719
-
 /**
  * Translated to `uniform samplerCube` in the shader language. The output value can be used as port
  * for [VisualShaderNodeCubemap].
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODECUBEMAPPARAMETER: Int = 719
 @GodotBaseType
 public open class VisualShaderNodeCubemapParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECUBEMAPPARAMETER, scriptIndex)
+    createNativeObject(719, scriptIndex)
   }
 
   public companion object

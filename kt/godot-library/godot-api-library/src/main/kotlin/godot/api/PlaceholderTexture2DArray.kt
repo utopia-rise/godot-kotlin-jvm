@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY: Int = 489
-
 /**
  * This class is used when loading a project that uses a [Texture2D] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -26,7 +24,7 @@ private const val ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY: Int = 489
 @GodotBaseType
 public open class PlaceholderTexture2DArray : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY, scriptIndex)
+    createNativeObject(489, scriptIndex)
   }
 
   public companion object

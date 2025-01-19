@@ -19,8 +19,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_GLTFDOCUMENTEXTENSION: Int = 255
-
 /**
  * Extends the functionality of the [GLTFDocument] class by allowing you to run arbitrary code at
  * various stages of GLTF import or export.
@@ -33,7 +31,7 @@ private const val ENGINECLASS_GLTFDOCUMENTEXTENSION: Int = 255
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
+    createNativeObject(255, scriptIndex)
   }
 
   /**

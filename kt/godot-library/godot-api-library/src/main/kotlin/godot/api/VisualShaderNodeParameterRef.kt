@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARAMETERREF: Int = 750
-
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
  * different shaders or shader stages easily.
@@ -38,7 +36,7 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARAMETERREF, scriptIndex)
+    createNativeObject(750, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {

@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_IMPORTERMESHINSTANCE3D: Int = 312
-
 @GodotBaseType
 public open class ImporterMeshInstance3D : Node3D() {
   public final inline var mesh: ImporterMesh?
@@ -109,7 +107,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMPORTERMESHINSTANCE3D, scriptIndex)
+    createNativeObject(312, scriptIndex)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {

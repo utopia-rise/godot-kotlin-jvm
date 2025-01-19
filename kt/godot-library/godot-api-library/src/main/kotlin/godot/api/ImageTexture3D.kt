@@ -22,8 +22,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_IMAGETEXTURE3D: Int = 308
-
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
  * [ImageTextureLayered].
@@ -34,7 +32,7 @@ private const val ENGINECLASS_IMAGETEXTURE3D: Int = 308
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMAGETEXTURE3D, scriptIndex)
+    createNativeObject(308, scriptIndex)
   }
 
   /**

@@ -34,8 +34,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATEDSPRITE2D: Int = 45
-
 /**
  * [AnimatedSprite2D] is similar to the [Sprite2D] node, except it carries multiple textures as
  * animation frames. Animations are created using a [SpriteFrames] resource, which allows you to import
@@ -194,7 +192,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATEDSPRITE2D, scriptIndex)
+    createNativeObject(45, scriptIndex)
   }
 
   /**

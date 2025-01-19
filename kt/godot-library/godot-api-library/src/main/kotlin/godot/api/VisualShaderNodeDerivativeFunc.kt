@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC: Int = 723
-
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.
  */
@@ -60,7 +58,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
+    createNativeObject(723, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

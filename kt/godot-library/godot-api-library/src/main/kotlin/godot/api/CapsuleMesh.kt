@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAPSULEMESH: Int = 174
-
 /**
  * Class representing a capsule-shaped [PrimitiveMesh].
  */
@@ -73,7 +71,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAPSULEMESH, scriptIndex)
+    createNativeObject(174, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

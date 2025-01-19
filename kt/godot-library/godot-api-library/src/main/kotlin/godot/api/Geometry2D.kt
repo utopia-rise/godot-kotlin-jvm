@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_GEOMETRY2D: Int = 9
-
 /**
  * Provides a set of helper functions to create geometric shapes, compute intersections between
  * shapes, and process various other geometric operations in 2D.
@@ -44,7 +42,7 @@ private const val ENGINECLASS_GEOMETRY2D: Int = 9
 @GodotBaseType
 public object Geometry2D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_GEOMETRY2D)
+    getSingleton(7)
   }
 
   /**

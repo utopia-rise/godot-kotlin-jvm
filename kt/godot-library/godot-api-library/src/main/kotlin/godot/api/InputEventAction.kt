@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTACTION: Int = 314
-
 /**
  * Contains a generic action which can be targeted from several types of inputs. Actions and their
  * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
@@ -87,7 +85,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
+    createNativeObject(314, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {

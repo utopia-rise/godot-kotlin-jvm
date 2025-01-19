@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VOXELGIDATA: Int = 818
-
 /**
  * [VoxelGIData] contains baked voxel global illumination for use in a [VoxelGI] node. [VoxelGIData]
  * also offers several properties to adjust the final appearance of the global illumination. These
@@ -142,7 +140,7 @@ public open class VoxelGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VOXELGIDATA, scriptIndex)
+    createNativeObject(818, scriptIndex)
   }
 
   public final fun allocate(

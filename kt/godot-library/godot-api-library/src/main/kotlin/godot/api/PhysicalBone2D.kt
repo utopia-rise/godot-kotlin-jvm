@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PHYSICALBONE2D: Int = 456
-
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
  * [Skeleton2D] react to physics.
@@ -100,7 +98,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICALBONE2D, scriptIndex)
+    createNativeObject(456, scriptIndex)
   }
 
   /**

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTPANGESTURE: Int = 325
-
 /**
  * Stores information about pan gestures. A pan gesture is performed when the user swipes the touch
  * screen with two fingers. It's typically used for panning/scrolling.
@@ -44,7 +42,7 @@ public open class InputEventPanGesture : InputEventGesture() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTPANGESTURE, scriptIndex)
+    createNativeObject(325, scriptIndex)
   }
 
   /**

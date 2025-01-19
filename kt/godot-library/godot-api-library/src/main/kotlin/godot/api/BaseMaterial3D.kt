@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BASEMATERIAL3D: Int = 138
-
 /**
  * This class serves as a default material with a wide variety of rendering features and properties
  * without the need to write shader code. See the tutorial below for details.
@@ -1568,7 +1566,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BASEMATERIAL3D, scriptIndex)
+    createNativeObject(138, scriptIndex)
   }
 
   /**

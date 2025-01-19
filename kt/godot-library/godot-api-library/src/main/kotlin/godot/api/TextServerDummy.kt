@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTSERVERDUMMY: Int = 645
-
 /**
  * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when
  * rendering text is not needed, as text servers are resource-intensive. It can also be used for
@@ -34,7 +32,7 @@ private const val ENGINECLASS_TEXTSERVERDUMMY: Int = 645
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTSERVERDUMMY, scriptIndex)
+    createNativeObject(645, scriptIndex)
   }
 
   public companion object

@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGSHAPE3D: Int = 157
-
 /**
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -134,7 +132,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGSHAPE3D, scriptIndex)
+    createNativeObject(157, scriptIndex)
   }
 
   /**

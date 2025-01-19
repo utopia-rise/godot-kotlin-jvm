@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTREVERB: Int = 106
-
 /**
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
  * spaces.
@@ -121,7 +119,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTREVERB, scriptIndex)
+    createNativeObject(106, scriptIndex)
   }
 
   public final fun setPredelayMsec(msec: Float): Unit {

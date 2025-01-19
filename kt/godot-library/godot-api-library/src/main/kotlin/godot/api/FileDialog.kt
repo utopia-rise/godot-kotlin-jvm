@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_FILEDIALOG: Int = 240
-
 /**
  * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It
  * supports filter masks. [FileDialog] automatically sets its window title according to the [fileMode].
@@ -194,7 +192,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FILEDIALOG, scriptIndex)
+    createNativeObject(240, scriptIndex)
   }
 
   /**

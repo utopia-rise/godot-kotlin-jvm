@@ -40,8 +40,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_NODE3D: Int = 407
-
 /**
  * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game
  * objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide
@@ -292,7 +290,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NODE3D, scriptIndex)
+    createNativeObject(407, scriptIndex)
   }
 
   /**

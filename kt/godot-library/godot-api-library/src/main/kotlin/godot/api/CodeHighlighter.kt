@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CODEHIGHLIGHTER: Int = 185
-
 /**
  * By adjusting various properties of this resource, you can change the colors of strings, comments,
  * numbers, and other text patterns inside a [TextEdit] control.
@@ -122,7 +120,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CODEHIGHLIGHTER, scriptIndex)
+    createNativeObject(185, scriptIndex)
   }
 
   /**

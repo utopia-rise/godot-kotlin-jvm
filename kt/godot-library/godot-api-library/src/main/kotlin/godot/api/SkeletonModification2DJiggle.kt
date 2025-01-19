@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKELETONMODIFICATION2DJIGGLE: Int = 589
-
 /**
  * This modification moves a series of bones, typically called a bone chain, towards a target. What
  * makes this modification special is that it calculates the velocity and acceleration for each bone in
@@ -130,7 +128,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DJIGGLE, scriptIndex)
+    createNativeObject(589, scriptIndex)
   }
 
   /**

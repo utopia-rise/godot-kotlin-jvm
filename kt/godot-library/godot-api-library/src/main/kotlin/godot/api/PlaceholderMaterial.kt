@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PLACEHOLDERMATERIAL: Int = 486
-
 /**
  * This class is used when loading a project that uses a [Material] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -24,7 +22,7 @@ private const val ENGINECLASS_PLACEHOLDERMATERIAL: Int = 486
 @GodotBaseType
 public open class PlaceholderMaterial : Material() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERMATERIAL, scriptIndex)
+    createNativeObject(486, scriptIndex)
   }
 
   public companion object

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURECUBEMAPARRAYRD: Int = 655
-
 /**
  * This texture class allows you to use a cubemap array texture created directly on the
  * [RenderingDevice] as a texture for materials, meshes, etc.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_TEXTURECUBEMAPARRAYRD: Int = 655
 @GodotBaseType
 public open class TextureCubemapArrayRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURECUBEMAPARRAYRD, scriptIndex)
+    createNativeObject(655, scriptIndex)
   }
 
   public companion object

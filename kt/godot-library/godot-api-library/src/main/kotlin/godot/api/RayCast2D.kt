@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RAYCAST2D: Int = 527
-
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
  * [CollisionObject2D] along its path, if it intersects any.
@@ -126,7 +124,7 @@ public open class RayCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RAYCAST2D, scriptIndex)
+    createNativeObject(527, scriptIndex)
   }
 
   /**

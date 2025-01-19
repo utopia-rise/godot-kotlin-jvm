@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SLIDERJOINT3D: Int = 602
-
 /**
  * A physics joint that restricts the movement of a 3D physics body along an axis relative to
  * another physics body. For example, Body A could be a [StaticBody3D] representing a piston base,
@@ -30,7 +28,7 @@ private const val ENGINECLASS_SLIDERJOINT3D: Int = 602
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SLIDERJOINT3D, scriptIndex)
+    createNativeObject(602, scriptIndex)
   }
 
   /**

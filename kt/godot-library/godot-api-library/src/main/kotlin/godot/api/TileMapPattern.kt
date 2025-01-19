@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TILEMAPPATTERN: Int = 666
-
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
  * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
@@ -34,7 +32,7 @@ private const val ENGINECLASS_TILEMAPPATTERN: Int = 666
 @GodotBaseType
 public open class TileMapPattern : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TILEMAPPATTERN, scriptIndex)
+    createNativeObject(666, scriptIndex)
   }
 
   /**

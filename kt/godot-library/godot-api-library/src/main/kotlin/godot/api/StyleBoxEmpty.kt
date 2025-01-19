@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_STYLEBOXEMPTY: Int = 626
-
 /**
  * An empty [StyleBox] that can be used to display nothing instead of the default style (e.g. it can
  * "disable" `focus` styles).
@@ -20,7 +18,7 @@ private const val ENGINECLASS_STYLEBOXEMPTY: Int = 626
 @GodotBaseType
 public open class StyleBoxEmpty : StyleBox() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STYLEBOXEMPTY, scriptIndex)
+    createNativeObject(626, scriptIndex)
   }
 
   public companion object

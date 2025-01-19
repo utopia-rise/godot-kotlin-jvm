@@ -34,8 +34,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_MESHDATATOOL: Int = 368
-
 /**
  * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit
  * vertex data of meshes. It also creates an array of faces and edges.
@@ -91,7 +89,7 @@ private const val ENGINECLASS_MESHDATATOOL: Int = 368
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MESHDATATOOL, scriptIndex)
+    createNativeObject(368, scriptIndex)
   }
 
   /**

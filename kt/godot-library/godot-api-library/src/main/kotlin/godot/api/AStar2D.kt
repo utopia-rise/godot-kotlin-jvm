@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ASTAR2D: Int = 39
-
 /**
  * An implementation of the A* algorithm, used to find the shortest path between two vertices on a
  * connected graph in 2D space.
@@ -41,7 +39,7 @@ private const val ENGINECLASS_ASTAR2D: Int = 39
 @GodotBaseType
 public open class AStar2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ASTAR2D, scriptIndex)
+    createNativeObject(39, scriptIndex)
   }
 
   /**

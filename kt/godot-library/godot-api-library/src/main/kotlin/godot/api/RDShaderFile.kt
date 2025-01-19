@@ -24,8 +24,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RDSHADERFILE: Int = 518
-
 /**
  * Compiled shader file in SPIR-V form.
  * See also [RDShaderSource]. [RDShaderFile] is only meant to be used with the [RenderingDevice]
@@ -48,7 +46,7 @@ public open class RDShaderFile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDSHADERFILE, scriptIndex)
+    createNativeObject(518, scriptIndex)
   }
 
   /**

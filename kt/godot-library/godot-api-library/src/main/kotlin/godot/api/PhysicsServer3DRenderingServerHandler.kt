@@ -19,12 +19,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER: Int = 475
-
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER, scriptIndex)
+    createNativeObject(475, scriptIndex)
   }
 
   /**

@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_FRAMEBUFFERCACHERD: Int = 247
-
 /**
  * Framebuffer cache manager for Rendering Device based renderers. Provides a way to create a
  * framebuffer and reuse it in subsequent calls for as long as the used textures exists. Framebuffers
@@ -30,7 +28,7 @@ private const val ENGINECLASS_FRAMEBUFFERCACHERD: Int = 247
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FRAMEBUFFERCACHERD, scriptIndex)
+    createNativeObject(247, scriptIndex)
   }
 
   public companion object {

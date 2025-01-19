@@ -32,8 +32,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SCENESTATE: Int = 560
-
 /**
  * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts
  * associated with a scene. They cannot be modified from a [SceneState], only accessed. Useful for
@@ -44,7 +42,7 @@ private const val ENGINECLASS_SCENESTATE: Int = 560
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCENESTATE, scriptIndex)
+    createNativeObject(560, scriptIndex)
   }
 
   /**

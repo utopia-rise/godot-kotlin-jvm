@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY: Int = 777
-
 /**
  * Translated to `uniform sampler2DArray` in the shader language.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY, scriptIndex)
+    createNativeObject(777, scriptIndex)
   }
 
   public final fun setTextureArray(`value`: Texture2DArray?): Unit {

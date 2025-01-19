@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEBOOLEANPARAMETER: Int = 709
-
 /**
  * Translated to `uniform bool` in the shader language.
  */
@@ -48,7 +46,7 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEBOOLEANPARAMETER, scriptIndex)
+    createNativeObject(709, scriptIndex)
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {

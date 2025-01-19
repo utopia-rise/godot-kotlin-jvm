@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_DIRECTIONALLIGHT3D: Int = 228
-
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
  * covering the entire scene. It is used for lights with strong intensity that are located far away
@@ -67,7 +65,7 @@ public open class DirectionalLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_DIRECTIONALLIGHT3D, scriptIndex)
+    createNativeObject(228, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

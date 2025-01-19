@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTUREBUTTON: Int = 654
-
 /**
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
  * [Theme] resource. It is faster to create, but it doesn't support localization like more complex
@@ -153,7 +151,7 @@ public open class TextureButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTUREBUTTON, scriptIndex)
+    createNativeObject(654, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

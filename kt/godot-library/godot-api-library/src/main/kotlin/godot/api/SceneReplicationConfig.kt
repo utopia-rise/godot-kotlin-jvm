@@ -24,12 +24,10 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SCENEREPLICATIONCONFIG: Int = 559
-
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCENEREPLICATIONCONFIG, scriptIndex)
+    createNativeObject(559, scriptIndex)
   }
 
   /**

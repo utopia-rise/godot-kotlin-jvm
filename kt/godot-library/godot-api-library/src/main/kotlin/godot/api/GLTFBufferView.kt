@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFBUFFERVIEW: Int = 252
-
 /**
  * GLTFBufferView is a data structure representing GLTF a `bufferView` that would be found in the
  * `"bufferViews"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer that
@@ -111,7 +109,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFBUFFERVIEW, scriptIndex)
+    createNativeObject(252, scriptIndex)
   }
 
   /**

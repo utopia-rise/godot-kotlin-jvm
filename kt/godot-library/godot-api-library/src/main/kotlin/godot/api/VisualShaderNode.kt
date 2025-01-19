@@ -23,8 +23,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_VISUALSHADERNODE: Int = 706
-
 /**
  * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and
  * they are represented as a rectangular boxes with title and a set of properties. Each node also has
@@ -65,7 +63,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODE, scriptIndex)
+    createNativeObject(706, scriptIndex)
   }
 
   /**

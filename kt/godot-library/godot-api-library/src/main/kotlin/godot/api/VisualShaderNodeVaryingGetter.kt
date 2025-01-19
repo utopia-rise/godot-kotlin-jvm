@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVARYINGGETTER: Int = 800
-
 /**
  * Outputs a value of a varying defined in the shader. You need to first create a varying that can
  * be used in the given function, e.g. varying getter in Fragment shader requires a varying with mode
@@ -21,7 +19,7 @@ private const val ENGINECLASS_VISUALSHADERNODEVARYINGGETTER: Int = 800
 @GodotBaseType
 public open class VisualShaderNodeVaryingGetter : VisualShaderNodeVarying() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVARYINGGETTER, scriptIndex)
+    createNativeObject(800, scriptIndex)
   }
 
   public companion object

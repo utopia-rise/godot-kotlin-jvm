@@ -15,8 +15,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_CUBEMAPARRAY: Int = 215
-
 /**
  * [CubemapArray]s are made of an array of [Cubemap]s. Like [Cubemap]s, they are made of multiple
  * textures, the amount of which must be divisible by 6 (one for each face of the cube).
@@ -33,7 +31,7 @@ private const val ENGINECLASS_CUBEMAPARRAY: Int = 215
 @GodotBaseType
 public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CUBEMAPARRAY, scriptIndex)
+    createNativeObject(215, scriptIndex)
   }
 
   /**

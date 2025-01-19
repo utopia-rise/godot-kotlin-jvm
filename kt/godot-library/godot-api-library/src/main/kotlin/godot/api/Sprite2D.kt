@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SPRITE2D: Int = 611
-
 /**
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas
  * texture, or a frame from a sprite sheet animation.
@@ -195,7 +193,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPRITE2D, scriptIndex)
+    createNativeObject(611, scriptIndex)
   }
 
   /**

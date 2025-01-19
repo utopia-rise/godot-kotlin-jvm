@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEIS: Int = 743
-
 /**
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEIS, scriptIndex)
+    createNativeObject(743, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

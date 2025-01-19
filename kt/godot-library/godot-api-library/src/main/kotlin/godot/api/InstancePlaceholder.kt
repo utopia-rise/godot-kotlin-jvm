@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_INSTANCEPLACEHOLDER: Int = 330
-
 /**
  * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it
  * to be replaced by an [InstancePlaceholder] when running the game, this will not replace the node in
@@ -39,7 +37,7 @@ private const val ENGINECLASS_INSTANCEPLACEHOLDER: Int = 330
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INSTANCEPLACEHOLDER, scriptIndex)
+    createNativeObject(330, scriptIndex)
   }
 
   /**

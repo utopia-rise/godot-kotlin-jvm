@@ -41,8 +41,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_POLYGON2D: Int = 495
-
 /**
  * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final
  * point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with
@@ -231,7 +229,7 @@ public open class Polygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_POLYGON2D, scriptIndex)
+    createNativeObject(495, scriptIndex)
   }
 
   /**

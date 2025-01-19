@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEINTPARAMETER: Int = 742
-
 /**
  * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
  * accepted values.
@@ -99,7 +97,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEINTPARAMETER, scriptIndex)
+    createNativeObject(742, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {

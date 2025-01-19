@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKELETONMODIFICATIONSTACK2D: Int = 594
-
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
  * This controls the order of the modifications and how they are applied. Modification order is
@@ -74,7 +72,7 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATIONSTACK2D, scriptIndex)
+    createNativeObject(594, scriptIndex)
   }
 
   /**

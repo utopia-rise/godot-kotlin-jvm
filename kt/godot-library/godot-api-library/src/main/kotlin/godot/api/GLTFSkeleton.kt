@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFSKELETON: Int = 262
-
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
   public final inline var joints: PackedInt32Array
@@ -64,7 +62,7 @@ public open class GLTFSkeleton : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFSKELETON, scriptIndex)
+    createNativeObject(262, scriptIndex)
   }
 
   public final fun getJoints(): PackedInt32Array {

@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TORUSMESH: Int = 672
-
 /**
  * Class representing a torus [PrimitiveMesh].
  */
@@ -73,7 +71,7 @@ public open class TorusMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TORUSMESH, scriptIndex)
+    createNativeObject(672, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

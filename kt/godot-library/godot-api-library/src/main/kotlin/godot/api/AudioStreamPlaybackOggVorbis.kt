@@ -11,12 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYBACKOGGVORBIS: Int = 123
-
 @GodotBaseType
 public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACKOGGVORBIS, scriptIndex)
+    createNativeObject(123, scriptIndex)
   }
 
   public companion object

@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEFLOATPARAMETER: Int = 732
-
 /**
  * Translated to `uniform float` in the shader language.
  */
@@ -99,7 +97,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATPARAMETER, scriptIndex)
+    createNativeObject(732, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {

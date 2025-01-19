@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_FASTNOISELITE: Int = 238
-
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several
  * noise algorithms including Cellular, Perlin, Value, and more.
@@ -282,7 +280,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FASTNOISELITE, scriptIndex)
+    createNativeObject(238, scriptIndex)
   }
 
   /**

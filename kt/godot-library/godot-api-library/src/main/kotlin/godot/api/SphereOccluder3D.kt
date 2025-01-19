@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SPHEREOCCLUDER3D: Int = 605
-
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling
  * system.
@@ -40,7 +38,7 @@ public open class SphereOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPHEREOCCLUDER3D, scriptIndex)
+    createNativeObject(605, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

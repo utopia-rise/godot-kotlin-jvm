@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CENTERCONTAINER: Int = 177
-
 /**
  * [CenterContainer] is a container that keeps all of its child controls in its center at their
  * minimum size.
@@ -38,7 +36,7 @@ public open class CenterContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CENTERCONTAINER, scriptIndex)
+    createNativeObject(177, scriptIndex)
   }
 
   public final fun setUseTopLeft(enable: Boolean): Unit {

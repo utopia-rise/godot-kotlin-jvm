@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_WORLDBOUNDARYSHAPE2D: Int = 831
-
 /**
  * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an
  * infinite straight line that forces all physics bodies to stay above it. The line's normal determines
@@ -62,7 +60,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WORLDBOUNDARYSHAPE2D, scriptIndex)
+    createNativeObject(831, scriptIndex)
   }
 
   /**

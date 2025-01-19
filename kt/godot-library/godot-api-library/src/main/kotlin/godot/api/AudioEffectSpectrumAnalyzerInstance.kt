@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE: Int = 108
-
 /**
  * The runtime part of an [AudioEffectSpectrumAnalyzer], which can be used to query the magnitude of
  * a frequency range on its host bus.
@@ -32,7 +30,7 @@ private const val ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE: Int = 108
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE, scriptIndex)
+    createNativeObject(108, scriptIndex)
   }
 
   /**

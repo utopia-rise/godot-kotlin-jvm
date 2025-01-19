@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SEPARATOR: Int = 573
-
 /**
  * Abstract base class for separators, used for separating other controls. [Separator]s are purely
  * visual and normally drawn as a [StyleBoxLine].
@@ -20,7 +18,7 @@ private const val ENGINECLASS_SEPARATOR: Int = 573
 @GodotBaseType
 public open class Separator internal constructor() : Control() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SEPARATOR, scriptIndex)
+    createNativeObject(573, scriptIndex)
   }
 
   public companion object

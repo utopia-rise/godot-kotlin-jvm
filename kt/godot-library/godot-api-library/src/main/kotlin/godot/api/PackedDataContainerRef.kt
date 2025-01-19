@@ -16,8 +16,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PACKEDDATACONTAINERREF: Int = 438
-
 /**
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
  * [PackedDataContainerRef] (only applies to [Array] and [Dictionary]). Their data can be retrieved the
@@ -47,7 +45,7 @@ private const val ENGINECLASS_PACKEDDATACONTAINERREF: Int = 438
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKEDDATACONTAINERREF, scriptIndex)
+    createNativeObject(438, scriptIndex)
   }
 
   /**

@@ -26,8 +26,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRNODE3D: Int = 848
-
 /**
  * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
  * its [Node3D.transform] updated by the [XRServer]. Nodes of this type must be added as children of
@@ -81,7 +79,7 @@ public open class XRNode3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRNODE3D, scriptIndex)
+    createNativeObject(848, scriptIndex)
   }
 
   public final fun setTracker(trackerName: StringName): Unit {

@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICALBONESIMULATOR3D: Int = 458
-
 /**
  * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to
  * [Skeleton3D].
@@ -32,7 +30,7 @@ private const val ENGINECLASS_PHYSICALBONESIMULATOR3D: Int = 458
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICALBONESIMULATOR3D, scriptIndex)
+    createNativeObject(458, scriptIndex)
   }
 
   /**

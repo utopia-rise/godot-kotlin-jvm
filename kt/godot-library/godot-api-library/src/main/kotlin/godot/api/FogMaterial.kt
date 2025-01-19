@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_FOGMATERIAL: Int = 242
-
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
  * If you need more advanced effects, use a custom
@@ -116,7 +114,7 @@ public open class FogMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FOGMATERIAL, scriptIndex)
+    createNativeObject(242, scriptIndex)
   }
 
   /**

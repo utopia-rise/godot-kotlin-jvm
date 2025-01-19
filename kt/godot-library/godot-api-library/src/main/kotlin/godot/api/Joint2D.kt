@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_JOINT2D: Int = 339
-
 /**
  * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
  * ([nodeA] and [nodeB]) and apply a constraint.
@@ -82,7 +80,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JOINT2D, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

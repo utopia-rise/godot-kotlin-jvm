@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D: Int = 478
-
 /**
  * By changing various properties of this object, such as the motion, you can configure the
  * parameters for [PhysicsServer2D.bodyTestMotion].
@@ -128,7 +126,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS2D, scriptIndex)
+    createNativeObject(478, scriptIndex)
   }
 
   /**

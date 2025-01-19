@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSDIRECTSPACESTATE3D: Int = 468
-
 /**
  * Provides direct access to a physics space in the [PhysicsServer3D]. It's used mainly to do
  * queries against objects and areas residing in a given space.
@@ -34,7 +32,7 @@ private const val ENGINECLASS_PHYSICSDIRECTSPACESTATE3D: Int = 468
 @GodotBaseType
 public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSDIRECTSPACESTATE3D, scriptIndex)
+    createNativeObject(468, scriptIndex)
   }
 
   /**

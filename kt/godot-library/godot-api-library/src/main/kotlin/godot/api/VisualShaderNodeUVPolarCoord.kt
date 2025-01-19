@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEUVPOLARCOORD: Int = 798
-
 /**
  * UV polar coord node will transform UV values into polar coordinates, with specified scale, zoom
  * strength and repeat parameters. It can be used to create various swirl distortions.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEUVPOLARCOORD: Int = 798
 @GodotBaseType
 public open class VisualShaderNodeUVPolarCoord : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEUVPOLARCOORD, scriptIndex)
+    createNativeObject(798, scriptIndex)
   }
 
   public companion object

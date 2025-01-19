@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GRADIENTTEXTURE2D: Int = 284
-
 /**
  * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
  * to transform a color transition into different patterns such as a linear or a radial gradient. The
@@ -135,7 +133,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
+    createNativeObject(284, scriptIndex)
   }
 
   /**

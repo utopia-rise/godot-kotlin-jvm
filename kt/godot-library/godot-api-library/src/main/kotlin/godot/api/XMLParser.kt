@@ -24,8 +24,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_XMLPARSER: Int = 835
-
 /**
  * Provides a low-level interface for creating parsers for
  * [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom
@@ -70,7 +68,7 @@ private const val ENGINECLASS_XMLPARSER: Int = 835
 @GodotBaseType
 public open class XMLParser : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XMLPARSER, scriptIndex)
+    createNativeObject(835, scriptIndex)
   }
 
   /**

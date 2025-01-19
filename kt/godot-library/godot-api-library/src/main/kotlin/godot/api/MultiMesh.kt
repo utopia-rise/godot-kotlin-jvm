@@ -32,8 +32,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MULTIMESH: Int = 378
-
 /**
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance3D] nodes can be
  * slow, since each object is submitted to the GPU then drawn individually.
@@ -146,7 +144,7 @@ public open class MultiMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIMESH, scriptIndex)
+    createNativeObject(378, scriptIndex)
   }
 
   /**

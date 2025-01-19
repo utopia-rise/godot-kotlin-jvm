@@ -30,8 +30,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_XRCONTROLLER3D: Int = 840
-
 /**
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers
  * several handy passthroughs to the state of buttons and such on the controllers.
@@ -72,7 +70,7 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRCONTROLLER3D, scriptIndex)
+    createNativeObject(840, scriptIndex)
   }
 
   /**

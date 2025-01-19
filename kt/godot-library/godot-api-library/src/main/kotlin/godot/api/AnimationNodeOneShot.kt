@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ANIMATIONNODEONESHOT: Int = 60
-
 /**
  * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a
  * sub-animation and return once it finishes. Blend times for fading in and out can be customized, as
@@ -201,7 +199,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODEONESHOT, scriptIndex)
+    createNativeObject(60, scriptIndex)
   }
 
   public final fun setFadeinTime(time: Double): Unit {

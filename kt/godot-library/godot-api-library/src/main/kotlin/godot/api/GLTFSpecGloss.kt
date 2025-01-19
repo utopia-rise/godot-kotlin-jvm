@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFSPECGLOSS: Int = 264
-
 /**
  * KHR_materials_pbrSpecularGlossiness is an archived GLTF extension. This means that it is
  * deprecated and not recommended for new files. However, it is still supported for loading old files.
@@ -90,7 +88,7 @@ public open class GLTFSpecGloss : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFSPECGLOSS, scriptIndex)
+    createNativeObject(264, scriptIndex)
   }
 
   /**

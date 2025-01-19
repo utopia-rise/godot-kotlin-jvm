@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTURERECT: Int = 660
-
 /**
  * A control that displays a texture, for example an icon inside a GUI. The texture's placement can
  * be controlled with the [stretchMode] property. It can scale, tile, or stay centered inside its
@@ -87,7 +85,7 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURERECT, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

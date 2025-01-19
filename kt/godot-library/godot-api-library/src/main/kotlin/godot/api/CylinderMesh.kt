@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CYLINDERMESH: Int = 221
-
 /**
  * Class representing a cylindrical [PrimitiveMesh]. This class can be used to create cones by
  * setting either the [topRadius] or [bottomRadius] properties to `0.0`.
@@ -121,7 +119,7 @@ public open class CylinderMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CYLINDERMESH, scriptIndex)
+    createNativeObject(221, scriptIndex)
   }
 
   public final fun setTopRadius(radius: Float): Unit {

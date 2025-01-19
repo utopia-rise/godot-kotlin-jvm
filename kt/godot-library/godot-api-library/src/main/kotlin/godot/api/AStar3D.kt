@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ASTAR3D: Int = 40
-
 /**
  * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of
  * plotting short paths among vertices (points), passing through a given set of edges (segments). It
@@ -86,7 +84,7 @@ private const val ENGINECLASS_ASTAR3D: Int = 40
 @GodotBaseType
 public open class AStar3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ASTAR3D, scriptIndex)
+    createNativeObject(40, scriptIndex)
   }
 
   /**

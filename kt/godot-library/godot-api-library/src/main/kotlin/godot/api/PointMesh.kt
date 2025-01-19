@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_POINTMESH: Int = 494
-
 /**
  * The PointMesh is made from a single point. Instead of relying on triangles, points are rendered
  * as a single rectangle on the screen with a constant size. They are intended to be used with Particle
@@ -27,7 +25,7 @@ private const val ENGINECLASS_POINTMESH: Int = 494
 @GodotBaseType
 public open class PointMesh : PrimitiveMesh() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_POINTMESH, scriptIndex)
+    createNativeObject(494, scriptIndex)
   }
 
   public companion object

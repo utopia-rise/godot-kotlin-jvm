@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CANVASITEMMATERIAL: Int = 170
-
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
  * They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to
@@ -108,7 +106,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CANVASITEMMATERIAL, scriptIndex)
+    createNativeObject(170, scriptIndex)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {

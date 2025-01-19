@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT: Int = 792
-
 /**
  * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different
  * multiplication operators.
@@ -38,7 +36,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT, scriptIndex)
+    createNativeObject(792, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

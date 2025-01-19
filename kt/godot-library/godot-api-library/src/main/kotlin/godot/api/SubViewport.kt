@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SUBVIEWPORT: Int = 630
-
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
  * used, for example, to display UI in 3D space.
@@ -98,7 +96,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SUBVIEWPORT, scriptIndex)
+    createNativeObject(630, scriptIndex)
   }
 
   /**

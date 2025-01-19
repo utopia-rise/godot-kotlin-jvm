@@ -23,8 +23,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_UPNPDEVICE: Int = 683
-
 /**
  * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.
  * Provides low-level access to UPNP control commands. Allows to manage port mappings (port forwarding)
@@ -100,7 +98,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_UPNPDEVICE, scriptIndex)
+    createNativeObject(683, scriptIndex)
   }
 
   /**

@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGTORUS3D: Int = 159
-
 /**
  * This node allows you to create a torus for use with the CSG system.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -103,7 +101,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGTORUS3D, scriptIndex)
+    createNativeObject(159, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

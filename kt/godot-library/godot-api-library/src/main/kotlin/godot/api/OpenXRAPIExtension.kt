@@ -25,8 +25,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OPENXRAPIEXTENSION: Int = 420
-
 /**
  * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to
  * GDExtension through the [getInstanceProcAddr] method, and the OpenXR instance through [getInstance].
@@ -36,7 +34,7 @@ private const val ENGINECLASS_OPENXRAPIEXTENSION: Int = 420
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRAPIEXTENSION, scriptIndex)
+    createNativeObject(420, scriptIndex)
   }
 
   /**

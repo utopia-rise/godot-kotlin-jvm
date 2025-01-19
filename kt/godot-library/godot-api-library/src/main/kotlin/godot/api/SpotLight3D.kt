@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SPOTLIGHT3D: Int = 609
-
 /**
  * A Spotlight is a type of [Light3D] node that emits lights in a specific direction, in the shape
  * of a cone. The light is attenuated through the distance. This attenuation can be configured by
@@ -30,7 +28,7 @@ private const val ENGINECLASS_SPOTLIGHT3D: Int = 609
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SPOTLIGHT3D, scriptIndex)
+    createNativeObject(609, scriptIndex)
   }
 
   public companion object

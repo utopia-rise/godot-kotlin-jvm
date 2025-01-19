@@ -13,8 +13,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 
-private const val ENGINECLASS_IMAGEFORMATLOADER: Int = 305
-
 public infix fun Long.or(other: godot.api.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
@@ -46,7 +44,7 @@ public operator fun Long.rem(other: godot.api.ImageFormatLoader.LoaderFlags): Lo
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMAGEFORMATLOADER, scriptIndex)
+    createNativeObject(305, scriptIndex)
   }
 
   public sealed interface LoaderFlags {

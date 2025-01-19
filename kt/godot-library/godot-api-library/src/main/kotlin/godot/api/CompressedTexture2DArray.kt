@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_COMPRESSEDTEXTURE2DARRAY: Int = 200
-
 /**
  * A texture array that is loaded from a `.ctexarray` file. This file format is internal to Godot;
  * it is created by importing other image formats with the import system. [CompressedTexture2DArray]
@@ -34,7 +32,7 @@ private const val ENGINECLASS_COMPRESSEDTEXTURE2DARRAY: Int = 200
 @GodotBaseType
 public open class CompressedTexture2DArray : CompressedTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COMPRESSEDTEXTURE2DARRAY, scriptIndex)
+    createNativeObject(200, scriptIndex)
   }
 
   public companion object

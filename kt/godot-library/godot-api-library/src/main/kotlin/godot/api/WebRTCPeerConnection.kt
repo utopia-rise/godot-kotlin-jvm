@@ -30,8 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_WEBRTCPEERCONNECTION: Int = 823
-
 /**
  * A WebRTC connection between the local computer and a remote peer. Provides an interface to
  * connect, maintain and monitor the connection.
@@ -68,7 +66,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)
+    createNativeObject(823, scriptIndex)
   }
 
   /**

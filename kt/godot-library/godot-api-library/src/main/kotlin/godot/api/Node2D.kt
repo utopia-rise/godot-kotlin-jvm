@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_NODE2D: Int = 406
-
 /**
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
  * physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and
@@ -183,7 +181,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NODE2D, scriptIndex)
+    createNativeObject(406, scriptIndex)
   }
 
   /**

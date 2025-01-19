@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_TEXTSERVERMANAGER: Int = 3
-
 /**
  * [TextServerManager] is the API backend for loading, enumerating, and switching [TextServer]s.
  * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text
@@ -49,7 +47,7 @@ public object TextServerManager : Object() {
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
+    getSingleton(1)
   }
 
   /**

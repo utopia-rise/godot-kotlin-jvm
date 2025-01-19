@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORDECOMPOSE: Int = 810
-
 /**
  * Takes a `vec2`, `vec3` or `vec4` and decomposes it into scalar values that can be used as
  * separate outputs.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEVECTORDECOMPOSE: Int = 810
 @GodotBaseType
 public open class VisualShaderNodeVectorDecompose : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORDECOMPOSE, scriptIndex)
+    createNativeObject(810, scriptIndex)
   }
 
   public companion object

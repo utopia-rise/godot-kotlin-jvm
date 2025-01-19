@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_POINTLIGHT2D: Int = 493
-
 /**
  * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.
  */
@@ -78,7 +76,7 @@ public open class PointLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_POINTLIGHT2D, scriptIndex)
+    createNativeObject(493, scriptIndex)
   }
 
   /**

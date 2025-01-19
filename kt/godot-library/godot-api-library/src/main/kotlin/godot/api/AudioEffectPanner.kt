@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOEFFECTPANNER: Int = 102
-
 /**
  * Determines how much of an audio signal is sent to the left and right buses.
  */
@@ -38,7 +36,7 @@ public open class AudioEffectPanner : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTPANNER, scriptIndex)
+    createNativeObject(102, scriptIndex)
   }
 
   public final fun setPan(cpanume: Float): Unit {

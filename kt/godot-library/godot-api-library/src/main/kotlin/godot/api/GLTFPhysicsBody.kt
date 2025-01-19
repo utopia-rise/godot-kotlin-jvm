@@ -33,8 +33,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFPHYSICSBODY: Int = 260
-
 /**
  * Represents a physics body as an intermediary between the `OMI_physics_body` GLTF data and Godot's
  * nodes, and it's abstracted in a way that allows adding support for different GLTF physics extensions
@@ -153,7 +151,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFPHYSICSBODY, scriptIndex)
+    createNativeObject(260, scriptIndex)
   }
 
   /**

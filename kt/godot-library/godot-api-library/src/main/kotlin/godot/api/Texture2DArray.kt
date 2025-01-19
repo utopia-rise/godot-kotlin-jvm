@@ -15,8 +15,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURE2DARRAY: Int = 649
-
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear
  * interpolation between the [Image]s, i.e. no blending. See also [Cubemap] and [CubemapArray], which
@@ -32,7 +30,7 @@ private const val ENGINECLASS_TEXTURE2DARRAY: Int = 649
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
+    createNativeObject(649, scriptIndex)
   }
 
   /**

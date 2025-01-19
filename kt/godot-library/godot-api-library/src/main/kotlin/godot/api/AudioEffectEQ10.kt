@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOEFFECTEQ10: Int = 90
-
 /**
  * Frequency bands:
  * Band 1: 31 Hz
@@ -30,7 +28,7 @@ private const val ENGINECLASS_AUDIOEFFECTEQ10: Int = 90
 @GodotBaseType
 public open class AudioEffectEQ10 : AudioEffectEQ() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTEQ10, scriptIndex)
+    createNativeObject(90, scriptIndex)
   }
 
   public companion object

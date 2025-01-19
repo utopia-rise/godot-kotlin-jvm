@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR: Int = 751
-
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
  * particles. Connect it to the Velocity output port.
@@ -38,7 +36,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR, scriptIndex)
+    createNativeObject(751, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {

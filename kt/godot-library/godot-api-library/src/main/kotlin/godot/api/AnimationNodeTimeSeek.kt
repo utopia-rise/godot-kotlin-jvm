@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_ANIMATIONNODETIMESEEK: Int = 68
-
 /**
  * This animation node can be used to cause a seek command to happen to any sub-children of the
  * animation graph. Use to play an [Animation] from the start or a certain playback position inside the
@@ -44,7 +42,7 @@ private const val ENGINECLASS_ANIMATIONNODETIMESEEK: Int = 68
 @GodotBaseType
 public open class AnimationNodeTimeSeek : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODETIMESEEK, scriptIndex)
+    createNativeObject(68, scriptIndex)
   }
 
   public companion object

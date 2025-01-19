@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALINSTANCE3D: Int = 704
-
 /**
  * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D
  * nodes inherit from the [VisualInstance3D]. In general, you should not access the [VisualInstance3D]
@@ -92,7 +90,7 @@ public open class VisualInstance3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALINSTANCE3D, scriptIndex)
+    createNativeObject(704, scriptIndex)
   }
 
   public open fun _getAabb(): AABB {

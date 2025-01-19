@@ -21,8 +21,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRBODYMODIFIER3D: Int = 837
-
 public infix fun Long.or(other: godot.api.XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.XRBodyModifier3D.BodyUpdate): Long = this.xor(other.flag)
@@ -88,7 +86,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRBODYMODIFIER3D, scriptIndex)
+    createNativeObject(837, scriptIndex)
   }
 
   public final fun setBodyTracker(trackerName: StringName): Unit {

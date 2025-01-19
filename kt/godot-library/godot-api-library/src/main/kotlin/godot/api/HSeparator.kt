@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HSEPARATOR: Int = 296
-
 /**
  * A horizontal separator used for separating other controls that are arranged **vertically**.
  * [HSeparator] is purely visual and normally drawn as a [StyleBoxLine].
@@ -20,7 +18,7 @@ private const val ENGINECLASS_HSEPARATOR: Int = 296
 @GodotBaseType
 public open class HSeparator : Separator() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HSEPARATOR, scriptIndex)
+    createNativeObject(296, scriptIndex)
   }
 
   public companion object

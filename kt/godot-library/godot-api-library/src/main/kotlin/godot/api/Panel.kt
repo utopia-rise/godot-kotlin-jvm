@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PANEL: Int = 445
-
 /**
  * [Panel] is a GUI control that displays a [StyleBox]. See also [PanelContainer].
  */
 @GodotBaseType
 public open class Panel : Control() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PANEL, scriptIndex)
+    createNativeObject(445, scriptIndex)
   }
 
   public companion object

@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LABELSETTINGS: Int = 347
-
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
  * It will take priority over the properties defined in [Control.theme]. The resource can be shared
@@ -142,7 +140,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LABELSETTINGS, scriptIndex)
+    createNativeObject(347, scriptIndex)
   }
 
   /**

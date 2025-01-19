@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORLEN: Int = 813
-
 /**
  * Translated to `length(p0)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorLen : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORLEN, scriptIndex)
+    createNativeObject(813, scriptIndex)
   }
 
   public companion object

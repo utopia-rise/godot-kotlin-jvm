@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MULTIMESHINSTANCE3D: Int = 380
-
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
  * [MultiMesh] resource.
@@ -40,7 +38,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIMESHINSTANCE3D, scriptIndex)
+    createNativeObject(380, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

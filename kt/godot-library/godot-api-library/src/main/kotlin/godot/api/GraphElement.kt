@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GRAPHELEMENT: Int = 286
-
 /**
  * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements
  * can be selected, resized, and repositioned, but they cannot be connected. For a graph element that
@@ -135,7 +133,7 @@ public open class GraphElement : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRAPHELEMENT, scriptIndex)
+    createNativeObject(286, scriptIndex)
   }
 
   /**

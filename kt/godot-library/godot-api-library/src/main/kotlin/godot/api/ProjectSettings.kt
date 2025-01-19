@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_PROJECTSETTINGS: Int = 7
-
 /**
  * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or
  * [hasSetting] to access them. Variables stored in `project.godot` are also loaded into
@@ -60,7 +58,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PROJECTSETTINGS)
+    getSingleton(5)
   }
 
   /**

@@ -25,15 +25,13 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSTESTMOTIONRESULT3D: Int = 481
-
 /**
  * Describes the motion and collision result from [PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSTESTMOTIONRESULT3D, scriptIndex)
+    createNativeObject(481, scriptIndex)
   }
 
   /**

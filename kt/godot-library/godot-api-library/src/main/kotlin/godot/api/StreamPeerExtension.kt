@@ -12,12 +12,10 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_STREAMPEEREXTENSION: Int = 621
-
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STREAMPEEREXTENSION, scriptIndex)
+    createNativeObject(621, scriptIndex)
   }
 
   public open fun _getAvailableBytes(): Int {

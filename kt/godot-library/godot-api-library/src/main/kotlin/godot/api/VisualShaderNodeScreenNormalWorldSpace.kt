@@ -11,15 +11,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE: Int = 771
-
 /**
  * The ScreenNormalWorldSpace node allows to create outline effects.
  */
 @GodotBaseType
 public open class VisualShaderNodeScreenNormalWorldSpace : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE, scriptIndex)
+    createNativeObject(771, scriptIndex)
   }
 
   public companion object

@@ -37,8 +37,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CHARFXTRANSFORM: Int = 178
-
 /**
  * By setting various properties on this object, you can control how individual characters will be
  * displayed in a [RichTextEffect].
@@ -214,7 +212,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
+    createNativeObject(178, scriptIndex)
   }
 
   /**

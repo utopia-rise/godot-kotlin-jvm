@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAPSULESHAPE3D: Int = 176
-
 /**
  * A 3D capsule shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
@@ -52,7 +50,7 @@ public open class CapsuleShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAPSULESHAPE3D, scriptIndex)
+    createNativeObject(176, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

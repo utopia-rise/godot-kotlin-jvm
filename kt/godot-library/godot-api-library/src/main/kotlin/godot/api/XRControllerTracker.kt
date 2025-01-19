@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_XRCONTROLLERTRACKER: Int = 841
-
 /**
  * An instance of this object represents a controller that is tracked.
  * As controllers are turned on and the [XRInterface] detects them, instances of this object are
@@ -22,7 +20,7 @@ private const val ENGINECLASS_XRCONTROLLERTRACKER: Int = 841
 @GodotBaseType
 public open class XRControllerTracker : XRPositionalTracker() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRCONTROLLERTRACKER, scriptIndex)
+    createNativeObject(841, scriptIndex)
   }
 
   public companion object

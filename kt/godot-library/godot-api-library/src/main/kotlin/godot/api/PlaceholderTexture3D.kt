@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PLACEHOLDERTEXTURE3D: Int = 490
-
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -47,7 +45,7 @@ public open class PlaceholderTexture3D : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PLACEHOLDERTEXTURE3D, scriptIndex)
+    createNativeObject(490, scriptIndex)
   }
 
   /**

@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BASEBUTTON: Int = 137
-
 /**
  * [BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
  */
@@ -178,7 +176,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BASEBUTTON, scriptIndex)
+    createNativeObject(137, scriptIndex)
   }
 
   /**

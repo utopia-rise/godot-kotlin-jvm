@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HSCROLLBAR: Int = 295
-
 /**
  * A horizontal scrollbar, typically used to navigate through content that extends beyond the
  * visible width of a control. It is a [Range]-based control and goes from left (min) to right (max).
@@ -20,7 +18,7 @@ private const val ENGINECLASS_HSCROLLBAR: Int = 295
 @GodotBaseType
 public open class HScrollBar : ScrollBar() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HSCROLLBAR, scriptIndex)
+    createNativeObject(295, scriptIndex)
   }
 
   public companion object

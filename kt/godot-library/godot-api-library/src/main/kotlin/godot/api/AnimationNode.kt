@@ -39,8 +39,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ANIMATIONNODE: Int = 51
-
 /**
  * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create
  * custom ones with custom blending formulas.
@@ -94,7 +92,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODE, scriptIndex)
+    createNativeObject(51, scriptIndex)
   }
 
   /**

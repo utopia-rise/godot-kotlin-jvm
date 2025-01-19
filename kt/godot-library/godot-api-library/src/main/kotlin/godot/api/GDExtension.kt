@@ -18,8 +18,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_GDEXTENSION: Int = 248
-
 /**
  * The [GDExtension] resource type represents a
  * [url=https://en.wikipedia.org/wiki/Shared_library]shared library[/url] which can expand the
@@ -31,7 +29,7 @@ private const val ENGINECLASS_GDEXTENSION: Int = 248
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GDEXTENSION, scriptIndex)
+    createNativeObject(248, scriptIndex)
   }
 
   /**

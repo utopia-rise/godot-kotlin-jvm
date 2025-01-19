@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONLINK3D: Int = 391
-
 /**
  * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These
  * positions can be on the same [NavigationRegion3D] or on two different ones. Links are useful to
@@ -130,7 +128,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONLINK3D, scriptIndex)
+    createNativeObject(391, scriptIndex)
   }
 
   /**

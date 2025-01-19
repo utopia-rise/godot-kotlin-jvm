@@ -46,8 +46,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_FONTFILE: Int = 245
-
 /**
  * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as
  * well as a cache of rasterized glyphs, and a set of fallback [Font]s to use.
@@ -330,7 +328,7 @@ public open class FontFile : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_FONTFILE, scriptIndex)
+    createNativeObject(245, scriptIndex)
   }
 
   /**

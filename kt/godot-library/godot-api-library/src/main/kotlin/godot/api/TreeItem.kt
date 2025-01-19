@@ -41,8 +41,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TREEITEM: Int = 676
-
 /**
  * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
  * to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is
@@ -101,7 +99,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TREEITEM, scriptIndex)
+    createNativeObject(676, scriptIndex)
   }
 
   /**

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURE2DARRAYRD: Int = 650
-
 /**
  * This texture array class allows you to use a 2D array texture created directly on the
  * [RenderingDevice] as a texture for materials, meshes, etc.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_TEXTURE2DARRAYRD: Int = 650
 @GodotBaseType
 public open class Texture2DArrayRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURE2DARRAYRD, scriptIndex)
+    createNativeObject(650, scriptIndex)
   }
 
   public companion object

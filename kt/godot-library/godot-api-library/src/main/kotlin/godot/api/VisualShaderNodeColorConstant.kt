@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODECOLORCONSTANT: Int = 711
-
 /**
  * Has two output ports representing RGB and alpha channels of [Color].
  * Translated to `vec3 rgb` and `float alpha` in the shader language.
@@ -41,7 +39,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT, scriptIndex)
+    createNativeObject(711, scriptIndex)
   }
 
   /**

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TEXTURECUBEMAPRD: Int = 656
-
 /**
  * This texture class allows you to use a cubemap texture created directly on the [RenderingDevice]
  * as a texture for materials, meshes, etc.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_TEXTURECUBEMAPRD: Int = 656
 @GodotBaseType
 public open class TextureCubemapRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURECUBEMAPRD, scriptIndex)
+    createNativeObject(656, scriptIndex)
   }
 
   public companion object

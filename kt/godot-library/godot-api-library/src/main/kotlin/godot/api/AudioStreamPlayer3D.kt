@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYER3D: Int = 130
-
 /**
  * Plays audio with positional sound effects, based on the relative position of the audio listener.
  * Positional effects include distance attenuation, directionality, and the Doppler effect. For greater
@@ -297,7 +295,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYER3D, scriptIndex)
+    createNativeObject(130, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VEHICLEWHEEL3D: Int = 693
-
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.
  * This node also acts as a collider to detect if the wheel is touching a surface.
@@ -218,7 +216,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VEHICLEWHEEL3D, scriptIndex)
+    createNativeObject(693, scriptIndex)
   }
 
   public final fun setRadius(length: Float): Unit {

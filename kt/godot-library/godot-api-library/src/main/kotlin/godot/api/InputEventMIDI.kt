@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTMIDI: Int = 320
-
 /**
  * InputEventMIDI stores information about messages from
  * [url=https://en.wikipedia.org/wiki/MIDI]MIDI[/url] (Musical Instrument Digital Interface) devices.
@@ -206,7 +204,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTMIDI, scriptIndex)
+    createNativeObject(320, scriptIndex)
   }
 
   public final fun setChannel(channel: Int): Unit {

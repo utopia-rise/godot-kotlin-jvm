@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC: Int = 789
-
 /**
  * Computes an inverse or transpose function on the provided [Transform3D].
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC, scriptIndex)
+    createNativeObject(789, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

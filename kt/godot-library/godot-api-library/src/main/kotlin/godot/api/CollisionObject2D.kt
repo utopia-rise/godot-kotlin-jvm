@@ -33,8 +33,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COLLISIONOBJECT2D: Int = 186
-
 /**
  * Abstract base class for 2D physics objects. [CollisionObject2D] can hold any number of [Shape2D]s
  * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not
@@ -158,7 +156,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COLLISIONOBJECT2D, scriptIndex)
+    createNativeObject(186, scriptIndex)
   }
 
   /**

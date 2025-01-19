@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D: Int = 501
-
 /**
  * This class allows storing compressed textures as self contained (not imported) resources.
  * For 2D usage (compressed on disk, uncompressed on VRAM), the lossy and lossless modes are
@@ -69,7 +67,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D, scriptIndex)
+    createNativeObject(501, scriptIndex)
   }
 
   /**

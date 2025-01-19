@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_BUTTONGROUP: Int = 148
-
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
  * buttons: No more than one button can be pressed at a time. Some types of buttons (such as
@@ -49,7 +47,7 @@ public open class ButtonGroup : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_BUTTONGROUP, scriptIndex)
+    createNativeObject(148, scriptIndex)
   }
 
   /**

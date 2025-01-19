@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAMERAATTRIBUTES: Int = 163
-
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
  * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
@@ -97,7 +95,7 @@ public open class CameraAttributes : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAMERAATTRIBUTES, scriptIndex)
+    createNativeObject(163, scriptIndex)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {

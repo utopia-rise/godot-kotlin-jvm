@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT: Int = 512
-
 /**
  * Controls how blending between source and destination fragments is performed when using
  * [RenderingDevice].
@@ -213,7 +211,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT, scriptIndex)
+    createNativeObject(512, scriptIndex)
   }
 
   /**

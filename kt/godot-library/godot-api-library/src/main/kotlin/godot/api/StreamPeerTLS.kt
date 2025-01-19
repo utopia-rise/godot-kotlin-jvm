@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_STREAMPEERTLS: Int = 624
-
 /**
  * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
  * accept a single TLS client connection.
@@ -34,7 +32,7 @@ private const val ENGINECLASS_STREAMPEERTLS: Int = 624
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STREAMPEERTLS, scriptIndex)
+    createNativeObject(624, scriptIndex)
   }
 
   /**

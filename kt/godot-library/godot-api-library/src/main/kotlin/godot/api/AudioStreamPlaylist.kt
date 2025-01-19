@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYLIST: Int = 131
-
 @GodotBaseType
 public open class AudioStreamPlaylist : AudioStream() {
   /**
@@ -587,7 +585,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYLIST, scriptIndex)
+    createNativeObject(131, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

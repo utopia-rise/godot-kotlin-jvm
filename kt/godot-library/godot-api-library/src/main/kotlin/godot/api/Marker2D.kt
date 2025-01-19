@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_MARKER2D: Int = 361
-
 /**
  * Generic 2D position hint for editing. It's just like a plain [Node2D], but it displays as a cross
  * in the 2D editor at all times. You can set the cross' visual size by using the gizmo in the 2D
@@ -40,7 +38,7 @@ public open class Marker2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MARKER2D, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   public final fun setGizmoExtents(extents: Float): Unit {

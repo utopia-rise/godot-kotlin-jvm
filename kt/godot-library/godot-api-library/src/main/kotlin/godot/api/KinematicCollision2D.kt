@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_KINEMATICCOLLISION2D: Int = 342
-
 /**
  * Holds collision data from the movement of a [PhysicsBody2D], usually from
  * [PhysicsBody2D.moveAndCollide]. When a [PhysicsBody2D] is moved, it stops if it detects a collision
@@ -37,7 +35,7 @@ private const val ENGINECLASS_KINEMATICCOLLISION2D: Int = 342
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_KINEMATICCOLLISION2D, scriptIndex)
+    createNativeObject(342, scriptIndex)
   }
 
   /**

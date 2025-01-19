@@ -22,8 +22,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HINGEJOINT3D: Int = 303
-
 /**
  * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
  * another physics body. For example, Body A can be a [StaticBody3D] representing a door hinge that a
@@ -32,7 +30,7 @@ private const val ENGINECLASS_HINGEJOINT3D: Int = 303
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HINGEJOINT3D, scriptIndex)
+    createNativeObject(303, scriptIndex)
   }
 
   /**

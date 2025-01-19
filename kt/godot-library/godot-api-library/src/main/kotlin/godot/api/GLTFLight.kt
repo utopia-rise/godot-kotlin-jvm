@@ -32,8 +32,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFLIGHT: Int = 257
-
 /**
  * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.
  */
@@ -120,7 +118,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFLIGHT, scriptIndex)
+    createNativeObject(257, scriptIndex)
   }
 
   /**

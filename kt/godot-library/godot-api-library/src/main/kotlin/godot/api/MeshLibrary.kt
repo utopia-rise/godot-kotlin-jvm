@@ -27,8 +27,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_MESHLIBRARY: Int = 371
-
 /**
  * A library of meshes. Contains a list of [Mesh] resources, each with a name and ID. Each item can
  * also include collision and navigation shapes. This resource is used in [GridMap].
@@ -36,7 +34,7 @@ private const val ENGINECLASS_MESHLIBRARY: Int = 371
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MESHLIBRARY, scriptIndex)
+    createNativeObject(371, scriptIndex)
   }
 
   /**

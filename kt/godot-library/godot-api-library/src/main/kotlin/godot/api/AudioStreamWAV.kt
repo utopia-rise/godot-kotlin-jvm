@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AUDIOSTREAMWAV: Int = 135
-
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
  * [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for
@@ -128,7 +126,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMWAV, scriptIndex)
+    createNativeObject(135, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SEGMENTSHAPE2D: Int = 569
-
 /**
  * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
@@ -53,7 +51,7 @@ public open class SegmentShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SEGMENTSHAPE2D, scriptIndex)
+    createNativeObject(569, scriptIndex)
   }
 
   /**

@@ -11,12 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OGGPACKETSEQUENCEPLAYBACK: Int = 418
-
 @GodotBaseType
 public open class OggPacketSequencePlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OGGPACKETSEQUENCEPLAYBACK, scriptIndex)
+    createNativeObject(418, scriptIndex)
   }
 
   public companion object

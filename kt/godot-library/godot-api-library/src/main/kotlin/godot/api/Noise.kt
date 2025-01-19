@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_NOISE: Int = 409
-
 /**
  * This class defines the interface for noise generation libraries to inherit from.
  * A default [getSeamlessImage] implementation is provided for libraries that do not provide
@@ -41,7 +39,7 @@ private const val ENGINECLASS_NOISE: Int = 409
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NOISE, scriptIndex)
+    createNativeObject(409, scriptIndex)
   }
 
   /**

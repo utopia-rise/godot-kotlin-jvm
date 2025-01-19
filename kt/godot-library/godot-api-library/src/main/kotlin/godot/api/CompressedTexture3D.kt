@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COMPRESSEDTEXTURE3D: Int = 201
-
 /**
  * [CompressedTexture3D] is the VRAM-compressed counterpart of [ImageTexture3D]. The file extension
  * for [CompressedTexture3D] files is `.ctex3d`. This file format is internal to Godot; it is created
@@ -42,7 +40,7 @@ public open class CompressedTexture3D : Texture3D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COMPRESSEDTEXTURE3D, scriptIndex)
+    createNativeObject(201, scriptIndex)
   }
 
   /**

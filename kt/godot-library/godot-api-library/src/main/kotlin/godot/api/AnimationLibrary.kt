@@ -27,8 +27,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_ANIMATIONLIBRARY: Int = 49
-
 /**
  * An animation library stores a set of animations accessible through [StringName] keys, for use
  * with [AnimationPlayer] nodes.
@@ -58,7 +56,7 @@ public open class AnimationLibrary : Resource() {
   public val animationChanged: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONLIBRARY, scriptIndex)
+    createNativeObject(49, scriptIndex)
   }
 
   /**

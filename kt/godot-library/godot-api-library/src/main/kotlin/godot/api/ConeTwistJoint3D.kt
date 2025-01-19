@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CONETWISTJOINT3D: Int = 205
-
 /**
  * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket
  * joint. The twist axis is initiated as the X axis of the [ConeTwistJoint3D]. Once the physics bodies
@@ -93,7 +91,7 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CONETWISTJOINT3D, scriptIndex)
+    createNativeObject(205, scriptIndex)
   }
 
   /**

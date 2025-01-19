@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CANVASMODULATE: Int = 172
-
 /**
  * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a
  * canvas, but [CanvasLayer]s can be used to render things independently.
@@ -41,7 +39,7 @@ public open class CanvasModulate : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CANVASMODULATE, scriptIndex)
+    createNativeObject(172, scriptIndex)
   }
 
   /**

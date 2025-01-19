@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEPARAMETER: Int = 749
-
 /**
  * A parameter represents a variable in the shader which is set externally, i.e. from the
  * [ShaderMaterial]. Parameters are exposed as properties in the [ShaderMaterial] and can be assigned
@@ -52,7 +50,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEPARAMETER, scriptIndex)
+    createNativeObject(749, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {

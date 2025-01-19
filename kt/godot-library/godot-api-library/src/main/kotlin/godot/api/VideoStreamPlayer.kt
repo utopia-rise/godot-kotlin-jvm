@@ -29,8 +29,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VIDEOSTREAMPLAYER: Int = 696
-
 /**
  * A control used for playback of [VideoStream] resources.
  * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`,
@@ -170,7 +168,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
+    createNativeObject(696, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {

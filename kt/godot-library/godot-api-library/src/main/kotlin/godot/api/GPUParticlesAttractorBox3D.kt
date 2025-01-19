@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESATTRACTORBOX3D: Int = 271
-
 /**
  * A box-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to
  * attract particles towards its origin, or to push them away from its origin.
@@ -44,7 +42,7 @@ public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESATTRACTORBOX3D, scriptIndex)
+    createNativeObject(271, scriptIndex)
   }
 
   /**

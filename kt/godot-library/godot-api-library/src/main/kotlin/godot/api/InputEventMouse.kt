@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTMOUSE: Int = 322
-
 /**
  * Stores general information about mouse events.
  */
@@ -74,7 +72,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTMOUSE, scriptIndex)
+    createNativeObject(322, scriptIndex)
   }
 
   /**

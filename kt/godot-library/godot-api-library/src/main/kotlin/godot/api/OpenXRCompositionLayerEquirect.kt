@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OPENXRCOMPOSITIONLAYEREQUIRECT: Int = 426
-
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
  * sphere.
@@ -87,7 +85,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRCOMPOSITIONLAYEREQUIRECT, scriptIndex)
+    createNativeObject(426, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

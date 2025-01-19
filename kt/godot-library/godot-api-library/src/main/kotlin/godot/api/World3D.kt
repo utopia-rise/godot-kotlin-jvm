@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_WORLD3D: Int = 830
-
 /**
  * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound
  * space. 3D nodes register their resources into the current 3D world.
@@ -91,7 +89,7 @@ public open class World3D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WORLD3D, scriptIndex)
+    createNativeObject(830, scriptIndex)
   }
 
   public final fun getSpace(): RID {

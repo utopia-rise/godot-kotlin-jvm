@@ -19,8 +19,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PACKEDDATACONTAINER: Int = 437
-
 /**
  * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is
  * packed into raw bytes and can be saved to file. Only [Array] and [Dictionary] can be stored this
@@ -50,7 +48,7 @@ private const val ENGINECLASS_PACKEDDATACONTAINER: Int = 437
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKEDDATACONTAINER, scriptIndex)
+    createNativeObject(437, scriptIndex)
   }
 
   /**

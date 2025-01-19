@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NOISETEXTURE3D: Int = 411
-
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
  * desired size.
@@ -153,7 +151,7 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NOISETEXTURE3D, scriptIndex)
+    createNativeObject(411, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

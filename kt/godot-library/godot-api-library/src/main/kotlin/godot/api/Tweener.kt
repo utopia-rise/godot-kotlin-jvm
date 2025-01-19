@@ -12,8 +12,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TWEENER: Int = 680
-
 /**
  * Tweeners are objects that perform a specific animating task, e.g. interpolating a property or
  * calling a method at a given time. A [Tweener] can't be created manually, you need to use a dedicated
@@ -27,7 +25,7 @@ public open class Tweener internal constructor() : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TWEENER, scriptIndex)
+    createNativeObject(680, scriptIndex)
   }
 
   public companion object

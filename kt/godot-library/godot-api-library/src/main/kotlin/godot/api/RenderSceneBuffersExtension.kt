@@ -13,15 +13,13 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RENDERSCENEBUFFERSEXTENSION: Int = 541
-
 /**
  * This class allows for a RenderSceneBuffer implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERSCENEBUFFERSEXTENSION, scriptIndex)
+    createNativeObject(541, scriptIndex)
   }
 
   /**

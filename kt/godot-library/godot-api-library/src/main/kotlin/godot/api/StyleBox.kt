@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_STYLEBOX: Int = 625
-
 /**
  * [StyleBox] is an abstract base class for drawing stylized boxes for UI elements. It is used for
  * panels, buttons, [LineEdit] backgrounds, [Tree] backgrounds, etc. and also for testing a
@@ -102,7 +100,7 @@ public open class StyleBox : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STYLEBOX, scriptIndex)
+    createNativeObject(625, scriptIndex)
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {

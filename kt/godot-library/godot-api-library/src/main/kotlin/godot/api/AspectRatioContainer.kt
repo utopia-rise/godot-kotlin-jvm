@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ASPECTRATIOCONTAINER: Int = 77
-
 /**
  * A container type that arranges its child controls in a way that preserves their proportions
  * automatically when the container is resized. Useful when a container has a dynamic size and the
@@ -76,7 +74,7 @@ public open class AspectRatioContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ASPECTRATIOCONTAINER, scriptIndex)
+    createNativeObject(77, scriptIndex)
   }
 
   public final fun setRatio(ratio: Float): Unit {

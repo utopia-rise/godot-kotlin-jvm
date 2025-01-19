@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEBILLBOARD: Int = 707
-
 /**
  * The output port of this node needs to be connected to `Model View Matrix` port of
  * [VisualShaderNodeOutput].
@@ -52,7 +50,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEBILLBOARD, scriptIndex)
+    createNativeObject(707, scriptIndex)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {

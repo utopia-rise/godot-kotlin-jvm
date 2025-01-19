@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDSHADERSOURCE: Int = 520
-
 /**
  * Shader source code in text form.
  * See also [RDShaderFile]. [RDShaderSource] is only meant to be used with the [RenderingDevice]
@@ -97,7 +95,7 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDSHADERSOURCE, scriptIndex)
+    createNativeObject(520, scriptIndex)
   }
 
   /**

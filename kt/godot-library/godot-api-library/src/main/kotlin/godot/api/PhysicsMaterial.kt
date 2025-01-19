@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PHYSICSMATERIAL: Int = 470
-
 /**
  * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is
  * used to apply these properties to a physics body.
@@ -82,7 +80,7 @@ public open class PhysicsMaterial : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSMATERIAL, scriptIndex)
+    createNativeObject(470, scriptIndex)
   }
 
   public final fun setFriction(friction: Float): Unit {

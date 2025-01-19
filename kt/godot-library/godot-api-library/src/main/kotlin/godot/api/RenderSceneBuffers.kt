@@ -16,8 +16,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RENDERSCENEBUFFERS: Int = 539
-
 /**
  * Abstract scene buffers object, created for each viewport for which 3D rendering is done. It
  * manages any additional buffers used during rendering and will discard buffers when the viewport is
@@ -27,7 +25,7 @@ private const val ENGINECLASS_RENDERSCENEBUFFERS: Int = 539
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RENDERSCENEBUFFERS, scriptIndex)
+    createNativeObject(539, scriptIndex)
   }
 
   /**

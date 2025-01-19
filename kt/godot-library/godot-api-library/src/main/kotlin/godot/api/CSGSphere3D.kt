@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGSPHERE3D: Int = 158
-
 /**
  * This node allows you to create a sphere for use with the CSG system.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -92,7 +90,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGSPHERE3D, scriptIndex)
+    createNativeObject(158, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

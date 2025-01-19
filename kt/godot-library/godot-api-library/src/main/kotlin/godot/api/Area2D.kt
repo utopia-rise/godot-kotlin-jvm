@@ -35,8 +35,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_AREA2D: Int = 73
-
 /**
  * [Area2D] is a region of 2D space defined by one or multiple [CollisionShape2D] or
  * [CollisionPolygon2D] child nodes. It detects when other [CollisionObject2D]s enter or exit it, and
@@ -311,7 +309,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AREA2D, scriptIndex)
+    createNativeObject(73, scriptIndex)
   }
 
   /**

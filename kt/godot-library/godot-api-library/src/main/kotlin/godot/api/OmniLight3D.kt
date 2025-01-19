@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OMNILIGHT3D: Int = 419
-
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is
  * attenuated by distance and this attenuation can be configured by changing its energy, radius, and
@@ -48,7 +46,7 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OMNILIGHT3D, scriptIndex)
+    createNativeObject(419, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

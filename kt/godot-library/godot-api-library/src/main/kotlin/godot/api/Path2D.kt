@@ -17,8 +17,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PATH2D: Int = 452
-
 /**
  * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more
  * information on usage.
@@ -39,7 +37,7 @@ public open class Path2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PATH2D, scriptIndex)
+    createNativeObject(452, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve2D?): Unit {

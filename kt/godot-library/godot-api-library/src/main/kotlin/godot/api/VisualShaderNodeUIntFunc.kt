@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEUINTFUNC: Int = 794
-
 /**
  * Accept an unsigned integer scalar (`x`) to the input port and transform it according to
  * [function].
@@ -38,7 +36,7 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEUINTFUNC, scriptIndex)
+    createNativeObject(794, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

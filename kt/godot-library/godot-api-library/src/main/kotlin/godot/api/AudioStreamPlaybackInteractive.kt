@@ -18,8 +18,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYBACKINTERACTIVE: Int = 122
-
 /**
  * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played
  * clip.
@@ -27,7 +25,7 @@ private const val ENGINECLASS_AUDIOSTREAMPLAYBACKINTERACTIVE: Int = 122
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACKINTERACTIVE, scriptIndex)
+    createNativeObject(122, scriptIndex)
   }
 
   /**

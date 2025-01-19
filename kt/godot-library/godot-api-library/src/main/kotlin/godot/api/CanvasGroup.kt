@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CANVASGROUP: Int = 168
-
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
  * overlapping translucent 2D nodes without blending (set [CanvasItem.selfModulate] property of
@@ -97,7 +95,7 @@ public open class CanvasGroup : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CANVASGROUP, scriptIndex)
+    createNativeObject(168, scriptIndex)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {

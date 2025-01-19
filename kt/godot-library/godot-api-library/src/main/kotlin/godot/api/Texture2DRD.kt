@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_TEXTURE2DRD: Int = 651
-
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
  * texture for materials, meshes, etc.
@@ -38,7 +36,7 @@ public open class Texture2DRD : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTURE2DRD, scriptIndex)
+    createNativeObject(651, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

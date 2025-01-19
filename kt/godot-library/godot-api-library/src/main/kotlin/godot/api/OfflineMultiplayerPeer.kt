@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_OFFLINEMULTIPLAYERPEER: Int = 416
-
 /**
  * This is the default [MultiplayerAPI.multiplayerPeer] for the [Node.multiplayer]. It mimics the
  * behavior of a server with no peers connected.
@@ -23,7 +21,7 @@ private const val ENGINECLASS_OFFLINEMULTIPLAYERPEER: Int = 416
 @GodotBaseType
 public open class OfflineMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OFFLINEMULTIPLAYERPEER, scriptIndex)
+    createNativeObject(416, scriptIndex)
   }
 
   public companion object

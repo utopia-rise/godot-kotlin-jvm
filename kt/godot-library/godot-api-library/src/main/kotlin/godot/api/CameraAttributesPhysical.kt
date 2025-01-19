@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAMERAATTRIBUTESPHYSICAL: Int = 164
-
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
  * settings. It is responsible for exposure, auto-exposure, and depth of field.
@@ -153,7 +151,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAMERAATTRIBUTESPHYSICAL, scriptIndex)
+    createNativeObject(164, scriptIndex)
   }
 
   public final fun setAperture(aperture: Float): Unit {

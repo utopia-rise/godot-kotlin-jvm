@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER: Int = 82
-
 /**
  * Limits the frequencies in a range around the [AudioEffectFilter.cutoffHz] and allows frequencies
  * outside of this range to pass.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER: Int = 82
 @GodotBaseType
 public open class AudioEffectBandLimitFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER, scriptIndex)
+    createNativeObject(82, scriptIndex)
   }
 
   public companion object

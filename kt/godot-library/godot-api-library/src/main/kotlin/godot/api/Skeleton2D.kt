@@ -27,8 +27,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SKELETON2D: Int = 583
-
 /**
  * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
  * pose and acts as a single point of access to its bones.
@@ -45,7 +43,7 @@ public open class Skeleton2D : Node2D() {
   public val boneSetupChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETON2D, scriptIndex)
+    createNativeObject(583, scriptIndex)
   }
 
   /**

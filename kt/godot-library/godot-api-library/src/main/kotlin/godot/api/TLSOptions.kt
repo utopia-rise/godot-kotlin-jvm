@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TLSOPTIONS: Int = 636
-
 /**
  * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
  * classes.
@@ -43,7 +41,7 @@ private const val ENGINECLASS_TLSOPTIONS: Int = 636
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TLSOPTIONS, scriptIndex)
+    createNativeObject(636, scriptIndex)
   }
 
   /**

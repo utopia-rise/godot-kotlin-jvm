@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D: Int = 276
-
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
  * Heightmap shapes allow for efficiently representing collisions for convex and concave objects
@@ -95,7 +93,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D, scriptIndex)
+    createNativeObject(276, scriptIndex)
   }
 
   /**

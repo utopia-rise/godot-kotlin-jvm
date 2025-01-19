@@ -27,8 +27,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_TIME: Int = 21
-
 /**
  * The Time singleton allows converting time between various formats and also getting time
  * information from the system.
@@ -51,7 +49,7 @@ private const val ENGINECLASS_TIME: Int = 21
 @GodotBaseType
 public object Time : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_TIME)
+    getSingleton(19)
   }
 
   /**

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_CHECKBOX: Int = 181
-
 /**
  * [CheckBox] allows the user to choose one of only two possible options. It's similar to
  * [CheckButton] in functionality, but it has a different appearance. To follow established UX
@@ -26,7 +24,7 @@ private const val ENGINECLASS_CHECKBOX: Int = 181
 @GodotBaseType
 public open class CheckBox : Button() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CHECKBOX, scriptIndex)
+    createNativeObject(181, scriptIndex)
   }
 
   public companion object

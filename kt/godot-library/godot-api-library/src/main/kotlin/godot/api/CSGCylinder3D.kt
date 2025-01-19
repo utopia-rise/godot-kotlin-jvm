@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CSGCYLINDER3D: Int = 153
-
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -104,7 +102,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CSGCYLINDER3D, scriptIndex)
+    createNativeObject(153, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

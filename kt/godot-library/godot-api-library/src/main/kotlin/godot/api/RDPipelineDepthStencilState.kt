@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE: Int = 513
-
 /**
  * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when
  * sampling those values using [RenderingDevice].
@@ -271,7 +269,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, scriptIndex)
+    createNativeObject(513, scriptIndex)
   }
 
   public final fun setEnableDepthTest(pMember: Boolean): Unit {

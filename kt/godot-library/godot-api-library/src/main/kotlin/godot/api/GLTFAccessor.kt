@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFACCESSOR: Int = 250
-
 /**
  * GLTFAccessor is a data structure representing GLTF a `accessor` that would be found in the
  * `"accessors"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer. An
@@ -209,7 +207,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFACCESSOR, scriptIndex)
+    createNativeObject(250, scriptIndex)
   }
 
   public final fun getBufferView(): Int {

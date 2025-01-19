@@ -17,8 +17,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_MULTIPLAYERAPIEXTENSION: Int = 382
-
 /**
  * This class can be used to augment or replace the default [MultiplayerAPI] implementation via
  * script or extensions.
@@ -104,7 +102,7 @@ private const val ENGINECLASS_MULTIPLAYERAPIEXTENSION: Int = 382
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_MULTIPLAYERAPIEXTENSION, scriptIndex)
+    createNativeObject(382, scriptIndex)
   }
 
   /**

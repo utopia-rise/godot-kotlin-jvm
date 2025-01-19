@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_HEIGHTMAPSHAPE3D: Int = 302
-
 /**
  * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves)
@@ -83,7 +81,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HEIGHTMAPSHAPE3D, scriptIndex)
+    createNativeObject(302, scriptIndex)
   }
 
   public final fun setMapWidth(width: Int): Unit {

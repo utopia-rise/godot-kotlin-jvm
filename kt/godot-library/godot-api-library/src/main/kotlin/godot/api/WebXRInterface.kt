@@ -32,8 +32,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_WEBXRINTERFACE: Int = 827
-
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
  * browser.
@@ -336,7 +334,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
+    createNativeObject(827, scriptIndex)
   }
 
   /**

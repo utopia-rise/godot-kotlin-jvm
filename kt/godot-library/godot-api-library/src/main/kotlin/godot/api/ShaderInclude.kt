@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHADERINCLUDE: Int = 576
-
 /**
  * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a
  * custom shader snippet that can be included in a [Shader] by using the preprocessor directive
@@ -41,7 +39,7 @@ public open class ShaderInclude : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHADERINCLUDE, scriptIndex)
+    createNativeObject(576, scriptIndex)
   }
 
   public final fun setCode(code: String): Unit {

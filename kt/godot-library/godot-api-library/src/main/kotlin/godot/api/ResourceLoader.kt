@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-private const val ENGINECLASS_RESOURCELOADER: Int = 11
-
 /**
  * A singleton used to load resource files from the filesystem.
  * It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from
@@ -43,7 +41,7 @@ private const val ENGINECLASS_RESOURCELOADER: Int = 11
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RESOURCELOADER)
+    getSingleton(9)
   }
 
   /**

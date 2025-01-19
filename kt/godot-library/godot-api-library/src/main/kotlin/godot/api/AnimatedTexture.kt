@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ANIMATEDTEXTURE: Int = 47
-
 /**
  * [AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be
  * chained automatically with a predefined delay for each frame. Unlike [AnimationPlayer] or
@@ -104,7 +102,7 @@ public open class AnimatedTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATEDTEXTURE, scriptIndex)
+    createNativeObject(47, scriptIndex)
   }
 
   public final fun setFrames(frames: Int): Unit {

@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_TILESETSOURCE: Int = 670
-
 /**
  * Exposes a set of tiles for a [TileSet] resource.
  * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative
@@ -37,7 +35,7 @@ private const val ENGINECLASS_TILESETSOURCE: Int = 670
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TILESETSOURCE, scriptIndex)
+    createNativeObject(670, scriptIndex)
   }
 
   /**

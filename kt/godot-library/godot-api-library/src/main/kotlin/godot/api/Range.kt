@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_RANGE: Int = 526
-
 /**
  * Range is an abstract base class for controls that represent a number within a range, using a
  * configured [step] and [page] size. See e.g. [ScrollBar] and [Slider] for examples of higher-level
@@ -163,7 +161,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RANGE, scriptIndex)
+    createNativeObject(526, scriptIndex)
   }
 
   /**

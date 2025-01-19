@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D: Int = 393
-
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
  */
@@ -56,7 +54,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D, scriptIndex)
+    createNativeObject(393, scriptIndex)
   }
 
   /**

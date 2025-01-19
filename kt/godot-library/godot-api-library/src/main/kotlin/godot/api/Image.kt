@@ -38,8 +38,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_IMAGE: Int = 304
-
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and
  * provides commonly used *image processing* methods. The maximum width and height for an [Image] are
@@ -52,7 +50,7 @@ private const val ENGINECLASS_IMAGE: Int = 304
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMAGE, scriptIndex)
+    createNativeObject(304, scriptIndex)
   }
 
   /**

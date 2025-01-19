@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_CAPSULESHAPE2D: Int = 175
-
 /**
  * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
@@ -52,7 +50,7 @@ public open class CapsuleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CAPSULESHAPE2D, scriptIndex)
+    createNativeObject(175, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

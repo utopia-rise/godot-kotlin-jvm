@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SLIDER: Int = 601
-
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
  * vertical axis. Sliders are [Range]-based controls.
@@ -89,7 +87,7 @@ public open class Slider internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SLIDER, scriptIndex)
+    createNativeObject(601, scriptIndex)
   }
 
   public final fun setTicks(count: Int): Unit {

@@ -13,8 +13,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_AUDIOEFFECTINSTANCE: Int = 97
-
 /**
  * An audio effect instance manipulates the audio it receives for a given effect. This instance is
  * automatically created by an [AudioEffect] when it is added to a bus, and should usually not be
@@ -24,7 +22,7 @@ private const val ENGINECLASS_AUDIOEFFECTINSTANCE: Int = 97
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOEFFECTINSTANCE, scriptIndex)
+    createNativeObject(97, scriptIndex)
   }
 
   /**

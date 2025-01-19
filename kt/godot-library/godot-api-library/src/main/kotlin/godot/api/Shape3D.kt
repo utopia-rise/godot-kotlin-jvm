@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SHAPE3D: Int = 579
-
 /**
  * Abstract base class for all 3D shapes, intended for use in physics.
  * **Performance:** Primitive shapes, especially [SphereShape3D], are fast to check collisions
@@ -60,7 +58,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SHAPE3D, scriptIndex)
+    createNativeObject(579, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

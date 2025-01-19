@@ -50,8 +50,6 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CONTROL: Int = 209
-
 public infix fun Long.or(other: godot.api.Control.SizeFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.Control.SizeFlags): Long = this.xor(other.flag)
@@ -703,7 +701,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CONTROL, scriptIndex)
+    createNativeObject(209, scriptIndex)
   }
 
   /**

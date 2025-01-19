@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LIGHTOCCLUDER2D: Int = 350
-
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
  * [OccluderPolygon2D] in order for the shadow to be computed.
@@ -65,7 +63,7 @@ public open class LightOccluder2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHTOCCLUDER2D, scriptIndex)
+    createNativeObject(350, scriptIndex)
   }
 
   public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {

@@ -30,8 +30,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_GRAPHNODE: Int = 288
-
 /**
  * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its
  * child controls. [GraphNode] is derived from [Container] and it is responsible for placing its
@@ -81,7 +79,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRAPHNODE, scriptIndex)
+    createNativeObject(288, scriptIndex)
   }
 
   public open fun _drawPort(

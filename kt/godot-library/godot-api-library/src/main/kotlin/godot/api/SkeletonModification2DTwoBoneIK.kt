@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK: Int = 593
-
 /**
  * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works
  * by leveraging the law of cosines and the lengths of the bones to figure out what rotation the bones
@@ -90,7 +88,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK, scriptIndex)
+    createNativeObject(593, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_OPENXRINTERFACE: Int = 433
-
 public infix fun Long.or(other: godot.api.OpenXRInterface.HandJointFlags): Long =
     this.or(other.flag)
 
@@ -192,7 +190,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
+    createNativeObject(433, scriptIndex)
   }
 
   public final fun getDisplayRefreshRate(): Float {

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE: Int = 811
-
 /**
  * Calculates distance from point represented by vector `p0` to vector `p1`.
  * Translated to `distance(p0, p1)` in the shader language.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE: Int = 811
 @GodotBaseType
 public open class VisualShaderNodeVectorDistance : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE, scriptIndex)
+    createNativeObject(811, scriptIndex)
   }
 
   public companion object

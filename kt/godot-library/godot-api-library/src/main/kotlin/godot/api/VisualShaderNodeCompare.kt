@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODECOMPARE: Int = 716
-
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
  * instruction in shader code.
@@ -60,7 +58,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODECOMPARE, scriptIndex)
+    createNativeObject(716, scriptIndex)
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {

@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GROOVEJOINT2D: Int = 291
-
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
  * example, a [StaticBody2D] representing a piston base can be attached to a [RigidBody2D] representing
@@ -53,7 +51,7 @@ public open class GrooveJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GROOVEJOINT2D, scriptIndex)
+    createNativeObject(291, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

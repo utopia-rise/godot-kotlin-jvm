@@ -23,8 +23,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_ENETMULTIPLAYERPEER: Int = 230
-
 /**
  * A MultiplayerPeer implementation that should be passed to [MultiplayerAPI.multiplayerPeer] after
  * being initialized as either a client, server, or mesh. Events can then be handled by connecting to
@@ -43,7 +41,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     get() = getHost()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ENETMULTIPLAYERPEER, scriptIndex)
+    createNativeObject(230, scriptIndex)
   }
 
   /**

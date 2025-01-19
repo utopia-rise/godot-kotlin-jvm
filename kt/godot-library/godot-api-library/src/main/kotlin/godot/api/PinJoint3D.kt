@@ -20,8 +20,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PINJOINT3D: Int = 483
-
 /**
  * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely
  * rotate. For example, a [RigidBody3D] can be attached to a [StaticBody3D] to create a pendulum or a
@@ -30,7 +28,7 @@ private const val ENGINECLASS_PINJOINT3D: Int = 483
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PINJOINT3D, scriptIndex)
+    createNativeObject(483, scriptIndex)
   }
 
   /**

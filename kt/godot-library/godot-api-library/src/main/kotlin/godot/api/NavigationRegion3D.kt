@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_NAVIGATIONREGION3D: Int = 403
-
 /**
  * A traversable 3D region based on a [NavigationMesh] that [NavigationAgent3D]s can use for
  * pathfinding.
@@ -130,7 +128,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONREGION3D, scriptIndex)
+    createNativeObject(403, scriptIndex)
   }
 
   /**

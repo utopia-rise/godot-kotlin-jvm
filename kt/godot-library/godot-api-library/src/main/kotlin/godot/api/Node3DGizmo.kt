@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_NODE3DGIZMO: Int = 408
-
 /**
  * This abstract class helps connect the [Node3D] scene with the editor-specific [EditorNode3DGizmo]
  * class.
@@ -22,7 +20,7 @@ private const val ENGINECLASS_NODE3DGIZMO: Int = 408
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NODE3DGIZMO, scriptIndex)
+    createNativeObject(408, scriptIndex)
   }
 
   public companion object

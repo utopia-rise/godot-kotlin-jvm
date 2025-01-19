@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_VISUALSHADERNODEOUTPUT: Int = 748
-
 /**
  * This visual shader node is present in all shader graphs in form of "Output" block with multiple
  * output value ports.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_VISUALSHADERNODEOUTPUT: Int = 748
 @GodotBaseType
 public open class VisualShaderNodeOutput internal constructor() : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEOUTPUT, scriptIndex)
+    createNativeObject(748, scriptIndex)
   }
 
   public companion object

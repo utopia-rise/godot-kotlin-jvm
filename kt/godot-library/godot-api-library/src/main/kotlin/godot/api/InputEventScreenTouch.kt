@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTSCREENTOUCH: Int = 327
-
 /**
  * Stores information about multi-touch press/release input events. Supports touch press, touch
  * release and [index] for multi-touch count and order.
@@ -90,7 +88,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTSCREENTOUCH, scriptIndex)
+    createNativeObject(327, scriptIndex)
   }
 
   /**

@@ -47,8 +47,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_TEXTPARAGRAPH: Int = 642
-
 /**
  * Abstraction over [TextServer] for handling a single paragraph of text.
  */
@@ -189,7 +187,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_TEXTPARAGRAPH, scriptIndex)
+    createNativeObject(642, scriptIndex)
   }
 
   /**

@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_ANIMATIONROOTNODE: Int = 71
-
 /**
  * [AnimationRootNode] is a base class for [AnimationNode]s that hold a complete animation. A
  * complete animation refers to the output of an [AnimationNodeOutput] in an [AnimationNodeBlendTree]
@@ -27,7 +25,7 @@ private const val ENGINECLASS_ANIMATIONROOTNODE: Int = 71
 @GodotBaseType
 public open class AnimationRootNode : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONROOTNODE, scriptIndex)
+    createNativeObject(71, scriptIndex)
   }
 
   public companion object

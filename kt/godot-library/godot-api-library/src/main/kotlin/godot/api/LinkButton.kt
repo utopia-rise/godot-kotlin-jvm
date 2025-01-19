@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LINKBUTTON: Int = 358
-
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
  * cause a context change (like linking to a web page).
@@ -128,7 +126,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LINKBUTTON, scriptIndex)
+    createNativeObject(358, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

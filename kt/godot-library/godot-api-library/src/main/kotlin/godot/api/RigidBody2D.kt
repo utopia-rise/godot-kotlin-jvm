@@ -35,8 +35,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_RIGIDBODY2D: Int = 555
-
 /**
  * [RigidBody2D] implements full 2D physics. It cannot be controlled directly, instead, you must
  * apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the
@@ -438,7 +436,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RIGIDBODY2D, scriptIndex)
+    createNativeObject(555, scriptIndex)
   }
 
   /**

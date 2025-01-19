@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC: Int = 125
-
 /**
  * Playback instance for [AudioStreamPolyphonic]. After setting the `stream` property of
  * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D], the playback instance can be
@@ -36,7 +34,7 @@ private const val ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC: Int = 125
 @GodotBaseType
 public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC, scriptIndex)
+    createNativeObject(125, scriptIndex)
   }
 
   /**

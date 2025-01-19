@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEVEC2PARAMETER: Int = 803
-
 /**
  * Translated to `uniform vec2` in the shader language.
  */
@@ -53,7 +51,7 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEVEC2PARAMETER, scriptIndex)
+    createNativeObject(803, scriptIndex)
   }
 
   /**

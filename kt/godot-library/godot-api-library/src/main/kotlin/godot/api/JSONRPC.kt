@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_JSONRPC: Int = 335
-
 /**
  * [url=https://www.jsonrpc.org/]JSON-RPC[/url] is a standard which wraps a method call in a [JSON]
  * object. The object has a particular structure and identifies which method is called, the parameters
@@ -39,7 +37,7 @@ private const val ENGINECLASS_JSONRPC: Int = 335
 @GodotBaseType
 public open class JSONRPC : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JSONRPC, scriptIndex)
+    createNativeObject(335, scriptIndex)
   }
 
   public final fun setScope(scope: String, target: Object?): Unit {

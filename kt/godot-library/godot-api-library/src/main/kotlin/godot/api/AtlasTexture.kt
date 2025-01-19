@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_ATLASTEXTURE: Int = 78
-
 /**
  * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An
  * additional [margin] can also be set, which is useful for small adjustments.
@@ -87,7 +85,7 @@ public open class AtlasTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ATLASTEXTURE, scriptIndex)
+    createNativeObject(78, scriptIndex)
   }
 
   /**

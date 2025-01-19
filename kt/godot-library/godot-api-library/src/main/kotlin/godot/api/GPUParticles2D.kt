@@ -37,8 +37,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GPUPARTICLES2D: Int = 268
-
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
  * features an emitter that generates some number of particles at a given rate.
@@ -384,7 +382,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GPUPARTICLES2D, scriptIndex)
+    createNativeObject(268, scriptIndex)
   }
 
   /**

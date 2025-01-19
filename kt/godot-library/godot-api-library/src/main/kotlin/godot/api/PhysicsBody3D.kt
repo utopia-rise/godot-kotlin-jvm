@@ -29,8 +29,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_PHYSICSBODY3D: Int = 461
-
 /**
  * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
  * bodies inherit from it.
@@ -106,7 +104,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSBODY3D, scriptIndex)
+    createNativeObject(461, scriptIndex)
   }
 
   /**

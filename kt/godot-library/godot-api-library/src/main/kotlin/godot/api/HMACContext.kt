@@ -19,8 +19,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HMACCONTEXT: Int = 294
-
 /**
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
  * supports creating the message over time rather than providing it all at once.
@@ -73,7 +71,7 @@ private const val ENGINECLASS_HMACCONTEXT: Int = 294
 @GodotBaseType
 public open class HMACContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HMACCONTEXT, scriptIndex)
+    createNativeObject(294, scriptIndex)
   }
 
   /**

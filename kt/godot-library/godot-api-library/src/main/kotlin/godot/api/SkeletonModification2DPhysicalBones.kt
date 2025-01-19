@@ -24,8 +24,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES: Int = 591
-
 /**
  * This modification takes the transforms of [PhysicalBone2D] nodes and applies them to [Bone2D]
  * nodes. This allows the [Bone2D] nodes to react to physics thanks to the linked [PhysicalBone2D]
@@ -45,7 +43,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
+    createNativeObject(591, scriptIndex)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {

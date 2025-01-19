@@ -25,8 +25,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_UDPSERVER: Int = 681
-
 /**
  * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new
  * packets. See also [PacketPeerUDP.connectToHost].
@@ -169,7 +167,7 @@ public open class UDPServer : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_UDPSERVER, scriptIndex)
+    createNativeObject(681, scriptIndex)
   }
 
   /**

@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COMPRESSEDTEXTURELAYERED: Int = 202
-
 /**
  * Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot be used directly, but
  * contains all the functions necessary for accessing the derived resource types. See also
@@ -37,7 +35,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
+    createNativeObject(202, scriptIndex)
   }
 
   /**

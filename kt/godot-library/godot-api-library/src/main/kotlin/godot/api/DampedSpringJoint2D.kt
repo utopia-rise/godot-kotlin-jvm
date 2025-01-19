@@ -19,8 +19,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_DAMPEDSPRINGJOINT2D: Int = 224
-
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
  * spring that always wants to stretch to a given length.
@@ -77,7 +75,7 @@ public open class DampedSpringJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_DAMPEDSPRINGJOINT2D, scriptIndex)
+    createNativeObject(224, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

@@ -12,8 +12,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RESOURCEIMPORTER: Int = 550
-
 /**
  * This is the base class for Godot's resource importers. To implement your own resource importers
  * using editor plugins, see [EditorImportPlugin].
@@ -21,7 +19,7 @@ private const val ENGINECLASS_RESOURCEIMPORTER: Int = 550
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RESOURCEIMPORTER, scriptIndex)
+    createNativeObject(550, scriptIndex)
   }
 
   public enum class ImportOrder(

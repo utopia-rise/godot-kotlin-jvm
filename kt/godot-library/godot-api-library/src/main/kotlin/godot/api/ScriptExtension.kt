@@ -19,12 +19,10 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SCRIPTEXTENSION: Int = 564
-
 @GodotBaseType
 public open class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SCRIPTEXTENSION, scriptIndex)
+    createNativeObject(564, scriptIndex)
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {

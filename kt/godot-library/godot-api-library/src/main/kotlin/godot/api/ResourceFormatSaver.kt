@@ -17,8 +17,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_RESOURCEFORMATSAVER: Int = 549
-
 /**
  * The engine can save resources when you do it from the editor, or when you use the [ResourceSaver]
  * singleton. This is accomplished thanks to multiple [ResourceFormatSaver]s, each handling its own
@@ -32,7 +30,7 @@ private const val ENGINECLASS_RESOURCEFORMATSAVER: Int = 549
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_RESOURCEFORMATSAVER, scriptIndex)
+    createNativeObject(549, scriptIndex)
   }
 
   /**

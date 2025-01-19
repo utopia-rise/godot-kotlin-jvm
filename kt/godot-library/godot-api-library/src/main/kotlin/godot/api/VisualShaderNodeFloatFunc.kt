@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEFLOATFUNC: Int = 730
-
 /**
  * Accept a floating-point scalar (`x`) to the input port and transform it according to [function].
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATFUNC, scriptIndex)
+    createNativeObject(730, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

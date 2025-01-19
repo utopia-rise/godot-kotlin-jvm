@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_LIGHTMAPGIDATA: Int = 352
-
 /**
  * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is
  * replaced every time lightmaps are baked in [LightmapGI].
@@ -66,7 +64,7 @@ public open class LightmapGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_LIGHTMAPGIDATA, scriptIndex)
+    createNativeObject(352, scriptIndex)
   }
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {

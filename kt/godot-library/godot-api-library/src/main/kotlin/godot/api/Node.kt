@@ -52,8 +52,6 @@ import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
 
-private const val ENGINECLASS_NODE: Int = 405
-
 public infix fun Long.or(other: godot.api.Node.ProcessThreadMessages): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.Node.ProcessThreadMessages): Long = this.xor(other.flag)
@@ -386,7 +384,7 @@ public open class Node : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NODE, scriptIndex)
+    createNativeObject(405, scriptIndex)
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): Error =

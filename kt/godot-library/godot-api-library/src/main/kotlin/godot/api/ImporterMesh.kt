@@ -33,8 +33,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_IMPORTERMESH: Int = 311
-
 /**
  * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based
  * geometry, divided in *surfaces*. Each surface contains a completely separate array and a material
@@ -47,7 +45,7 @@ private const val ENGINECLASS_IMPORTERMESH: Int = 311
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMPORTERMESH, scriptIndex)
+    createNativeObject(311, scriptIndex)
   }
 
   /**

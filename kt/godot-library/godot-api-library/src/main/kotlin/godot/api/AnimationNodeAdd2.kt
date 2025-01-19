@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_ANIMATIONNODEADD2: Int = 52
-
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Blends two animations additively based on the
  * amount value.
@@ -24,7 +22,7 @@ private const val ENGINECLASS_ANIMATIONNODEADD2: Int = 52
 @GodotBaseType
 public open class AnimationNodeAdd2 : AnimationNodeSync() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_ANIMATIONNODEADD2, scriptIndex)
+    createNativeObject(52, scriptIndex)
   }
 
   public companion object

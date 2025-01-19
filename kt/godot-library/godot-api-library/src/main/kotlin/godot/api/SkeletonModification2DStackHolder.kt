@@ -16,8 +16,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER: Int = 592
-
 /**
  * This [SkeletonModification2D] holds a reference to a [SkeletonModificationStack2D], allowing you
  * to use multiple modification stacks on a single [Skeleton2D].
@@ -27,7 +25,7 @@ private const val ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER: Int = 592
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_SKELETONMODIFICATION2DSTACKHOLDER, scriptIndex)
+    createNativeObject(592, scriptIndex)
   }
 
   /**

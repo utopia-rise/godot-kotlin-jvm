@@ -25,8 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PATHFOLLOW3D: Int = 455
-
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
  * distance from the first vertex.
@@ -150,7 +148,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PATHFOLLOW3D, scriptIndex)
+    createNativeObject(455, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

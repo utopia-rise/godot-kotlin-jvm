@@ -33,8 +33,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_INPUTEVENT: Int = 313
-
 /**
  * Abstract base class of all types of input events. See [Node.Input].
  */
@@ -54,7 +52,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENT, scriptIndex)
+    createNativeObject(313, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {

@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_NAVIGATIONREGION2D: Int = 402
-
 /**
  * A traversable 2D region based on a [NavigationPolygon] that [NavigationAgent2D]s can use for
  * pathfinding.
@@ -131,7 +129,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONREGION2D, scriptIndex)
+    createNativeObject(402, scriptIndex)
   }
 
   /**

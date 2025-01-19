@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEFLOATOP: Int = 731
-
 /**
  * Applies [operator] to two floating-point inputs: `a` and `b`.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEFLOATOP, scriptIndex)
+    createNativeObject(731, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

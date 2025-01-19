@@ -21,8 +21,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_STREAMPEERBUFFER: Int = 620
-
 /**
  * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
  * binary data from network sessions. To handle binary data stored in files, [FileAccess] can be used
@@ -45,7 +43,7 @@ public open class StreamPeerBuffer : StreamPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_STREAMPEERBUFFER, scriptIndex)
+    createNativeObject(620, scriptIndex)
   }
 
   /**

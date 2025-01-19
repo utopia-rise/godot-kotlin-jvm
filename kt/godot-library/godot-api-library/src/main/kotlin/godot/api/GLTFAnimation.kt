@@ -24,8 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFANIMATION: Int = 251
-
 @GodotBaseType
 public open class GLTFAnimation : Resource() {
   /**
@@ -48,7 +46,7 @@ public open class GLTFAnimation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFANIMATION, scriptIndex)
+    createNativeObject(251, scriptIndex)
   }
 
   public final fun getOriginalName(): String {

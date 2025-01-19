@@ -12,12 +12,10 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_PACKETPEEREXTENSION: Int = 442
-
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PACKETPEEREXTENSION, scriptIndex)
+    createNativeObject(442, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Int {

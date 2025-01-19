@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_HBOXCONTAINER: Int = 292
-
 /**
  * A variant of [BoxContainer] that can only arrange its child controls horizontally. Child controls
  * are rearranged automatically when their minimum size changes.
@@ -20,7 +18,7 @@ private const val ENGINECLASS_HBOXCONTAINER: Int = 292
 @GodotBaseType
 public open class HBoxContainer : BoxContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_HBOXCONTAINER, scriptIndex)
+    createNativeObject(292, scriptIndex)
   }
 
   public companion object

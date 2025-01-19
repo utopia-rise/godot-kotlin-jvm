@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISUALSHADERNODEMIX: Int = 745
-
 /**
  * Translates to `mix(a, b, weight)` in the shader language.
  */
@@ -37,7 +35,7 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISUALSHADERNODEMIX, scriptIndex)
+    createNativeObject(745, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

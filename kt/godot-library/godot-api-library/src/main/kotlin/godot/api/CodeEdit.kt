@@ -40,8 +40,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINECLASS_CODEEDIT: Int = 184
-
 /**
  * CodeEdit is a specialized [TextEdit] designed for editing plain text code files. It has many
  * features commonly found in code editors such as line numbers, line folding, code completion, indent
@@ -301,7 +299,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_CODEEDIT, scriptIndex)
+    createNativeObject(184, scriptIndex)
   }
 
   /**

@@ -23,8 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_COLLISIONPOLYGON3D: Int = 189
-
 /**
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
  * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
@@ -80,7 +78,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_COLLISIONPOLYGON3D, scriptIndex)
+    createNativeObject(189, scriptIndex)
   }
 
   public final fun setDepth(depth: Float): Unit {

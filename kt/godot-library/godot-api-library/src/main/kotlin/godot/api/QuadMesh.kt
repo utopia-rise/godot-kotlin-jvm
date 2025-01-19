@@ -11,8 +11,6 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_QUADMESH: Int = 507
-
 /**
  * Class representing a square [PrimitiveMesh]. This flat mesh does not have a thickness. By
  * default, this mesh is aligned on the X and Y axes; this rotation is more suited for use with
@@ -22,7 +20,7 @@ private const val ENGINECLASS_QUADMESH: Int = 507
 @GodotBaseType
 public open class QuadMesh : PlaneMesh() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_QUADMESH, scriptIndex)
+    createNativeObject(507, scriptIndex)
   }
 
   public companion object

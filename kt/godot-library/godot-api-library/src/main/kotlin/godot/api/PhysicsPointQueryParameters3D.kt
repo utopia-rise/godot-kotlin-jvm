@@ -27,8 +27,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D: Int = 472
-
 /**
  * By changing various properties of this object, such as the point position, you can configure the
  * parameters for [PhysicsDirectSpaceState3D.intersectPoint].
@@ -99,7 +97,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D, scriptIndex)
+    createNativeObject(472, scriptIndex)
   }
 
   /**

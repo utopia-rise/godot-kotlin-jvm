@@ -20,8 +20,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_VISIBLEONSCREENENABLER3D: Int = 701
-
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target
  * node will be automatically enabled (via its [Node.processMode] property) when any part of this
@@ -62,7 +60,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
+    createNativeObject(701, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {

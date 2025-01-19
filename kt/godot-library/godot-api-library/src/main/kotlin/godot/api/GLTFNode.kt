@@ -34,8 +34,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GLTFNODE: Int = 259
-
 /**
  * Represents a GLTF node. GLTF nodes may have names, transforms, children (other GLTF nodes), and
  * more specialized properties (represented by their own classes).
@@ -201,7 +199,7 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GLTFNODE, scriptIndex)
+    createNativeObject(259, scriptIndex)
   }
 
   /**

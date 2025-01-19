@@ -28,8 +28,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_XRHANDTRACKER: Int = 845
-
 public infix fun Long.or(other: godot.api.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.api.XRHandTracker.HandJointFlags): Long =
@@ -84,7 +82,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_XRHANDTRACKER, scriptIndex)
+    createNativeObject(845, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

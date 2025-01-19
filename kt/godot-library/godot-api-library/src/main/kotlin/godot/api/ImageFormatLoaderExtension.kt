@@ -19,8 +19,6 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_IMAGEFORMATLOADEREXTENSION: Int = 306
-
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
  * but you can choose to implement support for additional image formats by extending this class.
@@ -30,7 +28,7 @@ private const val ENGINECLASS_IMAGEFORMATLOADEREXTENSION: Int = 306
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_IMAGEFORMATLOADEREXTENSION, scriptIndex)
+    createNativeObject(306, scriptIndex)
   }
 
   /**

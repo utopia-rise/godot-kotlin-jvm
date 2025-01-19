@@ -18,8 +18,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_INPUTEVENTFROMWINDOW: Int = 315
-
 /**
  * InputEventFromWindow represents events specifically received by windows. This includes mouse
  * events, keyboard events in focused windows or touch screen actions.
@@ -38,7 +36,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
+    createNativeObject(315, scriptIndex)
   }
 
   public final fun setWindowId(id: Long): Unit {

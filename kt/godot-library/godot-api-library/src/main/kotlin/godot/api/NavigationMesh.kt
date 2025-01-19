@@ -35,8 +35,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_NAVIGATIONMESH: Int = 392
-
 /**
  * A navigation mesh is a collection of polygons that define which areas of an environment are
  * traversable to aid agents in pathfinding through complicated spaces.
@@ -347,7 +345,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_NAVIGATIONMESH, scriptIndex)
+    createNativeObject(392, scriptIndex)
   }
 
   /**

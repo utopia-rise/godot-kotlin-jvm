@@ -28,8 +28,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINECLASS_GRAPHFRAME: Int = 287
-
 /**
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
  * configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved,
@@ -114,7 +112,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_GRAPHFRAME, scriptIndex)
+    createNativeObject(287, scriptIndex)
   }
 
   /**

@@ -16,12 +16,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINECLASS_JVMSCRIPT: Int = 341
-
 @GodotBaseType
 public open class JvmScript internal constructor() : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(ENGINECLASS_JVMSCRIPT, scriptIndex)
+    createNativeObject(341, scriptIndex)
   }
 
   public final fun new(vararg __var_args: Any?): Any? {
