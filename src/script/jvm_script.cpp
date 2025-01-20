@@ -285,8 +285,171 @@ JvmScript::~JvmScript() {
     kotlin_class = nullptr;
 }
 
-StringName PathScript::get_global_name() const {
+StringName SourceScript::get_functional_name() const {
+    static String package_keyword { PACKAGE_KEYWORD };
+    static int package_keyword_size { package_keyword.size() };
+
+    int initial_start_index = 0;
+    while (skip_comments(initial_start_index) || skip_spaces_and_newlines(initial_start_index)) {}
+
+    int package_keyword_index { source.find(package_keyword, initial_start_index) };
+
+    String package_name;
+    if (package_keyword_index != -1) {
+        int package_start_index = package_keyword_index + package_keyword_size - 1;
+
+        while (skip_comments(package_start_index) || skip_spaces_and_newlines(package_start_index)) {}
+
+        char32_t next_character = source[package_start_index];
+        int package_end_index = package_start_index;
+        while (package_end_index < source.size() && !is_package_end(next_character)) {
+            next_character = source[++package_end_index];
+        }
+
+        package_name = source.substr(package_start_index, package_end_index - package_start_index);
+    }
+
+    static String register_class_annotation { REGISTER_CLASS_ANNOTATION };
+    static int register_class_annotation_size { register_class_annotation.size() };
+    int register_class_search_start = package_keyword_index == -1 ? 0 : package_keyword_index;
+
+    while (skip_comments(register_class_search_start) || skip_spaces_and_newlines(register_class_search_start)) {}
+
+    int register_class_index { source.find(register_class_annotation, register_class_search_start) };
+
+    if (register_class_index == -1) {
+        JVM_LOG_WARNING(vformat("Cannot find registered class in %s", get_path()));
+        return StringName();
+    }
+
+    int class_search_start_index = register_class_index + register_class_annotation_size - 1;
+
+    while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+
+    char32_t next_character = source[class_search_start_index];
+    if (next_character == U'(') {
+        next_character = source[++class_search_start_index];
+
+        while (class_search_start_index < source.size() && next_character != U')') {
+            next_character = source[++class_search_start_index];
+        }
+
+        while (class_search_start_index < source.size() && next_character == U')') {
+            ++class_search_start_index;
+            while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+            next_character = source[class_search_start_index];
+        }
+    }
+
+    while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+
+    static String class_keyword { CLASS_KEYWORD };
+    static int class_keyword_size { class_keyword.size() };
+    int class_keyword_index { source.find(class_keyword, class_search_start_index) };
+
+    if (class_keyword_index == -1) {
+        JVM_LOG_WARNING(vformat("Cannot find class declaration in %s", get_path()));
+        return StringName();
+    }
+
+    int class_start_index = class_keyword_index + class_keyword_size - 1;
+
+    while (skip_comments(class_start_index) || skip_spaces_and_newlines(class_start_index)) {}
+
+    next_character = source[class_start_index];
+    int class_end_index = class_start_index;
+    while (class_end_index < source.size() && !is_class_name_end(next_character)) {
+        next_character = source[++class_end_index];
+    }
+
+    String class_name { source.substr(class_start_index, class_end_index - class_start_index) };
+
+    if (package_name.is_empty()) {
+        return class_name;
+    }
+
+    return vformat("%s.%s", package_name, class_name);
+}
+
+
+StringName SourceScript::get_global_name() const {
     return {};
+}
+//
+bool SourceScript::is_whitespace_or_linebreak(char32_t character) {
+    return is_whitespace(character) || is_linebreak(character);
+}
+
+bool SourceScript::is_package_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) || character == U';' || character == U'/';
+}
+
+bool SourceScript::is_class_name_end(char32_t character) {
+    return is_whitespace_or_linebreak(character) ||
+        character == U':' ||
+        character == U'{' ||
+        character == U'<' ||
+        character == U'[' ||
+        character == U'(' ||
+        character == U'/';
+}
+
+bool SourceScript::skip_spaces_and_newlines(int& start_index) const {
+    int initial_index = start_index;
+    char32_t next_character = source[start_index];
+
+    while (start_index < source.size() && is_whitespace_or_linebreak(next_character)) {
+        next_character = source[++start_index];
+    }
+
+    return start_index != initial_index;
+}
+
+bool SourceScript::skip_comments(int& start_index) const {
+    char32_t next_character = source[start_index];
+
+    if (next_character != U'/') {
+        return false;
+    }
+
+    bool isLineComment = false;
+    bool isMultilineComment = false;
+    if (start_index < source.size() - 1) {
+        next_character = source[++start_index];
+
+        isLineComment = next_character == U'/';
+        isMultilineComment = next_character == U'*';
+    }
+
+    if (!isLineComment && !isMultilineComment) {
+        JVM_LOG_WARNING(vformat("Cannot parse %s, found unexpected '/' character", get_path()));
+    }
+
+    if (isLineComment) {
+        while (start_index < source.size() && !is_linebreak(next_character)) {
+            next_character = source[++start_index];
+        }
+    }
+
+    if (isMultilineComment) {
+        while (start_index < source.size()) {
+            bool isCommentEnd = next_character == U'*';
+            next_character = source[++start_index];
+
+            if (start_index == source.size()) {
+                JVM_LOG_WARNING(vformat("Cannot parse %s, found unclosed multiline comment", get_path()));
+            }
+
+            isCommentEnd = isCommentEnd && next_character == U'/';
+
+            if (isCommentEnd) {
+                ++start_index;
+                break;
+            }
+        }
+    }
+
+    return true;
 }
 
 NamedScript::~NamedScript() {
