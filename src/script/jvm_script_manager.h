@@ -13,8 +13,8 @@ class JvmScriptManager: public Object {
     HashMap<String, StringName> filepath_to_name_map;
     HashMap<StringName, String> name_to_filepath_map;
 
-    Vector<Ref<PathScript>> path_scripts;
-    HashMap<String, Ref<PathScript>> path_scripts_map;
+    Vector<Ref<SourceScript>> path_scripts;
+    HashMap<String, Ref<SourceScript>> path_scripts_map;
 
 #ifdef TOOLS_ENABLED
     uint64_t last_reload = 0;
@@ -37,8 +37,8 @@ public:
 
     Ref<NamedScript> get_script_from_name(const StringName& name) const;
     Ref<NamedScript> get_named_script_from_index(int p_index) const;
-    Ref<NamedScript> get_named_script_from_pathScript(Ref<PathScript> pathScript) const;
-    Ref<PathScript> get_script_from_path(const String& p_path) const;
+    Ref<NamedScript> get_named_script_from_pathScript(Ref<SourceScript> pathScript) const;
+    Ref<SourceScript> get_script_from_path(const String& p_path) const;
 
     template<class SCRIPT>
     Ref<SCRIPT> get_or_create_script(const String& p_path, bool* created);
@@ -69,7 +69,7 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_script(const String& p_path, bool* c
             named_scripts_map[script_name] = jvm_script;
             named_scripts.push_back(jvm_script);
         }
-    } else if constexpr (std::is_base_of<PathScript, SCRIPT>()) {
+    } else if constexpr (std::is_base_of<SourceScript, SCRIPT>()) {
         // Path Scripts are created and cached when loading the usercode, we create a placeholder if missing.
         jvm_script = get_script_from_path(p_path);
         if (jvm_script.is_null()) {
