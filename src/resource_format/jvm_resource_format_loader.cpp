@@ -79,6 +79,10 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         if (r_error) { *r_error = load_err; }
         jvm_script->set_source_code(source_code);
 
+        if (is_source) {
+            JVM_LOG_INFO(vformat("fqdn: %s", dynamic_cast<SourceScript*>(jvm_script.ptr())->get_functional_name()));
+        }
+
         if (!script_is_new && is_source) {
             String path = jvm_script->get_path();
             MessageQueue::get_singleton()->push_callable(
