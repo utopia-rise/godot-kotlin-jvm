@@ -3,7 +3,7 @@
 
 #include "script/jvm_script.h"
 
-class KotlinScript : public PathScript {
+class KotlinScript : public SourceScript {
     GDCLASS(KotlinScript, JvmScript);
 
 public:

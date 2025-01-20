@@ -80,11 +80,22 @@ protected:
     static void _bind_methods();
 };
 
-class PathScript : public JvmScript {
+class SourceScript : public JvmScript {
 public:
-    PathScript() = default;
-    ~PathScript() override = default;
+    SourceScript() = default;
+    ~SourceScript() override = default;
+    StringName get_functional_name() const;
     StringName get_global_name() const override;
+
+protected:
+    static constexpr const char* PACKAGE_KEYWORD = "package";
+    static constexpr const char* CLASS_KEYWORD = "class";
+    static constexpr const char* REGISTER_CLASS_ANNOTATION = "@RegisterClass";
+    static bool is_whitespace_or_linebreak(char32_t character);
+    static bool is_package_end(char32_t character);
+    static bool is_class_name_end(char32_t character);
+    bool skip_spaces_and_newlines(int& start_index) const;
+    bool skip_comments(int& start_index) const;
 };
 
 class NamedScript : public JvmScript {

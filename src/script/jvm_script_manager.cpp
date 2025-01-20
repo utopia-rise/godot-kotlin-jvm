@@ -22,7 +22,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     name_to_filepath_map.clear();
     filepath_to_name_map.clear();
 
-    HashMap<String, Ref<PathScript>> path_script_cache = path_scripts_map;
+    HashMap<String, Ref<SourceScript>> path_script_cache = path_scripts_map;
     path_scripts.clear();
     path_scripts_map.clear();
 #endif
@@ -68,7 +68,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             name_to_filepath_map[kotlin_class->registered_class_name] = script_path;
             filepath_to_name_map[script_path] = kotlin_class->registered_class_name;
 
-            Ref<PathScript> path_script;
+            Ref<SourceScript> path_script;
 #ifdef TOOLS_ENABLED
             // Try to find if a matching PathScript exist
             if (name_to_filepath_cache.has(script_name)) {
@@ -91,7 +91,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
                 path_script->set_path(script_path, true);
             } else {
 #endif
-                path_script = Ref<PathScript>(ResourceLoader::load(script_path));
+                path_script = Ref<SourceScript>(ResourceLoader::load(script_path));
                 path_script->kotlin_class = kotlin_class;
 #ifdef TOOLS_ENABLED
             }
@@ -122,8 +122,8 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 
     // We do the same with PathScripts
-    for (const KeyValue<String, Ref<PathScript>>& keyValue : path_script_cache) {
-        Ref<PathScript> path_script {keyValue.value};
+    for (const KeyValue<String, Ref<SourceScript>>& keyValue : path_script_cache) {
+        Ref<SourceScript> path_script {keyValue.value};
         String path {keyValue.key};
         // No need to delete the KotlinClass, it has already been done with the NamedScript that shares it.
         path_script->kotlin_class = nullptr;
@@ -149,7 +149,7 @@ Ref<NamedScript> JvmScriptManager::get_named_script_from_index(int p_index) cons
     return named_scripts[p_index];
 }
 
-Ref<NamedScript> JvmScriptManager::get_named_script_from_pathScript(Ref<PathScript> pathScript) const {
+Ref<NamedScript> JvmScriptManager::get_named_script_from_pathScript(Ref<SourceScript> pathScript) const {
     String path = pathScript->get_path();
 
     if (filepath_to_name_map.has(path)) {
@@ -166,8 +166,8 @@ Ref<NamedScript> JvmScriptManager::get_script_from_name(const StringName& name) 
     return {};
 }
 
-Ref<PathScript> JvmScriptManager::get_script_from_path(const String& p_path) const {
-    if (HashMap<String, Ref<PathScript>>::ConstIterator element = path_scripts_map.find(p_path)) {
+Ref<SourceScript> JvmScriptManager::get_script_from_path(const String& p_path) const {
+    if (HashMap<String, Ref<SourceScript>>::ConstIterator element = path_scripts_map.find(p_path)) {
         return element->value;
     }
     return {};
@@ -180,7 +180,7 @@ void JvmScriptManager::update_all_scripts(uint64_t update_time) {
         ptr->update_script_exports();
         ptr->set_last_time_source_modified(update_time);
     }
-    for (const Ref<PathScript>& path_script : path_scripts) {
+    for (const Ref<SourceScript>& path_script : path_scripts) {
         JvmScript* ptr = path_script.ptr();
         ptr->update_script_exports();
         ptr->set_last_time_source_modified(update_time);
@@ -188,7 +188,7 @@ void JvmScriptManager::update_all_scripts(uint64_t update_time) {
 }
 
 void JvmScriptManager::invalidate_source(String path) {
-    Ref<PathScript> path_script = get_script_from_path(path);
+    Ref<SourceScript> path_script = get_script_from_path(path);
     if (path_script.is_null()) { return; }
 
     uint64_t last_modified = path_script->get_last_modified_time();
