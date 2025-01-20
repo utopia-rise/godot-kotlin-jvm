@@ -3,7 +3,7 @@
 
 #include "script/jvm_script.h"
 
-class JavaScript : public PathScript {
+class JavaScript : public SourceScript {
     GDCLASS(JavaScript, JvmScript);
 
 public:
