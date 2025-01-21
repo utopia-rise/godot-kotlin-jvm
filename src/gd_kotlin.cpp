@@ -396,11 +396,22 @@ void GDKotlin::validate_state() {
     if (state == State::NOT_STARTED) {
         invalid = true;
 #ifdef DYNAMIC_JVM
+#ifdef MACOS_ENABLED
         if (user_configuration.vm_type == jni::JVM) {
             cause = "Couldn't open JVM dynamic library.";
             hint =
-              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
-        } else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
+              "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
+              "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
+              "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`";
+        }
+#else
+         if (user_configuration.vm_type == jni::JVM) {
+             cause = "Couldn't open JVM dynamic library.";
+             hint =
+               "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
+         }
+#endif
+         else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
             cause = "Couldn't open Graal Native Image.";
             hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build.";
         }

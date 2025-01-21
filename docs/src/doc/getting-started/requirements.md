@@ -12,6 +12,12 @@ To use this module at least JDK 11 is needed, note you will need the JDK not jus
 
 You can install Java via [SDKMAN!](https://sdkman.io/). Once you installed it, you can run `sdk install java 11.0.11.hs-adpt` to install the LTS version of Java from [AdoptOpenJDK](https://adoptopenjdk.net/). If you want to pick a different version, you can run `sdk list java`.
 
+!!! warning
+    On macOS apps started from the GUI cannot see environment variables from bash or zsh, only command line apps can. Set environment variable using launchctl.
+    ```shell
+    launchctl setenv JAVA_HOME pathtoyourjava
+    ```
+
 ### Windows
 
 You can install Java via [Chocolatey](https://community.chocolatey.org/). For example, to install [AdoptOpenJDK](https://adoptopenjdk.net/) you can run `choco install adoptopenjdk11`.
