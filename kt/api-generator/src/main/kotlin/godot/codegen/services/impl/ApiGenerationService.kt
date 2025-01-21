@@ -69,8 +69,10 @@ class ApiGenerationService(
     private val apiService: IApiService,
     private val nativeStructureRepository: INativeStructureRepository
 ) : IApiGenerationService {
+
     private var nextEngineClassIndex = 0
     private var nextSingletonIndex = 0
+    val registrationFileSpec = RegistrationFileSpec()
 
     override fun generateCore(outputDir: File) {
         val apiClasses = apiService.getClasses().filter {
@@ -79,7 +81,7 @@ class ApiGenerationService(
 
         for (enrichedClass in apiClasses) {
             generateClass(enrichedClass).writeTo(outputDir)
-
+            generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
         }
 
         for (enum in apiService.getGlobalEnums()) {
@@ -102,9 +104,6 @@ class ApiGenerationService(
     override fun generateApi(outputDir: File) {
         apiService.findGetSetMethodsAndUpdateProperties()
 
-        //TODO: generateEngineTypesRegistration
-
-        val registrationFileSpec = RegistrationFileSpec()
 
         //We first generate singletons so that their index in engine types and engine singleton lists are same.
         for (singleton in apiService.getSingletons()) {
@@ -113,16 +112,17 @@ class ApiGenerationService(
         }
 
         for (enrichedClass in apiService.getClasses()) {
-
             if (enrichedClass.name != "Object" && enrichedClass.name != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
+                generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
             }
-            generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
         }
-
-        registrationFileSpec.build().writeTo(outputDir)
     }
 
+
+    override fun generateEngineRegistration(outputDir: File) {
+        registrationFileSpec.build().writeTo(outputDir)
+    }
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
         val fileBuilder = FileSpec.builder(godotApiPackage, singletonClass.name)

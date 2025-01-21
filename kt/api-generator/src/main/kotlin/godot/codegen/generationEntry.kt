@@ -45,6 +45,7 @@ fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     val generationService: IApiGenerationService = ApiGenerationService(classGraphService, apiService, nativeStructureRepository)
     generationService.generateCore(coreDir)
     generationService.generateApi(apiDir)
+    generationService.generateEngineRegistration((apiDir))
 
     LambdaCallableGenerationService.generate(coreDir)
     SignalGenerationService.generateCore(coreDir)

@@ -863,6 +863,8 @@ import godot.core.variantMapper
 import kotlin.Unit
 
 public fun registerEngineTypes(): Unit {
+  TypeManager.registerEngineType("Object", Object::class, ::Object)
+  TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("Performance", Performance::class) { Performance }
   TypeManager.registerSingleton("Performance")
   TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager
@@ -1438,7 +1440,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NoiseTexture2D", NoiseTexture2D::class, ::NoiseTexture2D)
   TypeManager.registerEngineType("NoiseTexture3D", NoiseTexture3D::class, ::NoiseTexture3D)
   TypeManager.registerEngineType("ORMMaterial3D", ORMMaterial3D::class, ::ORMMaterial3D)
-  TypeManager.registerEngineType("Object", Object::class, ::Object)
   TypeManager.registerEngineType("Occluder3D", Occluder3D::class, ::Occluder3D)
   TypeManager.registerEngineType("OccluderInstance3D", OccluderInstance3D::class,
       ::OccluderInstance3D)
@@ -1612,7 +1613,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RayCast2D", RayCast2D::class, ::RayCast2D)
   TypeManager.registerEngineType("RayCast3D", RayCast3D::class, ::RayCast3D)
   TypeManager.registerEngineType("RectangleShape2D", RectangleShape2D::class, ::RectangleShape2D)
-  TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("ReferenceRect", ReferenceRect::class, ::ReferenceRect)
   TypeManager.registerEngineType("ReflectionProbe", ReflectionProbe::class, ::ReflectionProbe)
   TypeManager.registerEngineType("RegEx", RegEx::class, ::RegEx)
@@ -2101,6 +2101,8 @@ public fun registerEngineTypes(): Unit {
 }
 
 public fun registerVariantMapping(): Unit {
+  variantMapper[Object::class] = OBJECT
+  variantMapper[RefCounted::class] = OBJECT
   variantMapper[Performance::class] = OBJECT
   variantMapper[TextServerManager::class] = OBJECT
   variantMapper[PhysicsServer2DManager::class] = OBJECT
@@ -2512,7 +2514,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[NoiseTexture2D::class] = OBJECT
   variantMapper[NoiseTexture3D::class] = OBJECT
   variantMapper[ORMMaterial3D::class] = OBJECT
-  variantMapper[Object::class] = OBJECT
   variantMapper[Occluder3D::class] = OBJECT
   variantMapper[OccluderInstance3D::class] = OBJECT
   variantMapper[OccluderPolygon2D::class] = OBJECT
@@ -2630,7 +2631,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RayCast2D::class] = OBJECT
   variantMapper[RayCast3D::class] = OBJECT
   variantMapper[RectangleShape2D::class] = OBJECT
-  variantMapper[RefCounted::class] = OBJECT
   variantMapper[ReferenceRect::class] = OBJECT
   variantMapper[ReflectionProbe::class] = OBJECT
   variantMapper[RegEx::class] = OBJECT
@@ -2960,6 +2960,8 @@ public fun registerVariantMapping(): Unit {
 }
 
 public fun registerEngineTypeMethods(): Unit {
+  Object.MethodBindings
+  RefCounted.MethodBindings
   Performance.MethodBindings
   TextServerManager.MethodBindings
   PhysicsServer2DManager.MethodBindings
@@ -3371,7 +3373,6 @@ public fun registerEngineTypeMethods(): Unit {
   NoiseTexture2D.MethodBindings
   NoiseTexture3D.MethodBindings
   ORMMaterial3D.MethodBindings
-  Object.MethodBindings
   Occluder3D.MethodBindings
   OccluderInstance3D.MethodBindings
   OccluderPolygon2D.MethodBindings
@@ -3489,7 +3490,6 @@ public fun registerEngineTypeMethods(): Unit {
   RayCast2D.MethodBindings
   RayCast3D.MethodBindings
   RectangleShape2D.MethodBindings
-  RefCounted.MethodBindings
   ReferenceRect.MethodBindings
   ReflectionProbe.MethodBindings
   RegEx.MethodBindings
