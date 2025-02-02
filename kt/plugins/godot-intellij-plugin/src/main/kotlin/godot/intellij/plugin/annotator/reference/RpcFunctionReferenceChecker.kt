@@ -11,7 +11,7 @@ import godot.intellij.plugin.quickfix.TargetFunctionsRpcAnnotationHasRpcModeDisa
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 
 
@@ -45,7 +45,7 @@ object RpcFunctionReferenceChecker {
         if (
             relevantParent is KtCallExpression &&
             rpcFunctionNames.contains(callReference?.text) &&
-            (callReference?.mainReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "$godotApiPackage.${GodotTypes.node}"
+            (callReference?.mainReference?.resolve() as? KtNamedFunction)?.containingClass()?.fqName?.asString() == "$godotPackage.${GodotTypes.node}"
         ) {
             val targetFunction = element
                 .callableReference

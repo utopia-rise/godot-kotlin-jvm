@@ -1,0 +1,184 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
+import kotlin.Int
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * This node allows you to create a sphere for use with the CSG system.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
+@GodotBaseType
+public open class CSGSphere3D : CSGPrimitive3D() {
+  /**
+   * Radius of the sphere.
+   */
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
+    set(`value`) {
+      setRadius(value)
+    }
+
+  /**
+   * Number of vertical slices for the sphere.
+   */
+  public final inline var radialSegments: Int
+    @JvmName("radialSegmentsProperty")
+    get() = getRadialSegments()
+    @JvmName("radialSegmentsProperty")
+    set(`value`) {
+      setRadialSegments(value)
+    }
+
+  /**
+   * Number of horizontal slices for the sphere.
+   */
+  public final inline var rings: Int
+    @JvmName("ringsProperty")
+    get() = getRings()
+    @JvmName("ringsProperty")
+    set(`value`) {
+      setRings(value)
+    }
+
+  /**
+   * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem
+   * rounded. If `false` the sphere will have a flat shaded look.
+   */
+  public final inline var smoothFaces: Boolean
+    @JvmName("smoothFacesProperty")
+    get() = getSmoothFaces()
+    @JvmName("smoothFacesProperty")
+    set(`value`) {
+      setSmoothFaces(value)
+    }
+
+  /**
+   * The material used to render the sphere.
+   */
+  public final inline var material: Material?
+    @JvmName("materialProperty")
+    get() = getMaterial()
+    @JvmName("materialProperty")
+    set(`value`) {
+      setMaterial(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    createNativeObject(158, scriptIndex)
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setRadialSegments(radialSegments: Int): Unit {
+    TransferContext.writeArguments(LONG to radialSegments.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
+  }
+
+  public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setRings(rings: Int): Unit {
+    TransferContext.writeArguments(LONG to rings.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
+  }
+
+  public final fun getRings(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to smoothFaces)
+    TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
+  }
+
+  public final fun getSmoothFaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius", 373806689)
+
+    internal val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius", 1740695150)
+
+    internal val setRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1286410249)
+
+    internal val getRadialSegmentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3905245786)
+
+    internal val setRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings", 1286410249)
+
+    internal val getRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings", 3905245786)
+
+    internal val setSmoothFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2586408642)
+
+    internal val getSmoothFacesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36873697)
+
+    internal val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_material", 2757459619)
+
+    internal val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_material", 5934680)
+  }
+}

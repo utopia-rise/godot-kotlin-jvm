@@ -204,8 +204,8 @@ object GodotTypes {
     )
 }
 
-val GODOT_ERROR = ClassName(godotApiPackage, GodotKotlinJvmTypes.error)
-val GODOT_VARIANT_TYPE = ClassName(godotApiPackage, GodotKotlinJvmTypes.variantType)
+val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
+val GODOT_VARIANT_TYPE = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantType)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
 val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)

@@ -1,8 +1,8 @@
 package godot.tests
 
-import godot.NavigationMesh
-import godot.Node
-import godot.Object
+import godot.api.NavigationMesh
+import godot.api.Node
+import godot.api.Object
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty

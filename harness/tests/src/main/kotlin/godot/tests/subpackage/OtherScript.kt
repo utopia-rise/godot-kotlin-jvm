@@ -1,7 +1,7 @@
 package godot.tests.subpackage
 
-import godot.Node
-import godot.Node3D
+import godot.api.Node
+import godot.api.Node3D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 

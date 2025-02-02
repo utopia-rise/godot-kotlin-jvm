@@ -1,10 +1,9 @@
 package godot.tests
 
-import godot.Node
-import godot.PackedScene
-import godot.ResourceLoader
-import godot.extensions.asStatic
-
+import godot.api.Node
+import godot.api.PackedScene
+import godot.api.ResourceLoader
+import godot.extension.asStatic
 
 object GodotStaticDelegateTest {
     var ref = (ResourceLoader.load("res://Spatial.tscn") as PackedScene?).asStatic()

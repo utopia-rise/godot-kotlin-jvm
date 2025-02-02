@@ -15,7 +15,8 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotPackage
 
 object PropertyRegistrationGenerator {
     fun generate(
@@ -140,12 +141,12 @@ object PropertyRegistrationGenerator {
     private fun getPropertyUsage(registeredProperty: RegisteredProperty): ClassName {
         return if (registeredProperty.annotations.hasAnnotation<ExportAnnotation>()) {
             ClassName(
-                "$godotApiPackage.${GodotTypes.propertyUsage}",
+                "$godotCorePackage.${GodotTypes.propertyUsage}",
                 "PROPERTY_USAGE_DEFAULT"
             )
         } else {
             ClassName(
-                "$godotApiPackage.${GodotTypes.propertyUsage}",
+                "$godotCorePackage.${GodotTypes.propertyUsage}",
                 "PROPERTY_USAGE_NONE"
             )
         }

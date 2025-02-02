@@ -6,8 +6,8 @@ fqName = godot.tests.instance.RefCountedInstance
 relativeSourcePath = src/main/kotlin/godot/tests/instance/RefCountedInstance.kt
 baseType = RefCounted
 supertypes = [
-    godot.RefCounted,
-	godot.Object,
+    godot.api.RefCounted,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

@@ -34,12 +34,12 @@ import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_PARSER__RID
-import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
 import godot.common.extensions.convertToCamelCase
+import godot.tools.common.constants.godotApiPackage
 import java.util.*
 
 //TODO: make compatible with other languages

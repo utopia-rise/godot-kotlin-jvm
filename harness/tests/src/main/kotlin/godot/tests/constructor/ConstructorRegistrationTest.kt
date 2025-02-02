@@ -1,6 +1,6 @@
 package godot.tests.constructor
 
-import godot.Node
+import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.core.Dictionary

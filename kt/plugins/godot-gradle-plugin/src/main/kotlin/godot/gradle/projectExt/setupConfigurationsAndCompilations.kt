@@ -18,7 +18,9 @@ fun Project.setupConfigurationsAndCompilations() {
     //add our dependencies to the main compilation -> convenience for the user
     kotlinJvmExtension.target.compilations.getByName("main").apply {
         dependencies {
-            compileOnly("com.utopia-rise:$godotLibraryArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
         }
         dependencies.add(
@@ -32,9 +34,9 @@ fun Project.setupConfigurationsAndCompilations() {
     val bootstrapConfiguration = configurations.create("bootstrap") {
         with(it.dependencies) {
             add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotLibraryArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-
+            add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             // add reflection explicitly so it's usable in exported projects as well. See: GH-571
             add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:${GodotBuildProperties.supportedKotlinVersion}"))
         }

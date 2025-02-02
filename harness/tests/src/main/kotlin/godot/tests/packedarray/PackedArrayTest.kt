@@ -1,6 +1,6 @@
 package godot.tests.packedarray
 
-import godot.Node
+import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.PackedByteArray

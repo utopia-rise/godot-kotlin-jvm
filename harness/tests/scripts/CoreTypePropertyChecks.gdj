@@ -6,8 +6,8 @@ fqName = CoreTypePropertyChecks
 relativeSourcePath = otherSourceDir/CoreTypePropertyChecks.kt
 baseType = Node
 supertypes = [
-    godot.Node,
-	godot.Object,
+    godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
 	godot.common.interop.NativeWrapper,
 	godot.common.interop.NativePointer,

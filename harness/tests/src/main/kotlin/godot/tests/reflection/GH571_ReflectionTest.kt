@@ -2,7 +2,7 @@ package godot.tests.reflection
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import godot.Node
+import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 

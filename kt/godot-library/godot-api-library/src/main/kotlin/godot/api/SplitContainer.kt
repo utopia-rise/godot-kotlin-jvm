@@ -1,0 +1,196 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.Signal1
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * A container that accepts only two child controls, then arranges them horizontally or vertically
+ * and creates a divisor between them. The divisor can be dragged around to change the size relation
+ * between the child controls.
+ */
+@GodotBaseType
+public open class SplitContainer : Container() {
+  /**
+   * Emitted when the dragger is dragged by user.
+   */
+  public val dragged: Signal1<Long> by Signal1
+
+  /**
+   * The initial offset of the splitting between the two [Control]s, with `0` being at the end of
+   * the first [Control].
+   */
+  public final inline var splitOffset: Int
+    @JvmName("splitOffsetProperty")
+    get() = getSplitOffset()
+    @JvmName("splitOffsetProperty")
+    set(`value`) {
+      setSplitOffset(value)
+    }
+
+  /**
+   * If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled.
+   */
+  public final inline var collapsed: Boolean
+    @JvmName("collapsedProperty")
+    get() = isCollapsed()
+    @JvmName("collapsedProperty")
+    set(`value`) {
+      setCollapsed(value)
+    }
+
+  /**
+   * Determines the dragger's visibility. See [DraggerVisibility] for details.
+   */
+  public final inline var draggerVisibility: DraggerVisibility
+    @JvmName("draggerVisibilityProperty")
+    get() = getDraggerVisibility()
+    @JvmName("draggerVisibilityProperty")
+    set(`value`) {
+      setDraggerVisibility(value)
+    }
+
+  /**
+   * If `true`, the [SplitContainer] will arrange its children vertically, rather than horizontally.
+   * Can't be changed when using [HSplitContainer] and [VSplitContainer].
+   */
+  public final inline var vertical: Boolean
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
+    set(`value`) {
+      setVertical(value)
+    }
+
+  public override fun new(scriptIndex: Int): Unit {
+    createNativeObject(608, scriptIndex)
+  }
+
+  public final fun setSplitOffset(offset: Int): Unit {
+    TransferContext.writeArguments(LONG to offset.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSplitOffsetPtr, NIL)
+  }
+
+  public final fun getSplitOffset(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum
+   * values.
+   */
+  public final fun clampSplitOffset(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.clampSplitOffsetPtr, NIL)
+  }
+
+  public final fun setCollapsed(collapsed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to collapsed)
+    TransferContext.callMethod(ptr, MethodBindings.setCollapsedPtr, NIL)
+  }
+
+  public final fun isCollapsed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isCollapsedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(ptr, MethodBindings.setDraggerVisibilityPtr, NIL)
+  }
+
+  public final fun getDraggerVisibility(): DraggerVisibility {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDraggerVisibilityPtr, LONG)
+    return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public final fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public enum class DraggerVisibility(
+    id: Long,
+  ) {
+    /**
+     * The split dragger is visible when the cursor hovers it.
+     */
+    DRAGGER_VISIBLE(0),
+    /**
+     * The split dragger is never visible.
+     */
+    DRAGGER_HIDDEN(1),
+    /**
+     * The split dragger is never visible and its space collapsed.
+     */
+    DRAGGER_HIDDEN_COLLAPSED(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): DraggerVisibility = entries.single { it.id == `value` }
+    }
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
+
+    internal val getSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
+
+    internal val clampSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset", 3218959716)
+
+    internal val setCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed", 2586408642)
+
+    internal val isCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_collapsed", 36873697)
+
+    internal val setDraggerVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_dragger_visibility", 1168273952)
+
+    internal val getDraggerVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_dragger_visibility", 967297479)
+
+    internal val setVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_vertical", 2586408642)
+
+    internal val isVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_vertical", 36873697)
+  }
+}
