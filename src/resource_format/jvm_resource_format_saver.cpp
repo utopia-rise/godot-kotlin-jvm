@@ -40,9 +40,8 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
 
 #ifdef TOOLS_ENABLED
     if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        String path = jvm_script->get_path();
         MessageQueue::get_singleton()->push_callable(
-          callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(path)
+          callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(Ref<SourceScript>(jvm_script))
         );
     }
 #endif

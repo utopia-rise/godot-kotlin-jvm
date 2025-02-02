@@ -1,13 +1,15 @@
 #include "jvm_script.h"
 
 #include "binding/kotlin_binding_manager.h"
-#include "core/os/thread.h"
+#include <core/os/thread.h>
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
-
+#include <core/config/project_settings.h>
 #include <scene/main/node.h>
+#include <core/io/resource_loader.h>
+
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
     Object* obj = _object_create(p_args, p_arg_count);
@@ -59,7 +61,19 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
+
+    //TODO: Remove with 4.4 when NamedScript names are GUIDs
+    for (const Dictionary& item: ProjectSettings::get_singleton()->get_global_class_list()) {
+        String class_name = item["class"];
+        if (class_name != parent_name) {
+            continue;
+        }
+
+        String script_path = item["path"];
+        return ResourceLoader::load(script_path);
+    }
+
+    return {};
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -280,12 +294,17 @@ JvmScript::~JvmScript() {
     kotlin_class = nullptr;
 }
 
-StringName SourceScript::get_functional_name() const {
+StringName SourceScript::parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error) {
+    String source;
+    *r_error = JvmResourceFormatLoader::read_all_file_utf8(p_path, source);
+    r_source = source;
+
+#ifdef TOOLS_ENABLED
     static String package_keyword { PACKAGE_KEYWORD };
     static int package_keyword_size { package_keyword.size() };
 
     int initial_start_index = 0;
-    while (skip_comments(initial_start_index) || skip_spaces_and_newlines(initial_start_index)) {}
+    while (skip_comments(source, p_path, initial_start_index) || skip_spaces_and_newlines(source, initial_start_index)) {}
 
     int package_keyword_index { source.find(package_keyword, initial_start_index) };
 
@@ -293,7 +312,7 @@ StringName SourceScript::get_functional_name() const {
     if (package_keyword_index != -1) {
         int package_start_index = package_keyword_index + package_keyword_size - 1;
 
-        while (skip_comments(package_start_index) || skip_spaces_and_newlines(package_start_index)) {}
+        while (skip_comments(source, p_path, package_start_index) || skip_spaces_and_newlines(source, package_start_index)) {}
 
         char32_t next_character = source[package_start_index];
         int package_end_index = package_start_index;
@@ -308,18 +327,18 @@ StringName SourceScript::get_functional_name() const {
     static int register_class_annotation_size { register_class_annotation.size() };
     int register_class_search_start = package_keyword_index == -1 ? 0 : package_keyword_index;
 
-    while (skip_comments(register_class_search_start) || skip_spaces_and_newlines(register_class_search_start)) {}
+    while (skip_comments(source, p_path, register_class_search_start) || skip_spaces_and_newlines(source, register_class_search_start)) {}
 
     int register_class_index { source.find(register_class_annotation, register_class_search_start) };
 
     if (register_class_index == -1) {
-        JVM_LOG_WARNING(vformat("Cannot find registered class in %s", get_path()));
+        JVM_LOG_WARNING(vformat("Cannot find registered class in %s", p_path));
         return StringName();
     }
 
     int class_search_start_index = register_class_index + register_class_annotation_size - 1;
 
-    while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
 
     char32_t next_character = source[class_search_start_index];
     if (next_character == U'(') {
@@ -331,25 +350,25 @@ StringName SourceScript::get_functional_name() const {
 
         while (class_search_start_index < source.size() && next_character == U')') {
             ++class_search_start_index;
-            while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+            while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
             next_character = source[class_search_start_index];
         }
     }
 
-    while (skip_comments(class_search_start_index) || skip_spaces_and_newlines(class_search_start_index)) {}
+    while (skip_comments(source, p_path, class_search_start_index) || skip_spaces_and_newlines(source, class_search_start_index)) {}
 
     static String class_keyword { CLASS_KEYWORD };
     static int class_keyword_size { class_keyword.size() };
     int class_keyword_index { source.find(class_keyword, class_search_start_index) };
 
     if (class_keyword_index == -1) {
-        JVM_LOG_WARNING(vformat("Cannot find class declaration in %s", get_path()));
+        JVM_LOG_WARNING(vformat("Cannot find class declaration in %s", p_path));
         return StringName();
     }
 
     int class_start_index = class_keyword_index + class_keyword_size - 1;
 
-    while (skip_comments(class_start_index) || skip_spaces_and_newlines(class_start_index)) {}
+    while (skip_comments(source, p_path, class_start_index) || skip_spaces_and_newlines(source, class_start_index)) {}
 
     next_character = source[class_start_index];
     int class_end_index = class_start_index;
@@ -364,6 +383,13 @@ StringName SourceScript::get_functional_name() const {
     }
 
     return vformat("%s.%s", package_name, class_name);
+#else
+    return source;
+#endif
+}
+
+StringName SourceScript::get_functional_name() const {
+    return _functional_name;
 }
 
 
@@ -389,7 +415,7 @@ bool SourceScript::is_class_name_end(char32_t character) {
         character == U'/';
 }
 
-bool SourceScript::skip_spaces_and_newlines(int& start_index) const {
+bool SourceScript::skip_spaces_and_newlines(const String& source, int& start_index) {
     int initial_index = start_index;
     char32_t next_character = source[start_index];
 
@@ -400,7 +426,7 @@ bool SourceScript::skip_spaces_and_newlines(int& start_index) const {
     return start_index != initial_index;
 }
 
-bool SourceScript::skip_comments(int& start_index) const {
+bool SourceScript::skip_comments(const String& source, const String& p_path, int& start_index) {
     char32_t next_character = source[start_index];
 
     if (next_character != U'/') {
@@ -417,7 +443,7 @@ bool SourceScript::skip_comments(int& start_index) const {
     }
 
     if (!isLineComment && !isMultilineComment) {
-        JVM_LOG_WARNING(vformat("Cannot parse %s, found unexpected '/' character", get_path()));
+        JVM_LOG_WARNING(vformat("Cannot parse %s, found unexpected '/' character", p_path));
     }
 
     if (isLineComment) {
@@ -432,7 +458,7 @@ bool SourceScript::skip_comments(int& start_index) const {
             next_character = source[++start_index];
 
             if (start_index == source.size()) {
-                JVM_LOG_WARNING(vformat("Cannot parse %s, found unclosed multiline comment", get_path()));
+                JVM_LOG_WARNING(vformat("Cannot parse %s, found unclosed multiline comment", p_path));
             }
 
             isCommentEnd = isCommentEnd && next_character == U'/';
