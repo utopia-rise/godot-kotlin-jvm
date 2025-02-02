@@ -10,17 +10,17 @@ The delegate is the recommended way, it is lightweight and doesn't store the sig
 You can opt to directly create a signal and store it in your script, but it uses more memory.
 Signals are not stateful so it's usually a waste to store them directly per instance, unless you have a high rate of connection/disconnection.
 
-In both case, you have to provide the name of the signal parameters as strings for the registration to Godot.
+In both case, you have to provide the name of the signal parameters as strings arguments of the `@RegisterSignal` annotation for the registration to Godot. If you do not provide them, a parameter name is set by default (`p0` for the first, `p1` for the second and so on).
 
 /// tab | Kotlin
 ```kotlin
 @RegisterClass
 class MyScript: Node() {
-    @RegisterSignal
-    val mySignal by signal1<Boolean>("reverse")
+    @RegisterSignal("reverse")
+    val mySignal by signal1<Boolean>()
     
-    @RegisterSignal
-    val mySignal = Signal1<Boolean>("mySignal", "reverse")
+    @RegisterSignal("reverse")
+    val mySignal = Signal1<Boolean>("mySignal")
 }
 ```
 ///
@@ -29,8 +29,8 @@ class MyScript: Node() {
 ```java
 @RegisterClass
 public MyScript extends Node {
-    @RegisterSignal
-    public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse"); // Only one way to do it in Java.
+    @RegisterSignal("reverse")
+    public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal"); // Only one way to do it in Java.
 }
 ```
 ///
@@ -100,8 +100,8 @@ class SomeObject: Object() {
 
 @RegisterClass
 class AnotherObject: Object() { 
-    @RegisterSignal
-    val mySignal by signal1<Boolean>("reverse")
+    @RegisterSignal("reverse")
+    val mySignal by signal1<Boolean>()
     
     private val targetObject = SomeObject()
 
@@ -128,8 +128,8 @@ public class SomeObject extends Object {
 
 @RegisterClass
 public class AnotherObject extends Object {
-    @RegisterSignal
-    public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse");
+    @RegisterSignal("reverse")
+    public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal");
 
     private SomeObject targetObject = new SomeObject();
 

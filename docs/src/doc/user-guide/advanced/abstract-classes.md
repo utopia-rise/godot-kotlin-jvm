@@ -24,8 +24,8 @@ abstract class AbstractClassInheritanceParent: Node() {
     @RegisterProperty
     var registeredExportedPropertyInAbstractClass = false
 
-    @RegisterSignal
-    val signalInAbstractClass by signal<String>("blubb")
+    @RegisterSignal("blubb")
+    val signalInAbstractClass by signal<String>()
 
     @RegisterFunction
     fun functionInAbstractClassWithDefaultImplementation() {
