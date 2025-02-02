@@ -21,6 +21,8 @@ public:
       float* r_progress,
       CacheMode p_cache_mode
     ) override;
+
+    static Error read_all_file_utf8(const String& p_path, String& r_content);
 };
 
 #endif// GODOT_JVM_KT_RESOURCE_LOADER_H

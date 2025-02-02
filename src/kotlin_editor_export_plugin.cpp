@@ -6,6 +6,7 @@
 #include "language/names.h"
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
+#include "script/jvm_script_manager.h"
 
 #include <core/config/project_settings.h>
 
@@ -188,7 +189,25 @@ String KotlinEditorExportPlugin::get_name() const {
 
 void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const HashSet<String>& p_features) {
     String ext = p_path.get_extension();
-    if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION || ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+    if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+        // We replace the original script with another with the same path and name but with fqname content.
+        // The remap boolean ensures that the original file is not kept for the export.
+
+        String source;
+        Error error;
+        String fq_name {SourceScript::parse_source_to_fqdn(p_path, source, &error) };
+
+        if (error != OK) {
+            JVM_LOG_WARNING(vformat("Failed to parse source %s", p_path));
+            return;
+        }
+
+        add_file(p_path, fq_name.to_utf8_buffer(), true);
+
+        return;
+    }
+
+    if (ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         // We replace the original script with another with the same path and name but empty content.
         // The remap boolean ensures that the original file is not kept for the export.
         add_file(p_path, Vector<uint8_t>(), true);
