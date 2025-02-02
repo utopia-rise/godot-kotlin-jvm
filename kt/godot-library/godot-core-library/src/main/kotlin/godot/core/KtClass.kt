@@ -5,7 +5,7 @@ import godot.internal.memory.TransferContext
 @Suppress("unused")
 data class KtClass<T : KtObject>(
     val registeredName: String,
-    val relativeSourcePath: String,
+    val fqdn: String,
     val compilationTimeRelativeRegistrationFilePath: String,
     private val _registeredSupertypes: List<String>,
     private val _constructors: List<KtConstructor<T>?>,

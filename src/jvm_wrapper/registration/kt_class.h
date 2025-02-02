@@ -17,7 +17,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
 
     // clang-format off
     JNI_OBJECT_METHOD(GET_REGISTERED_NAME)
-    JNI_OBJECT_METHOD(GET_RELATIVE_SOURCE_PATH)
+    JNI_OBJECT_METHOD(GET_FQDN)
     JNI_OBJECT_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH)
     JNI_OBJECT_METHOD(GET_REGISTERED_SUPERTYPES)
     JNI_OBJECT_METHOD(GET_BASE_GODOT_CLASS)
@@ -30,7 +30,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_RELATIVE_SOURCE_PATH, "getRelativeSourcePath", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
@@ -45,7 +45,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     // clang-format on
 public:
     StringName registered_class_name;
-    StringName relative_source_path;
+    StringName fqdn;
     StringName compilation_time_relative_registration_file_path;
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
@@ -83,7 +83,7 @@ private:
 
     String get_registered_name(jni::Env& env);
 
-    String get_relative_source_path(jni::Env& env);
+    String get_fqdn(jni::Env& env);
 
     String get_compilation_time_relative_registration_file_path(jni::Env& env);
 
