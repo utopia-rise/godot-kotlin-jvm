@@ -131,7 +131,7 @@ class ApiService(
         }
     }
 
-    override fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue {
+    override fun findDefaultEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue {
         val simpleNames = enumClassName.className.simpleNames
         return if (simpleNames.size > 1) {
             val className = simpleNames[0]

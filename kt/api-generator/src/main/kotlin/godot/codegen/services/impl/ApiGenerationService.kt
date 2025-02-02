@@ -58,7 +58,6 @@ import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.VOID_PTR
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import org.gradle.internal.serialize.graph.singleton
 import java.io.File
 import java.util.*
 
@@ -475,7 +474,7 @@ class ApiGenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.getterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = apiService.findEnumValue(
+                                val argumentValue = apiService.findDefaultEnumValue(
                                     indexArgument.getBufferType(),
                                     property.internal.index!!.toLong()
                                 ).name
@@ -522,7 +521,7 @@ class ApiGenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.setterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = apiService.findEnumValue(
+                                val argumentValue = apiService.findDefaultEnumValue(
                                     indexArgument.getBufferType(),
                                     property.internal.index!!.toLong()
                                 ).name
@@ -823,7 +822,7 @@ class ApiGenerationService(
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
-                    apiService.findEnumValue(
+                    apiService.findDefaultEnumValue(
                         argumentTypeClassName,
                         defaultValueKotlinCode.first.toLong()
                     ).name

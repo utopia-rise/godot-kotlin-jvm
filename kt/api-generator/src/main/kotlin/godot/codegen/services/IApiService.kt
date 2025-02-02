@@ -12,5 +12,5 @@ interface IApiService {
 
 
     fun findGetSetMethodsAndUpdateProperties()
-    fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue
+    fun findDefaultEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue
 }
