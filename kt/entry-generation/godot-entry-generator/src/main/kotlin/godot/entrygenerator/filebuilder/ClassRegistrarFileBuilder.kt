@@ -75,7 +75,7 @@ class ClassRegistrarFileBuilder(
                     className,
                     registeredClass.godotBaseClass,
                     registeredClass.registeredName,
-                    registeredClass.relativeSourcePath,
+                    registeredClass.fqName,
                     compilationTimeRelativeRegistrationFilePath,
                 ) //START: registerClass
             } else {
