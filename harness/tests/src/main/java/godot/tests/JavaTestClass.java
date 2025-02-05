@@ -12,8 +12,8 @@ public class JavaTestClass extends Node {
     @RegisterSignal
     public Signal0 testSignal = Signal0.create(this, "test_signal");
 
-    @RegisterSignal
-    public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2", "param1", "param2");
+    @RegisterSignal(parameters = {"param1", "param2"})
+    public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
 //    @RegisterSignal

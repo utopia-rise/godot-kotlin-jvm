@@ -31,7 +31,7 @@ object SignalRegistrationGenerator {
 
         //a KtFunctionArgument per signal argument
         (0 until kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)).forEach { _ ->
-            append(",·%T(%T,·%S,·%L)")
+            append(",·%T(%T,·%S,·%S)")
         }
 
         append(")") //signal closing
@@ -46,7 +46,7 @@ object SignalRegistrationGenerator {
         if (registeredSignal.parameterTypes.size >= registeredSignal.parameterNames.size) {
             //a KtFunctionArgument per signal argument
             registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
-                val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "name_no_provided"
+                val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "p$index"
                 add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
                 add(argumentType.toKtVariantType())
                 add(argumentType.fqName)

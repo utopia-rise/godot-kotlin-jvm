@@ -278,12 +278,6 @@ object SignalGenerationService : ISignalGenerationService {
                     .toFunSpecBuilder(JAVA_CREATE_METHOD_NAME)
                     .addParameter(ParameterSpec.builder("`object`", GODOT_OBJECT).build())
                     .addParameter(ParameterSpec.builder("signalName", STRING).build())
-                    .addParameters(
-                        (0..<argCount)
-                            .map {
-                                ParameterSpec.builder("p$it", STRING).build()
-                            }
-                    )
                     .returns(genericClassNameInfo.genericClassName)
                     .addCode(
                         "return·%T(`object`,·signalName)",
@@ -308,12 +302,6 @@ object SignalGenerationService : ISignalGenerationService {
             .addModifiers(KModifier.INLINE)
             .addTypeVariables(genericClassNameInfo.genericTypes)
             .addParameter(ParameterSpec.builder("signalName", STRING).build())
-            .addParameters(
-                (0..<argCount)
-                    .map {
-                        ParameterSpec.builder("p$it", STRING).build()
-                    }
-            )
             .addCode(
                 CodeBlock.of(
                     "return·%T(this,·signalName)",
@@ -336,12 +324,6 @@ object SignalGenerationService : ISignalGenerationService {
             .toFunSpecBuilder(SIGNAL_METHOD_NAME + argCount)
             .addModifiers(KModifier.INLINE)
             .receiver(GODOT_OBJECT)
-            .addParameters(
-                (0..<argCount)
-                    .map {
-                        ParameterSpec.builder("p$it", STRING).build()
-                    }
-            )
             .addCode(
                 if (argCount == 0) {
                     CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME", genericClassNameInfo.className)

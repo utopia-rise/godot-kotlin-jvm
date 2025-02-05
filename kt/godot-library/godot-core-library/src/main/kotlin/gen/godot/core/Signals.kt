@@ -86,21 +86,16 @@ public class Signal1<P0> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-        ): Signal1<P0> = Signal1(`object`, signalName)
+        public fun <P0> javaCreate(`object`: Object, signalName: String): Signal1<P0> =
+                Signal1(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0> Object.Signal1(signalName: String, p0: String) =
-        Signal1<P0>(this, signalName)
+public inline fun <P0> Object.Signal1(signalName: String) = Signal1<P0>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0> Object.signal1(p0: String) =
-        Signal1.delegate as ReadOnlyProperty<Object, Signal1<P0>>
+public inline fun <P0> Object.signal1() = Signal1.delegate as ReadOnlyProperty<Object, Signal1<P0>>
 
 public inline fun <reified P0> Signal1<P0>.connect(flags: Int = 0, noinline
         method: (p0: P0) -> Unit): Error = connect(method.asCallable(), flags)
@@ -132,24 +127,16 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-        ): Signal2<P0, P1> = Signal2(`object`, signalName)
+        public fun <P0, P1> javaCreate(`object`: Object, signalName: String): Signal2<P0, P1> =
+                Signal2(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1> Object.Signal2(
-    signalName: String,
-    p0: String,
-    p1: String,
-) = Signal2<P0, P1>(this, signalName)
+public inline fun <P0, P1> Object.Signal2(signalName: String) = Signal2<P0, P1>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1> Object.signal2(p0: String, p1: String) =
+public inline fun <P0, P1> Object.signal2() =
         Signal2.delegate as ReadOnlyProperty<Object, Signal2<P0, P1>>
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Int = 0, noinline
@@ -193,30 +180,18 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-        ): Signal3<P0, P1, P2> = Signal3(`object`, signalName)
+        public fun <P0, P1, P2> javaCreate(`object`: Object, signalName: String):
+                Signal3<P0, P1, P2> = Signal3(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2> Object.Signal3(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-) = Signal3<P0, P1, P2>(this, signalName)
+public inline fun <P0, P1, P2> Object.Signal3(signalName: String) =
+        Signal3<P0, P1, P2>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2> Object.signal3(
-    p0: String,
-    p1: String,
-    p2: String,
-) = Signal3.delegate as ReadOnlyProperty<Object, Signal3<P0, P1, P2>>
+public inline fun <P0, P1, P2> Object.signal3() =
+        Signal3.delegate as ReadOnlyProperty<Object, Signal3<P0, P1, P2>>
 
 public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.connect(flags: Int = 0,
         noinline method: (
@@ -266,33 +241,18 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-        ): Signal4<P0, P1, P2, P3> = Signal4(`object`, signalName)
+        public fun <P0, P1, P2, P3> javaCreate(`object`: Object, signalName: String):
+                Signal4<P0, P1, P2, P3> = Signal4(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3> Object.Signal4(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-) = Signal4<P0, P1, P2, P3>(this, signalName)
+public inline fun <P0, P1, P2, P3> Object.Signal4(signalName: String) =
+        Signal4<P0, P1, P2, P3>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3> Object.signal4(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-) = Signal4.delegate as ReadOnlyProperty<Object, Signal4<P0, P1, P2, P3>>
+public inline fun <P0, P1, P2, P3> Object.signal4() =
+        Signal4.delegate as ReadOnlyProperty<Object, Signal4<P0, P1, P2, P3>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3>
         Signal4<P0, P1, P2, P3>.connect(flags: Int = 0, noinline method: (
@@ -347,36 +307,18 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-        ): Signal5<P0, P1, P2, P3, P4> = Signal5(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4> javaCreate(`object`: Object, signalName: String):
+                Signal5<P0, P1, P2, P3, P4> = Signal5(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4> Object.Signal5(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-) = Signal5<P0, P1, P2, P3, P4>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4> Object.Signal5(signalName: String) =
+        Signal5<P0, P1, P2, P3, P4>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4> Object.signal5(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-) = Signal5.delegate as ReadOnlyProperty<Object, Signal5<P0, P1, P2, P3, P4>>
+public inline fun <P0, P1, P2, P3, P4> Object.signal5() =
+        Signal5.delegate as ReadOnlyProperty<Object, Signal5<P0, P1, P2, P3, P4>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
         Signal5<P0, P1, P2, P3, P4>.connect(flags: Int = 0, noinline method: (
@@ -435,39 +377,18 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-        ): Signal6<P0, P1, P2, P3, P4, P5> = Signal6(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5> javaCreate(`object`: Object, signalName: String):
+                Signal6<P0, P1, P2, P3, P4, P5> = Signal6(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5> Object.Signal6(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-) = Signal6<P0, P1, P2, P3, P4, P5>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5> Object.Signal6(signalName: String) =
+        Signal6<P0, P1, P2, P3, P4, P5>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5> Object.signal6(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-) = Signal6.delegate as ReadOnlyProperty<Object, Signal6<P0, P1, P2, P3, P4, P5>>
+public inline fun <P0, P1, P2, P3, P4, P5> Object.signal6() =
+        Signal6.delegate as ReadOnlyProperty<Object, Signal6<P0, P1, P2, P3, P4, P5>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
         Signal6<P0, P1, P2, P3, P4, P5>.connect(flags: Int = 0, noinline method: (
@@ -531,42 +452,18 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-        ): Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5, P6> javaCreate(`object`: Object, signalName: String):
+                Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.Signal7(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-) = Signal7<P0, P1, P2, P3, P4, P5, P6>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.Signal7(signalName: String) =
+        Signal7<P0, P1, P2, P3, P4, P5, P6>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.signal7(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-) = Signal7.delegate as ReadOnlyProperty<Object, Signal7<P0, P1, P2, P3, P4, P5, P6>>
+public inline fun <P0, P1, P2, P3, P4, P5, P6> Object.signal7() =
+        Signal7.delegate as ReadOnlyProperty<Object, Signal7<P0, P1, P2, P3, P4, P5, P6>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
         P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.connect(flags: Int = 0, noinline method: (
@@ -634,45 +531,19 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-        ): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> = Signal8(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7> javaCreate(`object`: Object,
+                signalName: String): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
+                Signal8(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.Signal8(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-) = Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.Signal8(signalName: String) =
+        Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.signal8(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-) = Signal8.delegate as ReadOnlyProperty<Object, Signal8<P0, P1, P2, P3, P4, P5, P6, P7>>
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7> Object.signal8() =
+        Signal8.delegate as ReadOnlyProperty<Object, Signal8<P0, P1, P2, P3, P4, P5, P6, P7>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
         P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connect(flags: Int = 0, noinline
@@ -745,48 +616,19 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-        ): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = Signal9(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> javaCreate(`object`: Object,
+                signalName: String): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
+                Signal9(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.Signal9(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-) = Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.Signal9(signalName: String) =
+        Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.signal9(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-) = Signal9.delegate as ReadOnlyProperty<Object, Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>>
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> Object.signal9() =
+        Signal9.delegate as ReadOnlyProperty<Object, Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
         P6, reified P7, reified P8> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connect(flags: Int =
@@ -863,51 +705,19 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-        ): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = Signal10(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> javaCreate(`object`: Object,
+                signalName: String): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
+                Signal10(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.Signal10(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-) = Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.Signal10(signalName: String) =
+        Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.signal10(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-) = Signal10.delegate as ReadOnlyProperty<Object, Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>>
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> Object.signal10() =
+        Signal10.delegate as ReadOnlyProperty<Object, Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
         P6, reified P7, reified P8, reified P9>
@@ -990,54 +800,18 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-        ): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> = Signal11(`object`, signalName)
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> javaCreate(`object`: Object,
+                signalName: String): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+                Signal11(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.Signal11(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-) = Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.Signal11(signalName: String)
+        = Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.signal11(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> Object.signal11() =
         Signal11.delegate as ReadOnlyProperty<Object, Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1126,58 +900,19 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-            p11: String,
-        ): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> javaCreate(`object`: Object,
+                signalName: String): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
                 Signal12(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> Object.Signal12(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-) = Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+        Object.Signal12(signalName: String) =
+        Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> Object.signal12(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> Object.signal12() =
         Signal12.delegate as ReadOnlyProperty<Object, Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1270,61 +1005,20 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-            p11: String,
-            p12: String,
-        ): Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+                javaCreate(`object`: Object, signalName: String):
+                Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
                 Signal13(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> Object.Signal13(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-) = Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+        Object.Signal13(signalName: String) =
+        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> Object.signal13(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> Object.signal13() =
         Signal13.delegate as ReadOnlyProperty<Object, Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1421,64 +1115,20 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-            p11: String,
-            p12: String,
-            p13: String,
-        ): Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+                javaCreate(`object`: Object, signalName: String):
+                Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
                 Signal14(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> Object.Signal14(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-) = Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+        Object.Signal14(signalName: String) =
+        Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> Object.signal14(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> Object.signal14() =
         Signal14.delegate as ReadOnlyProperty<Object, Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1579,67 +1229,21 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
 
         @JvmStatic
         @JvmName("create")
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-            p11: String,
-            p12: String,
-            p13: String,
-            p14: String,
-        ): Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+                javaCreate(`object`: Object, signalName: String):
+                Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
                 Signal15(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> Object.Signal15(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-    p14: String,
-) = Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(this, signalName)
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+        Object.Signal15(signalName: String) =
+        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
-public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> Object.signal15(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-    p14: String,
-) =
+public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+        Object.signal15() =
         Signal15.delegate as ReadOnlyProperty<Object, Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1746,72 +1350,20 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
         @JvmStatic
         @JvmName("create")
         public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-                javaCreate(
-            `object`: Object,
-            signalName: String,
-            p0: String,
-            p1: String,
-            p2: String,
-            p3: String,
-            p4: String,
-            p5: String,
-            p6: String,
-            p7: String,
-            p8: String,
-            p9: String,
-            p10: String,
-            p11: String,
-            p12: String,
-            p13: String,
-            p14: String,
-            p15: String,
-        ): Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
+                javaCreate(`object`: Object, signalName: String):
+                Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
                 Signal16(`object`, signalName)
     }
 }
 
 @Suppress("FUNCTION_NAME")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        Object.Signal16(
-    signalName: String,
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-    p14: String,
-    p15: String,
-) = Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(this, signalName)
+        Object.Signal16(signalName: String) =
+        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(this, signalName)
 
 @Suppress("UNCHECKED_CAST")
 public inline fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        Object.signal16(
-    p0: String,
-    p1: String,
-    p2: String,
-    p3: String,
-    p4: String,
-    p5: String,
-    p6: String,
-    p7: String,
-    p8: String,
-    p9: String,
-    p10: String,
-    p11: String,
-    p12: String,
-    p13: String,
-    p14: String,
-    p15: String,
-) =
+        Object.signal16() =
         Signal16.delegate as ReadOnlyProperty<Object, Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>>
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
