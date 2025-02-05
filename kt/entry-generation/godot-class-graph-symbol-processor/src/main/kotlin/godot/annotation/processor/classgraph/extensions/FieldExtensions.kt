@@ -1,5 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
+import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
@@ -68,38 +69,36 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
     )
 }
 
+private const val signalParametersName = "parameters"
+
 context(ScanResult)
 fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInfo): RegisteredSignal {
-    return if (name.endsWith(DELEGATE_SUFFIX)) {
+    val typeDescriptor = if (name.endsWith(DELEGATE_SUFFIX)) {
         val methodInfo = getGetter(classInfo)
-        val typeDescriptor = TypeDescriptor(methodInfo)
-
-        val type = typeDescriptor.getMappedType(settings)
-
-        RegisteredSignal(
-            fqName = fqdn,
-            type = type,
-            parameterTypes = type.arguments(),
-            parameterNames = listOf(), //TODO: ClassGraph cannot parse expressions, if we want to use it we need to add parameters to the annotation
-            isOverridee = isOverridee,
-            annotations = getAnnotations(classInfo).mapNotNull { it.mapToGodotAnnotation(this) as? PropertyAnnotation },
-            symbolProcessorSource = this
-        )
+        TypeDescriptor(methodInfo)
     } else {
-        val typeDescriptor = TypeDescriptor(this, classInfo)
-        val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this) as? PropertyAnnotation }
-
-        val type = typeDescriptor.getMappedType(settings)
-        RegisteredSignal(
-            fqName = fqdn,
-            type = type,
-            parameterTypes = type.arguments(),
-            parameterNames = listOf(), //TODO: ClassGraph cannot parse expressions, if we want to use it we need to add parameters to the annotation
-            isOverridee = isOverridee,
-            annotations = annotations,
-            symbolProcessorSource = this
-        )
+        TypeDescriptor(this, classInfo)
     }
+
+    val type = typeDescriptor.getMappedType(settings)
+
+    val annotations = getAnnotations(classInfo)
+
+    val parameterValues = annotations
+        .first { it.classInfo.name == RegisterSignal::class.java.name }
+        .parameterValues
+    return RegisteredSignal(
+        fqName = fqdn,
+        type = type,
+        parameterTypes = type.arguments(),
+        parameterNames = (
+                parameterValues
+                    .getValue(signalParametersName) as Array<String>
+                ).toList(),
+        isOverridee = isOverridee,
+        annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this) as? PropertyAnnotation },
+        symbolProcessorSource = this
+    )
 }
 
 val FieldInfo.isOverridee: Boolean
