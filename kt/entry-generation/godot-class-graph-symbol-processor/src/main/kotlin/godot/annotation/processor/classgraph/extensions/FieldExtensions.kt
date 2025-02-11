@@ -4,9 +4,14 @@ import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
-import godot.entrygenerator.model.*
+import godot.entrygenerator.ext.isJavaCollection
+import godot.entrygenerator.model.EnumAnnotation
+import godot.entrygenerator.model.EnumHintStringAnnotation
+import godot.entrygenerator.model.EnumListHintStringAnnotation
+import godot.entrygenerator.model.PropertyAnnotation
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.RegisteredSignal
 import io.github.classgraph.AnnotationInfo
-import io.github.classgraph.AnnotationInfoList
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.FieldInfo
 import io.github.classgraph.MethodInfo
@@ -39,12 +44,13 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
         }
 
         // Check if the property is a collection of enums
-        if (!annotations.hasAnnotation<EnumAnnotation>() && fieldType.startsWith("kotlin.collections")) {
-            val containingTypeDeclaration = typeClassInfo.typeSignature.typeParameters.firstOrNull()?.typeClassInfo
-            if (containingTypeDeclaration?.isEnum == true) {
+        if (!annotations.hasAnnotation<EnumAnnotation>() &&
+            (fieldType.startsWith("kotlin.collections") || fieldType.isJavaCollection())) {
+            val containedTypeDeclaration = typeDescriptor.typeArguments.firstOrNull()?.typeClassInfo
+            if (containedTypeDeclaration?.isEnum == true) {
                 annotations.add(
                     EnumListHintStringAnnotation(
-                        enumValueNames = containingTypeDeclaration.fieldInfo
+                        enumValueNames = containedTypeDeclaration.fieldInfo
                             .filter { it.isEnum }
                             .map { it.name },
                         source = this
@@ -59,7 +65,7 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
     val isOverridee = this.isOverridee
 
     return RegisteredProperty(
-        fqName = fqdn,
+        fqName = fqdn.replace("$", "."),
         type = typeDescriptor.getMappedPropertyType(settings),
         isMutable = isMutable,
         isLateinit = typeDescriptor.isLateInit,
@@ -88,7 +94,7 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
         .first { it.classInfo.name == RegisterSignal::class.java.name }
         .parameterValues
     return RegisteredSignal(
-        fqName = fqdn,
+        fqName = fqdn.replace("$", "."),
         type = type,
         parameterTypes = type.arguments(),
         parameterNames = (

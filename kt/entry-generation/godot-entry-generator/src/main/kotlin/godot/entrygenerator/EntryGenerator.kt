@@ -45,6 +45,32 @@ object EntryGenerator {
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        generateEntryFilesUsingRegisteredClasses(
+            projectDir,
+            projectName,
+            classRegistrarFromDependencyCount,
+            logger,
+            sourceFiles.flatMap { it.registeredClasses },
+            isRegistrationFileHierarchyEnabled,
+            jvmTypeFqNamesProvider,
+            compilationTimeRelativeRegistrationFilePathProvider,
+            classRegistrarAppendableProvider,
+            mainBufferedWriterProvider
+        )
+    }
+
+    fun generateEntryFilesUsingRegisteredClasses(
+        projectDir: String,
+        projectName: String,
+        classRegistrarFromDependencyCount: Int,
+        logger: Logger,
+        registeredClasses: List<RegisteredClass>,
+        isRegistrationFileHierarchyEnabled: Boolean,
+        jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
+        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
+        classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
+        mainBufferedWriterProvider: () -> BufferedWriter
+    ) {
         val serviceFile = File(projectDir)
             .resolve("src/main/resources/META-INF/services")
             .apply { mkdirs() }
@@ -56,27 +82,25 @@ object EntryGenerator {
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 
-        if (executeSanityChecks(logger, sourceFiles)) {
+        if (executeSanityChecksUsingRegisteredClasses(logger, registeredClasses)) {
             throw ChecksFailedException()
         }
 
         with(MainEntryFileBuilder) {
-            sourceFiles.forEach { sourceFile ->
-                sourceFile.registeredClasses.forEach { registeredClass ->
-                    registerClassRegistrar(
-                        ClassRegistrarFileBuilder(
-                            projectName = projectName,
-                            registeredClass = registeredClass,
-                            registrarAppendableProvider = classRegistrarAppendableProvider,
-                            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
-                            isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
-                        )
+            registeredClasses.forEach { registeredClass ->
+                registerClassRegistrar(
+                    ClassRegistrarFileBuilder(
+                        projectName = projectName,
+                        registeredClass = registeredClass,
+                        registrarAppendableProvider = classRegistrarAppendableProvider,
+                        compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
+                        isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled
                     )
-                }
+                )
             }
-            registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
+            registerUserTypesVariantMappings(registeredClasses)
             registerProjectName(projectName)
-            val classRegistrarsForCurrentCompilationCount = sourceFiles.flatMap { it.registeredClasses }.size
+            val classRegistrarsForCurrentCompilationCount = registeredClasses.size
             registerClassRegistrarCount(
                 classRegistrarFromCurrentCompilationCount = classRegistrarsForCurrentCompilationCount,
                 classRegistrarFromDependencyCount = classRegistrarFromDependencyCount
@@ -103,27 +127,32 @@ object EntryGenerator {
         serviceFile.writeText("$randomPackagePathForEntryFile.Entry")
     }
 
+    private fun executeSanityChecksUsingRegisteredClasses(
+        logger: Logger,
+        registeredClasses: List<RegisteredClass>
+    ): Boolean {
+        return listOf(
+            DefaultConstructorCheck(logger, registeredClasses).execute(),
+            ConstructorArgCountCheck(logger, registeredClasses).execute(),
+            ConstructorOverloadingCheck(logger, registeredClasses).execute(),
+
+            FunctionArgCountCheck(logger, registeredClasses).execute(),
+
+            SignalTypeCheck(logger, registeredClasses).execute(),
+
+            PropertyTypeCheck(logger, registeredClasses).execute(),
+            PropertyMutablilityCheck(logger, registeredClasses).execute(),
+            LateinitPropertyCheck(logger, registeredClasses).execute(),
+            NullablePropertyCheck(logger, registeredClasses).execute(),
+
+            RpcCheck(logger, registeredClasses).execute(),
+        ).any { hasIssue -> hasIssue }
+    }
+
     private fun executeSanityChecks(
         logger: Logger,
         sourceFiles: List<SourceFile>
-    ): Boolean {
-        return listOf(
-            DefaultConstructorCheck(logger, sourceFiles).execute(),
-            ConstructorArgCountCheck(logger, sourceFiles).execute(),
-            ConstructorOverloadingCheck(logger, sourceFiles).execute(),
-
-            FunctionArgCountCheck(logger, sourceFiles).execute(),
-
-            SignalTypeCheck(logger, sourceFiles).execute(),
-
-            PropertyTypeCheck(logger, sourceFiles).execute(),
-            PropertyMutablilityCheck(logger, sourceFiles).execute(),
-            LateinitPropertyCheck(logger, sourceFiles).execute(),
-            NullablePropertyCheck(logger, sourceFiles).execute(),
-
-            RpcCheck(logger, sourceFiles).execute(),
-        ).any { hasIssue -> hasIssue }
-    }
+    ) = executeSanityChecksUsingRegisteredClasses(logger, sourceFiles.flatMap { it.registeredClasses })
 
     /**
      * Either gets the previously generated random package path of the entry class or creates a new one.

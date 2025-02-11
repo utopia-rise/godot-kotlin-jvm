@@ -1,14 +1,13 @@
 package godot.entrygenerator.checks
 
-import godot.entrygenerator.model.SourceFile
-import godot.entrygenerator.utils.Logger
 import godot.common.constants.Constraints
+import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.utils.Logger
 
-class ConstructorArgCountCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger, sourceFiles) {
+class ConstructorArgCountCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssue = false
-        sourceFiles
-            .flatMap { it.registeredClasses }
+        registeredClasses
             .flatMap { it.constructors }
             .forEach { registeredConstructor ->
                 // keep in sync with VARIANT_ARG_MAX in transfer_context.cpp!
