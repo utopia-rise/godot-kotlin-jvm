@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.entrygenerator.ext.hasAnnotation
+import godot.entrygenerator.ext.isJavaCollection
 import godot.entrygenerator.ext.toGodotVariantType
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.generator.hintstring.PropertyHintStringGeneratorProvider
@@ -16,7 +17,6 @@ import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotPackage
 
 object PropertyRegistrationGenerator {
     fun generate(
@@ -34,7 +34,10 @@ object PropertyRegistrationGenerator {
                         registerClassControlFlow,
                     )
 
-                    registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
+                    (
+                        registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$"))
+                            || registeredProperty.type.fqName.matches(Regex("^java\\.util\\..*Set\$"))
+                    ) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
                         registeredProperty,
@@ -42,7 +45,10 @@ object PropertyRegistrationGenerator {
                         registerClassControlFlow,
                     )
 
-                    registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$")) &&
+                    (
+                        registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$"))
+                            || registeredProperty.type.isJavaCollection()
+                    ) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
                         registeredProperty,
                         className,
