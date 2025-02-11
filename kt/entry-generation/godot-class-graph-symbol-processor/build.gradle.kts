@@ -15,7 +15,9 @@ dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-core-library"))
     implementation(project(":godot-entry-generator"))
+
     implementation(libs.classGraph)
+    api(libs.slf4jApi)
 }
 
 publishing {

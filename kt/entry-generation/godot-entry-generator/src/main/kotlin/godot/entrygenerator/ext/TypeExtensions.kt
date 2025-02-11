@@ -2,6 +2,7 @@ package godot.entrygenerator.ext
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
+import godot.common.extensions.convertToCamelCase
 import godot.core.CoreType
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
@@ -34,12 +35,11 @@ import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_PARSER__RID
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
-import godot.common.extensions.convertToCamelCase
-import godot.tools.common.constants.godotApiPackage
 import java.util.*
 
 //TODO: make compatible with other languages
@@ -122,6 +122,34 @@ fun Type.isCompatibleList(): Boolean = when (fqName) {
 }
 
 fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)
+
+private val javaCollection = arrayOf(
+    "java.util.ArrayList",
+    "java.util.LinkedList",
+    "java.util.Vector",
+    "java.util.Stack",
+    "java.util.HashSet",
+    "java.util.LinkedHashSet",
+    "java.util.TreeSet",
+    "java.util.PriorityQueue",
+    "java.util.ArrayDeque",
+    "java.util.HashMap",
+    "java.util.LinkedHashMap",
+    "java.util.TreeMap",
+    "java.util.Hashtable",
+    "java.util.List",
+    "java.util.Set",
+    "java.util.Queue",
+    "java.util.Deque",
+    "java.util.Map",
+    "java.util.SortedSet",
+    "java.util.NavigableSet",
+    "java.util.SortedMap",
+    "java.util.NavigableMap"
+)
+
+fun Type.isJavaCollection(): Boolean = javaCollection.contains(fqName)
+fun String.isJavaCollection(): Boolean = javaCollection.contains(this)
 
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 

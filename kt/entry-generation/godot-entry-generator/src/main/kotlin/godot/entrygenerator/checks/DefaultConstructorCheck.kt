@@ -1,13 +1,12 @@
 package godot.entrygenerator.checks
 
-import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 
-class DefaultConstructorCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger, sourceFiles) {
+class DefaultConstructorCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssue = false
-        sourceFiles
-            .flatMap { it.registeredClasses }
+        registeredClasses
             .filter { !it.isAbstract }
             .forEach { registeredClass ->
                 if (registeredClass.constructors.none { it.parameters.isEmpty() }) {

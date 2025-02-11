@@ -1,8 +1,8 @@
-package godot.annotation.processor.utils
+package godot.entrygenerator.utils
 
 import godot.entrygenerator.model.JvmType
 
-internal class JvmTypeProvider: (JvmType) -> Set<String> {
+open class DefaultJvmTypeProvider: (JvmType) -> Set<String> {
     override fun invoke(jvmType: JvmType): Set<String> {
         return when(jvmType) {
             JvmType.INT -> setOf(

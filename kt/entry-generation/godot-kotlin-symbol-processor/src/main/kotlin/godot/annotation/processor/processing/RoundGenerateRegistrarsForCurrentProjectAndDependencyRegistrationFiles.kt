@@ -6,12 +6,12 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGenerationWithoutExtension
-import godot.annotation.processor.utils.JvmTypeProvider
 import godot.annotation.processor.utils.LoggerWrapper
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
 import godot.annotation.processor.visitor.RegistrationAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
+import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
+import godot.entrygenerator.utils.DefaultJvmTypeProvider
 import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
 import java.io.File
@@ -51,16 +51,14 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
             classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
-            jvmTypeFqNamesProvider = JvmTypeProvider(),
+            jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
             compilationTimeRelativeRegistrationFilePathProvider = { registeredClass ->
                 val registrationFile = blackboard
                     .existingRegistrationFilesMap["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
                     ?.relativeTo(settings.projectBaseDir)
                     ?: File(
-                        provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                        registeredClass.provideRegistrationFilePathForInitialGeneration(
                             isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
-                            fqName = registeredClass.fqName,
-                            registeredName = registeredClass.registeredName,
                             compilationProjectName = settings.projectName,
                             classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
                             registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
@@ -99,7 +97,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val registrationFile = provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                    val registrationFile = provideRegistrationFilePathForInitialGeneration(
                         isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
                         fqName = metadata.fqName,
                         registeredName = metadata.registeredName,

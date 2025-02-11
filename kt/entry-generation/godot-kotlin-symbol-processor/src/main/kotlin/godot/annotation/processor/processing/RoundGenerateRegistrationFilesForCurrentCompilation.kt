@@ -6,9 +6,9 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.symbol.KSAnnotated
 import godot.annotation.processor.Settings
-import godot.annotation.processor.ext.provideRegistrationFilePathForInitialGenerationWithoutExtension
 import godot.annotation.processor.visitor.MetadataAnnotationVisitor
 import godot.entrygenerator.EntryGenerator
+import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
 import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
 
@@ -40,7 +40,7 @@ internal class RoundGenerateRegistrationFilesForCurrentCompilation(
                 registrationFileAppendableProvider = { metadata ->
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
-                    val resourcePathFromProjectRoot = provideRegistrationFilePathForInitialGenerationWithoutExtension(
+                    val resourcePathFromProjectRoot = provideRegistrationFilePathForInitialGeneration(
                         isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
                         fqName = metadata.fqName,
                         registeredName = metadata.registeredName,

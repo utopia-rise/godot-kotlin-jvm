@@ -1,16 +1,15 @@
 package godot.entrygenerator.checks
 
 import godot.core.Signal
-import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
 
-class SignalTypeCheck(logger: Logger, sourceFiles: List<SourceFile>): BaseCheck(logger, sourceFiles) {
+class SignalTypeCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssue = false
-        sourceFiles
-            .flatMap { it.registeredClasses }
+        registeredClasses
             .flatMap { it.signals }
             .forEach { registeredSignal ->
                 if (!registeredSignal.type.fqName.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) {

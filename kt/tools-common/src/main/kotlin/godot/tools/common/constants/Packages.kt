@@ -34,3 +34,6 @@ const val kotlinReflectPackage = "$kotlinPackage.reflect"
 const val kotlinTextPackage = "$kotlinPackage.text"
 const val kotlinCoroutinePackage = "$kotlinPackage.coroutines"
 const val kotlinxCoroutinePackage = "kotlinx.coroutines"
+
+const val javaPackage = "java"
+const val javaUtilPackage = "$javaPackage.util"

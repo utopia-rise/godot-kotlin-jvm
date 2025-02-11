@@ -1,13 +1,12 @@
 package godot.entrygenerator.checks
 
-import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 
-class ConstructorOverloadingCheck(logger: Logger, sourceFiles: List<SourceFile>) : BaseCheck(logger, sourceFiles) {
+class ConstructorOverloadingCheck(logger: Logger, registeredClasses: List<RegisteredClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssue = false
-        sourceFiles
-            .flatMap { it.registeredClasses }
+        registeredClasses
             .forEach { registeredClass ->
                 registeredClass
                     .constructors

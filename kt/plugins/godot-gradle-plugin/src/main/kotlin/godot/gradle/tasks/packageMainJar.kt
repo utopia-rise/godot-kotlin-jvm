@@ -4,12 +4,27 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.gradle.projectExt.godotApiArtifactName
 import godot.gradle.projectExt.godotCoreArtifactName
 import godot.gradle.projectExt.godotExtensionArtifactName
+import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.api.tasks.compile.JavaCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.packageMainJarTask(
 ): TaskProvider<out Task> {
+    if (godotJvmExtension.experimentalClassGraphRegistration.get()) {
+        tasks.withType(JavaCompile::class.java).configureEach { javaCompile ->
+            javaCompile.options.compilerArgs.add("-parameters")
+        }
+
+        tasks.withType(KotlinCompile::class.java).configureEach { kotlinCompile ->
+            kotlinCompile.compilerOptions {
+                javaParameters.set(true)
+            }
+        }
+    }
+
     return tasks.named("shadowJar", ShadowJar::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
