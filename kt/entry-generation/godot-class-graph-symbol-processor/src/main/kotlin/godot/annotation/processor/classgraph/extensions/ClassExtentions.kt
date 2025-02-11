@@ -161,6 +161,10 @@ val ClassInfo.typeKind: TypeKind
 context(ScanResult)
 internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Settings): Type {
     val superTypes = superclasses.map { it.mapToType(listOf(), settings) }
+        .union(
+            interfaces.map { it.mapToType(listOf(), settings) }
+        )
+        .toList()
 
     return Type(
         fqName = name,
