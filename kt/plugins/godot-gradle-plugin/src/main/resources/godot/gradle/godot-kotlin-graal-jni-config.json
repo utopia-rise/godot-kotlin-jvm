@@ -165,7 +165,7 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
-      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int"] },
+      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int", "boolean"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
@@ -194,7 +194,7 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int"] }
+      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.LambdaCallable", "int", "int", "boolean"] }
     ]
   },
   {
@@ -715,7 +715,9 @@
     "methods":[
       {"name":"invokeNoReturn","parameterTypes":[] },
       {"name":"invokeWithReturn","parameterTypes":[] },
-      {"name":"getReturnVariantType","parameterTypes":[] }
+      {"name":"getReturnVariantType","parameterTypes":[] },
+      {"name":"hashCode","parameterTypes":[] },
+      {"name":"onCancel","parameterTypes":[] }
     ]
   },
   {

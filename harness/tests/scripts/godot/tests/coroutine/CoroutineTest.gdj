@@ -20,7 +20,9 @@ signals = [
 	async_load_resource_finished
 ]
 properties = [
-    step
+    step,
+	was_child_cancelled,
+	was_parent_cancelled
 ]
 functions = [
     start_coroutine_without_parameter,
@@ -30,5 +32,6 @@ functions = [
 	start_coroutine_with_physics_frame,
 	start_coroutine_with_process_frame,
 	run_on_main_thread_from_background_thread,
-	async_load_resource
+	async_load_resource,
+	cancel_coroutine
 ]

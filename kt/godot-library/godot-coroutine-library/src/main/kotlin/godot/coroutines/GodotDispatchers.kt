@@ -6,9 +6,9 @@ import godot.api.SceneTree
 import godot.api.WorkerThreadPool
 import godot.core.Callable
 import godot.core.asCallable
-import godot.core.connect
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Runnable
+import kotlinx.coroutines.cancel
 import kotlin.coroutines.CoroutineContext
 
 object GodotDispatchers {
@@ -20,29 +20,31 @@ object GodotDispatchers {
 
     private object GodotMainThreadCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            Callable({ block.run() }.asCallable()).callDeferred()
+            Callable({ block.run() }.asCallable { context.cancel() }).callDeferred()
         }
     }
 
     private object GodotThreadPoolCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            WorkerThreadPool.addTask({ block.run() }.asCallable())
+            WorkerThreadPool.addTask({ block.run() }.asCallable { context.cancel() })
         }
     }
 
     private object GodotProcessFrameCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            sceneTree.processFrame.connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
-                block.run()
-            }
+            sceneTree.processFrame.connect(
+                { block.run() }.asCallable { context.cancel() },
+                Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()
+            )
         }
     }
 
     private object GodotPhysicsFrameCoroutineDispatcher : CoroutineDispatcher() {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
-            sceneTree.physicsFrame.connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
-                block.run()
-            }
+            sceneTree.physicsFrame.connect(
+                { block.run() }.asCallable { context.cancel() },
+                Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()
+            )
         }
     }
 

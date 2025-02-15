@@ -18,10 +18,13 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     return reinterpret_cast<uintptr_t>(memnew(Callable(args[0].operator Object*(), args[1].operator StringName())));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance, jint p_variant_type_ordinal, jint p_hash_code) {
+uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
+                                                                     jobject p_kt_custom_callable_instance,
+                                                                     jint p_variant_type_ordinal, jint p_hash_code,
+                                                                     jboolean p_has_on_destroy) {
     jni::Env env {p_raw_env};
     return reinterpret_cast<uintptr_t>(
-        memnew(Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code))))
+        memnew(Callable(memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy))))
     );
 }
 
