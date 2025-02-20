@@ -1,20 +1,17 @@
 package godot.gradle.projectExt
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
-import com.google.devtools.ksp.gradle.KspGradleSubplugin
-import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
+import org.gradle.api.plugins.scala.ScalaPlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.jetbrains.gradle.ext.IdeaExtPlugin
-import java.io.File
 
 fun Project.configureThirdPartyPlugins() {
     //apply needed third party plugins
-    repositories.google() //add google repository for ksp (kotlin symbol processing
-    pluginManager.apply(KspGradleSubplugin::class.java)
-    pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from ksp
-    pluginManager.apply(IdeaExtPlugin::class.java) //needed so idea can find and index the generated sources from ksp
+    pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from classgraph
+    pluginManager.apply(IdeaExtPlugin::class.java) //needed so idea can find and index the generated sources from classgraph
     pluginManager.apply(ShadowPlugin::class.java)
+    pluginManager.apply(ScalaPlugin::class.java)
 
     // apply the idea plugin to the *root* project.
     // this is necessary because the IntelliJ IDEA plugin is used for managing some
@@ -24,80 +21,21 @@ fun Project.configureThirdPartyPlugins() {
         this.rootProject.pluginManager.apply(IdeaExtPlugin::class.java)
     }
 
-    addKspGeneratedSourcesToMainSourceSet()
-
     afterEvaluate {
-        kspExtension.apply {
-            arg(
-                "srcDirs",
-                kotlinJvmExtension
-                    .sourceSets
-                    .getByName("main")
-                    .kotlin
-                    .srcDirs
-                    .joinToString(File.pathSeparator) {
-                        it.absolutePath.replace(File.separator, "/")
-                    }
-            )
-            arg(
-                "projectBasePath",
-                projectDir.absolutePath.replace(File.separator, "/")
-            )
-            arg(
-                "projectName",
-                (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
-            )
-            arg(
-                "registrationFileBaseDir",
-                (
-                    godotJvmExtension
-                        .registrationFileBaseDir
-                        .orNull
-                        ?.asFile
-                        ?: projectDir
-                            .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
-                            .apply {
-                                if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
-                                    mkdirs()
-                                }
-                            }
-                    )
-                    .relativeTo(projectDir)
-                    .path
-                    .replace(File.separator, "/")
-                    .removePrefix("/")
-                    .removeSuffix("/")
-            )
-            arg(
-                "classPrefix",
-                godotJvmExtension.classPrefix.orNull.toString()
-            )
-            arg(
-                "isRegistrationFileHierarchyEnabled",
-                godotJvmExtension.isRegistrationFileHierarchyEnabled.getOrElse(true).toString()
-            )
-            arg(
-                "isFqNameRegistrationEnabled",
-                godotJvmExtension.isFqNameRegistrationEnabled.getOrElse(false).toString()
-            )
-            arg(
-                "isRegistrationFileGenerationEnabled",
-                godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true).toString()
-            )
-        }
+        addClassGraphGeneratedSourcesToMainSourceSet()
 
         ideaExtension.apply {
             module { ideaModule ->
-                ideaModule.generatedSourceDirs.add(layout.buildDirectory.asFile.get().resolve("generated/ksp/main/kotlin/"))
+                ideaModule.generatedSourceDirs.add(layout.buildDirectory.asFile.get().resolve("generated/classgraph/main/kotlin/"))
             }
         }
     }
 }
 
-private fun Project.addKspGeneratedSourcesToMainSourceSet() {
+private fun Project.addClassGraphGeneratedSourcesToMainSourceSet() {
     kotlinJvmExtension
         .sourceSets
         .getByName("main")
         .kotlin
-        .srcDirs(layout.buildDirectory.asFile.get().resolve("generated/ksp/main/kotlin/"))
+        .srcDirs(classGraphGeneratedDirectory.resolve("main/kotlin/"))
 }

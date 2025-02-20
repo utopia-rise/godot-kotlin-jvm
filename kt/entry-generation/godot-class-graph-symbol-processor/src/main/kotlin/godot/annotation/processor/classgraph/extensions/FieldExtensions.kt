@@ -64,9 +64,25 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
     val isMutable = !this.isFinal
     val isOverridee = this.isOverridee
 
+    val getterFqName = if (classInfo.isScala) {
+        getGetter(classInfo).fqdn.replace("$", ".")
+    } else {
+        null
+    }
+
+    val setterFqName = if (classInfo.isScala) {
+        val fqdn = getSetter(classInfo).fqdn
+        val split = fqdn.split("$")
+        "${split.dropLast(1).joinToString(".")}$${split.last()}"
+    } else {
+        null
+    }
+
     return RegisteredProperty(
         fqName = fqdn.replace("$", "."),
         type = typeDescriptor.getMappedPropertyType(settings),
+        getterFqName = getterFqName,
+        setterFqName = setterFqName,
         isMutable = isMutable,
         isLateinit = typeDescriptor.isLateInit,
         isOverridee = isOverridee,
@@ -79,11 +95,16 @@ private const val signalParametersName = "parameters"
 
 context(ScanResult)
 fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInfo): RegisteredSignal {
-    val typeDescriptor = if (name.endsWith(DELEGATE_SUFFIX)) {
-        val methodInfo = getGetter(classInfo)
-        TypeDescriptor(methodInfo)
-    } else {
-        TypeDescriptor(this, classInfo)
+    val typeDescriptor = when {
+        classInfo.isScala -> {
+            val getter = getGetter(classInfo)
+            TypeDescriptor(getter)
+        }
+        name.endsWith(DELEGATE_SUFFIX) -> {
+            val methodInfo = getGetter(classInfo)
+            TypeDescriptor(methodInfo)
+        }
+        else -> TypeDescriptor(this, classInfo)
     }
 
     val type = typeDescriptor.getMappedType(settings)
@@ -93,6 +114,7 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
     val parameterValues = annotations
         .first { it.classInfo.name == RegisterSignal::class.java.name }
         .parameterValues
+
     return RegisteredSignal(
         fqName = fqdn.replace("$", "."),
         type = type,
@@ -133,11 +155,35 @@ fun FieldInfo.hasAnnotation(annotationName: String, classInfo: ClassInfo): Boole
 
 fun FieldInfo.toGetterName(): String = "get${capitalizedName()}"
 fun FieldInfo.toSetterName(): String = "set${capitalizedName()}"
+fun FieldInfo.toScalaSetterName(): String = "${name}_\$eq"
 fun FieldInfo.toSyntheticAnnotations(): String = "${toGetterName()}\$annotations"
 
-fun FieldInfo.getGetter(classInfo: ClassInfo): MethodInfo = classInfo
-    .getMethodInfo(toGetterName())
-    .first { it.parameterInfo.isEmpty() }
+fun FieldInfo.getGetter(classInfo: ClassInfo): MethodInfo {
+    val correspondingMethodName = if (classInfo.isScala) {
+        name
+    } else {
+        toGetterName()
+    }
+
+    return classInfo
+        .getMethodInfo(correspondingMethodName)
+        .first { it.parameterInfo.isEmpty() }
+}
+
+fun FieldInfo.getSetter(classInfo: ClassInfo): MethodInfo {
+    val correspondingMethodName = if (classInfo.isScala) {
+        toScalaSetterName()
+    } else {
+        toSetterName()
+    }
+
+    return classInfo
+        .getMethodInfo(correspondingMethodName)
+        .first {
+            it.parameterInfo.size == 1 &&
+                it.parameterInfo.first().typeDescriptor == typeDescriptor
+        }
+}
 
 fun FieldInfo.getAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> = classInfo
     .getMethodInfo(toSyntheticAnnotations())
