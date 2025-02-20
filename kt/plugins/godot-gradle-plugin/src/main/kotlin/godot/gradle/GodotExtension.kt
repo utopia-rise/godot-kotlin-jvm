@@ -173,13 +173,6 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
-    /**
-     * Enable the use of `ClassGraph` for registration code generation.
-     *
-     * If `true` KSP is disabled.
-     */
-    val experimentalClassGraphRegistration: Property<Boolean> = objects.property(Boolean::class.java)
-
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File(androidSdkRoot)
@@ -240,7 +233,5 @@ open class GodotExtension(objects: ObjectFactory) {
         }
 
         isIOSExportEnabled.set(false)
-
-        experimentalClassGraphRegistration.set(false)
     }
 }

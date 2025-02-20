@@ -19,7 +19,6 @@ import godot.annotation.Sync
 import godot.annotation.Tool
 import godot.annotation.TransferMode
 import godot.annotation.processor.classgraph.constants.SET
-import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.EnumFlagHintStringAnnotation
@@ -171,3 +170,6 @@ private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: 
         symbolProcessorSource = this
     )
 }
+
+@Suppress("UNCHECKED_CAST")
+fun <T> AnnotationInfo.getParameterValue(parameterName: String): T = parameterValues.getValue(parameterName) as T

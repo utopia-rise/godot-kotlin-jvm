@@ -4,27 +4,13 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.gradle.projectExt.godotApiArtifactName
 import godot.gradle.projectExt.godotCoreArtifactName
 import godot.gradle.projectExt.godotExtensionArtifactName
-import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
-import org.gradle.api.tasks.compile.JavaCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.packageMainJarTask(
+    classGraphGenerationTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
-    if (godotJvmExtension.experimentalClassGraphRegistration.get()) {
-        tasks.withType(JavaCompile::class.java).configureEach { javaCompile ->
-            javaCompile.options.compilerArgs.add("-parameters")
-        }
-
-        tasks.withType(KotlinCompile::class.java).configureEach { kotlinCompile ->
-            kotlinCompile.compilerOptions {
-                javaParameters.set(true)
-            }
-        }
-    }
-
     return tasks.named("shadowJar", ShadowJar::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
@@ -33,6 +19,8 @@ fun Project.packageMainJarTask(
             archiveBaseName.set("main")
             archiveVersion.set("")
             archiveClassifier.set("")
+
+            dependsOn(classGraphGenerationTask)
 
             // merges all service files from all dependencies into on
             // needed so we can loop over and load all entry files from within Bootstrap.kt

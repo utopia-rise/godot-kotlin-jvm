@@ -86,7 +86,7 @@ object EntryGenerator {
             throw ChecksFailedException()
         }
 
-        with(MainEntryFileBuilder) {
+        with(MainEntryFileBuilder()) {
             registeredClasses.forEach { registeredClass ->
                 registerClassRegistrar(
                     ClassRegistrarFileBuilder(
