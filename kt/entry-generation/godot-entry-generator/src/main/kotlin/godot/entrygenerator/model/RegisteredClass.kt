@@ -22,7 +22,7 @@ data class RegisteredClass(
     internal val isTool: Boolean
         get() = annotations.getAnnotation<ToolAnnotation>() != null
 
-    internal val godotBaseClass: String
+    val godotBaseClass: String
         get() = if (isAbstract) {
             ""
         } else {

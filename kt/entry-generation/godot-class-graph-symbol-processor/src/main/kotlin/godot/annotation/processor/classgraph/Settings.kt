@@ -9,5 +9,6 @@ data class Settings(
     val projectBaseDir: File,
     val registrationBaseDirPathRelativeToProjectDir: String,
     val isRegistrationFileHierarchyEnabled: Boolean,
+    val isRegistrationFileGenerationEnabled: Boolean,
     val generatedSourceRootDir: File
 )

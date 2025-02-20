@@ -14,13 +14,13 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
-import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 import kotlin.reflect.KClass
 
-object MainEntryFileBuilder {
+class MainEntryFileBuilder {
     private val initFunctionSpec = FunSpec
         .builder("init")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
@@ -89,7 +89,7 @@ object MainEntryFileBuilder {
             ClassName(it.containingPackage, it.name)
         }
         registerUserTypesVariantMappingsFunSpec.addStatement(
-            "return %M(${listOfArguments.joinToString { "%T::class" }})",
+            "return·%M(${listOfArguments.joinToString(separator = ",·") { "%T::class" }})",
             KOTLIN_LIST_OF,
             *listOfArguments.toTypedArray()
         )
