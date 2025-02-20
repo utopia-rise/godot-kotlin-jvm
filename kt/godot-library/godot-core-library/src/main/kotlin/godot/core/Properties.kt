@@ -3,7 +3,6 @@ package godot.core
 import godot.common.interop.VariantConverter
 import godot.internal.logging.GodotLogging
 import godot.internal.memory.TransferContext
-import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
     val _type: VariantConverter,
@@ -26,14 +25,15 @@ data class KtPropertyInfo(
 
 open class KtProperty<T : KtObject, P : Any?>(
     val ktPropertyInfo: KtPropertyInfo,
-    protected val kProperty: KMutableProperty1<T, P>,
+    protected val getter: (T) -> P,
+    protected val setter: (T, P) -> Unit,
     protected val variantConverter: VariantConverter,
 ) {
     open fun callGet(instance: T) {
         try {
-            TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
+            TransferContext.writeReturnValue(getter(instance), variantConverter)
         } catch (t: Throwable) {
-            GodotLogging.error("Error calling JVM getter ${kProperty.name} of script $instance from Godot\n:" + t.stackTraceToString())
+            GodotLogging.error("Error calling JVM getter ${ktPropertyInfo.name} of script $instance from Godot\n:" + t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
     }
@@ -41,9 +41,9 @@ open class KtProperty<T : KtObject, P : Any?>(
     open fun callSet(instance: T) {
         val arg = extractSetterArgument<P>()
         try {
-            kProperty.set(instance, arg)
+            setter(instance, arg)
         } catch (t: Throwable) {
-            GodotLogging.error("Error calling JVM setter ${kProperty.name} of script $instance from Godot:\n" + t.stackTraceToString())
+            GodotLogging.error("Error calling JVM setter ${ktPropertyInfo.name} of script $instance from Godot:\n" + t.stackTraceToString())
         }
     }
 
@@ -57,41 +57,45 @@ open class KtProperty<T : KtObject, P : Any?>(
 
 class KtEnumProperty<T : KtObject, P : Any>(
     ktPropertyInfo: KtPropertyInfo,
-    kProperty: KMutableProperty1<T, P>,
+    getter: (T) -> P,
+    setter: (T, P) -> Unit,
     val getValueConverter: (P?) -> Int,
     val setValueConverter: (Int) -> P
 ) : KtProperty<T, P>(
     ktPropertyInfo,
-    kProperty,
+    getter,
+    setter,
     VariantCaster.INT
 ) {
     override fun callGet(instance: T) {
-        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantCaster.INT)
+        TransferContext.writeReturnValue(getValueConverter(getter(instance)), VariantCaster.INT)
     }
 
     override fun callSet(instance: T) {
         val arg = extractSetterArgument<Int>()
-        kProperty.set(instance, setValueConverter(arg))
+        setter(instance, setValueConverter(arg))
     }
 }
 
 class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
     ktPropertyInfo: KtPropertyInfo,
-    kProperty: KMutableProperty1<T, L>,
+    getter: (T) -> L,
+    setter: (T, L) -> Unit,
     val getValueConverter: (L?) -> VariantArray<Int>,
     val setValueConverter: (VariantArray<Int>) -> L
 ) : KtProperty<T, L>(
     ktPropertyInfo,
-    kProperty,
+    getter,
+    setter,
     VariantParser.ARRAY
 ) {
     override fun callGet(instance: T) {
-        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantParser.ARRAY)
+        TransferContext.writeReturnValue(getValueConverter(getter(instance)), VariantParser.ARRAY)
     }
 
     override fun callSet(instance: T) {
         val arg = extractSetterArgument<VariantArray<Int>>()
-        kProperty.set(instance, setValueConverter(arg))
+        setter(instance, setValueConverter(arg))
     }
 }
 

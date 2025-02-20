@@ -4,7 +4,7 @@ data class RegisteredClassMetadataContainer(
     val registeredName : String,
     val baseType: String,
     val fqName: String,
-    val relativeSourcePath: String,
+    val relativeSourcePath: String, //TODO: delete this when no more source path in engine
     val compilationTimeRelativeRegistrationFilePath: String,
     val projectName: String,
     val superTypes: String,
