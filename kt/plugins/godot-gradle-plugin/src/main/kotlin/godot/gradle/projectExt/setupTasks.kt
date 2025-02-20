@@ -7,6 +7,7 @@ import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
 import godot.gradle.tasks.classGraphSymbolsProcess
 import godot.gradle.tasks.createCopyJarsTask
+import godot.gradle.tasks.deleteClassGraphGeneratedSourceTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.copyDefaultGraalJniConfigTask
@@ -16,33 +17,26 @@ import godot.gradle.tasks.graal.ios.createIOSGraalNativeImageTask
 import godot.gradle.tasks.graal.ios.createIOSStaticLibraryTask
 import godot.gradle.tasks.graal.ios.downloadIOSCapCacheFiles
 import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
+import godot.gradle.tasks.initialCompileForClassGraph
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
 import godot.gradle.tasks.setupAfterIdeaSyncTasks
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
-import org.gradle.api.tasks.compile.JavaCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.setupTasks() {
     afterEvaluate {
         with(it) {
-            tasks.withType(JavaCompile::class.java) { javaCompile ->
-                javaCompile.options.compilerArgs.add("-parameters")
-            }
+            val classGraphKotlinCompile = initialCompileForClassGraph()
 
-            tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
-                kotlinCompile.compilerOptions {
-                    javaParameters.set(true)
-                }
-            }
+            val deleteClassGraphGeneratedTask = deleteClassGraphGeneratedSourceTask()
+
+            val classGraphGenerationTask = classGraphSymbolsProcess(classGraphKotlinCompile, deleteClassGraphGeneratedTask)
 
             val packageBootstrapJarTask = packageBootstrapJarTask()
-            val packageMainJarTask = packageMainJarTask()
+            val packageMainJarTask = packageMainJarTask(classGraphGenerationTask = classGraphGenerationTask)
             val generateGdIgnoreFilesTask = generateGdIgnoreFilesTask()
-
-            classGraphSymbolsProcess(packageMainJarTask)
 
             // START: android specific tasks
             val checkD8ToolAccessibleTask = checkD8ToolAccessibleTask()

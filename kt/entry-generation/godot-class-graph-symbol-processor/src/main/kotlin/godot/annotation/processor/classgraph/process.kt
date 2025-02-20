@@ -1,8 +1,9 @@
 package godot.annotation.processor.classgraph
 
-import godot.annotation.RegisterClass
+import godot.annotation.GodotBaseType
 import godot.annotation.processor.classgraph.extensions.mapToClazz
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
+import godot.core.KtObject
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.ext.provideExistingRegistrationFiles
 import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
@@ -17,22 +18,32 @@ import java.io.FileOutputStream
 fun generateEntryUsingClassGraph(
     settings: Settings,
     logger: Logger,
-    vararg classPackageRoots: String
+    files: Set<File>
 ) {
     val scanResult = ClassGraph()
-        .overrideClasspath(*classPackageRoots)
+        .overrideClasspath(files)
         .enableAllInfo()
         .enableSystemJarsAndModules()
         .scan()
     scanResult
         .use {
             with(it) {
-                val classes = it.getClassesWithAnyAnnotation(RegisterClass::class.java)
+                RegisteredClassMetadataContainerDatabase.populateDependencies(it)
+
+                val classes = it.allClasses
+                    .filter { clazz ->
+                        clazz.extendsSuperclass(KtObject::class.java)
+                            && !clazz.hasAnnotation(GodotBaseType::class.java)
+                    }
+                    .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqdn(classInfo.name) }
                     .map { classInfo ->
                         classInfo.mapToClazz(settings)
                     }
 
-                val registeredClasses = classes.filterIsInstance<RegisteredClass>()
+                val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
+
+                RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
+
                 val existingRegistrationFiles = settings.projectBaseDir.provideExistingRegistrationFiles()
 
                 EntryGenerator.generateEntryFilesUsingRegisteredClasses(
@@ -57,6 +68,8 @@ fun generateEntryUsingClassGraph(
                     },
                     classRegistrarAppendableProvider = { registeredClass ->
                         val file = settings.generatedSourceRootDir
+                            .resolve("main")
+                            .resolve("kotlin")
                             .resolve("godot")
                             .resolve("entry")
                             .resolve("${registeredClass.registeredName}Registrar.kt")
@@ -71,6 +84,8 @@ fun generateEntryUsingClassGraph(
                     },
                     mainBufferedWriterProvider = {
                         val file = settings.generatedSourceRootDir
+                            .resolve("main")
+                            .resolve("kotlin")
                             .resolve("godot")
                             .resolve("Entry.kt")
 
@@ -82,8 +97,40 @@ fun generateEntryUsingClassGraph(
 
                         FileOutputStream(file).bufferedWriter()
                     },
-                    classRegistrarFromDependencyCount = registeredClasses.size
+                    classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize
                 )
+                
+                //TODO: remove existing registration files and registrars that should be deleted
+
+                if (settings.isRegistrationFileGenerationEnabled) {
+                    EntryGenerator.generateRegistrationFiles(
+                        registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                        registrationFileAppendableProvider = { metadata ->
+                            val registrationFile = provideRegistrationFilePathForInitialGeneration(
+                                isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                                fqName = metadata.fqName,
+                                registeredName = metadata.registeredName,
+                                compilationProjectName = settings.projectName,
+                                classProjectName = metadata.projectName,
+                                registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
+                            )
+
+                            val file = settings.generatedSourceRootDir
+                                .resolve("main")
+                                .resolve("resources")
+                                .resolve("entryFiles")
+                                .resolve(registrationFile)
+
+                            file.parentFile.mkdirs()
+
+                            if (!file.exists()) {
+                                file.createNewFile()
+                            }
+
+                            FileOutputStream(file).bufferedWriter()
+                        }
+                    )
+                }
             }
         }
 }
