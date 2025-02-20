@@ -4,6 +4,8 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
+import godot.common.extensions.convertToCamelCase
+import godot.common.extensions.convertToSnakeCase
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isJavaCollection
 import godot.entrygenerator.ext.toGodotVariantType
@@ -71,6 +73,32 @@ object PropertyRegistrationGenerator {
             registeredProperty.type.fqName
         }
 
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        if (getterFqName != null) {
+            requireNotNull(setterFqName) {
+                "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
+            }
+
+            registerClassControlFlow
+                .addStatement(
+                    "property(%S,·%L,·%L,·%T,·%T,·%S,·%T,·%S,·%L.flag)",
+                    registeredProperty.name.convertToSnakeCase(),
+                    getGetterReference(registeredProperty, className),
+                    getSetterReference(registeredProperty, className),
+                    registeredProperty.type.toKtVariantType(),
+                    registeredProperty.type.toGodotVariantType(),
+                    typeFqNameWithNullability,
+                    PropertyTypeHintProvider.provide(registeredProperty),
+                    PropertyHintStringGeneratorProvider
+                        .provide(registeredProperty)
+                        .getHintString()
+                        .replace("?", ""),
+                    getPropertyUsage(registeredProperty),
+                )
+            return
+        }
+
         registerClassControlFlow
             .addStatement(
                 "property(%L,·%T,·%T,·%S,·%T,·%S,·%L.flag)",
@@ -92,6 +120,28 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        if (getterFqName != null) {
+            requireNotNull(setterFqName) {
+                "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
+            }
+
+            registerClassControlFlow
+                .addStatement(
+                    "enumListProperty(%S,·%L,·%L,·%L.flag,·%S)",
+                    registeredProperty.name.convertToSnakeCase(),
+                    getGetterReference(registeredProperty, className),
+                    getSetterReference(registeredProperty, className),
+                    getPropertyUsage(registeredProperty),
+                    PropertyHintStringGeneratorProvider
+                        .provide(registeredProperty)
+                        .getHintString()
+                        .replace("?", ""),
+                )
+            return
+        }
+
         registerClassControlFlow
             .addStatement(
                 "enumListProperty(%L,·%L.flag,·%S)",
@@ -109,6 +159,28 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        if (getterFqName != null) {
+            requireNotNull(setterFqName) {
+                "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
+            }
+
+            registerClassControlFlow
+                .addStatement(
+                    "enumFlagProperty(%S,·%L,·%L,·%L.flag,·%S)",
+                    registeredProperty.name.convertToCamelCase(),
+                    getGetterReference(registeredProperty, className),
+                    getSetterReference(registeredProperty, className),
+                    getPropertyUsage(registeredProperty),
+                    PropertyHintStringGeneratorProvider
+                        .provide(registeredProperty)
+                        .getHintString()
+                        .replace("?", ""),
+                )
+            return
+        }
+
         registerClassControlFlow
             .addStatement(
                 "enumFlagProperty(%L,·%L.flag,·%S)",
@@ -126,6 +198,28 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        if (getterFqName != null) {
+            requireNotNull(setterFqName) {
+                "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
+            }
+
+            registerClassControlFlow
+                .addStatement(
+                    "enumProperty(%S,·%L,·%L,·%L.flag,·%S)",
+                    registeredProperty.name.convertToSnakeCase(),
+                    getGetterReference(registeredProperty, className),
+                    getSetterReference(registeredProperty, className),
+                    getPropertyUsage(registeredProperty),
+                    PropertyHintStringGeneratorProvider
+                        .provide(registeredProperty)
+                        .getHintString()
+                        .replace("?", ""),
+                )
+            return
+        }
+
         registerClassControlFlow
             .addStatement(
                 "enumProperty(%L,·%L.flag,·%S)",
@@ -141,6 +235,30 @@ object PropertyRegistrationGenerator {
     private fun getPropertyReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
         return className
             .member(registeredProperty.name)
+            .reference()
+    }
+
+    private fun getGetterReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
+        val getterName = registeredProperty.getterName
+
+        requireNotNull(getterName) {
+            "Property ${registeredProperty.fqName} does not have a getter."
+        }
+
+        return className
+            .member(getterName)
+            .reference()
+    }
+
+    private fun getSetterReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
+        val setterName = registeredProperty.setterName
+
+        requireNotNull(setterName) {
+            "Property ${registeredProperty.fqName} does not have a setter."
+        }
+
+        return className
+            .member(setterName)
             .reference()
     }
 

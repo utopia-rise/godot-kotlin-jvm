@@ -7,20 +7,30 @@ import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 import java.io.File
 
-fun Project.classGraphSymbolsProcess(mainJarTask: TaskProvider<out Task>): TaskProvider<out Task> = tasks.register(
-    "classGraphSymbolsProcess"
-) {
-    group = "godot-kotlin-jvm-internal"
-    description = "Generates entry files using ClassGraph api"
+fun Project.classGraphSymbolsProcess(
+    classGraphCompileKotlin: KotlinWithJavaCompilation<KotlinJvmOptions, KotlinJvmCompilerOptions>,
+    deleteClassGraphGeneratedTask: TaskProvider<out Task>
+): TaskProvider<out Task> {
+    val classGraphGenerationTask = tasks.register(
+        "classGraphSymbolsProcess"
+    ) {
+        group = "godot-kotlin-jvm-internal"
+        description = "Generates entry files using ClassGraph api"
 
-    with(it) {
-//        dependsOn(mainJarTask)
+        with(it) {
+            dependsOn(classGraphCompileKotlin.compileTaskProvider)
+            dependsOn(deleteClassGraphGeneratedTask)
 
-        if (godotJvmExtension.experimentalClassGraphRegistration.get()) {
             doFirst {
-                logger
+                val runtimeClassPath =
+                    (classGraphCompileKotlin.runtimeDependencyFiles + classGraphCompileKotlin.compileDependencyFiles +
+                        classGraphCompileKotlin.output.allOutputs).files
+
                 generateEntryUsingClassGraph(
                     Settings(
                         godotJvmExtension.classPrefix.orNull,
@@ -29,41 +39,37 @@ fun Project.classGraphSymbolsProcess(mainJarTask: TaskProvider<out Task>): TaskP
                         File(projectDir.absolutePath.replace(File.separator, "/")),
                         (
                             godotJvmExtension
-                            .registrationFileBaseDir
-                            .orNull
-                            ?.asFile
-                            ?: projectDir
-                                .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
-                                .apply {
-                                    if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
-                                        mkdirs()
+                                .registrationFileBaseDir
+                                .orNull
+                                ?.asFile
+                                ?: projectDir
+                                    .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
+                                    .apply {
+                                        if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
+                                            mkdirs()
+                                        }
                                     }
-                                }
-                        )
+                            )
                             .relativeTo(projectDir)
                             .path
                             .replace(File.separator, "/")
                             .removePrefix("/")
                             .removeSuffix("/"),
                         godotJvmExtension.isRegistrationFileHierarchyEnabled.get(),
+                        godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true),
                         layout.buildDirectory.get()
                             .asFile
                             .resolve("generated")
                             .resolve("classgraph")
-                            .resolve("main")
-                            .resolve("kotlin")
                     ),
                     logger,
-                    layout.buildDirectory.asFile
-                        .get()
-                        .resolve("libs/main.jar")
-                        .absolutePath,
-                    layout.buildDirectory.asFile
-                        .get()
-                        .resolve("libs/godot-bootstrap.jar")
-                        .absolutePath,
+                    runtimeClassPath
                 )
             }
         }
     }
+
+    tasks.getByName("compileKotlin").dependsOn(classGraphGenerationTask)
+
+    return classGraphGenerationTask
 }

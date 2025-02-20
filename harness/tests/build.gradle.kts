@@ -38,7 +38,6 @@ godot {
     // uncomment to test ios
 //    isIOSExportEnabled.set(true)
 
-    experimentalClassGraphRegistration.set(true)
 }
 
 dependencies {

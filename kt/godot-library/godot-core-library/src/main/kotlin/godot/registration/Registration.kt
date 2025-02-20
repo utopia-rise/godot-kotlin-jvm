@@ -1,6 +1,8 @@
 package godot.registration
 
-import godot.core.PropertyHint
+import godot.common.constants.Constraints
+import godot.common.extensions.convertToSnakeCase
+import godot.common.interop.VariantConverter
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
@@ -29,14 +31,13 @@ import godot.core.KtProperty
 import godot.core.KtPropertyInfo
 import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
-import godot.internal.reflection.TypeManager
-import godot.common.interop.VariantConverter
+import godot.core.PropertyHint
 import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
-import godot.common.constants.Constraints
-import godot.common.extensions.convertToSnakeCase
+import godot.internal.reflection.TypeManager
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
 import kotlin.reflect.KFunction11
@@ -107,22 +108,71 @@ class ClassBuilderDsl<T : KtObject>(
         hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
         hintString: String = "",
         usage: Long
+    ) = property(
+        kProperty.name.convertToSnakeCase(),
+        { instance: T -> kProperty.get(instance) },
+        { instance: T, p: P -> kProperty.set(instance, p) },
+        variantType,
+        type,
+        className,
+        hint,
+        hintString,
+        usage
+    )
+
+    fun <P : Any?> property(
+        name: String,
+        getter: (T) -> P,
+        setter: (T, P) -> Unit,
+        variantType: VariantConverter,
+        type: VariantConverter,
+        className: String,
+        hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
+        hintString: String = "",
+        usage: Long
     ) {
-        val propertyName = kProperty.name.convertToSnakeCase()
-        require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $registeredName"
+        require(!properties.contains(name)) {
+            "Found two properties with name $name for class $registeredName"
         }
-        properties[propertyName] = KtProperty(
+        properties[name] = KtProperty(
             KtPropertyInfo(
                 type,
-                propertyName,
+                name,
                 className,
                 hint,
                 hintString,
                 usage
             ),
-            kProperty,
+            getter,
+            setter,
             variantType
+        )
+    }
+
+    inline fun <reified P : Enum<P>> enumProperty(
+        name: String,
+        noinline getter: (T) -> P,
+        noinline setter: (T, P) -> Unit,
+        usage: Long,
+        hintString: String
+    ) {
+        require(!properties.contains(name)) {
+            "Found two properties with name $name for class $registeredName"
+        }
+
+        properties[name] = KtEnumProperty(
+            KtPropertyInfo(
+                VariantParser.LONG,
+                name,
+                "Int",
+                PropertyHint.PROPERTY_HINT_ENUM,
+                hintString,
+                usage,
+            ),
+            getter,
+            setter,
+            { enum: P? -> enum?.ordinal ?: 1 },
+            { i -> enumValues<P>()[i] }
         )
     }
 
@@ -130,47 +180,36 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, P>,
         usage: Long,
         hintString: String
-    ) {
-        val propertyName = kProperty.name.convertToSnakeCase()
-        require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $registeredName"
-        }
-
-        properties[propertyName] = KtEnumProperty(
-            KtPropertyInfo(
-                VariantParser.LONG,
-                propertyName,
-                "Int",
-                PropertyHint.PROPERTY_HINT_ENUM,
-                hintString,
-                usage,
-            ),
-            kProperty,
-            { enum: P? -> enum?.ordinal ?: 1 },
-            { i -> enumValues<P>()[i] }
-        )
-    }
+    ) = enumProperty(
+        kProperty.name.convertToSnakeCase(),
+        { instance: T -> kProperty.get(instance) },
+        { instance: T, p: P -> kProperty.set(instance, p) },
+        usage,
+        hintString
+    )
 
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
-        kProperty: KMutableProperty1<T, L>,
+        name: String,
+        noinline getter: (T) -> L,
+        noinline setter: (T, L) -> Unit,
         usage: Long,
         hintString: String
     ) {
-        val propertyName = kProperty.name.convertToSnakeCase()
-        require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $registeredName"
+        require(!properties.contains(name)) {
+            "Found two properties with name $name for class $registeredName"
         }
 
-        properties[propertyName] = KtEnumListProperty(
+        properties[name] = KtEnumListProperty(
             KtPropertyInfo(
                 VariantParser.ARRAY,
-                propertyName,
+                name,
                 "Int",
                 PropertyHint.PROPERTY_HINT_ENUM,
                 hintString,
                 usage,
             ),
-            kProperty,
+            getter,
+            setter,
             { enumList: Collection<P>? ->
                 enumList
                     ?.map { it.ordinal }
@@ -184,6 +223,18 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
+    inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
+        kProperty: KMutableProperty1<T, L>,
+        usage: Long,
+        hintString: String
+    ) = enumListProperty(
+        kProperty.name.convertToSnakeCase(),
+        { instance: T -> kProperty.get(instance) },
+        { instance: T, l: L -> kProperty.set(instance, l) },
+        usage,
+        hintString
+    )
+
     @JvmName("enumFlagPropertyMutable")
     @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
@@ -193,30 +244,31 @@ class ClassBuilderDsl<T : KtObject>(
     ) = enumFlagProperty(
         kProperty as KMutableProperty1<T, Set<P>>,
         usage,
-        hintString,
-
-        )
+        hintString
+    )
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
-        kProperty: KMutableProperty1<T, Set<P>>,
+        name: String,
+        noinline getter: (T) -> Set<P>,
+        noinline setter: (T, Set<P>) -> Unit,
         usage: Long,
         hintString: String
     ) {
-        val propertyName = kProperty.name.convertToSnakeCase()
-        require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $registeredName"
+        require(!properties.contains(name)) {
+            "Found two properties with name $name for class $registeredName"
         }
 
-        properties[propertyName] = KtEnumProperty(
+        properties[name] = KtEnumProperty(
             KtPropertyInfo(
                 VariantParser.LONG,
-                propertyName,
+                name,
                 "Int",
                 PropertyHint.PROPERTY_HINT_FLAGS,
                 hintString,
                 usage,
             ),
-            kProperty,
+            getter,
+            setter,
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
@@ -245,6 +297,18 @@ class ClassBuilderDsl<T : KtObject>(
             }
         )
     }
+
+    inline fun <reified P : Enum<P>> enumFlagProperty(
+        kProperty: KMutableProperty1<T, Set<P>>,
+        usage: Long,
+        hintString: String
+    ) = enumFlagProperty(
+        kProperty.name.convertToSnakeCase(),
+        { instance: T -> kProperty.get(instance) },
+        { instance: T, set: Set<P> -> kProperty.set(instance, set) },
+        usage,
+        hintString
+    )
 
     /**
      * Notification functions of class hierarchy
@@ -1162,98 +1226,22 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <T> signal(kProperty: KProperty<T>) {
-        appendSignal(
-            KtSignalInfo(kProperty.name.convertToSnakeCase(), listOf())
-        )
-    }
+    fun <T> signal(kProperty: KProperty<T>, vararg parameters: KtFunctionArgument) = signal(
+        kProperty.name.convertToSnakeCase(),
+        *parameters
+    )
 
-    fun <T> signal(
-        kProperty: KProperty<T>,
-        p0: KtFunctionArgument
-    ) {
+    fun <T> signal(kFunction: KFunction<T>, vararg parameters: KtFunctionArgument) = signal(
+        kFunction.name.convertToSnakeCase(),
+        *parameters
+    )
+
+    private fun signal(name: String, vararg parameters: KtFunctionArgument) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.convertToSnakeCase(),
-                listOf(
-                    p0.toKtPropertyInfo()
-                )
-            )
-        )
-    }
-
-    fun <T> signal(
-        kProperty: KProperty<T>,
-        p0: KtFunctionArgument,
-        p1: KtFunctionArgument
-    ) {
-        appendSignal(
-            KtSignalInfo(
-                kProperty.name.convertToSnakeCase(),
-                listOf(
-                    p0.toKtPropertyInfo(),
-                    p1.toKtPropertyInfo()
-                )
-            )
-        )
-    }
-
-    fun <T> signal(
-        kProperty: KProperty<T>,
-        p0: KtFunctionArgument,
-        p1: KtFunctionArgument,
-        p2: KtFunctionArgument
-    ) {
-        appendSignal(
-            KtSignalInfo(
-                kProperty.name.convertToSnakeCase(),
-                listOf(
-                    p0.toKtPropertyInfo(),
-                    p1.toKtPropertyInfo(),
-                    p2.toKtPropertyInfo()
-                )
-            )
-        )
-    }
-
-    fun <T> signal(
-        kProperty: KProperty<T>,
-        p0: KtFunctionArgument,
-        p1: KtFunctionArgument,
-        p2: KtFunctionArgument,
-        p3: KtFunctionArgument
-    ) {
-        appendSignal(
-            KtSignalInfo(
-                kProperty.name.convertToSnakeCase(),
-                listOf(
-                    p0.toKtPropertyInfo(),
-                    p1.toKtPropertyInfo(),
-                    p2.toKtPropertyInfo(),
-                    p3.toKtPropertyInfo()
-                )
-            )
-        )
-    }
-
-    fun <T> signal(
-        kProperty: KProperty<T>,
-        p0: KtFunctionArgument,
-        p1: KtFunctionArgument,
-        p2: KtFunctionArgument,
-        p3: KtFunctionArgument,
-        p4: KtFunctionArgument
-    ) {
-        appendSignal(
-            KtSignalInfo(
-                kProperty.name.convertToSnakeCase(),
-                listOf(
-                    p0.toKtPropertyInfo(),
-                    p1.toKtPropertyInfo(),
-                    p2.toKtPropertyInfo(),
-                    p3.toKtPropertyInfo(),
-                    p4.toKtPropertyInfo()
-                )
+                name,
+                parameters
+                    .map { it.toKtPropertyInfo() }
             )
         )
     }
