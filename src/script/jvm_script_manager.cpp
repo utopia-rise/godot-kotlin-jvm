@@ -13,23 +13,77 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #ifdef TOOLS_ENABLED
     last_reload = OS::get_singleton()->get_unix_time();
 
+    // Clear all containers and keeping a cache for comparison.
+    HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
+    named_scripts.clear();
+    named_scripts_map.clear();
+
 #endif
 
     JVM_DEV_LOG("Loading JVM Scripts...");
 
+    // ####NAMED SCRIPT#######
+    for (KtClass* kotlin_class : classes) {
+        String script_name = kotlin_class->registered_class_name;
+        String script_path = RES_DIRECTORY + kotlin_class->compilation_time_relative_registration_file_path;
+
+        Ref<NamedScript> named_script;
 #ifdef TOOLS_ENABLED
-    HashMap<StringName, KtClass*> new_name_to_kt_class;
+        // First check if the scripts already exist
+        if (named_script_cache.has(script_name)) {
+            named_script = named_script_cache[script_name];
+
+            delete named_script->kotlin_class;
+            named_script->kotlin_class = kotlin_class;
+
+            named_script_cache.erase(script_name);
+            named_scripts.push_back(named_script);
+            named_scripts_map[script_name] = named_script;
+
+            named_script->export_dirty_flag = true;
+            named_script->set_path(script_path, true);
+
+            JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
+        } else {
+#endif
+            named_script = Ref<NamedScript>(ResourceLoader::load(script_path));
+            named_script->kotlin_class = kotlin_class;
+
+            JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
+#ifdef TOOLS_ENABLED
+        }
+#endif
+    }
+
+#ifdef TOOLS_ENABLED
+    // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
+    // We simply remove their kotlin_class if they got one.
+    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : named_script_cache) {
+        Ref<NamedScript> named_script {keyValue.value};
+        StringName name {keyValue.key};
+        if (named_script->kotlin_class) {
+            JVM_DEV_VERBOSE("JVM Script deleted: %s", named_script->kotlin_class->registered_class_name);
+            delete named_script->kotlin_class;
+            named_script->kotlin_class = nullptr;
+        }
+
+        // We only add them back if placeholders are in use in the editor. That way they can be updated if back in the next reload.
+        // Without that a separate Script instance would be created and nodes not updated.
+        // Otherwise, we let the named_script die.
+        if (!named_script->placeholders.is_empty()) {
+            named_scripts.push_back(named_script);
+            named_scripts_map[name] = named_script;
+            named_script->export_dirty_flag = true;
+        }
+    }
+#endif
+
+
+
+    // ####SOURCE SCRIPT#######
+#ifdef TOOLS_ENABLED
     HashMap<StringName, KtClass*> new_fqdn_to_kt_class;
 #endif
-
-    HashMap<StringName, KtClass*>& name_to_kt_class_ref =
-#ifdef TOOLS_ENABLED
-            new_name_to_kt_class
-#else
-            name_to_kt_class
-#endif
-            ;
-
     HashMap<StringName, KtClass*>& fqdn_to_kt_class_ref =
 #ifdef TOOLS_ENABLED
             new_fqdn_to_kt_class
@@ -39,12 +93,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     ;
 
 #ifdef TOOLS_ENABLED
-    for (const Ref<WeakRef>& weak_ref: named_scripts) {
-        if (auto* named_script { Object::cast_to<NamedScript>(weak_ref->get_ref()) }) {
-            named_script->kotlin_class = nullptr;
-        }
-    }
-
     for (const Ref<WeakRef>& weak_ref: source_scripts) {
         if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
             source_script->kotlin_class = nullptr;
@@ -53,16 +101,9 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
 
     for (KtClass* kotlin_class : classes) {
-        name_to_kt_class_ref[kotlin_class->registered_class_name] = kotlin_class;
         fqdn_to_kt_class_ref[kotlin_class->fqdn] = kotlin_class;
 
 #ifdef TOOLS_ENABLED
-
-        if (Ref<WeakRef>* weak_ref {named_scripts_map.getptr(kotlin_class->registered_class_name)}) {
-            if (auto* named_script {Object::cast_to<NamedScript>(weak_ref->ptr()->get_ref())}) {
-                named_script->kotlin_class = kotlin_class;
-            }
-        }
 
         if (Ref<WeakRef>* weak_ref {source_scripts_map.getptr(kotlin_class->fqdn)}) {
             if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->ptr()->get_ref())}) {
@@ -78,7 +119,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         delete entry.value;
     }
     fqdn_to_kt_class = new_fqdn_to_kt_class;
-    name_to_kt_class = new_name_to_kt_class;
 
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
     MessageQueue::get_singleton()->push_callable(callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload));
@@ -103,8 +143,8 @@ Ref<NamedScript> JvmScriptManager::get_named_script_from_source_script(Ref<Sourc
 }
 
 Ref<NamedScript> JvmScriptManager::get_script_from_name(const StringName& name) const {
-    if (HashMap<StringName, Ref<WeakRef>>::ConstIterator element = named_scripts_map.find(name)) {
-        return Ref<NamedScript>(element->value->get_ref());
+    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_scripts_map.find(name)) {
+        return element->value;
     }
     return {};
 }
@@ -116,21 +156,13 @@ Ref<SourceScript> JvmScriptManager::get_script_from_fqdn(const StringName& p_fqd
     return {};
 }
 
-KtClass* JvmScriptManager::get_kt_class_from_name(const String& p_name) const {
-    if (HashMap<StringName, KtClass*>::ConstIterator element = name_to_kt_class.find(p_name)) {
-        return element->value;
-    }
-
-    return {};
-}
 
 #ifdef TOOLS_ENABLED
 void JvmScriptManager::update_all_scripts(uint64_t update_time) {
-    for (const Ref<WeakRef>& weak_ref: named_scripts) {
-        if (auto* named_script { Object::cast_to<NamedScript>(weak_ref->get_ref()) }) {
-            named_script->update_script_exports();
-            named_script->set_last_time_source_modified(update_time);
-        }
+    for (const Ref<NamedScript>& named_script : named_scripts) {
+        JvmScript* ptr = named_script.ptr();
+        ptr->update_script_exports();
+        ptr->set_last_time_source_modified(update_time);
     }
 
     for (const Ref<WeakRef>& weak_ref: source_scripts) {
@@ -173,8 +205,6 @@ void JvmScriptManager::finalize() {
         delete entry.value;
     }
     singleton->fqdn_to_kt_class.clear();
-    singleton->name_to_kt_class.clear();
-
     memdelete(singleton);
 }
 
