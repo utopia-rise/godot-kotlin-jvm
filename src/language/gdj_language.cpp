@@ -97,17 +97,16 @@ String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_t
     }
 
     String script_name = JvmScript::get_script_file_name(p_path);
-
-    if (KtClass* kt_class {JvmScriptManager::get_instance()->get_kt_class_from_name(script_name)}) {
+    Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_script_from_name(script_name);
+    if (!named_script.is_null() && named_script.is_valid()) {
         if (r_base_type) {
-            if (kt_class->registered_supertypes.size() > 0) {
-                *r_base_type = kt_class->registered_supertypes[0];
+            if (named_script->get_base_script().is_null()) {
+                *r_base_type = named_script->get_instance_base_type();
             } else {
-                *r_base_type = kt_class->base_godot_class;
+                *r_base_type = named_script->get_base_script()->get_global_name();
             }
         }
-
-        return kt_class->registered_class_name;
+        return named_script->get_global_name();
     }
 
     return {};
