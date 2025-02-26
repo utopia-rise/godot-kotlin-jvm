@@ -13,9 +13,7 @@ kotlin {
 }
 
 gradlePlugin {
-    @Suppress("UnstableApiUsage")
     website.set("https://github.com/utopia-rise/godot-kotlin-jvm")
-    @Suppress("UnstableApiUsage")
     vcsUrl.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
     plugins {
@@ -25,7 +23,6 @@ gradlePlugin {
             implementationClass = "godot.gradle.GodotPlugin"
             description = "Automatically setup of godot kotlin jvm specific project configurations"
 
-            @Suppress("UnstableApiUsage")
             tags.set(listOf("kotlin", "godot", "gamedev"))
         }
     }
