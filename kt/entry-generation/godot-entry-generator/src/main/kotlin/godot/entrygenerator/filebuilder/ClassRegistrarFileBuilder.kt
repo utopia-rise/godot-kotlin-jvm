@@ -8,14 +8,18 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asClassName
 import godot.annotation.RegisteredClassMetadata
+import godot.entrygenerator.ext.shouldGenerateGdjFile
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
-import godot.tools.common.constants.*
-import java.io.BufferedWriter
+import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GodotFunctions
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.godotRegistrationPackage
+import java.io.BufferedWriter
 
 class ClassRegistrarFileBuilder(
     projectName: String,
@@ -27,7 +31,7 @@ class ClassRegistrarFileBuilder(
         .classBuilder("${registeredClass.registeredName}Registrar")
         .addModifiers(KModifier.OPEN)
         .apply {
-            if (!registeredClass.isAbstract) {
+            if (registeredClass.shouldGenerateGdjFile) {
                 addAnnotation(
                     AnnotationSpec
                         .builder(RegisteredClassMetadata::class.asClassName())
