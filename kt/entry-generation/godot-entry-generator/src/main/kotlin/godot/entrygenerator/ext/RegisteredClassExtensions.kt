@@ -39,3 +39,6 @@ fun provideRegistrationFilePathForInitialGeneration(
 
     return "$pathWithoutExtension.${FileExtensions.GodotKotlinJvm.registrationFile}"
 }
+
+val RegisteredClass.shouldGenerateGdjFile: Boolean
+    get() = !isAbstract
