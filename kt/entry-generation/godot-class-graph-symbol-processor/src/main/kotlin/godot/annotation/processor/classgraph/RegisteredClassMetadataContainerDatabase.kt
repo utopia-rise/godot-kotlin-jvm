@@ -3,6 +3,7 @@ package godot.annotation.processor.classgraph
 import godot.annotation.RegisteredClassMetadata
 import godot.annotation.processor.classgraph.extensions.getParameterValue
 import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
+import godot.entrygenerator.ext.shouldGenerateGdjFile
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import io.github.classgraph.ScanResult
@@ -36,6 +37,7 @@ object RegisteredClassMetadataContainerDatabase {
 
     fun populateCurrentProject(registeredClasses: List<RegisteredClass>, settings: Settings) {
         currentProjectContainers = registeredClasses
+            .filter { it.shouldGenerateGdjFile }
             .map {
                 RegisteredClassMetadataContainer(
                     it.registeredName,
