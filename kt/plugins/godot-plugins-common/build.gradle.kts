@@ -45,8 +45,6 @@ dependencies {
         intellijIdeaCommunity(intellijVersion)
 
         bundledPlugin("com.intellij.gradle")
-
-        instrumentationTools()
     }
 }
 

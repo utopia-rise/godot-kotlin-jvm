@@ -53,7 +53,6 @@ dependencies {
         bundledPlugin("org.jetbrains.kotlin")
         bundledPlugin("com.intellij.gradle")
 
-        instrumentationTools()
         pluginVerifier()
         zipSigner()
     }
