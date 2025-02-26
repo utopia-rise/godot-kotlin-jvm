@@ -1,6 +1,7 @@
 package godot.tests.inheritance
 
 import godot.api.Node
+import godot.annotation.DoubleRange
 import godot.annotation.Export
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
@@ -10,6 +11,11 @@ import godot.core.signal2
 
 // register class annotation is optional for abstract classes
 abstract class AbstractClassInheritanceParent : Node() {
+    // GH-731
+    @DoubleRange(1.0, 100.0)
+    @RegisterProperty
+    @Export
+    var speed: Double = 100.0
 
     @Export
     @RegisterProperty
