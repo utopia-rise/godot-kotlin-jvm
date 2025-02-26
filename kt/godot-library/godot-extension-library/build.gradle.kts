@@ -17,7 +17,7 @@ kotlinDefinitions {
 
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 java {

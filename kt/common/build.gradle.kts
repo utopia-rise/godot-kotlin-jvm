@@ -13,7 +13,7 @@ version = fullGodotKotlinJvmVersion
 group = "com.utopia-rise"
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 publishing {

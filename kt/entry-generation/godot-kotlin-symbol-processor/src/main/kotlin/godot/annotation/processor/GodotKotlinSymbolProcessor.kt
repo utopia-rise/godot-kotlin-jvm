@@ -5,7 +5,6 @@ import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
-import godot.annotation.processor.compiler.CompilerDataProvider
 import godot.annotation.processor.processing.ProcessingRound
 import godot.annotation.processor.processing.ProcessingRoundsBlackboard
 import godot.annotation.processor.processing.RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistrationFiles
@@ -44,12 +43,6 @@ class GodotKotlinSymbolProcessor(
     override fun process(resolver: Resolver): List<KSAnnotated> {
         processingRound++
         if (processingRound == 0) {
-            CompilerDataProvider.init(
-                resolver,
-                options["srcDirs"]
-                    ?.split(File.pathSeparator)
-                    ?: throw IllegalStateException("No srcDirs option provided")
-            )
             settings = provideSettingsFromArguments()
         }
 

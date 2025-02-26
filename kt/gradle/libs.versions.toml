@@ -1,28 +1,30 @@
 [versions]
 
 godotKotlinJvm = "0.11.0"
-kotlin = "2.0.21" # https://kotlinlang.org/docs/releases.html#release-details
-kotlinCoroutine = "1.9.0" # https://github.com/Kotlin/kotlinx.coroutines/releases
+kotlin = "2.1.10" # https://kotlinlang.org/docs/releases.html#release-details
+kotlinCoroutine = "1.10.1" # https://github.com/Kotlin/kotlinx.coroutines/releases
 godot = "4.3"
 ideaPluginDefaultIntellijVersion = "2024.2"
 
-shadowJar = "8.3.0" # https://github.com/johnrengelman/shadow/releases
+toolchain-jvm="11"
+
+shadowJar = "8.3.6" # https://github.com/johnrengelman/shadow/releases
 # TODO: bump kotlin poet version once: https://github.com/square/kotlinpoet/issues/1759 is fixed
 #kotlinPoet = "1.18.0" # https://github.com/square/kotlinpoet/releases
 kotlinPoet = "1.12.0" # https://github.com/square/kotlinpoet/releases
 
-ksp = "2.0.21-1.0.25" # https://github.com/google/ksp/releases
+ksp = "2.1.10-1.0.30" # https://github.com/google/ksp/releases
 
-jacksonDataBind = "2.17.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-jacksonDataFormatXml = "2.17.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
+jacksonDataBind = "2.18.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+jacksonDataFormatXml = "2.18.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
 
-grgit = "5.2.2" # https://github.com/ajoberstar/grgit/releases
+grgit = "5.3.0" # https://github.com/ajoberstar/grgit/releases
 
-gradlePublish = "1.2.1" # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+gradlePublish = "1.3.1" # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 
 changelog = "2.2.1" # https://github.com/JetBrains/gradle-changelog-plugin/releases
-gradleIntelliJPlugin = "2.1.0" # https://plugins.gradle.org/plugin/org.jetbrains.intellij
-ideaSync = "1.1.9" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
+gradleIntelliJPlugin = "2.3.0" # https://github.com/JetBrains/intellij-platform-gradle-plugin/releases
+ideaSync = "1.1.10" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
 kotlinPreProcessors = "0.2.0" # https://github.com/utopia-rise/kotlin-preprocessors/tags
 
 iosJdk = "21"
