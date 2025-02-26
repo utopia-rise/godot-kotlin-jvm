@@ -29,17 +29,18 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
     private val settings: Settings,
 ) : BaseRound() {
     override fun executeInternal(): List<KSAnnotated> {
+        val metadataAnnotationVisitor = MetadataAnnotationVisitor()
+        resolver.getDeclarationsFromPackage(godotEntryBasePackage).forEach { declaration ->
+            declaration.accept(metadataAnnotationVisitor, Unit)
+        }
+        settings.registeredClassMetadataContainers = metadataAnnotationVisitor.registeredClassMetadataContainers
+
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
             settings = settings,
         )
 
         resolver.getNewFiles().ifEmpty { resolver.getAllFiles() }.toList().map {
             it.accept(registerAnnotationVisitor, Unit)
-        }
-
-        val metadataAnnotationVisitor = MetadataAnnotationVisitor()
-        resolver.getDeclarationsFromPackage(godotEntryBasePackage).forEach { declaration ->
-            declaration.accept(metadataAnnotationVisitor, Unit)
         }
 
 
@@ -51,6 +52,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
             classRegistrarFromDependencyCount = metadataAnnotationVisitor.registeredClassMetadataContainers.size,
             logger = LoggerWrapper(logger),
             sourceFiles = registerAnnotationVisitor.sourceFilesContainingRegisteredClasses,
+            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
             jvmTypeFqNamesProvider = JvmTypeProvider(),
             compilationTimeRelativeRegistrationFilePathProvider = { registeredClass ->
                 val registrationFile = blackboard
@@ -58,7 +60,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                     ?.relativeTo(settings.projectBaseDir)
                     ?: File(
                         provideRegistrationFilePathForInitialGenerationWithoutExtension(
-                            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                            settings = settings,
                             fqName = registeredClass.fqName,
                             registeredName = registeredClass.registeredName,
                             compilationProjectName = settings.projectName,
@@ -100,7 +102,7 @@ internal class RoundGenerateRegistrarsForCurrentProjectAndDependencyRegistration
                     blackboard.alreadyGeneratedRegistrationFiles.add(metadata.fqName)
 
                     val registrationFile = provideRegistrationFilePathForInitialGenerationWithoutExtension(
-                        isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                        settings = settings,
                         fqName = metadata.fqName,
                         registeredName = metadata.registeredName,
                         compilationProjectName = settings.projectName,

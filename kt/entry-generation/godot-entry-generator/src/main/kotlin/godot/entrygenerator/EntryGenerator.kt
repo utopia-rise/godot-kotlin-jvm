@@ -39,6 +39,7 @@ object EntryGenerator {
         classRegistrarFromDependencyCount: Int,
         logger: Logger,
         sourceFiles: List<SourceFile>,
+        isRegistrationFileHierarchyEnabled: Boolean,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
@@ -67,7 +68,8 @@ object EntryGenerator {
                             projectName = projectName,
                             registeredClass = registeredClass,
                             registrarAppendableProvider = classRegistrarAppendableProvider,
-                            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass)
+                            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
+                            isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
                         )
                     )
                 }

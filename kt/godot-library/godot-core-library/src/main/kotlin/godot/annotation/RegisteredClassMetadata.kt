@@ -13,4 +13,5 @@ annotation class RegisteredClassMetadata(
     val signals: String,
     val properties: String,
     val functions: String,
+    val isRegistrationFileHierarchyEnabled: Boolean
 )
