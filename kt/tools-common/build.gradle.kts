@@ -24,7 +24,7 @@ dependencies {
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotToolsCommonGenerator by creating(MavenPublication::class) {
+        val godotToolsCommonGenerator by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Godot common module for all tools.")

@@ -53,7 +53,7 @@ tasks {
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotGradlePlugin by creating(MavenPublication::class) {
+        val godotGradlePlugin by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Godot gradle plugin for kotlin language support.")

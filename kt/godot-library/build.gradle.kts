@@ -68,7 +68,7 @@ tasks {
     }
     build.get().finalizedBy(shadowJar)
 
-    val copyBootstrapJar by creating(Copy::class.java) {
+    val copyBootstrapJar by registering(Copy::class) {
         group = "godot-jvm"
         from(shadowJar)
         destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
@@ -89,7 +89,7 @@ val targetSuffix = if (isRelease) "release" else "debug"
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotLibraryPublication by creating(MavenPublication::class) {
+        val godotLibraryPublication by registering(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
                 description.set("A library allowing to define scripts for the Godot Engine.")
