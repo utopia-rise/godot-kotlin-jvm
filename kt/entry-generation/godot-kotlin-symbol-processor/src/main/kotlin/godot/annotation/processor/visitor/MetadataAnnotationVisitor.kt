@@ -27,7 +27,6 @@ internal class MetadataAnnotationVisitor: KSVisitorVoid() {
                             registeredName = annotation.registeredName,
                             baseType = annotation.baseType,
                             fqName = annotation.fqName,
-                            relativeSourcePath = annotation.relativeSourcePath,
                             compilationTimeRelativeRegistrationFilePath = annotation.compilationTimeRelativeRegistrationFilePath,
                             projectName = annotation.projectName,
                             superTypes = annotation.superTypes,

@@ -15,7 +15,10 @@ class RpcCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCh
                 val rpcAnnotation = registeredFunction.annotations.getAnnotationUnsafe<RpcAnnotation>()
 
                 if (rpcAnnotation.transferMode != TransferMode.UNRELIABLE_ORDERED && rpcAnnotation.transferChannel != 0) {
-                    logger.warn(registeredFunction, "You set \"transferChannel\" to something else than 0 (you set: ${rpcAnnotation.transferChannel}) while the \"transferMode\" is not set to ${TransferMode.UNRELIABLE_ORDERED.name}. \"transferChannel\" only has an effect with \"transferMode\" ${TransferMode.UNRELIABLE_ORDERED.name}!")
+                    logger.warn(
+                        "You set \"transferChannel\" to something else than 0 (you set: ${rpcAnnotation.transferChannel}) while the \"transferMode\" is not set to ${TransferMode.UNRELIABLE_ORDERED.name}. \"transferChannel\" only has an effect with \"transferMode\" ${TransferMode.UNRELIABLE_ORDERED.name}!",
+                        registeredFunction
+                    )
                 }
             }
 

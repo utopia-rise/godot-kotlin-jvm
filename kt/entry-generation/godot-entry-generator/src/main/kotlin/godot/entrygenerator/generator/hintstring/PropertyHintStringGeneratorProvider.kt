@@ -26,7 +26,10 @@ object PropertyHintStringGeneratorProvider {
     ): PropertyHintStringGenerator<out PropertyHintAnnotation> {
         val hintAnnotations = registeredProperty.annotations.filterIsInstance<PropertyHintAnnotation>()
         if (hintAnnotations.size > 1) {
-            EntryGenerator.logger.error(registeredProperty, "RegisteredProperty has more than one Hint annotation: ${hintAnnotations.joinToString()}")
+            EntryGenerator.logger.error(
+                "RegisteredProperty has more than one Hint annotation: ${hintAnnotations.joinToString()}",
+                registeredProperty
+            )
         }
 
         return when(hintAnnotations.firstOrNull()) {

@@ -100,8 +100,6 @@ fun generateEntryUsingClassGraph(
                     classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize
                 )
                 
-                //TODO: remove existing registration files and registrars that should be deleted
-
                 if (settings.isRegistrationFileGenerationEnabled) {
                     EntryGenerator.generateRegistrationFiles(
                         registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
@@ -129,6 +127,19 @@ fun generateEntryUsingClassGraph(
 
                             FileOutputStream(file).bufferedWriter()
                         }
+                    )
+
+                    val classgraphRegistrationFilesBaseDir = settings.projectBaseDir
+                        .resolve("build/generated/classgraph/main/resources/entryFiles")
+                        .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+
+                    val initialRegistrationFilesOutDir = settings.projectBaseDir
+                        .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+
+                    EntryGenerator.updateRegistrationFiles(
+                        generatedRegistrationFilesBaseDir = classgraphRegistrationFilesBaseDir,
+                        initialRegistrationFilesOutDir = initialRegistrationFilesOutDir,
+                        existingRegistrationFilesMap = existingRegistrationFiles,
                     )
                 }
             }
