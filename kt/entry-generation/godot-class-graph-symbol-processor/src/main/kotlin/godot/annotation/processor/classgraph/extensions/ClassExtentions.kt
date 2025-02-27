@@ -65,15 +65,10 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         }
         .map { it.mapToRegisteredConstructor(settings) }
 
-    //TODO: HOW TO GET SOURCE PATH ?
-//    val absoluteSourcePath = File(location)?.absolutePath
-//    val relativeSourcePath = absoluteSourcePath?.let { File(it).relativeTo(settings.projectBaseDir).invariantSeparatorsPath } ?: ""
-
     return if (shouldBeRegistered) {
         RegisteredClass(
             registeredName = provideRegisteredClassName(settings),
             fqName = fqName,
-            relativeSourcePath = "TODO", //TODO: Cannot get original source file with ClassGraph
             supertypes = supertypes,
             annotations = annotations,
             constructors = constructors,
@@ -88,7 +83,6 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     } else {
         Clazz(
             fqName = fqName,
-            relativeSourcePath = "TODO", //TODO: Cannot get original source file with ClassGraph
             supertypes = supertypes,
             annotations = annotations,
             symbolProcessorSource = this

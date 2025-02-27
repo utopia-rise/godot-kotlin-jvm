@@ -17,7 +17,6 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
-import java.io.File
 
 internal fun KSClassDeclaration.mapToClazz(
     settings: Settings,
@@ -59,9 +58,6 @@ internal fun KSClassDeclaration.mapToClazz(
         isAbstractAndContainsRegisteredMembers(registeredFunctions, registeredProperties, registeredSignals) ||
         isAbstractAndInheritsGodotBaseClass()
 
-    val absoluteSourcePath = this.containingFile?.filePath?.let { File(it) }
-    val relativeSourcePath = absoluteSourcePath?.relativeTo(settings.projectBaseDir)?.invariantSeparatorsPath ?: ""
-
     return if (shouldBeRegistered) {
         val constructors = getConstructors()
 
@@ -91,7 +87,6 @@ internal fun KSClassDeclaration.mapToClazz(
                 "Failed to calculate RegisteredName for a registered class: ${this.qualifiedName?.asString()}. This is a bug. Please report it on Github"
             },
             fqName = fqName,
-            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
             constructors = registeredConstructors,
@@ -106,7 +101,6 @@ internal fun KSClassDeclaration.mapToClazz(
     } else {
         Clazz(
             fqName = fqName,
-            relativeSourcePath = relativeSourcePath,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
             symbolProcessorSource = this

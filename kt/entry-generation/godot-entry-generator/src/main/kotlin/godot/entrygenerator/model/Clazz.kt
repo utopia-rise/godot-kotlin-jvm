@@ -3,11 +3,9 @@ package godot.entrygenerator.model
 import godot.entrygenerator.ext.hasAnnotation
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotPackage
 
 open class Clazz(
     open val fqName: String,
-    open val relativeSourcePath: String,
     open val supertypes: List<Clazz> = emptyList(),
     open val annotations: List<ClassAnnotation> = emptyList(),
     open val isAbstract: Boolean = false,

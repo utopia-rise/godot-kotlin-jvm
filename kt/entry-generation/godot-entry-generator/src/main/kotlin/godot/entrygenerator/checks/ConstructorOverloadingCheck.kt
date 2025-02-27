@@ -15,7 +15,10 @@ class ConstructorOverloadingCheck(logger: Logger, registeredClasses: List<Regist
                     .forEach { (_, overloadingConstructors) ->
                         hasIssue = true
                         overloadingConstructors.forEach { registeredConstructor ->
-                            logger.error(registeredConstructor, "Constructor overloading on registered constructors is not yet supported!")
+                            logger.error(
+                                "Constructor overloading on registered constructors is not yet supported!",
+                                registeredConstructor
+                            )
                         }
                     }
             }

@@ -22,7 +22,6 @@ object RegisteredClassMetadataContainerDatabase {
                     registeredName = annotation.getParameterValue("registeredName"),
                     baseType = annotation.getParameterValue("baseType"),
                     fqName = fqdn,
-                    relativeSourcePath = "TODO", //TODO: delete this when no more source path in engine
                     compilationTimeRelativeRegistrationFilePath = annotation.getParameterValue("compilationTimeRelativeRegistrationFilePath"),
                     projectName = annotation.getParameterValue("projectName"),
                     superTypes = annotation.getParameterValue("superTypes"),
@@ -43,7 +42,6 @@ object RegisteredClassMetadataContainerDatabase {
                     it.registeredName,
                     it.godotBaseClass,
                     it.fqName,
-                    it.relativeSourcePath,
                     it.provideRegistrationFilePathForInitialGeneration(
                         settings.isRegistrationFileHierarchyEnabled,
                         settings.projectName,

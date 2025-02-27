@@ -15,7 +15,10 @@ class LateinitPropertyCheck(logger: Logger, registeredClasses: List<RegisteredCl
             .forEach { exportedProperty ->
                 if (exportedProperty.isLateinit && (exportedProperty.type.isCoreType() || exportedProperty.type.isGodotPrimitive())) {
                     hasIssue = true
-                    logger.error(exportedProperty, "Registered property with godot core type cannot be lateinit. Assign a default value")
+                    logger.error(
+                        "Registered property with godot core type cannot be lateinit. Assign a default value",
+                        exportedProperty
+                    )
                 }
             }
         return hasIssue

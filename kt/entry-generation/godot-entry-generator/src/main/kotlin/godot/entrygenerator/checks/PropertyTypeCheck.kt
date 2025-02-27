@@ -31,8 +31,8 @@ class PropertyTypeCheck(logger: Logger, registeredClasses: List<RegisteredClass>
                 ) {
                     hasIssue = true
                     logger.error(
-                        exportedProperty,
-                        "Registered property can only be of type primitive, core type, node type or ref counted"
+                        "Registered property can only be of type primitive, core type, node type or ref counted",
+                        exportedProperty
                     )
                 }
             }

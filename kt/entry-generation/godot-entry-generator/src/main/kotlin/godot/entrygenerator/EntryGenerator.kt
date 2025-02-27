@@ -19,6 +19,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
+import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
@@ -120,6 +121,65 @@ object EntryGenerator {
                 metadata,
                 registrationFileAppendableProvider
             ).build()
+        }
+    }
+
+    fun updateRegistrationFiles(
+        generatedRegistrationFilesBaseDir: File,
+        initialRegistrationFilesOutDir: File,
+        existingRegistrationFilesMap: Map<String, File>
+    ) {
+        val kspRegistrationFiles = generatedRegistrationFilesBaseDir
+            .walkTopDown()
+            .filter { file ->
+                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
+            }
+            .associateBy { file ->
+                file.name
+            }
+
+        // compare ksp and existing registration files
+        val deletedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> !kspRegistrationFiles.containsKey(registrationFileName) }
+            .values
+
+        val updatedRegistrationFiles = existingRegistrationFilesMap
+            .filterKeys { registrationFileName -> kspRegistrationFiles.containsKey(registrationFileName) }
+
+        val newRegistrationFiles = kspRegistrationFiles
+            .filterKeys { registrationFileName -> !existingRegistrationFilesMap.containsKey(registrationFileName) }
+
+
+        // delete obsolete registration files
+        deletedRegistrationFiles.forEach { obsoleteRegistrationFile ->
+            try {
+                obsoleteRegistrationFile.delete()
+            } catch (e: Throwable) {
+                logger.warn("Could not delete obsolete registration file. You need to delete it manually! ${obsoleteRegistrationFile.absolutePath}")
+            }
+        }
+        // delete empty dirs in the initial gdj out folder (but not anywhere else!)
+        initialRegistrationFilesOutDir
+            .walkBottomUp()
+            .filter { dir -> dir.isDirectory && dir.listFiles()?.isEmpty() == true }
+            .forEach { emptyDir ->
+                try {
+                    emptyDir.delete()
+                } catch (e: Throwable) {
+                    logger.warn("Could not delete seemingly empty registration directory! ${emptyDir.absolutePath}")
+                }
+            }
+
+        // replace existing registration files
+        updatedRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
+            kspRegistrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
+        }
+
+        // copy new registration files
+        newRegistrationFiles.forEach { (_, registrationFile) ->
+            val relativePath = registrationFile.toRelativeString(generatedRegistrationFilesBaseDir)
+            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath)
+            registrationFile.copyTo(targetFile, overwrite = true)
         }
     }
 
