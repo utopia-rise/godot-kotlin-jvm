@@ -13,7 +13,7 @@ class PropertyMutablilityCheck(logger: Logger, registeredClasses: List<Registere
             .forEach { registeredProperty ->
                 if (!registeredProperty.isMutable) {
                     hasIssue = true
-                    logger.error(registeredProperty, "Registered property is not mutable")
+                    logger.error("Registered property is not mutable", registeredProperty)
                 }
             }
         return hasIssue
