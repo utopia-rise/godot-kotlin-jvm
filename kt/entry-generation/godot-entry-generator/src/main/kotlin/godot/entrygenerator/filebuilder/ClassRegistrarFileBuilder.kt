@@ -39,7 +39,6 @@ class ClassRegistrarFileBuilder(
                         .addMember("%S", registeredClass.registeredName)
                         .addMember("%S", registeredClass.godotBaseClass)
                         .addMember("%S", registeredClass.fqName)
-                        .addMember("%S", registeredClass.relativeSourcePath)
                         .addMember("%S", compilationTimeRelativeRegistrationFilePath)
                         .addMember("%S", projectName)
                         .addMember("%S", registeredClass.supertypes.joinToString(",") { it.fqName })

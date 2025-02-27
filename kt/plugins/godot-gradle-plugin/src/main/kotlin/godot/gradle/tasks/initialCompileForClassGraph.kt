@@ -49,10 +49,6 @@ fun Project.initialCompileForClassGraph(): KotlinWithJavaCompilation<KotlinJvmOp
         kotlinCompile.compileDependencyFiles += mainCompilation.compileDependencyFiles
         kotlinCompile.runtimeDependencyFiles += mainCompilation.runtimeDependencyFiles
 
-        val compileTask = kotlinCompile.compileTaskProvider.get()
-
-        compileTask.outputs.dir(layout.buildDirectory.asFile.get().resolve("classes/kotlin/main"))
-
         kotlinCompile.compileTaskProvider.get().dependsOn(initialCompileScala)
     }
 
