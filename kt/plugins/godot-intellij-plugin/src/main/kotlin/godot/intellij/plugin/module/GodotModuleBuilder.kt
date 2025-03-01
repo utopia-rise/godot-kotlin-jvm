@@ -8,6 +8,7 @@ import com.intellij.ide.util.projectWizard.WizardContext
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.externalSystem.model.project.dependencies.ProjectDependencies
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleType
 import com.intellij.openapi.util.IconLoader
@@ -104,9 +105,13 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             }
                             row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath")) {
                                 textFieldWithBrowseButton(
-                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.browseDialogTitle"),
-                                    context.project,
-                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                    FileChooserDescriptorFactory
+                                        .createSingleFileNoJarsDescriptor()
+                                        .withTitle(
+                                            @Suppress("DialogTitleCapitalization")
+                                            GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.browseDialogTitle")
+                                        ),
+                                    context.project
                                 )
                                     .bindText(::d8Path)
                                     .columns(COLUMNS_MEDIUM)
@@ -115,9 +120,13 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             }
                             row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir")) {
                                 textFieldWithBrowseButton(
-                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.browseDialogTitle"),
-                                    context.project,
-                                    FileChooserDescriptor(false, true, false, false, false, false)
+                                    FileChooserDescriptorFactory
+                                        .createSingleFileNoJarsDescriptor()
+                                        .withTitle(
+                                            @Suppress("DialogTitleCapitalization")
+                                            GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.browseDialogTitle")
+                                        ),
+                                    context.project
                                 )
                                     .bindText(::androidCompileSdkDir)
                                     .columns(COLUMNS_MEDIUM)
@@ -141,10 +150,13 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             }
                             row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory")) {
                                 textFieldWithBrowseButton(
-                                    @Suppress("DialogTitleCapitalization")
-                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.browseDialogTitle"),
-                                    context.project,
-                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                    FileChooserDescriptorFactory
+                                        .createSingleFileNoJarsDescriptor()
+                                        .withTitle(
+                                            @Suppress("DialogTitleCapitalization")
+                                            GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.browseDialogTitle")
+                                        ),
+                                    context.project
                                 )
                                     .bindText(::graalVmDirectory)
                                     .columns(COLUMNS_MEDIUM)
@@ -153,10 +165,13 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             }
                             row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath")) {
                                 textFieldWithBrowseButton(
-                                    @Suppress("DialogTitleCapitalization")
-                                    GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.browseDialogTitle"),
-                                    context.project,
-                                    FileChooserDescriptor(true, false, false, false, false, false)
+                                    FileChooserDescriptorFactory
+                                        .createSingleFileNoJarsDescriptor()
+                                        .withTitle(
+                                            @Suppress("DialogTitleCapitalization")
+                                            GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.browseDialogTitle")
+                                        ),
+                                    context.project
                                 )
                                     .bindText(::windowsDeveloperVCVarsPath)
                                     .columns(COLUMNS_MEDIUM)
@@ -210,12 +225,33 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             "GODOT_KOTLIN_JVM_VERSION",
                             GodotBuildProperties.assembledGodotKotlinJvmVersion
                         )
-                        .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
-                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8")
-                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35")
-                        .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
-                        .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
-                        .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
+                        .replace(
+                            "ANDROID_ENABLED",
+                            wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false"
+                        )
+                        .replace(
+                            "D8_TOOL_PATH",
+                            wizardContext.getUserData(d8ToolPathKey)
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
+                        )
+                        .replace(
+                            "ANDROID_COMPILE_SDK_DIR",
+                            wizardContext.getUserData(androidCompileSdkDirKey)
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
+                        )
+                        .replace(
+                            "IS_GRAAL_VM_ENABLED",
+                            wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false"
+                        )
+                        .replace(
+                            "GRAAL_VM_DIR",
+                            wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}"
+                        )
+                        .replace(
+                            "WINDOWS_DEVELOPER_VS_VARS_PATH",
+                            wizardContext.getUserData(windowsDeveloperVCVarsPathKey)
+                                ?: "\${System.getenv(\"VC_VARS_PATH\")}"
+                        )
                         .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                 )
             }
@@ -246,12 +282,33 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 outFile.writeText(
                     outFile
                         .readText()
-                        .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
-                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8")
-                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35")
-                        .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
-                        .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
-                        .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
+                        .replace(
+                            "ANDROID_ENABLED",
+                            wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false"
+                        )
+                        .replace(
+                            "D8_TOOL_PATH",
+                            wizardContext.getUserData(d8ToolPathKey)
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
+                        )
+                        .replace(
+                            "ANDROID_COMPILE_SDK_DIR",
+                            wizardContext.getUserData(androidCompileSdkDirKey)
+                                ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
+                        )
+                        .replace(
+                            "IS_GRAAL_VM_ENABLED",
+                            wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false"
+                        )
+                        .replace(
+                            "GRAAL_VM_DIR",
+                            wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}"
+                        )
+                        .replace(
+                            "WINDOWS_DEVELOPER_VS_VARS_PATH",
+                            wizardContext.getUserData(windowsDeveloperVCVarsPathKey)
+                                ?: "\${System.getenv(\"VC_VARS_PATH\")}"
+                        )
                         .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                         .let { content ->
                             if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-core-library")) {
@@ -269,7 +326,11 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 )
             }
         }
-        copyTemplateFile(basePath, "Simple.kt.intellij_template", "src/main/kotlin/$packagePathAsFolderStructure/Simple.kt") { outFile ->
+        copyTemplateFile(
+            basePath,
+            "Simple.kt.intellij_template",
+            "src/main/kotlin/$packagePathAsFolderStructure/Simple.kt"
+        ) { outFile ->
             outFile.writeText(
                 outFile
                     .readText()

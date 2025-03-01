@@ -9,13 +9,11 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 gradlePlugin {
-    @Suppress("UnstableApiUsage")
     website.set("https://github.com/utopia-rise/godot-kotlin-jvm")
-    @Suppress("UnstableApiUsage")
     vcsUrl.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
     plugins {
@@ -25,7 +23,6 @@ gradlePlugin {
             implementationClass = "godot.gradle.GodotPlugin"
             description = "Automatically setup of godot kotlin jvm specific project configurations"
 
-            @Suppress("UnstableApiUsage")
             tags.set(listOf("kotlin", "godot", "gamedev"))
         }
     }
@@ -53,7 +50,7 @@ tasks {
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotGradlePlugin by creating(MavenPublication::class) {
+        val godotGradlePlugin by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Godot gradle plugin for kotlin language support.")

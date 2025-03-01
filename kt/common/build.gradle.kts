@@ -13,13 +13,13 @@ version = fullGodotKotlinJvmVersion
 group = "com.utopia-rise"
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotCommonGenerator by creating(MavenPublication::class) {
+        val godotCommonGenerator by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Godot common module other libraries.")

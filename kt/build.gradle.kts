@@ -20,7 +20,7 @@ subprojects {
 
 tasks {
     @Suppress("UNUSED_VARIABLE")
-    val generateChangelog by creating {
+    val generateChangelog by registering {
         group = "godot-kotlin-jvm"
 
         doLast {
@@ -52,7 +52,7 @@ tasks {
             }.writeText(changelogString)
         }
     }
-    val buildEngineDebug by creating(Exec::class) {
+    val buildEngineDebug by registering(Exec::class) {
         group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
@@ -72,7 +72,7 @@ tasks {
             commandLine("scons", "p=$platform", "-j$coresAvailable")
         }
     }
-    val buildEngineReleaseDebug by creating(Exec::class) {
+    val buildEngineReleaseDebug by registering(Exec::class) {
         group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
@@ -92,7 +92,7 @@ tasks {
             commandLine("scons", "p=$platform", "target=template_debug", "-j$coresAvailable")
         }
     }
-    val runEngineDebug by creating(Exec::class) {
+    val runEngineDebug by registering(Exec::class) {
         group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
@@ -112,7 +112,7 @@ tasks {
                 commandLine("${workingDir.absolutePath}/godot.x11.tools.64", "-v")
         }
     }
-    val runEngineReleaseDebug by creating(Exec::class) {
+    val runEngineReleaseDebug by registering(Exec::class) {
         group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
@@ -133,13 +133,13 @@ tasks {
         }
     }
     @Suppress("UNUSED_VARIABLE")
-    val buildAndRunEngineDebug by creating {
+    val buildAndRunEngineDebug by registering {
         group = "godot-kotlin-jvm"
         dependsOn(buildEngineDebug, getTasksByName("copyBootstrapJar", true).first())
         finalizedBy(runEngineDebug)
     }
     @Suppress("UNUSED_VARIABLE")
-    val buildAndRunEngineReleaseDebug by creating {
+    val buildAndRunEngineReleaseDebug by registering {
         group = "godot-kotlin-jvm"
         dependsOn(buildEngineReleaseDebug, getTasksByName("copyBootstrapJar", true).first())
         finalizedBy(runEngineReleaseDebug)

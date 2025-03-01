@@ -17,6 +17,7 @@ import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
@@ -105,7 +106,7 @@ class RegisterPropertiesAnnotator : Annotator {
 
 
         val isInheritingObject = ktProperty.type()?.supertypes()
-            ?.any { it.getKotlinTypeFqName(false) == "$godotPackage.${GodotKotlinJvmTypes.obj}" } == true
+            ?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
         val isCoreType = ktProperty.type()?.isCoreType() == true
         val isSupportedJvmType = ktProperty.type()?.isSupportedJvmType() == true
 

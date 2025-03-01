@@ -15,7 +15,7 @@ kotlinDefinitions {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 java {
@@ -45,7 +45,7 @@ val targetSuffix = if (isRelease) "release" else "debug"
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotLibraryPublication by creating(MavenPublication::class) {
+        val godotLibraryPublication by registering(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
                 description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")

@@ -10,7 +10,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 repositories {
@@ -45,15 +45,13 @@ dependencies {
         intellijIdeaCommunity(intellijVersion)
 
         bundledPlugin("com.intellij.gradle")
-
-        instrumentationTools()
     }
 }
 
 publishing {
     publications {
         @Suppress("UNUSED_VARIABLE")
-        val godotPluginsCommon by creating(MavenPublication::class) {
+        val godotPluginsCommon by registering(MavenPublication::class) {
             pom {
                 this.name.set(project.name)
                 this.description.set("Common module for godot kotlin jvm plugins.")

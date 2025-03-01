@@ -8,7 +8,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
 tasks {
@@ -40,7 +40,7 @@ publishing {
     publications {
         // this is only used for publishing locally.
         @Suppress("UNUSED_VARIABLE")
-        val buildProps by creating(MavenPublication::class) {
+        val buildProps by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
                 description.set("Properties for Godot Kotlin building.")
