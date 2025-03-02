@@ -86,9 +86,10 @@ Script* GdjLanguage::create_script() const {
     return memnew(GdjScript);
 }
 
-String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
+String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_tool) const {
     if (p_path.begins_with(ENTRY_DIRECTORY) || !p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) { return {}; }
-
+    *r_is_abstract = false;
+    *r_is_tool = false;
     String script_name = JvmScript::get_script_file_name(p_path);
     Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_script_from_name(script_name);
     if (!named_script.is_null() && named_script.is_valid()) {
