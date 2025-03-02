@@ -337,7 +337,6 @@ StringName SourceScript::parse_source_to_fqdn(const String& p_path, String& r_so
     int register_class_index { source.find(register_class_annotation, register_class_search_start) };
 
     if (register_class_index == -1) {
-        JVM_LOG_WARNING(vformat("Cannot find registered class in %s", p_path));
         return StringName();
     }
 
