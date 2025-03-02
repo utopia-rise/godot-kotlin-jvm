@@ -39,10 +39,6 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
-      - name: Apply git patch
-        run: |
-          git apply --ignore-whitespace  modules/kotlin_jvm/git.patch
-
       - uses: actions/setup-java@v4
         with:
           distribution: adopt-hotspot
