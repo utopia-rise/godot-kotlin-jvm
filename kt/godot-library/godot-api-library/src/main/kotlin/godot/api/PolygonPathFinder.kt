@@ -32,9 +32,34 @@ import kotlin.Unit
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(497, scriptIndex)
+    createNativeObject(514, scriptIndex)
   }
 
+  /**
+   * Sets up [PolygonPathFinder] with an array of points that define the vertices of the polygon,
+   * and an array of indices that determine the edges of the polygon.
+   * The length of [connections] must be even, returns an error if odd.
+   *
+   * gdscript:
+   * ```gdscript
+   * var polygon_path_finder = PolygonPathFinder.new()
+   * var points = [Vector2(0.0, 0.0), Vector2(1.0, 0.0), Vector2(0.0, 1.0)]
+   * var connections = [0, 1, 1, 2, 2, 0]
+   * polygon_path_finder.setup(points, connections)
+   * ```
+   * csharp:
+   * ```csharp
+   * var polygonPathFinder = new PolygonPathFinder();
+   * Vector2[] points =
+   * [
+   *     new Vector2(0.0f, 0.0f),
+   *     new Vector2(1.0f, 0.0f),
+   *     new Vector2(0.0f, 1.0f)
+   * ];
+   * int[] connections = [0, 1, 1, 2, 2, 0];
+   * polygonPathFinder.Setup(points, connections);
+   * ```
+   */
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
     TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
@@ -58,6 +83,33 @@ public open class PolygonPathFinder : Resource() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
+  /**
+   * Returns `true` if [point] falls inside the polygon area.
+   *
+   * gdscript:
+   * ```gdscript
+   * var polygon_path_finder = PolygonPathFinder.new()
+   * var points = [Vector2(0.0, 0.0), Vector2(1.0, 0.0), Vector2(0.0, 1.0)]
+   * var connections = [0, 1, 1, 2, 2, 0]
+   * polygon_path_finder.setup(points, connections)
+   * print(polygon_path_finder.is_point_inside(Vector2(0.2, 0.2))) # Prints true
+   * print(polygon_path_finder.is_point_inside(Vector2(1.0, 1.0))) # Prints false
+   * ```
+   * csharp:
+   * ```csharp
+   * var polygonPathFinder = new PolygonPathFinder();
+   * Vector2[] points =
+   * [
+   *     new Vector2(0.0f, 0.0f),
+   *     new Vector2(1.0f, 0.0f),
+   *     new Vector2(0.0f, 1.0f)
+   * ];
+   * int[] connections = [0, 1, 1, 2, 2, 0];
+   * polygonPathFinder.Setup(points, connections);
+   * GD.Print(polygonPathFinder.IsPointInside(new Vector2(0.2f, 0.2f))); // Prints True
+   * GD.Print(polygonPathFinder.IsPointInside(new Vector2(1.0f, 1.0f))); // Prints False
+   * ```
+   */
   public final fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(ptr, MethodBindings.isPointInsidePtr, BOOL)

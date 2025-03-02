@@ -35,6 +35,10 @@ import kotlin.jvm.JvmName
  * if interface and interface.initialize():
  *     get_viewport().use_xr = true
  * [/codeblock]
+ * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer],
+ * [ProjectSettings.inputDevices/sensors/enableGravity],
+ * [ProjectSettings.inputDevices/sensors/enableGyroscope] and
+ * [ProjectSettings.inputDevices/sensors/enableMagnetometer] must be enabled.
  */
 @GodotBaseType
 public open class MobileVRInterface : XRInterface() {
@@ -161,7 +165,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(376, scriptIndex)
+    createNativeObject(382, scriptIndex)
   }
 
   /**

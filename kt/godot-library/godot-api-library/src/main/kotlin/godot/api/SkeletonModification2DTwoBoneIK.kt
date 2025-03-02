@@ -76,7 +76,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   /**
-   * If `true`, the bones in the modification will blend outward as opposed to inwards when
+   * If `true`, the bones in the modification will bend outward as opposed to inwards when
    * contracting. If `false`, the bones will bend inwards when contracting.
    */
   public final inline var flipBendDirection: Boolean
@@ -88,7 +88,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(593, scriptIndex)
+    createNativeObject(612, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

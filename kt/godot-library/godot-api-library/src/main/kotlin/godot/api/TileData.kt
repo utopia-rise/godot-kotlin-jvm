@@ -177,7 +177,7 @@ public open class TileData : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(663, scriptIndex)
+    createNativeObject(688, scriptIndex)
   }
 
   /**
@@ -314,6 +314,72 @@ public open class TileData : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getYSortOriginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Sets the occluder polygon count in the TileSet occlusion layer with index [layerId].
+   */
+  public final fun setOccluderPolygonsCount(layerId: Int, polygonsCount: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonsCount.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setOccluderPolygonsCountPtr, NIL)
+  }
+
+  /**
+   * Returns the number of occluder polygons of the tile in the TileSet occlusion layer with index
+   * [layerId].
+   */
+  public final fun getOccluderPolygonsCount(layerId: Int): Int {
+    TransferContext.writeArguments(LONG to layerId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getOccluderPolygonsCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Adds an occlusion polygon to the tile on the TileSet occlusion layer with index [layerId].
+   */
+  public final fun addOccluderPolygon(layerId: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.addOccluderPolygonPtr, NIL)
+  }
+
+  /**
+   * Removes the polygon at index [polygonIndex] for TileSet occlusion layer with index [layerId].
+   */
+  public final fun removeOccluderPolygon(layerId: Int, polygonIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.removeOccluderPolygonPtr, NIL)
+  }
+
+  /**
+   * Sets the occluder for polygon with index [polygonIndex] in the TileSet occlusion layer with
+   * index [layerId].
+   */
+  public final fun setOccluderPolygon(
+    layerId: Int,
+    polygonIndex: Int,
+    polygon: OccluderPolygon2D?,
+  ): Unit {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), OBJECT to polygon)
+    TransferContext.callMethod(ptr, MethodBindings.setOccluderPolygonPtr, NIL)
+  }
+
+  /**
+   * Returns the occluder polygon at index [polygonIndex] from the TileSet occlusion layer with
+   * index [layerId].
+   * The [flipH], [flipV], and [transpose] parameters can be `true` to transform the returned
+   * polygon.
+   */
+  @JvmOverloads
+  public final fun getOccluderPolygon(
+    layerId: Int,
+    polygonIndex: Int,
+    flipH: Boolean = false,
+    flipV: Boolean = false,
+    transpose: Boolean = false,
+  ): OccluderPolygon2D? {
+    TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), BOOL to flipH, BOOL to flipV, BOOL to transpose)
+    TransferContext.callMethod(ptr, MethodBindings.getOccluderPolygonPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OccluderPolygon2D?)
   }
 
   /**
@@ -457,8 +523,8 @@ public open class TileData : Object() {
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
-   * layer with index [layerId].
+   * Sets the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for
+   * TileSet physics layer with index [layerId].
    */
   public final fun setCollisionPolygonOneWayMargin(
     layerId: Int,
@@ -574,12 +640,22 @@ public open class TileData : Object() {
   }
 
   /**
-   * Returns the custom data value for custom data layer named [layerName].
+   * Returns the custom data value for custom data layer named [layerName]. To check if a custom
+   * data layer exists, use [hasCustomData].
    */
   public final fun getCustomData(layerName: String): Any? {
     TransferContext.writeArguments(STRING to layerName)
     TransferContext.callMethod(ptr, MethodBindings.getCustomDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns whether there exists a custom data layer named [layerName].
+   */
+  public final fun hasCustomData(layerName: String): Boolean {
+    TransferContext.writeArguments(STRING to layerName)
+    TransferContext.callMethod(ptr, MethodBindings.hasCustomDataPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -649,6 +725,24 @@ public open class TileData : Object() {
 
     internal val getYSortOriginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "get_y_sort_origin", 3905245786)
+
+    internal val setOccluderPolygonsCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygons_count", 3937882851)
+
+    internal val getOccluderPolygonsCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygons_count", 923996154)
+
+    internal val addOccluderPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "add_occluder_polygon", 1286410249)
+
+    internal val removeOccluderPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "remove_occluder_polygon", 3937882851)
+
+    internal val setOccluderPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygon", 164249167)
+
+    internal val getOccluderPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygon", 971166743)
 
     internal val setOccluderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "set_occluder", 914399637)
@@ -736,6 +830,9 @@ public open class TileData : Object() {
 
     internal val getCustomDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "get_custom_data", 1868160156)
+
+    internal val hasCustomDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "has_custom_data", 3927539163)
 
     internal val setCustomDataByLayerIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileData", "set_custom_data_by_layer_id", 2152698145)

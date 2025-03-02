@@ -58,7 +58,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(716, scriptIndex)
+    createNativeObject(742, scriptIndex)
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {
@@ -196,11 +196,11 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * The result will be true if all of component in vector satisfy the comparison condition.
+     * The result will be `true` if all components in the vector satisfy the comparison condition.
      */
     COND_ALL(0),
     /**
-     * The result will be true if any of component in vector satisfy the comparison condition.
+     * The result will be `true` if any component in the vector satisfies the comparison condition.
      */
     COND_ANY(1),
     /**

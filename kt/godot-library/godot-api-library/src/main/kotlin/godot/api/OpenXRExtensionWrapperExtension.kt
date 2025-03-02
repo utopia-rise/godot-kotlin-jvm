@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.PackedStringArray
+import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -29,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(428, scriptIndex)
+    createNativeObject(439, scriptIndex)
   }
 
   /**
@@ -135,6 +136,19 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Called right after the main swapchains are (re)created.
    */
   public open fun _onMainSwapchainsCreated(): Unit {
+  }
+
+  /**
+   * Called right before the given viewport is rendered.
+   */
+  public open fun _onPreDrawViewport(viewport: RID): Unit {
+  }
+
+  /**
+   * Called right after the given viewport is rendered.
+   * **Note:** The draw commands might only be queued at this point, not executed.
+   */
+  public open fun _onPostDrawViewport(viewport: RID): Unit {
   }
 
   /**

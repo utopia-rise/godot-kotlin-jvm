@@ -18,9 +18,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This CSG node allows you to use any mesh resource as a CSG shape, provided it is closed, does not
- * self-intersect, does not contain internal faces and has no edges that connect to more than two
- * faces. See also [CSGPolygon3D] for drawing 2D extruded polygons to be used as CSG nodes.
+ * This CSG node allows you to use any mesh resource as a CSG shape, provided it is *manifold*. A
+ * manifold shape is closed, does not self-intersect, does not contain internal faces and has no edges
+ * that connect to more than two faces. See also [CSGPolygon3D] for drawing 2D extruded polygons to be
+ * used as CSG nodes.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
  * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
  * node within another CSG node also has a significant CPU cost, so it should be avoided during
@@ -30,6 +31,9 @@ import kotlin.jvm.JvmName
 public open class CSGMesh3D : CSGPrimitive3D() {
   /**
    * The [Mesh] resource to use as a CSG shape.
+   * **Note:** Some [Mesh] types such as [PlaneMesh], [PointMesh], [QuadMesh], and [RibbonTrailMesh]
+   * are excluded from the type hint for this property, as these primitives are non-*manifold* and thus
+   * not compatible with the CSG algorithm.
    * **Note:** When using an [ArrayMesh], all vertex attributes except [Mesh.ARRAY_VERTEX],
    * [Mesh.ARRAY_NORMAL] and [Mesh.ARRAY_TEX_UV] are left unused. Only [Mesh.ARRAY_VERTEX] and
    * [Mesh.ARRAY_TEX_UV] will be passed to the GPU.
@@ -58,7 +62,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(154, scriptIndex)
+    createNativeObject(155, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

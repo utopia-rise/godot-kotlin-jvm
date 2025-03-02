@@ -62,7 +62,7 @@ public open class Curve2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(217, scriptIndex)
+    createNativeObject(219, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
@@ -174,7 +174,7 @@ public open class Curve2D : Resource() {
   /**
    * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if
    * the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of
-   * [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
+   * [t] outside the range (`0.0 <= t <= 1.0`) give strange, but predictable results.
    * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If
    * the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
    */

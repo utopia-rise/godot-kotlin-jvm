@@ -352,9 +352,40 @@ public object Performance : Object() {
      */
     NAVIGATION_EDGE_FREE_COUNT(32),
     /**
+     * Number of active navigation obstacles in the [NavigationServer3D].
+     */
+    NAVIGATION_OBSTACLE_COUNT(33),
+    /**
+     * Number of pipeline compilations that were triggered by the 2D canvas renderer.
+     */
+    PIPELINE_COMPILATIONS_CANVAS(34),
+    /**
+     * Number of pipeline compilations that were triggered by loading meshes. These compilations
+     * will show up as longer loading times the first time a user runs the game and the pipeline is
+     * required.
+     */
+    PIPELINE_COMPILATIONS_MESH(35),
+    /**
+     * Number of pipeline compilations that were triggered by building the surface cache before
+     * rendering the scene. These compilations will show up as a stutter when loading an scene the
+     * first time a user runs the game and the pipeline is required.
+     */
+    PIPELINE_COMPILATIONS_SURFACE(36),
+    /**
+     * Number of pipeline compilations that were triggered while drawing the scene. These
+     * compilations will show up as stutters during gameplay the first time a user runs the game and
+     * the pipeline is required.
+     */
+    PIPELINE_COMPILATIONS_DRAW(37),
+    /**
+     * Number of pipeline compilations that were triggered to optimize the current scene. These
+     * compilations are done in the background and should not cause any stutters whatsoever.
+     */
+    PIPELINE_COMPILATIONS_SPECIALIZATION(38),
+    /**
      * Represents the size of the [Monitor] enum.
      */
-    MONITOR_MAX(33),
+    MONITOR_MAX(39),
     ;
 
     public val id: Long

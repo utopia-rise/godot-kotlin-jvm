@@ -63,7 +63,7 @@ public sealed interface KeyModifierMask {
   public companion object {
     public val KEY_CODE_MASK: KeyModifierMask = KeyModifierMaskValue(8388607)
 
-    public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMaskValue(532676608)
+    public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMaskValue(2130706432)
 
     public val KEY_MASK_CMD_OR_CTRL: KeyModifierMask = KeyModifierMaskValue(16777216)
 

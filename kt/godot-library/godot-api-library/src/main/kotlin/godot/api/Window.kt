@@ -63,16 +63,15 @@ public open class Window : Viewport() {
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The
    * argument is a list of file paths.
-   * Note that this method only works with native windows, i.e. the main window and [Window]-derived
-   * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
-   * Example usage:
    * [codeblock]
    * func _ready():
-   *     get_viewport().files_dropped.connect(on_files_dropped)
+   *     get_window().files_dropped.connect(on_files_dropped)
    *
    * func on_files_dropped(files):
    *     print(files)
    * [/codeblock]
+   * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived
+   * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
   public val filesDropped: Signal1<PackedStringArray> by Signal1
 
@@ -140,6 +139,11 @@ public open class Window : Viewport() {
    * mode, or extend-to-title flag is changed.
    */
   public val titlebarChanged: Signal0 by Signal0
+
+  /**
+   * Emitted when window title bar text is changed.
+   */
+  public val titleChanged: Signal0 by Signal0
 
   /**
    * Set's the window's current mode.
@@ -237,13 +241,14 @@ public open class Window : Viewport() {
    * csharp:
    * ```csharp
    * // Set region, using Path2D node.
-   * GetNode<Window>("Window").MousePassthrough = GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   * GetNode<Window>("Window").MousePassthroughPolygon =
+   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
    *
    * // Set region, using Polygon2D node.
-   * GetNode<Window>("Window").MousePassthrough = GetNode<Polygon2D>("Polygon2D").Polygon;
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
    *
    * // Reset region to default.
-   * GetNode<Window>("Window").MousePassthrough = new Vector2[] {};
+   * GetNode<Window>("Window").MousePassthroughPolygon = [];
    * ```
    *
    * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
@@ -428,6 +433,31 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, the [Window] will override the OS window style to display sharp corners.
+   * **Note:** This property is implemented only on Windows (11).
+   * **Note:** This property only works with native windows.
+   */
+  public final inline var sharpCorners: Boolean
+    @JvmName("sharpCornersProperty")
+    get() = getFlag(Window.Flags.FLAG_SHARP_CORNERS)
+    @JvmName("sharpCornersProperty")
+    set(`value`) {
+      setFlag(Window.Flags.FLAG_SHARP_CORNERS, value)
+    }
+
+  /**
+   * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
+   * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+   */
+  public final inline var excludeFromCapture: Boolean
+    @JvmName("excludeFromCaptureProperty")
+    get() = getFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE)
+    @JvmName("excludeFromCaptureProperty")
+    set(`value`) {
+      setFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE, value)
+    }
+
+  /**
    * If `true`, native window will be used regardless of parent viewport and project settings.
    */
   public final inline var forceNative: Boolean
@@ -527,6 +557,7 @@ public open class Window : Viewport() {
 
   /**
    * Specifies the base scale of [Window]'s content when its [size] is equal to [contentScaleSize].
+   * See also [Viewport.getStretchTransform].
    */
   public final inline var contentScaleFactor: Float
     @JvmName("contentScaleFactorProperty")
@@ -575,7 +606,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(828, scriptIndex)
+    createNativeObject(854, scriptIndex)
   }
 
   /**
@@ -991,6 +1022,27 @@ public open class Window : Viewport() {
   public final fun grabFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
+  }
+
+  /**
+   * Starts an interactive drag operation on the window, using the current mouse position. Call this
+   * method when handling a mouse button being pressed to simulate a pressed event on the window's
+   * title bar. Using this method allows the window to participate in space switching, tiling, and
+   * other system features.
+   */
+  public final fun startDrag(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.startDragPtr, NIL)
+  }
+
+  /**
+   * Starts an interactive resize operation on the window, using the current mouse position. Call
+   * this method when handling a mouse button being pressed to simulate a pressed event on the window's
+   * edge.
+   */
+  public final fun startResize(edge: DisplayServer.WindowResizeEdge): Unit {
+    TransferContext.writeArguments(LONG to edge.id)
+    TransferContext.callMethod(ptr, MethodBindings.startResizePtr, NIL)
   }
 
   /**
@@ -1750,6 +1802,7 @@ public open class Window : Viewport() {
      * Full screen mode with full multi-window support.
      * Full screen window covers the entire display area of a screen and has no decorations. The
      * display's video mode is not changed.
+     * **On Android:** This enables immersive mode.
      * **On Windows:** Multi-window full-screen mode has a 1px border of the
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
      * **On macOS:** A new desktop is used to display the running project.
@@ -1765,6 +1818,7 @@ public open class Window : Viewport() {
      * full screen transition).
      * Full screen window covers the entire display area of a screen and has no border or
      * decorations. The display's video mode is not changed.
+     * **On Android:** This enables immersive mode.
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go
      * black for a moment.
      * **On macOS:** A new desktop is used to display the running project. Exclusive full screen
@@ -1841,9 +1895,23 @@ public open class Window : Viewport() {
      */
     FLAG_MOUSE_PASSTHROUGH(7),
     /**
+     * Window style is overridden, forcing sharp corners.
+     * **Note:** This flag has no effect in embedded windows.
+     * **Note:** This flag is implemented only on Windows (11).
+     */
+    FLAG_SHARP_CORNERS(8),
+    /**
+     * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
+     * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
+     * should not be used as a security measure.
+     */
+    FLAG_EXCLUDE_FROM_CAPTURE(9),
+    /**
      * Max value of the [Flags].
      */
-    FLAG_MAX(8),
+    FLAG_MAX(10),
     ;
 
     public val id: Long
@@ -1960,7 +2028,7 @@ public open class Window : Viewport() {
     /**
      * Automatic layout direction, determined from the current locale.
      */
-    LAYOUT_DIRECTION_LOCALE(1),
+    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
@@ -1969,6 +2037,15 @@ public open class Window : Viewport() {
      * Right-to-left layout direction.
      */
     LAYOUT_DIRECTION_RTL(3),
+    /**
+     * Automatic layout direction, determined from the system locale.
+     */
+    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    /**
+     * Represents the size of the [LayoutDirection] enum.
+     */
+    LAYOUT_DIRECTION_MAX(5),
+    LAYOUT_DIRECTION_LOCALE(1),
     ;
 
     public val id: Long
@@ -2158,6 +2235,12 @@ public open class Window : Viewport() {
     internal val grabFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "grab_focus", 3218959716)
 
+    internal val startDragPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "start_drag", 3218959716)
+
+    internal val startResizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "start_resize", 122288853)
+
     internal val setImeActivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_ime_active", 2586408642)
 
@@ -2288,22 +2371,22 @@ public open class Window : Viewport() {
         TypeManager.getMethodBindPtr("Window", "remove_theme_constant_override", 3304788590)
 
     internal val getThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_icon", 2336455395)
+        TypeManager.getMethodBindPtr("Window", "get_theme_icon", 3163973443)
 
     internal val getThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox", 2759935355)
+        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox", 604739069)
 
     internal val getThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_font", 387378635)
+        TypeManager.getMethodBindPtr("Window", "get_theme_font", 2826986490)
 
     internal val getThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_font_size", 229578101)
+        TypeManager.getMethodBindPtr("Window", "get_theme_font_size", 1327056374)
 
     internal val getThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_color", 2377051548)
+        TypeManager.getMethodBindPtr("Window", "get_theme_color", 2798751242)
 
     internal val getThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_constant", 229578101)
+        TypeManager.getMethodBindPtr("Window", "get_theme_constant", 1327056374)
 
     internal val hasThemeIconOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "has_theme_icon_override", 2619796661)
@@ -2324,22 +2407,22 @@ public open class Window : Viewport() {
         TypeManager.getMethodBindPtr("Window", "has_theme_constant_override", 2619796661)
 
     internal val hasThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_icon", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_icon", 866386512)
 
     internal val hasThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox", 866386512)
 
     internal val hasThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font", 866386512)
 
     internal val hasThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_size", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_size", 866386512)
 
     internal val hasThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_color", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_color", 866386512)
 
     internal val hasThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_constant", 1187511791)
+        TypeManager.getMethodBindPtr("Window", "has_theme_constant", 866386512)
 
     internal val getThemeDefaultBaseScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_theme_default_base_scale", 1740695150)

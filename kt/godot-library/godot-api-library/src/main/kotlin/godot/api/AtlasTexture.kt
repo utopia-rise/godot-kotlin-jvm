@@ -28,8 +28,8 @@ import kotlin.jvm.JvmName
  * additional [margin] can also be set, which is useful for small adjustments.
  * Multiple [AtlasTexture] resources can be cropped from the same [atlas]. Packing many smaller
  * textures into a singular large texture helps to optimize video memory costs and render calls.
- * **Note:** [AtlasTexture] cannot be used in an [AnimatedTexture], and may not tile properly in
- * nodes such as [TextureRect], when inside other [AtlasTexture] resources.
+ * **Note:** [AtlasTexture] cannot be used in an [AnimatedTexture], and will not tile properly in
+ * nodes such as [TextureRect] or [Sprite2D]. To tile an [AtlasTexture], modify its [region] instead.
  */
 @GodotBaseType
 public open class AtlasTexture : Texture2D() {
@@ -85,7 +85,7 @@ public open class AtlasTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(78, scriptIndex)
+    createNativeObject(79, scriptIndex)
   }
 
   /**

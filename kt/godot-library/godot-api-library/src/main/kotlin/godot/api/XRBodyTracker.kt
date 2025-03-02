@@ -92,7 +92,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(838, scriptIndex)
+    createNativeObject(864, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

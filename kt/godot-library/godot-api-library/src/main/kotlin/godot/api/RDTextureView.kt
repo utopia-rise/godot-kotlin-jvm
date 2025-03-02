@@ -24,7 +24,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class RDTextureView : RefCounted() {
   /**
-   * Optional override for the data format to return sampled values in. The default value of
+   * Optional override for the data format to return sampled values in. The corresponding
+   * [RDTextureFormat] must have had this added as a shareable format. The default value of
    * [RenderingDevice.DATA_FORMAT_MAX] does not override the format.
    */
   public final inline var formatOverride: RenderingDevice.DataFormat
@@ -80,7 +81,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(522, scriptIndex)
+    createNativeObject(539, scriptIndex)
   }
 
   public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {

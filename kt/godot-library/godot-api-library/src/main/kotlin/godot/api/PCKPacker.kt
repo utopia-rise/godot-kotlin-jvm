@@ -43,41 +43,54 @@ import kotlin.jvm.JvmOverloads
  *
  * The above [PCKPacker] creates package `test.pck`, then adds a file named `text.txt` at the root
  * of the package.
+ * **Note:** PCK is Godot's own pack file format. To create ZIP archives that can be read by any
+ * program, use [ZIPPacker] instead.
  */
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(436, scriptIndex)
+    createNativeObject(453, scriptIndex)
   }
 
   /**
-   * Creates a new PCK file with the name [pckName]. The `.pck` file extension isn't added
-   * automatically, so it should be part of [pckName] (even though it's not required).
+   * Creates a new PCK file at the file path [pckPath]. The `.pck` file extension isn't added
+   * automatically, so it should be part of [pckPath] (even though it's not required).
    */
   @JvmOverloads
   public final fun pckStart(
-    pckName: String,
+    pckPath: String,
     alignment: Int = 32,
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
     encryptDirectory: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to pckName, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
+    TransferContext.writeArguments(STRING to pckPath, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
     TransferContext.callMethod(ptr, MethodBindings.pckStartPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
-   * Adds the [sourcePath] file to the current PCK package at the [pckPath] internal path (should
-   * start with `res://`).
+   * Adds the [sourcePath] file to the current PCK package at the [targetPath] internal path. The
+   * `res://` prefix for [targetPath] is optional and stripped internally.
    */
   @JvmOverloads
   public final fun addFile(
-    pckPath: String,
+    targetPath: String,
     sourcePath: String,
     encrypt: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
+    TransferContext.writeArguments(STRING to targetPath, STRING to sourcePath, BOOL to encrypt)
     TransferContext.callMethod(ptr, MethodBindings.addFilePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Registers a file removal of the [targetPath] internal path to the PCK. This is mainly used for
+   * patches. If the file at this path has been loaded from a previous PCK, it will be removed. The
+   * `res://` prefix for [targetPath] is optional and stripped internally.
+   */
+  public final fun addFileRemoval(targetPath: String): Error {
+    TransferContext.writeArguments(STRING to targetPath)
+    TransferContext.callMethod(ptr, MethodBindings.addFileRemovalPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -100,6 +113,9 @@ public open class PCKPacker : RefCounted() {
 
     internal val addFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
+
+    internal val addFileRemovalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PCKPacker", "add_file_removal", 166001499)
 
     internal val flushPtr: VoidPtr = TypeManager.getMethodBindPtr("PCKPacker", "flush", 1633102583)
   }

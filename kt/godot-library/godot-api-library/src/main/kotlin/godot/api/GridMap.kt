@@ -210,7 +210,7 @@ public open class GridMap : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(290, scriptIndex)
+    createNativeObject(294, scriptIndex)
   }
 
   /**

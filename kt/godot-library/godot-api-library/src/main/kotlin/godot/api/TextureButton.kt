@@ -25,8 +25,11 @@ import kotlin.jvm.JvmName
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
  * [Theme] resource. It is faster to create, but it doesn't support localization like more complex
  * [Control]s.
- * The "normal" state must contain a texture ([textureNormal]); other textures are optional.
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ * **Note:** Setting a texture for the "normal" state ([textureNormal]) is recommended. If
+ * [textureNormal] is not set, the [TextureButton] will still receive input events and be clickable,
+ * but the user will not be able to see it unless they activate another one of its states with a
+ * texture assigned (e.g., hover over it to show [textureHover]).
  */
 @GodotBaseType
 public open class TextureButton : BaseButton() {
@@ -44,7 +47,8 @@ public open class TextureButton : BaseButton() {
 
   /**
    * Texture to display on mouse down over the node, if the node has keyboard focus and the player
-   * presses the Enter key or if the player presses the [BaseButton.shortcut] key.
+   * presses the Enter key or if the player presses the [BaseButton.shortcut] key. If not assigned, the
+   * [TextureButton] displays [textureHover] instead when pressed.
    */
   public final inline var texturePressed: Texture2D?
     @JvmName("texturePressedProperty")
@@ -55,7 +59,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display when the mouse hovers the node.
+   * Texture to display when the mouse hovers over the node. If not assigned, the [TextureButton]
+   * displays [textureNormal] instead when hovered over.
    */
   public final inline var textureHover: Texture2D?
     @JvmName("textureHoverProperty")
@@ -66,7 +71,8 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display when the node is disabled. See [BaseButton.disabled].
+   * Texture to display when the node is disabled. See [BaseButton.disabled]. If not assigned, the
+   * [TextureButton] displays [textureNormal] instead.
    */
   public final inline var textureDisabled: Texture2D?
     @JvmName("textureDisabledProperty")
@@ -77,12 +83,12 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
-   * Texture to display when the node has mouse or keyboard focus. [textureFocused] is displayed
-   * *over* the base texture, so a partially transparent texture should be used to ensure the base
-   * texture remains visible. A texture that represents an outline or an underline works well for this
-   * purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note
-   * that disabling the focus visual effect will harm keyboard/controller navigation usability, so this
-   * is not recommended for accessibility reasons.
+   * Texture to *overlay on the base texture* when the node has mouse or keyboard focus. Because
+   * [textureFocused] is displayed on top of the base texture, a partially transparent texture should
+   * be used to ensure the base texture remains visible. A texture that represents an outline or an
+   * underline works well for this purpose. To disable the focus visual effect, assign a fully
+   * transparent texture of any size. Note that disabling the focus visual effect will harm
+   * keyboard/controller navigation usability, so this is not recommended for accessibility reasons.
    */
   public final inline var textureFocused: Texture2D?
     @JvmName("textureFocusedProperty")
@@ -151,7 +157,7 @@ public open class TextureButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(654, scriptIndex)
+    createNativeObject(679, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

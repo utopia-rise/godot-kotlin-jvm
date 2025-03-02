@@ -58,7 +58,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(377, scriptIndex)
+    createNativeObject(383, scriptIndex)
   }
 
   /**

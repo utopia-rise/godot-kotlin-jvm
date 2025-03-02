@@ -43,7 +43,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Engine : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(12)
+    getSingleton(1)
   }
 
   @JvmStatic
@@ -335,24 +335,10 @@ public object Engine : Object() {
    * Returns the name of the CPU architecture the Godot binary was built for. Possible return values
    * include `"x86_64"`, `"x86_32"`, `"arm64"`, `"arm32"`, `"rv64"`, `"riscv"`, `"ppc64"`, `"ppc"`,
    * `"wasm64"`, and `"wasm32"`.
-   * To detect whether the current build is 64-bit, you can use the fact that all 64-bit
-   * architecture names contain `64` in their name:
-   *
-   * gdscript:
-   * ```gdscript
-   * if "64" in Engine.get_architecture_name():
-   *     print("Running a 64-bit build of Godot.")
-   * else:
-   *     print("Running a 32-bit build of Godot.")
-   * ```
-   * csharp:
-   * ```csharp
-   * if (Engine.GetArchitectureName().Contains("64"))
-   *     GD.Print("Running a 64-bit build of Godot.");
-   * else
-   *     GD.Print("Running a 32-bit build of Godot.");
-   * ```
-   *
+   * To detect whether the current build is 64-bit, or the type of architecture, don't use the
+   * architecture name. Instead, use [OS.hasFeature] to check for the `"64"` feature tag, or tags such
+   * as `"x86"` or `"arm"`. See the [url=$DOCS_URL/tutorials/export/feature_tags.html]Feature
+   * Tags[/url] documentation for more details.
    * **Note:** This method does *not* return the name of the system's CPU architecture (like
    * [OS.getProcessorName]). For example, when running an `x86_32` Godot binary on an `x86_64` system,
    * the returned value will still be `"x86_32"`.
@@ -399,10 +385,10 @@ public object Engine : Object() {
    * ```
    * csharp:
    * ```csharp
-   * GD.Print(Engine.HasSingleton("OS"));          // Prints true
-   * GD.Print(Engine.HasSingleton("Engine"));      // Prints true
-   * GD.Print(Engine.HasSingleton("AudioServer")); // Prints true
-   * GD.Print(Engine.HasSingleton("Unknown"));     // Prints false
+   * GD.Print(Engine.HasSingleton("OS"));          // Prints True
+   * GD.Print(Engine.HasSingleton("Engine"));      // Prints True
+   * GD.Print(Engine.HasSingleton("AudioServer")); // Prints True
+   * GD.Print(Engine.HasSingleton("Unknown"));     // Prints False
    * ```
    *
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
@@ -542,6 +528,18 @@ public object Engine : Object() {
   }
 
   /**
+   * Returns `true` if the engine is running embedded in the editor. This is useful to prevent
+   * attempting to update window mode or window flags that are not supported when running the project
+   * embedded in the editor.
+   */
+  @JvmStatic
+  public final fun isEmbeddedInEditor(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEmbeddedInEditorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns the path to the [MovieWriter]'s output file, or an empty string if the engine wasn't
    * started in Movie Maker mode. The default path can be changed in
    * [ProjectSettings.editor/movieWriter/movieFile].
@@ -551,6 +549,19 @@ public object Engine : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteMoviePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  @JvmStatic
+  public final fun setPrintToStdout(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setPrintToStdoutPtr, NIL)
+  }
+
+  @JvmStatic
+  public final fun isPrintingToStdout(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isPrintingToStdoutPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   @JvmStatic
@@ -669,8 +680,17 @@ public object Engine : Object() {
     internal val isEditorHintPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Engine", "is_editor_hint", 36873697)
 
+    internal val isEmbeddedInEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "is_embedded_in_editor", 36873697)
+
     internal val getWriteMoviePathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Engine", "get_write_movie_path", 201670096)
+
+    internal val setPrintToStdoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "set_print_to_stdout", 2586408642)
+
+    internal val isPrintingToStdoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "is_printing_to_stdout", 36873697)
 
     internal val setPrintErrorMessagesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Engine", "set_print_error_messages", 2586408642)

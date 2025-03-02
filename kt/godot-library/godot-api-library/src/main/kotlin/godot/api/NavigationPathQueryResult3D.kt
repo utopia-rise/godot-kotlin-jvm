@@ -79,7 +79,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(400, scriptIndex)
+    createNativeObject(406, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector3Array): Unit {

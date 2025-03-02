@@ -10,13 +10,17 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Dictionary
 import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -24,6 +28,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
@@ -36,8 +41,9 @@ import kotlin.jvm.JvmName
 public open class AudioStreamWAV : AudioStream() {
   /**
    * Contains the audio data in bytes.
-   * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8,
-   * subtract 128 from each byte.
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
+   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
    */
   public final inline var `data`: PackedByteArray
     @JvmName("dataProperty")
@@ -59,8 +65,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop mode. This information will be imported automatically from the WAV file if present.
-   * See [LoopMode] constants for values.
+   * The loop mode. See [LoopMode] constants for values.
    */
   public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
@@ -71,8 +76,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop start point (in number of samples, relative to the beginning of the stream). This
-   * information will be imported automatically from the WAV file if present.
+   * The loop start point (in number of samples, relative to the beginning of the stream).
    */
   public final inline var loopBegin: Int
     @JvmName("loopBeginProperty")
@@ -83,8 +87,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop end point (in number of samples, relative to the beginning of the stream). This
-   * information will be imported automatically from the WAV file if present.
+   * The loop end point (in number of samples, relative to the beginning of the stream).
    */
   public final inline var loopEnd: Int
     @JvmName("loopEndProperty")
@@ -126,7 +129,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(135, scriptIndex)
+    createNativeObject(136, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -207,8 +210,8 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   /**
-   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or QOA formats can't
-   * be saved.
+   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or Quite OK Audio
+   * formats can't be saved.
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
   public final fun saveToWav(path: String): Error {
@@ -221,19 +224,19 @@ public open class AudioStreamWAV : AudioStream() {
     id: Long,
   ) {
     /**
-     * 8-bit audio codec.
+     * 8-bit PCM audio codec.
      */
     FORMAT_8_BITS(0),
     /**
-     * 16-bit audio codec.
+     * 16-bit PCM audio codec.
      */
     FORMAT_16_BITS(1),
     /**
-     * Audio is compressed using IMA ADPCM.
+     * Audio is lossily compressed as IMA ADPCM.
      */
     FORMAT_IMA_ADPCM(2),
     /**
-     * Audio is compressed as QOA ([url=https://qoaformat.org/]Quite OK Audio[/url]).
+     * Audio is lossily compressed as [url=https://qoaformat.org/]Quite OK Audio[/url].
      */
     FORMAT_QOA(3),
     ;
@@ -279,9 +282,57 @@ public open class AudioStreamWAV : AudioStream() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV
+     * data.
+     * The keys and values of [options] match the properties of [ResourceImporterWAV]. The usage of
+     * [options] is identical to [AudioStreamWAV.loadFromFile].
+     */
+    @JvmOverloads
+    public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> =
+        Dictionary()): AudioStreamWAV? {
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
+      TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
+    }
+
+    /**
+     * Creates a new [AudioStreamWAV] instance from the given file path. The file must be in WAV
+     * format.
+     * The keys and values of [options] match the properties of [ResourceImporterWAV].
+     * **Example:** Load the first file dropped as a WAV and play it:
+     * [codeblock]
+     * @onready var audio_player = $AudioStreamPlayer
+     *
+     * func _ready():
+     *     get_window().files_dropped.connect(_on_files_dropped)
+     *
+     * func _on_files_dropped(files):
+     *     if files[0].get_extension() == "wav":
+     *         audio_player.stream = AudioStreamWAV.load_from_file(files[0], {
+     *                 "force/max_rate": true,
+     *                 "force/max_rate_hz": 11025
+     *             })
+     *         audio_player.play()
+     * [/codeblock]
+     */
+    @JvmOverloads
+    public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()):
+        AudioStreamWAV? {
+      TransferContext.writeArguments(STRING to path, DICTIONARY to options)
+      TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
+    }
+  }
 
   public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
+
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data", 2971499966)
 

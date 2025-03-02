@@ -28,14 +28,14 @@ import kotlin.jvm.JvmName
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
  * according to the current [Theme].
- * **Example of creating a button and assigning an action when pressed by code:**
+ * **Example:** Create a button and connect a method that will be called when the button is pressed:
  *
  * gdscript:
  * ```gdscript
  * func _ready():
  *     var button = Button.new()
  *     button.text = "Click me"
- *     button.pressed.connect(self._button_pressed)
+ *     button.pressed.connect(_button_pressed)
  *     add_child(button)
  *
  * func _button_pressed():
@@ -58,8 +58,8 @@ import kotlin.jvm.JvmName
  * ```
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
- * **Note:** Buttons do not interpret touch input and therefore don't support multitouch, since
- * mouse emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that
+ * **Note:** Buttons do not detect touch input and therefore don't support multitouch, since mouse
+ * emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that
  * trigger gameplay movement or actions.
  */
 @GodotBaseType
@@ -135,8 +135,9 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * When this property is enabled, text that is too large to fit the button is clipped, when
-   * disabled the Button will always be wide enough to hold the text.
+   * If `true`, text that is too large to fit the button is clipped horizontally. If `false`, the
+   * button will always be wide enough to hold the text. The text is not vertically clipped, and the
+   * button's height is not affected by this property.
    */
   public final inline var clipText: Boolean
     @JvmName("clipTextProperty")
@@ -208,7 +209,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(147, scriptIndex)
+    createNativeObject(148, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

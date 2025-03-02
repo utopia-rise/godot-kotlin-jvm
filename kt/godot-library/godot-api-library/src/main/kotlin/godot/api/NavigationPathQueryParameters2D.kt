@@ -167,7 +167,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(397, scriptIndex)
+    createNativeObject(403, scriptIndex)
   }
 
   /**
@@ -353,6 +353,11 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
      * center.
      */
     PATH_POSTPROCESSING_EDGECENTERED(1),
+    /**
+     * Applies no postprocessing and returns the raw path corridor as found by the pathfinding
+     * algorithm.
+     */
+    PATH_POSTPROCESSING_NONE(2),
     ;
 
     public val id: Long

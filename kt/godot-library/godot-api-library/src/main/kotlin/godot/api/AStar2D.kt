@@ -46,7 +46,7 @@ public open class AStar2D : RefCounted() {
    * Called when estimating the cost between a point and the path's ending point.
    * Note that this function is hidden in the default [AStar2D] class.
    */
-  public open fun _estimateCost(fromId: Long, toId: Long): Float {
+  public open fun _estimateCost(fromId: Long, endId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
   }
 
@@ -178,7 +178,7 @@ public open class AStar2D : RefCounted() {
    * astar.ConnectPoints(1, 2, true);
    * astar.ConnectPoints(1, 3, true);
    *
-   * int[] neighbors = astar.GetPointConnections(1); // Returns [2, 3]
+   * long[] neighbors = astar.GetPointConnections(1); // Returns [2, 3]
    * ```
    */
   public final fun getPointConnections(id: Long): PackedInt64Array {
@@ -293,8 +293,8 @@ public open class AStar2D : RefCounted() {
   }
 
   /**
-   * Reserves space internally for [numNodes] points, useful if you're adding a known large number
-   * of points at once, such as points on a grid. New capacity must be greater or equals to old
+   * Reserves space internally for [numNodes] points. Useful if you're adding a known large number
+   * of points at once, such as points on a grid. The new capacity must be greater or equal to the old
    * capacity.
    */
   public final fun reserveSpace(numNodes: Long): Unit {
@@ -360,6 +360,8 @@ public open class AStar2D : RefCounted() {
    * the point closest to the target that can be reached.
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
+   * unusually long time to finish.
    */
   @JvmOverloads
   public final fun getPointPath(
@@ -377,6 +379,8 @@ public open class AStar2D : RefCounted() {
    * given points. The array is ordered from the starting point to the ending point of the path.
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
+   * unusually long time to finish.
    *
    * gdscript:
    * ```gdscript
@@ -405,7 +409,7 @@ public open class AStar2D : RefCounted() {
    * astar.ConnectPoints(2, 3, false);
    * astar.ConnectPoints(4, 3, false);
    * astar.ConnectPoints(1, 4, false);
-   * int[] res = astar.GetIdPath(1, 3); // Returns [1, 2, 3]
+   * long[] res = astar.GetIdPath(1, 3); // Returns [1, 2, 3]
    * ```
    *
    * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because

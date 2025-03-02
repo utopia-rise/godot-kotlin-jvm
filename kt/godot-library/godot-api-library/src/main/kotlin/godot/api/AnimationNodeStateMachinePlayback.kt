@@ -28,7 +28,6 @@ import kotlin.jvm.JvmOverloads
 /**
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
  * Retrieve with `$AnimationTree.get("parameters/playback")`.
- * **Example:**
  *
  * gdscript:
  * ```gdscript
@@ -45,7 +44,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(63, scriptIndex)
+    createNativeObject(64, scriptIndex)
   }
 
   /**

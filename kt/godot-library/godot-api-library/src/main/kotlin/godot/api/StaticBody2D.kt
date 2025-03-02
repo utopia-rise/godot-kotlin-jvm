@@ -75,7 +75,7 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(616, scriptIndex)
+    createNativeObject(640, scriptIndex)
   }
 
   /**

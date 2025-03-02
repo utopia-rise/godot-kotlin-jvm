@@ -27,9 +27,11 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * This resource describes a mathematical curve by defining a set of points and tangents at each
- * point. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the
- * `0.5` Y position.
- * See also [Gradient] which is designed for color interpolation. See also [Curve2D] and [Curve3D].
+ * point. By default, it ranges between `0` and `1` on the X and Y axes, but these ranges can be
+ * changed.
+ * Please note that many resources and nodes assume they are given *unit curves*. A unit curve is a
+ * curve whose domain (the X axis) is between `0` and `1`. Some examples of unit curve usage are
+ * [CPUParticles2D.angleCurve] and [Line2D.widthCurve].
  */
 @GodotBaseType
 public open class Curve : Resource() {
@@ -39,7 +41,35 @@ public open class Curve : Resource() {
   public val rangeChanged: Signal0 by Signal0
 
   /**
-   * The minimum value the curve can reach.
+   * Emitted when [maxDomain] or [minDomain] is changed.
+   */
+  public val domainChanged: Signal0 by Signal0
+
+  /**
+   * The minimum domain (x-coordinate) that points can have.
+   */
+  public final inline var minDomain: Float
+    @JvmName("minDomainProperty")
+    get() = getMinDomain()
+    @JvmName("minDomainProperty")
+    set(`value`) {
+      setMinDomain(value)
+    }
+
+  /**
+   * The maximum domain (x-coordinate) that points can have.
+   */
+  public final inline var maxDomain: Float
+    @JvmName("maxDomainProperty")
+    get() = getMaxDomain()
+    @JvmName("maxDomainProperty")
+    set(`value`) {
+      setMaxDomain(value)
+    }
+
+  /**
+   * The minimum value (y-coordinate) that points can have. Tangents can cause lower values between
+   * points.
    */
   public final inline var minValue: Float
     @JvmName("minValueProperty")
@@ -50,7 +80,8 @@ public open class Curve : Resource() {
     }
 
   /**
-   * The maximum value the curve can reach.
+   * The maximum value (y-coordinate) that points can have. Tangents can cause higher values between
+   * points.
    */
   public final inline var maxValue: Float
     @JvmName("maxValueProperty")
@@ -83,7 +114,7 @@ public open class Curve : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(216, scriptIndex)
+    createNativeObject(218, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
@@ -267,6 +298,46 @@ public open class Curve : Resource() {
   }
 
   /**
+   * Returns the difference between [minValue] and [maxValue].
+   */
+  public final fun getValueRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getValueRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun getMinDomain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMinDomainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setMinDomain(min: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to min.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setMinDomainPtr, NIL)
+  }
+
+  public final fun getMaxDomain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMaxDomainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setMaxDomain(max: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to max.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setMaxDomainPtr, NIL)
+  }
+
+  /**
+   * Returns the difference between [minDomain] and [maxDomain].
+   */
+  public final fun getDomainRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDomainRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
    * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value)
    * away from their neighbor on the curve.
    */
@@ -389,6 +460,24 @@ public open class Curve : Resource() {
 
     internal val setMaxValuePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Curve", "set_max_value", 373806689)
+
+    internal val getValueRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_value_range", 1740695150)
+
+    internal val getMinDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_min_domain", 1740695150)
+
+    internal val setMinDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_min_domain", 373806689)
+
+    internal val getMaxDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_max_domain", 1740695150)
+
+    internal val setMaxDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_max_domain", 373806689)
+
+    internal val getDomainRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_domain_range", 1740695150)
 
     internal val cleanDupesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Curve", "clean_dupes", 3218959716)

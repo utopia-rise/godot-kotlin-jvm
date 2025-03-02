@@ -141,6 +141,17 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * If `true`, "Emoji and Symbols" menu is enabled.
+   */
+  public final inline var emojiMenuEnabled: Boolean
+    @JvmName("emojiMenuEnabledProperty")
+    get() = isEmojiMenuEnabled()
+    @JvmName("emojiMenuEnabledProperty")
+    set(`value`) {
+      setEmojiMenuEnabled(value)
+    }
+
+  /**
    * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
    * disabled.
    */
@@ -207,6 +218,18 @@ public open class TextEdit : Control() {
     @JvmName("middleMousePasteEnabledProperty")
     set(`value`) {
       setMiddleMousePasteEnabled(value)
+    }
+
+  /**
+   * If `true`, copying or cutting without a selection is performed on all lines with a caret.
+   * Otherwise, copy and cut require a selection.
+   */
+  public final inline var emptySelectionClipboardEnabled: Boolean
+    @JvmName("emptySelectionClipboardEnabledProperty")
+    get() = isEmptySelectionClipboardEnabled()
+    @JvmName("emptySelectionClipboardEnabledProperty")
+    set(`value`) {
+      setEmptySelectionClipboardEnabled(value)
     }
 
   /**
@@ -302,7 +325,8 @@ public open class TextEdit : Control() {
 
   /**
    * If `true`, [TextEdit] will disable vertical scroll and fit minimum height to the number of
-   * visible lines.
+   * visible lines. When both this property and [scrollFitContentWidth] are `true`, no scrollbars will
+   * be displayed.
    */
   public final inline var scrollFitContentHeight: Boolean
     @JvmName("scrollFitContentHeightProperty")
@@ -310,6 +334,19 @@ public open class TextEdit : Control() {
     @JvmName("scrollFitContentHeightProperty")
     set(`value`) {
       setFitContentHeightEnabled(value)
+    }
+
+  /**
+   * If `true`, [TextEdit] will disable horizontal scroll and fit minimum width to the widest line
+   * in the text. When both this property and [scrollFitContentHeight] are `true`, no scrollbars will
+   * be displayed.
+   */
+  public final inline var scrollFitContentWidth: Boolean
+    @JvmName("scrollFitContentWidthProperty")
+    get() = isFitContentWidthEnabled()
+    @JvmName("scrollFitContentWidthProperty")
+    set(`value`) {
+      setFitContentWidthEnabled(value)
     }
 
   /**
@@ -405,7 +442,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Sets if multiple carets are allowed.
+   * If `true`, multiple carets are allowed. Left-clicking with [kbd]Alt[/kbd] adds a new caret. See
+   * [addCaret] and [getCaretCount].
    */
   public final inline var caretMultiple: Boolean
     @JvmName("caretMultipleProperty")
@@ -458,7 +496,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Sets the [SyntaxHighlighter] to use.
+   * The syntax highlighter to use.
+   * **Note:** A [SyntaxHighlighter] instance should not be used across multiple [TextEdit] nodes.
    */
   public final inline var syntaxHighlighter: SyntaxHighlighter?
     @JvmName("syntaxHighlighterProperty")
@@ -569,7 +608,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(639, scriptIndex)
+    createNativeObject(664, scriptIndex)
   }
 
   /**
@@ -723,8 +762,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * If `true`, sets the user into overtype mode. When the user types in this mode, it will override
-   * existing text.
+   * If `true`, enables overtype mode. In this mode, typing overrides existing text instead of
+   * inserting text. The [ProjectSettings.input/uiTextToggleInsertMode] action toggles overtype mode.
+   * See [isOvertypeModeEnabled].
    */
   public final fun setOvertypeModeEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -732,7 +772,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the user is in overtype mode.
+   * Returns `true` if overtype mode is enabled. See [setOvertypeModeEnabled].
    */
   public final fun isOvertypeModeEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -748,6 +788,17 @@ public open class TextEdit : Control() {
   public final fun isContextMenuEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isContextMenuEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEmojiMenuEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setEmojiMenuEnabledPtr, NIL)
+  }
+
+  public final fun isEmojiMenuEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEmojiMenuEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -781,6 +832,17 @@ public open class TextEdit : Control() {
   public final fun isMiddleMousePasteEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEmptySelectionClipboardEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setEmptySelectionClipboardEnabledPtr, NIL)
+  }
+
+  public final fun isEmptySelectionClipboardEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEmptySelectionClipboardEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -842,6 +904,15 @@ public open class TextEdit : Control() {
   }
 
   /**
+   * Returns line text as it is currently displayed, including IME composition string.
+   */
+  public final fun getLineWithIme(line: Int): String {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getLineWithImePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns the width in pixels of the [wrapIndex] on [line].
    */
   @JvmOverloads
@@ -863,7 +934,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the number of spaces and `tab * tab_size` before the first char.
+   * Returns the indent level of the given line. This is the number of spaces and tabs at the
+   * beginning of the line, with the tabs taking the tab size into account (see [getTabSize]).
    */
   public final fun getIndentLevel(line: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -872,7 +944,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the first column containing a non-whitespace character.
+   * Returns the first column containing a non-whitespace character on the given line. If there is
+   * only whitespace, returns the number of characters.
    */
   public final fun getFirstNonWhitespaceColumn(line: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -1215,14 +1288,20 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the line and column at the given position. In the returned vector, `x` is the column,
-   * `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both
-   * vector values will be set to `-1`.
+   * Returns the line and column at the given position. In the returned vector, `x` is the column
+   * and `y` is the line.
+   * If [clampLine] is `false` and [position] is below the last line, `Vector2i(-1, -1)` is
+   * returned.
+   * If [clampColumn] is `false` and [position] is outside the column range of the line,
+   * `Vector2i(-1, -1)` is returned.
    */
   @JvmOverloads
-  public final fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true):
-      Vector2i {
-    TransferContext.writeArguments(VECTOR2I to position, BOOL to allowOutOfBounds)
+  public final fun getLineColumnAtPos(
+    position: Vector2i,
+    clampLine: Boolean = true,
+    clampColumn: Boolean = true,
+  ): Vector2i {
+    TransferContext.writeArguments(VECTOR2I to position, BOOL to clampLine, BOOL to clampColumn)
     TransferContext.callMethod(ptr, MethodBindings.getLineColumnAtPosPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -1271,7 +1350,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered
+   * Returns `true` if the mouse is over a selection. If [edges] is `true`, the edges are considered
    * part of the selection.
    */
   @JvmOverloads
@@ -1451,7 +1530,6 @@ public open class TextEdit : Control() {
    * edits can be used to edit text at multiple carets and delay merging the carets until the end, so
    * the caret indexes aren't affected immediately. [beginMulticaretEdit] and [endMulticaretEdit] can
    * be nested, and the merge will happen at the last [endMulticaretEdit].
-   * Example usage:
    * [codeblock]
    * begin_complex_operation()
    * begin_multicaret_edit()
@@ -1502,7 +1580,12 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns `true` if the caret is visible on the screen.
+   * Returns `true` if the caret is visible, `false` otherwise. A caret will be considered hidden if
+   * it is outside the scrollable area when scrolling is enabled.
+   * **Note:** [isCaretVisible] does not account for a caret being off-screen if it is still within
+   * the scrollable area. It will return `true` even if the caret is off-screen as long as it meets
+   * [TextEdit]'s own conditions for being visible. This includes uses of [scrollFitContentWidth] and
+   * [scrollFitContentHeight] that cause the [TextEdit] to expand beyond the viewport's bounds.
    */
   @JvmOverloads
   public final fun isCaretVisible(caretIndex: Int = 0): Boolean {
@@ -1957,7 +2040,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the wrap index of the given line column.
+   * Returns the wrap index of the given column on the given line. This ranges from `0` to
+   * [getLineWrapCount].
    */
   public final fun getLineWrapIndexAtColumn(line: Int, column: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -2058,6 +2142,17 @@ public open class TextEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setFitContentWidthEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setFitContentWidthEnabledPtr, NIL)
+  }
+
+  public final fun isFitContentWidthEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isFitContentWidthEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Returns the scroll position for [wrapIndex] of [line].
    */
@@ -2123,7 +2218,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the number of visible lines, including wrapped text.
+   * Returns the number of lines that can visually fit, rounded down, based on this control's
+   * height.
    */
   public final fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
@@ -2132,7 +2228,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the total number of visible + wrapped lines between the two lines.
+   * Returns the total number of lines between [fromLine] and [toLine] (inclusive) in the text. This
+   * includes wrapped lines and excludes folded lines. If the range covers all lines it is equivalent
+   * to [getTotalVisibleLineCount].
    */
   public final fun getVisibleLineCountInRange(fromLine: Int, toLine: Int): Int {
     TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to toLine.toLong())
@@ -2141,7 +2239,10 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the number of lines that may be drawn.
+   * Returns the total number of lines in the text. This includes wrapped lines and excludes folded
+   * lines. If [wrapMode] is set to [LINE_WRAPPING_NONE] and no lines are folded (see
+   * [CodeEdit.isLineFolded]) then this is equivalent to [getLineCount]. See
+   * [getVisibleLineCountInRange] for a limited range of lines.
    */
   public final fun getTotalVisibleLineCount(): Int {
     TransferContext.writeArguments()
@@ -2210,7 +2311,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Removes the gutter from this [TextEdit].
+   * Removes the gutter at the given index.
    */
   public final fun removeGutter(gutter: Int): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -2227,7 +2328,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the name of the gutter.
+   * Sets the name of the gutter at the given index.
    */
   public final fun setGutterName(gutter: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), STRING to name)
@@ -2244,8 +2345,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the type of gutter. Gutters can contain icons, text, or custom visuals. See
-   * [TextEdit.GutterType] for options.
+   * Sets the type of gutter at the given index. Gutters can contain icons, text, or custom visuals.
+   * See [TextEdit.GutterType] for options.
    */
   public final fun setGutterType(gutter: Int, type: GutterType): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), LONG to type.id)
@@ -2263,7 +2364,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Set the width of the gutter.
+   * Set the width of the gutter at the given index.
    */
   public final fun setGutterWidth(gutter: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), LONG to width.toLong())
@@ -2280,7 +2381,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets whether the gutter should be drawn.
+   * If `true`, the gutter at the given index is drawn. The gutter type ([setGutterType]) determines
+   * how it is drawn. See [isGutterDrawn].
    */
   public final fun setGutterDraw(gutter: Int, draw: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), BOOL to draw)
@@ -2288,7 +2390,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the gutter is currently drawn.
+   * Returns `true` if the gutter at the given index is currently drawn. See [setGutterDraw].
    */
   public final fun isGutterDrawn(gutter: Int): Boolean {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -2297,8 +2399,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the gutter as clickable. This will change the mouse cursor to a pointing hand when
-   * hovering over the gutter.
+   * If `true`, the mouse cursor will change to a pointing hand ([Control.CURSOR_POINTING_HAND])
+   * when hovering over the gutter at the given index. See [isGutterClickable] and
+   * [setLineGutterClickable].
    */
   public final fun setGutterClickable(gutter: Int, clickable: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), BOOL to clickable)
@@ -2306,7 +2409,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the gutter is clickable.
+   * Returns `true` if the gutter at the given index is clickable. See [setGutterClickable].
    */
   public final fun isGutterClickable(gutter: Int): Boolean {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -2315,7 +2418,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the gutter to overwritable. See [mergeGutters].
+   * If `true`, the line data of the gutter at the given index can be overridden when using
+   * [mergeGutters]. See [isGutterOverwritable].
    */
   public final fun setGutterOverwritable(gutter: Int, overwritable: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), BOOL to overwritable)
@@ -2323,7 +2427,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the gutter is overwritable.
+   * Returns `true` if the gutter at the given index is overwritable. See [setGutterOverwritable].
    */
   public final fun isGutterOverwritable(gutter: Int): Boolean {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -2332,7 +2436,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Merge the gutters from [fromLine] into [toLine]. Only overwritable gutters will be copied.
+   * Merge the gutters from [fromLine] into [toLine]. Only overwritable gutters will be copied. See
+   * [setGutterOverwritable].
    */
   public final fun mergeGutters(fromLine: Int, toLine: Int): Unit {
     TransferContext.writeArguments(LONG to fromLine.toLong(), LONG to toLine.toLong())
@@ -2340,9 +2445,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Set a custom draw method for the gutter. The callback method must take the following args:
-   * `line: int, gutter: int, Area: Rect2`. This only works when the gutter type is
-   * [GUTTER_TYPE_CUSTOM] (see [setGutterType]).
+   * Set a custom draw callback for the gutter at the given index. [drawCallback] must take the
+   * following arguments: A line index [int], a gutter index [int], and an area [Rect2]. This callback
+   * only works when the gutter type is [GUTTER_TYPE_CUSTOM] (see [setGutterType]).
    */
   public final fun setGutterCustomDraw(column: Int, drawCallback: Callable): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to drawCallback)
@@ -2447,7 +2552,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * If [clickable] is `true`, makes the [gutter] on [line] clickable. See [signal gutter_clicked].
+   * If [clickable] is `true`, makes the [gutter] on the given [line] clickable. This is like
+   * [setGutterClickable], but for a single line. If [isGutterClickable] is `true`, this will not have
+   * any effect. See [isLineGutterClickable] and [signal gutter_clicked].
    */
   public final fun setLineGutterClickable(
     line: Int,
@@ -2459,7 +2566,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the gutter on the given line is clickable.
+   * Returns `true` if the gutter at the given index on the given line is clickable. See
+   * [setLineGutterClickable].
    */
   public final fun isLineGutterClickable(line: Int, gutter: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to gutter.toLong())
@@ -2468,7 +2576,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the current background color of the line. Set to `Color(0, 0, 0, 0)` for no color.
+   * Sets the custom background color of the given line. If transparent, this color is applied on
+   * top of the default background color (See [theme_item background_color]). If set to `Color(0, 0, 0,
+   * 0)`, no additional color is applied.
    */
   public final fun setLineBackgroundColor(line: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), COLOR to color)
@@ -2476,8 +2586,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the current background color of the line. `Color(0, 0, 0, 0)` is returned if no color
-   * is set.
+   * Returns the custom background color of the given line. If no color is set, returns `Color(0, 0,
+   * 0, 0)`.
    */
   public final fun getLineBackgroundColor(line: Int): Color {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -2606,8 +2716,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
-   * performance (so the creation of the menu is avoided).
+   * Returns `true` if the menu is visible. Use this instead of `get_menu().visible` to improve
+   * performance (so the creation of the menu is avoided). See [getMenu].
    */
   public final fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
@@ -2791,9 +2901,13 @@ public open class TextEdit : Control() {
      */
     MENU_INSERT_SHY(29),
     /**
+     * Opens system emoji and symbol picker.
+     */
+    MENU_EMOJI_AND_SYMBOL(30),
+    /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(30),
+    MENU_MAX(31),
     ;
 
     public val id: Long
@@ -3041,6 +3155,12 @@ public open class TextEdit : Control() {
     internal val isContextMenuEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_context_menu_enabled", 36873697)
 
+    internal val setEmojiMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_emoji_menu_enabled", 2586408642)
+
+    internal val isEmojiMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_emoji_menu_enabled", 36873697)
+
     internal val setShortcutKeysEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_shortcut_keys_enabled", 2586408642)
 
@@ -3058,6 +3178,12 @@ public open class TextEdit : Control() {
 
     internal val isMiddleMousePasteEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_middle_mouse_paste_enabled", 36873697)
+
+    internal val setEmptySelectionClipboardEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_empty_selection_clipboard_enabled", 2586408642)
+
+    internal val isEmptySelectionClipboardEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_empty_selection_clipboard_enabled", 36873697)
 
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "clear", 3218959716)
 
@@ -3081,6 +3207,9 @@ public open class TextEdit : Control() {
 
     internal val getLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_line", 844755477)
+
+    internal val getLineWithImePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_line_with_ime", 844755477)
 
     internal val getLineWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_line_width", 688195400)
@@ -3185,7 +3314,7 @@ public open class TextEdit : Control() {
         TypeManager.getMethodBindPtr("TextEdit", "get_word_at_pos", 3674420000)
 
     internal val getLineColumnAtPosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "get_line_column_at_pos", 239517838)
+        TypeManager.getMethodBindPtr("TextEdit", "get_line_column_at_pos", 3472935744)
 
     internal val getPosAtLineColumnPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_pos_at_line_column", 410388347)
@@ -3470,6 +3599,12 @@ public open class TextEdit : Control() {
 
     internal val isFitContentHeightEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_fit_content_height_enabled", 36873697)
+
+    internal val setFitContentWidthEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_fit_content_width_enabled", 2586408642)
+
+    internal val isFitContentWidthEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_fit_content_width_enabled", 36873697)
 
     internal val getScrollPosForLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_scroll_pos_for_line", 3929084198)

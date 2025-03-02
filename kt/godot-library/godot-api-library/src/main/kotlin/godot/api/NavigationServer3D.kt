@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.AABB
 import godot.core.Callable
 import godot.core.PackedVector3Array
 import godot.core.RID
@@ -116,7 +117,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the map is active.
+   * Returns `true` if the map is active.
    */
   @JvmStatic
   public final fun mapIsActive(map: RID): Boolean {
@@ -215,7 +216,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the navigation [map] allows navigation regions to use edge connections to
+   * Returns `true` if the navigation [map] allows navigation regions to use edge connections to
    * connect with other navigation regions within proximity of the navigation map edge connection
    * margin.
    */
@@ -285,7 +286,10 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the closest point between the navigation surface and the segment.
+   * Returns the navigation mesh surface point closest to the provided [start] and [end] segment on
+   * the navigation [map].
+   * If [useCollision] is `true`, a closest point test is only done when the segment intersects with
+   * the navigation mesh surface.
    */
   @JvmOverloads
   @JvmStatic
@@ -301,7 +305,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the point closest to the provided [toPoint] on the navigation mesh surface.
+   * Returns the navigation mesh surface point closest to the provided [toPoint] on the navigation
+   * [map].
    */
   @JvmStatic
   public final fun mapGetClosestPoint(map: RID, toPoint: Vector3): Vector3 {
@@ -311,7 +316,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the normal for the point returned by [mapGetClosestPoint].
+   * Returns the navigation mesh surface normal closest to the provided [toPoint] on the navigation
+   * [map].
    */
   @JvmStatic
   public final fun mapGetClosestPointNormal(map: RID, toPoint: Vector3): Vector3 {
@@ -321,7 +327,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns the owner region RID for the point returned by [mapGetClosestPoint].
+   * Returns the owner region RID for the navigation mesh surface point closest to the provided
+   * [toPoint] on the navigation [map].
    */
   @JvmStatic
   public final fun mapGetClosestPointOwner(map: RID, toPoint: Vector3): RID {
@@ -415,6 +422,27 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * If [enabled] is `true` the [map] synchronization uses an async process that runs on a
+   * background thread.
+   */
+  @JvmStatic
+  public final fun mapSetUseAsyncIterations(map: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to map, BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.mapSetUseAsyncIterationsPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [map] synchronization uses an async process that runs on a background
+   * thread.
+   */
+  @JvmStatic
+  public final fun mapGetUseAsyncIterations(map: RID): Boolean {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(ptr, MethodBindings.mapGetUseAsyncIterationsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns a random position picked from all map region polygons with matching [navigationLayers].
    * If [uniformly] is `true`, all map regions, polygons, and faces are weighted by their surface
    * area (slower).
@@ -435,12 +463,16 @@ public object NavigationServer3D : Object() {
    * Queries a path in a given navigation map. Start and target position and other parameters are
    * defined through [NavigationPathQueryParameters3D]. Updates the provided
    * [NavigationPathQueryResult3D] result object with the path among other results requested by the
-   * query.
+   * query. After the process is finished the optional [callback] will be called.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun queryPath(parameters: NavigationPathQueryParameters3D?,
-      result: NavigationPathQueryResult3D?): Unit {
-    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
+  public final fun queryPath(
+    parameters: NavigationPathQueryParameters3D?,
+    result: NavigationPathQueryResult3D?,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.queryPathPtr, NIL)
   }
 
@@ -484,7 +516,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the navigation [region] is set to use edge connections to connect with other
+   * Returns `true` if the navigation [region] is set to use edge connections to connect with other
    * navigation regions within proximity of the navigation map edge connection margin.
    */
   @JvmStatic
@@ -680,6 +712,47 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Returns the navigation mesh surface point closest to the provided [start] and [end] segment on
+   * the navigation [region].
+   * If [useCollision] is `true`, a closest point test is only done when the segment intersects with
+   * the navigation mesh surface.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun regionGetClosestPointToSegment(
+    region: RID,
+    start: Vector3,
+    end: Vector3,
+    useCollision: Boolean = false,
+  ): Vector3 {
+    TransferContext.writeArguments(_RID to region, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetClosestPointToSegmentPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the navigation mesh surface point closest to the provided [toPoint] on the navigation
+   * [region].
+   */
+  @JvmStatic
+  public final fun regionGetClosestPoint(region: RID, toPoint: Vector3): Vector3 {
+    TransferContext.writeArguments(_RID to region, VECTOR3 to toPoint)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetClosestPointPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the navigation mesh surface normal closest to the provided [toPoint] on the navigation
+   * [region].
+   */
+  @JvmStatic
+  public final fun regionGetClosestPointNormal(region: RID, toPoint: Vector3): Vector3 {
+    TransferContext.writeArguments(_RID to region, VECTOR3 to toPoint)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetClosestPointNormalPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
    * Returns a random position picked from all region polygons with matching [navigationLayers].
    * If [uniformly] is `true`, all region polygons and faces are weighted by their surface area
    * (slower).
@@ -694,6 +767,17 @@ public object NavigationServer3D : Object() {
     TransferContext.writeArguments(_RID to region, LONG to navigationLayers, BOOL to uniformly)
     TransferContext.callMethod(ptr, MethodBindings.regionGetRandomPointPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the axis-aligned bounding box for the [region]'s transformed navigation mesh.
+   */
+  @JvmStatic
+  public final fun regionGetBounds(region: RID): AABB {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetBoundsPtr,
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -957,7 +1041,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [paused] is true the specified [agent] will not be processed, e.g. calculate avoidance
+   * If [paused] is `true` the specified [agent] will not be processed, e.g. calculate avoidance
    * velocities or receive avoidance callbacks.
    */
   @JvmStatic
@@ -1177,7 +1261,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns true if the map got changed the previous frame.
+   * Returns `true` if the map got changed the previous frame.
    */
   @JvmStatic
   public final fun agentIsMapChanged(agent: RID): Boolean {
@@ -1340,7 +1424,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [paused] is true the specified [obstacle] will not be processed, e.g. affect avoidance
+   * If [paused] is `true` the specified [obstacle] will not be processed, e.g. affect avoidance
    * velocities.
    */
   @JvmStatic
@@ -1673,6 +1757,10 @@ public object NavigationServer3D : Object() {
      * be still connected by edge proximity or with links.
      */
     INFO_EDGE_FREE_COUNT(8),
+    /**
+     * Constant to get the number of active navigation obstacles.
+     */
+    INFO_OBSTACLE_COUNT(9),
     ;
 
     public val id: Long
@@ -1741,7 +1829,7 @@ public object NavigationServer3D : Object() {
         TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius", 866169185)
 
     internal val mapGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_path", 1187418690)
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_path", 276783190)
 
     internal val mapGetClosestPointToSegmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment", 3830095642)
@@ -1773,11 +1861,17 @@ public object NavigationServer3D : Object() {
     internal val mapGetIterationIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id", 2198884583)
 
+    internal val mapSetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_use_async_iterations", 1265174801)
+
+    internal val mapGetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_use_async_iterations", 4155700596)
+
     internal val mapGetRandomPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_random_point", 722801526)
 
     internal val queryPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "query_path", 3415008901)
+        TypeManager.getMethodBindPtr("NavigationServer3D", "query_path", 2146930868)
 
     internal val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
@@ -1848,8 +1942,20 @@ public object NavigationServer3D : Object() {
     internal val regionGetConnectionPathwayEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end", 3440143363)
 
+    internal val regionGetClosestPointToSegmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_closest_point_to_segment", 3830095642)
+
+    internal val regionGetClosestPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_closest_point", 2056183332)
+
+    internal val regionGetClosestPointNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_closest_point_normal", 2056183332)
+
     internal val regionGetRandomPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_random_point", 722801526)
+
+    internal val regionGetBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_bounds", 974181306)
 
     internal val linkCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
@@ -2083,13 +2189,13 @@ public object NavigationServer3D : Object() {
         TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers", 2198884583)
 
     internal val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 685862123)
+        TypeManager.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 3172802542)
 
     internal val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 2469318639)
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 1286748856)
 
     internal val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 2469318639)
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 1286748856)
 
     internal val isBakingNavigationMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh", 3142026141)

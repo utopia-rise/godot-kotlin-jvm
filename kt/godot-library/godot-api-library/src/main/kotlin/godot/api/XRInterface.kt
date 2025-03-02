@@ -94,7 +94,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(846, scriptIndex)
+    createNativeObject(872, scriptIndex)
   }
 
   /**
@@ -372,9 +372,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * this at startup. For example:
    * [codeblock]
    * func _ready():
-   *     var xr_interface: XRInterface = XRServer.find_interface("OpenXR")
+   *     var xr_interface = XRServer.find_interface("OpenXR")
    *     if xr_interface and xr_interface.is_initialized():
-   *         var vp: Viewport = get_viewport()
+   *         var vp = get_viewport()
    *         vp.use_xr = true
    *         var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
    * XRInterface.XR_ENV_BLEND_MODE_ADDITIVE]

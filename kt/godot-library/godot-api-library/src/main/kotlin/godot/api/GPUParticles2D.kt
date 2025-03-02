@@ -36,6 +36,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
@@ -51,8 +52,8 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Emitted when all active particles have finished processing. To immediately restart the emission
    * cycle, call [restart].
-   * Never emitted when [oneShot] is disabled, as particles will be emitted and processed
-   * continuously.
+   * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and
+   * processed continuously.
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
@@ -128,17 +129,6 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial].
-   */
-  public final inline var processMaterial: Material?
-    @JvmName("processMaterialProperty")
-    get() = getProcessMaterial()
-    @JvmName("processMaterialProperty")
-    set(`value`) {
-      setProcessMaterial(value)
-    }
-
-  /**
    * Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.
    * **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the
    * [GPUParticles2D]'s [CanvasItem.material] property, then enable
@@ -167,6 +157,19 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * Causes all the particles in this node to interpolate towards the end of their lifetime.
+   * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
+   * implemented for custom process shaders.
+   */
+  public final inline var interpToEnd: Float
+    @JvmName("interpToEndProperty")
+    get() = getInterpToEnd()
+    @JvmName("interpToEndProperty")
+    set(`value`) {
+      setInterpToEnd(value)
+    }
+
+  /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
    * the cycle's end.
    */
@@ -180,6 +183,10 @@ public open class GPUParticles2D : Node2D() {
 
   /**
    * Particle system starts as if it had already run for this many seconds.
+   * **Note:** This can be very expensive if set to a high number as it requires running the
+   * particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every
+   * second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a
+   * single frame.
    */
   public final inline var preprocess: Double
     @JvmName("preprocessProperty")
@@ -225,6 +232,30 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
+   * If `true`, particles will use the same seed for every simulation using the seed defined in
+   * [seed]. This is useful for situations where the visual outcome should be consistent across
+   * replays, for example when using Movie Maker mode.
+   */
+  public final inline var useFixedSeed: Boolean
+    @JvmName("useFixedSeedProperty")
+    get() = getUseFixedSeed()
+    @JvmName("useFixedSeedProperty")
+    set(`value`) {
+      setUseFixedSeed(value)
+    }
+
+  /**
+   * Sets the random seed used by the particle system. Only effective if [useFixedSeed] is `true`.
+   */
+  public final inline var seed: Long
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
+    set(`value`) {
+      setSeed(value)
+    }
+
+  /**
    * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will
    * make the particles render at 2 frames per second. Note this does not slow down the simulation of
    * the particle system itself.
@@ -259,19 +290,6 @@ public open class GPUParticles2D : Node2D() {
     @JvmName("fractDeltaProperty")
     set(`value`) {
       setFractionalDelta(value)
-    }
-
-  /**
-   * Causes all the particles in this node to interpolate towards the end of their lifetime.
-   * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
-   * implemented for custom process shaders.
-   */
-  public final inline var interpToEnd: Float
-    @JvmName("interpToEndProperty")
-    get() = getInterpToEnd()
-    @JvmName("interpToEndProperty")
-    set(`value`) {
-      setInterpToEnd(value)
     }
 
   /**
@@ -381,8 +399,19 @@ public open class GPUParticles2D : Node2D() {
       setTrailSectionSubdivisions(value)
     }
 
+  /**
+   * [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial].
+   */
+  public final inline var processMaterial: Material?
+    @JvmName("processMaterialProperty")
+    get() = getProcessMaterial()
+    @JvmName("processMaterialProperty")
+    set(`value`) {
+      setProcessMaterial(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(268, scriptIndex)
+    createNativeObject(272, scriptIndex)
   }
 
   /**
@@ -490,6 +519,16 @@ public open class GPUParticles2D : Node2D() {
   public final fun setInterpToEnd(interp: Float): Unit {
     TransferContext.writeArguments(DOUBLE to interp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInterpToEndPtr, NIL)
+  }
+
+  /**
+   * Requests the particles to process for extra process time during a single frame.
+   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
+   * [restart] with parameter `keep_seed` set to `true`.
+   */
+  public final fun requestParticlesProcess(processTime: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
   public final fun isEmitting(): Boolean {
@@ -625,9 +664,12 @@ public open class GPUParticles2D : Node2D() {
    * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
    * from the viewport, wait for the [signal finished] signal before calling.
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
+   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
+   * playback.
    */
-  public final fun restart(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun restart(keepSeed: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to keepSeed)
     TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
   }
 
@@ -647,6 +689,8 @@ public open class GPUParticles2D : Node2D() {
    * on the value of [flags]. See [EmitFlags].
    * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
    * `(rotation, age, animation, lifetime)`.
+   * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not
+   * Compatibility.
    */
   public final fun emitParticle(
     xform: Transform2D,
@@ -720,6 +764,28 @@ public open class GPUParticles2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmountRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useFixedSeed)
+    TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
+  }
+
+  public final fun getUseFixedSeed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSeed(seed: Long): Unit {
+    TransferContext.writeArguments(LONG to seed)
+    TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public final fun getSeed(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class DrawOrder(
@@ -838,6 +904,9 @@ public open class GPUParticles2D : Node2D() {
     internal val setInterpToEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "set_interp_to_end", 373806689)
 
+    internal val requestParticlesProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "request_particles_process", 373806689)
+
     internal val isEmittingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "is_emitting", 36873697)
 
@@ -902,7 +971,7 @@ public open class GPUParticles2D : Node2D() {
         TypeManager.getMethodBindPtr("GPUParticles2D", "capture_rect", 1639390495)
 
     internal val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "restart", 3218959716)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "restart", 107499316)
 
     internal val setSubEmitterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "set_sub_emitter", 1348162250)
@@ -945,5 +1014,17 @@ public open class GPUParticles2D : Node2D() {
 
     internal val getAmountRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "get_amount_ratio", 1740695150)
+
+    internal val setUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_use_fixed_seed", 2586408642)
+
+    internal val getUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_use_fixed_seed", 36873697)
+
+    internal val setSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "set_seed", 1286410249)
+
+    internal val getSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles2D", "get_seed", 3905245786)
   }
 }

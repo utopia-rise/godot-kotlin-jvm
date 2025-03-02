@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFBufferView is a data structure representing GLTF a `bufferView` that would be found in the
+ * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the
  * `"bufferViews"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer that
  * can be used to identify and extract data from the buffer.
  * Most custom uses of buffers only need to use the [buffer], [byteLength], and [byteOffset]. The
@@ -79,8 +79,8 @@ public open class GLTFBufferView : Resource() {
     }
 
   /**
-   * True if the GLTFBufferView's OpenGL GPU buffer type is an `ELEMENT_ARRAY_BUFFER` used for
-   * vertex indices (integer constant `34963`). False if the buffer type is any other value. See
+   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ELEMENT_ARRAY_BUFFER` used for
+   * vertex indices (integer constant `34963`). `false` if the buffer type is any other value. See
    * [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers,
    * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
    * export.
@@ -94,8 +94,8 @@ public open class GLTFBufferView : Resource() {
     }
 
   /**
-   * True if the GLTFBufferView's OpenGL GPU buffer type is an `ARRAY_BUFFER` used for vertex
-   * attributes (integer constant `34962`). False if the buffer type is any other value. See
+   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ARRAY_BUFFER` used for vertex
+   * attributes (integer constant `34962`). `false` if the buffer type is any other value. See
    * [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers,
    * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
    * export.
@@ -109,7 +109,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(252, scriptIndex)
+    createNativeObject(255, scriptIndex)
   }
 
   /**

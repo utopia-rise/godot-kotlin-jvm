@@ -14,6 +14,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.RID
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -57,7 +60,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The [Shape3D]-derived shape to be used for collision queries.
+   * The shape to be used for collision queries.
    */
   public final inline var shape: Shape3D?
     @JvmName("shapeProperty")
@@ -79,7 +82,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
-   * The shape's destination point, relative to this node's `position`.
+   * The shape's destination point, relative to this node's [Node3D.position].
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -128,6 +131,14 @@ public open class ShapeCast3D : Node3D() {
     }
 
   /**
+   * Returns the complete collision information from the collision sweep. The data returned is the
+   * same as in the [PhysicsDirectSpaceState3D.getRestInfo] method.
+   */
+  public final inline val collisionResult: VariantArray<Any?>
+    @JvmName("collisionResultProperty")
+    get() = getCollisionResult()
+
+  /**
    * If `true`, collisions with [Area3D]s will be reported.
    */
   public final inline var collideWithAreas: Boolean
@@ -166,11 +177,11 @@ public open class ShapeCast3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(581, scriptIndex)
+    createNativeObject(600, scriptIndex)
   }
 
   /**
-   * The shape's destination point, relative to this node's `position`.
+   * The shape's destination point, relative to this node's [Node3D.position].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -310,7 +321,7 @@ public open class ShapeCast3D : Node3D() {
    * Updates the collision information for the shape immediately, without waiting for the next
    * `_physics_process` call. Use this method, for example, when the shape or its parent has changed
    * state.
-   * **Note:** `enabled == true` is not required for this to work.
+   * **Note:** Setting [enabled] to `true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
     TransferContext.writeArguments()
@@ -349,7 +360,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Returns the collision point of one of the multiple collisions at [index] where the shape
    * intersects the colliding object.
-   * **Note:** this point is in the **global** coordinate system.
+   * **Note:** This point is in the **global** coordinate system.
    */
   public final fun getCollisionPoint(index: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -367,8 +378,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The fraction from the [ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how
-   * far the shape can move without triggering a collision.
+   * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape can
+   * move without triggering a collision, as a value between `0.0` and `1.0`.
    */
   public final fun getClosestCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -377,8 +388,8 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * The fraction from the [ShapeCast3D]'s origin to its [targetPosition] (between 0 and 1) of how
-   * far the shape must move to trigger a collision.
+   * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape must
+   * move to trigger a collision, as a value between `0.0` and `1.0`.
    * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
    * casting is calculated in discrete steps, so the precise point of collision can occur between two
    * calculated positions.
@@ -398,8 +409,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Adds a collision exception so the shape does not report collisions with the specified
-   * [CollisionObject3D] node.
+   * Adds a collision exception so the shape does not report collisions with the specified node.
    */
   public final fun addException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -415,8 +425,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Removes a collision exception so the shape does report collisions with the specified
-   * [CollisionObject3D] node.
+   * Removes a collision exception so the shape does report collisions with the specified node.
    */
   public final fun removeException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -424,7 +433,7 @@ public open class ShapeCast3D : Node3D() {
   }
 
   /**
-   * Removes all collision exceptions for this [ShapeCast3D].
+   * Removes all collision exceptions for this shape.
    */
   public final fun clearExceptions(): Unit {
     TransferContext.writeArguments()
@@ -492,6 +501,12 @@ public open class ShapeCast3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun getCollisionResult(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionResultPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
@@ -615,6 +630,9 @@ public open class ShapeCast3D : Node3D() {
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ShapeCast3D", "is_collide_with_bodies_enabled", 36873697)
+
+    internal val getCollisionResultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_result", 3995934104)
 
     internal val setDebugShapeCustomColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ShapeCast3D", "set_debug_shape_custom_color", 2920490490)

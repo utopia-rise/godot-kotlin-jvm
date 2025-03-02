@@ -24,7 +24,7 @@ import kotlin.jvm.JvmName
 
 /**
  * This is a stream that can be fitted with sub-streams, which will be played in-sync. The streams
- * being at exactly the same time when play is pressed, and will end when the last of them ends. If one
+ * begin at exactly the same time when play is pressed, and will end when the last of them ends. If one
  * of the sub-streams loops, then playback will continue.
  */
 @GodotBaseType
@@ -41,7 +41,7 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(134, scriptIndex)
+    createNativeObject(135, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

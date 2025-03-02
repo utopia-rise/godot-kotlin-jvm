@@ -96,7 +96,7 @@ public open class PinJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(482, scriptIndex)
+    createNativeObject(499, scriptIndex)
   }
 
   public final fun setSoftness(softness: Float): Unit {

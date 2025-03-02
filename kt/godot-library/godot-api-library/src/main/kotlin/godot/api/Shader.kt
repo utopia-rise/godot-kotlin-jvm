@@ -51,7 +51,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(574, scriptIndex)
+    createNativeObject(592, scriptIndex)
   }
 
   /**
@@ -83,7 +83,7 @@ public open class Shader : Resource() {
   @JvmOverloads
   public final fun setDefaultTextureParameter(
     name: StringName,
-    texture: Texture2D?,
+    texture: Texture?,
     index: Int = 0,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
@@ -96,24 +96,34 @@ public open class Shader : Resource() {
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
-  public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
+  public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture? {
     TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture?)
   }
 
   /**
-   * Get the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with
+   * Returns the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with
    * [ShaderMaterial.setShaderParameter] and [ShaderMaterial.getShaderParameter]. The parameters
    * returned are contained in dictionaries in a similar format to the ones returned by
    * [Object.getPropertyList].
-   * If argument [getGroups] is true, parameter grouping hints will be provided.
+   * If argument [getGroups] is `true`, parameter grouping hints are also included in the list.
    */
   @JvmOverloads
   public final fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(ptr, MethodBindings.getShaderUniformListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+  }
+
+  /**
+   * Only available when running in the editor. Opens a popup that visualizes the generated shader
+   * code, including all variants and internal shader code. See also
+   * [Material.inspectNativeShaderCode].
+   */
+  public final fun inspectNativeShaderCode(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
 
   public enum class Mode(
@@ -162,12 +172,15 @@ public open class Shader : Resource() {
     internal val getCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Shader", "get_code", 201670096)
 
     internal val setDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shader", "set_default_texture_parameter", 2750740428)
+        TypeManager.getMethodBindPtr("Shader", "set_default_texture_parameter", 3850209648)
 
     internal val getDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shader", "get_default_texture_parameter", 3090538643)
+        TypeManager.getMethodBindPtr("Shader", "get_default_texture_parameter", 4213877425)
 
     internal val getShaderUniformListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Shader", "get_shader_uniform_list", 1230511656)
+
+    internal val inspectNativeShaderCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shader", "inspect_native_shader_code", 3218959716)
   }
 }

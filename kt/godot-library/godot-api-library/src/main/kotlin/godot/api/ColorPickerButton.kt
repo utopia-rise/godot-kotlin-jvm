@@ -74,7 +74,7 @@ public open class ColorPickerButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(193, scriptIndex)
+    createNativeObject(195, scriptIndex)
   }
 
   /**

@@ -45,7 +45,7 @@ public open class PlaceholderTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(488, scriptIndex)
+    createNativeObject(505, scriptIndex)
   }
 
   /**

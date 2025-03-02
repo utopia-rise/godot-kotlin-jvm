@@ -81,9 +81,10 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * The collision shape debug color.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
    */
   @CoreTypeLocalCopy
@@ -96,13 +97,14 @@ public open class CollisionShape2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(190, scriptIndex)
+    createNativeObject(191, scriptIndex)
   }
 
   /**
-   * The collision shape debug color.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
    *
    * This is a helper function to make dealing with local copies easier.

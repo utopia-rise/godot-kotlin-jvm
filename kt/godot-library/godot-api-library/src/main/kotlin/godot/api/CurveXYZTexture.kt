@@ -19,7 +19,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture where the red, green, and blue color channels correspond to points on 3 [Curve]
+ * A 1D texture where the red, green, and blue color channels correspond to points on 3 unit [Curve]
  * resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving
  * curves as image files.
  * If you only need to store one curve within a single texture, use [CurveTexture] instead. See also
@@ -41,7 +41,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [Curve] that is rendered onto the texture's red channel.
+   * The [Curve] that is rendered onto the texture's red channel. Should be a unit [Curve].
    */
   public final inline var curveX: Curve?
     @JvmName("curveXProperty")
@@ -52,7 +52,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [Curve] that is rendered onto the texture's green channel.
+   * The [Curve] that is rendered onto the texture's green channel. Should be a unit [Curve].
    */
   public final inline var curveY: Curve?
     @JvmName("curveYProperty")
@@ -63,7 +63,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   /**
-   * The [Curve] that is rendered onto the texture's blue channel.
+   * The [Curve] that is rendered onto the texture's blue channel. Should be a unit [Curve].
    */
   public final inline var curveZ: Curve?
     @JvmName("curveZProperty")
@@ -74,7 +74,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(220, scriptIndex)
+    createNativeObject(222, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

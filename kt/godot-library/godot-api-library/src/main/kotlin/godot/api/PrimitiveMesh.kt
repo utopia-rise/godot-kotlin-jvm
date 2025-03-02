@@ -100,7 +100,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(502, scriptIndex)
+    createNativeObject(519, scriptIndex)
   }
 
   /**
@@ -149,8 +149,8 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   /**
-   * Returns mesh arrays used to constitute surface of [Mesh]. The result can be passed to
-   * [ArrayMesh.addSurfaceFromArrays] to create a new surface. For example:
+   * Returns the mesh arrays used to make up the surface of this primitive mesh.
+   * **Example:** Pass the result to [ArrayMesh.addSurfaceFromArrays] to create a new surface:
    *
    * gdscript:
    * ```gdscript

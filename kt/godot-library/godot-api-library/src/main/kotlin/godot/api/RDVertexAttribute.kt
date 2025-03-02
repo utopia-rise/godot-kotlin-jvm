@@ -23,6 +23,9 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class RDVertexAttribute : RefCounted() {
+  /**
+   * The location in the shader that this attribute is bound to.
+   */
   public final inline var location: Long
     @JvmName("locationProperty")
     get() = getLocation()
@@ -31,6 +34,10 @@ public open class RDVertexAttribute : RefCounted() {
       setLocation(value)
     }
 
+  /**
+   * The number of bytes between the start of the vertex buffer and the first instance of this
+   * attribute.
+   */
   public final inline var offset: Long
     @JvmName("offsetProperty")
     get() = getOffset()
@@ -39,6 +46,9 @@ public open class RDVertexAttribute : RefCounted() {
       setOffset(value)
     }
 
+  /**
+   * The way that this attribute's data is interpreted when sent to a shader.
+   */
   public final inline var format: RenderingDevice.DataFormat
     @JvmName("formatProperty")
     get() = getFormat()
@@ -47,6 +57,9 @@ public open class RDVertexAttribute : RefCounted() {
       setFormat(value)
     }
 
+  /**
+   * The number of bytes between the starts of consecutive instances of this attribute.
+   */
   public final inline var stride: Long
     @JvmName("strideProperty")
     get() = getStride()
@@ -55,6 +68,9 @@ public open class RDVertexAttribute : RefCounted() {
       setStride(value)
     }
 
+  /**
+   * The rate at which this attribute is pulled from its vertex buffer.
+   */
   public final inline var frequency: RenderingDevice.VertexFrequency
     @JvmName("frequencyProperty")
     get() = getFrequency()
@@ -64,7 +80,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(524, scriptIndex)
+    createNativeObject(541, scriptIndex)
   }
 
   public final fun setLocation(pMember: Long): Unit {

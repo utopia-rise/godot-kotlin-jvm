@@ -224,8 +224,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The default exposure used for tonemapping. Higher values result in a brighter image. See also
-   * [tonemapWhite].
+   * Adjusts the brightness of values before they are provided to the tonemapper. Higher
+   * [tonemapExposure] values result in a brighter image. See also [tonemapWhite].
+   * **Note:** Values provided to the tonemapper will also be multiplied by `2.0` and `1.8` for
+   * [TONE_MAPPER_FILMIC] and [TONE_MAPPER_ACES] respectively to produce a similar apparent brightness
+   * as [TONE_MAPPER_LINEAR].
    */
   public final inline var tonemapExposure: Float
     @JvmName("tonemapExposureProperty")
@@ -236,9 +239,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The white reference value for tonemapping (also called "whitepoint"). Higher values can make
-   * highlights look less blown out, and will also slightly darken the whole scene as a result. Only
-   * effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR]. See also [tonemapExposure].
+   * The white reference value for tonemapping, which indicates where bright white is located in the
+   * scale of values provided to the tonemapper. For photorealistic lighting, recommended values are
+   * between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene
+   * appear lower contrast. See also [tonemapExposure].
+   * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] or [TONE_MAPPER_AGX].
    */
   public final inline var tonemapWhite: Float
     @JvmName("tonemapWhiteProperty")
@@ -809,10 +814,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * How strong of an impact the [glowMap] should have on the overall glow effect. A strength of
-   * `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the
-   * glow has a full effect on the overall glow effect (and can turn off glow entirely in specific
-   * areas of the screen if the glow map has black areas).
+   * How strong of an influence the [glowMap] should have on the overall glow effect. A strength of
+   * `0.0` means the glow map has no influence, while a strength of `1.0` means the glow map has full
+   * influence.
+   * **Note:** If the glow map has black areas, a value of `1.0` can also turn off the glow effect
+   * entirely in specific areas of the screen.
    * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -917,12 +923,17 @@ public open class Environment : Resource() {
 
   /**
    * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
-   * [Sky]. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to
-   * [BG_SKY].
+   * [Sky], as read from the radiance cubemap. This has a small performance cost when set above `0.0`.
+   * Must have [backgroundMode] set to [BG_SKY].
    * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
    * perspective[/url] in large scenes with low density fog. However, it is not very useful for
    * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
    * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
+   * Notice that this does not sample the [Sky] directly, but rather the radiance cubemap. The
+   * cubemap is sampled at a mipmap level depending on the depth of the rendered pixel; the farther
+   * away, the higher the resolution of the sampled mipmap. This results in the actual color being a
+   * blurred version of the sky, with more blur closer to the camera. The highest mipmap resolution is
+   * used at a depth of [Camera3D.far].
    */
   public final inline var fogAerialPerspective: Float
     @JvmName("fogAerialPerspectiveProperty")
@@ -1260,7 +1271,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(234, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   /**
@@ -2551,29 +2562,36 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause
-     * bright lighting to look blown out, with noticeable clipping in the output colors.
+     * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
+     * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
     TONE_MAPPER_LINEAR(0),
     /**
-     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this
-     * formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the
-     * resulting image can look a bit dull.
+     * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
+     * an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
+     * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT]
+     * produces an identical image to [TONE_MAPPER_LINEAR].
      */
     TONE_MAPPER_REINHARDT(1),
     /**
-     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image
-     * that usually looks more vivid than [TONE_MAPPER_REINHARDT].
+     * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
+     * contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
      */
     TONE_MAPPER_FILMIC(2),
     /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
-     * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
-     * becomes brighter. ACES typically has a more contrasted output compared to
-     * [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
+     * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
+     * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     TONE_MAPPER_ACES(3),
+    /**
+     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
+     * appearance. Better than other tonemappers at maintaining the hue of colors as they become
+     * brighter. The slowest tonemapping option.
+     * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
+     * unsuitable for use with the Mobile rendering method.
+     */
+    TONE_MAPPER_AGX(4),
     ;
 
     public val id: Long

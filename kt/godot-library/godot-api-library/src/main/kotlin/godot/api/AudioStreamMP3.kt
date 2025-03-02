@@ -15,17 +15,23 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
+ * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
+ * by default.
  */
 @GodotBaseType
 public open class AudioStreamMP3 : AudioStream() {
@@ -109,7 +115,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(118, scriptIndex)
+    createNativeObject(119, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -178,9 +184,35 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
+     * data.
+     */
+    public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamMP3? {
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
+      TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamMP3?)
+    }
+
+    /**
+     * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3
+     * format.
+     */
+    public final fun loadFromFile(path: String): AudioStreamMP3? {
+      TransferContext.writeArguments(STRING to path)
+      TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamMP3?)
+    }
+  }
 
   public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
+
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
 

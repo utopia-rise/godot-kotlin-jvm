@@ -9,8 +9,10 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
+import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -21,7 +23,7 @@ import kotlin.Unit
 
 /**
  * Extends the functionality of the [GLTFDocument] class by allowing you to run arbitrary code at
- * various stages of GLTF import or export.
+ * various stages of glTF import or export.
  * To use, make a new class extending GLTFDocumentExtension, override any methods you need, make an
  * instance of your class, and register it using [GLTFDocument.registerGltfDocumentExtension].
  * **Note:** Like GLTFDocument itself, all GLTFDocumentExtension classes must be stateless in order
@@ -31,14 +33,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(255, scriptIndex)
+    createNativeObject(258, scriptIndex)
   }
 
   /**
    * Part of the import process. This method is run first, before all other parts of the import
    * process.
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used
-   * for importing a given GLTF file. If [OK], the import will use this [GLTFDocumentExtension]
+   * for importing a given glTF file. If [OK], the import will use this [GLTFDocumentExtension]
    * instance. If not overridden, [OK] is returned.
    */
   public open fun _importPreflight(state: GLTFState?, extensions: PackedStringArray): Error {
@@ -48,8 +50,8 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the import process. This method is run after [_importPreflight] and before
    * [_parseNodeExtensions].
-   * Returns an array of the GLTF extensions supported by this GLTFDocumentExtension class. This is
-   * used to validate if a GLTF file with required extensions can be loaded.
+   * Returns an array of the glTF extensions supported by this GLTFDocumentExtension class. This is
+   * used to validate if a glTF file with required extensions can be loaded.
    */
   public open fun _getSupportedExtensions(): PackedStringArray {
     throw NotImplementedError("_get_supported_extensions is not implemented for GLTFDocumentExtension")
@@ -73,7 +75,7 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the import process. This method is run after [_parseNodeExtensions] and before
    * [_parseTextureJson].
-   * Runs when parsing image data from a GLTF file. The data could be sourced from a separate file,
+   * Runs when parsing image data from a glTF file. The data could be sourced from a separate file,
    * a URI, or a buffer, and then is passed as a byte array.
    */
   public open fun _parseImageData(
@@ -99,7 +101,7 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the import process. This method is run after [_parseImageData] and before
    * [_generateSceneNode].
-   * Runs when parsing the texture JSON from the GLTF textures array. This can be used to set the
+   * Runs when parsing the texture JSON from the glTF textures array. This can be used to set the
    * source image index to use as the texture.
    */
   public open fun _parseTextureJson(
@@ -111,12 +113,57 @@ public open class GLTFDocumentExtension : Resource() {
   }
 
   /**
+   * Part of the import process. Allows GLTFDocumentExtension classes to provide mappings for JSON
+   * pointers to glTF properties, as defined by the glTF object model, to properties of nodes in the
+   * Godot scene tree.
+   * Returns a [GLTFObjectModelProperty] instance that defines how the property should be mapped. If
+   * your extension can't handle the property, return `null` or an instance without any NodePaths (see
+   * [GLTFObjectModelProperty.hasNodePaths]). You should use [GLTFObjectModelProperty.setTypes] to set
+   * the types, and [GLTFObjectModelProperty.appendPathToProperty] function is useful for most simple
+   * cases.
+   * In many cases, [partialPaths] will contain the start of a path, allowing the extension to
+   * complete the path. For example, for `/nodes/3/extensions/MY_ext/prop`, Godot will pass you a
+   * NodePath that leads to node 3, so the GLTFDocumentExtension class only needs to resolve the last
+   * `MY_ext/prop` part of the path. In this example, the extension should check `split.size() > 4 and
+   * split[0] == "nodes" and split[2] == "extensions" and split[3] == "MY_ext"` at the start of the
+   * function to check if this JSON pointer applies to it, then it can use [partialPaths] and handle
+   * `split[4]`.
+   */
+  public open fun _importObjectModelProperty(
+    state: GLTFState?,
+    splitJsonPointer: PackedStringArray,
+    partialPaths: VariantArray<NodePath>,
+  ): GLTFObjectModelProperty? {
+    throw NotImplementedError("_import_object_model_property is not implemented for GLTFDocumentExtension")
+  }
+
+  /**
+   * Part of the import process. This method is run after [_parseNodeExtensions] and before
+   * [_importPreGenerate].
+   * This method can be used to modify any of the data imported so far after parsing each node, but
+   * before generating the scene or any of its nodes.
+   */
+  public open fun _importPostParse(state: GLTFState?): Error {
+    throw NotImplementedError("_import_post_parse is not implemented for GLTFDocumentExtension")
+  }
+
+  /**
    * Part of the import process. This method is run after [_importPostParse] and before
+   * [_generateSceneNode].
+   * This method can be used to modify or read from any of the processed data structures, before
+   * generating the nodes and then running the final per-node import step.
+   */
+  public open fun _importPreGenerate(state: GLTFState?): Error {
+    throw NotImplementedError("_import_pre_generate is not implemented for GLTFDocumentExtension")
+  }
+
+  /**
+   * Part of the import process. This method is run after [_importPreGenerate] and before
    * [_importNode].
    * Runs when generating a Godot scene node from a GLTFNode. The returned node will be added to the
    * scene tree. Multiple nodes can be generated in this step if they are added as a child of the
    * returned node.
-   * **Note:** The [sceneParent] parameter may be null if this is the single root node.
+   * **Note:** The [sceneParent] parameter may be `null` if this is the single root node.
    */
   public open fun _generateSceneNode(
     state: GLTFState?,
@@ -124,16 +171,6 @@ public open class GLTFDocumentExtension : Resource() {
     sceneParent: Node?,
   ): Node3D? {
     throw NotImplementedError("_generate_scene_node is not implemented for GLTFDocumentExtension")
-  }
-
-  /**
-   * Part of the import process. This method is run after [_parseNodeExtensions] and before
-   * [_generateSceneNode].
-   * This method can be used to modify any of the data imported so far after parsing, before
-   * generating the nodes and then running the final per-node import step.
-   */
-  public open fun _importPostParse(state: GLTFState?): Error {
-    throw NotImplementedError("_import_post_parse is not implemented for GLTFDocumentExtension")
   }
 
   /**
@@ -163,7 +200,7 @@ public open class GLTFDocumentExtension : Resource() {
    * Part of the export process. This method is run first, before all other parts of the export
    * process.
    * The return value is used to determine if this [GLTFDocumentExtension] instance should be used
-   * for exporting a given GLTF file. If [OK], the export will use this [GLTFDocumentExtension]
+   * for exporting a given glTF file. If [OK], the export will use this [GLTFDocumentExtension]
    * instance. If not overridden, [OK] is returned.
    */
   public open fun _exportPreflight(state: GLTFState?, root: Node?): Error {
@@ -172,7 +209,7 @@ public open class GLTFDocumentExtension : Resource() {
 
   /**
    * Part of the export process. This method is run after [_exportPreflight] and before
-   * [_exportPreserialize].
+   * [_exportPostConvert].
    * Runs when converting the data from a Godot scene node. This method can be used to process the
    * Godot scene node data into a format that can be used by [_exportNode].
    */
@@ -185,6 +222,16 @@ public open class GLTFDocumentExtension : Resource() {
 
   /**
    * Part of the export process. This method is run after [_convertSceneNode] and before
+   * [_exportPreserialize].
+   * This method can be used to modify the converted node data structures before serialization with
+   * any additional data from the scene tree.
+   */
+  public open fun _exportPostConvert(state: GLTFState?, root: Node?): Error {
+    throw NotImplementedError("_export_post_convert is not implemented for GLTFDocumentExtension")
+  }
+
+  /**
+   * Part of the export process. This method is run after [_exportPostConvert] and before
    * [_getSaveableImageFormats].
    * This method can be used to alter the state before performing serialization. It runs every time
    * when generating a buffer with [GLTFDocument.generateBuffer] or writing to the file system with
@@ -192,6 +239,33 @@ public open class GLTFDocumentExtension : Resource() {
    */
   public open fun _exportPreserialize(state: GLTFState?): Error {
     throw NotImplementedError("_export_preserialize is not implemented for GLTFDocumentExtension")
+  }
+
+  /**
+   * Part of the export process. Allows GLTFDocumentExtension classes to provide mappings for
+   * properties of nodes in the Godot scene tree, to JSON pointers to glTF properties, as defined by
+   * the glTF object model.
+   * Returns a [GLTFObjectModelProperty] instance that defines how the property should be mapped. If
+   * your extension can't handle the property, return `null` or an instance without any JSON pointers
+   * (see [GLTFObjectModelProperty.hasJsonPointers]). You should use [GLTFObjectModelProperty.setTypes]
+   * to set the types, and set the JSON pointer(s) using the [GLTFObjectModelProperty.jsonPointers]
+   * property.
+   * The parameters provide context for the property, including the NodePath, the Godot node, the
+   * GLTF node index, and the target object. The [targetObject] will be equal to [godotNode] if no
+   * sub-object can be found, otherwise it will point to a sub-object. For example, if the path is
+   * `^"A/B/C/MeshInstance3D:mesh:surface_0/material:emission_intensity"`, it will get the node, then
+   * the mesh, and then the material, so [targetObject] will be the [Material] resource, and
+   * [targetDepth] will be 2 because 2 levels were traversed to get to the target.
+   */
+  public open fun _exportObjectModelProperty(
+    state: GLTFState?,
+    nodePath: NodePath,
+    godotNode: Node?,
+    gltfNodeIndex: Int,
+    targetObject: Object?,
+    targetDepth: Int,
+  ): GLTFObjectModelProperty? {
+    throw NotImplementedError("_export_object_model_property is not implemented for GLTFDocumentExtension")
   }
 
   /**
@@ -211,7 +285,7 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the export process. This method is run after [_getSaveableImageFormats] and before
    * [_serializeTextureJson].
-   * This method is run when embedding images in the GLTF file. When images are saved separately,
+   * This method is run when embedding images in the glTF file. When images are saved separately,
    * [_saveImageAtPath] runs instead. Note that these methods only run when this
    * [GLTFDocumentExtension] is selected as the image exporter.
    * This method must set the image MIME type in the [imageDict] with the `"mimeType"` key. For
@@ -231,7 +305,7 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the export process. This method is run after [_getSaveableImageFormats] and before
    * [_serializeTextureJson].
-   * This method is run when saving images separately from the GLTF file. When images are embedded,
+   * This method is run when saving images separately from the glTF file. When images are embedded,
    * [_serializeImageToBytes] runs instead. Note that these methods only run when this
    * [GLTFDocumentExtension] is selected as the image exporter.
    */
@@ -267,8 +341,8 @@ public open class GLTFDocumentExtension : Resource() {
    * [_exportPost]. If this [GLTFDocumentExtension] is used for exporting images, this runs after
    * [_serializeTextureJson].
    * This method can be used to modify the final JSON of each node. Data should be primarily stored
-   * in [gltfNode] prior to serializing the JSON, but the original Godot [node] is also provided if
-   * available. The node may be null if not available, such as when exporting GLTF data not generated
+   * in [gltfNode] prior to serializing the JSON, but the original Godot [Node] is also provided if
+   * available. [node] may be `null` if not available, such as when exporting glTF data not generated
    * from a Godot scene.
    */
   public open fun _exportNode(
@@ -283,7 +357,7 @@ public open class GLTFDocumentExtension : Resource() {
   /**
    * Part of the export process. This method is run last, after all other parts of the export
    * process.
-   * This method can be used to modify the final JSON of the generated GLTF file.
+   * This method can be used to modify the final JSON of the generated glTF file.
    */
   public open fun _exportPost(state: GLTFState?): Error {
     throw NotImplementedError("_export_post is not implemented for GLTFDocumentExtension")

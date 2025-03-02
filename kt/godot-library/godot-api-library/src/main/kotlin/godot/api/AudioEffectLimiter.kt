@@ -71,7 +71,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(98, scriptIndex)
+    createNativeObject(99, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {
