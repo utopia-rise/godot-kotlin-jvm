@@ -201,7 +201,7 @@ String KotlinEditorExportPlugin::get_name() const {
 
 void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const HashSet<String>& p_features) {
     String ext = p_path.get_extension();
-    if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION) {
+    if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION || ext == GODOT_SCALA_SCRIPT_EXTENSION) {
         // We replace the original script with another with the same path and name but with fqname content.
         // The remap boolean ensures that the original file is not kept for the export.
 
