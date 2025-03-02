@@ -11,12 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
@@ -32,7 +34,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Semaphore : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(570, scriptIndex)
+    createNativeObject(588, scriptIndex)
   }
 
   /**
@@ -55,10 +57,11 @@ public open class Semaphore : RefCounted() {
   }
 
   /**
-   * Lowers the [Semaphore], allowing one more thread in.
+   * Lowers the [Semaphore], allowing one thread in, or more if [count] is specified.
    */
-  public final fun post(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun post(count: Int = 1): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.postPtr, NIL)
   }
 
@@ -70,6 +73,6 @@ public open class Semaphore : RefCounted() {
     internal val tryWaitPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Semaphore", "try_wait", 2240911060)
 
-    internal val postPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "post", 3218959716)
+    internal val postPtr: VoidPtr = TypeManager.getMethodBindPtr("Semaphore", "post", 1667783136)
   }
 }

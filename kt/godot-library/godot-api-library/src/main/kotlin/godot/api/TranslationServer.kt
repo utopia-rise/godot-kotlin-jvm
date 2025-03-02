@@ -29,13 +29,18 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * The server that manages all language translations. Translations can be added to or removed from
- * it.
+ * The translation server is the API backend that manages all language translations.
+ * Translations are stored in [TranslationDomain]s, which can be accessed by name. The most commonly
+ * used translation domain is the main translation domain. It always exists and can be accessed using
+ * an empty [StringName]. The translation server provides wrapper methods for accessing the main
+ * translation domain directly, without having to fetch the translation domain first. Custom
+ * translation domains are mainly for advanced usages like editor plugins. Names starting with `godot.`
+ * are reserved for engine internals.
  */
 @GodotBaseType
 public object TranslationServer : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(15)
+    getSingleton(16)
   }
 
   /**
@@ -84,11 +89,12 @@ public object TranslationServer : Object() {
 
   /**
    * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to
-   * `en_US`).
+   * `en_US`). If [addDefaults] is `true`, the locale may have a default script or country added.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun standardizeLocale(locale: String): String {
-    TransferContext.writeArguments(STRING to locale)
+  public final fun standardizeLocale(locale: String, addDefaults: Boolean = false): String {
+    TransferContext.writeArguments(STRING to locale, BOOL to addDefaults)
     TransferContext.callMethod(ptr, MethodBindings.standardizeLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -165,7 +171,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the current locale's translation for the given message (key) and context.
+   * Returns the current locale's translation for the given message and context.
+   * **Note:** This method always uses the main translation domain.
    */
   @JvmOverloads
   @JvmStatic
@@ -177,10 +184,10 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the current locale's translation for the given message (key), plural message and
-   * context.
+   * Returns the current locale's translation for the given message, plural message and context.
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   * **Note:** This method always uses the main translation domain.
    */
   @JvmOverloads
   @JvmStatic
@@ -196,7 +203,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Adds a [Translation] resource.
+   * Adds a translation to the main translation domain.
    */
   @JvmStatic
   public final fun addTranslation(translation: Translation?): Unit {
@@ -205,7 +212,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Removes the given translation from the server.
+   * Removes the given translation from the main translation domain.
    */
   @JvmStatic
   public final fun removeTranslation(translation: Translation?): Unit {
@@ -214,8 +221,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the [Translation] instance based on the [locale] passed in.
-   * It will return `null` if there is no [Translation] instance that matches the [locale].
+   * Returns the [Translation] instance that best matches [locale] in the main translation domain.
+   * Returns `null` if there are no matches.
    */
   @JvmStatic
   public final fun getTranslationObject(locale: String): Translation? {
@@ -225,7 +232,38 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Clears the server from all translations.
+   * Returns `true` if a translation domain with the specified name exists.
+   */
+  @JvmStatic
+  public final fun hasDomain(domain: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to domain)
+    TransferContext.callMethod(ptr, MethodBindings.hasDomainPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the translation domain with the specified name. An empty translation domain will be
+   * created and added if it does not exist.
+   */
+  @JvmStatic
+  public final fun getOrAddDomain(domain: StringName): TranslationDomain? {
+    TransferContext.writeArguments(STRING_NAME to domain)
+    TransferContext.callMethod(ptr, MethodBindings.getOrAddDomainPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as TranslationDomain?)
+  }
+
+  /**
+   * Removes the translation domain with the specified name.
+   * **Note:** Trying to remove the main translation domain is an error.
+   */
+  @JvmStatic
+  public final fun removeDomain(domain: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to domain)
+    TransferContext.callMethod(ptr, MethodBindings.removeDomainPtr, NIL)
+  }
+
+  /**
+   * Removes all translations from the main translation domain.
    */
   @JvmStatic
   public final fun clear(): Unit {
@@ -257,7 +295,8 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Reparses the pseudolocalization options and reloads the translation.
+   * Reparses the pseudolocalization options and reloads the translation for the main translation
+   * domain.
    */
   @JvmStatic
   public final fun reloadPseudolocalization(): Unit {
@@ -267,6 +306,7 @@ public object TranslationServer : Object() {
 
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
+   * **Note:** This method always uses the main translation domain.
    */
   @JvmStatic
   public final fun pseudolocalize(message: StringName): StringName {
@@ -289,7 +329,7 @@ public object TranslationServer : Object() {
         TypeManager.getMethodBindPtr("TranslationServer", "compare_locales", 2878152881)
 
     internal val standardizeLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "standardize_locale", 3135753539)
+        TypeManager.getMethodBindPtr("TranslationServer", "standardize_locale", 4216441673)
 
     internal val getAllLanguagesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "get_all_languages", 1139954409)
@@ -313,10 +353,10 @@ public object TranslationServer : Object() {
         TypeManager.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
 
     internal val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate", 58037827)
+        TypeManager.getMethodBindPtr("TranslationServer", "translate", 1829228469)
 
     internal val translatePluralPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate_plural", 1333931916)
+        TypeManager.getMethodBindPtr("TranslationServer", "translate_plural", 229954002)
 
     internal val addTranslationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "add_translation", 1466479800)
@@ -326,6 +366,15 @@ public object TranslationServer : Object() {
 
     internal val getTranslationObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
+
+    internal val hasDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "has_domain", 2619796661)
+
+    internal val getOrAddDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "get_or_add_domain", 397200075)
+
+    internal val removeDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "remove_domain", 3304788590)
 
     internal val clearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "clear", 3218959716)

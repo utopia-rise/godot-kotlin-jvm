@@ -19,7 +19,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify
+ * Represents a texture sampler as defined by the base glTF spec. Texture samplers in glTF specify
  * how to sample data from the texture's base image, when rendering the texture on an object.
  */
 @GodotBaseType
@@ -71,7 +71,7 @@ public open class GLTFTextureSampler : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(267, scriptIndex)
+    createNativeObject(271, scriptIndex)
   }
 
   public final fun getMagFilter(): Int {

@@ -137,7 +137,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Sets the volume of the bus at index [busIdx] to [volumeDb].
+   * Sets the volume in decibels of the bus at index [busIdx] to [volumeDb].
    */
   @JvmStatic
   public final fun setBusVolumeDb(busIdx: Int, volumeDb: Float): Unit {
@@ -152,6 +152,29 @@ public object AudioServer : Object() {
   public final fun getBusVolumeDb(busIdx: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getBusVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Sets the volume as a linear value of the bus at index [busIdx] to [volumeLinear].
+   * **Note:** Using this method is equivalent to calling [setBusVolumeDb] with the result of
+   * [@GlobalScope.linearToDb] on a value.
+   */
+  @JvmStatic
+  public final fun setBusVolumeLinear(busIdx: Int, volumeLinear: Float): Unit {
+    TransferContext.writeArguments(LONG to busIdx.toLong(), DOUBLE to volumeLinear.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setBusVolumeLinearPtr, NIL)
+  }
+
+  /**
+   * Returns the volume of the bus at index [busIdx] as a linear value.
+   * **Note:** The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on the
+   * result of [getBusVolumeDb].
+   */
+  @JvmStatic
+  public final fun getBusVolumeLinear(busIdx: Int): Float {
+    TransferContext.writeArguments(LONG to busIdx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getBusVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -399,6 +422,30 @@ public object AudioServer : Object() {
   }
 
   /**
+   * Returns the sample rate at the input of the [AudioServer].
+   */
+  @JvmStatic
+  public final fun getInputMixRate(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInputMixRatePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns the name of the current audio driver. The default usually depends on the operating
+   * system, but may be overridden via the `--audio-driver`
+   * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url].
+   * `--headless` also automatically sets the audio driver to `Dummy`. See also
+   * [ProjectSettings.audio/driver/driver].
+   */
+  @JvmStatic
+  public final fun getDriverName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDriverNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns the names of all audio output devices detected on the system.
    */
   @JvmStatic
@@ -636,6 +683,12 @@ public object AudioServer : Object() {
     internal val getBusVolumeDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_db", 2339986948)
 
+    internal val setBusVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_linear", 1602489585)
+
+    internal val getBusVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_linear", 2339986948)
+
     internal val setBusSendPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "set_bus_send", 3780747571)
 
@@ -706,6 +759,12 @@ public object AudioServer : Object() {
 
     internal val getMixRatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "get_mix_rate", 1740695150)
+
+    internal val getInputMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_mix_rate", 1740695150)
+
+    internal val getDriverNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_driver_name", 201670096)
 
     internal val getOutputDeviceListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "get_output_device_list", 2981934095)

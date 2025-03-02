@@ -81,8 +81,8 @@ public open class Range : Control() {
     }
 
   /**
-   * Page size. Used mainly for [ScrollBar]. ScrollBar's length is its size multiplied by [page]
-   * over the difference between [minValue] and [maxValue].
+   * Page size. Used mainly for [ScrollBar]. A [ScrollBar]'s grabber length is the [ScrollBar]'s
+   * size multiplied by [page] over the difference between [minValue] and [maxValue].
    */
   public final inline var page: Double
     @JvmName("pageProperty")
@@ -161,7 +161,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(526, scriptIndex)
+    createNativeObject(543, scriptIndex)
   }
 
   /**

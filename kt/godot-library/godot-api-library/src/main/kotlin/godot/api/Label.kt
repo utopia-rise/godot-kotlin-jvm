@@ -105,7 +105,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
+   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -113,6 +113,18 @@ public open class Label : Control() {
     @JvmName("justificationFlagsProperty")
     set(`value`) {
       setJustificationFlags(value)
+    }
+
+  /**
+   * String used as a paragraph separator. Each paragraph is processed independently, in its own
+   * BiDi context.
+   */
+  public final inline var paragraphSeparator: String
+    @JvmName("paragraphSeparatorProperty")
+    get() = getParagraphSeparator()
+    @JvmName("paragraphSeparatorProperty")
+    set(`value`) {
+      setParagraphSeparator(value)
     }
 
   /**
@@ -280,7 +292,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(345, scriptIndex)
+    createNativeObject(350, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -346,6 +358,17 @@ public open class Label : Control() {
   public final fun getLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setParagraphSeparator(paragraphSeparator: String): Unit {
+    TransferContext.writeArguments(STRING to paragraphSeparator)
+    TransferContext.callMethod(ptr, MethodBindings.setParagraphSeparatorPtr, NIL)
+  }
+
+  public final fun getParagraphSeparator(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getParagraphSeparatorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -545,10 +568,10 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the bounding rectangle of the character at position [pos]. If the character is a
-   * non-visual character or [pos] is outside the valid range, an empty [Rect2] is returned. If the
-   * character is a part of a composite grapheme, the bounding rectangle of the whole grapheme is
-   * returned.
+   * Returns the bounding rectangle of the character at position [pos] in the label's local
+   * coordinate system. If the character is a non-visual character or [pos] is outside the valid range,
+   * an empty [Rect2] is returned. If the character is a part of a composite grapheme, the bounding
+   * rectangle of the whole grapheme is returned.
    */
   public final fun getCharacterBounds(pos: Int): Rect2 {
     TransferContext.writeArguments(LONG to pos.toLong())
@@ -592,6 +615,12 @@ public open class Label : Control() {
 
     internal val getLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "get_language", 201670096)
+
+    internal val setParagraphSeparatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_paragraph_separator", 83702148)
+
+    internal val getParagraphSeparatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_paragraph_separator", 201670096)
 
     internal val setAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)

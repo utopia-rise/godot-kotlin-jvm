@@ -143,8 +143,23 @@ public open class MultiMesh : Resource() {
       setBuffer(value)
     }
 
+  /**
+   * Choose whether to use an interpolation method that favors speed or quality.
+   * When using low physics tick rates (typically below 20) or high rates of object rotation, you
+   * may get better results from the high quality setting.
+   * **Note:** Fast quality does not equate to low quality. Except in the special cases mentioned
+   * above, the quality should be comparable to high quality.
+   */
+  public final inline var physicsInterpolationQuality: PhysicsInterpolationQuality
+    @JvmName("physicsInterpolationQualityProperty")
+    get() = getPhysicsInterpolationQuality()
+    @JvmName("physicsInterpolationQualityProperty")
+    set(`value`) {
+      setPhysicsInterpolationQuality(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(378, scriptIndex)
+    createNativeObject(384, scriptIndex)
   }
 
   /**
@@ -238,6 +253,17 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setPhysicsInterpolationQuality(quality: PhysicsInterpolationQuality): Unit {
+    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.callMethod(ptr, MethodBindings.setPhysicsInterpolationQualityPtr, NIL)
+  }
+
+  public final fun getPhysicsInterpolationQuality(): PhysicsInterpolationQuality {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationQualityPtr, LONG)
+    return MultiMesh.PhysicsInterpolationQuality.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Sets the [Transform3D] for a specific instance.
    */
@@ -319,6 +345,17 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
+  /**
+   * When using *physics interpolation*, this function allows you to prevent interpolation on an
+   * instance in the current physics tick.
+   * This allows you to move instances instantaneously, and should usually be used when initially
+   * placing an instance such as a bullet to prevent graphical glitches.
+   */
+  public final fun resetInstancePhysicsInterpolation(instance: Int): Unit {
+    TransferContext.writeArguments(LONG to instance.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.resetInstancePhysicsInterpolationPtr, NIL)
+  }
+
   public final fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
@@ -350,6 +387,21 @@ public open class MultiMesh : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
 
+  /**
+   * An alternative to setting the [buffer] property, which can be used with *physics
+   * interpolation*. This method takes two arrays, and can set the data for the current and previous
+   * tick in one go. The renderer will automatically interpolate the data at each frame.
+   * This is useful for situations where the order of instances may change from physics tick to
+   * tick, such as particle systems.
+   * When the order of instances is coherent, the simpler alternative of setting [buffer] can still
+   * be used with interpolation.
+   */
+  public final fun setBufferInterpolated(bufferCurr: PackedFloat32Array,
+      bufferPrev: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to bufferCurr, PACKED_FLOAT_32_ARRAY to bufferPrev)
+    TransferContext.callMethod(ptr, MethodBindings.setBufferInterpolatedPtr, NIL)
+  }
+
   public enum class TransformFormat(
     id: Long,
   ) {
@@ -370,6 +422,32 @@ public open class MultiMesh : Resource() {
 
     public companion object {
       public fun from(`value`: Long): TransformFormat = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class PhysicsInterpolationQuality(
+    id: Long,
+  ) {
+    /**
+     * Always interpolate using Basis lerping, which can produce warping artifacts in some
+     * situations.
+     */
+    INTERP_QUALITY_FAST(0),
+    /**
+     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible,
+     * otherwise fall back to lerping.
+     */
+    INTERP_QUALITY_HIGH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): PhysicsInterpolationQuality =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -412,6 +490,12 @@ public open class MultiMesh : Resource() {
     internal val getVisibleInstanceCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3905245786)
 
+    internal val setPhysicsInterpolationQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_physics_interpolation_quality", 1819488408)
+
+    internal val getPhysicsInterpolationQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_physics_interpolation_quality", 1465701882)
+
     internal val setInstanceTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform", 3616898986)
 
@@ -436,6 +520,9 @@ public open class MultiMesh : Resource() {
     internal val getInstanceCustomDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3457211756)
 
+    internal val resetInstancePhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "reset_instance_physics_interpolation", 1286410249)
+
     internal val setCustomAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)
 
@@ -450,5 +537,8 @@ public open class MultiMesh : Resource() {
 
     internal val setBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "set_buffer", 2899603908)
+
+    internal val setBufferInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer_interpolated", 3514430332)
   }
 }

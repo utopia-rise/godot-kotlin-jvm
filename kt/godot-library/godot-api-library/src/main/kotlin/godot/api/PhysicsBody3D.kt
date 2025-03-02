@@ -104,7 +104,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(461, scriptIndex)
+    createNativeObject(478, scriptIndex)
   }
 
   /**

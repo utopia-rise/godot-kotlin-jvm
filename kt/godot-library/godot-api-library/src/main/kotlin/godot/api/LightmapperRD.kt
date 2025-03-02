@@ -16,12 +16,13 @@ import kotlin.Unit
  * with [LightmapGI]. On most dedicated GPUs, it can bake lightmaps much faster than most CPU-based
  * lightmappers. LightmapperRD uses compute shaders to bake lightmaps, so it does not require CUDA or
  * OpenCL libraries to be installed to be usable.
- * **Note:** Only usable when using the Vulkan backend (Forward+ or Mobile), not OpenGL.
+ * **Note:** Only usable when using the RenderingDevice backend (Forward+ or Mobile renderers), not
+ * Compatibility.
  */
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(355, scriptIndex)
+    createNativeObject(360, scriptIndex)
   }
 
   public companion object

@@ -59,7 +59,7 @@ public open class MenuButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(365, scriptIndex)
+    createNativeObject(371, scriptIndex)
   }
 
   /**

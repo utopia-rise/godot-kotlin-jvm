@@ -24,7 +24,32 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
+ * UDP packet peer. Can be used to send and receive raw UDP packets as well as [Variant]s.
+ * **Example:** Send a packet:
+ * [codeblock]
+ * var peer = PacketPeerUDP.new()
+ *
+ * # Optionally, you can select the local port used to send the packet.
+ * peer.bind(4444)
+ *
+ * peer.set_dest_address("1.1.1.1", 4433)
+ * peer.put_packet("hello".to_utf8_buffer())
+ * [/codeblock]
+ * **Example:** Listen for packets:
+ * [codeblock]
+ * var peer
+ *
+ * func _ready():
+ *     peer = PacketPeerUDP.new()
+ *     peer.bind(4433)
+ *
+ *
+ * func _process(_delta):
+ *     if peer.get_available_packet_count() > 0:
+ *         var array_bytes = peer.get_packet()
+ *         var packet_string = array_bytes.get_string_from_ascii()
+ *         print("Received message: ", packet_string)
+ * [/codeblock]
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -32,7 +57,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(444, scriptIndex)
+    createNativeObject(461, scriptIndex)
   }
 
   /**

@@ -31,7 +31,6 @@ import kotlin.jvm.JvmOverloads
  * transitions can be configured to happen automatically or via code, using a shortest-path algorithm.
  * Retrieve the [AnimationNodeStateMachinePlayback] object from the [AnimationTree] node to control it
  * programmatically.
- * **Example:**
  *
  * gdscript:
  * ```gdscript
@@ -87,7 +86,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(62, scriptIndex)
+    createNativeObject(63, scriptIndex)
   }
 
   /**

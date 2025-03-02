@@ -10,9 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_STRING_ARRAY
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -74,6 +76,18 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
+   * effect.
+   */
+  public final inline var enumNames: PackedStringArray
+    @JvmName("enumNamesProperty")
+    get() = getEnumNames()
+    @JvmName("enumNamesProperty")
+    set(`value`) {
+      setEnumNames(value)
+    }
+
+  /**
    * If `true`, the node will have a custom default value.
    */
   public final inline var defaultValueEnabled: Boolean
@@ -97,7 +111,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(742, scriptIndex)
+    createNativeObject(768, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {
@@ -144,6 +158,17 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setEnumNames(names: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
+    TransferContext.callMethod(ptr, MethodBindings.setEnumNamesPtr, NIL)
+  }
+
+  public final fun getEnumNames(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEnumNamesPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+  }
+
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
@@ -183,9 +208,13 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
      */
     HINT_RANGE_STEP(2),
     /**
+     * The parameter uses an enum to associate preset values to names in the editor.
+     */
+    HINT_ENUM(3),
+    /**
      * Represents the size of the [Hint] enum.
      */
-    HINT_MAX(3),
+    HINT_MAX(4),
     ;
 
     public val id: Long
@@ -224,6 +253,12 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
     internal val getStepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
+
+    internal val setEnumNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_enum_names", 4015028928)
+
+    internal val getEnumNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_enum_names", 1139954409)
 
     internal val setDefaultValueEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)

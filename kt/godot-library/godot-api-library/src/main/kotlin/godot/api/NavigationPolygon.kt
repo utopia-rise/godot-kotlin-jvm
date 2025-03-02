@@ -55,8 +55,8 @@ import kotlin.jvm.JvmName
  * csharp:
  * ```csharp
  * var newNavigationMesh = new NavigationPolygon();
- * var boundingOutline = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50),
- * new Vector2(50, 0) };
+ * Vector2[] boundingOutline = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
+ * Vector2(50, 0)];
  * newNavigationMesh.AddOutline(boundingOutline);
  * NavigationServer2D.BakeFromSourceGeometryData(newNavigationMesh, new
  * NavigationMeshSourceGeometryData2D());
@@ -78,10 +78,10 @@ import kotlin.jvm.JvmName
  * csharp:
  * ```csharp
  * var newNavigationMesh = new NavigationPolygon();
- * var newVertices = new Vector2[] { new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
- * Vector2(50, 0) };
+ * Vector2[] newVertices = [new Vector2(0, 0), new Vector2(0, 50), new Vector2(50, 50), new
+ * Vector2(50, 0)];
  * newNavigationMesh.Vertices = newVertices;
- * var newPolygonIndices = new int[] { 0, 1, 2, 3 };
+ * int[] newPolygonIndices = [0, 1, 2, 3];
  * newNavigationMesh.AddPolygon(newPolygonIndices);
  * GetNode<NavigationRegion2D>("NavigationRegion2D").NavigationPolygon = newNavigationMesh;
  * ```
@@ -94,6 +94,18 @@ public open class NavigationPolygon : Resource() {
     @JvmName("verticesProperty")
     set(`value`) {
       setVertices(value)
+    }
+
+  /**
+   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
+   * possible values.
+   */
+  public final inline var samplePartitionType: SamplePartitionType
+    @JvmName("samplePartitionTypeProperty")
+    get() = getSamplePartitionType()
+    @JvmName("samplePartitionTypeProperty")
+    set(`value`) {
+      setSamplePartitionType(value)
     }
 
   /**
@@ -208,7 +220,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(401, scriptIndex)
+    createNativeObject(407, scriptIndex)
   }
 
   /**
@@ -418,6 +430,17 @@ public open class NavigationPolygon : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
+    TransferContext.writeArguments(LONG to samplePartitionType.id)
+    TransferContext.callMethod(ptr, MethodBindings.setSamplePartitionTypePtr, NIL)
+  }
+
+  public final fun getSamplePartitionType(): SamplePartitionType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
+    return NavigationPolygon.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
     TransferContext.writeArguments(LONG to geometryType.id)
     TransferContext.callMethod(ptr, MethodBindings.setParsedGeometryTypePtr, NIL)
@@ -520,6 +543,33 @@ public open class NavigationPolygon : Resource() {
   public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+  }
+
+  public enum class SamplePartitionType(
+    id: Long,
+  ) {
+    /**
+     * Convex partitioning that yields navigation mesh with convex polygons.
+     */
+    SAMPLE_PARTITION_CONVEX_PARTITION(0),
+    /**
+     * Triangulation partitioning that yields navigation mesh with triangle polygons.
+     */
+    SAMPLE_PARTITION_TRIANGULATE(1),
+    /**
+     * Represents the size of the [SamplePartitionType] enum.
+     */
+    SAMPLE_PARTITION_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): SamplePartitionType = entries.single { it.id == `value` }
+    }
   }
 
   public enum class ParsedGeometryType(
@@ -647,6 +697,12 @@ public open class NavigationPolygon : Resource() {
 
     internal val getBorderSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPolygon", "get_border_size", 1740695150)
+
+    internal val setSamplePartitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_sample_partition_type", 2441478482)
+
+    internal val getSamplePartitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_sample_partition_type", 3887422851)
 
     internal val setParsedGeometryTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type", 2507971764)

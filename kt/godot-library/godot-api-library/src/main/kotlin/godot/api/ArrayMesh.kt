@@ -64,16 +64,16 @@ import kotlin.jvm.JvmOverloads
  * ```
  * csharp:
  * ```csharp
- * var vertices = new Vector3[]
- * {
+ * Vector3[] vertices =
+ * [
  *     new Vector3(0, 1, 0),
  *     new Vector3(1, 0, 0),
  *     new Vector3(0, 0, 1),
- * };
+ * ];
  *
  * // Initialize the ArrayMesh.
  * var arrMesh = new ArrayMesh();
- * var arrays = new Godot.Collections.Array();
+ * Godot.Collections.Array arrays = [];
  * arrays.Resize((int)Mesh.ArrayType.Max);
  * arrays[(int)Mesh.ArrayType.Vertex] = vertices;
  *
@@ -131,7 +131,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(75, scriptIndex)
+    createNativeObject(76, scriptIndex)
   }
 
   /**
@@ -235,7 +235,7 @@ public open class ArrayMesh : Mesh() {
    * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
    * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
    * distance that the objects has to be from the camera before the LOD is used.
-   * The [flags] argument is the bitwise or of, as required: One value of [Mesh.ArrayCustomFormat]
+   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat]
    * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
    * [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or
    * [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
@@ -259,6 +259,15 @@ public open class ArrayMesh : Mesh() {
   public final fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
+  }
+
+  /**
+   * Removes the surface at the given index from the Mesh, shifting surfaces with higher index down
+   * by one.
+   */
+  public final fun surfaceRemove(surfIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to surfIdx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.surfaceRemovePtr, NIL)
   }
 
   public final fun surfaceUpdateVertexRegion(
@@ -421,6 +430,9 @@ public open class ArrayMesh : Mesh() {
 
     internal val clearSurfacesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
+
+    internal val surfaceRemovePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_remove", 1286410249)
 
     internal val surfaceUpdateVertexRegionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)

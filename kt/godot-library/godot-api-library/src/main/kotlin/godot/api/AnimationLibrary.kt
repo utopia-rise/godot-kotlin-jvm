@@ -112,6 +112,15 @@ public open class AnimationLibrary : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
+  /**
+   * Returns the key count for the [Animation]s stored in the library.
+   */
+  public final fun getAnimationListSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAnimationListSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -132,5 +141,8 @@ public open class AnimationLibrary : Resource() {
 
     internal val getAnimationListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list", 3995934104)
+
+    internal val getAnimationListSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list_size", 3905245786)
   }
 }

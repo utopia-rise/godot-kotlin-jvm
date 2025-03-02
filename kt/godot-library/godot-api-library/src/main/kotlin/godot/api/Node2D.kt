@@ -33,11 +33,13 @@ import kotlin.jvm.JvmOverloads
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
  * physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and
  * rotate children in a 2D project. Also gives control of the node's render order.
+ * **Note:** Since both [Node2D] and [Control] inherit from [CanvasItem], they share several
+ * concepts from the class such as the [CanvasItem.zIndex] and [CanvasItem.visible] properties.
  */
 @GodotBaseType
 public open class Node2D : CanvasItem() {
   /**
-   * Position, relative to the node's parent.
+   * Position, relative to the node's parent. See also [globalPosition].
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -49,7 +51,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Rotation in radians, relative to the node's parent.
+   * Rotation in radians, relative to the node's parent. See also [globalRotation].
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
@@ -62,7 +64,8 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Helper property to access [rotation] in degrees instead of radians.
+   * Helper property to access [rotation] in degrees instead of radians. See also
+   * [globalRotationDegrees].
    */
   public final inline var rotationDegrees: Float
     @JvmName("rotationDegreesProperty")
@@ -73,7 +76,8 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * The node's scale. Unscaled value: `(1, 1)`.
+   * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
+   * [globalScale].
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
@@ -88,8 +92,11 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Slants the node.
-   * **Note:** Skew is X axis only.
+   * If set to a non-zero value, slants the node in one direction or another. This can be used for
+   * pseudo-3D effects. See also [globalSkew].
+   * **Note:** Skew is performed on the X axis only, and *between* rotation and scaling.
+   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * script, use `skew = deg_to_rad(value_in_degrees)`.
    */
   public final inline var skew: Float
     @JvmName("skewProperty")
@@ -100,7 +107,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Local [Transform2D].
+   * The node's [Transform2D], relative to the node's parent. See also [globalTransform].
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -112,7 +119,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global position.
+   * Global position. See also [position].
    */
   @CoreTypeLocalCopy
   public final inline var globalPosition: Vector2
@@ -124,7 +131,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global rotation in radians.
+   * Global rotation in radians. See also [rotation].
    */
   public final inline var globalRotation: Float
     @JvmName("globalRotationProperty")
@@ -135,7 +142,8 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Helper property to access [globalRotation] in degrees instead of radians.
+   * Helper property to access [globalRotation] in degrees instead of radians. See also
+   * [rotationDegrees].
    */
   public final inline var globalRotationDegrees: Float
     @JvmName("globalRotationDegreesProperty")
@@ -146,7 +154,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global scale.
+   * Global scale. See also [scale].
    */
   @CoreTypeLocalCopy
   public final inline var globalScale: Vector2
@@ -158,7 +166,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global skew in radians.
+   * Global skew in radians. See also [skew].
    */
   public final inline var globalSkew: Float
     @JvmName("globalSkewProperty")
@@ -169,7 +177,7 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global [Transform2D].
+   * Global [Transform2D]. See also [transform].
    */
   @CoreTypeLocalCopy
   public final inline var globalTransform: Transform2D
@@ -181,11 +189,11 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(406, scriptIndex)
+    createNativeObject(412, scriptIndex)
   }
 
   /**
-   * Position, relative to the node's parent.
+   * Position, relative to the node's parent. See also [globalPosition].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -209,7 +217,8 @@ public open class Node2D : CanvasItem() {
 
 
   /**
-   * The node's scale. Unscaled value: `(1, 1)`.
+   * The node's scale, relative to the node's parent. Unscaled value: `(1, 1)`. See also
+   * [globalScale].
    * **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
@@ -236,7 +245,7 @@ public open class Node2D : CanvasItem() {
 
 
   /**
-   * Local [Transform2D].
+   * The node's [Transform2D], relative to the node's parent. See also [globalTransform].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -260,7 +269,7 @@ public open class Node2D : CanvasItem() {
 
 
   /**
-   * Global position.
+   * Global position. See also [position].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -284,7 +293,7 @@ public open class Node2D : CanvasItem() {
 
 
   /**
-   * Global scale.
+   * Global scale. See also [scale].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -308,7 +317,7 @@ public open class Node2D : CanvasItem() {
 
 
   /**
-   * Global [Transform2D].
+   * Global [Transform2D]. See also [transform].
    *
    * This is a helper function to make dealing with local copies easier.
    *

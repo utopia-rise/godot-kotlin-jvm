@@ -23,11 +23,13 @@ import kotlin.Unit
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(434, scriptIndex)
+    createNativeObject(451, scriptIndex)
   }
 
   /**
    * Generates and sets an optimized translation from the given [Translation] resource.
+   * **Note:** This method is intended to be used in the editor. It does nothing when called from an
+   * exported project.
    */
   public final fun generate(from: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to from)

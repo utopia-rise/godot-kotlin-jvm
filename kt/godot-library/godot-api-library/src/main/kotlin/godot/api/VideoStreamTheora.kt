@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(697, scriptIndex)
+    createNativeObject(723, scriptIndex)
   }
 
   public companion object

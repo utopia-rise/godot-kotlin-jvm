@@ -14,6 +14,8 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.VECTOR3
+import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -164,9 +166,9 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * This value defines the stiffness of the suspension. Use a value lower than 50 for an off-road
-   * car, a value between 50 and 100 for a race car and try something around 200 for something like a
-   * Formula 1 car.
+   * The stiffness of the suspension, measured in Newtons per millimeter (N/mm), or megagrams per
+   * second squared (Mg/s²). Use a value lower than 50 for an off-road car, a value between 50 and 100
+   * for a race car and try something around 200 for something like a Formula 1 car.
    */
   public final inline var suspensionStiffness: Float
     @JvmName("suspensionStiffnessProperty")
@@ -190,9 +192,11 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * The damping applied to the spring when the spring is being compressed. This value should be
-   * between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring
-   * keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car.
+   * The damping applied to the suspension spring when being compressed, meaning when the wheel is
+   * moving up relative to the vehicle. It is measured in Newton-seconds per millimeter (N⋅s/mm), or
+   * megagrams per second (Mg/s). This value should be between 0.0 (no damping) and 1.0, but may be
+   * more. A value of 0.0 means the car will keep bouncing as the spring keeps its energy. A good value
+   * for this is around 0.3 for a normal car, 0.5 for a race car.
    */
   public final inline var dampingCompression: Float
     @JvmName("dampingCompressionProperty")
@@ -203,9 +207,11 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   /**
-   * The damping applied to the spring when relaxing. This value should be between 0.0 (no damping)
-   * and 1.0. This value should always be slightly higher than the [dampingCompression] property. For a
-   * [dampingCompression] value of 0.3, try a relaxation value of 0.5.
+   * The damping applied to the suspension spring when rebounding or extending, meaning when the
+   * wheel is moving down relative to the vehicle. It is measured in Newton-seconds per millimeter
+   * (N⋅s/mm), or megagrams per second (Mg/s). This value should be between 0.0 (no damping) and 1.0,
+   * but may be more. This value should always be slightly higher than the [dampingCompression]
+   * property. For a [dampingCompression] value of 0.3, try a relaxation value of 0.5.
    */
   public final inline var dampingRelaxation: Float
     @JvmName("dampingRelaxationProperty")
@@ -216,7 +222,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(693, scriptIndex)
+    createNativeObject(719, scriptIndex)
   }
 
   public final fun setRadius(length: Float): Unit {
@@ -348,6 +354,28 @@ public open class VehicleWheel3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContactBodyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node3D?)
+  }
+
+  /**
+   * Returns the point of the suspension's collision in world space if the wheel is in contact. If
+   * the wheel isn't in contact with anything, returns the maximum point of the wheel's ray cast in
+   * world space, which is defined by `wheel_rest_length + wheel_radius`.
+   */
+  public final fun getContactPoint(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getContactPointPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the normal of the suspension's collision in world space if the wheel is in contact. If
+   * the wheel isn't in contact with anything, returns a vector pointing directly along the suspension
+   * axis toward the vehicle in world space.
+   */
+  public final fun getContactNormal(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getContactNormalPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setRollInfluence(rollInfluence: Float): Unit {
@@ -482,6 +510,12 @@ public open class VehicleWheel3D : Node3D() {
 
     internal val getContactBodyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_body", 151077316)
+
+    internal val getContactPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_point", 3360562783)
+
+    internal val getContactNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_normal", 3360562783)
 
     internal val setRollInfluencePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VehicleWheel3D", "set_roll_influence", 373806689)

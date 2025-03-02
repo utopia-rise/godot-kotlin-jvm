@@ -82,6 +82,9 @@ import kotlin.jvm.JvmName
  *
  * **Note:** Godot does not support MIDI output, so there is no way to emit MIDI messages from
  * Godot. Only MIDI input is supported.
+ * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted
+ * first. This permission request is performed when calling [OS.openMidiInputs]. MIDI input will not
+ * work until the user accepts the permission request.
  */
 @GodotBaseType
 public open class InputEventMIDI : InputEvent() {
@@ -204,7 +207,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(320, scriptIndex)
+    createNativeObject(324, scriptIndex)
   }
 
   public final fun setChannel(channel: Int): Unit {

@@ -104,6 +104,12 @@ public open class GraphEdit : Control() {
   public val copyNodesRequest: Signal0 by Signal0
 
   /**
+   * Emitted when this [GraphEdit] captures a `ui_cut` action ([kbd]Ctrl + X[/kbd] by default). In
+   * general, this signal indicates that the selected [GraphElement]s should be cut.
+   */
+  public val cutNodesRequest: Signal0 by Signal0
+
+  /**
    * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In
    * general, this signal indicates that previously copied [GraphElement]s should be pasted.
    */
@@ -137,7 +143,7 @@ public open class GraphEdit : Control() {
   /**
    * Emitted when the [GraphFrame] [frame] is resized to [newRect].
    */
-  public val frameRectChanged: Signal2<GraphFrame, Vector2> by Signal2
+  public val frameRectChanged: Signal2<GraphFrame, Rect2> by Signal2
 
   /**
    * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is
@@ -278,6 +284,29 @@ public open class GraphEdit : Control() {
     @JvmName("connectionLinesAntialiasedProperty")
     set(`value`) {
       setConnectionLinesAntialiased(value)
+    }
+
+  /**
+   * The connections between [GraphNode]s.
+   * A connection is represented as a [Dictionary] in the form of:
+   * [codeblock]
+   * {
+   *     from_node: StringName,
+   *     from_port: int,
+   *     to_node: StringName,
+   *     to_port: int,
+   *     keep_alive: bool
+   * }
+   * [/codeblock]
+   * Connections with `keep_alive` set to `false` may be deleted automatically if invalid during a
+   * redraw.
+   */
+  public final inline var connections: VariantArray<Dictionary<Any?, Any?>>
+    @JvmName("connectionsProperty")
+    get() = getConnectionList()
+    @JvmName("connectionsProperty")
+    set(`value`) {
+      setConnections(value)
     }
 
   /**
@@ -427,7 +456,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(289, scriptIndex)
   }
 
   /**
@@ -488,9 +517,9 @@ public open class GraphEdit : Control() {
    * Below is a sample code to help get started:
    * [codeblock]
    * func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   *     var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos: Vector2 = in_node.get_position() + in_node.get_input_port_position(in_port) -
+   *     var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) -
    * port_size / 2
    *     var rect = Rect2(port_pos, port_size)
    *
@@ -511,10 +540,10 @@ public open class GraphEdit : Control() {
    * Below is a sample code to help get started:
    * [codeblock]
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   *     var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos: Vector2 = in_node.get_position() +
-   * in_node.get_output_port_position(in_port) - port_size / 2
+   *     var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) -
+   * port_size / 2
    *     var rect = Rect2(port_pos, port_size)
    *
    *     return rect.has_point(mouse_position)
@@ -570,14 +599,18 @@ public open class GraphEdit : Control() {
   /**
    * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
    * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
+   * redraw.
    */
+  @JvmOverloads
   public final fun connectNode(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
     toPort: Int,
+    keepAlive: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), BOOL to keepAlive)
     TransferContext.callMethod(ptr, MethodBindings.connectNodePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -627,11 +660,11 @@ public open class GraphEdit : Control() {
     TransferContext.callMethod(ptr, MethodBindings.setConnectionActivityPtr, NIL)
   }
 
-  /**
-   * Returns an [Array] containing the list of connections. A connection consists in a structure of
-   * the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1"
-   * }`.
-   */
+  public final fun setConnections(connections: VariantArray<Dictionary<Any?, Any?>>): Unit {
+    TransferContext.writeArguments(ARRAY to connections)
+    TransferContext.callMethod(ptr, MethodBindings.setConnectionsPtr, NIL)
+  }
+
   public final fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionListPtr, ARRAY)
@@ -639,10 +672,27 @@ public open class GraphEdit : Control() {
   }
 
   /**
+   * Returns the number of connections from [fromPort] of [fromNode].
+   */
+  public final fun getConnectionCount(fromNode: StringName, fromPort: Int): Int {
+    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Returns the closest connection to the given point in screen space. If no connection is found
    * within [maxDistance] pixels, an empty [Dictionary] is returned.
-   * A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name
-   * 0", to_port: 1, to_node: "GraphNode name 1" }`.
+   * A connection is represented as a [Dictionary] in the form of:
+   * [codeblock]
+   * {
+   *     from_node: StringName,
+   *     from_port: int,
+   *     to_node: StringName,
+   *     to_port: int,
+   *     keep_alive: bool
+   * }
+   * [/codeblock]
    * For example, getting a connection at a given mouse position can be achieved like this:
    *
    * gdscript:
@@ -659,9 +709,17 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns an [Array] containing the list of connections that intersect with the given [Rect2]. A
-   * connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0",
-   * to_port: 1, to_node: "GraphNode name 1" }`.
+   * Returns an [Array] containing the list of connections that intersect with the given [Rect2].
+   * A connection is represented as a [Dictionary] in the form of:
+   * [codeblock]
+   * {
+   *     from_node: StringName,
+   *     from_port: int,
+   *     to_node: StringName,
+   *     to_port: int,
+   *     keep_alive: bool
+   * }
+   * [/codeblock]
    */
   public final fun getConnectionsIntersectingWithRect(rect: Rect2):
       VariantArray<Dictionary<Any?, Any?>> {
@@ -1138,7 +1196,7 @@ public open class GraphEdit : Control() {
 
   public object MethodBindings {
     internal val connectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "connect_node", 195065850)
+        TypeManager.getMethodBindPtr("GraphEdit", "connect_node", 1376144231)
 
     internal val isNodeConnectedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "is_node_connected", 4216241294)
@@ -1149,8 +1207,14 @@ public open class GraphEdit : Control() {
     internal val setConnectionActivityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "set_connection_activity", 1141899943)
 
+    internal val setConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connections", 381264803)
+
     internal val getConnectionListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list", 3995934104)
+
+    internal val getConnectionCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_count", 861718734)
 
     internal val getClosestConnectionAtPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)

@@ -76,6 +76,7 @@ class ApiService(
                 isVararg = false,
                 isVirtual = false,
                 isStatic = false,
+                isRequired = false,
                 hash = 0,
                 hashCompatibility = listOf(),
                 returnValue = ReturnValue(returnType, null),

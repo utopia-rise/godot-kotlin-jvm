@@ -15,6 +15,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -70,7 +71,16 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(141, scriptIndex)
+    createNativeObject(142, scriptIndex)
+  }
+
+  /**
+   * Get parent or external [Skeleton3D] node if found.
+   */
+  public final fun getSkeleton(): Skeleton3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun setBoneName(boneName: String): Unit {
@@ -157,6 +167,9 @@ public open class BoneAttachment3D : Node3D() {
   public companion object
 
   public object MethodBindings {
+    internal val getSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_skeleton", 1814733083)
+
     internal val setBoneNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_name", 83702148)
 

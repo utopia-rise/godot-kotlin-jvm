@@ -19,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -63,7 +64,7 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(595, scriptIndex)
+    createNativeObject(614, scriptIndex)
   }
 
   /**
@@ -104,6 +105,45 @@ public open class SkeletonModifier3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public enum class BoneAxis(
+    id: Long,
+  ) {
+    /**
+     * Enumerated value for the +X axis.
+     */
+    BONE_AXIS_PLUS_X(0),
+    /**
+     * Enumerated value for the -X axis.
+     */
+    BONE_AXIS_MINUS_X(1),
+    /**
+     * Enumerated value for the +Y axis.
+     */
+    BONE_AXIS_PLUS_Y(2),
+    /**
+     * Enumerated value for the -Y axis.
+     */
+    BONE_AXIS_MINUS_Y(3),
+    /**
+     * Enumerated value for the +Z axis.
+     */
+    BONE_AXIS_PLUS_Z(4),
+    /**
+     * Enumerated value for the -Z axis.
+     */
+    BONE_AXIS_MINUS_Z(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): BoneAxis = entries.single { it.id == `value` }
+    }
   }
 
   public companion object

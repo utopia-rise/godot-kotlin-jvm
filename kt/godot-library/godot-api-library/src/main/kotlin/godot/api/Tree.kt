@@ -299,8 +299,20 @@ public open class Tree : Control() {
       setVScrollEnabled(value)
     }
 
+  /**
+   * If `true`, tree items with no tooltip assigned display their text as their tooltip. See also
+   * [TreeItem.getTooltipText] and [TreeItem.getButtonTooltipText].
+   */
+  public final inline var autoTooltip: Boolean
+    @JvmName("autoTooltipProperty")
+    get() = isAutoTooltipEnabled()
+    @JvmName("autoTooltipProperty")
+    set(`value`) {
+      setAutoTooltip(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(675, scriptIndex)
+    createNativeObject(701, scriptIndex)
   }
 
   /**
@@ -818,6 +830,17 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setAutoTooltip(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoTooltipPtr, NIL)
+  }
+
+  public final fun isAutoTooltipEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAutoTooltipEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public enum class SelectMode(
     id: Long,
   ) {
@@ -1072,5 +1095,11 @@ public open class Tree : Control() {
 
     internal val getAllowSearchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "get_allow_search", 36873697)
+
+    internal val setAutoTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "set_auto_tooltip", 2586408642)
+
+    internal val isAutoTooltipEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "is_auto_tooltip_enabled", 36873697)
   }
 }

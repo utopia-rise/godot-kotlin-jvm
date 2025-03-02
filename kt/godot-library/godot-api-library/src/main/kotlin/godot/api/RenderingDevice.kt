@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Callable
 import godot.core.Color
 import godot.core.Error
 import godot.core.PackedByteArray
@@ -20,6 +21,7 @@ import godot.core.Rect2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -114,6 +116,30 @@ public operator fun Long.div(other: godot.api.RenderingDevice.StorageBufferUsage
 public operator fun Long.rem(other: godot.api.RenderingDevice.StorageBufferUsage): Long =
     this.rem(other.flag)
 
+public infix fun Long.or(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.api.RenderingDevice.BufferCreationBits): Long =
+    this.rem(other.flag)
+
 public infix fun Long.or(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
     this.or(other.flag)
 
@@ -136,6 +162,27 @@ public operator fun Long.div(other: godot.api.RenderingDevice.PipelineDynamicSta
     this.div(other.flag)
 
 public operator fun Long.rem(other: godot.api.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.rem(other.flag)
+
+public infix fun Long.or(other: godot.api.RenderingDevice.DrawFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.api.RenderingDevice.DrawFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.api.RenderingDevice.DrawFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.api.RenderingDevice.DrawFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.api.RenderingDevice.DrawFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.api.RenderingDevice.DrawFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.api.RenderingDevice.DrawFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.api.RenderingDevice.DrawFlags): Long =
     this.rem(other.flag)
 
 /**
@@ -163,7 +210,7 @@ public operator fun Long.rem(other: godot.api.RenderingDevice.PipelineDynamicSta
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(546, scriptIndex)
+    createNativeObject(563, scriptIndex)
   }
 
   /**
@@ -198,7 +245,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Creates a shared texture using the specified [view] and the texture information from
    * [withTexture]'s [layer] and [mipmap]. The number of included mipmaps from the original texture can
    * be controlled using the [mipmaps] parameter. Only relevant for textures with multiple layers, such
-   * as 3D textures, texture arrays and cubemaps. For single-layer textures, use [textureCreateShared]
+   * as 3D textures, texture arrays and cubemaps. For single-layer textures, use [textureCreateShared].
    * For 2D textures (which only have one layer), [layer] must be `0`.
    * **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.
    */
@@ -267,11 +314,43 @@ public open class RenderingDevice internal constructor() : Object() {
    * empty [PackedByteArray] is returned.
    * **Note:** [texture] requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise,
    * an error is printed and a empty [PackedByteArray] is returned.
+   * **Note:** This method will block the GPU from working until the data is retrieved. Refer to
+   * [textureGetDataAsync] for an alternative that returns the data in more performant way.
    */
   public final fun textureGetData(texture: RID, layer: Long): PackedByteArray {
     TransferContext.writeArguments(_RID to texture, LONG to layer)
     TransferContext.callMethod(ptr, MethodBindings.textureGetDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  /**
+   * Asynchronous version of [textureGetData]. RenderingDevice will call [callback] in a certain
+   * amount of frames with the data the texture had at the time of the request.
+   * **Note:** At the moment, the delay corresponds to the amount of frames specified by
+   * [ProjectSettings.rendering/renderingDevice/vsync/frameQueueSize].
+   * **Note:** Downloading large textures can have a prohibitive cost for real-time even when using
+   * the asynchronous method due to hardware bandwidth limitations. When dealing with large resources,
+   * you can adjust settings such as
+   * [ProjectSettings.rendering/renderingDevice/stagingBuffer/textureDownloadRegionSizePx] and
+   * [ProjectSettings.rendering/renderingDevice/stagingBuffer/blockSizeKb] to improve the transfer
+   * speed at the cost of extra memory.
+   * [codeblock]
+   * func _texture_get_data_callback(array):
+   *     value = array.decode_u32(0)
+   *
+   * ...
+   *
+   * rd.texture_get_data_async(texture, 0, _texture_get_data_callback)
+   * [/codeblock]
+   */
+  public final fun textureGetDataAsync(
+    texture: RID,
+    layer: Long,
+    callback: Callable,
+  ): Error {
+    TransferContext.writeArguments(_RID to texture, LONG to layer, CALLABLE to callback)
+    TransferContext.callMethod(ptr, MethodBindings.textureGetDataAsyncPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -300,6 +379,28 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun textureIsValid(texture: RID): Boolean {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(ptr, MethodBindings.textureIsValidPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Updates the discardable property of [texture].
+   * If a texture is discardable, its contents do not need to be preserved between frames. This flag
+   * is only relevant when the texture is used as target in a draw list.
+   * This information is used by [RenderingDevice] to figure out if a texture's contents can be
+   * discarded, eliminating unnecessary writes to memory and boosting performance.
+   */
+  public final fun textureSetDiscardable(texture: RID, discardable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to texture, BOOL to discardable)
+    TransferContext.callMethod(ptr, MethodBindings.textureSetDiscardablePtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [texture] is discardable, `false` otherwise. See [RDTextureFormat] or
+   * [textureSetDiscardable].
+   */
+  public final fun textureIsDiscardable(texture: RID): Boolean {
+    TransferContext.writeArguments(_RID to texture)
+    TransferContext.callMethod(ptr, MethodBindings.textureIsDiscardablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -558,9 +659,9 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun vertexBufferCreate(
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
-    useAsStorage: Boolean = false,
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, BOOL to useAsStorage)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.vertexBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -602,8 +703,9 @@ public open class RenderingDevice internal constructor() : Object() {
     format: IndexBufferFormat,
     `data`: PackedByteArray = PackedByteArray(),
     useRestartIndices: Boolean = false,
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices)
+    TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.indexBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -712,9 +814,12 @@ public open class RenderingDevice internal constructor() : Object() {
    * [freeRid] method.
    */
   @JvmOverloads
-  public final fun uniformBufferCreate(sizeBytes: Long, `data`: PackedByteArray =
-      PackedByteArray()): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
+  public final fun uniformBufferCreate(
+    sizeBytes: Long,
+    `data`: PackedByteArray = PackedByteArray(),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
+  ): RID {
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.uniformBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -730,8 +835,9 @@ public open class RenderingDevice internal constructor() : Object() {
     sizeBytes: Long,
     `data`: PackedByteArray = PackedByteArray(),
     usage: StorageBufferUsage = RenderingDevice.StorageBufferUsageValue(0),
+    creationBits: BufferCreationBits = RenderingDevice.BufferCreationBitsValue(0),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage.flag)
+    TransferContext.writeArguments(LONG to sizeBytes, PACKED_BYTE_ARRAY to data, LONG to usage.flag, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.storageBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -835,6 +941,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Returns a copy of the data of the specified [buffer], optionally [offsetBytes] and [sizeBytes]
    * can be set to copy only a portion of the buffer.
+   * **Note:** This method will block the GPU from working until the data is retrieved. Refer to
+   * [bufferGetDataAsync] for an alternative that returns the data in more performant way.
    */
   @JvmOverloads
   public final fun bufferGetData(
@@ -845,6 +953,49 @@ public open class RenderingDevice internal constructor() : Object() {
     TransferContext.writeArguments(_RID to buffer, LONG to offsetBytes, LONG to sizeBytes)
     TransferContext.callMethod(ptr, MethodBindings.bufferGetDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  /**
+   * Asynchronous version of [bufferGetData]. RenderingDevice will call [callback] in a certain
+   * amount of frames with the data the buffer had at the time of the request.
+   * **Note:** At the moment, the delay corresponds to the amount of frames specified by
+   * [ProjectSettings.rendering/renderingDevice/vsync/frameQueueSize].
+   * **Note:** Downloading large buffers can have a prohibitive cost for real-time even when using
+   * the asynchronous method due to hardware bandwidth limitations. When dealing with large resources,
+   * you can adjust settings such as
+   * [ProjectSettings.rendering/renderingDevice/stagingBuffer/blockSizeKb] to improve the transfer
+   * speed at the cost of extra memory.
+   * [codeblock]
+   * func _buffer_get_data_callback(array):
+   *     value = array.decode_u32(0)
+   *
+   * ...
+   *
+   * rd.buffer_get_data_async(buffer, _buffer_get_data_callback)
+   * [/codeblock]
+   */
+  @JvmOverloads
+  public final fun bufferGetDataAsync(
+    buffer: RID,
+    callback: Callable,
+    offsetBytes: Long = 0,
+    sizeBytes: Long = 0,
+  ): Error {
+    TransferContext.writeArguments(_RID to buffer, CALLABLE to callback, LONG to offsetBytes, LONG to sizeBytes)
+    TransferContext.callMethod(ptr, MethodBindings.bufferGetDataAsyncPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the address of the given [buffer] which can be passed to shaders in any way to access
+   * underlying data. Buffer must have been created with this feature enabled.
+   * **Note:** You must check that the GPU supports this functionality by calling [hasFeature] with
+   * [SUPPORTS_BUFFER_DEVICE_ADDRESS] as a parameter.
+   */
+  public final fun bufferGetDeviceAddress(buffer: RID): Long {
+    TransferContext.writeArguments(_RID to buffer)
+    TransferContext.callMethod(ptr, MethodBindings.bufferGetDeviceAddressPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -973,9 +1124,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * [codeblock]
    * var rd = RenderingDevice.new()
    * var clear_colors = PackedColorArray([Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)])
-   * var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.INITIAL_ACTION_CLEAR,
-   * RenderingDevice.FINAL_ACTION_READ, RenderingDevice.INITIAL_ACTION_CLEAR,
-   * RenderingDevice.FINAL_ACTION_DISCARD, clear_colors)
+   * var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.CLEAR_COLOR_ALL,
+   * clear_colors, true, 1.0f, true, 0, Rect2(), RenderingDevice.OPAQUE_PASS)
    *
    * # Draw opaque.
    * rd.draw_list_bind_render_pipeline(draw_list, raster_pipeline)
@@ -990,20 +1140,36 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * rd.draw_list_end()
    * [/codeblock]
+   * The [drawFlags] indicates if the texture attachments of the framebuffer should be cleared or
+   * ignored. Only one of the two flags can be used for each individual attachment. Ignoring an
+   * attachment means that any contents that existed before the draw list will be completely discarded,
+   * reducing the memory bandwidth used by the render pass but producing garbage results if the pixels
+   * aren't replaced. The default behavior allows the engine to figure out the right operation to use
+   * if the texture is discardable, which can result in increased performance. See [RDTextureFormat] or
+   * [textureSetDiscardable].
+   * The [breadcrumb] parameter can be an arbitrary 32-bit integer that is useful to diagnose GPU
+   * crashes. If Godot is built in dev or debug mode; when the GPU crashes Godot will dump all shaders
+   * that were being executed at the time of the crash and the breadcrumb is useful to diagnose what
+   * passes did those shaders belong to.
+   * It does not affect rendering behavior and can be set to 0. It is recommended to use
+   * [BreadcrumbMarker] enumerations for consistency but it's not required. It is also possible to use
+   * bitwise operations to add extra data. e.g.
+   * [codeblock]
+   * rd.draw_list_begin(fb[i], RenderingDevice.CLEAR_COLOR_ALL, clear_colors, true, 1.0f, true, 0,
+   * Rect2(), RenderingDevice.OPAQUE_PASS | 5)
+   * [/codeblock]
    */
   @JvmOverloads
   public final fun drawListBegin(
     framebuffer: RID,
-    initialColorAction: InitialAction,
-    finalColorAction: FinalAction,
-    initialDepthAction: InitialAction,
-    finalDepthAction: FinalAction,
+    drawFlags: DrawFlags = RenderingDevice.DrawFlags.DRAW_DEFAULT_ALL,
     clearColorValues: PackedColorArray = PackedColorArray(),
-    clearDepth: Float = 1.0f,
-    clearStencil: Long = 0,
+    clearDepthValue: Float = 1.0f,
+    clearStencilValue: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
+    breadcrumb: Long = 0,
   ): Long {
-    TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region)
+    TransferContext.writeArguments(_RID to framebuffer, LONG to drawFlags.flag, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepthValue.toDouble(), LONG to clearStencilValue, RECT2 to region, LONG to breadcrumb)
     TransferContext.callMethod(ptr, MethodBindings.drawListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1103,6 +1269,25 @@ public open class RenderingDevice internal constructor() : Object() {
   ): Unit {
     TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, LONG to instances, LONG to proceduralVertexCount)
     TransferContext.callMethod(ptr, MethodBindings.drawListDrawPtr, NIL)
+  }
+
+  /**
+   * Submits [drawList] for rendering on the GPU with the given parameters stored in the [buffer] at
+   * [offset]. Parameters being integers: vertex count, instance count, first vertex, first instance.
+   * And when using indices: index count, instance count, first index, vertex offset, first instance.
+   * Buffer must have been created with [STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT] flag.
+   */
+  @JvmOverloads
+  public final fun drawListDrawIndirect(
+    drawList: Long,
+    useIndices: Boolean,
+    buffer: RID,
+    offset: Long = 0,
+    drawCount: Long = 1,
+    stride: Long = 0,
+  ): Unit {
+    TransferContext.writeArguments(LONG to drawList, BOOL to useIndices, _RID to buffer, LONG to offset, LONG to drawCount, LONG to stride)
+    TransferContext.callMethod(ptr, MethodBindings.drawListDrawIndirectPtr, NIL)
   }
 
   /**
@@ -1335,6 +1520,15 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Returns `true` if the [feature] is supported by the GPU.
+   */
+  public final fun hasFeature(feature: Features): Boolean {
+    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns the value of the specified [limit]. This limit varies depending on the current graphics
    * hardware (and sometimes the driver version). If the given limit is exceeded, rendering errors will
    * occur.
@@ -1510,6 +1704,168 @@ public open class RenderingDevice internal constructor() : Object() {
   ): Long {
     TransferContext.writeArguments(LONG to resource.id, _RID to rid, LONG to index)
     TransferContext.callMethod(ptr, MethodBindings.getDriverResourcePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns a string with a performance report from the past frame. Updates every frame.
+   */
+  public final fun getPerfReport(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPerfReportPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns string report in CSV format using the following methods:
+   * - [getTrackedObjectName]
+   * - [getTrackedObjectTypeCount]
+   * - [getDriverTotalMemory]
+   * - [getDriverAllocationCount]
+   * - [getDriverMemoryByObjectType]
+   * - [getDriverAllocsByObjectType]
+   * - [getDeviceTotalMemory]
+   * - [getDeviceAllocationCount]
+   * - [getDeviceMemoryByObjectType]
+   * - [getDeviceAllocsByObjectType]
+   * This is only used by Vulkan in debug builds. Godot must also be started with the
+   * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
+   * line argument[/url].
+   */
+  public final fun getDriverAndDeviceMemoryReport(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDriverAndDeviceMemoryReportPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the name of the type of object for the given [typeIndex]. This value must be in range
+   * `[0; get_tracked_object_type_count - 1]`. If [getTrackedObjectTypeCount] is 0, then type argument
+   * is ignored and always returns the same string.
+   * The return value is important because it gives meaning to the types passed to
+   * [getDriverMemoryByObjectType], [getDriverAllocsByObjectType], [getDeviceMemoryByObjectType], and
+   * [getDeviceAllocsByObjectType]. Examples of strings it can return (not exhaustive):
+   * - DEVICE_MEMORY
+   * - PIPELINE_CACHE
+   * - SWAPCHAIN_KHR
+   * - COMMAND_POOL
+   * Thus if e.g. `get_tracked_object_name(5)` returns "COMMAND_POOL", then
+   * `get_device_memory_by_object_type(5)` returns the bytes used by the GPU for command pools.
+   * This is only used by Vulkan in debug builds. Godot must also be started with the
+   * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
+   * line argument[/url].
+   */
+  public final fun getTrackedObjectName(typeIndex: Long): String {
+    TransferContext.writeArguments(LONG to typeIndex)
+    TransferContext.callMethod(ptr, MethodBindings.getTrackedObjectNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns how many types of trackable objects are.
+   * This is only used by Vulkan in debug builds. Godot must also be started with the
+   * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
+   * line argument[/url].
+   */
+  public final fun getTrackedObjectTypeCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTrackedObjectTypeCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns how much bytes the GPU driver is using for internal driver structures.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDriverTotalMemory(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDriverTotalMemoryPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns how many allocations the GPU driver has performed for internal driver structures.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDriverAllocationCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDriverAllocationCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Same as [getDriverTotalMemory] but filtered for a given object type.
+   * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
+   * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDriverMemoryByObjectType(type: Long): Long {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(ptr, MethodBindings.getDriverMemoryByObjectTypePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Same as [getDriverAllocationCount] but filtered for a given object type.
+   * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
+   * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDriverAllocsByObjectType(type: Long): Long {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(ptr, MethodBindings.getDriverAllocsByObjectTypePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns how much bytes the GPU is using.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDeviceTotalMemory(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDeviceTotalMemoryPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns how many allocations the GPU has performed for internal driver structures.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDeviceAllocationCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDeviceAllocationCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Same as [getDeviceTotalMemory] but filtered for a given object type.
+   * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
+   * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDeviceMemoryByObjectType(type: Long): Long {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(ptr, MethodBindings.getDeviceMemoryByObjectTypePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Same as [getDeviceAllocationCount] but filtered for a given object type.
+   * The type argument must be in range `[0; get_tracked_object_type_count - 1]`. If
+   * [getTrackedObjectTypeCount] is 0, then type argument is ignored and always returns 0.
+   * This is only used by Vulkan in debug builds and can return 0 when this information is not
+   * tracked or unknown.
+   */
+  public final fun getDeviceAllocsByObjectType(type: Long): Long {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(ptr, MethodBindings.getDeviceAllocsByObjectTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3452,6 +3808,78 @@ public open class RenderingDevice internal constructor() : Object() {
     public override val flag: Long,
   ) : StorageBufferUsage
 
+  public sealed interface BufferCreationBits {
+    public val flag: Long
+
+    public infix fun or(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.or(other))
+
+    public infix fun xor(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.xor(other))
+
+    public infix fun and(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): BufferCreationBits = BufferCreationBitsValue(flag.and(other))
+
+    public operator fun plus(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): BufferCreationBits =
+        BufferCreationBitsValue(flag.plus(other))
+
+    public operator fun minus(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): BufferCreationBits =
+        BufferCreationBitsValue(flag.minus(other))
+
+    public operator fun times(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): BufferCreationBits =
+        BufferCreationBitsValue(flag.times(other))
+
+    public operator fun div(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): BufferCreationBits =
+        BufferCreationBitsValue(flag.div(other))
+
+    public operator fun rem(other: BufferCreationBits): BufferCreationBits =
+        BufferCreationBitsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): BufferCreationBits =
+        BufferCreationBitsValue(flag.rem(other))
+
+    public fun unaryPlus(): BufferCreationBits = BufferCreationBitsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): BufferCreationBits = BufferCreationBitsValue(flag.unaryMinus())
+
+    public fun inv(): BufferCreationBits = BufferCreationBitsValue(flag.inv())
+
+    public infix fun shl(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBitsValue(flag ushr bits)
+
+    public companion object {
+      public val BUFFER_CREATION_DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBitsValue(1)
+
+      public val BUFFER_CREATION_AS_STORAGE_BIT: BufferCreationBits = BufferCreationBitsValue(2)
+    }
+  }
+
+  @JvmInline
+  public value class BufferCreationBitsValue(
+    public override val flag: Long,
+  ) : BufferCreationBits
+
   public enum class UniformType(
     id: Long,
   ) {
@@ -4253,6 +4681,25 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
+  public enum class Features(
+    id: Long,
+  ) {
+    /**
+     * Features support for buffer device address extension.
+     */
+    SUPPORTS_BUFFER_DEVICE_ADDRESS(6),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): Features = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class Limit(
     id: Long,
   ) {
@@ -4408,6 +4855,20 @@ public open class RenderingDevice internal constructor() : Object() {
      * Maximum viewport height (in pixels).
      */
     LIMIT_MAX_VIEWPORT_DIMENSIONS_Y(36),
+    /**
+     * Returns the smallest value for [ProjectSettings.rendering/scaling3d/scale] when using the
+     * MetalFX temporal upscaler.
+     * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
+     * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
+     */
+    LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE(46),
+    /**
+     * Returns the largest value for [ProjectSettings.rendering/scaling3d/scale] when using the
+     * MetalFX temporal upscaler.
+     * **Note:** The returned value is multiplied by a factor of `1000000` to preserve 6 digits of
+     * precision. It must be divided by `1000000.0` to convert the value to a floating point number.
+     */
+    LIMIT_METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
     ;
 
     public val id: Long
@@ -4448,6 +4909,143 @@ public open class RenderingDevice internal constructor() : Object() {
     }
   }
 
+  public enum class BreadcrumbMarker(
+    id: Long,
+  ) {
+    NONE(0),
+    REFLECTION_PROBES(65536),
+    SKY_PASS(131072),
+    LIGHTMAPPER_PASS(196608),
+    SHADOW_PASS_DIRECTIONAL(262144),
+    SHADOW_PASS_CUBE(327680),
+    OPAQUE_PASS(393216),
+    ALPHA_PASS(458752),
+    TRANSPARENT_PASS(524288),
+    POST_PROCESSING_PASS(589824),
+    BLIT_PASS(655360),
+    UI_PASS(720896),
+    DEBUG_PASS(786432),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): BreadcrumbMarker = entries.single { it.id == `value` }
+    }
+  }
+
+  public sealed interface DrawFlags {
+    public val flag: Long
+
+    public infix fun or(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.or(other.flag))
+
+    public infix fun or(other: Long): DrawFlags = DrawFlagsValue(flag.or(other))
+
+    public infix fun xor(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): DrawFlags = DrawFlagsValue(flag.xor(other))
+
+    public infix fun and(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.and(other.flag))
+
+    public infix fun and(other: Long): DrawFlags = DrawFlagsValue(flag.and(other))
+
+    public operator fun plus(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.plus(other.flag))
+
+    public operator fun plus(other: Long): DrawFlags = DrawFlagsValue(flag.plus(other))
+
+    public operator fun minus(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.minus(other.flag))
+
+    public operator fun minus(other: Long): DrawFlags = DrawFlagsValue(flag.minus(other))
+
+    public operator fun times(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.times(other.flag))
+
+    public operator fun times(other: Long): DrawFlags = DrawFlagsValue(flag.times(other))
+
+    public operator fun div(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.div(other.flag))
+
+    public operator fun div(other: Long): DrawFlags = DrawFlagsValue(flag.div(other))
+
+    public operator fun rem(other: DrawFlags): DrawFlags = DrawFlagsValue(flag.rem(other.flag))
+
+    public operator fun rem(other: Long): DrawFlags = DrawFlagsValue(flag.rem(other))
+
+    public fun unaryPlus(): DrawFlags = DrawFlagsValue(flag.unaryPlus())
+
+    public fun unaryMinus(): DrawFlags = DrawFlagsValue(flag.unaryMinus())
+
+    public fun inv(): DrawFlags = DrawFlagsValue(flag.inv())
+
+    public infix fun shl(bits: Int): DrawFlags = DrawFlagsValue(flag shl bits)
+
+    public infix fun shr(bits: Int): DrawFlags = DrawFlagsValue(flag shr bits)
+
+    public infix fun ushr(bits: Int): DrawFlags = DrawFlagsValue(flag ushr bits)
+
+    public companion object {
+      public val DRAW_DEFAULT_ALL: DrawFlags = DrawFlagsValue(0)
+
+      public val DRAW_CLEAR_COLOR_0: DrawFlags = DrawFlagsValue(1)
+
+      public val DRAW_CLEAR_COLOR_1: DrawFlags = DrawFlagsValue(2)
+
+      public val DRAW_CLEAR_COLOR_2: DrawFlags = DrawFlagsValue(4)
+
+      public val DRAW_CLEAR_COLOR_3: DrawFlags = DrawFlagsValue(8)
+
+      public val DRAW_CLEAR_COLOR_4: DrawFlags = DrawFlagsValue(16)
+
+      public val DRAW_CLEAR_COLOR_5: DrawFlags = DrawFlagsValue(32)
+
+      public val DRAW_CLEAR_COLOR_6: DrawFlags = DrawFlagsValue(64)
+
+      public val DRAW_CLEAR_COLOR_7: DrawFlags = DrawFlagsValue(128)
+
+      public val DRAW_CLEAR_COLOR_MASK: DrawFlags = DrawFlagsValue(255)
+
+      public val DRAW_CLEAR_COLOR_ALL: DrawFlags = DrawFlagsValue(255)
+
+      public val DRAW_IGNORE_COLOR_0: DrawFlags = DrawFlagsValue(256)
+
+      public val DRAW_IGNORE_COLOR_1: DrawFlags = DrawFlagsValue(512)
+
+      public val DRAW_IGNORE_COLOR_2: DrawFlags = DrawFlagsValue(1024)
+
+      public val DRAW_IGNORE_COLOR_3: DrawFlags = DrawFlagsValue(2048)
+
+      public val DRAW_IGNORE_COLOR_4: DrawFlags = DrawFlagsValue(4096)
+
+      public val DRAW_IGNORE_COLOR_5: DrawFlags = DrawFlagsValue(8192)
+
+      public val DRAW_IGNORE_COLOR_6: DrawFlags = DrawFlagsValue(16384)
+
+      public val DRAW_IGNORE_COLOR_7: DrawFlags = DrawFlagsValue(32768)
+
+      public val DRAW_IGNORE_COLOR_MASK: DrawFlags = DrawFlagsValue(65280)
+
+      public val DRAW_IGNORE_COLOR_ALL: DrawFlags = DrawFlagsValue(65280)
+
+      public val DRAW_CLEAR_DEPTH: DrawFlags = DrawFlagsValue(65536)
+
+      public val DRAW_IGNORE_DEPTH: DrawFlags = DrawFlagsValue(131072)
+
+      public val DRAW_CLEAR_STENCIL: DrawFlags = DrawFlagsValue(262144)
+
+      public val DRAW_IGNORE_STENCIL: DrawFlags = DrawFlagsValue(524288)
+
+      public val DRAW_CLEAR_ALL: DrawFlags = DrawFlagsValue(327935)
+
+      public val DRAW_IGNORE_ALL: DrawFlags = DrawFlagsValue(720640)
+    }
+  }
+
+  @JvmInline
+  public value class DrawFlagsValue(
+    public override val flag: Long,
+  ) : DrawFlags
+
   public companion object {
     /**
      * Returned by functions that return an ID if a value is invalid.
@@ -4479,6 +5077,9 @@ public open class RenderingDevice internal constructor() : Object() {
     internal val textureGetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_data", 1859412099)
 
+    internal val textureGetDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_get_data_async", 498832090)
+
     internal val textureIsFormatSupportedForUsagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_format_supported_for_usage", 2592520478)
 
@@ -4487,6 +5088,12 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val textureIsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_valid", 3521089500)
+
+    internal val textureSetDiscardablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_set_discardable", 1265174801)
+
+    internal val textureIsDiscardablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_is_discardable", 3521089500)
 
     internal val textureCopyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_copy", 2859522160)
@@ -4537,7 +5144,7 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "sampler_is_format_supported_for_filter", 2247922238)
 
     internal val vertexBufferCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "vertex_buffer_create", 3410049843)
+        TypeManager.getMethodBindPtr("RenderingDevice", "vertex_buffer_create", 2089548973)
 
     internal val vertexFormatCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "vertex_format_create", 1242678479)
@@ -4546,7 +5153,7 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "vertex_array_create", 3799816279)
 
     internal val indexBufferCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "index_buffer_create", 3935920523)
+        TypeManager.getMethodBindPtr("RenderingDevice", "index_buffer_create", 2368684885)
 
     internal val indexArrayCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "index_array_create", 2256026069)
@@ -4570,10 +5177,10 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "shader_get_vertex_input_attribute_mask", 3917799429)
 
     internal val uniformBufferCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "uniform_buffer_create", 34556762)
+        TypeManager.getMethodBindPtr("RenderingDevice", "uniform_buffer_create", 2089548973)
 
     internal val storageBufferCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "storage_buffer_create", 2316365934)
+        TypeManager.getMethodBindPtr("RenderingDevice", "storage_buffer_create", 1609052553)
 
     internal val textureBufferCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_buffer_create", 1470338698)
@@ -4595,6 +5202,12 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val bufferGetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "buffer_get_data", 3101830688)
+
+    internal val bufferGetDataAsyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_get_data_async", 2370287848)
+
+    internal val bufferGetDeviceAddressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "buffer_get_device_address", 3917799429)
 
     internal val renderPipelineCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "render_pipeline_create", 2385451958)
@@ -4621,7 +5234,7 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin_for_screen", 3988079995)
 
     internal val drawListBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin", 2686605154)
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin", 1317926357)
 
     internal val drawListBeginSplitPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_begin_split", 2406300660)
@@ -4646,6 +5259,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val drawListDrawPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_draw", 4230067973)
+
+    internal val drawListDrawIndirectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_draw_indirect", 1092133571)
 
     internal val drawListEnableScissorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_enable_scissor", 244650101)
@@ -4707,6 +5323,9 @@ public open class RenderingDevice internal constructor() : Object() {
     internal val getCapturedTimestampNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "get_captured_timestamp_name", 844755477)
 
+    internal val hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "has_feature", 1772728326)
+
     internal val limitGetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "limit_get", 1559202131)
 
@@ -4754,5 +5373,41 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val getDriverResourcePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_resource", 501815484)
+
+    internal val getPerfReportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_perf_report", 201670096)
+
+    internal val getDriverAndDeviceMemoryReportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_and_device_memory_report", 201670096)
+
+    internal val getTrackedObjectNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_tracked_object_name", 844755477)
+
+    internal val getTrackedObjectTypeCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_tracked_object_type_count", 3905245786)
+
+    internal val getDriverTotalMemoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_total_memory", 3905245786)
+
+    internal val getDriverAllocationCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_allocation_count", 3905245786)
+
+    internal val getDriverMemoryByObjectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_memory_by_object_type", 923996154)
+
+    internal val getDriverAllocsByObjectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_allocs_by_object_type", 923996154)
+
+    internal val getDeviceTotalMemoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_total_memory", 3905245786)
+
+    internal val getDeviceAllocationCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_allocation_count", 3905245786)
+
+    internal val getDeviceMemoryByObjectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_memory_by_object_type", 923996154)
+
+    internal val getDeviceAllocsByObjectTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "get_device_allocs_by_object_type", 923996154)
   }
 }

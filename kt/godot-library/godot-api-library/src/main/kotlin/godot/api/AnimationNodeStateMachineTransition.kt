@@ -57,7 +57,8 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Ease curve for better control over cross-fade between this state and the next.
+   * Ease curve for better control over cross-fade between this state and the next. Should be a unit
+   * [Curve].
    */
   public final inline var xfadeCurve: Curve?
     @JvmName("xfadeCurveProperty")
@@ -114,9 +115,9 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Determines whether the transition should disabled, enabled when using
+   * Determines whether the transition should be disabled, enabled when using
    * [AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition]
-   * and [advanceExpression] checks are true (if assigned).
+   * and [advanceExpression] checks are `true` (if assigned).
    */
   public final inline var advanceMode: AdvanceMode
     @JvmName("advanceModeProperty")
@@ -165,7 +166,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(64, scriptIndex)
+    createNativeObject(65, scriptIndex)
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {
@@ -310,7 +311,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     ADVANCE_MODE_ENABLED(1),
     /**
      * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks
-     * are true (if assigned).
+     * are `true` (if assigned).
      */
     ADVANCE_MODE_AUTO(2),
     ;

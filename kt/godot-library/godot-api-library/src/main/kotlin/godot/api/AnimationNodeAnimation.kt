@@ -54,6 +54,19 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   /**
+   * If `true`, on receiving a request to play an animation from the start, the first frame is not
+   * drawn, but only processed, and playback starts from the next frame.
+   * See also the notes of [AnimationPlayer.play].
+   */
+  public final inline var advanceOnStart: Boolean
+    @JvmName("advanceOnStartProperty")
+    get() = isAdvanceOnStart()
+    @JvmName("advanceOnStartProperty")
+    set(`value`) {
+      setAdvanceOnStart(value)
+    }
+
+  /**
    * If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some
    * parameters adjusted.
    */
@@ -141,6 +154,17 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayModePtr, LONG)
     return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAdvanceOnStart(advanceOnStart: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to advanceOnStart)
+    TransferContext.callMethod(ptr, MethodBindings.setAdvanceOnStartPtr, NIL)
+  }
+
+  public final fun isAdvanceOnStart(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAdvanceOnStartPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseCustomTimeline(useCustomTimeline: Boolean): Unit {
@@ -235,6 +259,12 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
     internal val getPlayModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode", 2061244637)
+
+    internal val setAdvanceOnStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_advance_on_start", 2586408642)
+
+    internal val isAdvanceOnStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_advance_on_start", 36873697)
 
     internal val setUseCustomTimelinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline", 2586408642)

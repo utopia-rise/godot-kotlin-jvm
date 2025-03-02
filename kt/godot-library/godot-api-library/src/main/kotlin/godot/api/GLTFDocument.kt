@@ -11,13 +11,17 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.NodePath
 import godot.core.PackedByteArray
+import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Double
@@ -33,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then
  * be written to the filesystem, buffer, or used to create a Godot scene.
- * All of the data in a GLTF scene is stored in the [GLTFState] class. GLTFDocument processes state
+ * All of the data in a glTF scene is stored in the [GLTFState] class. GLTFDocument processes state
  * objects, but does not contain any scene data itself. GLTFDocument has member variables to store
  * export configuration settings such as the image format, but is otherwise stateless. Multiple scenes
  * can be processed with the same settings using the same GLTFDocument object and different [GLTFState]
@@ -45,7 +49,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class GLTFDocument : Resource() {
   /**
-   * The user-friendly name of the export image format. This is used when exporting the GLTF file,
+   * The user-friendly name of the export image format. This is used when exporting the glTF file,
    * including writing to a file and writing to a byte array.
    * By default, Godot allows the following options: "None", "PNG", "JPEG", "Lossless WebP", and
    * "Lossy WebP". Support for more image formats can be added in [GLTFDocumentExtension] classes.
@@ -86,7 +90,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(254, scriptIndex)
+    createNativeObject(257, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
@@ -123,7 +127,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a path to a GLTF file and imports the data at that file path to the given [GLTFState]
+   * Takes a path to a glTF file and imports the data at that file path to the given [GLTFState]
    * object through the [state] parameter.
    * **Note:** The [basePath] tells [appendFromFile] where to find dependencies and can be empty.
    */
@@ -140,7 +144,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a [PackedByteArray] defining a GLTF and imports the data to the given [GLTFState] object
+   * Takes a [PackedByteArray] defining a glTF and imports the data to the given [GLTFState] object
    * through the [state] parameter.
    * **Note:** The [basePath] tells [appendFromBuffer] where to find dependencies and can be empty.
    */
@@ -188,7 +192,7 @@ public open class GLTFDocument : Resource() {
   }
 
   /**
-   * Takes a [GLTFState] object through the [state] parameter and returns a GLTF [PackedByteArray].
+   * Takes a [GLTFState] object through the [state] parameter and returns a glTF [PackedByteArray].
    */
   public final fun generateBuffer(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
@@ -244,8 +248,38 @@ public open class GLTFDocument : Resource() {
 
   public companion object {
     /**
+     * Determines a mapping between the given glTF Object Model [jsonPointer] and the corresponding
+     * Godot node path(s) in the generated Godot scene. The details of this mapping are returned in a
+     * [GLTFObjectModelProperty] object. Additional mappings can be supplied via the
+     * [GLTFDocumentExtension.ExportObjectModelProperty] callback method.
+     */
+    public final fun importObjectModelProperty(state: GLTFState?, jsonPointer: String):
+        GLTFObjectModelProperty? {
+      TransferContext.writeArguments(OBJECT to state, STRING to jsonPointer)
+      TransferContext.callMethod(0, MethodBindings.importObjectModelPropertyPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFObjectModelProperty?)
+    }
+
+    /**
+     * Determines a mapping between the given Godot [nodePath] and the corresponding glTF Object
+     * Model JSON pointer(s) in the generated glTF file. The details of this mapping are returned in a
+     * [GLTFObjectModelProperty] object. Additional mappings can be supplied via the
+     * [GLTFDocumentExtension.ImportObjectModelProperty] callback method.
+     */
+    public final fun exportObjectModelProperty(
+      state: GLTFState?,
+      nodePath: NodePath,
+      godotNode: Node?,
+      gltfNodeIndex: Int,
+    ): GLTFObjectModelProperty? {
+      TransferContext.writeArguments(OBJECT to state, NODE_PATH to nodePath, OBJECT to godotNode, LONG to gltfNodeIndex.toLong())
+      TransferContext.callMethod(0, MethodBindings.exportObjectModelPropertyPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFObjectModelProperty?)
+    }
+
+    /**
      * Registers the given [GLTFDocumentExtension] instance with GLTFDocument. If [firstPriority] is
-     * true, this extension will be run first. Otherwise, it will be run last.
+     * `true`, this extension will be run first. Otherwise, it will be run last.
      * **Note:** Like GLTFDocument itself, all GLTFDocumentExtension classes must be stateless in
      * order to function properly. If you need to store data, use the `set_additional_data` and
      * `get_additional_data` methods in [GLTFState] or [GLTFNode].
@@ -263,6 +297,21 @@ public open class GLTFDocument : Resource() {
     public final fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
       TransferContext.writeArguments(OBJECT to extension)
       TransferContext.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
+    }
+
+    /**
+     * Returns a list of all support glTF extensions, including extensions supported directly by the
+     * engine, and extensions supported by user plugins registering [GLTFDocumentExtension] classes.
+     * **Note:** If this method is run before a GLTFDocumentExtension is registered, its extensions
+     * won't be included in the list. Be sure to only run this method after all extensions are
+     * registered. If you run this when the engine starts, consider waiting a frame before calling this
+     * method to ensure all extensions are registered.
+     */
+    public final fun getSupportedGltfExtensions(): PackedStringArray {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr,
+          PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
   }
 
@@ -303,10 +352,19 @@ public open class GLTFDocument : Resource() {
     internal val writeToFilesystemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "write_to_filesystem", 1784551478)
 
+    internal val importObjectModelPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "import_object_model_property", 1206708632)
+
+    internal val exportObjectModelPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "export_object_model_property", 314209806)
+
     internal val registerGltfDocumentExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension", 3752678331)
 
     internal val unregisterGltfDocumentExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "unregister_gltf_document_extension", 2684415758)
+
+    internal val getSupportedGltfExtensionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_supported_gltf_extensions", 2981934095)
   }
 }

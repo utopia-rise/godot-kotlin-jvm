@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(13)
+    getSingleton(14)
   }
 
   /**
@@ -113,6 +113,16 @@ public object ClassDB : Object() {
   }
 
   /**
+   * Returns the API type of [class]. See [APIType].
+   */
+  @JvmStatic
+  public final fun classGetApiType(`class`: StringName): APIType {
+    TransferContext.writeArguments(STRING_NAME to `class`)
+    TransferContext.callMethod(ptr, MethodBindings.classGetApiTypePtr, LONG)
+    return ClassDB.APIType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns whether [class] or its ancestry has a signal called [signal] or not.
    */
   @JvmStatic
@@ -158,6 +168,26 @@ public object ClassDB : Object() {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+  }
+
+  /**
+   * Returns the getter method name of [property] of [class].
+   */
+  @JvmStatic
+  public final fun classGetPropertyGetter(`class`: StringName, `property`: StringName): StringName {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
+    TransferContext.callMethod(ptr, MethodBindings.classGetPropertyGetterPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the setter method name of [property] of [class].
+   */
+  @JvmStatic
+  public final fun classGetPropertySetter(`class`: StringName, `property`: StringName): StringName {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
+    TransferContext.callMethod(ptr, MethodBindings.classGetPropertySetterPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -240,6 +270,20 @@ public object ClassDB : Object() {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+  }
+
+  /**
+   * Calls a static method on a class.
+   */
+  @JvmStatic
+  public final fun classCallStatic(
+    `class`: StringName,
+    method: StringName,
+    vararg __var_args: Any?,
+  ): Any? {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.callMethod(ptr, MethodBindings.classCallStaticPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -359,6 +403,41 @@ public object ClassDB : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public enum class APIType(
+    id: Long,
+  ) {
+    /**
+     * Native Core class type.
+     */
+    API_CORE(0),
+    /**
+     * Native Editor class type.
+     */
+    API_EDITOR(1),
+    /**
+     * GDExtension class type.
+     */
+    API_EXTENSION(2),
+    /**
+     * GDExtension Editor class type.
+     */
+    API_EDITOR_EXTENSION(3),
+    /**
+     * Unknown class type.
+     */
+    API_NONE(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): APIType = entries.single { it.id == `value` }
+    }
+  }
+
   public object MethodBindings {
     internal val getClassListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
@@ -381,6 +460,9 @@ public object ClassDB : Object() {
     internal val instantiatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
 
+    internal val classGetApiTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_api_type", 2475317043)
+
     internal val classHasSignalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
 
@@ -392,6 +474,12 @@ public object ClassDB : Object() {
 
     internal val classGetPropertyListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
+
+    internal val classGetPropertyGetterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_getter", 3770832642)
+
+    internal val classGetPropertySetterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_setter", 3770832642)
 
     internal val classGetPropertyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
@@ -410,6 +498,9 @@ public object ClassDB : Object() {
 
     internal val classGetMethodListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
+
+    internal val classCallStaticPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_call_static", 3344196419)
 
     internal val classGetIntegerConstantListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)

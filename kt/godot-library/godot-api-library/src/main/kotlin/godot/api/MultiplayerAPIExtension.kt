@@ -18,17 +18,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * This class can be used to augment or replace the default [MultiplayerAPI] implementation via
+ * This class can be used to extend or replace the default [MultiplayerAPI] implementation via
  * script or extensions.
- * The following example augment the default implementation ([SceneMultiplayer]) by logging every
- * RPC being made, and every object being configured for replication.
+ * The following example extend the default implementation ([SceneMultiplayer]) by logging every RPC
+ * being made, and every object being configured for replication.
  *
  * gdscript:
  * ```gdscript
  * extends MultiplayerAPIExtension
  * class_name LogMultiplayer
  *
- * # We want to augment the default SceneMultiplayer.
+ * # We want to extend the default SceneMultiplayer.
  * var base_multiplayer = SceneMultiplayer.new()
  *
  * func _init():
@@ -70,7 +70,7 @@ import kotlin.Unit
  *         print("Removing node &#37;s from the spawn list. Spawner: &#37;s" &#37; [object, config])
  *     return base_multiplayer.object_configuration_remove(object, config)
  *
- * # These can be optional, but in our case we want to augment SceneMultiplayer, so forward
+ * # These can be optional, but in our case we want to extend SceneMultiplayer, so forward
  * everything.
  * func _set_multiplayer_peer(p_peer: MultiplayerPeer):
  *     base_multiplayer.multiplayer_peer = p_peer
@@ -93,7 +93,7 @@ import kotlin.Unit
  * # autoload.gd
  * func _enter_tree():
  *     # Sets our custom multiplayer as the main one in SceneTree.
- * get_tree().set_multiplayer(LogMultiplayer.new())
+ *     get_tree().set_multiplayer(LogMultiplayer.new())
  * ```
  *
  * Native extensions can alternatively use the [MultiplayerAPI.setDefaultInterface] method during
@@ -102,7 +102,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(382, scriptIndex)
+    createNativeObject(388, scriptIndex)
   }
 
   /**

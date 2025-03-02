@@ -35,9 +35,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` GLTF
- * extensions. This class is an intermediary between the GLTF data and Godot's nodes, and it's
- * abstracted in a way that allows adding support for different GLTF physics extensions in the future.
+ * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` glTF
+ * extensions. This class is an intermediary between the glTF data and Godot's nodes, and it's
+ * abstracted in a way that allows adding support for different glTF physics extensions in the future.
  */
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
@@ -106,7 +106,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The index of the shape's mesh in the GLTF file. This is only used when the shape type is "hull"
+   * The index of the shape's mesh in the glTF file. This is only used when the shape type is "hull"
    * (convex hull) or "trimesh" (concave trimesh).
    */
   public final inline var meshIndex: Int
@@ -130,7 +130,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(261, scriptIndex)
+    createNativeObject(265, scriptIndex)
   }
 
   /**

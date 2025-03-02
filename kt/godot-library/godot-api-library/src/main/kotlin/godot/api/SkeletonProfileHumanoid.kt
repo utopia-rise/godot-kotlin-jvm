@@ -41,6 +41,7 @@ import kotlin.Unit
  *                 │        └─ LeftHand
  *                 │           ├─ LeftThumbMetacarpal
  *                 │           │  └─ LeftThumbProximal
+ *                 │           │    └─ LeftThumbDistal
  *                 │           ├─ LeftIndexProximal
  *                 │           │  └─ LeftIndexIntermediate
  *                 │           │    └─ LeftIndexDistal
@@ -59,6 +60,7 @@ import kotlin.Unit
  *                          └─ RightHand
  *                             ├─ RightThumbMetacarpal
  *                             │  └─ RightThumbProximal
+ *                             │     └─ RightThumbDistal
  *                             ├─ RightIndexProximal
  *                             │  └─ RightIndexIntermediate
  *                             │     └─ RightIndexDistal
@@ -76,7 +78,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(597, scriptIndex)
+    createNativeObject(616, scriptIndex)
   }
 
   public companion object

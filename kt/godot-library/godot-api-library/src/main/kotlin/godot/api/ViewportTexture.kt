@@ -27,6 +27,18 @@ import kotlin.jvm.JvmName
  * If the scene root is not ready, it may return incorrect data (see [signal Node.ready]).
  * **Note:** Instantiating scenes containing a high-resolution [ViewportTexture] may cause
  * noticeable stutter.
+ * **Note:** When using a [Viewport] with [Viewport.useHdr2d] set to `true`, the returned texture
+ * will be an HDR image encoded in linear space. This may look darker than normal when displayed
+ * directly on screen. To convert to gamma space, you can do the following:
+ * [codeblock]
+ * img.convert(Image.FORMAT_RGBA8)
+ * imb.linear_to_srgb()
+ * [/codeblock]
+ * **Note:** Some nodes such as [Decal], [Light3D], and [PointLight2D] do not support using
+ * [ViewportTexture] directly. To use texture data from a [ViewportTexture] in these nodes, you need to
+ * create an [ImageTexture] by calling [Texture2D.getImage] on the [ViewportTexture] and passing the
+ * result to [ImageTexture.createFromImage]. This conversion is a slow operation, so it should not be
+ * performed every frame.
  */
 @GodotBaseType
 public open class ViewportTexture : Texture2D() {
@@ -46,7 +58,7 @@ public open class ViewportTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(699, scriptIndex)
+    createNativeObject(725, scriptIndex)
   }
 
   public final fun setViewportPathInScene(path: NodePath): Unit {

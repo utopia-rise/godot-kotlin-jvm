@@ -118,7 +118,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   /**
    * Determines the radius of the tube along its length. The radius of a particular section ring is
    * obtained by multiplying the baseline [radius] by the value of this curve at the given distance.
-   * For values smaller than `0`, the faces will be inverted.
+   * For values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
    */
   public final inline var curve: Curve?
     @JvmName("curveProperty")
@@ -129,7 +129,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(678, scriptIndex)
+    createNativeObject(704, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

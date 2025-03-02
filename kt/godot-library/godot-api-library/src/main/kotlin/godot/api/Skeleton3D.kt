@@ -18,6 +18,7 @@ import godot.core.Signal1
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantArray
+import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -32,6 +33,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -53,6 +55,11 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Skeleton3D : Node3D() {
+  /**
+   * Emitted when the rest is updated.
+   */
+  public val restUpdated: Signal0 by Signal0
+
   /**
    * Emitted when the pose is updated.
    * **Note:** During the update process, this signal is not fired, so modification by
@@ -135,7 +142,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(584, scriptIndex)
+    createNativeObject(603, scriptIndex)
   }
 
   /**
@@ -175,6 +182,45 @@ public open class Skeleton3D : Node3D() {
   public final fun setBoneName(boneIdx: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
+  }
+
+  /**
+   * Returns bone metadata for [boneIdx] with [key].
+   */
+  public final fun getBoneMeta(boneIdx: Int, key: StringName): Any? {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
+    TransferContext.callMethod(ptr, MethodBindings.getBoneMetaPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns a list of all metadata keys for [boneIdx].
+   */
+  public final fun getBoneMetaList(boneIdx: Int): VariantArray<StringName> {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getBoneMetaListPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+  }
+
+  /**
+   * Returns whether there exists any bone metadata for [boneIdx] with key [key].
+   */
+  public final fun hasBoneMeta(boneIdx: Int, key: StringName): Boolean {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
+    TransferContext.callMethod(ptr, MethodBindings.hasBoneMetaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Sets bone metadata for [boneIdx], will set the [key] meta to [value].
+   */
+  public final fun setBoneMeta(
+    boneIdx: Int,
+    key: StringName,
+    `value`: Any?,
+  ): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key, ANY to value)
+    TransferContext.callMethod(ptr, MethodBindings.setBoneMetaPtr, NIL)
   }
 
   /**
@@ -642,6 +688,18 @@ public open class Skeleton3D : Node3D() {
 
     internal val setBoneNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_name", 501894301)
+
+    internal val getBoneMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta", 203112058)
+
+    internal val getBoneMetaListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton3D", "get_bone_meta_list", 663333327)
+
+    internal val hasBoneMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton3D", "has_bone_meta", 921227809)
+
+    internal val setBoneMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton3D", "set_bone_meta", 702482756)
 
     internal val getConcatenatedBoneNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Skeleton3D", "get_concatenated_bone_names", 2002593661)

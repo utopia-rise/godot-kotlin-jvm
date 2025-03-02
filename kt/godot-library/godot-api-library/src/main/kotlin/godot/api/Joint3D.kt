@@ -81,7 +81,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(340, scriptIndex)
+    createNativeObject(345, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

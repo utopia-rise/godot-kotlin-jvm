@@ -24,6 +24,7 @@ import godot.api.AnimationNodeBlend3
 import godot.api.AnimationNodeBlendSpace1D
 import godot.api.AnimationNodeBlendSpace2D
 import godot.api.AnimationNodeBlendTree
+import godot.api.AnimationNodeExtension
 import godot.api.AnimationNodeOneShot
 import godot.api.AnimationNodeOutput
 import godot.api.AnimationNodeStateMachine
@@ -159,6 +160,7 @@ import godot.api.CollisionPolygon2D
 import godot.api.CollisionPolygon3D
 import godot.api.CollisionShape2D
 import godot.api.CollisionShape3D
+import godot.api.ColorPalette
 import godot.api.ColorPicker
 import godot.api.ColorPickerButton
 import godot.api.ColorRect
@@ -206,6 +208,7 @@ import godot.api.EngineDebugger
 import godot.api.EngineProfiler
 import godot.api.Environment
 import godot.api.Expression
+import godot.api.ExternalTexture
 import godot.api.FBXDocument
 import godot.api.FBXState
 import godot.api.FastNoiseLite
@@ -231,6 +234,7 @@ import godot.api.GLTFDocumentExtensionConvertImporterMesh
 import godot.api.GLTFLight
 import godot.api.GLTFMesh
 import godot.api.GLTFNode
+import godot.api.GLTFObjectModelProperty
 import godot.api.GLTFPhysicsBody
 import godot.api.GLTFPhysicsShape
 import godot.api.GLTFSkeleton
@@ -314,6 +318,7 @@ import godot.api.JSON
 import godot.api.JSONRPC
 import godot.api.JavaClass
 import godot.api.JavaClassWrapper
+import godot.api.JavaObject
 import godot.api.JavaScript
 import godot.api.JavaScriptBridge
 import godot.api.JavaScriptObject
@@ -337,6 +342,7 @@ import godot.api.LightmapperRD
 import godot.api.Line2D
 import godot.api.LineEdit
 import godot.api.LinkButton
+import godot.api.LookAtModifier3D
 import godot.api.MainLoop
 import godot.api.MarginContainer
 import godot.api.Marker2D
@@ -407,18 +413,29 @@ import godot.api.OggPacketSequencePlayback
 import godot.api.OmniLight3D
 import godot.api.OpenXRAPIExtension
 import godot.api.OpenXRAction
+import godot.api.OpenXRActionBindingModifier
 import godot.api.OpenXRActionMap
 import godot.api.OpenXRActionSet
+import godot.api.OpenXRAnalogThresholdModifier
+import godot.api.OpenXRBindingModifier
+import godot.api.OpenXRBindingModifierEditor
 import godot.api.OpenXRCompositionLayer
 import godot.api.OpenXRCompositionLayerCylinder
 import godot.api.OpenXRCompositionLayerEquirect
 import godot.api.OpenXRCompositionLayerQuad
+import godot.api.OpenXRDpadBindingModifier
 import godot.api.OpenXRExtensionWrapperExtension
 import godot.api.OpenXRHand
+import godot.api.OpenXRHapticBase
+import godot.api.OpenXRHapticVibration
 import godot.api.OpenXRIPBinding
+import godot.api.OpenXRIPBindingModifier
 import godot.api.OpenXRInteractionProfile
+import godot.api.OpenXRInteractionProfileEditor
+import godot.api.OpenXRInteractionProfileEditorBase
 import godot.api.OpenXRInteractionProfileMetadata
 import godot.api.OpenXRInterface
+import godot.api.OpenXRVisibilityMask
 import godot.api.OptimizedTranslation
 import godot.api.OptionButton
 import godot.api.PCKPacker
@@ -548,6 +565,7 @@ import godot.api.ResourceLoader
 import godot.api.ResourcePreloader
 import godot.api.ResourceSaver
 import godot.api.ResourceUID
+import godot.api.RetargetModifier3D
 import godot.api.RibbonTrailMesh
 import godot.api.RichTextEffect
 import godot.api.RichTextLabel
@@ -573,6 +591,7 @@ import godot.api.Separator
 import godot.api.Shader
 import godot.api.ShaderGlobalsOverride
 import godot.api.ShaderInclude
+import godot.api.ShaderIncludeDB
 import godot.api.ShaderMaterial
 import godot.api.Shape2D
 import godot.api.Shape3D
@@ -607,6 +626,11 @@ import godot.api.SpinBox
 import godot.api.SplitContainer
 import godot.api.SpotLight3D
 import godot.api.SpringArm3D
+import godot.api.SpringBoneCollision3D
+import godot.api.SpringBoneCollisionCapsule3D
+import godot.api.SpringBoneCollisionPlane3D
+import godot.api.SpringBoneCollisionSphere3D
+import godot.api.SpringBoneSimulator3D
 import godot.api.Sprite2D
 import godot.api.Sprite3D
 import godot.api.SpriteBase3D
@@ -628,6 +652,7 @@ import godot.api.StyleBoxLine
 import godot.api.StyleBoxTexture
 import godot.api.SubViewport
 import godot.api.SubViewportContainer
+import godot.api.SubtweenTweener
 import godot.api.SurfaceTool
 import godot.api.SyntaxHighlighter
 import godot.api.SystemFont
@@ -674,6 +699,7 @@ import godot.api.Timer
 import godot.api.TorusMesh
 import godot.api.TouchScreenButton
 import godot.api.Translation
+import godot.api.TranslationDomain
 import godot.api.TranslationServer
 import godot.api.Tree
 import godot.api.TreeItem
@@ -867,6 +893,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("Performance", Performance::class) { Performance }
   TypeManager.registerSingleton("Performance")
+  TypeManager.registerEngineType("Engine", Engine::class) { Engine }
+  TypeManager.registerSingleton("Engine")
+  TypeManager.registerEngineType("ProjectSettings", ProjectSettings::class) { ProjectSettings }
+  TypeManager.registerSingleton("ProjectSettings")
+  TypeManager.registerEngineType("OS", OS::class) { OS }
+  TypeManager.registerSingleton("OS")
+  TypeManager.registerEngineType("Time", Time::class) { Time }
+  TypeManager.registerSingleton("Time")
   TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager
       }
   TypeManager.registerSingleton("TextServerManager")
@@ -879,8 +913,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NavigationMeshGenerator", NavigationMeshGenerator::class) {
       NavigationMeshGenerator }
   TypeManager.registerSingleton("NavigationMeshGenerator")
-  TypeManager.registerEngineType("ProjectSettings", ProjectSettings::class) { ProjectSettings }
-  TypeManager.registerSingleton("ProjectSettings")
   TypeManager.registerEngineType("IP", IP::class) { IP }
   TypeManager.registerSingleton("IP")
   TypeManager.registerEngineType("Geometry2D", Geometry2D::class) { Geometry2D }
@@ -891,10 +923,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("ResourceLoader")
   TypeManager.registerEngineType("ResourceSaver", ResourceSaver::class) { ResourceSaver }
   TypeManager.registerSingleton("ResourceSaver")
-  TypeManager.registerEngineType("OS", OS::class) { OS }
-  TypeManager.registerSingleton("OS")
-  TypeManager.registerEngineType("Engine", Engine::class) { Engine }
-  TypeManager.registerSingleton("Engine")
   TypeManager.registerEngineType("ClassDB", ClassDB::class) { ClassDB }
   TypeManager.registerSingleton("ClassDB")
   TypeManager.registerEngineType("Marshalls", Marshalls::class) { Marshalls }
@@ -908,8 +936,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("InputMap")
   TypeManager.registerEngineType("EngineDebugger", EngineDebugger::class) { EngineDebugger }
   TypeManager.registerSingleton("EngineDebugger")
-  TypeManager.registerEngineType("Time", Time::class) { Time }
-  TypeManager.registerSingleton("Time")
   TypeManager.registerEngineType("GDExtensionManager", GDExtensionManager::class) {
       GDExtensionManager }
   TypeManager.registerSingleton("GDExtensionManager")
@@ -973,6 +999,8 @@ public fun registerEngineTypes(): Unit {
       ::AnimationNodeBlendSpace2D)
   TypeManager.registerEngineType("AnimationNodeBlendTree", AnimationNodeBlendTree::class,
       ::AnimationNodeBlendTree)
+  TypeManager.registerEngineType("AnimationNodeExtension", AnimationNodeExtension::class,
+      ::AnimationNodeExtension)
   TypeManager.registerEngineType("AnimationNodeOneShot", AnimationNodeOneShot::class,
       ::AnimationNodeOneShot)
   TypeManager.registerEngineType("AnimationNodeOutput", AnimationNodeOutput::class,
@@ -1156,6 +1184,7 @@ public fun registerEngineTypes(): Unit {
       ::CollisionPolygon3D)
   TypeManager.registerEngineType("CollisionShape2D", CollisionShape2D::class, ::CollisionShape2D)
   TypeManager.registerEngineType("CollisionShape3D", CollisionShape3D::class, ::CollisionShape3D)
+  TypeManager.registerEngineType("ColorPalette", ColorPalette::class, ::ColorPalette)
   TypeManager.registerEngineType("ColorPicker", ColorPicker::class, ::ColorPicker)
   TypeManager.registerEngineType("ColorPickerButton", ColorPickerButton::class, ::ColorPickerButton)
   TypeManager.registerEngineType("ColorRect", ColorRect::class, ::ColorRect)
@@ -1214,6 +1243,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
   TypeManager.registerEngineType("Expression", Expression::class, ::Expression)
+  TypeManager.registerEngineType("ExternalTexture", ExternalTexture::class, ::ExternalTexture)
   TypeManager.registerEngineType("FBXDocument", FBXDocument::class, ::FBXDocument)
   TypeManager.registerEngineType("FBXState", FBXState::class, ::FBXState)
   TypeManager.registerEngineType("FastNoiseLite", FastNoiseLite::class, ::FastNoiseLite)
@@ -1241,6 +1271,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GLTFLight", GLTFLight::class, ::GLTFLight)
   TypeManager.registerEngineType("GLTFMesh", GLTFMesh::class, ::GLTFMesh)
   TypeManager.registerEngineType("GLTFNode", GLTFNode::class, ::GLTFNode)
+  TypeManager.registerEngineType("GLTFObjectModelProperty", GLTFObjectModelProperty::class,
+      ::GLTFObjectModelProperty)
   TypeManager.registerEngineType("GLTFPhysicsBody", GLTFPhysicsBody::class, ::GLTFPhysicsBody)
   TypeManager.registerEngineType("GLTFPhysicsShape", GLTFPhysicsShape::class, ::GLTFPhysicsShape)
   TypeManager.registerEngineType("GLTFSkeleton", GLTFSkeleton::class, ::GLTFSkeleton)
@@ -1345,6 +1377,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("JSON", JSON::class, ::JSON)
   TypeManager.registerEngineType("JSONRPC", JSONRPC::class, ::JSONRPC)
   TypeManager.registerEngineType("JavaClass", JavaClass::class, ::JavaClass)
+  TypeManager.registerEngineType("JavaObject", JavaObject::class, ::JavaObject)
   TypeManager.registerEngineType("JavaScript", JavaScript::class, ::JavaScript)
   TypeManager.registerEngineType("JavaScriptObject", JavaScriptObject::class, ::JavaScriptObject)
   TypeManager.registerEngineType("Joint2D", Joint2D::class, ::Joint2D)
@@ -1369,6 +1402,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Line2D", Line2D::class, ::Line2D)
   TypeManager.registerEngineType("LineEdit", LineEdit::class, ::LineEdit)
   TypeManager.registerEngineType("LinkButton", LinkButton::class, ::LinkButton)
+  TypeManager.registerEngineType("LookAtModifier3D", LookAtModifier3D::class, ::LookAtModifier3D)
   TypeManager.registerEngineType("MainLoop", MainLoop::class, ::MainLoop)
   TypeManager.registerEngineType("MarginContainer", MarginContainer::class, ::MarginContainer)
   TypeManager.registerEngineType("Marker2D", Marker2D::class, ::Marker2D)
@@ -1453,8 +1487,16 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRAPIExtension", OpenXRAPIExtension::class,
       ::OpenXRAPIExtension)
   TypeManager.registerEngineType("OpenXRAction", OpenXRAction::class, ::OpenXRAction)
+  TypeManager.registerEngineType("OpenXRActionBindingModifier", OpenXRActionBindingModifier::class,
+      ::OpenXRActionBindingModifier)
   TypeManager.registerEngineType("OpenXRActionMap", OpenXRActionMap::class, ::OpenXRActionMap)
   TypeManager.registerEngineType("OpenXRActionSet", OpenXRActionSet::class, ::OpenXRActionSet)
+  TypeManager.registerEngineType("OpenXRAnalogThresholdModifier",
+      OpenXRAnalogThresholdModifier::class, ::OpenXRAnalogThresholdModifier)
+  TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class,
+      ::OpenXRBindingModifier)
+  TypeManager.registerEngineType("OpenXRBindingModifierEditor", OpenXRBindingModifierEditor::class,
+      ::OpenXRBindingModifierEditor)
   TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class,
       ::OpenXRCompositionLayer)
   TypeManager.registerEngineType("OpenXRCompositionLayerCylinder",
@@ -1463,15 +1505,28 @@ public fun registerEngineTypes(): Unit {
       OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
   TypeManager.registerEngineType("OpenXRCompositionLayerQuad", OpenXRCompositionLayerQuad::class,
       ::OpenXRCompositionLayerQuad)
+  TypeManager.registerEngineType("OpenXRDpadBindingModifier", OpenXRDpadBindingModifier::class,
+      ::OpenXRDpadBindingModifier)
   TypeManager.registerEngineType("OpenXRExtensionWrapperExtension",
       OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
   TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
+  TypeManager.registerEngineType("OpenXRHapticBase", OpenXRHapticBase::class, ::OpenXRHapticBase)
+  TypeManager.registerEngineType("OpenXRHapticVibration", OpenXRHapticVibration::class,
+      ::OpenXRHapticVibration)
   TypeManager.registerEngineType("OpenXRIPBinding", OpenXRIPBinding::class, ::OpenXRIPBinding)
+  TypeManager.registerEngineType("OpenXRIPBindingModifier", OpenXRIPBindingModifier::class,
+      ::OpenXRIPBindingModifier)
   TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
       ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInteractionProfileEditor",
+      OpenXRInteractionProfileEditor::class, ::OpenXRInteractionProfileEditor)
+  TypeManager.registerEngineType("OpenXRInteractionProfileEditorBase",
+      OpenXRInteractionProfileEditorBase::class, ::OpenXRInteractionProfileEditorBase)
   TypeManager.registerEngineType("OpenXRInteractionProfileMetadata",
       OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
+  TypeManager.registerEngineType("OpenXRVisibilityMask", OpenXRVisibilityMask::class,
+      ::OpenXRVisibilityMask)
   TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class,
       ::OptimizedTranslation)
   TypeManager.registerEngineType("OptionButton", OptionButton::class, ::OptionButton)
@@ -1643,6 +1698,8 @@ public fun registerEngineTypes(): Unit {
       ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
   TypeManager.registerEngineType("ResourcePreloader", ResourcePreloader::class, ::ResourcePreloader)
+  TypeManager.registerEngineType("RetargetModifier3D", RetargetModifier3D::class,
+      ::RetargetModifier3D)
   TypeManager.registerEngineType("RibbonTrailMesh", RibbonTrailMesh::class, ::RibbonTrailMesh)
   TypeManager.registerEngineType("RichTextEffect", RichTextEffect::class, ::RichTextEffect)
   TypeManager.registerEngineType("RichTextLabel", RichTextLabel::class, ::RichTextLabel)
@@ -1673,6 +1730,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ShaderGlobalsOverride", ShaderGlobalsOverride::class,
       ::ShaderGlobalsOverride)
   TypeManager.registerEngineType("ShaderInclude", ShaderInclude::class, ::ShaderInclude)
+  TypeManager.registerEngineType("ShaderIncludeDB", ShaderIncludeDB::class, ::ShaderIncludeDB)
   TypeManager.registerEngineType("ShaderMaterial", ShaderMaterial::class, ::ShaderMaterial)
   TypeManager.registerEngineType("Shape2D", Shape2D::class, ::Shape2D)
   TypeManager.registerEngineType("Shape3D", Shape3D::class, ::Shape3D)
@@ -1718,6 +1776,16 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SplitContainer", SplitContainer::class, ::SplitContainer)
   TypeManager.registerEngineType("SpotLight3D", SpotLight3D::class, ::SpotLight3D)
   TypeManager.registerEngineType("SpringArm3D", SpringArm3D::class, ::SpringArm3D)
+  TypeManager.registerEngineType("SpringBoneCollision3D", SpringBoneCollision3D::class,
+      ::SpringBoneCollision3D)
+  TypeManager.registerEngineType("SpringBoneCollisionCapsule3D",
+      SpringBoneCollisionCapsule3D::class, ::SpringBoneCollisionCapsule3D)
+  TypeManager.registerEngineType("SpringBoneCollisionPlane3D", SpringBoneCollisionPlane3D::class,
+      ::SpringBoneCollisionPlane3D)
+  TypeManager.registerEngineType("SpringBoneCollisionSphere3D", SpringBoneCollisionSphere3D::class,
+      ::SpringBoneCollisionSphere3D)
+  TypeManager.registerEngineType("SpringBoneSimulator3D", SpringBoneSimulator3D::class,
+      ::SpringBoneSimulator3D)
   TypeManager.registerEngineType("Sprite2D", Sprite2D::class, ::Sprite2D)
   TypeManager.registerEngineType("Sprite3D", Sprite3D::class, ::Sprite3D)
   TypeManager.registerEngineType("SpriteBase3D", SpriteBase3D::class, ::SpriteBase3D)
@@ -1742,6 +1810,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SubViewport", SubViewport::class, ::SubViewport)
   TypeManager.registerEngineType("SubViewportContainer", SubViewportContainer::class,
       ::SubViewportContainer)
+  TypeManager.registerEngineType("SubtweenTweener", SubtweenTweener::class, ::SubtweenTweener)
   TypeManager.registerEngineType("SurfaceTool", SurfaceTool::class, ::SurfaceTool)
   TypeManager.registerEngineType("SyntaxHighlighter", SyntaxHighlighter::class, ::SyntaxHighlighter)
   TypeManager.registerEngineType("SystemFont", SystemFont::class, ::SystemFont)
@@ -1791,6 +1860,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("TorusMesh", TorusMesh::class, ::TorusMesh)
   TypeManager.registerEngineType("TouchScreenButton", TouchScreenButton::class, ::TouchScreenButton)
   TypeManager.registerEngineType("Translation", Translation::class, ::Translation)
+  TypeManager.registerEngineType("TranslationDomain", TranslationDomain::class, ::TranslationDomain)
   TypeManager.registerEngineType("Tree", Tree::class, ::Tree)
   TypeManager.registerEngineType("TreeItem", TreeItem::class, ::TreeItem)
   TypeManager.registerEngineType("TriangleMesh", TriangleMesh::class, ::TriangleMesh)
@@ -2104,25 +2174,25 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Object::class] = OBJECT
   variantMapper[RefCounted::class] = OBJECT
   variantMapper[Performance::class] = OBJECT
+  variantMapper[Engine::class] = OBJECT
+  variantMapper[ProjectSettings::class] = OBJECT
+  variantMapper[OS::class] = OBJECT
+  variantMapper[Time::class] = OBJECT
   variantMapper[TextServerManager::class] = OBJECT
   variantMapper[PhysicsServer2DManager::class] = OBJECT
   variantMapper[PhysicsServer3DManager::class] = OBJECT
   variantMapper[NavigationMeshGenerator::class] = OBJECT
-  variantMapper[ProjectSettings::class] = OBJECT
   variantMapper[IP::class] = OBJECT
   variantMapper[Geometry2D::class] = OBJECT
   variantMapper[Geometry3D::class] = OBJECT
   variantMapper[ResourceLoader::class] = OBJECT
   variantMapper[ResourceSaver::class] = OBJECT
-  variantMapper[OS::class] = OBJECT
-  variantMapper[Engine::class] = OBJECT
   variantMapper[ClassDB::class] = OBJECT
   variantMapper[Marshalls::class] = OBJECT
   variantMapper[TranslationServer::class] = OBJECT
   variantMapper[Input::class] = OBJECT
   variantMapper[InputMap::class] = OBJECT
   variantMapper[EngineDebugger::class] = OBJECT
-  variantMapper[Time::class] = OBJECT
   variantMapper[GDExtensionManager::class] = OBJECT
   variantMapper[ResourceUID::class] = OBJECT
   variantMapper[WorkerThreadPool::class] = OBJECT
@@ -2161,6 +2231,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AnimationNodeBlendSpace1D::class] = OBJECT
   variantMapper[AnimationNodeBlendSpace2D::class] = OBJECT
   variantMapper[AnimationNodeBlendTree::class] = OBJECT
+  variantMapper[AnimationNodeExtension::class] = OBJECT
   variantMapper[AnimationNodeOneShot::class] = OBJECT
   variantMapper[AnimationNodeOutput::class] = OBJECT
   variantMapper[AnimationNodeStateMachine::class] = OBJECT
@@ -2293,6 +2364,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[CollisionPolygon3D::class] = OBJECT
   variantMapper[CollisionShape2D::class] = OBJECT
   variantMapper[CollisionShape3D::class] = OBJECT
+  variantMapper[ColorPalette::class] = OBJECT
   variantMapper[ColorPicker::class] = OBJECT
   variantMapper[ColorPickerButton::class] = OBJECT
   variantMapper[ColorRect::class] = OBJECT
@@ -2337,6 +2409,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
   variantMapper[Expression::class] = OBJECT
+  variantMapper[ExternalTexture::class] = OBJECT
   variantMapper[FBXDocument::class] = OBJECT
   variantMapper[FBXState::class] = OBJECT
   variantMapper[FastNoiseLite::class] = OBJECT
@@ -2361,6 +2434,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GLTFLight::class] = OBJECT
   variantMapper[GLTFMesh::class] = OBJECT
   variantMapper[GLTFNode::class] = OBJECT
+  variantMapper[GLTFObjectModelProperty::class] = OBJECT
   variantMapper[GLTFPhysicsBody::class] = OBJECT
   variantMapper[GLTFPhysicsShape::class] = OBJECT
   variantMapper[GLTFSkeleton::class] = OBJECT
@@ -2438,6 +2512,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[JSON::class] = OBJECT
   variantMapper[JSONRPC::class] = OBJECT
   variantMapper[JavaClass::class] = OBJECT
+  variantMapper[JavaObject::class] = OBJECT
   variantMapper[JavaScript::class] = OBJECT
   variantMapper[JavaScriptObject::class] = OBJECT
   variantMapper[Joint2D::class] = OBJECT
@@ -2460,6 +2535,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Line2D::class] = OBJECT
   variantMapper[LineEdit::class] = OBJECT
   variantMapper[LinkButton::class] = OBJECT
+  variantMapper[LookAtModifier3D::class] = OBJECT
   variantMapper[MainLoop::class] = OBJECT
   variantMapper[MarginContainer::class] = OBJECT
   variantMapper[Marker2D::class] = OBJECT
@@ -2523,18 +2599,29 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OmniLight3D::class] = OBJECT
   variantMapper[OpenXRAPIExtension::class] = OBJECT
   variantMapper[OpenXRAction::class] = OBJECT
+  variantMapper[OpenXRActionBindingModifier::class] = OBJECT
   variantMapper[OpenXRActionMap::class] = OBJECT
   variantMapper[OpenXRActionSet::class] = OBJECT
+  variantMapper[OpenXRAnalogThresholdModifier::class] = OBJECT
+  variantMapper[OpenXRBindingModifier::class] = OBJECT
+  variantMapper[OpenXRBindingModifierEditor::class] = OBJECT
   variantMapper[OpenXRCompositionLayer::class] = OBJECT
   variantMapper[OpenXRCompositionLayerCylinder::class] = OBJECT
   variantMapper[OpenXRCompositionLayerEquirect::class] = OBJECT
   variantMapper[OpenXRCompositionLayerQuad::class] = OBJECT
+  variantMapper[OpenXRDpadBindingModifier::class] = OBJECT
   variantMapper[OpenXRExtensionWrapperExtension::class] = OBJECT
   variantMapper[OpenXRHand::class] = OBJECT
+  variantMapper[OpenXRHapticBase::class] = OBJECT
+  variantMapper[OpenXRHapticVibration::class] = OBJECT
   variantMapper[OpenXRIPBinding::class] = OBJECT
+  variantMapper[OpenXRIPBindingModifier::class] = OBJECT
   variantMapper[OpenXRInteractionProfile::class] = OBJECT
+  variantMapper[OpenXRInteractionProfileEditor::class] = OBJECT
+  variantMapper[OpenXRInteractionProfileEditorBase::class] = OBJECT
   variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
   variantMapper[OpenXRInterface::class] = OBJECT
+  variantMapper[OpenXRVisibilityMask::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
   variantMapper[PCKPacker::class] = OBJECT
@@ -2653,6 +2740,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
   variantMapper[ResourcePreloader::class] = OBJECT
+  variantMapper[RetargetModifier3D::class] = OBJECT
   variantMapper[RibbonTrailMesh::class] = OBJECT
   variantMapper[RichTextEffect::class] = OBJECT
   variantMapper[RichTextLabel::class] = OBJECT
@@ -2678,6 +2766,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Shader::class] = OBJECT
   variantMapper[ShaderGlobalsOverride::class] = OBJECT
   variantMapper[ShaderInclude::class] = OBJECT
+  variantMapper[ShaderIncludeDB::class] = OBJECT
   variantMapper[ShaderMaterial::class] = OBJECT
   variantMapper[Shape2D::class] = OBJECT
   variantMapper[Shape3D::class] = OBJECT
@@ -2712,6 +2801,11 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SplitContainer::class] = OBJECT
   variantMapper[SpotLight3D::class] = OBJECT
   variantMapper[SpringArm3D::class] = OBJECT
+  variantMapper[SpringBoneCollision3D::class] = OBJECT
+  variantMapper[SpringBoneCollisionCapsule3D::class] = OBJECT
+  variantMapper[SpringBoneCollisionPlane3D::class] = OBJECT
+  variantMapper[SpringBoneCollisionSphere3D::class] = OBJECT
+  variantMapper[SpringBoneSimulator3D::class] = OBJECT
   variantMapper[Sprite2D::class] = OBJECT
   variantMapper[Sprite3D::class] = OBJECT
   variantMapper[SpriteBase3D::class] = OBJECT
@@ -2733,6 +2827,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[StyleBoxTexture::class] = OBJECT
   variantMapper[SubViewport::class] = OBJECT
   variantMapper[SubViewportContainer::class] = OBJECT
+  variantMapper[SubtweenTweener::class] = OBJECT
   variantMapper[SurfaceTool::class] = OBJECT
   variantMapper[SyntaxHighlighter::class] = OBJECT
   variantMapper[SystemFont::class] = OBJECT
@@ -2776,6 +2871,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[TorusMesh::class] = OBJECT
   variantMapper[TouchScreenButton::class] = OBJECT
   variantMapper[Translation::class] = OBJECT
+  variantMapper[TranslationDomain::class] = OBJECT
   variantMapper[Tree::class] = OBJECT
   variantMapper[TreeItem::class] = OBJECT
   variantMapper[TriangleMesh::class] = OBJECT
@@ -2963,25 +3059,25 @@ public fun registerEngineTypeMethods(): Unit {
   Object.MethodBindings
   RefCounted.MethodBindings
   Performance.MethodBindings
+  Engine.MethodBindings
+  ProjectSettings.MethodBindings
+  OS.MethodBindings
+  Time.MethodBindings
   TextServerManager.MethodBindings
   PhysicsServer2DManager.MethodBindings
   PhysicsServer3DManager.MethodBindings
   NavigationMeshGenerator.MethodBindings
-  ProjectSettings.MethodBindings
   IP.MethodBindings
   Geometry2D.MethodBindings
   Geometry3D.MethodBindings
   ResourceLoader.MethodBindings
   ResourceSaver.MethodBindings
-  OS.MethodBindings
-  Engine.MethodBindings
   ClassDB.MethodBindings
   Marshalls.MethodBindings
   TranslationServer.MethodBindings
   Input.MethodBindings
   InputMap.MethodBindings
   EngineDebugger.MethodBindings
-  Time.MethodBindings
   GDExtensionManager.MethodBindings
   ResourceUID.MethodBindings
   WorkerThreadPool.MethodBindings
@@ -3020,6 +3116,7 @@ public fun registerEngineTypeMethods(): Unit {
   AnimationNodeBlendSpace1D.MethodBindings
   AnimationNodeBlendSpace2D.MethodBindings
   AnimationNodeBlendTree.MethodBindings
+  AnimationNodeExtension.MethodBindings
   AnimationNodeOneShot.MethodBindings
   AnimationNodeOutput.MethodBindings
   AnimationNodeStateMachine.MethodBindings
@@ -3152,6 +3249,7 @@ public fun registerEngineTypeMethods(): Unit {
   CollisionPolygon3D.MethodBindings
   CollisionShape2D.MethodBindings
   CollisionShape3D.MethodBindings
+  ColorPalette.MethodBindings
   ColorPicker.MethodBindings
   ColorPickerButton.MethodBindings
   ColorRect.MethodBindings
@@ -3196,6 +3294,7 @@ public fun registerEngineTypeMethods(): Unit {
   EngineProfiler.MethodBindings
   Environment.MethodBindings
   Expression.MethodBindings
+  ExternalTexture.MethodBindings
   FBXDocument.MethodBindings
   FBXState.MethodBindings
   FastNoiseLite.MethodBindings
@@ -3220,6 +3319,7 @@ public fun registerEngineTypeMethods(): Unit {
   GLTFLight.MethodBindings
   GLTFMesh.MethodBindings
   GLTFNode.MethodBindings
+  GLTFObjectModelProperty.MethodBindings
   GLTFPhysicsBody.MethodBindings
   GLTFPhysicsShape.MethodBindings
   GLTFSkeleton.MethodBindings
@@ -3297,6 +3397,7 @@ public fun registerEngineTypeMethods(): Unit {
   JSON.MethodBindings
   JSONRPC.MethodBindings
   JavaClass.MethodBindings
+  JavaObject.MethodBindings
   JavaScript.MethodBindings
   JavaScriptObject.MethodBindings
   Joint2D.MethodBindings
@@ -3319,6 +3420,7 @@ public fun registerEngineTypeMethods(): Unit {
   Line2D.MethodBindings
   LineEdit.MethodBindings
   LinkButton.MethodBindings
+  LookAtModifier3D.MethodBindings
   MainLoop.MethodBindings
   MarginContainer.MethodBindings
   Marker2D.MethodBindings
@@ -3382,18 +3484,29 @@ public fun registerEngineTypeMethods(): Unit {
   OmniLight3D.MethodBindings
   OpenXRAPIExtension.MethodBindings
   OpenXRAction.MethodBindings
+  OpenXRActionBindingModifier.MethodBindings
   OpenXRActionMap.MethodBindings
   OpenXRActionSet.MethodBindings
+  OpenXRAnalogThresholdModifier.MethodBindings
+  OpenXRBindingModifier.MethodBindings
+  OpenXRBindingModifierEditor.MethodBindings
   OpenXRCompositionLayer.MethodBindings
   OpenXRCompositionLayerCylinder.MethodBindings
   OpenXRCompositionLayerEquirect.MethodBindings
   OpenXRCompositionLayerQuad.MethodBindings
+  OpenXRDpadBindingModifier.MethodBindings
   OpenXRExtensionWrapperExtension.MethodBindings
   OpenXRHand.MethodBindings
+  OpenXRHapticBase.MethodBindings
+  OpenXRHapticVibration.MethodBindings
   OpenXRIPBinding.MethodBindings
+  OpenXRIPBindingModifier.MethodBindings
   OpenXRInteractionProfile.MethodBindings
+  OpenXRInteractionProfileEditor.MethodBindings
+  OpenXRInteractionProfileEditorBase.MethodBindings
   OpenXRInteractionProfileMetadata.MethodBindings
   OpenXRInterface.MethodBindings
+  OpenXRVisibilityMask.MethodBindings
   OptimizedTranslation.MethodBindings
   OptionButton.MethodBindings
   PCKPacker.MethodBindings
@@ -3512,6 +3625,7 @@ public fun registerEngineTypeMethods(): Unit {
   ResourceFormatSaver.MethodBindings
   ResourceImporter.MethodBindings
   ResourcePreloader.MethodBindings
+  RetargetModifier3D.MethodBindings
   RibbonTrailMesh.MethodBindings
   RichTextEffect.MethodBindings
   RichTextLabel.MethodBindings
@@ -3537,6 +3651,7 @@ public fun registerEngineTypeMethods(): Unit {
   Shader.MethodBindings
   ShaderGlobalsOverride.MethodBindings
   ShaderInclude.MethodBindings
+  ShaderIncludeDB.MethodBindings
   ShaderMaterial.MethodBindings
   Shape2D.MethodBindings
   Shape3D.MethodBindings
@@ -3571,6 +3686,11 @@ public fun registerEngineTypeMethods(): Unit {
   SplitContainer.MethodBindings
   SpotLight3D.MethodBindings
   SpringArm3D.MethodBindings
+  SpringBoneCollision3D.MethodBindings
+  SpringBoneCollisionCapsule3D.MethodBindings
+  SpringBoneCollisionPlane3D.MethodBindings
+  SpringBoneCollisionSphere3D.MethodBindings
+  SpringBoneSimulator3D.MethodBindings
   Sprite2D.MethodBindings
   Sprite3D.MethodBindings
   SpriteBase3D.MethodBindings
@@ -3592,6 +3712,7 @@ public fun registerEngineTypeMethods(): Unit {
   StyleBoxTexture.MethodBindings
   SubViewport.MethodBindings
   SubViewportContainer.MethodBindings
+  SubtweenTweener.MethodBindings
   SurfaceTool.MethodBindings
   SyntaxHighlighter.MethodBindings
   SystemFont.MethodBindings
@@ -3635,6 +3756,7 @@ public fun registerEngineTypeMethods(): Unit {
   TorusMesh.MethodBindings
   TouchScreenButton.MethodBindings
   Translation.MethodBindings
+  TranslationDomain.MethodBindings
   Tree.MethodBindings
   TreeItem.MethodBindings
   TriangleMesh.MethodBindings

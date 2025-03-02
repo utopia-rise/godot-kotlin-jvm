@@ -87,7 +87,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(383, scriptIndex)
+    createNativeObject(389, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {
@@ -220,9 +220,9 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns true if the server can act as a relay in the current configuration (i.e. if the higher
-   * level [MultiplayerAPI] should notify connected clients of other peers, and implement a relay
-   * protocol to allow communication between them).
+   * Returns `true` if the server can act as a relay in the current configuration. That is, if the
+   * higher level [MultiplayerAPI] should notify connected clients of other peers, and implement a
+   * relay protocol to allow communication between them.
    */
   public final fun isServerRelaySupported(): Boolean {
     TransferContext.writeArguments()

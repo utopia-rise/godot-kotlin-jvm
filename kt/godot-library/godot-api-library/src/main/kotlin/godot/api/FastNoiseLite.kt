@@ -280,7 +280,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(238, scriptIndex)
+    createNativeObject(241, scriptIndex)
   }
 
   /**
@@ -564,11 +564,12 @@ public open class FastNoiseLite : Noise() {
     TYPE_CELLULAR(2),
     /**
      * As opposed to [TYPE_PERLIN], gradients exist in a simplex lattice rather than a grid lattice,
-     * avoiding directional artifacts.
+     * avoiding directional artifacts. Internally uses FastNoiseLite's OpenSimplex2 noise type.
      */
     TYPE_SIMPLEX(0),
     /**
-     * Modified, higher quality version of [TYPE_SIMPLEX], but slower.
+     * Modified, higher quality version of [TYPE_SIMPLEX], but slower. Internally uses
+     * FastNoiseLite's OpenSimplex2S noise type.
      */
     TYPE_SIMPLEX_SMOOTH(1),
     ;
@@ -630,7 +631,7 @@ public open class FastNoiseLite : Noise() {
      */
     DISTANCE_MANHATTAN(2),
     /**
-     * Blend of [DISTANCE_EUCLIDEAN] and [DISTANCE_MANHATTAN] to give curved cell boundaries
+     * Blend of [DISTANCE_EUCLIDEAN] and [DISTANCE_MANHATTAN] to give curved cell boundaries.
      */
     DISTANCE_HYBRID(3),
     ;

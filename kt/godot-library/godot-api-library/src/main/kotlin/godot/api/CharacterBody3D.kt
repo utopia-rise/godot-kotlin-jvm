@@ -245,7 +245,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(180, scriptIndex)
+    createNativeObject(181, scriptIndex)
   }
 
   /**

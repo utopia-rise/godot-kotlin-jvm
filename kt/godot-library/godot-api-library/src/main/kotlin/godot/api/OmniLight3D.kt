@@ -46,7 +46,7 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(419, scriptIndex)
+    createNativeObject(425, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

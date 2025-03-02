@@ -81,7 +81,7 @@ public open class Theme : Resource() {
    * The default font size of this theme resource. Used as the default value when trying to fetch a
    * font size value that doesn't exist in this theme or is in invalid state. If the default font size
    * is also missing or invalid, the engine fallback value is used (see [ThemeDB.fallbackFontSize]).
-   * Values below `0` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to
+   * Values below `1` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to
    * check if this value is valid.
    */
   public final inline var defaultFontSize: Int
@@ -93,7 +93,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(661, scriptIndex)
+    createNativeObject(686, scriptIndex)
   }
 
   /**

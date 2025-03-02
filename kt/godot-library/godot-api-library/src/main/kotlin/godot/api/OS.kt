@@ -45,7 +45,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object OS : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(11)
+    getSingleton(3)
   }
 
   /**
@@ -76,7 +76,13 @@ public object OS : Object() {
    * Returns an array of connected MIDI device names, if they exist. Returns an empty array if the
    * system MIDI driver has not previously been initialized with [openMidiInputs]. See also
    * [closeMidiInputs].
-   * **Note:** This method is implemented on Linux, macOS and Windows.
+   * **Note:** This method is implemented on Linux, macOS, Windows, and Web.
+   * **Note:** On the Web platform, Web MIDI needs to be supported by the browser.
+   * [url=https://caniuse.com/midi]For the time being[/url], it is currently supported by all major
+   * browsers, except Safari.
+   * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted
+   * first. This permission request is performed when calling [openMidiInputs]. The browser will
+   * refrain from processing MIDI input until the user accepts the permission request.
    */
   @JvmStatic
   public final fun getConnectedMidiInputs(): PackedStringArray {
@@ -88,7 +94,13 @@ public object OS : Object() {
   /**
    * Initializes the singleton for the system MIDI driver, allowing Godot to receive
    * [InputEventMIDI]. See also [getConnectedMidiInputs] and [closeMidiInputs].
-   * **Note:** This method is implemented on Linux, macOS and Windows.
+   * **Note:** This method is implemented on Linux, macOS, Windows, and Web.
+   * **Note:** On the Web platform, Web MIDI needs to be supported by the browser.
+   * [url=https://caniuse.com/midi]For the time being[/url], it is currently supported by all major
+   * browsers, except Safari.
+   * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted
+   * first. This permission request is performed when calling [openMidiInputs]. The browser will
+   * refrain from processing MIDI input until the user accepts the permission request.
    */
   @JvmStatic
   public final fun openMidiInputs(): Unit {
@@ -99,7 +111,7 @@ public object OS : Object() {
   /**
    * Shuts down the system MIDI driver. Godot will no longer receive [InputEventMIDI]. See also
    * [openMidiInputs] and [getConnectedMidiInputs].
-   * **Note:** This method is implemented on Linux, macOS and Windows.
+   * **Note:** This method is implemented on Linux, macOS, Windows, and Web.
    */
   @JvmStatic
   public final fun closeMidiInputs(): Unit {
@@ -267,20 +279,82 @@ public object OS : Object() {
   }
 
   /**
-   * Reads a user input string from the standard input (usually the terminal). This operation is
+   * Reads a user input as a UTF-8 encoded string from the standard input. This operation can be
    * *blocking*, which causes the window to freeze if [readStringFromStdin] is called on the main
-   * thread. The thread calling [readStringFromStdin] will block until the program receives a line
-   * break in standard input (usually by the user pressing [kbd]Enter[/kbd]).
-   * **Note:** This method is implemented on Linux, macOS and Windows.
+   * thread.
+   * - If standard input is console, this method will block until the program receives a line break
+   * in standard input (usually by the user pressing [kbd]Enter[/kbd]).
+   * - If standard input is pipe, this method will block until a specific amount of data is read or
+   * pipe is closed.
+   * - If standard input is a file, this method will read a specific amount of data (or less if
+   * end-of-file is reached) and return immediately.
+   * **Note:** This method automatically replaces `\r\n` line breaks with `\n` and removes them from
+   * the end of the string. Use [readBufferFromStdin] to read the unprocessed data.
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
    * **Note:** On exported Windows builds, run the console wrapper executable to access the
-   * terminal. Otherwise, the standard input will not work correctly. If you need a single executable
-   * with console support, use a custom build compiled with the `windows_subsystem=console` flag.
+   * terminal. If standard input is console, calling this method without console wrapped will freeze
+   * permanently. If standard input is pipe or file, it can be used without console wrapper. If you
+   * need a single executable with full console support, use a custom build compiled with the
+   * `windows_subsystem=console` flag.
    */
   @JvmStatic
-  public final fun readStringFromStdin(): String {
-    TransferContext.writeArguments()
+  public final fun readStringFromStdin(bufferSize: Long): String {
+    TransferContext.writeArguments(LONG to bufferSize)
     TransferContext.callMethod(ptr, MethodBindings.readStringFromStdinPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Reads a user input as raw data from the standard input. This operation can be *blocking*, which
+   * causes the window to freeze if [readStringFromStdin] is called on the main thread.
+   * - If standard input is console, this method will block until the program receives a line break
+   * in standard input (usually by the user pressing [kbd]Enter[/kbd]).
+   * - If standard input is pipe, this method will block until a specific amount of data is read or
+   * pipe is closed.
+   * - If standard input is a file, this method will read a specific amount of data (or less if
+   * end-of-file is reached) and return immediately.
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
+   * **Note:** On exported Windows builds, run the console wrapper executable to access the
+   * terminal. If standard input is console, calling this method without console wrapped will freeze
+   * permanently. If standard input is pipe or file, it can be used without console wrapper. If you
+   * need a single executable with full console support, use a custom build compiled with the
+   * `windows_subsystem=console` flag.
+   */
+  @JvmStatic
+  public final fun readBufferFromStdin(bufferSize: Long): PackedByteArray {
+    TransferContext.writeArguments(LONG to bufferSize)
+    TransferContext.callMethod(ptr, MethodBindings.readBufferFromStdinPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  /**
+   * Returns type of the standard input device.
+   */
+  @JvmStatic
+  public final fun getStdinType(): StdHandleType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStdinTypePtr, LONG)
+    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns type of the standard output device.
+   */
+  @JvmStatic
+  public final fun getStdoutType(): StdHandleType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStdoutTypePtr, LONG)
+    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns type of the standard error device.
+   */
+  @JvmStatic
+  public final fun getStderrType(): StdHandleType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStderrTypePtr, LONG)
+    return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -305,8 +379,8 @@ public object OS : Object() {
    * ```
    * csharp:
    * ```csharp
-   * var output = new Godot.Collections.Array();
-   * int exitCode = OS.Execute("ls", new string[] {"-l", "/tmp"}, output);
+   * Godot.Collections.Array output = [];
+   * int exitCode = OS.Execute("ls", ["-l", "/tmp"], output);
    * ```
    *
    * If you wish to access a shell built-in or execute a composite command, a platform-specific
@@ -319,8 +393,8 @@ public object OS : Object() {
    * ```
    * csharp:
    * ```csharp
-   * var output = new Godot.Collections.Array();
-   * OS.Execute("CMD.exe", new string[] {"/C", "cd &#37;TEMP&#37; && dir"}, output);
+   * Godot.Collections.Array output = [];
+   * OS.Execute("CMD.exe", ["/C", "cd &#37;TEMP&#37; && dir"], output);
    * ```
    *
    * **Note:** This method is implemented on Android, Linux, macOS, and Windows.
@@ -353,6 +427,9 @@ public object OS : Object() {
    * terminate when Godot terminates. The path specified in [path] must exist and be an executable file
    * or macOS `.app` bundle. The path is resolved based on the current platform. The [arguments] are
    * used in the given order and separated by a space.
+   * If [blocking] is `false`, created pipes work in non-blocking mode, i.e. read and write
+   * operations will return immediately. Use [FileAccess.getError] to check if the last read/write
+   * operation was successful.
    * If the process cannot be created, this method returns an empty [Dictionary]. Otherwise, this
    * method returns a [Dictionary] with the following keys:
    * - `"stdio"` - [FileAccess] to access the process stdin and stdout pipes (read/write).
@@ -369,10 +446,14 @@ public object OS : Object() {
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables,
    * specified during export or system .app bundle, system .app bundles will ignore arguments.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun executeWithPipe(path: String, arguments: PackedStringArray):
-      Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments)
+  public final fun executeWithPipe(
+    path: String,
+    arguments: PackedStringArray,
+    blocking: Boolean = true,
+  ): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to blocking)
     TransferContext.callMethod(ptr, MethodBindings.executeWithPipePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -387,7 +468,7 @@ public object OS : Object() {
    * If the process is successfully created, this method returns its process ID, which you can use
    * to monitor the process (and potentially terminate it with [kill]). Otherwise, this method returns
    * `-1`.
-   * For example, running another instance of the project:
+   * **Example:** Run another instance of the project:
    *
    * gdscript:
    * ```gdscript
@@ -395,7 +476,7 @@ public object OS : Object() {
    * ```
    * csharp:
    * ```csharp
-   * var pid = OS.CreateProcess(OS.GetExecutablePath(), new string[] {});
+   * var pid = OS.CreateProcess(OS.GetExecutablePath(), []);
    * ```
    *
    * See [execute] if you wish to run an external command and retrieve the results.
@@ -447,8 +528,10 @@ public object OS : Object() {
   /**
    * Requests the OS to open a resource identified by [uri] with the most appropriate program. For
    * example:
-   * - `OS.shell_open("C:\\Users\name\Downloads")` on Windows opens the file explorer at the user's
-   * Downloads folder.
+   * - `OS.shell_open("C:\\Users\\name\\Downloads")` on Windows opens the file explorer at the
+   * user's Downloads folder.
+   * - `OS.shell_open("C:/Users/name/Downloads")` also works on Windows and opens the file explorer
+   * at the user's Downloads folder.
    * - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official
    * Godot website.
    * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To"
@@ -685,6 +768,23 @@ public object OS : Object() {
   }
 
   /**
+   * Returns the branded version used in marketing, followed by the build number (on Windows) or the
+   * version number (on macOS). Examples include `11 (build 22000)` and `Sequoia (15.0.0)`. This value
+   * can then be appended to [getName] to get a full, human-readable operating system name and version
+   * combination for the operating system. Windows feature updates such as 24H2 are not contained in
+   * the resulting string, but Windows Server is recognized as such (e.g. `2025 (build 26100)` for
+   * Windows Server 2025).
+   * **Note:** This method is only supported on Windows and macOS. On other operating systems, it
+   * returns the same value as [getVersion].
+   */
+  @JvmStatic
+  public final fun getVersionAlias(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVersionAliasPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns the command-line arguments passed to the engine.
    * Command-line arguments can be written in any form, including both `--key value` and
    * `--key=value` forms so they can be properly parsed, as long as custom command-line arguments do
@@ -692,8 +792,8 @@ public object OS : Object() {
    * You can also incorporate environment variables using the [getEnvironment] method.
    * You can set [ProjectSettings.editor/run/mainRunArgs] to define command-line arguments to be
    * passed by the editor when running the project.
-   * Here's a minimal example on how to parse command-line arguments into a [Dictionary] using the
-   * `--key=value` form for arguments:
+   * **Example:** Parse command-line arguments into a [Dictionary] using the `--key=value` form for
+   * arguments:
    *
    * gdscript:
    * ```gdscript
@@ -896,8 +996,8 @@ public object OS : Object() {
 
   /**
    * Returns the model name of the current device.
-   * **Note:** This method is implemented on Android and iOS. Returns `"GenericDevice"` on
-   * unsupported platforms.
+   * **Note:** This method is implemented on Android, iOS, macOS, and Windows. Returns
+   * `"GenericDevice"` on unsupported platforms.
    */
   @JvmStatic
   public final fun getModelName(): String {
@@ -1104,6 +1204,16 @@ public object OS : Object() {
   }
 
   /**
+   * Returns the *global* temporary data directory according to the operating system's standards.
+   */
+  @JvmStatic
+  public final fun getTempDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTempDirPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns a string that is unique to the device.
    * **Note:** This string may change without notice if the user reinstalls their operating system,
    * upgrades it, or modifies their hardware. This means it should generally not be used to encrypt
@@ -1159,10 +1269,10 @@ public object OS : Object() {
    * ```
    * csharp:
    * ```csharp
-   * GD.Print(OS.IsKeycodeUnicode((long)Key.G));      // Prints true
-   * GD.Print(OS.IsKeycodeUnicode((long)Key.Kp4));    // Prints true
-   * GD.Print(OS.IsKeycodeUnicode((long)Key.Tab));    // Prints false
-   * GD.Print(OS.IsKeycodeUnicode((long)Key.Escape)); // Prints false
+   * GD.Print(OS.IsKeycodeUnicode((long)Key.G));      // Prints True
+   * GD.Print(OS.IsKeycodeUnicode((long)Key.Kp4));    // Prints True
+   * GD.Print(OS.IsKeycodeUnicode((long)Key.Tab));    // Prints False
+   * GD.Print(OS.IsKeycodeUnicode((long)Key.Escape)); // Prints False
    * ```
    */
   @JvmStatic
@@ -1276,10 +1386,13 @@ public object OS : Object() {
   }
 
   /**
-   * Requests permission from the OS for the given [name]. Returns `true` if the permission has been
-   * successfully granted.
-   * **Note:** This method is currently only implemented on Android, to specifically request
-   * permission for `"RECORD_AUDIO"` by `AudioDriverOpenSL`.
+   * Requests permission from the OS for the given [name]. Returns `true` if the permission has
+   * already been granted. See also [signal MainLoop.on_request_permissions_result].
+   * The [name] must be the full permission name. For example:
+   * - `OS.request_permission("android.permission.READ_EXTERNAL_STORAGE")`
+   * - `OS.request_permission("android.permission.POST_NOTIFICATIONS")`
+   * **Note:** Permission must be checked during export.
+   * **Note:** This method is only implemented on Android.
    */
   @JvmStatic
   public final fun requestPermission(name: String): Boolean {
@@ -1289,8 +1402,9 @@ public object OS : Object() {
   }
 
   /**
-   * Requests *dangerous* permissions from the OS. Returns `true` if permissions have been
-   * successfully granted.
+   * Requests *dangerous* permissions from the OS. Returns `true` if permissions have already been
+   * granted. See also [signal MainLoop.on_request_permissions_result].
+   * **Note:** Permissions must be checked during export.
    * **Note:** This method is only implemented on Android. Normal permissions are automatically
    * granted at install time in Android applications.
    */
@@ -1340,6 +1454,10 @@ public object OS : Object() {
      * The Direct3D 12 rendering driver.
      */
     RENDERING_DRIVER_D3D12(2),
+    /**
+     * The Metal rendering driver.
+     */
+    RENDERING_DRIVER_METAL(3),
     ;
 
     public val id: Long
@@ -1396,6 +1514,46 @@ public object OS : Object() {
 
     public companion object {
       public fun from(`value`: Long): SystemDir = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class StdHandleType(
+    id: Long,
+  ) {
+    /**
+     * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
+     * devices.
+     */
+    STD_HANDLE_INVALID(0),
+    /**
+     * Standard I/O device is a console. This typically occurs when Godot is run from a terminal
+     * with no redirection. This is also used for all standard I/O devices when running Godot from the
+     * editor, at least on desktop platforms.
+     */
+    STD_HANDLE_CONSOLE(1),
+    /**
+     * Standard I/O device is a regular file. This typically occurs with redirection from a
+     * terminal, e.g. `godot > stdout.txt`, `godot < stdin.txt` or `godot > stdout_stderr.txt 2>&1`.
+     */
+    STD_HANDLE_FILE(2),
+    /**
+     * Standard I/O device is a FIFO/pipe. This typically occurs with pipe usage from a terminal,
+     * e.g. `echo "Hello" | godot`.
+     */
+    STD_HANDLE_PIPE(3),
+    /**
+     * Standard I/O device type is unknown.
+     */
+    STD_HANDLE_UNKNOWN(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): StdHandleType = entries.single { it.id == `value` }
     }
   }
 
@@ -1456,12 +1614,24 @@ public object OS : Object() {
         TypeManager.getMethodBindPtr("OS", "get_executable_path", 201670096)
 
     internal val readStringFromStdinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 2841200299)
+        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 990163283)
+
+    internal val readBufferFromStdinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "read_buffer_from_stdin", 47165747)
+
+    internal val getStdinTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_stdin_type", 1704816237)
+
+    internal val getStdoutTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_stdout_type", 1704816237)
+
+    internal val getStderrTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_stderr_type", 1704816237)
 
     internal val executePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute", 1488299882)
 
     internal val executeWithPipePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "execute_with_pipe", 3845631403)
+        TypeManager.getMethodBindPtr("OS", "execute_with_pipe", 2851312030)
 
     internal val createProcessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "create_process", 2903767230)
@@ -1504,6 +1674,9 @@ public object OS : Object() {
 
     internal val getVersionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_version", 201670096)
+
+    internal val getVersionAliasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_version_alias", 201670096)
 
     internal val getCmdlineArgsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_cmdline_args", 2981934095)
@@ -1570,6 +1743,9 @@ public object OS : Object() {
 
     internal val getCacheDirPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_cache_dir", 201670096)
+
+    internal val getTempDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_temp_dir", 201670096)
 
     internal val getUniqueIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_unique_id", 201670096)

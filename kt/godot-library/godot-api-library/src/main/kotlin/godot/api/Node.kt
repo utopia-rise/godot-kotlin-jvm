@@ -188,6 +188,12 @@ public open class Node : Object() {
   public val editorDescriptionChanged: Signal1<Node> by Signal1
 
   /**
+   * Emitted when an attribute of the node that is relevant to the editor is changed. Only emitted
+   * in the editor.
+   */
+  public val editorStateChanged: Signal0 by Signal0
+
+  /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the
    * same parent). When set to an existing sibling's name, the node is automatically renamed.
    * **Note:** When changing the name, the following characters will be replaced with an underscore:
@@ -226,10 +232,10 @@ public open class Node : Object() {
 
   /**
    * The owner of this node. The owner must be an ancestor of this node. When packing the owner node
-   * in a [PackedScene], all the nodes it owns are also saved with it.
+   * in a [PackedScene], all the nodes it owns are also saved with it. See also [uniqueNameInOwner].
    * **Note:** In the editor, nodes not owned by the scene root are usually not displayed in the
    * Scene dock, and will **not** be saved. To prevent this, remember to set the owner after calling
-   * [addChild]. See also (see [uniqueNameInOwner])
+   * [addChild].
    */
   public final inline var owner: Node?
     @JvmName("ownerProperty")
@@ -261,9 +267,9 @@ public open class Node : Object() {
     }
 
   /**
-   * The node's execution order of the process callbacks ([_process], [_physicsProcess], and
-   * internal processing). Nodes whose priority value is *lower* call their process callbacks first,
-   * regardless of tree order.
+   * The node's execution order of the process callbacks ([_process], [NOTIFICATION_PROCESS], and
+   * [NOTIFICATION_INTERNAL_PROCESS]). Nodes whose priority value is *lower* call their process
+   * callbacks first, regardless of tree order.
    */
   public final inline var processPriority: Int
     @JvmName("processPriorityProperty")
@@ -274,8 +280,8 @@ public open class Node : Object() {
     }
 
   /**
-   * Similar to [processPriority] but for [NOTIFICATION_PHYSICS_PROCESS], [_physicsProcess] or the
-   * internal version.
+   * Similar to [processPriority] but for [NOTIFICATION_PHYSICS_PROCESS], [_physicsProcess], or
+   * [NOTIFICATION_INTERNAL_PHYSICS_PROCESS].
    */
   public final inline var processPhysicsPriority: Int
     @JvmName("processPhysicsPriorityProperty")
@@ -384,7 +390,7 @@ public open class Node : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(405, scriptIndex)
+    createNativeObject(411, scriptIndex)
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): Error =
@@ -614,22 +620,40 @@ public open class Node : Object() {
    * seconds.
    * It is only called if processing is enabled, which is done automatically if this method is
    * overridden, and can be toggled with [setProcess].
+   * Processing happens in order of [processPriority], lower priority values are called first. Nodes
+   * with the same priority are processed in tree order, or top to bottom as seen in the editor (also
+   * known as pre-order traversal).
    * Corresponds to the [NOTIFICATION_PROCESS] notification in [Object.Notification].
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Unit {
   }
 
   /**
    * Called during the physics processing step of the main loop. Physics processing means that the
-   * frame rate is synced to the physics, i.e. the [delta] variable should be constant. [delta] is in
-   * seconds.
+   * frame rate is synced to the physics, i.e. the [delta] parameter will *generally* be constant (see
+   * exceptions below). [delta] is in seconds.
    * It is only called if physics processing is enabled, which is done automatically if this method
    * is overridden, and can be toggled with [setPhysicsProcess].
+   * Processing happens in order of [processPhysicsPriority], lower priority values are called
+   * first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the
+   * editor (also known as pre-order traversal).
    * Corresponds to the [NOTIFICATION_PHYSICS_PROCESS] notification in [Object.Notification].
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Unit {
   }
@@ -1414,6 +1438,12 @@ public open class Node : Object() {
    * Returns the time elapsed (in seconds) since the last physics callback. This value is identical
    * to [_physicsProcess]'s `delta` parameter, and is often consistent at run-time, unless
    * [Engine.physicsTicksPerSecond] is changed. See also [NOTIFICATION_PHYSICS_PROCESS].
+   * **Note:** The returned value will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using `delta` for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public final fun getPhysicsProcessDeltaTime(): Double {
     TransferContext.writeArguments()
@@ -1434,6 +1464,12 @@ public open class Node : Object() {
    * Returns the time elapsed (in seconds) since the last process callback. This value is identical
    * to [_process]'s `delta` parameter, and may vary from frame to frame. See also
    * [NOTIFICATION_PROCESS].
+   * **Note:** The returned value will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using `delta` for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public final fun getProcessDeltaTime(): Double {
     TransferContext.writeArguments()
@@ -1759,6 +1795,17 @@ public open class Node : Object() {
   }
 
   /**
+   * Makes this node inherit the translation domain from its parent node. If this node has no
+   * parent, the main translation domain will be used.
+   * This is the default behavior for all nodes. Calling [Object.setTranslationDomain] disables this
+   * behavior.
+   */
+  public final fun setTranslationDomainInherited(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.setTranslationDomainInheritedPtr, NIL)
+  }
+
+  /**
    * Returns the [Window] that contains this node. If the node is in the main window, this is
    * equivalent to getting the root node (`get_tree().get_root()`).
    */
@@ -1813,8 +1860,9 @@ public open class Node : Object() {
   }
 
   /**
-   * Duplicates the node, returning a new node with all of its properties, signals and groups copied
-   * from the original. The behavior can be tweaked through the [flags] (see [DuplicateFlags]).
+   * Duplicates the node, returning a new node with all of its properties, signals, groups, and
+   * children copied from the original. The behavior can be tweaked through the [flags] (see
+   * [DuplicateFlags]).
    * **Note:** For nodes with a [Script] attached, if [Object.Init] has been defined with required
    * parameters, the duplicated node will not have a [Script].
    */
@@ -1980,6 +2028,16 @@ public open class Node : Object() {
   public final fun rpcConfig(method: StringName, config: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ANY to config)
     TransferContext.callMethod(ptr, MethodBindings.rpcConfigPtr, NIL)
+  }
+
+  /**
+   * Returns a [Dictionary] mapping method names to their RPC configuration defined for this node
+   * using [rpcConfig].
+   */
+  public final fun getRpcConfig(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setEditorDescription(editorDescription: String): Unit {
@@ -2353,7 +2411,7 @@ public open class Node : Object() {
     DUPLICATE_SCRIPTS(4),
     /**
      * Duplicate using [PackedScene.instantiate]. If the node comes from a scene saved on disk,
-     * re-uses [PackedScene.instantiate] as the base for the duplicated node and its children.
+     * reuses [PackedScene.instantiate] as the base for the duplicated node and its children.
      */
     DUPLICATE_USE_INSTANTIATION(8),
     ;
@@ -2957,6 +3015,9 @@ public open class Node : Object() {
     internal val getAutoTranslateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "get_auto_translate_mode", 2498906432)
 
+    internal val setTranslationDomainInheritedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "set_translation_domain_inherited", 3218959716)
+
     internal val getWindowPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "get_window", 1757182445)
 
@@ -3012,6 +3073,9 @@ public open class Node : Object() {
 
     internal val rpcConfigPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "rpc_config", 3776071444)
+
+    internal val getRpcConfigPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_rpc_config", 1214101251)
 
     internal val setEditorDescriptionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_editor_description", 83702148)

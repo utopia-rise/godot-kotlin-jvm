@@ -31,26 +31,15 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * This is an audio stream that can playback music interactively, combining clips and a transition
- * table. Clips must be added first, and the transition rules via the [addTransition]. Additionally,
- * this stream export a property parameter to control the playback via [AudioStreamPlayer],
- * [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
+ * table. Clips must be added first, and then the transition rules via the [addTransition].
+ * Additionally, this stream exports a property parameter to control the playback via
+ * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D].
  * The way this is used is by filling a number of clips, then configuring the transition table. From
  * there, clips are selected for playback and the music will smoothly go from the current to the new
  * one while using the corresponding transition rule defined in the transition table.
  */
 @GodotBaseType
 public open class AudioStreamInteractive : AudioStream() {
-  /**
-   * Index of the initial clip, which will be played first when this stream is played.
-   */
-  public final inline var initialClip: Int
-    @JvmName("initialClipProperty")
-    get() = getInitialClip()
-    @JvmName("initialClipProperty")
-    set(`value`) {
-      setInitialClip(value)
-    }
-
   /**
    * Amount of clips contained in this interactive player.
    */
@@ -62,8 +51,19 @@ public open class AudioStreamInteractive : AudioStream() {
       setClipCount(value)
     }
 
+  /**
+   * Index of the initial clip, which will be played first when this stream is played.
+   */
+  public final inline var initialClip: Int
+    @JvmName("initialClipProperty")
+    get() = getInitialClip()
+    @JvmName("initialClipProperty")
+    set(`value`) {
+      setInitialClip(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(117, scriptIndex)
+    createNativeObject(118, scriptIndex)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {
@@ -189,7 +189,7 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   /**
-   * Return true if a given transition exists (was added via [addTransition]).
+   * Returns `true` if a given transition exists (was added via [addTransition]).
    */
   public final fun hasTransition(fromClip: Int, toClip: Int): Boolean {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())

@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
  * numbers.
- * **Example:**
+ * **Example:** Create a [SpinBox], disable its context menu and set its text alignment to right.
  *
  * gdscript:
  * ```gdscript
@@ -48,14 +48,13 @@ import kotlin.jvm.JvmName
  * spinBox.AlignHorizontal = LineEdit.HorizontalAlignEnum.Right;
  * ```
  *
- * The above code will create a [SpinBox], disable context menu on it and set the text alignment to
- * right.
  * See [Range] class for more options over the [SpinBox].
  * **Note:** With the [SpinBox]'s context menu disabled, you can right-click the bottom half of the
  * spinbox to set the value to its minimum, while right-clicking the top half sets the value to its
  * maximum.
  * **Note:** [SpinBox] relies on an underlying [LineEdit] node. To theme a [SpinBox]'s background,
- * add theme items for [LineEdit] and customize them.
+ * add theme items for [LineEdit] and customize them. The [LineEdit] has the `SpinBoxInnerLineEdit`
+ * theme variation, so that you can give it a distinct appearance from regular [LineEdit]s.
  * **Note:** If you want to implement drag and drop for the underlying [LineEdit], you can use
  * [Control.setDragForwarding] on the node returned by [getLineEdit].
  */
@@ -142,7 +141,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(607, scriptIndex)
+    createNativeObject(626, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

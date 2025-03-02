@@ -47,15 +47,18 @@ import kotlin.jvm.JvmName
  * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these
  * cannot store UV2 data required for baking.
  * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices
- * that support the Forward+ or Mobile rendering backends.
+ * that support the Forward+ or Mobile renderers.
+ * **Note:** The [LightmapGI] node only bakes light data for child nodes of its parent. Nodes
+ * further up the hierarchy of the scene will not be baked.
  */
 @GodotBaseType
 public open class LightmapGI : VisualInstance3D() {
   /**
    * The quality preset to use when baking lightmaps. This affects bake times, but output file sizes
    * remain mostly identical across quality levels.
-   * To further speed up bake times, decrease [bounces], disable [useDenoiser] and increase the
-   * lightmap texel size on 3D scenes in the Import doc.
+   * To further speed up bake times, decrease [bounces], disable [useDenoiser] and/or decrease
+   * [texelScale].
+   * To further increase quality, enable [supersampling] and/or increase [texelScale].
    */
   public final inline var quality: BakeQuality
     @JvmName("qualityProperty")
@@ -63,6 +66,39 @@ public open class LightmapGI : VisualInstance3D() {
     @JvmName("qualityProperty")
     set(`value`) {
       setBakeQuality(value)
+    }
+
+  /**
+   * If `true`, lightmaps are baked with the texel scale multiplied with [supersamplingFactor] and
+   * downsampled before saving the lightmap (so the effective texel density is identical to having
+   * supersampling disabled).
+   * Supersampling provides increased lightmap quality with less noise, smoother shadows and better
+   * shadowing of small-scale features in objects. However, it may result in significantly increased
+   * bake times and memory usage while baking lightmaps. Padding is automatically adjusted to avoid
+   * increasing light leaking.
+   */
+  public final inline var supersampling: Boolean
+    @JvmName("supersamplingProperty")
+    get() = isSupersamplingEnabled()
+    @JvmName("supersamplingProperty")
+    set(`value`) {
+      setSupersamplingEnabled(value)
+    }
+
+  /**
+   * The factor by which the texel density is multiplied for supersampling. For best results, use an
+   * integer value. While fractional values are allowed, they can result in increased light leaking and
+   * a blurry lightmap.
+   * Higher values may result in better quality, but also increase bake times and memory usage while
+   * baking.
+   * See [supersampling] for more information.
+   */
+  public final inline var supersamplingFactor: Float
+    @JvmName("supersamplingFactorProperty")
+    get() = getSupersamplingFactor()
+    @JvmName("supersamplingFactorProperty")
+    set(`value`) {
+      setSupersamplingFactor(value)
     }
 
   /**
@@ -111,6 +147,25 @@ public open class LightmapGI : VisualInstance3D() {
     @JvmName("directionalProperty")
     set(`value`) {
       setDirectional(value)
+    }
+
+  /**
+   * The shadowmasking policy to use for directional shadows on static objects that are baked with
+   * this [LightmapGI] instance.
+   * Shadowmasking allows [DirectionalLight3D] nodes to cast shadows even outside the range defined
+   * by their [DirectionalLight3D.directionalShadowMaxDistance] property. This is done by baking a
+   * texture that contains a shadowmap for the directional light, then using this texture according to
+   * the current shadowmask mode.
+   * **Note:** The shadowmask texture is only created if [shadowmaskMode] is not
+   * [LightmapGIData.SHADOWMASK_MODE_NONE]. To see a difference, you need to bake lightmaps again after
+   * switching from [LightmapGIData.SHADOWMASK_MODE_NONE] to any other mode.
+   */
+  public final inline var shadowmaskMode: LightmapGIData.ShadowmaskMode
+    @JvmName("shadowmaskModeProperty")
+    get() = getShadowmaskMode()
+    @JvmName("shadowmaskModeProperty")
+    set(`value`) {
+      setShadowmaskMode(value)
     }
 
   /**
@@ -199,6 +254,8 @@ public open class LightmapGI : VisualInstance3D() {
    * builds upon the existing lightmap texel size defined in each imported 3D scene, along with the
    * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
    * scales). Lower values will result in faster bake times.
+   * For example, doubling [texelScale] doubles the lightmap texture resolution for all objects *on
+   * each axis*, so it will *quadruple* the texel count.
    */
   public final inline var texelScale: Float
     @JvmName("texelScaleProperty")
@@ -313,7 +370,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(351, scriptIndex)
+    createNativeObject(356, scriptIndex)
   }
 
   /**
@@ -474,6 +531,28 @@ public open class LightmapGI : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setSupersamplingEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setSupersamplingEnabledPtr, NIL)
+  }
+
+  public final fun isSupersamplingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSupersamplingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSupersamplingFactor(factor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to factor.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setSupersamplingFactorPtr, NIL)
+  }
+
+  public final fun getSupersamplingFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSupersamplingFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setUseDenoiser(useDenoiser: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useDenoiser)
     TransferContext.callMethod(ptr, MethodBindings.setUseDenoiserPtr, NIL)
@@ -527,6 +606,17 @@ public open class LightmapGI : VisualInstance3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDirectionalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setShadowmaskMode(mode: LightmapGIData.ShadowmaskMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowmaskModePtr, NIL)
+  }
+
+  public final fun getShadowmaskMode(): LightmapGIData.ShadowmaskMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getShadowmaskModePtr, LONG)
+    return LightmapGIData.ShadowmaskMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseTextureForBounces(useTextureForBounces: Boolean): Unit {
@@ -805,6 +895,18 @@ public open class LightmapGI : VisualInstance3D() {
     internal val getMaxTextureSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
 
+    internal val setSupersamplingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_enabled", 2586408642)
+
+    internal val isSupersamplingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_supersampling_enabled", 36873697)
+
+    internal val setSupersamplingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_supersampling_factor", 373806689)
+
+    internal val getSupersamplingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_supersampling_factor", 1740695150)
+
     internal val setUseDenoiserPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
 
@@ -834,6 +936,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     internal val isDirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
+
+    internal val setShadowmaskModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_shadowmask_mode", 3451066572)
+
+    internal val getShadowmaskModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_shadowmask_mode", 785478560)
 
     internal val setUseTextureForBouncesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)

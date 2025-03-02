@@ -62,7 +62,7 @@ public object Input : Object() {
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(16)
+    getSingleton(17)
   }
 
   /**
@@ -281,7 +281,9 @@ public object Input : Object() {
   }
 
   /**
-   * Removes all mappings from the internal database that match the given GUID.
+   * Removes all mappings from the internal database that match the given GUID. All currently
+   * connected joypads that use this GUID will become unmapped.
+   * On Android, Godot will map to an internal fallback mapping.
    */
   @JvmStatic
   public final fun removeJoyMapping(guid: String): Unit {
@@ -325,9 +327,11 @@ public object Input : Object() {
 
   /**
    * Returns an SDL2-compatible device GUID on platforms that use gamepad remapping, e.g.
-   * `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the
+   * `030000004c050000c405000000010000`. Returns an empty string if it cannot be found. Godot uses the
    * [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
    * determine gamepad names and mappings based on this GUID.
+   * On Windows, all XInput joypad GUIDs will be overridden by Godot to `__XINPUT_DEVICE__`, because
+   * their mappings are the same.
    */
   @JvmStatic
   public final fun getJoyGuid(device: Int): String {
@@ -339,8 +343,11 @@ public object Input : Object() {
   /**
    * Returns a dictionary with extra platform-specific information about the device, e.g. the raw
    * gamepad name from the OS or the Steam Input index.
-   * On Windows the dictionary contains the following fields:
-   * `xinput_index`: The index of the controller in the XInput system.
+   * On Windows, the dictionary contains the following fields:
+   * `xinput_index`: The index of the controller in the XInput system. Undefined for DirectInput
+   * devices.
+   * `vendor_id`: The USB vendor ID of the device.
+   * `product_id`: The USB product ID of the device.
    * On Linux:
    * `raw_name`: The name of the controller as it came from the OS, before getting renamed by the
    * godot controller database.
@@ -348,6 +355,7 @@ public object Input : Object() {
    * `product_id`: The USB product ID of the device.
    * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device
    * this key won't be present.
+   * **Note:** The returned dictionary is always empty on Web, iOS, Android, and macOS.
    */
   @JvmStatic
   public final fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
@@ -458,6 +466,7 @@ public object Input : Object() {
    * Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableGravity] must be enabled.
    */
   @JvmStatic
   public final fun getGravity(): Vector3 {
@@ -474,6 +483,8 @@ public object Input : Object() {
    * accelerometer.
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer] must be
+   * enabled.
    */
   @JvmStatic
   public final fun getAccelerometer(): Vector3 {
@@ -487,6 +498,8 @@ public object Input : Object() {
    * sensor, if the device has one. Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableMagnetometer] must be
+   * enabled.
    */
   @JvmStatic
   public final fun getMagnetometer(): Vector3 {
@@ -500,6 +513,7 @@ public object Input : Object() {
    * if the device has one. Otherwise, the method returns [Vector3.ZERO].
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
+   * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableGyroscope] must be enabled.
    */
   @JvmStatic
   public final fun getGyroscope(): Vector3 {
@@ -695,7 +709,6 @@ public object Input : Object() {
   /**
    * Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code.
    * Also generates [Node.Input] calls.
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -802,6 +815,10 @@ public object Input : Object() {
      * Confines the mouse cursor to the game window, and make it hidden.
      */
     MOUSE_MODE_CONFINED_HIDDEN(4),
+    /**
+     * Max value of the [MouseMode].
+     */
+    MOUSE_MODE_MAX(5),
     ;
 
     public val id: Long

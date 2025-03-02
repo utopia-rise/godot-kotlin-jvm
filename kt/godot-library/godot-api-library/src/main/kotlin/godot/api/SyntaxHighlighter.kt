@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(633, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   /**
@@ -53,14 +53,16 @@ public open class SyntaxHighlighter : Resource() {
   }
 
   /**
-   * Returns syntax highlighting data for a single line. If the line is not cached, calls
-   * [_getLineSyntaxHighlighting] to calculate the data.
-   * The return [Dictionary] is column number to [Dictionary]. The column number notes the start of
-   * a region, the region will end if another region is found, or at the end of the line. The nested
-   * [Dictionary] contains the data for that region, currently only the key "color" is supported.
-   * **Example return:**
+   * Returns the syntax highlighting data for the line at index [line]. If the line is not cached,
+   * calls [_getLineSyntaxHighlighting] first to calculate the data.
+   * Each entry is a column number containing a nested [Dictionary]. The column number denotes the
+   * start of a region, the region will end if another region is found, or at the end of the line. The
+   * nested [Dictionary] contains the data for that region. Currently only the key `"color"` is
+   * supported.
+   * **Example:** Possible return value. This means columns `0` to `4` should be red, and columns
+   * `5` to the end of the line should be green:
    * [codeblock]
-   * var color_map = {
+   * {
    *     0: {
    *         "color": Color(1, 0, 0)
    *     },
@@ -69,7 +71,6 @@ public open class SyntaxHighlighter : Resource() {
    *     }
    * }
    * [/codeblock]
-   * This will color columns 0-4 red, and columns 5-eol in green.
    */
   public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line.toLong())

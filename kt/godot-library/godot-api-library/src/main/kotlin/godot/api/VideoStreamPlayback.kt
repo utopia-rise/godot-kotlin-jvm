@@ -29,12 +29,12 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(695, scriptIndex)
+    createNativeObject(721, scriptIndex)
   }
 
   /**
    * Stops playback. May be called multiple times before [_play], or in response to
-   * [VideoStreamPlayer.stop]. [_isPlaying] should return false once stopped.
+   * [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
    */
   public open fun _stop(): Unit {
   }
@@ -42,7 +42,7 @@ public open class VideoStreamPlayback : Resource() {
   /**
    * Called in response to [VideoStreamPlayer.autoplay] or [VideoStreamPlayer.play]. Note that
    * manual playback may also invoke [_stop] multiple times before this method is called. [_isPlaying]
-   * should return true once playing.
+   * should return `true` once playing.
    */
   public open fun _play(): Unit {
   }
@@ -104,8 +104,8 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Ticks video playback for [delta] seconds. Called every frame as long as [_isPaused] and
-   * [_isPlaying] return true.
+   * Ticks video playback for [delta] seconds. Called every frame as long as both [_isPaused] and
+   * [_isPlaying] return `true`.
    */
   public open fun _update(delta: Double): Unit {
   }

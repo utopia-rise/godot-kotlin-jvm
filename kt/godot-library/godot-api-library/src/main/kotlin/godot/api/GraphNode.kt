@@ -79,7 +79,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(288, scriptIndex)
+    createNativeObject(292, scriptIndex)
   }
 
   public open fun _drawPort(
@@ -308,7 +308,7 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
-   * Returns true if the background [StyleBox] of the slot with the given [slotIndex] is drawn.
+   * Returns `true` if the background [StyleBox] of the slot with the given [slotIndex] is drawn.
    */
   public final fun isSlotDrawStylebox(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())

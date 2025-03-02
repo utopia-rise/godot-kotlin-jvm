@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object EngineDebugger : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(18)
+    getSingleton(19)
   }
 
   /**
@@ -116,8 +116,10 @@ public object EngineDebugger : Object() {
   /**
    * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
    * with "my_message:" will be called with the given callable.
-   * Callable must accept a message string and a data array as argument. If the message and data are
-   * valid then callable must return `true` otherwise `false`.
+   * The callable must accept a message string and a data array as argument. The callable should
+   * return `true` if the message is recognized.
+   * **Note:** The callable will receive the message with the prefix stripped, unlike
+   * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */
   @JvmStatic
   public final fun registerMessageCapture(name: StringName, callable: Callable): Unit {
@@ -147,7 +149,7 @@ public object EngineDebugger : Object() {
   /**
    * Forces a processing loop of debugger events. The purpose of this method is just processing
    * events every now and then when the script might get too busy, so that bugs like infinite loops can
-   * be caught
+   * be caught.
    */
   @JvmStatic
   public final fun linePoll(): Unit {

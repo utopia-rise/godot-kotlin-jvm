@@ -86,8 +86,8 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   /**
-   * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's
-   * `tile_size` value.
+   * The base tile size in the texture (in pixel). This size must be bigger than or equal to the
+   * TileSet's `tile_size` value.
    */
   @CoreTypeLocalCopy
   public final inline var textureRegionSize: Vector2i
@@ -113,7 +113,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(668, scriptIndex)
+    createNativeObject(693, scriptIndex)
   }
 
   /**
@@ -165,8 +165,8 @@ public open class TileSetAtlasSource : TileSetSource() {
 
 
   /**
-   * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's
-   * `tile_size` value.
+   * The base tile size in the texture (in pixel). This size must be bigger than or equal to the
+   * TileSet's `tile_size` value.
    *
    * This is a helper function to make dealing with local copies easier.
    *

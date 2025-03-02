@@ -43,8 +43,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * If `true`, writes to the depth buffer whenever the depth test returns true. Only works when
-   * enable_depth_test is also true.
+   * If `true`, writes to the depth buffer whenever the depth test returns `true`. Only works when
+   * enable_depth_test is also `true`.
    */
   public final inline var enableDepthWrite: Boolean
     @JvmName("enableDepthWriteProperty")
@@ -78,7 +78,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * The minimum depth that returns true for [enableDepthRange].
+   * The minimum depth that returns `true` for [enableDepthRange].
    */
   public final inline var depthRangeMin: Float
     @JvmName("depthRangeMinProperty")
@@ -89,7 +89,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * The maximum depth that returns true for [enableDepthRange].
+   * The maximum depth that returns `true` for [enableDepthRange].
    */
   public final inline var depthRangeMax: Float
     @JvmName("depthRangeMaxProperty")
@@ -191,7 +191,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   /**
-   * The operation to perform on the stencil buffer for back pixels that fail the stencil test
+   * The operation to perform on the stencil buffer for back pixels that fail the stencil test.
    */
   public final inline var backOpFail: RenderingDevice.StencilOperation
     @JvmName("backOpFailProperty")
@@ -269,7 +269,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(513, scriptIndex)
+    createNativeObject(530, scriptIndex)
   }
 
   public final fun setEnableDepthTest(pMember: Boolean): Unit {

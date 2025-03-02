@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SpriteFrames : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(614, scriptIndex)
+    createNativeObject(638, scriptIndex)
   }
 
   /**
@@ -53,6 +53,15 @@ public open class SpriteFrames : Resource() {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(ptr, MethodBindings.hasAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Duplicates the animation [animFrom] to a new animation named [animTo]. Fails if [animTo]
+   * already exists, or if [animFrom] does not exist.
+   */
+  public final fun duplicateAnimation(animFrom: StringName, animTo: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to animFrom, STRING_NAME to animTo)
+    TransferContext.callMethod(ptr, MethodBindings.duplicateAnimationPtr, NIL)
   }
 
   /**
@@ -215,6 +224,9 @@ public open class SpriteFrames : Resource() {
 
     internal val hasAnimationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpriteFrames", "has_animation", 2619796661)
+
+    internal val duplicateAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "duplicate_animation", 3740211285)
 
     internal val removeAnimationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpriteFrames", "remove_animation", 3304788590)

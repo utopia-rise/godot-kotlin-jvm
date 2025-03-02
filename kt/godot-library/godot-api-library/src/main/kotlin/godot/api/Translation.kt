@@ -45,7 +45,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(674, scriptIndex)
+    createNativeObject(699, scriptIndex)
   }
 
   /**
@@ -183,19 +183,19 @@ public open class Translation : Resource() {
         TypeManager.getMethodBindPtr("Translation", "get_locale", 201670096)
 
     internal val addMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_message", 971803314)
+        TypeManager.getMethodBindPtr("Translation", "add_message", 3898530326)
 
     internal val addPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 360316719)
+        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 2356982266)
 
     internal val getMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message", 58037827)
+        TypeManager.getMethodBindPtr("Translation", "get_message", 1829228469)
 
     internal val getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 1333931916)
+        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 229954002)
 
     internal val eraseMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "erase_message", 3919944288)
+        TypeManager.getMethodBindPtr("Translation", "erase_message", 3959009644)
 
     internal val getMessageListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Translation", "get_message_list", 1139954409)

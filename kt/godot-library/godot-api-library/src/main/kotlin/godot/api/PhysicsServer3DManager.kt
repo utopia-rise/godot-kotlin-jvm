@@ -30,7 +30,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer3DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(3)
+    getSingleton(7)
   }
 
   /**

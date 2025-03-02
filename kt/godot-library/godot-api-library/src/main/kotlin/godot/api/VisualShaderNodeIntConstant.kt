@@ -35,7 +35,7 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(739, scriptIndex)
+    createNativeObject(765, scriptIndex)
   }
 
   public final fun setConstant(constant: Int): Unit {

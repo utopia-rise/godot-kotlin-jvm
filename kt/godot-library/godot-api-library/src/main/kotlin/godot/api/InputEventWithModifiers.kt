@@ -26,6 +26,9 @@ import kotlin.jvm.JvmName
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
  * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
  * [Node.Input].
+ * **Note:** Modifier keys are considered modifiers only when used in combination with another key.
+ * As a result, their corresponding member variables, such as [ctrlPressed], will return `false` if the
+ * key is pressed on its own.
  */
 @GodotBaseType
 public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
@@ -87,7 +90,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(329, scriptIndex)
+    createNativeObject(333, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

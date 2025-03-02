@@ -181,7 +181,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(603, scriptIndex)
+    createNativeObject(622, scriptIndex)
   }
 
   /**
@@ -384,8 +384,9 @@ public open class SoftBody3D : MeshInstance3D() {
     pointIndex: Int,
     pinned: Boolean,
     attachmentPath: NodePath = NodePath(""),
+    insertAt: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(LONG to pointIndex.toLong(), BOOL to pinned, NODE_PATH to attachmentPath)
+    TransferContext.writeArguments(LONG to pointIndex.toLong(), BOOL to pinned, NODE_PATH to attachmentPath, LONG to insertAt.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPointPinnedPtr, NIL)
   }
 
@@ -526,7 +527,7 @@ public open class SoftBody3D : MeshInstance3D() {
         TypeManager.getMethodBindPtr("SoftBody3D", "get_point_transform", 871989493)
 
     internal val setPointPinnedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SoftBody3D", "set_point_pinned", 3814935226)
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_point_pinned", 528784402)
 
     internal val isPointPinnedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SoftBody3D", "is_point_pinned", 1116898809)

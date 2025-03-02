@@ -30,8 +30,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
- * [CollisionObject3D] along its path, if it intersects any.
+ * A raycast represents a ray from its origin to its [targetPosition] that finds the closest object
+ * along its path, if it intersects any.
  * [RayCast3D] can ignore some objects by adding them to an exception list, by making its detection
  * reporting ignore [Area3D]s ([collideWithAreas]) or [PhysicsBody3D]s ([collideWithBodies]), or by
  * configuring physics layers.
@@ -168,7 +168,7 @@ public open class RayCast3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(528, scriptIndex)
+    createNativeObject(545, scriptIndex)
   }
 
   /**
@@ -270,6 +270,9 @@ public open class RayCast3D : Node3D() {
   /**
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the
    * ray (i.e. [isColliding] returns `false`).
+   * **Note:** This object is not guaranteed to be a [CollisionObject3D]. For example, if the ray
+   * intersects a [CSGShape3D] or a [GridMap], the method will return a [CSGShape3D] or [GridMap]
+   * instance.
    */
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()

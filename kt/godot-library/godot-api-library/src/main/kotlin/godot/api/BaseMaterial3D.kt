@@ -147,8 +147,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is
    * faster, making it the best choice for mobile applications, however it looks considerably worse
    * than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.
-   * **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is
-   * not implemented yet.
    */
   public final inline var shadingMode: ShadingMode
     @JvmName("shadingModeProperty")
@@ -627,7 +625,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns
-   * it to tangent space. This is useful for brushed aluminium and hair reflections.
+   * it to tangent space. This is useful for brushed aluminum and hair reflections.
    * **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain
    * tangents, the anisotropy effect will appear broken.
    * **Note:** Material anisotropy should not to be confused with anisotropic texture filtering,
@@ -1019,6 +1017,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind
    * the object.
+   * **Note:** Refraction is implemented using the screen texture. Only opaque materials will appear
+   * in the refraction, since transparent materials do not appear in the screen texture.
    */
   public final inline var refractionEnabled: Boolean
     @JvmName("refractionEnabledProperty")
@@ -1337,10 +1337,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Controls how the object faces the camera. See [BillboardMode].
-   * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
-   * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
-   * intended shadow cannot be determined and this will result in undefined behavior. See
-   * [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
    * not horizontal when the screen is attached to your head instead of on the table. See
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
@@ -1406,9 +1402,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * using a second material pass and its [cullMode] set to [CULL_FRONT]. See also [growAmount].
    * **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in
    * sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively
-   * using [url=https://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in
-   * the 3D authoring software. In this case, grow will be able to join every outline together, just
-   * like in the original mesh.
+   * using [url=http://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in the
+   * 3D authoring software. In this case, grow will be able to join every outline together, just like
+   * in the original mesh.
    */
   public final inline var grow: Boolean
     @JvmName("growProperty")
@@ -1566,7 +1562,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(139, scriptIndex)
   }
 
   /**
@@ -2781,7 +2777,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     SHADING_MODE_PER_PIXEL(1),
     /**
      * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care
-     * about visual quality. Not implemented yet (this mode will act like [SHADING_MODE_PER_PIXEL]).
+     * about visual quality.
      */
     SHADING_MODE_PER_VERTEX(2),
     /**

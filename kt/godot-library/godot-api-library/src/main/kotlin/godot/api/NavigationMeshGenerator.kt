@@ -54,7 +54,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(4)
+    getSingleton(8)
   }
 
   /**
@@ -122,9 +122,9 @@ public object NavigationMeshGenerator : Object() {
         TypeManager.getMethodBindPtr("NavigationMeshGenerator", "clear", 2923361153)
 
     internal val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data", 685862123)
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data", 3172802542)
 
     internal val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data", 2469318639)
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data", 1286748856)
   }
 }

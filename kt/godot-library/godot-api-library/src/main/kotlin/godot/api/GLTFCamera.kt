@@ -26,14 +26,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a camera as defined by the base GLTF spec.
+ * Represents a camera as defined by the base glTF spec.
  */
 @GodotBaseType
 public open class GLTFCamera : Resource() {
   /**
-   * Whether or not the camera is in perspective mode. If false, the camera is in
-   * orthographic/orthogonal mode. This maps to GLTF's camera `type` property. See
-   * [Camera3D.projection] and the GLTF spec for more information.
+   * If `true`, the camera is in perspective mode. Otherwise, the camera is in
+   * orthographic/orthogonal mode. This maps to glTF's camera `type` property. See
+   * [Camera3D.projection] and the glTF spec for more information.
    */
   public final inline var perspective: Boolean
     @JvmName("perspectiveProperty")
@@ -44,9 +44,9 @@ public open class GLTFCamera : Resource() {
     }
 
   /**
-   * The FOV of the camera. This class and GLTF define the camera FOV in radians, while Godot uses
-   * degrees. This maps to GLTF's `yfov` property. This value is only used for perspective cameras,
-   * when [perspective] is true.
+   * The FOV of the camera. This class and glTF define the camera FOV in radians, while Godot uses
+   * degrees. This maps to glTF's `yfov` property. This value is only used for perspective cameras,
+   * when [perspective] is `true`.
    */
   public final inline var fov: Float
     @JvmName("fovProperty")
@@ -57,9 +57,9 @@ public open class GLTFCamera : Resource() {
     }
 
   /**
-   * The size of the camera. This class and GLTF define the camera size magnitude as a radius in
-   * meters, while Godot defines it as a diameter in meters. This maps to GLTF's `ymag` property. This
-   * value is only used for orthographic/orthogonal cameras, when [perspective] is false.
+   * The size of the camera. This class and glTF define the camera size magnitude as a radius in
+   * meters, while Godot defines it as a diameter in meters. This maps to glTF's `ymag` property. This
+   * value is only used for orthographic/orthogonal cameras, when [perspective] is `false`.
    */
   public final inline var sizeMag: Float
     @JvmName("sizeMagProperty")
@@ -71,7 +71,7 @@ public open class GLTFCamera : Resource() {
 
   /**
    * The distance to the far culling boundary for this camera relative to its local Z axis, in
-   * meters. This maps to GLTF's `zfar` property.
+   * meters. This maps to glTF's `zfar` property.
    */
   public final inline var depthFar: Float
     @JvmName("depthFarProperty")
@@ -83,7 +83,7 @@ public open class GLTFCamera : Resource() {
 
   /**
    * The distance to the near culling boundary for this camera relative to its local Z axis, in
-   * meters. This maps to GLTF's `znear` property.
+   * meters. This maps to glTF's `znear` property.
    */
   public final inline var depthNear: Float
     @JvmName("depthNearProperty")
@@ -94,7 +94,7 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(253, scriptIndex)
+    createNativeObject(256, scriptIndex)
   }
 
   /**
