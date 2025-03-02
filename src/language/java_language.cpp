@@ -176,7 +176,7 @@ bool JavaLanguage::supports_builtin_mode() const {
     return false;
 }
 
-String JavaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
+String JavaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_too) const {
     return {};
 }
 
