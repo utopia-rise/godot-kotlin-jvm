@@ -1,5 +1,6 @@
 #include "jvm_resource_format_loader.h"
 
+#include "hash.h"
 #include "language/names.h"
 #include "script/jvm_script.h"
 #include "script/jvm_script_manager.h"
@@ -91,4 +92,22 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     }
 
     return jvm_script;
+}
+
+ResourceUID::ID JvmResourceFormatLoader::get_resource_uid(const String& p_path) const {
+    String extension = p_path.get_extension();
+    ResourceUID::ID id = ResourceUID::INVALID_ID;
+    if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        id = (JvmScript::get_script_file_name(p_path) + UUID_HASH_SEED).hash64();
+        id &= 0x7FFFFFFFFFFFFFFF;
+    } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION) {
+        //TODO: ADAPT TO SOURCE SCRIPTS USING FQNAME ONCE CLASSGRAPH MERGED
+        id = (p_path + UUID_HASH_SEED).hash64();
+        id &= 0x7FFFFFFFFFFFFFFF;
+    }
+    return id;
+}
+
+bool JvmResourceFormatLoader::has_custom_uid_support() const {
+    return true;
 }

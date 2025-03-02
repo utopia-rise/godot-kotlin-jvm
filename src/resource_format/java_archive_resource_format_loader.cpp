@@ -2,6 +2,7 @@
 #include "java_archive_resource_format_loader.h"
 
 #include "gd_kotlin.h"
+#include "hash.h"
 #include "java_archive.h"
 #include "lifecycle/paths.h"
 #include "logging.h"
@@ -40,4 +41,17 @@ Ref<Resource> JavaArchiveFormatLoader::load(
 #endif
 
     return ref;
+}
+
+ResourceUID::ID JavaArchiveFormatLoader::get_resource_uid(const String& p_path) const {
+    String ext = p_path.get_extension().to_lower();
+    ResourceUID::ID id = ResourceUID::INVALID_ID;
+    if(ext == "jar" || ext == "dex"){
+        id = (p_path + UUID_HASH_SEED).hash64();};
+        id &= 0x7FFFFFFFFFFFFFFF;
+    return id;
+}
+
+bool JavaArchiveFormatLoader::has_custom_uid_support() const {
+    return true;
 }
