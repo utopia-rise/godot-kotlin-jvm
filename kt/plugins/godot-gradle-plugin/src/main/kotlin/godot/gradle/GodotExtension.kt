@@ -173,6 +173,11 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
+    /**
+     * Sets the scala version used to support scala language, default 3.6.3
+     */
+    val scalaVersion: Property<String> = objects.property(String::class.java)
+
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File(androidSdkRoot)
@@ -227,6 +232,8 @@ open class GodotExtension(objects: ObjectFactory) {
         isGraalVmNativeImageGenerationVerbose.set(false)
 
         isGodotCoroutinesEnabled.set(false)
+
+        scalaVersion.set("3.6.3")
 
         System.getenv("VC_VARS_PATH")?.let {
             windowsDeveloperVCVarsPath.set(File(it))
