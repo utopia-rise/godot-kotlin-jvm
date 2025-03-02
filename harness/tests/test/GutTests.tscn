@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp2nu4nns5vf7"]
 
-[ext_resource type="Script" path="res://test/GutTests.gd" id="1_on71t"]
+[ext_resource type="Script" uid="uid://chvftm4ob4x31" path="res://test/GutTests.gd" id="1_on71t"]
 [ext_resource type="PackedScene" uid="uid://4jb53yqktyfg" path="res://addons/gut/gui/GutControl.tscn" id="1_qrxmy"]
 
 [node name="GutTests" type="Node2D"]
