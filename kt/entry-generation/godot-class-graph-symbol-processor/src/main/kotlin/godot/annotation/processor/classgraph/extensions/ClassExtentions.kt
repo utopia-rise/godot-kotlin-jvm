@@ -20,7 +20,6 @@ import io.github.classgraph.ClassInfo
 import io.github.classgraph.ScanResult
 import io.github.classgraph.TypeArgument
 
-context(ScanResult)
 fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     val fqName = name
     val supertypes = superclasses.union(interfaces).map { it.mapToClazz(settings) }
@@ -175,7 +174,6 @@ val ClassInfo.typeKind: TypeKind
         else -> TypeKind.UNKNOWN
     }
 
-context(ScanResult)
 internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Settings): Type {
     val superTypes = superclasses.map { it.mapToType(listOf(), settings) }
         .union(
