@@ -115,9 +115,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     }
 
 #ifdef TOOLS_ENABLED
-    for (const KeyValue<StringName, KtClass*>& entry: fqdn_to_kt_class) {
-        delete entry.value;
-    }
     fqdn_to_kt_class = new_fqdn_to_kt_class;
 
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
@@ -201,9 +198,6 @@ void JvmScriptManager::finalize() {
     singleton->source_scripts.clear();
     singleton->source_scripts_map.clear();
 
-    for (const KeyValue<StringName, KtClass*>& entry: singleton->fqdn_to_kt_class) {
-        delete entry.value;
-    }
     singleton->fqdn_to_kt_class.clear();
     memdelete(singleton);
 }

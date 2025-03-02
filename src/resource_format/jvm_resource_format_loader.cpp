@@ -7,11 +7,13 @@
 #include "script/language/gdj_script.h"
 #include "script/language/java_script.h"
 #include "script/language/kotlin_script.h"
+#include "script/language/scala_script.h"
 
 void JvmResourceFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
     p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
+    p_extensions->push_back(GODOT_SCALA_SCRIPT_EXTENSION);
 }
 
 String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
@@ -23,12 +25,18 @@ String JvmResourceFormatLoader::get_resource_type(const String& p_path) const {
         return GODOT_KOTLIN_SCRIPT_NAME;
     } else if (ext == GODOT_JAVA_SCRIPT_EXTENSION) {
         return GODOT_JAVA_SCRIPT_NAME;
+    } else if (ext == GODOT_SCALA_SCRIPT_EXTENSION) {
+        return GODOT_SCALA_SCRIPT_NAME;
     }
     return "";
 }
 
 bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
-    return p_type == "Script" || p_type == GODOT_KOTLIN_SCRIPT_NAME || p_type == GODOT_JVM_SCRIPT_NAME || p_type == GODOT_JAVA_SCRIPT_NAME;
+    return p_type == "Script"
+           || p_type == GODOT_JVM_SCRIPT_NAME
+           || p_type == GODOT_KOTLIN_SCRIPT_NAME
+           || p_type == GODOT_JAVA_SCRIPT_NAME
+           || p_type == GODOT_SCALA_SCRIPT_NAME;
 }
 
 Error JvmResourceFormatLoader::read_all_file_utf8(const String& p_path, String& r_content) {
@@ -66,6 +74,8 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
         jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(p_path, &script_is_new, r_error);
         is_source = true;
+    } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(p_path, &script_is_new, r_error);
     } else {
         if (r_error) { *r_error = Error::ERR_FILE_UNRECOGNIZED; }
         return nullptr;
@@ -73,12 +83,6 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 
     if (jvm_script.is_valid()) {
 #ifdef TOOLS_ENABLED
-
-        //TODO: Remove
-        if (is_source) {
-            JVM_LOG_INFO(vformat("fqdn: %s", dynamic_cast<SourceScript*>(jvm_script.ptr())->get_functional_name()));
-        }
-
         if (!script_is_new && is_source) {
             MessageQueue::get_singleton()->push_callable(
               callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(Ref<SourceScript>(jvm_script))
