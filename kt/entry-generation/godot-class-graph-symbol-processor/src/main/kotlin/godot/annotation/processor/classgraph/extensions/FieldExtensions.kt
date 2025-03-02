@@ -15,9 +15,7 @@ import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.FieldInfo
 import io.github.classgraph.MethodInfo
-import io.github.classgraph.ScanResult
 
-context(ScanResult)
 fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo): RegisteredProperty {
     // Map annotations
     val annotations = getAnnotations(classInfo)
@@ -93,7 +91,6 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
 
 private const val signalParametersName = "parameters"
 
-context(ScanResult)
 fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInfo): RegisteredSignal {
     val typeDescriptor = when {
         classInfo.isScala -> {
