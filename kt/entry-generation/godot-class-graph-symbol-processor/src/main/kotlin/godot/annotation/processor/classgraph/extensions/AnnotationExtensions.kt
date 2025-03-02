@@ -18,6 +18,7 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.annotation.Tool
 import godot.annotation.TransferMode
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.constants.SET
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
@@ -43,9 +44,7 @@ import io.github.classgraph.AnnotationEnumValue
 import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassRefTypeSignature
 import io.github.classgraph.FieldInfo
-import io.github.classgraph.ScanResult
 
-context(ScanResult)
 fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation? {
     @Suppress("UNCHECKED_CAST")
     return when (name) {
@@ -82,7 +81,7 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
 
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
 
-            val enumValues = this@ScanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
+            val enumValues = Context.scanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
                 .fieldInfo
                 .filter { it.typeDescriptor == typeArgument }
                 .map { it.name }

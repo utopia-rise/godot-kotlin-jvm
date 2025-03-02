@@ -1,5 +1,6 @@
 package godot.annotation.processor.classgraph.models
 
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.constants.JVM_OBJECT
 import godot.annotation.processor.classgraph.constants.VOID
@@ -18,7 +19,6 @@ import io.github.classgraph.ClassRefTypeSignature
 import io.github.classgraph.FieldInfo
 import io.github.classgraph.MethodInfo
 import io.github.classgraph.MethodParameterInfo
-import io.github.classgraph.ScanResult
 import io.github.classgraph.TypeArgument
 import io.github.classgraph.TypeSignature
 import org.jetbrains.annotations.NotNull
@@ -83,18 +83,15 @@ class TypeDescriptor private constructor(
     val isVoid = descriptor.toStringWithoutAnnotations() == VOID
     val isObject = descriptor.toStringWithoutAnnotations() == JVM_OBJECT
 
-    context(ScanResult)
     val typeClassInfo: ClassInfo
-        get() = this@ScanResult.getClassInfo(descriptor.toStringWithoutAnnotations())
+        get() = Context.scanResult.getClassInfo(descriptor.toStringWithoutAnnotations())
 
-    context(ScanResult)
     fun getMappedType(settings: Settings): Type = primitiveType ?: if (isObject) {
         getJavaLangObjectType(settings)
     } else {
         typeClassInfo.mapToType(typeArguments, settings)
     }
 
-    context(ScanResult)
     fun getMappedPropertyType(settings: Settings): PropertyType {
         val type = getMappedType(settings)
         return PropertyType(

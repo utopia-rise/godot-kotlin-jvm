@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
@@ -32,11 +31,5 @@ publishing {
             description = "Godot ClassGraph symbol processor"
             from(components.getByName("java"))
         }
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xcontext-receivers"
     }
 }

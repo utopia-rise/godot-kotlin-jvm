@@ -25,6 +25,7 @@ fun generateEntryUsingClassGraph(
         .enableAllInfo()
         .enableSystemJarsAndModules()
         .scan()
+    Context.scanResult = scanResult
     scanResult
         .use {
             with(it) {

@@ -8,9 +8,7 @@ import godot.entrygenerator.model.RegisteredConstructor
 import godot.entrygenerator.model.RegisteredFunction
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.MethodInfo
-import io.github.classgraph.ScanResult
 
-context(ScanResult)
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
     val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
     val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this) as? FunctionAnnotation }
@@ -52,7 +50,6 @@ private fun MethodInfo.isOverrideInHierarchyOf(classInfo: ClassInfo): Boolean {
     return false
 }
 
-context(ScanResult)
 fun MethodInfo.mapToRegisteredConstructor(settings: Settings): RegisteredConstructor {
     val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
     return RegisteredConstructor(
