@@ -143,9 +143,9 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * If enabled, the [CanvasLayer] will use the viewport's transform, so it will move when camera
-   * moves instead of being anchored in a fixed position on the screen.
-   * Together with [followViewportScale] it can be used for a pseudo 3D effect.
+   * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the
+   * [CanvasLayer] maintains its position in world space.
+   * Together with [followViewportScale], this can be used for a pseudo-3D effect.
    */
   public final inline var followViewportEnabled: Boolean
     @JvmName("followViewportEnabledProperty")
@@ -168,7 +168,7 @@ public open class CanvasLayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(171, scriptIndex)
+    createNativeObject(172, scriptIndex)
   }
 
   /**

@@ -138,9 +138,9 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings >
-   * Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity,
-   * 2 will apply double gravity, and 0.5 will apply half gravity to this object.
+   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's
+   * gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the
+   * gravity, and `0.5` will apply half the gravity to this body.
    */
   public final inline var gravityScale: Float
     @JvmName("gravityScaleProperty")
@@ -362,10 +362,10 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use the **Default Linear Damp** in
-   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
-   * in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's movement. By default, the body will use the
+   * [ProjectSettings.physics/3d/defaultLinearDamp] project setting or any value override set by an
+   * [Area3D] the body is in. Depending on [linearDampMode], you can set [linearDamp] to be added to or
+   * to replace the body's damping value.
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -400,10 +400,10 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the **Default Angular Damp** in
-   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
-   * in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's rotation. By default, the body will use the
+   * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
+   * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
+   * or to replace the body's damping value.
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -441,7 +441,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(556, scriptIndex)
+    createNativeObject(574, scriptIndex)
   }
 
   /**

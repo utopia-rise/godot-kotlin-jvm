@@ -131,7 +131,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
+   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -186,8 +186,20 @@ public open class TextParagraph : RefCounted() {
       setMaxLinesVisible(value)
     }
 
+  /**
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
+   * value can be negative.
+   */
+  public final inline var lineSpacing: Float
+    @JvmName("lineSpacingProperty")
+    get() = getLineSpacing()
+    @JvmName("lineSpacingProperty")
+    set(`value`) {
+      setLineSpacing(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(642, scriptIndex)
+    createNativeObject(667, scriptIndex)
   }
 
   /**
@@ -473,6 +485,17 @@ public open class TextParagraph : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxLinesVisiblePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setLineSpacing(lineSpacing: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
+  }
+
+  public final fun getLineSpacing(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -793,6 +816,12 @@ public open class TextParagraph : RefCounted() {
 
     internal val getMaxLinesVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_max_lines_visible", 3905245786)
+
+    internal val setLineSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "set_line_spacing", 373806689)
+
+    internal val getLineSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_spacing", 1740695150)
 
     internal val getLineObjectsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_line_objects", 663333327)

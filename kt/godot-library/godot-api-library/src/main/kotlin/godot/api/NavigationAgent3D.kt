@@ -496,7 +496,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(389, scriptIndex)
+    createNativeObject(395, scriptIndex)
   }
 
   /**

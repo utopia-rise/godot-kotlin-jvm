@@ -449,7 +449,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(388, scriptIndex)
+    createNativeObject(394, scriptIndex)
   }
 
   /**

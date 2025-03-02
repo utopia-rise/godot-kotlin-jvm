@@ -37,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(548, scriptIndex)
+    createNativeObject(565, scriptIndex)
   }
 
   /**
@@ -85,6 +85,10 @@ public open class ResourceFormatLoader : RefCounted() {
     throw NotImplementedError("_get_resource_script_class is not implemented for ResourceFormatLoader")
   }
 
+  /**
+   * Should return the unique ID for the resource associated with the given path. If this method is
+   * not overridden, a `.uid` file is generated along with the resource file, containing the unique ID.
+   */
   public open fun _getResourceUid(path: String): Long {
     throw NotImplementedError("_get_resource_uid is not implemented for ResourceFormatLoader")
   }

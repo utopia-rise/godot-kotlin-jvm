@@ -36,8 +36,22 @@ public open class AudioEffectAmplify : AudioEffect() {
       setVolumeDb(value)
     }
 
+  /**
+   * Amount of amplification as a linear value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
+   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
+   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   */
+  public final inline var volumeLinear: Float
+    @JvmName("volumeLinearProperty")
+    get() = getVolumeLinear()
+    @JvmName("volumeLinearProperty")
+    set(`value`) {
+      setVolumeLinear(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(81, scriptIndex)
+    createNativeObject(82, scriptIndex)
   }
 
   public final fun setVolumeDb(volume: Float): Unit {
@@ -51,6 +65,17 @@ public open class AudioEffectAmplify : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setVolumeLinear(volume: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volume.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
+  }
+
+  public final fun getVolumeLinear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -59,5 +84,11 @@ public open class AudioEffectAmplify : AudioEffect() {
 
     internal val getVolumeDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
+
+    internal val setVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_linear", 373806689)
+
+    internal val getVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_linear", 1740695150)
   }
 }

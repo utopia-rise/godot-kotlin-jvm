@@ -70,7 +70,7 @@ public open class RandomNumberGenerator : RefCounted() {
    * var saved_state = rng.state # Store current state.
    * print(rng.randf()) # Advance internal state.
    * rng.state = saved_state # Restore the state.
-   * print(rng.randf()) # Prints the same value as in previous.
+   * print(rng.randf()) # Prints the same value as previously.
    * [/codeblock]
    * **Note:** Do not set state to arbitrary values, since the random number generator requires the
    * state to have certain qualities to behave properly. It should only be set to values that came from
@@ -88,7 +88,7 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(525, scriptIndex)
+    createNativeObject(542, scriptIndex)
   }
 
   public final fun setSeed(seed: Long): Unit {

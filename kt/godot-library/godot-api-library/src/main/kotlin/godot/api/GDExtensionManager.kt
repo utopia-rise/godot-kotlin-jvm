@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -37,6 +38,20 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public val extensionsReloaded: Signal0 by Signal0
+
+  /**
+   * Emitted after the editor has finished loading a new extension.
+   * **Note:** This signal is only emitted in editor builds.
+   */
+  @JvmStatic
+  public val extensionLoaded: Signal1<GDExtension> by Signal1
+
+  /**
+   * Emitted before the editor starts unloading an extension.
+   * **Note:** This signal is only emitted in editor builds.
+   */
+  @JvmStatic
+  public val extensionUnloading: Signal1<GDExtension> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(20)

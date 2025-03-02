@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.PackedVector2Array
 import godot.core.RID
+import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform2D
@@ -25,6 +26,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
@@ -110,7 +112,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns true if the map is active.
+   * Returns `true` if the map is active.
    */
   @JvmStatic
   public final fun mapIsActive(map: RID): Boolean {
@@ -221,7 +223,8 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the point closest to the provided [toPoint] on the navigation mesh surface.
+   * Returns the navigation mesh surface point closest to the provided [toPoint] on the navigation
+   * [map].
    */
   @JvmStatic
   public final fun mapGetClosestPoint(map: RID, toPoint: Vector2): Vector2 {
@@ -231,7 +234,8 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns the owner region RID for the point returned by [mapGetClosestPoint].
+   * Returns the owner region RID for the navigation mesh surface point closest to the provided
+   * [toPoint] on the navigation [map].
    */
   @JvmStatic
   public final fun mapGetClosestPointOwner(map: RID, toPoint: Vector2): RID {
@@ -325,6 +329,27 @@ public object NavigationServer2D : Object() {
   }
 
   /**
+   * If [enabled] is `true` the [map] synchronization uses an async process that runs on a
+   * background thread.
+   */
+  @JvmStatic
+  public final fun mapSetUseAsyncIterations(map: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to map, BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.mapSetUseAsyncIterationsPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [map] synchronization uses an async process that runs on a background
+   * thread.
+   */
+  @JvmStatic
+  public final fun mapGetUseAsyncIterations(map: RID): Boolean {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(ptr, MethodBindings.mapGetUseAsyncIterationsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns a random position picked from all map region polygons with matching [navigationLayers].
    * If [uniformly] is `true`, all map regions, polygons, and faces are weighted by their surface
    * area (slower).
@@ -345,12 +370,16 @@ public object NavigationServer2D : Object() {
    * Queries a path in a given navigation map. Start and target position and other parameters are
    * defined through [NavigationPathQueryParameters2D]. Updates the provided
    * [NavigationPathQueryResult2D] result object with the path among other results requested by the
-   * query.
+   * query. After the process is finished the optional [callback] will be called.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun queryPath(parameters: NavigationPathQueryParameters2D?,
-      result: NavigationPathQueryResult2D?): Unit {
-    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
+  public final fun queryPath(
+    parameters: NavigationPathQueryParameters2D?,
+    result: NavigationPathQueryResult2D?,
+    callback: Callable = Callable(),
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.queryPathPtr, NIL)
   }
 
@@ -581,6 +610,17 @@ public object NavigationServer2D : Object() {
   }
 
   /**
+   * Returns the navigation mesh surface point closest to the provided [toPoint] on the navigation
+   * [region].
+   */
+  @JvmStatic
+  public final fun regionGetClosestPoint(region: RID, toPoint: Vector2): Vector2 {
+    TransferContext.writeArguments(_RID to region, VECTOR2 to toPoint)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetClosestPointPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
    * Returns a random position picked from all region polygons with matching [navigationLayers].
    * If [uniformly] is `true`, all region polygons and faces are weighted by their surface area
    * (slower).
@@ -595,6 +635,16 @@ public object NavigationServer2D : Object() {
     TransferContext.writeArguments(_RID to region, LONG to navigationLayers, BOOL to uniformly)
     TransferContext.callMethod(ptr, MethodBindings.regionGetRandomPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
+   * Returns the axis-aligned rectangle for the [region]'s transformed navigation mesh.
+   */
+  @JvmStatic
+  public final fun regionGetBounds(region: RID): Rect2 {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetBoundsPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -828,7 +878,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [paused] is true the specified [agent] will not be processed, e.g. calculate avoidance
+   * If [paused] is `true` the specified [agent] will not be processed, e.g. calculate avoidance
    * velocities or receive avoidance callbacks.
    */
   @JvmStatic
@@ -1029,7 +1079,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * Returns true if the map got changed the previous frame.
+   * Returns `true` if the map got changed the previous frame.
    */
   @JvmStatic
   public final fun agentIsMapChanged(agent: RID): Boolean {
@@ -1172,7 +1222,7 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [paused] is true the specified [obstacle] will not be processed, e.g. affect avoidance
+   * If [paused] is `true` the specified [obstacle] will not be processed, e.g. affect avoidance
    * velocities.
    */
   @JvmStatic
@@ -1461,7 +1511,7 @@ public object NavigationServer2D : Object() {
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_link_connection_radius", 866169185)
 
     internal val mapGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_path", 3146466012)
+        TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_path", 1279824844)
 
     internal val mapGetClosestPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_closest_point", 1358334418)
@@ -1487,11 +1537,17 @@ public object NavigationServer2D : Object() {
     internal val mapGetIterationIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_iteration_id", 2198884583)
 
+    internal val mapSetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "map_set_use_async_iterations", 1265174801)
+
+    internal val mapGetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_use_async_iterations", 4155700596)
+
     internal val mapGetRandomPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_random_point", 3271000763)
 
     internal val queryPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer2D", "query_path", 3394638789)
+        TypeManager.getMethodBindPtr("NavigationServer2D", "query_path", 1254915886)
 
     internal val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_create", 529393457)
@@ -1559,8 +1615,14 @@ public object NavigationServer2D : Object() {
     internal val regionGetConnectionPathwayEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_connection_pathway_end", 2546185844)
 
+    internal val regionGetClosestPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_closest_point", 1358334418)
+
     internal val regionGetRandomPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_random_point", 3271000763)
+
+    internal val regionGetBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_bounds", 1097232729)
 
     internal val linkCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_create", 529393457)
@@ -1770,13 +1832,13 @@ public object NavigationServer2D : Object() {
         TypeManager.getMethodBindPtr("NavigationServer2D", "obstacle_get_avoidance_layers", 2198884583)
 
     internal val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer2D", "parse_source_geometry_data", 1176164995)
+        TypeManager.getMethodBindPtr("NavigationServer2D", "parse_source_geometry_data", 1766905497)
 
     internal val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data", 2909414286)
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data", 2179660022)
 
     internal val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data_async", 2909414286)
+        TypeManager.getMethodBindPtr("NavigationServer2D", "bake_from_source_geometry_data_async", 2179660022)
 
     internal val isBakingNavigationPolygonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "is_baking_navigation_polygon", 3729405808)

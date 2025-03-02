@@ -37,11 +37,14 @@ import kotlin.jvm.JvmStatic
  * **Note:** You have to import the files into the engine first to load them using [load]. If you
  * want to load [Image]s at run-time, you may use [Image.load]. If you want to import audio files, you
  * can use the snippet described in [AudioStreamMP3.data].
+ * **Note:** Non-resource files such as plain text files cannot be read using [ResourceLoader]. Use
+ * [FileAccess] for those files instead, and be aware that non-resource files are not exported by
+ * default (see notes in the [FileAccess] class description for instructions on exporting them).
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(9)
+    getSingleton(12)
   }
 
   /**
@@ -68,7 +71,7 @@ public object ResourceLoader : Object() {
    * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the
    * resource at [path]. See [ThreadLoadStatus] for possible return values.
    * An array variable can optionally be passed via [progress], and will return a one-element array
-   * containing the percentage of completion of the threaded loading.
+   * containing the ratio of completion of the threaded loading (between `0.0` and `1.0`).
    * **Note:** The recommended way of using this method is to call it during different frames (e.g.,
    * in [Node.Process], instead of a loop).
    */
@@ -176,9 +179,9 @@ public object ResourceLoader : Object() {
    * **Note:** The dependencies are returned with slices separated by `::`. You can use
    * [String.getSlice] to get their components.
    * [codeblock]
-   * for dep in ResourceLoader.get_dependencies(path):
-   *     print(dep.get_slice("::", 0)) # Prints UID.
-   *     print(dep.get_slice("::", 2)) # Prints path.
+   * for dependency in ResourceLoader.get_dependencies(path):
+   *     print(dependency.get_slice("::", 0)) # Prints the UID.
+   *     print(dependency.get_slice("::", 2)) # Prints the path.
    * [/codeblock]
    */
   @JvmStatic
@@ -199,6 +202,17 @@ public object ResourceLoader : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.hasCachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the cached resource reference for the given [path].
+   * **Note:** If the resource is not cached, the returned [Resource] will be invalid.
+   */
+  @JvmStatic
+  public final fun getCachedRef(path: String): Resource? {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.getCachedRefPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
@@ -225,6 +239,17 @@ public object ResourceLoader : Object() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.getResourceUidPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Lists a directory (as example: "res://assets/enemies"), returning all resources contained
+   * within. The resource files are the original file names as visible in the editor before exporting.
+   */
+  @JvmStatic
+  public final fun listDirectory(directoryPath: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to directoryPath)
+    TransferContext.callMethod(ptr, MethodBindings.listDirectoryPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public enum class ThreadLoadStatus(
@@ -334,10 +359,16 @@ public object ResourceLoader : Object() {
     internal val hasCachedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
 
+    internal val getCachedRefPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_cached_ref", 1748875256)
+
     internal val existsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
 
     internal val getResourceUidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
+
+    internal val listDirectoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceLoader", "list_directory", 3538744774)
   }
 }

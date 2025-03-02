@@ -17,6 +17,7 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -26,6 +27,8 @@ import godot.core.VariantType
 import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -35,8 +38,8 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A TileSet is a library of tiles for a [TileMap]. A TileSet handles a list of [TileSetSource],
- * each of them storing a set of tiles.
+ * A TileSet is a library of tiles for a [TileMapLayer]. A TileSet handles a list of
+ * [TileSetSource], each of them storing a set of tiles.
  * Tiles can either be from a [TileSetAtlasSource], which renders tiles out of a texture with
  * support for physics, navigation, etc., or from a [TileSetScenesCollectionSource], which exposes
  * scene-based tiles.
@@ -111,7 +114,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(667, scriptIndex)
+    createNativeObject(692, scriptIndex)
   }
 
   /**
@@ -380,7 +383,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics
+   * Sets the collision layer (as in the physics server) for bodies in the given TileSet physics
    * layer.
    */
   public final fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long): Unit {
@@ -399,8 +402,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics
-   * layer.
+   * Sets the collision mask for bodies in the given TileSet physics layer.
    */
   public final fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
@@ -414,6 +416,23 @@ public open class TileSet : Resource() {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsLayerCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets the collision priority for bodies in the given TileSet physics layer.
+   */
+  public final fun setPhysicsLayerCollisionPriority(layerIndex: Int, priority: Float): Unit {
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), DOUBLE to priority.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setPhysicsLayerCollisionPriorityPtr, NIL)
+  }
+
+  /**
+   * Returns the collision priority of bodies on the given TileSet's physics layer.
+   */
+  public final fun getPhysicsLayerCollisionPriority(layerIndex: Int): Float {
+    TransferContext.writeArguments(LONG to layerIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicsLayerCollisionPriorityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -706,6 +725,15 @@ public open class TileSet : Resource() {
   public final fun setCustomDataLayerName(layerIndex: Int, layerName: String): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataLayerNamePtr, NIL)
+  }
+
+  /**
+   * Returns if there is a custom data layer named [layerName].
+   */
+  public final fun hasCustomDataLayerByName(layerName: String): Boolean {
+    TransferContext.writeArguments(STRING to layerName)
+    TransferContext.callMethod(ptr, MethodBindings.hasCustomDataLayerByNamePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1262,6 +1290,12 @@ public open class TileSet : Resource() {
     internal val getPhysicsLayerCollisionMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923996154)
 
+    internal val setPhysicsLayerCollisionPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_priority", 1602489585)
+
+    internal val getPhysicsLayerCollisionPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_priority", 2339986948)
+
     internal val setPhysicsLayerPhysicsMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1018687357)
 
@@ -1351,6 +1385,9 @@ public open class TileSet : Resource() {
 
     internal val setCustomDataLayerNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501894301)
+
+    internal val hasCustomDataLayerByNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileSet", "has_custom_data_layer_by_name", 3927539163)
 
     internal val getCustomDataLayerNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844755477)

@@ -92,8 +92,28 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       setFollowCameraEnabled(value)
     }
 
+  /**
+   * The visual layers to account for when updating the heightmap. Only [MeshInstance3D]s whose
+   * [VisualInstance3D.layers] match with this [heightfieldMask] will be included in the heightmap
+   * collision update. By default, all 20 user-visible layers are taken into account for updating the
+   * heightmap collision.
+   * **Note:** Since the [heightfieldMask] allows for 32 layers to be stored in total, there are an
+   * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
+   * Setting [heightfieldMask] using a script allows you to toggle those reserved layers, which can be
+   * useful for editor plugins.
+   * To adjust [heightfieldMask] more easily using a script, use [getHeightfieldMaskValue] and
+   * [setHeightfieldMaskValue].
+   */
+  public final inline var heightfieldMask: Long
+    @JvmName("heightfieldMaskProperty")
+    get() = getHeightfieldMask()
+    @JvmName("heightfieldMaskProperty")
+    set(`value`) {
+      setHeightfieldMask(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(276, scriptIndex)
+    createNativeObject(280, scriptIndex)
   }
 
   /**
@@ -152,6 +172,36 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setHeightfieldMask(heightfieldMask: Long): Unit {
+    TransferContext.writeArguments(LONG to heightfieldMask)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskPtr, NIL)
+  }
+
+  public final fun getHeightfieldMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHeightfieldMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Based on [value], enables or disables the specified layer in the [heightfieldMask], given a
+   * [layerNumber] between `1` and `20`, inclusive.
+   */
+  public final fun setHeightfieldMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskValuePtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified layer of the [heightfieldMask] is enabled, given a
+   * [layerNumber] between `1` and `20`, inclusive.
+   */
+  public final fun getHeightfieldMaskValue(layerNumber: Int): Boolean {
+    TransferContext.writeArguments(LONG to layerNumber.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getHeightfieldMaskValuePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
@@ -258,6 +308,18 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
     internal val getUpdateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
+
+    internal val setHeightfieldMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask", 1286410249)
+
+    internal val getHeightfieldMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask", 3905245786)
+
+    internal val setHeightfieldMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask_value", 300928843)
+
+    internal val getHeightfieldMaskValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask_value", 1116898809)
 
     internal val setFollowCameraEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)

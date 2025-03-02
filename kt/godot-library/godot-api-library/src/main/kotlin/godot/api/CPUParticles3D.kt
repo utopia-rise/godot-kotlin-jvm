@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
@@ -141,6 +142,30 @@ public open class CPUParticles3D : GeometryInstance3D() {
     @JvmName("randomnessProperty")
     set(`value`) {
       setRandomnessRatio(value)
+    }
+
+  /**
+   * If `true`, particles will use the same seed for every simulation using the seed defined in
+   * [seed]. This is useful for situations where the visual outcome should be consistent across
+   * replays, for example when using Movie Maker mode.
+   */
+  public final inline var useFixedSeed: Boolean
+    @JvmName("useFixedSeedProperty")
+    get() = getUseFixedSeed()
+    @JvmName("useFixedSeedProperty")
+    set(`value`) {
+      setUseFixedSeed(value)
+    }
+
+  /**
+   * Sets the random seed used by the particle system. Only effective if [useFixedSeed] is `true`.
+   */
+  public final inline var seed: Long
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
+    set(`value`) {
+      setSeed(value)
     }
 
   /**
@@ -350,6 +375,21 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
+   * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
+   * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
+   * result in a ring where one end is larger than the other.
+   * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
+   * reached to form a perfect cone.
+   */
+  public final inline var emissionRingConeAngle: Float
+    @JvmName("emissionRingConeAngleProperty")
+    get() = getEmissionRingConeAngle()
+    @JvmName("emissionRingConeAngleProperty")
+    set(`value`) {
+      setEmissionRingConeAngle(value)
+    }
+
+  /**
    * Align Y axis of particle with the direction of its velocity.
    */
   public final inline var particleFlagAlignY: Boolean
@@ -477,7 +517,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's angular velocity (rotation speed) will vary along this [Curve] over its
-   * lifetime.
+   * lifetime. Should be a unit [Curve].
    */
   public final inline var angularVelocityCurve: Curve?
     @JvmName("angularVelocityCurveProperty")
@@ -510,7 +550,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [Curve].
+   * Each particle's orbital velocity will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var orbitVelocityCurve: Curve?
     @JvmName("orbitVelocityCurveProperty")
@@ -543,7 +583,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's linear acceleration will vary along this [Curve].
+   * Each particle's linear acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var linearAccelCurve: Curve?
     @JvmName("linearAccelCurveProperty")
@@ -576,7 +616,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's radial acceleration will vary along this [Curve].
+   * Each particle's radial acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var radialAccelCurve: Curve?
     @JvmName("radialAccelCurveProperty")
@@ -609,7 +649,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's tangential acceleration will vary along this [Curve].
+   * Each particle's tangential acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var tangentialAccelCurve: Curve?
     @JvmName("tangentialAccelCurveProperty")
@@ -642,7 +682,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Damping will vary along this [Curve].
+   * Damping will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var dampingCurve: Curve?
     @JvmName("dampingCurveProperty")
@@ -675,7 +715,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's rotation will be animated along this [Curve].
+   * Each particle's rotation will be animated along this [Curve]. Should be a unit [Curve].
    */
   public final inline var angleCurve: Curve?
     @JvmName("angleCurveProperty")
@@ -708,7 +748,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's scale will vary along this [Curve].
+   * Each particle's scale will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var scaleAmountCurve: Curve?
     @JvmName("scaleAmountCurveProperty")
@@ -779,8 +819,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied
-   * with [color]).
+   * Each particle's color will vary along this [Gradient] over its lifetime (multiplied with
+   * [color]).
    * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
    * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -795,8 +835,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
-   * [color]).
+   * Each particle's initial color will vary along this [Gradient] (multiplied with [color]).
    * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
    * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
@@ -833,7 +872,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's hue will vary along this [Curve].
+   * Each particle's hue will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var hueVariationCurve: Curve?
     @JvmName("hueVariationCurveProperty")
@@ -866,7 +905,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's animation speed will vary along this [Curve].
+   * Each particle's animation speed will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var animSpeedCurve: Curve?
     @JvmName("animSpeedCurveProperty")
@@ -899,7 +938,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's animation offset will vary along this [Curve].
+   * Each particle's animation offset will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var animOffsetCurve: Curve?
     @JvmName("animOffsetCurveProperty")
@@ -910,7 +949,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(150, scriptIndex)
+    createNativeObject(151, scriptIndex)
   }
 
   /**
@@ -1232,12 +1271,57 @@ public open class CPUParticles3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
+  public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useFixedSeed)
+    TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
+  }
+
+  public final fun getUseFixedSeed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSeed(seed: Long): Unit {
+    TransferContext.writeArguments(LONG to seed)
+    TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public final fun getSeed(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Restarts the particle emitter.
+   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
+   * playback.
    */
-  public final fun restart(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun restart(keepSeed: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to keepSeed)
     TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
+  }
+
+  /**
+   * Requests the particles to process for extra process time during a single frame.
+   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
+   * [restart] with parameter `keep_seed` set to `true`.
+   */
+  public final fun requestParticlesProcess(processTime: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
+  }
+
+  /**
+   * Returns the axis-aligned bounding box that contains all the particles that are active in the
+   * current frame.
+   */
+  public final fun captureAabb(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setDirection(direction: Vector3): Unit {
@@ -1308,7 +1392,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the [Curve] of the parameter specified by [Parameter].
+   * Sets the [Curve] of the parameter specified by [Parameter]. Should be a unit [Curve].
    */
   public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
@@ -1481,6 +1565,17 @@ public open class CPUParticles3D : GeometryInstance3D() {
   public final fun getEmissionRingInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setEmissionRingConeAngle(coneAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to coneAngle.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingConeAnglePtr, NIL)
+  }
+
+  public final fun getEmissionRingConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1824,8 +1919,26 @@ public open class CPUParticles3D : GeometryInstance3D() {
     internal val getMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "get_mesh", 1808005922)
 
+    internal val setUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_use_fixed_seed", 2586408642)
+
+    internal val getUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_use_fixed_seed", 36873697)
+
+    internal val setSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_seed", 1286410249)
+
+    internal val getSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_seed", 3905245786)
+
     internal val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "restart", 3218959716)
+        TypeManager.getMethodBindPtr("CPUParticles3D", "restart", 107499316)
+
+    internal val requestParticlesProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "request_particles_process", 373806689)
+
+    internal val captureAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "capture_aabb", 1068685055)
 
     internal val setDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "set_direction", 3460891852)
@@ -1946,6 +2059,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
     internal val getEmissionRingInnerRadiusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_inner_radius", 1740695150)
+
+    internal val setEmissionRingConeAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_cone_angle", 373806689)
+
+    internal val getEmissionRingConeAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_cone_angle", 1740695150)
 
     internal val getGravityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "get_gravity", 3360562783)

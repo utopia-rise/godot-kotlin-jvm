@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(311, scriptIndex)
+    createNativeObject(315, scriptIndex)
   }
 
   /**
@@ -114,7 +114,7 @@ public open class ImporterMesh : Resource() {
    * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
    * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
    * distance that the objects has to be from the camera before the LOD is used.
-   * The [flags] argument is the bitwise or of, as required: One value of [Mesh.ArrayCustomFormat]
+   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat]
    * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
    * [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or
    * [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
@@ -244,8 +244,9 @@ public open class ImporterMesh : Resource() {
 
   /**
    * Generates all lods for this ImporterMesh.
-   * [normalMergeAngle] and [normalSplitAngle] are in degrees and used in the same way as the
-   * importer settings in `lods`. As a good default, use 25 and 60 respectively.
+   * [normalMergeAngle] is in degrees and used in the same way as the importer settings in `lods`.
+   * [normalSplitAngle] is not used and only remains for compatibility with older versions of the
+   * API.
    * The number of generated lods can be accessed using [getSurfaceLodCount], and each LOD is
    * available in [getSurfaceLodSize] and [getSurfaceLodIndices].
    * [boneTransformArray] is an [Array] which can be either empty or contain [Transform3D]s which,

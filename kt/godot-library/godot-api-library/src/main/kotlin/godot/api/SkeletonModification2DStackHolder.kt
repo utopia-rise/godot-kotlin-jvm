@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(592, scriptIndex)
+    createNativeObject(611, scriptIndex)
   }
 
   /**

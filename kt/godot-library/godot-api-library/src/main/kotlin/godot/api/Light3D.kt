@@ -334,6 +334,17 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
+   * The light will only cast shadows using objects in the selected layers.
+   */
+  public final inline var shadowCasterMask: Long
+    @JvmName("shadowCasterMaskProperty")
+    get() = getShadowCasterMask()
+    @JvmName("shadowCasterMaskProperty")
+    set(`value`) {
+      setShadowCasterMask(value)
+    }
+
+  /**
    * If `true`, the light will smoothly fade away when far from the active [Camera3D] starting at
    * [distanceFadeBegin]. This acts as a form of level of detail (LOD). The light will fade out over
    * [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the
@@ -402,7 +413,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(349, scriptIndex)
+    createNativeObject(354, scriptIndex)
   }
 
   /**
@@ -555,6 +566,17 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setShadowCasterMask(casterMask: Long): Unit {
+    TransferContext.writeArguments(LONG to casterMask)
+    TransferContext.callMethod(ptr, MethodBindings.setShadowCasterMaskPtr, NIL)
+  }
+
+  public final fun getShadowCasterMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getShadowCasterMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBakeMode(bakeMode: BakeMode): Unit {
@@ -813,6 +835,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
     internal val getShadowReverseCullFacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36873697)
+
+    internal val setShadowCasterMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow_caster_mask", 1286410249)
+
+    internal val getShadowCasterMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_shadow_caster_mask", 3905245786)
 
     internal val setBakeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Light3D", "set_bake_mode", 37739303)

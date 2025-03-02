@@ -27,15 +27,15 @@ import kotlin.Unit
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(160, scriptIndex)
+    createNativeObject(161, scriptIndex)
   }
 
   /**
    * Makes the callback call delayed by given time in seconds.
-   * **Example:**
+   * **Example:** Call [Node.queueFree] after 2 seconds:
    * [codeblock]
    * var tween = get_tree().create_tween()
-   * tween.tween_callback(queue_free).set_delay(2) #this will call queue_free() after 2 seconds
+   * tween.tween_callback(queue_free).set_delay(2)
    * [/codeblock]
    */
   public final fun setDelay(delay: Double): CallbackTweener? {

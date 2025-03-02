@@ -10,18 +10,22 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Color
 import godot.core.NodePath
+import godot.core.PackedStringArray
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
@@ -841,6 +845,95 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
+  /**
+   * Adds a marker to this Animation.
+   */
+  public final fun addMarker(name: StringName, time: Double): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to time)
+    TransferContext.callMethod(ptr, MethodBindings.addMarkerPtr, NIL)
+  }
+
+  /**
+   * Removes the marker with the given name from this Animation.
+   */
+  public final fun removeMarker(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.removeMarkerPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if this Animation contains a marker with the given name.
+   */
+  public final fun hasMarker(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.hasMarkerPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the name of the marker located at the given time.
+   */
+  public final fun getMarkerAtTime(time: Double): StringName {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerAtTimePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the closest marker that comes after the given time. If no such marker exists, an empty
+   * string is returned.
+   */
+  public final fun getNextMarker(time: Double): StringName {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(ptr, MethodBindings.getNextMarkerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the closest marker that comes before the given time. If no such marker exists, an empty
+   * string is returned.
+   */
+  public final fun getPrevMarker(time: Double): StringName {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(ptr, MethodBindings.getPrevMarkerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the given marker's time.
+   */
+  public final fun getMarkerTime(name: StringName): Double {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Returns every marker in this Animation, sorted ascending by time.
+   */
+  public final fun getMarkerNames(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerNamesPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+  }
+
+  /**
+   * Returns the given marker's color.
+   */
+  public final fun getMarkerColor(name: StringName): Color {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  /**
+   * Sets the given marker's color.
+   */
+  public final fun setMarkerColor(name: StringName, color: Color): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setMarkerColorPtr, NIL)
+  }
+
   public final fun setLength(timeSec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
@@ -888,6 +981,20 @@ public open class Animation : Resource() {
   public final fun copyTrack(trackIdx: Int, toAnimation: Animation?): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
     TransferContext.callMethod(ptr, MethodBindings.copyTrackPtr, NIL)
+  }
+
+  /**
+   * Optimize the animation and all its tracks in-place. This will preserve only as many keys as are
+   * necessary to keep the animation within the specified bounds.
+   */
+  @JvmOverloads
+  public final fun optimize(
+    allowedVelocityErr: Float = 0.01f,
+    allowedAngularErr: Float = 0.01f,
+    precision: Int = 3,
+  ): Unit {
+    TransferContext.writeArguments(DOUBLE to allowedVelocityErr.toDouble(), DOUBLE to allowedAngularErr.toDouble(), LONG to precision.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.optimizePtr, NIL)
   }
 
   /**
@@ -1317,6 +1424,36 @@ public open class Animation : Resource() {
     internal val animationTrackGetKeyAnimationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation", 351665558)
 
+    internal val addMarkerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "add_marker", 4135858297)
+
+    internal val removeMarkerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "remove_marker", 3304788590)
+
+    internal val hasMarkerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "has_marker", 2619796661)
+
+    internal val getMarkerAtTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_marker_at_time", 4079494655)
+
+    internal val getNextMarkerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_next_marker", 4079494655)
+
+    internal val getPrevMarkerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_prev_marker", 4079494655)
+
+    internal val getMarkerTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_marker_time", 2349060816)
+
+    internal val getMarkerNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_marker_names", 1139954409)
+
+    internal val getMarkerColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_marker_color", 3742943038)
+
+    internal val setMarkerColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "set_marker_color", 4260178595)
+
     internal val setLengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Animation", "set_length", 373806689)
 
@@ -1339,6 +1476,9 @@ public open class Animation : Resource() {
 
     internal val copyTrackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Animation", "copy_track", 148001024)
+
+    internal val optimizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "optimize", 3303583852)
 
     internal val compressPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Animation", "compress", 3608408117)

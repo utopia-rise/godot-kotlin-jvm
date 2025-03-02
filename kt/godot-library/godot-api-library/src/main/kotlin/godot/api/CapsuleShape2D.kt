@@ -50,7 +50,7 @@ public open class CapsuleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(175, scriptIndex)
+    createNativeObject(176, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

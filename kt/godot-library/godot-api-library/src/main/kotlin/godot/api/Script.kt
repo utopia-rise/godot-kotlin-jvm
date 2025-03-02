@@ -56,7 +56,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(563, scriptIndex)
+    createNativeObject(581, scriptIndex)
   }
 
   /**
@@ -229,6 +229,15 @@ public open class Script internal constructor() : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns a [Dictionary] mapping method names to their RPC configuration defined by this script.
+   */
+  public final fun getRpcConfig(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -280,5 +289,8 @@ public open class Script internal constructor() : Resource() {
 
     internal val isAbstractPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "is_abstract", 36873697)
+
+    internal val getRpcConfigPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "get_rpc_config", 1214101251)
   }
 }

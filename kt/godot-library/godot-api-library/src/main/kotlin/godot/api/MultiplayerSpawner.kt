@@ -40,13 +40,13 @@ import kotlin.jvm.JvmOverloads
 public open class MultiplayerSpawner : Node() {
   /**
    * Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only
-   * called on puppets.
+   * called on remote peers.
    */
   public val despawned: Signal1<Node> by Signal1
 
   /**
    * Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only
-   * called on puppets.
+   * called on remote peers.
    */
   public val spawned: Signal1<Node> by Signal1
 
@@ -63,8 +63,8 @@ public open class MultiplayerSpawner : Node() {
     }
 
   /**
-   * Maximum nodes that is allowed to be spawned by this spawner. Includes both spawnable scenes and
-   * custom spawns.
+   * Maximum number of nodes allowed to be spawned by this spawner. Includes both spawnable scenes
+   * and custom spawns.
    * When set to `0` (the default), there is no limit.
    */
   public final inline var spawnLimit: Long
@@ -76,8 +76,8 @@ public open class MultiplayerSpawner : Node() {
     }
 
   /**
-   * Method called on all peers when for every custom [spawn] requested by the authority. Will
-   * receive the `data` parameter, and should return a [Node] that is not in the scene tree.
+   * Method called on all peers when a custom [spawn] is requested by the authority. Will receive
+   * the `data` parameter, and should return a [Node] that is not in the scene tree.
    * **Note:** The returned node should **not** be added to the scene with [Node.addChild]. This is
    * done automatically.
    */
@@ -90,7 +90,7 @@ public open class MultiplayerSpawner : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(385, scriptIndex)
+    createNativeObject(391, scriptIndex)
   }
 
   /**

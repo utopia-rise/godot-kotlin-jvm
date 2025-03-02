@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(541, scriptIndex)
+    createNativeObject(558, scriptIndex)
   }
 
   /**
@@ -38,6 +38,12 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
    * Implement this in GDExtension to change the texture mipmap bias.
    */
   public open fun _setTextureMipmapBias(textureMipmapBias: Float): Unit {
+  }
+
+  /**
+   * Implement this in GDExtension to change the anisotropic filtering level.
+   */
+  public open fun _setAnisotropicFilteringLevel(anisotropicFilteringLevel: Int): Unit {
   }
 
   /**

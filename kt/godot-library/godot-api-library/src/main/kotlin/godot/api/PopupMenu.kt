@@ -174,7 +174,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(499, scriptIndex)
+    createNativeObject(516, scriptIndex)
   }
 
   /**
@@ -332,10 +332,6 @@ public open class PopupMenu : Popup() {
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   * **Note:** Multistate items don't update their state automatically and must be done manually.
-   * See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to
-   * control it.
-   * Example usage:
    * [codeblock]
    * func _ready():
    *     add_multistate_item("Item", 3, 0)
@@ -351,6 +347,9 @@ public open class PopupMenu : Popup() {
    *                     print("Third state")
    *         )
    * [/codeblock]
+   * **Note:** Multistate items don't update their state automatically and must be done manually.
+   * See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to
+   * control it.
    */
   @JvmOverloads
   public final fun addMultistateItem(

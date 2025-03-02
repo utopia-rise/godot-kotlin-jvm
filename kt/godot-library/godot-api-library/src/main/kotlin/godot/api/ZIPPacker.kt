@@ -23,11 +23,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class implements a writer that allows storing the multiple blobs in a zip archive.
+ * This class implements a writer that allows storing the multiple blobs in a ZIP archive. See also
+ * [ZIPReader] and [PCKPacker].
  * [codeblock]
+ * # Create a ZIP archive with a single file at its root.
  * func write_zip_file():
- *     var writer := ZIPPacker.new()
- *     var err := writer.open("user://archive.zip")
+ *     var writer = ZIPPacker.new()
+ *     var err = writer.open("user://archive.zip")
  *     if err != OK:
  *         return err
  *     writer.start_file("hello.txt")
@@ -41,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(854, scriptIndex)
+    createNativeObject(880, scriptIndex)
   }
 
   /**

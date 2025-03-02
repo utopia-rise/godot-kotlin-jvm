@@ -18,6 +18,8 @@ object GodotMeta {
         const val uint16 = "uint16"
         const val uint32 = "uint32"
         const val uint64 = "uint64"
+
+        const val char32 = "char32"
     }
 
     object Float {
@@ -43,6 +45,8 @@ object GodotMeta {
         Int.uint16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
         Int.uint32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
         Int.uint64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
+
+        Int.char32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
 
         Float.float to MetaInformation(FLOAT, DOUBLE, CastLiterals.toDouble, CastLiterals.toFloat),
         Float.double to MetaInformation(DOUBLE, DOUBLE, CastLiterals.none, CastLiterals.none)

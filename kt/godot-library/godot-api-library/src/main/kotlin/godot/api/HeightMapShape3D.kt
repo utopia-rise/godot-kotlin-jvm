@@ -35,12 +35,12 @@ import kotlin.jvm.JvmName
  *
  * gdscript:
  * ```gdscript
- * var heightmap_texture: Texture = ResourceLoader.load("res://heightmap_image.exr")
- * var heightmap_image: Image = heightmap_texture.get_image()
+ * var heightmap_texture = ResourceLoader.load("res://heightmap_image.exr")
+ * var heightmap_image = heightmap_texture.get_image()
  * heightmap_image.convert(Image.FORMAT_RF)
  *
- * var height_min: float = 0.0
- * var height_max: float = 10.0
+ * var height_min = 0.0
+ * var height_max = 10.0
  *
  * update_map_data_from_image(heightmap_image, height_min, height_max)
  * ```
@@ -81,7 +81,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(302, scriptIndex)
+    createNativeObject(306, scriptIndex)
   }
 
   public final fun setMapWidth(width: Int): Unit {

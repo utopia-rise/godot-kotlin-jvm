@@ -91,7 +91,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    * Determines the size of the ribbon along its length. The size of a particular section segment is
    * obtained by multiplying the baseline [size] by the value of this curve at the given distance. For
-   * values smaller than `0`, the faces will be inverted.
+   * values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
    */
   public final inline var curve: Curve?
     @JvmName("curveProperty")
@@ -102,7 +102,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(552, scriptIndex)
+    createNativeObject(570, scriptIndex)
   }
 
   public final fun setSize(size: Float): Unit {

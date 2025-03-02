@@ -77,7 +77,8 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Time interval between synchronizations. When set to `0.0` (the default), synchronizations
+   * Time interval between synchronizations. Used when the replication is set to
+   * [SceneReplicationConfig.REPLICATION_MODE_ALWAYS]. If set to `0.0` (the default), synchronizations
    * happen every network process frame.
    */
   public final inline var replicationInterval: Double
@@ -89,7 +90,8 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Time interval between delta synchronizations. When set to `0.0` (the default), delta
+   * Time interval between delta synchronizations. Used when the replication is set to
+   * [SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE]. If set to `0.0` (the default), delta
    * synchronizations happen every network process frame.
    */
   public final inline var deltaInterval: Double
@@ -135,7 +137,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(386, scriptIndex)
+    createNativeObject(392, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

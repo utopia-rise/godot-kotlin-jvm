@@ -11,8 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.api.RenderingDevice.TextureUsageBitsValue
 import godot.common.interop.VoidPtr
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -123,8 +125,33 @@ public open class RDTextureFormat : RefCounted() {
       setUsageBits(value)
     }
 
+  /**
+   * The texture will be used as the destination of a resolve operation.
+   */
+  public final inline var isResolveBuffer: Boolean
+    @JvmName("isResolveBufferProperty")
+    get() = getIsResolveBuffer()
+    @JvmName("isResolveBufferProperty")
+    set(`value`) {
+      setIsResolveBuffer(value)
+    }
+
+  /**
+   * If a texture is discardable, its contents do not need to be preserved between frames. This flag
+   * is only relevant when the texture is used as target in a draw list.
+   * This information is used by [RenderingDevice] to figure out if a texture's contents can be
+   * discarded, eliminating unnecessary writes to memory and boosting performance.
+   */
+  public final inline var isDiscardable: Boolean
+    @JvmName("isDiscardableProperty")
+    get() = getIsDiscardable()
+    @JvmName("isDiscardableProperty")
+    set(`value`) {
+      setIsDiscardable(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(521, scriptIndex)
+    createNativeObject(538, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
@@ -226,11 +253,42 @@ public open class RDTextureFormat : RefCounted() {
     return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setIsResolveBuffer(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(ptr, MethodBindings.setIsResolveBufferPtr, NIL)
+  }
+
+  public final fun getIsResolveBuffer(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getIsResolveBufferPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setIsDiscardable(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(ptr, MethodBindings.setIsDiscardablePtr, NIL)
+  }
+
+  public final fun getIsDiscardable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getIsDiscardablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Adds [format] as a valid format for the corresponding [RDTextureView]'s
+   * [RDTextureView.formatOverride] property. If any format is added as shareable, then the main
+   * [format] must also be added.
+   */
   public final fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
+  /**
+   * Removes [format] from the list of valid formats that the corresponding [RDTextureView]'s
+   * [RDTextureView.formatOverride] property can be set to.
+   */
   public final fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.removeShareableFormatPtr, NIL)
@@ -292,6 +350,18 @@ public open class RDTextureFormat : RefCounted() {
 
     internal val getUsageBitsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RDTextureFormat", "get_usage_bits", 1313398998)
+
+    internal val setIsResolveBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_is_resolve_buffer", 2586408642)
+
+    internal val getIsResolveBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_is_resolve_buffer", 36873697)
+
+    internal val setIsDiscardablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_is_discardable", 2586408642)
+
+    internal val getIsDiscardablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_is_discardable", 36873697)
 
     internal val addShareableFormatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RDTextureFormat", "add_shareable_format", 565531219)

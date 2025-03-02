@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -55,7 +58,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   /**
-   * The [Shape2D]-derived shape to be used for collision queries.
+   * The shape to be used for collision queries.
    */
   public final inline var shape: Shape2D?
     @JvmName("shapeProperty")
@@ -77,7 +80,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   /**
-   * The shape's destination point, relative to this node's `position`.
+   * The shape's destination point, relative to this node's [Node2D.position].
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector2
@@ -113,7 +116,9 @@ public open class ShapeCast2D : Node2D() {
 
   /**
    * The shape's collision mask. Only objects in at least one collision layer enabled in the mask
-   * will be detected.
+   * will be detected. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -122,6 +127,14 @@ public open class ShapeCast2D : Node2D() {
     set(`value`) {
       setCollisionMask(value)
     }
+
+  /**
+   * Returns the complete collision information from the collision sweep. The data returned is the
+   * same as in the [PhysicsDirectSpaceState2D.getRestInfo] method.
+   */
+  public final inline val collisionResult: VariantArray<Any?>
+    @JvmName("collisionResultProperty")
+    get() = getCollisionResult()
 
   /**
    * If `true`, collisions with [Area2D]s will be reported.
@@ -146,11 +159,11 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(580, scriptIndex)
+    createNativeObject(599, scriptIndex)
   }
 
   /**
-   * The shape's destination point, relative to this node's `position`.
+   * The shape's destination point, relative to this node's [Node2D.position].
    *
    * This is a helper function to make dealing with local copies easier.
    *
@@ -253,7 +266,7 @@ public open class ShapeCast2D : Node2D() {
    * Updates the collision information for the shape immediately, without waiting for the next
    * `_physics_process` call. Use this method, for example, when the shape or its parent has changed
    * state.
-   * **Note:** `enabled == true` is not required for this to work.
+   * **Note:** Setting [enabled] to `true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
     TransferContext.writeArguments()
@@ -292,7 +305,7 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Returns the collision point of one of the multiple collisions at [index] where the shape
    * intersects the colliding object.
-   * **Note:** this point is in the **global** coordinate system.
+   * **Note:** This point is in the **global** coordinate system.
    */
   public final fun getCollisionPoint(index: Int): Vector2 {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -310,8 +323,8 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * The fraction from the [ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how
-   * far the shape can move without triggering a collision.
+   * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape can
+   * move without triggering a collision, as a value between `0.0` and `1.0`.
    */
   public final fun getClosestCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -320,8 +333,8 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * The fraction from the [ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how
-   * far the shape must move to trigger a collision.
+   * Returns the fraction from this cast's origin to its [targetPosition] of how far the shape must
+   * move to trigger a collision, as a value between `0.0` and `1.0`.
    * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
    * casting is calculated in discrete steps, so the precise point of collision can occur between two
    * calculated positions.
@@ -341,8 +354,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Adds a collision exception so the shape does not report collisions with the specified
-   * [CollisionObject2D] node.
+   * Adds a collision exception so the shape does not report collisions with the specified node.
    */
   public final fun addException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -358,8 +370,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   /**
-   * Removes a collision exception so the shape does report collisions with the specified
-   * [CollisionObject2D] node.
+   * Removes a collision exception so the shape does report collisions with the specified node.
    */
   public final fun removeException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -435,6 +446,12 @@ public open class ShapeCast2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun getCollisionResult(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionResultPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object
@@ -544,5 +561,8 @@ public open class ShapeCast2D : Node2D() {
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ShapeCast2D", "is_collide_with_bodies_enabled", 36873697)
+
+    internal val getCollisionResultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_result", 3995934104)
   }
 }

@@ -31,7 +31,8 @@ import kotlin.jvm.JvmName
  * input.
  * This node inherits from [Node2D]. Unlike with [Control] nodes, you cannot set anchors on it. If
  * you want to create menus or user interfaces, you may want to use [Button] nodes instead. To make
- * button nodes react to touch events, you can enable the Emulate Mouse option in the Project Settings.
+ * button nodes react to touch events, you can enable
+ * [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch] in the Project Settings.
  * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your
  * game both for desktop and mobile devices.
  */
@@ -151,7 +152,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(673, scriptIndex)
+    createNativeObject(698, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

@@ -172,7 +172,7 @@ public enum class PropertyHint(
    * $"{Variant.Type.Array:D}:{Variant.Type.Array:D}:{elemType:D}/{elemHint:D}:{elemHintString}";
    * ```
    *
-   * Examples:
+   * **Examples:**
    *
    * gdscript:
    * ```gdscript
@@ -257,6 +257,10 @@ public enum class PropertyHint(
    */
   PROPERTY_HINT_ARRAY_TYPE(31),
   /**
+   * Hints that a property is a [Dictionary] with the stored types specified in the hint string.
+   */
+  PROPERTY_HINT_DICTIONARY_TYPE(38),
+  /**
    * Hints that a string property is a locale code. Editing it will show a locale dialog for picking
    * language and country.
    */
@@ -281,9 +285,26 @@ public enum class PropertyHint(
    */
   PROPERTY_HINT_PASSWORD(36),
   /**
+   * Hints that a [Callable] property should be displayed as a clickable button. When the button is
+   * pressed, the callable is called. The hint string specifies the button text and optionally an icon
+   * from the `"EditorIcons"` theme type.
+   * [codeblock lang=text]
+   * "Click me!" - A button with the text "Click me!" and the default "Callable" icon.
+   * "Click me!,ColorRect" - A button with the text "Click me!" and the "ColorRect" icon.
+   * [/codeblock]
+   * **Note:** A [Callable] cannot be properly serialized and stored in a file, so it is recommended
+   * to use [PROPERTY_USAGE_EDITOR] instead of [PROPERTY_USAGE_DEFAULT].
+   */
+  PROPERTY_HINT_TOOL_BUTTON(39),
+  /**
+   * Hints that a property will be changed on its own after setting, such as
+   * [AudioStreamPlayer.playing] or [GPUParticles3D.emitting].
+   */
+  PROPERTY_HINT_ONESHOT(40),
+  /**
    * Represents the size of the [PropertyHint] enum.
    */
-  PROPERTY_HINT_MAX(38),
+  PROPERTY_HINT_MAX(42),
   ;
 
   public val id: Long

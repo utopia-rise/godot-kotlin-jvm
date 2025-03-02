@@ -182,7 +182,8 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * If `true`, the outermost pixels get blurred out. [regionEnabled] must be `true`.
+   * If `true`, the area outside of the [regionRect] is clipped to avoid bleeding of the surrounding
+   * texture pixels. [regionEnabled] must be `true`.
    */
   public final inline var regionFilterClipEnabled: Boolean
     @JvmName("regionFilterClipEnabledProperty")
@@ -193,7 +194,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(611, scriptIndex)
+    createNativeObject(635, scriptIndex)
   }
 
   /**
@@ -414,9 +415,8 @@ public open class Sprite2D : Node2D() {
   }
 
   /**
-   * Returns a [Rect2] representing the Sprite2D's boundary in local coordinates. Can be used to
-   * detect if the Sprite2D was clicked.
-   * **Example:**
+   * Returns a [Rect2] representing the Sprite2D's boundary in local coordinates.
+   * **Example:** Detect if the Sprite2D was clicked:
    *
    * gdscript:
    * ```gdscript

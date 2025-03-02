@@ -6,11 +6,15 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Color
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
@@ -49,9 +53,65 @@ public open class CollisionShape3D : Node3D() {
       setDisabled(value)
     }
 
+  /**
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
+   * color.
+   */
+  @CoreTypeLocalCopy
+  public final inline var debugColor: Color
+    @JvmName("debugColorProperty")
+    get() = getDebugColor()
+    @JvmName("debugColorProperty")
+    set(`value`) {
+      setDebugColor(value)
+    }
+
+  /**
+   * If `true`, when the shape is displayed, it will show a solid fill color in addition to its
+   * wireframe.
+   */
+  public final inline var debugFill: Boolean
+    @JvmName("debugFillProperty")
+    get() = getEnableDebugFill()
+    @JvmName("debugFillProperty")
+    set(`value`) {
+      setEnableDebugFill(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(191, scriptIndex)
+    createNativeObject(192, scriptIndex)
   }
+
+  /**
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug
+   * > Visible Collision Shapes** is checked at the top of the editor.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
+   * color.
+   *
+   * This is a helper function to make dealing with local copies easier.
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionshape3d.debugColor
+   * //Your changes
+   * collisionshape3d.debugColor = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
+      block(this)
+      debugColor = this
+  }
+
 
   /**
    * This method does nothing.
@@ -92,6 +152,28 @@ public open class CollisionShape3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
+  public final fun setDebugColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setDebugColorPtr, NIL)
+  }
+
+  public final fun getDebugColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDebugColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  public final fun setEnableDebugFill(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableDebugFillPtr, NIL)
+  }
+
+  public final fun getEnableDebugFill(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEnableDebugFillPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -112,5 +194,17 @@ public open class CollisionShape3D : Node3D() {
 
     internal val makeConvexFromSiblingsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
+
+    internal val setDebugColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_debug_color", 2920490490)
+
+    internal val getDebugColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_debug_color", 3444240500)
+
+    internal val setEnableDebugFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_enable_debug_fill", 2586408642)
+
+    internal val getEnableDebugFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_enable_debug_fill", 36873697)
   }
 }

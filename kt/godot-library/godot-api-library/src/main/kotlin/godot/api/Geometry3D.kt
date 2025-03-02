@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(8)
+    getSingleton(11)
   }
 
   /**

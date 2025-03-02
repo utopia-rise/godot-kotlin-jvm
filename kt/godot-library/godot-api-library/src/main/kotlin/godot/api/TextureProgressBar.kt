@@ -53,6 +53,7 @@ public open class TextureProgressBar : Range() {
    * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
    * equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the
    * texture fills and tends towards [radialFillDegrees].
+   * **Note:** [radialInitialAngle] is wrapped between `0` and `360` degrees (inclusive).
    */
   public final inline var radialInitialAngle: Float
     @JvmName("radialInitialAngleProperty")
@@ -79,6 +80,9 @@ public open class TextureProgressBar : Range() {
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
+   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
+   * empty space where needed.
    */
   @CoreTypeLocalCopy
   public final inline var radialCenterOffset: Vector2
@@ -92,7 +96,8 @@ public open class TextureProgressBar : Range() {
   /**
    * If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*`
    * properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial
-   * [fillMode], this setting will enable stretching.
+   * [fillMode], this setting will only enable stretching for [textureProgress], while [textureUnder]
+   * and [textureOver] will be treated like in [NinePatchRect].
    */
   public final inline var ninePatchStretch: Boolean
     @JvmName("ninePatchStretchProperty")
@@ -236,12 +241,15 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(659, scriptIndex)
+    createNativeObject(684, scriptIndex)
   }
 
   /**
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   * **Note:** The effective radial center always stays within the [textureProgress] bounds. If you
+   * need to move it outside the texture's bounds, modify the [textureProgress] to contain additional
+   * empty space where needed.
    *
    * This is a helper function to make dealing with local copies easier.
    *

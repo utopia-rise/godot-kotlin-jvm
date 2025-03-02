@@ -39,7 +39,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(711, scriptIndex)
+    createNativeObject(737, scriptIndex)
   }
 
   /**

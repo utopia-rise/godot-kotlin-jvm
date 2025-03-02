@@ -156,6 +156,19 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
+   * When [mode] is [MODE_PATH], if `true` the polygon will be rotated according to the proper
+   * tangent of the path at the sampled points. If `false` an approximation is used, which decreases in
+   * accuracy as the number of subdivisions decreases.
+   */
+  public final inline var pathRotationAccurate: Boolean
+    @JvmName("pathRotationAccurateProperty")
+    get() = getPathRotationAccurate()
+    @JvmName("pathRotationAccurateProperty")
+    set(`value`) {
+      setPathRotationAccurate(value)
+    }
+
+  /**
    * When [mode] is [MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the
    * starting point for the extrusions, not the [Transform3D] of the [pathNode].
    */
@@ -230,7 +243,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(155, scriptIndex)
+    createNativeObject(156, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
@@ -341,6 +354,17 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathRotationPtr, LONG)
     return CSGPolygon3D.PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPathRotationAccurate(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setPathRotationAccuratePtr, NIL)
+  }
+
+  public final fun getPathRotationAccurate(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathRotationAccuratePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathLocal(enable: Boolean): Unit {
@@ -551,6 +575,12 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
     internal val getPathRotationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
+
+    internal val setPathRotationAccuratePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation_accurate", 2586408642)
+
+    internal val getPathRotationAccuratePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation_accurate", 36873697)
 
     internal val setPathLocalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)

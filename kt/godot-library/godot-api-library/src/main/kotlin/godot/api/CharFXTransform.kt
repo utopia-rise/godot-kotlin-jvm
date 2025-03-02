@@ -58,8 +58,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Absolute character range in the string, corresponding to the glyph. Setting this property won't
-   * affect drawing.
+   * Absolute character range in the string, corresponding to the glyph.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   @CoreTypeLocalCopy
   public final inline var range: Vector2i
@@ -98,8 +98,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * If `true`, FX transform is called for outline drawing. Setting this property won't affect
-   * drawing.
+   * If `true`, FX transform is called for outline drawing.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var outline: Boolean
     @JvmName("outlineProperty")
@@ -154,7 +154,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Font specific glyph index.
+   * Glyph index specific to the [font]. If you want to replace this glyph, use
+   * [TextServer.fontGetGlyphIndex] with [font] to get a new glyph index for a single character.
    */
   public final inline var glyphIndex: Long
     @JvmName("glyphIndexProperty")
@@ -166,7 +167,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster.
-   * Setting this property won't affect drawing.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var glyphCount: Int
     @JvmName("glyphCountProperty")
@@ -177,8 +178,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Glyph flags. See [TextServer.GraphemeFlag] for more info. Setting this property won't affect
-   * drawing.
+   * Glyph flags. See [TextServer.GraphemeFlag] for more info.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var glyphFlags: Int
     @JvmName("glyphFlagsProperty")
@@ -190,7 +191,7 @@ public open class CharFXTransform : RefCounted() {
 
   /**
    * The character offset of the glyph, relative to the current [RichTextEffect] custom block.
-   * Setting this property won't affect drawing.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var relativeIndex: Int
     @JvmName("relativeIndexProperty")
@@ -201,7 +202,9 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Font resource used to render glyph.
+   * [TextServer] RID of the font used to render glyph, this value can be used with
+   * `TextServer.font_*` methods to retrieve font information.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    */
   public final inline var font: RID
     @JvmName("fontProperty")
@@ -212,7 +215,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(178, scriptIndex)
+    createNativeObject(179, scriptIndex)
   }
 
   /**
@@ -242,8 +245,8 @@ public open class CharFXTransform : RefCounted() {
 
 
   /**
-   * Absolute character range in the string, corresponding to the glyph. Setting this property won't
-   * affect drawing.
+   * Absolute character range in the string, corresponding to the glyph.
+   * **Note:** Read-only. Setting this property won't affect drawing.
    *
    * This is a helper function to make dealing with local copies easier.
    *

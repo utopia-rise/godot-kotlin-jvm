@@ -85,7 +85,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(314, scriptIndex)
+    createNativeObject(318, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {

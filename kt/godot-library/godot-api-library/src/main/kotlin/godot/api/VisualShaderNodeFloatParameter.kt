@@ -97,7 +97,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(732, scriptIndex)
+    createNativeObject(758, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {

@@ -15,7 +15,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(621, scriptIndex)
+    createNativeObject(645, scriptIndex)
   }
 
   public open fun _getAvailableBytes(): Int {

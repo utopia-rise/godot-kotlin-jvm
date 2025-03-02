@@ -87,12 +87,41 @@ public object JavaScriptBridge : Object() {
    * Creates a reference to a [Callable] that can be used as a callback by JavaScript. The reference
    * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
    * usage.
+   * **Note:** The callback function must take exactly one [Array] argument, which is going to be
+   * the JavaScript
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments]arguments
+   * object[/url] converted to an array.
    */
   @JvmStatic
   public final fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.createCallbackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaScriptObject?)
+  }
+
+  /**
+   * Returns `true` if the given [javascriptObject] is of type
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]`ArrayBuffer`[/url],
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView]`DataView`[/url],
+   * or one of the many
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray]typed
+   * array objects[/url].
+   */
+  @JvmStatic
+  public final fun isJsBuffer(javascriptObject: JavaScriptObject?): Boolean {
+    TransferContext.writeArguments(OBJECT to javascriptObject)
+    TransferContext.callMethod(ptr, MethodBindings.isJsBufferPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns a copy of [javascriptBuffer]'s contents as a [PackedByteArray]. See also [isJsBuffer].
+   */
+  @JvmStatic
+  public final fun jsBufferToPackedByteArray(javascriptBuffer: JavaScriptObject?): PackedByteArray {
+    TransferContext.writeArguments(OBJECT to javascriptBuffer)
+    TransferContext.callMethod(ptr, MethodBindings.jsBufferToPackedByteArrayPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -172,6 +201,12 @@ public object JavaScriptBridge : Object() {
 
     internal val createCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback", 422818440)
+
+    internal val isJsBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "is_js_buffer", 821968997)
+
+    internal val jsBufferToPackedByteArrayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "js_buffer_to_packed_byte_array", 64409880)
 
     internal val createObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object", 3093893586)

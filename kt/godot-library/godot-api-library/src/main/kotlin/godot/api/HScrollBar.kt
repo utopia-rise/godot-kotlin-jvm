@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HScrollBar : ScrollBar() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(295, scriptIndex)
+    createNativeObject(299, scriptIndex)
   }
 
   public companion object

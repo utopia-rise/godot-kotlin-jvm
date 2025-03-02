@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.AABB
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -128,7 +129,7 @@ public open class NavigationRegion3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(403, scriptIndex)
+    createNativeObject(409, scriptIndex)
   }
 
   /**
@@ -279,6 +280,15 @@ public open class NavigationRegion3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns the axis-aligned bounding box for the region's transformed navigation mesh.
+   */
+  public final fun getBounds(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -341,5 +351,8 @@ public open class NavigationRegion3D : Node3D() {
 
     internal val isBakingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion3D", "is_baking", 36873697)
+
+    internal val getBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "get_bounds", 1068685055)
   }
 }

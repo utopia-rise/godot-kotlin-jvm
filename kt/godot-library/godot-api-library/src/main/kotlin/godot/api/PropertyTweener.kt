@@ -25,23 +25,31 @@ import kotlin.Unit
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
  * more usage information.
+ * The tweener will finish automatically if the target object is freed.
  * **Note:** [Tween.tweenProperty] is the only correct way to create [PropertyTweener]. Any
  * [PropertyTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(506, scriptIndex)
+    createNativeObject(523, scriptIndex)
   }
 
   /**
    * Sets a custom initial value to the [PropertyTweener].
-   * **Example:**
-   * [codeblock]
+   * **Example:** Move the node from position `(100, 100)` to `(200, 100)`.
+   *
+   * gdscript:
+   * ```gdscript
    * var tween = get_tree().create_tween()
-   * tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100)) #this will
-   * move the node from position (100, 100) to (200, 100)
-   * [/codeblock]
+   * tween.tween_property(self, "position", Vector2(200, 100), 1).from(Vector2(100, 100))
+   * ```
+   * csharp:
+   * ```csharp
+   * Tween tween = GetTree().CreateTween();
+   * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(new
+   * Vector2(100.0f, 100.0f));
+   * ```
    */
   public final fun from(`value`: Any?): PropertyTweener? {
     TransferContext.writeArguments(ANY to value)
@@ -53,10 +61,17 @@ public open class PropertyTweener : Tweener() {
    * Makes the [PropertyTweener] use the current property value (i.e. at the time of creating this
    * [PropertyTweener]) as a starting point. This is equivalent of using [from] with the current value.
    * These two calls will do the same:
-   * [codeblock]
+   *
+   * gdscript:
+   * ```gdscript
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from(position)
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from_current()
-   * [/codeblock]
+   * ```
+   * csharp:
+   * ```csharp
+   * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).From(Position);
+   * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).FromCurrent();
+   * ```
    */
   public final fun fromCurrent(): PropertyTweener? {
     TransferContext.writeArguments()
@@ -66,12 +81,18 @@ public open class PropertyTweener : Tweener() {
 
   /**
    * When called, the final value will be used as a relative value instead.
-   * **Example:**
-   * [codeblock]
+   * **Example:** Move the node by `100` pixels to the right.
+   *
+   * gdscript:
+   * ```gdscript
    * var tween = get_tree().create_tween()
-   * tween.tween_property(self, "position", Vector2.RIGHT * 100, 1).as_relative() #the node will
-   * move by 100 pixels to the right
-   * [/codeblock]
+   * tween.tween_property(self, "position", Vector2.RIGHT * 100, 1).as_relative()
+   * ```
+   * csharp:
+   * ```csharp
+   * Tween tween = GetTree().CreateTween();
+   * tween.TweenProperty(this, "position", Vector2.Right * 100.0f, 1.0f).AsRelative();
+   * ```
    */
   public final fun asRelative(): PropertyTweener? {
     TransferContext.writeArguments()
@@ -105,8 +126,9 @@ public open class PropertyTweener : Tweener() {
    * the same range (values outside the range can be used for overshoot). The return value of the
    * method is then used for interpolation between initial and final value. Note that the parameter
    * passed to the method is still subject to the tweener's own easing.
-   * **Example:**
-   * [codeblock]
+   *
+   * gdscript:
+   * ```gdscript
    * @export var curve: Curve
    *
    * func _ready():
@@ -117,7 +139,26 @@ public open class PropertyTweener : Tweener() {
    *
    * func tween_curve(v):
    *     return curve.sample_baked(v)
-   * [/codeblock]
+   * ```
+   * csharp:
+   * ```csharp
+   * [Export]
+   * public Curve Curve { get; set; }
+   *
+   * public override void _Ready()
+   * {
+   *     Tween tween = CreateTween();
+   *     // Interpolate the value using a custom curve.
+   *     Callable tweenCurveCallable = Callable.From<float, float>(TweenCurve);
+   *     tween.TweenProperty(this, "position:x", 300.0f,
+   * 1.0f).AsRelative().SetCustomInterpolator(tweenCurveCallable);
+   * }
+   *
+   * private float TweenCurve(float value)
+   * {
+   *     return Curve.SampleBaked(value);
+   * }
+   * ```
    */
   public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
     TransferContext.writeArguments(CALLABLE to interpolatorMethod)

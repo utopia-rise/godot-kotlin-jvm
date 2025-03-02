@@ -86,12 +86,12 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(632, scriptIndex)
+    createNativeObject(657, scriptIndex)
   }
 
   /**
    * Set to [SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
-   * By default, only 4 bone influences are used ([SKIN_4_WEIGHTS])
+   * By default, only 4 bone influences are used ([SKIN_4_WEIGHTS]).
    * **Note:** This function takes an enum, not the exact number of weights.
    */
   public final fun setSkinWeightCount(count: SkinWeightCount): Unit {
@@ -286,7 +286,7 @@ public open class SurfaceTool : RefCounted() {
    * resulting normals will be inverted. [generateNormals] should be called *after* generating geometry
    * and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of
    * normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
-   * **Note:** [generateNormals] only works if the primitive type to be set to
+   * **Note:** [generateNormals] only works if the primitive type is set to
    * [Mesh.PRIMITIVE_TRIANGLES].
    * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set
    * the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the
@@ -300,8 +300,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set
-   * already (see [generateNormals]).
+   * Generates a tangent vector for each vertex. Requires that each vertex already has UVs and
+   * normals set (see [generateNormals]).
    */
   public final fun generateTangents(): Unit {
     TransferContext.writeArguments()
@@ -412,8 +412,8 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns a constructed [ArrayMesh] from current information passed in. If an existing
    * [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
-   * **FIXME:** Document possible values for [flags], it changed in 4.0. Likely some combinations of
-   * [Mesh.ArrayFormat].
+   * The [flags] argument can be the bitwise OR of [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE],
+   * [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    */
   @JvmOverloads
   public final fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {

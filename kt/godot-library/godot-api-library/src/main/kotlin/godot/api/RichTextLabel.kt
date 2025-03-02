@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
+import godot.api.TextServer.JustificationFlagValue
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -34,7 +35,10 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
+import godot.core.Vector2i
+import godot.core.VerticalAlignment
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -75,6 +79,10 @@ public operator fun Long.rem(other: godot.api.RichTextLabel.ImageUpdateMask): Lo
  * A control for displaying text that can contain custom fonts, images, and basic formatting.
  * [RichTextLabel] manages these as an internal tag stack. It also adapts itself to given
  * width/heights.
+ * **Note:** [newline], [pushParagraph], `"\n"`, `"\r\n"`, `p` tag, and alignment tags start a new
+ * paragraph. Each paragraph is processed independently, in its own BiDi context. If you want to force
+ * line wrapping within paragraph, any other line breaking character can be used, for example, Form
+ * Feed (U+000C), Next Line (U+0085), Line Separator (U+2028).
  * **Note:** Assignments to [text] clear the tag stack and reconstruct it from the property's
  * contents. Any edits made to [text] will erase previous edits made from other manual sources such as
  * [appendText] and the `push_*` / [pop] methods.
@@ -123,6 +131,8 @@ public open class RichTextLabel : Control() {
 
   /**
    * Triggered when the document is fully loaded.
+   * **Note:** This can happen before the text is processed for drawing. Scrolling values may not be
+   * valid until the document is drawn for the first time after this signal.
    */
   public val finished: Signal0 by Signal0
 
@@ -234,6 +244,52 @@ public open class RichTextLabel : Control() {
     @JvmName("shortcutKeysEnabledProperty")
     set(`value`) {
       setShortcutKeysEnabled(value)
+    }
+
+  /**
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Set it to one of the [HorizontalAlignment] constants.
+   */
+  public final inline var horizontalAlignment: HorizontalAlignment
+    @JvmName("horizontalAlignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("horizontalAlignmentProperty")
+    set(`value`) {
+      setHorizontalAlignment(value)
+    }
+
+  /**
+   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
+   * of the [VerticalAlignment] constants.
+   */
+  public final inline var verticalAlignment: VerticalAlignment
+    @JvmName("verticalAlignmentProperty")
+    get() = getVerticalAlignment()
+    @JvmName("verticalAlignmentProperty")
+    set(`value`) {
+      setVerticalAlignment(value)
+    }
+
+  /**
+   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   */
+  public final inline var justificationFlags: TextServer.JustificationFlag
+    @JvmName("justificationFlagsProperty")
+    get() = getJustificationFlags()
+    @JvmName("justificationFlagsProperty")
+    set(`value`) {
+      setJustificationFlags(value)
+    }
+
+  /**
+   * Aligns text to the given tab-stops.
+   */
+  public final inline var tabStops: PackedFloat32Array
+    @JvmName("tabStopsProperty")
+    get() = getTabStops()
+    @JvmName("tabStopsProperty")
+    set(`value`) {
+      setTabStops(value)
     }
 
   /**
@@ -415,7 +471,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(554, scriptIndex)
+    createNativeObject(572, scriptIndex)
   }
 
   /**
@@ -664,9 +720,12 @@ public open class RichTextLabel : Control() {
    * connect [signal meta_clicked] to a function that is called when the meta tag is clicked.
    */
   @JvmOverloads
-  public final fun pushMeta(`data`: Any?, underlineMode: MetaUnderline =
-      RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS): Unit {
-    TransferContext.writeArguments(ANY to data, LONG to underlineMode.id)
+  public final fun pushMeta(
+    `data`: Any?,
+    underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS,
+    tooltip: String = "",
+  ): Unit {
+    TransferContext.writeArguments(ANY to data, LONG to underlineMode.id, STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.pushMetaPtr, NIL)
   }
 
@@ -747,8 +806,9 @@ public open class RichTextLabel : Control() {
     column: Int,
     expand: Boolean,
     ratio: Int = 1,
+    shrink: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong())
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong(), BOOL to shrink)
     TransferContext.callMethod(ptr, MethodBindings.setTableColumnExpandPtr, NIL)
   }
 
@@ -907,6 +967,50 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
+  }
+
+  public final fun getVerticalAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+    TransferContext.writeArguments(LONG to justificationFlags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
+  }
+
+  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
+    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTabStops(tabStops: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
+    TransferContext.callMethod(ptr, MethodBindings.setTabStopsPtr, NIL)
+  }
+
+  public final fun getTabStops(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
@@ -1097,6 +1201,15 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Returns the current selection vertical line offset if a selection is active, `-1.0` otherwise.
+   */
+  public final fun getSelectionLineOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSelectionLineOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
    * Select all the text.
    * If [selectionEnabled] is `false`, no selection will occur.
    */
@@ -1155,6 +1268,16 @@ public open class RichTextLabel : Control() {
   public final fun isReady(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isReadyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * If [threaded] is enabled, returns `true` if the background thread has finished text processing,
+   * otherwise always return `true`.
+   */
+  public final fun isFinished(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1218,7 +1341,7 @@ public open class RichTextLabel : Control() {
    * Returns the line number of the character position provided. Line and character numbers are both
    * zero-indexed.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getCharacterLine(character: Int): Int {
     TransferContext.writeArguments(LONG to character.toLong())
@@ -1230,7 +1353,7 @@ public open class RichTextLabel : Control() {
    * Returns the paragraph number of the character position provided. Paragraph and character
    * numbers are both zero-indexed.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getCharacterParagraph(character: Int): Int {
     TransferContext.writeArguments(LONG to character.toLong())
@@ -1260,8 +1383,10 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
+   * **Note:** If [visibleCharactersBehavior] is set to [TextServer.VC_CHARS_BEFORE_SHAPING] only
+   * visible wrapped lines are counted.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getLineCount(): Int {
     TransferContext.writeArguments()
@@ -1270,9 +1395,23 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Returns the indexes of the first and last visible characters for the given [line], as a
+   * [Vector2i].
+   * **Note:** If [visibleCharactersBehavior] is set to [TextServer.VC_CHARS_BEFORE_SHAPING] only
+   * visible wrapped lines are counted.
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
+   */
+  public final fun getLineRange(line: Int): Vector2i {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getLineRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+  }
+
+  /**
    * Returns the number of visible lines.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()
@@ -1294,7 +1433,7 @@ public open class RichTextLabel : Control() {
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of
    * its lines is visible.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleParagraphCount(): Int {
     TransferContext.writeArguments()
@@ -1305,7 +1444,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the height of the content.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentHeight(): Int {
     TransferContext.writeArguments()
@@ -1316,7 +1455,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the width of the content.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentWidth(): Int {
     TransferContext.writeArguments()
@@ -1327,7 +1466,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the vertical offset of the line found at the provided index.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getLineOffset(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -1338,7 +1477,7 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the vertical offset of the paragraph found at the provided index.
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
-   * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
+   * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getParagraphOffset(paragraph: Int): Float {
     TransferContext.writeArguments(LONG to paragraph.toLong())
@@ -1368,9 +1507,9 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Installs a custom effect. This can also be done in the RichTextLabel inspector using the
-   * [customEffects] property. [effect] should be a valid [RichTextEffect].
-   * Example RichTextEffect:
+   * Installs a custom effect. This can also be done in the Inspector through the [customEffects]
+   * property. [effect] should be a valid [RichTextEffect].
+   * **Example:** With the following script extending from [RichTextEffect]:
    * [codeblock]
    * # effect.gd
    * class_name MyCustomEffect
@@ -1380,7 +1519,7 @@ public open class RichTextLabel : Control() {
    *
    * # ...
    * [/codeblock]
-   * Registering the above effect in RichTextLabel from script:
+   * The above effect can be installed in [RichTextLabel] from a script:
    * [codeblock]
    * # rich_text_label.gd
    * extends RichTextLabel
@@ -1703,7 +1842,7 @@ public open class RichTextLabel : Control() {
         TypeManager.getMethodBindPtr("RichTextLabel", "push_list", 3017143144)
 
     internal val pushMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_meta", 2206155733)
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_meta", 3765356747)
 
     internal val pushHintPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "push_hint", 83702148)
@@ -1724,7 +1863,7 @@ public open class RichTextLabel : Control() {
         TypeManager.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
 
     internal val setTableColumnExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 2185176273)
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 117236061)
 
     internal val setCellRowBackgroundColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
@@ -1787,6 +1926,30 @@ public open class RichTextLabel : Control() {
 
     internal val getLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_language", 201670096)
+
+    internal val setHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_horizontal_alignment", 2312603777)
+
+    internal val getHorizontalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_horizontal_alignment", 341400642)
+
+    internal val setVerticalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_vertical_alignment", 1796458609)
+
+    internal val getVerticalAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_vertical_alignment", 3274884059)
+
+    internal val setJustificationFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_justification_flags", 2877345813)
+
+    internal val getJustificationFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_justification_flags", 1583363614)
+
+    internal val setTabStopsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_tab_stops", 2899603908)
+
+    internal val getTabStopsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_tab_stops", 675695659)
 
     internal val setAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_autowrap_mode", 3289138044)
@@ -1878,6 +2041,9 @@ public open class RichTextLabel : Control() {
     internal val getSelectionToPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_to", 3905245786)
 
+    internal val getSelectionLineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_line_offset", 1740695150)
+
     internal val selectAllPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "select_all", 3218959716)
 
@@ -1898,6 +2064,9 @@ public open class RichTextLabel : Control() {
 
     internal val isReadyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "is_ready", 36873697)
+
+    internal val isFinishedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_finished", 36873697)
 
     internal val setThreadedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_threaded", 2586408642)
@@ -1946,6 +2115,9 @@ public open class RichTextLabel : Control() {
 
     internal val getLineCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_line_count", 3905245786)
+
+    internal val getLineRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_range", 3665014314)
 
     internal val getVisibleLineCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_line_count", 3905245786)

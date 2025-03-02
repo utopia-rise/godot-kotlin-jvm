@@ -40,6 +40,18 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Curve3D : Resource() {
   /**
+   * If `true`, and the curve has more than 2 control points, the last point and the first one will
+   * be connected in a loop.
+   */
+  public final inline var closed: Boolean
+    @JvmName("closedProperty")
+    get() = isClosed()
+    @JvmName("closedProperty")
+    set(`value`) {
+      setClosed(value)
+    }
+
+  /**
    * The distance in meters between two adjacent cached points. Changing it forces the cache to be
    * recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller
    * the distance, the more points in the cache and the more memory it will consume, so use with care.
@@ -77,7 +89,7 @@ public open class Curve3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+    createNativeObject(220, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
@@ -229,6 +241,17 @@ public open class Curve3D : Resource() {
     TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.samplefPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setClosed(closed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to closed)
+    TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
+  }
+
+  public final fun isClosed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeInterval(distance: Float): Unit {
@@ -439,6 +462,12 @@ public open class Curve3D : Resource() {
 
     internal val samplefPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Curve3D", "samplef", 2553580215)
+
+    internal val setClosedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "set_closed", 2586408642)
+
+    internal val isClosedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "is_closed", 36873697)
 
     internal val setBakeIntervalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Curve3D", "set_bake_interval", 373806689)

@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(542, scriptIndex)
+    createNativeObject(559, scriptIndex)
   }
 
   /**
@@ -68,8 +68,9 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     layers: Long,
     mipmaps: Long,
     unique: Boolean,
+    discardable: Boolean,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.id, LONG to usageBits, LONG to textureSamples.id, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique)
+    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.id, LONG to usageBits, LONG to textureSamples.id, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique, BOOL to discardable)
     TransferContext.callMethod(ptr, MethodBindings.createTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -91,8 +92,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   }
 
   /**
-   * Create a new texture view for an existing texture and cache this under the given view_name.
-   * Will return the existing teture view if it already exists. Will error if the source texture
+   * Create a new texture view for an existing texture and cache this under the given [viewName].
+   * Will return the existing texture view if it already exists. Will error if the source texture
    * doesn't exist.
    */
   public final fun createTextureView(
@@ -181,7 +182,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   /**
    * Returns the color texture we are rendering 3D content to. If multiview is used this will be a
    * texture array with all views.
-   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
+   * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
   @JvmOverloads
   public final fun getColorTexture(msaa: Boolean = false): RID {
@@ -192,7 +193,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
 
   /**
    * Returns the specified layer from the color texture we are rendering 3D content to.
-   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
+   * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
   @JvmOverloads
   public final fun getColorLayer(layer: Long, msaa: Boolean = false): RID {
@@ -204,7 +205,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   /**
    * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a
    * texture array with all views.
-   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
+   * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
   @JvmOverloads
   public final fun getDepthTexture(msaa: Boolean = false): RID {
@@ -215,7 +216,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
 
   /**
    * Returns the specified layer from the depth texture we are rendering 3D content to.
-   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
+   * If [msaa] is `true` and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
   @JvmOverloads
   public final fun getDepthLayer(layer: Long, msaa: Boolean = false): RID {
@@ -354,7 +355,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
         TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "has_texture", 471820014)
 
     internal val createTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 3559915770)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 2950875024)
 
     internal val createTextureFromFormatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format", 3344669382)
