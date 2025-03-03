@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import godot.codegen.models.ApiDescription
 import godot.codegen.models.enriched.toEnriched
-import godot.codegen.repositories.ClassRepository
 import godot.codegen.repositories.CoreTypeEnumRepository
 import godot.codegen.repositories.GlobalEnumRepository
-import godot.codegen.repositories.impl.JsonClassRepository
 import godot.codegen.repositories.impl.JsonGlobalEnumRepository
 import godot.codegen.repositories.impl.KnownCoreTypeEnumRepository
 import godot.codegen.repositories.impl.NativeStructureRepository
@@ -25,12 +23,11 @@ import java.io.File
 fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
-    val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes, apiDescription.singletons)
     val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched())
     val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
     val nativeStructureRepository = NativeStructureRepository(apiDescription.nativeStructures.toEnriched())
 
-    val classGraphService: IClassService = ClassService(classRepository)
+    val classGraphService: IClassService = ClassService(apiDescription.classes, apiDescription.singletons)
     val apiService: IApiService = ApiService(
         globalEnumRepository,
         coreTypeEnumRepository,

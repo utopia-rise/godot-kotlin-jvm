@@ -107,7 +107,7 @@ public open class MainLoop : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
-    throw NotImplementedError("_physics_process is not implemented for MainLoop")
+    throw NotImplementedError("_physicsProcess is not implemented for MainLoop")
   }
 
   /**

@@ -713,7 +713,7 @@ public open class Node : Object() {
    * [/codeblock]
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
-    throw NotImplementedError("_get_configuration_warnings is not implemented for Node")
+    throw NotImplementedError("_getConfigurationWarnings is not implemented for Node")
   }
 
   /**

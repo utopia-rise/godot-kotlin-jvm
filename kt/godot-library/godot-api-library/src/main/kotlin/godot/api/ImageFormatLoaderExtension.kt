@@ -36,7 +36,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * be treated as image file and loaded using this class.
    */
   public open fun _getRecognizedExtensions(): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions is not implemented for ImageFormatLoaderExtension")
+    throw NotImplementedError("_getRecognizedExtensions is not implemented for ImageFormatLoaderExtension")
   }
 
   /**
@@ -48,7 +48,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
   ): Error {
-    throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")
+    throw NotImplementedError("_loadImage is not implemented for ImageFormatLoaderExtension")
   }
 
   /**

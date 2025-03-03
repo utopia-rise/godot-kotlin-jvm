@@ -37,7 +37,7 @@ public open class SyntaxHighlighter : Resource() {
    * See [getLineSyntaxHighlighting] for more details.
    */
   public open fun _getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_line_syntax_highlighting is not implemented for SyntaxHighlighter")
+    throw NotImplementedError("_getLineSyntaxHighlighting is not implemented for SyntaxHighlighter")
   }
 
   /**

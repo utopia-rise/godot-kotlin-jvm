@@ -24,7 +24,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   }
 
   public open fun _getStreamSamplingRate(): Float {
-    throw NotImplementedError("_get_stream_sampling_rate is not implemented for AudioStreamPlaybackResampled")
+    throw NotImplementedError("_getStreamSamplingRate is not implemented for AudioStreamPlaybackResampled")
   }
 
   public final fun beginResample(): Unit {

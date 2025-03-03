@@ -19,7 +19,7 @@ public open class StreamPeerExtension : StreamPeer() {
   }
 
   public open fun _getAvailableBytes(): Int {
-    throw NotImplementedError("_get_available_bytes is not implemented for StreamPeerExtension")
+    throw NotImplementedError("_getAvailableBytes is not implemented for StreamPeerExtension")
   }
 
   public companion object

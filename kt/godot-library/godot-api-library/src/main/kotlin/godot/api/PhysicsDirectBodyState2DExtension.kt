@@ -35,7 +35,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getTotalGravity(): Vector2 {
-    throw NotImplementedError("_get_total_gravity is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getTotalGravity is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -43,7 +43,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getTotalLinearDamp(): Float {
-    throw NotImplementedError("_get_total_linear_damp is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getTotalLinearDamp is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -51,7 +51,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getTotalAngularDamp(): Float {
-    throw NotImplementedError("_get_total_angular_damp is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getTotalAngularDamp is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -59,7 +59,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getCenterOfMass(): Vector2 {
-    throw NotImplementedError("_get_center_of_mass is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getCenterOfMass is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -67,7 +67,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getCenterOfMassLocal(): Vector2 {
-    throw NotImplementedError("_get_center_of_mass_local is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getCenterOfMassLocal is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -75,7 +75,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * getter.
    */
   public open fun _getInverseMass(): Float {
-    throw NotImplementedError("_get_inverse_mass is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getInverseMass is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -83,7 +83,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getInverseInertia(): Float {
-    throw NotImplementedError("_get_inverse_inertia is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getInverseInertia is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -98,7 +98,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getLinearVelocity(): Vector2 {
-    throw NotImplementedError("_get_linear_velocity is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getLinearVelocity is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -113,7 +113,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * respective getter.
    */
   public open fun _getAngularVelocity(): Float {
-    throw NotImplementedError("_get_angular_velocity is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getAngularVelocity is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -128,14 +128,14 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * getter.
    */
   public open fun _getTransform(): Transform2D {
-    throw NotImplementedError("_get_transform is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getTransform is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getVelocityAtLocalPosition].
    */
   public open fun _getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
-    throw NotImplementedError("_get_velocity_at_local_position is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getVelocityAtLocalPosition is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -202,7 +202,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.getConstantForce].
    */
   public open fun _getConstantForce(): Vector2 {
-    throw NotImplementedError("_get_constant_force is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getConstantForce is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -215,7 +215,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.getConstantTorque].
    */
   public open fun _getConstantTorque(): Float {
-    throw NotImplementedError("_get_constant_torque is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getConstantTorque is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -230,91 +230,91 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * getter.
    */
   public open fun _isSleeping(): Boolean {
-    throw NotImplementedError("_is_sleeping is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_isSleeping is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactCount].
    */
   public open fun _getContactCount(): Int {
-    throw NotImplementedError("_get_contact_count is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactCount is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactLocalPosition].
    */
   public open fun _getContactLocalPosition(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_local_position is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactLocalPosition is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactLocalNormal].
    */
   public open fun _getContactLocalNormal(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_local_normal is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactLocalNormal is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactLocalShape].
    */
   public open fun _getContactLocalShape(contactIdx: Int): Int {
-    throw NotImplementedError("_get_contact_local_shape is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactLocalShape is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactLocalVelocityAtPosition].
    */
   public open fun _getContactLocalVelocityAtPosition(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_local_velocity_at_position is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactLocalVelocityAtPosition is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactCollider].
    */
   public open fun _getContactCollider(contactIdx: Int): RID {
-    throw NotImplementedError("_get_contact_collider is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactCollider is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactColliderPosition].
    */
   public open fun _getContactColliderPosition(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_collider_position is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactColliderPosition is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactColliderId].
    */
   public open fun _getContactColliderId(contactIdx: Int): Long {
-    throw NotImplementedError("_get_contact_collider_id is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactColliderId is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactColliderObject].
    */
   public open fun _getContactColliderObject(contactIdx: Int): Object? {
-    throw NotImplementedError("_get_contact_collider_object is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactColliderObject is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactColliderShape].
    */
   public open fun _getContactColliderShape(contactIdx: Int): Int {
-    throw NotImplementedError("_get_contact_collider_shape is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactColliderShape is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactColliderVelocityAtPosition].
    */
   public open fun _getContactColliderVelocityAtPosition(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_collider_velocity_at_position is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactColliderVelocityAtPosition is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactImpulse].
    */
   public open fun _getContactImpulse(contactIdx: Int): Vector2 {
-    throw NotImplementedError("_get_contact_impulse is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getContactImpulse is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -322,7 +322,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * getter.
    */
   public open fun _getStep(): Float {
-    throw NotImplementedError("_get_step is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getStep is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   /**
@@ -335,7 +335,7 @@ public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D()
    * Overridable version of [PhysicsDirectBodyState2D.getSpaceState].
    */
   public open fun _getSpaceState(): PhysicsDirectSpaceState2D? {
-    throw NotImplementedError("_get_space_state is not implemented for PhysicsDirectBodyState2DExtension")
+    throw NotImplementedError("_getSpaceState is not implemented for PhysicsDirectBodyState2DExtension")
   }
 
   public companion object

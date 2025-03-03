@@ -100,7 +100,7 @@ public open class AnimationNode : Resource() {
    * animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_child_nodes is not implemented for AnimationNode")
+    throw NotImplementedError("_getChildNodes is not implemented for AnimationNode")
   }
 
   /**
@@ -110,7 +110,7 @@ public open class AnimationNode : Resource() {
    * [Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
-    throw NotImplementedError("_get_parameter_list is not implemented for AnimationNode")
+    throw NotImplementedError("_getParameterList is not implemented for AnimationNode")
   }
 
   /**
@@ -118,7 +118,7 @@ public open class AnimationNode : Resource() {
    * animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
-    throw NotImplementedError("_get_child_by_name is not implemented for AnimationNode")
+    throw NotImplementedError("_getChildByName is not implemented for AnimationNode")
   }
 
   /**
@@ -127,7 +127,7 @@ public open class AnimationNode : Resource() {
    * resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
-    throw NotImplementedError("_get_parameter_default_value is not implemented for AnimationNode")
+    throw NotImplementedError("_getParameterDefaultValue is not implemented for AnimationNode")
   }
 
   /**
@@ -136,7 +136,7 @@ public open class AnimationNode : Resource() {
    * a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
-    throw NotImplementedError("_is_parameter_read_only is not implemented for AnimationNode")
+    throw NotImplementedError("_isParameterReadOnly is not implemented for AnimationNode")
   }
 
   /**
@@ -161,7 +161,7 @@ public open class AnimationNode : Resource() {
    * caption for this animation node.
    */
   public open fun _getCaption(): String {
-    throw NotImplementedError("_get_caption is not implemented for AnimationNode")
+    throw NotImplementedError("_getCaption is not implemented for AnimationNode")
   }
 
   /**
@@ -169,7 +169,7 @@ public open class AnimationNode : Resource() {
    * blend tree editor should display filter editing on this animation node.
    */
   public open fun _hasFilter(): Boolean {
-    throw NotImplementedError("_has_filter is not implemented for AnimationNode")
+    throw NotImplementedError("_hasFilter is not implemented for AnimationNode")
   }
 
   /**

@@ -58,7 +58,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * stream.
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_isPlaying is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -66,14 +66,14 @@ public open class AudioStreamPlayback : RefCounted() {
    * playbacks always return `0`.
    */
   public open fun _getLoopCount(): Int {
-    throw NotImplementedError("_get_loop_count is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getLoopCount is not implemented for AudioStreamPlayback")
   }
 
   /**
    * Overridable method. Should return the current progress along the audio stream, in seconds.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_get_playback_position is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getPlaybackPosition is not implemented for AudioStreamPlayback")
   }
 
   /**
@@ -101,7 +101,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Return the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
    */
   public open fun _getParameter(name: StringName): Any? {
-    throw NotImplementedError("_get_parameter is not implemented for AudioStreamPlayback")
+    throw NotImplementedError("_getParameter is not implemented for AudioStreamPlayback")
   }
 
   /**

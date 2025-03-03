@@ -74,7 +74,7 @@ class ApiGenerationService(
     val registrationFileSpec = RegistrationFileSpec()
 
     override fun generateCore(outputDir: File) {
-        val apiClasses = classService.getClasses().filter {
+        val apiClasses = classService.listClasses().filter {
             it.type == "Object" || it.type == "RefCounted"
         }
 
@@ -101,16 +101,14 @@ class ApiGenerationService(
     }
 
     override fun generateApi(outputDir: File) {
-        apiService.findGetSetMethodsAndUpdateProperties()
-
 
         //We first generate singletons so that their index in engine types and engine singleton lists are same.
-        for (singleton in classService.getSingletons()) {
+        for (singleton in classService.listSingletons()) {
             generateSingleton(singleton).writeTo(outputDir)
             generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
         }
 
-        for (enrichedClass in classService.getClasses()) {
+        for (enrichedClass in classService.listClasses()) {
             if (enrichedClass.type != "Object" && enrichedClass.type != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
                 generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
@@ -206,7 +204,7 @@ class ApiGenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
-        for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
+        for (method in enrichedClass.methods.filter { it.isStatic }) {
             constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true, isSingleton))
         }
 
@@ -221,12 +219,12 @@ class ApiGenerationService(
         for (property in enrichedClass.properties) {
             val propertySpec = generateProperty(enrichedClass, property, isSingleton) ?: continue
             classTypeBuilder.addProperty(propertySpec)
-            if (property.hasValidSetterInClass && property.isLocalCopyCoreTypes()) {
+            if (property.hasSetter && property.isLocalCopyCoreTypes()) {
                 classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property, isSingleton))
             }
         }
 
-        for (method in enrichedClass.methods.filter { !it.internal.isStatic }) {
+        for (method in enrichedClass.methods.filter { !it.isStatic }) {
             // TODO: Implement native structure when value class are here.
             var shouldGenerate = true
             for (argument in method.arguments) {
@@ -244,7 +242,7 @@ class ApiGenerationService(
         val methodBindPtrReceiver = TypeSpec
             .objectBuilder(methodBindingsInnerClassName)
 
-        for (method in enrichedClass.methods.filter { !it.internal.isVirtual }) {
+        for (method in enrichedClass.methods.filter { !it.isVirtual }) {
             methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
         }
 
@@ -452,7 +450,7 @@ class ApiGenerationService(
     }
 
     private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty, isSingleton: Boolean): PropertySpec? {
-        if (!property.hasValidGetterInClass && !property.hasValidSetterInClass) return null
+        if (!property.hasGetter && !property.hasSetter) return null
 
         // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
         val argumentIndex = if (property.isIndexed) 1 else 0
@@ -465,8 +463,8 @@ class ApiGenerationService(
             propertySpecBuilder.addAnnotation(JvmStatic::class)
         }
 
-        if (property.hasValidGetterInClass) {
-            val methodName = property.getter
+        if (property.hasGetter) {
+            val methodName = property.getterName
 
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
@@ -476,11 +474,11 @@ class ApiGenerationService(
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
                                 val argumentValue = apiService.findDefaultEnumValue(
                                     indexArgument.getBufferType(),
-                                    property.internal.index!!.toLong()
+                                    property.index!!.toLong()
                                 ).name
                                 "return $methodName($argumentValue)"
                             } else {
-                                "return $methodName(${property.internal.index})"
+                                "return $methodName(${property.index})"
                             }
 
                         } else {
@@ -511,8 +509,8 @@ class ApiGenerationService(
         val getterAndSetterAreCompatible = property.getterMethod?.getCastedType() == property.setterMethod?.arguments?.get(argumentIndex)?.getCastedType()
 
         // We don't generate the setter if its type doesn't match the getter.
-        if (property.hasValidSetterInClass && getterAndSetterAreCompatible) {
-            val methodName = property.setter
+        if (property.hasSetter && getterAndSetterAreCompatible) {
+            val methodName = property.setterName!!
 
             propertySpecBuilder.mutable().setter(
                 FunSpec.setterBuilder()
@@ -523,11 +521,11 @@ class ApiGenerationService(
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
                                 val argumentValue = apiService.findDefaultEnumValue(
                                     indexArgument.getBufferType(),
-                                    property.internal.index!!.toLong()
+                                    property.index!!.toLong()
                                 ).name
                                 "$methodName($argumentValue, value)"
                             } else {
-                                "$methodName(${property.internal.index}, value)"
+                                "$methodName(${property.index}, value)"
                             }
 
                         } else {
@@ -620,7 +618,7 @@ class ApiGenerationService(
         }
 
         // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
-        if (method.internal.isVirtual) {
+        if (method.isVirtual) {
             modifiers.add(KModifier.OPEN)
         } else {
             modifiers.add(KModifier.FINAL)
@@ -657,7 +655,7 @@ class ApiGenerationService(
             method
         ) //cannot be inlined as it also adds the arguments to the generatedFunBuilder
 
-        if (method.internal.isVararg) {
+        if (method.isVararg) {
             generatedFunBuilder.addParameter(
                 "__var_args",
                 ANY.copy(nullable = true),
@@ -670,7 +668,7 @@ class ApiGenerationService(
         generatedFunBuilder.addKdoc(method)
 
         for (jvmReservedMethod in jvmReservedMethods) {
-            if (method.isSameSignature(jvmReservedMethod) && !method.internal.isVirtual) {
+            if (method.isSameSignature(jvmReservedMethod) && !method.isVirtual) {
                 generatedFunBuilder.addAnnotation(
                     AnnotationSpec.builder(JvmName::class)
                         .addMember(
@@ -694,14 +692,14 @@ class ApiGenerationService(
     }
 
     private fun generateMethodVoidPtr(enrichedClass: EnrichedClass, method: EnrichedMethod) = PropertySpec
-        .builder("${method.name}Ptr", VOID_PTR)
+        .builder(method.voidPtrVariableName, VOID_PTR)
         .addModifiers(KModifier.INTERNAL)
         .initializer(
             "%T.getMethodBindPtr(%S,·%S,·%L)",
             TYPE_MANAGER,
             enrichedClass.type,
-            method.internal.name,
-            method.internal.hash
+            method.godotName,
+            method.hash
         )
         .build()
 
@@ -841,7 +839,7 @@ class ApiGenerationService(
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }
-            if (method.internal.isVararg && isNotEmpty()) append(",·")
+            if (method.isVararg && isNotEmpty()) append(",·")
         }
     }
 
@@ -851,7 +849,7 @@ class ApiGenerationService(
         callArgumentsAsString: String,
         isStatic: Boolean
     ) {
-        if (!enrichedMethod.internal.isVirtual) {
+        if (!enrichedMethod.isVirtual) {
             generateJvmMethodCall(
                 clazz,
                 callable = enrichedMethod,
@@ -863,7 +861,7 @@ class ApiGenerationService(
                 "%L·%T(%S)",
                 "throw",
                 NotImplementedError::class,
-                "${enrichedMethod.internal.name} is not implemented for ${clazz.type}"
+                "${enrichedMethod.name} is not implemented for ${clazz.type}"
             )
         }
     }

@@ -49,15 +49,16 @@ import java.util.*
 const val enumPrefix = "enum::"
 const val bitfieldPrefix = "bitfield::"
 
+fun TypedTrait.isVoid() = type.isNullOrEmpty()
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
 fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s ->
     s == this.type
 } != null
 
-fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false
-fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) ?: false
-fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
+fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) == true
+fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) == true
+fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) == true
 
 fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
     val typeNameWrapper = when {
