@@ -33,7 +33,7 @@ class ApiService(
     private val singletons = singletonRepository
         .list()
         .map {
-            classRepository.findByClassName(it.type)?.copy(it.name) ?: throw NoMatchingClassFoundException(it.type)
+            classRepository.findByClassName(it.type) ?: throw NoMatchingClassFoundException(it.type)
         }
         .filter { it.apiType == ApiType.CORE }
 
@@ -141,7 +141,7 @@ class ApiService(
             } else {
                 getClasses()
                     .plus(getSingletons())
-                    .first { it.name == className }
+                    .first { it.type == className }
                     .enums
             }?.firstOrNull { it.getTypeClassName() == enumClassName } ?:
             throw NoMatchingEnumFound(simpleNames.joinToString("."))

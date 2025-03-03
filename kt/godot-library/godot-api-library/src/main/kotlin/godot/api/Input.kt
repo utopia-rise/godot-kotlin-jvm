@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -60,6 +61,64 @@ public object Input : Object() {
    */
   @JvmStatic
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
+
+  /**
+   * Controls the mouse mode. See [MouseMode] for more information.
+   */
+  @JvmStatic
+  public final inline var mouseMode: MouseMode
+    @JvmName("mouseModeProperty")
+    get() = getMouseMode()
+    @JvmName("mouseModeProperty")
+    set(`value`) {
+      setMouseMode(value)
+    }
+
+  /**
+   * If `true`, similar input events sent by the operating system are accumulated. When input
+   * accumulation is enabled, all input events generated during a frame will be merged and emitted when
+   * the frame is done rendering. Therefore, this limits the number of input method calls per second to
+   * the rendering FPS.
+   * Input accumulation can be disabled to get slightly more precise/reactive input at the cost of
+   * increased CPU usage. In applications where drawing freehand lines is required, input accumulation
+   * should generally be disabled while the user is drawing the line to get results that closely follow
+   * the actual input.
+   * **Note:** Input accumulation is *enabled* by default.
+   */
+  @JvmStatic
+  public final inline var useAccumulatedInput: Boolean
+    @JvmName("useAccumulatedInputProperty")
+    get() = isUsingAccumulatedInput()
+    @JvmName("useAccumulatedInputProperty")
+    set(`value`) {
+      setUseAccumulatedInput(value)
+    }
+
+  /**
+   * If `true`, sends mouse input events when tapping or swiping on the touchscreen. See also
+   * [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch].
+   */
+  @JvmStatic
+  public final inline var emulateMouseFromTouch: Boolean
+    @JvmName("emulateMouseFromTouchProperty")
+    get() = isEmulatingMouseFromTouch()
+    @JvmName("emulateMouseFromTouchProperty")
+    set(`value`) {
+      setEmulateMouseFromTouch(value)
+    }
+
+  /**
+   * If `true`, sends touch input events when clicking or dragging the mouse. See also
+   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   */
+  @JvmStatic
+  public final inline var emulateTouchFromMouse: Boolean
+    @JvmName("emulateTouchFromMouseProperty")
+    get() = isEmulatingTouchFromMouse()
+    @JvmName("emulateTouchFromMouseProperty")
+    set(`value`) {
+      setEmulateTouchFromMouse(value)
+    }
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(17)

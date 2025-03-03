@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -50,6 +51,65 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
+
+  /**
+   * Number of available audio buses.
+   */
+  @JvmStatic
+  public final inline var busCount: Int
+    @JvmName("busCountProperty")
+    get() = getBusCount()
+    @JvmName("busCountProperty")
+    set(`value`) {
+      setBusCount(value)
+    }
+
+  /**
+   * Name of the current device for audio output (see [getOutputDeviceList]). On systems with
+   * multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio
+   * output device. The value `"Default"` will play audio on the system-wide default audio output. If
+   * an invalid device name is set, the value will be reverted back to `"Default"`.
+   */
+  @JvmStatic
+  public final inline var outputDevice: String
+    @JvmName("outputDeviceProperty")
+    get() = getOutputDevice()
+    @JvmName("outputDeviceProperty")
+    set(`value`) {
+      setOutputDevice(value)
+    }
+
+  /**
+   * Name of the current device for audio input (see [getInputDeviceList]). On systems with multiple
+   * audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input
+   * device. The value `"Default"` will record audio on the system-wide default audio input. If an
+   * invalid device name is set, the value will be reverted back to `"Default"`.
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
+   * See also that setting's description for caveats related to permissions and operating system
+   * privacy settings.
+   */
+  @JvmStatic
+  public final inline var inputDevice: String
+    @JvmName("inputDeviceProperty")
+    get() = getInputDevice()
+    @JvmName("inputDeviceProperty")
+    set(`value`) {
+      setInputDevice(value)
+    }
+
+  /**
+   * Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be
+   * played at half its speed). See also [Engine.timeScale] to affect the general simulation speed,
+   * which is independent from [AudioServer.playbackSpeedScale].
+   */
+  @JvmStatic
+  public final inline var playbackSpeedScale: Float
+    @JvmName("playbackSpeedScaleProperty")
+    get() = getPlaybackSpeedScale()
+    @JvmName("playbackSpeedScaleProperty")
+    set(`value`) {
+      setPlaybackSpeedScale(value)
+    }
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(26)
