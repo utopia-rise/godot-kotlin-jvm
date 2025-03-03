@@ -1,10 +1,8 @@
-package godot.codegen.services
+package godot.codegen.repositories
 
 import godot.codegen.models.enriched.EnrichedClass
-import godot.codegen.models.enriched.EnrichedMethod
-import godot.codegen.models.enriched.EnrichedProperty
 
-interface IClassService {
+interface IClassRepository {
     fun listTypes(): List<EnrichedClass>
     fun listSingletons(): List<EnrichedClass>
     fun listClasses(): List<EnrichedClass>

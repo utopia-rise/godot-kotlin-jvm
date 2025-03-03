@@ -21,9 +21,8 @@ import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.extensions.applyJvmNameIfNecessary
-import godot.codegen.extensions.getClassName
 import godot.codegen.extensions.getDefaultValueKotlinString
-import godot.codegen.extensions.getTypeName
+import godot.codegen.extensions.getTypeClass
 import godot.codegen.extensions.isBitField
 import godot.codegen.extensions.isEnum
 import godot.codegen.extensions.isLocalCopyCoreTypes
@@ -40,9 +39,9 @@ import godot.codegen.models.enriched.isSameSignature
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
-import godot.codegen.services.IClassService
+import godot.codegen.repositories.IClassRepository
 import godot.codegen.services.IApiGenerationService
-import godot.codegen.services.ICoreService
+import godot.codegen.repositories.ICoreRepository
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.addKdoc
@@ -69,8 +68,8 @@ import kotlin.collections.firstOrNull
 private const val methodBindingsInnerClassName = "MethodBindings"
 
 class ApiGenerationService(
-    private val classService: IClassService,
-    private val coreService: ICoreService,
+    private val classRepository: IClassRepository,
+    private val coreRepository: ICoreRepository,
     private val nativeStructureRepository: INativeStructureRepository
 ) : IApiGenerationService {
 
@@ -78,8 +77,12 @@ class ApiGenerationService(
     private var nextSingletonIndex = 0
     val registrationFileSpec = RegistrationFileSpec()
 
+    fun TypedTrait.getClassName() = getTypeClass(coreRepository).className
+    fun TypedTrait.getTypeName() = getTypeClass(coreRepository).typeName
+    fun TypedTrait.getTypeClass() = getTypeClass(coreRepository)
+
     override fun generateCore(outputDir: File) {
-        val apiClasses = classService.listClasses().filter {
+        val apiClasses = classRepository.listClasses().filter {
             it.type == "Object" || it.type == "RefCounted"
         }
 
@@ -88,7 +91,7 @@ class ApiGenerationService(
             generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
         }
 
-        for (enum in coreService.getGlobalEnums()) {
+        for (enum in coreRepository.getGlobalEnums()) {
             val enumAndExtensions = generateEnum(enum)
             val fileBuilder = FileSpec.builder(godotCorePackage, enum.name)
             for (typeSpec in enumAndExtensions.first) {
@@ -108,12 +111,12 @@ class ApiGenerationService(
     override fun generateApi(outputDir: File) {
 
         //We first generate singletons so that their index in engine types and engine singleton lists are same.
-        for (singleton in classService.listSingletons()) {
+        for (singleton in classRepository.listSingletons()) {
             generateSingleton(singleton).writeTo(outputDir)
             generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
         }
 
-        for (enrichedClass in classService.listClasses()) {
+        for (enrichedClass in classRepository.listClasses()) {
             if (enrichedClass.type != "Object" && enrichedClass.type != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
                 generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
@@ -432,11 +435,7 @@ class ApiGenerationService(
                 signal.getTypeName()
             )
             .addKdoc(signal)
-            .delegate(
-                "%T",
-                ClassName(godotCorePackage, "Signal" + signal.arguments
-                    .size)
-            )
+            .delegate("%T", ClassName(godotCorePackage, "Signal" + signal.arguments.size))
 
         if (isSingleton) {
             builder.addAnnotation(JvmStatic::class)
@@ -450,7 +449,7 @@ class ApiGenerationService(
 
         // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
         val argumentIndex = if (property.isIndexed) 1 else 0
-        val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType().typeName
+        val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType(coreRepository).typeName
 
         val propertySpecBuilder = PropertySpec.builder(property.name, propertyTypeName).addModifiers(KModifier.FINAL)
 
@@ -501,7 +500,20 @@ class ApiGenerationService(
             )
         }
 
-        val getterAndSetterAreCompatible = property.getterMethod?.getCastedType()?.className == property.setterMethod?.arguments?.get(argumentIndex)?.getCastedType()?.className
+        val getterType = property
+            .getterMethod
+            ?.getCastedType(coreRepository)
+            ?.typeName
+
+        val setterType = property
+            .setterMethod
+            ?.arguments
+            ?.get(argumentIndex)
+            ?.getCastedType(coreRepository)
+            ?.typeName
+
+        val getterAndSetterAreCompatible = getterType == setterType
+
 
         // We don't generate the setter if its type doesn't match the getter.
         if (property.hasSetter && getterAndSetterAreCompatible) {
@@ -509,7 +521,7 @@ class ApiGenerationService(
 
             propertySpecBuilder.mutable().setter(
                 FunSpec.setterBuilder()
-                    .addParameter("value", property.getCastedType().className)
+                    .addParameter("value", property.getCastedType(coreRepository).className)
                     .addStatement(
                         if (property.isIndexed) {
                             val indexArgument = property.setterMethod!!.arguments[0]
@@ -548,7 +560,7 @@ class ApiGenerationService(
     }
 
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty, isSingleton: Boolean): FunSpec {
-        val parameterTypeName = property.getCastedType().typeName
+        val parameterTypeName = property.getCastedType(coreRepository).typeName
         val parameterName = property.name
         val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
 
@@ -624,7 +636,7 @@ class ApiGenerationService(
             .addModifiers(modifiers)
             .applyJvmNameIfNecessary(method.name)
 
-        val methodTypeName = method.getCastedType()
+        val methodTypeName = method.getCastedType(coreRepository)
         val shouldReturn = method.getTypeName() != UNIT
 
         if (shouldReturn) {
@@ -807,7 +819,7 @@ class ApiGenerationService(
 
                 val parameterBuilder = ParameterSpec.builder(
                     sanitisedArgumentName,
-                    argument.getCastedType().typeName
+                    argument.getCastedType(coreRepository).typeName
                 )
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
@@ -899,7 +911,7 @@ class ApiGenerationService(
             returnTypeVariantTypeClass
         )
 
-        val methodReturnType = callable.getBufferType()
+        val methodReturnType = callable.getBufferType(coreRepository)
 
         if (methodReturnType.className != UNIT) {
             if (callable.isEnum()) {
@@ -1091,16 +1103,16 @@ class ApiGenerationService(
         return if (simpleNames.size > 1) {
             val className = simpleNames[0]
             val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
-                coreService.getCoreType(className)
+                coreRepository.getCoreEnum(className)
             } else {
-                classService.findTypeByName(className)!!.enums
+                classRepository.findTypeByName(className)!!.enums
             }.firstOrNull {
                 it.type == enumClass.type
             } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
 
             enrichedEnum.values.firstOrNull { it.value == enumValue } ?: enrichedEnum.getBitFieldCustomValue(enumValue)
         } else {
-            coreService
+            coreRepository
                 .getGlobalEnums()
                 .first { it.name == simpleNames[0] }
                 .values
