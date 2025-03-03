@@ -3,6 +3,11 @@ package godot.codegen.repositories
 import godot.codegen.models.enriched.EnrichedClass
 
 interface ClassRepository {
-    fun list(): List<EnrichedClass>
-    infix fun findByClassName(className: String): EnrichedClass?
+    fun listTypes(): List<EnrichedClass>
+    fun listClasses(): List<EnrichedClass>
+    fun listSingleton(): List<EnrichedClass>
+
+    fun findTypeByName(className: String): EnrichedClass?
+    fun findClassByName(className: String): EnrichedClass?
+    fun findSingletonByName(name: String): EnrichedClass?
 }

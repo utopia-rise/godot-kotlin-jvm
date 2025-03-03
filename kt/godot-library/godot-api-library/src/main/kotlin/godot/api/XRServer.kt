@@ -6,8 +6,6 @@
 
 package godot.api
 
-import godot.`annotation`.CoreTypeHelper
-import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
@@ -37,7 +35,6 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
@@ -88,79 +85,9 @@ public object XRServer : Object() {
   @JvmStatic
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
-  /**
-   * The scale of the game world compared to the real world. By default, most AR/VR platforms assume
-   * that 1 game unit corresponds to 1 real world meter.
-   */
-  @JvmStatic
-  public final inline var worldScale: Double
-    @JvmName("worldScaleProperty")
-    get() = getWorldScale()
-    @JvmName("worldScaleProperty")
-    set(`value`) {
-      setWorldScale(value)
-    }
-
-  /**
-   * The current origin of our tracking space in the virtual world. This is used by the renderer to
-   * properly position the camera with new tracking data.
-   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
-   * from GDExtensions.
-   */
-  @JvmStatic
-  @CoreTypeLocalCopy
-  public final inline var worldOrigin: Transform3D
-    @JvmName("worldOriginProperty")
-    get() = getWorldOrigin()
-    @JvmName("worldOriginProperty")
-    set(`value`) {
-      setWorldOrigin(value)
-    }
-
-  /**
-   * The primary [XRInterface] currently bound to the [XRServer].
-   */
-  @JvmStatic
-  public final inline var primaryInterface: XRInterface?
-    @JvmName("primaryInterfaceProperty")
-    get() = getPrimaryInterface()
-    @JvmName("primaryInterfaceProperty")
-    set(`value`) {
-      setPrimaryInterface(value)
-    }
-
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(35)
   }
-
-  /**
-   * The current origin of our tracking space in the virtual world. This is used by the renderer to
-   * properly position the camera with new tracking data.
-   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
-   * from GDExtensions.
-   *
-   * This is a helper function to make dealing with local copies easier.
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = xrserver.worldOrigin
-   * //Your changes
-   * xrserver.worldOrigin = myCoreType
-   * ``````
-   */
-  @JvmStatic
-  @CoreTypeHelper
-  public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D =
-      worldOrigin.apply{
-      block(this)
-      worldOrigin = this
-  }
-
 
   @JvmStatic
   public final fun getWorldScale(): Double {

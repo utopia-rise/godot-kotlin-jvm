@@ -6,8 +6,6 @@ import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.poet.ClassTypeNameWrapper
 
 interface IApiService {
-    fun getSingletons(): List<EnrichedClass>
-    fun getClasses(): List<EnrichedClass>
     fun getGlobalEnums() : List<EnrichedEnum>
 
 

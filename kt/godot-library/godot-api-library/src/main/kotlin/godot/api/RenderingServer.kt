@@ -72,7 +72,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
-import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -207,21 +206,8 @@ public object RenderingServer : Object() {
   @JvmStatic
   public val framePostDraw: Signal0 by Signal0
 
-  /**
-   * If `false`, disables rendering completely, but the engine logic is still being processed. You
-   * can call [forceDraw] to draw a frame even with rendering disabled.
-   */
-  @JvmStatic
-  public final inline var renderLoopEnabled: Boolean
-    @JvmName("renderLoopEnabledProperty")
-    get() = isRenderLoopEnabled()
-    @JvmName("renderLoopEnabledProperty")
-    set(`value`) {
-      setRenderLoopEnabled(value)
-    }
-
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(32)
+    getSingleton(26)
   }
 
   /**

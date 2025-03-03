@@ -1,7 +1,6 @@
 package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.UNIT
-import godot.codegen.exceptions.NoMatchingClassFoundException
 import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isBitField
@@ -18,37 +17,16 @@ import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.repositories.ClassRepository
 import godot.codegen.repositories.CoreTypeEnumRepository
 import godot.codegen.repositories.GlobalEnumRepository
-import godot.codegen.repositories.SingletonRepository
-import godot.codegen.services.IClassGraphService
+import godot.codegen.services.IClassService
 import godot.codegen.services.IApiService
 import godot.tools.common.constants.GodotTypes
 
 class ApiService(
-    private val classRepository: ClassRepository,
-    private val singletonRepository: SingletonRepository,
     private val globalEnumRepository: GlobalEnumRepository,
     private val coreTypeEnumRepository: CoreTypeEnumRepository,
-    private val classGraphService: IClassGraphService
-) : IApiService{
-    private val singletons = singletonRepository
-        .list()
-        .map {
-            classRepository.findByClassName(it.type) ?: throw NoMatchingClassFoundException(it.type)
-        }
-        .filter { it.apiType == ApiType.CORE }
+    private val classService: IClassService
+) : IApiService {
 
-    private val classes = classRepository
-        .list()
-        .filter {
-            for (singleton in singletonRepository.list()) {
-                if (singleton.type == it.type || classGraphService.doClassInherits(it, singleton.type)) return@filter false
-            }
-            it.apiType == ApiType.CORE
-        }
-
-    override fun getSingletons() = singletons
-
-    override fun getClasses() = classes
 
     override fun getGlobalEnums() = globalEnumRepository.list()
 
@@ -58,12 +36,12 @@ class ApiService(
         val arguments: List<Argument>
 
         if (isSetter) {
-            if(property.setterMethod != null) return
+            if (property.setterMethod != null) return
             methodName = property.internal.setter ?: return // Early return if the property doesn't have a setter.
             returnType = ""
             arguments = listOf(Argument(property.name, property.type, null, null))
         } else {
-            if(property.getterMethod != null) return
+            if (property.getterMethod != null) return
             methodName = property.internal.getter // No need to check, a property always has at least a getter.
             returnType = property.type
             arguments = listOf()
@@ -87,7 +65,7 @@ class ApiService(
             )
         )
 
-        val parentClassAndMethod = classGraphService.getMethodFromAncestor(clazz, method)
+        val parentClassAndMethod = classService.getMethodFromAncestor(clazz, method)
         val hasValidAccessor = if (isSetter) property.hasValidSetterInClass else property.hasValidGetterInClass
         if (parentClassAndMethod != null && !hasValidAccessor) {
             if (isSetter) {
@@ -99,7 +77,7 @@ class ApiService(
     }
 
     override fun findGetSetMethodsAndUpdateProperties() {
-        for (clazz in classRepository.list()) {
+        for (clazz in classService.getClasses()) {
             for (property in clazz.properties) {
                 for (method in clazz.methods) {
                     if (property.name == "") continue
@@ -139,25 +117,19 @@ class ApiService(
             val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
                 coreTypeEnumRepository.listForCoreType(className)
             } else {
-                getClasses()
-                    .plus(getSingletons())
-                    .first { it.type == className }
-                    .enums
-            }?.firstOrNull { it.getTypeClassName() == enumClassName } ?:
-            throw NoMatchingEnumFound(simpleNames.joinToString("."))
+                classService.findTypeByName(className)!!.enums
+            }?.firstOrNull { it.getTypeClassName() == enumClassName } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
 
             val value = enrichedEnum
                 .internal
                 .values
-                .firstOrNull { it.value == enumValue } ?:
-            if (enrichedEnum.isBitField()) {
+                .firstOrNull { it.value == enumValue } ?: if (enrichedEnum.isBitField()) {
                 return DefaultEnumValue(
                     null,
                     "${enrichedEnum.name}Value($enumValue)",
                     enrichedEnum.encapsulatingType
                 )
-            }
-            else {
+            } else {
                 throw NoMatchingEnumFound(simpleNames.joinToString("."))
             }
 
