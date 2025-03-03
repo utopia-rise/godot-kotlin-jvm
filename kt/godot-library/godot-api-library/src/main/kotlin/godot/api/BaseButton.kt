@@ -80,8 +80,8 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if
    * [toggleMode] is active). Only works if [toggleMode] is `true`.
-   * **Note:** Setting [buttonPressed] will result in [signal toggled] to be emitted. If you want to
-   * change the pressed state without emitting that signal, use [setPressedNoSignal].
+   * **Note:** Changing the value of [buttonPressed] will result in [signal toggled] to be emitted.
+   * If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
   public final inline var buttonPressed: Boolean
     @JvmName("buttonPressedProperty")
@@ -166,6 +166,8 @@ public open class BaseButton : Control() {
 
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
+   * **Note:** This property does nothing when the tooltip control is customized using
+   * [Control.MakeCustomTooltip].
    */
   public final inline var shortcutInTooltip: Boolean
     @JvmName("shortcutInTooltipProperty")
@@ -176,7 +178,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(137, scriptIndex)
+    createNativeObject(138, scriptIndex)
   }
 
   /**

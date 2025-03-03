@@ -35,7 +35,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(17)
+    getSingleton(18)
   }
 
   /**
@@ -64,7 +64,7 @@ public object InputMap : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
+  public final fun addAction(action: StringName, deadzone: Float = 0.2f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.addActionPtr, NIL)
   }
@@ -183,7 +183,7 @@ public object InputMap : Object() {
         TypeManager.getMethodBindPtr("InputMap", "get_actions", 2915620761)
 
     internal val addActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "add_action", 4100757082)
+        TypeManager.getMethodBindPtr("InputMap", "add_action", 1195233573)
 
     internal val eraseActionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputMap", "erase_action", 3304788590)

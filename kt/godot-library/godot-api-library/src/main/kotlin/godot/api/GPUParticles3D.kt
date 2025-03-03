@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * 3D particle node used to create a variety of particle systems and effects. [GPUParticles3D]
@@ -45,10 +46,10 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class GPUParticles3D : GeometryInstance3D() {
   /**
-   * Emitted when all active particles have finished processing. To immediately emit new particles,
-   * call [restart].
-   * Never emitted when [oneShot] is disabled, as particles will be emitted and processed
-   * continuously.
+   * Emitted when all active particles have finished processing. To immediately restart the emission
+   * cycle, call [restart].
+   * This signal is never emitted when [oneShot] is disabled, as particles will be emitted and
+   * processed continuously.
    * **Note:** For [oneShot] emitters, due to the particles being computed on the GPU, there may be
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
@@ -162,6 +163,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time to preprocess the particles before animation starts. Lets you start the
    * animation some time after particles have started emitting.
+   * **Note:** This can be very expensive if set to a high number as it requires running the
+   * particle shader a number of times equal to the [fixedFps] (or 30, if [fixedFps] is 0) for every
+   * second. In extreme cases it can even lead to a GPU crash due to the volume of work done in a
+   * single frame.
    */
   public final inline var preprocess: Double
     @JvmName("preprocessProperty")
@@ -203,6 +208,30 @@ public open class GPUParticles3D : GeometryInstance3D() {
     @JvmName("randomnessProperty")
     set(`value`) {
       setRandomnessRatio(value)
+    }
+
+  /**
+   * If `true`, particles will use the same seed for every simulation using the seed defined in
+   * [seed]. This is useful for situations where the visual outcome should be consistent across
+   * replays, for example when using Movie Maker mode.
+   */
+  public final inline var useFixedSeed: Boolean
+    @JvmName("useFixedSeedProperty")
+    get() = getUseFixedSeed()
+    @JvmName("useFixedSeedProperty")
+    set(`value`) {
+      setUseFixedSeed(value)
+    }
+
+  /**
+   * Sets the random seed used by the particle system. Only effective if [useFixedSeed] is `true`.
+   */
+  public final inline var seed: Long
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
+    set(`value`) {
+      setSeed(value)
     }
 
   /**
@@ -413,7 +442,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(269, scriptIndex)
+    createNativeObject(273, scriptIndex)
   }
 
   /**
@@ -623,6 +652,28 @@ public open class GPUParticles3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useFixedSeed)
+    TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
+  }
+
+  public final fun getUseFixedSeed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSeed(seed: Long): Unit {
+    TransferContext.writeArguments(LONG to seed)
+    TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public final fun getSeed(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setDrawOrder(order: DrawOrder): Unit {
     TransferContext.writeArguments(LONG to order.id)
     TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
@@ -677,9 +728,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing
    * from the viewport, wait for the [signal finished] signal before calling.
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
+   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
+   * playback.
    */
-  public final fun restart(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun restart(keepSeed: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to keepSeed)
     TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
   }
 
@@ -709,6 +763,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * on the value of [flags]. See [EmitFlags].
    * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
    * `(rotation, age, animation, lifetime)`.
+   * **Note:** [emitParticle] is only supported on the Forward+ and Mobile rendering methods, not
+   * Compatibility.
    */
   public final fun emitParticle(
     xform: Transform3D,
@@ -771,6 +827,16 @@ public open class GPUParticles3D : GeometryInstance3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmountRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Requests the particles to process for extra process time during a single frame.
+   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
+   * [restart] with parameter `keep_seed` set to `true`.
+   */
+  public final fun requestParticlesProcess(processTime: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
   public enum class DrawOrder(
@@ -965,6 +1031,18 @@ public open class GPUParticles3D : GeometryInstance3D() {
     internal val getInterpToEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "get_interp_to_end", 1740695150)
 
+    internal val setUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_use_fixed_seed", 2586408642)
+
+    internal val getUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_use_fixed_seed", 36873697)
+
+    internal val setSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_seed", 1286410249)
+
+    internal val getSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_seed", 3905245786)
+
     internal val setDrawOrderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_order", 1208074815)
 
@@ -990,7 +1068,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
         TypeManager.getMethodBindPtr("GPUParticles3D", "get_skin", 2074563878)
 
     internal val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "restart", 3218959716)
+        TypeManager.getMethodBindPtr("GPUParticles3D", "restart", 107499316)
 
     internal val captureAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "capture_aabb", 1068685055)
@@ -1030,5 +1108,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
     internal val getAmountRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount_ratio", 1740695150)
+
+    internal val requestParticlesProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "request_particles_process", 373806689)
   }
 }

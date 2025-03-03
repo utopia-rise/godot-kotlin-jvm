@@ -330,7 +330,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Vertical space between lines in multiline [Label3D].
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
+   * value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -354,7 +355,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
+   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -421,7 +422,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(346, scriptIndex)
+    createNativeObject(351, scriptIndex)
   }
 
   /**

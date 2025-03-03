@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(125, scriptIndex)
+    createNativeObject(126, scriptIndex)
   }
 
   /**
@@ -80,7 +80,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Return true whether the stream associated with an integer ID is still playing. Check
+   * Returns `true` if the stream associated with the given integer ID is still playing. Check
    * [playStream] for information on when this ID becomes invalid.
    */
   public final fun isStreamPlaying(stream: Long): Boolean {

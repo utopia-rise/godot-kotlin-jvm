@@ -38,7 +38,7 @@ public open class SphereOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(605, scriptIndex)
+    createNativeObject(624, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

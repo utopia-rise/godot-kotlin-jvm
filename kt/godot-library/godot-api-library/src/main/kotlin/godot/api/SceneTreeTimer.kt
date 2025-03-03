@@ -67,7 +67,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(562, scriptIndex)
+    createNativeObject(580, scriptIndex)
   }
 
   public final fun setTimeLeft(time: Double): Unit {

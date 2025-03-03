@@ -46,7 +46,7 @@ public open class GLTFAnimation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(251, scriptIndex)
+    createNativeObject(254, scriptIndex)
   }
 
   public final fun getOriginalName(): String {
@@ -76,8 +76,8 @@ public open class GLTFAnimation : Resource() {
    * per-node state data in [GLTFDocumentExtension] classes, which is important because they are
    * stateless.
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is null.
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -90,7 +90,7 @@ public open class GLTFAnimation : Resource() {
    * per-node state data in [GLTFDocumentExtension] classes, which is important because they are
    * stateless.
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the GLTF file), and the second argument can be anything you want.
+   * extension name in the glTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)

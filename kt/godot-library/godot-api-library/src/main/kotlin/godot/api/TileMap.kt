@@ -46,6 +46,9 @@ import kotlin.jvm.JvmOverloads
  * means that scene tiles from a [TileSetScenesCollectionSource] may be initialized after their parent.
  * This is only queued when inside the scene tree.
  * To force an update earlier on, call [updateInternals].
+ * **Note:** For performance and compatibility reasons, the coordinates serialized by [TileMap] are
+ * limited to 16-bit signed integers, i.e. the range for X and Y coordinates is from `-32768` to
+ * `32767`. When saving tile data, tiles outside this range are wrapped.
  */
 @GodotBaseType
 public open class TileMap : Node2D() {
@@ -123,7 +126,7 @@ public open class TileMap : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(664, scriptIndex)
+    createNativeObject(689, scriptIndex)
   }
 
   /**
@@ -557,6 +560,51 @@ public open class TileMap : Node2D() {
   }
 
   /**
+   * Returns `true` if the cell on layer [layer] at coordinates [coords] is flipped horizontally.
+   * The result is valid only for atlas sources.
+   */
+  @JvmOverloads
+  public final fun isCellFlippedH(
+    layer: Int,
+    coords: Vector2i,
+    useProxies: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(ptr, MethodBindings.isCellFlippedHPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the cell on layer [layer] at coordinates [coords] is flipped vertically. The
+   * result is valid only for atlas sources.
+   */
+  @JvmOverloads
+  public final fun isCellFlippedV(
+    layer: Int,
+    coords: Vector2i,
+    useProxies: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(ptr, MethodBindings.isCellFlippedVPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the cell on layer [layer] at coordinates [coords] is transposed. The result
+   * is valid only for atlas sources.
+   */
+  @JvmOverloads
+  public final fun isCellTransposed(
+    layer: Int,
+    coords: Vector2i,
+    useProxies: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(ptr, MethodBindings.isCellTransposedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from
    * [KinematicCollision2D.getColliderRid], when colliding with a tile.
    */
@@ -620,7 +668,7 @@ public open class TileMap : Node2D() {
    * the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells,
    * this function tries to join the two. This function might update neighboring tiles if needed to
    * create correct terrain transitions.
-   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
    * If [layer] is negative, the layers are accessed from the last one.
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up
@@ -643,7 +691,7 @@ public open class TileMap : Node2D() {
    * the given [terrainSet]. The function will also connect two successive cell in the path with the
    * same terrain. This function might update neighboring tiles if needed to create correct terrain
    * transitions.
-   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
    * If [layer] is negative, the layers are accessed from the last one.
    * **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up
@@ -947,6 +995,15 @@ public open class TileMap : Node2D() {
 
     internal val getCellTileDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMap", "get_cell_tile_data", 2849631287)
+
+    internal val isCellFlippedHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "is_cell_flipped_h", 2908343862)
+
+    internal val isCellFlippedVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "is_cell_flipped_v", 2908343862)
+
+    internal val isCellTransposedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "is_cell_transposed", 2908343862)
 
     internal val getCoordsForBodyRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMap", "get_coords_for_body_rid", 291584212)

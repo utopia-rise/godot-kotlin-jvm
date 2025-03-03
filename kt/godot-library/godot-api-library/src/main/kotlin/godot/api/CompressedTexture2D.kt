@@ -47,7 +47,7 @@ public open class CompressedTexture2D : Texture2D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(199, scriptIndex)
+    createNativeObject(201, scriptIndex)
   }
 
   /**

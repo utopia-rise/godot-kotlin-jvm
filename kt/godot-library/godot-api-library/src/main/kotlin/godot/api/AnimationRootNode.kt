@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationRootNode : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(71, scriptIndex)
+    createNativeObject(72, scriptIndex)
   }
 
   public companion object

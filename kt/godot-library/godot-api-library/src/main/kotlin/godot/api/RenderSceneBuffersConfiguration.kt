@@ -135,8 +135,19 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
       setTextureMipmapBias(value)
     }
 
+  /**
+   * Level of the anisotropic filter.
+   */
+  public final inline var anisotropicFilteringLevel: RenderingServer.ViewportAnisotropicFiltering
+    @JvmName("anisotropicFilteringLevelProperty")
+    get() = getAnisotropicFilteringLevel()
+    @JvmName("anisotropicFilteringLevelProperty")
+    set(`value`) {
+      setAnisotropicFilteringLevel(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(540, scriptIndex)
+    createNativeObject(557, scriptIndex)
   }
 
   /**
@@ -286,6 +297,19 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
 
+  public final fun getAnisotropicFilteringLevel(): RenderingServer.ViewportAnisotropicFiltering {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAnisotropicFilteringLevelPtr, LONG)
+    return RenderingServer.ViewportAnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final
+      fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: RenderingServer.ViewportAnisotropicFiltering):
+      Unit {
+    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
+    TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -342,5 +366,11 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
     internal val setTextureMipmapBiasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
+
+    internal val getAnisotropicFilteringLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_anisotropic_filtering_level", 1617414954)
+
+    internal val setAnisotropicFilteringLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_anisotropic_filtering_level", 2559658741)
   }
 }

@@ -11,12 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
+import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.RECT2
 import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Double
@@ -129,7 +131,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(402, scriptIndex)
+    createNativeObject(408, scriptIndex)
   }
 
   /**
@@ -275,6 +277,15 @@ public open class NavigationRegion2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns the axis-aligned rectangle for the region's transformed navigation mesh.
+   */
+  public final fun getBounds(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -337,5 +348,8 @@ public open class NavigationRegion2D : Node2D() {
 
     internal val isBakingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion2D", "is_baking", 36873697)
+
+    internal val getBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_bounds", 1639390495)
   }
 }

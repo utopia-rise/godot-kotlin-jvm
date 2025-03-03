@@ -100,7 +100,7 @@ public open class StyleBox : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(625, scriptIndex)
+    createNativeObject(649, scriptIndex)
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {

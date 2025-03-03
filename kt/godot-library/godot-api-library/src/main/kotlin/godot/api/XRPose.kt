@@ -49,15 +49,14 @@ public open class XRPose : RefCounted() {
     }
 
   /**
-   * The name of this pose. Pose names are often driven by an action map setup by the user. Godot
-   * does suggest a number of pose names that it expects [XRInterface]s to implement:
-   * - `root` defines a root location, often used for tracked objects that do not have further
-   * nodes.
-   * - `aim` defines the tip of a controller with the orientation pointing outwards, for example:
-   * add your raycasts to this.
-   * - `grip` defines the location where the user grips the controller
-   * - `skeleton` defines the root location a hand mesh should be placed when using hand tracking
-   * and the animated skeleton supplied by the XR runtime.
+   * The name of this pose. Usually, this name is derived from an action map set up by the user.
+   * Godot also suggests some pose names that [XRInterface] objects are expected to implement:
+   * - `root` is the root location, often used for tracked objects that do not have further nodes.
+   * - `aim` is the tip of a controller with its orientation pointing outwards, often used for
+   * raycasts.
+   * - `grip` is the location where the user grips the controller.
+   * - `skeleton` is the root location for a hand mesh, when using hand tracking and an animated
+   * skeleton is supplied by the XR runtime.
    */
   public final inline var name: StringName
     @JvmName("nameProperty")
@@ -116,7 +115,7 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(850, scriptIndex)
+    createNativeObject(876, scriptIndex)
   }
 
   /**

@@ -62,7 +62,7 @@ public open class Area3D : CollisionObject3D() {
    * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area
    * and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can
    * be used with the [PhysicsServer3D].
-   * **Example of getting the** [CollisionShape3D] **node from the shape index:**
+   * **Example:** Get the [CollisionShape3D] node from the shape index:
    *
    * gdscript:
    * ```gdscript
@@ -103,7 +103,7 @@ public open class Area3D : CollisionObject3D() {
    * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area
    * and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can
    * be used with the [PhysicsServer3D].
-   * **Example of getting the** [CollisionShape3D] **node from the shape index:**
+   * **Example:** Get the [CollisionShape3D] node from the shape index:
    *
    * gdscript:
    * ```gdscript
@@ -404,7 +404,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(74, scriptIndex)
+    createNativeObject(75, scriptIndex)
   }
 
   /**

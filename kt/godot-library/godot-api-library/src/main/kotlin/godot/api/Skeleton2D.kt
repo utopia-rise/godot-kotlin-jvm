@@ -43,7 +43,7 @@ public open class Skeleton2D : Node2D() {
   public val boneSetupChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(583, scriptIndex)
+    createNativeObject(602, scriptIndex)
   }
 
   /**

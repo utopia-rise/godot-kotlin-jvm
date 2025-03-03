@@ -57,7 +57,7 @@ import kotlin.jvm.JvmOverloads
  *
  *     if err != OK:
  *         push_error(str(err))
- *         emit_signal("upnp_completed", err)
+ *         upnp_completed.emit(err)
  *         return
  *
  *     if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
@@ -65,7 +65,7 @@ import kotlin.jvm.JvmOverloads
  * ProjectSettings.get_setting("application/config/name"), "UDP")
  *         upnp.add_port_mapping(server_port, server_port,
  * ProjectSettings.get_setting("application/config/name"), "TCP")
- *         emit_signal("upnp_completed", OK)
+ *         upnp_completed.emit(OK)
  *
  * func _ready():
  *     thread = Thread.new()
@@ -142,7 +142,7 @@ public open class UPNP : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(708, scriptIndex)
   }
 
   /**

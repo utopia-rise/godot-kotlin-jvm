@@ -74,6 +74,8 @@ public operator fun Long.rem(other: godot.api.Control.SizeFlags): Long = this.re
  * For more information on Godot's UI system, anchors, offsets, and containers, see the related
  * tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from
  * [Control] and [Container] nodes.
+ * **Note:** Since both [Node2D] and [Control] inherit from [CanvasItem], they share several
+ * concepts from the class such as the [CanvasItem.zIndex] and [CanvasItem.visible] properties.
  * **User Interface nodes and input**
  * Godot propagates input events via viewports. Each [Viewport] is responsible for propagating
  * [InputEvent]s to their child nodes. As the [SceneTree.root] is a [Window], this already happens
@@ -89,10 +91,10 @@ public operator fun Long.rem(other: godot.api.Control.SizeFlags): Long = this.re
  * node in focus.
  * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch
  * events. You'll need it if you place an icon on top of a button.
- * [Theme] resources change the Control's appearance. If you change the [Theme] on a [Control] node,
- * it affects all of its children. To override some of the theme's parameters, call one of the
- * `add_theme_*_override` methods, like [addThemeFontOverride]. You can override the theme with the
- * Inspector.
+ * [Theme] resources change the control's appearance. The [theme] of a [Control] node affects all of
+ * its direct and indirect children (as long as a chain of controls is uninterrupted). To override some
+ * of the theme items, call one of the `add_theme_*_override` methods, like [addThemeFontOverride]. You
+ * can also override theme items in the Inspector.
  * **Note:** Theme items are *not* [Object] properties. This means you can't access their values
  * using [Object.get] and [Object.set]. Instead, use the `get_theme_*` and `add_theme_*_override`
  * methods provided by this class.
@@ -188,7 +190,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Controls layout direction and text writing direction. Right-to-left layouts are necessary for
-   * certain languages (e.g. Arabic and Hebrew).
+   * certain languages (e.g. Arabic and Hebrew). See also [isLayoutRtl].
    */
   public final inline var layoutDirection: LayoutDirection
     @JvmName("layoutDirectionProperty")
@@ -478,7 +480,10 @@ public open class Control : CanvasItem() {
    * The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this
    * control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE].
    * The time required for the tooltip to appear can be changed with the
-   * [ProjectSettings.gui/timers/tooltipDelaySec] option. See also [getTooltip].
+   * [ProjectSettings.gui/timers/tooltipDelaySec] setting.
+   * This string is the default return value of [getTooltip]. Override [_getTooltip] to generate
+   * tooltip text dynamically. Override [_makeCustomTooltip] to customize the tooltip interface and
+   * behavior.
    * The tooltip popup will use either a default implementation, or a custom one that you can
    * provide by overriding [_makeCustomTooltip]. The default tooltip includes a [PopupPanel] and
    * [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"`
@@ -509,6 +514,21 @@ public open class Control : CanvasItem() {
     @JvmName("tooltipTextProperty")
     set(`value`) {
       setTooltipText(value)
+    }
+
+  /**
+   * Defines if tooltip text should automatically change to its translated version depending on the
+   * current locale. Uses the same auto translate mode as this control when set to
+   * [Node.AUTO_TRANSLATE_MODE_INHERIT].
+   * **Note:** Tooltips customized using [_makeCustomTooltip] do not use this auto translate mode
+   * automatically.
+   */
+  public final inline var tooltipAutoTranslateMode: Node.AutoTranslateMode
+    @JvmName("tooltipAutoTranslateModeProperty")
+    get() = getTooltipAutoTranslateMode()
+    @JvmName("tooltipAutoTranslateModeProperty")
+    set(`value`) {
+      setTooltipAutoTranslateMode(value)
     }
 
   /**
@@ -625,10 +645,11 @@ public open class Control : CanvasItem() {
 
   /**
    * When enabled, scroll wheel events processed by [_guiInput] will be passed to the parent control
-   * even if [mouseFilter] is set to [MOUSE_FILTER_STOP]. As it defaults to true, this allows nested
-   * scrollable containers to work out of the box.
+   * even if [mouseFilter] is set to [MOUSE_FILTER_STOP].
    * You should disable it on the root of your UI if you do not want scroll events to go to the
    * [Node.UnhandledInput] processing.
+   * **Note:** Because this property defaults to `true`, this allows nested scrollable containers to
+   * work out of the box.
    */
   public final inline var mouseForcePassScrollEvents: Boolean
     @JvmName("mouseForcePassScrollEventsProperty")
@@ -701,7 +722,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(209, scriptIndex)
+    createNativeObject(211, scriptIndex)
   }
 
   /**
@@ -837,7 +858,8 @@ public open class Control : CanvasItem() {
    * Virtual method to be implemented by the user. Returns the tooltip text for the position
    * [atPosition] in control's local coordinates, which will typically appear when the cursor is
    * resting over this control. See [getTooltip].
-   * **Note:** If this method returns an empty [String], no tooltip is displayed.
+   * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
+   * no tooltip is displayed.
    */
   public open fun _getTooltip(atPosition: Vector2): String {
     throw NotImplementedError("_get_tooltip is not implemented for Control")
@@ -919,7 +941,7 @@ public open class Control : CanvasItem() {
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
    *     return data.VariantType == Variant.Type.Dictionary &&
-   * dict.AsGodotDictionary().ContainsKey("color");
+   * data.AsGodotDictionary().ContainsKey("color");
    * }
    *
    * public override void _DropData(Vector2 atPosition, Variant data)
@@ -933,8 +955,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Virtual method to be implemented by the user. Returns a [Control] node that should be used as a
-   * tooltip instead of the default one. The [forText] includes the contents of the [tooltipText]
-   * property.
+   * tooltip instead of the default one. [forText] is the return value of [getTooltip].
    * The returned node must be of type [Control] or Control-derived. It can have child nodes of any
    * type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if
    * you want to use a pre-existing node from your scene tree, you can duplicate it and pass the
@@ -945,10 +966,13 @@ public open class Control : CanvasItem() {
    * `"TooltipPanel"` (see [tooltipText] for an example).
    * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you
    * might want to set its [customMinimumSize] to some non-zero value.
-   * **Note:** The node (and any relevant children) should be [CanvasItem.visible] when returned,
-   * otherwise, the viewport that instantiates it will not be able to calculate its minimum size
-   * reliably.
-   * **Example of usage with a custom-constructed node:**
+   * **Note:** The node (and any relevant children) should have their [CanvasItem.visible] set to
+   * `true` when returned, otherwise, the viewport that instantiates it will not be able to calculate
+   * its minimum size reliably.
+   * **Note:** If overridden, this method is called even if [getTooltip] returns an empty string.
+   * When this happens with the default tooltip, it is not displayed. To copy this behavior, return
+   * `null` in this method when [forText] is empty.
+   * **Example:** Use a constructed node as a tooltip:
    *
    * gdscript:
    * ```gdscript
@@ -967,7 +991,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    *
-   * **Example of usage with a custom scene instance:**
+   * **Example:** Usa a scene instance as a tooltip:
    *
    * gdscript:
    * ```gdscript
@@ -992,9 +1016,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Use this method to process and accept inputs on
-   * UI elements. See [acceptEvent].
-   * **Example usage for clicking a control:**
+   * Virtual method to be implemented by the user. Override this method to handle and accept inputs
+   * on UI elements. See also [acceptEvent].
+   * **Example:** Click on the control to print a message:
    *
    * gdscript:
    * ```gdscript
@@ -1017,14 +1041,15 @@ public open class Control : CanvasItem() {
    * }
    * ```
    *
-   * The event won't trigger if:
-   * * clicking outside the control (see [_hasPoint]);
-   * * control has [mouseFilter] set to [MOUSE_FILTER_IGNORE];
-   * * control is obstructed by another [Control] on top of it, which doesn't have [mouseFilter] set
-   * to [MOUSE_FILTER_IGNORE];
-   * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
-   * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
-   * **Note:** Event position is relative to the control origin.
+   * If the [event] inherits [InputEventMouse], this method will **not** be called when:
+   * - the control's [mouseFilter] is set to [MOUSE_FILTER_IGNORE];
+   * - the control is obstructed by another control on top, that doesn't have [mouseFilter] set to
+   * [MOUSE_FILTER_IGNORE];
+   * - the control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
+   * - the control's parent has [clipContents] enabled and the [event]'s position is outside the
+   * parent's rectangle;
+   * - the [event]'s position is outside the control (see [_hasPoint]).
+   * **Note:** The [event]'s position is relative to this control's origin.
    */
   public open fun _guiInput(event: InputEvent?): Unit {
   }
@@ -1322,7 +1347,7 @@ public open class Control : CanvasItem() {
    * Returns the position of this [Control] in global screen coordinates (i.e. taking window
    * position into account). Mostly useful for editor plugins.
    * Equals to [globalPosition] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
-   * **Example usage for showing a popup:**
+   * **Example:** Show a popup at the mouse position:
    * [codeblock]
    * popup_menu.position = get_screen_position() + get_local_mouse_position()
    * popup_menu.reset_size()
@@ -1517,11 +1542,11 @@ public open class Control : CanvasItem() {
    * always take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeStyleboxOverride].
    * See also [getThemeStylebox].
-   * **Example of modifying a property in a StyleBox by duplicating it:**
+   * **Example:** Modify a property in a [StyleBox] by duplicating it:
    *
    * gdscript:
    * ```gdscript
-   * # The snippet below assumes the child node MyButton has a StyleBoxFlat assigned.
+   * # The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
    * # Resources are shared across instances, so we need to duplicate it
    * # to avoid modifying the appearance of all other buttons.
    * var new_stylebox_normal = $MyButton.get_theme_stylebox("normal").duplicate()
@@ -1533,7 +1558,7 @@ public open class Control : CanvasItem() {
    * ```
    * csharp:
    * ```csharp
-   * // The snippet below assumes the child node MyButton has a StyleBoxFlat assigned.
+   * // The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
    * // Resources are shared across instances, so we need to duplicate it
    * // to avoid modifying the appearance of all other buttons.
    * StyleBoxFlat newStyleboxNormal =
@@ -1577,7 +1602,7 @@ public open class Control : CanvasItem() {
    * take precedence when fetching theme items for the control. An override can be removed with
    * [removeThemeColorOverride].
    * See also [getThemeColor].
-   * **Example of overriding a label's color and resetting it later:**
+   * **Example:** Override a [Label]'s color and reset it later:
    *
    * gdscript:
    * ```gdscript
@@ -1976,6 +2001,17 @@ public open class Control : CanvasItem() {
     return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setTooltipAutoTranslateMode(mode: Node.AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(ptr, MethodBindings.setTooltipAutoTranslateModePtr, NIL)
+  }
+
+  public final fun getTooltipAutoTranslateMode(): Node.AutoTranslateMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTooltipAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setTooltipText(hint: String): Unit {
     TransferContext.writeArguments(STRING to hint)
     TransferContext.callMethod(ptr, MethodBindings.setTooltipTextPtr, NIL)
@@ -1992,7 +2028,8 @@ public open class Control : CanvasItem() {
    * will typically appear when the cursor is resting over this control. By default, it returns
    * [tooltipText].
    * This method can be overridden to customize its behavior. See [_getTooltip].
-   * **Note:** If this method returns an empty [String], no tooltip is displayed.
+   * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
+   * no tooltip is displayed.
    */
   @JvmOverloads
   public final fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
@@ -2112,7 +2149,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Creates an [InputEventMouseButton] that attempts to click the control. If the event is
-   * received, the control acquires focus.
+   * received, the control gains focus.
    *
    * gdscript:
    * ```gdscript
@@ -2133,12 +2170,13 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Forwards the handling of this control's [_getDragData],  [_canDropData] and [_dropData] virtual
-   * functions to delegate callables.
-   * For each argument, if not empty, the delegate callable is used, otherwise the local (virtual)
-   * function is used.
-   * The function format for each callable should be exactly the same as the virtual functions
-   * described above.
+   * Sets the given callables to be used instead of the control's own drag-and-drop virtual methods.
+   * If a callable is empty, its respective virtual method is used as normal.
+   * The arguments for each callable should be exactly the same as their respective virtual methods,
+   * which would be:
+   * - [dragFunc] corresponds to [_getDragData] and requires a [Vector2];
+   * - [canDropFunc] corresponds to [_canDropData] and requires both a [Vector2] and a [Variant];
+   * - [dropFunc] corresponds to [_dropData] and requires both a [Vector2] and a [Variant].
    */
   public final fun setDragForwarding(
     dragFunc: Callable,
@@ -2242,7 +2280,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if layout is right-to-left.
+   * Returns `true` if layout is right-to-left. See also [layoutDirection].
    */
   public final fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
@@ -2603,25 +2641,29 @@ public open class Control : CanvasItem() {
   ) {
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
-     * on through [_guiInput]. And the control will receive the [signal mouse_entered] and [signal
+     * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
      * mouse_exited] signals. These events are automatically marked as handled, and they will not
      * propagate further to other controls. This also results in blocking signals in other controls.
      */
     MOUSE_FILTER_STOP(0),
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
-     * on through [_guiInput]. And the control will receive the [signal mouse_entered] and [signal
-     * mouse_exited] signals. If this control does not handle the event, the parent control (if any)
-     * will be considered, and so on until there is no more parent control to potentially handle it.
-     * This also allows signals to fire in other controls. If no control handled it, the event will be
-     * passed to [Node.ShortcutInput] for further processing.
+     * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
+     * mouse_exited] signals.
+     * If this control does not handle the event, the event will propagate up to its parent control
+     * if it has one. The event is bubbled up the node hierarchy until it reaches a non-[CanvasItem], a
+     * control with [MOUSE_FILTER_STOP], or a [CanvasItem] with [CanvasItem.topLevel] enabled. This
+     * will allow signals to fire in all controls it reaches. If no control handled it, the event will
+     * be passed to [Node.ShortcutInput] for further processing.
      */
     MOUSE_FILTER_PASS(1),
     /**
-     * The control will not receive mouse movement input events and mouse button input events if
-     * clicked on through [_guiInput]. The control will also not receive the [signal mouse_entered] nor
-     * [signal mouse_exited] signals. This will not block other controls from receiving these events or
-     * firing the signals. Ignored events will not be handled automatically.
+     * The control will not receive any mouse movement input events nor mouse button input events
+     * through [_guiInput]. The control will also not receive the [signal mouse_entered] nor [signal
+     * mouse_exited] signals. This will not block other controls from receiving these events or firing
+     * the signals. Ignored events will not be handled automatically. If a child has
+     * [MOUSE_FILTER_PASS] and an event was passed to this control, the event will further propagate up
+     * to the control's parent.
      * **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited],
      * changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be
      * emitted.
@@ -2704,9 +2746,17 @@ public open class Control : CanvasItem() {
      */
     LAYOUT_DIRECTION_INHERITED(0),
     /**
-     * Automatic layout direction, determined from the current locale.
+     * Automatic layout direction, determined from the current locale. Right-to-left layout
+     * direction is automatically used for languages that require it such as Arabic and Hebrew, but
+     * only if a valid translation file is loaded for the given language (unless said language is
+     * configured as a fallback in [ProjectSettings.internationalization/locale/fallback]). For all
+     * other languages (or if no valid translation file is found by Godot), left-to-right layout
+     * direction is used. If using [TextServerFallback]
+     * ([ProjectSettings.internationalization/rendering/textDriver]), left-to-right layout direction is
+     * always used regardless of the language. Right-to-left layout direction can also be forced using
+     * [ProjectSettings.internationalization/rendering/forceRightToLeftLayoutDirection].
      */
-    LAYOUT_DIRECTION_LOCALE(1),
+    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
@@ -2715,6 +2765,20 @@ public open class Control : CanvasItem() {
      * Right-to-left layout direction.
      */
     LAYOUT_DIRECTION_RTL(3),
+    /**
+     * Automatic layout direction, determined from the system locale. Right-to-left layout direction
+     * is automatically used for languages that require it such as Arabic and Hebrew, but only if a
+     * valid translation file is loaded for the given language.. For all other languages (or if no
+     * valid translation file is found by Godot), left-to-right layout direction is used. If using
+     * [TextServerFallback] ([ProjectSettings.internationalization/rendering/textDriver]),
+     * left-to-right layout direction is always used regardless of the language.
+     */
+    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    /**
+     * Represents the size of the [LayoutDirection] enum.
+     */
+    LAYOUT_DIRECTION_MAX(5),
+    LAYOUT_DIRECTION_LOCALE(1),
     ;
 
     public val id: Long
@@ -2855,7 +2919,8 @@ public open class Control : CanvasItem() {
     public final const val NOTIFICATION_SCROLL_END: Long = 48
 
     /**
-     * Sent when control layout direction is changed.
+     * Sent when the control layout direction is changed from LTR or RTL or vice versa. This
+     * notification is propagated to child Control nodes as result of a change to [layoutDirection].
      */
     public final const val NOTIFICATION_LAYOUT_DIRECTION_CHANGED: Long = 49
   }
@@ -3064,22 +3129,22 @@ public open class Control : CanvasItem() {
         TypeManager.getMethodBindPtr("Control", "remove_theme_constant_override", 3304788590)
 
     internal val getThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_icon", 2336455395)
+        TypeManager.getMethodBindPtr("Control", "get_theme_icon", 3163973443)
 
     internal val getThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_stylebox", 2759935355)
+        TypeManager.getMethodBindPtr("Control", "get_theme_stylebox", 604739069)
 
     internal val getThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_font", 387378635)
+        TypeManager.getMethodBindPtr("Control", "get_theme_font", 2826986490)
 
     internal val getThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_font_size", 229578101)
+        TypeManager.getMethodBindPtr("Control", "get_theme_font_size", 1327056374)
 
     internal val getThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_color", 2377051548)
+        TypeManager.getMethodBindPtr("Control", "get_theme_color", 2798751242)
 
     internal val getThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_constant", 229578101)
+        TypeManager.getMethodBindPtr("Control", "get_theme_constant", 1327056374)
 
     internal val hasThemeIconOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "has_theme_icon_override", 2619796661)
@@ -3100,22 +3165,22 @@ public open class Control : CanvasItem() {
         TypeManager.getMethodBindPtr("Control", "has_theme_constant_override", 2619796661)
 
     internal val hasThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_icon", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_icon", 866386512)
 
     internal val hasThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox", 866386512)
 
     internal val hasThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_font", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_font", 866386512)
 
     internal val hasThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_font_size", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_font_size", 866386512)
 
     internal val hasThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_color", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_color", 866386512)
 
     internal val hasThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_constant", 1187511791)
+        TypeManager.getMethodBindPtr("Control", "has_theme_constant", 866386512)
 
     internal val getThemeDefaultBaseScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_theme_default_base_scale", 1740695150)
@@ -3140,6 +3205,12 @@ public open class Control : CanvasItem() {
 
     internal val getVGrowDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_v_grow_direction", 3635610155)
+
+    internal val setTooltipAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_tooltip_auto_translate_mode", 776149714)
+
+    internal val getTooltipAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_tooltip_auto_translate_mode", 2498906432)
 
     internal val setTooltipTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_tooltip_text", 83702148)

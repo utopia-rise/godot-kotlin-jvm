@@ -59,8 +59,23 @@ public open class SubViewportContainer : Container() {
       setStretchShrink(value)
     }
 
+  /**
+   * Configure, if either the [SubViewportContainer] or alternatively the [Control] nodes of its
+   * [SubViewport] children should be available as targets of mouse-related functionalities, like
+   * identifying the drop target in drag-and-drop operations or cursor shape of hovered [Control] node.
+   * If `false`, the [Control] nodes inside its [SubViewport] children are considered as targets.
+   * If `true`, the [SubViewportContainer] itself will be considered as a target.
+   */
+  public final inline var mouseTarget: Boolean
+    @JvmName("mouseTargetProperty")
+    get() = isMouseTargetEnabled()
+    @JvmName("mouseTargetProperty")
+    set(`value`) {
+      setMouseTarget(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(631, scriptIndex)
+    createNativeObject(655, scriptIndex)
   }
 
   /**
@@ -94,6 +109,17 @@ public open class SubViewportContainer : Container() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setMouseTarget(amount: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to amount)
+    TransferContext.callMethod(ptr, MethodBindings.setMouseTargetPtr, NIL)
+  }
+
+  public final fun isMouseTargetEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isMouseTargetEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -108,5 +134,11 @@ public open class SubViewportContainer : Container() {
 
     internal val getStretchShrinkPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3905245786)
+
+    internal val setMouseTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_mouse_target", 2586408642)
+
+    internal val isMouseTargetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewportContainer", "is_mouse_target_enabled", 2240911060)
   }
 }

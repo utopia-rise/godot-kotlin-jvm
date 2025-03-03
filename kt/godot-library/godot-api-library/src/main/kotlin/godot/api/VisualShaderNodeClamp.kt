@@ -35,7 +35,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(710, scriptIndex)
+    createNativeObject(736, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

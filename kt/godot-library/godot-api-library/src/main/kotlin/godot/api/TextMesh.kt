@@ -118,7 +118,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Vertical space between lines in multiline [TextMesh].
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
+   * value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -142,7 +143,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
+   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -254,7 +255,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(641, scriptIndex)
+    createNativeObject(666, scriptIndex)
   }
 
   /**

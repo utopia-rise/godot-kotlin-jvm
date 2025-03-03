@@ -47,7 +47,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   /**
    * Sets the level of precision to use for the derivative function. See [Precision] for options.
-   * When using the GL Compatibility renderer, this setting has no effect.
+   * When using the Compatibility renderer, this setting has no effect.
    */
   public final inline var precision: Precision
     @JvmName("precisionProperty")
@@ -58,7 +58,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(723, scriptIndex)
+    createNativeObject(749, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

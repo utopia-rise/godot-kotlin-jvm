@@ -40,9 +40,10 @@ import kotlin.jvm.JvmOverloads
  * # Static
  * DirAccess.make_dir_absolute("user://levels/world1")
  * [/codeblock]
- * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
- * asset will not be included in the exported game, as only the imported version is used. Use
- * [ResourceLoader] to access imported resources.
+ * **Note:** Accessing project ("res://") directories once exported may behave unexpectedly as some
+ * files are converted to engine-specific formats and their original source files may not be present in
+ * the expected PCK package. Because of this, to access resources in an exported project, it is
+ * recommended to use [ResourceLoader] instead of [FileAccess].
  * Here is an example on how to iterate through the files of a directory:
  *
  * gdscript:
@@ -89,6 +90,9 @@ import kotlin.jvm.JvmOverloads
  *     }
  * }
  * ```
+ *
+ * Keep in mind that file names may change or be remapped after export. If you want to see the
+ * actual resource file list as it appears in the editor, use [ResourceLoader.listDirectory] instead.
  */
 @GodotBaseType
 public open class DirAccess internal constructor() : RefCounted() {
@@ -117,7 +121,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(226, scriptIndex)
+    createNativeObject(228, scriptIndex)
   }
 
   /**
@@ -187,6 +191,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns a [PackedStringArray] containing filenames of the directory contents, excluding files.
    * The array is sorted alphabetically.
    * Affected by [includeHidden] and [includeNavigational].
+   * **Note:** The returned directories in the editor and after exporting in the `res://` directory
+   * may differ as some files are converted to engine-specific formats when exported.
    */
   public final fun getDirectories(): PackedStringArray {
     TransferContext.writeArguments()
@@ -257,6 +263,9 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns whether the target file exists. The argument can be relative to the current directory,
    * or an absolute path.
    * For a static equivalent, use [FileAccess.fileExists].
+   * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
+   * asset will not be included in the exported game, as only the imported version is used. See
+   * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
    */
   public final fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -267,6 +276,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns whether the target directory exists. The argument can be relative to the current
    * directory, or an absolute path.
+   * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
+   * `res://` directory may be different. Some files are converted to engine-specific formats when
+   * exported, potentially changing the directory structure.
    */
   public final fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -361,6 +373,16 @@ public open class DirAccess internal constructor() : RefCounted() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Returns `true` if the directory is a macOS bundle.
+   * **Note:** This method is implemented on macOS.
+   */
+  public final fun isBundle(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.isBundlePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setIncludeNavigational(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setIncludeNavigationalPtr, NIL)
@@ -419,9 +441,30 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
     /**
+     * Creates a temporary directory. This directory will be freed when the returned [DirAccess] is
+     * freed.
+     * If [prefix] is not empty, it will be prefixed to the directory name, separated by a `-`.
+     * If [keep] is `true`, the directory is not deleted when the returned [DirAccess] is freed.
+     * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
+     * that occurred.
+     */
+    @JvmOverloads
+    public final fun createTemp(prefix: String = "", keep: Boolean = false): DirAccess? {
+      TransferContext.writeArguments(STRING to prefix, BOOL to keep)
+      TransferContext.callMethod(0, MethodBindings.createTempPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as DirAccess?)
+    }
+
+    /**
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
      * directories, at the given [path]. The array is sorted alphabetically.
      * Use [getFiles] if you want more control of what gets included.
+     * **Note:** When used on a `res://` path in an exported project, only the files included in the
+     * PCK at the given folder level are returned. In practice, this means that since imported
+     * resources are stored in a top-level `.godot/` folder, only paths to `.gd` and `.import` files
+     * are returned (plus a few other files, such as `project.godot` or `project.binary` and the
+     * project icon). In an exported project, the list of returned files will also vary depending on
+     * [ProjectSettings.editor/export/convertTextResourcesToBinary].
      */
     public final fun getFilesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
@@ -433,6 +476,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
      * files, at the given [path]. The array is sorted alphabetically.
      * Use [getDirectories] if you want more control of what gets included.
+     * **Note:** The returned directories in the editor and after exporting in the `res://`
+     * directory may differ as some files are converted to engine-specific formats when exported.
      */
     public final fun getDirectoriesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
@@ -485,6 +530,9 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * Static version of [dirExists]. Supports only absolute paths.
+     * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
+     * `res://` directory may be different. Some files are converted to engine-specific formats when
+     * exported, potentially changing the directory structure.
      */
     public final fun dirExistsAbsolute(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
@@ -531,8 +579,11 @@ public open class DirAccess internal constructor() : RefCounted() {
     internal val getOpenErrorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_open_error", 166280745)
 
+    internal val createTempPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "create_temp", 812913566)
+
     internal val listDirBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "list_dir_begin", 2610976713)
+        TypeManager.getMethodBindPtr("DirAccess", "list_dir_begin", 166280745)
 
     internal val getNextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_next", 2841200299)
@@ -617,6 +668,9 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     internal val createLinkPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "create_link", 852856452)
+
+    internal val isBundlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "is_bundle", 3927539163)
 
     internal val setIncludeNavigationalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "set_include_navigational", 2586408642)

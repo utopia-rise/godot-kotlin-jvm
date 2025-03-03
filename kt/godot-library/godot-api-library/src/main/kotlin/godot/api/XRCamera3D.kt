@@ -12,7 +12,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * This is a helper spatial node for our camera; note that, if stereoscopic rendering is applicable
+ * This is a helper 3D node for our camera. Note that, if stereoscopic rendering is applicable
  * (VR-HMD), most of the camera properties are ignored, as the HMD information overrides them. The only
  * properties that can be trusted are the near and far planes.
  * The position and orientation of this node is automatically updated by the XR Server to represent
@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRCamera3D : Camera3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(839, scriptIndex)
+    createNativeObject(865, scriptIndex)
   }
 
   public companion object

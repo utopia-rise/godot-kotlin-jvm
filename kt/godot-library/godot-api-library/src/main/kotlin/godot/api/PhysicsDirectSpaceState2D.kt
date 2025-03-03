@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(466, scriptIndex)
+    createNativeObject(483, scriptIndex)
   }
 
   /**
@@ -135,7 +135,8 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * `collider_id`: The colliding object's ID.
    * `linear_velocity`: The colliding object's velocity [Vector2]. If the object is an [Area2D], the
    * result is `(0, 0)`.
-   * `normal`: The object's surface normal at the intersection point.
+   * `normal`: The collision normal of the query shape at the intersection point, pointing away from
+   * the intersecting object.
    * `point`: The intersection point.
    * `rid`: The intersecting object's [RID].
    * `shape`: The shape index of the colliding shape.

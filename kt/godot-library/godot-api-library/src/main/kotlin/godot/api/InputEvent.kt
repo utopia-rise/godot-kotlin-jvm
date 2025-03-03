@@ -52,7 +52,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(313, scriptIndex)
+    createNativeObject(317, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {
@@ -189,6 +189,8 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventJoypadMotion] or action ([InputEventAction]) events.
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** Only considers the event configuration (such as the keyboard key or joypad axis), not
+   * state information like [isPressed], [isReleased], [isEcho], or [isCanceled].
    */
   @JvmOverloads
   public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {

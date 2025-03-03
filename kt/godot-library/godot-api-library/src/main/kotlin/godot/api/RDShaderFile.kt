@@ -46,7 +46,7 @@ public open class RDShaderFile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(518, scriptIndex)
+    createNativeObject(535, scriptIndex)
   }
 
   /**
@@ -93,10 +93,10 @@ public open class RDShaderFile : Resource() {
 
   public object MethodBindings {
     internal val setBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "set_bytecode", 1558064255)
+        TypeManager.getMethodBindPtr("RDShaderFile", "set_bytecode", 1526857008)
 
     internal val getSpirvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderFile", "get_spirv", 3340165340)
+        TypeManager.getMethodBindPtr("RDShaderFile", "get_spirv", 2689310080)
 
     internal val getVersionListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RDShaderFile", "get_version_list", 3995934104)

@@ -56,7 +56,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Base volume before attenuation.
+   * Base volume before attenuation, in decibels.
    */
   public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
@@ -64,6 +64,20 @@ public open class AudioStreamPlayer2D : Node2D() {
     @JvmName("volumeDbProperty")
     set(`value`) {
       setVolumeDb(value)
+    }
+
+  /**
+   * Base volume before attenuation, as a linear value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
+   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
+   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   */
+  public final inline var volumeLinear: Float
+    @JvmName("volumeLinearProperty")
+    get() = getVolumeLinear()
+    @JvmName("volumeLinearProperty")
+    set(`value`) {
+      setVolumeLinear(value)
     }
 
   /**
@@ -80,9 +94,13 @@ public open class AudioStreamPlayer2D : Node2D() {
   /**
    * If `true`, audio is playing or is queued to be played (see [play]).
    */
-  public final inline val playing: Boolean
+  public final inline var playing: Boolean
     @JvmName("playingProperty")
     get() = isPlaying()
+    @JvmName("playingProperty")
+    set(`value`) {
+      setPlaying(value)
+    }
 
   /**
    * If `true`, audio plays when added to scene tree.
@@ -195,7 +213,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(129, scriptIndex)
+    createNativeObject(130, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
@@ -217,6 +235,17 @@ public open class AudioStreamPlayer2D : Node2D() {
   public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setVolumeLinear(volumeLinear: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volumeLinear.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
+  }
+
+  public final fun getVolumeLinear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -292,6 +321,11 @@ public open class AudioStreamPlayer2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoplayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setPlaying(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setPlayingPtr, NIL)
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {
@@ -404,6 +438,12 @@ public open class AudioStreamPlayer2D : Node2D() {
     internal val getVolumeDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_db", 1740695150)
 
+    internal val setVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_volume_linear", 373806689)
+
+    internal val getVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "get_volume_linear", 1740695150)
+
     internal val setPitchScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_pitch_scale", 373806689)
 
@@ -436,6 +476,9 @@ public open class AudioStreamPlayer2D : Node2D() {
 
     internal val isAutoplayEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "is_autoplay_enabled", 36873697)
+
+    internal val setPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_playing", 2586408642)
 
     internal val setMaxDistancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer2D", "set_max_distance", 373806689)

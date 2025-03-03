@@ -41,7 +41,7 @@ public open class BoxShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(146, scriptIndex)
+    createNativeObject(147, scriptIndex)
   }
 
   /**

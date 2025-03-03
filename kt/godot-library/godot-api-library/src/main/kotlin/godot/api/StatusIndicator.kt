@@ -82,7 +82,7 @@ public open class StatusIndicator : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(618, scriptIndex)
+    createNativeObject(642, scriptIndex)
   }
 
   public final fun setTooltip(tooltip: String): Unit {

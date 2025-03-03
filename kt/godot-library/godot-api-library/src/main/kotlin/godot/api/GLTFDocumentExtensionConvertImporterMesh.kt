@@ -14,7 +14,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GLTFDocumentExtensionConvertImporterMesh : GLTFDocumentExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(256, scriptIndex)
+    createNativeObject(259, scriptIndex)
   }
 
   public companion object

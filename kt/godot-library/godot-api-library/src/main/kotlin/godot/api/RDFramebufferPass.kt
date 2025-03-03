@@ -89,7 +89,7 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(510, scriptIndex)
+    createNativeObject(527, scriptIndex)
   }
 
   public final fun setColorAttachments(pMember: PackedInt32Array): Unit {

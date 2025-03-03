@@ -178,9 +178,9 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Species a sub-region of the texture to use.
-   * This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.
-   * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
+   * The region to use from the [texture].
+   * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -215,13 +215,13 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(629, scriptIndex)
+    createNativeObject(653, scriptIndex)
   }
 
   /**
-   * Species a sub-region of the texture to use.
-   * This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.
-   * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
+   * The region to use from the [texture].
+   * This is equivalent to first wrapping the [texture] in an [AtlasTexture] with the same region.
+   * If empty (`Rect2(0, 0, 0, 0)`), the whole [texture] is used.
    *
    * This is a helper function to make dealing with local copies easier.
    *

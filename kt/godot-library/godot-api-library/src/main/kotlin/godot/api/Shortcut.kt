@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
  * known as hotkeys).
- * One shortcut can contain multiple [InputEvent]'s, allowing the possibility of triggering one
+ * One shortcut can contain multiple [InputEvent]s, allowing the possibility of triggering one
  * action with multiple different inputs.
  */
 @GodotBaseType
@@ -46,7 +46,7 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(582, scriptIndex)
+    createNativeObject(601, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {
@@ -70,7 +70,8 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether any [InputEvent] in [events] equals [event].
+   * Returns whether any [InputEvent] in [events] equals [event]. This uses [InputEvent.isMatch] to
+   * compare events.
    */
   public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)

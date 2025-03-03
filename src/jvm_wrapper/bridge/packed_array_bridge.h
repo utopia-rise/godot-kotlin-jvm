@@ -4,6 +4,7 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "bridges_utils.h"
+#include <core/variant/typed_array.h>
 
 #define PACKED_ARRAY_BRIDGE(NAME, ELEMENT_TYPE, FQNAME)                \
     inline static constexpr const char NAME##QualifiedName[] = FQNAME; \

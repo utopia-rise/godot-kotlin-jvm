@@ -31,10 +31,9 @@ import kotlin.jvm.JvmOverloads
  * for serializing data, e.g. to save to a file or send over the network.
  * [stringify] is used to convert any data type into a JSON string.
  * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot.
- * If successfully parsed, use [data] to retrieve the [Variant], and use `typeof` to check if the
- * Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON data can
- * be used to store [Array]s, numbers, [String]s and even just a boolean.
- * **Example**
+ * If successfully parsed, use [data] to retrieve the [Variant], and use [@GlobalScope.typeof] to check
+ * if the Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON
+ * data can be used to store [Array]s, numbers, [String]s and even just a boolean.
  * [codeblock]
  * var data_to_send = ["a", "b", "c"]
  * var json_string = JSON.stringify(data_to_send)
@@ -46,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  * if error == OK:
  *     var data_received = json.data
  *     if typeof(data_received) == TYPE_ARRAY:
- *         print(data_received) # Prints array
+ *         print(data_received) # Prints the array.
  *     else:
  *         print("Unexpected data")
  * else:
@@ -65,7 +64,7 @@ import kotlin.jvm.JvmOverloads
  * - Numbers are parsed using [String.toFloat] which is generally more lax than the JSON
  * specification.
  * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the
- * string is cleansed and an error is logged to the console.
+ * string is cleaned up and an error is logged to the console.
  */
 @GodotBaseType
 public open class JSON : Resource() {
@@ -81,7 +80,7 @@ public open class JSON : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(334, scriptIndex)
+    createNativeObject(338, scriptIndex)
   }
 
   /**
@@ -212,6 +211,39 @@ public open class JSON : Resource() {
       TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
       return (TransferContext.readReturnValue(ANY) as Any?)
     }
+
+    /**
+     * Converts a native engine type to a JSON-compliant value.
+     * By default, objects are ignored for security reasons, unless [fullObjects] is `true`.
+     * You can convert a native value to a JSON string like this:
+     * [codeblock]
+     * func encode_data(value, full_objects = false):
+     *     return JSON.stringify(JSON.from_native(value, full_objects))
+     * [/codeblock]
+     */
+    @JvmOverloads
+    public final fun fromNative(variant: Any?, fullObjects: Boolean = false): Any? {
+      TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
+      TransferContext.callMethod(0, MethodBindings.fromNativePtr, ANY)
+      return (TransferContext.readReturnValue(ANY) as Any?)
+    }
+
+    /**
+     * Converts a JSON-compliant value that was created with [fromNative] back to native engine
+     * types.
+     * By default, objects are ignored for security reasons, unless [allowObjects] is `true`.
+     * You can convert a JSON string back to a native value like this:
+     * [codeblock]
+     * func decode_data(string, allow_objects = false):
+     *     return JSON.to_native(JSON.parse_string(string), allow_objects)
+     * [/codeblock]
+     */
+    @JvmOverloads
+    public final fun toNative(json: Any?, allowObjects: Boolean = false): Any? {
+      TransferContext.writeArguments(ANY to json, BOOL to allowObjects)
+      TransferContext.callMethod(0, MethodBindings.toNativePtr, ANY)
+      return (TransferContext.readReturnValue(ANY) as Any?)
+    }
   }
 
   public object MethodBindings {
@@ -235,5 +267,11 @@ public open class JSON : Resource() {
 
     internal val getErrorMessagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
+
+    internal val fromNativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "from_native", 2963479484)
+
+    internal val toNativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "to_native", 2963479484)
   }
 }

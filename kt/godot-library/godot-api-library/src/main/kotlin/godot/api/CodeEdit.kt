@@ -56,7 +56,8 @@ public open class CodeEdit : TextEdit() {
   public val breakpointToggled: Signal1<Long> by Signal1
 
   /**
-   * Emitted when the user requests code completion.
+   * Emitted when the user requests code completion. This signal will not be sent if
+   * [_requestCodeCompletion] is overridden or [codeCompletionEnabled] is `false`.
    */
   public val codeCompletionRequested: Signal0 by Signal0
 
@@ -68,8 +69,17 @@ public open class CodeEdit : TextEdit() {
   /**
    * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by
    * calling [setSymbolLookupWordAsValid].
+   * **Note:** [symbolLookupOnClick] must be `true` for this signal to be emitted.
    */
   public val symbolValidate: Signal1<String> by Signal1
+
+  /**
+   * Emitted when the user hovers over a symbol. Unlike [signal Control.mouse_entered], this signal
+   * is not emitted immediately, but when the cursor is over the symbol for
+   * [ProjectSettings.gui/timers/tooltipDelaySec] seconds.
+   * **Note:** [symbolTooltipOnHover] must be `true` for this signal to be emitted.
+   */
+  public val symbolHovered: Signal3<String, Long, Long> by Signal3
 
   /**
    * Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup]
@@ -84,7 +94,19 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets whether line folding is allowed.
+   * Set when a word is hovered, the [signal symbol_hovered] should be emitted.
+   */
+  public final inline var symbolTooltipOnHover: Boolean
+    @JvmName("symbolTooltipOnHoverProperty")
+    get() = isSymbolTooltipOnHoverEnabled()
+    @JvmName("symbolTooltipOnHoverProperty")
+    set(`value`) {
+      setSymbolTooltipOnHoverEnabled(value)
+    }
+
+  /**
+   * If `true`, lines can be folded. Otherwise, line folding methods like [foldLine] will not work
+   * and [canFoldLine] will always return `false`. See [guttersDrawFoldGutter].
    */
   public final inline var lineFolding: Boolean
     @JvmName("lineFoldingProperty")
@@ -107,8 +129,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and
-   * executing lines.
+   * If `true`, breakpoints are drawn in the gutter. This gutter is shared with bookmarks and
+   * executing lines. Clicking the gutter will toggle the breakpoint for the line, see
+   * [setLineAsBreakpoint].
    */
   public final inline var guttersDrawBreakpointsGutter: Boolean
     @JvmName("guttersDrawBreakpointsGutterProperty")
@@ -119,8 +142,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and
-   * executing lines.
+   * If `true`, bookmarks are drawn in the gutter. This gutter is shared with breakpoints and
+   * executing lines. See [setLineAsBookmarked].
    */
   public final inline var guttersDrawBookmarks: Boolean
     @JvmName("guttersDrawBookmarksProperty")
@@ -131,8 +154,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints
-   * and bookmarks lines.
+   * If `true`, executing lines are marked in the gutter. This gutter is shared with breakpoints and
+   * bookmarks. See [setLineAsExecuting].
    */
   public final inline var guttersDrawExecutingLines: Boolean
     @JvmName("guttersDrawExecutingLinesProperty")
@@ -143,7 +166,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if line numbers should be drawn in the gutter.
+   * If `true`, the line number gutter is drawn. Line numbers start at `1` and are incremented for
+   * each line of text. Clicking and dragging in the line number gutter will select entire lines of
+   * text.
    */
   public final inline var guttersDrawLineNumbers: Boolean
     @JvmName("guttersDrawLineNumbersProperty")
@@ -154,7 +179,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if line numbers drawn in the gutter are zero padded.
+   * If `true`, line numbers drawn in the gutter are zero padded based on the total line count.
+   * Requires [guttersDrawLineNumbers] to be set to `true`.
    */
   public final inline var guttersZeroPadLineNumbers: Boolean
     @JvmName("guttersZeroPadLineNumbersProperty")
@@ -165,7 +191,10 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets if foldable lines icons should be drawn in the gutter.
+   * If `true`, the fold gutter is drawn. In this gutter, the [theme_item can_fold_code_region] icon
+   * is drawn for each foldable line (see [canFoldLine]) and the [theme_item folded_code_region] icon
+   * is drawn for each folded line (see [isLineFolded]). These icons can be clicked to toggle the fold
+   * state, see [toggleFoldableLine]. [lineFolding] must be `true` to show icons.
    */
   public final inline var guttersDrawFoldGutter: Boolean
     @JvmName("guttersDrawFoldGutterProperty")
@@ -198,7 +227,8 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets whether code completion is allowed.
+   * If `true`, the [ProjectSettings.input/uiTextCompletionQuery] action requests code completion.
+   * To handle it, see [_requestCodeCompletion] or [signal code_completion_requested].
    */
   public final inline var codeCompletionEnabled: Boolean
     @JvmName("codeCompletionEnabledProperty")
@@ -243,8 +273,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace
-   * is found.
+   * If `true`, an extra indent is automatically inserted when a new line is added and a prefix in
+   * [indentAutomaticPrefixes] is found. If a brace pair opening key is found, the matching closing
+   * brace will be moved to another new line (see [autoBraceCompletionPairs]).
    */
   public final inline var indentAutomatic: Boolean
     @JvmName("indentAutomaticProperty")
@@ -255,7 +286,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Prefixes to trigger an automatic indent.
+   * Prefixes to trigger an automatic indent. Used when [indentAutomatic] is set to `true`.
    */
   public final inline var indentAutomaticPrefixes: VariantArray<String>
     @JvmName("indentAutomaticPrefixesProperty")
@@ -266,7 +297,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets whether brace pairs should be autocompleted.
+   * If `true`, uses [autoBraceCompletionPairs] to automatically insert the closing brace when the
+   * opening brace is inserted by typing or autocompletion. Also automatically removes the closing
+   * brace when using backspace on the opening brace.
    */
   public final inline var autoBraceCompletionEnabled: Boolean
     @JvmName("autoBraceCompletionEnabledProperty")
@@ -277,7 +310,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Highlight mismatching brace pairs.
+   * If `true`, highlights brace pairs when the caret is on either one, using
+   * [autoBraceCompletionPairs]. If matching, the pairs will be underlined. If a brace is unmatched, it
+   * is colored with [theme_item brace_mismatch_color].
    */
   public final inline var autoBraceCompletionHighlightMatching: Boolean
     @JvmName("autoBraceCompletionHighlightMatchingProperty")
@@ -288,7 +323,9 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Sets the brace pairs to be autocompleted.
+   * Sets the brace pairs to be autocompleted. For each entry in the dictionary, the key is the
+   * opening brace and the value is the closing brace that matches it. A brace is a [String] made of
+   * symbols. See [autoBraceCompletionEnabled] and [autoBraceCompletionHighlightMatching].
    */
   public final inline var autoBraceCompletionPairs: Dictionary<Any?, Any?>
     @JvmName("autoBraceCompletionPairsProperty")
@@ -299,7 +336,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(184, scriptIndex)
+    createNativeObject(185, scriptIndex)
   }
 
   /**
@@ -371,7 +408,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Perform an indent as if the user activated the "ui_text_indent" action.
+   * If there is no selection, indentation is inserted at the caret. Otherwise, the selected lines
+   * are indented like [indentLines]. Equivalent to the [ProjectSettings.input/uiTextIndent] action.
+   * The indentation characters used depend on [indentUseSpaces] and [indentSize].
    */
   public final fun doIndent(): Unit {
     TransferContext.writeArguments()
@@ -379,7 +418,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Indents selected lines, or in the case of no selection the caret line by one.
+   * Indents all lines that are selected or have a caret on them. Uses spaces or a tab depending on
+   * [indentUseSpaces]. See [unindentLines].
    */
   public final fun indentLines(): Unit {
     TransferContext.writeArguments()
@@ -387,8 +427,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Unindents selected lines, or in the case of no selection the caret line by one. Same as
-   * performing "ui_text_unindent" action.
+   * Unindents all lines that are selected or have a caret on them. Uses spaces or a tab depending
+   * on [indentUseSpaces]. Equivalent to the [ProjectSettings.input/uiTextDedent] action. See
+   * [indentLines].
    */
   public final fun unindentLines(): Unit {
     TransferContext.writeArguments()
@@ -509,7 +550,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Sets the line as breakpointed.
+   * Sets the given line as a breakpoint. If `true` and [guttersDrawBreakpointsGutter] is `true`,
+   * draws the [theme_item breakpoint] icon in the gutter for this line. See [getBreakpointedLines] and
+   * [isLineBreakpointed].
    */
   public final fun setLineAsBreakpoint(line: Int, breakpointed: Boolean): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), BOOL to breakpointed)
@@ -517,7 +560,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is breakpointed or not.
+   * Returns `true` if the given line is breakpointed. See [setLineAsBreakpoint].
    */
   public final fun isLineBreakpointed(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -543,7 +586,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Sets the line as bookmarked.
+   * Sets the given line as bookmarked. If `true` and [guttersDrawBookmarks] is `true`, draws the
+   * [theme_item bookmark] icon in the gutter for this line. See [getBookmarkedLines] and
+   * [isLineBookmarked].
    */
   public final fun setLineAsBookmarked(line: Int, bookmarked: Boolean): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), BOOL to bookmarked)
@@ -551,7 +596,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is bookmarked or not.
+   * Returns `true` if the given line is bookmarked. See [setLineAsBookmarked].
    */
   public final fun isLineBookmarked(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -577,7 +622,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Sets the line as executing.
+   * Sets the given line as executing. If `true` and [guttersDrawExecutingLines] is `true`, draws
+   * the [theme_item executing_line] icon in the gutter for this line. See [getExecutingLines] and
+   * [isLineExecuting].
    */
   public final fun setLineAsExecuting(line: Int, executing: Boolean): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), BOOL to executing)
@@ -585,7 +632,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is marked as executing or not.
+   * Returns `true` if the given line is marked as executing. See [setLineAsExecuting].
    */
   public final fun isLineExecuting(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -655,8 +702,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns if the given line is foldable, that is, it has indented lines right below it or a
-   * comment / string block.
+   * Returns `true` if the given line is foldable. A line is foldable if it is the start of a valid
+   * code region (see [getCodeRegionStartTag]), if it is the start of a comment or string block, or if
+   * the next non-empty line is more indented (see [TextEdit.getIndentLevel]).
    */
   public final fun canFoldLine(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -673,7 +721,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Unfolds all lines that were previously folded.
+   * Unfolds the given line if it is folded or if it is hidden under a folded line.
    */
   public final fun unfoldLine(line: Int): Unit {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -689,7 +737,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Unfolds all lines, folded or not.
+   * Unfolds all lines that are folded.
    */
   public final fun unfoldAllLines(): Unit {
     TransferContext.writeArguments()
@@ -713,7 +761,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is folded or not.
+   * Returns `true` if the given line is folded. See [foldLine].
    */
   public final fun isLineFolded(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -722,7 +770,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns all lines that are current folded.
+   * Returns all lines that are currently folded.
    */
   public final fun getFoldedLines(): VariantArray<Long> {
     TransferContext.writeArguments()
@@ -772,7 +820,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is a code region start.
+   * Returns `true` if the given line is a code region start. See [setCodeRegionTags].
    */
   public final fun isLineCodeRegionStart(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -781,7 +829,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Returns whether the line at the specified index is a code region end.
+   * Returns `true` if the given line is a code region end. See [setCodeRegionTags].
    */
   public final fun isLineCodeRegionEnd(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -962,7 +1010,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Sets if the code hint should draw below the text.
+   * If `true`, the code hint will draw below the main caret. If `false`, the code hint will draw
+   * above the main caret. See [setCodeHint].
    */
   public final fun setCodeHintDrawBelow(drawBelow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawBelow)
@@ -1147,6 +1196,17 @@ public open class CodeEdit : TextEdit() {
   public final fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
     TransferContext.callMethod(ptr, MethodBindings.setSymbolLookupWordAsValidPtr, NIL)
+  }
+
+  public final fun setSymbolTooltipOnHoverEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setSymbolTooltipOnHoverEnabledPtr, NIL)
+  }
+
+  public final fun isSymbolTooltipOnHoverEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSymbolTooltipOnHoverEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1597,6 +1657,12 @@ public open class CodeEdit : TextEdit() {
 
     internal val setSymbolLookupWordAsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "set_symbol_lookup_word_as_valid", 2586408642)
+
+    internal val setSymbolTooltipOnHoverEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "set_symbol_tooltip_on_hover_enabled", 2586408642)
+
+    internal val isSymbolTooltipOnHoverEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "is_symbol_tooltip_on_hover_enabled", 36873697)
 
     internal val moveLinesUpPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "move_lines_up", 3218959716)

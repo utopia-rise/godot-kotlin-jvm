@@ -34,8 +34,8 @@ import kotlin.jvm.JvmName
  * The occlusion culling system works by rendering the occluders on the CPU in parallel using
  * [url=https://www.embree.org/]Embree[/url], drawing the result to a low-resolution buffer then using
  * this to cull 3D nodes individually. In the 3D editor, you can preview the occlusion culling buffer
- * by choosing **Perspective > Debug Advanced... > Occlusion Culling Buffer** in the top-left corner of
- * the 3D viewport. The occlusion culling buffer quality can be adjusted in the Project Settings.
+ * by choosing **Perspective > Display Advanced... > Occlusion Culling Buffer** in the top-left corner
+ * of the 3D viewport. The occlusion culling buffer quality can be adjusted in the Project Settings.
  * **Baking:** Select an [OccluderInstance3D] node, then use the **Bake Occluders** button at the
  * top of the 3D editor. Only opaque materials will be taken into account; transparent materials
  * (alpha-blended or alpha-tested) will be ignored by the occluder generation.
@@ -112,7 +112,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(414, scriptIndex)
+    createNativeObject(420, scriptIndex)
   }
 
   public final fun setBakeMask(mask: Long): Unit {

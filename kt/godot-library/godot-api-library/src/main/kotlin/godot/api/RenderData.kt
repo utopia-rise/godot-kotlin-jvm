@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(536, scriptIndex)
+    createNativeObject(553, scriptIndex)
   }
 
   /**
@@ -46,7 +46,7 @@ public open class RenderData internal constructor() : Object() {
   }
 
   /**
-   * Returns the [RID] of the environments object in the [RenderingServer] being used to render this
+   * Returns the [RID] of the environment object in the [RenderingServer] being used to render this
    * viewport.
    */
   public final fun getEnvironment(): RID {

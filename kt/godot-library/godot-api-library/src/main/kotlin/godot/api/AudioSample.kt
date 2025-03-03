@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioSample : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(112, scriptIndex)
+    createNativeObject(113, scriptIndex)
   }
 
   public companion object

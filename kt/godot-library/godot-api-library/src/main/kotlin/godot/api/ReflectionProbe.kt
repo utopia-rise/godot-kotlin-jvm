@@ -77,6 +77,17 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   /**
+   * Defines the distance in meters over which a probe blends into the scene.
+   */
+  public final inline var blendDistance: Float
+    @JvmName("blendDistanceProperty")
+    get() = getBlendDistance()
+    @JvmName("blendDistanceProperty")
+    set(`value`) {
+      setBlendDistance(value)
+    }
+
+  /**
    * The maximum distance away from the [ReflectionProbe] an object can be before it is culled.
    * Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
    * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This
@@ -244,7 +255,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(531, scriptIndex)
+    createNativeObject(548, scriptIndex)
   }
 
   /**
@@ -334,6 +345,17 @@ public open class ReflectionProbe : VisualInstance3D() {
   public final fun getIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIntensityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setBlendDistance(blendDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to blendDistance.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setBlendDistancePtr, NIL)
+  }
+
+  public final fun getBlendDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBlendDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -548,6 +570,12 @@ public open class ReflectionProbe : VisualInstance3D() {
 
     internal val getIntensityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ReflectionProbe", "get_intensity", 1740695150)
+
+    internal val setBlendDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_blend_distance", 373806689)
+
+    internal val getBlendDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_blend_distance", 1740695150)
 
     internal val setAmbientModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_mode", 1748981278)

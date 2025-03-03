@@ -25,12 +25,13 @@ import kotlin.Unit
  * to more than one region. The same goes for mipmapping: Mipmap chains are handled separately for each
  * layer. In an atlas, the slicing has to be done manually in the fragment shader.
  * To create such a texture file yourself, reimport your image files using the Godot Editor import
- * presets.
+ * presets. To create a Texture2DArray from code, use [ImageTextureLayered.createFromImages] on an
+ * instance of the Texture2DArray class.
  */
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(649, scriptIndex)
+    createNativeObject(674, scriptIndex)
   }
 
   /**

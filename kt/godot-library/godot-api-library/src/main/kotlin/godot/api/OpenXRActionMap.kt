@@ -59,7 +59,7 @@ public open class OpenXRActionMap : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(422, scriptIndex)
+    createNativeObject(429, scriptIndex)
   }
 
   public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {

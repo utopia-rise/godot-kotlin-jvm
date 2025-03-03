@@ -30,9 +30,12 @@ import kotlin.jvm.JvmName
  * position, and velocity. See [Node.Input].
  * **Note:** By default, this event is only emitted once per frame rendered at most. If you need
  * more precise input reporting, set [Input.useAccumulatedInput] to `false` to make events emitted as
- * often as possible. If you use InputEventMouseMotion to draw lines, consider implementing
- * [url=https://en.wikipedia.org/wiki/Bresenham&#37;27s_line_algorithm]Bresenham's line algorithm[/url]
- * as well to avoid visible gaps in lines if the user is moving the mouse quickly.
+ * often as possible. If you use InputEventMouseMotion to draw lines, consider using
+ * [Geometry2D.bresenhamLine] as well to avoid visible gaps in lines if the user is moving the mouse
+ * quickly.
+ * **Note:** This event may be emitted even when the mouse hasn't moved, either by the operating
+ * system or by Godot itself. If you really need to know if the mouse has moved (e.g. to suppress
+ * displaying a tooltip), you should check that `relative.is_zero_approx()` is `false`.
  */
 @GodotBaseType
 public open class InputEventMouseMotion : InputEventMouse() {
@@ -75,8 +78,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
 
   /**
    * The mouse position relative to the previous position (position at the last frame).
-   * **Note:** Since [InputEventMouseMotion] is only emitted when the mouse moves, the last event
-   * won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
+   * **Note:** Since [InputEventMouseMotion] may only be emitted when the mouse moves, it is not
+   * possible to reliably detect when the mouse has stopped moving by checking this property. A
+   * separate, short timer may be necessary.
    * **Note:** [relative] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles mouse aiming with the
@@ -94,9 +98,10 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * The unscaled mouse position relative to the previous position in the coordinate system of the
    * screen (position at the last frame).
-   * **Note:** Since [InputEventMouseMotion] is only emitted when the mouse moves, the last event
-   * won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse. This
-   * coordinate is *not* scaled according to the content scale factor or calls to
+   * **Note:** Since [InputEventMouseMotion] may only be emitted when the mouse moves, it is not
+   * possible to reliably detect when the mouse has stopped moving by checking this property. A
+   * separate, short timer may be necessary.
+   * **Note:** This coordinate is *not* scaled according to the content scale factor or calls to
    * [InputEvent.xformedBy]. This should be preferred over [relative] for mouse aiming when using the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode, regardless of the project's stretch mode.
    */
@@ -141,7 +146,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(324, scriptIndex)
+    createNativeObject(328, scriptIndex)
   }
 
   /**
@@ -172,8 +177,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
 
   /**
    * The mouse position relative to the previous position (position at the last frame).
-   * **Note:** Since [InputEventMouseMotion] is only emitted when the mouse moves, the last event
-   * won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
+   * **Note:** Since [InputEventMouseMotion] may only be emitted when the mouse moves, it is not
+   * possible to reliably detect when the mouse has stopped moving by checking this property. A
+   * separate, short timer may be necessary.
    * **Note:** [relative] is automatically scaled according to the content scale factor, which is
    * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
    * depending on resolution when using [relative] in a script that handles mouse aiming with the
@@ -203,9 +209,10 @@ public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * The unscaled mouse position relative to the previous position in the coordinate system of the
    * screen (position at the last frame).
-   * **Note:** Since [InputEventMouseMotion] is only emitted when the mouse moves, the last event
-   * won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse. This
-   * coordinate is *not* scaled according to the content scale factor or calls to
+   * **Note:** Since [InputEventMouseMotion] may only be emitted when the mouse moves, it is not
+   * possible to reliably detect when the mouse has stopped moving by checking this property. A
+   * separate, short timer may be necessary.
+   * **Note:** This coordinate is *not* scaled according to the content scale factor or calls to
    * [InputEvent.xformedBy]. This should be preferred over [relative] for mouse aiming when using the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode, regardless of the project's stretch mode.
    *

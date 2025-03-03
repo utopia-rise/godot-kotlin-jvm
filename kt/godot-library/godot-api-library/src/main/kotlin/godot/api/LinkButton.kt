@@ -57,7 +57,6 @@ public open class LinkButton : BaseButton() {
    * [LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating
    * system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the
    * default web browser.
-   * **Examples:**
    *
    * gdscript:
    * ```gdscript
@@ -126,7 +125,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(358, scriptIndex)
+    createNativeObject(363, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
- * **Example of contacting a REST API and printing one of its returned fields:**
+ * **Example:** Contact a REST API and print one of its returned fields:
  *
  * gdscript:
  * ```gdscript
@@ -116,7 +116,7 @@ import kotlin.jvm.JvmOverloads
  * }
  * ```
  *
- * **Example of loading and displaying an image using HTTPRequest:**
+ * **Example:** Load an image using [HTTPRequest] and display it:
  *
  * gdscript:
  * ```gdscript
@@ -127,7 +127,7 @@ import kotlin.jvm.JvmOverloads
  *     http_request.request_completed.connect(self._http_request_completed)
  *
  *     # Perform the HTTP request. The URL below returns a PNG image as of writing.
- *     var error = http_request.request("https://via.placeholder.com/512")
+ *     var error = http_request.request("https://placehold.co/512")
  *     if error != OK:
  *         push_error("An error occurred in the HTTP request.")
  *
@@ -158,7 +158,7 @@ import kotlin.jvm.JvmOverloads
  *     httpRequest.RequestCompleted += HttpRequestCompleted;
  *
  *     // Perform the HTTP request. The URL below returns a PNG image as of writing.
- *     Error error = httpRequest.Request("https://via.placeholder.com/512");
+ *     Error error = httpRequest.Request("https://placehold.co/512");
  *     if (error != Error.Ok)
  *     {
  *         GD.PushError("An error occurred in the HTTP request.");
@@ -188,10 +188,10 @@ import kotlin.jvm.JvmOverloads
  * }
  * ```
  *
- * **Gzipped response bodies**: HTTPRequest will automatically handle decompression of response
- * bodies. A `Accept-Encoding` header will be automatically added to each of your requests, unless one
- * is already specified. Any response with a `Content-Encoding: gzip` header will automatically be
- * decompressed and delivered to you as uncompressed bytes.
+ * **Note:** [HTTPRequest] nodes will automatically handle decompression of response bodies. A
+ * `Accept-Encoding` header will be automatically added to each of your requests, unless one is already
+ * specified. Any response with a `Content-Encoding: gzip` header will automatically be decompressed
+ * and delivered to you as uncompressed bytes.
  */
 @GodotBaseType
 public open class HTTPRequest : Node() {
@@ -297,7 +297,7 @@ public open class HTTPRequest : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(300, scriptIndex)
+    createNativeObject(304, scriptIndex)
   }
 
   /**
@@ -496,6 +496,11 @@ public open class HTTPRequest : Node() {
      * Request successful.
      */
     RESULT_SUCCESS(0),
+    /**
+     * Request failed due to a mismatch between the expected and actual chunked body size during
+     * transfer. Possible causes include network errors, server misconfiguration, or issues with
+     * chunked encoding.
+     */
     RESULT_CHUNKED_BODY_SIZE_MISMATCH(1),
     /**
      * Request failed while connecting.
@@ -521,6 +526,10 @@ public open class HTTPRequest : Node() {
      * Request exceeded its maximum size limit, see [bodySizeLimit].
      */
     RESULT_BODY_SIZE_LIMIT_EXCEEDED(7),
+    /**
+     * Request failed due to an error while decompressing the response body. Possible causes include
+     * unsupported or incorrect compression format, corrupted data, or incomplete transfer.
+     */
     RESULT_BODY_DECOMPRESS_FAILED(8),
     /**
      * Request failed (currently unused).

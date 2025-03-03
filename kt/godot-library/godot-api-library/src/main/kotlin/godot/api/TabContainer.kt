@@ -204,7 +204,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(638, scriptIndex)
+    createNativeObject(663, scriptIndex)
   }
 
   /**

@@ -21,6 +21,8 @@ public:
       float* r_progress,
       CacheMode p_cache_mode
     ) override;
+    bool has_custom_uid_support() const override;
+    ResourceUID::ID get_resource_uid(const String &p_path) const override;
 };
 
 #endif// GODOT_JVM_KT_RESOURCE_LOADER_H

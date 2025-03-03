@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(111, scriptIndex)
+    createNativeObject(112, scriptIndex)
   }
 
   /**

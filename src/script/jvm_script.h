@@ -47,7 +47,7 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
-    const Variant get_rpc_config() const override;
+    Variant get_rpc_config() const override;
 
     _FORCE_INLINE_ static String get_script_file_name(const String& path) {
         return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
@@ -66,12 +66,13 @@ private:
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
+    uint64_t get_last_time_source_modified();
+    void set_last_time_source_modified(uint64_t p_time);
+
     Vector<DocData::ClassDoc> get_documentation() const override;
     PropertyInfo get_class_category() const override;
     String get_class_icon_path() const override;
-
-    uint64_t get_last_time_source_modified();
-    void set_last_time_source_modified(uint64_t p_time);
+    StringName get_doc_class_name() const override;
 
     void update_script_exports();
 #endif

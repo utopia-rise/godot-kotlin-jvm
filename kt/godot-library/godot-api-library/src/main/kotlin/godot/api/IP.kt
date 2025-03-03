@@ -46,7 +46,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(6)
+    getSingleton(9)
   }
 
   /**

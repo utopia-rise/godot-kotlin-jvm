@@ -55,8 +55,19 @@ public open class OpenXRInteractionProfile : Resource() {
       setBindings(value)
     }
 
+  /**
+   * Binding modifiers for this interaction profile.
+   */
+  public final inline var bindingModifiers: VariantArray<Any?>
+    @JvmName("bindingModifiersProperty")
+    get() = getBindingModifiers()
+    @JvmName("bindingModifiersProperty")
+    set(`value`) {
+      setBindingModifiers(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(431, scriptIndex)
+    createNativeObject(445, scriptIndex)
   }
 
   public final fun setInteractionProfilePath(interactionProfilePath: String): Unit {
@@ -99,6 +110,35 @@ public open class OpenXRInteractionProfile : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
+  /**
+   * Get the number of binding modifiers in this interaction profile.
+   */
+  public final fun getBindingModifierCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBindingModifierCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Get the [OpenXRBindingModifier] at this index.
+   */
+  public final fun getBindingModifier(index: Int): OpenXRIPBindingModifier? {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getBindingModifierPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBindingModifier?)
+  }
+
+  public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to bindingModifiers)
+    TransferContext.callMethod(ptr, MethodBindings.setBindingModifiersPtr, NIL)
+  }
+
+  public final fun getBindingModifiers(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBindingModifiersPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -119,5 +159,17 @@ public open class OpenXRInteractionProfile : Resource() {
 
     internal val getBindingsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3995934104)
+
+    internal val getBindingModifierCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier_count", 3905245786)
+
+    internal val getBindingModifierPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifier", 2419896583)
+
+    internal val setBindingModifiersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_binding_modifiers", 381264803)
+
+    internal val getBindingModifiersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_modifiers", 3995934104)
   }
 }

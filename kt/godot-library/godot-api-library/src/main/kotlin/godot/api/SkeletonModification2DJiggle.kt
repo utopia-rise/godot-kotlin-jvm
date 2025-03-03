@@ -128,7 +128,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(589, scriptIndex)
+    createNativeObject(608, scriptIndex)
   }
 
   /**

@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(247, scriptIndex)
+    createNativeObject(250, scriptIndex)
   }
 
   public companion object {

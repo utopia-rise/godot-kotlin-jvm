@@ -30,6 +30,8 @@ import kotlin.jvm.JvmName
  * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by
  * itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a
  * [SubViewportContainer] or assigned to a [ViewportTexture].
+ * **Note:** [InputEvent]s are not passed to a standalone [SubViewport] by default. To ensure
+ * [InputEvent] propagation, a [SubViewport] can be placed inside of a [SubViewportContainer].
  */
 @GodotBaseType
 public open class SubViewport : Viewport() {
@@ -96,7 +98,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(630, scriptIndex)
+    createNativeObject(654, scriptIndex)
   }
 
   /**

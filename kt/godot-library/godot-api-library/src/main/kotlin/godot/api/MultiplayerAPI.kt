@@ -93,7 +93,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(381, scriptIndex)
+    createNativeObject(387, scriptIndex)
   }
 
   /**
@@ -165,7 +165,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
    * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
    * GDScript), since they are faster. This method is mostly useful in conjunction with
-   * [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.
+   * [MultiplayerAPIExtension] when extending or replacing the multiplayer capabilities.
    */
   @JvmOverloads
   public final fun rpc(

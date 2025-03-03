@@ -37,7 +37,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class LabelSettings : Resource() {
   /**
-   * Vertical space between lines when the text is multiline.
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
+   * value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -45,6 +46,17 @@ public open class LabelSettings : Resource() {
     @JvmName("lineSpacingProperty")
     set(`value`) {
       setLineSpacing(value)
+    }
+
+  /**
+   * Vertical space between paragraphs. Added on top of [lineSpacing].
+   */
+  public final inline var paragraphSpacing: Float
+    @JvmName("paragraphSpacingProperty")
+    get() = getParagraphSpacing()
+    @JvmName("paragraphSpacingProperty")
+    set(`value`) {
+      setParagraphSpacing(value)
     }
 
   /**
@@ -140,7 +152,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(347, scriptIndex)
+    createNativeObject(352, scriptIndex)
   }
 
   /**
@@ -250,6 +262,17 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setParagraphSpacing(spacing: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to spacing.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setParagraphSpacingPtr, NIL)
+  }
+
+  public final fun getParagraphSpacing(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getParagraphSpacingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
@@ -346,6 +369,12 @@ public open class LabelSettings : Resource() {
 
     internal val getLineSpacingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
+
+    internal val setParagraphSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_paragraph_spacing", 373806689)
+
+    internal val getParagraphSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_paragraph_spacing", 1740695150)
 
     internal val setFontPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LabelSettings", "set_font", 1262170328)

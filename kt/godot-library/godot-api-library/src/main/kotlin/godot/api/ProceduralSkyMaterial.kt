@@ -209,7 +209,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(504, scriptIndex)
+    createNativeObject(521, scriptIndex)
   }
 
   /**

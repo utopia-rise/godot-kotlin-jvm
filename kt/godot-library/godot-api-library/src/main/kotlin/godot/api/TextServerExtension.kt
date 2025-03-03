@@ -38,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(646, scriptIndex)
+    createNativeObject(671, scriptIndex)
   }
 
   /**
@@ -110,6 +110,14 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _saveSupportData(filename: String): Boolean {
     throw NotImplementedError("_save_support_data is not implemented for TextServerExtension")
+  }
+
+  /**
+   * **Optional.**
+   * Returns default TextServer database (e.g. ICU break iterators and dictionaries).
+   */
+  public open fun _getSupportData(): PackedByteArray {
+    throw NotImplementedError("_get_support_data is not implemented for TextServerExtension")
   }
 
   /**
@@ -461,6 +469,26 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
     throw NotImplementedError("_font_get_subpixel_positioning is not implemented for TextServerExtension")
+  }
+
+  /**
+   * **Optional.**
+   * Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
+   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
+   * setting has no effect if subpixel positioning is enabled.
+   */
+  public open fun _fontSetKeepRoundingRemainders(fontRid: RID, keepRoundingRemainders: Boolean):
+      Unit {
+  }
+
+  /**
+   * **Optional.**
+   * Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
+   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
+   * setting has no effect if subpixel positioning is enabled.
+   */
+  public open fun _fontGetKeepRoundingRemainders(fontRid: RID): Boolean {
+    throw NotImplementedError("_font_get_keep_rounding_remainders is not implemented for TextServerExtension")
   }
 
   /**
@@ -1029,6 +1057,14 @@ public open class TextServerExtension : TextServer() {
   }
 
   /**
+   * **Required.**
+   * Returns an array containing all glyph indices in the font.
+   */
+  public open fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
+    throw NotImplementedError("_font_get_supported_glyphs is not implemented for TextServerExtension")
+  }
+
+  /**
    * **Optional.**
    * Renders the range of characters to the font cache texture.
    */
@@ -1441,6 +1477,14 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     throw NotImplementedError("_shaped_get_span_meta is not implemented for TextServerExtension")
+  }
+
+  /**
+   * **Required.**
+   * Returns text embedded object key.
+   */
+  public open fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("_shaped_get_span_embedded_object is not implemented for TextServerExtension")
   }
 
   /**

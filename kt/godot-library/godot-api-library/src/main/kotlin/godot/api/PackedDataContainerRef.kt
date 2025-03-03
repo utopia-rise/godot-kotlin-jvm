@@ -22,7 +22,7 @@ import kotlin.Unit
  * same way as from [PackedDataContainer].
  * [codeblock]
  * var packed = PackedDataContainer.new()
- * packed.pack([1, 2, 3, ["abc", "def"], 4, 5, 6])
+ * packed.pack([1, 2, 3, ["nested1", "nested2"], 4, 5, 6])
  *
  * for element in packed:
  *     if element is PackedDataContainerRef:
@@ -30,22 +30,23 @@ import kotlin.Unit
  *             print("::", subelement)
  *     else:
  *         print(element)
- *
- * # Prints:
- * # 1
- * # 2
- * # 3
- * # ::abc
- * # ::def
- * # 4
- * # 5
- * # 6
+ * [/codeblock]
+ * Prints:
+ * [codeblock lang=text]
+ * 1
+ * 2
+ * 3
+ * ::nested1
+ * ::nested2
+ * 4
+ * 5
+ * 6
  * [/codeblock]
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(438, scriptIndex)
+    createNativeObject(455, scriptIndex)
   }
 
   /**

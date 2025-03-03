@@ -49,7 +49,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Time : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(19)
+    getSingleton(4)
   }
 
   /**

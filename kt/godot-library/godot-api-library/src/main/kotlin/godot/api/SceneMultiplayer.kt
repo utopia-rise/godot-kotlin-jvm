@@ -86,7 +86,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   /**
-   * The callback to execute when when receiving authentication data sent via [sendAuth]. If the
+   * The callback to execute when receiving authentication data sent via [sendAuth]. If the
    * [Callable] is empty (default), peers will be automatically accepted as soon as they connect.
    */
   public final inline var authCallback: Callable
@@ -98,7 +98,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   /**
-   * If set to a value greater than `0.0`, the maximum amount of time peers can stay in the
+   * If set to a value greater than `0.0`, the maximum duration in seconds peers can stay in the
    * authenticating state, after which the authentication will automatically fail. See the [signal
    * peer_authenticating] and [signal peer_authentication_failed] signals.
    */
@@ -180,7 +180,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(558, scriptIndex)
+    createNativeObject(576, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

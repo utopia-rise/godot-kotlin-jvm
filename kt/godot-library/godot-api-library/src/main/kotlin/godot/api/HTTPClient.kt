@@ -60,8 +60,8 @@ import kotlin.jvm.JvmOverloads
  * [url=https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS]CORS[/url]. If you host the server in
  * question, you should modify its backend to allow requests from foreign origins by adding the
  * `Access-Control-Allow-Origin: *` HTTP header.
- * **Note:** TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to
- * connect to a TLS 1.3-only server will return an error.
+ * **Note:** TLS support is currently limited to TLSv1.2 and TLSv1.3. Attempting to connect to a
+ * server that only supports older (insecure) TLS versions will return an error.
  * **Warning:** TLS certificate revocation and certificate pinning are currently not supported.
  * Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may
  * want to use automatically managed certificates with a short validity period.
@@ -103,7 +103,7 @@ public open class HTTPClient : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(299, scriptIndex)
+    createNativeObject(303, scriptIndex)
   }
 
   /**
@@ -138,7 +138,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Sends a raw request to the connected host.
    * The URL parameter is usually just the part after the host, so for
-   * `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
+   * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
    * server, it should be an absolute URL. For [HTTPClient.METHOD_OPTIONS] requests, `*` is also
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
@@ -159,7 +159,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Sends a request to the connected host.
    * The URL parameter is usually just the part after the host, so for
-   * `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
+   * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
    * server, it should be an absolute URL. For [HTTPClient.METHOD_OPTIONS] requests, `*` is also
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
@@ -179,8 +179,8 @@ public open class HTTPClient : RefCounted() {
    * var fields = new Godot.Collections.Dictionary { { "username", "user" }, { "password", "pass" }
    * };
    * string queryString = new HttpClient().QueryStringFromDict(fields);
-   * string[] headers = { "Content-Type: application/x-www-form-urlencoded", $"Content-Length:
-   * {queryString.Length}" };
+   * string[] headers = ["Content-Type: application/x-www-form-urlencoded", $"Content-Length:
+   * {queryString.Length}"];
    * var result = new HttpClient().Request(HttpClient.Method.Post, "index.php", headers,
    * queryString);
    * ```
@@ -246,10 +246,9 @@ public open class HTTPClient : RefCounted() {
   }
 
   /**
-   * Returns all response headers as a Dictionary of structure `{ "key": "value1; value2" }` where
-   * the case-sensitivity of the keys and values is kept like the server delivers it. A value is a
-   * simple String, this string can have more than one value where "; " is used as separator.
-   * **Example:**
+   * Returns all response headers as a [Dictionary]. Each entry is composed by the header name, and
+   * a [String] containing the values separated by `"; "`. The casing is kept the same as the headers
+   * were received.
    * [codeblock]
    * {
    *     "content-length": 12,
@@ -527,10 +526,12 @@ public open class HTTPClient : RefCounted() {
     RESPONSE_PROCESSING(102),
     /**
      * HTTP status code `200 OK`. The request has succeeded. Default response for successful
-     * requests. Meaning varies depending on the request. GET: The resource has been fetched and is
-     * transmitted in the message body. HEAD: The entity headers are in the message body. POST: The
-     * resource describing the result of the action is transmitted in the message body. TRACE: The
-     * message body contains the request message as received by the server.
+     * requests. Meaning varies depending on the request:
+     * - [METHOD_GET]: The resource has been fetched and is transmitted in the message body.
+     * - [METHOD_HEAD]: The entity headers are in the message body.
+     * - [METHOD_POST]: The resource describing the result of the action is transmitted in the
+     * message body.
+     * - [METHOD_TRACE]: The message body contains the request message as received by the server.
      */
     RESPONSE_OK(200),
     /**

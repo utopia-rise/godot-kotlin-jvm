@@ -173,7 +173,7 @@ public operator fun Long.rem(other: godot.api.TextServer.FontStyle): Long = this
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(643, scriptIndex)
+    createNativeObject(668, scriptIndex)
   }
 
   /**
@@ -240,6 +240,15 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(ptr, MethodBindings.saveSupportDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns default TextServer database (e.g. ICU break iterators and dictionaries).
+   */
+  public final fun getSupportData(): PackedByteArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSupportDataPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -667,6 +676,28 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
+   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
+   * setting has no effect if subpixel positioning is enabled.
+   */
+  public final fun fontSetKeepRoundingRemainders(fontRid: RID, keepRoundingRemainders: Boolean):
+      Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to keepRoundingRemainders)
+    TransferContext.callMethod(ptr, MethodBindings.fontSetKeepRoundingRemaindersPtr, NIL)
+  }
+
+  /**
+   * Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
+   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
+   * setting has no effect if subpixel positioning is enabled.
+   */
+  public final fun fontGetKeepRoundingRemainders(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetKeepRoundingRemaindersPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1203,6 +1234,15 @@ public open class TextServer internal constructor() : RefCounted() {
    * coordinates. `z` is the type of the point, using the [ContourPointTag] values.
    * `contours`       - [PackedInt32Array], containing indices the end points of each contour.
    * `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
+   * - Two successive [CONTOUR_CURVE_TAG_ON] points indicate a line segment.
+   * - One [CONTOUR_CURVE_TAG_OFF_CONIC] point between two [CONTOUR_CURVE_TAG_ON] points indicates a
+   * single conic (quadratic) Bézier arc.
+   * - Two [CONTOUR_CURVE_TAG_OFF_CUBIC] points between two [CONTOUR_CURVE_TAG_ON] points indicate a
+   * single cubic Bézier arc.
+   * - Two successive [CONTOUR_CURVE_TAG_OFF_CONIC] points indicate two successive conic (quadratic)
+   * Bézier arcs with a virtual [CONTOUR_CURVE_TAG_ON] point at their middle.
+   * - Each contour is closed. The last point of a contour uses the first point of a contour as its
+   * next point, and vice versa. The first point can be [CONTOUR_CURVE_TAG_OFF_CONIC] point.
    */
   public final fun fontGetGlyphContours(
     font: RID,
@@ -1314,6 +1354,15 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontGetSupportedCharsPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns an array containing all glyph indices in the font.
+   */
+  public final fun fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetSupportedGlyphsPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1805,6 +1854,15 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     TransferContext.writeArguments(_RID to shaped, LONG to index)
     TransferContext.callMethod(ptr, MethodBindings.shapedGetSpanMetaPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns text embedded object key.
+   */
+  public final fun shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetSpanEmbeddedObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -2319,12 +2377,13 @@ public open class TextServer internal constructor() : RefCounted() {
    * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
    * [codeblock]
    * var ts = TextServerManager.get_primary_interface()
-   * print(ts.string_get_word_breaks("The Godot Engine, 4")) # Prints [0, 3, 4, 9, 10, 16, 18, 19],
-   * which corresponds to the following substrings: "The", "Godot", "Engine", "4"
+   * # Corresponds to the substrings "The", "Godot", "Engine", and "4".
+   * print(ts.string_get_word_breaks("The Godot Engine, 4")) # Prints [0, 3, 4, 9, 10, 16, 18, 19]
+   * # Corresponds to the substrings "The", "Godot", "Engin", and "e, 4".
    * print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 5)) # Prints [0, 3, 4, 9, 10, 15,
-   * 15, 19], which corresponds to the following substrings: "The", "Godot", "Engin", "e, 4"
-   * print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 10)) # Prints [0, 9, 10, 19],
-   * which corresponds to the following substrings: "The Godot", "Engine, 4"
+   * 15, 19]
+   * # Corresponds to the substrings "The Godot" and "Engine, 4".
+   * print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 10)) # Prints [0, 9, 10, 19]
    * [/codeblock]
    */
   @JvmOverloads
@@ -2342,8 +2401,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns array of the composite character boundaries.
    * [codeblock]
    * var ts = TextServerManager.get_primary_interface()
-   * print(ts.string_get_word_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11, 12, 13,
-   * 14]
+   * print(ts.string_get_character_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11,
+   * 12, 13, 14]
    * [/codeblock]
    */
   @JvmOverloads
@@ -2799,6 +2858,8 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Trims text before the shaping. e.g, increasing [Label.visibleCharacters] or
      * [RichTextLabel.visibleCharacters] value is visually identical to typing the text.
+     * **Note:** In this mode, trimmed text is not processed at all. It is not accounted for in line
+     * breaking and size calculations.
      */
     VC_CHARS_BEFORE_SHAPING(0),
     /**
@@ -3409,6 +3470,9 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val saveSupportDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "save_support_data", 3927539163)
 
+    internal val getSupportDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "get_support_data", 2362200018)
+
     internal val isLocaleRightToLeftPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "is_locale_right_to_left", 3927539163)
 
@@ -3545,6 +3609,12 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val fontGetSubpixelPositioningPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_subpixel_positioning", 2752233671)
+
+    internal val fontSetKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_keep_rounding_remainders", 1265174801)
+
+    internal val fontGetKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_keep_rounding_remainders", 4155700596)
 
     internal val fontSetEmboldenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_embolden", 1794382983)
@@ -3717,6 +3787,9 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val fontGetSupportedCharsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_supported_chars", 642473191)
 
+    internal val fontGetSupportedGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_supported_glyphs", 788230395)
+
     internal val fontRenderRangePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_render_range", 4254580980)
 
@@ -3851,6 +3924,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val shapedGetSpanMetaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_meta", 4069510997)
+
+    internal val shapedGetSpanEmbeddedObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_embedded_object", 4069510997)
 
     internal val shapedSetSpanUpdateFontPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_set_span_update_font", 2022725822)

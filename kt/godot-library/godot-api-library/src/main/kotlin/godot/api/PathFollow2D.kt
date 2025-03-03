@@ -46,6 +46,9 @@ public open class PathFollow2D : Node2D() {
    * The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the
    * last). This is just another way of expressing the progress within the path, as the offset supplied
    * is multiplied internally by the path's length.
+   * It can be set or get only if the [PathFollow2D] is the child of a [Path2D] which is part of the
+   * scene tree, and that this [Path2D] has a [Curve2D] with a non-zero length. Otherwise, trying to
+   * set this field will print an error, and getting this field will return `0.0`.
    */
   public final inline var progressRatio: Float
     @JvmName("progressRatioProperty")
@@ -121,7 +124,7 @@ public open class PathFollow2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(454, scriptIndex)
+    createNativeObject(471, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

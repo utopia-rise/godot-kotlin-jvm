@@ -95,13 +95,15 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(520, scriptIndex)
+    createNativeObject(537, scriptIndex)
   }
 
   /**
    * Sets [source] code for the specified shader [stage]. Equivalent to setting one of
    * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
    * [sourceVertex].
+   * **Note:** If you set the compute shader source code using this method directly, remember to
+   * remove the Godot-specific hint `#[compute]`.
    */
   public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)

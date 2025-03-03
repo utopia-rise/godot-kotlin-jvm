@@ -81,6 +81,9 @@ import kotlin.jvm.JvmOverloads
  * from [RefCounted] for classes storing data instead of [Object].
  * **Note:** The `script` is not exposed like most properties. To set or get an object's [Script] in
  * code, use [setScript] and [getScript], respectively.
+ * **Note:** In a boolean context, an [Object] will evaluate to `false` if it is equal to `null` or
+ * it has been freed. Otherwise, an [Object] will always evaluate to `true`. See also
+ * [@GlobalScope.isInstanceValid].
  */
 @GodotBaseType
 public open class Object : KtObject() {
@@ -146,13 +149,13 @@ public open class Object : KtObject() {
    * ```gdscript
    * var node = Node2D.new()
    * node.set("global_scale", Vector2(8, 2.5))
-   * print(node.global_scale) # Prints (8, 2.5)
+   * print(node.global_scale) # Prints (8.0, 2.5)
    * ```
    * csharp:
    * ```csharp
    * var node = new Node2D();
-   * node.Set(Node2D.PropertyName.GlobalScale, new Vector2(8, 2.5));
-   * GD.Print(node.GlobalScale); // Prints Vector2(8, 2.5)
+   * node.Set(Node2D.PropertyName.GlobalScale, new Vector2(8, 2.5f));
+   * GD.Print(node.GlobalScale); // Prints (8, 2.5)
    * ```
    *
    * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
@@ -201,7 +204,7 @@ public open class Object : KtObject() {
    * var node = Node2D.new()
    * node.set_indexed("position", Vector2(42, 0))
    * node.set_indexed("position:y", -10)
-   * print(node.position) # Prints (42, -10)
+   * print(node.position) # Prints (42.0, -10.0)
    * ```
    * csharp:
    * ```csharp
@@ -455,7 +458,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's metadata entry names as a [PackedStringArray].
+   * Returns the object's metadata entry names as an [Array] of [StringName]s.
    */
   public final fun getMetaList(): VariantArray<StringName> {
     TransferContext.writeArguments()
@@ -464,9 +467,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Adds a user-defined [signal]. Optional arguments for the signal can be added as an [Array] of
-   * dictionaries, each defining a `name` [String] and a `type` [int] (see [Variant.Type]). See also
-   * [hasUserSignal] and [removeUserSignal].
+   * Adds a user-defined signal named [signal]. Optional arguments for the signal can be added as an
+   * [Array] of dictionaries, each defining a `name` [String] and a `type` [int] (see [Variant.Type]).
+   * See also [hasUserSignal] and [removeUserSignal].
    *
    * gdscript:
    * ```gdscript
@@ -477,19 +480,19 @@ public open class Object : KtObject() {
    * ```
    * csharp:
    * ```csharp
-   * AddUserSignal("Hurt", new Godot.Collections.Array()
-   * {
+   * AddUserSignal("Hurt",
+   * [
    *     new Godot.Collections.Dictionary()
    *     {
    *         { "name", "damage" },
-   *         { "type", (int)Variant.Type.Int }
+   *         { "type", (int)Variant.Type.Int },
    *     },
    *     new Godot.Collections.Dictionary()
    *     {
    *         { "name", "source" },
-   *         { "type", (int)Variant.Type.Object }
-   *     }
-   * });
+   *         { "type", (int)Variant.Type.Object },
+   *     },
+   * ]);
    * ```
    */
   @JvmOverloads
@@ -572,7 +575,7 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Calls the [method] on the object during idle time. Always returns null, **not** the method's
+   * Calls the [method] on the object during idle time. Always returns `null`, **not** the method's
    * result.
    * Idle time happens mainly at the end of process and physics frames. In it, deferred calls will
    * be run until there are none left, which means you can defer calls from other deferred calls and
@@ -663,8 +666,7 @@ public open class Object : KtObject() {
    * csharp:
    * ```csharp
    * var node = new Node3D();
-   * node.Callv(Node3D.MethodName.Rotate, new Godot.Collections.Array { new Vector3(1f, 0f, 0f),
-   * 1.571f });
+   * node.Callv(Node3D.MethodName.Rotate, [new Vector3(1f, 0f, 0f), 1.571f]);
    * ```
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -703,7 +705,7 @@ public open class Object : KtObject() {
 
   /**
    * Returns `true` if the given [signal] name exists in the object.
-   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot signals.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
@@ -928,13 +930,25 @@ public open class Object : KtObject() {
 
   /**
    * Returns `true` if a connection exists between the given [signal] name and [callable].
-   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot signals.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
   public final fun isConnected(signal: StringName, callable: Callable): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.isConnectedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if any connection exists on the given [signal] name.
+   * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun hasConnections(signal: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to signal)
+    TransferContext.callMethod(ptr, MethodBindings.hasConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1032,6 +1046,24 @@ public open class Object : KtObject() {
   }
 
   /**
+   * Returns the name of the translation domain used by [tr] and [trN]. See also
+   * [TranslationServer].
+   */
+  public final fun getTranslationDomain(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTranslationDomainPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Sets the name of the translation domain used by [tr] and [trN]. See also [TranslationServer].
+   */
+  public final fun setTranslationDomain(domain: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to domain)
+    TransferContext.callMethod(ptr, MethodBindings.setTranslationDomainPtr, NIL)
+  }
+
+  /**
    * Returns `true` if the [Node.queueFree] method was called for the object.
    */
   public final fun isQueuedForDeletion(): Boolean {
@@ -1094,8 +1126,8 @@ public open class Object : KtObject() {
     public final const val NOTIFICATION_POSTINITIALIZE: Long = 0
 
     /**
-     * Notification received when the object is about to be deleted. Can act as the deconstructor of
-     * some programming languages.
+     * Notification received when the object is about to be deleted. Can be used like destructors in
+     * object-oriented programming languages.
      */
     public final const val NOTIFICATION_PREDELETE: Long = 1
 
@@ -1213,6 +1245,9 @@ public open class Object : KtObject() {
     internal val isConnectedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Object", "is_connected", 768136979)
 
+    internal val hasConnectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "has_connections", 2619796661)
+
     internal val setBlockSignalsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Object", "set_block_signals", 2586408642)
 
@@ -1228,9 +1263,15 @@ public open class Object : KtObject() {
     internal val canTranslateMessagesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Object", "can_translate_messages", 36873697)
 
-    internal val trPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr", 2475554935)
+    internal val trPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr", 1195764410)
 
-    internal val trNPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr_n", 4021311862)
+    internal val trNPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr_n", 162698058)
+
+    internal val getTranslationDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_translation_domain", 2002593661)
+
+    internal val setTranslationDomainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "set_translation_domain", 3304788590)
 
     internal val isQueuedForDeletionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Object", "is_queued_for_deletion", 36873697)

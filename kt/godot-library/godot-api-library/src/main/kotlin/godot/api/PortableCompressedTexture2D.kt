@@ -67,7 +67,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(501, scriptIndex)
+    createNativeObject(518, scriptIndex)
   }
 
   /**

@@ -23,7 +23,9 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
+import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,7 +44,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Geometry2D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(7)
+    getSingleton(10)
   }
 
   /**
@@ -96,9 +98,37 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two lines ([fromA], [dirA]) and ([fromB], [dirB]) intersect. If yes, return the
-   * point of intersection as [Vector2]. If no intersection takes place, returns `null`.
-   * **Note:** The lines are specified using direction vectors, not end points.
+   * Returns the point of intersection between the two lines ([fromA], [dirA]) and ([fromB],
+   * [dirB]). Returns a [Vector2], or `null` if the lines are parallel.
+   * `from` and `dir` are *not* endpoints of a line segment or ray but the slope (`dir`) and a known
+   * point (`from`) on that line.
+   *
+   * gdscript:
+   * ```gdscript
+   * var from_a = Vector2.ZERO
+   * var dir_a = Vector2.RIGHT
+   * var from_b = Vector2.DOWN
+   *
+   * # Returns Vector2(1, 0)
+   * Geometry2D.line_intersects_line(from_a, dir_a, from_b, Vector2(1, -1))
+   * # Returns Vector2(-1, 0)
+   * Geometry2D.line_intersects_line(from_a, dir_a, from_b, Vector2(-1, -1))
+   * # Returns null
+   * Geometry2D.line_intersects_line(from_a, dir_a, from_b, Vector2.RIGHT)
+   * ```
+   * csharp:
+   * ```csharp
+   * var fromA = Vector2.Zero;
+   * var dirA = Vector2.Right;
+   * var fromB = Vector2.Down;
+   *
+   * // Returns new Vector2(1, 0)
+   * Geometry2D.LineIntersectsLine(fromA, dirA, fromB, new Vector2(1, -1));
+   * // Returns new Vector2(-1, 0)
+   * Geometry2D.LineIntersectsLine(fromA, dirA, fromB, new Vector2(-1, -1));
+   * // Returns null
+   * Geometry2D.LineIntersectsLine(fromA, dirA, fromB, Vector2.Right);
+   * ```
    */
   @JvmStatic
   public final fun lineIntersectsLine(
@@ -354,15 +384,15 @@ public object Geometry2D : Object() {
    * 100)])
    * var offset = Vector2(50, 50)
    * polygon = Transform2D(0, offset) * polygon
-   * print(polygon) # prints [(50, 50), (150, 50), (150, 150), (50, 150)]
+   * print(polygon) # Prints [(50.0, 50.0), (150.0, 50.0), (150.0, 150.0), (50.0, 150.0)]
    * ```
    * csharp:
    * ```csharp
-   * var polygon = new Vector2[] { new Vector2(0, 0), new Vector2(100, 0), new Vector2(100, 100),
-   * new Vector2(0, 100) };
+   * Vector2[] polygon = [new Vector2(0, 0), new Vector2(100, 0), new Vector2(100, 100), new
+   * Vector2(0, 100)];
    * var offset = new Vector2(50, 50);
    * polygon = new Transform2D(0, offset) * polygon;
-   * GD.Print((Variant)polygon); // prints [(50, 50), (150, 50), (150, 150), (50, 150)]
+   * GD.Print((Variant)polygon); // Prints [(50, 50), (150, 50), (150, 150), (50, 150)]
    * ```
    */
   @JvmOverloads
@@ -410,6 +440,25 @@ public object Geometry2D : Object() {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)
     TransferContext.callMethod(ptr, MethodBindings.makeAtlasPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
+  /**
+   * Returns the [url=https://en.wikipedia.org/wiki/Bresenham&#37;27s_line_algorithm]Bresenham
+   * line[/url] between the [from] and [to] points. A Bresenham line is a series of pixels that draws a
+   * line and is always 1-pixel thick on every row and column of the drawing (never more, never less).
+   * Example code to draw a line between two [Marker2D] nodes using a series of
+   * [CanvasItem.drawRect] calls:
+   * [codeblock]
+   * func _draw():
+   *     for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
+   *         draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
+   * [/codeblock]
+   */
+  @JvmStatic
+  public final fun bresenhamLine(from: Vector2i, to: Vector2i): VariantArray<Vector2i> {
+    TransferContext.writeArguments(VECTOR2I to from, VECTOR2I to to)
+    TransferContext.callMethod(ptr, MethodBindings.bresenhamLinePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   public enum class PolyBooleanOperation(
@@ -578,5 +627,8 @@ public object Geometry2D : Object() {
 
     internal val makeAtlasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Geometry2D", "make_atlas", 1337682371)
+
+    internal val bresenhamLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Geometry2D", "bresenham_line", 1989391000)
   }
 }

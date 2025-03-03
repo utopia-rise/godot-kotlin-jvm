@@ -89,7 +89,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(368, scriptIndex)
+    createNativeObject(374, scriptIndex)
   }
 
   /**
@@ -367,8 +367,7 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns the specified vertex index of the given face.
-   * Vertex argument must be either 0, 1, or 2 because faces contain three vertices.
-   * **Example:**
+   * [vertex] must be either `0`, `1`, or `2` because faces contain three vertices.
    *
    * gdscript:
    * ```gdscript

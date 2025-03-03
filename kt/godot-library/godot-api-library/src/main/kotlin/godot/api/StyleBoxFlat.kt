@@ -35,8 +35,7 @@ import kotlin.jvm.JvmName
  * By configuring various properties of this style box, you can achieve many common looks without
  * the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
  * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will
- * switch to a relative system.
- * **Example:**
+ * switch to a relative system:
  * [codeblock lang=text]
  * height = 30
  * corner_radius_top_left = 50
@@ -347,7 +346,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(627, scriptIndex)
+    createNativeObject(651, scriptIndex)
   }
 
   /**

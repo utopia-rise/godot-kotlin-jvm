@@ -193,7 +193,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(585, scriptIndex)
+    createNativeObject(604, scriptIndex)
   }
 
   /**
@@ -327,9 +327,9 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns the parent [Skeleton3D] Node that was present when SkeletonIK entered the [SceneTree].
-   * Returns null if the parent node was not a [Skeleton3D] Node when SkeletonIK3D entered the
-   * [SceneTree].
+   * Returns the parent [Skeleton3D] node that was present when SkeletonIK entered the scene tree.
+   * Returns `null` if the parent node was not a [Skeleton3D] node when SkeletonIK3D entered the scene
+   * tree.
    */
   public final fun getParentSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()

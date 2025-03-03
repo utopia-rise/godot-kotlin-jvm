@@ -70,30 +70,30 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ItemList : Control() {
   /**
-   * Triggered when specified item has been selected.
+   * Emitted when specified item has been selected. Only applicable in single selection mode.
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by Signal1
 
   /**
-   * Triggered when any mouse click is issued within the rect of the list but on empty space.
+   * Emitted when any mouse click is issued within the rect of the list but on empty space.
+   * [atPosition] is the click position in this control's local coordinate system.
    */
   public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
-   * Triggered when specified list item has been clicked with any mouse button.
-   * The click position is also provided to allow appropriate popup of context menus at the correct
-   * location.
+   * Emitted when specified list item has been clicked with any mouse button.
+   * [atPosition] is the click position in this control's local coordinate system.
    */
   public val itemClicked: Signal3<Long, Vector2, Long> by Signal3
 
   /**
-   * Triggered when a multiple selection is altered on a list allowing multiple selection.
+   * Emitted when a multiple selection is altered on a list allowing multiple selection.
    */
   public val multiSelected: Signal2<Long, Boolean> by Signal2
 
   /**
-   * Triggered when specified list item is activated via double-clicking or by pressing
+   * Emitted when specified list item is activated via double-clicking or by pressing
    * [kbd]Enter[/kbd].
    */
   public val itemActivated: Signal1<Long> by Signal1
@@ -157,6 +157,17 @@ public open class ItemList : Control() {
     }
 
   /**
+   * If `true`, the control will automatically resize the width to fit its content.
+   */
+  public final inline var autoWidth: Boolean
+    @JvmName("autoWidthProperty")
+    get() = hasAutoWidth()
+    @JvmName("autoWidthProperty")
+    set(`value`) {
+      setAutoWidth(value)
+    }
+
+  /**
    * If `true`, the control will automatically resize the height to fit its content.
    */
   public final inline var autoHeight: Boolean
@@ -177,6 +188,19 @@ public open class ItemList : Control() {
     @JvmName("textOverrunBehaviorProperty")
     set(`value`) {
       setTextOverrunBehavior(value)
+    }
+
+  /**
+   * If `true`, the control will automatically move items into a new row to fit its content. See
+   * also [HFlowContainer] for this behavior.
+   * If `false`, the control will add a horizontal scrollbar to make all items visible.
+   */
+  public final inline var wraparoundItems: Boolean
+    @JvmName("wraparoundItemsProperty")
+    get() = hasWraparoundItems()
+    @JvmName("wraparoundItemsProperty")
+    set(`value`) {
+      setWraparoundItems(value)
     }
 
   /**
@@ -264,7 +288,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(332, scriptIndex)
+    createNativeObject(336, scriptIndex)
   }
 
   /**
@@ -295,7 +319,7 @@ public open class ItemList : Control() {
   /**
    * Adds an item to the item list with specified text. Returns the index of an added item.
    * Specify an [icon], or use `null` as the [icon] for a list item with no icon.
-   * If selectable is `true`, the list item will be selectable.
+   * If [selectable] is `true`, the list item will be selectable.
    */
   @JvmOverloads
   public final fun addItem(
@@ -385,6 +409,25 @@ public open class ItemList : Control() {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getItemLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the auto translate mode of the item associated with the specified index.
+   * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate
+   * mode as the [ItemList] itself.
+   */
+  public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.id)
+    TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
+  }
+
+  /**
+   * Returns item's auto translate mode.
+   */
+  public final fun getItemAutoTranslateMode(idx: Int): Node.AutoTranslateMode {
+    TransferContext.writeArguments(LONG to idx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getItemAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -780,6 +823,17 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setAutoWidth(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoWidthPtr, NIL)
+  }
+
+  public final fun hasAutoWidth(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasAutoWidthPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setAutoHeight(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoHeightPtr, NIL)
@@ -833,6 +887,17 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(OBJECT) as VScrollBar?)
   }
 
+  /**
+   * Returns the horizontal scrollbar.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   */
+  public final fun getHScrollBar(): HScrollBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHScrollBarPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as HScrollBar?)
+  }
+
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
@@ -842,6 +907,17 @@ public open class ItemList : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setWraparoundItems(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setWraparoundItemsPtr, NIL)
+  }
+
+  public final fun hasWraparoundItems(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasWraparoundItemsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -888,6 +964,10 @@ public open class ItemList : Control() {
      * Allows selecting multiple items by holding [kbd]Ctrl[/kbd] or [kbd]Shift[/kbd].
      */
     SELECT_MULTI(1),
+    /**
+     * Allows selecting multiple items by toggling them on and off.
+     */
+    SELECT_TOGGLE(2),
     ;
 
     public val id: Long
@@ -932,6 +1012,12 @@ public open class ItemList : Control() {
 
     internal val getItemLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_item_language", 844755477)
+
+    internal val setItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_auto_translate_mode", 287402019)
+
+    internal val getItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_auto_translate_mode", 906302372)
 
     internal val setItemIconTransposedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed", 300928843)
@@ -1093,6 +1179,12 @@ public open class ItemList : Control() {
     internal val getAllowSearchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_allow_search", 36873697)
 
+    internal val setAutoWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_auto_width", 2586408642)
+
+    internal val hasAutoWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "has_auto_width", 36873697)
+
     internal val setAutoHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "set_auto_height", 2586408642)
 
@@ -1111,11 +1203,20 @@ public open class ItemList : Control() {
     internal val getVScrollBarPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2630340773)
 
+    internal val getHScrollBarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_h_scroll_bar", 4004517983)
+
     internal val setTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1008890932)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior", 3779142101)
+
+    internal val setWraparoundItemsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_wraparound_items", 2586408642)
+
+    internal val hasWraparoundItemsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "has_wraparound_items", 36873697)
 
     internal val forceUpdateListSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "force_update_list_size", 3218959716)

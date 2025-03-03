@@ -22,16 +22,35 @@ import kotlin.Unit
  * texture reference. In other words, you can pass multiple [Cubemap]s into a shader using a single
  * [CubemapArray]. [Cubemap]s are allocated in adjacent cache regions on the GPU, which makes
  * [CubemapArray]s the most efficient way to store multiple [Cubemap]s.
- * **Note:** Godot uses [CubemapArray]s internally for many effects, including the [Sky] if you set
- * [ProjectSettings.rendering/reflections/skyReflections/textureArrayReflections] to `true`. To create
- * such a texture file yourself, reimport your image files using the import presets of the File System
- * dock.
- * **Note:** [CubemapArray] is not supported in the OpenGL 3 rendering backend.
+ * Godot uses [CubemapArray]s internally for many effects, including the [Sky] if you set
+ * [ProjectSettings.rendering/reflections/skyReflections/textureArrayReflections] to `true`.
+ * To create such a texture file yourself, reimport your image files using the Godot Editor import
+ * presets. To create a CubemapArray from code, use [ImageTextureLayered.createFromImages] on an
+ * instance of the CubemapArray class.
+ * The expected image order is X+, X-, Y+, Y-, Z+, Z- (in Godot's coordinate system, so Y+ is "up"
+ * and Z- is "forward"). You can use one of the following templates as a base:
+ * -
+ * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/tutorials/assets_pipeline/img/cubemap_template_2x3.webp]2×3
+ * cubemap template (default layout option)[/url]
+ * -
+ * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/tutorials/assets_pipeline/img/cubemap_template_3x2.webp]3×2
+ * cubemap template[/url]
+ * -
+ * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/tutorials/assets_pipeline/img/cubemap_template_1x6.webp]1×6
+ * cubemap template[/url]
+ * -
+ * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/tutorials/assets_pipeline/img/cubemap_template_6x1.webp]6×1
+ * cubemap template[/url]
+ * Multiple layers are stacked on top of each other when using the default vertical import option
+ * (with the first layer at the top). Alternatively, you can choose an horizontal layout in the import
+ * options (with the first layer at the left).
+ * **Note:** [CubemapArray] is not supported in the Compatibility renderer due to graphics API
+ * limitations.
  */
 @GodotBaseType
 public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(215, scriptIndex)
+    createNativeObject(217, scriptIndex)
   }
 
   /**

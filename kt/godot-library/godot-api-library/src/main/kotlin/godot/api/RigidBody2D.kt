@@ -136,9 +136,9 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default
-   * Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity
-   * vector applied by [Area2D]s.
+   * Multiplies the gravity applied to the body. The body's gravity is calculated from the
+   * [ProjectSettings.physics/2d/defaultGravity] project setting and/or any additional gravity vector
+   * applied by [Area2D]s.
    */
   public final inline var gravityScale: Float
     @JvmName("gravityScaleProperty")
@@ -359,10 +359,10 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use the **Default Linear Damp** in
-   * **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is
-   * in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's movement. By default, the body will use the
+   * [ProjectSettings.physics/2d/defaultLinearDamp] setting or any value override set by an [Area2D]
+   * the body is in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to
+   * replace the body's damping value.
    * See [ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -396,10 +396,10 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the **Default Angular Damp** in
-   * **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is
-   * in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's rotation. By default, the body will use the
+   * [ProjectSettings.physics/2d/defaultAngularDamp] setting or any value override set by an [Area2D]
+   * the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to
+   * replace the body's damping value.
    * See [ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -436,7 +436,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(555, scriptIndex)
+    createNativeObject(573, scriptIndex)
   }
 
   /**

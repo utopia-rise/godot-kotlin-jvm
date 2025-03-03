@@ -41,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Texture2D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(648, scriptIndex)
+    createNativeObject(673, scriptIndex)
   }
 
   /**
@@ -208,7 +208,7 @@ public open class Texture2D : Texture() {
    * time). [Image]s can be accessed and manipulated directly.
    * **Note:** This will return `null` if this [Texture2D] is invalid.
    * **Note:** This will fetch the texture data from the GPU, which might cause performance problems
-   * when overused.
+   * when overused. Avoid calling [getImage] every frame, especially on large textures.
    */
   public final fun getImage(): Image? {
     TransferContext.writeArguments()

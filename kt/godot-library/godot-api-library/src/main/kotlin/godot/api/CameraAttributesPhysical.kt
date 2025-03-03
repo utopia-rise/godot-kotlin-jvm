@@ -123,10 +123,10 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     }
 
   /**
-   * The minimum luminance luminance (in EV100) used when calculating auto exposure. When
-   * calculating scene average luminance, color values will be clamped to at least this value. This
-   * limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point
-   * where the scene will remain dark.
+   * The minimum luminance (in EV100) used when calculating auto exposure. When calculating scene
+   * average luminance, color values will be clamped to at least this value. This limits the
+   * auto-exposure from exposing above a certain brightness, resulting in a cut off point where the
+   * scene will remain dark.
    */
   public final inline var autoExposureMinExposureValue: Float
     @JvmName("autoExposureMinExposureValueProperty")
@@ -151,7 +151,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(164, scriptIndex)
+    createNativeObject(165, scriptIndex)
   }
 
   public final fun setAperture(aperture: Float): Unit {

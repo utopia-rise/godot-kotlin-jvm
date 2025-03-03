@@ -37,13 +37,12 @@ public open class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(114, scriptIndex)
+    createNativeObject(115, scriptIndex)
   }
 
   /**
-   * Override this method to customize the returned value of [instantiatePlayback]. Should returned
-   * a new [AudioStreamPlayback] created when the stream is played (such as by an
-   * [AudioStreamPlayer])..
+   * Override this method to customize the returned value of [instantiatePlayback]. Should return a
+   * new [AudioStreamPlayback] created when the stream is played (such as by an [AudioStreamPlayer]).
    */
   public open fun _instantiatePlayback(): AudioStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for AudioStream")
@@ -99,6 +98,20 @@ public open class AudioStream : Resource() {
    */
   public open fun _getParameterList(): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_parameter_list is not implemented for AudioStream")
+  }
+
+  /**
+   * Override this method to return `true` if this stream has a loop.
+   */
+  public open fun _hasLoop(): Boolean {
+    throw NotImplementedError("_has_loop is not implemented for AudioStream")
+  }
+
+  /**
+   * Override this method to return the bar beats of this stream.
+   */
+  public open fun _getBarBeats(): Int {
+    throw NotImplementedError("_get_bar_beats is not implemented for AudioStream")
   }
 
   /**

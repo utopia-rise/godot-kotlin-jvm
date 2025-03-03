@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -40,6 +41,14 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class ParticleProcessMaterial : Material() {
+  /**
+   * Emitted when this material's emission shape is changed in any way. This includes changes to
+   * [emissionShape], [emissionShapeScale], or [emissionSphereRadius], and any other property that
+   * affects the emission shape's offset, size, scale, or orientation.
+   * **Note:** This signal is only emitted inside the editor for performance reasons.
+   */
+  public val emissionShapeChanged: Signal0 by Signal0
+
   /**
    * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime *
    * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the
@@ -259,6 +268,21 @@ public open class ParticleProcessMaterial : Material() {
     @JvmName("emissionRingInnerRadiusProperty")
     set(`value`) {
       setEmissionRingInnerRadius(value)
+    }
+
+  /**
+   * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
+   * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
+   * result in a ring where one end is larger than the other.
+   * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
+   * reached to form a perfect cone.
+   */
+  public final inline var emissionRingConeAngle: Float
+    @JvmName("emissionRingConeAngleProperty")
+    get() = getEmissionRingConeAngle()
+    @JvmName("emissionRingConeAngleProperty")
+    set(`value`) {
+      setEmissionRingConeAngle(value)
     }
 
   @CoreTypeLocalCopy
@@ -938,6 +962,10 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The alpha value of each particle's color will be multiplied by this [CurveTexture] over its
    * lifetime.
+   * **Note:** [alphaCurve] multiplies the particle mesh's vertex colors. To have a visible effect
+   * on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [alphaCurve] will have no visible effect.
    */
   public final inline var alphaCurve: Texture2D?
     @JvmName("alphaCurveProperty")
@@ -949,8 +977,10 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Each particle's color will be multiplied by this [CurveTexture] over its lifetime.
-   * **Note:** This property won't have a visible effect unless the render material is marked as
-   * unshaded.
+   * **Note:** [emissionCurve] multiplies the particle mesh's vertex colors. To have a visible
+   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [emissionCurve] will have no visible effect.
    */
   public final inline var emissionCurve: Texture2D?
     @JvmName("emissionCurveProperty")
@@ -1356,6 +1386,21 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * The amount of particles to spawn from the subemitter node when the particle spawns.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
+   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
+   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
+   * until enough particles have expired.
+   */
+  public final inline var subEmitterAmountAtStart: Int
+    @JvmName("subEmitterAmountAtStartProperty")
+    get() = getSubEmitterAmountAtStart()
+    @JvmName("subEmitterAmountAtStartProperty")
+    set(`value`) {
+      setSubEmitterAmountAtStart(value)
+    }
+
+  /**
    * If `true`, the subemitter inherits the parent particle's velocity when it spawns.
    */
   public final inline var subEmitterKeepVelocity: Boolean
@@ -1367,7 +1412,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(451, scriptIndex)
+    createNativeObject(468, scriptIndex)
   }
 
   /**
@@ -2312,6 +2357,17 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setEmissionRingConeAngle(coneAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to coneAngle.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingConeAnglePtr, NIL)
+  }
+
+  public final fun getEmissionRingConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingConeAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setEmissionShapeOffset(emissionShapeOffset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to emissionShapeOffset)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapeOffsetPtr, NIL)
@@ -2453,6 +2509,17 @@ public open class ParticleProcessMaterial : Material() {
   public final fun setSubEmitterAmountAtCollision(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterAmountAtCollisionPtr, NIL)
+  }
+
+  public final fun getSubEmitterAmountAtStart(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSubEmitterAmountAtStartPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setSubEmitterAmountAtStart(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSubEmitterAmountAtStartPtr, NIL)
   }
 
   public final fun getSubEmitterKeepVelocity(): Boolean {
@@ -2714,10 +2781,11 @@ public open class ParticleProcessMaterial : Material() {
     SUB_EMITTER_CONSTANT(1),
     SUB_EMITTER_AT_END(2),
     SUB_EMITTER_AT_COLLISION(3),
+    SUB_EMITTER_AT_START(4),
     /**
      * Represents the size of the [SubEmitterMode] enum.
      */
-    SUB_EMITTER_MAX(4),
+    SUB_EMITTER_MAX(5),
     ;
 
     public val id: Long
@@ -2928,6 +2996,12 @@ public open class ParticleProcessMaterial : Material() {
     internal val getEmissionRingInnerRadiusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius", 1740695150)
 
+    internal val setEmissionRingConeAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_cone_angle", 373806689)
+
+    internal val getEmissionRingConeAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_cone_angle", 1740695150)
+
     internal val setEmissionShapeOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset", 3460891852)
 
@@ -3005,6 +3079,12 @@ public open class ParticleProcessMaterial : Material() {
 
     internal val setSubEmitterAmountAtCollisionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision", 1286410249)
+
+    internal val getSubEmitterAmountAtStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_start", 3905245786)
+
+    internal val setSubEmitterAmountAtStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_start", 1286410249)
 
     internal val getSubEmitterKeepVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity", 36873697)

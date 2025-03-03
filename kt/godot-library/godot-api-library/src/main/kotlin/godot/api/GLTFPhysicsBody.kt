@@ -34,8 +34,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a physics body as an intermediary between the `OMI_physics_body` GLTF data and Godot's
- * nodes, and it's abstracted in a way that allows adding support for different GLTF physics extensions
+ * Represents a physics body as an intermediary between the `OMI_physics_body` glTF data and Godot's
+ * nodes, and it's abstracted in a way that allows adding support for different glTF physics extensions
  * in the future.
  */
 @GodotBaseType
@@ -151,7 +151,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(260, scriptIndex)
+    createNativeObject(264, scriptIndex)
   }
 
   /**
@@ -324,7 +324,7 @@ public open class GLTFPhysicsBody : Resource() {
 
   /**
    * Serializes this GLTFPhysicsBody instance into a [Dictionary]. It will be in the format expected
-   * by the `OMI_physics_body` GLTF extension.
+   * by the `OMI_physics_body` glTF extension.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -432,7 +432,7 @@ public open class GLTFPhysicsBody : Resource() {
 
     /**
      * Creates a new GLTFPhysicsBody instance by parsing the given [Dictionary] in the
-     * `OMI_physics_body` GLTF extension format.
+     * `OMI_physics_body` glTF extension format.
      */
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsBody? {
       TransferContext.writeArguments(DICTIONARY to dictionary)

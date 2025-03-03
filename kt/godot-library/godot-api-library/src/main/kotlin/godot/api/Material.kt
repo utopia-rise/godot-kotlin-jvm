@@ -66,7 +66,7 @@ public open class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(363, scriptIndex)
+    createNativeObject(369, scriptIndex)
   }
 
   /**
@@ -125,7 +125,7 @@ public open class Material : Resource() {
 
   /**
    * Only available when running in the editor. Opens a popup that visualizes the generated shader
-   * code, including all variants and internal shader code.
+   * code, including all variants and internal shader code. See also [Shader.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
     TransferContext.writeArguments()

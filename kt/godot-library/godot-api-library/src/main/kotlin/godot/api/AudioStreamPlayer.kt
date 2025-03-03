@@ -57,9 +57,9 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * Volume of sound, in decibel. This is an offset of the [stream]'s volume.
+   * Volume of sound, in decibels. This is an offset of the [stream]'s volume.
    * **Note:** To convert between decibel and linear energy (like most volume sliders do), use
-   * [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
+   * [volumeLinear], or [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
    */
   public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
@@ -67,6 +67,20 @@ public open class AudioStreamPlayer : Node() {
     @JvmName("volumeDbProperty")
     set(`value`) {
       setVolumeDb(value)
+    }
+
+  /**
+   * Volume of sound, as a linear value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
+   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
+   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   */
+  public final inline var volumeLinear: Float
+    @JvmName("volumeLinearProperty")
+    get() = getVolumeLinear()
+    @JvmName("volumeLinearProperty")
+    set(`value`) {
+      setVolumeLinear(value)
     }
 
   /**
@@ -85,9 +99,13 @@ public open class AudioStreamPlayer : Node() {
    * If `true`, this node is playing sounds. Setting this property has the same effect as [play] and
    * [stop].
    */
-  public final inline val playing: Boolean
+  public final inline var playing: Boolean
     @JvmName("playingProperty")
     get() = isPlaying()
+    @JvmName("playingProperty")
+    set(`value`) {
+      setPlaying(value)
+    }
 
   /**
    * If `true`, this node calls [play] when entering the tree.
@@ -163,7 +181,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(128, scriptIndex)
+    createNativeObject(129, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
@@ -185,6 +203,17 @@ public open class AudioStreamPlayer : Node() {
   public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setVolumeLinear(volumeLinear: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volumeLinear.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
+  }
+
+  public final fun getVolumeLinear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -237,6 +266,8 @@ public open class AudioStreamPlayer : Node() {
    * **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every
    * processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the
    * returned position.
+   * **Note:** This method always returns `0.0` if the [stream] is an [AudioStreamInteractive],
+   * since it can have multiple clips playing at once.
    */
   public final fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
@@ -275,6 +306,11 @@ public open class AudioStreamPlayer : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixTargetPtr, LONG)
     return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPlaying(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setPlayingPtr, NIL)
   }
 
   public final fun setStreamPaused(pause: Boolean): Unit {
@@ -372,6 +408,12 @@ public open class AudioStreamPlayer : Node() {
     internal val getVolumeDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1740695150)
 
+    internal val setVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_linear", 373806689)
+
+    internal val getVolumeLinearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_linear", 1740695150)
+
     internal val setPitchScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373806689)
 
@@ -410,6 +452,9 @@ public open class AudioStreamPlayer : Node() {
 
     internal val getMixTargetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172807476)
+
+    internal val setPlayingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playing", 2586408642)
 
     internal val setStreamPausedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2586408642)

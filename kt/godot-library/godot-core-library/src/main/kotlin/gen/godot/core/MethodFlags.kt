@@ -70,6 +70,8 @@ public sealed interface MethodFlags {
 
     public val METHOD_FLAG_OBJECT_CORE: MethodFlags = MethodFlagsValue(64)
 
+    public val METHOD_FLAG_VIRTUAL_REQUIRED: MethodFlags = MethodFlagsValue(128)
+
     public val METHOD_FLAGS_DEFAULT: MethodFlags = MethodFlagsValue(1)
   }
 }

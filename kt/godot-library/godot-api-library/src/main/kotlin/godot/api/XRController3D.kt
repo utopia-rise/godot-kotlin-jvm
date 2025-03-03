@@ -31,8 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * This is a helper spatial node that is linked to the tracking of controllers. It also offers
- * several handy passthroughs to the state of buttons and such on the controllers.
+ * This is a helper 3D node that is linked to the tracking of controllers. It also offers several
+ * handy passthroughs to the state of buttons and such on the controllers.
  * Controllers are linked by their ID. You can create controller nodes before the controllers are
  * available. If your game always uses two controllers (one for each hand), you can predefine the
  * controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If
@@ -70,7 +70,7 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(840, scriptIndex)
+    createNativeObject(866, scriptIndex)
   }
 
   /**

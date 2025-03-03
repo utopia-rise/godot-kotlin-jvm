@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCubemapParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(719, scriptIndex)
+    createNativeObject(745, scriptIndex)
   }
 
   public companion object

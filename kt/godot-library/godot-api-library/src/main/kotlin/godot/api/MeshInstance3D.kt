@@ -72,7 +72,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(370, scriptIndex)
+    createNativeObject(376, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
@@ -133,7 +133,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * is associated with this [MeshInstance3D] rather than with [mesh].
    * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material
    * Override properties, not the material within the [Mesh] resource. To set the material within the
-   * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
+   * [Mesh] resource, use [Mesh.surfaceSetMaterial] instead.
    */
   public final fun setSurfaceOverrideMaterial(surface: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
@@ -262,6 +262,21 @@ public open class MeshInstance3D : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
+  /**
+   * Takes a snapshot of the current animated skeleton pose of the skinned mesh and bakes it to the
+   * provided [existing] mesh. If no [existing] mesh is provided a new [ArrayMesh] is created, baked,
+   * and returned. Requires a skeleton with a registered skin to work. Blendshapes are ignored. Mesh
+   * surface materials are not copied.
+   * **Performance:** [Mesh] data needs to be retrieved from the GPU, stalling the [RenderingServer]
+   * in the process.
+   */
+  @JvmOverloads
+  public final fun bakeMeshFromCurrentSkeletonPose(existing: ArrayMesh? = null): ArrayMesh? {
+    TransferContext.writeArguments(OBJECT to existing)
+    TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentSkeletonPosePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -324,5 +339,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
 
     internal val bakeMeshFromCurrentBlendShapeMixPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix", 1457573577)
+
+    internal val bakeMeshFromCurrentSkeletonPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_skeleton_pose", 1457573577)
   }
 }

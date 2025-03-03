@@ -124,9 +124,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings >
-   * Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2
-   * will apply double gravity, and 0.5 will apply half gravity to this object.
+   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's
+   * gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the
+   * gravity, and `0.5` will apply half the gravity to this body.
    */
   public final inline var gravityScale: Float
     @JvmName("gravityScaleProperty")
@@ -163,10 +163,10 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use the **Default Linear Damp** in
-   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
-   * in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's movement. By default, the body will use
+   * [ProjectSettings.physics/3d/defaultLinearDamp] or any value override set by an [Area3D] the body
+   * is in. Depending on [linearDampMode], [linearDamp] may be added to or replace the body's damping
+   * value.
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public final inline var linearDamp: Float
@@ -189,10 +189,10 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the **Default Angular Damp** in
-   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
-   * in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the
-   * body's damping value.
+   * Damps the body's rotation. By default, the body will use the
+   * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
+   * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
+   * or to replace the body's damping value.
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public final inline var angularDamp: Float
@@ -242,7 +242,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(457, scriptIndex)
+    createNativeObject(474, scriptIndex)
   }
 
   /**
@@ -378,11 +378,25 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
   }
 
+  /**
+   * Applies a directional impulse without affecting rotation.
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_integrate_forces" functions otherwise).
+   * This is equivalent to using [applyImpulse] at the body's center of mass.
+   */
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
 
+  /**
+   * Applies a positioned impulse to the PhysicsBone3D.
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_integrate_forces" functions otherwise).
+   * [position] is the offset from the PhysicsBone3D origin in global coordinates.
+   */
   @JvmOverloads
   public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
@@ -433,18 +447,27 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  /**
+   * Returns `true` if the PhysicsBone3D is allowed to simulate physics.
+   */
   public final fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimulatePhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns `true` if the PhysicsBone3D is currently simulating physics.
+   */
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns the unique identifier of the PhysicsBone3D.
+   */
   public final fun getBoneId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneIdPtr, LONG)
@@ -610,11 +633,29 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public enum class JointType(
     id: Long,
   ) {
+    /**
+     * No joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_NONE(0),
+    /**
+     * A pin joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_PIN(1),
+    /**
+     * A cone joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_CONE(2),
+    /**
+     * A hinge joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_HINGE(3),
+    /**
+     * A slider joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_SLIDER(4),
+    /**
+     * A 6 degrees of freedom joint is applied to the PhysicsBone3D.
+     */
     JOINT_TYPE_6DOF(5),
     ;
 

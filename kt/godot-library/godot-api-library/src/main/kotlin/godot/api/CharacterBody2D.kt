@@ -244,7 +244,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(179, scriptIndex)
+    createNativeObject(180, scriptIndex)
   }
 
   /**
@@ -648,7 +648,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * during the last call to [moveAndSlide]. Since the body can collide several times in a single call
    * to [moveAndSlide], you must specify the index of the collision in the range 0 to
    * ([getSlideCollisionCount] - 1).
-   * **Example usage:**
+   * **Example:** Iterate through the collisions with a `for` loop:
    *
    * gdscript:
    * ```gdscript

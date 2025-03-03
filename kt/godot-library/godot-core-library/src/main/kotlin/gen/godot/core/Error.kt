@@ -8,9 +8,8 @@ public enum class Error(
 ) {
   /**
    * Methods that return [Error] return [OK] when no error occurred.
-   * Since [OK] has value 0, and all other error constants are positive integers, it can also be
+   * Since [OK] has value `0`, and all other error constants are positive integers, it can also be
    * used in boolean checks.
-   * **Example:**
    * [codeblock]
    * var error = method_that_returns_error()
    * if error != OK:

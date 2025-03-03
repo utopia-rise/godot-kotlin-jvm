@@ -139,7 +139,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(479, scriptIndex)
+    createNativeObject(496, scriptIndex)
   }
 
   /**

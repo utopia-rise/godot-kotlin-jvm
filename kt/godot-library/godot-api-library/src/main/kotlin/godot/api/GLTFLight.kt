@@ -33,7 +33,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.
+ * Represents a light as defined by the `KHR_lights_punctual` glTF extension.
  */
 @GodotBaseType
 public open class GLTFLight : Resource() {
@@ -75,7 +75,7 @@ public open class GLTFLight : Resource() {
     }
 
   /**
-   * The range of the light, beyond which the light has no effect. GLTF lights with no range defined
+   * The range of the light, beyond which the light has no effect. glTF lights with no range defined
    * behave like physical lights (which have infinite range). When creating a Godot light, the range is
    * clamped to 4096.
    */
@@ -118,7 +118,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(257, scriptIndex)
+    createNativeObject(260, scriptIndex)
   }
 
   /**

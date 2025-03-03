@@ -90,7 +90,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(158, scriptIndex)
+    createNativeObject(159, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -24,8 +24,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A horizontal menu bar that creates a [MenuButton] for each [PopupMenu] child. New items are
- * created by adding [PopupMenu]s to this node.
+ * A horizontal menu bar that creates a menu for each [PopupMenu] child. New items are created by
+ * adding [PopupMenu]s to this node. Item title is determined by [Window.title], or node name if
+ * [Window.title] is empty. Item title can be overridden using [setMenuTitle].
  */
 @GodotBaseType
 public open class MenuBar : Control() {
@@ -41,7 +42,9 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Position in the global menu to insert first [MenuBar] item at.
+   * Position order in the global menu to insert [MenuBar] items at. All menu items in the [MenuBar]
+   * are always inserted as a continuous range. Menus with lower [startIndex] are inserted first. Menus
+   * with [startIndex] equal to `-1` are inserted last.
    */
   public final inline var startIndex: Int
     @JvmName("startIndexProperty")
@@ -65,6 +68,10 @@ public open class MenuBar : Control() {
 
   /**
    * If `true`, [MenuBar] will use system global menu when supported.
+   * **Note:** If `true` and global menu is supported, this node is not displayed, has zero size,
+   * and all its child nodes except [PopupMenu]s are inaccessible.
+   * **Note:** This property overrides the value of the [PopupMenu.preferNativeMenu] property of the
+   * child nodes.
    */
   public final inline var preferGlobalMenu: Boolean
     @JvmName("preferGlobalMenuProperty")
@@ -98,7 +105,7 @@ public open class MenuBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(364, scriptIndex)
+    createNativeObject(370, scriptIndex)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {

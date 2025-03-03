@@ -89,6 +89,7 @@ public open class Timer : Node() {
   /**
    * If `true`, the timer will start immediately when it enters the scene tree.
    * **Note:** After the timer enters the tree, this property is automatically set to `false`.
+   * **Note:** This property does nothing when the timer is running in the editor.
    */
   public final inline var autostart: Boolean
     @JvmName("autostartProperty")
@@ -111,6 +112,17 @@ public open class Timer : Node() {
     }
 
   /**
+   * If `true`, the timer will ignore [Engine.timeScale] and update with the real, elapsed time.
+   */
+  public final inline var ignoreTimeScale: Boolean
+    @JvmName("ignoreTimeScaleProperty")
+    get() = isIgnoringTimeScale()
+    @JvmName("ignoreTimeScaleProperty")
+    set(`value`) {
+      setIgnoreTimeScale(value)
+    }
+
+  /**
    * The timer's remaining time in seconds. This is always `0` if the timer is stopped.
    * **Note:** This property is read-only and cannot be modified. It is based on [waitTime].
    */
@@ -119,7 +131,7 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(671, scriptIndex)
+    createNativeObject(696, scriptIndex)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {
@@ -156,8 +168,8 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer, if it was not started already. Fails if the timer is not inside the tree. If
-   * [timeSec] is greater than `0`, this value is used for the [waitTime].
+   * Starts the timer, or resets the timer if it was started already. Fails if the timer is not
+   * inside the tree. If [timeSec] is greater than `0`, this value is used for the [waitTime].
    * **Note:** This method does not resume a paused timer. See [paused].
    */
   @JvmOverloads
@@ -182,6 +194,17 @@ public open class Timer : Node() {
   public final fun isPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setIgnoreTimeScale(ignore: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ignore)
+    TransferContext.callMethod(ptr, MethodBindings.setIgnoreTimeScalePtr, NIL)
+  }
+
+  public final fun isIgnoringTimeScale(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isIgnoringTimeScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -264,6 +287,12 @@ public open class Timer : Node() {
         TypeManager.getMethodBindPtr("Timer", "set_paused", 2586408642)
 
     internal val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "is_paused", 36873697)
+
+    internal val setIgnoreTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Timer", "set_ignore_time_scale", 2586408642)
+
+    internal val isIgnoringTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Timer", "is_ignoring_time_scale", 2240911060)
 
     internal val isStoppedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Timer", "is_stopped", 36873697)

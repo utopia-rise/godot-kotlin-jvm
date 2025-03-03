@@ -38,7 +38,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(231, scriptIndex)
+    createNativeObject(233, scriptIndex)
   }
 
   /**
@@ -159,6 +159,17 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   ): Unit {
     TransferContext.writeArguments(LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTimeoutPtr, NIL)
+  }
+
+  /**
+   * Returns the ENet flags of the next packet in the received queue. See `FLAG_*` constants for
+   * available packet flags. Note that not all flags are replicated from the sending peer to the
+   * receiving peer.
+   */
+  public final fun getPacketFlags(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPacketFlagsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -408,6 +419,9 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
     internal val setTimeoutPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ENetPacketPeer", "set_timeout", 1649997291)
+
+    internal val getPacketFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_packet_flags", 3905245786)
 
     internal val getRemoteAddressPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_address", 201670096)

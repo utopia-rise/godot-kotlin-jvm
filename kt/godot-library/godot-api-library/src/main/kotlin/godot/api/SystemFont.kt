@@ -163,6 +163,19 @@ public open class SystemFont : Font() {
     }
 
   /**
+   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are
+   * accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel
+   * positioning is enabled.
+   */
+  public final inline var keepRoundingRemainders: Boolean
+    @JvmName("keepRoundingRemaindersProperty")
+    get() = getKeepRoundingRemainders()
+    @JvmName("keepRoundingRemaindersProperty")
+    set(`value`) {
+      setKeepRoundingRemainders(value)
+    }
+
+  /**
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data.
    */
@@ -213,7 +226,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(634, scriptIndex)
+    createNativeObject(659, scriptIndex)
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
@@ -292,6 +305,17 @@ public open class SystemFont : Font() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to keepRoundingRemainders)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepRoundingRemaindersPtr, NIL)
+  }
+
+  public final fun getKeepRoundingRemainders(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getKeepRoundingRemaindersPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
@@ -414,6 +438,12 @@ public open class SystemFont : Font() {
 
     internal val getSubpixelPositioningPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
+
+    internal val setKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_keep_rounding_remainders", 2586408642)
+
+    internal val getKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_keep_rounding_remainders", 36873697)
 
     internal val setMultichannelSignedDistanceFieldPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)

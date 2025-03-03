@@ -65,6 +65,18 @@ public open class ScrollContainer : Container() {
     }
 
   /**
+   * If `true`, [theme_item focus] is drawn when the ScrollContainer or one of its descendant nodes
+   * is focused.
+   */
+  public final inline var drawFocusBorder: Boolean
+    @JvmName("drawFocusBorderProperty")
+    get() = getDrawFocusBorder()
+    @JvmName("drawFocusBorderProperty")
+    set(`value`) {
+      setDrawFocusBorder(value)
+    }
+
+  /**
    * The current horizontal scroll value.
    * **Note:** If you are setting this value in the [Node.Ready] function or earlier, it needs to be
    * wrapped with [Object.setDeferred], since scroll bar's [Range.maxValue] is not initialized yet.
@@ -157,7 +169,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(568, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   public final fun setHScroll(`value`: Int): Unit {
@@ -287,6 +299,17 @@ public open class ScrollContainer : Container() {
     TransferContext.callMethod(ptr, MethodBindings.ensureControlVisiblePtr, NIL)
   }
 
+  public final fun setDrawFocusBorder(draw: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to draw)
+    TransferContext.callMethod(ptr, MethodBindings.setDrawFocusBorderPtr, NIL)
+  }
+
+  public final fun getDrawFocusBorder(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDrawFocusBorderPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public enum class ScrollMode(
     id: Long,
   ) {
@@ -307,6 +330,12 @@ public open class ScrollContainer : Container() {
      * Scrolling enabled, scrollbar will be hidden.
      */
     SCROLL_MODE_SHOW_NEVER(3),
+    /**
+     * Combines [SCROLL_MODE_AUTO] and [SCROLL_MODE_SHOW_ALWAYS]. The scrollbar is only visible if
+     * necessary, but the content size is adjusted as if it was always visible. It's useful for
+     * ensuring that content size stays the same regardless if the scrollbar is visible.
+     */
+    SCROLL_MODE_RESERVE(4),
     ;
 
     public val id: Long
@@ -378,5 +407,11 @@ public open class ScrollContainer : Container() {
 
     internal val ensureControlVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScrollContainer", "ensure_control_visible", 1496901182)
+
+    internal val setDrawFocusBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_draw_focus_border", 2586408642)
+
+    internal val getDrawFocusBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_draw_focus_border", 2240911060)
   }
 }

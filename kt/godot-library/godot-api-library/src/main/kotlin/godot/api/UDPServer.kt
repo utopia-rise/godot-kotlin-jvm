@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
  * class_name ServerNode
  * extends Node
  *
- * var server := UDPServer.new()
+ * var server = UDPServer.new()
  * var peers = []
  *
  * func _ready():
@@ -48,7 +48,7 @@ import kotlin.jvm.JvmOverloads
  * func _process(delta):
  *     server.poll() # Important!
  *     if server.is_connection_available():
- *         var peer: PacketPeerUDP = server.take_connection()
+ *         var peer = server.take_connection()
  *         var packet = peer.get_packet()
  *         print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(),
  * peer.get_packet_port()])
@@ -106,7 +106,7 @@ import kotlin.jvm.JvmOverloads
  * class_name ClientNode
  * extends Node
  *
- * var udp := PacketPeerUDP.new()
+ * var udp = PacketPeerUDP.new()
  * var connected = false
  *
  * func _ready():
@@ -167,7 +167,7 @@ public open class UDPServer : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(681, scriptIndex)
+    createNativeObject(707, scriptIndex)
   }
 
   /**

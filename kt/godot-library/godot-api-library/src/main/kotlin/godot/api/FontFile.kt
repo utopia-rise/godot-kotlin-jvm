@@ -198,6 +198,19 @@ public open class FontFile : Font() {
     }
 
   /**
+   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are
+   * accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel
+   * positioning is enabled.
+   */
+  public final inline var keepRoundingRemainders: Boolean
+    @JvmName("keepRoundingRemaindersProperty")
+    get() = getKeepRoundingRemainders()
+    @JvmName("keepRoundingRemaindersProperty")
+    set(`value`) {
+      setKeepRoundingRemainders(value)
+    }
+
+  /**
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
    * field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on
    * rasterizing the font every time its size changes, this allows for resizing the font in real-time
@@ -328,7 +341,7 @@ public open class FontFile : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(245, scriptIndex)
+    createNativeObject(248, scriptIndex)
   }
 
   /**
@@ -523,6 +536,17 @@ public open class FontFile : Font() {
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to keepRoundingRemainders)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepRoundingRemaindersPtr, NIL)
+  }
+
+  public final fun getKeepRoundingRemainders(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getKeepRoundingRemaindersPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setOversampling(oversampling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
@@ -570,7 +594,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Removes all font sizes from the cache entry
+   * Removes all font sizes from the cache entry.
    */
   public final fun clearSizeCache(cacheIndex: Int): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -1340,6 +1364,12 @@ public open class FontFile : Font() {
 
     internal val getSubpixelPositioningPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "get_subpixel_positioning", 1069238588)
+
+    internal val setKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_keep_rounding_remainders", 2586408642)
+
+    internal val getKeepRoundingRemaindersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_keep_rounding_remainders", 36873697)
 
     internal val setOversamplingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "set_oversampling", 373806689)

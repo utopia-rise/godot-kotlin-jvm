@@ -45,6 +45,9 @@ import kotlin.jvm.JvmOverloads
  * means that scene tiles from a [TileSetScenesCollectionSource] may be initialized after their parent.
  * This is only queued when inside the scene tree.
  * To force an update earlier on, call [updateInternals].
+ * **Note:** For performance and compatibility reasons, the coordinates serialized by [TileMapLayer]
+ * are limited to 16-bit signed integers, i.e. the range for X and Y coordinates is from `-32768` to
+ * `32767`. When saving tile data, tiles outside this range are wrapped.
  */
 @GodotBaseType
 public open class TileMapLayer : Node2D() {
@@ -90,6 +93,17 @@ public open class TileMapLayer : Node2D() {
     @JvmName("tileSetProperty")
     set(`value`) {
       setTileSet(value)
+    }
+
+  /**
+   * Enable or disable light occlusion.
+   */
+  public final inline var occlusionEnabled: Boolean
+    @JvmName("occlusionEnabledProperty")
+    get() = isOcclusionEnabled()
+    @JvmName("occlusionEnabledProperty")
+    set(`value`) {
+      setOcclusionEnabled(value)
     }
 
   /**
@@ -193,7 +207,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(665, scriptIndex)
+    createNativeObject(690, scriptIndex)
   }
 
   /**
@@ -218,6 +232,25 @@ public open class TileMapLayer : Node2D() {
    * [notifyRuntimeTileDataUpdate] to notify the [TileMapLayer] it needs an update.
    */
   public open fun _tileDataRuntimeUpdate(coords: Vector2i, tileData: TileData?): Unit {
+  }
+
+  /**
+   * Called when this [TileMapLayer]'s cells need an internal update. This update may be caused from
+   * individual cells being modified or by a change in the [tileSet] (causing all cells to be queued
+   * for an update). The first call to this function is always for initializing all the
+   * [TileMapLayer]'s cells. [coords] contains the coordinates of all modified cells, roughly in the
+   * order they were modified. [forcedCleanup] is `true` when the [TileMapLayer]'s internals should be
+   * fully cleaned up. This is the case when:
+   * - The layer is disabled;
+   * - The layer is not visible;
+   * - [tileSet] is set to `null`;
+   * - The node is removed from the tree;
+   * - The node is freed.
+   * Note that any internal update happening while one of these conditions is verified is considered
+   * to be a "cleanup". See also [updateInternals].
+   * **Warning:** Implementing this method may degrade the [TileMapLayer]'s performance.
+   */
+  public open fun _updateCells(coords: VariantArray<Vector2i>, forcedCleanup: Boolean): Unit {
   }
 
   /**
@@ -318,6 +351,36 @@ public open class TileMapLayer : Node2D() {
   }
 
   /**
+   * Returns `true` if the cell at coordinates [coords] is flipped horizontally. The result is valid
+   * only for atlas sources.
+   */
+  public final fun isCellFlippedH(coords: Vector2i): Boolean {
+    TransferContext.writeArguments(VECTOR2I to coords)
+    TransferContext.callMethod(ptr, MethodBindings.isCellFlippedHPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the cell at coordinates [coords] is flipped vertically. The result is valid
+   * only for atlas sources.
+   */
+  public final fun isCellFlippedV(coords: Vector2i): Boolean {
+    TransferContext.writeArguments(VECTOR2I to coords)
+    TransferContext.callMethod(ptr, MethodBindings.isCellFlippedVPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the cell at coordinates [coords] is transposed. The result is valid only for
+   * atlas sources.
+   */
+  public final fun isCellTransposed(coords: Vector2i): Boolean {
+    TransferContext.writeArguments(VECTOR2I to coords)
+    TransferContext.callMethod(ptr, MethodBindings.isCellTransposedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns a [Vector2i] array with the positions of all cells containing a tile. A cell is
    * considered empty if its source identifier equals `-1`, its atlas coordinate identifier is
    * `Vector2(-1, -1)` and its alternative identifier is `-1`.
@@ -381,7 +444,7 @@ public open class TileMapLayer : Node2D() {
    * the given [terrainSet]. If an updated cell has the same terrain as one of its neighboring cells,
    * this function tries to join the two. This function might update neighboring tiles if needed to
    * create correct terrain transitions.
-   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
    * **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains
    * set up with all required terrain combinations. Otherwise, it may produce unexpected results.
@@ -402,7 +465,7 @@ public open class TileMapLayer : Node2D() {
    * the given [terrainSet]. The function will also connect two successive cell in the path with the
    * same terrain. This function might update neighboring tiles if needed to create correct terrain
    * transitions.
-   * If [ignoreEmptyTerrains] is true, empty terrains will be ignored when trying to find the best
+   * If [ignoreEmptyTerrains] is `true`, empty terrains will be ignored when trying to find the best
    * fitting tile for the given terrain constraints.
    * **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains
    * set up with all required terrain combinations. Otherwise, it may produce unexpected results.
@@ -481,7 +544,9 @@ public open class TileMapLayer : Node2D() {
   }
 
   /**
-   * Returns the list of all neighboring cells to the one at [coords].
+   * Returns the list of all neighboring cells to the one at [coords]. Any neighboring cell is one
+   * that is touching edges, so for a square cell 4 cells would be returned, for a hexagon 6 cells are
+   * returned.
    */
   public final fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
@@ -621,6 +686,17 @@ public open class TileMapLayer : Node2D() {
     return TileMapLayer.DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setOcclusionEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setOcclusionEnabledPtr, NIL)
+  }
+
+  public final fun isOcclusionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isOcclusionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setNavigationEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationEnabledPtr, NIL)
@@ -719,6 +795,15 @@ public open class TileMapLayer : Node2D() {
     internal val getCellTileDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "get_cell_tile_data", 205084707)
 
+    internal val isCellFlippedHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "is_cell_flipped_h", 3900751641)
+
+    internal val isCellFlippedVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "is_cell_flipped_v", 3900751641)
+
+    internal val isCellTransposedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "is_cell_transposed", 3900751641)
+
     internal val getUsedCellsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "get_used_cells", 3995934104)
 
@@ -750,7 +835,7 @@ public open class TileMapLayer : Node2D() {
         TypeManager.getMethodBindPtr("TileMapLayer", "update_internals", 3218959716)
 
     internal val notifyRuntimeTileDataUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapLayer", "notify_runtime_tile_data_update", 2275361663)
+        TypeManager.getMethodBindPtr("TileMapLayer", "notify_runtime_tile_data_update", 3218959716)
 
     internal val mapPatternPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "map_pattern", 1864516957)
@@ -820,6 +905,12 @@ public open class TileMapLayer : Node2D() {
 
     internal val getCollisionVisibilityModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "get_collision_visibility_mode", 338220793)
+
+    internal val setOcclusionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "set_occlusion_enabled", 2586408642)
+
+    internal val isOcclusionEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "is_occlusion_enabled", 36873697)
 
     internal val setNavigationEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "set_navigation_enabled", 2586408642)

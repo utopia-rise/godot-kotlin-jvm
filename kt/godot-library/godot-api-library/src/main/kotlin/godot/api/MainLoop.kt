@@ -23,8 +23,8 @@ import kotlin.Unit
  * possible to write and use one's own [MainLoop] subclass instead of the scene tree.
  * Upon the application start, a [MainLoop] implementation must be provided to the OS; otherwise,
  * the application will exit. This happens automatically (and a [SceneTree] is created) unless a
- * [MainLoop] [Script] is provided from the command line (with e.g. `godot -s my_loop.gd`) or the "Main
- * Loop Type" project setting is overwritten.
+ * [MainLoop] [Script] is provided from the command line (with e.g. `godot -s my_loop.gd`) or the
+ * [ProjectSettings.application/run/mainLoopType] project setting is overwritten.
  * Here is an example script implementing a simple [MainLoop]:
  *
  * gdscript:
@@ -85,7 +85,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(359, scriptIndex)
+    createNativeObject(365, scriptIndex)
   }
 
   /**
@@ -99,6 +99,12 @@ public open class MainLoop : Object() {
    * seconds). Equivalent to [Node.PhysicsProcess].
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
     throw NotImplementedError("_physics_process is not implemented for MainLoop")
@@ -109,6 +115,12 @@ public open class MainLoop : Object() {
    * seconds). Equivalent to [Node.Process].
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than
+   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
+   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
+   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
+   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
+   * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Boolean {
     throw NotImplementedError("_process is not implemented for MainLoop")

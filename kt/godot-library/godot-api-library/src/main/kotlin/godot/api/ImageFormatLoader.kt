@@ -44,7 +44,7 @@ public operator fun Long.rem(other: godot.api.ImageFormatLoader.LoaderFlags): Lo
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(305, scriptIndex)
+    createNativeObject(309, scriptIndex)
   }
 
   public sealed interface LoaderFlags {

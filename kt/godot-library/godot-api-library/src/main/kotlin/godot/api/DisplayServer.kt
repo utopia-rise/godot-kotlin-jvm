@@ -1176,7 +1176,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns OS theme accent color. Returns `Color(0, 0, 0, 0)`, if accent color is unknown.
-   * **Note:** This method is implemented on macOS and Windows.
+   * **Note:** This method is implemented on macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun getAccentColor(): Color {
@@ -1188,7 +1188,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the OS theme base color (default control background). Returns `Color(0, 0, 0, 0)` if
    * the base color is unknown.
-   * **Note:** This method is implemented on macOS and Windows.
+   * **Note:** This method is implemented on macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun getBaseColor(): Color {
@@ -1360,6 +1360,9 @@ public object DisplayServer : Object() {
   /**
    * Returns the unobscured area of the display where interactive controls should be rendered. See
    * also [getDisplayCutouts].
+   * **Note:** Currently only implemented on Android and iOS. On other platforms,
+   * `screen_get_usable_rect(SCREEN_OF_MAIN_WINDOW)` will be returned as a fallback. See also
+   * [screenGetUsableRect].
    */
   @JvmStatic
   public final fun getDisplaySafeArea(): Rect2i {
@@ -1400,7 +1403,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns index of the screen which contains specified rectangle.
+   * Returns the index of the screen that overlaps the most with the given rectangle. Returns `-1`
+   * if the rectangle doesn't overlap with any screen or has no area.
    */
   @JvmStatic
   public final fun getScreenFromRect(rect: Rect2): Int {
@@ -1487,7 +1491,7 @@ public object DisplayServer : Object() {
    * **Note:** On Linux (Wayland), the returned value is accurate only when [screen] is
    * [SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up
    * integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).
-   * **Note:** This method is implemented only on macOS and Linux (Wayland).
+   * **Note:** This method is implemented on Android, iOS, Web, macOS, and Linux (Wayland).
    */
   @JvmOverloads
   @JvmStatic
@@ -1566,6 +1570,19 @@ public object DisplayServer : Object() {
   public final fun screenGetImage(screen: Int = -1): Image? {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(ptr, MethodBindings.screenGetImagePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
+  }
+
+  /**
+   * Returns screenshot of the screen [rect].
+   * **Note:** This method is implemented on macOS and Windows.
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
+   * granted it will return desktop wallpaper color.
+   */
+  @JvmStatic
+  public final fun screenGetImageRect(rect: Rect2i): Image? {
+    TransferContext.writeArguments(RECT2I to rect)
+    TransferContext.callMethod(ptr, MethodBindings.screenGetImageRectPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -1741,7 +1758,7 @@ public object DisplayServer : Object() {
    * DisplayServer.WindowSetMousePassthrough(GetNode<Polygon2D>("Polygon2D").Polygon);
    *
    * // Reset region to default.
-   * DisplayServer.WindowSetMousePassthrough(new Vector2[] {});
+   * DisplayServer.WindowSetMousePassthrough([]);
    * ```
    *
    * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
@@ -2008,6 +2025,8 @@ public object DisplayServer : Object() {
   /**
    * Sets window mode for the given window to [mode]. See [WindowMode] for possible values and how
    * each mode behaves.
+   * **Note:** On Android, setting it to [WINDOW_MODE_FULLSCREEN] or
+   * [WINDOW_MODE_EXCLUSIVE_FULLSCREEN] will enable immersive mode.
    * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so
    * make sure to set it back to `false` when not wanted.
    */
@@ -2116,8 +2135,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets window transient parent. Transient window is will be destroyed with its transient parent
-   * and will return focus to their parent when closed. The transient window is displayed on top of a
+   * Sets window transient parent. Transient window will be destroyed with its transient parent and
+   * will return focus to their parent when closed. The transient window is displayed on top of a
    * non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    * **Note:** It's recommended to change this value using [Window.transient] instead.
    * **Note:** The behavior might be different depending on the platform.
@@ -2226,6 +2245,33 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Starts an interactive drag operation on the window with the given [windowId], using the current
+   * mouse position. Call this method when handling a mouse button being pressed to simulate a pressed
+   * event on the window's title bar. Using this method allows the window to participate in space
+   * switching, tiling, and other system features.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowStartDrag(windowId: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowStartDragPtr, NIL)
+  }
+
+  /**
+   * Starts an interactive resize operation on the window with the given [windowId], using the
+   * current mouse position. Call this method when handling a mouse button being pressed to simulate a
+   * pressed event on the window's edge.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowStartResize(edge: WindowResizeEdge, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to edge.id, LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowStartResizePtr, NIL)
+  }
+
+  /**
    * Returns the text selection in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method
    * Editor[/url] composition string, with the [Vector2i]'s `x` component being the caret position and
    * `y` being the length of the selection.
@@ -2297,6 +2343,18 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if hardware keyboard is connected.
+   * **Note:** This method is implemented on Android and iOS, on other platforms this method always
+   * returns `true`.
+   */
+  @JvmStatic
+  public final fun hasHardwareKeyboard(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasHardwareKeyboardPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's
    * operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
    */
@@ -2364,7 +2422,7 @@ public object DisplayServer : Object() {
    * Shows a text dialog which uses the operating system's native look-and-feel. [callback] should
    * accept a single [int] parameter which corresponds to the index of the pressed button.
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
-   * feature. Supported platforms include macOS and Windows.
+   * feature. Supported platforms include macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun dialogShow(
@@ -2382,7 +2440,7 @@ public object DisplayServer : Object() {
    * Shows a text input dialog which uses the operating system's native look-and-feel. [callback]
    * should accept a single [String] parameter which contains the text field's contents.
    * **Note:** This method is implemented if the display server has the
-   * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS and Windows.
+   * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun dialogInputText(
@@ -2398,16 +2456,20 @@ public object DisplayServer : Object() {
 
   /**
    * Displays OS native dialog for selecting files or directories in the file system.
-   * Each filter string in the [filters] array should be formatted like this: `*.txt,*.doc;Text
-   * Files`. The description text of the filter is optional and can be omitted. See also
+   * Each filter string in the [filters] array should be formatted like this:
+   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
+   * optional and can be omitted. It is recommended to set both file extension and MIME type. See also
    * [FileDialog.filters].
    * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
-   * selected_filter_index: int`.
+   * selected_filter_index: int`. **On Android,** callback argument `selected_filter_index` is always
+   * zero.
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
-   * feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.
+   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android.
    * **Note:** [currentDirectory] might be ignored.
-   * **Note:** On Linux, [showHidden] is ignored.
-   * **Note:** On macOS, native file dialogs have no title.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** On Android and Linux, [showHidden] is ignored.
+   * **Note:** On Android and macOS, native file dialogs have no title.
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
@@ -2430,8 +2492,9 @@ public object DisplayServer : Object() {
   /**
    * Displays OS native dialog for selecting files or directories in the file system with additional
    * user selectable options.
-   * Each filter string in the [filters] array should be formatted like this: `*.txt,*.doc;Text
-   * Files`. The description text of the filter is optional and can be omitted. See also
+   * Each filter string in the [filters] array should be formatted like this:
+   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
+   * optional and can be omitted. It is recommended to set both file extension and MIME type. See also
    * [FileDialog.filters].
    * [options] is array of [Dictionary]s with the following keys:
    * - `"name"` - option's name [String].
@@ -2439,9 +2502,12 @@ public object DisplayServer : Object() {
    * - `"default"` - default selected option index ([int]) or default boolean value ([bool]).
    * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
    * selected_filter_index: int, selected_option: Dictionary`.
-   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
-   * feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.
+   * **Note:** This method is implemented if the display server has the
+   * [FEATURE_NATIVE_DIALOG_FILE_EXTRA] feature. Supported platforms include Linux (X11/Wayland),
+   * Windows, and macOS.
    * **Note:** [currentDirectory] might be ignored.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
    * **Note:** On Linux (X11), [showHidden] is ignored.
    * **Note:** On macOS, native file dialogs have no title.
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
@@ -2463,6 +2529,18 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Plays the beep sound from the operative system, if possible. Because it comes from the OS, the
+   * beep sound will be audible even if the application is muted. It may also be disabled for the
+   * entire OS by the user.
+   * **Note:** This method is implemented on macOS, Linux (X11/Wayland), and Windows.
+   */
+  @JvmStatic
+  public final fun beep(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.beepPtr, NIL)
   }
 
   /**
@@ -2540,6 +2618,16 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(ptr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Opens system emoji and symbol picker.
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmStatic
+  public final fun showEmojiAndSymbolPicker(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.showEmojiAndSymbolPickerPtr, NIL)
   }
 
   /**
@@ -2887,10 +2975,37 @@ public object DisplayServer : Object() {
     FEATURE_NATIVE_DIALOG_INPUT(24),
     /**
      * Display server supports spawning dialogs for selecting files or directories using the
-     * operating system's native look-and-feel. See [fileDialogShow] and [fileDialogWithOptionsShow].
-     * **Windows, macOS, Linux (X11/Wayland)**
+     * operating system's native look-and-feel. See [fileDialogShow]. **Windows, macOS, Linux
+     * (X11/Wayland), Android**
      */
     FEATURE_NATIVE_DIALOG_FILE(25),
+    /**
+     * The display server supports all features of [FEATURE_NATIVE_DIALOG_FILE], with the added
+     * functionality of Options and native dialog file access to `res://` and `user://` paths. See
+     * [fileDialogShow] and [fileDialogWithOptionsShow]. **Windows, macOS, Linux (X11/Wayland)**
+     */
+    FEATURE_NATIVE_DIALOG_FILE_EXTRA(26),
+    /**
+     * The display server supports initiating window drag and resize operations on demand. See
+     * [windowStartDrag] and [windowStartResize].
+     */
+    FEATURE_WINDOW_DRAG(27),
+    /**
+     * Display server supports [WINDOW_FLAG_EXCLUDE_FROM_CAPTURE] window flag.
+     */
+    FEATURE_SCREEN_EXCLUDE_FROM_CAPTURE(28),
+    /**
+     * Display server supports embedding a window from another process. **Windows, Linux (X11)**
+     */
+    FEATURE_WINDOW_EMBEDDING(29),
+    /**
+     * Native file selection dialog supports MIME types as filters.
+     */
+    FEATURE_NATIVE_DIALOG_FILE_MIME(30),
+    /**
+     * Display server supports system emoji and symbol picker. **Windows, macOS**
+     */
+    FEATURE_EMOJI_AND_SYMBOL_PICKER(31),
     ;
 
     public val id: Long
@@ -2929,6 +3044,10 @@ public object DisplayServer : Object() {
      * Confines the mouse cursor to the game window, and make it hidden.
      */
     MOUSE_MODE_CONFINED_HIDDEN(4),
+    /**
+     * Max value of the [MouseMode].
+     */
+    MOUSE_MODE_MAX(5),
     ;
 
     public val id: Long
@@ -3202,6 +3321,7 @@ public object DisplayServer : Object() {
      * Full screen mode with full multi-window support.
      * Full screen window covers the entire display area of a screen and has no decorations. The
      * display's video mode is not changed.
+     * **On Android:** This enables immersive mode.
      * **On Windows:** Multi-window full-screen mode has a 1px border of the
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
      * **On macOS:** A new desktop is used to display the running project.
@@ -3217,12 +3337,14 @@ public object DisplayServer : Object() {
      * full screen transition).
      * Full screen window covers the entire display area of a screen and has no border or
      * decorations. The display's video mode is not changed.
+     * **On Android:** This enables immersive mode.
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go
      * black for a moment.
      * **On macOS:** A new desktop is used to display the running project. Exclusive full screen
      * mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the
      * screen.
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
+     * **On Linux (Wayland):** Equivalent to [WINDOW_MODE_FULLSCREEN].
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
      * match the monitor's size. Therefore, make sure your project supports
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
@@ -3292,9 +3414,22 @@ public object DisplayServer : Object() {
      */
     WINDOW_FLAG_MOUSE_PASSTHROUGH(7),
     /**
+     * Window style is overridden, forcing sharp corners.
+     * **Note:** This flag is implemented only on Windows (11).
+     */
+    WINDOW_FLAG_SHARP_CORNERS(8),
+    /**
+     * Windows is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and
+     * [screenGetPixel].
+     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
+     * should not be used as a security measure.
+     */
+    WINDOW_FLAG_EXCLUDE_FROM_CAPTURE(9),
+    /**
      * Max value of the [WindowFlags].
      */
-    WINDOW_FLAG_MAX(8),
+    WINDOW_FLAG_MAX(10),
     ;
 
     public val id: Long
@@ -3358,6 +3493,57 @@ public object DisplayServer : Object() {
     }
   }
 
+  public enum class WindowResizeEdge(
+    id: Long,
+  ) {
+    /**
+     * Top-left edge of a window.
+     */
+    WINDOW_EDGE_TOP_LEFT(0),
+    /**
+     * Top edge of a window.
+     */
+    WINDOW_EDGE_TOP(1),
+    /**
+     * Top-right edge of a window.
+     */
+    WINDOW_EDGE_TOP_RIGHT(2),
+    /**
+     * Left edge of a window.
+     */
+    WINDOW_EDGE_LEFT(3),
+    /**
+     * Right edge of a window.
+     */
+    WINDOW_EDGE_RIGHT(4),
+    /**
+     * Bottom-left edge of a window.
+     */
+    WINDOW_EDGE_BOTTOM_LEFT(5),
+    /**
+     * Bottom edge of a window.
+     */
+    WINDOW_EDGE_BOTTOM(6),
+    /**
+     * Bottom-right edge of a window.
+     */
+    WINDOW_EDGE_BOTTOM_RIGHT(7),
+    /**
+     * Represents the size of the [WindowResizeEdge] enum.
+     */
+    WINDOW_EDGE_MAX(8),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): WindowResizeEdge = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class VSyncMode(
     id: Long,
   ) {
@@ -3407,6 +3593,7 @@ public object DisplayServer : Object() {
     /**
      * Display handle:
      * - Linux (X11): `X11::Display*` for the display.
+     * - Linux (Wayland): `wl_display` for the display.
      * - Android: `EGLDisplay` for the display.
      */
     DISPLAY_HANDLE(0),
@@ -3414,6 +3601,7 @@ public object DisplayServer : Object() {
      * Window handle:
      * - Windows: `HWND` for the window.
      * - Linux (X11): `X11::Window*` for the window.
+     * - Linux (Wayland): `wl_surface` for the window.
      * - macOS: `NSWindow*` for the window.
      * - iOS: `UIViewController*` for the view controller.
      * - Android: `jObject` for the activity.
@@ -3421,20 +3609,33 @@ public object DisplayServer : Object() {
     WINDOW_HANDLE(1),
     /**
      * Window view:
-     * - Windows: `HDC` for the window (only with the GL Compatibility renderer).
+     * - Windows: `HDC` for the window (only with the Compatibility renderer).
      * - macOS: `NSView*` for the window main view.
      * - iOS: `UIView*` for the window main view.
      */
     WINDOW_VIEW(2),
     /**
-     * OpenGL context (only with the GL Compatibility renderer):
+     * OpenGL context (only with the Compatibility renderer):
      * - Windows: `HGLRC` for the window (native GL), or `EGLContext` for the window (ANGLE).
      * - Linux (X11): `GLXContext*` for the window.
+     * - Linux (Wayland): `EGLContext` for the window.
      * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window
      * (ANGLE).
      * - Android: `EGLContext` for the window.
      */
     OPENGL_CONTEXT(3),
+    /**
+     * - Windows: `EGLDisplay` for the window (ANGLE).
+     * - macOS: `EGLDisplay` for the window (ANGLE).
+     * - Linux (Wayland): `EGLDisplay` for the window.
+     */
+    EGL_DISPLAY(4),
+    /**
+     * - Windows: `EGLConfig` for the window (ANGLE).
+     * - macOS: `EGLConfig` for the window (ANGLE).
+     * - Linux (Wayland): `EGLConfig` for the window.
+     */
+    EGL_CONFIG(5),
     ;
 
     public val id: Long
@@ -3495,25 +3696,25 @@ public object DisplayServer : Object() {
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2828985934)
 
     internal val globalMenuAddItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3401266716)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3616842746)
 
     internal val globalMenuAddCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3401266716)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3616842746)
 
     internal val globalMenuAddIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 4245856523)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 3867083847)
 
     internal val globalMenuAddIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 4245856523)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 3867083847)
 
     internal val globalMenuAddRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3401266716)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3616842746)
 
     internal val globalMenuAddIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 4245856523)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 3867083847)
 
     internal val globalMenuAddMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3431222859)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3297554655)
 
     internal val globalMenuAddSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3214812433)
@@ -3747,7 +3948,7 @@ public object DisplayServer : Object() {
         TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale", 909105437)
 
     internal val isTouchscreenAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 3323674545)
+        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 36873697)
 
     internal val screenGetMaxScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1740695150)
@@ -3760,6 +3961,9 @@ public object DisplayServer : Object() {
 
     internal val screenGetImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image", 3813388802)
+
+    internal val screenGetImageRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image_rect", 2601441065)
 
     internal val screenSetOrientationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2211511631)
@@ -3911,6 +4115,12 @@ public object DisplayServer : Object() {
     internal val windowMinimizeOnTitleDblClickPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36873697)
 
+    internal val windowStartDragPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_start_drag", 1995695955)
+
+    internal val windowStartResizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_start_resize", 4009722312)
+
     internal val imeGetSelectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
 
@@ -3925,6 +4135,9 @@ public object DisplayServer : Object() {
 
     internal val virtualKeyboardGetHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3905245786)
+
+    internal val hasHardwareKeyboardPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "has_hardware_keyboard", 36873697)
 
     internal val cursorSetShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
@@ -3953,6 +4166,9 @@ public object DisplayServer : Object() {
     internal val fileDialogWithOptionsShowPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
 
+    internal val beepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "beep", 4051624405)
+
     internal val keyboardGetLayoutCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3905245786)
 
@@ -3973,6 +4189,9 @@ public object DisplayServer : Object() {
 
     internal val keyboardGetLabelFromPhysicalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3447613187)
+
+    internal val showEmojiAndSymbolPickerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "show_emoji_and_symbol_picker", 4051624405)
 
     internal val processEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3218959716)

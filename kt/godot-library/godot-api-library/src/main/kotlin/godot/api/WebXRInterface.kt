@@ -334,7 +334,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(827, scriptIndex)
+    createNativeObject(853, scriptIndex)
   }
 
   /**
@@ -486,7 +486,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     id: Long,
   ) {
     /**
-     * We don't know the the target ray mode.
+     * We don't know the target ray mode.
      */
     TARGET_RAY_MODE_UNKNOWN(0),
     /**

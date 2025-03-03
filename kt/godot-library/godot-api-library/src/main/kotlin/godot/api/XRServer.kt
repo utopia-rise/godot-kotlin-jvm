@@ -168,6 +168,19 @@ public object XRServer : Object() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  @JvmStatic
+  public final fun setCameraLockedToOrigin(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setCameraLockedToOriginPtr, NIL)
+  }
+
+  @JvmStatic
+  public final fun isCameraLockedToOrigin(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isCameraLockedToOriginPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Registers an [XRInterface] object.
    */
@@ -391,6 +404,12 @@ public object XRServer : Object() {
 
     internal val getHmdTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform", 4183770049)
+
+    internal val setCameraLockedToOriginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "set_camera_locked_to_origin", 2586408642)
+
+    internal val isCameraLockedToOriginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "is_camera_locked_to_origin", 36873697)
 
     internal val addInterfacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRServer", "add_interface", 1898711491)

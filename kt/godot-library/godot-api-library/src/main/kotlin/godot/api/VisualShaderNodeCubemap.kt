@@ -39,7 +39,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * The [Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
-  public final inline var cubeMap: Cubemap?
+  public final inline var cubeMap: TextureLayered?
     @JvmName("cubeMapProperty")
     get() = getCubeMap()
     @JvmName("cubeMapProperty")
@@ -59,7 +59,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(718, scriptIndex)
+    createNativeObject(744, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -73,15 +73,15 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCubeMap(`value`: Cubemap?): Unit {
+  public final fun setCubeMap(`value`: TextureLayered?): Unit {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(ptr, MethodBindings.setCubeMapPtr, NIL)
   }
 
-  public final fun getCubeMap(): Cubemap? {
+  public final fun getCubeMap(): TextureLayered? {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCubeMapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Cubemap?)
+    return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
@@ -166,10 +166,10 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
         TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2222048781)
 
     internal val setCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 2219800736)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 1278366092)
 
     internal val getCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 1772111058)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 3984243839)
 
     internal val setTextureTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1899718876)

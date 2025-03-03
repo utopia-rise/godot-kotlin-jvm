@@ -94,7 +94,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(120, scriptIndex)
+    createNativeObject(121, scriptIndex)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {
@@ -165,18 +165,18 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
   public companion object {
     /**
-     * Creates a new AudioStreamOggVorbis instance from the given buffer. The buffer must contain
+     * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain
      * Ogg Vorbis data.
      */
-    public final fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
-      TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamOggVorbis? {
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as AudioStreamOggVorbis?)
     }
 
     /**
-     * Creates a new AudioStreamOggVorbis instance from the given file path. The file must be in Ogg
-     * Vorbis format.
+     * Creates a new [AudioStreamOggVorbis] instance from the given file path. The file must be in
+     * Ogg Vorbis format.
      */
     public final fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)

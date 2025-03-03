@@ -20,7 +20,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture where pixel brightness corresponds to points on a [Curve] resource, either in
+ * A 1D texture where pixel brightness corresponds to points on a unit [Curve] resource, either in
  * grayscale or in red. This visual representation simplifies the task of saving curves as image files.
  * If you need to store up to 3 curves within a single texture, use [CurveXYZTexture] instead. See
  * also [GradientTexture1D] and [GradientTexture2D].
@@ -53,7 +53,7 @@ public open class CurveTexture : Texture2D() {
     }
 
   /**
-   * The [Curve] that is rendered onto the texture.
+   * The [Curve] that is rendered onto the texture. Should be a unit [Curve].
    */
   public final inline var curve: Curve?
     @JvmName("curveProperty")
@@ -64,7 +64,7 @@ public open class CurveTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(219, scriptIndex)
+    createNativeObject(221, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

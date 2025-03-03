@@ -109,7 +109,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   /**
    * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear.
+   * linear. Should be a unit [Curve].
    */
   public final inline var fadeinCurve: Curve?
     @JvmName("fadeinCurveProperty")
@@ -138,7 +138,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   /**
    * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear.
+   * linear. Should be a unit [Curve].
    */
   public final inline var fadeoutCurve: Curve?
     @JvmName("fadeoutCurveProperty")
@@ -199,7 +199,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(60, scriptIndex)
+    createNativeObject(61, scriptIndex)
   }
 
   public final fun setFadeinTime(time: Double): Unit {

@@ -54,7 +54,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(619, scriptIndex)
+    createNativeObject(643, scriptIndex)
   }
 
   /**
@@ -183,6 +183,14 @@ public open class StreamPeer internal constructor() : RefCounted() {
   public final fun putU64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.putU64Ptr, NIL)
+  }
+
+  /**
+   * Puts a half-precision float into the stream.
+   */
+  public final fun putHalf(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.putHalfPtr, NIL)
   }
 
   /**
@@ -323,6 +331,15 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
+   * Gets a half-precision float from the stream.
+   */
+  public final fun getHalf(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHalfPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
    * Gets a single-precision float from the stream.
    */
   public final fun getFloat(): Float {
@@ -424,6 +441,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
     internal val putU64Ptr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeer", "put_u64", 1286410249)
 
+    internal val putHalfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_half", 373806689)
+
     internal val putFloatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeer", "put_float", 373806689)
 
@@ -461,6 +481,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
     internal val getU64Ptr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeer", "get_u64", 2455072627)
+
+    internal val getHalfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_half", 191475506)
 
     internal val getFloatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeer", "get_float", 191475506)

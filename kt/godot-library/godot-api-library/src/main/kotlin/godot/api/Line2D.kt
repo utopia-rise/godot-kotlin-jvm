@@ -85,7 +85,7 @@ public open class Line2D : Node2D() {
 
   /**
    * The polyline's width curve. The width of the polyline over its length will be equivalent to the
-   * value of the width curve over its domain.
+   * value of the width curve over its domain. The width curve should be a unit [Curve].
    */
   public final inline var widthCurve: Curve?
     @JvmName("widthCurveProperty")
@@ -214,7 +214,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(356, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   /**

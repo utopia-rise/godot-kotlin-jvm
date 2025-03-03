@@ -53,6 +53,11 @@ public open class FileDialog : ConfirmationDialog() {
   public val dirSelected: Signal1<String> by Signal1
 
   /**
+   * Emitted when the filter for file names changes.
+   */
+  public val filenameFilterChanged: Signal1<String> by Signal1
+
+  /**
    * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting
    * [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
@@ -104,7 +109,10 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * The available file type filters. Each filter string in the array should be formatted like this:
-   * `*.txt,*.doc;Text Files`. The description text of the filter is optional and can be omitted.
+   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
+   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
    */
   public final inline var filters: PackedStringArray
     @JvmName("filtersProperty")
@@ -112,6 +120,21 @@ public open class FileDialog : ConfirmationDialog() {
     @JvmName("filtersProperty")
     set(`value`) {
       setFilters(value)
+    }
+
+  /**
+   * The filter for file names (case-insensitive). When set to a non-empty string, only files that
+   * contains the substring will be shown. [filenameFilter] can be edited by the user with the filter
+   * button at the top of the file dialog.
+   * See also [filters], which should be used to restrict the file types that can be selected
+   * instead of [filenameFilter] which is meant to be set by the user.
+   */
+  public final inline var filenameFilter: String
+    @JvmName("filenameFilterProperty")
+    get() = getFilenameFilter()
+    @JvmName("filenameFilterProperty")
+    set(`value`) {
+      setFilenameFilter(value)
     }
 
   /**
@@ -127,7 +150,7 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * If `true`, the dialog will show hidden files.
-   * **Note:** This property is ignored by native file dialogs on Linux.
+   * **Note:** This property is ignored by native file dialogs on Android and Linux.
    */
   public final inline var showHiddenFiles: Boolean
     @JvmName("showHiddenFilesProperty")
@@ -138,8 +161,10 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current
-   * [DisplayServer], OS native dialog will be used instead of custom one.
+   * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used
+   * instead of custom one.
+   * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode
+   * [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
    * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
    * system.
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
@@ -192,7 +217,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(240, scriptIndex)
+    createNativeObject(243, scriptIndex)
   }
 
   /**
@@ -226,6 +251,25 @@ public open class FileDialog : ConfirmationDialog() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFiltersPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+  }
+
+  /**
+   * Clear the filter for file names.
+   */
+  public final fun clearFilenameFilter(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.clearFilenameFilterPtr, NIL)
+  }
+
+  public final fun setFilenameFilter(filter: String): Unit {
+    TransferContext.writeArguments(STRING to filter)
+    TransferContext.callMethod(ptr, MethodBindings.setFilenameFilterPtr, NIL)
+  }
+
+  public final fun getFilenameFilter(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFilenameFilterPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -531,6 +575,15 @@ public open class FileDialog : ConfirmationDialog() {
 
     internal val getFiltersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_filters", 1139954409)
+
+    internal val clearFilenameFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "clear_filename_filter", 3218959716)
+
+    internal val setFilenameFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_filename_filter", 83702148)
+
+    internal val getFilenameFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_filename_filter", 201670096)
 
     internal val getOptionNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_option_name", 844755477)

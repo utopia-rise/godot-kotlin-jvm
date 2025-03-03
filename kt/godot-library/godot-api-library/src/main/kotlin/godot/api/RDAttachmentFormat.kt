@@ -57,7 +57,7 @@ public open class RDAttachmentFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(509, scriptIndex)
+    createNativeObject(526, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {

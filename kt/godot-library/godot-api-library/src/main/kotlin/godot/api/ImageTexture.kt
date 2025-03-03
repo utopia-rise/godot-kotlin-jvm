@@ -43,7 +43,7 @@ import kotlin.Unit
  * method, which returns a copy of the image:
  * [codeblock]
  * var texture = load("res://icon.svg")
- * var image: Image = texture.get_image()
+ * var image = texture.get_image()
  * [/codeblock]
  * An [ImageTexture] is not meant to be operated from within the editor interface directly, and is
  * mostly useful for rendering images on screen dynamically via code. If you need to generate images
@@ -54,7 +54,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(307, scriptIndex)
+    createNativeObject(311, scriptIndex)
   }
 
   /**

@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * KHR_materials_pbrSpecularGlossiness is an archived GLTF extension. This means that it is
+ * KHR_materials_pbrSpecularGlossiness is an archived glTF extension. This means that it is
  * deprecated and not recommended for new files. However, it is still supported for loading old files.
  */
 @GodotBaseType
@@ -88,7 +88,7 @@ public open class GLTFSpecGloss : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(264, scriptIndex)
+    createNativeObject(268, scriptIndex)
   }
 
   /**

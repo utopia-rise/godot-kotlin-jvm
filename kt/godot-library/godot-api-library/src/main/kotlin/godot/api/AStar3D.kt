@@ -39,33 +39,48 @@ import kotlin.jvm.JvmOverloads
  * Once done, you can test if there is a path between two points with the [arePointsConnected]
  * function, get a path containing indices by [getIdPath], or one containing actual coordinates with
  * [getPointPath].
- * It is also possible to use non-Euclidean distances. To do so, create a class that extends
- * [AStar3D] and override methods [_computeCost] and [_estimateCost]. Both take two indices and return
- * a length, as is shown in the following example.
+ * It is also possible to use non-Euclidean distances. To do so, create a script that extends
+ * [AStar3D] and override the methods [_computeCost] and [_estimateCost]. Both should take two point
+ * IDs and return the distance between the corresponding points.
+ * **Example:** Use Manhattan distance instead of Euclidean distance:
  *
  * gdscript:
  * ```gdscript
- * class MyAStar:
- *     extends AStar3D
+ * class_name MyAStar3D
+ * extends AStar3D
  *
- *     func _compute_cost(u, v):
- *         return abs(u - v)
+ * func _compute_cost(u, v):
+ *     var u_pos = get_point_position(u)
+ *     var v_pos = get_point_position(v)
+ *     return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  *
- *     func _estimate_cost(u, v):
- *         return min(0, abs(u - v) - 1)
+ * func _estimate_cost(u, v):
+ *     var u_pos = get_point_position(u)
+ *     var v_pos = get_point_position(v)
+ *     return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  * ```
  * csharp:
  * ```csharp
- * public partial class MyAStar : AStar3D
+ * using Godot;
+ *
+ * [GlobalClass]
+ * public partial class MyAStar3D : AStar3D
  * {
  *     public override float _ComputeCost(long fromId, long toId)
  *     {
- *         return Mathf.Abs((int)(fromId - toId));
+ *         Vector3 fromPoint = GetPointPosition(fromId);
+ *         Vector3 toPoint = GetPointPosition(toId);
+ *
+ *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * Mathf.Abs(fromPoint.Z - toPoint.Z);
  *     }
  *
  *     public override float _EstimateCost(long fromId, long toId)
  *     {
- *         return Mathf.Min(0, Mathf.Abs((int)(fromId - toId)) - 1);
+ *         Vector3 fromPoint = GetPointPosition(fromId);
+ *         Vector3 toPoint = GetPointPosition(toId);
+ *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * Mathf.Abs(fromPoint.Z - toPoint.Z);
  *     }
  * }
  * ```
@@ -91,7 +106,7 @@ public open class AStar3D : RefCounted() {
    * Called when estimating the cost between a point and the path's ending point.
    * Note that this function is hidden in the default [AStar3D] class.
    */
-  public open fun _estimateCost(fromId: Long, toId: Long): Float {
+  public open fun _estimateCost(fromId: Long, endId: Long): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStar3D")
   }
 
@@ -223,7 +238,7 @@ public open class AStar3D : RefCounted() {
    * astar.ConnectPoints(1, 2, true);
    * astar.ConnectPoints(1, 3, true);
    *
-   * int[] neighbors = astar.GetPointConnections(1); // Returns [2, 3]
+   * long[] neighbors = astar.GetPointConnections(1); // Returns [2, 3]
    * ```
    */
   public final fun getPointConnections(id: Long): PackedInt64Array {
@@ -405,6 +420,8 @@ public open class AStar3D : RefCounted() {
    * the point closest to the target that can be reached.
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
+   * unusually long time to finish.
    */
   @JvmOverloads
   public final fun getPointPath(
@@ -422,6 +439,8 @@ public open class AStar3D : RefCounted() {
    * given points. The array is ordered from the starting point to the ending point of the path.
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
+   * unusually long time to finish.
    *
    * gdscript:
    * ```gdscript
@@ -449,7 +468,7 @@ public open class AStar3D : RefCounted() {
    * astar.ConnectPoints(2, 3, false);
    * astar.ConnectPoints(4, 3, false);
    * astar.ConnectPoints(1, 4, false);
-   * int[] res = astar.GetIdPath(1, 3); // Returns [1, 2, 3]
+   * long[] res = astar.GetIdPath(1, 3); // Returns [1, 2, 3]
    * ```
    *
    * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because

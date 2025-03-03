@@ -29,14 +29,14 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Slider internal constructor() : Range() {
   /**
-   * Emitted when dragging is started. This is emitted before the corresponding [signal
+   * Emitted when the grabber starts being dragged. This is emitted before the corresponding [signal
    * Range.value_changed] signal.
    */
   public val dragStarted: Signal0 by Signal0
 
   /**
-   * Emitted when dragging stops. If [valueChanged] is true, [Range.value] is different from the
-   * value when you started the dragging.
+   * Emitted when the grabber stops being dragged. If [valueChanged] is `true`, [Range.value] is
+   * different from the value when the dragging was started.
    */
   public val dragEnded: Signal1<Boolean> by Signal1
 
@@ -87,7 +87,7 @@ public open class Slider internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(601, scriptIndex)
+    createNativeObject(620, scriptIndex)
   }
 
   public final fun setTicks(count: Int): Unit {

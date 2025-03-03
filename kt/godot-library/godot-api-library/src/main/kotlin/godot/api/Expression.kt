@@ -80,7 +80,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+    createNativeObject(237, scriptIndex)
   }
 
   /**

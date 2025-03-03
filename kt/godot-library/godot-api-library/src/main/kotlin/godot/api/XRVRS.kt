@@ -6,15 +6,19 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
 import godot.core.RID
+import godot.core.Rect2i
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
@@ -55,9 +59,45 @@ public open class XRVRS : Object() {
       setVrsStrength(value)
     }
 
+  /**
+   * The render region that the VRS texture will be scaled to when generated.
+   */
+  @CoreTypeLocalCopy
+  public final inline var vrsRenderRegion: Rect2i
+    @JvmName("vrsRenderRegionProperty")
+    get() = getVrsRenderRegion()
+    @JvmName("vrsRenderRegionProperty")
+    set(`value`) {
+      setVrsRenderRegion(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(853, scriptIndex)
+    createNativeObject(879, scriptIndex)
   }
+
+  /**
+   * The render region that the VRS texture will be scaled to when generated.
+   *
+   * This is a helper function to make dealing with local copies easier.
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = xrvrs.vrsRenderRegion
+   * //Your changes
+   * xrvrs.vrsRenderRegion = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public final fun vrsRenderRegionMutate(block: Rect2i.() -> Unit): Rect2i = vrsRenderRegion.apply{
+      block(this)
+      vrsRenderRegion = this
+  }
+
 
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
@@ -79,6 +119,17 @@ public open class XRVRS : Object() {
   public final fun setVrsStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVrsStrengthPtr, NIL)
+  }
+
+  public final fun getVrsRenderRegion(): Rect2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVrsRenderRegionPtr, RECT2I)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+  }
+
+  public final fun setVrsRenderRegion(renderRegion: Rect2i): Unit {
+    TransferContext.writeArguments(RECT2I to renderRegion)
+    TransferContext.callMethod(ptr, MethodBindings.setVrsRenderRegionPtr, NIL)
   }
 
   /**
@@ -107,6 +158,12 @@ public open class XRVRS : Object() {
 
     internal val setVrsStrengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength", 373806689)
+
+    internal val getVrsRenderRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_render_region", 410525958)
+
+    internal val setVrsRenderRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_render_region", 1763793166)
 
     internal val makeVrsTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture", 3647044786)

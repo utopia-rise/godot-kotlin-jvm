@@ -73,7 +73,7 @@ public open class StaticBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(617, scriptIndex)
+    createNativeObject(641, scriptIndex)
   }
 
   /**

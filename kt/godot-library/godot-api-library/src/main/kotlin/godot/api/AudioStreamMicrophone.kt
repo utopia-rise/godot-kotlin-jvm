@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamMicrophone : AudioStream() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+    createNativeObject(120, scriptIndex)
   }
 
   public companion object

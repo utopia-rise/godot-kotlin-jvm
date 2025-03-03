@@ -50,7 +50,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(304, scriptIndex)
+    createNativeObject(308, scriptIndex)
   }
 
   /**
@@ -346,8 +346,8 @@ public open class Image : Resource() {
 
   /**
    * Saves the image as a WebP (Web Picture) file to the file at [path]. By default it will save
-   * lossless. If [lossy] is true, the image will be saved lossy, using the [quality] setting between
-   * 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.
+   * lossless. If [lossy] is `true`, the image will be saved lossy, using the [quality] setting between
+   * `0.0` and `1.0` (inclusive). Lossless WebP offers more efficient compression than PNG.
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -364,8 +364,8 @@ public open class Image : Resource() {
 
   /**
    * Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless.
-   * If [lossy] is true, the image will be saved lossy, using the [quality] setting between 0.0 and 1.0
-   * (inclusive). Lossless WebP offers more efficient compression than PNG.
+   * If [lossy] is `true`, the image will be saved lossy, using the [quality] setting between `0.0` and
+   * `1.0` (inclusive). Lossless WebP offers more efficient compression than PNG.
    * **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger
    * images.
    */
@@ -503,11 +503,21 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts the raw data from the sRGB colorspace to a linear scale.
+   * Converts the raw data from the sRGB colorspace to a linear scale. Only works on images with
+   * [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
    */
   public final fun srgbToLinear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.srgbToLinearPtr, NIL)
+  }
+
+  /**
+   * Converts the entire image from the linear colorspace to the sRGB colorspace. Only works on
+   * images with [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
+   */
+  public final fun linearToSrgb(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.linearToSrgbPtr, NIL)
   }
 
   /**
@@ -554,6 +564,8 @@ public open class Image : Resource() {
    * Copies [srcRect] from [src] image to this image at coordinates [dst], clipped accordingly to
    * both image bounds. This image and [src] image **must** have the same format. [srcRect] with
    * non-positive size is treated as empty.
+   * **Note:** The alpha channel data in [src] will overwrite the corresponding data in this image
+   * at the target position. To blend alpha channels, use [blendRect] instead.
    */
   public final fun blitRect(
     src: Image?,
@@ -680,7 +692,6 @@ public open class Image : Resource() {
 
   /**
    * Sets the [Color] of the pixel at [point] to [color].
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -709,7 +720,6 @@ public open class Image : Resource() {
 
   /**
    * Sets the [Color] of the pixel at `(x, y)` to [color].
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -1484,6 +1494,9 @@ public open class Image : Resource() {
 
     internal val srgbToLinearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "srgb_to_linear", 3218959716)
+
+    internal val linearToSrgbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "linear_to_srgb", 3218959716)
 
     internal val normalMapToXyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "normal_map_to_xy", 3218959716)

@@ -14,6 +14,7 @@ import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -21,6 +22,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -127,8 +129,21 @@ public open class WebSocketPeer : PacketPeer() {
       setMaxQueuedPackets(value)
     }
 
+  /**
+   * The interval (in seconds) at which the peer will automatically send WebSocket "ping" control
+   * frames. When set to `0`, no "ping" control frames will be sent.
+   * **Note:** Has no effect in Web exports due to browser restrictions.
+   */
+  public final inline var heartbeatInterval: Double
+    @JvmName("heartbeatIntervalProperty")
+    get() = getHeartbeatInterval()
+    @JvmName("heartbeatIntervalProperty")
+    set(`value`) {
+      setHeartbeatInterval(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(826, scriptIndex)
+    createNativeObject(852, scriptIndex)
   }
 
   /**
@@ -136,6 +151,10 @@ public open class WebSocketPeer : PacketPeer() {
    * connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to
    * customize the trusted certification authorities, or disable the common name verification. See
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * **Note:** This method is non-blocking, and will return [OK] before the connection is
+   * established as long as the provided parameters are valid and the peer is not in an invalid state
+   * (e.g. already connected). Regularly call [poll] (e.g. during [Node] process) and check the result
+   * of [getReadyState] to know whether the connection succeeds or fails.
    * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [url] that
    * starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully
    * qualified domain name that matches the one defined in the server's TLS certificate. Do not connect
@@ -361,6 +380,17 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setHeartbeatInterval(interval: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to interval)
+    TransferContext.callMethod(ptr, MethodBindings.setHeartbeatIntervalPtr, NIL)
+  }
+
+  public final fun getHeartbeatInterval(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHeartbeatIntervalPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
   public enum class WriteMode(
     id: Long,
   ) {
@@ -498,5 +528,11 @@ public open class WebSocketPeer : PacketPeer() {
 
     internal val getMaxQueuedPacketsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebSocketPeer", "get_max_queued_packets", 3905245786)
+
+    internal val setHeartbeatIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_heartbeat_interval", 373806689)
+
+    internal val getHeartbeatIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_heartbeat_interval", 1740695150)
   }
 }

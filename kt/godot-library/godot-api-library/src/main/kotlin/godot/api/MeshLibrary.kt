@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(371, scriptIndex)
+    createNativeObject(377, scriptIndex)
   }
 
   /**
@@ -70,6 +70,16 @@ public open class MeshLibrary : Resource() {
   public final fun setItemMeshTransform(id: Int, meshTransform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to meshTransform)
     TransferContext.callMethod(ptr, MethodBindings.setItemMeshTransformPtr, NIL)
+  }
+
+  /**
+   * Sets the item's shadow casting mode. See [RenderingServer.ShadowCastingSetting] for possible
+   * values.
+   */
+  public final fun setItemMeshCastShadow(id: Int,
+      shadowCastingSetting: RenderingServer.ShadowCastingSetting): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), LONG to shadowCastingSetting.id)
+    TransferContext.callMethod(ptr, MethodBindings.setItemMeshCastShadowPtr, NIL)
   }
 
   /**
@@ -139,6 +149,16 @@ public open class MeshLibrary : Resource() {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getItemMeshTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+  }
+
+  /**
+   * Returns the item's shadow casting mode. See [RenderingServer.ShadowCastingSetting] for possible
+   * values.
+   */
+  public final fun getItemMeshCastShadow(id: Int): RenderingServer.ShadowCastingSetting {
+    TransferContext.writeArguments(LONG to id.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getItemMeshCastShadowPtr, LONG)
+    return RenderingServer.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -248,6 +268,9 @@ public open class MeshLibrary : Resource() {
     internal val setItemMeshTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform", 3616898986)
 
+    internal val setItemMeshCastShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh_cast_shadow", 3923400443)
+
     internal val setItemNavigationMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh", 3483353960)
 
@@ -271,6 +294,9 @@ public open class MeshLibrary : Resource() {
 
     internal val getItemMeshTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform", 1965739696)
+
+    internal val getItemMeshCastShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh_cast_shadow", 1841766007)
 
     internal val getItemNavigationMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh", 2729647406)

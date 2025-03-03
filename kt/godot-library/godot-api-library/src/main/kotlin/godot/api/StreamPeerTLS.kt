@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(624, scriptIndex)
+    createNativeObject(648, scriptIndex)
   }
 
   /**

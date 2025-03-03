@@ -290,7 +290,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(407, scriptIndex)
+    createNativeObject(413, scriptIndex)
   }
 
   /**
@@ -715,6 +715,24 @@ public open class Node3D : Node() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  /**
+   * When using physics interpolation, there will be circumstances in which you want to know the
+   * interpolated (displayed) transform of a node rather than the standard transform (which may only be
+   * accurate to the most recent physics tick).
+   * This is particularly important for frame-based operations that take place in [Node.Process],
+   * rather than [Node.PhysicsProcess]. Examples include [Camera3D]s focusing on a node, or finding
+   * where to fire lasers from on a frame rather than physics tick.
+   * **Note:** This function creates an interpolation pump on the [Node3D] the first time it is
+   * called, which can respond to physics interpolation resets. If you get problems with "streaking"
+   * when initially following a [Node3D], be sure to call [getGlobalTransformInterpolated] at least
+   * once *before* resetting the [Node3D] physics interpolation.
+   */
+  public final fun getGlobalTransformInterpolated(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getGlobalTransformInterpolatedPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+  }
+
   public final fun setGlobalPosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
@@ -911,6 +929,10 @@ public open class Node3D : Node() {
    * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
    * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
    * the scene tree.
+   * Visibility is checked only in parent nodes that inherit from [Node3D]. If the parent is of any
+   * other type (such as [Node], [AnimationPlayer], or [Node2D]), it is assumed to be visible.
+   * **Note:** This method does not take [VisualInstance3D.layers] into account, so even if this
+   * method returns `true`, the node might end up not being rendered.
    */
   public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -1090,8 +1112,9 @@ public open class Node3D : Node() {
    * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
    * preserved. Non-uniform scaling may not work correctly.
    * The [target] position cannot be the same as the node's position, the [up] vector cannot be
-   * zero, and the direction from the node's position to the [target] vector cannot be parallel to the
-   * [up] vector.
+   * zero.
+   * The [target] and the [up] cannot be [Vector3.ZERO], and shouldn't be colinear to avoid
+   * unintended rotation around local Z axis.
    * Operations take place in global space, which means that the node must be in the scene tree.
    * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
    * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
@@ -1262,6 +1285,9 @@ public open class Node3D : Node() {
 
     internal val getGlobalTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node3D", "get_global_transform", 3229777777)
+
+    internal val getGlobalTransformInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_global_transform_interpolated", 4183770049)
 
     internal val setGlobalPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node3D", "set_global_position", 3460891852)

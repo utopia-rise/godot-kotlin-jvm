@@ -76,7 +76,7 @@ public open class Mesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(366, scriptIndex)
+    createNativeObject(372, scriptIndex)
   }
 
   /**

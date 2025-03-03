@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFMesh handles 3D mesh data imported from GLTF files. It includes properties for blend
+ * GLTFMesh handles 3D mesh data imported from glTF files. It includes properties for blend
  * channels, blend weights, instance materials, and the mesh itself.
  */
 @GodotBaseType
@@ -78,7 +78,7 @@ public open class GLTFMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(258, scriptIndex)
+    createNativeObject(261, scriptIndex)
   }
 
   public final fun getOriginalName(): String {
@@ -129,8 +129,8 @@ public open class GLTFMesh : Resource() {
    * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is null.
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -142,7 +142,7 @@ public open class GLTFMesh : Resource() {
    * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the GLTF file), and the second argument can be anything you want.
+   * extension name in the glTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)

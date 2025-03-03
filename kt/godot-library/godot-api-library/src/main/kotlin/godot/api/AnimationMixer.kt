@@ -166,6 +166,18 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   /**
+   * If `true`, [getRootMotionPosition] value is extracted as a local translation value before
+   * blending. In other words, it is treated like the translation is done after the rotation.
+   */
+  public final inline var rootMotionLocal: Boolean
+    @JvmName("rootMotionLocalProperty")
+    get() = isRootMotionLocal()
+    @JvmName("rootMotionLocalProperty")
+    set(`value`) {
+      setRootMotionLocal(value)
+    }
+
+  /**
    * The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.
    * For example, if this value is `32` and the animation has two audio tracks, the two
    * [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
@@ -412,6 +424,17 @@ public open class AnimationMixer internal constructor() : Node() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
+  public final fun setRootMotionLocal(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setRootMotionLocalPtr, NIL)
+  }
+
+  public final fun isRootMotionLocal(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isRootMotionLocalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Retrieve the motion delta of position with the [rootMotionTrack] as a [Vector3] that can be
    * used elsewhere.
@@ -422,14 +445,13 @@ public open class AnimationMixer internal constructor() : Node() {
    *
    * gdscript:
    * ```gdscript
-   * var current_rotation: Quaternion
+   * var current_rotation
    *
    * func _process(delta):
    *     if Input.is_action_just_pressed("animate"):
    *         current_rotation = get_quaternion()
    *         state_machine.travel("Animate")
-   *     var velocity: Vector3 = current_rotation * animation_tree.get_root_motion_position() /
-   * delta
+   *     var velocity = current_rotation * animation_tree.get_root_motion_position() / delta
    *     set_velocity(velocity)
    *     move_and_slide()
    * ```
@@ -443,8 +465,23 @@ public open class AnimationMixer internal constructor() : Node() {
    *     if Input.is_action_just_pressed("animate"):
    *         state_machine.travel("Animate")
    *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
-   *     var velocity: Vector3 = (animation_tree.get_root_motion_rotation_accumulator().inverse() *
+   *     var velocity = (animation_tree.get_root_motion_rotation_accumulator().inverse() *
    * get_quaternion()) * animation_tree.get_root_motion_position() / delta
+   *     set_velocity(velocity)
+   *     move_and_slide()
+   * ```
+   *
+   * If [rootMotionLocal] is `true`, return the pre-multiplied translation value with the inverted
+   * rotation.
+   * In this case, the code can be written as follows:
+   *
+   * gdscript:
+   * ```gdscript
+   * func _process(delta):
+   *     if Input.is_action_just_pressed("animate"):
+   *         state_machine.travel("Animate")
+   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   *     var velocity = get_quaternion() * animation_tree.get_root_motion_position() / delta
    *     set_velocity(velocity)
    *     move_and_slide()
    * ```
@@ -487,8 +524,8 @@ public open class AnimationMixer internal constructor() : Node() {
    *
    * gdscript:
    * ```gdscript
-   * var current_scale: Vector3 = Vector3(1, 1, 1)
-   * var scale_accum: Vector3 = Vector3(1, 1, 1)
+   * var current_scale = Vector3(1, 1, 1)
+   * var scale_accum = Vector3(1, 1, 1)
    *
    * func _process(delta):
    *     if Input.is_action_just_pressed("animate"):
@@ -515,14 +552,14 @@ public open class AnimationMixer internal constructor() : Node() {
    *
    * gdscript:
    * ```gdscript
-   * var prev_root_motion_position_accumulator: Vector3
+   * var prev_root_motion_position_accumulator
    *
    * func _process(delta):
    *     if Input.is_action_just_pressed("animate"):
    *         state_machine.travel("Animate")
-   *     var current_root_motion_position_accumulator: Vector3 =
+   *     var current_root_motion_position_accumulator =
    * animation_tree.get_root_motion_position_accumulator()
-   *     var difference: Vector3 = current_root_motion_position_accumulator -
+   *     var difference = current_root_motion_position_accumulator -
    * prev_root_motion_position_accumulator
    *     prev_root_motion_position_accumulator = current_root_motion_position_accumulator
    *     transform.origin += difference
@@ -550,14 +587,14 @@ public open class AnimationMixer internal constructor() : Node() {
    *
    * gdscript:
    * ```gdscript
-   * var prev_root_motion_rotation_accumulator: Quaternion
+   * var prev_root_motion_rotation_accumulator
    *
    * func _process(delta):
    *     if Input.is_action_just_pressed("animate"):
    *         state_machine.travel("Animate")
-   *     var current_root_motion_rotation_accumulator: Quaternion =
+   *     var current_root_motion_rotation_accumulator =
    * animation_tree.get_root_motion_rotation_accumulator()
-   *     var difference: Quaternion = prev_root_motion_rotation_accumulator.inverse() *
+   *     var difference = prev_root_motion_rotation_accumulator.inverse() *
    * current_root_motion_rotation_accumulator
    *     prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
    *     transform.basis *=  Basis(difference)
@@ -581,15 +618,14 @@ public open class AnimationMixer internal constructor() : Node() {
    *
    * gdscript:
    * ```gdscript
-   * var prev_root_motion_scale_accumulator: Vector3
+   * var prev_root_motion_scale_accumulator
    *
    * func _process(delta):
    *     if Input.is_action_just_pressed("animate"):
    *         state_machine.travel("Animate")
-   *     var current_root_motion_scale_accumulator: Vector3 =
+   *     var current_root_motion_scale_accumulator =
    * animation_tree.get_root_motion_scale_accumulator()
-   *     var difference: Vector3 = current_root_motion_scale_accumulator -
-   * prev_root_motion_scale_accumulator
+   *     var difference = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
    *     prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
    *     transform.basis = transform.basis.scaled(difference)
    * ```
@@ -746,8 +782,25 @@ public open class AnimationMixer internal constructor() : Node() {
     /**
      * Always treat the [Animation.UPDATE_DISCRETE] track value as [Animation.UPDATE_CONTINUOUS]
      * with [Animation.INTERPOLATION_NEAREST]. This is the default behavior for [AnimationTree].
-     * If a value track has non-numeric type key values, it is internally converted to use
+     * If a value track has un-interpolatable type key values, it is internally converted to use
      * [ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE] with [Animation.UPDATE_DISCRETE].
+     * Un-interpolatable type list:
+     * - [@GlobalScope.TYPE_NIL]
+     * - [@GlobalScope.TYPE_NODE_PATH]
+     * - [@GlobalScope.TYPE_RID]
+     * - [@GlobalScope.TYPE_OBJECT]
+     * - [@GlobalScope.TYPE_CALLABLE]
+     * - [@GlobalScope.TYPE_SIGNAL]
+     * - [@GlobalScope.TYPE_DICTIONARY]
+     * - [@GlobalScope.TYPE_PACKED_BYTE_ARRAY]
+     * [@GlobalScope.TYPE_BOOL] and [@GlobalScope.TYPE_INT] are treated as [@GlobalScope.TYPE_FLOAT]
+     * during blending and rounded when the result is retrieved.
+     * It is same for arrays and vectors with them such as [@GlobalScope.TYPE_PACKED_INT32_ARRAY] or
+     * [@GlobalScope.TYPE_VECTOR2I], they are treated as [@GlobalScope.TYPE_PACKED_FLOAT32_ARRAY] or
+     * [@GlobalScope.TYPE_VECTOR2]. Also note that for arrays, the size is also interpolated.
+     * [@GlobalScope.TYPE_STRING] and [@GlobalScope.TYPE_STRING_NAME] are interpolated between
+     * character codes and lengths, but note that there is a difference in algorithm between
+     * interpolation between keys and interpolation by blending.
      */
     ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS(2),
     ;
@@ -840,6 +893,12 @@ public open class AnimationMixer internal constructor() : Node() {
 
     internal val getRootMotionTrackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_track", 4075236667)
+
+    internal val setRootMotionLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_motion_local", 2586408642)
+
+    internal val isRootMotionLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_root_motion_local", 36873697)
 
     internal val getRootMotionPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position", 3360562783)

@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(609, scriptIndex)
+    createNativeObject(628, scriptIndex)
   }
 
   public companion object

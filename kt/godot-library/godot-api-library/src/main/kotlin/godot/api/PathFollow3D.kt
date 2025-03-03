@@ -50,6 +50,9 @@ public open class PathFollow3D : Node3D() {
    * The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last.
    * This is just another way of expressing the progress within the path, as the progress supplied is
    * multiplied internally by the path's length.
+   * It can be set or get only if the [PathFollow3D] is the child of a [Path3D] which is part of the
+   * scene tree, and that this [Path3D] has a [Curve3D] with a non-zero length. Otherwise, trying to
+   * set this field will print an error, and getting this field will return `0.0`.
    */
   public final inline var progressRatio: Float
     @JvmName("progressRatioProperty")
@@ -148,7 +151,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(455, scriptIndex)
+    createNativeObject(472, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

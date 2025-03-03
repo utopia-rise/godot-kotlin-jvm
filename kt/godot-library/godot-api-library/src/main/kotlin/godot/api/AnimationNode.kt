@@ -236,7 +236,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Returns whether the given path is filtered.
+   * Returns `true` if the given path is filtered.
    */
   public final fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -252,6 +252,26 @@ public open class AnimationNode : Resource() {
   public final fun isFilterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFilterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the object id of the [AnimationTree] that owns this node.
+   * **Note:** This method should only be called from within the
+   * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
+   */
+  public final fun getProcessingAnimationTreeInstanceId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getProcessingAnimationTreeInstanceIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns `true` if this animation node is being processed in test-only mode.
+   */
+  public final fun isProcessTesting(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isProcessTestingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -401,6 +421,12 @@ public open class AnimationNode : Resource() {
 
     internal val isFilterEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled", 36873697)
+
+    internal val getProcessingAnimationTreeInstanceIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "get_processing_animation_tree_instance_id", 3905245786)
+
+    internal val isProcessTestingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "is_process_testing", 36873697)
 
     internal val blendAnimationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNode", "blend_animation", 1630801826)

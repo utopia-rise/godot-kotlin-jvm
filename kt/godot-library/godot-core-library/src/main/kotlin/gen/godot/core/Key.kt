@@ -336,11 +336,11 @@ public enum class Key(
    */
   KEY_HELP(4194373),
   /**
-   * Media back key. Not to be confused with the Back button on an Android device.
+   * Back key.
    */
   KEY_BACK(4194376),
   /**
-   * Media forward key.
+   * Forward key.
    */
   KEY_FORWARD(4194377),
   /**
@@ -348,7 +348,7 @@ public enum class Key(
    */
   KEY_STOP(4194378),
   /**
-   * Media refresh key.
+   * Refresh key.
    */
   KEY_REFRESH(4194379),
   /**
@@ -500,63 +500,63 @@ public enum class Key(
    */
   KEY_SPACE(32),
   /**
-   * ! key.
+   * Exclamation mark (`!`) key.
    */
   KEY_EXCLAM(33),
   /**
-   * " key.
+   * Double quotation mark (`"`) key.
    */
   KEY_QUOTEDBL(34),
   /**
-   * # key.
+   * Number sign or *hash* (`#`) key.
    */
   KEY_NUMBERSIGN(35),
   /**
-   * $ key.
+   * Dollar sign (`$`) key.
    */
   KEY_DOLLAR(36),
   /**
-   * &#37; key.
+   * Percent sign (`&#37;`) key.
    */
   KEY_PERCENT(37),
   /**
-   * & key.
+   * Ampersand (`&`) key.
    */
   KEY_AMPERSAND(38),
   /**
-   * ' key.
+   * Apostrophe (`'`) key.
    */
   KEY_APOSTROPHE(39),
   /**
-   * ( key.
+   * Left parenthesis (`(`) key.
    */
   KEY_PARENLEFT(40),
   /**
-   * ) key.
+   * Right parenthesis (`)`) key.
    */
   KEY_PARENRIGHT(41),
   /**
-   * * key.
+   * Asterisk (`*`) key.
    */
   KEY_ASTERISK(42),
   /**
-   * + key.
+   * Plus (`+`) key.
    */
   KEY_PLUS(43),
   /**
-   * , key.
+   * Comma (`,`) key.
    */
   KEY_COMMA(44),
   /**
-   * - key.
+   * Minus (`-`) key.
    */
   KEY_MINUS(45),
   /**
-   * . key.
+   * Period (`.`) key.
    */
   KEY_PERIOD(46),
   /**
-   * / key.
+   * Slash (`/`) key.
    */
   KEY_SLASH(47),
   /**
@@ -600,31 +600,31 @@ public enum class Key(
    */
   KEY_9(57),
   /**
-   * : key.
+   * Colon (`:`) key.
    */
   KEY_COLON(58),
   /**
-   * ; key.
+   * Semicolon (`;`) key.
    */
   KEY_SEMICOLON(59),
   /**
-   * < key.
+   * Less-than sign (`<`) key.
    */
   KEY_LESS(60),
   /**
-   * = key.
+   * Equal sign (`=`) key.
    */
   KEY_EQUAL(61),
   /**
-   * > key.
+   * Greater-than sign (`>`) key.
    */
   KEY_GREATER(62),
   /**
-   * ? key.
+   * Question mark (`?`) key.
    */
   KEY_QUESTION(63),
   /**
-   * @ key.
+   * At sign (`@`) key.
    */
   KEY_AT(64),
   /**
@@ -732,51 +732,51 @@ public enum class Key(
    */
   KEY_Z(90),
   /**
-   * [ key.
+   * Left bracket (`[lb]`) key.
    */
   KEY_BRACKETLEFT(91),
   /**
-   * \ key.
+   * Backslash (`\`) key.
    */
   KEY_BACKSLASH(92),
   /**
-   * ] key.
+   * Right bracket (`[rb]`) key.
    */
   KEY_BRACKETRIGHT(93),
   /**
-   * ^ key.
+   * Caret (`^`) key.
    */
   KEY_ASCIICIRCUM(94),
   /**
-   * _ key.
+   * Underscore (`_`) key.
    */
   KEY_UNDERSCORE(95),
   /**
-   * ` key.
+   * Backtick (```) key.
    */
   KEY_QUOTELEFT(96),
   /**
-   * { key.
+   * Left brace (`{`) key.
    */
   KEY_BRACELEFT(123),
   /**
-   * | key.
+   * Vertical bar or *pipe* (`|`) key.
    */
   KEY_BAR(124),
   /**
-   * } key.
+   * Right brace (`}`) key.
    */
   KEY_BRACERIGHT(125),
   /**
-   * ~ key.
+   * Tilde (`~`) key.
    */
   KEY_ASCIITILDE(126),
   /**
-   * ¥ key.
+   * Yen symbol (`¥`) key.
    */
   KEY_YEN(165),
   /**
-   * § key.
+   * Section sign (`§`) key.
    */
   KEY_SECTION(167),
   ;

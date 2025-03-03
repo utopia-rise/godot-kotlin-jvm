@@ -16,6 +16,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -28,10 +29,15 @@ import kotlin.jvm.JvmName
 
 /**
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
- * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
- * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
- * node within another CSG node also has a significant CPU cost, so it should be avoided during
- * gameplay.
+ * **Performance:** CSG nodes are only intended for prototyping as they have a significant CPU
+ * performance cost.
+ * Consider baking final CSG operation results into static geometry that replaces the CSG nodes.
+ * Individual CSG root node results can be baked to nodes with static resources with the editor menu
+ * that appears when a CSG root node is selected.
+ * Individual CSG root nodes can also be baked to static resources with scripts by calling
+ * [bakeStaticMesh] for the visual mesh or [bakeCollisionShape] for the physics collision.
+ * Entire scenes of CSG nodes can be baked to static geometry and exported with the editor gltf
+ * scene exporter.
  */
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
@@ -48,9 +54,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be
-   * perfectly aligned. A lower value results in greater precision but may be harder to adjust. The
-   * top-level CSG shape's snap value is used for the entire CSG tree.
+   * This property does nothing.
    */
   public final inline var snap: Float
     @JvmName("snapProperty")
@@ -132,7 +136,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(157, scriptIndex)
+    createNativeObject(158, scriptIndex)
   }
 
   /**
@@ -269,6 +273,30 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns a baked static [ArrayMesh] of this node's CSG operation result. Materials from involved
+   * CSG nodes are added as extra mesh surfaces. Returns an empty mesh if the node is not a CSG root
+   * node or has no valid geometry.
+   */
+  public final fun bakeStaticMesh(): ArrayMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.bakeStaticMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+  }
+
+  /**
+   * Returns a baked physics [ConcavePolygonShape3D] of this node's CSG operation result. Returns an
+   * empty shape if the node is not a CSG root node or has no valid geometry.
+   * **Performance:** If the CSG operation results in a very detailed geometry with many faces
+   * physics performance will be very slow. Concave shapes should in general only be used for static
+   * level geometry and not with dynamic objects that are moving.
+   */
+  public final fun bakeCollisionShape(): ConcavePolygonShape3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.bakeCollisionShapePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
+  }
+
   public enum class Operation(
     id: Long,
   ) {
@@ -358,5 +386,11 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
     internal val getMeshesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGShape3D", "get_meshes", 3995934104)
+
+    internal val bakeStaticMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "bake_static_mesh", 1605880883)
+
+    internal val bakeCollisionShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "bake_collision_shape", 36102322)
   }
 }

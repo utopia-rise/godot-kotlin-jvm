@@ -183,24 +183,29 @@ void JvmScript::get_script_exported_property_list(List<PropertyInfo>* p_list) co
 }
 
 // Variant is of type Dictionary
-const Variant JvmScript::get_rpc_config() const {
+Variant JvmScript::get_rpc_config() const {
     if (is_valid()) { kotlin_class->get_rpc_config(); }
     return Dictionary();
 }
 
 #ifdef TOOLS_ENABLED
 Vector<DocData::ClassDoc> JvmScript::get_documentation() const {
-    // TODO/4.2
+    // TODO: Add ability to register documentation to Godot
     return {};
 }
 
 PropertyInfo JvmScript::get_class_category() const {
-    // TODO/4.2
+    // TODO: Investigate what it's supposed to do.
     return {};
 }
 
 String JvmScript::get_class_icon_path() const {
-    // TODO/4.2
+    // TODO: Add ability to register an icon to Godot
+    return {};
+}
+
+StringName JvmScript::get_doc_class_name() const {
+    // TODO: Add ability to register documentation to Godot
     return {};
 }
 

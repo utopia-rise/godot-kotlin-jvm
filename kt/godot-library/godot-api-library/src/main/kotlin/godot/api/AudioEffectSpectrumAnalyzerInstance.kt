@@ -24,13 +24,13 @@ import kotlin.jvm.JvmOverloads
 /**
  * The runtime part of an [AudioEffectSpectrumAnalyzer], which can be used to query the magnitude of
  * a frequency range on its host bus.
- * An instance of this class can be acquired with [AudioServer.getBusEffectInstance].
+ * An instance of this class can be obtained with [AudioServer.getBusEffectInstance].
  */
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(108, scriptIndex)
+    createNativeObject(109, scriptIndex)
   }
 
   /**

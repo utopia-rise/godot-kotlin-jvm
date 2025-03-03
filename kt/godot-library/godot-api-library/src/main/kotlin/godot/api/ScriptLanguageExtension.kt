@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(566, scriptIndex)
+    createNativeObject(584, scriptIndex)
   }
 
   public open fun _getName(): String {
@@ -251,6 +251,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _reloadAllScripts(): Unit {
   }
 
+  public open fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit {
+  }
+
   public open fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
   }
 
@@ -302,7 +305,9 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     LOOKUP_RESULT_CLASS_ENUM(6),
     LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE(7),
     LOOKUP_RESULT_CLASS_ANNOTATION(8),
-    LOOKUP_RESULT_MAX(9),
+    LOOKUP_RESULT_LOCAL_CONSTANT(9),
+    LOOKUP_RESULT_LOCAL_VARIABLE(10),
+    LOOKUP_RESULT_MAX(11),
     ;
 
     public val id: Long

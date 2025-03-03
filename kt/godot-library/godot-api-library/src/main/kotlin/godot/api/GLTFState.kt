@@ -38,12 +38,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Contains all nodes and resources of a GLTF file. This is used by [GLTFDocument] as data storage,
+ * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage,
  * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
  * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then
- * the data can either be used to create a Godot scene or save to a GLTF file. The code that converts
+ * the data can either be used to create a Godot scene or save to a glTF file. The code that converts
  * to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes.
- * This allows for custom data to be stored in the GLTF file or for custom data to be converted to/from
+ * This allows for custom data to be stored in the glTF file or for custom data to be converted to/from
  * Godot nodes.
  */
 @GodotBaseType
@@ -76,8 +76,8 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The copyright string in the asset header of the GLTF file. This is set during import if present
-   * and export if non-empty. See the GLTF asset header documentation for more information.
+   * The copyright string in the asset header of the glTF file. This is set during import if present
+   * and export if non-empty. See the glTF asset header documentation for more information.
    */
   public final inline var copyright: String
     @JvmName("copyrightProperty")
@@ -156,7 +156,7 @@ public open class GLTFState : Resource() {
 
   /**
    * The name of the scene. When importing, if not specified, this will be the file name. When
-   * exporting, if specified, the scene name will be saved to the GLTF file.
+   * exporting, if specified, the scene name will be saved to the glTF file.
    */
   public final inline var sceneName: String
     @JvmName("sceneNameProperty")
@@ -167,7 +167,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The folder path associated with this GLTF data. This is used to find other files the GLTF file
+   * The folder path associated with this glTF data. This is used to find other files the glTF file
    * references, like images or binary buffers. This will be set during import when appending from a
    * file, and will be set during export when writing to a file.
    */
@@ -180,7 +180,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF,
+   * The file name associated with this glTF data. If it ends with `.gltf`, this is text-based glTF,
    * otherwise this is binary GLB. This will be set during import when appending from a file, and will
    * be set during export when writing to a file. If writing to a buffer, this will be an empty string.
    */
@@ -193,8 +193,8 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore
-   * one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes,
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
+   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
    * which will be generated as siblings of each other and as children of the root node of the
    * generated Godot scene.
    */
@@ -287,7 +287,8 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * True to force all GLTFNodes in the document to be bones of a single Skeleton3D godot node.
+   * If `true`, forces all GLTFNodes in the document to be bones of a single [Skeleton3D] Godot
+   * node.
    */
   public final inline var importAsSkeletonBones: Boolean
     @JvmName("importAsSkeletonBonesProperty")
@@ -325,12 +326,12 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(265, scriptIndex)
+    createNativeObject(269, scriptIndex)
   }
 
   /**
-   * Appends an extension to the list of extensions used by this GLTF file during serialization. If
-   * [required] is true, the extension will also be added to the list of required extensions. Do not
+   * Appends an extension to the list of extensions used by this glTF file during serialization. If
+   * [required] is `true`, the extension will also be added to the list of required extensions. Do not
    * run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions. The
    * final list is sorted alphabetically.
    */
@@ -341,12 +342,35 @@ public open class GLTFState : Resource() {
 
   /**
    * Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The
-   * index of the destination [GLTFBufferView] is returned. If [deduplication] is true, the buffers
+   * index of the destination [GLTFBufferView] is returned. If [deduplication] is `true`, the buffers
    * will first be searched for duplicate data, otherwise new bytes will always be appended.
    */
   public final fun appendDataToBuffers(`data`: PackedByteArray, deduplication: Boolean): Int {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
     TransferContext.callMethod(ptr, MethodBindings.appendDataToBuffersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Append the given [GLTFNode] to the state, and return its new index. This can be used to export
+   * one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this
+   * must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On
+   * export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
+   * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This
+   * is highly recommended to be set to a valid node, but may be `null` if there is no corresponding
+   * Godot scene node. One Godot scene node may be used for multiple glTF nodes, so if exporting
+   * multiple glTF nodes for one Godot scene node, use the same Godot scene node for each.
+   * The [parentNodeIndex] parameter is the index of the parent [GLTFNode] in the state. If `-1`,
+   * the node will be a root node, otherwise the new node will be added to the parent's list of
+   * children. The index will also be written to the [GLTFNode.parent] property of the new node.
+   */
+  public final fun appendGltfNode(
+    gltfNode: GLTFNode?,
+    godotSceneNode: Node?,
+    parentNodeIndex: Int,
+  ): Int {
+    TransferContext.writeArguments(OBJECT to gltfNode, OBJECT to godotSceneNode, LONG to parentNodeIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.appendGltfNodePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -417,7 +441,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFNode]s in the GLTF file. These are the nodes that
+   * Returns an array of all [GLTFNode]s in the glTF file. These are the nodes that
    * [GLTFNode.children] and [rootNodes] refer to. This includes nodes that may not be generated in the
    * Godot scene, or nodes that may generate multiple Godot scene nodes.
    */
@@ -471,7 +495,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFMesh]es in the GLTF file. These are the meshes that the
+   * Returns an array of all [GLTFMesh]es in the glTF file. These are the meshes that the
    * [GLTFNode.mesh] index refers to.
    */
   public final fun getMeshes(): VariantArray<GLTFMesh> {
@@ -491,7 +515,7 @@ public open class GLTFState : Resource() {
 
   /**
    * Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used
-   * during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
+   * during the export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
   public final fun getAnimationPlayersCount(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -501,7 +525,7 @@ public open class GLTFState : Resource() {
 
   /**
    * Returns the [AnimationPlayer] node with the given index. These nodes are only used during the
-   * export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
+   * export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
   public final fun getAnimationPlayer(idx: Int): AnimationPlayer? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -576,7 +600,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Retrieves the array of texture samplers that are used by the textures contained in the GLTF.
+   * Retrieves the array of texture samplers that are used by the textures contained in the glTF.
    */
   public final fun getTextureSamplers(): VariantArray<GLTFTextureSampler> {
     TransferContext.writeArguments()
@@ -585,7 +609,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the array of texture samplers that are used by the textures contained in the GLTF.
+   * Sets the array of texture samplers that are used by the textures contained in the glTF.
    */
   public final fun setTextureSamplers(textureSamplers: VariantArray<GLTFTextureSampler>): Unit {
     TransferContext.writeArguments(ARRAY to textureSamplers)
@@ -593,7 +617,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Gets the images of the GLTF file as an array of [Texture2D]s. These are the images that the
+   * Gets the images of the glTF file as an array of [Texture2D]s. These are the images that the
    * [GLTFTexture.srcImage] index refers to.
    */
   public final fun getImages(): VariantArray<Texture2D> {
@@ -612,7 +636,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFSkin]s in the GLTF file. These are the skins that the
+   * Returns an array of all [GLTFSkin]s in the glTF file. These are the skins that the
    * [GLTFNode.skin] index refers to.
    */
   public final fun getSkins(): VariantArray<GLTFSkin> {
@@ -631,7 +655,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFCamera]s in the GLTF file. These are the cameras that the
+   * Returns an array of all [GLTFCamera]s in the glTF file. These are the cameras that the
    * [GLTFNode.camera] index refers to.
    */
   public final fun getCameras(): VariantArray<GLTFCamera> {
@@ -650,7 +674,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFLight]s in the GLTF file. These are the lights that the
+   * Returns an array of all [GLTFLight]s in the glTF file. These are the lights that the
    * [GLTFNode.light] index refers to.
    */
   public final fun getLights(): VariantArray<GLTFLight> {
@@ -705,7 +729,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFSkeleton]s in the GLTF file. These are the skeletons that the
+   * Returns an array of all [GLTFSkeleton]s in the glTF file. These are the skeletons that the
    * [GLTFNode.skeleton] index refers to.
    */
   public final fun getSkeletons(): VariantArray<GLTFSkeleton> {
@@ -746,7 +770,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns an array of all [GLTFAnimation]s in the GLTF file. When importing, these will be
+   * Returns an array of all [GLTFAnimation]s in the glTF file. When importing, these will be
    * generated as animations in an [AnimationPlayer] node. When exporting, these will be generated from
    * Godot [AnimationPlayer] nodes.
    */
@@ -796,8 +820,8 @@ public open class GLTFState : Resource() {
    * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is null.
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -809,7 +833,7 @@ public open class GLTFState : Resource() {
    * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the GLTF file), and the second argument can be anything you want.
+   * extension name in the glTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
@@ -867,6 +891,9 @@ public open class GLTFState : Resource() {
 
     internal val appendDataToBuffersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
+
+    internal val appendGltfNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "append_gltf_node", 3562288551)
 
     internal val getJsonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "get_json", 2382534195)

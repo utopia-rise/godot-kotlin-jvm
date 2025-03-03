@@ -176,6 +176,19 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * mesh in the lightmap texture, which increases the memory, storage, and bake time requirements.
    * When using a single mesh at different scales, consider adjusting this value to keep the lightmap
    * texel density consistent across meshes.
+   * For example, doubling [giLightmapTexelScale] doubles the lightmap texture resolution for this
+   * object *on each axis*, so it will *quadruple* the texel count.
+   */
+  public final inline var giLightmapTexelScale: Float
+    @JvmName("giLightmapTexelScaleProperty")
+    get() = getLightmapTexelScale()
+    @JvmName("giLightmapTexelScaleProperty")
+    set(`value`) {
+      setLightmapTexelScale(value)
+    }
+
+  /**
+   * The texel density to use for lightmapping in [LightmapGI].
    */
   public final inline var giLightmapScale: LightmapScale
     @JvmName("giLightmapScaleProperty")
@@ -255,7 +268,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(281, scriptIndex)
+    createNativeObject(285, scriptIndex)
   }
 
   /**
@@ -407,8 +420,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * with `instance uniform ...` rather than `uniform ...` in the shader code.
    * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
    * (not the capitalized name in the inspector).
-   * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D
-   * equivalent of this method.
+   * **Note:** Per-instance shader uniforms are only available in Spatial and CanvasItem shaders,
+   * but not for Fog, Sky, or Particles shaders.
    */
   public final fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
@@ -432,6 +445,17 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getExtraCullMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setLightmapTexelScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setLightmapTexelScalePtr, NIL)
+  }
+
+  public final fun getLightmapTexelScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getLightmapTexelScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -705,6 +729,12 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
     internal val getExtraCullMarginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin", 1740695150)
+
+    internal val setLightmapTexelScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_texel_scale", 373806689)
+
+    internal val getLightmapTexelScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lightmap_texel_scale", 1740695150)
 
     internal val setLightmapScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale", 2462696582)

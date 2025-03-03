@@ -11,12 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedVector2Array
+import godot.core.Rect2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.RECT2
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +56,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(393, scriptIndex)
+    createNativeObject(399, scriptIndex)
   }
 
   /**
@@ -201,6 +203,17 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns an axis-aligned bounding box that covers all the stored geometry data. The bounds are
+   * calculated when calling this function with the result cached until further geometry changes are
+   * made.
+   */
+  public final fun getBounds(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -248,5 +261,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
 
     internal val getProjectedObstructionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions", 3995934104)
+
+    internal val getBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_bounds", 3248174)
   }
 }

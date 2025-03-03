@@ -78,7 +78,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
 
   /**
    * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear.
+   * linear. Should be a unit [Curve].
    */
   public final inline var xfadeCurve: Curve?
     @JvmName("xfadeCurveProperty")
@@ -112,7 +112,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(69, scriptIndex)
+    createNativeObject(70, scriptIndex)
   }
 
   public final fun setInputCount(inputCount: Int): Unit {

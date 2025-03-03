@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.AABB
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
@@ -62,7 +63,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(394, scriptIndex)
+    createNativeObject(400, scriptIndex)
   }
 
   /**
@@ -228,6 +229,17 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns an axis-aligned bounding box that covers all the stored geometry data. The bounds are
+   * calculated when calling this function with the result cached until further geometry changes are
+   * made.
+   */
+  public final fun getBounds(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -275,5 +287,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
 
     internal val getProjectedObstructionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_projected_obstructions", 3995934104)
+
+    internal val getBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_bounds", 1021181044)
   }
 }

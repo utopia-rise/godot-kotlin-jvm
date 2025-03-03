@@ -39,11 +39,11 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
    * to [ParticleProcessMaterial.COLLISION_RIGID] or
    * [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.
    * After configuring particle nodes accordingly, specific layers can be unchecked to prevent
-   * certain particles from being affected by attractors. For example, this can be used if you're using
-   * an attractor as part of a spell effect but don't want the attractor to affect unrelated weather
+   * certain particles from being affected by colliders. For example, this can be used if you're using
+   * a collider as part of a spell effect but don't want the collider to affect unrelated weather
    * particles at the same position.
-   * Particle attraction can also be disabled on a per-process material basis by setting
-   * [ParticleProcessMaterial.attractorInteractionEnabled] on the [GPUParticles3D] node.
+   * Particle collision can also be disabled on a per-process material basis by setting
+   * [ParticleProcessMaterial.collisionMode] on the [GPUParticles3D] node.
    */
   public final inline var cullMask: Long
     @JvmName("cullMaskProperty")
@@ -54,7 +54,7 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(274, scriptIndex)
+    createNativeObject(278, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

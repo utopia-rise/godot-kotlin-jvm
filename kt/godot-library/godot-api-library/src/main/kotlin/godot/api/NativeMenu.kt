@@ -212,7 +212,7 @@ public object NativeMenu : Object() {
    * **Note:** The OS can simulate menu opening to track menu item changes and global shortcuts, in
    * which case the corresponding close callback is not triggered. Use [isOpened] to check if the menu
    * is currently opened.
-   * **Note:** This method is implemented only on macOS.
+   * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
   public final fun setPopupCloseCallback(rid: RID, callback: Callable): Unit {
@@ -222,7 +222,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns global menu close callback.
-   * b]Note:[/b] This method is implemented only on macOS.
+   * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
   public final fun getPopupCloseCallback(rid: RID): Callable {
@@ -1162,25 +1162,25 @@ public object NativeMenu : Object() {
         TypeManager.getMethodBindPtr("NativeMenu", "add_submenu_item", 1002030223)
 
     internal val addItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_item", 2553375659)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_item", 980552939)
 
     internal val addCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item", 2553375659)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item", 980552939)
 
     internal val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item", 2987595282)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item", 1372188274)
 
     internal val addIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item", 2987595282)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item", 1372188274)
 
     internal val addRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item", 2553375659)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item", 980552939)
 
     internal val addIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item", 2987595282)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item", 1372188274)
 
     internal val addMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item", 1558592568)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item", 2674635658)
 
     internal val addSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NativeMenu", "add_separator", 448810126)

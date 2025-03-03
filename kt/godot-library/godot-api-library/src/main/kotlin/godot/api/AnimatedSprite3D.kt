@@ -256,14 +256,12 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * The setter of [frame] resets the [frameProgress] to `0.0` implicitly, but this method avoids
-   * that.
-   * This is useful when you want to carry over the current [frameProgress] to another [frame].
-   * **Example:**
+   * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does
+   * not reset the [frameProgress] to `0.0` implicitly.
+   * **Example:** Change the animation while keeping the same [frame] and [frameProgress]:
    *
    * gdscript:
    * ```gdscript
-   * # Change the animation with keeping the frame index and progress.
    * var current_frame = animated_sprite.get_frame()
    * var current_progress = animated_sprite.get_frame_progress()
    * animated_sprite.play("walk_another_skin")
@@ -323,10 +321,10 @@ public open class AnimatedSprite3D : SpriteBase3D() {
         TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 3269405555)
 
     internal val playBackwardsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 1421762485)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 3323268493)
 
     internal val pausePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)

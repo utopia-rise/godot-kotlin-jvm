@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(645, scriptIndex)
+    createNativeObject(670, scriptIndex)
   }
 
   public companion object

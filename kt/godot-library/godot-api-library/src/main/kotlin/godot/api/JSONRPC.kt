@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class JSONRPC : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(335, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   public final fun setScope(scope: String, target: Object?): Unit {

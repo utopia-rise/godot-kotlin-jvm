@@ -177,9 +177,12 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother
-   * edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting
-   * very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
+   * The multisample antialiasing mode for 2D/Canvas rendering. A higher number results in smoother
+   * edges at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or
+   * [Viewport.MSAA_4X] is best unless targeting very high-end systems. This has no effect on
+   * shader-induced aliasing or texture aliasing.
+   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa2d] and
+   * [RenderingServer.viewportSetMsaa2d].
    */
   public final inline var msaa2d: MSAA
     @JvmName("msaa2dProperty")
@@ -190,11 +193,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges
-   * at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very
-   * high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides
-   * higher quality but is much more expensive. This has no effect on shader-induced aliasing or
-   * texture aliasing.
+   * The multisample antialiasing mode for 3D rendering. A higher number results in smoother edges
+   * at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or
+   * [Viewport.MSAA_4X] is best unless targeting very high-end systems. See also bilinear scaling 3D
+   * [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This
+   * has no effect on shader-induced aliasing or texture aliasing.
+   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa3d] and
+   * [RenderingServer.viewportSetMsaa3d].
    */
   public final inline var msaa3d: MSAA
     @JvmName("msaa3dProperty")
@@ -209,6 +214,8 @@ public open class Viewport internal constructor() : Node() {
    * blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage
    * samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will
    * smooth out specular aliasing, but tend to make scenes appear blurry.
+   * See also [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa] and
+   * [RenderingServer.viewportSetScreenSpaceAa].
    */
   public final inline var screenSpaceAa: ScreenSpaceAA
     @JvmName("screenSpaceAaProperty")
@@ -219,11 +226,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and
+   * Enables temporal antialiasing for this viewport. TAA works by jittering the camera and
    * accumulating the images of the last rendered frames, motion vector rendering is used to account
    * for camera and object motion.
    * **Note:** The implementation is not complete yet, some visual instances such as particles and
    * skinned meshes may show artifacts.
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useTaa] and
+   * [RenderingServer.viewportSetUseTaa].
    */
   public final inline var useTaa: Boolean
     @JvmName("useTaaProperty")
@@ -236,10 +245,12 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
    * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
-   * [Environment.BG_CANVAS]. See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
+   * [Environment.BG_CANVAS].
    * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
    * recommended to enable debanding only when actually needed since the dithering pattern will make
    * lossless-compressed screenshots larger.
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and
+   * [RenderingServer.viewportSetUseDebanding].
    */
   public final inline var useDebanding: Boolean
     @JvmName("useDebandingProperty")
@@ -310,8 +321,8 @@ public open class Viewport internal constructor() : Node() {
    * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients.
-   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL
-   * Compatibility renderer always renders in low dynamic range for performance reasons.
+   * **Note:** This setting will have no effect when using the Compatibility renderer, which always
+   * renders in low dynamic range for performance reasons.
    */
   public final inline var useHdr2d: Boolean
     @JvmName("useHdr2dProperty")
@@ -322,7 +333,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or
+   * Sets scaling 3D mode. Bilinear scaling renders at different resolution to either undersample or
    * supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling
    * technology that produces high quality images at fast framerates by using a spatially aware
    * upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly
@@ -380,6 +391,31 @@ public open class Viewport internal constructor() : Node() {
     @JvmName("textureMipmapBiasProperty")
     set(`value`) {
       setTextureMipmapBias(value)
+    }
+
+  /**
+   * Sets the maximum number of samples to take when using anisotropic filtering on textures (as a
+   * power of two). A higher sample count will result in sharper textures at oblique angles, but is
+   * more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on
+   * materials where it is enabled.
+   * The anisotropic filtering level also affects decals and light projectors if they are configured
+   * to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and
+   * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to
+   * [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
+   * [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
+   * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to
+   * [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
+   * [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying
+   * the texture (or in [CanvasTexture]). However, anisotropic filtering is rarely useful in 2D, so
+   * only enable it for textures in 2D if it makes a meaningful visual difference.
+   */
+  public final inline var anisotropicFilteringLevel: AnisotropicFiltering
+    @JvmName("anisotropicFilteringLevelProperty")
+    get() = getAnisotropicFilteringLevel()
+    @JvmName("anisotropicFilteringLevelProperty")
+    set(`value`) {
+      setAnisotropicFilteringLevel(value)
     }
 
   /**
@@ -714,7 +750,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(698, scriptIndex)
+    createNativeObject(724, scriptIndex)
   }
 
   /**
@@ -808,6 +844,25 @@ public open class Viewport internal constructor() : Node() {
   public final fun getGlobalCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalCanvasTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+  }
+
+  /**
+   * Returns the automatically computed 2D stretch transform, taking the [Viewport]'s stretch
+   * settings into account. The final value is multiplied by [Window.contentScaleFactor], but only for
+   * the root viewport. If this method is called on a [SubViewport] (e.g., in a scene tree with
+   * [SubViewportContainer] and [SubViewport]), the scale factor of the root window will not be
+   * applied. Using [Transform2D.getScale] on the returned value, this can be used to compensate for
+   * scaling when zooming a [Camera2D] node, or to scale down a [TextureRect] to be pixel-perfect
+   * regardless of the automatically computed scale factor.
+   * **Note:** Due to how pixel scaling works, the returned transform's X and Y scale may differ
+   * slightly, even when [Window.contentScaleAspect] is set to a mode that preserves the pixels' aspect
+   * ratio. If [Window.contentScaleAspect] is [Window.CONTENT_SCALE_ASPECT_IGNORE], the X and Y scale
+   * may differ *significantly*.
+   */
+  public final fun getStretchTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStretchTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -959,6 +1014,8 @@ public open class Viewport internal constructor() : Node() {
    *     await RenderingServer.frame_post_draw
    *     $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
    * [/codeblock]
+   * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear
+   * space.
    */
   public final fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
@@ -1068,6 +1125,34 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Inform the Viewport that the mouse has entered its area. Use this function before sending an
+   * [InputEventMouseButton] or [InputEventMouseMotion] to the [Viewport] with [Viewport.pushInput].
+   * See also [notifyMouseExited].
+   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
+   * that are children of [SubViewportContainer] are notified automatically. This is only necessary
+   * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
+   * with an [Area3D] that forwards input events.
+   */
+  public final fun notifyMouseEntered(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.notifyMouseEnteredPtr, NIL)
+  }
+
+  /**
+   * Inform the Viewport that the mouse has left its area. Use this function when the node that
+   * displays the viewport notices the mouse has left the area of the displayed viewport. See also
+   * [notifyMouseEntered].
+   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
+   * that are children of [SubViewportContainer] are notified automatically. This is only necessary
+   * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
+   * with an [Area3D] that forwards input events.
+   */
+  public final fun notifyMouseExited(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.notifyMouseExitedPtr, NIL)
+  }
+
+  /**
    * Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport].
    */
   public final fun getMousePosition(): Vector2 {
@@ -1099,6 +1184,15 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
+   * Cancels the drag operation that was previously started through [Control.GetDragData] or forced
+   * with [Control.forceDrag].
+   */
+  public final fun guiCancelDrag(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.guiCancelDragPtr, NIL)
+  }
+
+  /**
    * Returns the drag data from the GUI, that was previously returned by [Control.GetDragData].
    */
   public final fun guiGetDragData(): Any? {
@@ -1108,7 +1202,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if the viewport is currently performing a drag operation.
+   * Returns `true` if a drag operation is currently ongoing and where the drop action could happen
+   * in this viewport.
    * Alternative to [Node.NOTIFICATION_DRAG_BEGIN] and [Node.NOTIFICATION_DRAG_END] when you prefer
    * polling the value.
    */
@@ -1137,8 +1232,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the [Control] having the focus within this viewport. If no [Control] has the focus,
-   * returns null.
+   * Returns the currently focused [Control] within this viewport. If no [Control] is focused,
+   * returns `null`.
    */
   public final fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
@@ -1148,7 +1243,7 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns the [Control] that the mouse is currently hovering over in this viewport. If no
-   * [Control] has the cursor, returns null.
+   * [Control] has the cursor, returns `null`.
    * Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is
    * very useful when used together with [Node.isAncestorOf] to find if the mouse is within a control
    * tree.
@@ -1398,7 +1493,17 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the currently active 2D camera. Returns null if there are no active cameras.
+   * Returns the currently active 2D audio listener. Returns `null` if there are no active 2D audio
+   * listeners, in which case the active 2D camera will be treated as listener.
+   */
+  public final fun getAudioListener2d(): AudioListener2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAudioListener2dPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as AudioListener2D?)
+  }
+
+  /**
+   * Returns the currently active 2D camera. Returns `null` if there are no active cameras.
    */
   public final fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
@@ -1436,6 +1541,16 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingOwnWorld3dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the currently active 3D audio listener. Returns `null` if there are no active 3D audio
+   * listeners, in which case the active 3D camera will be treated as listener.
+   */
+  public final fun getAudioListener3d(): AudioListener3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAudioListener3dPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as AudioListener3D?)
   }
 
   /**
@@ -1522,6 +1637,18 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: AnisotropicFiltering):
+      Unit {
+    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
+    TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
+  }
+
+  public final fun getAnisotropicFilteringLevel(): AnisotropicFiltering {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAnisotropicFilteringLevelPtr, LONG)
+    return Viewport.AnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsMode(mode: VRSMode): Unit {
@@ -1634,9 +1761,37 @@ public open class Viewport internal constructor() : Node() {
      */
     SCALING_3D_MODE_FSR2(2),
     /**
+     * Use the
+     * [url=https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler#overview]MetalFX
+     * spatial upscaler[/url] for the viewport's 3D buffer.
+     * The amount of scaling can be set using [scaling3dScale].
+     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
+     * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
+     * `1.0` disables scaling.
+     * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
+     * mode to macOS and iOS.
+     */
+    SCALING_3D_MODE_METALFX_SPATIAL(3),
+    /**
+     * Use the
+     * [url=https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler#overview]MetalFX
+     * temporal upscaler[/url] for the viewport's 3D buffer.
+     * The amount of scaling can be set using [scaling3dScale]. To determine the minimum input
+     * scale, use the [RenderingDevice.limitGet] method with
+     * [RenderingDevice.LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE].
+     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
+     * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
+     * `1.0` will use MetalFX at native resolution as a TAA solution.
+     * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
+     * mode to macOS and iOS.
+     */
+    SCALING_3D_MODE_METALFX_TEMPORAL(4),
+    /**
      * Represents the size of the [Scaling3DMode] enum.
      */
-    SCALING_3D_MODE_MAX(3),
+    SCALING_3D_MODE_MAX(5),
     ;
 
     public val id: Long
@@ -1686,6 +1841,45 @@ public open class Viewport internal constructor() : Node() {
 
     public companion object {
       public fun from(`value`: Long): MSAA = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class AnisotropicFiltering(
+    id: Long,
+  ) {
+    /**
+     * Anisotropic filtering is disabled.
+     */
+    ANISOTROPY_DISABLED(0),
+    /**
+     * Use 2× anisotropic filtering.
+     */
+    ANISOTROPY_2X(1),
+    /**
+     * Use 4× anisotropic filtering. This is the default value.
+     */
+    ANISOTROPY_4X(2),
+    /**
+     * Use 8× anisotropic filtering.
+     */
+    ANISOTROPY_8X(3),
+    /**
+     * Use 16× anisotropic filtering.
+     */
+    ANISOTROPY_16X(4),
+    /**
+     * Represents the size of the [AnisotropicFiltering] enum.
+     */
+    ANISOTROPY_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AnisotropicFiltering = entries.single { it.id == `value` }
     }
   }
 
@@ -1804,6 +1998,8 @@ public open class Viewport internal constructor() : Node() {
     DEBUG_DRAW_OVERDRAW(3),
     /**
      * Objects are displayed as wireframe models.
+     * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any
+     * meshes for wireframes to be visible when using the Compatibility renderer.
      */
     DEBUG_DRAW_WIREFRAME(4),
     /**
@@ -2161,6 +2357,9 @@ public open class Viewport internal constructor() : Node() {
     internal val getGlobalCanvasTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3814499831)
 
+    internal val getStretchTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_stretch_transform", 3814499831)
+
     internal val getFinalTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_final_transform", 3814499831)
 
@@ -2260,6 +2459,12 @@ public open class Viewport internal constructor() : Node() {
     internal val pushUnhandledInputPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input", 3644664830)
 
+    internal val notifyMouseEnteredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_entered", 3218959716)
+
+    internal val notifyMouseExitedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_exited", 3218959716)
+
     internal val getMousePositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_mouse_position", 3341600327)
 
@@ -2268,6 +2473,9 @@ public open class Viewport internal constructor() : Node() {
 
     internal val updateMouseCursorStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3218959716)
+
+    internal val guiCancelDragPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "gui_cancel_drag", 3218959716)
 
     internal val guiGetDragDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
@@ -2398,6 +2606,9 @@ public open class Viewport internal constructor() : Node() {
     internal val isAudioListener2dPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36873697)
 
+    internal val getAudioListener2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_2d", 1840977180)
+
     internal val getCamera2dPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_camera_2d", 3551466917)
 
@@ -2415,6 +2626,9 @@ public open class Viewport internal constructor() : Node() {
 
     internal val isUsingOwnWorld3dPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36873697)
+
+    internal val getAudioListener3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_3d", 3472246991)
 
     internal val getCamera3dPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_camera_3d", 2285090890)
@@ -2460,6 +2674,12 @@ public open class Viewport internal constructor() : Node() {
 
     internal val getTextureMipmapBiasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1740695150)
+
+    internal val setAnisotropicFilteringLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_anisotropic_filtering_level", 3445583046)
+
+    internal val getAnisotropicFilteringLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_anisotropic_filtering_level", 3991528932)
 
     internal val setVrsModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode", 2749867817)

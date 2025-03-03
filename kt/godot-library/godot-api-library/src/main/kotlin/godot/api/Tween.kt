@@ -154,7 +154,7 @@ import kotlin.jvm.JvmOverloads
  * [TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp]Tween
  * easing and transition types cheatsheet[/url]
- * **Note:** Tweens are not designed to be re-used and trying to do so results in an undefined
+ * **Note:** Tweens are not designed to be reused and trying to do so results in an undefined
  * behavior. Create a new Tween for each animation and every time you replay an animation from start.
  * Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
  * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's
@@ -182,14 +182,13 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(679, scriptIndex)
+    createNativeObject(705, scriptIndex)
   }
 
   /**
    * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between
    * an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial
    * value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -389,6 +388,32 @@ public open class Tween : RefCounted() {
   }
 
   /**
+   * Creates and appends a [SubtweenTweener]. This method can be used to nest [subtween] within this
+   * [Tween], allowing for the creation of more complex and composable sequences.
+   * [codeblock]
+   * # Subtween will rotate the object.
+   * var subtween = create_tween()
+   * subtween.tween_property(self, "rotation_degrees", 45.0, 1.0)
+   * subtween.tween_property(self, "rotation_degrees", 0.0, 1.0)
+   *
+   * # Parent tween will execute the subtween as one of its steps.
+   * var tween = create_tween()
+   * tween.tween_property(self, "position:x", 500, 3.0)
+   * tween.tween_subtween(subtween)
+   * tween.tween_property(self, "position:x", 300, 2.0)
+   * [/codeblock]
+   * **Note:** The methods [pause], [stop], and [setLoops] can cause the parent [Tween] to get stuck
+   * on the subtween step; see the documentation for those methods for more information.
+   * **Note:** The pause and process modes set by [setPauseMode] and [setProcessMode] on [subtween]
+   * will be overridden by the parent [Tween]'s settings.
+   */
+  public final fun tweenSubtween(subtween: Tween?): SubtweenTweener? {
+    TransferContext.writeArguments(OBJECT to subtween)
+    TransferContext.callMethod(ptr, MethodBindings.tweenSubtweenPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as SubtweenTweener?)
+  }
+
+  /**
    * Processes the [Tween] by the given [delta] value, in seconds. This is mostly useful for manual
    * control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately,
    * by setting [delta] longer than the whole duration of the [Tween] animation.
@@ -403,6 +428,23 @@ public open class Tween : RefCounted() {
   /**
    * Stops the tweening and resets the [Tween] to its initial state. This will not remove any
    * appended [Tweener]s.
+   * **Note:** This does *not* reset targets of [PropertyTweener]s to their values when the [Tween]
+   * first started.
+   * [codeblock]
+   * var tween = create_tween()
+   *
+   * # Will move from 0 to 500 over 1 second.
+   * position.x = 0.0
+   * tween.tween_property(self, "position:x", 500, 1.0)
+   *
+   * # Will be at (about) 250 when the timer finishes.
+   * await get_tree().create_timer(0.5).timeout
+   *
+   * # Will now move from (about) 250 to 500 over 1 second,
+   * # thus at half the speed as before.
+   * tween.stop()
+   * tween.play()
+   * [/codeblock]
    * **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until
    * manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using
    * [SceneTree.getProcessedTweens].
@@ -510,6 +552,17 @@ public open class Tween : RefCounted() {
   }
 
   /**
+   * If [ignore] is `true`, the tween will ignore [Engine.timeScale] and update with the real,
+   * elapsed time. This affects all [Tweener]s and their delays. Default value is `false`.
+   */
+  @JvmOverloads
+  public final fun setIgnoreTimeScale(ignore: Boolean = true): Tween? {
+    TransferContext.writeArguments(BOOL to ignore)
+    TransferContext.callMethod(ptr, MethodBindings.setIgnoreTimeScalePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+  }
+
+  /**
    * If [parallel] is `true`, the [Tweener]s appended after this method will by default run
    * simultaneously, as opposed to sequentially.
    * **Note:** Just like with [parallel], the tweener added right before this method will also be
@@ -567,9 +620,15 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Sets the default transition type for [PropertyTweener]s and [MethodTweener]s animated by this
-   * [Tween].
-   * If not specified, the default value is [TRANS_LINEAR].
+   * Sets the default transition type for [PropertyTweener]s and [MethodTweener]s appended after
+   * this method.
+   * Before this method is called, the default transition type is [TRANS_LINEAR].
+   * [codeblock]
+   * var tween = create_tween()
+   * tween.tween_property(self, "position", Vector2(300, 0), 0.5) # Uses TRANS_LINEAR.
+   * tween.set_trans(Tween.TRANS_SINE)
+   * tween.tween_property(self, "rotation_degrees", 45.0, 0.5) # Uses TRANS_SINE.
+   * [/codeblock]
    */
   public final fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -578,9 +637,15 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Sets the default ease type for [PropertyTweener]s and [MethodTweener]s animated by this
-   * [Tween].
-   * If not specified, the default value is [EASE_IN_OUT].
+   * Sets the default ease type for [PropertyTweener]s and [MethodTweener]s appended after this
+   * method.
+   * Before this method is called, the default ease type is [EASE_IN_OUT].
+   * [codeblock]
+   * var tween = create_tween()
+   * tween.tween_property(self, "position", Vector2(300, 0), 0.5) # Uses EASE_IN_OUT.
+   * tween.set_ease(Tween.EASE_IN)
+   * tween.tween_property(self, "rotation_degrees", 45.0, 0.5) # Uses EASE_IN.
+   * [/codeblock]
    */
   public final fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
@@ -590,7 +655,6 @@ public open class Tween : RefCounted() {
 
   /**
    * Makes the next [Tweener] run parallelly to the previous one.
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -828,6 +892,9 @@ public open class Tween : RefCounted() {
     internal val tweenMethodPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "tween_method", 2337877153)
 
+    internal val tweenSubtweenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_subtween", 1567358477)
+
     internal val customStepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "custom_step", 330693286)
 
@@ -855,6 +922,9 @@ public open class Tween : RefCounted() {
 
     internal val setPauseModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
+
+    internal val setIgnoreTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_ignore_time_scale", 1942052223)
 
     internal val setParallelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "set_parallel", 1942052223)

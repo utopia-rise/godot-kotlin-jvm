@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A resource used by [AnimationNodeBlendTree].
- * [AnimationNodeBlendSpace1D] represents a virtual 2D space on which [AnimationRootNode]s are
+ * [AnimationNodeBlendSpace2D] represents a virtual 2D space on which [AnimationRootNode]s are
  * placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent
  * in this context means the three [AnimationRootNode]s making up the triangle that contains the
  * current value.
@@ -232,7 +232,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Updates the position of the point at index [point] on the blend axis.
+   * Updates the position of the point at index [point] in the blend space.
    */
   public final fun setBlendPointPosition(point: Int, pos: Vector2): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), VECTOR2 to pos)

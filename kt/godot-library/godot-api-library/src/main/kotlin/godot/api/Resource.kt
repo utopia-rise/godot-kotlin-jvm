@@ -19,6 +19,7 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -122,13 +123,13 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(547, scriptIndex)
+    createNativeObject(564, scriptIndex)
   }
 
   /**
    * Override this method to customize the newly duplicated resource created from
    * [PackedScene.instantiate], if the original's [resourceLocalToScene] is set to `true`.
-   * **Example:** Set a random `damage` value to every local resource from an instantiated scene.
+   * **Example:** Set a random `damage` value to every local resource from an instantiated scene:
    * [codeblock]
    * extends Resource
    *
@@ -139,6 +140,27 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public open fun _setupLocalToScene(): Unit {
+  }
+
+  /**
+   * Override this method to return a custom [RID] when [getRid] is called.
+   */
+  public open fun _getRid(): RID {
+    throw NotImplementedError("_get_rid is not implemented for Resource")
+  }
+
+  /**
+   * For resources that use a variable number of properties, either via [Object.ValidateProperty] or
+   * [Object.GetPropertyList], this method should be implemented to correctly clear the resource's
+   * state.
+   */
+  public open fun _resetState(): Unit {
+  }
+
+  /**
+   * Sets the resource's path to [path] without involving the resource cache.
+   */
+  public open fun _setPathCache(path: String): Unit {
   }
 
   public final fun setPath(path: String): Unit {
@@ -159,6 +181,14 @@ public open class Resource : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the resource's path to [path] without involving the resource cache.
+   */
+  public final fun setPathCache(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.setPathCachePtr, NIL)
   }
 
   public final fun setName(name: String): Unit {
@@ -213,6 +243,46 @@ public open class Resource : RefCounted() {
   public final fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setupLocalToScenePtr, NIL)
+  }
+
+  /**
+   * For resources that use a variable number of properties, either via [Object.ValidateProperty] or
+   * [Object.GetPropertyList], override [_resetState] to correctly clear the resource's state.
+   */
+  public final fun resetState(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.resetStatePtr, NIL)
+  }
+
+  /**
+   * Sets the unique identifier to [id] for the resource with the given [path] in the resource
+   * cache. If the unique identifier is empty, the cache entry using [path] is removed if it exists.
+   * **Note:** This method is only implemented when running in an editor context.
+   */
+  public final fun setIdForPath(path: String, id: String): Unit {
+    TransferContext.writeArguments(STRING to path, STRING to id)
+    TransferContext.callMethod(ptr, MethodBindings.setIdForPathPtr, NIL)
+  }
+
+  /**
+   * Returns the unique identifier for the resource with the given [path] from the resource cache.
+   * If the resource is not loaded and cached, an empty string is returned.
+   * **Note:** This method is only implemented when running in an editor context. At runtime, it
+   * returns an empty string.
+   */
+  public final fun getIdForPath(path: String): String {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.getIdForPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns `true` if the resource is built-in (from the engine) or `false` if it is user-defined.
+   */
+  public final fun isBuiltIn(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isBuiltInPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSceneUniqueId(id: String): Unit {
@@ -289,6 +359,9 @@ public open class Resource : RefCounted() {
     internal val getPathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "get_path", 201670096)
 
+    internal val setPathCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "set_path_cache", 83702148)
+
     internal val setNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "set_name", 83702148)
 
@@ -309,6 +382,18 @@ public open class Resource : RefCounted() {
 
     internal val setupLocalToScenePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene", 3218959716)
+
+    internal val resetStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "reset_state", 3218959716)
+
+    internal val setIdForPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "set_id_for_path", 3186203200)
+
+    internal val getIdForPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "get_id_for_path", 3135753539)
+
+    internal val isBuiltInPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "is_built_in", 36873697)
 
     internal val generateSceneUniqueIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)

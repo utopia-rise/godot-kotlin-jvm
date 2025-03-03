@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
@@ -71,6 +72,17 @@ public open class CPUParticles2D : Node2D() {
     @JvmName("amountProperty")
     set(`value`) {
       setAmount(value)
+    }
+
+  /**
+   * Particle texture. If `null`, particles will be squares.
+   */
+  public final inline var texture: Texture2D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
+    set(`value`) {
+      setTexture(value)
     }
 
   /**
@@ -143,6 +155,30 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
+   * If `true`, particles will use the same seed for every simulation using the seed defined in
+   * [seed]. This is useful for situations where the visual outcome should be consistent across
+   * replays, for example when using Movie Maker mode.
+   */
+  public final inline var useFixedSeed: Boolean
+    @JvmName("useFixedSeedProperty")
+    get() = getUseFixedSeed()
+    @JvmName("useFixedSeedProperty")
+    set(`value`) {
+      setUseFixedSeed(value)
+    }
+
+  /**
+   * Sets the random seed used by the particle system. Only effective if [useFixedSeed] is `true`.
+   */
+  public final inline var seed: Long
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
+    set(`value`) {
+      setSeed(value)
+    }
+
+  /**
    * Particle lifetime randomness ratio.
    */
   public final inline var lifetimeRandomness: Double
@@ -201,17 +237,6 @@ public open class CPUParticles2D : Node2D() {
     @JvmName("drawOrderProperty")
     set(`value`) {
       setDrawOrder(value)
-    }
-
-  /**
-   * Particle texture. If `null`, particles will be squares.
-   */
-  public final inline var texture: Texture2D?
-    @JvmName("textureProperty")
-    get() = getTexture()
-    @JvmName("textureProperty")
-    set(`value`) {
-      setTexture(value)
     }
 
   /**
@@ -377,7 +402,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's angular velocity will vary along this [Curve].
+   * Each particle's angular velocity will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var angularVelocityCurve: Curve?
     @JvmName("angularVelocityCurveProperty")
@@ -411,7 +436,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [Curve].
+   * Each particle's orbital velocity will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var orbitVelocityCurve: Curve?
     @JvmName("orbitVelocityCurveProperty")
@@ -444,7 +469,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's linear acceleration will vary along this [Curve].
+   * Each particle's linear acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var linearAccelCurve: Curve?
     @JvmName("linearAccelCurveProperty")
@@ -478,7 +503,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's radial acceleration will vary along this [Curve].
+   * Each particle's radial acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var radialAccelCurve: Curve?
     @JvmName("radialAccelCurveProperty")
@@ -512,7 +537,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's tangential acceleration will vary along this [Curve].
+   * Each particle's tangential acceleration will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var tangentialAccelCurve: Curve?
     @JvmName("tangentialAccelCurveProperty")
@@ -546,7 +571,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Damping will vary along this [Curve].
+   * Damping will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var dampingCurve: Curve?
     @JvmName("dampingCurveProperty")
@@ -579,7 +604,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's rotation will be animated along this [Curve].
+   * Each particle's rotation will be animated along this [Curve]. Should be a unit [Curve].
    */
   public final inline var angleCurve: Curve?
     @JvmName("angleCurveProperty")
@@ -612,7 +637,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's scale will vary along this [Curve].
+   * Each particle's scale will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var scaleAmountCurve: Curve?
     @JvmName("scaleAmountCurveProperty")
@@ -635,7 +660,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's horizontal scale will vary along this [Curve].
+   * Each particle's horizontal scale will vary along this [Curve]. Should be a unit [Curve].
    * [splitScale] must be enabled.
    */
   public final inline var scaleCurveX: Curve?
@@ -647,7 +672,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's vertical scale will vary along this [Curve].
+   * Each particle's vertical scale will vary along this [Curve]. Should be a unit [Curve].
    * [splitScale] must be enabled.
    */
   public final inline var scaleCurveY: Curve?
@@ -671,7 +696,8 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's color will vary along this [Gradient] (multiplied with [color]).
+   * Each particle's color will vary along this [Gradient] over its lifetime (multiplied with
+   * [color]).
    */
   public final inline var colorRamp: Gradient?
     @JvmName("colorRampProperty")
@@ -682,8 +708,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
-   * [color]).
+   * Each particle's initial color will vary along this [Gradient] (multiplied with [color]).
    */
   public final inline var colorInitialRamp: Gradient?
     @JvmName("colorInitialRampProperty")
@@ -716,7 +741,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's hue will vary along this [Curve].
+   * Each particle's hue will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var hueVariationCurve: Curve?
     @JvmName("hueVariationCurveProperty")
@@ -752,7 +777,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's animation speed will vary along this [Curve].
+   * Each particle's animation speed will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var animSpeedCurve: Curve?
     @JvmName("animSpeedCurveProperty")
@@ -786,7 +811,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's animation offset will vary along this [Curve].
+   * Each particle's animation offset will vary along this [Curve]. Should be a unit [Curve].
    */
   public final inline var animOffsetCurve: Curve?
     @JvmName("animOffsetCurveProperty")
@@ -797,7 +822,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(149, scriptIndex)
+    createNativeObject(150, scriptIndex)
   }
 
   /**
@@ -957,6 +982,16 @@ public open class CPUParticles2D : Node2D() {
     TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
+  /**
+   * Requests the particles to process for extra process time during a single frame.
+   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
+   * [restart] with parameter `keep_seed` set to `true`.
+   */
+  public final fun requestParticlesProcess(processTime: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
+  }
+
   public final fun isEmitting(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmittingPtr, BOOL)
@@ -1029,6 +1064,28 @@ public open class CPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
+  public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useFixedSeed)
+    TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
+  }
+
+  public final fun getUseFixedSeed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSeed(seed: Long): Unit {
+    TransferContext.writeArguments(LONG to seed)
+    TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public final fun getSeed(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setDrawOrder(order: DrawOrder): Unit {
     TransferContext.writeArguments(LONG to order.id)
     TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
@@ -1053,9 +1110,12 @@ public open class CPUParticles2D : Node2D() {
 
   /**
    * Restarts the particle emitter.
+   * If [keepSeed] is `true`, the current random seed will be preserved. Useful for seeking and
+   * playback.
    */
-  public final fun restart(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun restart(keepSeed: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to keepSeed)
     TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
   }
 
@@ -1116,7 +1176,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * Sets the [Curve] of the parameter specified by [Parameter].
+   * Sets the [Curve] of the parameter specified by [Parameter]. Should be a unit [Curve].
    */
   public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
@@ -1174,7 +1234,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   /**
-   * Returns the enabled state of the given flag (see [ParticleFlags] for options).
+   * Returns the enabled state of the given particle flag (see [ParticleFlags] for options).
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
@@ -1515,6 +1575,9 @@ public open class CPUParticles2D : Node2D() {
     internal val setSpeedScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "set_speed_scale", 373806689)
 
+    internal val requestParticlesProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "request_particles_process", 373806689)
+
     internal val isEmittingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "is_emitting", 36873697)
 
@@ -1551,6 +1614,18 @@ public open class CPUParticles2D : Node2D() {
     internal val getSpeedScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "get_speed_scale", 1740695150)
 
+    internal val setUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_use_fixed_seed", 2586408642)
+
+    internal val getUseFixedSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_use_fixed_seed", 36873697)
+
+    internal val setSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_seed", 1286410249)
+
+    internal val getSeedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_seed", 3905245786)
+
     internal val setDrawOrderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "set_draw_order", 4183193490)
 
@@ -1564,7 +1639,7 @@ public open class CPUParticles2D : Node2D() {
         TypeManager.getMethodBindPtr("CPUParticles2D", "get_texture", 3635182373)
 
     internal val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "restart", 3218959716)
+        TypeManager.getMethodBindPtr("CPUParticles2D", "restart", 107499316)
 
     internal val setDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "set_direction", 743155724)

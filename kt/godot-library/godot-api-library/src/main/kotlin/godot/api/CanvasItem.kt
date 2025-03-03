@@ -19,7 +19,9 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Signal0
+import godot.core.StringName
 import godot.core.Transform2D
+import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -30,10 +32,12 @@ import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -76,24 +80,28 @@ public open class CanvasItem internal constructor() : Node() {
   public val draw: Signal0 by Signal0
 
   /**
-   * Emitted when the visibility (hidden/visible) changes.
+   * Emitted when the [CanvasItem]'s visibility changes, either because its own [visible] property
+   * changed or because its visibility in the tree changed (see [isVisibleInTree]).
    */
   public val visibilityChanged: Signal0 by Signal0
 
   /**
-   * Emitted when becoming hidden.
+   * Emitted when the [CanvasItem] is hidden, i.e. it's no longer visible in the tree (see
+   * [isVisibleInTree]).
    */
   public val hidden: Signal0 by Signal0
 
   /**
-   * Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action
-   * is taking place that may have impacted these boundaries (e.g. changing [Sprite2D.texture]).
+   * Emitted when the [CanvasItem]'s boundaries (position or size) change, or when an action took
+   * place that may have affected these boundaries (e.g. changing [Sprite2D.texture]).
    */
   public val itemRectChanged: Signal0 by Signal0
 
   /**
-   * If `true`, this [CanvasItem] is drawn. The node is only visible if all of its ancestors are
-   * visible as well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this [CanvasItem] may be drawn. Whether this [CanvasItem] is actually drawn depends
+   * on the visibility of all of its [CanvasItem] ancestors. In other words: this [CanvasItem] will be
+   * drawn when [isVisibleInTree] returns `true` and all [CanvasItem] ancestors share at least one
+   * [visibilityLayer] with this [CanvasItem].
    * **Note:** For controls that inherit [Popup], the correct way to make them visible is to call
    * one of the multiple `popup*()` functions instead.
    */
@@ -161,6 +169,9 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Allows the current node to clip child nodes, essentially acting as a mask.
+   * **Note:** Clipping nodes cannot be nested or placed within [CanvasGroup]s. If an ancestor of
+   * this node clips its children or is a [CanvasGroup], then this node's clip mode should be set to
+   * [CLIP_CHILDREN_DISABLED] to avoid unexpected behavior.
    */
   public final inline var clipChildren: ClipChildrenMode
     @JvmName("clipChildrenProperty")
@@ -227,7 +238,7 @@ public open class CanvasItem internal constructor() : Node() {
    * nodes with a lower Y position. If `false`, this and child [CanvasItem] nodes are rendered normally
    * in scene tree order.
    * With Y-sorting enabled on a parent node ('A') but disabled on a child node ('B'), the child
-   * node ('B') is sorted but its children ('C1', 'C2', etc) render together on the same Y position as
+   * node ('B') is sorted but its children ('C1', 'C2', etc.) render together on the same Y position as
    * the child node ('B'). This allows you to organize the render order of a scene without changing the
    * scene tree.
    * Nodes sort relative to each other only if they are on the same [zIndex].
@@ -285,7 +296,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(169, scriptIndex)
+    createNativeObject(170, scriptIndex)
   }
 
   /**
@@ -376,6 +387,8 @@ public open class CanvasItem internal constructor() : Node() {
    * Visibility is checked only in parent nodes that inherit from [CanvasItem], [CanvasLayer], and
    * [Window]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node3D]), it
    * is assumed to be visible.
+   * **Note:** This method does not take [visibilityLayer] into account, so even if this method
+   * returns `true`, the node might end up not being rendered.
    */
   public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -512,7 +525,7 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a line from a 2D point to another, with a given color and width. It can be optionally
-   * antialiased. See also [drawMultiline] and [drawPolyline].
+   * antialiased. See also [drawDashedLine], [drawMultiline], and [drawPolyline].
    * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one.
    * This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not
    * desired, then pass a positive [width] like `1.0`.
@@ -531,10 +544,16 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a dashed line from a 2D point to another, with a given color and width. See also
-   * [drawMultiline] and [drawPolyline].
+   * [drawLine], [drawMultiline], and [drawPolyline].
    * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior
    * is not desired, then pass a positive [width] like `1.0`.
+   * [dash] is the length of each dash in pixels, with the gap between each dash being the same
+   * length. If [aligned] is `true`, the length of the first and last dashes may be shortened or
+   * lengthened to allow the line to begin and end at the precise points defined by [from] and [to].
+   * Both ends are always symmetrical when [aligned] is `true`. If [aligned] is `false`, all dashes
+   * will have the same length, but the line may appear incomplete at the end due to the dash length
+   * not dividing evenly into the line length. Only full dashes are drawn when [aligned] is `false`.
    * If [antialiased] is `true`, half transparent "feathers" will be attached to the boundary,
    * making outlines smooth.
    * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
@@ -840,6 +859,9 @@ public open class CanvasItem internal constructor() : Node() {
    * each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
    * If you need more flexibility (such as being able to use bones), use
    * [RenderingServer.canvasItemAddTriangleArray] instead.
+   * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
+   * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
+   * [drawMultimesh], or [RenderingServer.canvasItemAddTriangleArray].
    */
   @JvmOverloads
   public final fun drawPolygon(
@@ -855,6 +877,9 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a
    * single color must be specified for the whole polygon.
+   * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
+   * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
+   * [drawMultimesh], or [RenderingServer.canvasItemAddTriangleArray].
    */
   @JvmOverloads
   public final fun drawColoredPolygon(
@@ -871,7 +896,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws [text] using the specified [font] at the [pos] (bottom-left corner using the baseline of
    * the font). The text will have its color multiplied by [modulate]. If [width] is greater than or
    * equal to 0, the text will be clipped if it exceeds the specified width.
-   * **Example using the default project font:**
+   * **Example:** Draw "Hello world", using the project's default font:
    *
    * gdscript:
    * ```gdscript
@@ -1228,6 +1253,30 @@ public open class CanvasItem internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
+  /**
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   */
+  public final fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceShaderParameterPtr, NIL)
+  }
+
+  /**
+   * Get the value of a shader parameter as set on this instance.
+   */
+  public final fun getInstanceShaderParameter(name: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceShaderParameterPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
   public final fun setUseParentMaterial(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseParentMaterialPtr, NIL)
@@ -1286,10 +1335,14 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Assigns [screenPoint] as this node's new local transform.
+   * Transforms [viewportPoint] from the viewport's coordinates to this node's local coordinates.
+   * For the opposite operation, use [getGlobalTransformWithCanvas].
+   * [codeblock]
+   * var viewport_point = get_global_transform_with_canvas() * local_point
+   * [/codeblock]
    */
-  public final fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to screenPoint)
+  public final fun makeCanvasPositionLocal(viewportPoint: Vector2): Vector2 {
+    TransferContext.writeArguments(VECTOR2 to viewportPoint)
     TransferContext.callMethod(ptr, MethodBindings.makeCanvasPositionLocalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1751,6 +1804,12 @@ public open class CanvasItem internal constructor() : Node() {
 
     internal val getMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "get_material", 5934680)
+
+    internal val setInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "set_instance_shader_parameter", 3776071444)
+
+    internal val getInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "get_instance_shader_parameter", 2760726917)
 
     internal val setUseParentMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "set_use_parent_material", 2586408642)

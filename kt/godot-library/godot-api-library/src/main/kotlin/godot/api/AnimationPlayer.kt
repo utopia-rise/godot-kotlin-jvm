@@ -204,7 +204,7 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(70, scriptIndex)
+    createNativeObject(71, scriptIndex)
   }
 
   /**
@@ -326,6 +326,46 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
+   * Plays the animation with key [name] and the section starting from [startMarker] and ending on
+   * [endMarker].
+   * If the start marker is empty, the section starts from the beginning of the animation. If the
+   * end marker is empty, the section ends on the end of the animation. See also [play].
+   */
+  @JvmOverloads
+  public final fun playSectionWithMarkers(
+    name: StringName = StringName(""),
+    startMarker: StringName = StringName(""),
+    endMarker: StringName = StringName(""),
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to startMarker, STRING_NAME to endMarker, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
+    TransferContext.callMethod(ptr, MethodBindings.playSectionWithMarkersPtr, NIL)
+  }
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startTime] and ending on
+   * [endTime]. See also [play].
+   * Setting [startTime] to a value outside the range of the animation means the start of the
+   * animation will be used instead, and setting [endTime] to a value outside the range of the
+   * animation means the end of the animation will be used instead. [startTime] cannot be equal to
+   * [endTime].
+   */
+  @JvmOverloads
+  public final fun playSection(
+    name: StringName = StringName(""),
+    startTime: Double = -1.0,
+    endTime: Double = -1.0,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to startTime, DOUBLE to endTime, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
+    TransferContext.callMethod(ptr, MethodBindings.playSectionPtr, NIL)
+  }
+
+  /**
    * Plays the animation with key [name] in reverse.
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
    * its description for more information.
@@ -335,6 +375,40 @@ public open class AnimationPlayer : AnimationMixer() {
       Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
     TransferContext.callMethod(ptr, MethodBindings.playBackwardsPtr, NIL)
+  }
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startMarker] and ending on
+   * [endMarker] in reverse.
+   * This method is a shorthand for [playSectionWithMarkers] with `custom_speed = -1.0` and
+   * `from_end = true`, see its description for more information.
+   */
+  @JvmOverloads
+  public final fun playSectionWithMarkersBackwards(
+    name: StringName = StringName(""),
+    startMarker: StringName = StringName(""),
+    endMarker: StringName = StringName(""),
+    customBlend: Double = -1.0,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to startMarker, STRING_NAME to endMarker, DOUBLE to customBlend)
+    TransferContext.callMethod(ptr, MethodBindings.playSectionWithMarkersBackwardsPtr, NIL)
+  }
+
+  /**
+   * Plays the animation with key [name] and the section starting from [startTime] and ending on
+   * [endTime] in reverse.
+   * This method is a shorthand for [playSection] with `custom_speed = -1.0` and `from_end = true`,
+   * see its description for more information.
+   */
+  @JvmOverloads
+  public final fun playSectionBackwards(
+    name: StringName = StringName(""),
+    startTime: Double = -1.0,
+    endTime: Double = -1.0,
+    customBlend: Double = -1.0,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to startTime, DOUBLE to endTime, DOUBLE to customBlend)
+    TransferContext.callMethod(ptr, MethodBindings.playSectionBackwardsPtr, NIL)
   }
 
   /**
@@ -509,6 +583,64 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
+   * Changes the start and end markers of the section being played. The current playback position
+   * will be clamped within the new section. See also [playSectionWithMarkers].
+   * If the argument is empty, the section uses the beginning or end of the animation. If both are
+   * empty, it means that the section is not set.
+   */
+  @JvmOverloads
+  public final fun setSectionWithMarkers(startMarker: StringName = StringName(""),
+      endMarker: StringName = StringName("")): Unit {
+    TransferContext.writeArguments(STRING_NAME to startMarker, STRING_NAME to endMarker)
+    TransferContext.callMethod(ptr, MethodBindings.setSectionWithMarkersPtr, NIL)
+  }
+
+  /**
+   * Changes the start and end times of the section being played. The current playback position will
+   * be clamped within the new section. See also [playSection].
+   */
+  @JvmOverloads
+  public final fun setSection(startTime: Double = -1.0, endTime: Double = -1.0): Unit {
+    TransferContext.writeArguments(DOUBLE to startTime, DOUBLE to endTime)
+    TransferContext.callMethod(ptr, MethodBindings.setSectionPtr, NIL)
+  }
+
+  /**
+   * Resets the current section if section is set.
+   */
+  public final fun resetSection(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.resetSectionPtr, NIL)
+  }
+
+  /**
+   * Returns the start time of the section currently being played.
+   */
+  public final fun getSectionStartTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSectionStartTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Returns the end time of the section currently being played.
+   */
+  public final fun getSectionEndTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSectionEndTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Returns `true` if an animation is currently playing with section.
+   */
+  public final fun hasSection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasSectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the
    * animation updates too, otherwise it updates at process time. Events between the current frame and
    * [seconds] are skipped.
@@ -660,13 +792,25 @@ public open class AnimationPlayer : AnimationMixer() {
         TypeManager.getMethodBindPtr("AnimationPlayer", "get_auto_capture_ease_type", 631880200)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "play", 3697947785)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play", 3118260607)
+
+    internal val playSectionWithMarkersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_section_with_markers", 1421431412)
+
+    internal val playSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_section", 284774635)
 
     internal val playBackwardsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "play_backwards", 3890664824)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_backwards", 2787282401)
+
+    internal val playSectionWithMarkersBackwardsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_section_with_markers_backwards", 910195100)
+
+    internal val playSectionBackwardsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_section_backwards", 831955981)
 
     internal val playWithCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "play_with_capture", 3180464118)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_with_capture", 1572969103)
 
     internal val pausePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "pause", 3218959716)
@@ -724,6 +868,24 @@ public open class AnimationPlayer : AnimationMixer() {
 
     internal val getCurrentAnimationLengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "get_current_animation_length", 1740695150)
+
+    internal val setSectionWithMarkersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_section_with_markers", 794792241)
+
+    internal val setSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_section", 3749779719)
+
+    internal val resetSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "reset_section", 3218959716)
+
+    internal val getSectionStartTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_section_start_time", 1740695150)
+
+    internal val getSectionEndTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_section_end_time", 1740695150)
+
+    internal val hasSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "has_section", 36873697)
 
     internal val seekPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "seek", 1807872683)

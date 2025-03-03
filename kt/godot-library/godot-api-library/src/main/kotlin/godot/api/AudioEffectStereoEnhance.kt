@@ -25,9 +25,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   * Values greater than 1.0 increase intensity of any panning on audio passing through this effect,
-   * whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix
-   * audio to mono.
+   * Amplifies the difference between stereo channels, increasing or decreasing existing panning. A
+   * value of 0.0 will downmix stereo to mono. Does not affect a mono signal.
    */
   public final inline var panPullout: Float
     @JvmName("panPulloutProperty")
@@ -37,6 +36,10 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       setPanPullout(value)
     }
 
+  /**
+   * Widens sound stage through phase shifting in conjunction with [surround]. Just delays the right
+   * channel if [surround] is 0.
+   */
   public final inline var timePulloutMs: Float
     @JvmName("timePulloutMsProperty")
     get() = getTimePullout()
@@ -45,6 +48,10 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       setTimePullout(value)
     }
 
+  /**
+   * Widens sound stage through phase shifting in conjunction with [timePulloutMs]. Just pans sound
+   * to the left channel if [timePulloutMs] is 0.
+   */
   public final inline var surround: Float
     @JvmName("surroundProperty")
     get() = getSurround()
@@ -54,7 +61,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(109, scriptIndex)
+    createNativeObject(110, scriptIndex)
   }
 
   public final fun setPanPullout(amount: Float): Unit {

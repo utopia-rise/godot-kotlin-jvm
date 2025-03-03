@@ -58,7 +58,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(5)
+    getSingleton(2)
   }
 
   /**
@@ -73,7 +73,6 @@ public object ProjectSettings : Object() {
 
   /**
    * Sets the value of a setting.
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -97,7 +96,6 @@ public object ProjectSettings : Object() {
    * Returns the value of the setting identified by [name]. If the setting doesn't exist and
    * [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is
    * returned.
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -125,9 +123,9 @@ public object ProjectSettings : Object() {
 
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
-   * **Example:**
-   * If the following setting override exists "application/config/name.windows", and the following
-   * code is executed:
+   * **Example:** If the setting override `"application/config/name.windows"` exists, and the
+   * following code is executed on a *Windows* operating system, the overridden setting is printed
+   * instead:
    *
    * gdscript:
    * ```gdscript
@@ -137,9 +135,6 @@ public object ProjectSettings : Object() {
    * ```csharp
    * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
    * ```
-   *
-   * Then the overridden setting will be returned instead if the project is running on the *Windows*
-   * operating system.
    */
   @JvmStatic
   public final fun getSettingWithOverride(name: StringName): Any? {
@@ -221,7 +216,6 @@ public object ProjectSettings : Object() {
    * - `"name"`: [String] (the property's name)
    * - `"type"`: [int] (see [Variant.Type])
    * - optionally `"hint"`: [int] (see [PropertyHint]) and `"hint_string"`: [String]
-   * **Example:**
    *
    * gdscript:
    * ```gdscript
@@ -338,6 +332,8 @@ public object ProjectSettings : Object() {
    * set to `false`.
    * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the
    * start of the resource pack. This is only supported for .pck files.
+   * **Note:** [DirAccess] will not show changes made to the contents of `res://` after calling this
+   * function.
    */
   @JvmOverloads
   @JvmStatic

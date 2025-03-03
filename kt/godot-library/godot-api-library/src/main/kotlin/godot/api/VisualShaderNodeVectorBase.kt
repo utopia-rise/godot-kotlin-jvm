@@ -35,7 +35,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(808, scriptIndex)
+    createNativeObject(834, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

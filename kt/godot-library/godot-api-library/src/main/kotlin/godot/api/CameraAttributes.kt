@@ -35,9 +35,11 @@ import kotlin.jvm.JvmName
 public open class CameraAttributes : Resource() {
   /**
    * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter
-   * image. Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
-   * enabled. When [autoExposureEnabled] this can be used as a method of exposure compensation,
+   * image.
+   * If [autoExposureEnabled] is `true`, this can be used as a method of exposure compensation,
    * doubling the value will increase the exposure value (measured in EV100) by 1 stop.
+   * **Note:** Only available when
+   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
    */
   public final inline var exposureSensitivity: Float
     @JvmName("exposureSensitivityProperty")
@@ -95,7 +97,7 @@ public open class CameraAttributes : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(163, scriptIndex)
+    createNativeObject(164, scriptIndex)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {

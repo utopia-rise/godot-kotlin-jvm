@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MarginContainer : Container() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(360, scriptIndex)
+    createNativeObject(366, scriptIndex)
   }
 
   public companion object

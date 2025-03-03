@@ -40,7 +40,7 @@ public open class CompressedTexture3D : Texture3D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(201, scriptIndex)
+    createNativeObject(203, scriptIndex)
   }
 
   /**

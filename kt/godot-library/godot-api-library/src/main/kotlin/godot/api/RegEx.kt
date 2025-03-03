@@ -73,14 +73,14 @@ import kotlin.jvm.JvmOverloads
  *     print(result.get_string("digit"))
  * # Would print 01 03 0 3f 42
  * [/codeblock]
- * **Example of splitting a string using a RegEx:**
+ * **Example:** Split a string using a RegEx:
  * [codeblock]
  * var regex = RegEx.new()
  * regex.compile("\\S+") # Negated whitespace character class.
  * var results = []
  * for result in regex.search_all("One  Two \n\tThree"):
  *     results.push_back(result.get_string())
- * # The `results` array now contains "One", "Two", "Three".
+ * # The `results` array now contains "One", "Two", and "Three".
  * [/codeblock]
  * **Note:** Godot's regex implementation is based on the [url=https://www.pcre.org/]PCRE2[/url]
  * library. You can view the full pattern reference
@@ -90,7 +90,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(532, scriptIndex)
+    createNativeObject(549, scriptIndex)
   }
 
   /**
@@ -104,10 +104,12 @@ public open class RegEx : RefCounted() {
 
   /**
    * Compiles and assign the search pattern to use. Returns [OK] if the compilation is successful.
-   * If an error is encountered, details are printed to standard output and an error is returned.
+   * If compilation fails, returns [FAILED] and when [showError] is `true`, details are printed to
+   * standard output.
    */
-  public final fun compile(pattern: String): Error {
-    TransferContext.writeArguments(STRING to pattern)
+  @JvmOverloads
+  public final fun compile(pattern: String, showError: Boolean = true): Error {
+    TransferContext.writeArguments(STRING to pattern, BOOL to showError)
     TransferContext.callMethod(ptr, MethodBindings.compilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -214,10 +216,11 @@ public open class RegEx : RefCounted() {
 
   public companion object {
     /**
-     * Creates and compiles a new [RegEx] object.
+     * Creates and compiles a new [RegEx] object. See also [compile].
      */
-    public final fun createFromString(pattern: String): RegEx? {
-      TransferContext.writeArguments(STRING to pattern)
+    @JvmOverloads
+    public final fun createFromString(pattern: String, showError: Boolean = true): RegEx? {
+      TransferContext.writeArguments(STRING to pattern, BOOL to showError)
       TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as RegEx?)
     }
@@ -225,11 +228,11 @@ public open class RegEx : RefCounted() {
 
   public object MethodBindings {
     internal val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 2150300909)
+        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
 
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
 
-    internal val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 166001499)
+    internal val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 3565188097)
 
     internal val searchPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "search", 3365977994)
 

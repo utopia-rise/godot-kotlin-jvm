@@ -36,7 +36,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(792, scriptIndex)
+    createNativeObject(818, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

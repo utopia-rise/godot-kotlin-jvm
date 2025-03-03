@@ -25,6 +25,10 @@ import kotlin.jvm.JvmName
  * infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines
  * which direction is considered as "above" and in the editor, the line over the plane represents this
  * direction. It can for example be used for endless flat floors.
+ * **Note:** When the physics engine is set to **Jolt Physics** in the project settings
+ * ([ProjectSettings.physics/3d/physicsEngine]), [WorldBoundaryShape3D] has a finite size (centered at
+ * the shape's origin). It can be adjusted by changing
+ * [ProjectSettings.physics/joltPhysics3d/limits/worldBoundaryShapeSize].
  */
 @GodotBaseType
 public open class WorldBoundaryShape3D : Shape3D() {
@@ -41,7 +45,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(832, scriptIndex)
+    createNativeObject(858, scriptIndex)
   }
 
   /**

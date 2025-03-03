@@ -33,8 +33,18 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [LineEdit] provides an input field for editing a single line of text. It features many built-in
- * shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
+ * [LineEdit] provides an input field for editing a single line of text.
+ * - When the [LineEdit] control is focused using the keyboard arrow keys, it will only gain focus
+ * and not enter edit mode.
+ * - To enter edit mode, click on the control with the mouse, see also [keepEditingOnTextSubmit].
+ * - To exit edit mode, press `ui_text_submit` or `ui_cancel` (by default [kbd]Escape[/kbd])
+ * actions.
+ * - Check [edit], [unedit], [isEditing], and [signal editing_toggled] for more information.
+ * **Important:**
+ * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by
+ * default [kbd]Shift + Tab[/kbd]) or [Control.grabFocus] still enters edit mode (for compatibility).
+ * [LineEdit] features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps
+ * to [kbd]Cmd[/kbd] on macOS):
  * - [kbd]Ctrl + C[/kbd]: Copy
  * - [kbd]Ctrl + X[/kbd]: Cut
  * - [kbd]Ctrl + V[/kbd] or [kbd]Ctrl + Y[/kbd]: Paste/"yank"
@@ -58,6 +68,7 @@ import kotlin.jvm.JvmOverloads
  * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the
  * line
  * - [kbd]Cmd + Right Arrow[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
+ * **Note:** Caret movement shortcuts listed above are not affected by [shortcutKeysEnabled].
  */
 @GodotBaseType
 public open class LineEdit : Control() {
@@ -73,9 +84,15 @@ public open class LineEdit : Control() {
   public val textChangeRejected: Signal1<String> by Signal1
 
   /**
-   * Emitted when the user presses [KEY_ENTER] on the [LineEdit].
+   * Emitted when the user presses the `ui_text_submit` action (by default: [kbd]Enter[/kbd] or
+   * [kbd]Kp Enter[/kbd]) while the [LineEdit] has focus.
    */
   public val textSubmitted: Signal1<String> by Signal1
+
+  /**
+   * Emitted when the [LineEdit] switches in or out of edit mode.
+   */
+  public val editingToggled: Signal1<Boolean> by Signal1
 
   /**
    * String value of the [LineEdit].
@@ -117,9 +134,9 @@ public open class LineEdit : Control() {
    * limit.
    * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens
    * both for existing [text] contents when setting the max length, or for new text inserted in the
-   * [LineEdit], including pasting. If any input text is truncated, the [signal text_change_rejected]
-   * signal is emitted with the truncated substring as parameter.
-   * **Example:**
+   * [LineEdit], including pasting.
+   * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the
+   * truncated substring as parameter:
    *
    * gdscript:
    * ```gdscript
@@ -162,6 +179,18 @@ public open class LineEdit : Control() {
     }
 
   /**
+   * If `true`, the [LineEdit] will not exit edit mode when text is submitted by pressing
+   * `ui_text_submit` action (by default: [kbd]Enter[/kbd] or [kbd]Kp Enter[/kbd]).
+   */
+  public final inline var keepEditingOnTextSubmit: Boolean
+    @JvmName("keepEditingOnTextSubmitProperty")
+    get() = isEditingKeptOnTextSubmit()
+    @JvmName("keepEditingOnTextSubmitProperty")
+    set(`value`) {
+      setKeepEditingOnTextSubmit(value)
+    }
+
+  /**
    * If `true`, the [LineEdit] width will increase to stay longer than the [text]. It will **not**
    * compress if the [text] is shortened.
    */
@@ -182,6 +211,17 @@ public open class LineEdit : Control() {
     @JvmName("contextMenuEnabledProperty")
     set(`value`) {
       setContextMenuEnabled(value)
+    }
+
+  /**
+   * If `true`, "Emoji and Symbols" menu is enabled.
+   */
+  public final inline var emojiMenuEnabled: Boolean
+    @JvmName("emojiMenuEnabledProperty")
+    get() = isEmojiMenuEnabled()
+    @JvmName("emojiMenuEnabledProperty")
+    set(`value`) {
+      setEmojiMenuEnabled(value)
     }
 
   /**
@@ -219,7 +259,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `false`, using shortcuts will be disabled.
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
+   * disabled.
    */
   public final inline var shortcutKeysEnabled: Boolean
     @JvmName("shortcutKeysEnabledProperty")
@@ -446,7 +487,35 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(357, scriptIndex)
+    createNativeObject(362, scriptIndex)
+  }
+
+  /**
+   * Returns `true` if the user has text in the
+   * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME).
+   */
+  public final fun hasImeText(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasImeTextPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Closes the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) if
+   * it is open. Any text in the IME will be lost.
+   */
+  public final fun cancelIme(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.cancelImePtr, NIL)
+  }
+
+  /**
+   * Applies text from the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url]
+   * (IME) and closes the IME if it is open.
+   */
+  public final fun applyIme(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.applyImePtr, NIL)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -458,6 +527,43 @@ public open class LineEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Allows entering edit mode whether the [LineEdit] is focused or not.
+   * See also [keepEditingOnTextSubmit].
+   */
+  public final fun edit(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.editPtr, NIL)
+  }
+
+  /**
+   * Allows exiting edit mode while preserving focus.
+   */
+  public final fun unedit(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.uneditPtr, NIL)
+  }
+
+  /**
+   * Returns whether the [LineEdit] is being edited.
+   */
+  public final fun isEditing(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEditingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setKeepEditingOnTextSubmit(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setKeepEditingOnTextSubmitPtr, NIL)
+  }
+
+  public final fun isEditingKeptOnTextSubmit(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEditingKeptOnTextSubmitPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -507,6 +613,24 @@ public open class LineEdit : Control() {
   public final fun deselect(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if an "undo" action is available.
+   */
+  public final fun hasUndo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasUndoPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if a "redo" action is available.
+   */
+  public final fun hasRedo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasRedoPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -851,6 +975,17 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setEmojiMenuEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setEmojiMenuEnabledPtr, NIL)
+  }
+
+  public final fun isEmojiMenuEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEmojiMenuEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setVirtualKeyboardEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
@@ -1098,9 +1233,13 @@ public open class LineEdit : Control() {
      */
     MENU_INSERT_SHY(29),
     /**
+     * Opens system emoji and symbol picker.
+     */
+    MENU_EMOJI_AND_SYMBOL(30),
+    /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(30),
+    MENU_MAX(31),
     ;
 
     public val id: Long
@@ -1166,11 +1305,33 @@ public open class LineEdit : Control() {
   public companion object
 
   public object MethodBindings {
+    internal val hasImeTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "has_ime_text", 36873697)
+
+    internal val cancelImePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "cancel_ime", 3218959716)
+
+    internal val applyImePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "apply_ime", 3218959716)
+
     internal val setHorizontalAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "set_horizontal_alignment", 2312603777)
 
     internal val getHorizontalAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341400642)
+
+    internal val editPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "edit", 3218959716)
+
+    internal val uneditPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "unedit", 3218959716)
+
+    internal val isEditingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_editing", 36873697)
+
+    internal val setKeepEditingOnTextSubmitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_keep_editing_on_text_submit", 2586408642)
+
+    internal val isEditingKeptOnTextSubmitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_editing_kept_on_text_submit", 36873697)
 
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "clear", 3218959716)
 
@@ -1181,6 +1342,12 @@ public open class LineEdit : Control() {
 
     internal val deselectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "deselect", 3218959716)
+
+    internal val hasUndoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "has_undo", 36873697)
+
+    internal val hasRedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "has_redo", 36873697)
 
     internal val hasSelectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "has_selection", 36873697)
@@ -1322,6 +1489,12 @@ public open class LineEdit : Control() {
 
     internal val isContextMenuEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "is_context_menu_enabled", 2240911060)
+
+    internal val setEmojiMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_emoji_menu_enabled", 2586408642)
+
+    internal val isEmojiMenuEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_emoji_menu_enabled", 36873697)
 
     internal val setVirtualKeyboardEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2586408642)

@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ORMMaterial3D : BaseMaterial3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(412, scriptIndex)
+    createNativeObject(418, scriptIndex)
   }
 
   public companion object

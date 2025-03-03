@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Dictionary
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantArray
@@ -26,6 +27,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -51,10 +53,10 @@ import kotlin.jvm.JvmOverloads
  * astar_grid.region = Rect2i(0, 0, 32, 32)
  * astar_grid.cell_size = Vector2(16, 16)
  * astar_grid.update()
- * print(astar_grid.get_id_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (1, 1), (2, 2),
- * (3, 3), (3, 4)
- * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # prints (0, 0), (16, 16), (32,
- * 32), (48, 48), (48, 64)
+ * print(astar_grid.get_id_path(Vector2i(0, 0), Vector2i(3, 4))) # Prints [(0, 0), (1, 1), (2, 2),
+ * (3, 3), (3, 4)]
+ * print(astar_grid.get_point_path(Vector2i(0, 0), Vector2i(3, 4))) # Prints [(0, 0), (16, 16), (32,
+ * 32), (48, 48), (48, 64)]
  * ```
  * csharp:
  * ```csharp
@@ -62,10 +64,10 @@ import kotlin.jvm.JvmOverloads
  * astarGrid.Region = new Rect2I(0, 0, 32, 32);
  * astarGrid.CellSize = new Vector2I(16, 16);
  * astarGrid.Update();
- * GD.Print(astarGrid.GetIdPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (1, 1), (2,
- * 2), (3, 3), (3, 4)
- * GD.Print(astarGrid.GetPointPath(Vector2I.Zero, new Vector2I(3, 4))); // prints (0, 0), (16, 16),
- * (32, 32), (48, 48), (48, 64)
+ * GD.Print(astarGrid.GetIdPath(Vector2I.Zero, new Vector2I(3, 4))); // Prints [(0, 0), (1, 1), (2,
+ * 2), (3, 3), (3, 4)]
+ * GD.Print(astarGrid.GetPointPath(Vector2I.Zero, new Vector2I(3, 4))); // Prints [(0, 0), (16, 16),
+ * (32, 32), (48, 48), (48, 64)]
  * ```
  *
  * To remove a point from the pathfinding grid, it must be set as "solid" with [setPointSolid].
@@ -294,7 +296,7 @@ public open class AStarGrid2D : RefCounted() {
    * Called when estimating the cost between a point and the path's ending point.
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
-  public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
+  public open fun _estimateCost(fromId: Vector2i, endId: Vector2i): Float {
     throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
   }
 
@@ -522,12 +524,24 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   /**
+   * Returns an array of dictionaries with point data (`id`: [Vector2i], `position`: [Vector2],
+   * `solid`: [bool], `weight_scale`: [float]) within a [region].
+   */
+  public final fun getPointDataInRegion(region: Rect2i): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(RECT2I to region)
+    TransferContext.callMethod(ptr, MethodBindings.getPointDataInRegionPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+  }
+
+  /**
    * Returns an array with the points that are in the path found by [AStarGrid2D] between the given
    * points. The array is ordered from the starting point to the ending point of the path.
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
    * array and will print an error message.
+   * Additionally, when [allowPartialPath] is `true` and [toId] is solid the search may take an
+   * unusually long time to finish.
    */
   @JvmOverloads
   public final fun getPointPath(
@@ -545,6 +559,8 @@ public open class AStarGrid2D : RefCounted() {
    * given points. The array is ordered from the starting point to the ending point of the path.
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
+   * **Note:** When [allowPartialPath] is `true` and [toId] is solid the search may take an
+   * unusually long time to finish.
    */
   @JvmOverloads
   public final fun getIdPath(
@@ -783,6 +799,9 @@ public open class AStarGrid2D : RefCounted() {
 
     internal val getPointPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_position", 108438297)
+
+    internal val getPointDataInRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_data_in_region", 3893818462)
 
     internal val getPointPathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_path", 1641925693)

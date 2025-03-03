@@ -26,7 +26,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
    * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to
    * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
-  public final inline var textureArray: Texture2DArray?
+  public final inline var textureArray: TextureLayered?
     @JvmName("textureArrayProperty")
     get() = getTextureArray()
     @JvmName("textureArrayProperty")
@@ -35,27 +35,27 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(777, scriptIndex)
+    createNativeObject(803, scriptIndex)
   }
 
-  public final fun setTextureArray(`value`: Texture2DArray?): Unit {
+  public final fun setTextureArray(`value`: TextureLayered?): Unit {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureArrayPtr, NIL)
   }
 
-  public final fun getTextureArray(): Texture2DArray? {
+  public final fun getTextureArray(): TextureLayered? {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureArrayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2DArray?)
+    return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 
   public companion object
 
   public object MethodBindings {
     internal val setTextureArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array", 2206200446)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array", 1278366092)
 
     internal val getTextureArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array", 146117123)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array", 3984243839)
   }
 }

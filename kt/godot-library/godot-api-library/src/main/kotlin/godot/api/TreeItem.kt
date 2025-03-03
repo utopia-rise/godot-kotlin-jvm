@@ -99,7 +99,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(676, scriptIndex)
+    createNativeObject(702, scriptIndex)
   }
 
   /**
@@ -118,6 +118,25 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCellModePtr, LONG)
     return TreeItem.TreeCellMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets the given column's auto translate mode to [mode].
+   * All columns use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto
+   * translate mode as the [Tree] itself.
+   */
+  public final fun setAutoTranslateMode(column: Int, mode: Node.AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
+    TransferContext.callMethod(ptr, MethodBindings.setAutoTranslateModePtr, NIL)
+  }
+
+  /**
+   * Returns the column's auto translate mode.
+   */
+  public final fun getAutoTranslateMode(column: Int): Node.AutoTranslateMode {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -333,7 +352,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given cell's icon [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode.
+   * Sets the given cell's icon [Texture2D]. If the cell is in [CELL_MODE_ICON] mode, the icon is
+   * displayed in the center of the cell. Otherwise, the icon is displayed before the cell's text.
+   * [CELL_MODE_RANGE] does not display an icon.
    */
   public final fun setIcon(column: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
@@ -346,6 +367,24 @@ public open class TreeItem internal constructor() : Object() {
   public final fun getIcon(column: Int): Texture2D? {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getIconPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+  }
+
+  /**
+   * Sets the given cell's icon overlay [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode,
+   * and icon has to be set. Overlay is drawn on top of icon, in the bottom left corner.
+   */
+  public final fun setIconOverlay(column: Int, texture: Texture2D?): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
+    TransferContext.callMethod(ptr, MethodBindings.setIconOverlayPtr, NIL)
+  }
+
+  /**
+   * Returns the given column's icon overlay [Texture2D].
+   */
+  public final fun getIconOverlay(column: Int): Texture2D? {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getIconOverlayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -735,11 +774,19 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a button with [Texture2D] [button] at column [column]. The [id] is used to identify the
-   * button in the according [signal Tree.button_clicked] signal and can be different from the buttons
-   * index. If not specified, the next available index is used, which may be retrieved by calling
-   * [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have
-   * a [tooltipText].
+   * Removes all buttons from all columns of this item.
+   */
+  public final fun clearButtons(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.clearButtonsPtr, NIL)
+  }
+
+  /**
+   * Adds a button with [Texture2D] [button] to the end of the cell at column [column]. The [id] is
+   * used to identify the button in the according [signal Tree.button_clicked] signal and can be
+   * different from the buttons index. If not specified, the next available index is used, which may be
+   * retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can
+   * be [disabled] and have a [tooltipText].
    */
   @JvmOverloads
   public final fun addButton(
@@ -979,7 +1026,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next sibling TreeItem in the tree or a null object if there is none.
+   * Returns the next sibling TreeItem in the tree or a `null` object if there is none.
    */
   public final fun getNext(): TreeItem? {
     TransferContext.writeArguments()
@@ -988,7 +1035,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous sibling TreeItem in the tree or a null object if there is none.
+   * Returns the previous sibling TreeItem in the tree or a `null` object if there is none.
    */
   public final fun getPrev(): TreeItem? {
     TransferContext.writeArguments()
@@ -997,7 +1044,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the parent TreeItem or a null object if there is none.
+   * Returns the parent TreeItem or a `null` object if there is none.
    */
   public final fun getParent(): TreeItem? {
     TransferContext.writeArguments()
@@ -1136,14 +1183,14 @@ public open class TreeItem internal constructor() : Object() {
     id: Long,
   ) {
     /**
-     * Cell shows a string label. When editable, the text can be edited using a [LineEdit], or a
-     * [TextEdit] popup if [setEditMultiline] is used.
+     * Cell shows a string label, optionally with an icon. When editable, the text can be edited
+     * using a [LineEdit], or a [TextEdit] popup if [setEditMultiline] is used.
      */
     CELL_MODE_STRING(0),
     /**
-     * Cell shows a checkbox, optionally with text. The checkbox can be pressed, released, or
-     * indeterminate (via [setIndeterminate]). The checkbox can't be clicked unless the cell is
-     * editable.
+     * Cell shows a checkbox, optionally with text and an icon. The checkbox can be pressed,
+     * released, or indeterminate (via [setIndeterminate]). The checkbox can't be clicked unless the
+     * cell is editable.
      */
     CELL_MODE_CHECK(1),
     /**
@@ -1154,7 +1201,8 @@ public open class TreeItem internal constructor() : Object() {
      */
     CELL_MODE_RANGE(2),
     /**
-     * Cell shows an icon. It can't be edited nor display text.
+     * Cell shows an icon. It can't be edited nor display text. The icon is always centered within
+     * the cell.
      */
     CELL_MODE_ICON(3),
     /**
@@ -1185,6 +1233,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val getCellModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_cell_mode", 3406114978)
+
+    internal val setAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_auto_translate_mode", 287402019)
+
+    internal val getAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_auto_translate_mode", 906302372)
 
     internal val setEditMultilinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_edit_multiline", 300928843)
@@ -1260,6 +1314,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val getIconPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_icon", 3536238170)
+
+    internal val setIconOverlayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_overlay", 666127730)
+
+    internal val getIconOverlayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_overlay", 3536238170)
 
     internal val setIconRegionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_icon_region", 1356297692)
@@ -1391,6 +1451,9 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val isCustomSetAsButtonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "is_custom_set_as_button", 1116898809)
+
+    internal val clearButtonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "clear_buttons", 3218959716)
 
     internal val addButtonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "add_button", 1688223362)

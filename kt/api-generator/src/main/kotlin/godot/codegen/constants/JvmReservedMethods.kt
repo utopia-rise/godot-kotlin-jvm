@@ -10,6 +10,7 @@ val jvmReservedMethods = listOf(
             isVararg = false,
             isVirtual = false,
             isStatic = false,
+            isRequired = false,
             hash = Long.MIN_VALUE,
             hashCompatibility = listOf(),
             returnValue = null,

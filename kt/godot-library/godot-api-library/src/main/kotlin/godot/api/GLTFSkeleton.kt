@@ -62,7 +62,7 @@ public open class GLTFSkeleton : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(262, scriptIndex)
+    createNativeObject(266, scriptIndex)
   }
 
   public final fun getJoints(): PackedInt32Array {
@@ -105,9 +105,9 @@ public open class GLTFSkeleton : Resource() {
   }
 
   /**
-   * Returns a [Dictionary] that maps skeleton bone indices to the indices of GLTF nodes. This
-   * property is unused during import, and only set during export. In a GLTF file, a bone is a node, so
-   * Godot converts skeleton bones to GLTF nodes.
+   * Returns a [Dictionary] that maps skeleton bone indices to the indices of glTF nodes. This
+   * property is unused during import, and only set during export. In a glTF file, a bone is a node, so
+   * Godot converts skeleton bones to glTF nodes.
    */
   public final fun getGodotBoneNode(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -116,9 +116,9 @@ public open class GLTFSkeleton : Resource() {
   }
 
   /**
-   * Sets a [Dictionary] that maps skeleton bone indices to the indices of GLTF nodes. This property
-   * is unused during import, and only set during export. In a GLTF file, a bone is a node, so Godot
-   * converts skeleton bones to GLTF nodes.
+   * Sets a [Dictionary] that maps skeleton bone indices to the indices of glTF nodes. This property
+   * is unused during import, and only set during export. In a glTF file, a bone is a node, so Godot
+   * converts skeleton bones to glTF nodes.
    */
   public final fun setGodotBoneNode(godotBoneNode: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to godotBoneNode)

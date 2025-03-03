@@ -57,7 +57,7 @@ public open class CompositorEffect : Resource() {
    * run.
    * **Note:** In [_renderCallback], to access the resolved buffer use:
    * [codeblock]
-   * var render_scene_buffers : RenderSceneBuffersRD = render_data.get_render_scene_buffers()
+   * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var color_buffer = render_scene_buffers.get_texture("render_buffers", "color")
    * [/codeblock]
    */
@@ -74,7 +74,7 @@ public open class CompositorEffect : Resource() {
    * run.
    * **Note:** In [_renderCallback], to access the resolved buffer use:
    * [codeblock]
-   * var render_scene_buffers : RenderSceneBuffersRD = render_data.get_render_scene_buffers()
+   * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var depth_buffer = render_scene_buffers.get_texture("render_buffers", "depth")
    * [/codeblock]
    */
@@ -90,7 +90,7 @@ public open class CompositorEffect : Resource() {
    * If `true` this triggers motion vectors being calculated during the opaque render state.
    * **Note:** In [_renderCallback], to access the motion vector buffer use:
    * [codeblock]
-   * var render_scene_buffers : RenderSceneBuffersRD = render_data.get_render_scene_buffers()
+   * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var motion_buffer = render_scene_buffers.get_velocity_texture()
    * [/codeblock]
    */
@@ -107,9 +107,23 @@ public open class CompositorEffect : Resource() {
    * applicable for the Forward+ renderer.
    * **Note:** In [_renderCallback], to access the roughness buffer use:
    * [codeblock]
-   * var render_scene_buffers : RenderSceneBuffersRD = render_data.get_render_scene_buffers()
+   * var render_scene_buffers = render_data.get_render_scene_buffers()
    * var roughness_buffer = render_scene_buffers.get_texture("forward_clustered",
    * "normal_roughness")
+   * [/codeblock]
+   * The raw normal and roughness buffer is stored in an optimized format, different than the one
+   * available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use
+   * this function, copied from
+   * [url=https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341]here[/url]:
+   * [codeblock]
+   * vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
+   *     float roughness = p_normal_roughness.w;
+   *     if (roughness > 0.5) {
+   *         roughness = 1.0 - roughness;
+   *     }
+   *     roughness /= (127.0 / 255.0);
+   *     return vec4(normalize(p_normal_roughness.xyz * 2.0 - 1.0) * 0.5 + 0.5, roughness);
+   * }
    * [/codeblock]
    */
   public final inline var needsNormalRoughness: Boolean
@@ -133,7 +147,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(196, scriptIndex)
+    createNativeObject(198, scriptIndex)
   }
 
   /**
@@ -244,8 +258,8 @@ public open class CompositorEffect : Resource() {
      */
     EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
     /**
-     * The callback is called after our transparent rendering pass, but before any build in post
-     * effects and output to our render target.
+     * The callback is called after our transparent rendering pass, but before any built-in
+     * post-processing effects and output to our render target.
      */
     EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
     /**

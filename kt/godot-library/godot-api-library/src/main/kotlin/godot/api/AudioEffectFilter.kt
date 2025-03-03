@@ -59,6 +59,10 @@ public open class AudioEffectFilter : AudioEffect() {
       setGain(value)
     }
 
+  /**
+   * Steepness of the cutoff curve in dB per octave, also known as the order of the filter. Higher
+   * orders have a more aggressive cutoff.
+   */
   public final inline var db: FilterDB
     @JvmName("dbProperty")
     get() = getDb()
@@ -68,7 +72,7 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(93, scriptIndex)
+    createNativeObject(94, scriptIndex)
   }
 
   public final fun setCutoff(freq: Float): Unit {
@@ -118,9 +122,21 @@ public open class AudioEffectFilter : AudioEffect() {
   public enum class FilterDB(
     id: Long,
   ) {
+    /**
+     * Cutting off at 6dB per octave.
+     */
     FILTER_6DB(0),
+    /**
+     * Cutting off at 12dB per octave.
+     */
     FILTER_12DB(1),
+    /**
+     * Cutting off at 18dB per octave.
+     */
     FILTER_18DB(2),
+    /**
+     * Cutting off at 24dB per octave.
+     */
     FILTER_24DB(3),
     ;
 

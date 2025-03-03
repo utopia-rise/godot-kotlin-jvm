@@ -128,7 +128,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(391, scriptIndex)
+    createNativeObject(397, scriptIndex)
   }
 
   /**
@@ -203,6 +203,25 @@ public open class NavigationLink3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Sets the [RID] of the navigation map this link should use. By default the link will
+   * automatically join the [World3D] default navigation map so this function is only required to
+   * override the default map.
+   */
+  public final fun setNavigationMap(navigationMap: RID): Unit {
+    TransferContext.writeArguments(_RID to navigationMap)
+    TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
+  }
+
+  /**
+   * Returns the current navigation map [RID] used by this link.
+   */
+  public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setBidirectional(bidirectional: Boolean): Unit {
@@ -335,6 +354,12 @@ public open class NavigationLink3D : Node3D() {
 
     internal val isEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationLink3D", "is_enabled", 36873697)
+
+    internal val setNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_map", 2722037293)
+
+    internal val getNavigationMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_map", 2944877500)
 
     internal val setBidirectionalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationLink3D", "set_bidirectional", 2586408642)

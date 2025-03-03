@@ -26,16 +26,15 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(249, scriptIndex)
+    createNativeObject(252, scriptIndex)
   }
 
   /**
    * Returns a new instance of the script.
-   * For example:
    * [codeblock]
    * var MyClass = load("myclass.gd")
    * var instance = MyClass.new()
-   * assert(instance.get_script() == MyClass)
+   * print(instance.get_script() == MyClass) # Prints true
    * [/codeblock]
    */
   public final fun new(vararg __var_args: Any?): Any? {

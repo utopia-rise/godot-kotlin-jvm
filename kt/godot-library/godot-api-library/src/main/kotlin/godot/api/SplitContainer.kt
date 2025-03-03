@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -34,6 +36,16 @@ public open class SplitContainer : Container() {
   public val dragged: Signal1<Long> by Signal1
 
   /**
+   * Emitted when the user starts dragging.
+   */
+  public val dragStarted: Signal0 by Signal0
+
+  /**
+   * Emitted when the user ends dragging.
+   */
+  public val dragEnded: Signal0 by Signal0
+
+  /**
    * The initial offset of the splitting between the two [Control]s, with `0` being at the end of
    * the first [Control].
    */
@@ -46,7 +58,8 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled.
+   * If `true`, the dragger will be disabled and the children will be sized as if the [splitOffset]
+   * was `0`.
    */
   public final inline var collapsed: Boolean
     @JvmName("collapsedProperty")
@@ -57,7 +70,19 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * Determines the dragger's visibility. See [DraggerVisibility] for details.
+   * Enables or disables split dragging.
+   */
+  public final inline var draggingEnabled: Boolean
+    @JvmName("draggingEnabledProperty")
+    get() = isDraggingEnabled()
+    @JvmName("draggingEnabledProperty")
+    set(`value`) {
+      setDraggingEnabled(value)
+    }
+
+  /**
+   * Determines the dragger's visibility. See [DraggerVisibility] for details. This property does
+   * not determine whether dragging is enabled or not. Use [draggingEnabled] for that.
    */
   public final inline var draggerVisibility: DraggerVisibility
     @JvmName("draggerVisibilityProperty")
@@ -79,8 +104,56 @@ public open class SplitContainer : Container() {
       setVertical(value)
     }
 
+  /**
+   * Reduces the size of the drag area and split bar [theme_item split_bar_background] at the
+   * beginning of the container.
+   */
+  public final inline var dragAreaMarginBegin: Int
+    @JvmName("dragAreaMarginBeginProperty")
+    get() = getDragAreaMarginBegin()
+    @JvmName("dragAreaMarginBeginProperty")
+    set(`value`) {
+      setDragAreaMarginBegin(value)
+    }
+
+  /**
+   * Reduces the size of the drag area and split bar [theme_item split_bar_background] at the end of
+   * the container.
+   */
+  public final inline var dragAreaMarginEnd: Int
+    @JvmName("dragAreaMarginEndProperty")
+    get() = getDragAreaMarginEnd()
+    @JvmName("dragAreaMarginEndProperty")
+    set(`value`) {
+      setDragAreaMarginEnd(value)
+    }
+
+  /**
+   * Shifts the drag area in the axis of the container to prevent the drag area from overlapping the
+   * [ScrollBar] or other selectable [Control] of a child node.
+   */
+  public final inline var dragAreaOffset: Int
+    @JvmName("dragAreaOffsetProperty")
+    get() = getDragAreaOffset()
+    @JvmName("dragAreaOffsetProperty")
+    set(`value`) {
+      setDragAreaOffset(value)
+    }
+
+  /**
+   * Highlights the drag area [Rect2] so you can see where it is during development. The drag area
+   * is gold if [draggingEnabled] is `true`, and red if `false`.
+   */
+  public final inline var dragAreaHighlightInEditor: Boolean
+    @JvmName("dragAreaHighlightInEditorProperty")
+    get() = isDragAreaHighlightInEditorEnabled()
+    @JvmName("dragAreaHighlightInEditorProperty")
+    set(`value`) {
+      setDragAreaHighlightInEditor(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(608, scriptIndex)
+    createNativeObject(627, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {
@@ -136,19 +209,98 @@ public open class SplitContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setDraggingEnabled(draggingEnabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to draggingEnabled)
+    TransferContext.callMethod(ptr, MethodBindings.setDraggingEnabledPtr, NIL)
+  }
+
+  public final fun isDraggingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isDraggingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setDragAreaMarginBegin(margin: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setDragAreaMarginBeginPtr, NIL)
+  }
+
+  public final fun getDragAreaMarginBegin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragAreaMarginBeginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setDragAreaMarginEnd(margin: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setDragAreaMarginEndPtr, NIL)
+  }
+
+  public final fun getDragAreaMarginEnd(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragAreaMarginEndPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setDragAreaOffset(offset: Int): Unit {
+    TransferContext.writeArguments(LONG to offset.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setDragAreaOffsetPtr, NIL)
+  }
+
+  public final fun getDragAreaOffset(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragAreaOffsetPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setDragAreaHighlightInEditor(dragAreaHighlightInEditor: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to dragAreaHighlightInEditor)
+    TransferContext.callMethod(ptr, MethodBindings.setDragAreaHighlightInEditorPtr, NIL)
+  }
+
+  public final fun isDragAreaHighlightInEditorEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isDragAreaHighlightInEditorEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the drag area [Control]. For example, you can move a pre-configured button into the
+   * drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to
+   * `center` prior to the `reparent()` call.
+   * [codeblock]
+   * $BarnacleButton.reparent($SplitContainer.get_drag_area_control())
+   * [/codeblock]
+   * **Note:** The drag area [Control] is drawn over the [SplitContainer]'s children, so
+   * [CanvasItem] draw objects called from the [Control] and children added to the [Control] will also
+   * appear over the [SplitContainer]'s children. Try setting [Control.mouseFilter] of custom children
+   * to [Control.MOUSE_FILTER_IGNORE] to prevent blocking the mouse from dragging if desired.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash.
+   */
+  public final fun getDragAreaControl(): Control? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragAreaControlPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
+  }
+
   public enum class DraggerVisibility(
     id: Long,
   ) {
     /**
-     * The split dragger is visible when the cursor hovers it.
+     * The split dragger icon is always visible when [theme_item autohide] is `false`, otherwise
+     * visible only when the cursor hovers it.
+     * The size of the grabber icon determines the minimum [theme_item separation].
+     * The dragger icon is automatically hidden if the length of the grabber icon is longer than the
+     * split bar.
      */
     DRAGGER_VISIBLE(0),
     /**
-     * The split dragger is never visible.
+     * The split dragger icon is never visible regardless of the value of [theme_item autohide].
+     * The size of the grabber icon determines the minimum [theme_item separation].
      */
     DRAGGER_HIDDEN(1),
     /**
-     * The split dragger is never visible and its space collapsed.
+     * The split dragger icon is not visible, and the split bar is collapsed to zero thickness.
      */
     DRAGGER_HIDDEN_COLLAPSED(2),
     ;
@@ -192,5 +344,38 @@ public open class SplitContainer : Container() {
 
     internal val isVerticalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "is_vertical", 36873697)
+
+    internal val setDraggingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_dragging_enabled", 2586408642)
+
+    internal val isDraggingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_dragging_enabled", 36873697)
+
+    internal val setDragAreaMarginBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_drag_area_margin_begin", 1286410249)
+
+    internal val getDragAreaMarginBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_margin_begin", 3905245786)
+
+    internal val setDragAreaMarginEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_drag_area_margin_end", 1286410249)
+
+    internal val getDragAreaMarginEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_margin_end", 3905245786)
+
+    internal val setDragAreaOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_drag_area_offset", 1286410249)
+
+    internal val getDragAreaOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_offset", 3905245786)
+
+    internal val setDragAreaHighlightInEditorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_drag_area_highlight_in_editor", 2586408642)
+
+    internal val isDragAreaHighlightInEditorEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_drag_area_highlight_in_editor_enabled", 36873697)
+
+    internal val getDragAreaControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_control", 829782337)
   }
 }

@@ -27,7 +27,7 @@ import kotlin.jvm.JvmOverloads
  * Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get
  * saved (see [Node.owner] property).
  * **Note:** The node doesn't need to own itself.
- * **Example of loading a saved scene:**
+ * **Example:** Load a saved scene:
  *
  * gdscript:
  * ```gdscript
@@ -44,10 +44,10 @@ import kotlin.jvm.JvmOverloads
  * AddChild(scene);
  * ```
  *
- * **Example of saving a node with different owners:** The following example creates 3 objects:
- * [Node2D] (`node`), [RigidBody2D] (`body`) and [CollisionObject2D] (`collision`). `collision` is a
- * child of `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore
- * only save those two nodes, but not `collision`.
+ * **Example:** Save a node with different owners. The following example creates 3 objects: [Node2D]
+ * (`node`), [RigidBody2D] (`body`) and [CollisionObject2D] (`collision`). `collision` is a child of
+ * `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore only
+ * save those two nodes, but not `collision`.
  *
  * gdscript:
  * ```gdscript
@@ -101,7 +101,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(439, scriptIndex)
+    createNativeObject(456, scriptIndex)
   }
 
   /**

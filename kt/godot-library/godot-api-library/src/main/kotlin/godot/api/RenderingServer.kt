@@ -270,6 +270,29 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Creates a texture based on a native handle that was created outside of Godot's renderer.
+   * **Note:** If using only the rendering device renderer, it's recommend to use
+   * [RenderingDevice.textureCreateFromExtension] together with [RenderingServer.textureRdCreate],
+   * rather than this method. It will give you much more control over the texture's format and usage.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun textureCreateFromNativeHandle(
+    type: TextureType,
+    format: Image.Format,
+    nativeHandle: Long,
+    width: Int,
+    height: Int,
+    depth: Int,
+    layers: Int = 1,
+    layeredType: TextureLayeredType = RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY,
+  ): RID {
+    TransferContext.writeArguments(LONG to type.id, LONG to format.id, LONG to nativeHandle, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), LONG to layers.toLong(), LONG to layeredType.id)
+    TransferContext.callMethod(ptr, MethodBindings.textureCreateFromNativeHandlePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
    * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must
    * also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).
    * **Note:** The [image] must have the same width, height and format as the current [texture]
@@ -312,7 +335,7 @@ public object RenderingServer : Object() {
    * Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer.
    * It can be accessed with the RID that is returned. This RID will be used in all
    * `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also
-   * [texture2dLayeredPlaceholderCreate]
+   * [texture2dLayeredPlaceholderCreate].
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
    * **Note:** The equivalent resource is [PlaceholderTexture2D].
@@ -355,7 +378,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns an [Image] instance from the given [texture] [RID].
-   * Example of getting the test texture from [getTestTexture] and applying it to a [Sprite2D] node:
+   * **Example:** Get the test texture from [getTestTexture] and apply it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_test_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
@@ -852,6 +875,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Removes the surface at the given index from the Mesh, shifting surfaces with higher index down
+   * by one.
+   */
+  @JvmStatic
+  public final fun meshSurfaceRemove(mesh: RID, surface: Int): Unit {
+    TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceRemovePtr, NIL)
+  }
+
+  /**
    * Removes all surfaces from a mesh.
    */
   @JvmStatic
@@ -923,8 +956,9 @@ public object RenderingServer : Object() {
     transformFormat: MultimeshTransformFormat,
     colorFormat: Boolean = false,
     customDataFormat: Boolean = false,
+    useIndirect: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to multimesh, LONG to instances.toLong(), LONG to transformFormat.id, BOOL to colorFormat, BOOL to customDataFormat)
+    TransferContext.writeArguments(_RID to multimesh, LONG to instances.toLong(), LONG to transformFormat.id, BOOL to colorFormat, BOOL to customDataFormat, BOOL to useIndirect)
     TransferContext.callMethod(ptr, MethodBindings.multimeshAllocateDataPtr, NIL)
   }
 
@@ -1125,11 +1159,56 @@ public object RenderingServer : Object() {
    *   - Position + Vertex color + Custom data: 20 floats (12 floats for Transform3D, 4 floats for
    * Color, 4 floats of custom data)
    * [/codeblock]
+   * Instance transforms are in row-major order. Specifically:
+   * - For [Transform2D] the float-order is: `(x.x, y.x, padding_float, origin.x, x.y, y.y,
+   * padding_float, origin.y)`.
+   * - For [Transform3D] the float-order is: `(basis.x.x, basis.y.x, basis.z.x, origin.x, basis.x.y,
+   * basis.y.y, basis.z.y, origin.y, basis.x.z, basis.y.z, basis.z.z, origin.z)`.
    */
   @JvmStatic
   public final fun multimeshSetBuffer(multimesh: RID, buffer: PackedFloat32Array): Unit {
     TransferContext.writeArguments(_RID to multimesh, PACKED_FLOAT_32_ARRAY to buffer)
     TransferContext.callMethod(ptr, MethodBindings.multimeshSetBufferPtr, NIL)
+  }
+
+  /**
+   * Returns the [RenderingDevice] [RID] handle of the [MultiMesh] command buffer. This [RID] is
+   * only valid if `use_indirect` is set to `true` when allocating data through
+   * [multimeshAllocateData]. It can be used to directly modify the instance count via buffer.
+   * The data structure is dependent on both how many surfaces the mesh contains and whether it is
+   * indexed or not, the buffer has 5 integers in it, with the last unused if the mesh is not indexed.
+   * Each of the values in the buffer correspond to these options:
+   * [codeblock lang=text]
+   * Indexed:
+   *   0 - indexCount;
+   *   1 - instanceCount;
+   *   2 - firstIndex;
+   *   3 - vertexOffset;
+   *   4 - firstInstance;
+   * Non Indexed:
+   *   0 - vertexCount;
+   *   1 - instanceCount;
+   *   2 - firstVertex;
+   *   3 - firstInstance;
+   *   4 - unused;
+   * [/codeblock]
+   */
+  @JvmStatic
+  public final fun multimeshGetCommandBufferRdRid(multimesh: RID): RID {
+    TransferContext.writeArguments(_RID to multimesh)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetCommandBufferRdRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Returns the [RenderingDevice] [RID] handle of the [MultiMesh], which can be used as any other
+   * buffer on the Rendering Device.
+   */
+  @JvmStatic
+  public final fun multimeshGetBufferRdRid(multimesh: RID): RID {
+    TransferContext.writeArguments(_RID to multimesh)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetBufferRdRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1144,6 +1223,53 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(ptr, MethodBindings.multimeshGetBufferPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+  }
+
+  /**
+   * Alternative version of [multimeshSetBuffer] for use with physics interpolation.
+   * Takes both an array of current data and an array of data for the previous physics tick.
+   */
+  @JvmStatic
+  public final fun multimeshSetBufferInterpolated(
+    multimesh: RID,
+    buffer: PackedFloat32Array,
+    bufferPrevious: PackedFloat32Array,
+  ): Unit {
+    TransferContext.writeArguments(_RID to multimesh, PACKED_FLOAT_32_ARRAY to buffer, PACKED_FLOAT_32_ARRAY to bufferPrevious)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetBufferInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Turns on and off physics interpolation for this MultiMesh resource.
+   */
+  @JvmStatic
+  public final fun multimeshSetPhysicsInterpolated(multimesh: RID, interpolated: Boolean): Unit {
+    TransferContext.writeArguments(_RID to multimesh, BOOL to interpolated)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetPhysicsInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Sets the physics interpolation quality for the [MultiMesh].
+   * A value of [MULTIMESH_INTERP_QUALITY_FAST] gives fast but low quality interpolation, a value of
+   * [MULTIMESH_INTERP_QUALITY_HIGH] gives slower but higher quality interpolation.
+   */
+  @JvmStatic
+  public final fun multimeshSetPhysicsInterpolationQuality(multimesh: RID,
+      quality: MultimeshPhysicsInterpolationQuality): Unit {
+    TransferContext.writeArguments(_RID to multimesh, LONG to quality.id)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshSetPhysicsInterpolationQualityPtr, NIL)
+  }
+
+  /**
+   * Prevents physics interpolation for the specified instance during the current physics tick.
+   * This is useful when moving an instance to a new location, to give an instantaneous change
+   * rather than interpolation from the previous location.
+   */
+  @JvmStatic
+  public final fun multimeshInstanceResetPhysicsInterpolation(multimesh: RID, index: Int): Unit {
+    TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceResetPhysicsInterpolationPtr,
+        NIL)
   }
 
   /**
@@ -1371,6 +1497,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the shadow caster mask for this 3D light. Shadows will only be cast using objects in the
+   * selected layers. Equivalent to [Light3D.shadowCasterMask].
+   */
+  @JvmStatic
+  public final fun lightSetShadowCasterMask(light: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to light, LONG to mask)
+    TransferContext.callMethod(ptr, MethodBindings.lightSetShadowCasterMaskPtr, NIL)
+  }
+
+  /**
    * Sets the bake mode to use for the specified 3D light. Equivalent to [Light3D.lightBakeMode].
    */
   @JvmStatic
@@ -1442,6 +1578,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Toggles whether a bicubic filter should be used when lightmaps are sampled. This smoothens
+   * their appearance at a performance cost.
+   */
+  @JvmStatic
+  public final fun lightmapsSetBicubicFilter(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapsSetBicubicFilterPtr, NIL)
+  }
+
+  /**
    * Sets the filter quality for omni and spot light shadows in 3D. See also
    * [ProjectSettings.rendering/lightsAndShadows/positionalShadow/softShadowFilterQuality]. This
    * parameter is global and cannot be set on a per-viewport basis.
@@ -1508,6 +1654,15 @@ public object RenderingServer : Object() {
   public final fun reflectionProbeSetIntensity(probe: RID, intensity: Float): Unit {
     TransferContext.writeArguments(_RID to probe, DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetIntensityPtr, NIL)
+  }
+
+  /**
+   * Sets the distance in meters over which a probe blends into the scene.
+   */
+  @JvmStatic
+  public final fun reflectionProbeSetBlendDistance(probe: RID, blendDistance: Float): Unit {
+    TransferContext.writeArguments(_RID to probe, DOUBLE to blendDistance.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetBlendDistancePtr, NIL)
   }
 
   /**
@@ -2074,7 +2229,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, particles will emit over time. Setting to false does not reset the particles, but
+   * If `true`, particles will emit over time. Setting to `false` does not reset the particles, but
    * only stops their emission. Equivalent to [GPUParticles3D.emitting].
    */
   @JvmStatic
@@ -2139,6 +2294,15 @@ public object RenderingServer : Object() {
   public final fun particlesSetPreProcessTime(particles: RID, time: Double): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.particlesSetPreProcessTimePtr, NIL)
+  }
+
+  /**
+   * Requests particles to process for extra process time during a single frame.
+   */
+  @JvmStatic
+  public final fun particlesRequestProcessTime(particles: RID, time: Float): Unit {
+    TransferContext.writeArguments(_RID to particles, DOUBLE to time.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.particlesRequestProcessTimePtr, NIL)
   }
 
   /**
@@ -2517,6 +2681,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the heightfield [mask] for the 3D GPU particles heightfield collision specified by the
+   * [particlesCollision] RID. Equivalent to [GPUParticlesCollisionHeightField3D.heightfieldMask].
+   */
+  @JvmStatic
+  public final fun particlesCollisionSetHeightFieldMask(particlesCollision: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to particlesCollision, LONG to mask)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetHeightFieldMaskPtr, NIL)
+  }
+
+  /**
    * Creates a new fog volume and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `fog_volume_*` RenderingServer functions.
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
@@ -2568,8 +2742,8 @@ public object RenderingServer : Object() {
    * RenderingServer functions.
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
-   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned
-   * RID.
+   * To place in a scene, attach this notifier to an instance using [instanceSetBase] using the
+   * returned RID.
    * **Note:** The equivalent node is [VisibleOnScreenNotifier3D].
    */
   @JvmStatic
@@ -2801,13 +2975,13 @@ public object RenderingServer : Object() {
    * drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to
    * an area that does not cover the area that you have attached this viewport to.
    * For example, you can set the root viewport to not render at all with the following code:
-   * FIXME: The method seems to be non-existent.
    *
    * gdscript:
    * ```gdscript
    * func _ready():
-   *     get_viewport().set_attach_to_screen_rect(Rect2())
-   *     $Viewport.set_attach_to_screen_rect(Rect2(0, 0, 600, 600))
+   *     RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
+   *     RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600,
+   * 600))
    * ```
    *
    * Using this can result in significant optimization, especially on lower-end devices. However, it
@@ -2910,6 +3084,30 @@ public object RenderingServer : Object() {
   public final fun viewportSetTextureMipmapBias(viewport: RID, mipmapBias: Float): Unit {
     TransferContext.writeArguments(_RID to viewport, DOUBLE to mipmapBias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.viewportSetTextureMipmapBiasPtr, NIL)
+  }
+
+  /**
+   * Sets the maximum number of samples to take when using anisotropic filtering on textures (as a
+   * power of two). A higher sample count will result in sharper textures at oblique angles, but is
+   * more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on
+   * materials where it is enabled.
+   * The anisotropic filtering level also affects decals and light projectors if they are configured
+   * to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and
+   * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to
+   * [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
+   * [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
+   * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to
+   * [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
+   * [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying
+   * the texture (or in [CanvasTexture]). However, anisotropic filtering is rarely useful in 2D, so
+   * only enable it for textures in 2D if it makes a meaningful visual difference.
+   */
+  @JvmStatic
+  public final fun viewportSetAnisotropicFilteringLevel(viewport: RID,
+      anisotropicFilteringLevel: ViewportAnisotropicFiltering): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to anisotropicFilteringLevel.id)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetAnisotropicFilteringLevelPtr, NIL)
   }
 
   /**
@@ -3179,8 +3377,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 3D on the specified [viewport] RID. See
-   * [ViewportMSAA] for options.
+   * Sets the multisample antialiasing mode for 3D on the specified [viewport] RID. See
+   * [ViewportMSAA] for options. Equivalent to [ProjectSettings.rendering/antiAliasing/quality/msaa3d]
+   * or [Viewport.msaa3d].
    */
   @JvmStatic
   public final fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
@@ -3189,8 +3388,9 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [viewport] RID. See
-   * [ViewportMSAA] for options.
+   * Sets the multisample antialiasing mode for 2D/Canvas on the specified [viewport] RID. See
+   * [ViewportMSAA] for options. Equivalent to [ProjectSettings.rendering/antiAliasing/quality/msaa2d]
+   * or [Viewport.msaa2d].
    */
   @JvmStatic
   public final fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
@@ -3209,8 +3409,8 @@ public object RenderingServer : Object() {
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients. This setting
    * has the same effect as [Viewport.useHdr2d].
-   * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL
-   * Compatibility renderer always renders in low dynamic range for performance reasons.
+   * **Note:** This setting will have no effect when using the Compatibility renderer, which always
+   * renders in low dynamic range for performance reasons.
    */
   @JvmStatic
   public final fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
@@ -3219,7 +3419,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the viewport's screen-space antialiasing mode.
+   * Sets the viewport's screen-space antialiasing mode. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa] or [Viewport.screenSpaceAa].
    */
   @JvmStatic
   public final fun viewportSetScreenSpaceAa(viewport: RID, mode: ViewportScreenSpaceAA): Unit {
@@ -3228,8 +3429,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, use Temporal Anti-Aliasing. Equivalent to
-   * [ProjectSettings.rendering/antiAliasing/quality/useTaa].
+   * If `true`, use temporal antialiasing. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/quality/useTaa] or [Viewport.useTaa].
    */
   @JvmStatic
   public final fun viewportSetUseTaa(viewport: RID, enable: Boolean): Unit {
@@ -3239,7 +3440,7 @@ public object RenderingServer : Object() {
 
   /**
    * If `true`, enables debanding on the specified viewport. Equivalent to
-   * [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
+   * [ProjectSettings.rendering/antiAliasing/quality/useDebanding] or [Viewport.useDebanding].
    */
   @JvmStatic
   public final fun viewportSetUseDebanding(viewport: RID, enable: Boolean): Unit {
@@ -3353,7 +3554,7 @@ public object RenderingServer : Object() {
    * Returns the GPU time taken to render the last frame in milliseconds. To get a complete readout
    * of GPU time spent to render the scene, sum the render times of all viewports that are drawn every
    * frame. Unlike [Engine.getFramesPerSecond], this method accurately reflects GPU utilization even if
-   * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
+   * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeCpu].
    * **Note:** Requires measurements to be enabled on the specified [viewport] using
    * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
    * **Note:** When GPU utilization is low enough during a certain period of time, GPUs will
@@ -3568,6 +3769,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the camera ID to be used as environment background.
+   */
+  @JvmStatic
+  public final fun environmentSetCameraId(env: RID, id: Int): Unit {
+    TransferContext.writeArguments(_RID to env, LONG to id.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetCameraIdPtr, NIL)
+  }
+
+  /**
    * Sets the [Sky] to be used as the environment's background when using *BGMode* sky. Equivalent
    * to [Environment.sky].
    */
@@ -3639,11 +3849,11 @@ public object RenderingServer : Object() {
     ambient: EnvironmentAmbientSource =
         RenderingServer.EnvironmentAmbientSource.ENV_AMBIENT_SOURCE_BG,
     energy: Float = 1.0f,
-    skyContibution: Float = 0.0f,
+    skyContribution: Float = 0.0f,
     reflectionSource: EnvironmentReflectionSource =
         RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy.toDouble(), DOUBLE to skyContibution.toDouble(), LONG to reflectionSource.id)
+    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy.toDouble(), DOUBLE to skyContribution.toDouble(), LONG to reflectionSource.id)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetAmbientLightPtr, NIL)
   }
 
@@ -4219,6 +4429,26 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Turns on and off physics interpolation for the instance.
+   */
+  @JvmStatic
+  public final fun instanceSetInterpolated(instance: RID, interpolated: Boolean): Unit {
+    TransferContext.writeArguments(_RID to instance, BOOL to interpolated)
+    TransferContext.callMethod(ptr, MethodBindings.instanceSetInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Prevents physics interpolation for the current physics tick.
+   * This is useful when moving an instance to a new location, to give an instantaneous change
+   * rather than interpolation from the previous location.
+   */
+  @JvmStatic
+  public final fun instanceResetPhysicsInterpolation(instance: RID): Unit {
+    TransferContext.writeArguments(_RID to instance)
+    TransferContext.callMethod(ptr, MethodBindings.instanceResetPhysicsInterpolationPtr, NIL)
+  }
+
+  /**
    * Attaches a unique Object ID to instance. Object ID must be attached to instance for proper
    * culling with [instancesCullAabb], [instancesCullConvex], and [instancesCullRay].
    */
@@ -4559,7 +4789,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * A copy of the canvas item will be drawn with a local offset of the mirroring [Vector2].
+   * A copy of the canvas item will be drawn with a local offset of the [mirroring].
+   * **Note:** This is equivalent to calling [canvasSetItemRepeat] like
+   * `canvas_set_item_repeat(item, mirroring, 1)`, with an additional check ensuring [canvas] is a
+   * parent of [item].
    */
   @JvmStatic
   public final fun canvasSetItemMirroring(
@@ -5055,6 +5288,9 @@ public object RenderingServer : Object() {
    * Draws a 2D polygon on the [CanvasItem] pointed to by the [item] [RID]. If you need more
    * flexibility (such as being able to use bones), use [canvasItemAddTriangleArray] instead. See also
    * [CanvasItem.drawPolygon].
+   * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
+   * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using
+   * [CanvasItem.drawMesh], [CanvasItem.drawMultimesh], or [canvasItemAddTriangleArray].
    */
   @JvmOverloads
   @JvmStatic
@@ -5148,7 +5384,7 @@ public object RenderingServer : Object() {
 
   /**
    * If [ignore] is `true`, ignore clipping on items drawn with this canvas item until this is
-   * called again with [ignore] set to false.
+   * called again with [ignore] set to `false`.
    */
   @JvmStatic
   public final fun canvasItemAddClipIgnore(item: RID, ignore: Boolean): Unit {
@@ -5217,6 +5453,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Attaches a skeleton to the [CanvasItem]. Removes the previous skeleton.
+   */
+  @JvmStatic
+  public final fun canvasItemAttachSkeleton(item: RID, skeleton: RID): Unit {
+    TransferContext.writeArguments(_RID to item, _RID to skeleton)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAttachSkeletonPtr, NIL)
+  }
+
+  /**
    * Clears the [CanvasItem] and removes all commands in it.
    */
   @JvmStatic
@@ -5251,6 +5496,60 @@ public object RenderingServer : Object() {
   public final fun canvasItemSetUseParentMaterial(item: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemSetUseParentMaterialPtr, NIL)
+  }
+
+  /**
+   * Sets the per-instance shader uniform on the specified canvas item instance. Equivalent to
+   * [CanvasItem.setInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemSetInstanceShaderParameter(
+    instance: RID,
+    parameter: StringName,
+    `value`: Any?,
+  ): Unit {
+    TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter, ANY to value)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemSetInstanceShaderParameterPtr, NIL)
+  }
+
+  /**
+   * Returns the value of the per-instance shader uniform from the specified canvas item instance.
+   * Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameter(instance: RID, parameter: StringName):
+      Any? {
+    TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemGetInstanceShaderParameterPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns the default value of the per-instance shader uniform from the specified canvas item
+   * instance. Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameterDefaultValue(instance: RID,
+      parameter: StringName): Any? {
+    TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
+    TransferContext.callMethod(ptr,
+        MethodBindings.canvasItemGetInstanceShaderParameterDefaultValuePtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform
+   * from the specified canvas item instance.
+   * The returned dictionary is in PropertyInfo format, with the keys `name`, `class_name`, `type`,
+   * `hint`, `hint_string`, and `usage`.
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameterList(instance: RID):
+      VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(_RID to instance)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemGetInstanceShaderParameterListPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -5523,7 +5822,7 @@ public object RenderingServer : Object() {
 
   /**
    * Transforms both the current and previous stored transform for a canvas light.
-   * This allows transforming a light without creating a "glitch" in the interpolation, which is is
+   * This allows transforming a light without creating a "glitch" in the interpolation, which is
    * particularly useful for large worlds utilizing a shifting origin.
    */
   @JvmStatic
@@ -5853,8 +6152,8 @@ public object RenderingServer : Object() {
    * will *usually* be significantly faster than integrated graphics made in the same generation, the
    * device type can be used as a basis for automatic graphics settings adjustment. However, this is
    * not always true, so make sure to provide users with a way to manually override graphics settings.
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
-   * returns [RenderingDevice.DEVICE_TYPE_OTHER].
+   * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
+   * function always returns [RenderingDevice.DEVICE_TYPE_OTHER].
    */
   @JvmStatic
   public final fun getVideoAdapterType(): RenderingDevice.DeviceType {
@@ -5874,6 +6173,34 @@ public object RenderingServer : Object() {
   public final fun getVideoAdapterApiVersion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterApiVersionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the name of the current rendering driver. This can be `vulkan`, `d3d12`, `metal`,
+   * `opengl3`, `opengl3_es`, or `opengl3_angle`. See also [getCurrentRenderingMethod].
+   * The rendering driver is determined by [ProjectSettings.rendering/renderingDevice/driver], the
+   * `--rendering-driver` command line argument that overrides this project setting, or an automatic
+   * fallback that is applied depending on the hardware.
+   */
+  @JvmStatic
+  public final fun getCurrentRenderingDriverName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentRenderingDriverNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the name of the current rendering method. This can be `forward_plus`, `mobile`, or
+   * `gl_compatibility`. See also [getCurrentRenderingDriverName].
+   * The rendering method is determined by [ProjectSettings.rendering/renderer/renderingMethod], the
+   * `--rendering-method` command line argument that overrides this project setting, or an automatic
+   * fallback that is applied depending on the hardware.
+   */
+  @JvmStatic
+  public final fun getCurrentRenderingMethod(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentRenderingMethodPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -5907,7 +6234,7 @@ public object RenderingServer : Object() {
    * Returns the RID of a 256×256 texture with a testing pattern on it (in [Image.FORMAT_RGB8]
    * format). This texture will be created and returned on the first call to [getTestTexture], then it
    * will be cached for subsequent calls. See also [getWhiteTexture].
-   * Example of getting the test texture and applying it to a [Sprite2D] node:
+   * **Example:** Get the test texture and apply it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_test_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
@@ -5925,7 +6252,7 @@ public object RenderingServer : Object() {
    * Returns the ID of a 4×4 white texture (in [Image.FORMAT_RGB8] format). This texture will be
    * created and returned on the first call to [getWhiteTexture], then it will be cached for subsequent
    * calls. See also [getTestTexture].
-   * Example of getting the white texture and applying it to a [Sprite2D] node:
+   * **Example:** Get the white texture and apply it to a [Sprite2D] node:
    * [codeblock]
    * var texture_rid = RenderingServer.get_white_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
@@ -5990,8 +6317,11 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * This method is currently unimplemented and does nothing if called with [generate] set to
-   * `true`.
+   * If [generate] is `true`, generates debug wireframes for all meshes that are loaded when using
+   * the Compatibility renderer. By default, the engine does not generate debug wireframes at runtime,
+   * since they slow down loading of assets and take up VRAM.
+   * **Note:** You must call this method before loading any meshes when using the Compatibility
+   * renderer, otherwise wireframes will not be used.
    */
   @JvmStatic
   public final fun setDebugGenerateWireframes(generate: Boolean): Unit {
@@ -6046,8 +6376,8 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the global RenderingDevice.
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
-   * returns `null`.
+   * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
+   * function always returns `null`.
    */
   @JvmStatic
   public final fun getRenderingDevice(): RenderingDevice? {
@@ -6059,8 +6389,8 @@ public object RenderingServer : Object() {
   /**
    * Creates a RenderingDevice that can be used to do draw and compute operations on a separate
    * thread. Cannot draw to the screen nor share data with the global RenderingDevice.
-   * **Note:** When using the OpenGL backend or when running in headless mode, this function always
-   * returns `null`.
+   * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
+   * function always returns `null`.
    */
   @JvmStatic
   public final fun createLocalRenderingDevice(): RenderingDevice? {
@@ -6099,6 +6429,33 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public enum class TextureType(
+    id: Long,
+  ) {
+    /**
+     * 2D texture.
+     */
+    TEXTURE_TYPE_2D(0),
+    /**
+     * Layered texture.
+     */
+    TEXTURE_TYPE_LAYERED(1),
+    /**
+     * 3D texture.
+     */
+    TEXTURE_TYPE_3D(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
+    }
   }
 
   public enum class TextureLayeredType(
@@ -6545,6 +6902,30 @@ public object RenderingServer : Object() {
 
     public companion object {
       public fun from(`value`: Long): MultimeshTransformFormat = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class MultimeshPhysicsInterpolationQuality(
+    id: Long,
+  ) {
+    /**
+     * MultiMesh physics interpolation favors speed over quality.
+     */
+    MULTIMESH_INTERP_QUALITY_FAST(0),
+    /**
+     * MultiMesh physics interpolation favors quality over speed.
+     */
+    MULTIMESH_INTERP_QUALITY_HIGH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): MultimeshPhysicsInterpolationQuality =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7279,9 +7660,27 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCALING_3D_MODE_FSR2(2),
     /**
+     * Use MetalFX spatial upscaling for the viewport's 3D buffer. The amount of scaling can be set
+     * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
+     * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
+     * will be used instead. A value of `1.0` disables scaling.
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
+     * mode to macOS and iOS.
+     */
+    VIEWPORT_SCALING_3D_MODE_METALFX_SPATIAL(3),
+    /**
+     * Use MetalFX temporal upscaling for the viewport's 3D buffer. The amount of scaling can be set
+     * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
+     * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
+     * will be used instead. A value of `1.0` will use MetalFX at native resolution as a TAA solution.
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
+     * mode to macOS and iOS.
+     */
+    VIEWPORT_SCALING_3D_MODE_METALFX_TEMPORAL(4),
+    /**
      * Represents the size of the [ViewportScaling3DMode] enum.
      */
-    VIEWPORT_SCALING_3D_MODE_MAX(3),
+    VIEWPORT_SCALING_3D_MODE_MAX(5),
     ;
 
     public val id: Long
@@ -7501,6 +7900,46 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class ViewportAnisotropicFiltering(
+    id: Long,
+  ) {
+    /**
+     * Anisotropic filtering is disabled.
+     */
+    VIEWPORT_ANISOTROPY_DISABLED(0),
+    /**
+     * Use 2× anisotropic filtering.
+     */
+    VIEWPORT_ANISOTROPY_2X(1),
+    /**
+     * Use 4× anisotropic filtering. This is the default value.
+     */
+    VIEWPORT_ANISOTROPY_4X(2),
+    /**
+     * Use 8× anisotropic filtering.
+     */
+    VIEWPORT_ANISOTROPY_8X(3),
+    /**
+     * Use 16× anisotropic filtering.
+     */
+    VIEWPORT_ANISOTROPY_16X(4),
+    /**
+     * Represents the size of the [ViewportAnisotropicFiltering] enum.
+     */
+    VIEWPORT_ANISOTROPY_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ViewportAnisotropicFiltering =
+          entries.single { it.id == `value` }
+    }
+  }
+
   public enum class ViewportScreenSpaceAA(
     id: Long,
   ) {
@@ -7648,6 +8087,8 @@ public object RenderingServer : Object() {
     VIEWPORT_DEBUG_DRAW_OVERDRAW(3),
     /**
      * Debug draw draws objects in wireframe.
+     * **Note:** [setDebugGenerateWireframes] must be called before loading any meshes for
+     * wireframes to be visible when using the Compatibility renderer.
      */
     VIEWPORT_DEBUG_DRAW_WIREFRAME(4),
     /**
@@ -7944,8 +8385,8 @@ public object RenderingServer : Object() {
      */
     COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
     /**
-     * The callback is called after our transparent rendering pass, but before any build in post
-     * effects and output to our render target.
+     * The callback is called after our transparent rendering pass, but before any built-in
+     * post-processing effects and output to our render target.
      */
     COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
     COMPOSITOR_EFFECT_CALLBACK_TYPE_ANY(-1),
@@ -8133,29 +8574,36 @@ public object RenderingServer : Object() {
     id: Long,
   ) {
     /**
-     * Output color as they came in. This can cause bright lighting to look blown out, with
-     * noticeable clipping in the output colors.
+     * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
+     * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
     ENV_TONE_MAPPER_LINEAR(0),
     /**
-     * Use the Reinhard tonemapper. Performs a variation on rendered pixels' colors by this formula:
-     * `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image
-     * can look a bit dull.
+     * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
+     * an image that can appear dull and low contrast. Slower than [ENV_TONE_MAPPER_LINEAR].
+     * **Note:** When [Environment.tonemapWhite] is left at the default value of `1.0`,
+     * [ENV_TONE_MAPPER_REINHARD] produces an identical image to [ENV_TONE_MAPPER_LINEAR].
      */
     ENV_TONE_MAPPER_REINHARD(1),
     /**
-     * Use the filmic tonemapper. This avoids clipping bright highlights, with a resulting image
-     * that usually looks more vivid than [ENV_TONE_MAPPER_REINHARD].
+     * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
+     * contrast than [ENV_TONE_MAPPER_REINHARD]. Slightly slower than [ENV_TONE_MAPPER_REINHARD].
      */
     ENV_TONE_MAPPER_FILMIC(2),
     /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
-     * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
-     * becomes brighter. ACES typically has a more contrasted output compared to
-     * [ENV_TONE_MAPPER_REINHARD] and [ENV_TONE_MAPPER_FILMIC].
+     * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
+     * realistic appearance. Slightly slower than [ENV_TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ENV_TONE_MAPPER_ACES(3),
+    /**
+     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
+     * appearance. Better than other tonemappers at maintaining the hue of colors as they become
+     * brighter. The slowest tonemapping option.
+     * **Note:** [Environment.tonemapWhite] is fixed at a value of `16.29`, which makes
+     * [ENV_TONE_MAPPER_AGX] unsuitable for use with the Mobile rendering method.
+     */
+    ENV_TONE_MAPPER_AGX(4),
     ;
 
     public val id: Long
@@ -9188,9 +9636,14 @@ public object RenderingServer : Object() {
      */
     GLOBAL_VAR_TYPE_SAMPLERCUBE(27),
     /**
+     * External sampler global shader parameter (`global uniform samplerExternalOES ...`). Exposed
+     * as a [ExternalTexture] in the editor UI.
+     */
+    GLOBAL_VAR_TYPE_SAMPLEREXT(28),
+    /**
      * Represents the size of the [GlobalShaderParameterType] enum.
      */
-    GLOBAL_VAR_TYPE_MAX(28),
+    GLOBAL_VAR_TYPE_MAX(29),
     ;
 
     public val id: Long
@@ -9232,13 +9685,40 @@ public object RenderingServer : Object() {
      */
     RENDERING_INFO_BUFFER_MEM_USED(4),
     /**
-     * Video memory used (in bytes). When using the Forward+ or mobile rendering backends, this is
-     * always greater than the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and
-     * [RENDERING_INFO_BUFFER_MEM_USED], since there is miscellaneous data not accounted for by those
-     * two metrics. When using the GL Compatibility backend, this is equal to the sum of
-     * [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED].
+     * Video memory used (in bytes). When using the Forward+ or Mobile renderers, this is always
+     * greater than the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED],
+     * since there is miscellaneous data not accounted for by those two metrics. When using the
+     * Compatibility renderer, this is equal to the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and
+     * [RENDERING_INFO_BUFFER_MEM_USED].
      */
     RENDERING_INFO_VIDEO_MEM_USED(5),
+    /**
+     * Number of pipeline compilations that were triggered by the 2D canvas renderer.
+     */
+    RENDERING_INFO_PIPELINE_COMPILATIONS_CANVAS(6),
+    /**
+     * Number of pipeline compilations that were triggered by loading meshes. These compilations
+     * will show up as longer loading times the first time a user runs the game and the pipeline is
+     * required.
+     */
+    RENDERING_INFO_PIPELINE_COMPILATIONS_MESH(7),
+    /**
+     * Number of pipeline compilations that were triggered by building the surface cache before
+     * rendering the scene. These compilations will show up as a stutter when loading an scene the
+     * first time a user runs the game and the pipeline is required.
+     */
+    RENDERING_INFO_PIPELINE_COMPILATIONS_SURFACE(8),
+    /**
+     * Number of pipeline compilations that were triggered while drawing the scene. These
+     * compilations will show up as stutters during gameplay the first time a user runs the game and
+     * the pipeline is required.
+     */
+    RENDERING_INFO_PIPELINE_COMPILATIONS_DRAW(9),
+    /**
+     * Number of pipeline compilations that were triggered to optimize the current scene. These
+     * compilations are done in the background and should not cause any stutters whatsoever.
+     */
+    RENDERING_INFO_PIPELINE_COMPILATIONS_SPECIALIZATION(10),
     ;
 
     public val id: Long
@@ -9248,6 +9728,46 @@ public object RenderingServer : Object() {
 
     public companion object {
       public fun from(`value`: Long): RenderingInfo = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class PipelineSource(
+    id: Long,
+  ) {
+    /**
+     * Pipeline compilation that was triggered by the 2D canvas renderer.
+     */
+    PIPELINE_SOURCE_CANVAS(0),
+    /**
+     * Pipeline compilation that was triggered by loading a mesh.
+     */
+    PIPELINE_SOURCE_MESH(1),
+    /**
+     * Pipeline compilation that was triggered by building the surface cache before rendering the
+     * scene.
+     */
+    PIPELINE_SOURCE_SURFACE(2),
+    /**
+     * Pipeline compilation that was triggered while drawing the scene.
+     */
+    PIPELINE_SOURCE_DRAW(3),
+    /**
+     * Pipeline compilation that was triggered to optimize the current scene.
+     */
+    PIPELINE_SOURCE_SPECIALIZATION(4),
+    /**
+     * Represents the size of the [PipelineSource] enum.
+     */
+    PIPELINE_SOURCE_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long): PipelineSource = entries.single { it.id == `value` }
     }
   }
 
@@ -9280,6 +9800,9 @@ public object RenderingServer : Object() {
 
     internal val textureProxyCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_create", 41030802)
+
+    internal val textureCreateFromNativeHandlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_create_from_native_handle", 1682977582)
 
     internal val texture2dUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_update", 999539803)
@@ -9437,6 +9960,9 @@ public object RenderingServer : Object() {
     internal val meshGetCustomAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_custom_aabb", 974181306)
 
+    internal val meshSurfaceRemovePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_remove", 3411492887)
+
     internal val meshClearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_clear", 2722037293)
 
@@ -9456,7 +9982,7 @@ public object RenderingServer : Object() {
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_create", 529393457)
 
     internal val multimeshAllocateDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_allocate_data", 283685892)
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_allocate_data", 557240154)
 
     internal val multimeshGetInstanceCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_instance_count", 2198884583)
@@ -9509,8 +10035,26 @@ public object RenderingServer : Object() {
     internal val multimeshSetBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_buffer", 2960552364)
 
+    internal val multimeshGetCommandBufferRdRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_command_buffer_rd_rid", 3814569979)
+
+    internal val multimeshGetBufferRdRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_buffer_rd_rid", 3814569979)
+
     internal val multimeshGetBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_buffer", 3964669176)
+
+    internal val multimeshSetBufferInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_buffer_interpolated", 659844711)
+
+    internal val multimeshSetPhysicsInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_physics_interpolated", 1265174801)
+
+    internal val multimeshSetPhysicsInterpolationQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_physics_interpolation_quality", 3934808223)
+
+    internal val multimeshInstanceResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_reset_physics_interpolation", 3411492887)
 
     internal val skeletonCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "skeleton_create", 529393457)
@@ -9569,6 +10113,9 @@ public object RenderingServer : Object() {
     internal val lightSetReverseCullFaceModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_set_reverse_cull_face_mode", 1265174801)
 
+    internal val lightSetShadowCasterMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_shadow_caster_mask", 3411492887)
+
     internal val lightSetBakeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_set_bake_mode", 1048525260)
 
@@ -9590,6 +10137,9 @@ public object RenderingServer : Object() {
     internal val lightProjectorsSetFilterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_projectors_set_filter", 43944325)
 
+    internal val lightmapsSetBicubicFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmaps_set_bicubic_filter", 2586408642)
+
     internal val positionalSoftShadowFilterSetQualityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "positional_soft_shadow_filter_set_quality", 3613045266)
 
@@ -9607,6 +10157,9 @@ public object RenderingServer : Object() {
 
     internal val reflectionProbeSetIntensityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_intensity", 1794382983)
+
+    internal val reflectionProbeSetBlendDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_blend_distance", 1794382983)
 
     internal val reflectionProbeSetAmbientModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_mode", 184163074)
@@ -9794,6 +10347,9 @@ public object RenderingServer : Object() {
     internal val particlesSetPreProcessTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_pre_process_time", 1794382983)
 
+    internal val particlesRequestProcessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_request_process_time", 1794382983)
+
     internal val particlesSetExplosivenessRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_explosiveness_ratio", 1794382983)
 
@@ -9902,6 +10458,9 @@ public object RenderingServer : Object() {
     internal val particlesCollisionSetHeightFieldResolutionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_height_field_resolution", 962977297)
 
+    internal val particlesCollisionSetHeightFieldMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_height_field_mask", 3411492887)
+
     internal val fogVolumeCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_create", 529393457)
 
@@ -9994,6 +10553,9 @@ public object RenderingServer : Object() {
 
     internal val viewportSetTextureMipmapBiasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_texture_mipmap_bias", 1794382983)
+
+    internal val viewportSetAnisotropicFilteringLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_anisotropic_filtering_level", 3953214029)
 
     internal val viewportSetUpdateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_update_mode", 3161116010)
@@ -10154,6 +10716,9 @@ public object RenderingServer : Object() {
     internal val environmentSetBackgroundPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_background", 3937328877)
 
+    internal val environmentSetCameraIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_camera_id", 3411492887)
+
     internal val environmentSetSkyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky", 395945892)
 
@@ -10291,6 +10856,12 @@ public object RenderingServer : Object() {
 
     internal val instanceSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_set_transform", 3935195649)
+
+    internal val instanceSetInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_interpolated", 1265174801)
+
+    internal val instanceResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_reset_physics_interpolation", 2722037293)
 
     internal val instanceAttachObjectInstanceIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_object_instance_id", 3411492887)
@@ -10517,6 +11088,9 @@ public object RenderingServer : Object() {
     internal val canvasItemSetCopyToBackbufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_copy_to_backbuffer", 2429202503)
 
+    internal val canvasItemAttachSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_attach_skeleton", 395945892)
+
     internal val canvasItemClearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_clear", 2722037293)
 
@@ -10528,6 +11102,18 @@ public object RenderingServer : Object() {
 
     internal val canvasItemSetUseParentMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_use_parent_material", 1265174801)
+
+    internal val canvasItemSetInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_instance_shader_parameter", 3477296213)
+
+    internal val canvasItemGetInstanceShaderParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_get_instance_shader_parameter", 2621281810)
+
+    internal val canvasItemGetInstanceShaderParameterDefaultValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_get_instance_shader_parameter_default_value", 2621281810)
+
+    internal val canvasItemGetInstanceShaderParameterListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_get_instance_shader_parameter_list", 2684255073)
 
     internal val canvasItemSetVisibilityNotifierPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_notifier", 3568945579)
@@ -10693,6 +11279,12 @@ public object RenderingServer : Object() {
 
     internal val getVideoAdapterApiVersionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_api_version", 201670096)
+
+    internal val getCurrentRenderingDriverNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "get_current_rendering_driver_name", 201670096)
+
+    internal val getCurrentRenderingMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "get_current_rendering_method", 201670096)
 
     internal val makeSphereMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "make_sphere_mesh", 2251015897)

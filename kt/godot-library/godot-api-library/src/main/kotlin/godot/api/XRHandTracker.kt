@@ -82,7 +82,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(845, scriptIndex)
+    createNativeObject(871, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -211,9 +211,14 @@ public open class XRHandTracker : XRPositionalTracker() {
      */
     HAND_TRACKING_SOURCE_CONTROLLER(2),
     /**
+     * No hand tracking data is tracked, this either means the hand is obscured, the controller is
+     * turned off, or tracking is not supported for the current input type.
+     */
+    HAND_TRACKING_SOURCE_NOT_TRACKED(3),
+    /**
      * Represents the size of the [HandTrackingSource] enum.
      */
-    HAND_TRACKING_SOURCE_MAX(3),
+    HAND_TRACKING_SOURCE_MAX(4),
     ;
 
     public val id: Long

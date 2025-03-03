@@ -56,7 +56,7 @@ public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = 
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(10)
+    getSingleton(13)
   }
 
   /**
@@ -110,6 +110,19 @@ public object ResourceSaver : Object() {
   public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatSaverPtr, NIL)
+  }
+
+  /**
+   * Returns the resource ID for the given path. If [generate] is `true`, a new resource ID will be
+   * generated if one for the path is not found. If [generate] is `false` and the path is not found,
+   * [ResourceUID.INVALID_ID] is returned.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getResourceIdForPath(path: String, generate: Boolean = false): Long {
+    TransferContext.writeArguments(STRING to path, BOOL to generate)
+    TransferContext.callMethod(ptr, MethodBindings.getResourceIdForPathPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public sealed interface SaverFlags {
@@ -197,5 +210,8 @@ public object ResourceSaver : Object() {
 
     internal val removeResourceFormatSaverPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
+
+    internal val getResourceIdForPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceSaver", "get_resource_id_for_path", 150756522)
   }
 }

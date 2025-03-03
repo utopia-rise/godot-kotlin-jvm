@@ -36,11 +36,12 @@ import kotlin.Unit
  * var container = load("packed_data.res")
  * for key in container:
  *     prints(key, container[key])
- *
- * # Prints:
- * # key value
- * # lock (0, 0)
- * # another_key 123
+ * [/codeblock]
+ * Prints:
+ * [codeblock lang=text]
+ * key value
+ * lock (0, 0)
+ * another_key 123
  * [/codeblock]
  * Nested containers will be packed recursively. While iterating, they will be returned as
  * [PackedDataContainerRef].
@@ -48,7 +49,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(437, scriptIndex)
+    createNativeObject(454, scriptIndex)
   }
 
   /**
