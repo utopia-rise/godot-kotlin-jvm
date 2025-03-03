@@ -295,7 +295,7 @@ public open class AStarGrid2D : RefCounted() {
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, toId: Vector2i): Float {
-    throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_estimateCost is not implemented for AStarGrid2D")
   }
 
   /**
@@ -303,7 +303,7 @@ public open class AStarGrid2D : RefCounted() {
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
-    throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_computeCost is not implemented for AStarGrid2D")
   }
 
   public final fun setRegion(region: Rect2i): Unit {

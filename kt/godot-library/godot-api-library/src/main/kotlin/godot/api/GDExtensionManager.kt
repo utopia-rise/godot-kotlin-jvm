@@ -39,7 +39,7 @@ public object GDExtensionManager : Object() {
   public val extensionsReloaded: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(20)
+    getSingleton(6)
   }
 
   /**

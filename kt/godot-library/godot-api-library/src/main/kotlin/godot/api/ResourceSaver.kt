@@ -56,7 +56,7 @@ public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = 
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(10)
+    getSingleton(28)
   }
 
   /**

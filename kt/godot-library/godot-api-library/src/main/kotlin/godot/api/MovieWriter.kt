@@ -67,7 +67,7 @@ public open class MovieWriter : Object() {
    * overridden.
    */
   public open fun _getAudioMixRate(): Long {
-    throw NotImplementedError("_get_audio_mix_rate is not implemented for MovieWriter")
+    throw NotImplementedError("_getAudioMixRate is not implemented for MovieWriter")
   }
 
   /**
@@ -76,7 +76,7 @@ public open class MovieWriter : Object() {
    * [AudioServer.SPEAKER_MODE_STEREO] if [_getAudioSpeakerMode] is not overridden.
    */
   public open fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
-    throw NotImplementedError("_get_audio_speaker_mode is not implemented for MovieWriter")
+    throw NotImplementedError("_getAudioSpeakerMode is not implemented for MovieWriter")
   }
 
   /**
@@ -92,7 +92,7 @@ public open class MovieWriter : Object() {
    * [/codeblock]
    */
   public open fun _handlesFile(path: String): Boolean {
-    throw NotImplementedError("_handles_file is not implemented for MovieWriter")
+    throw NotImplementedError("_handlesFile is not implemented for MovieWriter")
   }
 
   /**
@@ -106,7 +106,7 @@ public open class MovieWriter : Object() {
     fps: Long,
     basePath: String,
   ): Error {
-    throw NotImplementedError("_write_begin is not implemented for MovieWriter")
+    throw NotImplementedError("_writeBegin is not implemented for MovieWriter")
   }
 
   /**

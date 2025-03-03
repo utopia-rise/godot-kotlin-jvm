@@ -865,84 +865,84 @@ import kotlin.Unit
 public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Object", Object::class, ::Object)
   TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
-  TypeManager.registerEngineType("Performance", Performance::class) { Performance }
-  TypeManager.registerSingleton("Performance")
-  TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager
-      }
-  TypeManager.registerSingleton("TextServerManager")
-  TypeManager.registerEngineType("PhysicsServer2DManager", PhysicsServer2DManager::class) {
-      PhysicsServer2DManager }
-  TypeManager.registerSingleton("PhysicsServer2DManager")
-  TypeManager.registerEngineType("PhysicsServer3DManager", PhysicsServer3DManager::class) {
-      PhysicsServer3DManager }
-  TypeManager.registerSingleton("PhysicsServer3DManager")
-  TypeManager.registerEngineType("NavigationMeshGenerator", NavigationMeshGenerator::class) {
-      NavigationMeshGenerator }
-  TypeManager.registerSingleton("NavigationMeshGenerator")
-  TypeManager.registerEngineType("ProjectSettings", ProjectSettings::class) { ProjectSettings }
-  TypeManager.registerSingleton("ProjectSettings")
-  TypeManager.registerEngineType("IP", IP::class) { IP }
-  TypeManager.registerSingleton("IP")
-  TypeManager.registerEngineType("Geometry2D", Geometry2D::class) { Geometry2D }
-  TypeManager.registerSingleton("Geometry2D")
-  TypeManager.registerEngineType("Geometry3D", Geometry3D::class) { Geometry3D }
-  TypeManager.registerSingleton("Geometry3D")
-  TypeManager.registerEngineType("ResourceLoader", ResourceLoader::class) { ResourceLoader }
-  TypeManager.registerSingleton("ResourceLoader")
-  TypeManager.registerEngineType("ResourceSaver", ResourceSaver::class) { ResourceSaver }
-  TypeManager.registerSingleton("ResourceSaver")
-  TypeManager.registerEngineType("OS", OS::class) { OS }
-  TypeManager.registerSingleton("OS")
-  TypeManager.registerEngineType("Engine", Engine::class) { Engine }
-  TypeManager.registerSingleton("Engine")
-  TypeManager.registerEngineType("ClassDB", ClassDB::class) { ClassDB }
-  TypeManager.registerSingleton("ClassDB")
-  TypeManager.registerEngineType("Marshalls", Marshalls::class) { Marshalls }
-  TypeManager.registerSingleton("Marshalls")
-  TypeManager.registerEngineType("TranslationServer", TranslationServer::class) { TranslationServer
-      }
-  TypeManager.registerSingleton("TranslationServer")
-  TypeManager.registerEngineType("Input", Input::class) { Input }
-  TypeManager.registerSingleton("Input")
-  TypeManager.registerEngineType("InputMap", InputMap::class) { InputMap }
-  TypeManager.registerSingleton("InputMap")
-  TypeManager.registerEngineType("EngineDebugger", EngineDebugger::class) { EngineDebugger }
-  TypeManager.registerSingleton("EngineDebugger")
-  TypeManager.registerEngineType("Time", Time::class) { Time }
-  TypeManager.registerSingleton("Time")
-  TypeManager.registerEngineType("GDExtensionManager", GDExtensionManager::class) {
-      GDExtensionManager }
-  TypeManager.registerSingleton("GDExtensionManager")
-  TypeManager.registerEngineType("ResourceUID", ResourceUID::class) { ResourceUID }
-  TypeManager.registerSingleton("ResourceUID")
-  TypeManager.registerEngineType("WorkerThreadPool", WorkerThreadPool::class) { WorkerThreadPool }
-  TypeManager.registerSingleton("WorkerThreadPool")
-  TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
-  TypeManager.registerSingleton("ThemeDB")
-  TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
-  TypeManager.registerSingleton("JavaClassWrapper")
-  TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
-  TypeManager.registerSingleton("JavaScriptBridge")
   TypeManager.registerEngineType("AudioServer", AudioServer::class) { AudioServer }
   TypeManager.registerSingleton("AudioServer")
   TypeManager.registerEngineType("CameraServer", CameraServer::class) { CameraServer }
   TypeManager.registerSingleton("CameraServer")
+  TypeManager.registerEngineType("ClassDB", ClassDB::class) { ClassDB }
+  TypeManager.registerSingleton("ClassDB")
   TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
   TypeManager.registerSingleton("DisplayServer")
+  TypeManager.registerEngineType("Engine", Engine::class) { Engine }
+  TypeManager.registerSingleton("Engine")
+  TypeManager.registerEngineType("EngineDebugger", EngineDebugger::class) { EngineDebugger }
+  TypeManager.registerSingleton("EngineDebugger")
+  TypeManager.registerEngineType("GDExtensionManager", GDExtensionManager::class) {
+      GDExtensionManager }
+  TypeManager.registerSingleton("GDExtensionManager")
+  TypeManager.registerEngineType("Geometry2D", Geometry2D::class) { Geometry2D }
+  TypeManager.registerSingleton("Geometry2D")
+  TypeManager.registerEngineType("Geometry3D", Geometry3D::class) { Geometry3D }
+  TypeManager.registerSingleton("Geometry3D")
+  TypeManager.registerEngineType("IP", IP::class) { IP }
+  TypeManager.registerSingleton("IP")
+  TypeManager.registerEngineType("Input", Input::class) { Input }
+  TypeManager.registerSingleton("Input")
+  TypeManager.registerEngineType("InputMap", InputMap::class) { InputMap }
+  TypeManager.registerSingleton("InputMap")
+  TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
+  TypeManager.registerSingleton("JavaClassWrapper")
+  TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
+  TypeManager.registerSingleton("JavaScriptBridge")
+  TypeManager.registerEngineType("Marshalls", Marshalls::class) { Marshalls }
+  TypeManager.registerSingleton("Marshalls")
   TypeManager.registerEngineType("NativeMenu", NativeMenu::class) { NativeMenu }
   TypeManager.registerSingleton("NativeMenu")
+  TypeManager.registerEngineType("NavigationMeshGenerator", NavigationMeshGenerator::class) {
+      NavigationMeshGenerator }
+  TypeManager.registerSingleton("NavigationMeshGenerator")
   TypeManager.registerEngineType("NavigationServer2D", NavigationServer2D::class) {
       NavigationServer2D }
   TypeManager.registerSingleton("NavigationServer2D")
   TypeManager.registerEngineType("NavigationServer3D", NavigationServer3D::class) {
       NavigationServer3D }
   TypeManager.registerSingleton("NavigationServer3D")
-  TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
-  TypeManager.registerSingleton("RenderingServer")
+  TypeManager.registerEngineType("OS", OS::class) { OS }
+  TypeManager.registerSingleton("OS")
+  TypeManager.registerEngineType("Performance", Performance::class) { Performance }
+  TypeManager.registerSingleton("Performance")
   TypeManager.registerEngineType("PhysicsServer2D", PhysicsServer2D::class) { PhysicsServer2D }
   TypeManager.registerSingleton("PhysicsServer2D")
+  TypeManager.registerEngineType("PhysicsServer2DManager", PhysicsServer2DManager::class) {
+      PhysicsServer2DManager }
+  TypeManager.registerSingleton("PhysicsServer2DManager")
   TypeManager.registerEngineType("PhysicsServer3D", PhysicsServer3D::class) { PhysicsServer3D }
   TypeManager.registerSingleton("PhysicsServer3D")
+  TypeManager.registerEngineType("PhysicsServer3DManager", PhysicsServer3DManager::class) {
+      PhysicsServer3DManager }
+  TypeManager.registerSingleton("PhysicsServer3DManager")
+  TypeManager.registerEngineType("ProjectSettings", ProjectSettings::class) { ProjectSettings }
+  TypeManager.registerSingleton("ProjectSettings")
+  TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
+  TypeManager.registerSingleton("RenderingServer")
+  TypeManager.registerEngineType("ResourceLoader", ResourceLoader::class) { ResourceLoader }
+  TypeManager.registerSingleton("ResourceLoader")
+  TypeManager.registerEngineType("ResourceSaver", ResourceSaver::class) { ResourceSaver }
+  TypeManager.registerSingleton("ResourceSaver")
+  TypeManager.registerEngineType("ResourceUID", ResourceUID::class) { ResourceUID }
+  TypeManager.registerSingleton("ResourceUID")
+  TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager
+      }
+  TypeManager.registerSingleton("TextServerManager")
+  TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
+  TypeManager.registerSingleton("ThemeDB")
+  TypeManager.registerEngineType("Time", Time::class) { Time }
+  TypeManager.registerSingleton("Time")
+  TypeManager.registerEngineType("TranslationServer", TranslationServer::class) { TranslationServer
+      }
+  TypeManager.registerSingleton("TranslationServer")
+  TypeManager.registerEngineType("WorkerThreadPool", WorkerThreadPool::class) { WorkerThreadPool }
+  TypeManager.registerSingleton("WorkerThreadPool")
   TypeManager.registerEngineType("XRServer", XRServer::class) { XRServer }
   TypeManager.registerSingleton("XRServer")
   TypeManager.registerEngineType("AESContext", AESContext::class, ::AESContext)
@@ -2103,41 +2103,41 @@ public fun registerEngineTypes(): Unit {
 public fun registerVariantMapping(): Unit {
   variantMapper[Object::class] = OBJECT
   variantMapper[RefCounted::class] = OBJECT
-  variantMapper[Performance::class] = OBJECT
-  variantMapper[TextServerManager::class] = OBJECT
-  variantMapper[PhysicsServer2DManager::class] = OBJECT
-  variantMapper[PhysicsServer3DManager::class] = OBJECT
-  variantMapper[NavigationMeshGenerator::class] = OBJECT
-  variantMapper[ProjectSettings::class] = OBJECT
-  variantMapper[IP::class] = OBJECT
-  variantMapper[Geometry2D::class] = OBJECT
-  variantMapper[Geometry3D::class] = OBJECT
-  variantMapper[ResourceLoader::class] = OBJECT
-  variantMapper[ResourceSaver::class] = OBJECT
-  variantMapper[OS::class] = OBJECT
-  variantMapper[Engine::class] = OBJECT
-  variantMapper[ClassDB::class] = OBJECT
-  variantMapper[Marshalls::class] = OBJECT
-  variantMapper[TranslationServer::class] = OBJECT
-  variantMapper[Input::class] = OBJECT
-  variantMapper[InputMap::class] = OBJECT
-  variantMapper[EngineDebugger::class] = OBJECT
-  variantMapper[Time::class] = OBJECT
-  variantMapper[GDExtensionManager::class] = OBJECT
-  variantMapper[ResourceUID::class] = OBJECT
-  variantMapper[WorkerThreadPool::class] = OBJECT
-  variantMapper[ThemeDB::class] = OBJECT
-  variantMapper[JavaClassWrapper::class] = OBJECT
-  variantMapper[JavaScriptBridge::class] = OBJECT
   variantMapper[AudioServer::class] = OBJECT
   variantMapper[CameraServer::class] = OBJECT
+  variantMapper[ClassDB::class] = OBJECT
   variantMapper[DisplayServer::class] = OBJECT
+  variantMapper[Engine::class] = OBJECT
+  variantMapper[EngineDebugger::class] = OBJECT
+  variantMapper[GDExtensionManager::class] = OBJECT
+  variantMapper[Geometry2D::class] = OBJECT
+  variantMapper[Geometry3D::class] = OBJECT
+  variantMapper[IP::class] = OBJECT
+  variantMapper[Input::class] = OBJECT
+  variantMapper[InputMap::class] = OBJECT
+  variantMapper[JavaClassWrapper::class] = OBJECT
+  variantMapper[JavaScriptBridge::class] = OBJECT
+  variantMapper[Marshalls::class] = OBJECT
   variantMapper[NativeMenu::class] = OBJECT
+  variantMapper[NavigationMeshGenerator::class] = OBJECT
   variantMapper[NavigationServer2D::class] = OBJECT
   variantMapper[NavigationServer3D::class] = OBJECT
-  variantMapper[RenderingServer::class] = OBJECT
+  variantMapper[OS::class] = OBJECT
+  variantMapper[Performance::class] = OBJECT
   variantMapper[PhysicsServer2D::class] = OBJECT
+  variantMapper[PhysicsServer2DManager::class] = OBJECT
   variantMapper[PhysicsServer3D::class] = OBJECT
+  variantMapper[PhysicsServer3DManager::class] = OBJECT
+  variantMapper[ProjectSettings::class] = OBJECT
+  variantMapper[RenderingServer::class] = OBJECT
+  variantMapper[ResourceLoader::class] = OBJECT
+  variantMapper[ResourceSaver::class] = OBJECT
+  variantMapper[ResourceUID::class] = OBJECT
+  variantMapper[TextServerManager::class] = OBJECT
+  variantMapper[ThemeDB::class] = OBJECT
+  variantMapper[Time::class] = OBJECT
+  variantMapper[TranslationServer::class] = OBJECT
+  variantMapper[WorkerThreadPool::class] = OBJECT
   variantMapper[XRServer::class] = OBJECT
   variantMapper[AESContext::class] = OBJECT
   variantMapper[AStar2D::class] = OBJECT
@@ -2962,41 +2962,41 @@ public fun registerVariantMapping(): Unit {
 public fun registerEngineTypeMethods(): Unit {
   Object.MethodBindings
   RefCounted.MethodBindings
-  Performance.MethodBindings
-  TextServerManager.MethodBindings
-  PhysicsServer2DManager.MethodBindings
-  PhysicsServer3DManager.MethodBindings
-  NavigationMeshGenerator.MethodBindings
-  ProjectSettings.MethodBindings
-  IP.MethodBindings
-  Geometry2D.MethodBindings
-  Geometry3D.MethodBindings
-  ResourceLoader.MethodBindings
-  ResourceSaver.MethodBindings
-  OS.MethodBindings
-  Engine.MethodBindings
-  ClassDB.MethodBindings
-  Marshalls.MethodBindings
-  TranslationServer.MethodBindings
-  Input.MethodBindings
-  InputMap.MethodBindings
-  EngineDebugger.MethodBindings
-  Time.MethodBindings
-  GDExtensionManager.MethodBindings
-  ResourceUID.MethodBindings
-  WorkerThreadPool.MethodBindings
-  ThemeDB.MethodBindings
-  JavaClassWrapper.MethodBindings
-  JavaScriptBridge.MethodBindings
   AudioServer.MethodBindings
   CameraServer.MethodBindings
+  ClassDB.MethodBindings
   DisplayServer.MethodBindings
+  Engine.MethodBindings
+  EngineDebugger.MethodBindings
+  GDExtensionManager.MethodBindings
+  Geometry2D.MethodBindings
+  Geometry3D.MethodBindings
+  IP.MethodBindings
+  Input.MethodBindings
+  InputMap.MethodBindings
+  JavaClassWrapper.MethodBindings
+  JavaScriptBridge.MethodBindings
+  Marshalls.MethodBindings
   NativeMenu.MethodBindings
+  NavigationMeshGenerator.MethodBindings
   NavigationServer2D.MethodBindings
   NavigationServer3D.MethodBindings
-  RenderingServer.MethodBindings
+  OS.MethodBindings
+  Performance.MethodBindings
   PhysicsServer2D.MethodBindings
+  PhysicsServer2DManager.MethodBindings
   PhysicsServer3D.MethodBindings
+  PhysicsServer3DManager.MethodBindings
+  ProjectSettings.MethodBindings
+  RenderingServer.MethodBindings
+  ResourceLoader.MethodBindings
+  ResourceSaver.MethodBindings
+  ResourceUID.MethodBindings
+  TextServerManager.MethodBindings
+  ThemeDB.MethodBindings
+  Time.MethodBindings
+  TranslationServer.MethodBindings
+  WorkerThreadPool.MethodBindings
   XRServer.MethodBindings
   AESContext.MethodBindings
   AStar2D.MethodBindings
