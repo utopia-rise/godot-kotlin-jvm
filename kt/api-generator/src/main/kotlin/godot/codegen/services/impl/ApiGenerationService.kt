@@ -38,7 +38,7 @@ import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
 import godot.codegen.services.IApiService
-import godot.codegen.services.IClassGraphService
+import godot.codegen.services.IClassService
 import godot.codegen.services.IApiGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
@@ -64,7 +64,7 @@ import java.util.*
 private const val methodBindingsInnerClassName = "MethodBindings"
 
 class ApiGenerationService(
-    private val classGraphService: IClassGraphService,
+    private val classService: IClassService,
     private val apiService: IApiService,
     private val nativeStructureRepository: INativeStructureRepository
 ) : IApiGenerationService {
@@ -74,7 +74,7 @@ class ApiGenerationService(
     val registrationFileSpec = RegistrationFileSpec()
 
     override fun generateCore(outputDir: File) {
-        val apiClasses = apiService.getClasses().filter {
+        val apiClasses = classService.getClasses().filter {
             it.type == "Object" || it.type == "RefCounted"
         }
 
@@ -105,12 +105,12 @@ class ApiGenerationService(
 
 
         //We first generate singletons so that their index in engine types and engine singleton lists are same.
-        for (singleton in apiService.getSingletons()) {
+        for (singleton in classService.getSingletons()) {
             generateSingleton(singleton).writeTo(outputDir)
             generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
         }
 
-        for (enrichedClass in apiService.getClasses()) {
+        for (enrichedClass in classService.getClasses()) {
             if (enrichedClass.type != "Object" && enrichedClass.type != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
                 generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
@@ -127,7 +127,7 @@ class ApiGenerationService(
         val fileBuilder = FileSpec.builder(godotApiPackage, singletonClass.type)
 
         val singletonTypeName = singletonClass.getTypeClassName()
-        val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
+        val baseClass = singletonClass.parent?.type ?: GodotKotlinJvmTypes.obj
         val singletonBuilder = TypeSpec
             .objectBuilder(singletonTypeName.className)
             .superclass(ClassName(godotApiPackage, baseClass))
@@ -159,8 +159,8 @@ class ApiGenerationService(
             )
         }
 
-        val baseClass = clazz.inherits
-        if (!baseClass.isNullOrEmpty()) {
+        val baseClass = clazz.parent?.type
+        if (baseClass != null) {
             classTypeBuilder.superclass(ClassName(godotApiPackage, baseClass))
         }
 
@@ -807,7 +807,7 @@ class ApiGenerationService(
 
                 if (shouldAddComa) append(",·")
 
-                val sanitisedArgumentName = classGraphService.getSanitisedArgumentName(cl, method, index)
+                val sanitisedArgumentName = classService.getSanitisedArgumentName(cl, method, index)
 
                 append("%T·to·$sanitisedArgumentName${argument.getToBufferCastingMethod()}")
 

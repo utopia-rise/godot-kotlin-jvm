@@ -1,6 +1,5 @@
 package godot.codegen.extensions
 
-import godot.codegen.Graph
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedProperty
