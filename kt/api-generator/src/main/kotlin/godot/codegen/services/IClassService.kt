@@ -12,6 +12,4 @@ interface IClassService {
     fun findTypeByName(name: String): EnrichedClass?
     fun findClassByName(name: String): EnrichedClass?
     fun findSingletonByName(name: String): EnrichedClass?
-
-    fun getSanitisedArgumentName(cl: EnrichedClass, method: EnrichedMethod, index: Int): String
 }

@@ -19,6 +19,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.jvmReservedMethods
+import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.extensions.applyJvmNameIfNecessary
 import godot.codegen.extensions.getDefaultValueKotlinString
 import godot.codegen.extensions.getTypeClassName
@@ -30,6 +31,7 @@ import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedConstant
 import godot.codegen.models.enriched.EnrichedEnum
+import godot.codegen.models.enriched.EnrichedEnumValue
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.EnrichedSignal
@@ -37,10 +39,11 @@ import godot.codegen.models.enriched.isSameSignature
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
-import godot.codegen.services.IApiService
 import godot.codegen.services.IClassService
 import godot.codegen.services.IApiGenerationService
+import godot.codegen.services.ICoreService
 import godot.codegen.traits.CallableTrait
+import godot.codegen.traits.TypedTrait
 import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
@@ -60,12 +63,13 @@ import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import java.io.File
 import java.util.*
+import kotlin.collections.firstOrNull
 
 private const val methodBindingsInnerClassName = "MethodBindings"
 
 class ApiGenerationService(
     private val classService: IClassService,
-    private val apiService: IApiService,
+    private val coreService: ICoreService,
     private val nativeStructureRepository: INativeStructureRepository
 ) : IApiGenerationService {
 
@@ -83,7 +87,7 @@ class ApiGenerationService(
             generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
         }
 
-        for (enum in apiService.getGlobalEnums()) {
+        for (enum in coreService.getGlobalEnums()) {
             val enumAndExtensions = generateEnum(enum)
             val fileBuilder = FileSpec.builder(godotCorePackage, enum.name)
             for (typeSpec in enumAndExtensions.first) {
@@ -266,13 +270,13 @@ class ApiGenerationService(
     }
 
     override fun generateEnum(enum: EnrichedEnum, containingClassName: String?): Pair<List<TypeSpec>, List<FunSpec>> {
-        val packageName = if (enum.encapsulatingType == null) {
+        val packageName = if (enum.outerClass == null) {
             godotCorePackage
         } else {
-            "$godotApiPackage.${enum.encapsulatingType.type}"
+            "$godotApiPackage.${enum.outerClass}"
         }
 
-        return if (enum.internal.isBitField) {
+        return if (enum.isBitField()) {
             val bitFieldInterfaceName = ClassName(packageName, enum.name)
             val bitFlagValueClassName = "${enum.name}Value"
             val bitFlagValueClass = TypeSpec.classBuilder(bitFlagValueClassName)
@@ -342,7 +346,7 @@ class ApiGenerationService(
 
             val bitfieldInterfaceCompanion = TypeSpec.companionObjectBuilder()
 
-            for (value in enum.internal.values) {
+            for (value in enum.values) {
                 val bitFieldValueClassName = ClassName(packageName, bitFlagValueClassName)
                 bitfieldInterfaceCompanion
                     .addProperty(
@@ -365,15 +369,12 @@ class ApiGenerationService(
             )
             enumBuilder.addProperty("id", Long::class)
 
-            for (value in enum.internal.values) {
-                val valueName = value.name
+            for (value in enum.values) {
                 enumBuilder.addEnumConstant(
-                    valueName,
+                    value.name,
                     TypeSpec.anonymousClassBuilder()
                         .addSuperclassConstructorParameter("%L", value.value)
-                        .also {
-                            it.addKdoc(value)
-                        }
+                        .addKdoc(value)
                         .build()
                 )
             }
@@ -398,9 +399,7 @@ class ApiGenerationService(
             .builder(constantName, constant.getTypeClassName().typeName)
             .addModifiers(KModifier.CONST, KModifier.FINAL)
             .initializer("%L", constant.internal.value)
-            .also {
-                it.addKdoc(constant)
-            }
+            .addKdoc(constant)
             .build()
     }
 
@@ -472,10 +471,10 @@ class ApiGenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.getterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = apiService.findDefaultEnumValue(
-                                    indexArgument.getBufferType(),
+                                val argumentValue = findDefaultEnumValue(
+                                    indexArgument,
                                     property.index!!.toLong()
-                                ).name
+                                ).type
                                 "return $methodName($argumentValue)"
                             } else {
                                 "return $methodName(${property.index})"
@@ -519,10 +518,10 @@ class ApiGenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.setterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = apiService.findDefaultEnumValue(
-                                    indexArgument.getBufferType(),
+                                val argumentValue = findDefaultEnumValue(
+                                    indexArgument,
                                     property.index!!.toLong()
-                                ).name
+                                ).type
                                 "$methodName($argumentValue, value)"
                             } else {
                                 "$methodName(${property.index}, value)"
@@ -805,7 +804,7 @@ class ApiGenerationService(
 
                 if (shouldAddComa) append(",·")
 
-                val sanitisedArgumentName = classService.getSanitisedArgumentName(cl, method, index)
+                val sanitisedArgumentName = method.arguments[index].name
 
                 append("%T·to·$sanitisedArgumentName${argument.getToBufferCastingMethod()}")
 
@@ -820,10 +819,10 @@ class ApiGenerationService(
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
-                    apiService.findDefaultEnumValue(
-                        argumentTypeClassName,
+                    findDefaultEnumValue(
+                        argument,
                         defaultValueKotlinCode.first.toLong()
-                    ).name
+                    ).type
                 } else {
                     defaultValueKotlinCode?.first
                 }
@@ -1007,10 +1006,10 @@ class ApiGenerationService(
         enum: EnrichedEnum,
         isOperator: Boolean = false
     ) {
-        val packageName = if (enum.encapsulatingType == null) {
+        val packageName = if (enum.outerClass == null) {
             godotCorePackage
         } else {
-            "$godotApiPackage.${enum.encapsulatingType.type}"
+            "$godotApiPackage.${enum.outerClass}"
         }
 
         val bitFieldInterfaceName = ClassName(packageName, enum.name)
@@ -1065,10 +1064,10 @@ class ApiGenerationService(
             enum: EnrichedEnum,
             isOperator: Boolean = false
         ): List<FunSpec> {
-            val packageName = if (enum.encapsulatingType == null) {
+            val packageName = if (enum.outerClass == null) {
                 godotCorePackage
             } else {
-                "$godotApiPackage.${enum.encapsulatingType.type}"
+                "$godotApiPackage.${enum.outerClass}"
             }
 
             val bitFieldInterfaceName = ClassName(packageName, enum.name)
@@ -1090,6 +1089,29 @@ class ApiGenerationService(
                             CodeBlock.of("return·this.%L(other.%L)", it, BIT_FLAG_VALUE_MEMBER)
                         ).build()
                 }
+        }
+    }
+
+
+    private fun findDefaultEnumValue(enumClass: TypedTrait, enumValue: Long): EnrichedEnumValue {
+        val simpleNames = enumClass.getTypeClassName().className.simpleNames
+        return if (simpleNames.size > 1) {
+            val className = simpleNames[0]
+            val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
+                coreService.getCoreType(className)
+            } else {
+                classService.findTypeByName(className)!!.enums
+            }.firstOrNull {
+                it.type == enumClass.type
+            } ?: throw NoMatchingEnumFound(simpleNames.joinToString("."))
+
+            enrichedEnum.values.firstOrNull { it.value == enumValue } ?: enrichedEnum.getBitFieldCustomValue(enumValue)
+        } else {
+            coreService
+                .getGlobalEnums()
+                .first { it.name == simpleNames[0] }
+                .values
+                .first { it.value == enumValue }
         }
     }
 }

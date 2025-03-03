@@ -20,7 +20,7 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
         private set
     
     val constants= model.constants?.toEnriched() ?: listOf()
-    val enums = model.enums?.toEnriched(this) ?: listOf()
+    val enums = model.enums?.toEnriched(this.type) ?: listOf()
     val signals = model.signals?.toEnriched() ?: listOf()
     val properties= model.properties?.toEnriched() ?: listOf()
     val methods = model.methods?.toEnriched() ?: listOf()

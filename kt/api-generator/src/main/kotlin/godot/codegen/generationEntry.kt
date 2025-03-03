@@ -4,18 +4,14 @@ import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import godot.codegen.models.ApiDescription
 import godot.codegen.models.enriched.toEnriched
-import godot.codegen.repositories.CoreTypeEnumRepository
-import godot.codegen.repositories.GlobalEnumRepository
-import godot.codegen.repositories.impl.JsonGlobalEnumRepository
-import godot.codegen.repositories.impl.KnownCoreTypeEnumRepository
 import godot.codegen.repositories.impl.NativeStructureRepository
 import godot.codegen.services.IClassService
-import godot.codegen.services.IApiService
 import godot.codegen.services.IApiGenerationService
+import godot.codegen.services.ICoreService
 import godot.codegen.services.impl.AwaitGenerationService
 import godot.codegen.services.impl.ClassService
-import godot.codegen.services.impl.ApiService
 import godot.codegen.services.impl.ApiGenerationService
+import godot.codegen.services.impl.CoreService
 import godot.codegen.services.impl.LambdaCallableGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import java.io.File
@@ -23,18 +19,12 @@ import java.io.File
 fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
-    val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched())
-    val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
+
     val nativeStructureRepository = NativeStructureRepository(apiDescription.nativeStructures.toEnriched())
+    val coreService: ICoreService  = CoreService(apiDescription.globalEnums)
+    val classService: IClassService = ClassService(apiDescription.classes, apiDescription.singletons)
 
-    val classGraphService: IClassService = ClassService(apiDescription.classes, apiDescription.singletons)
-    val apiService: IApiService = ApiService(
-        globalEnumRepository,
-        coreTypeEnumRepository,
-        classGraphService
-    )
-
-    val generationService: IApiGenerationService = ApiGenerationService(classGraphService, apiService, nativeStructureRepository)
+    val generationService: IApiGenerationService = ApiGenerationService(classService, coreService, nativeStructureRepository)
     generationService.generateCore(coreDir)
     generationService.generateApi(apiDir)
     generationService.generateEngineRegistration((apiDir))
