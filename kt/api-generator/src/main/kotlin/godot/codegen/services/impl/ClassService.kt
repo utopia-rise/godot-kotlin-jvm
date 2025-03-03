@@ -101,7 +101,4 @@ class ClassService(
         }
     }
 
-    override fun getSanitisedArgumentName(cl: EnrichedClass, method: EnrichedMethod, index: Int): String {
-        return method.arguments[index].name
-    }
 }
