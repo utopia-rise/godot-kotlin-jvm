@@ -8,7 +8,5 @@ import godot.codegen.poet.ClassTypeNameWrapper
 interface IApiService {
     fun getGlobalEnums() : List<EnrichedEnum>
 
-
-    fun findGetSetMethodsAndUpdateProperties()
     fun findDefaultEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue
 }

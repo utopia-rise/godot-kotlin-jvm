@@ -10,12 +10,25 @@ import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.escapeKotlinReservedNames
 
-class EnrichedArgument(val internal: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
-    val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()
-    override val type = internal.type.sanitizeApiType()
-    override val defaultValue = internal.defaultValue
-    override val meta: String? = internal.meta
+class EnrichedArgument(model: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
+    val name = model.name.convertToCamelCase().escapeKotlinReservedNames()
+    override val type = model.type.sanitizeApiType()
+    override val defaultValue = model.defaultValue
+    override val meta: String? = model.meta
     override var nullable = (isObjectSubClass() || type == GodotTypes.variant) && canBeNull
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if(other !is EnrichedArgument) return false
+        return name == other.name && type == other.type && meta == other.meta
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + (meta?.hashCode() ?: 0)
+        return result
+    }
 }
 
 fun List<Argument>.toEnriched(canBeNull: Boolean = true) = map { EnrichedArgument(it, canBeNull) }

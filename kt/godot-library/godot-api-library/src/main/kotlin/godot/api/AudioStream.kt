@@ -46,14 +46,14 @@ public open class AudioStream : Resource() {
    * [AudioStreamPlayer])..
    */
   public open fun _instantiatePlayback(): AudioStreamPlayback? {
-    throw NotImplementedError("_instantiate_playback is not implemented for AudioStream")
+    throw NotImplementedError("_instantiatePlayback is not implemented for AudioStream")
   }
 
   /**
    * Override this method to customize the name assigned to this audio stream. Unused by the engine.
    */
   public open fun _getStreamName(): String {
-    throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
+    throw NotImplementedError("_getStreamName is not implemented for AudioStream")
   }
 
   /**
@@ -61,7 +61,7 @@ public open class AudioStream : Resource() {
    * of this audio stream, in seconds.
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_get_length is not implemented for AudioStream")
+    throw NotImplementedError("_getLength is not implemented for AudioStream")
   }
 
   /**
@@ -69,7 +69,7 @@ public open class AudioStream : Resource() {
    * this audio stream only supports one channel.
    */
   public open fun _isMonophonic(): Boolean {
-    throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
+    throw NotImplementedError("_isMonophonic is not implemented for AudioStream")
   }
 
   /**
@@ -79,7 +79,7 @@ public open class AudioStream : Resource() {
    * ([AudioStreamWAV.mixRate], for example).
    */
   public open fun _getBpm(): Double {
-    throw NotImplementedError("_get_bpm is not implemented for AudioStream")
+    throw NotImplementedError("_getBpm is not implemented for AudioStream")
   }
 
   /**
@@ -89,7 +89,7 @@ public open class AudioStream : Resource() {
    * ([AudioStreamWAV.mixRate], for example).
    */
   public open fun _getBeatCount(): Int {
-    throw NotImplementedError("_get_beat_count is not implemented for AudioStream")
+    throw NotImplementedError("_getBeatCount is not implemented for AudioStream")
   }
 
   /**
@@ -98,7 +98,7 @@ public open class AudioStream : Resource() {
    * for this parameter must be added tho each dictionary in "default_value" field.
    */
   public open fun _getParameterList(): VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_get_parameter_list is not implemented for AudioStream")
+    throw NotImplementedError("_getParameterList is not implemented for AudioStream")
   }
 
   /**

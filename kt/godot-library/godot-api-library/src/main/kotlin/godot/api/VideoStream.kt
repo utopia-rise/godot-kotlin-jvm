@@ -47,7 +47,7 @@ public open class VideoStream : Resource() {
    * [VideoStreamPlayback].
    */
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
-    throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")
+    throw NotImplementedError("_instantiatePlayback is not implemented for VideoStream")
   }
 
   public final fun setFile(`file`: String): Unit {

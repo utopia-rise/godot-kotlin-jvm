@@ -39,49 +39,49 @@ public open class TextureLayered : Texture() {
    * Called when the [TextureLayered]'s format is queried.
    */
   public open fun _getFormat(): Image.Format {
-    throw NotImplementedError("_get_format is not implemented for TextureLayered")
+    throw NotImplementedError("_getFormat is not implemented for TextureLayered")
   }
 
   /**
    * Called when the layers' type in the [TextureLayered] is queried.
    */
   public open fun _getLayeredType(): Long {
-    throw NotImplementedError("_get_layered_type is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayeredType is not implemented for TextureLayered")
   }
 
   /**
    * Called when the [TextureLayered]'s width queried.
    */
   public open fun _getWidth(): Int {
-    throw NotImplementedError("_get_width is not implemented for TextureLayered")
+    throw NotImplementedError("_getWidth is not implemented for TextureLayered")
   }
 
   /**
    * Called when the [TextureLayered]'s height is queried.
    */
   public open fun _getHeight(): Int {
-    throw NotImplementedError("_get_height is not implemented for TextureLayered")
+    throw NotImplementedError("_getHeight is not implemented for TextureLayered")
   }
 
   /**
    * Called when the number of layers in the [TextureLayered] is queried.
    */
   public open fun _getLayers(): Int {
-    throw NotImplementedError("_get_layers is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayers is not implemented for TextureLayered")
   }
 
   /**
    * Called when the presence of mipmaps in the [TextureLayered] is queried.
    */
   public open fun _hasMipmaps(): Boolean {
-    throw NotImplementedError("_has_mipmaps is not implemented for TextureLayered")
+    throw NotImplementedError("_hasMipmaps is not implemented for TextureLayered")
   }
 
   /**
    * Called when the data for a layer in the [TextureLayered] is queried.
    */
   public open fun _getLayerData(layerIndex: Int): Image? {
-    throw NotImplementedError("_get_layer_data is not implemented for TextureLayered")
+    throw NotImplementedError("_getLayerData is not implemented for TextureLayered")
   }
 
   /**
