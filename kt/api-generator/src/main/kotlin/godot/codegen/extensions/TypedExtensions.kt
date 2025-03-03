@@ -1,15 +1,17 @@
 package godot.codegen.extensions
 
 import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.BOOLEAN
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.DOUBLE
 import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.constants.GodotMeta
 import godot.codegen.models.enriched.EnrichedSignal
-import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.TypedTrait
@@ -49,38 +51,51 @@ import java.util.*
 const val enumPrefix = "enum::"
 const val bitfieldPrefix = "bitfield::"
 
+class TypeClass(val className: ClassName) {
+    constructor(pack: String, name: String) : this(ClassName(pack, name))
+    constructor(pack: String, names: List<String>) : this(ClassName(pack, names))
+
+    var typeName: TypeName = className
+        private set
+
+    fun parameterizedBy(vararg typeParameters: TypeName): TypeClass {
+        typeName = className.parameterizedBy(*typeParameters)
+        return this
+    }
+
+    fun setNullable(): TypeClass {
+        typeName = typeName.copy(nullable = true)
+        return this
+    }
+}
+
+
 fun TypedTrait.isVoid() = type.isNullOrEmpty()
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
-fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s ->
-    s == this.type
-} != null
-
+fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) == true
 fun TypedTrait.isBitField() = type?.startsWith(bitfieldPrefix) == true
 fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) == true
 
-fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
-    val typeNameWrapper = when {
-        type.isNullOrEmpty() -> ClassTypeNameWrapper(UNIT)
-        type == "Signal0" -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
+fun TypedTrait.getTypeClass(): TypeClass {
+    val typeName = when {
+        type.isNullOrEmpty() -> TypeClass(UNIT)
+        type == GodotTypes.error -> TypeClass(GODOT_ERROR)
+        type == "Signal0" -> TypeClass(godotCorePackage, type!!)
         type!!.startsWith("Signal") -> {
             this as EnrichedSignal
-            val className = ClassName(godotCorePackage, type)
-            ClassTypeNameWrapper(className).parameterizedBy(
-                *arguments
-                    .map {
-                        it.getCastedType().typeName
-                    }
-                    .toTypedArray()
-            )
+            if (arguments.isNotEmpty()) {
+                TypeClass(godotCorePackage, type).parameterizedBy(*arguments.map { it.getCastedType().typeName }.toTypedArray())
+            } else {
+                TypeClass(godotCorePackage, type)
+            }
         }
 
-        type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
             val enumType = type!!.removePrefix(enumPrefix)
             if (enumType == GodotTypes.variantType) {
-                ClassTypeNameWrapper(GODOT_VARIANT_TYPE)
+                TypeClass(GODOT_VARIANT_TYPE)
             } else {
                 val containerAndEnum = enumType.split('.')
                 val enumPackage = if (containerAndEnum.size == 1 || containerAndEnum[0] == "Vector3") {
@@ -88,12 +103,9 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
                 } else {
                     godotApiPackage
                 }
-
-                ClassTypeNameWrapper(
-                    ClassName(
-                        enumPackage,
-                        containerAndEnum
-                    )
+                TypeClass(
+                    enumPackage,
+                    containerAndEnum
                 )
             }
         }
@@ -102,56 +114,43 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
             val containerAndBitfield = type!!.removePrefix(bitfieldPrefix).split('.')
             if (containerAndBitfield.size == 1) {
                 //Global Enum
-                ClassTypeNameWrapper(
-                    ClassName(
-                        godotCorePackage,
-                        containerAndBitfield
-                    )
-                )
+                TypeClass(godotCorePackage, containerAndBitfield)
             } else {
                 //Class Enum
-                ClassTypeNameWrapper(
-                    ClassName(
-                        godotApiPackage,
-                        containerAndBitfield
-                    )
-                )
+                TypeClass(godotApiPackage, containerAndBitfield)
             }
         }
 
-        type == GodotTypes.bool -> ClassTypeNameWrapper(BOOLEAN)
-        type == GodotTypes.int -> ClassTypeNameWrapper(LONG)
-        type == GodotTypes.float -> ClassTypeNameWrapper(DOUBLE)
-        type == GodotTypes.string -> ClassTypeNameWrapper(STRING)
+        type == GodotTypes.bool -> TypeClass(BOOLEAN)
+        type == GodotTypes.int -> TypeClass(LONG)
+        type == GodotTypes.float -> TypeClass(DOUBLE)
+        type == GodotTypes.string -> TypeClass(STRING)
+        type == GodotTypes.variant -> TypeClass(ANY)
+        type == GodotTypes.callable -> TypeClass(GODOT_CALLABLE_BASE)
         isTypedArray() -> {
+            val innerType = type!!.removePrefix("${GodotTypes.typedArray}::")
             val parameterType = object : TypedTrait {
-                override val type: String = this@getTypeClassName.type!!
-                    .removePrefix("${GodotTypes.typedArray}::")
+                override val type: String = innerType
             }
-            ClassTypeNameWrapper(GODOT_ARRAY)
-                .parameterizedBy(
-                    parameterType.getTypeClassName().typeName
-                )
+            TypeClass(GODOT_ARRAY).parameterizedBy(parameterType.getTypeClass().typeName)
         }
 
-        type == GodotTypes.array -> ClassTypeNameWrapper(GODOT_ARRAY)
-            .parameterizedBy(ANY.copy(nullable = true))
+        type == GodotTypes.array -> TypeClass(GODOT_ARRAY).parameterizedBy(ANY.copy(nullable = true))
+        type == GodotTypes.dictionary -> TypeClass(GODOT_DICTIONARY).parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
 
-        type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
-            .parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
-
-        type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
-        type == GodotTypes.callable -> ClassTypeNameWrapper(GODOT_CALLABLE_BASE)
-        isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
-        else -> ClassTypeNameWrapper(ClassName(godotApiPackage, type!!))
+        isCoreType() -> TypeClass(godotCorePackage, type!!)
+        else -> TypeClass(godotApiPackage, type!!)
     }
 
-    if (this is NullableTrait) {
-        typeNameWrapper.modify(nullable = nullable)
+    if (this is NullableTrait && this.nullable) {
+        return typeName.setNullable()
     }
 
-    return typeNameWrapper
+    return typeName
 }
+
+fun TypedTrait.getClassName() = getTypeClass().className
+fun TypedTrait.getTypeName() = getTypeClass().typeName
 
 fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrimitive() || isCoreType() || isBitField())
 
