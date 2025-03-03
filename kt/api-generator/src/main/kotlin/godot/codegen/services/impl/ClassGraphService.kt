@@ -9,7 +9,7 @@ import godot.codegen.services.IClassGraphService
 
 class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
     private val classGraph = Graph(classRepository.list()) { child, parent ->
-        child.inherits == parent.name
+        child.inherits == parent.type
     }
 
     override fun getMethodFromAncestor(
@@ -34,7 +34,7 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
 
             return parent?.findMethodInHierarchy()
         }
-        return classGraph.nodes.find { it.value.name == cl.name }?.parent?.findMethodInHierarchy()
+        return classGraph.nodes.find { it.value.type == cl.type }?.parent?.findMethodInHierarchy()
     }
 
     override fun doAncestorsHaveProperty(cl: EnrichedClass, prop: EnrichedProperty): Boolean {
@@ -48,7 +48,7 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
             }
             return parent?.findPropertyInHierarchy()
         }
-        return classGraph.nodes.find { it.value.name == cl.name }!!.parent!!.findPropertyInHierarchy() ?: false
+        return classGraph.nodes.find { it.value.type == cl.type }!!.parent!!.findPropertyInHierarchy() ?: false
     }
 
     override fun doAncestorsHaveMethod(cl: EnrichedClass, method: EnrichedMethod): Boolean {

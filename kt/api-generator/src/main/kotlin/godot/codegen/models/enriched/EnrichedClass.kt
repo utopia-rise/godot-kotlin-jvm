@@ -6,26 +6,22 @@ import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
 import godot.common.extensions.escapeUnderscore
-import java.util.*
 
-class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
-    val constants= internal.constants?.toEnriched() ?: listOf()
-    val signals = internal.signals?.toEnriched() ?: listOf()
-    val name = internal.name.escapeUnderscore()
-    val inherits = internal.inherits?.escapeUnderscore()
-    val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
-    val properties= internal.properties?.toEnriched() ?: listOf()
-    val methods = internal.methods?.toEnriched() ?: listOf()
-    val apiType = ApiType.from(internal.apiType)
-    override val description = internal.description
+class EnrichedClass(model: Class) : TypedTrait, IDocumented {
+    override val type = model.name.escapeUnderscore()
+    val inherits = model.inherits?.escapeUnderscore()
+    val apiType = ApiType.from(model.apiType)
 
-    override val type = name
-
+    val isInstantiable = model.isInstantiable
+    
+    val constants= model.constants?.toEnriched() ?: listOf()
+    val enums = model.enums?.toEnriched(this) ?: listOf()
+    val signals = model.signals?.toEnriched() ?: listOf()
+    val properties= model.properties?.toEnriched() ?: listOf()
+    val methods = model.methods?.toEnriched() ?: listOf()
+    
+    override val description = model.description
     val additionalImports = mutableListOf<AdditionalImport>()
-
-    val enums = internal.enums?.toEnriched(this) ?: listOf()
-
-    fun copy(internalNewName: String) = EnrichedClass(internal.copy(internalNewName))
 }
 
 fun List<Class>.toEnriched() = map { EnrichedClass(it) }

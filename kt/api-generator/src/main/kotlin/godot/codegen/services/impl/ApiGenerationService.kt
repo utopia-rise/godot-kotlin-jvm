@@ -75,7 +75,7 @@ class ApiGenerationService(
 
     override fun generateCore(outputDir: File) {
         val apiClasses = apiService.getClasses().filter {
-            it.name == "Object" || it.name == "RefCounted"
+            it.type == "Object" || it.type == "RefCounted"
         }
 
         for (enrichedClass in apiClasses) {
@@ -111,7 +111,7 @@ class ApiGenerationService(
         }
 
         for (enrichedClass in apiService.getClasses()) {
-            if (enrichedClass.name != "Object" && enrichedClass.name != "RefCounted") {
+            if (enrichedClass.type != "Object" && enrichedClass.type != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
                 generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
             }
@@ -124,7 +124,7 @@ class ApiGenerationService(
     }
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
-        val fileBuilder = FileSpec.builder(godotApiPackage, singletonClass.name)
+        val fileBuilder = FileSpec.builder(godotApiPackage, singletonClass.type)
 
         val singletonTypeName = singletonClass.getTypeClassName()
         val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
@@ -143,7 +143,7 @@ class ApiGenerationService(
     }
 
     override fun generateClass(clazz: EnrichedClass): FileSpec {
-        val fileBuilder = FileSpec.builder(godotApiPackage, clazz.name)
+        val fileBuilder = FileSpec.builder(godotApiPackage, clazz.type)
 
         val className = clazz.getTypeClassName()
 
@@ -151,7 +151,7 @@ class ApiGenerationService(
             .classBuilder(className.className)
             .addModifiers(KModifier.OPEN)
 
-        if (!clazz.internal.isInstantiable) {
+        if (!clazz.isInstantiable) {
             classTypeBuilder.primaryConstructor(
                 FunSpec.constructorBuilder()
                     .addModifiers(KModifier.INTERNAL)
@@ -181,7 +181,7 @@ class ApiGenerationService(
             .addKdoc(enrichedClass)
             .addAnnotation(GODOT_BASE_TYPE)
 
-        val name = enrichedClass.name
+        val name = enrichedClass.type
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
         }
@@ -599,9 +599,9 @@ class ApiGenerationService(
                     |
                     |Prefer that over writing:
                     |``````
-                    |val myCoreType = ${enrichedClass.name.lowercase()}.${property.name}
+                    |val myCoreType = ${enrichedClass.type.lowercase()}.${property.name}
                     |//Your changes
-                    |${enrichedClass.name.lowercase()}.${property.name} = myCoreType
+                    |${enrichedClass.type.lowercase()}.${property.name} = myCoreType
                     |``````
                     |""".trimMargin()
                     )
@@ -676,7 +676,7 @@ class ApiGenerationService(
                         .addMember(
                             CodeBlock.of(
                                 "\"%L%L\"",
-                                enrichedClass.name.replaceFirstChar { it.lowercase(Locale.US) },
+                                enrichedClass.type.replaceFirstChar { it.lowercase(Locale.US) },
                                 method.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
                             )
                         )
@@ -699,7 +699,7 @@ class ApiGenerationService(
         .initializer(
             "%T.getMethodBindPtr(%S,·%S,·%L)",
             TYPE_MANAGER,
-            enrichedClass.internal.name,
+            enrichedClass.type,
             method.internal.name,
             method.internal.hash
         )
@@ -863,7 +863,7 @@ class ApiGenerationService(
                 "%L·%T(%S)",
                 "throw",
                 NotImplementedError::class,
-                "${enrichedMethod.internal.name} is not implemented for ${clazz.internal.name}"
+                "${enrichedMethod.internal.name} is not implemented for ${clazz.type}"
             )
         }
     }
@@ -990,7 +990,7 @@ class ApiGenerationService(
         registerTypesFunBuilder.addStatement(
             formatString,
             TYPE_MANAGER,
-            clazz.internal.name,
+            clazz.type,
             typeName,
             typeName
         )
@@ -1000,7 +1000,7 @@ class ApiGenerationService(
         registerTypesFunBuilder.addStatement(
             "%T.registerSingleton(%S)",
             TYPE_MANAGER,
-            clazz.name
+            clazz.type
         )
     }
 
