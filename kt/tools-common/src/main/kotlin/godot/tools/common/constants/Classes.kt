@@ -119,7 +119,6 @@ object GodotTypes {
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"
-    const val variantType = "Variant.Type"
     const val propertyHint = "PropertyHint"
     const val propertyUsage = "PropertyUsageFlags"
     const val rpcMode = "MultiplayerAPI.RPCMode"
@@ -205,7 +204,6 @@ object GodotTypes {
 }
 
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
-val GODOT_VARIANT_TYPE = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantType)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
 val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)

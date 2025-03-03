@@ -1,8 +1,9 @@
 package godot.codegen.traits
 
 import godot.codegen.constants.GodotMeta
-import godot.codegen.extensions.TypeClass
+import godot.codegen.poet.TypeClass
 import godot.codegen.extensions.getTypeClass
+import godot.codegen.repositories.ICoreRepository
 
 interface CastableTrait : TypedTrait {
     val meta: String?
@@ -16,7 +17,7 @@ interface CastableTrait : TypedTrait {
     fun getToBufferCastingMethod() = metaInformation?.toBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
     fun getFromBufferCastingMethod() = metaInformation?.fromBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
 
-    fun getCastedType() = metaInformation?.castedType?.let { TypeClass(it) } ?: getTypeClass()
+    fun getCastedType(core: ICoreRepository) = metaInformation?.castedType?.let { TypeClass(it) } ?: getTypeClass(core)
 
-    fun getBufferType() = metaInformation?.bufferType?.let { TypeClass(it) } ?: getTypeClass()
+    fun getBufferType(core: ICoreRepository) = metaInformation?.bufferType?.let { TypeClass(it) } ?: getTypeClass(core)
 }

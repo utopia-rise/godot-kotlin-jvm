@@ -23,7 +23,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
-import godot.core.VariantType
 import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
@@ -748,7 +747,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the type of the custom data layer identified by the given index.
    */
-  public final fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType): Unit {
+  public final fun setCustomDataLayerType(layerIndex: Int, layerType: Variant.Type): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataLayerTypePtr, NIL)
   }
@@ -756,10 +755,10 @@ public open class TileSet : Resource() {
   /**
    * Returns the type of the custom data layer identified by the given index.
    */
-  public final fun getCustomDataLayerType(layerIndex: Int): VariantType {
+  public final fun getCustomDataLayerType(layerIndex: Int): Variant.Type {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCustomDataLayerTypePtr, LONG)
-    return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
+    return Variant.Type.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

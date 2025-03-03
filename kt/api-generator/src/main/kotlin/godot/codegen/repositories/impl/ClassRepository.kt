@@ -1,4 +1,4 @@
-package godot.codegen.services.impl
+package godot.codegen.repositories.impl
 
 import godot.codegen.extensions.isEnum
 import godot.codegen.extensions.isVoid
@@ -9,14 +9,14 @@ import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.toEnriched
-import godot.codegen.services.IClassService
+import godot.codegen.repositories.IClassRepository
 import godot.tools.common.constants.GodotTypes
 import kotlin.collections.get
 
-class ClassService(
+class ClassRepository(
     classes: List<Class>,
     singleton: List<Singleton>
-) : IClassService {
+) : IClassRepository {
     val typeList = classes.toEnriched().filter { it.apiType == ApiType.CORE }
     val typeMap = typeList.associateBy { it.type }
 
