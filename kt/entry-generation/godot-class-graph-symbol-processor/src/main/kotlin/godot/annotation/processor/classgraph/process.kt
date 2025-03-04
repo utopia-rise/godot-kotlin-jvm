@@ -18,132 +18,129 @@ import java.io.FileOutputStream
 fun generateEntryUsingClassGraph(
     settings: Settings,
     logger: Logger,
-    files: Set<File>
+    runtimeClassPathFiles: Set<File>
 ) {
     val scanResult = ClassGraph()
-        .overrideClasspath(files)
+        .overrideClasspath(runtimeClassPathFiles)
         .enableAllInfo()
         .enableSystemJarsAndModules()
         .scan()
     Context.scanResult = scanResult
     scanResult
         .use {
-            with(it) {
-                RegisteredClassMetadataContainerDatabase.populateDependencies(it)
+            RegisteredClassMetadataContainerDatabase.populateDependencies(it)
 
-                val classes = it.allClasses
-                    .filter { clazz ->
-                        clazz.extendsSuperclass(KtObject::class.java)
-                            && !clazz.hasAnnotation(GodotBaseType::class.java)
-                    }
-                    .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqdn(classInfo.name) }
-                    .map { classInfo ->
-                        classInfo.mapToClazz(settings)
-                    }
+            val classes = it.allClasses
+                .filter { clazz ->
+                    clazz.extendsSuperclass(KtObject::class.java)
+                        && !clazz.hasAnnotation(GodotBaseType::class.java)
+                }
+                .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqdn(classInfo.name) }
+                .map { classInfo ->
+                    classInfo.mapToClazz(settings)
+                }
 
-                val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
+            val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
 
-                RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
+            RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
 
-                val existingRegistrationFiles = settings.projectBaseDir.provideExistingRegistrationFiles()
+            val existingRegistrationFiles = settings.projectBaseDir.provideExistingRegistrationFiles()
 
-                EntryGenerator.generateEntryFilesUsingRegisteredClasses(
-                    projectName = settings.projectName,
-                    projectDir = settings.projectBaseDir.absolutePath,
-                    registeredClasses = registeredClasses,
-                    logger = LoggerWrapper(logger),
-                    jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
-                    compilationTimeRelativeRegistrationFilePathProvider = {registeredClass ->
-                            val registrationFile = existingRegistrationFiles["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
-                            ?.relativeTo(settings.projectBaseDir)
-                            ?: File(
-                                registeredClass.provideRegistrationFilePathForInitialGeneration(
-                                    registeredClassMetadataContainers = ,
-                                    isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
-                                    compilationProjectName = settings.projectName,
-                                    classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
-                                    registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
-                                )
-                            )
-
-                        registrationFile.invariantSeparatorsPath
-                    },
-                    classRegistrarAppendableProvider = { registeredClass ->
-                        val file = settings.generatedSourceRootDir
-                            .resolve("main")
-                            .resolve("kotlin")
-                            .resolve("godot")
-                            .resolve("entry")
-                            .resolve("${registeredClass.registeredName}Registrar.kt")
-
-                        file.parentFile.mkdirs()
-
-                        if (!file.exists()) {
-                            file.createNewFile()
-                        }
-
-                        FileOutputStream(file).bufferedWriter()
-                    },
-                    mainBufferedWriterProvider = {
-                        val file = settings.generatedSourceRootDir
-                            .resolve("main")
-                            .resolve("kotlin")
-                            .resolve("godot")
-                            .resolve("Entry.kt")
-
-                        file.parentFile.mkdirs()
-
-                        if (!file.exists()) {
-                            file.createNewFile()
-                        }
-
-                        FileOutputStream(file).bufferedWriter()
-                    },
-                    classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize
-                )
-                
-                if (settings.isRegistrationFileGenerationEnabled) {
-                    EntryGenerator.generateRegistrationFiles(
-                        registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
-                        registrationFileAppendableProvider = { metadata ->
-                            val registrationFile = provideRegistrationFilePathForInitialGeneration(
+            EntryGenerator.generateEntryFilesUsingRegisteredClasses(
+                projectName = settings.projectName,
+                projectDir = settings.projectBaseDir.absolutePath,
+                registeredClasses = registeredClasses,
+                logger = LoggerWrapper(logger),
+                jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
+                compilationTimeRelativeRegistrationFilePathProvider = {registeredClass ->
+                        val registrationFile = existingRegistrationFiles["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
+                        ?.relativeTo(settings.projectBaseDir)
+                        ?: File(
+                            registeredClass.provideRegistrationFilePathForInitialGeneration(
                                 isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
-                                fqName = metadata.fqName,
-                                registeredName = metadata.registeredName,
                                 compilationProjectName = settings.projectName,
-                                classProjectName = metadata.projectName,
+                                classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
                                 registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
                             )
+                        )
 
-                            val file = settings.generatedSourceRootDir
-                                .resolve("main")
-                                .resolve("resources")
-                                .resolve("entryFiles")
-                                .resolve(registrationFile)
+                    registrationFile.invariantSeparatorsPath
+                },
+                classRegistrarAppendableProvider = { registeredClass ->
+                    val file = settings.generatedSourceRootDir
+                        .resolve("main")
+                        .resolve("kotlin")
+                        .resolve("godot")
+                        .resolve("entry")
+                        .resolve("${registeredClass.registeredName}Registrar.kt")
 
-                            file.parentFile.mkdirs()
+                    file.parentFile.mkdirs()
 
-                            if (!file.exists()) {
-                                file.createNewFile()
-                            }
+                    if (!file.exists()) {
+                        file.createNewFile()
+                    }
 
-                            FileOutputStream(file).bufferedWriter()
+                    FileOutputStream(file).bufferedWriter()
+                },
+                mainBufferedWriterProvider = {
+                    val file = settings.generatedSourceRootDir
+                        .resolve("main")
+                        .resolve("kotlin")
+                        .resolve("godot")
+                        .resolve("Entry.kt")
+
+                    file.parentFile.mkdirs()
+
+                    if (!file.exists()) {
+                        file.createNewFile()
+                    }
+
+                    FileOutputStream(file).bufferedWriter()
+                },
+                classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize
+            )
+
+            if (settings.isRegistrationFileGenerationEnabled) {
+                EntryGenerator.generateRegistrationFiles(
+                    registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                    registrationFileAppendableProvider = { metadata ->
+                        val registrationFile = provideRegistrationFilePathForInitialGeneration(
+                            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                            fqName = metadata.fqName,
+                            registeredName = metadata.registeredName,
+                            compilationProjectName = settings.projectName,
+                            classProjectName = metadata.projectName,
+                            registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
+                        )
+
+                        val file = settings.generatedSourceRootDir
+                            .resolve("main")
+                            .resolve("resources")
+                            .resolve("entryFiles")
+                            .resolve(registrationFile)
+
+                        file.parentFile.mkdirs()
+
+                        if (!file.exists()) {
+                            file.createNewFile()
                         }
-                    )
 
-                    val classgraphRegistrationFilesBaseDir = settings.projectBaseDir
-                        .resolve("build/generated/classgraph/main/resources/entryFiles")
-                        .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+                        FileOutputStream(file).bufferedWriter()
+                    }
+                )
 
-                    val initialRegistrationFilesOutDir = settings.projectBaseDir
-                        .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+                val classgraphRegistrationFilesBaseDir = settings.projectBaseDir
+                    .resolve("build/generated/classgraph/main/resources/entryFiles")
+                    .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
 
-                    EntryGenerator.updateRegistrationFiles(
-                        generatedRegistrationFilesBaseDir = classgraphRegistrationFilesBaseDir,
-                        initialRegistrationFilesOutDir = initialRegistrationFilesOutDir,
-                        existingRegistrationFilesMap = existingRegistrationFiles,
-                    )
-                }
+                val initialRegistrationFilesOutDir = settings.projectBaseDir
+                    .resolve(settings.registrationBaseDirPathRelativeToProjectDir)
+
+                EntryGenerator.updateRegistrationFiles(
+                    generatedRegistrationFilesBaseDir = classgraphRegistrationFilesBaseDir,
+                    initialRegistrationFilesOutDir = initialRegistrationFilesOutDir,
+                    existingRegistrationFilesMap = existingRegistrationFiles,
+                )
             }
         }
 }
