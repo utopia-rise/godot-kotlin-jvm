@@ -30,7 +30,6 @@ object RegisteredClassMetadataContainerDatabase {
                     functions = annotation.getParameterValue("functions")
                 )
             }
-            .filter { it.second.projectName != "godot-kotlin-tests" } //TODO: remove this line when classgraph generation is ready
             .toMap()
     }
 

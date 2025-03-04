@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 import java.io.File
 
 fun Project.classGraphSymbolsProcess(
-    classGraphCompile: KotlinWithJavaCompilation<KotlinJvmOptions, KotlinJvmCompilerOptions>,
+    classGraphKotlinCompile: KotlinWithJavaCompilation<KotlinJvmOptions, KotlinJvmCompilerOptions>,
     deleteClassGraphGeneratedTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
     val classGraphGenerationTask = tasks.register(
@@ -23,13 +23,11 @@ fun Project.classGraphSymbolsProcess(
         description = "Generates entry files using ClassGraph api"
 
         with(it) {
-            dependsOn(classGraphCompile.compileTaskProvider)
+            dependsOn(classGraphKotlinCompile.compileTaskProvider)
             dependsOn(deleteClassGraphGeneratedTask)
 
             doFirst {
-                val runtimeClassPath =
-                    (classGraphCompile.runtimeDependencyFiles + classGraphCompile.compileDependencyFiles +
-                        classGraphCompile.output.allOutputs).files
+                val classPath = (classGraphKotlinCompile.compileDependencyFiles + classGraphKotlinCompile.output.allOutputs).files
 
                 generateEntryUsingClassGraph(
                     Settings(
@@ -63,7 +61,7 @@ fun Project.classGraphSymbolsProcess(
                             .resolve("classgraph")
                     ),
                     logger,
-                    runtimeClassPath
+                    classPath
                 )
             }
         }

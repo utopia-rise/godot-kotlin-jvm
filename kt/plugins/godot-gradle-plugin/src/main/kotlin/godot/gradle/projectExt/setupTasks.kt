@@ -19,7 +19,9 @@ import godot.gradle.tasks.graal.ios.createIOSGraalNativeImageTask
 import godot.gradle.tasks.graal.ios.createIOSStaticLibraryTask
 import godot.gradle.tasks.graal.ios.downloadIOSCapCacheFiles
 import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
-import godot.gradle.tasks.initialCompileForClassGraph
+import godot.gradle.tasks.initialJavaCompileForClassGraph
+import godot.gradle.tasks.initialKotlinCompileForClassGraph
+import godot.gradle.tasks.initialScalaCompileForClassGraph
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
 import godot.gradle.tasks.setupAfterIdeaSyncTasks
@@ -35,11 +37,19 @@ fun Project.setupTasks() {
 
     afterEvaluate {
         with(it) {
-            val classGraphKotlinCompile = initialCompileForClassGraph()
+            val classGraphScalaCompile = initialScalaCompileForClassGraph()
+            val classGraphJavaCompile = initialJavaCompileForClassGraph()
+            val classGraphKotlinCompile = initialKotlinCompileForClassGraph(
+                classGraphScalaCompile,
+                classGraphJavaCompile
+            )
 
             val deleteClassGraphGeneratedTask = deleteClassGraphGeneratedSourceTask()
 
-            val classGraphGenerationTask = classGraphSymbolsProcess(classGraphKotlinCompile, deleteClassGraphGeneratedTask)
+            val classGraphGenerationTask = classGraphSymbolsProcess(
+                classGraphKotlinCompile,
+                deleteClassGraphGeneratedTask
+            )
 
             val packageBootstrapJarTask = packageBootstrapJarTask()
             val packageMainJarTask = packageMainJarTask(classGraphGenerationTask = classGraphGenerationTask)
