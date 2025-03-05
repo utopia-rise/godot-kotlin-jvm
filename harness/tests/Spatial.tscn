@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnqp52df0ln8e"]
 
-[ext_resource type="Script" path="res://scripts/godot/tests/Invocation.gdj" id="1"]
+[ext_resource type="Script" path="res://scripts/godot/tests/Invocation.gdj" id="1_u7txe"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ex3u"]
 
@@ -13,7 +13,7 @@
 [sub_resource type="NavigationMesh" id="NavigationMesh_b12lh"]
 
 [node name="Spatial" type="Node3D" node_paths=PackedStringArray("button")]
-script = ExtResource("1")
+script = ExtResource("1_u7txe")
 button = NodePath("CanvasLayer/Button")
 resource_test = SubResource("NavigationMesh_1ex3u")
 jvm_id = 319061373

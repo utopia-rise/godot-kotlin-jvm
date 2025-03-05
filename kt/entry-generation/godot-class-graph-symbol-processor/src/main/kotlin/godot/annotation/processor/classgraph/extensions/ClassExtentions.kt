@@ -6,7 +6,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Settings
-import godot.annotation.processor.classgraph.constants.JVM_OBJECT
+import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
 import godot.core.KtObject
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
@@ -17,7 +17,6 @@ import godot.entrygenerator.model.RegisteredSignal
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import io.github.classgraph.ClassInfo
-import io.github.classgraph.ScanResult
 import io.github.classgraph.TypeArgument
 
 fun ClassInfo.mapToClazz(settings: Settings): Clazz {
@@ -153,9 +152,8 @@ internal fun ClassInfo.provideRegisteredClassName(
     }
 }
 
-// TODO: remove when https://github.com/classgraph/classgraph/issues/703 is fixed
 internal fun getJavaLangObjectType(settings: Settings): Type {
-    val fqName = JVM_OBJECT
+    val fqName = KOTLIN_ANY
     return Type(
         fqName = fqName,
         kind = TypeKind.CLASS,
