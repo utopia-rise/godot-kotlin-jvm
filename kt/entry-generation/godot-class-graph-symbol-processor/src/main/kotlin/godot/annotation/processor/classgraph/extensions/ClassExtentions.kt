@@ -41,33 +41,18 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         }
         .map { it.mapFieldToRegisteredSignal(settings, this) }
 
-    val duplicateConstructorArgumentCount = constructorInfo
-        .groupBy { it.parameterInfo.size }
-        .toList()
-        .firstOrNull { it.second.size > 1 }
-        ?.first
-
     val shouldBeRegistered = shouldBeRegistered(methods, fields, signals)
 
-    if (shouldBeRegistered && duplicateConstructorArgumentCount != null) {
-        throw Exception(
-            "Cannot have more than one constructor with $duplicateConstructorArgumentCount arguments in registered class $fqName"
-        )
-    }
-
-    val constructors = constructorInfo
-        .filter { constructor ->
-            constructor.isPublic && constructor.parameterInfo.isEmpty()
-        }
-        .map { it.mapToRegisteredConstructor(settings) }
-
     return if (shouldBeRegistered) {
+        require(constructorInfo.any { it.isPublic && it.parameterInfo.isEmpty() }) {
+            "You should provide a default constructor for class $fqName"
+        }
+
         RegisteredClass(
             registeredName = provideRegisteredClassName(settings),
             fqName = fqName,
             supertypes = supertypes,
             annotations = annotations,
-            constructors = constructors,
             functions = methods,
             signals = signals,
             properties = fields,

@@ -1,6 +1,5 @@
 package godot.registration
 
-import godot.common.constants.Constraints
 import godot.common.extensions.convertToSnakeCase
 import godot.common.interop.VariantConverter
 import godot.core.KtClass
@@ -80,7 +79,7 @@ class ClassBuilderDsl<T : KtObject>(
     private val superClasses: List<String>,
     private val baseGodotClass: String
 ) {
-    private val constructors = mutableMapOf<Int, KtConstructor<T>>()
+    private lateinit var constructorField: KtConstructor<T>
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
     private var notificationFunctions = listOf<Any.(Int) -> Unit>()
@@ -91,13 +90,7 @@ class ClassBuilderDsl<T : KtObject>(
     private val signals = mutableMapOf<String, KtSignalInfo>()
 
     fun constructor(constructor: KtConstructor<T>) {
-        require(!constructors.containsKey(constructor.parameterCount)) {
-            "A constructor with ${constructor.parameterCount} argument(s) already exists."
-        }
-        require(constructor.parameterCount <= Constraints.MAX_CONSTRUCTOR_ARG_COUNT) {
-            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is ${Constraints.MAX_CONSTRUCTOR_ARG_COUNT}"
-        }
-        constructors[constructor.parameterCount] = constructor
+        constructorField = constructor
     }
 
     fun <P : Any?> property(
@@ -1262,18 +1255,15 @@ class ClassBuilderDsl<T : KtObject>(
     }
 
     internal fun build(): KtClass<T> {
-        check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        // Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1 because we have no arg constructor.
-        val constructorArray = arrayOfNulls<KtConstructor<T>>(Constraints.MAX_CONSTRUCTOR_ARG_COUNT + 1)
-        constructors.forEach {
-            constructorArray[it.key] = it.value
+        check(this::constructorField.isInitialized) {
+            "Please provide a default constructor."
         }
         return KtClass(
             registeredName = registeredName,
             fqdn = fqdn,
             compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePath,
             _registeredSupertypes = superClasses,
-            _constructors = constructorArray.toList(),
+            constructor = constructorField,
             _properties = properties,
             _functions = functions,
             _notificationFunctions = notificationFunctions,

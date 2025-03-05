@@ -17,14 +17,14 @@ protected:
     String source;
 
     template<bool isCreator>
-    ScriptInstance* _instance_create(const Variant** p_args, int p_arg_count, Object* p_this);
-    Object* _object_create(const Variant** p_args, int p_arg_count);
+    ScriptInstance* _instance_create(Object* p_this);
+    Object* _object_create();
 
 public:
     JvmScript();
     ~JvmScript() override;
 
-    Variant _new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error);
+    Variant _new();
     bool can_instantiate() const override;
     bool inherits_script(const Ref<Script>& p_script) const override;
     Ref<Script> get_base_script() const override;

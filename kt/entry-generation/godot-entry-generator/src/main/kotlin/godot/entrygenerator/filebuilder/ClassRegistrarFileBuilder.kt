@@ -96,7 +96,7 @@ class ClassRegistrarFileBuilder(
         )
 
         if (!registeredClass.isAbstract) {
-            ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+            ConstructorRegistrationGenerator.generate(className, registerClassControlFlow)
             FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
             SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
             PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
