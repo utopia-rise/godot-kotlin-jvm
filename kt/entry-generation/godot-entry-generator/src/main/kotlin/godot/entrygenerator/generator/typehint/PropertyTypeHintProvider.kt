@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.ClassName
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
+import godot.entrygenerator.ext.isDictionary
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isRefCounted
 import godot.entrygenerator.generator.typehint.array.JvmArrayTypeHintGenerator
@@ -16,7 +17,6 @@ import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotPackage
 
 object PropertyTypeHintProvider {
 
@@ -57,6 +57,11 @@ object PropertyTypeHintProvider {
             registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() -> JvmCoreTypeTypeHintGenerator(
                 registeredProperty
             ).getPropertyTypeHint()
+
+            registeredProperty.type.isDictionary() -> ClassName(
+                "$godotCorePackage.${GodotTypes.propertyHint}",
+                "PROPERTY_HINT_DICTIONARY_TYPE"
+            )
 
             registeredProperty.type.isRefCounted() -> ClassName(
                 "$godotCorePackage.${GodotTypes.propertyHint}",
