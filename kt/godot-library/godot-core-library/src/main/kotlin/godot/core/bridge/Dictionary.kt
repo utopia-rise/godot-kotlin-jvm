@@ -9,6 +9,7 @@ import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.MapIterator
 import godot.common.util.isNullable
+import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
@@ -45,7 +46,21 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         
         this.keyVariantConverter = keyVariantConverter!!
         this.valueVariantConverter = valueVariantConverter!!
-        ptr = Bridge.engine_call_constructor()
+
+        ptr = if (keyVariantConverter != VariantCaster.ANY || valueVariantConverter != VariantCaster.ANY) {
+            TransferContext.writeArguments(
+                VariantCaster.INT to keyVariantConverter.id,
+                VariantCaster.INT to (TypeManager.engineTypeToId[keyClass] ?: -1),
+                VariantCaster.INT to (TypeManager.userTypeToId[keyClass] ?: -1),
+                VariantCaster.INT to valueVariantConverter.id,
+                VariantCaster.INT to (TypeManager.engineTypeToId[valueClass] ?: -1),
+                VariantCaster.INT to (TypeManager.userTypeToId[valueClass] ?: -1)
+            )
+            Bridge.engine_call_constructor_typed()
+        } else {
+            Bridge.engine_call_constructor()
+        }
+
         MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
 
@@ -358,6 +373,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
+        external fun engine_call_constructor_typed(): VoidPtr
 
         external fun engine_call_clear(_handle: VoidPtr)
         external fun engine_call_duplicate(_handle: VoidPtr)
