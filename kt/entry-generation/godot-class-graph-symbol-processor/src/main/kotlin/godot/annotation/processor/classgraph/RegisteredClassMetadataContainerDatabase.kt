@@ -12,7 +12,7 @@ object RegisteredClassMetadataContainerDatabase {
     private lateinit var dependenciesContainers: Map<String, RegisteredClassMetadataContainer>
     private lateinit var currentProjectContainers: List<RegisteredClassMetadataContainer>
 
-    fun populateDependencies(scanResult: ScanResult) {
+    fun populateDependencies(scanResult: ScanResult, settings: Settings) {
         dependenciesContainers = scanResult
             .getClassesWithAnyAnnotation(RegisteredClassMetadata::class.java)
             .map { classInfo ->
@@ -27,7 +27,8 @@ object RegisteredClassMetadataContainerDatabase {
                     superTypes = annotation.getParameterValue("superTypes"),
                     signals = annotation.getParameterValue("signals"),
                     properties = annotation.getParameterValue("properties"),
-                    functions = annotation.getParameterValue("functions")
+                    functions = annotation.getParameterValue("functions"),
+                    isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled
                 )
             }
             .toMap()
@@ -42,6 +43,7 @@ object RegisteredClassMetadataContainerDatabase {
                     it.godotBaseClass,
                     it.fqName,
                     it.provideRegistrationFilePathForInitialGeneration(
+                        listOf(),
                         settings.isRegistrationFileHierarchyEnabled,
                         settings.projectName,
                         settings.projectName,
@@ -51,7 +53,8 @@ object RegisteredClassMetadataContainerDatabase {
                     it.supertypes.joinToString(",") { type -> type.fqName },
                     it.signals.joinToString(",") { signal -> signal.fqName },
                     it.properties.joinToString(",") { property -> property.fqName },
-                    it.functions.joinToString(",") { function -> function.fqName }
+                    it.functions.joinToString(",") { function -> function.fqName },
+                    settings.isRegistrationFileHierarchyEnabled
                 )
             }
     }
