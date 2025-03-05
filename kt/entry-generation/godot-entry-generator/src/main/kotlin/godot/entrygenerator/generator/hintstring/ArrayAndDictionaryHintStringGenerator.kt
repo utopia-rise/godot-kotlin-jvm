@@ -23,20 +23,27 @@ class ArrayAndDictionaryHintStringGenerator(
 
 
     /**
-     * Hint string array formatting: https://github.com/godotengine/godot/blob/00949f0c5fcc6a4f8382a4a97d5591fd9ec380f8/editor/editor_properties_array_dict.cpp
+     * Hint string array formatting: https://github.com/godotengine/godot/blob/30b0aadab65fcafb9a160dba2c9abfd005bb62a5/editor/editor_properties_array_dict.cpp#L1085
      */
     override fun getHintString(): String {
         val elementType = registeredProperty.type.arguments().firstOrNull()
 
         return when {
+            // if type is any -> no hint string necessary. it will be untyped
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
+                // example: 1/1:ENUM_1,ENUM_2,ENUM_3
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
                     "${VariantParser.LONG.id}/${VariantParser.LONG.id}:$enumValuesHintString"
                 } ?: ""
             }
 
             else -> {
+                // array or dictionary
+                // structure of hint string:
+                //      array: type/optionalSubtype:godotClassName -> 24/34:Button
+                //      dict:  type/optionalSubtype:godotClassName;type/optionalSubtype:godotClassName -> 2:int;24/34:Button
+                //          -> dict key value types are separated by ;
                 buildString {
                     if (elementType == null) {
                         val compatibleListType = registeredProperty.type.getCompatibleListType()
@@ -66,6 +73,11 @@ class ArrayAndDictionaryHintStringGenerator(
             // "2:int"
             // "24/34:Button"
             // "24/17:Texture"
+            // example: VariantArray<Int>() -> 2:int
+            //      -> 2 == int -> variant type ordinal
+            // example: Dictionary<Int, Button>() -> 2:int;24/34:Button
+            //      -> 24 == Object -> variant type ordinal -> VariantParser.OBJECT.id
+            //      -> 34 == Button -> node type property hint ordinal -> PropertyHint.PROPERTY_HINT_NODE_TYPE.id
             loop@ while (currentElementType != null) {
                 when {
                     currentElementType.isCompatibleList() -> {
