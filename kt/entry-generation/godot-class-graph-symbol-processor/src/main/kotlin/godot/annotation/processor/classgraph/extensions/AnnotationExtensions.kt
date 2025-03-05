@@ -9,7 +9,6 @@ import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
@@ -34,7 +33,6 @@ import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisterClassAnnotation
-import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterFunctionAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisterSignalAnnotation
@@ -52,7 +50,6 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
             customName = parameterValues.getValue("customName") as? String,
             symbolProcessorSource = this
         )
-        RegisterConstructor::class.java.name -> RegisterConstructorAnnotation(this)
         RegisterFunction::class.java.name -> RegisterFunctionAnnotation(this)
         RegisterProperty::class.java.name -> RegisterPropertyAnnotation(this)
         RegisterSignal::class.java.name -> RegisterSignalAnnotation(this)
