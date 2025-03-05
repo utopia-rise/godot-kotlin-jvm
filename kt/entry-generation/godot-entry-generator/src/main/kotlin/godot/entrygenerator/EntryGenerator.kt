@@ -1,7 +1,5 @@
 package godot.entrygenerator
 
-import godot.entrygenerator.checks.ConstructorArgCountCheck
-import godot.entrygenerator.checks.ConstructorOverloadingCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
@@ -193,8 +191,6 @@ object EntryGenerator {
     ): Boolean {
         return listOf(
             DefaultConstructorCheck(logger, registeredClasses).execute(),
-            ConstructorArgCountCheck(logger, registeredClasses).execute(),
-            ConstructorOverloadingCheck(logger, registeredClasses).execute(),
 
             FunctionArgCountCheck(logger, registeredClasses).execute(),
 

@@ -1,7 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
@@ -58,8 +57,7 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
 
     val constructors = constructorInfo
         .filter { constructor ->
-            constructor.isPublic &&
-                (constructor.hasAnnotation(RegisterConstructor::class.java) || constructor.parameterInfo.isEmpty())
+            constructor.isPublic && constructor.parameterInfo.isEmpty()
         }
         .map { it.mapToRegisteredConstructor(settings) }
 
