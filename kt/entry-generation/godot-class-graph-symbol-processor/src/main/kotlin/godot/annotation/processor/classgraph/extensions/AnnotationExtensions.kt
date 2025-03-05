@@ -119,8 +119,8 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
 private fun AnnotationInfo.getRpcMode(): godot.entrygenerator.model.RpcMode {
     val rpcModeName = parameterValues.getValue("rpcMode")?.toString()
     return when (rpcModeName) {
-        RpcMode.ANY.name -> godot.entrygenerator.model.RpcMode.ANY
-        RpcMode.AUTHORITY.name -> godot.entrygenerator.model.RpcMode.AUTHORITY
+        RpcMode.ANY.fqName -> godot.entrygenerator.model.RpcMode.ANY
+        RpcMode.AUTHORITY.fqName -> godot.entrygenerator.model.RpcMode.AUTHORITY
         else -> godot.entrygenerator.model.RpcMode.DISABLED
     }
 }
@@ -128,8 +128,8 @@ private fun AnnotationInfo.getRpcMode(): godot.entrygenerator.model.RpcMode {
 private fun AnnotationInfo.getSyncMode(): godot.entrygenerator.model.Sync {
     val syncName = parameterValues.getValue("sync")?.toString()
     return when (syncName) {
-        Sync.SYNC.name -> godot.entrygenerator.model.Sync.SYNC
-        Sync.NO_SYNC.name -> godot.entrygenerator.model.Sync.NO_SYNC
+        Sync.SYNC.fqName -> godot.entrygenerator.model.Sync.SYNC
+        Sync.NO_SYNC.fqName -> godot.entrygenerator.model.Sync.NO_SYNC
         else -> godot.entrygenerator.model.Sync.NO_SYNC
     }
 }
@@ -137,9 +137,9 @@ private fun AnnotationInfo.getSyncMode(): godot.entrygenerator.model.Sync {
 private fun AnnotationInfo.getTransferMode(): godot.entrygenerator.model.TransferMode {
     val transferModeName = parameterValues.getValue("transferMode")?.toString()
     return when (transferModeName) {
-        TransferMode.RELIABLE.name -> godot.entrygenerator.model.TransferMode.RELIABLE
-        TransferMode.UNRELIABLE.name -> godot.entrygenerator.model.TransferMode.UNRELIABLE
-        TransferMode.UNRELIABLE_ORDERED.name -> godot.entrygenerator.model.TransferMode.UNRELIABLE_ORDERED
+        TransferMode.RELIABLE.fqName -> godot.entrygenerator.model.TransferMode.RELIABLE
+        TransferMode.UNRELIABLE.fqName -> godot.entrygenerator.model.TransferMode.UNRELIABLE
+        TransferMode.UNRELIABLE_ORDERED.fqName -> godot.entrygenerator.model.TransferMode.UNRELIABLE_ORDERED
         else -> godot.entrygenerator.model.TransferMode.RELIABLE
     }
 }
@@ -172,3 +172,6 @@ private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: 
 
 @Suppress("UNCHECKED_CAST")
 fun <T> AnnotationInfo.getParameterValue(parameterName: String): T = parameterValues.getValue(parameterName) as T
+
+private val Enum<*>.fqName
+    get() = "${this::class.qualifiedName}.$name"
