@@ -31,6 +31,7 @@ const val VOID = "void"
 const val STRING = "java.lang.String"
 
 const val JVM_OBJECT = "java.lang.Object"
+const val KOTLIN_ANY = "kotlin.Any"
 
 const val SET = "java.util.Set"
 
