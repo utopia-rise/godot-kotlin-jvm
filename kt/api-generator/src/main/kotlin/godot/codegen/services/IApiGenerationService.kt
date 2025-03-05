@@ -6,24 +6,20 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.models.enriched.*
 import godot.codegen.poet.RegistrationFileSpec
+import godot.codegen.repositories.IClassRepository
+import godot.codegen.repositories.ICoreRepository
+import godot.codegen.repositories.INativeStructureRepository
+import godot.codegen.traits.TypedTrait
 import java.io.File
 
 interface IApiGenerationService {
-    fun generateSingleton(singletonClass: EnrichedClass): FileSpec
-    fun generateClass(clazz: EnrichedClass): FileSpec
-    fun generateEnum(enum: EnrichedEnum, containingClassName: String? = null): Pair<List<TypeSpec>, List<FunSpec>>
-    fun generateConstant(constant: EnrichedConstant, containingClassName: String?): PropertySpec
-
-    fun generateEngineTypesRegistrationForClass(
-        registrationFileSpec: RegistrationFileSpec,
-        clazz: EnrichedClass
-    )
-    fun generateEngineTypesRegistrationForSingleton(
-        registrationFileSpec: RegistrationFileSpec,
-        singleton: EnrichedClass
-    )
+    val classRepository: IClassRepository
+    val coreRepository: ICoreRepository
+    val nativeStructureRepository: INativeStructureRepository
 
     fun generateCore(outputDir: File)
     fun generateApi(outputDir: File)
     fun generateEngineRegistration(outputDir: File)
+
+    fun findDefaultEnumValue(enumClass: TypedTrait, enumValue: Long): EnrichedEnumValue
 }

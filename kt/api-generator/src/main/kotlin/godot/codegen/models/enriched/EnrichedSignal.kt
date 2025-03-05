@@ -8,12 +8,12 @@ import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.escapeKotlinReservedNames
 
-class EnrichedSignal(val internal: Signal) : TypedTrait, IDocumented {
-    val name = internal.name.convertToCamelCase()
+class EnrichedSignal(model: Signal) : TypedTrait, IDocumented {
+    val name = model.name.convertToCamelCase()
     // We assume signals parameters can't be null
-    val arguments = internal.arguments?.toEnriched(false) ?: listOf()
+    val arguments = model.arguments?.toEnriched(false) ?: listOf()
     override val type = "Signal${arguments.size}"
-    override val description = internal.description
+    override val description = model.description
 
     init{
         if (arguments.size > Constraints.MAX_SIGNAL_ARG_COUNT) {
