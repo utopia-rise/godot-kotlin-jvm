@@ -139,12 +139,9 @@ This also works for any type you define.
 
 ## Constructors
 
-Godot requires you to have a default constructor on your classes.
-You can define additional constructors but you have to register them by annothing them with `@RegisterConstructor`.
-Default constructors, on the other hand, are always registered automatically.
-
-Constructors can also have **a maximum of 8 arguments** and must have a unique argument count as constructor overloading is not yet supported.
-This limitation is only for registered constructors.
+Godot requires you to have a default constructor on your classes. These are automatically registered for you.  
+Registering constructor with arguments is currently not supported. But you can freely use them from Kotlin/Java/Scala
+just not from GDScript or any other non Godot Kotlin/JVM language.
 
 ### Instantiate Kotlin script classes in GDScript
 
@@ -154,15 +151,8 @@ From GDScript it is possible to create an instance of a Kotlin class using the d
 var instance := YourKotlinClass.new()
 ```
 
-Additional constructors must use the `load` function:
-
-```kt
-var instance := load("res://gdj/YourClass.gdj").new(oneArg, anotherArg)
-```
-
-!!! info
-    The limitation of max 16 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked by the binding. The more arguments, the more unpacking is needed which means more overhead.
-
+Using other constructors is not possible. Only the default no arg constructor is registered.  
+But you can create the object and set the required properties after instantiation.
 
 ## Customization
 

@@ -7,7 +7,6 @@ import com.google.devtools.ksp.isAbstract
 import com.google.devtools.ksp.isPublic
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.Settings
@@ -76,8 +75,7 @@ internal fun KSClassDeclaration.mapToClazz(
         val registeredConstructors = constructors
             .filter { it.isPublic() }
             .filter { constructor ->
-                constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
-                    constructor.parameters.isEmpty()
+                constructor.parameters.isEmpty()
             }
             .map { it.mapToRegisteredConstructor(settings) }
             .toList()
