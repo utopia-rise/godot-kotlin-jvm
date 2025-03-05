@@ -7,7 +7,7 @@ import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.ext.isDictionary
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isRefCounted
-import godot.entrygenerator.generator.typehint.array.JvmArrayTypeHintGenerator
+import godot.entrygenerator.generator.typehint.array.JvmArrayAndDictionaryTypeHintGenerator
 import godot.entrygenerator.generator.typehint.coretypes.JvmCoreTypeTypeHintGenerator
 import godot.entrygenerator.generator.typehint.primitives.JvmPrimitivesTypeHintGenerator
 import godot.entrygenerator.model.IntFlagHintAnnotation
@@ -54,21 +54,17 @@ object PropertyTypeHintProvider {
 
             registeredProperty.type.kind == TypeKind.ENUM_CLASS -> throw UnsupportedOperationException("Hint type for enum is always the same, so it is handled by binding at runtime")
 
-            registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() -> JvmCoreTypeTypeHintGenerator(
+            registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() && !registeredProperty.type.isDictionary() -> JvmCoreTypeTypeHintGenerator(
                 registeredProperty
             ).getPropertyTypeHint()
-
-            registeredProperty.type.isDictionary() -> ClassName(
-                "$godotCorePackage.${GodotTypes.propertyHint}",
-                "PROPERTY_HINT_DICTIONARY_TYPE"
-            )
 
             registeredProperty.type.isRefCounted() -> ClassName(
                 "$godotCorePackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_RESOURCE_TYPE"
             )
 
-            registeredProperty.type.isCompatibleList() -> JvmArrayTypeHintGenerator(registeredProperty).getPropertyTypeHint()
+            registeredProperty.type.isDictionary() -> JvmArrayAndDictionaryTypeHintGenerator(registeredProperty).getPropertyTypeHint()
+            registeredProperty.type.isCompatibleList() -> JvmArrayAndDictionaryTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) -> ClassName(
                 "$godotCorePackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_RESOURCE_TYPE"
