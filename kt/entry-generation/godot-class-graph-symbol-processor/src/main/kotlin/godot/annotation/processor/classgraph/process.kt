@@ -28,7 +28,7 @@ fun generateEntryUsingClassGraph(
     Context.scanResult = scanResult
     scanResult
         .use {
-            RegisteredClassMetadataContainerDatabase.populateDependencies(it)
+            RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
 
             val classes = it.allClasses
                 .filter { clazz ->
@@ -57,7 +57,8 @@ fun generateEntryUsingClassGraph(
                         ?.relativeTo(settings.projectBaseDir)
                         ?: File(
                             registeredClass.provideRegistrationFilePathForInitialGeneration(
-                                isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                                registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                                isRegistrationFileHierarchyEnabledSetting = settings.isRegistrationFileHierarchyEnabled,
                                 compilationProjectName = settings.projectName,
                                 classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
                                 registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir
@@ -97,7 +98,8 @@ fun generateEntryUsingClassGraph(
 
                     FileOutputStream(file).bufferedWriter()
                 },
-                classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize
+                classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize,
+                isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled
             )
 
             if (settings.isRegistrationFileGenerationEnabled) {
@@ -105,7 +107,8 @@ fun generateEntryUsingClassGraph(
                     registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
                     registrationFileAppendableProvider = { metadata ->
                         val registrationFile = provideRegistrationFilePathForInitialGeneration(
-                            isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled,
+                            registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                            isRegistrationFileHierarchyEnabledSetting = settings.isRegistrationFileHierarchyEnabled,
                             fqName = metadata.fqName,
                             registeredName = metadata.registeredName,
                             compilationProjectName = settings.projectName,
