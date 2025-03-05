@@ -2,9 +2,7 @@ package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
-import godot.entrygenerator.model.ConstructorAnnotation
 import godot.entrygenerator.model.FunctionAnnotation
-import godot.entrygenerator.model.RegisteredConstructor
 import godot.entrygenerator.model.RegisteredFunction
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.MethodInfo
@@ -48,15 +46,4 @@ private fun MethodInfo.isOverrideInHierarchyOf(classInfo: ClassInfo): Boolean {
     }
 
     return false
-}
-
-fun MethodInfo.mapToRegisteredConstructor(settings: Settings): RegisteredConstructor {
-    val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
-    return RegisteredConstructor(
-        fqName = fqdn,
-        parameters = parameters,
-        annotations = annotationInfo
-            .mapNotNull { it.mapToGodotAnnotation(settings) as? ConstructorAnnotation },
-        symbolProcessorSource = this
-    )
 }

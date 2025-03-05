@@ -11,20 +11,19 @@
 #include <core/io/resource_loader.h>
 
 
-Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
-    Object* obj = _object_create(p_args, p_arg_count);
+Variant JvmScript::_new() {
+    Object* obj = _object_create();
     if (obj) {
-        r_error.error = Callable::CallError::CALL_OK;
         return {obj};
     }
-    r_error.error = Callable::CallError::CALL_ERROR_INVALID_ARGUMENT;
-    return {};
+
+    JVM_ERR_FAIL_V_MSG({}, vformat("Cannot instantiate JVM script %s", kotlin_class->registered_class_name));
 }
 
-Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {
+Object* JvmScript::_object_create() {
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
-    ScriptInstance* instance {_instance_create<true>(p_args, p_arg_count, owner)};
+    ScriptInstance* instance {_instance_create<true>(owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         memdelete(owner);// no owner, sorry
@@ -83,11 +82,11 @@ StringName JvmScript::get_instance_base_type() const {
 }
 
 ScriptInstance* JvmScript::instance_create(Object* p_this) {
-    return _instance_create<false>(nullptr, 0, p_this);
+    return _instance_create<false>(p_this);
 }
 
 template<bool isCreator>
-ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_count, Object* p_this) {
+ScriptInstance* JvmScript::_instance_create(Object* p_this) {
     if (isCreator) {
         KotlinBindingManager::set_instance_binding(p_this);
     } else {
@@ -100,7 +99,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
 #endif
 
     jni::Env env = jni::Jvm::current_env();
-    KtObject* wrapped = kotlin_class->create_instance(env, p_args, p_arg_count, p_this);
+    KtObject* wrapped = kotlin_class->create_instance(env, p_this);
 
 #ifdef DEBUG_ENABLED
     if (unlikely(!wrapped)) { return nullptr; }// Error already throw by create_instance()
@@ -254,7 +253,7 @@ void JvmScript::update_script_exports() {
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 
-    Object* tmp_object = _object_create({}, 0);
+    Object* tmp_object = _object_create();
     JvmInstance* kotlin_script_instance {reinterpret_cast<JvmInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;
@@ -491,5 +490,5 @@ StringName NamedScript::get_global_name() const {
 }
 
 void JvmScript::_bind_methods() {
-    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &JvmScript::_new, MethodInfo("new"));
+    ClassDB::bind_method(D_METHOD("new"), &JvmScript::_new);
 }
