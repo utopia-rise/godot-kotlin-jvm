@@ -25,7 +25,7 @@ public open class Tweener internal constructor() : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(680, scriptIndex)
+    createNativeObject(681, scriptIndex)
   }
 
   public companion object

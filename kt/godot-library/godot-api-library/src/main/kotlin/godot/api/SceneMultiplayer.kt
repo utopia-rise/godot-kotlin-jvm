@@ -180,7 +180,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(558, scriptIndex)
+    createNativeObject(559, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

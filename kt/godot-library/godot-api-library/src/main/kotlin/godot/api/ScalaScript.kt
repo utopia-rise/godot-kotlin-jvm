@@ -11,13 +11,10 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- * Translates to `sdf_to_screen_uv(sdf_pos)` in the shader language.
- */
 @GodotBaseType
-public open class VisualShaderNodeSDFToScreenUV : VisualShaderNode() {
+public open class ScalaScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(770, scriptIndex)
+    createNativeObject(558, scriptIndex)
   }
 
   public companion object

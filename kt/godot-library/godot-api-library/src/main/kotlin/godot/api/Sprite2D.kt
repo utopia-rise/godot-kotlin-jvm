@@ -193,7 +193,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(611, scriptIndex)
+    createNativeObject(612, scriptIndex)
   }
 
   /**

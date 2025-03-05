@@ -56,7 +56,7 @@ public open class XRVRS : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(853, scriptIndex)
+    createNativeObject(854, scriptIndex)
   }
 
   public final fun getVrsMinRadius(): Float {

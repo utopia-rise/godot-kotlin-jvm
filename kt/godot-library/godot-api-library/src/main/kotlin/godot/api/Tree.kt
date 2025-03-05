@@ -300,7 +300,7 @@ public open class Tree : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(675, scriptIndex)
+    createNativeObject(676, scriptIndex)
   }
 
   /**

@@ -575,7 +575,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(828, scriptIndex)
+    createNativeObject(829, scriptIndex)
   }
 
   /**

@@ -167,7 +167,7 @@ public open class UDPServer : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(681, scriptIndex)
+    createNativeObject(682, scriptIndex)
   }
 
   /**

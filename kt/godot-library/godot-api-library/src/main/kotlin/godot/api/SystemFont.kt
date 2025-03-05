@@ -213,7 +213,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(634, scriptIndex)
+    createNativeObject(635, scriptIndex)
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {

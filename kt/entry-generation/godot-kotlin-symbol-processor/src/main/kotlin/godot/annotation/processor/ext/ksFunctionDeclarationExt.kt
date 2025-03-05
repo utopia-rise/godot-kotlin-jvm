@@ -10,24 +10,6 @@ import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.RegisteredConstructor
 import godot.entrygenerator.model.RegisteredFunction
 
-internal fun KSFunctionDeclaration.mapToRegisteredConstructor(
-    settings: Settings,
-): RegisteredConstructor {
-    return RegisteredConstructor(
-        fqName = requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
-            "Qualified name for a registered constructor declaration cannot be null"
-        },
-        parameters = parameters.map { ksValueParameter ->
-            ksValueParameter.mapToValueParameter(settings)
-        },
-        annotations = annotations
-            .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
-            .toList(),
-        symbolProcessorSource = this
-    )
-}
-
-
 internal fun KSFunctionDeclaration.mapToRegisteredFunction(
     currentClass: KSClassDeclaration,
     settings: Settings,

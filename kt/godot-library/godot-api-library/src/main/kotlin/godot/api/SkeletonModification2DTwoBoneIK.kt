@@ -88,7 +88,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(593, scriptIndex)
+    createNativeObject(594, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

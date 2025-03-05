@@ -99,7 +99,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(676, scriptIndex)
+    createNativeObject(677, scriptIndex)
   }
 
   /**

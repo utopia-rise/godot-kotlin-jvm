@@ -72,13 +72,9 @@ internal fun KSClassDeclaration.mapToClazz(
             )
         }
 
-        val registeredConstructors = constructors
-            .filter { it.isPublic() }
-            .filter { constructor ->
-                constructor.parameters.isEmpty()
-            }
-            .map { it.mapToRegisteredConstructor(settings) }
-            .toList()
+        require(constructors.any { it.isPublic() && it.parameters.isEmpty() }) {
+            "You should provide a default constructor"
+        }
 
         RegisteredClass(
             registeredName = requireNotNull(provideRegisteredClassName(settings)) {
@@ -87,7 +83,6 @@ internal fun KSClassDeclaration.mapToClazz(
             fqName = fqName,
             supertypes = supertypeDeclarations,
             annotations = mappedAnnotations,
-            constructors = registeredConstructors,
             functions = registeredFunctions,
             signals = registeredSignals,
             properties = registeredProperties,

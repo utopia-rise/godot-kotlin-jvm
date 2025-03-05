@@ -142,7 +142,7 @@ public open class UPNP : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(683, scriptIndex)
   }
 
   /**
