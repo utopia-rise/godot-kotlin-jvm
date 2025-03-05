@@ -17,7 +17,6 @@ interface CastableTrait : TypedTrait {
     fun getToBufferCastingMethod() = metaInformation?.toBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
     fun getFromBufferCastingMethod() = metaInformation?.fromBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
 
-    fun getCastedType(core: ICoreRepository) = metaInformation?.castedType?.let { TypeClass(it) } ?: getTypeClass(core)
-
-    fun getBufferType(core: ICoreRepository) = metaInformation?.bufferType?.let { TypeClass(it) } ?: getTypeClass(core)
+    fun getCastedType() = metaInformation?.castedType?.let { TypeClass(it) } ?: getTypeClass()
+    fun getBufferType() = metaInformation?.bufferType?.let { TypeClass(it) } ?: getTypeClass()
 }

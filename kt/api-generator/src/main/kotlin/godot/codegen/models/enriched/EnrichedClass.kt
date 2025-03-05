@@ -14,8 +14,6 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
 
     var parent: EnrichedClass? = null
         private set
-    private val _children = mutableListOf<EnrichedClass>()
-    val children: List<EnrichedClass> = _children
     var isSingleton = false
         private set
     
@@ -34,7 +32,6 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
 
     fun setParent(parent: EnrichedClass){
         this.parent = parent
-        parent._children += this
     }
 
     override fun equals(other: Any?): Boolean {
