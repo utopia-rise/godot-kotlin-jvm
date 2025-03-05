@@ -10,8 +10,6 @@
 #include "kt_object.h"
 #include "kt_signal_info.h"
 
-const int MAX_CONSTRUCTOR_SIZE = MAX_CONSTRUCTOR_ARG_COUNT + 1;
-
 JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     JVM_CLASS(KtClass)
 
@@ -24,7 +22,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
     JNI_OBJECT_METHOD(GET_FUNCTIONS)
     JNI_OBJECT_METHOD(GET_PROPERTIES)
     JNI_OBJECT_METHOD(GET_SIGNAL_INFOS)
-    JNI_OBJECT_METHOD(GET_CONSTRUCTORS)
+    JNI_OBJECT_METHOD(GET_CONSTRUCTOR)
     JNI_BOOLEAN_METHOD(GET_HAS_NOTIFICATION)
     JNI_VOID_METHOD(DO_NOTIFICATION)
 
@@ -37,7 +35,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
         INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
         INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
         INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        INIT_JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
+        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/core/KtConstructor;")
         INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
@@ -54,7 +52,7 @@ public:
 
     ~KtClass();
 
-    KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
+    KtObject* create_instance(jni::Env& env, Object* p_owner);
 
     KtFunction* get_method(const StringName& methodName);
 
@@ -78,7 +76,7 @@ private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
-    KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
+    KtConstructor* kt_constructor;
     bool _has_notification;
 
     String get_registered_name(jni::Env& env);
@@ -99,7 +97,7 @@ private:
 
     void fetch_signals(jni::Env& env);
 
-    void fetch_constructors(jni::Env& env);
+    void fetch_constructor(jni::Env& env);
 
     template<typename F, typename T>
     void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {

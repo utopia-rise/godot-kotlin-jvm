@@ -7,30 +7,17 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
-import godot.`internal`.memory.TransferContext
-import godot.`internal`.reflection.TypeManager
-import godot.common.interop.VoidPtr
-import godot.core.VariantCaster.ANY
-import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class JvmScript internal constructor() : Script() {
+public open class ScalaScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(324, scriptIndex)
-  }
-
-  public final fun new(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    createNativeObject(558, scriptIndex)
   }
 
   public companion object
 
-  public object MethodBindings {
-    internal val newPtr: VoidPtr = TypeManager.getMethodBindPtr("JvmScript", "new", 1460262497)
-  }
+  public object MethodBindings
 }
