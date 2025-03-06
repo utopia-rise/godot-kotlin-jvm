@@ -11,6 +11,7 @@ import godot.common.util.isEqualApprox
 import godot.common.util.isZeroApprox
 import godot.common.util.signbit
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.acos
@@ -78,16 +79,26 @@ class Quaternion(
     }
 
     constructor(v0: Vector3, v1: Vector3) : this() {
-        val c = v0.cross(v1)
+        if (GodotJvmBuildConfig.DEBUG) {
+            require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero."}
+        }
+        val almostOne = 1.0f - CMP_EPSILON;
 
-        if (c.isZeroApprox()) {
-            val axis = v0.getAnyPerpendicular();
+        val n0 = v0.normalized();
+        val n1 = v1.normalized();
+        val d = n0.dot(n1);
+
+        if (abs(d) > almostOne) {
+            if (d >= 0) {
+                return; // Vectors are same.
+            }
+            val axis = n0.getAnyPerpendicular();
             x = axis.x;
             y = axis.y;
             z = axis.z;
-            w = 0.0
+            w = 0.0;
         } else {
-            val d = v0.dot(v1)
+            val c = n0.cross(n1);
             val s = sqrt((1.0 + d) * 2.0)
             val rs = 1.0 / s
             x = c.x * rs

@@ -242,6 +242,9 @@ class TestQuaternion {
 
         // For the consistency of the rotation direction, they should be symmetrical to the plane.
         checkTrue(leftToRight.isEqualApprox(rightToLeft.inverse()));
+
+        // If vectors are same, no rotation.
+        checkTrue(Quaternion(diagonalUp, diagonalDown).isEqualApprox(Quaternion()));
     }
 
     @Test
