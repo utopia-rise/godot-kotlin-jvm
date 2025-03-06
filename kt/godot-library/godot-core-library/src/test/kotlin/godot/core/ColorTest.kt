@@ -105,6 +105,12 @@ class TestColor {
         checkMessage(
             colorSrgb.srgbToLinear().isEqualApprox(Color(0.35, 0.5, 0.6, 0.7))
         ) { "The sRGB color converted back to linear color space should match the expected value." }
+        checkMessage(
+            Color(1.0, 1.0, 1.0, 1.0).srgbToLinear().isEqualApprox(Color(1.0, 1.0, 1.0, 1.0))
+        ) { "White converted from sRGB to linear should remain white." }
+        checkMessage(
+            Color(1.0, 1.0, 1.0, 1.0).srgbToLinear().isEqualApprox(Color(1.0, 1.0, 1.0, 1.0))
+        ) { "White converted from sRGB to linear should remain white." }
     }
 
     @Test

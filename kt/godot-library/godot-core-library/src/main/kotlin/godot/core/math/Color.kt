@@ -532,6 +532,20 @@ class Color : Comparable<Color>, CoreType {
         }
 
         /**
+         * 	Returns a [Color] constructed from red ([param r8]), green ([param g8]), blue ([param b8]), and optionally alpha ([param a8]) integer channels, each divided by 255.0 for their final value.
+         * 	```
+         * 	var red = Color.fromRgba(255, 0, 0)             # Same as Color(1, 0, 0).
+         * 	var darkBlue = Color.fromRgba(0, 0, 51)        # Same as Color(0, 0, 0.2).
+         * 	var myColor = Color.fromRgba(306, 255, 0, 102) # Same as Color(1.2, 1, 0, 0.4).
+         * 	```
+         * 	***Note:*** Due to the lower precision of [fromRgba] compared to the standard [Color] constructor, a color created with [fromRgba] will generally not be equal to the same color created with the standard [Color] constructor.
+         * 	Use [isEqualApprox] for comparisons to avoid issues with floating-point precision error.
+         */
+        fun fromRgba(r: Int, g: Int, b: Int, a: Int = 255): Color {
+            return Color(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+        }
+
+        /**
          * Creates a Color from the given string, which can be either an HTML color code or a named color
          * (case-insensitive). Returns default if the color cannot be inferred from the string.
          */
