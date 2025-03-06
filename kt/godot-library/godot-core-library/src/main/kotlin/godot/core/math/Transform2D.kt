@@ -8,6 +8,7 @@ import godot.common.util.RealT
 import godot.common.util.isEqualApprox
 import godot.common.util.lerpAngle
 import godot.common.util.toRealT
+import godot.core.times
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.collections.toList
 import kotlin.math.PI
@@ -462,3 +463,9 @@ operator fun PackedVector2Array.times(other: Transform2D): PackedVector2Array {
     toList().onEach { newPackedArray.pushBack(other.xformInv(it)) }
     return newPackedArray
 }
+
+operator fun Int.times(other: Transform2D) = other * this
+operator fun Long.times(other: Transform2D) = other * this
+operator fun Float.times(other: Transform2D) = other * this
+operator fun Double.times(other: Transform2D) = other * this
+

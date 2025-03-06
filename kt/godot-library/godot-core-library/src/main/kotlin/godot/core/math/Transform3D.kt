@@ -418,3 +418,8 @@ operator fun PackedVector3Array.times(other: Transform3D): PackedVector3Array {
     toList().onEach { newPackedArray.pushBack(other.xformInv(it)) }
     return newPackedArray
 }
+
+operator fun Int.times(other: Transform3D) = other * this
+operator fun Long.times(other: Transform3D) = other * this
+operator fun Float.times(other: Transform3D) = other * this
+operator fun Double.times(other: Transform3D) = other * this
