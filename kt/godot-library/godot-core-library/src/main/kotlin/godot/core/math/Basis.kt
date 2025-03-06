@@ -19,6 +19,11 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
+// This epsilon value results in angles within a +/- 0.04 degree range being simplified/truncated.
+// Based on testing, this is the largest the epsilon can be without the angle truncation becoming
+// visually noticeable.
+private const val ANGLE_EPSILON = 0.00000025
+
 class Basis() : CoreType {
     @PublishedApi
     internal var _x = Vector3()
@@ -275,8 +280,8 @@ class Basis() : CoreType {
         val euler = Vector3()
 
         val sy = this._x.z
-        if (sy < (1.0 - CMP_EPSILON)) {
-            if (sy > -(1.0 - CMP_EPSILON)) {
+        if (sy < (1.0 - ANGLE_EPSILON)) {
+            if (sy > -(1.0 - ANGLE_EPSILON)) {
                 // is this a pure Y rotation?
                 if (this._y.x == 0.0 && this._x.y == 0.0 && this._y.z == 0.0 && this._z.y == 0.0 && this._y.y == 1.0) {
                     // return the simplest form (human friendlier in editor and scripts)
@@ -311,8 +316,8 @@ class Basis() : CoreType {
     private fun getEulerXzy(): Vector3 {
         val euler = Vector3()
         val sz = _x.y
-        if (sz < (1.0f - CMP_EPSILON)) {
-            if (sz > -(1.0f - CMP_EPSILON)) {
+        if (sz < (1.0f - ANGLE_EPSILON)) {
+            if (sz > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(_z.y, _y.y)
                 euler.y = atan2(_x.z, _x.x)
                 euler.z = asin(-sz)
@@ -349,8 +354,8 @@ class Basis() : CoreType {
 
         val m12 = this._y.z
 
-        if (m12 < (1.0f - CMP_EPSILON)) {
-            if (m12 > -(1.0f - CMP_EPSILON)) {
+        if (m12 < (1.0f - ANGLE_EPSILON)) {
+            if (m12 > -(1.0f - ANGLE_EPSILON)) {
                 // is this a pure X rotation?
                 if (this._y.x == 0.0 && this._x.y == 0.0 && this._x.z == 0.0 && this._z.x == 0.0 && this._x.x == 1.0) {
                     // return the simplest form (human friendlier in editor and scripts)
@@ -386,8 +391,8 @@ class Basis() : CoreType {
     private fun getEulerYzx(): Vector3 {
         val euler = Vector3()
         val sz = _y.x
-        if (sz < (1.0f - CMP_EPSILON)) {
-            if (sz > -(1.0f - CMP_EPSILON)) {
+        if (sz < (1.0f - ANGLE_EPSILON)) {
+            if (sz > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(-_y.z, _y.y)
                 euler.y = atan2(-_z.x, _x.x)
                 euler.z = asin(sz)
@@ -418,8 +423,8 @@ class Basis() : CoreType {
         val euler = Vector3()
         val sx = _z.y
 
-        if (sx < 1.0f - CMP_EPSILON) {
-            if (sx > -(1.0f - CMP_EPSILON)) {
+        if (sx < 1.0f - ANGLE_EPSILON) {
+            if (sx > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = asin(sx)
                 euler.y = atan2(-_z.x, _z.z)
                 euler.z = atan2(-_x.y, _y.y)
@@ -443,8 +448,8 @@ class Basis() : CoreType {
         val euler = Vector3()
         val sy = _z.x
 
-        if (sy < 1.0f - CMP_EPSILON) {
-            if (sy > -(1.0f - CMP_EPSILON)) {
+        if (sy < 1.0f - ANGLE_EPSILON) {
+            if (sy > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(_z.y, _z.z)
                 euler.y = asin(-sy)
                 euler.z = atan2(_y.x, _x.x)
