@@ -103,6 +103,10 @@ void DictionaryBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, j
     TransferContext::get_instance().write_return_value(env, variant);
 }
 
+void DictionaryBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->sort();
+}
+
 void DictionaryBridge::engine_call_values(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->values()};
@@ -131,5 +135,6 @@ void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance,
     Variant variant {*from_uint_to_ptr<Dictionary>(p_raw_ptr) == args[0].operator Dictionary()};
     TransferContext::get_instance().write_return_value(env, variant);
 }
+
 
 DictionaryBridge::~DictionaryBridge() = default;
