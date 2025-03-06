@@ -271,15 +271,18 @@ class AABB(
     /**
      * Returns the support point in a given direction. This is useful for collision detection algorithms.
      */
-    fun getSupport(normal: Vector3): Vector3 {
-        val halfExtents = _size * 0.5
-        val ofs = _position + halfExtents
-
-        return Vector3(
-            if (normal.x > 0.0) halfExtents.x else -halfExtents.x,
-            if (normal.y > 0.0) halfExtents.y else -halfExtents.y,
-            if (normal.z > 0.0) halfExtents.z else -halfExtents.z
-        ) + ofs
+    fun getSupport(direction: Vector3): Vector3 {
+        val support = Vector3(position)
+        if (direction.x > 0.0f) {
+            support.x += size.x
+        }
+        if (direction.y > 0.0f) {
+            support.y += size.y
+        }
+        if (direction.z > 0.0f) {
+            support.z += size.z
+        }
+        return support
     }
 
     /**
