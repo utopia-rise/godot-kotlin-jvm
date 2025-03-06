@@ -159,6 +159,7 @@ class TestQuaternion {
         checkTrue(q.isEqualApprox(qYXZ))
     }
 
+
     private fun quatEulerYXZDeg(angle: Vector3): Quaternion {
         val yaw = degToRad(angle.y)
         val pitch = degToRad(angle.x)
@@ -210,6 +211,37 @@ class TestQuaternion {
         checkTrue(q.y.isEqualApprox(-0.4245716))
         checkTrue(q.z.isEqualApprox(0.206033))
         checkTrue(q.w.isEqualApprox(0.8582598))
+    }
+
+    @Test
+    fun `Construct Shortest Arc For 180 Degree Arc`() {
+        val up = Vector3(0, 1, 0);
+        val down = Vector3(0, -1, 0);
+        val left = Vector3(-1, 0, 0);
+        val right = Vector3(1, 0, 0);
+        val forward = Vector3(0, 0, -1);
+        val back = Vector3(0, 0, 1);
+
+        // When we have a 180-degree rotation quaternion which was defined as
+        // A to B, logically when we transform A, we expect to get B.
+        val leftToRight = Quaternion (left, right);
+        val rightToLeft = Quaternion (right, left);
+        checkTrue(leftToRight.xform(left).isEqualApprox(right));
+        checkTrue(Quaternion(right, left).xform(right).isEqualApprox(left));
+        checkTrue(Quaternion(up, down).xform(up).isEqualApprox(down));
+        checkTrue(Quaternion(down, up).xform(down).isEqualApprox(up));
+        checkTrue(Quaternion(forward, back).xform(forward).isEqualApprox(back));
+        checkTrue(Quaternion(back, forward).xform(back).isEqualApprox(forward));
+
+        // With (arbitrary) opposite vectors that are not axis-aligned as parameters.
+        val diagonalUp = Vector3(1.2, 2.3, 4.5).normalized();
+        val diagonalDown = -diagonalUp;
+        val q1 = Quaternion(diagonalUp, diagonalDown);
+        checkTrue(q1.xform(diagonalDown).isEqualApprox(diagonalUp));
+        checkTrue(q1.xform(diagonalUp).isEqualApprox(diagonalDown));
+
+        // For the consistency of the rotation direction, they should be symmetrical to the plane.
+        checkTrue(leftToRight.isEqualApprox(rightToLeft.inverse()));
     }
 
     @Test

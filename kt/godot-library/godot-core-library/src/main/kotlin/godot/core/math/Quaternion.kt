@@ -79,14 +79,15 @@ class Quaternion(
 
     constructor(v0: Vector3, v1: Vector3) : this() {
         val c = v0.cross(v1)
-        val d = v0.dot(v1)
 
-        if (d < -1.0 + CMP_EPSILON) {
-            x = 0.0
-            y = 1.0
-            z = 0.0
+        if (c.isZeroApprox()) {
+            val axis = v0.getAnyPerpendicular();
+            x = axis.x;
+            y = axis.y;
+            z = axis.z;
             w = 0.0
         } else {
+            val d = v0.dot(v1)
             val s = sqrt((1.0 + d) * 2.0)
             val rs = 1.0 / s
             x = c.x * rs

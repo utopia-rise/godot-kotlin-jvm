@@ -10,6 +10,7 @@ import godot.common.util.UNIT_EPSILON
 import godot.common.util.isEqualApprox
 import godot.common.util.isZeroApprox
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.PI
 import kotlin.math.asin
@@ -95,7 +96,8 @@ class Basis() : CoreType {
         /**
          * Creates a Basis with a rotation such that the forward axis (-Z) points towards the [target] position.
          *
-         * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward axis. The resulting Basis is orthonormalized. The [target] and [up] vectors cannot be zero, and cannot be parallel to each other.
+         * 	The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The returned basis is orthonormalized (see [method orthonormalized]).
+         * 	The [param target] and the [param up] cannot be [constant Vector3.ZERO], and shouldn't be colinear to avoid unintended rotation around local Z axis.
          *
          * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
          */
@@ -113,11 +115,12 @@ class Basis() : CoreType {
             } else {
                 target.normalized()
             }
-            val vX: Vector3 = up.cross(vZ)
 
+            var vX: Vector3 = up.cross(vZ)
             if (GodotJvmBuildConfig.DEBUG) {
-                require(!vX.isZeroApprox()) {
-                    "The target vector and up vector can't be parallel to each other."
+                if (vX.isZeroApprox()) {
+                    GodotLogging.warning("Target and up vectors are colinear. This is not advised as it may cause unwanted rotation around local Z axis.")
+                    vX = up.getAnyPerpendicular(); // Vectors are almost parallel.
                 }
             }
 
@@ -946,9 +949,33 @@ class Basis() : CoreType {
     }
 
     operator fun times(scalar: Double) = Basis().also {
-        it._x = this._x * scalar
-        it._y = this._y * scalar
-        it._z = this._z * scalar
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Int) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Long) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Float) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Double) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
     }
 
     operator fun times(vector: Vector3) = this.xform(vector)
