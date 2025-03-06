@@ -244,7 +244,7 @@ class TestQuaternion {
         checkTrue(leftToRight.isEqualApprox(rightToLeft.inverse()));
 
         // If vectors are same, no rotation.
-        checkTrue(Quaternion(diagonalUp, diagonalDown).isEqualApprox(Quaternion()));
+        checkTrue(Quaternion(diagonalUp, diagonalUp).isEqualApprox(Quaternion()));
     }
 
     @Test

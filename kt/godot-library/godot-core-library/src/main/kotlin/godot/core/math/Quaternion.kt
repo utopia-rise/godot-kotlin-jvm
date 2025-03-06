@@ -90,7 +90,7 @@ class Quaternion(
 
         if (abs(d) > almostOne) {
             if (d >= 0) {
-                return; // Vectors are same.
+                return // Vectors are same.
             }
             val axis = n0.getAnyPerpendicular();
             x = axis.x;
