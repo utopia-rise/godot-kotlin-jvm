@@ -9,6 +9,7 @@ import godot.common.util.isEqualApprox
 import godot.common.util.lerpAngle
 import godot.common.util.toRealT
 import kotlincompile.definitions.GodotJvmBuildConfig
+import kotlin.collections.toList
 import kotlin.math.PI
 import kotlin.math.acos
 import kotlin.math.atan2
@@ -352,7 +353,7 @@ class Transform2D(
     /**
      * Transforms the given Rect2 by this transform.
      */
-    private fun xform(rect: Rect2): Rect2 {
+    internal fun xform(rect: Rect2): Rect2 {
         val x = _x * rect._size.x
         val y = _y * rect._size.y
         val pos = xform(rect._position)
@@ -365,10 +366,11 @@ class Transform2D(
         return newRect
     }
 
+
     /**
      * Inverse-transforms the given Vector2 by this transform.
      */
-    private fun xformInv(vec: Vector2): Vector2 {
+    internal fun xformInv(vec: Vector2): Vector2 {
         val v = vec - _origin
         return Vector2(_x.dot(v), _y.dot(v))
     }
@@ -376,7 +378,7 @@ class Transform2D(
     /**
      * Inverse-transforms the given Rect2 by this transform.
      */
-    private fun xformInv(rect: Rect2): Rect2 {
+    internal fun xformInv(rect: Rect2): Rect2 {
         val ends = arrayOf(
             xformInv(rect._position),
             xformInv(Vector2(rect._position.x, rect._position.y + rect._size.y)),
@@ -399,16 +401,6 @@ class Transform2D(
     @Suppress("NOTHING_TO_INLINE")
     internal inline fun tdoty(v: Vector2) = _x.y * v.x + _y.y * v.y
 
-    operator fun times(other: Transform2D): Transform2D {
-        val origin = xform(other._origin)
-        val x0 = tdotx(other._x)
-        val x1 = tdoty(other._x)
-        val y0 = tdotx(other._y)
-        val y1 = tdoty(other._y)
-
-        return Transform2D(x0, x1, y0, y1, origin.x, origin.y)
-    }
-
     override fun toString(): String {
         return "${_x}, ${_y}, ${_origin}"
     }
@@ -424,4 +416,49 @@ class Transform2D(
         result = 31 * result + _origin.hashCode()
         return result
     }
+
+    operator fun times(other: Transform2D): Transform2D {
+        val origin = xform(other._origin)
+        val x0 = tdotx(other._x)
+        val x1 = tdoty(other._x)
+        val y0 = tdotx(other._y)
+        val y1 = tdoty(other._y)
+
+        return Transform2D(x0, x1, y0, y1, origin.x, origin.y)
+    }
+
+    operator fun times(other: PackedVector2Array): PackedVector2Array {
+        val newPackedArray = PackedVector2Array()
+        other.toList().onEach { newPackedArray.pushBack(this * it) }
+        return newPackedArray
+    }
+
+    operator fun times(other: Rect2) = this.xform(other)
+    operator fun times(other: Vector2) = this.xform(other)
+
+    operator fun times(other: Int) = Transform2D(other * _x, other * _y, other * _origin)
+    operator fun times(other: Long) = Transform2D(other * _x, other * _y, other * _origin)
+    operator fun times(other: Float) = Transform2D(other * _x, other * _y, other * _origin)
+    operator fun times(other: Double) = Transform2D(other * _x, other * _y, other * _origin)
+
+    operator fun div(other: Int) = Transform2D(_x / other, _y / other, _origin / other)
+    operator fun div(other: Long) = Transform2D(_x / other, _y / other, _origin / other)
+    operator fun div(other: Float) = Transform2D(_x / other, _y / other, _origin / other)
+    operator fun div(other: Double) = Transform2D(_x / other, _y / other, _origin / other)
+
+
+    operator fun get(index: Int) = when (index) {
+        0 -> _x
+        1 -> _y
+        2 -> _origin
+        else -> throw IndexOutOfBoundsException()
+    }
+}
+
+operator fun Vector2.times(other: Transform2D) = other.xformInv(this)
+operator fun Rect2.times(other: Transform2D) = other.xformInv(this)
+operator fun PackedVector2Array.times(other: Transform2D): PackedVector2Array {
+    val newPackedArray = PackedVector2Array()
+    toList().onEach { newPackedArray.pushBack(other.xformInv(it)) }
+    return newPackedArray
 }

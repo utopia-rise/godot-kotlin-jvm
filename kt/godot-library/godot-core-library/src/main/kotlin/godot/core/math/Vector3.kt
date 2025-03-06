@@ -13,6 +13,7 @@ import godot.common.util.isZeroApprox
 import godot.common.util.lerp
 import godot.common.util.snapped
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -273,6 +274,25 @@ class Vector3(
     fun floor(): Vector3 {
         return Vector3(floor(x), floor(y), floor(z))
     }
+
+    internal fun getAnyPerpendicular(): Vector3 {
+        // Return any perpendicular vector by cross product with the Vector3.RIGHT or Vector3.UP,
+        // whichever has the greater angle to the current vector with the sign of each element positive.
+        // The only essence is "to avoid being parallel to the current vector", and there is no mathematical basis for using Vector3.RIGHT and Vector3.UP,
+        // since it could be a different vector depending on the prior branching code Math::abs(x) <= Math::abs(y) && Math::abs(x) <= Math::abs(z).
+        // However, it would be reasonable to use any of the axes of the basis, as it is simpler to calculate.
+        if (GodotJvmBuildConfig.DEBUG) {
+            if (isZeroApprox()) {
+                GodotLogging.error("The Vector3 must not be zero.")
+                return Vector3(0.0, 0.0, 0.0)
+            }
+        }
+
+        return cross(
+            if (abs(x) <= abs(y) && abs(x) <= abs(z)) Vector3(1, 0, 0) else Vector3(0, 1, 0)
+        ).normalized();
+    }
+
 
     /**
      * Returns the inverse of the vector. This is the same as Vector3( 1.0 / v.x, 1.0 / v.y, 1.0 / v.z ).
