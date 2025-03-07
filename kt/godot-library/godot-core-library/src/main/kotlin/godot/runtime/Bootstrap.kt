@@ -1,12 +1,13 @@
 package godot.runtime
 
 import godot.core.KtClass
-import godot.internal.reflection.TypeManager
 import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.internal.logging.JVMLogging
+import godot.internal.reflection.TypeManager
 import godot.registration.ClassRegistry
 import godot.registration.Entry
+import godot.utils.GodotBuildProperties
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
@@ -31,7 +32,10 @@ internal class Bootstrap {
     }
 
     fun getVersion(): String{
-        return "0.12.0-4.4"
+        // we cannot use the assembled version here as it includes the git hash on local dev builds which is not present
+        // on the cpp side
+        // hence we assemble it manually here
+        return "${GodotBuildProperties.godotKotlinJvmVersion}-${GodotBuildProperties.godotVersion}"
     }
 
     fun finish() {
