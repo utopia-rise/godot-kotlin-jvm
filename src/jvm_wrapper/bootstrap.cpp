@@ -53,6 +53,13 @@ void Bootstrap::init(jni::Env& p_env, const String& p_project_path, const String
     wrapped.call_void_method(p_env, INIT, args);
 }
 
+String Bootstrap::get_version(jni::Env& p_env) {
+    jni::JString str {wrapped.call_object_method(p_env, GET_VERSION)};
+    String ret {p_env.from_jstring(str)};
+    str.delete_local_ref(p_env);
+    return ret;
+}
+
 void Bootstrap::finish(jni::Env& p_env) {
     wrapped.call_void_method(p_env, FINISH);
 }

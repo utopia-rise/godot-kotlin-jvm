@@ -96,8 +96,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
 bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
 
-    bool ret =  Bootstrap::initialize(p_env, class_loader)
-            && KtObject::initialize(p_env, class_loader)
+    bool ret = KtObject::initialize(p_env, class_loader)
             && KtPropertyInfo::initialize(p_env, class_loader)
             && KtProperty::initialize(p_env, class_loader)
             && KtConstructor::initialize(p_env, class_loader)
@@ -158,7 +157,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     bridges::PackedVector2ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector3ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector4ArrayBridge::finalize(p_env, class_loader);
-    Bootstrap::finalize(p_env, class_loader);
     KtObject::finalize(p_env, class_loader);
     KtPropertyInfo::finalize(p_env, class_loader);
     KtProperty::finalize(p_env, class_loader);

@@ -30,6 +30,10 @@ internal class Bootstrap {
         }
     }
 
+    fun getVersion(): String{
+        return "0.12.0-4.4"
+    }
+
     fun finish() {
         Thread.currentThread().contextClassLoader = null
         clearClassesCache()
