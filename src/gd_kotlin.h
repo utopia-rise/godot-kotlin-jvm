@@ -29,13 +29,13 @@ public:
 private:
     State state {State::NOT_STARTED};
 
-    JvmUserConfiguration user_configuration {};
-    JvmOptions jvm_options {};
+    JvmUserConfiguration user_configuration;
+    JvmOptions jvm_options;
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
     Ref<JavaArchive> jar; // We keep a Reference to the jar in memory because the Godot editor require a resource to be in cache to reload.
-    Object* callable_middleman; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
+    Object* callable_middleman {nullptr}; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
 
     void fetch_user_configuration();
     void set_jvm_options();
@@ -75,6 +75,8 @@ public:
 
     void initialize_up_to(State target_state);
     void finalize_down_to(State target_state);
+    void display_initialization_error_hint(String cause, String hint);
+    void validate_state();
 
 #ifdef TOOLS_ENABLED
     void reload_user_code();
@@ -83,9 +85,6 @@ public:
     //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
     Object* get_callable_middleman() const;
 
-#ifdef DEBUG_ENABLED
-    void validate_state();
-#endif
 };
 
 #endif// GODOT_JVM_GD_KOTLIN_H
