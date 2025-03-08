@@ -7,27 +7,21 @@ import godot.core.variantMapper
 import godot.internal.logging.JVMLogging
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import java.io.File
-import java.net.URL
-import java.net.URLClassLoader
 import java.util.*
 
 
 internal class Bootstrap {
-    private lateinit var classloader: ClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
 
-    /** projectRootDir is empty if not in editor (only used for reloading)
-     * userCodePath is empty if usercode loaded as part of the VM
-     * loader is empty if usercode loaded as part of the VM
-     **/
-    fun init(projectRootDir: String, userCodePath: String, loader: ClassLoader?) {
-        if (loader == null) {
-            doInitGraal()
-        } else {
-            val userCodeFile = File(userCodePath)
-            doInit(userCodeFile.toURI().toURL(), loader)
-        }
+
+    fun initJar(loader: ClassLoader) {
+        serviceLoader = ServiceLoader.load(Entry::class.java, loader)
+        initializeUsingEntry()
+    }
+
+    fun initNativeImage() {
+        serviceLoader = ServiceLoader.load(Entry::class.java)
+        initializeUsingEntry()
     }
 
     fun finish() {
@@ -36,16 +30,6 @@ internal class Bootstrap {
         serviceLoader.reload()
     }
 
-    private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
-        classloader = classLoader ?: URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
-        serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
-        initializeUsingEntry()
-    }
-
-    private fun doInitGraal() {
-        serviceLoader = ServiceLoader.load(Entry::class.java)
-        initializeUsingEntry()
-    }
 
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
