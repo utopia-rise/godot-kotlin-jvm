@@ -1,6 +1,5 @@
 package godot.gradle
 
-import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
 import godot.gradle.projectExt.godotCoroutineLibraryArtifactName
 import godot.gradle.projectExt.godotJvmExtension
@@ -22,8 +21,6 @@ abstract class GodotPlugin : Plugin<Project> {
     abstract val registry: ToolingModelBuilderRegistry
 
     override fun apply(target: Project) = with(target) {
-        checkKotlinVersionCompatibility()
-
         val extension = extensions.create("godot", GodotExtension::class.java).also {
             it.configureExtensionDefaults(this)
         }
