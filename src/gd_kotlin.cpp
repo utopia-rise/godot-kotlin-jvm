@@ -30,8 +30,10 @@ bool GDKotlin::load_dynamic_lib() {
 #ifdef TOOLS_ENABLED
             else if (String environment_jvm = get_path_to_environment_jvm();
                      !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
-                JVM_LOG_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
-                                "documentation if you don't know how to do that");
+                JVM_LOG_WARNING(
+                  "Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                  "documentation if you don't know how to do that"
+                );
                 path_to_jvm_lib = environment_jvm;
             } else {
 #ifdef MACOS_ENABLED
@@ -175,8 +177,10 @@ void GDKotlin::set_jvm_options() {
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
-        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
-                        "not launch properly");
+        JVM_LOG_WARNING(
+          "You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
+          "not launch properly"
+        );
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
 }
@@ -253,15 +257,9 @@ bool GDKotlin::initialize_core_library() {
 }
 
 bool GDKotlin::load_user_code() {
-#ifdef TOOLS_ENABLED
-    String project_path {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY)};
-#else
-    String project_path {""};
-#endif
-
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        bootstrap->init(env, project_path, "", jni::JObject(nullptr));
+        bootstrap->init_native_image(env);
         return true;
     } else {
 #ifdef TOOLS_ENABLED
@@ -291,12 +289,7 @@ bool GDKotlin::load_user_code() {
           bootstrap_class_loader->get_wrapped()
         );
 
-        bootstrap->init(
-          env,
-          project_path,
-          ProjectSettings::get_singleton()->globalize_path(user_code_path),
-          user_class_loader->get_wrapped()
-        );
+        bootstrap->init_jar(env, user_class_loader->get_wrapped());
         delete user_class_loader;
         return FileAccess::exists(user_code_path);
     }
@@ -399,19 +392,18 @@ void GDKotlin::validate_state() {
 #ifdef MACOS_ENABLED
         if (user_configuration.vm_type == jni::JVM) {
             cause = "Couldn't open JVM dynamic library.";
-            hint =
-              "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
-              "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
-              "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`";
+            hint = "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
+                   "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
+                   "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`";
         }
 #else
-         if (user_configuration.vm_type == jni::JVM) {
-             cause = "Couldn't open JVM dynamic library.";
-             hint =
-               "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
-         }
+        if (user_configuration.vm_type == jni::JVM) {
+            cause = "Couldn't open JVM dynamic library.";
+            hint =
+              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
+        }
 #endif
-         else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
+        else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
             cause = "Couldn't open Graal Native Image.";
             hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build.";
         }

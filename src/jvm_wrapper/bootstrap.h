@@ -7,11 +7,13 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
     JVM_CLASS(Bootstrap)
 
     // clang-format off
-    JNI_VOID_METHOD(INIT)
+    JNI_VOID_METHOD(INIT_JAR)
+    JNI_VOID_METHOD(INIT_NATIVE_IMAGE)
     JNI_VOID_METHOD(FINISH)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(INIT, "init", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
+        INIT_JNI_METHOD(INIT_JAR, "initJar", "(Ljava/lang/ClassLoader;)V")
+        INIT_JNI_METHOD(INIT_NATIVE_IMAGE, "initNativeImage", "()V")
         INIT_JNI_METHOD(FINISH, "finish", "()V")
         INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
         INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;)V", Bootstrap::register_engine_type)
@@ -29,7 +31,8 @@ public:
     Bootstrap(jni::Env& p_env, jni::JObject p_wrapped);
     ~Bootstrap() = default;
 
-    void init(jni::Env& p_env, const String& p_project_path, const String& p_jar_file, const jni::JObject& p_class_loader);
+    void init_jar(jni::Env& p_env, const jni::JObject& p_class_loader);
+    void init_native_image(jni::Env& p_env);
     void finish(jni::Env& p_env);
 };
 
