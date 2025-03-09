@@ -56,6 +56,7 @@ internal class Bootstrap {
         val mainEntry = entries.maxBy { entry -> entry.classRegistrarCount }
         val classRegistries = mutableListOf<ClassRegistry>()
 
+        var mainContext: Entry.Context? = null
         entries.forEach { entry ->
             val isMainEntry = entry == mainEntry
 
@@ -69,6 +70,7 @@ internal class Bootstrap {
 
             with(entry) {
                 if (isMainEntry) {
+                    mainContext = context
                     context.initEngineTypes()
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
@@ -90,6 +92,23 @@ internal class Bootstrap {
         loadClasses(classes)
         forceJvmInitializationOfSingletons()
         // END: order matters!
+
+        fun forceJvmInitializationOfScripts() {
+            // Ugly but it will have to wait for when you rework Registration and Bootstrap
+            // Has to run after all classes are initialized in case a static block needs a Godot type
+            if (mainContext == null) {
+                return
+            }
+
+            with(mainEntry) {
+                mainContext.getRegisteredClasses().forEach { clazz ->
+                    // Force init of the class so any static block runs.
+                    Class.forName(clazz.java.name, true, clazz.java.classLoader)
+                }
+            }
+        }
+
+        forceJvmInitializationOfScripts()
     }
 
     private fun clearClassesCache() {
