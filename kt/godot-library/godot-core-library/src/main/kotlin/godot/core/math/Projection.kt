@@ -5,7 +5,6 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.common.util.RealT
-import godot.common.util.isZeroApprox
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.atan
@@ -796,142 +795,229 @@ class Projection(
         return if (res == null) Vector2() else Vector2(res.x, res.y)
     }
 
-    @Suppress("DuplicatedCode")
-    fun invert() {
-        var i: Int
-        var j: Int
-        var k = 0
+    private fun invert() {
+        // Adapted from Mesa's `src/util/u_math.c` `util_invert_mat4x4`.
+        // MIT licensed. Copyright 2008 VMware, Inc. Authored by Jacques Leroy.
 
-        /* Locations of pivot matrix */
-        val pivotRows = arrayOf(0, 1, 2, 3)
-        val pivotColumns = arrayOf(0, 1, 2, 3)
+        var m0: RealT = 0.0
+        var m1: RealT = 0.0
+        var m2: RealT = 0.0
+        var m3: RealT = 0.0
+        var s: RealT = 0.0
 
-        /* Value of current pivot element */
-        var pivotValue: RealT
-        var hold: RealT
-        var determinant: RealT = 1.0
+        var swap1 = Vector4()
+        var swap2 = Vector4()
 
-        while (k < 4) {
-            /** Locate k'th pivot element  */
-            pivotValue = this[k][k]
-            /** Initialize for search  */
-            pivotRows[k] = k
-            pivotColumns[k] = k
-            i = k
-            while (i < 4) {
-                j = k
-                while (j < 4) {
-                    val element = this[i][j]
-                    if (abs(element) > abs(pivotValue)) {
-                        pivotRows[k] = i
-                        pivotColumns[k] = j
-                        pivotValue = element
-                    }
-                    j++
-                }
-                i++
-            }
+        var r01 = Vector4(this._x)
+        var r02 = Vector4(1.0, 0.0, 0.0, 0.0)
 
-            /** Product of pivots, gives determinant when finished  */
-            determinant *= pivotValue
-            if (determinant.isZeroApprox()) {
-                return
-                /** Matrix is singular (zero determinant).  */
-            }
+        var r11 = Vector4(this._y)
+        var r12 = Vector4(0.0, 1.0, 0.0, 0.0)
 
-            /** "Interchange" rows (with sign change stuff)  */
-            i = pivotRows[k]
-            if (i != k) {
-                /** If rows are different  */
-                j = 0
-                while (j < 4) {
-                    hold = -this[k][j]
-                    setMatrixElement(k, j, this[i][j])
-                    setMatrixElement(i, j, hold)
-                    j++
-                }
-            }
+        var r21 = Vector4(this._z)
+        var r22 = Vector4(0.0, 0.0, 1.0, 0.0)
 
-            /** "Interchange" columns  */
-            j = pivotColumns[k]
-            if (j != k) {
-                /** If columns are different  */
-                i = 0
-                while (i < 4) {
-                    hold = -this[i][k]
-                    setMatrixElement(i, k, this[i][j])
-                    setMatrixElement(i, j, hold)
-                    i++
-                }
-            }
+        var r31 = Vector4(this._w)
+        var r32 = Vector4(0.0, 0.0, 0.0, 1.0)
 
-            /** Divide column by minus pivot value  */
-            i = 0
-            while (i < 4) {
-                if (i != k) {
-                    setMatrixElement(i, k, this[i][k] / -pivotValue)
-                }
-                i++
-            }
 
-            /** Reduce the matrix  */
-            i = 0
-            while (i < 4) {
-                hold = this[i][k]
-                j = 0
-                while (j < 4) {
-                    if (i != k && j != k) {
-                        setMatrixElement(i, j, this[i][j] + (hold * this[k][j]))
-                    }
-                    j++
-                }
-                i++
-            }
-
-            /** Divide row by pivot  */
-            j = 0
-            while (j < 4) {
-                if (j != k) {
-                    setMatrixElement(k, j, this[k][j] / pivotValue)
-                }
-                j++
-            }
-
-            /** Replace pivot by reciprocal (at last we can touch it).  */
-            setMatrixElement(k, k, 1.0 / pivotValue)
-            k++
+        /* choose pivot - or die */
+        if (abs(r31.x) > abs(r21.x)) {
+            swap1 = r31
+            swap2 = r32
+            r31 = r21
+            r32 = r22
+            r21 = swap1
+            r22 = swap2
         }
 
-        /* That was most of the work, one final pass of row/column interchange */
-        /* to finish */
-        /* Don't need to work with 1 by 1 corner*/
-        k = 4 - 2
-        while (k >= 0) {
-            /* Rows to swap correspond to pivot COLUMN */
-            i = pivotColumns[k]
-            if (i != k) { /* If rows are different */
-                j = 0
-                while (j < 4) {
-                    hold = this[k][j]
-                    setMatrixElement(k, j, -this[i][j])
-                    setMatrixElement(i, j, hold)
-                    j++
-                }
-            }
-
-            /* Columns to swap correspond to pivot ROW */
-            j = pivotRows[k]
-            if (j != k) { /* If columns are different */
-                i = 0
-                while (i < 4) {
-                    hold = this[i][k]
-                    setMatrixElement(i, k, -this[i][j])
-                    setMatrixElement(i, j, hold)
-                    i++
-                }
-            }
-            k--
+        if (abs(r21.x) > abs(r11.x)) {
+            swap1 = r21
+            swap2 = r22
+            r21 = r11
+            r22 = r12
+            r11 = swap1
+            r12 = swap2
         }
+        if (abs(r11.x) > abs(r01.x)) {
+            swap1 = r11
+            swap2 = r12
+            r11 = r01
+            r12 = r02
+            r01 = swap1
+            r02 = swap2
+        }
+
+        check(r01.x != 0.0)
+
+        /* eliminate first variable     */
+        m1 = r11.x / r01.x
+        m2 = r21.x / r01.x
+        m3 = r31.x / r01.x
+        s = r01.y
+        r11.y -= m1 * s
+        r21.y -= m2 * s
+        r31.y -= m3 * s
+        s = r01.z
+        r11.z -= m1 * s
+        r21.z -= m2 * s
+        r31.z -= m3 * s
+        s = r01.w
+        r11.w -= m1 * s
+        r21.w -= m2 * s
+        r31.w -= m3 * s
+        s = r02.x
+        if (s != 0.0) {
+            r12.x -= m1 * s
+            r22.x -= m2 * s
+            r32.x -= m3 * s
+        }
+        s = r02.y
+        if (s != 0.0) {
+            r12.y -= m1 * s
+            r22.y -= m2 * s
+            r32.y -= m3 * s
+        }
+        s = r02.z
+        if (s != 0.0) {
+            r12.z -= m1 * s
+            r22.z -= m2 * s
+            r32.z -= m3 * s
+        }
+        s = r02.w
+        if (s != 0.0) {
+            r12.w -= m1 * s
+            r22.w -= m2 * s
+            r32.w -= m3 * s
+        }
+
+        /* choose pivot - or die */
+        if (abs(r31.y) > abs(r21.y)) {
+            swap1 = r31
+            swap2 = r32
+            r31 = r21
+            r32 = r22
+            r21 = swap1
+            r22 = swap2
+        }
+        if (abs(r21.y) > abs(r11.y)) {
+            swap1 = r21
+            swap2 = r22
+            r21 = r11
+            r22 = r12
+            r11 = swap1
+            r12 = swap2
+        }
+        check(r11.y != 0.0)
+
+        /* eliminate second variable */
+        m2 = r21.y / r11.y
+        m3 = r31.y / r11.y
+        r21.z -= m2 * r11.z
+        r31.z -= m3 * r11.z
+        r21.w -= m2 * r11.w
+        r31.w -= m3 * r11.w
+        s = r12.x
+        if (0.0 != s) {
+            r22.x -= m2 * s
+            r32.x -= m3 * s
+        }
+        s = r12.y
+        if (0.0 != s) {
+            r22.y -= m2 * s
+            r32.y -= m3 * s
+        }
+        s = r12.z
+        if (0.0 != s) {
+            r22.z -= m2 * s
+            r32.z -= m3 * s
+        }
+        s = r12.w
+        if (0.0 != s) {
+            r22.w -= m2 * s
+            r32.w -= m3 * s
+        }
+
+        /* choose pivot - or die */
+        if (abs(r31.z) > abs(r21.z)) {
+            swap1 = r31
+            swap2 = r32
+            r31 = r21
+            r32 = r22
+            r21 = swap1
+            r22 = swap2
+        }
+        check(r21.z != 0.0)
+
+        /* eliminate third variable */
+        m3 = r31.z / r21.z
+        r31.w -= m3 * r21.w
+        r32.x -= m3 * r22.x
+        r32.y -= m3 * r22.y
+        r32.z -= m3 * r22.z
+        r32.w -= m3 * r22.w
+
+        /* last check */
+        check(r31.w != 0.0)
+
+        s = 1.0 / r31.w /* now back substitute row 3 */
+        r32.x *= s
+        r32.y *= s
+        r32.z *= s
+        r32.w *= s
+
+        m2 = r21.w /* now back substitute row 2 */
+        s = 1.0 / r21.z
+        r22.x = s * (r22.x - r32.x * m2)
+        r22.y = s * (r22.y - r32.y * m2)
+        r22.z = s * (r22.z - r32.z * m2)
+        r22.w = s * (r22.w - r32.w * m2)
+        m1 = r11.w
+        r12.x -= r32.x * m1
+        r12.y -= r32.y * m1
+        r12.z -= r32.z * m1
+        r12.w -= r32.w * m1
+        m0 = r01.w
+        r02.x -= r32.x * m0
+        r02.y -= r32.y * m0
+        r02.z -= r32.z * m0
+        r02.w -= r32.w * m0
+
+        m1 = r11.z /* now back substitute row 1 */
+        s = 1.0 / r11.y
+        r12.x = s * (r12.x - r22.x * m1)
+        r12.y = s * (r12.y - r22.y * m1)
+        r12.z = s * (r12.z - r22.z * m1)
+        r12.w = s * (r12.w - r22.w * m1)
+        m0 = r01.z
+        r02.x -= r22.x * m0
+        r02.y -= r22.y * m0
+        r02.z -= r22.z * m0
+        r02.w -= r22.w * m0
+
+        m0 = r01.y /* now back substitute row 0 */
+        s = 1.0 / r01.x
+        r02.x = s * (r02.x - r12.x * m0)
+        r02.y = s * (r02.y - r12.y * m0)
+        r02.z = s * (r02.z - r12.z * m0)
+        r02.w = s * (r02.w - r12.w * m0)
+
+        _x.x = r02.x
+        _x.y = r02.y
+        _x.z = r02.z
+        _x.w = r02.w
+        _y.x = r12.x
+        _y.y = r12.y
+        _y.z = r12.z
+        _y.w = r12.w
+        _z.x = r22.x
+        _z.y = r22.y
+        _z.z = r22.z
+        _z.w = r22.w
+        _w.x = r32.x
+        _w.y = r32.y
+        _w.z = r32.z
+        _w.w = r32.w
     }
 
     /**
@@ -1101,16 +1187,15 @@ class Projection(
     }
 
     override fun toString() = buildString {
-        appendLine("(")
-        append("\t")
-        appendLine(_x)
-        append("\t")
-        appendLine(_y)
-        append("\t")
-        appendLine(_z)
-        append("\t")
-        appendLine(_w)
-        appendLine(")")
+        append("[X: ")
+        append(_x)
+        append(", Y: ")
+        append(_y)
+        append(", Z: ")
+        append(_z)
+        append(", W: ")
+        append(_w)
+        append("]")
     }
 
     private fun set(projection: Projection) {
@@ -1159,7 +1244,7 @@ class Projection(
          *
          * flipFov determines whether the projection's field of view is flipped over its diagonal.
          */
-        fun createPerspective(pFovyDegrees: RealT, aspect: RealT, zNear: RealT, zFar: RealT, flipFov: Boolean) =
+        fun createPerspective(pFovyDegrees: RealT, aspect: RealT, zNear: RealT, zFar: RealT, flipFov: Boolean = false) =
             Projection().also {
                 it.setPerspective(pFovyDegrees, aspect, zNear, zFar, flipFov)
             }

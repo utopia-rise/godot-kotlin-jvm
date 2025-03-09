@@ -5,6 +5,7 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.common.util.RealT
+import godot.core.times
 import kotlincompile.definitions.GodotJvmBuildConfig
 
 class Transform3D(
@@ -267,7 +268,7 @@ class Transform3D(
     /**
      * Transforms the given Vector3 by this transform.
      */
-    fun xform(vector: Vector3): Vector3 =
+    internal fun xform(vector: Vector3): Vector3 =
         Vector3(
             _basis._x.dot(vector) + _origin.x,
             _basis._y.dot(vector) + _origin.y,
@@ -277,7 +278,7 @@ class Transform3D(
     /**
      * Transforms the given AABB by this transform.
      */
-    fun xform(aabb: AABB): AABB {
+    internal fun xform(aabb: AABB): AABB {
         val x = _basis._x * aabb._size.x
         val y = _basis._y * aabb._size.y
         val z = _basis._z * aabb._size.z
@@ -298,7 +299,7 @@ class Transform3D(
     /**
      * Transforms the given Plane by this transform.
      */
-    fun xform(plane: Plane): Plane {
+    internal fun xform(plane: Plane): Plane {
         var point = plane._normal * plane.d
         var pointDir = point + plane._normal
         point = xform(point)
@@ -313,7 +314,7 @@ class Transform3D(
     /**
      * Inverse-transforms the given Vector3 by this transform.
      */
-    fun xformInv(vector: Vector3): Vector3 {
+    internal fun xformInv(vector: Vector3): Vector3 {
         val v = vector - _origin
         return Vector3(
             (_basis._x.x * v.x) + (_basis._y.x * v.y) + (_basis._z.x * v.z),
@@ -325,7 +326,7 @@ class Transform3D(
     /**
      * Inverse-transforms the given Plane by this transform.
      */
-    fun xformInv(plane: Plane): Plane {
+    internal fun xformInv(plane: Plane): Plane {
         var point = plane._normal * plane.d
         var pointDir = point + plane._normal
         point = xformInv(point)
@@ -340,7 +341,7 @@ class Transform3D(
     /**
      * Inverse-transforms the given AABB by this transform.
      */
-    fun xformInv(aabb: AABB): AABB {
+    internal fun xformInv(aabb: AABB): AABB {
         val vertices = arrayOf(
             Vector3(aabb._position.x + aabb._size.x, aabb._position.y + aabb._size.y, aabb._position.z + aabb._size.z),
             Vector3(aabb._position.x + aabb._size.x, aabb._position.y + aabb._size.y, aabb._position.z),
@@ -360,12 +361,6 @@ class Transform3D(
         return ret
     }
 
-    operator fun times(transform3D: Transform3D): Transform3D {
-        val t = this
-        t._origin = xform(transform3D._origin)
-        t._basis *= transform3D._basis
-        return t
-    }
 
     override fun equals(other: Any?): Boolean = when (other) {
         is Transform3D -> _basis == other._basis && _origin == other._origin
@@ -387,4 +382,44 @@ class Transform3D(
      */
     constructor(x: Vector3, y: Vector3, z: Vector3, origin: Vector3) :
         this(Basis(x, y, z), origin)
+
+
+    operator fun times(transform3D: Transform3D): Transform3D {
+        val t = this
+        t._origin = xform(transform3D._origin)
+        t._basis *= transform3D._basis
+        return t
+    }
+
+    operator fun times(other: PackedVector3Array): PackedVector3Array {
+        val newPackedArray = PackedVector3Array()
+        other.toList().onEach { newPackedArray.pushBack(this * it) }
+        return newPackedArray
+    }
+
+    operator fun times(other: AABB) = this.xform(other)
+    operator fun times(other: Vector3) = this.xform(other)
+
+    operator fun times(other: Int) = Transform3D(other * _basis, other * _origin)
+    operator fun times(other: Long) = Transform3D(other * _basis, other * _origin)
+    operator fun times(other: Float) = Transform3D(other * _basis, other * _origin)
+    operator fun times(other: Double) = Transform3D(other * _basis, other * _origin)
+
+    operator fun div(other: Int) = Transform3D(_basis / other, _origin / other)
+    operator fun div(other: Long) = Transform3D(_basis / other, _origin / other)
+    operator fun div(other: Float) = Transform3D(_basis / other, _origin / other)
+    operator fun div(other: Double) = Transform3D(_basis / other, _origin / other)
 }
+
+operator fun Vector3.times(other: Transform3D) = other.xformInv(this)
+operator fun AABB.times(other: Transform3D) = other.xformInv(this)
+operator fun PackedVector3Array.times(other: Transform3D): PackedVector3Array {
+    val newPackedArray = PackedVector3Array()
+    toList().onEach { newPackedArray.pushBack(other.xformInv(it)) }
+    return newPackedArray
+}
+
+operator fun Int.times(other: Transform3D) = other * this
+operator fun Long.times(other: Transform3D) = other * this
+operator fun Float.times(other: Transform3D) = other * this
+operator fun Double.times(other: Transform3D) = other * this

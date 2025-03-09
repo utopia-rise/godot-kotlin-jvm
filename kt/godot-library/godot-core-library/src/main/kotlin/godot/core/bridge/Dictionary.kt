@@ -303,6 +303,10 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         return ret
     }
 
+    fun sort() {
+        Bridge.engine_call_sort(ptr)
+    }
+
     /**
      * Returns the list of values in the Dictionary.
      */
@@ -373,6 +377,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         external fun engine_call_make_read_only(_handle: VoidPtr)
         external fun engine_call_merge(_handle: VoidPtr)
         external fun engine_call_size(_handle: VoidPtr)
+        external fun engine_call_sort(_handle: VoidPtr)
         external fun engine_call_values(_handle: VoidPtr)
         external fun engine_call_operator_get(_handle: VoidPtr)
         external fun engine_call_operator_set(_handle: VoidPtr)

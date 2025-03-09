@@ -178,6 +178,20 @@ class Rect2(
     fun getCenter() = position + (size * 0.5f)
 
     /**
+     * Returns the vertex's position of this rect that's the farthest in the given direction. This point is commonly known as the support point in collision detection algorithms.
+     */
+    fun getSupport(direction: Vector2): Vector2 {
+        val support = Vector2(position)
+        if (direction.x > 0.0f) {
+            support.x += size.x
+        }
+        if (direction.y > 0.0f) {
+            support.y += size.y
+        }
+        return support;
+    }
+
+    /**
      * Returns a copy of the Rect2 grown a given amount of units towards all the sides.
      */
     fun grow(by: RealT): Rect2 {

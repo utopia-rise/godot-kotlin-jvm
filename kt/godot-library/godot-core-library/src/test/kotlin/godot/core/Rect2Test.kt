@@ -104,6 +104,35 @@ class TestRect2 {
     }
 
     @Test
+    fun `Get support`() {
+        val rect = Rect2(Vector2(-1.5, 2), Vector2(4, 5));
+        checkMessage(
+            rect.getSupport(Vector2(1, 0)) == Vector2(2.5, 2)
+        )
+        { "getSupport() should return the expected value." }
+        checkMessage(
+            rect.getSupport(Vector2(0.5, 1)) == Vector2(2.5, 7)
+        )
+        { "getSupport() should return the expected value." }
+        checkMessage(
+            rect.getSupport(Vector2(0.5, 1)) == Vector2(2.5, 7)
+        )
+        { "getSupport() should return the expected value." }
+        checkMessage(
+            rect.getSupport(Vector2(0, -1)) == Vector2(-1.5, 2)
+        )
+        { "getSupport() should return the expected value." }
+        checkMessage(
+            rect.getSupport(Vector2(0, -0.1)) == Vector2(-1.5, 2)
+        )
+        { "getSupport() should return the expected value." }
+        checkMessage(
+            rect.getSupport(Vector2()) == Vector2(-1.5, 2)
+        )
+        { "getSupport() should return the Rect2 position when given a zero vector." }
+    }
+
+    @Test
     fun `Growing`() {
         val rect = Rect2(0.0, 100.0, 1280.0, 720.0)
         checkTrue(rect.grow(100.0) == Rect2(-100.0, 0.0, 1480.0, 920.0))
