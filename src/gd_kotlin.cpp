@@ -5,10 +5,15 @@
 #include "jvm_wrapper/memory/type_manager.h"
 #include "lifecycle/paths.h"
 #include "script/jvm_script_manager.h"
+#include "version.h"
 
 #include <core/config/project_settings.h>
 #include <core/io/resource_loader.h>
 #include <main/main.h>
+
+#define DISPLAY_ERROR(cause, hint)                  \
+    display_initialization_error_hint(cause, hint); \
+    JVM_ERR_FAIL_V_MSG(false, cause)
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -37,14 +42,19 @@ bool GDKotlin::load_dynamic_lib() {
                 path_to_jvm_lib = environment_jvm;
             } else {
 #ifdef MACOS_ENABLED
-                JVM_ERR_FAIL_V_MSG(
-                  false,
-                  "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
-                  "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
-                  "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
+                DISPLAY_ERROR(
+                  "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
+                  "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
+                  "jlink.\n"
+                  "If you launched the editor through a double click on Godot.app, also make sure that JAVA_HOME is "
+                  "set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
                 );
 #else
-                JVM_ERR_FAIL_V_MSG(false, "The environment variable JAVA_HOME is not found and there is no embedded JRE.");
+                DISPLAY_ERROR(
+                  "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
+                  "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
+                  "jlink."
+                );
 #endif
             }
 #else
@@ -58,12 +68,7 @@ bool GDKotlin::load_dynamic_lib() {
             if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
                 path_to_jvm_lib = native_jvm;
             } else {
-                JVM_ERR_FAIL_V_MSG(
-                  false,
-                  "Cannot find Graal VM user code native image! /n This usually happens when you "
-                  "define that your project should be executed using graalvm but did not "
-                  "successfully compile your project and thus usercode.(sh, dll, dylib) cannot be found."
-                );
+                DISPLAY_ERROR("Couldn't open Graal Native Image.", "Make sure you have built your JVM project with Graal native image enabled in your gradle build.");
             }
             break;
         default:
@@ -72,7 +77,10 @@ bool GDKotlin::load_dynamic_lib() {
     }
 
     if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
-        JVM_ERR_FAIL_V_MSG(false, vformat("Failed to load the jvm dynamic library from path %s!", path_to_jvm_lib));
+        DISPLAY_ERROR(
+          "Failed to load the jvm dynamic library from path " + path_to_jvm_lib,
+          "Make sure you have built your JVM project with Graal native image enabled in your gradle build."
+        );
     }
     return true;
 }
@@ -220,25 +228,36 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 #endif
 
 bool GDKotlin::load_bootstrap() {
-    if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        return true; // Bootstrap already part of the image
-    }
-
     jni::Env env {jni::Jvm::current_env()};
+    if (user_configuration.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) { // Bootstrap already part of the image
 #ifdef TOOLS_ENABLED
-    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(EDITOR_BOOTSTRAP_PATH)};
-    constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot "
-                                      "editor executable!"};
+        String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(EDITOR_BOOTSTRAP_PATH)};
+        constexpr const char* hint_text {" This file needs to stay alongside the godot editor executable!"};
 #else
-    String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(BOOTSTRAP_FILE))};
-    constexpr const char* error_text {"No godot-bootstrap.jar found!"};
+        String bootstrap_jar {ProjectSettings::get_singleton()->globalize_path(copy_new_file_to_user_dir(BOOTSTRAP_FILE))};
+        constexpr const char* hint_text {"The export of the project might be invalid."};
 #endif
 
-    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::exists(bootstrap_jar), false, error_text);
-    JVM_LOG_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
+        if (!FileAccess::exists(bootstrap_jar)) { DISPLAY_ERROR("No godot-bootstrap.jar found!", hint_text); }
 
-    bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
-    bootstrap_class_loader->set_as_context_loader(env);
+        JVM_LOG_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
+        bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
+        bootstrap_class_loader->set_as_context_loader(env);
+    }
+
+    if (Bootstrap::initialize(env, bootstrap_class_loader)) {
+        bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
+        String version = bootstrap->get_version(env);
+        if (version != String(GODOT_KOTLIN_VERSION)) {
+            DISPLAY_ERROR(
+              vformat("Version mismatch! C++ module is : %s / Jar is : %s.", GODOT_KOTLIN_VERSION, version),
+              "Check if your build.gradle file use the same version as the editor."
+            );
+        }
+    } else {
+        DISPLAY_ERROR("The boostrap.jar is invalid and can't be loaded.", "Check if your build.gradle file use the same version as the editor.");
+    }
+
     return true;
 }
 
@@ -246,13 +265,17 @@ bool GDKotlin::initialize_core_library() {
     callable_middleman = memnew(Object);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) { return false; }
+    if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) {
+        DISPLAY_ERROR(
+          "The boostrap.jar is invalid and can't be loaded.",
+          "Check if your build.gradle file use the same version as the editor."
+          );
+    }
 
     if (user_configuration.max_string_size != -1) {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
     }
 
-    bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
     return true;
 }
 
@@ -308,11 +331,14 @@ void GDKotlin::finalize_core_library() {
     MemoryManager::get_instance().clean_up(env);
 
     JvmManager::finalize_jvm_wrappers(env, bootstrap_class_loader);
+
     memdelete(callable_middleman);
     callable_middleman = nullptr;
 }
 
 void GDKotlin::unload_boostrap() {
+    jni::Env env {jni::Jvm::current_env()};
+    Bootstrap::finalize(env, bootstrap_class_loader);
     delete bootstrap;
     bootstrap = nullptr;
     delete bootstrap_class_loader;
@@ -375,71 +401,18 @@ Object* GDKotlin::get_callable_middleman() const {
     return callable_middleman;
 }
 
-#ifdef DEBUG_ENABLED
-void GDKotlin::validate_state() {
-    bool invalid {false};
-
+void GDKotlin::display_initialization_error_hint(String cause, String hint) {
     String warning {"Godot Kotlin/JVM module couldn't be fully initialized.\n"
                     "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
                     "The cause was:\n"};
-    String cause {"No cause identified."};
     String pre_hint {"\nOne possible solution is:\n"};
-    String hint {"No solution suggested."};
-
-    if (state == State::NOT_STARTED) {
-        invalid = true;
-#ifdef DYNAMIC_JVM
-#ifdef MACOS_ENABLED
-        if (user_configuration.vm_type == jni::JVM) {
-            cause = "Couldn't open JVM dynamic library.";
-            hint = "The environment variable JAVA_HOME is not found and there is no embedded JRE. If you "
-                   "launched the editor through a double click on Godot.app, also make sure that JAVA_HOME "
-                   "is set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`";
-        }
-#else
-        if (user_configuration.vm_type == jni::JVM) {
-            cause = "Couldn't open JVM dynamic library.";
-            hint =
-              "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using jlink.";
-        }
-#endif
-        else if (user_configuration.vm_type == jni::GRAAL_NATIVE_IMAGE) {
-            cause = "Couldn't open Graal Native Image.";
-            hint = "Make sure you have built your JVM project with Graal native image enabled in your gradle build.";
-        }
-#endif
-    }
-
-    if (state == State::JVM_LIBRARY_LOADED) {
-        invalid = true;
-        cause = "Couldn't start the JVM.";
-        hint = "Check your configuration file and command-line arguments for any invalid setting, including your "
-               "custom jvm arguments.";
-    }
-
-    if (state == State::JVM_STARTED) {
-        invalid = true;
-#ifdef DYNAMIC_JVM
-        if (user_configuration.vm_type == jni::JVM) {
-            cause = "Couldn't find the bootstrap.jar.";
-            hint = "Don't forget to set a up-to-date boostrap.jar next to the editor executable.";
-        }
-#endif
-    }
-
-    if (state == State::BOOTSTRAP_LOADED) {
-        invalid = true;
-        cause = "The Godot Kotlin core library couldn't be initialized.";
-        hint = "The Godot Kotlin version you use in your JVM project might not match the Godot executable.";
-    }
-
-    // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
-    if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
-
-    if (invalid) {
-        finalize_down_to(NOT_STARTED);
-        OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
-    }
+    OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
 }
 
-#endif
+void GDKotlin::validate_state() {
+        // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
+    if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
+
+    finalize_down_to(NOT_STARTED);
+    JVM_LOG_WARNING("JVM Module not properly started, you won't be able to use Java or Kotlin scripts.");
+}
