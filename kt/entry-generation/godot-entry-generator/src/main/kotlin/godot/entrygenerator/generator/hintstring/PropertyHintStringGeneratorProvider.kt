@@ -2,6 +2,7 @@ package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.ext.isCompatibleList
+import godot.entrygenerator.ext.isDictionary
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isRefCounted
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
@@ -38,7 +39,7 @@ object PropertyHintStringGeneratorProvider {
             is DirHintAnnotation -> DirHintStringGenerator(registeredProperty)
             is EnumFlagHintStringAnnotation,
             is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty)
-            is EnumListHintStringAnnotation -> ArrayHintStringGenerator(registeredProperty)
+            is EnumListHintStringAnnotation -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
             is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty)
             is FileHintAnnotation -> FileHintStringGenerator(registeredProperty)
             is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty)
@@ -48,7 +49,8 @@ object PropertyHintStringGeneratorProvider {
             null -> when {
                 registeredProperty.type.isNodeType() -> NodeTypeHintStringGenerator(registeredProperty)
                 registeredProperty.type.isRefCounted() -> ResourceHintStringGenerator(registeredProperty)
-                registeredProperty.type.isCompatibleList() -> ArrayHintStringGenerator(registeredProperty)
+                registeredProperty.type.isCompatibleList() -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
+                registeredProperty.type.isDictionary() -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
                 else -> object : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {
                     override fun getHintString(): String {
                         return ""

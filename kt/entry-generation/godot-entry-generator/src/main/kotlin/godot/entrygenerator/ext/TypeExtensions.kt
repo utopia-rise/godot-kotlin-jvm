@@ -2,6 +2,7 @@ package godot.entrygenerator.ext
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
+import godot.common.extensions.convertToCamelCase
 import godot.core.CoreType
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
@@ -34,12 +35,11 @@ import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_PARSER__RID
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
-import godot.common.extensions.convertToCamelCase
-import godot.tools.common.constants.godotApiPackage
 import java.util.*
 
 //TODO: make compatible with other languages
@@ -119,6 +119,11 @@ fun Type.toTypeName(): TypeName = ClassName(
 fun Type.isCompatibleList(): Boolean = when (fqName) {
     "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
     else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
+}
+
+fun Type.isDictionary(): Boolean = when (fqName) {
+    "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" -> true
+    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" }
 }
 
 fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)

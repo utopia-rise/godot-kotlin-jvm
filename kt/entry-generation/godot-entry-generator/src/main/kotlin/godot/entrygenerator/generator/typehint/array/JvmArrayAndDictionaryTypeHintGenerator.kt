@@ -6,14 +6,13 @@ import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.RegisteredProperty
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotPackage
 
-class JvmArrayTypeHintGenerator(
+class JvmArrayAndDictionaryTypeHintGenerator(
     private val registeredProperty: RegisteredProperty
 ) : PropertyTypeHintGenerator(registeredProperty) {
     override fun getPropertyTypeHint(): ClassName {
-        return when (propertyHintAnnotation) {
-            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
+        return when(propertyHintAnnotation) {
+            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_TYPE_STRING")
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }
