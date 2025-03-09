@@ -101,9 +101,13 @@ internal class Bootstrap {
         forceJvmInitializationOfSingletons()
         // END: order matters!
 
-        // Ugly but it will have to wait for when you rework Registration and Bootstrap
-        // Has to run after all classes are initialized in case a static block needs a Godot type
-        if(mainContext != null) {
+        fun forceJvmInitializationOfScripts() {
+            // Ugly but it will have to wait for when you rework Registration and Bootstrap
+            // Has to run after all classes are initialized in case a static block needs a Godot type
+            if (mainContext == null) {
+                return
+            }
+
             with(mainEntry) {
                 mainContext.getRegisteredClasses().forEach { clazz ->
                     // Force init of the class so any static block runs.
@@ -111,6 +115,8 @@ internal class Bootstrap {
                 }
             }
         }
+
+        forceJvmInitializationOfScripts()
     }
 
     private fun clearClassesCache() {
