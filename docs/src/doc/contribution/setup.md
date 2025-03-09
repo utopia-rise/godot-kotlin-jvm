@@ -14,6 +14,10 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
 
 Once you have all the necessary dependencies, proceed to do the following:
 
+!!! warning
+    The microsoft jdk is known for causing issues on windows while building code for our IDE plugin. The issue is the same as described in [this issue](https://github.com/microsoft/openjdk/issues/339).  
+    Either use a different jvm vendor like [Adoptium temurin](https://adoptium.net/temurin/releases/) or create the folder `Packages` manually in the `JAVA_HOME` folder: `'C:\Program Files\Microsoft\jdk-21.0.6.7-hotspot\Packages` in order to build our module.
+
 1. Clone Godot's repository with the stable tag you want to develop for. Notice that the branch tag must be
 aligned to the current binding's version (e.g., current version `0.10.0-4.3.0`, we need Godot at `4.3.0` version).
 
