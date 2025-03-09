@@ -26,21 +26,21 @@ public open class RenderDataExtension : RenderData() {
    * Implement this in GDExtension to return the implementation's [RenderSceneBuffers] object.
    */
   public open fun _getRenderSceneBuffers(): RenderSceneBuffers? {
-    throw NotImplementedError("_get_render_scene_buffers is not implemented for RenderDataExtension")
+    throw NotImplementedError("_getRenderSceneBuffers is not implemented for RenderDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the implementation's [RenderSceneDataExtension] object.
    */
   public open fun _getRenderSceneData(): RenderSceneData? {
-    throw NotImplementedError("_get_render_scene_data is not implemented for RenderDataExtension")
+    throw NotImplementedError("_getRenderSceneData is not implemented for RenderDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the [RID] of the implementation's environment object.
    */
   public open fun _getEnvironment(): RID {
-    throw NotImplementedError("_get_environment is not implemented for RenderDataExtension")
+    throw NotImplementedError("_getEnvironment is not implemented for RenderDataExtension")
   }
 
   /**
@@ -48,7 +48,7 @@ public open class RenderDataExtension : RenderData() {
    * object.
    */
   public open fun _getCameraAttributes(): RID {
-    throw NotImplementedError("_get_camera_attributes is not implemented for RenderDataExtension")
+    throw NotImplementedError("_getCameraAttributes is not implemented for RenderDataExtension")
   }
 
   public companion object

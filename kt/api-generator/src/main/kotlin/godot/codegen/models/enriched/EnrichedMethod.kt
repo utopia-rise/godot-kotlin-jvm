@@ -11,49 +11,43 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
 
-class EnrichedMethod(val internal: Method) : CallableTrait, IDocumented {
-    override val arguments = internal.arguments?.toEnriched() ?: listOf()
-    override val isVararg = internal.isVararg
-    val name: String
-    override val voidPtrVariableName: String
+class EnrichedMethod(model: Method) : CallableTrait, IDocumented {
+    val name = model.name.convertToCamelCase().let {
+        if (model.isVirtual && !it.startsWith("_")) {
+            "_$it"
+        } else {
+            it
+        }
+    }
+    val hash = model.hash
+
+    override val type = model.returnValue?.type?.sanitizeApiType()
+    override val arguments = model.arguments?.toEnriched() ?: listOf()
+    override val isVararg = model.isVararg
+
+    val isVirtual = model.isVirtual
+    val isStatic = model.isStatic
+
+    val godotName = model.name
+    override val voidPtrVariableName = "${name}Ptr"
+
+    override val meta: String? = model.returnValue?.meta
+    override val nullable = isObjectSubClass() || type == GodotTypes.variant
+
+
+    override val description = model.description
 
     init {
-        var kotlinName = internal.name.convertToCamelCase()
-        if (internal.isVirtual && !kotlinName.startsWith("_")) {
-            kotlinName = "_$kotlinName"
-        }
-
-        name = kotlinName
-        voidPtrVariableName = "${name}Ptr"
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
             throw TooManyMethodArgument(this)
         }
     }
-
-    override val type = internal.returnValue?.type?.sanitizeApiType()
-    override val meta: String? = internal.returnValue?.meta
-    override val nullable = isObjectSubClass() || type == GodotTypes.variant
-    override val description = internal.description
 }
 
 fun List<Method>.toEnriched() = map { EnrichedMethod(it) }
 
 fun EnrichedMethod.isSameSignature(other: EnrichedMethod): Boolean {
-    val otherInternal = other.internal
-    val otherArguments = otherInternal.arguments
-    val selfArguments = internal.arguments
-    val areArgumentsSame = (selfArguments == null && otherArguments == null) ||
-        selfArguments?.mapIndexed { index: Int, argument: Argument ->
-            argument.name == (otherArguments?.get(index)?.name ?: false) &&
-                argument.type == (otherArguments?.get(index)?.type ?: false) &&
-                argument.meta == (otherArguments?.get(index)?.meta ?: false)
-        }?.all { it } ?: false
-    return internal.name == other.name &&
-        internal.isVirtual == otherInternal.isVirtual &&
-        internal.isStatic == otherInternal.isStatic &&
-        internal.isVararg == otherInternal.isVararg &&
-        internal.isConst == otherInternal.isConst &&
-        internal.returnType == otherInternal.returnType &&
-        internal.returnValue == otherInternal.returnValue &&
-        areArgumentsSame
+    return name == other.name &&
+        type == other.type
+        arguments == other.arguments
 }

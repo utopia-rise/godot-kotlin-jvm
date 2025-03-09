@@ -30,14 +30,14 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the available packet count is internally requested by the [MultiplayerAPI].
    */
   public open fun _getAvailablePacketCount(): Int {
-    throw NotImplementedError("_get_available_packet_count is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getAvailablePacketCount is not implemented for MultiplayerPeerExtension")
   }
 
   /**
    * Called when the maximum allowed packet size (in bytes) is requested by the [MultiplayerAPI].
    */
   public open fun _getMaxPacketSize(): Int {
-    throw NotImplementedError("_get_max_packet_size is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getMaxPacketSize is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -45,7 +45,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * implemented. Use this when extending this class via GDScript.
    */
   public open fun _getPacketScript(): PackedByteArray {
-    throw NotImplementedError("_get_packet_script is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getPacketScript is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -53,7 +53,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * implemented. Use this when extending this class via GDScript.
    */
   public open fun _putPacketScript(pBuffer: PackedByteArray): Error {
-    throw NotImplementedError("_put_packet_script is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_putPacketScript is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -61,7 +61,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.getPacketChannel].
    */
   public open fun _getPacketChannel(): Int {
-    throw NotImplementedError("_get_packet_channel is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getPacketChannel is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -69,7 +69,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.getPacketMode].
    */
   public open fun _getPacketMode(): MultiplayerPeer.TransferMode {
-    throw NotImplementedError("_get_packet_mode is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getPacketMode is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -84,7 +84,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.transferChannel]).
    */
   public open fun _getTransferChannel(): Int {
-    throw NotImplementedError("_get_transfer_channel is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getTransferChannel is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -99,7 +99,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.transferMode]).
    */
   public open fun _getTransferMode(): MultiplayerPeer.TransferMode {
-    throw NotImplementedError("_get_transfer_mode is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getTransferMode is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -114,7 +114,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.getPacketPeer]).
    */
   public open fun _getPacketPeer(): Int {
-    throw NotImplementedError("_get_packet_peer is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getPacketPeer is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -122,7 +122,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerAPI.isServer].
    */
   public open fun _isServer(): Boolean {
-    throw NotImplementedError("_is_server is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_isServer is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -149,7 +149,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.getUniqueId]). The value must be between `1` and `2147483647`.
    */
   public open fun _getUniqueId(): Int {
-    throw NotImplementedError("_get_unique_id is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getUniqueId is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -164,7 +164,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.refuseNewConnections]).
    */
   public open fun _isRefusingNewConnections(): Boolean {
-    throw NotImplementedError("_is_refusing_new_connections is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_isRefusingNewConnections is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -172,7 +172,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.isServerRelaySupported].
    */
   public open fun _isServerRelaySupported(): Boolean {
-    throw NotImplementedError("_is_server_relay_supported is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_isServerRelaySupported is not implemented for MultiplayerPeerExtension")
   }
 
   /**
@@ -180,7 +180,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * [MultiplayerPeer.getConnectionStatus]).
    */
   public open fun _getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
-    throw NotImplementedError("_get_connection_status is not implemented for MultiplayerPeerExtension")
+    throw NotImplementedError("_getConnectionStatus is not implemented for MultiplayerPeerExtension")
   }
 
   public companion object

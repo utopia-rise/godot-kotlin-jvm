@@ -78,7 +78,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object WorkerThreadPool : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(22)
+    getSingleton(34)
   }
 
   /**
