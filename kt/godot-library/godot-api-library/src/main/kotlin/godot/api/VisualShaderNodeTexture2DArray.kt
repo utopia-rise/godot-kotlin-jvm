@@ -35,7 +35,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(777, scriptIndex)
+    createNativeObject(778, scriptIndex)
   }
 
   public final fun setTextureArray(`value`: Texture2DArray?): Unit {

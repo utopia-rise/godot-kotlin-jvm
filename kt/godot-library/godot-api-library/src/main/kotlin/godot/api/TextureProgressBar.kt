@@ -236,7 +236,7 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(659, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   /**

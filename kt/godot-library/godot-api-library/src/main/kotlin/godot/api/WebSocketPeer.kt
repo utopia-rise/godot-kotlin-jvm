@@ -128,7 +128,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(826, scriptIndex)
+    createNativeObject(827, scriptIndex)
   }
 
   /**

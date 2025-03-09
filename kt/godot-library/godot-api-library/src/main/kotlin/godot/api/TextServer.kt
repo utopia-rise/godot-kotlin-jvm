@@ -173,7 +173,7 @@ public operator fun Long.rem(other: godot.api.TextServer.FontStyle): Long = this
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(643, scriptIndex)
+    createNativeObject(644, scriptIndex)
   }
 
   /**

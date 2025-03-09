@@ -22,11 +22,14 @@ fun Project.setupConfigurationsAndCompilations() {
             compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+
+            afterEvaluate {
+                dependencies.add(
+                    "implementation",
+                    dependencies.create("org.scala-lang:scala3-library_3:${godotJvmExtension.scalaVersion.get()}")
+                )
+            }
         }
-        dependencies.add(
-            "ksp",
-            "com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"
-        )
     }
 
     //bootstrap configuration containing all glue code but no user code

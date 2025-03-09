@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRCamera3D : Camera3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(839, scriptIndex)
+    createNativeObject(840, scriptIndex)
   }
 
   public companion object

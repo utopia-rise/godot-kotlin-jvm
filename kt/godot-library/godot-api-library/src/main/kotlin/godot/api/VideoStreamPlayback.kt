@@ -29,7 +29,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(695, scriptIndex)
+    createNativeObject(696, scriptIndex)
   }
 
   /**

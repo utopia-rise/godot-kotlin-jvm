@@ -93,7 +93,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(661, scriptIndex)
+    createNativeObject(662, scriptIndex)
   }
 
   /**

@@ -80,7 +80,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(608, scriptIndex)
+    createNativeObject(609, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {
