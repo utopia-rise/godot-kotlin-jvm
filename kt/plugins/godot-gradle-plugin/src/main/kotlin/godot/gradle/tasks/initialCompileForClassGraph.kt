@@ -17,44 +17,57 @@ fun Project.initialCompileForClassGraph(): KotlinWithJavaCompilation<KotlinJvmOp
 
     val mainCompilation = kotlinJvmExtension.target.compilations.getByName("main")
 
-    val mainSourceSet =  project.extensions
+    val allSourceSets = project
+        .extensions
         .getByType(SourceSetContainer::class.java)
-        .getByName("main")
 
-    val scalaCompileTask = tasks.getByName("compileScala") as ScalaCompile
+    val allSources = allSourceSets.flatMap { it.allSource }
 
-    val initialCompileScala = tasks.register("initialCompileScala", org.gradle.api.tasks.scala.ScalaCompile::class.java) { scalaCompile ->
-        scalaCompile.source = mainSourceSet.allSource.filter { it.extension == "scala" }.asFileTree // Include Scala sources
-        scalaCompile.classpath = mainCompilation.compileDependencyFiles // Include compiled Kotlin classes
+    val scalaCompileTask = tasks.findByName("compileScala") as? ScalaCompile
 
-        // Output directory for compiled Scala classes
-        scalaCompile.destinationDirectory.set(layout.buildDirectory.dir("classes/scala/main"))
+    val initialCompileScalaTaskProvider = scalaCompileTask?.let {
+        tasks.register("initialCompileScala", ScalaCompile::class.java) { scalaCompile ->
+            scalaCompile.group = "godot-kotlin-jvm-internal"
+            scalaCompile.description = "Compiles users source files initially so godot kotlin jvm can process them"
 
-        // Add Scala compilation options
-        scalaCompile.scalaCompileOptions.incrementalOptions.analysisFile.set(
-            // Use the provider from the default compile task
-            scalaCompileTask.scalaCompileOptions.incrementalOptions.analysisFile
-        )
-        scalaCompile.scalaCompileOptions.incrementalOptions.classfileBackupDir.set(
-            // Use the provider from the default compile task
-            scalaCompileTask.scalaCompileOptions.incrementalOptions.classfileBackupDir
-        )
-    }
+            scalaCompile.source = allSourceSets.getByName("main").allSource.filter { it.extension == "scala" }.asFileTree
+//            scalaCompile.setSource(allSources.filter { it.extension == "scala" })// Include Scala sources
+            scalaCompile.classpath = mainCompilation.compileDependencyFiles // Include compiled Kotlin classes
 
-    val classGraphKotlinCompile = kotlinJvmExtension.target.compilations.create("initialForClassGraph") { kotlinCompile ->
-        kotlinCompile.defaultSourceSet {
-            this.kotlin.srcDirs(mainSourceSet.allSource.srcDirs)
+            // Output directory for compiled Scala classes
+            scalaCompile.destinationDirectory.set(layout.buildDirectory.dir("classes/scala/main"))
+
+            // Add Scala compilation options
+            scalaCompile.scalaCompileOptions.incrementalOptions.analysisFile.set(
+                // Use the provider from the default compile task
+                scalaCompileTask.scalaCompileOptions.incrementalOptions.analysisFile
+            )
+            scalaCompile.scalaCompileOptions.incrementalOptions.classfileBackupDir.set(
+                // Use the provider from the default compile task
+                scalaCompileTask.scalaCompileOptions.incrementalOptions.classfileBackupDir
+            )
         }
-
-        kotlinCompile.compileDependencyFiles += mainCompilation.compileDependencyFiles
-        kotlinCompile.runtimeDependencyFiles += mainCompilation.runtimeDependencyFiles
-
-        val compileTask = kotlinCompile.compileTaskProvider.get()
-
-        compileTask.outputs.dir(layout.buildDirectory.asFile.get().resolve("classes/kotlin/main"))
-
-        kotlinCompile.compileTaskProvider.get().dependsOn(initialCompileScala)
     }
+
+    val classGraphKotlinCompile = kotlinJvmExtension
+        .target
+        .compilations
+        .create("initialForClassGraph") { kotlinCompile ->
+            kotlinCompile.defaultSourceSet {
+                this.kotlin.srcDirs(allSourceSets.flatMap { it.allSource.srcDirs })
+            }
+
+            kotlinCompile.compileDependencyFiles += mainCompilation.compileDependencyFiles
+            kotlinCompile.runtimeDependencyFiles += mainCompilation.runtimeDependencyFiles
+
+            val compileTask = kotlinCompile.compileTaskProvider.get()
+
+            compileTask.outputs.dir(layout.buildDirectory.asFile.get().resolve("classes/kotlin/main"))
+
+            initialCompileScalaTaskProvider?.let {
+                kotlinCompile.compileTaskProvider.get().dependsOn(initialCompileScalaTaskProvider)
+            }
+        }
 
     tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
         kotlinCompile.compilerOptions {
@@ -62,8 +75,10 @@ fun Project.initialCompileForClassGraph(): KotlinWithJavaCompilation<KotlinJvmOp
         }
     }
 
-    kotlinJvmExtension.target.compilations.getByName("main") {
-        it.compileDependencyFiles += initialCompileScala.get().outputs.files
+    if (initialCompileScalaTaskProvider != null) {
+        kotlinJvmExtension.target.compilations.getByName("main") {
+            it.compileDependencyFiles += initialCompileScalaTaskProvider.get().outputs.files
+        }
     }
 
     return classGraphKotlinCompile

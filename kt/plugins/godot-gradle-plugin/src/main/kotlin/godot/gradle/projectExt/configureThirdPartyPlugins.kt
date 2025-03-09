@@ -5,13 +5,21 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.scala.ScalaPlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.jetbrains.gradle.ext.IdeaExtPlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinBasePlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 
 fun Project.configureThirdPartyPlugins() {
     //apply needed third party plugins
     pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from classgraph
     pluginManager.apply(IdeaExtPlugin::class.java) //needed so idea can find and index the generated sources from classgraph
     pluginManager.apply(ShadowPlugin::class.java)
-    pluginManager.apply(ScalaPlugin::class.java)
+
+    // apply the kotlin plugin if the user has not done so
+    // we need the kotlin plugin as our generated sources are kotlin
+    if (plugins.findPlugin(KotlinBasePlugin::class.java) == null) {
+        pluginManager.apply(KotlinPluginWrapper::class.java)
+    }
 
     // apply the idea plugin to the *root* project.
     // this is necessary because the IntelliJ IDEA plugin is used for managing some

@@ -2,7 +2,8 @@ import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
-//    kotlin("jvm") version "1.7.10"
+//    kotlin("jvm") version "2.1.10"
+    scala
     id("com.utopia-rise.godot-kotlin-jvm")
 }
 
@@ -51,6 +52,9 @@ dependencies {
     // reflection test cases: see GH-571
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
+
+    // scala test
+    implementation("org.scala-lang:scala3-library_3:3.6.4")
 }
 
 

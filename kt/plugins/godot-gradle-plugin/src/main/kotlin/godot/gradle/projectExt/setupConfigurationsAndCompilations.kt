@@ -21,9 +21,6 @@ fun Project.setupConfigurationsAndCompilations() {
             compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-
-            implementation("org.scala-lang:scala3-library_3:3.0.1")
         }
     }
 
