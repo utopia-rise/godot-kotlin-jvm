@@ -44,10 +44,10 @@ public open class OmniLight3D : Light3D() {
    */
   public final inline var omniRange: Float
     @JvmName("omniRangeProperty")
-    get() = getParam(Light3D.Param.PARAM_RANGE)
+    get() = getParam(Light3D.Param.RANGE)
     @JvmName("omniRangeProperty")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_RANGE, value)
+      setParam(Light3D.Param.RANGE, value)
     }
 
   /**
@@ -63,10 +63,10 @@ public open class OmniLight3D : Light3D() {
    */
   public final inline var omniAttenuation: Float
     @JvmName("omniAttenuationProperty")
-    get() = getParam(Light3D.Param.PARAM_ATTENUATION)
+    get() = getParam(Light3D.Param.ATTENUATION)
     @JvmName("omniAttenuationProperty")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_ATTENUATION, value)
+      setParam(Light3D.Param.ATTENUATION, value)
     }
 
   /**
@@ -81,7 +81,7 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(425, scriptIndex)
+    createNativeObject(409, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

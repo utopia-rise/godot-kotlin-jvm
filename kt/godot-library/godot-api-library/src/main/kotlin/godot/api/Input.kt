@@ -16,7 +16,6 @@ import godot.core.JoyButton
 import godot.core.Key
 import godot.core.MouseButton
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.VariantArray
@@ -121,7 +120,7 @@ public object Input : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(17)
+    getSingleton(10)
   }
 
   /**
@@ -660,7 +659,7 @@ public object Input : Object() {
   public final fun getMouseButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   @JvmStatic
@@ -854,30 +853,30 @@ public object Input : Object() {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
-    MOUSE_MODE_VISIBLE(0),
+    VISIBLE(0),
     /**
      * Makes the mouse cursor hidden if it is visible.
      */
-    MOUSE_MODE_HIDDEN(1),
+    HIDDEN(1),
     /**
      * Captures the mouse. The mouse will be hidden and its position locked at the center of the
      * window manager's window.
      * **Note:** If you want to process the mouse's movement in this mode, you need to use
      * [InputEventMouseMotion.relative].
      */
-    MOUSE_MODE_CAPTURED(2),
+    CAPTURED(2),
     /**
      * Confines the mouse cursor to the game window, and make it visible.
      */
-    MOUSE_MODE_CONFINED(3),
+    CONFINED(3),
     /**
      * Confines the mouse cursor to the game window, and make it hidden.
      */
-    MOUSE_MODE_CONFINED_HIDDEN(4),
+    CONFINED_HIDDEN(4),
     /**
      * Max value of the [MouseMode].
      */
-    MOUSE_MODE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

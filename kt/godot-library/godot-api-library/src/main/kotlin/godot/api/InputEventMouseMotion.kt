@@ -146,7 +146,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(328, scriptIndex)
+    createNativeObject(303, scriptIndex)
   }
 
   /**

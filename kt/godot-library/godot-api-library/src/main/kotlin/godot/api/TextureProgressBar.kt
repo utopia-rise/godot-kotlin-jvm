@@ -112,10 +112,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginLeft: Int
     @JvmName("stretchMarginLeftProperty")
-    get() = getStretchMargin(Side.SIDE_LEFT)
+    get() = getStretchMargin(Side.LEFT)
     @JvmName("stretchMarginLeftProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_LEFT, value)
+      setStretchMargin(Side.LEFT, value)
     }
 
   /**
@@ -123,10 +123,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginTop: Int
     @JvmName("stretchMarginTopProperty")
-    get() = getStretchMargin(Side.SIDE_TOP)
+    get() = getStretchMargin(Side.TOP)
     @JvmName("stretchMarginTopProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_TOP, value)
+      setStretchMargin(Side.TOP, value)
     }
 
   /**
@@ -134,10 +134,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginRight: Int
     @JvmName("stretchMarginRightProperty")
-    get() = getStretchMargin(Side.SIDE_RIGHT)
+    get() = getStretchMargin(Side.RIGHT)
     @JvmName("stretchMarginRightProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_RIGHT, value)
+      setStretchMargin(Side.RIGHT, value)
     }
 
   /**
@@ -147,10 +147,10 @@ public open class TextureProgressBar : Range() {
    */
   public final inline var stretchMarginBottom: Int
     @JvmName("stretchMarginBottomProperty")
-    get() = getStretchMargin(Side.SIDE_BOTTOM)
+    get() = getStretchMargin(Side.BOTTOM)
     @JvmName("stretchMarginBottomProperty")
     set(`value`) {
-      setStretchMargin(Side.SIDE_BOTTOM, value)
+      setStretchMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -241,7 +241,7 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(684, scriptIndex)
+    createNativeObject(679, scriptIndex)
   }
 
   /**

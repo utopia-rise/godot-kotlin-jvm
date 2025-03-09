@@ -115,7 +115,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(281, scriptIndex)
+    createNativeObject(252, scriptIndex)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     /**
      * Represents the size of the [Resolution] enum.
      */
-    RESOLUTION_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long

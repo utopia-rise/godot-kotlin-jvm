@@ -244,7 +244,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(180, scriptIndex)
+    createNativeObject(146, scriptIndex)
   }
 
   /**
@@ -689,13 +689,13 @@ public open class CharacterBody2D : PhysicsBody2D() {
      * will react to slopes (acceleration/slowdown). This mode is suitable for sided games like
      * platformers.
      */
-    MOTION_MODE_GROUNDED(0),
+    GROUNDED(0),
     /**
      * Apply when there is no notion of floor or ceiling. All collisions will be reported as
      * `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is
      * suitable for top-down games.
      */
-    MOTION_MODE_FLOATING(1),
+    FLOATING(1),
     ;
 
     public val id: Long
@@ -714,17 +714,17 @@ public open class CharacterBody2D : PhysicsBody2D() {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.
      */
-    PLATFORM_ON_LEAVE_ADD_VELOCITY(0),
+    ADD_VELOCITY(0),
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform, but any
      * downward motion is ignored. It's useful to keep full jump height even when the platform is
      * moving down.
      */
-    PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY(1),
+    ADD_UPWARD_VELOCITY(1),
     /**
      * Do nothing when leaving a platform.
      */
-    PLATFORM_ON_LEAVE_DO_NOTHING(2),
+    DO_NOTHING(2),
     ;
 
     public val id: Long

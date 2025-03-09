@@ -104,7 +104,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(57, scriptIndex)
+    createNativeObject(21, scriptIndex)
   }
 
   /**
@@ -245,17 +245,17 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     /**
      * The interpolation between animations is linear.
      */
-    BLEND_MODE_INTERPOLATED(0),
+    INTERPOLATED(0),
     /**
      * The blend space plays the animation of the animation node which blending position is closest
      * to. Useful for frame-by-frame 2D animations.
      */
-    BLEND_MODE_DISCRETE(1),
+    DISCRETE(1),
     /**
      * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's
      * playback position.
      */
-    BLEND_MODE_DISCRETE_CARRY(2),
+    DISCRETE_CARRY(2),
     ;
 
     public val id: Long

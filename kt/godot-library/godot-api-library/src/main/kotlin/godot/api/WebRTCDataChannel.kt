@@ -37,7 +37,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(846, scriptIndex)
+    createNativeObject(844, scriptIndex)
   }
 
   /**
@@ -170,12 +170,12 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
      * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
      * receive this as a string.
      */
-    WRITE_MODE_TEXT(0),
+    TEXT(0),
     /**
      * Tells the channel to send data over this channel as binary. An external peer (non-Godot)
      * would receive this as array buffer or blob.
      */
-    WRITE_MODE_BINARY(1),
+    BINARY(1),
     ;
 
     public val id: Long

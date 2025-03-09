@@ -97,7 +97,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(189, scriptIndex)
+    createNativeObject(156, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

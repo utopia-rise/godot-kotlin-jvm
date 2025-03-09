@@ -133,7 +133,7 @@ public open class GraphElement : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(290, scriptIndex)
+    createNativeObject(263, scriptIndex)
   }
 
   /**

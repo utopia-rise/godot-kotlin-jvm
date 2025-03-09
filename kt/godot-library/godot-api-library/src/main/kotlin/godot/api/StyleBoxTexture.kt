@@ -57,10 +57,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var textureMarginLeft: Float
     @JvmName("textureMarginLeftProperty")
-    get() = getTextureMargin(Side.SIDE_LEFT)
+    get() = getTextureMargin(Side.LEFT)
     @JvmName("textureMarginLeftProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_LEFT, value)
+      setTextureMargin(Side.LEFT, value)
     }
 
   /**
@@ -71,10 +71,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var textureMarginTop: Float
     @JvmName("textureMarginTopProperty")
-    get() = getTextureMargin(Side.SIDE_TOP)
+    get() = getTextureMargin(Side.TOP)
     @JvmName("textureMarginTopProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_TOP, value)
+      setTextureMargin(Side.TOP, value)
     }
 
   /**
@@ -85,10 +85,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var textureMarginRight: Float
     @JvmName("textureMarginRightProperty")
-    get() = getTextureMargin(Side.SIDE_RIGHT)
+    get() = getTextureMargin(Side.RIGHT)
     @JvmName("textureMarginRightProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_RIGHT, value)
+      setTextureMargin(Side.RIGHT, value)
     }
 
   /**
@@ -99,10 +99,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var textureMarginBottom: Float
     @JvmName("textureMarginBottomProperty")
-    get() = getTextureMargin(Side.SIDE_BOTTOM)
+    get() = getTextureMargin(Side.BOTTOM)
     @JvmName("textureMarginBottomProperty")
     set(`value`) {
-      setTextureMargin(Side.SIDE_BOTTOM, value)
+      setTextureMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -111,10 +111,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
-    get() = getExpandMargin(Side.SIDE_LEFT)
+    get() = getExpandMargin(Side.LEFT)
     @JvmName("expandMarginLeftProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_LEFT, value)
+      setExpandMargin(Side.LEFT, value)
     }
 
   /**
@@ -123,10 +123,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
-    get() = getExpandMargin(Side.SIDE_TOP)
+    get() = getExpandMargin(Side.TOP)
     @JvmName("expandMarginTopProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_TOP, value)
+      setExpandMargin(Side.TOP, value)
     }
 
   /**
@@ -135,10 +135,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
-    get() = getExpandMargin(Side.SIDE_RIGHT)
+    get() = getExpandMargin(Side.RIGHT)
     @JvmName("expandMarginRightProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_RIGHT, value)
+      setExpandMargin(Side.RIGHT, value)
     }
 
   /**
@@ -147,10 +147,10 @@ public open class StyleBoxTexture : StyleBox() {
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
-    get() = getExpandMargin(Side.SIDE_BOTTOM)
+    get() = getExpandMargin(Side.BOTTOM)
     @JvmName("expandMarginBottomProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_BOTTOM, value)
+      setExpandMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -215,7 +215,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(653, scriptIndex)
+    createNativeObject(647, scriptIndex)
   }
 
   /**
@@ -391,18 +391,18 @@ public open class StyleBoxTexture : StyleBox() {
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size
      * matches the stylebox's size perfectly.
      */
-    AXIS_STRETCH_MODE_STRETCH(0),
+    STRETCH(0),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
      * system.
      */
-    AXIS_STRETCH_MODE_TILE(1),
+    TILE(1),
     /**
      * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
      * system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the
      * nine-patch texture tile seamlessly.
      */
-    AXIS_STRETCH_MODE_TILE_FIT(2),
+    TILE_FIT(2),
     ;
 
     public val id: Long

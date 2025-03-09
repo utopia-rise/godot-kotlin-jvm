@@ -61,7 +61,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(634, scriptIndex)
+    createNativeObject(628, scriptIndex)
   }
 
   /**
@@ -785,31 +785,31 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     /**
      * Enumerated value for the +X axis.
      */
-    BONE_DIRECTION_PLUS_X(0),
+    PLUS_X(0),
     /**
      * Enumerated value for the -X axis.
      */
-    BONE_DIRECTION_MINUS_X(1),
+    MINUS_X(1),
     /**
      * Enumerated value for the +Y axis.
      */
-    BONE_DIRECTION_PLUS_Y(2),
+    PLUS_Y(2),
     /**
      * Enumerated value for the -Y axis.
      */
-    BONE_DIRECTION_MINUS_Y(3),
+    MINUS_Y(3),
     /**
      * Enumerated value for the +Z axis.
      */
-    BONE_DIRECTION_PLUS_Z(4),
+    PLUS_Z(4),
     /**
      * Enumerated value for the -Z axis.
      */
-    BONE_DIRECTION_MINUS_Z(5),
+    MINUS_Z(5),
     /**
      * Enumerated value for the axis from a parent bone to the child bone.
      */
-    BONE_DIRECTION_FROM_PARENT(6),
+    FROM_PARENT(6),
     ;
 
     public val id: Long
@@ -828,18 +828,18 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     /**
      * The world origin is defined as center.
      */
-    CENTER_FROM_WORLD_ORIGIN(0),
+    WORLD_ORIGIN(0),
     /**
      * The [Node3D] specified by [setCenterNode] is defined as center.
      * If [Node3D] is not found, the parent [Skeleton3D] is treated as center.
      */
-    CENTER_FROM_NODE(1),
+    NODE(1),
     /**
      * The bone pose origin of the parent [Skeleton3D] specified by [setCenterBone] is defined as
      * center.
      * If [Node3D] is not found, the parent [Skeleton3D] is treated as center.
      */
-    CENTER_FROM_BONE(2),
+    BONE(2),
     ;
 
     public val id: Long
@@ -858,19 +858,19 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     /**
      * Enumerated value for the rotation of the X axis.
      */
-    ROTATION_AXIS_X(0),
+    X(0),
     /**
      * Enumerated value for the rotation of the Y axis.
      */
-    ROTATION_AXIS_Y(1),
+    Y(1),
     /**
      * Enumerated value for the rotation of the Z axis.
      */
-    ROTATION_AXIS_Z(2),
+    Z(2),
     /**
      * Enumerated value for the unconstrained rotation.
      */
-    ROTATION_AXIS_ALL(3),
+    ALL(3),
     ;
 
     public val id: Long

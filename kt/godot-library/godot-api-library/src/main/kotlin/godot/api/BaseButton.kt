@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MouseButtonMask
-import godot.core.MouseButtonMaskValue
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -178,7 +177,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(103, scriptIndex)
   }
 
   /**
@@ -277,7 +276,7 @@ public open class BaseButton : Control() {
   public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -376,11 +375,11 @@ public open class BaseButton : Control() {
     /**
      * Require just a press to consider the button clicked.
      */
-    ACTION_MODE_BUTTON_PRESS(0),
+    BUTTON_PRESS(0),
     /**
      * Require a press and a subsequent release before considering the button clicked.
      */
-    ACTION_MODE_BUTTON_RELEASE(1),
+    BUTTON_RELEASE(1),
     ;
 
     public val id: Long

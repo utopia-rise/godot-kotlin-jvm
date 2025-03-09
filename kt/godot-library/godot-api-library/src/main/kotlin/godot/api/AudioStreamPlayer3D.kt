@@ -313,7 +313,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(131, scriptIndex)
+    createNativeObject(96, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
@@ -650,16 +650,16 @@ public open class AudioStreamPlayer3D : Node3D() {
     /**
      * Disables doppler tracking.
      */
-    DOPPLER_TRACKING_DISABLED(0),
+    DISABLED(0),
     /**
      * Executes doppler tracking during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    DOPPLER_TRACKING_IDLE_STEP(1),
+    IDLE_STEP(1),
     /**
      * Executes doppler tracking during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    DOPPLER_TRACKING_PHYSICS_STEP(2),
+    PHYSICS_STEP(2),
     ;
 
     public val id: Long

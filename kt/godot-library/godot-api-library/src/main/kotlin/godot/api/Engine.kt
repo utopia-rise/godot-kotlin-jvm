@@ -63,6 +63,22 @@ public object Engine : Object() {
     }
 
   /**
+   * If `false`, stops printing messages (for example using [@GlobalScope.print]) to the console,
+   * log files, and editor Output log. This property is equivalent to the
+   * [ProjectSettings.application/run/disableStdout] project setting.
+   * **Note:** This does not stop printing errors or warnings produced by scripts to the console or
+   * log files, for more details see [printErrorMessages].
+   */
+  @JvmStatic
+  public final inline var printToStdout: Boolean
+    @JvmName("printToStdoutProperty")
+    get() = isPrintingToStdout()
+    @JvmName("printToStdoutProperty")
+    set(`value`) {
+      setPrintToStdout(value)
+    }
+
+  /**
    * The number of fixed iterations per second. This controls how often physics simulation and
    * [Node.PhysicsProcess] methods are run. This value should generally always be set to `60` or above,
    * as Godot doesn't interpolate the physics step. As a result, values lower than `60` will look
@@ -172,7 +188,7 @@ public object Engine : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(1)
+    getSingleton(4)
   }
 
   @JvmStatic

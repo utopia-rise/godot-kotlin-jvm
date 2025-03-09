@@ -36,10 +36,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var bytecodeVertex: PackedByteArray
     @JvmName("bytecodeVertexProperty")
-    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
+    get() = getStageBytecode(RenderingDevice.ShaderStage.VERTEX)
     @JvmName("bytecodeVertexProperty")
     set(`value`) {
-      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
+      setStageBytecode(RenderingDevice.ShaderStage.VERTEX, value)
     }
 
   /**
@@ -47,10 +47,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var bytecodeFragment: PackedByteArray
     @JvmName("bytecodeFragmentProperty")
-    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
+    get() = getStageBytecode(RenderingDevice.ShaderStage.FRAGMENT)
     @JvmName("bytecodeFragmentProperty")
     set(`value`) {
-      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
+      setStageBytecode(RenderingDevice.ShaderStage.FRAGMENT, value)
     }
 
   /**
@@ -58,10 +58,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var bytecodeTesselationControl: PackedByteArray
     @JvmName("bytecodeTesselationControlProperty")
-    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
+    get() = getStageBytecode(RenderingDevice.ShaderStage.TESSELATION_CONTROL)
     @JvmName("bytecodeTesselationControlProperty")
     set(`value`) {
-      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
+      setStageBytecode(RenderingDevice.ShaderStage.TESSELATION_CONTROL, value)
     }
 
   /**
@@ -69,10 +69,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var bytecodeTesselationEvaluation: PackedByteArray
     @JvmName("bytecodeTesselationEvaluationProperty")
-    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
+    get() = getStageBytecode(RenderingDevice.ShaderStage.TESSELATION_EVALUATION)
     @JvmName("bytecodeTesselationEvaluationProperty")
     set(`value`) {
-      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
+      setStageBytecode(RenderingDevice.ShaderStage.TESSELATION_EVALUATION, value)
     }
 
   /**
@@ -80,10 +80,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var bytecodeCompute: PackedByteArray
     @JvmName("bytecodeComputeProperty")
-    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
+    get() = getStageBytecode(RenderingDevice.ShaderStage.COMPUTE)
     @JvmName("bytecodeComputeProperty")
     set(`value`) {
-      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
+      setStageBytecode(RenderingDevice.ShaderStage.COMPUTE, value)
     }
 
   /**
@@ -92,10 +92,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var compileErrorVertex: String
     @JvmName("compileErrorVertexProperty")
-    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
+    get() = getStageCompileError(RenderingDevice.ShaderStage.VERTEX)
     @JvmName("compileErrorVertexProperty")
     set(`value`) {
-      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
+      setStageCompileError(RenderingDevice.ShaderStage.VERTEX, value)
     }
 
   /**
@@ -104,10 +104,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var compileErrorFragment: String
     @JvmName("compileErrorFragmentProperty")
-    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
+    get() = getStageCompileError(RenderingDevice.ShaderStage.FRAGMENT)
     @JvmName("compileErrorFragmentProperty")
     set(`value`) {
-      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
+      setStageCompileError(RenderingDevice.ShaderStage.FRAGMENT, value)
     }
 
   /**
@@ -116,10 +116,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var compileErrorTesselationControl: String
     @JvmName("compileErrorTesselationControlProperty")
-    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
+    get() = getStageCompileError(RenderingDevice.ShaderStage.TESSELATION_CONTROL)
     @JvmName("compileErrorTesselationControlProperty")
     set(`value`) {
-      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
+      setStageCompileError(RenderingDevice.ShaderStage.TESSELATION_CONTROL, value)
     }
 
   /**
@@ -128,10 +128,10 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var compileErrorTesselationEvaluation: String
     @JvmName("compileErrorTesselationEvaluationProperty")
-    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
+    get() = getStageCompileError(RenderingDevice.ShaderStage.TESSELATION_EVALUATION)
     @JvmName("compileErrorTesselationEvaluationProperty")
     set(`value`) {
-      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
+      setStageCompileError(RenderingDevice.ShaderStage.TESSELATION_EVALUATION, value)
     }
 
   /**
@@ -140,14 +140,14 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final inline var compileErrorCompute: String
     @JvmName("compileErrorComputeProperty")
-    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
+    get() = getStageCompileError(RenderingDevice.ShaderStage.COMPUTE)
     @JvmName("compileErrorComputeProperty")
     set(`value`) {
-      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
+      setStageCompileError(RenderingDevice.ShaderStage.COMPUTE, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(536, scriptIndex)
+    createNativeObject(526, scriptIndex)
   }
 
   /**

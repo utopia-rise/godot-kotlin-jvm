@@ -1,4 +1,4 @@
-package godot.codegen.generation
+package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
@@ -19,11 +19,12 @@ import godot.codegen.extensions.getTypeName
 import godot.codegen.extensions.isBitField
 import godot.codegen.extensions.isEnum
 import godot.codegen.extensions.jvmVariantTypeValue
+import godot.codegen.generation.Context
+import godot.codegen.generation.task.MethodTask
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.isSameSignature
-import godot.codegen.services.IApiGenerationService
 import godot.codegen.services.impl.methodBindingsInnerClassName
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
@@ -31,11 +32,11 @@ import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.godotApiPackage
-import java.util.Locale
+import java.util.*
 
-object MethodGenerator {
-
-    fun generate(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean, isSingleton: Boolean, context: IApiGenerationService): FunSpec {
+class MethodRule : GodotApiRule<MethodTask>() {
+    override fun apply(task: MethodTask, context: Context) = task.configure {
+        val method = task.method
         val modifiers = mutableListOf<KModifier>()
 
         // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
@@ -50,21 +51,19 @@ object MethodGenerator {
             modifiers.add(KModifier.FINAL)
         }
 
-        val generatedFunBuilder = FunSpec
-            .builder(method.name)
-            .addModifiers(modifiers)
-            .applyJvmNameIfNecessary(method.name)
+        addModifiers(modifiers)
+        applyJvmNameIfNecessary(method.name)
 
         val methodTypeName = method.getCastedType()
         val shouldReturn = method.getTypeName() != UNIT
 
         if (shouldReturn) {
-            generatedFunBuilder.returns(methodTypeName.typeName)
+            returns(methodTypeName.typeName)
 
             if (method.isEnum()) {
                 val methodTypeSimpleName = methodTypeName.className.simpleName
                 if (methodTypeSimpleName.contains('.')) {
-                    enrichedClass.additionalImports.add(
+                    task.owner.additionalImports.add(
                         AdditionalImport(
                             methodTypeName.className.packageName,
                             methodTypeSimpleName.split('.')[0]
@@ -76,31 +75,31 @@ object MethodGenerator {
 
         //TODO: move adding arguments to generatedFunBuilder to separate function
         val callArgumentsAsString = buildCallArgumentsString(
-            generatedFunBuilder,
+            this,
             method,
             context
         ) //cannot be inlined as it also adds the arguments to the generatedFunBuilder
 
         if (method.isVararg) {
-            generatedFunBuilder.addParameter(
+            addParameter(
                 "__var_args",
                 ANY.copy(nullable = true),
                 KModifier.VARARG
             )
         }
 
-        generatedFunBuilder.generateCodeBlock(enrichedClass, method, callArgumentsAsString, isStatic)
+        generateCodeBlock(task.owner, method, callArgumentsAsString, method.isStatic)
 
-        generatedFunBuilder.addKdoc(method)
+        addKdoc(method)
 
         for (jvmReservedMethod in jvmReservedMethods) {
             if (method.isSameSignature(jvmReservedMethod) && !method.isVirtual) {
-                generatedFunBuilder.addAnnotation(
+                addAnnotation(
                     AnnotationSpec.builder(JvmName::class)
                         .addMember(
                             CodeBlock.of(
                                 "\"%L%L\"",
-                                enrichedClass.type.replaceFirstChar { it.lowercase(Locale.US) },
+                                task.owner.type.replaceFirstChar { it.lowercase(Locale.US) },
                                 method.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
                             )
                         )
@@ -109,18 +108,12 @@ object MethodGenerator {
 
             }
         }
-
-        if (isSingleton) {
-            generatedFunBuilder.addAnnotation(JvmStatic::class)
-        }
-
-        return generatedFunBuilder.build()
     }
 
     private fun buildCallArgumentsString(
         generatedFunBuilder: FunSpec.Builder,
         method: EnrichedMethod,
-        context : IApiGenerationService
+        context: Context
     ): String {
         return buildString {
             method.arguments.withIndex().forEach {
@@ -145,10 +138,10 @@ object MethodGenerator {
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
-                    context.findDefaultEnumValue(
+                    context.generateEnumDefaultValue(
                         argument,
                         defaultValueKotlinCode.first.toLong()
-                    ).type
+                    )
                 } else {
                     defaultValueKotlinCode?.first
                 }
@@ -248,7 +241,7 @@ object MethodGenerator {
                     "return·%T(%T.readReturnValue(%T)·as·%T)",
                     ClassName(
                         "${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}",
-                        "${callable.getClassName().simpleName}Value"
+                        callable.getClassName().simpleName
                     ),
                     TRANSFER_CONTEXT,
                     VARIANT_PARSER_LONG,

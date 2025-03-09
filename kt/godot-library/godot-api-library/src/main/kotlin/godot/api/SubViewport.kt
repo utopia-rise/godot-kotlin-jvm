@@ -98,7 +98,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(654, scriptIndex)
+    createNativeObject(648, scriptIndex)
   }
 
   /**
@@ -215,15 +215,15 @@ public open class SubViewport : Viewport() {
     /**
      * Always clear the render target before drawing.
      */
-    CLEAR_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * Never clear the render target.
      */
-    CLEAR_MODE_NEVER(1),
+    NEVER(1),
     /**
      * Clear the render target on the next frame, then switch to [CLEAR_MODE_NEVER].
      */
-    CLEAR_MODE_ONCE(2),
+    ONCE(2),
     ;
 
     public val id: Long

@@ -2,6 +2,15 @@ package godot.common.extensions
 
 import java.util.*
 
+private val identifierRegex = Regex("""^[\p{L}_$][\p{L}\p{N}_$]*$""")
+fun String.isValidKotlinIdentifier(): Boolean {
+    // This regex ensures:
+    // - The first character is a letter, underscore, or dollar sign.
+    // - Subsequent characters can be letters, digits, underscores, or dollar signs.
+    // - It supports Unicode letters using \p{L} and Unicode digits using \p{N}.
+    return identifierRegex.matches(this)
+}
+
 fun String.escapeUnderscore(): String {
     if (this == "") return this
 

@@ -79,7 +79,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(405, scriptIndex)
+    createNativeObject(386, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector2Array): Unit {
@@ -141,11 +141,11 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     /**
      * This segment of the path goes through a region.
      */
-    PATH_SEGMENT_TYPE_REGION(0),
+    REGION(0),
     /**
      * This segment of the path goes through a link.
      */
-    PATH_SEGMENT_TYPE_LINK(1),
+    LINK(1),
     ;
 
     public val id: Long

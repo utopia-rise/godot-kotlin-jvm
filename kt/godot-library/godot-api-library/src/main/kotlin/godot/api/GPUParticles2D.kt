@@ -411,7 +411,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(272, scriptIndex)
+    createNativeObject(243, scriptIndex)
   }
 
   /**
@@ -794,17 +794,17 @@ public open class GPUParticles2D : Node2D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
      * the lowest lifetime is drawn at the front.
      */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
+    REVERSE_LIFETIME(2),
     ;
 
     public val id: Long

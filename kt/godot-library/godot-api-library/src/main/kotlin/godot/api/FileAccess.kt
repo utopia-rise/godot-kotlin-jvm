@@ -34,30 +34,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
-public infix fun Long.or(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.or(other.flag)
+public infix fun Long.or(other: FileAccess.UnixPermissionFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: FileAccess.UnixPermissionFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.FileAccess.UnixPermissionFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.and(other.flag)
 
 /**
  * This class can be used to permanently store data in the user device's file system and to read
@@ -129,7 +112,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(242, scriptIndex)
+    createNativeObject(212, scriptIndex)
   }
 
   /**
@@ -733,99 +716,63 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
   }
 
-  public sealed interface UnixPermissionFlags {
-    public val flag: Long
-
+  @JvmInline
+  public value class UnixPermissionFlags(
+    public val flag: Long,
+  ) {
     public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.or(other.flag))
+        UnixPermissionFlags(flag.or(other.flag))
 
-    public infix fun or(other: Long): UnixPermissionFlags = UnixPermissionFlagsValue(flag.or(other))
+    public infix fun or(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.or(other))
 
     public infix fun xor(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.xor(other.flag))
+        UnixPermissionFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.xor(other))
+    public infix fun xor(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.xor(other))
 
     public infix fun and(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.and(other.flag))
+        UnixPermissionFlags(flag.and(other.flag))
 
-    public infix fun and(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.and(other))
+    public infix fun and(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.and(other))
 
-    public operator fun plus(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.plus(other.flag))
+    public fun unaryPlus(): UnixPermissionFlags = UnixPermissionFlags(flag.unaryPlus())
 
-    public operator fun plus(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.plus(other))
+    public fun unaryMinus(): UnixPermissionFlags = UnixPermissionFlags(flag.unaryMinus())
 
-    public operator fun minus(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.minus(other.flag))
+    public fun inv(): UnixPermissionFlags = UnixPermissionFlags(flag.inv())
 
-    public operator fun minus(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.minus(other))
+    public infix fun shl(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag shl bits)
 
-    public operator fun times(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag shr bits)
 
-    public operator fun times(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.times(other))
-
-    public operator fun div(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.div(other))
-
-    public operator fun rem(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): UnixPermissionFlags =
-        UnixPermissionFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.unaryMinus())
-
-    public fun inv(): UnixPermissionFlags = UnixPermissionFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): UnixPermissionFlags = UnixPermissionFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag ushr bits)
 
     public companion object {
-      public val UNIX_READ_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(256)
+      public val UNIX_READ_OWNER: UnixPermissionFlags = UnixPermissionFlags(256)
 
-      public val UNIX_WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(128)
+      public val UNIX_WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlags(128)
 
-      public val UNIX_EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlagsValue(64)
+      public val UNIX_EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlags(64)
 
-      public val UNIX_READ_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(32)
+      public val UNIX_READ_GROUP: UnixPermissionFlags = UnixPermissionFlags(32)
 
-      public val UNIX_WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(16)
+      public val UNIX_WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlags(16)
 
-      public val UNIX_EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlagsValue(8)
+      public val UNIX_EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlags(8)
 
-      public val UNIX_READ_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(4)
+      public val UNIX_READ_OTHER: UnixPermissionFlags = UnixPermissionFlags(4)
 
-      public val UNIX_WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(2)
+      public val UNIX_WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlags(2)
 
-      public val UNIX_EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlagsValue(1)
+      public val UNIX_EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlags(1)
 
-      public val UNIX_SET_USER_ID: UnixPermissionFlags = UnixPermissionFlagsValue(2048)
+      public val UNIX_SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
 
-      public val UNIX_SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlagsValue(1024)
+      public val UNIX_SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
 
-      public val UNIX_RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlagsValue(512)
+      public val UNIX_RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlags(512)
     }
   }
-
-  @JvmInline
-  public value class UnixPermissionFlagsValue(
-    public override val flag: Long,
-  ) : UnixPermissionFlags
 
   public companion object {
     /**
@@ -834,6 +781,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
      * occurred.
      */
+    @JvmStatic
     public final fun `open`(path: String, flags: ModeFlags): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to flags.id)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
@@ -848,6 +796,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * occurred.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun openEncrypted(
       path: String,
       modeFlags: ModeFlags,
@@ -865,6 +814,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
      * occurred.
      */
+    @JvmStatic
     public final fun openEncryptedWithPass(
       path: String,
       modeFlags: ModeFlags,
@@ -884,6 +834,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * occurred.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun openCompressed(
       path: String,
       modeFlags: ModeFlags,
@@ -897,6 +848,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
+    @JvmStatic
     public final fun getOpenError(): Error {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
@@ -912,6 +864,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * occurred.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun createTemp(
       modeFlags: Int,
       prefix: String = "",
@@ -928,6 +881,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
+    @JvmStatic
     public final fun getFileAsBytes(path: String): PackedByteArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFileAsBytesPtr, PACKED_BYTE_ARRAY)
@@ -940,6 +894,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an empty [String] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
+    @JvmStatic
     public final fun getFileAsString(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFileAsStringPtr, STRING)
@@ -950,6 +905,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an MD5 String representing the file at the given path or an empty [String] on
      * failure.
      */
+    @JvmStatic
     public final fun getMd5(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getMd5Ptr, STRING)
@@ -960,6 +916,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an SHA-256 [String] representing the file at the given path or an empty [String] on
      * failure.
      */
+    @JvmStatic
     public final fun getSha256(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getSha256Ptr, STRING)
@@ -973,6 +930,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
      * For a non-static, relative equivalent, use [DirAccess.fileExists].
      */
+    @JvmStatic
     public final fun fileExists(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.fileExistsPtr, BOOL)
@@ -983,6 +941,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This
      * Unix timestamp can be converted to another format using the [Time] singleton.
      */
+    @JvmStatic
     public final fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getModifiedTimePtr, LONG)
@@ -993,16 +952,18 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns file UNIX permissions.
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
+    @JvmStatic
     public final fun getUnixPermissions(`file`: String): UnixPermissionFlags {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
-      return UnixPermissionFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+      return UnixPermissionFlags(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
      * Sets file UNIX permissions.
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
+    @JvmStatic
     public final fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): Error {
       TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
       TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
@@ -1013,6 +974,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `true`, if file `hidden` attribute is set.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
+    @JvmStatic
     public final fun getHiddenAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
@@ -1023,6 +985,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file **hidden** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
+    @JvmStatic
     public final fun setHiddenAttribute(`file`: String, hidden: Boolean): Error {
       TransferContext.writeArguments(STRING to file, BOOL to hidden)
       TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
@@ -1033,6 +996,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file **read only** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
+    @JvmStatic
     public final fun setReadOnlyAttribute(`file`: String, ro: Boolean): Error {
       TransferContext.writeArguments(STRING to file, BOOL to ro)
       TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
@@ -1043,6 +1007,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `true`, if file `read only` attribute is set.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
+    @JvmStatic
     public final fun getReadOnlyAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
@@ -1051,29 +1016,6 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
-
-    internal val openEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788003459)
-
-    internal val openEncryptedWithPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
-
-    internal val openCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
-
-    internal val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
-
-    internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
-
-    internal val getFileAsBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
-
-    internal val getFileAsStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
-
     internal val resizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "resize", 844576869)
 
@@ -1137,12 +1079,6 @@ public open class FileAccess internal constructor() : RefCounted() {
     internal val getAsTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
 
-    internal val getMd5Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
-
-    internal val getSha256Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
-
     internal val isBigEndianPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
 
@@ -1201,6 +1137,35 @@ public open class FileAccess internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
 
     internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "close", 3218959716)
+
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
+
+    internal val openEncryptedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788003459)
+
+    internal val openEncryptedWithPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
+
+    internal val openCompressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
+
+    internal val getOpenErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
+
+    internal val createTempPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
+
+    internal val getFileAsBytesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
+
+    internal val getFileAsStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
+
+    internal val getMd5Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
+
+    internal val getSha256Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
 
     internal val fileExistsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "file_exists", 2323990056)

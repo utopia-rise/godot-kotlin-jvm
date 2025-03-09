@@ -36,7 +36,7 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(820, scriptIndex)
+    createNativeObject(818, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

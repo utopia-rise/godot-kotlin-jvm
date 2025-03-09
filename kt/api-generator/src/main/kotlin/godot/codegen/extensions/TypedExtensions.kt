@@ -67,8 +67,8 @@ fun TypedTrait.getTypeClass(): TypeClass {
             if (arguments.isNotEmpty()) {
                 TypeClass(godotCorePackage, type).parameterizedBy(
                     *arguments
-                    .map { it.getCastedType().typeName }
-                    .toTypedArray()
+                        .map { it.getCastedType().typeName }
+                        .toTypedArray()
                 )
             } else {
                 TypeClass(godotCorePackage, type)

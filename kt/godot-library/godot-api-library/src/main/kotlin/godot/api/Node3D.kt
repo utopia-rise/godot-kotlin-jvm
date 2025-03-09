@@ -290,7 +290,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(413, scriptIndex)
+    createNativeObject(396, scriptIndex)
   }
 
   /**
@@ -1169,15 +1169,15 @@ public open class Node3D : Node() {
     /**
      * The rotation is edited using [Vector3] Euler angles.
      */
-    ROTATION_EDIT_MODE_EULER(0),
+    EULER(0),
     /**
      * The rotation is edited using a [Quaternion].
      */
-    ROTATION_EDIT_MODE_QUATERNION(1),
+    QUATERNION(1),
     /**
      * The rotation is edited using a [Basis]. In this mode, [scale] can't be edited separately.
      */
-    ROTATION_EDIT_MODE_BASIS(2),
+    BASIS(2),
     ;
 
     public val id: Long

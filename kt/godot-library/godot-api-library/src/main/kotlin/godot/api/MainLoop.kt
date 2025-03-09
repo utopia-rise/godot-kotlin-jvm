@@ -85,7 +85,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(365, scriptIndex)
+    createNativeObject(343, scriptIndex)
   }
 
   /**

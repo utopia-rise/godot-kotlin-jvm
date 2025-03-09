@@ -402,10 +402,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var emissionEnabled: Boolean
     @JvmName("emissionEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_EMISSION)
+    get() = getFeature(BaseMaterial3D.Feature.EMISSION)
     @JvmName("emissionEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_EMISSION, value)
+      setFeature(BaseMaterial3D.Feature.EMISSION, value)
     }
 
   /**
@@ -484,10 +484,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var normalEnabled: Boolean
     @JvmName("normalEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_NORMAL_MAPPING)
+    get() = getFeature(BaseMaterial3D.Feature.NORMAL_MAPPING)
     @JvmName("normalEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_NORMAL_MAPPING, value)
+      setFeature(BaseMaterial3D.Feature.NORMAL_MAPPING, value)
     }
 
   /**
@@ -532,10 +532,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var rimEnabled: Boolean
     @JvmName("rimEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_RIM)
+    get() = getFeature(BaseMaterial3D.Feature.RIM)
     @JvmName("rimEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_RIM, value)
+      setFeature(BaseMaterial3D.Feature.RIM, value)
     }
 
   /**
@@ -581,10 +581,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var clearcoatEnabled: Boolean
     @JvmName("clearcoatEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_CLEARCOAT)
+    get() = getFeature(BaseMaterial3D.Feature.CLEARCOAT)
     @JvmName("clearcoatEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_CLEARCOAT, value)
+      setFeature(BaseMaterial3D.Feature.CLEARCOAT, value)
     }
 
   /**
@@ -634,10 +634,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var anisotropyEnabled: Boolean
     @JvmName("anisotropyEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_ANISOTROPY)
+    get() = getFeature(BaseMaterial3D.Feature.ANISOTROPY)
     @JvmName("anisotropyEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_ANISOTROPY, value)
+      setFeature(BaseMaterial3D.Feature.ANISOTROPY, value)
     }
 
   /**
@@ -677,10 +677,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var aoEnabled: Boolean
     @JvmName("aoEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_AMBIENT_OCCLUSION)
+    get() = getFeature(BaseMaterial3D.Feature.AMBIENT_OCCLUSION)
     @JvmName("aoEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_AMBIENT_OCCLUSION, value)
+      setFeature(BaseMaterial3D.Feature.AMBIENT_OCCLUSION, value)
     }
 
   /**
@@ -742,10 +742,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var heightmapEnabled: Boolean
     @JvmName("heightmapEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_HEIGHT_MAPPING)
+    get() = getFeature(BaseMaterial3D.Feature.HEIGHT_MAPPING)
     @JvmName("heightmapEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_HEIGHT_MAPPING, value)
+      setFeature(BaseMaterial3D.Feature.HEIGHT_MAPPING, value)
     }
 
   /**
@@ -878,10 +878,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var subsurfScatterEnabled: Boolean
     @JvmName("subsurfScatterEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_SCATTERING)
+    get() = getFeature(BaseMaterial3D.Feature.SUBSURFACE_SCATTERING)
     @JvmName("subsurfScatterEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_SCATTERING, value)
+      setFeature(BaseMaterial3D.Feature.SUBSURFACE_SCATTERING, value)
     }
 
   /**
@@ -927,10 +927,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var subsurfScatterTransmittanceEnabled: Boolean
     @JvmName("subsurfScatterTransmittanceEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_TRANSMITTANCE)
+    get() = getFeature(BaseMaterial3D.Feature.SUBSURFACE_TRANSMITTANCE)
     @JvmName("subsurfScatterTransmittanceEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_TRANSMITTANCE, value)
+      setFeature(BaseMaterial3D.Feature.SUBSURFACE_TRANSMITTANCE, value)
     }
 
   /**
@@ -985,10 +985,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var backlightEnabled: Boolean
     @JvmName("backlightEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_BACKLIGHT)
+    get() = getFeature(BaseMaterial3D.Feature.BACKLIGHT)
     @JvmName("backlightEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_BACKLIGHT, value)
+      setFeature(BaseMaterial3D.Feature.BACKLIGHT, value)
     }
 
   /**
@@ -1022,10 +1022,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var refractionEnabled: Boolean
     @JvmName("refractionEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_REFRACTION)
+    get() = getFeature(BaseMaterial3D.Feature.REFRACTION)
     @JvmName("refractionEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_REFRACTION, value)
+      setFeature(BaseMaterial3D.Feature.REFRACTION, value)
     }
 
   /**
@@ -1072,10 +1072,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   public final inline var detailEnabled: Boolean
     @JvmName("detailEnabledProperty")
-    get() = getFeature(BaseMaterial3D.Feature.FEATURE_DETAIL)
+    get() = getFeature(BaseMaterial3D.Feature.DETAIL)
     @JvmName("detailEnabledProperty")
     set(`value`) {
-      setFeature(BaseMaterial3D.Feature.FEATURE_DETAIL, value)
+      setFeature(BaseMaterial3D.Feature.DETAIL, value)
     }
 
   /**
@@ -1562,7 +1562,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(139, scriptIndex)
+    createNativeObject(104, scriptIndex)
   }
 
   /**
@@ -2638,26 +2638,26 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    TEXTURE_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    TEXTURE_FILTER_LINEAR(1),
+    LINEAR(1),
     /**
      * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look pixelated from up close, and smooth from a distance.
      */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(2),
+    NEAREST_WITH_MIPMAPS(2),
     /**
      * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look smooth from up close, and smooth from a distance.
      */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(3),
+    LINEAR_WITH_MIPMAPS(3),
     /**
      * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
      * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
@@ -2667,7 +2667,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
+    NEAREST_WITH_MIPMAPS_ANISOTROPIC(4),
     /**
      * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
      * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
@@ -2677,11 +2677,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
+    LINEAR_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
      * Represents the size of the [TextureFilter] enum.
      */
-    TEXTURE_FILTER_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -2723,34 +2723,34 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * The material will not use transparency. This is the fastest to render.
      */
-    TRANSPARENCY_DISABLED(0),
+    DISABLED(0),
     /**
      * The material will use the texture's alpha values for transparency. This is the slowest to
      * render, and disables shadow casting.
      */
-    TRANSPARENCY_ALPHA(1),
+    ALPHA(1),
     /**
      * The material will cut off all values below a threshold, the rest will remain opaque. The
      * opaque portions will be rendered in the depth prepass. This is faster to render than alpha
      * blending, but slower than opaque rendering. This also supports casting shadows.
      */
-    TRANSPARENCY_ALPHA_SCISSOR(2),
+    ALPHA_SCISSOR(2),
     /**
      * The material will cut off all values below a spatially-deterministic threshold, the rest will
      * remain opaque. This is faster to render than alpha blending, but slower than opaque rendering.
      * This also supports casting shadows. Alpha hashing is suited for hair rendering.
      */
-    TRANSPARENCY_ALPHA_HASH(3),
+    ALPHA_HASH(3),
     /**
      * The material will use the texture's alpha value for transparency, but will discard fragments
      * with an alpha of less than 0.99 during the depth prepass and fragments with an alpha less than
      * 0.1 during the shadow pass. This also supports casting shadows.
      */
-    TRANSPARENCY_ALPHA_DEPTH_PRE_PASS(4),
+    ALPHA_DEPTH_PRE_PASS(4),
     /**
      * Represents the size of the [Transparency] enum.
      */
-    TRANSPARENCY_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -2770,20 +2770,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * The object will not receive shadows. This is the fastest to render, but it disables all
      * interactions with lights.
      */
-    SHADING_MODE_UNSHADED(0),
+    UNSHADED(0),
     /**
      * The object will be shaded per pixel. Useful for realistic shading effects.
      */
-    SHADING_MODE_PER_PIXEL(1),
+    PER_PIXEL(1),
     /**
      * The object will be shaded per vertex. Useful when you want cheaper shaders and do not care
      * about visual quality.
      */
-    SHADING_MODE_PER_VERTEX(2),
+    PER_VERTEX(2),
     /**
      * Represents the size of the [ShadingMode] enum.
      */
-    SHADING_MODE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -2802,55 +2802,55 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Constant for setting [emissionEnabled].
      */
-    FEATURE_EMISSION(0),
+    EMISSION(0),
     /**
      * Constant for setting [normalEnabled].
      */
-    FEATURE_NORMAL_MAPPING(1),
+    NORMAL_MAPPING(1),
     /**
      * Constant for setting [rimEnabled].
      */
-    FEATURE_RIM(2),
+    RIM(2),
     /**
      * Constant for setting [clearcoatEnabled].
      */
-    FEATURE_CLEARCOAT(3),
+    CLEARCOAT(3),
     /**
      * Constant for setting [anisotropyEnabled].
      */
-    FEATURE_ANISOTROPY(4),
+    ANISOTROPY(4),
     /**
      * Constant for setting [aoEnabled].
      */
-    FEATURE_AMBIENT_OCCLUSION(5),
+    AMBIENT_OCCLUSION(5),
     /**
      * Constant for setting [heightmapEnabled].
      */
-    FEATURE_HEIGHT_MAPPING(6),
+    HEIGHT_MAPPING(6),
     /**
      * Constant for setting [subsurfScatterEnabled].
      */
-    FEATURE_SUBSURFACE_SCATTERING(7),
+    SUBSURFACE_SCATTERING(7),
     /**
      * Constant for setting [subsurfScatterTransmittanceEnabled].
      */
-    FEATURE_SUBSURFACE_TRANSMITTANCE(8),
+    SUBSURFACE_TRANSMITTANCE(8),
     /**
      * Constant for setting [backlightEnabled].
      */
-    FEATURE_BACKLIGHT(9),
+    BACKLIGHT(9),
     /**
      * Constant for setting [refractionEnabled].
      */
-    FEATURE_REFRACTION(10),
+    REFRACTION(10),
     /**
      * Constant for setting [detailEnabled].
      */
-    FEATURE_DETAIL(11),
+    DETAIL(11),
     /**
      * Represents the size of the [Feature] enum.
      */
-    FEATURE_MAX(12),
+    MAX(12),
     ;
 
     public val id: Long
@@ -2870,19 +2870,19 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * Default blend mode. The color of the object is blended over the background based on the
      * object's alpha value.
      */
-    BLEND_MODE_MIX(0),
+    MIX(0),
     /**
      * The color of the object is added to the background.
      */
-    BLEND_MODE_ADD(1),
+    ADD(1),
     /**
      * The color of the object is subtracted from the background.
      */
-    BLEND_MODE_SUB(2),
+    SUB(2),
     /**
      * The color of the object is multiplied by the background.
      */
-    BLEND_MODE_MUL(3),
+    MUL(3),
     /**
      * The color of the object is added to the background and the alpha channel is used to mask out
      * the background. This is effectively a hybrid of the blend mix and add modes, useful for effects
@@ -2890,7 +2890,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * unshaded materials using premultiplied textures. For shaded materials, use the
      * `PREMUL_ALPHA_FACTOR` built-in so that lighting can be modulated as well.
      */
-    BLEND_MODE_PREMULT_ALPHA(4),
+    PREMULT_ALPHA(4),
     ;
 
     public val id: Long
@@ -3213,24 +3213,24 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Used to read from the red channel of a texture.
      */
-    TEXTURE_CHANNEL_RED(0),
+    RED(0),
     /**
      * Used to read from the green channel of a texture.
      */
-    TEXTURE_CHANNEL_GREEN(1),
+    GREEN(1),
     /**
      * Used to read from the blue channel of a texture.
      */
-    TEXTURE_CHANNEL_BLUE(2),
+    BLUE(2),
     /**
      * Used to read from the alpha channel of a texture.
      */
-    TEXTURE_CHANNEL_ALPHA(3),
+    ALPHA(3),
     /**
      * Used to read from the linear (non-perceptual) average of the red, green and blue channels of
      * a texture.
      */
-    TEXTURE_CHANNEL_GRAYSCALE(4),
+    GRAYSCALE(4),
     ;
 
     public val id: Long

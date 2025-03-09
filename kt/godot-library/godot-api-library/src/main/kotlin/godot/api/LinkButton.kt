@@ -125,7 +125,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(363, scriptIndex)
+    createNativeObject(341, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {
@@ -211,16 +211,16 @@ public open class LinkButton : BaseButton() {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
-    UNDERLINE_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over
      * it.
      */
-    UNDERLINE_MODE_ON_HOVER(1),
+    ON_HOVER(1),
     /**
      * The LinkButton will never show an underline at the bottom of its text.
      */
-    UNDERLINE_MODE_NEVER(2),
+    NEVER(2),
     ;
 
     public val id: Long

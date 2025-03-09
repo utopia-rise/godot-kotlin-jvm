@@ -32,6 +32,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Base class for high-level multiplayer API implementations. See also [MultiplayerPeer].
@@ -93,7 +94,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(387, scriptIndex)
+    createNativeObject(366, scriptIndex)
   }
 
   /**
@@ -255,6 +256,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
      * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
      */
+    @JvmStatic
     public final fun setDefaultInterface(interfaceName: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to interfaceName)
       TransferContext.callMethod(0, MethodBindings.setDefaultInterfacePtr, NIL)
@@ -264,6 +266,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * Returns the default MultiplayerAPI implementation class name. This is usually
      * `"SceneMultiplayer"` when [SceneMultiplayer] is available. See [setDefaultInterface].
      */
+    @JvmStatic
     public final fun getDefaultInterface(): StringName {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
@@ -273,6 +276,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     /**
      * Returns a new instance of the default MultiplayerAPI.
      */
+    @JvmStatic
     public final fun createDefaultInterface(): MultiplayerAPI? {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)

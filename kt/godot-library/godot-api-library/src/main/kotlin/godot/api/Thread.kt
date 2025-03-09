@@ -26,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A unit of execution in a process. Can run methods on [Object]s simultaneously. The use of
@@ -40,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(687, scriptIndex)
+    createNativeObject(683, scriptIndex)
   }
 
   /**
@@ -50,8 +51,7 @@ public open class Thread : RefCounted() {
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
   @JvmOverloads
-  public final fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
-      Error {
+  public final fun start(callable: Callable, priority: Priority = Thread.Priority.NORMAL): Error {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -109,15 +109,15 @@ public open class Thread : RefCounted() {
     /**
      * A thread running with lower priority than normally.
      */
-    PRIORITY_LOW(0),
+    LOW(0),
     /**
      * A thread with a standard priority.
      */
-    PRIORITY_NORMAL(1),
+    NORMAL(1),
     /**
      * A thread running with higher priority than normally.
      */
-    PRIORITY_HIGH(2),
+    HIGH(2),
     ;
 
     public val id: Long
@@ -150,6 +150,7 @@ public open class Thread : RefCounted() {
      * **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task,
      * there's no need to re-enable them at the end. The engine will do so.
      */
+    @JvmStatic
     public final fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)
       TransferContext.callMethod(0, MethodBindings.setThreadSafetyChecksEnabledPtr, NIL)

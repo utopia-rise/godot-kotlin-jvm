@@ -199,7 +199,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(61, scriptIndex)
+    createNativeObject(25, scriptIndex)
   }
 
   public final fun setFadeinTime(time: Double): Unit {
@@ -307,19 +307,19 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     /**
      * The default state of the request. Nothing is done.
      */
-    ONE_SHOT_REQUEST_NONE(0),
+    NONE(0),
     /**
      * The request to play the animation connected to "shot" port.
      */
-    ONE_SHOT_REQUEST_FIRE(1),
+    FIRE(1),
     /**
      * The request to stop the animation connected to "shot" port.
      */
-    ONE_SHOT_REQUEST_ABORT(2),
+    ABORT(2),
     /**
      * The request to fade out the animation connected to "shot" port.
      */
-    ONE_SHOT_REQUEST_FADE_OUT(3),
+    FADE_OUT(3),
     ;
 
     public val id: Long
@@ -338,11 +338,11 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     /**
      * Blends two animations. See also [AnimationNodeBlend2].
      */
-    MIX_MODE_BLEND(0),
+    BLEND(0),
     /**
      * Blends two animations additively. See also [AnimationNodeAdd2].
      */
-    MIX_MODE_ADD(1),
+    ADD(1),
     ;
 
     public val id: Long

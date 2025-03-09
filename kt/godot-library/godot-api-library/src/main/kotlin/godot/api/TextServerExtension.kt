@@ -38,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(671, scriptIndex)
+    createNativeObject(665, scriptIndex)
   }
 
   /**
@@ -117,7 +117,7 @@ public open class TextServerExtension : TextServer() {
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries).
    */
   public open fun _getSupportData(): PackedByteArray {
-    throw NotImplementedError("_get_support_data is not implemented for TextServerExtension")
+    throw NotImplementedError("_getSupportData is not implemented for TextServerExtension")
   }
 
   /**
@@ -488,7 +488,7 @@ public open class TextServerExtension : TextServer() {
    * setting has no effect if subpixel positioning is enabled.
    */
   public open fun _fontGetKeepRoundingRemainders(fontRid: RID): Boolean {
-    throw NotImplementedError("_font_get_keep_rounding_remainders is not implemented for TextServerExtension")
+    throw NotImplementedError("_fontGetKeepRoundingRemainders is not implemented for TextServerExtension")
   }
 
   /**
@@ -1061,7 +1061,7 @@ public open class TextServerExtension : TextServer() {
    * Returns an array containing all glyph indices in the font.
    */
   public open fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
-    throw NotImplementedError("_font_get_supported_glyphs is not implemented for TextServerExtension")
+    throw NotImplementedError("_fontGetSupportedGlyphs is not implemented for TextServerExtension")
   }
 
   /**
@@ -1484,7 +1484,7 @@ public open class TextServerExtension : TextServer() {
    * Returns text embedded object key.
    */
   public open fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
-    throw NotImplementedError("_shaped_get_span_embedded_object is not implemented for TextServerExtension")
+    throw NotImplementedError("_shapedGetSpanEmbeddedObject is not implemented for TextServerExtension")
   }
 
   /**

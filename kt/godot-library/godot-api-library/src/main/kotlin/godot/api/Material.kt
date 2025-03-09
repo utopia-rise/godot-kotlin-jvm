@@ -66,7 +66,7 @@ public open class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(369, scriptIndex)
+    createNativeObject(348, scriptIndex)
   }
 
   /**

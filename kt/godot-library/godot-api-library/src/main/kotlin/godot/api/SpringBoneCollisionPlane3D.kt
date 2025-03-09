@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpringBoneCollisionPlane3D : SpringBoneCollision3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(632, scriptIndex)
+    createNativeObject(626, scriptIndex)
   }
 
   public companion object

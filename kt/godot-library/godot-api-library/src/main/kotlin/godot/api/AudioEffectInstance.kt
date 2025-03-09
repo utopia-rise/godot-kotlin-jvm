@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(98, scriptIndex)
+    createNativeObject(62, scriptIndex)
   }
 
   /**

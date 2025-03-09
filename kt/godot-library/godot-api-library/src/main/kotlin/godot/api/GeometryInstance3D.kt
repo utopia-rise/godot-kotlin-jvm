@@ -268,7 +268,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(258, scriptIndex)
   }
 
   /**
@@ -510,25 +510,25 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Will not cast any shadows. Use this to improve performance for small geometry that is
      * unlikely to cast noticeable shadows (such as debris).
      */
-    SHADOW_CASTING_SETTING_OFF(0),
+    OFF(0),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
      * Will take culling into account, so faces not being rendered will not be taken into account
      * when shadow casting.
      */
-    SHADOW_CASTING_SETTING_ON(1),
+    ON(1),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
      * Will not take culling into account, so all faces will be taken into account when shadow
      * casting.
      */
-    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
+    DOUBLE_SIDED(2),
     /**
      * Will only show the shadows casted from this object.
      * In other words, the actual mesh will not be visible, only the shadows casted from the mesh
      * will be.
      */
-    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
+    SHADOWS_ONLY(3),
     ;
 
     public val id: Long
@@ -601,7 +601,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     /**
      * Represents the size of the [LightmapScale] enum.
      */
-    LIGHTMAP_SCALE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long

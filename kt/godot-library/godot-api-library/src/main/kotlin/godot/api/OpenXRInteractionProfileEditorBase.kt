@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileEditorBase internal constructor() : HBoxContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(447, scriptIndex)
+    createNativeObject(431, scriptIndex)
   }
 
   /**

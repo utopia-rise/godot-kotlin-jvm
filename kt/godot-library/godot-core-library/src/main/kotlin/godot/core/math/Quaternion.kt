@@ -154,7 +154,7 @@ class Quaternion(
      * represented by the unit quaternion. Returned vector contains the rotation angles in the format (X angle, Y angle,
      * Z angle).
      */
-    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ): Vector3 {
+    fun getEuler(order: EulerOrder = EulerOrder.YXZ): Vector3 {
         if (GodotJvmBuildConfig.DEBUG) {
             require(isNormalized()) {
                 "The quaternion must be normalized."

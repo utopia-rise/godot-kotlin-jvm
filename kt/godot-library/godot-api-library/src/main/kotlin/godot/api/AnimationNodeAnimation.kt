@@ -131,7 +131,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(54, scriptIndex)
+    createNativeObject(18, scriptIndex)
   }
 
   public final fun setAnimation(name: StringName): Unit {
@@ -228,11 +228,11 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     /**
      * Plays animation in forward direction.
      */
-    PLAY_MODE_FORWARD(0),
+    FORWARD(0),
     /**
      * Plays animation in backward direction.
      */
-    PLAY_MODE_BACKWARD(1),
+    BACKWARD(1),
     ;
 
     public val id: Long

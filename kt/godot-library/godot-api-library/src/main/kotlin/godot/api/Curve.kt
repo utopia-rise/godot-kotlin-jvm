@@ -114,7 +114,7 @@ public open class Curve : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+    createNativeObject(185, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
@@ -380,7 +380,7 @@ public open class Curve : Resource() {
     /**
      * The total number of available tangent modes.
      */
-    TANGENT_MODE_COUNT(2),
+    COUNT(2),
     ;
 
     public val id: Long

@@ -88,7 +88,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(89, scriptIndex)
+    createNativeObject(53, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {
@@ -152,23 +152,23 @@ public open class AudioEffectDistortion : AudioEffect() {
     /**
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
      */
-    MODE_CLIP(0),
-    MODE_ATAN(1),
+    CLIP(0),
+    ATAN(1),
     /**
      * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the
      * sound of early digital audio devices.
      */
-    MODE_LOFI(2),
+    LOFI(2),
     /**
      * Emulates the warm distortion produced by a field effect transistor, which is commonly used in
      * solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
      */
-    MODE_OVERDRIVE(3),
+    OVERDRIVE(3),
     /**
      * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive
      * sound.
      */
-    MODE_WAVESHAPE(4),
+    WAVESHAPE(4),
     ;
 
     public val id: Long

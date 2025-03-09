@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(458, scriptIndex)
+    createNativeObject(442, scriptIndex)
   }
 
   /**
@@ -87,25 +87,25 @@ public open class PacketPeerDTLS : PacketPeer() {
     /**
      * A status representing a [PacketPeerDTLS] that is disconnected.
      */
-    STATUS_DISCONNECTED(0),
+    DISCONNECTED(0),
     /**
      * A status representing a [PacketPeerDTLS] that is currently performing the handshake with a
      * remote peer.
      */
-    STATUS_HANDSHAKING(1),
+    HANDSHAKING(1),
     /**
      * A status representing a [PacketPeerDTLS] that is connected to a remote peer.
      */
-    STATUS_CONNECTED(2),
+    CONNECTED(2),
     /**
      * A status representing a [PacketPeerDTLS] in a generic error state.
      */
-    STATUS_ERROR(3),
+    ERROR(3),
     /**
      * An error status that shows a mismatch in the DTLS certificate domain presented by the host
      * and the domain requested for validation.
      */
-    STATUS_ERROR_HOSTNAME_MISMATCH(4),
+    ERROR_HOSTNAME_MISMATCH(4),
     ;
 
     public val id: Long

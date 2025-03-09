@@ -36,7 +36,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(801, scriptIndex)
+    createNativeObject(799, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {
@@ -56,39 +56,39 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
     /**
      * A floating-point scalar.
      */
-    OP_TYPE_FLOAT(0),
+    FLOAT(0),
     /**
      * An integer scalar.
      */
-    OP_TYPE_INT(1),
+    INT(1),
     /**
      * An unsigned integer scalar.
      */
-    OP_TYPE_UINT(2),
+    UINT(2),
     /**
      * A 2D vector type.
      */
-    OP_TYPE_VECTOR_2D(3),
+    VECTOR_2D(3),
     /**
      * A 3D vector type.
      */
-    OP_TYPE_VECTOR_3D(4),
+    VECTOR_3D(4),
     /**
      * A 4D vector type.
      */
-    OP_TYPE_VECTOR_4D(5),
+    VECTOR_4D(5),
     /**
      * A boolean type.
      */
-    OP_TYPE_BOOLEAN(6),
+    BOOLEAN(6),
     /**
      * A transform type.
      */
-    OP_TYPE_TRANSFORM(7),
+    TRANSFORM(7),
     /**
      * Represents the size of the [OpType] enum.
      */
-    OP_TYPE_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long

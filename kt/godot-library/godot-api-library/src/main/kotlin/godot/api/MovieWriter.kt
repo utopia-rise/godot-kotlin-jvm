@@ -21,6 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Godot can record videos with non-real-time simulation. Like the `--fixed-fps`
@@ -58,7 +59,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(383, scriptIndex)
+    createNativeObject(362, scriptIndex)
   }
 
   /**
@@ -125,6 +126,7 @@ public open class MovieWriter : Object() {
      * **Note:** [addWriter] must be called early enough in the engine initialization to work, as
      * movie writing is designed to start at the same time as the rest of the engine.
      */
+    @JvmStatic
     public final fun addWriter(writer: MovieWriter?): Unit {
       TransferContext.writeArguments(OBJECT to writer)
       TransferContext.callMethod(0, MethodBindings.addWriterPtr, NIL)

@@ -27,6 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class allows storing compressed textures as self contained (not imported) resources.
@@ -67,7 +68,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(518, scriptIndex)
+    createNativeObject(507, scriptIndex)
   }
 
   /**
@@ -155,12 +156,12 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public enum class CompressionMode(
     id: Long,
   ) {
-    COMPRESSION_MODE_LOSSLESS(0),
-    COMPRESSION_MODE_LOSSY(1),
-    COMPRESSION_MODE_BASIS_UNIVERSAL(2),
-    COMPRESSION_MODE_S3TC(3),
-    COMPRESSION_MODE_ETC2(4),
-    COMPRESSION_MODE_BPTC(5),
+    LOSSLESS(0),
+    LOSSY(1),
+    BASIS_UNIVERSAL(2),
+    S3TC(3),
+    ETC2(4),
+    BPTC(5),
     ;
 
     public val id: Long
@@ -178,6 +179,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
      * Overrides the flag globally for all textures of this type. This is used primarily by the
      * editor.
      */
+    @JvmStatic
     public final fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
       TransferContext.writeArguments(BOOL to keep)
       TransferContext.callMethod(0, MethodBindings.setKeepAllCompressedBuffersPtr, NIL)
@@ -186,6 +188,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     /**
      * Return whether the flag is overridden for all textures of this type.
      */
+    @JvmStatic
     public final fun isKeepingAllCompressedBuffers(): Boolean {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)

@@ -2,14 +2,13 @@ package godot.codegen.models.enriched
 
 import godot.codegen.exceptions.TooManyMethodArgument
 import godot.codegen.extensions.isObjectSubClass
-import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.IDocumented
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
+import godot.tools.common.constants.GodotTypes
 
 class EnrichedMethod(model: Method) : CallableTrait, IDocumented {
     val name = model.name.convertToCamelCase().let {
@@ -34,7 +33,6 @@ class EnrichedMethod(model: Method) : CallableTrait, IDocumented {
     override val meta: String? = model.returnValue?.meta
     override val nullable = isObjectSubClass() || type == GodotTypes.variant
 
-
     override val description = model.description
 
     init {
@@ -49,5 +47,5 @@ fun List<Method>.toEnriched() = map { EnrichedMethod(it) }
 fun EnrichedMethod.isSameSignature(other: EnrichedMethod): Boolean {
     return name == other.name &&
         type == other.type
-        arguments == other.arguments
+    arguments == other.arguments
 }

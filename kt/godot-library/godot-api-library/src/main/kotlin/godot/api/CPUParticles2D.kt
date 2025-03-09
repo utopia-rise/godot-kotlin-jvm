@@ -822,7 +822,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(150, scriptIndex)
+    createNativeObject(115, scriptIndex)
   }
 
   /**
@@ -1367,12 +1367,12 @@ public open class CPUParticles2D : Node2D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     ;
 
     public val id: Long
@@ -1496,34 +1496,34 @@ public open class CPUParticles2D : Node2D() {
     /**
      * All particles will be emitted from a single point.
      */
-    EMISSION_SHAPE_POINT(0),
+    POINT(0),
     /**
      * Particles will be emitted in the volume of a sphere flattened to two dimensions.
      */
-    EMISSION_SHAPE_SPHERE(1),
+    SPHERE(1),
     /**
      * Particles will be emitted on the surface of a sphere flattened to two dimensions.
      */
-    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    SPHERE_SURFACE(2),
     /**
      * Particles will be emitted in the area of a rectangle.
      */
-    EMISSION_SHAPE_RECTANGLE(3),
+    RECTANGLE(3),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * color will be modulated by [emissionColors].
      */
-    EMISSION_SHAPE_POINTS(4),
+    POINTS(4),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated
      * by [emissionColors].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    DIRECTED_POINTS(5),
     /**
      * Represents the size of the [EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long

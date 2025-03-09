@@ -29,6 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
@@ -129,7 +130,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(136, scriptIndex)
+    createNativeObject(101, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -234,11 +235,11 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Audio is lossily compressed as IMA ADPCM.
      */
-    FORMAT_IMA_ADPCM(2),
+    IMA_ADPCM(2),
     /**
      * Audio is lossily compressed as [url=https://qoaformat.org/]Quite OK Audio[/url].
      */
-    FORMAT_QOA(3),
+    QOA(3),
     ;
 
     public val id: Long
@@ -290,6 +291,7 @@ public open class AudioStreamWAV : AudioStream() {
      * [options] is identical to [AudioStreamWAV.loadFromFile].
      */
     @JvmOverloads
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> =
         Dictionary()): AudioStreamWAV? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
@@ -318,6 +320,7 @@ public open class AudioStreamWAV : AudioStream() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()):
         AudioStreamWAV? {
       TransferContext.writeArguments(STRING to path, DICTIONARY to options)
@@ -327,12 +330,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public object MethodBindings {
-    internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
-
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data", 2971499966)
 
@@ -377,5 +374,11 @@ public open class AudioStreamWAV : AudioStream() {
 
     internal val saveToWavPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166001499)
+
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
   }
 }

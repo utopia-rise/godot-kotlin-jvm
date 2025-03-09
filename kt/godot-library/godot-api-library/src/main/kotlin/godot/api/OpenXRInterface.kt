@@ -35,29 +35,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.or(other.flag)
+public infix fun Long.or(other: OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: OpenXRInterface.HandJointFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.OpenXRInterface.HandJointFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: OpenXRInterface.HandJointFlags): Long = this.and(other.flag)
 
 /**
  * The OpenXR interface allows Godot to interact with OpenXR runtimes and make it possible to create
@@ -190,7 +172,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(449, scriptIndex)
+    createNativeObject(433, scriptIndex)
   }
 
   public final fun getDisplayRefreshRate(): Float {
@@ -320,7 +302,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointFlagsPtr, LONG)
-    return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return HandJointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -431,15 +413,15 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Left hand.
      */
-    HAND_LEFT(0),
+    LEFT(0),
     /**
      * Right hand.
      */
-    HAND_RIGHT(1),
+    RIGHT(1),
     /**
      * Maximum value for the hand enum.
      */
-    HAND_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -458,16 +440,16 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Full hand range, if user closes their hands, we make a full fist.
      */
-    HAND_MOTION_RANGE_UNOBSTRUCTED(0),
+    UNOBSTRUCTED(0),
     /**
      * Conform to controller, if user closes their hands, the tracked data conforms to the shape of
      * the controller.
      */
-    HAND_MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    CONFORM_TO_CONTROLLER(1),
     /**
      * Maximum value for the motion range enum.
      */
-    HAND_MOTION_RANGE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -486,21 +468,21 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * The source of hand tracking data is unknown (the extension is likely unsupported).
      */
-    HAND_TRACKED_SOURCE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * The source of hand tracking is unobstructed, this means that an accurate method of hand
      * tracking is used, e.g. optical hand tracking, data gloves, etc.
      */
-    HAND_TRACKED_SOURCE_UNOBSTRUCTED(1),
+    UNOBSTRUCTED(1),
     /**
      * The source of hand tracking is a controller, bone positions are inferred from controller
      * inputs.
      */
-    HAND_TRACKED_SOURCE_CONTROLLER(2),
+    CONTROLLER(2),
     /**
      * Maximum value for the hand tracked source enum.
      */
-    HAND_TRACKED_SOURCE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -636,82 +618,52 @@ public open class OpenXRInterface : XRInterface() {
     }
   }
 
-  public sealed interface HandJointFlags {
-    public val flag: Long
+  @JvmInline
+  public value class HandJointFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
 
-    public infix fun or(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.or(other.flag))
-
-    public infix fun or(other: Long): HandJointFlags = HandJointFlagsValue(flag.or(other))
+    public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
 
     public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.xor(other.flag))
+        HandJointFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): HandJointFlags = HandJointFlagsValue(flag.xor(other))
+    public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
 
     public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.and(other.flag))
+        HandJointFlags(flag.and(other.flag))
 
-    public infix fun and(other: Long): HandJointFlags = HandJointFlagsValue(flag.and(other))
+    public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
 
-    public operator fun plus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.plus(other.flag))
+    public fun unaryPlus(): HandJointFlags = HandJointFlags(flag.unaryPlus())
 
-    public operator fun plus(other: Long): HandJointFlags = HandJointFlagsValue(flag.plus(other))
+    public fun unaryMinus(): HandJointFlags = HandJointFlags(flag.unaryMinus())
 
-    public operator fun minus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.minus(other.flag))
+    public fun inv(): HandJointFlags = HandJointFlags(flag.inv())
 
-    public operator fun minus(other: Long): HandJointFlags = HandJointFlagsValue(flag.minus(other))
+    public infix fun shl(bits: Int): HandJointFlags = HandJointFlags(flag shl bits)
 
-    public operator fun times(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): HandJointFlags = HandJointFlags(flag shr bits)
 
-    public operator fun times(other: Long): HandJointFlags = HandJointFlagsValue(flag.times(other))
-
-    public operator fun div(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): HandJointFlags = HandJointFlagsValue(flag.div(other))
-
-    public operator fun rem(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): HandJointFlags = HandJointFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): HandJointFlags = HandJointFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): HandJointFlags = HandJointFlagsValue(flag.unaryMinus())
-
-    public fun inv(): HandJointFlags = HandJointFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): HandJointFlags = HandJointFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): HandJointFlags = HandJointFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
-      public val HAND_JOINT_NONE: HandJointFlags = HandJointFlagsValue(0)
+      public val HAND_JOINT_NONE: HandJointFlags = HandJointFlags(0)
 
-      public val HAND_JOINT_ORIENTATION_VALID: HandJointFlags = HandJointFlagsValue(1)
+      public val HAND_JOINT_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
-      public val HAND_JOINT_ORIENTATION_TRACKED: HandJointFlags = HandJointFlagsValue(2)
+      public val HAND_JOINT_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
-      public val HAND_JOINT_POSITION_VALID: HandJointFlags = HandJointFlagsValue(4)
+      public val HAND_JOINT_POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
-      public val HAND_JOINT_POSITION_TRACKED: HandJointFlags = HandJointFlagsValue(8)
+      public val HAND_JOINT_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
-      public val HAND_JOINT_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(16)
+      public val HAND_JOINT_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
-      public val HAND_JOINT_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(32)
+      public val HAND_JOINT_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
-
-  @JvmInline
-  public value class HandJointFlagsValue(
-    public override val flag: Long,
-  ) : HandJointFlags
 
   public companion object
 

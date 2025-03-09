@@ -110,7 +110,7 @@ public open class GLTFSkin : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(267, scriptIndex)
+    createNativeObject(238, scriptIndex)
   }
 
   public final fun getSkinRoot(): Int {

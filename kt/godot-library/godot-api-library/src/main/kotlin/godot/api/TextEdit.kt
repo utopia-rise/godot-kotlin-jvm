@@ -608,7 +608,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(664, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   /**
@@ -2984,11 +2984,11 @@ public open class TextEdit : Control() {
     /**
      * Vertical line caret.
      */
-    CARET_TYPE_LINE(0),
+    LINE(0),
     /**
      * Block caret.
      */
-    CARET_TYPE_BLOCK(1),
+    BLOCK(1),
     ;
 
     public val id: Long
@@ -3007,23 +3007,23 @@ public open class TextEdit : Control() {
     /**
      * Not selecting.
      */
-    SELECTION_MODE_NONE(0),
+    NONE(0),
     /**
      * Select as if `shift` is pressed.
      */
-    SELECTION_MODE_SHIFT(1),
+    SHIFT(1),
     /**
      * Select single characters as if the user single clicked.
      */
-    SELECTION_MODE_POINTER(2),
+    POINTER(2),
     /**
      * Select whole words as if the user double clicked.
      */
-    SELECTION_MODE_WORD(3),
+    WORD(3),
     /**
      * Select whole lines as if the user triple clicked.
      */
-    SELECTION_MODE_LINE(4),
+    LINE(4),
     ;
 
     public val id: Long
@@ -3066,17 +3066,17 @@ public open class TextEdit : Control() {
      * When a gutter is set to string using [setGutterType], it is used to contain text set via the
      * [setLineGutterText] method.
      */
-    GUTTER_TYPE_STRING(0),
+    STRING(0),
     /**
      * When a gutter is set to icon using [setGutterType], it is used to contain an icon set via the
      * [setLineGutterIcon] method.
      */
-    GUTTER_TYPE_ICON(1),
+    ICON(1),
     /**
      * When a gutter is set to custom using [setGutterType], it is used to contain custom visuals
      * controlled by a callback method set via the [setGutterCustomDraw] method.
      */
-    GUTTER_TYPE_CUSTOM(2),
+    CUSTOM(2),
     ;
 
     public val id: Long

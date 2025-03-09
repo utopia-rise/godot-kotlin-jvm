@@ -63,7 +63,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(118, scriptIndex)
+    createNativeObject(83, scriptIndex)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {
@@ -284,19 +284,19 @@ public open class AudioStreamInteractive : AudioStream() {
     /**
      * Start transition as soon as possible, don't wait for any specific time position.
      */
-    TRANSITION_FROM_TIME_IMMEDIATE(0),
+    IMMEDIATE(0),
     /**
      * Transition when the clip playback position reaches the next beat.
      */
-    TRANSITION_FROM_TIME_NEXT_BEAT(1),
+    NEXT_BEAT(1),
     /**
      * Transition when the clip playback position reaches the next bar.
      */
-    TRANSITION_FROM_TIME_NEXT_BAR(2),
+    NEXT_BAR(2),
     /**
      * Transition when the current clip finished playing.
      */
-    TRANSITION_FROM_TIME_END(3),
+    END(3),
     ;
 
     public val id: Long
@@ -316,11 +316,11 @@ public open class AudioStreamInteractive : AudioStream() {
      * Transition to the same position in the destination clip. This is useful when both clips have
      * exactly the same length and the music should fade between them.
      */
-    TRANSITION_TO_TIME_SAME_POSITION(0),
+    SAME_POSITION(0),
     /**
      * Transition to the start of the destination clip.
      */
-    TRANSITION_TO_TIME_START(1),
+    START(1),
     ;
 
     public val id: Long

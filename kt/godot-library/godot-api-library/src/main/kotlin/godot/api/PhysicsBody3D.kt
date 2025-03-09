@@ -42,10 +42,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearX: Boolean
     @JvmName("axisLockLinearXProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_X)
     @JvmName("axisLockLinearXProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_X, value)
     }
 
   /**
@@ -53,10 +53,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearY: Boolean
     @JvmName("axisLockLinearYProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Y)
     @JvmName("axisLockLinearYProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Y, value)
     }
 
   /**
@@ -64,10 +64,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockLinearZ: Boolean
     @JvmName("axisLockLinearZProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Z)
     @JvmName("axisLockLinearZProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.LINEAR_Z, value)
     }
 
   /**
@@ -75,10 +75,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularX: Boolean
     @JvmName("axisLockAngularXProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_X)
     @JvmName("axisLockAngularXProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_X, value)
     }
 
   /**
@@ -86,10 +86,10 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularY: Boolean
     @JvmName("axisLockAngularYProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Y)
     @JvmName("axisLockAngularYProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Y, value)
     }
 
   /**
@@ -97,14 +97,14 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    */
   public final inline var axisLockAngularZ: Boolean
     @JvmName("axisLockAngularZProperty")
-    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z)
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Z)
     @JvmName("axisLockAngularZProperty")
     set(`value`) {
-      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z, value)
+      setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Z, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(478, scriptIndex)
+    createNativeObject(463, scriptIndex)
   }
 
   /**

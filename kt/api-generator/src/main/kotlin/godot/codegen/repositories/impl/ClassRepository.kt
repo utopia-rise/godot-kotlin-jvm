@@ -11,7 +11,6 @@ import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.toEnriched
 import godot.codegen.repositories.IClassRepository
 import godot.tools.common.constants.GodotTypes
-import kotlin.collections.get
 
 class ClassRepository(
     classes: List<Class>,

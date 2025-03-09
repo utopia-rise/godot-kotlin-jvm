@@ -40,6 +40,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
@@ -52,26 +53,11 @@ import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
 
-public infix fun Long.or(other: godot.api.Node.ProcessThreadMessages): Long = this.or(other.flag)
+public infix fun Long.or(other: Node.ProcessThreadMessages): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.Node.ProcessThreadMessages): Long = this.xor(other.flag)
+public infix fun Long.xor(other: Node.ProcessThreadMessages): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.Node.ProcessThreadMessages): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.Node.ProcessThreadMessages): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.Node.ProcessThreadMessages): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.Node.ProcessThreadMessages): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.Node.ProcessThreadMessages): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.Node.ProcessThreadMessages): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: Node.ProcessThreadMessages): Long = this.and(other.flag)
 
 /**
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting
@@ -389,10 +375,6 @@ public open class Node : Object() {
       setEditorDescription(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(411, scriptIndex)
-  }
-
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): Error =
       rpc(function.name.toGodotName())
 
@@ -613,6 +595,10 @@ public open class Node : Object() {
     arg9: ARG9,
   ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
       arg8, arg9)
+
+  public override fun new(scriptIndex: Int): Unit {
+    createNativeObject(394, scriptIndex)
+  }
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as
@@ -859,7 +845,7 @@ public open class Node : Object() {
   public final fun addChild(
     node: Node?,
     forceReadableName: Boolean = false,
-    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED,
+    `internal`: InternalMode = Node.InternalMode.DISABLED,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
     TransferContext.callMethod(ptr, MethodBindings.addChildPtr, NIL)
@@ -1653,7 +1639,7 @@ public open class Node : Object() {
   public final fun getProcessThreadMessages(): ProcessThreadMessages {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessThreadMessagesPtr, LONG)
-    return ProcessThreadMessagesValue(TransferContext.readReturnValue(LONG) as Long)
+    return ProcessThreadMessages(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setProcessThreadGroupOrder(order: Int): Unit {
@@ -2218,27 +2204,27 @@ public open class Node : Object() {
      * Inherits [processMode] from the node's parent. This is the default for any newly created
      * node.
      */
-    PROCESS_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Stops processing when [SceneTree.paused] is `true`. This is the inverse of
      * [PROCESS_MODE_WHEN_PAUSED], and the default for the root node.
      */
-    PROCESS_MODE_PAUSABLE(1),
+    PAUSABLE(1),
     /**
      * Process **only** when [SceneTree.paused] is `true`. This is the inverse of
      * [PROCESS_MODE_PAUSABLE].
      */
-    PROCESS_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     /**
      * Always process. Keeps processing, ignoring [SceneTree.paused]. This is the inverse of
      * [PROCESS_MODE_DISABLED].
      */
-    PROCESS_MODE_ALWAYS(3),
+    ALWAYS(3),
     /**
      * Never process. Completely disables processing, ignoring [SceneTree.paused]. This is the
      * inverse of [PROCESS_MODE_ALWAYS].
      */
-    PROCESS_MODE_DISABLED(4),
+    DISABLED(4),
     ;
 
     public val id: Long
@@ -2258,17 +2244,17 @@ public open class Node : Object() {
      * Process this node based on the thread group mode of the first parent (or grandparent) node
      * that has a thread group mode that is not inherit. See [processThreadGroup] for more information.
      */
-    PROCESS_THREAD_GROUP_INHERIT(0),
+    INHERIT(0),
     /**
      * Process this node (and child nodes set to inherit) on the main thread. See
      * [processThreadGroup] for more information.
      */
-    PROCESS_THREAD_GROUP_MAIN_THREAD(1),
+    MAIN_THREAD(1),
     /**
      * Process this node (and child nodes set to inherit) on a sub-thread. See [processThreadGroup]
      * for more information.
      */
-    PROCESS_THREAD_GROUP_SUB_THREAD(2),
+    SUB_THREAD(2),
     ;
 
     public val id: Long
@@ -2281,87 +2267,48 @@ public open class Node : Object() {
     }
   }
 
-  public sealed interface ProcessThreadMessages {
-    public val flag: Long
-
+  @JvmInline
+  public value class ProcessThreadMessages(
+    public val flag: Long,
+  ) {
     public infix fun or(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.or(other.flag))
+        ProcessThreadMessages(flag.or(other.flag))
 
-    public infix fun or(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.or(other))
+    public infix fun or(other: Long): ProcessThreadMessages = ProcessThreadMessages(flag.or(other))
 
     public infix fun xor(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.xor(other.flag))
+        ProcessThreadMessages(flag.xor(other.flag))
 
     public infix fun xor(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.xor(other))
+        ProcessThreadMessages(flag.xor(other))
 
     public infix fun and(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.and(other.flag))
+        ProcessThreadMessages(flag.and(other.flag))
 
     public infix fun and(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.and(other))
+        ProcessThreadMessages(flag.and(other))
 
-    public operator fun plus(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.plus(other.flag))
+    public fun unaryPlus(): ProcessThreadMessages = ProcessThreadMessages(flag.unaryPlus())
 
-    public operator fun plus(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.plus(other))
+    public fun unaryMinus(): ProcessThreadMessages = ProcessThreadMessages(flag.unaryMinus())
 
-    public operator fun minus(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.minus(other.flag))
+    public fun inv(): ProcessThreadMessages = ProcessThreadMessages(flag.inv())
 
-    public operator fun minus(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.minus(other))
+    public infix fun shl(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag shl bits)
 
-    public operator fun times(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag shr bits)
 
-    public operator fun times(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.times(other))
-
-    public operator fun div(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.div(other))
-
-    public operator fun rem(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag.rem(other))
-
-    public fun unaryPlus(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.unaryPlus())
-
-    public fun unaryMinus(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.unaryMinus())
-
-    public fun inv(): ProcessThreadMessages = ProcessThreadMessagesValue(flag.inv())
-
-    public infix fun shl(bits: Int): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag shl bits)
-
-    public infix fun shr(bits: Int): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): ProcessThreadMessages =
-        ProcessThreadMessagesValue(flag ushr bits)
+    public infix fun ushr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag ushr bits)
 
     public companion object {
-      public val FLAG_PROCESS_THREAD_MESSAGES: ProcessThreadMessages = ProcessThreadMessagesValue(1)
+      public val FLAG_PROCESS_THREAD_MESSAGES: ProcessThreadMessages = ProcessThreadMessages(1)
 
       public val FLAG_PROCESS_THREAD_MESSAGES_PHYSICS: ProcessThreadMessages =
-          ProcessThreadMessagesValue(2)
+          ProcessThreadMessages(2)
 
-      public val FLAG_PROCESS_THREAD_MESSAGES_ALL: ProcessThreadMessages =
-          ProcessThreadMessagesValue(3)
+      public val FLAG_PROCESS_THREAD_MESSAGES_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
     }
   }
-
-  @JvmInline
-  public value class ProcessThreadMessagesValue(
-    public override val flag: Long,
-  ) : ProcessThreadMessages
 
   public enum class PhysicsInterpolationMode(
     id: Long,
@@ -2370,17 +2317,17 @@ public open class Node : Object() {
      * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
      * created node.
      */
-    PHYSICS_INTERPOLATION_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Enables physics interpolation for this node and for children set to
      * [PHYSICS_INTERPOLATION_MODE_INHERIT]. This is the default for the root node.
      */
-    PHYSICS_INTERPOLATION_MODE_ON(1),
+    ON(1),
     /**
      * Disables physics interpolation for this node and for children set to
      * [PHYSICS_INTERPOLATION_MODE_INHERIT].
      */
-    PHYSICS_INTERPOLATION_MODE_OFF(2),
+    OFF(2),
     ;
 
     public val id: Long
@@ -2432,16 +2379,16 @@ public open class Node : Object() {
     /**
      * The node will not be internal.
      */
-    INTERNAL_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * The node will be placed at the beginning of the parent's children, before any non-internal
      * sibling.
      */
-    INTERNAL_MODE_FRONT(1),
+    FRONT(1),
     /**
      * The node will be placed at the end of the parent's children, after any non-internal sibling.
      */
-    INTERNAL_MODE_BACK(2),
+    BACK(2),
     ;
 
     public val id: Long
@@ -2461,18 +2408,18 @@ public open class Node : Object() {
      * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
      * created node.
      */
-    AUTO_TRANSLATE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Always automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_DISABLED], and
      * the default for the root node.
      */
-    AUTO_TRANSLATE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Never automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_ALWAYS].
      * String parsing for POT generation will be skipped for this node and children that are set to
      * [AUTO_TRANSLATE_MODE_INHERIT].
      */
-    AUTO_TRANSLATE_MODE_DISABLED(2),
+    DISABLED(2),
     ;
 
     public val id: Long
@@ -2773,6 +2720,7 @@ public open class Node : Object() {
      * **Note:** This method only works in debug builds. Does nothing in a project exported in
      * release mode.
      */
+    @JvmStatic
     public final fun printOrphanNodes(): Unit {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.printOrphanNodesPtr, NIL)
@@ -2780,9 +2728,6 @@ public open class Node : Object() {
   }
 
   public object MethodBindings {
-    internal val printOrphanNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
-
     internal val addSiblingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "add_sibling", 2570952461)
 
@@ -3117,5 +3062,8 @@ public open class Node : Object() {
 
     internal val notifyThreadSafePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "notify_thread_safe", 1286410249)
+
+    internal val printOrphanNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
   }
 }

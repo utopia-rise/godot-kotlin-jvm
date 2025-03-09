@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.KeyModifierMask
-import godot.core.KeyModifierMaskValue
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -90,7 +89,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(333, scriptIndex)
+    createNativeObject(308, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {
@@ -164,7 +163,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public final fun getModifiersMask(): KeyModifierMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModifiersMaskPtr, LONG)
-    return KeyModifierMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    return KeyModifierMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

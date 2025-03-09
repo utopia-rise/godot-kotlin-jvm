@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(582, scriptIndex)
+    createNativeObject(576, scriptIndex)
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {
@@ -69,7 +69,7 @@ public open class ScriptExtension : Script() {
   }
 
   public open fun _getDocClassName(): StringName {
-    throw NotImplementedError("_get_doc_class_name is not implemented for ScriptExtension")
+    throw NotImplementedError("_getDocClassName is not implemented for ScriptExtension")
   }
 
   public open fun _getDocumentation(): VariantArray<Dictionary<Any?, Any?>> {

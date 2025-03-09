@@ -189,7 +189,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(41, scriptIndex)
+    createNativeObject(5, scriptIndex)
   }
 
   /**
@@ -297,7 +297,7 @@ public open class AStarGrid2D : RefCounted() {
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _estimateCost(fromId: Vector2i, endId: Vector2i): Float {
-    throw NotImplementedError("_estimate_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_estimateCost is not implemented for AStarGrid2D")
   }
 
   /**
@@ -305,7 +305,7 @@ public open class AStarGrid2D : RefCounted() {
    * Note that this function is hidden in the default [AStarGrid2D] class.
    */
   public open fun _computeCost(fromId: Vector2i, toId: Vector2i): Float {
-    throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
+    throw NotImplementedError("_computeCost is not implemented for AStarGrid2D")
   }
 
   public final fun setRegion(region: Rect2i): Unit {
@@ -587,7 +587,7 @@ public open class AStarGrid2D : RefCounted() {
      * **Note:** This is also the internal heuristic used in [AStar3D] and [AStar2D] by default
      * (with the inclusion of possible z-axis coordinate).
      */
-    HEURISTIC_EUCLIDEAN(0),
+    EUCLIDEAN(0),
     /**
      * The [url=https://en.wikipedia.org/wiki/Taxicab_geometry]Manhattan heuristic[/url] to be used
      * for the pathfinding using the following formula:
@@ -599,7 +599,7 @@ public open class AStarGrid2D : RefCounted() {
      * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
      * setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
-    HEURISTIC_MANHATTAN(1),
+    MANHATTAN(1),
     /**
      * The Octile heuristic to be used for the pathfinding using the following formula:
      * [codeblock]
@@ -609,7 +609,7 @@ public open class AStarGrid2D : RefCounted() {
      * result = (dx < dy) ? f * dx + dy : f * dy + dx;
      * [/codeblock]
      */
-    HEURISTIC_OCTILE(2),
+    OCTILE(2),
     /**
      * The [url=https://en.wikipedia.org/wiki/Chebyshev_distance]Chebyshev heuristic[/url] to be
      * used for the pathfinding using the following formula:
@@ -619,11 +619,11 @@ public open class AStarGrid2D : RefCounted() {
      * result = max(dx, dy)
      * [/codeblock]
      */
-    HEURISTIC_CHEBYSHEV(3),
+    CHEBYSHEV(3),
     /**
      * Represents the size of the [Heuristic] enum.
      */
-    HEURISTIC_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -643,25 +643,25 @@ public open class AStarGrid2D : RefCounted() {
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
      * passing using diagonals.
      */
-    DIAGONAL_MODE_ALWAYS(0),
+    ALWAYS(0),
     /**
      * The pathfinding algorithm will ignore all diagonals and the way will be always orthogonal.
      */
-    DIAGONAL_MODE_NEVER(1),
+    NEVER(1),
     /**
      * The pathfinding algorithm will avoid using diagonals if at least two obstacles have been
      * placed around the neighboring cells of the specific path segment.
      */
-    DIAGONAL_MODE_AT_LEAST_ONE_WALKABLE(2),
+    AT_LEAST_ONE_WALKABLE(2),
     /**
      * The pathfinding algorithm will avoid using diagonals if any obstacle has been placed around
      * the neighboring cells of the specific path segment.
      */
-    DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES(3),
+    ONLY_IF_NO_OBSTACLES(3),
     /**
      * Represents the size of the [DiagonalMode] enum.
      */
-    DIAGONAL_MODE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -680,21 +680,21 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * Rectangular cell shape.
      */
-    CELL_SHAPE_SQUARE(0),
+    SQUARE(0),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes up-right, and the vertical one goes down-right.
      */
-    CELL_SHAPE_ISOMETRIC_RIGHT(1),
+    ISOMETRIC_RIGHT(1),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes down-right, and the vertical one goes down-left.
      */
-    CELL_SHAPE_ISOMETRIC_DOWN(2),
+    ISOMETRIC_DOWN(2),
     /**
      * Represents the size of the [CellShape] enum.
      */
-    CELL_SHAPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

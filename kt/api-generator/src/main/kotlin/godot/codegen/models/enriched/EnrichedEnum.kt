@@ -5,39 +5,36 @@ import godot.codegen.extensions.enumPrefix
 import godot.codegen.models.Enum
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
+import godot.codegen.workarounds.sanitizeApiType
+import godot.common.extensions.convertToSnakeCase
+import godot.common.extensions.isValidKotlinIdentifier
 
 class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
-    val name = if (outerClass == null) {
-        model.name.replace(".", "")
-    } else {
-        model.name
-    }
-
-    val values = model.values.map {
-        EnrichedEnumValue(
-            (if (outerClass == null) "" else "$outerClass.") + "$name.${it.name}",
-            it.name,
-            it.value,
-            it.description ?: ""
-        )
-    }
+    val simpleName = model.name.sanitizeApiType()
 
     override val type = run {
         val prefix = if (model.isBitField) bitfieldPrefix else enumPrefix
         val encapsulating = if (outerClass != null) "${outerClass}." else ""
-        prefix + encapsulating + name
+        (prefix + encapsulating + simpleName)
     }
 
-    fun getBitFieldCustomValue(value: Long) = EnrichedEnumValue(
-        (if (outerClass == null) "" else "${outerClass}.${name}Value($value)"),
-        "${name}Value",
-        value,
-        ""
-    )
+    val values = model.values.map {
+        EnrichedEnumValue(
+            it.name,
+            simpleName,
+            it.value,
+            it.description ?: ""
+        )
+    }
 }
 
-class EnrichedEnumValue(val type: String, val name: String, val value: Long, override val description: String?): IDocumented
-
+class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override val description: String?) : IDocumented {
+    val name = valueName
+        .removePrefix(ownerName.convertToSnakeCase().uppercase())
+        .removePrefix("_")
+        .takeIf { it.isValidKotlinIdentifier() }
+        ?: valueName
+}
 
 fun List<Enum>.toEnriched(outerClass: String? = null) = map { EnrichedEnum(it, outerClass) }
 fun Enum.toEnriched(outerClass: String? = null) = EnrichedEnum(this, outerClass)

@@ -147,7 +147,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(198, scriptIndex)
+    createNativeObject(165, scriptIndex)
   }
 
   /**
@@ -242,30 +242,30 @@ public open class CompositorEffect : Resource() {
      * The callback is called before our opaque rendering pass, but after depth prepass (if
      * applicable).
      */
-    EFFECT_CALLBACK_TYPE_PRE_OPAQUE(0),
+    PRE_OPAQUE(0),
     /**
      * The callback is called after our opaque rendering pass, but before our sky is rendered.
      */
-    EFFECT_CALLBACK_TYPE_POST_OPAQUE(1),
+    POST_OPAQUE(1),
     /**
      * The callback is called after our sky is rendered, but before our back buffers are created
      * (and if enabled, before subsurface scattering and/or screen space reflections).
      */
-    EFFECT_CALLBACK_TYPE_POST_SKY(2),
+    POST_SKY(2),
     /**
      * The callback is called before our transparent rendering pass, but after our sky is rendered
      * and we've created our back buffers.
      */
-    EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
+    PRE_TRANSPARENT(3),
     /**
      * The callback is called after our transparent rendering pass, but before any built-in
      * post-processing effects and output to our render target.
      */
-    EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
+    POST_TRANSPARENT(4),
     /**
      * Represents the size of the [EffectCallbackType] enum.
      */
-    EFFECT_CALLBACK_TYPE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

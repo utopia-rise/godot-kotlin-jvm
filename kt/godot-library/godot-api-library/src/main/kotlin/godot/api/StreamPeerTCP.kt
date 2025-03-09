@@ -33,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(647, scriptIndex)
+    createNativeObject(641, scriptIndex)
   }
 
   /**
@@ -130,19 +130,19 @@ public open class StreamPeerTCP : StreamPeer() {
     /**
      * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
      */
-    STATUS_NONE(0),
+    NONE(0),
     /**
      * A status representing a [StreamPeerTCP] that is connecting to a host.
      */
-    STATUS_CONNECTING(1),
+    CONNECTING(1),
     /**
      * A status representing a [StreamPeerTCP] that is connected to a host.
      */
-    STATUS_CONNECTED(2),
+    CONNECTED(2),
     /**
      * A status representing a [StreamPeerTCP] in error state.
      */
-    STATUS_ERROR(3),
+    ERROR(3),
     ;
 
     public val id: Long

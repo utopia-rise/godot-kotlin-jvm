@@ -1412,7 +1412,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(468, scriptIndex)
+    createNativeObject(452, scriptIndex)
   }
 
   /**
@@ -2730,38 +2730,38 @@ public open class ParticleProcessMaterial : Material() {
     /**
      * All particles will be emitted from a single point.
      */
-    EMISSION_SHAPE_POINT(0),
+    POINT(0),
     /**
      * Particles will be emitted in the volume of a sphere.
      */
-    EMISSION_SHAPE_SPHERE(1),
+    SPHERE(1),
     /**
      * Particles will be emitted on the surface of a sphere.
      */
-    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    SPHERE_SURFACE(2),
     /**
      * Particles will be emitted in the volume of a box.
      */
-    EMISSION_SHAPE_BOX(3),
+    BOX(3),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the
      * [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    EMISSION_SHAPE_POINTS(4),
+    POINTS(4),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the
      * [emissionPointTexture]. Particle velocity and rotation will be set based on
      * [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    DIRECTED_POINTS(5),
     /**
      * Particles will be emitted in a ring or cylinder.
      */
-    EMISSION_SHAPE_RING(6),
+    RING(6),
     /**
      * Represents the size of the [EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long

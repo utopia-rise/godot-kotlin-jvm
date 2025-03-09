@@ -44,7 +44,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(64, scriptIndex)
+    createNativeObject(28, scriptIndex)
   }
 
   /**

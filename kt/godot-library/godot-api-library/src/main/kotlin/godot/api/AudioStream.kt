@@ -37,7 +37,7 @@ public open class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(115, scriptIndex)
+    createNativeObject(80, scriptIndex)
   }
 
   /**
@@ -104,14 +104,14 @@ public open class AudioStream : Resource() {
    * Override this method to return `true` if this stream has a loop.
    */
   public open fun _hasLoop(): Boolean {
-    throw NotImplementedError("_has_loop is not implemented for AudioStream")
+    throw NotImplementedError("_hasLoop is not implemented for AudioStream")
   }
 
   /**
    * Override this method to return the bar beats of this stream.
    */
   public open fun _getBarBeats(): Int {
-    throw NotImplementedError("_get_bar_beats is not implemented for AudioStream")
+    throw NotImplementedError("_getBarBeats is not implemented for AudioStream")
   }
 
   /**

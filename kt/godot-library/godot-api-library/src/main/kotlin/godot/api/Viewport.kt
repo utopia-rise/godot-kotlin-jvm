@@ -750,7 +750,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(724, scriptIndex)
+    createNativeObject(722, scriptIndex)
   }
 
   /**
@@ -1918,19 +1918,19 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Amount of objects in frame.
      */
-    RENDER_INFO_OBJECTS_IN_FRAME(0),
+    OBJECTS_IN_FRAME(0),
     /**
      * Amount of vertices in frame.
      */
-    RENDER_INFO_PRIMITIVES_IN_FRAME(1),
+    PRIMITIVES_IN_FRAME(1),
     /**
      * Amount of draw calls in frame.
      */
-    RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
+    DRAW_CALLS_IN_FRAME(2),
     /**
      * Represents the size of the [RenderInfo] enum.
      */
-    RENDER_INFO_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1949,20 +1949,20 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Visible render pass (excluding shadows).
      */
-    RENDER_INFO_TYPE_VISIBLE(0),
+    VISIBLE(0),
     /**
      * Shadow render pass. Objects will be rendered several times depending on the number of amounts
      * of lights with shadows and the number of directional shadow splits.
      */
-    RENDER_INFO_TYPE_SHADOW(1),
+    SHADOW(1),
     /**
      * Canvas item rendering. This includes all 2D rendering.
      */
-    RENDER_INFO_TYPE_CANVAS(2),
+    CANVAS(2),
     /**
      * Represents the size of the [RenderInfoType] enum.
      */
-    RENDER_INFO_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1981,128 +1981,128 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Objects are displayed normally.
      */
-    DEBUG_DRAW_DISABLED(0),
+    DISABLED(0),
     /**
      * Objects are displayed without light information.
      */
-    DEBUG_DRAW_UNSHADED(1),
+    UNSHADED(1),
     /**
      * Objects are displayed without textures and only with lighting information.
      */
-    DEBUG_DRAW_LIGHTING(2),
+    LIGHTING(2),
     /**
      * Objects are displayed semi-transparent with additive blending so you can see where they are
      * drawing over top of one another. A higher overdraw means you are wasting performance on drawing
      * pixels that are being hidden behind others.
      */
-    DEBUG_DRAW_OVERDRAW(3),
+    OVERDRAW(3),
     /**
      * Objects are displayed as wireframe models.
      * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any
      * meshes for wireframes to be visible when using the Compatibility renderer.
      */
-    DEBUG_DRAW_WIREFRAME(4),
+    WIREFRAME(4),
     /**
      * Objects are displayed without lighting information and their textures replaced by normal
      * mapping.
      */
-    DEBUG_DRAW_NORMAL_BUFFER(5),
+    NORMAL_BUFFER(5),
     /**
      * Objects are displayed with only the albedo value from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
+    VOXEL_GI_ALBEDO(6),
     /**
      * Objects are displayed with only the lighting value from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
+    VOXEL_GI_LIGHTING(7),
     /**
      * Objects are displayed with only the emission color from [VoxelGI]s.
      */
-    DEBUG_DRAW_VOXEL_GI_EMISSION(8),
+    VOXEL_GI_EMISSION(8),
     /**
      * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
      * upper left quadrant of the [Viewport].
      */
-    DEBUG_DRAW_SHADOW_ATLAS(9),
+    SHADOW_ATLAS(9),
     /**
      * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
      * quadrant of the [Viewport].
      */
-    DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    DIRECTIONAL_SHADOW_ATLAS(10),
     /**
      * Draws the scene luminance buffer (if available) in the upper left quadrant of the [Viewport].
      */
-    DEBUG_DRAW_SCENE_LUMINANCE(11),
+    SCENE_LUMINANCE(11),
     /**
      * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
-    DEBUG_DRAW_SSAO(12),
+    SSAO(12),
     /**
      * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
-    DEBUG_DRAW_SSIL(13),
+    SSIL(13),
     /**
      * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
      * can see where the splits are. In order, they will be colored red, green, blue, and yellow.
      */
-    DEBUG_DRAW_PSSM_SPLITS(14),
+    PSSM_SPLITS(14),
     /**
      * Draws the decal atlas used by [Decal]s and light projector textures in the upper left
      * quadrant of the [Viewport].
      */
-    DEBUG_DRAW_DECAL_ATLAS(15),
+    DECAL_ATLAS(15),
     /**
      * Draws the cascades used to render signed distance field global illumination (SDFGI).
      * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
      * not supported on the platform.
      */
-    DEBUG_DRAW_SDFGI(16),
+    SDFGI(16),
     /**
      * Draws the probes used for signed distance field global illumination (SDFGI).
      * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
      * not supported on the platform.
      */
-    DEBUG_DRAW_SDFGI_PROBES(17),
+    SDFGI_PROBES(17),
     /**
      * Draws the buffer used for global illumination (GI).
      */
-    DEBUG_DRAW_GI_BUFFER(18),
+    GI_BUFFER(18),
     /**
      * Draws all of the objects at their highest polycount, without low level of detail (LOD).
      */
-    DEBUG_DRAW_DISABLE_LOD(19),
+    DISABLE_LOD(19),
     /**
      * Draws the cluster used by [OmniLight3D] nodes to optimize light rendering.
      */
-    DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    CLUSTER_OMNI_LIGHTS(20),
     /**
      * Draws the cluster used by [SpotLight3D] nodes to optimize light rendering.
      */
-    DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    CLUSTER_SPOT_LIGHTS(21),
     /**
      * Draws the cluster used by [Decal] nodes to optimize decal rendering.
      */
-    DEBUG_DRAW_CLUSTER_DECALS(22),
+    CLUSTER_DECALS(22),
     /**
      * Draws the cluster used by [ReflectionProbe] nodes to optimize decal rendering.
      */
-    DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    CLUSTER_REFLECTION_PROBES(23),
     /**
      * Draws the buffer used for occlusion culling.
      */
-    DEBUG_DRAW_OCCLUDERS(24),
+    OCCLUDERS(24),
     /**
      * Draws vector lines over the viewport to indicate the movement of pixels between frames.
      */
-    DEBUG_DRAW_MOTION_VECTORS(25),
+    MOTION_VECTORS(25),
     /**
      * Draws the internal resolution buffer of the scene before post-processing is applied.
      */
-    DEBUG_DRAW_INTERNAL_BUFFER(26),
+    INTERNAL_BUFFER(26),
     ;
 
     public val id: Long
@@ -2122,12 +2122,12 @@ public open class Viewport internal constructor() : Node() {
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR(1),
+    LINEAR(1),
     /**
      * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -2137,7 +2137,7 @@ public open class Viewport internal constructor() : Node() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(2),
+    LINEAR_WITH_MIPMAPS(2),
     /**
      * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -2147,11 +2147,11 @@ public open class Viewport internal constructor() : Node() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    NEAREST_WITH_MIPMAPS(3),
     /**
      * Represents the size of the [DefaultCanvasItemTextureFilter] enum.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -2173,21 +2173,21 @@ public open class Viewport internal constructor() : Node() {
      * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
      * texture.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(0),
+    DISABLED(0),
     /**
      * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
      * the linear filtering modes, this can result in artifacts at the edges of a texture when the
      * sampler filters across the edges of the texture.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(1),
+    ENABLED(1),
     /**
      * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
+    MIRROR(2),
     /**
      * Represents the size of the [DefaultCanvasItemTextureRepeat] enum.
      */
-    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

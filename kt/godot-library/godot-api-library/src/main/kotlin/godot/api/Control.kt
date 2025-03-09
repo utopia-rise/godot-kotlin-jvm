@@ -50,21 +50,11 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-public infix fun Long.or(other: godot.api.Control.SizeFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: Control.SizeFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.Control.SizeFlags): Long = this.xor(other.flag)
+public infix fun Long.xor(other: Control.SizeFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.Control.SizeFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.Control.SizeFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.Control.SizeFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.Control.SizeFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.Control.SizeFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.Control.SizeFlags): Long = this.rem(other.flag)
+public infix fun Long.and(other: Control.SizeFlags): Long = this.and(other.flag)
 
 /**
  * Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its
@@ -207,7 +197,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorLeft: Float
     @JvmName("anchorLeftProperty")
-    get() = getAnchor(Side.SIDE_LEFT)
+    get() = getAnchor(Side.LEFT)
 
   /**
    * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
@@ -216,7 +206,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorTop: Float
     @JvmName("anchorTopProperty")
-    get() = getAnchor(Side.SIDE_TOP)
+    get() = getAnchor(Side.TOP)
 
   /**
    * Anchors the right edge of the node to the origin, the center or the end of its parent control.
@@ -225,7 +215,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorRight: Float
     @JvmName("anchorRightProperty")
-    get() = getAnchor(Side.SIDE_RIGHT)
+    get() = getAnchor(Side.RIGHT)
 
   /**
    * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
@@ -234,7 +224,7 @@ public open class Control : CanvasItem() {
    */
   public final inline val anchorBottom: Float
     @JvmName("anchorBottomProperty")
-    get() = getAnchor(Side.SIDE_BOTTOM)
+    get() = getAnchor(Side.BOTTOM)
 
   /**
    * Distance between the node's left edge and its parent control, based on [anchorLeft].
@@ -244,10 +234,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetLeft: Float
     @JvmName("offsetLeftProperty")
-    get() = getOffset(Side.SIDE_LEFT)
+    get() = getOffset(Side.LEFT)
     @JvmName("offsetLeftProperty")
     set(`value`) {
-      setOffset(Side.SIDE_LEFT, value)
+      setOffset(Side.LEFT, value)
     }
 
   /**
@@ -258,10 +248,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetTop: Float
     @JvmName("offsetTopProperty")
-    get() = getOffset(Side.SIDE_TOP)
+    get() = getOffset(Side.TOP)
     @JvmName("offsetTopProperty")
     set(`value`) {
-      setOffset(Side.SIDE_TOP, value)
+      setOffset(Side.TOP, value)
     }
 
   /**
@@ -272,10 +262,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetRight: Float
     @JvmName("offsetRightProperty")
-    get() = getOffset(Side.SIDE_RIGHT)
+    get() = getOffset(Side.RIGHT)
     @JvmName("offsetRightProperty")
     set(`value`) {
-      setOffset(Side.SIDE_RIGHT, value)
+      setOffset(Side.RIGHT, value)
     }
 
   /**
@@ -286,10 +276,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var offsetBottom: Float
     @JvmName("offsetBottomProperty")
-    get() = getOffset(Side.SIDE_BOTTOM)
+    get() = getOffset(Side.BOTTOM)
     @JvmName("offsetBottomProperty")
     set(`value`) {
-      setOffset(Side.SIDE_BOTTOM, value)
+      setOffset(Side.BOTTOM, value)
     }
 
   /**
@@ -539,10 +529,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborLeft: NodePath
     @JvmName("focusNeighborLeftProperty")
-    get() = getFocusNeighbor(Side.SIDE_LEFT)
+    get() = getFocusNeighbor(Side.LEFT)
     @JvmName("focusNeighborLeftProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_LEFT, value)
+      setFocusNeighbor(Side.LEFT, value)
     }
 
   /**
@@ -553,10 +543,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborTop: NodePath
     @JvmName("focusNeighborTopProperty")
-    get() = getFocusNeighbor(Side.SIDE_TOP)
+    get() = getFocusNeighbor(Side.TOP)
     @JvmName("focusNeighborTopProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_TOP, value)
+      setFocusNeighbor(Side.TOP, value)
     }
 
   /**
@@ -567,10 +557,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborRight: NodePath
     @JvmName("focusNeighborRightProperty")
-    get() = getFocusNeighbor(Side.SIDE_RIGHT)
+    get() = getFocusNeighbor(Side.RIGHT)
     @JvmName("focusNeighborRightProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_RIGHT, value)
+      setFocusNeighbor(Side.RIGHT, value)
     }
 
   /**
@@ -581,10 +571,10 @@ public open class Control : CanvasItem() {
    */
   public final inline var focusNeighborBottom: NodePath
     @JvmName("focusNeighborBottomProperty")
-    get() = getFocusNeighbor(Side.SIDE_BOTTOM)
+    get() = getFocusNeighbor(Side.BOTTOM)
     @JvmName("focusNeighborBottomProperty")
     set(`value`) {
-      setFocusNeighbor(Side.SIDE_BOTTOM, value)
+      setFocusNeighbor(Side.BOTTOM, value)
     }
 
   /**
@@ -722,7 +712,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(211, scriptIndex)
+    createNativeObject(178, scriptIndex)
   }
 
   /**
@@ -1462,7 +1452,7 @@ public open class Control : CanvasItem() {
   public final fun getHSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStretchRatio(ratio: Float): Unit {
@@ -1484,7 +1474,7 @@ public open class Control : CanvasItem() {
   public final fun getVSizeFlags(): SizeFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
-    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTheme(theme: Theme?): Unit {
@@ -2569,72 +2559,48 @@ public open class Control : CanvasItem() {
     }
   }
 
-  public sealed interface SizeFlags {
-    public val flag: Long
+  @JvmInline
+  public value class SizeFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: SizeFlags): SizeFlags = SizeFlags(flag.or(other.flag))
 
-    public infix fun or(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): SizeFlags = SizeFlags(flag.or(other))
 
-    public infix fun or(other: Long): SizeFlags = SizeFlagsValue(flag.or(other))
+    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): SizeFlags = SizeFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): SizeFlags = SizeFlagsValue(flag.xor(other))
+    public infix fun and(other: SizeFlags): SizeFlags = SizeFlags(flag.and(other.flag))
 
-    public infix fun and(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): SizeFlags = SizeFlags(flag.and(other))
 
-    public infix fun and(other: Long): SizeFlags = SizeFlagsValue(flag.and(other))
+    public fun unaryPlus(): SizeFlags = SizeFlags(flag.unaryPlus())
 
-    public operator fun plus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): SizeFlags = SizeFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): SizeFlags = SizeFlagsValue(flag.plus(other))
+    public fun inv(): SizeFlags = SizeFlags(flag.inv())
 
-    public operator fun minus(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): SizeFlags = SizeFlags(flag shl bits)
 
-    public operator fun minus(other: Long): SizeFlags = SizeFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): SizeFlags = SizeFlags(flag shr bits)
 
-    public operator fun times(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): SizeFlags = SizeFlagsValue(flag.times(other))
-
-    public operator fun div(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): SizeFlags = SizeFlagsValue(flag.div(other))
-
-    public operator fun rem(other: SizeFlags): SizeFlags = SizeFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): SizeFlags = SizeFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): SizeFlags = SizeFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): SizeFlags = SizeFlagsValue(flag.unaryMinus())
-
-    public fun inv(): SizeFlags = SizeFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): SizeFlags = SizeFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): SizeFlags = SizeFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): SizeFlags = SizeFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
 
     public companion object {
-      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlagsValue(0)
+      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
-      public val SIZE_FILL: SizeFlags = SizeFlagsValue(1)
+      public val SIZE_FILL: SizeFlags = SizeFlags(1)
 
-      public val SIZE_EXPAND: SizeFlags = SizeFlagsValue(2)
+      public val SIZE_EXPAND: SizeFlags = SizeFlags(2)
 
-      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlagsValue(3)
+      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlags(3)
 
-      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlagsValue(4)
+      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
-      public val SIZE_SHRINK_END: SizeFlags = SizeFlagsValue(8)
+      public val SIZE_SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }
-
-  @JvmInline
-  public value class SizeFlagsValue(
-    public override val flag: Long,
-  ) : SizeFlags
 
   public enum class MouseFilter(
     id: Long,
@@ -2645,7 +2611,7 @@ public open class Control : CanvasItem() {
      * mouse_exited] signals. These events are automatically marked as handled, and they will not
      * propagate further to other controls. This also results in blocking signals in other controls.
      */
-    MOUSE_FILTER_STOP(0),
+    STOP(0),
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
      * on through [_guiInput]. The control will also receive the [signal mouse_entered] and [signal
@@ -2656,7 +2622,7 @@ public open class Control : CanvasItem() {
      * will allow signals to fire in all controls it reaches. If no control handled it, the event will
      * be passed to [Node.ShortcutInput] for further processing.
      */
-    MOUSE_FILTER_PASS(1),
+    PASS(1),
     /**
      * The control will not receive any mouse movement input events nor mouse button input events
      * through [_guiInput]. The control will also not receive the [signal mouse_entered] nor [signal
@@ -2668,7 +2634,7 @@ public open class Control : CanvasItem() {
      * changing the [mouseFilter] to [MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be
      * emitted.
      */
-    MOUSE_FILTER_IGNORE(2),
+    IGNORE(2),
     ;
 
     public val id: Long
@@ -2688,17 +2654,17 @@ public open class Control : CanvasItem() {
      * The control will grow to the left or top to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_BEGIN(0),
+    BEGIN(0),
     /**
      * The control will grow to the right or bottom to make up if its minimum size is changed to be
      * greater than its current size on the respective axis.
      */
-    GROW_DIRECTION_END(1),
+    END(1),
     /**
      * The control will grow in both directions equally to make up if its minimum size is changed to
      * be greater than its current size.
      */
-    GROW_DIRECTION_BOTH(2),
+    BOTH(2),
     ;
 
     public val id: Long
@@ -2719,13 +2685,13 @@ public open class Control : CanvasItem() {
      * with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at once,
      * use [setAnchorsPreset].
      */
-    ANCHOR_BEGIN(0),
+    BEGIN(0),
     /**
      * Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use
      * it with one of the `anchor_*` member variables, like [anchorLeft]. To change all 4 anchors at
      * once, use [setAnchorsPreset].
      */
-    ANCHOR_END(1),
+    END(1),
     ;
 
     public val id: Long
@@ -2744,7 +2710,7 @@ public open class Control : CanvasItem() {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
      */
-    LAYOUT_DIRECTION_INHERITED(0),
+    INHERITED(0),
     /**
      * Automatic layout direction, determined from the current locale. Right-to-left layout
      * direction is automatically used for languages that require it such as Arabic and Hebrew, but
@@ -2756,15 +2722,15 @@ public open class Control : CanvasItem() {
      * always used regardless of the language. Right-to-left layout direction can also be forced using
      * [ProjectSettings.internationalization/rendering/forceRightToLeftLayoutDirection].
      */
-    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
+    APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
-    LAYOUT_DIRECTION_LTR(2),
+    LTR(2),
     /**
      * Right-to-left layout direction.
      */
-    LAYOUT_DIRECTION_RTL(3),
+    RTL(3),
     /**
      * Automatic layout direction, determined from the system locale. Right-to-left layout direction
      * is automatically used for languages that require it such as Arabic and Hebrew, but only if a
@@ -2773,12 +2739,12 @@ public open class Control : CanvasItem() {
      * [TextServerFallback] ([ProjectSettings.internationalization/rendering/textDriver]),
      * left-to-right layout direction is always used regardless of the language.
      */
-    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    SYSTEM_LOCALE(4),
     /**
      * Represents the size of the [LayoutDirection] enum.
      */
-    LAYOUT_DIRECTION_MAX(5),
-    LAYOUT_DIRECTION_LOCALE(1),
+    MAX(5),
+    LOCALE(1),
     ;
 
     public val id: Long
@@ -2797,19 +2763,19 @@ public open class Control : CanvasItem() {
     /**
      * Text writing direction is the same as layout direction.
      */
-    TEXT_DIRECTION_INHERITED(3),
+    INHERITED(3),
     /**
      * Automatic text writing direction, determined from the current locale and text content.
      */
-    TEXT_DIRECTION_AUTO(0),
+    AUTO(0),
     /**
      * Left-to-right text writing direction.
      */
-    TEXT_DIRECTION_LTR(1),
+    LTR(1),
     /**
      * Right-to-left text writing direction.
      */
-    TEXT_DIRECTION_RTL(2),
+    RTL(2),
     ;
 
     public val id: Long

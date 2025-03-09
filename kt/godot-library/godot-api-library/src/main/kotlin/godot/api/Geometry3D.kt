@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(11)
+    getSingleton(8)
   }
 
   /**
@@ -75,7 +75,7 @@ public object Geometry3D : Object() {
     radius: Float,
     height: Float,
     sides: Int,
-    axis: Vector3.Axis = Vector3.Axis.AXIS_Z,
+    axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.id)
     TransferContext.callMethod(ptr, MethodBindings.buildCylinderPlanesPtr, ARRAY)
@@ -96,7 +96,7 @@ public object Geometry3D : Object() {
     height: Float,
     sides: Int,
     lats: Int,
-    axis: Vector3.Axis = Vector3.Axis.AXIS_Z,
+    axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
     TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.id)
     TransferContext.callMethod(ptr, MethodBindings.buildCapsulePlanesPtr, ARRAY)

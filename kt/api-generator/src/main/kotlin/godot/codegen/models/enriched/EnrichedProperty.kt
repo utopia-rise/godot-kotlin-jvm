@@ -1,15 +1,13 @@
 package godot.codegen.models.enriched
 
 import godot.codegen.extensions.isObjectSubClass
-import godot.codegen.models.Argument
 import godot.codegen.models.Property
-import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.NullableTrait
 import godot.codegen.workarounds.sanitizeApiType
-import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
+import godot.tools.common.constants.GodotTypes
 
 class EnrichedProperty(model: Property) : CastableTrait, NullableTrait, IDocumented {
     val name = model.name.convertToCamelCase()

@@ -217,7 +217,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(243, scriptIndex)
+    createNativeObject(213, scriptIndex)
   }
 
   /**
@@ -505,23 +505,23 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog allows selecting one, and only one file.
      */
-    FILE_MODE_OPEN_FILE(0),
+    OPEN_FILE(0),
     /**
      * The dialog allows selecting multiple files.
      */
-    FILE_MODE_OPEN_FILES(1),
+    OPEN_FILES(1),
     /**
      * The dialog only allows selecting a directory, disallowing the selection of any file.
      */
-    FILE_MODE_OPEN_DIR(2),
+    OPEN_DIR(2),
     /**
      * The dialog allows selecting one file or directory.
      */
-    FILE_MODE_OPEN_ANY(3),
+    OPEN_ANY(3),
     /**
      * The dialog will warn when a file exists.
      */
-    FILE_MODE_SAVE_FILE(4),
+    SAVE_FILE(4),
     ;
 
     public val id: Long
@@ -540,15 +540,15 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
      */
-    ACCESS_RESOURCES(0),
+    RESOURCES(0),
     /**
      * The dialog only allows accessing files under user data path (`user://`).
      */
-    ACCESS_USERDATA(1),
+    USERDATA(1),
     /**
      * The dialog allows accessing files on the whole file system.
      */
-    ACCESS_FILESYSTEM(2),
+    FILESYSTEM(2),
     ;
 
     public val id: Long

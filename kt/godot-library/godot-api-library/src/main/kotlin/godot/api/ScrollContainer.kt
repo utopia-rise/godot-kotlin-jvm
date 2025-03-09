@@ -169,7 +169,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(586, scriptIndex)
+    createNativeObject(580, scriptIndex)
   }
 
   public final fun setHScroll(`value`: Int): Unit {
@@ -316,26 +316,26 @@ public open class ScrollContainer : Container() {
     /**
      * Scrolling disabled, scrollbar will be invisible.
      */
-    SCROLL_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is
      * bigger than the container.
      */
-    SCROLL_MODE_AUTO(1),
+    AUTO(1),
     /**
      * Scrolling enabled, scrollbar will be always visible.
      */
-    SCROLL_MODE_SHOW_ALWAYS(2),
+    SHOW_ALWAYS(2),
     /**
      * Scrolling enabled, scrollbar will be hidden.
      */
-    SCROLL_MODE_SHOW_NEVER(3),
+    SHOW_NEVER(3),
     /**
      * Combines [SCROLL_MODE_AUTO] and [SCROLL_MODE_SHOW_ALWAYS]. The scrollbar is only visible if
      * necessary, but the content size is adjusted as if it was always visible. It's useful for
      * ensuring that content size stays the same regardless if the scrollbar is visible.
      */
-    SCROLL_MODE_RESERVE(4),
+    RESERVE(4),
     ;
 
     public val id: Long

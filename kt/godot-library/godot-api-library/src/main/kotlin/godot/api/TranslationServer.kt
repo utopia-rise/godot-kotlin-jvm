@@ -41,7 +41,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object TranslationServer : Object() {
   /**
-   * If `true`, enables the use of pseudolocalization. See
+   * If `true`, enables the use of pseudolocalization on the main translation domain. See
    * [ProjectSettings.internationalization/pseudolocalization/usePseudolocalization] for details.
    */
   @JvmStatic
@@ -54,7 +54,7 @@ public object TranslationServer : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(16)
+    getSingleton(33)
   }
 
   /**

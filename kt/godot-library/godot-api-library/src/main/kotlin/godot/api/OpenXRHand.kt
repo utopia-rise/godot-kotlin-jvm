@@ -91,7 +91,7 @@ public open class OpenXRHand : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(440, scriptIndex)
+    createNativeObject(424, scriptIndex)
   }
 
   public final fun setHand(hand: Hands): Unit {
@@ -182,15 +182,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * When player grips, hand skeleton will form a full fist.
      */
-    MOTION_RANGE_UNOBSTRUCTED(0),
+    UNOBSTRUCTED(0),
     /**
      * When player grips, hand skeleton conforms to the controller the player is holding.
      */
-    MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    CONFORM_TO_CONTROLLER(1),
     /**
      * Maximum supported motion ranges.
      */
-    MOTION_RANGE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -209,15 +209,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * An OpenXR compliant skeleton.
      */
-    SKELETON_RIG_OPENXR(0),
+    OPENXR(0),
     /**
      * A [SkeletonProfileHumanoid] compliant skeleton.
      */
-    SKELETON_RIG_HUMANOID(1),
+    HUMANOID(1),
     /**
      * Maximum supported hands.
      */
-    SKELETON_RIG_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -237,15 +237,15 @@ public open class OpenXRHand : Node3D() {
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    BONE_UPDATE_FULL(0),
+    FULL(0),
     /**
      * The skeletons bones are only rotated to align with the tracked bones, preserving bone length.
      */
-    BONE_UPDATE_ROTATION_ONLY(1),
+    ROTATION_ONLY(1),
     /**
      * Maximum supported bone update mode.
      */
-    BONE_UPDATE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

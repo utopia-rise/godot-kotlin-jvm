@@ -76,26 +76,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-public infix fun Long.or(other: godot.api.RenderingServer.ArrayFormat): Long = this.or(other.flag)
+public infix fun Long.or(other: RenderingServer.ArrayFormat): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
+public infix fun Long.xor(other: RenderingServer.ArrayFormat): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RenderingServer.ArrayFormat): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: RenderingServer.ArrayFormat): Long = this.and(other.flag)
 
 /**
  * The rendering server is the API backend for everything visible. The whole scene system mounts on
@@ -131,6 +116,32 @@ public operator fun Long.rem(other: godot.api.RenderingServer.ArrayFormat): Long
  */
 @GodotBaseType
 public object RenderingServer : Object() {
+  /**
+   * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
+   */
+  @JvmStatic
+  public val framePreDraw: Signal0 by Signal0
+
+  /**
+   * Emitted at the end of the frame, after the RenderingServer has finished updating all the
+   * Viewports.
+   */
+  @JvmStatic
+  public val framePostDraw: Signal0 by Signal0
+
+  /**
+   * If `false`, disables rendering completely, but the engine logic is still being processed. You
+   * can call [forceDraw] to draw a frame even with rendering disabled.
+   */
+  @JvmStatic
+  public final inline var renderLoopEnabled: Boolean
+    @JvmName("renderLoopEnabledProperty")
+    get() = isRenderLoopEnabled()
+    @JvmName("renderLoopEnabledProperty")
+    set(`value`) {
+      setRenderLoopEnabled(value)
+    }
+
   /**
    * Marks an error that shows that the index array is empty.
    */
@@ -193,32 +204,6 @@ public object RenderingServer : Object() {
   public final const val PARTICLES_EMIT_FLAG_COLOR: Long = 8
 
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
-
-  /**
-   * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
-   */
-  @JvmStatic
-  public val framePreDraw: Signal0 by Signal0
-
-  /**
-   * Emitted at the end of the frame, after the RenderingServer has finished updating all the
-   * Viewports.
-   */
-  @JvmStatic
-  public val framePostDraw: Signal0 by Signal0
-
-  /**
-   * If `false`, disables rendering completely, but the engine logic is still being processed. You
-   * can call [forceDraw] to draw a frame even with rendering disabled.
-   */
-  @JvmStatic
-  public final inline var renderLoopEnabled: Boolean
-    @JvmName("renderLoopEnabledProperty")
-    get() = isRenderLoopEnabled()
-    @JvmName("renderLoopEnabledProperty")
-    set(`value`) {
-      setRenderLoopEnabled(value)
-    }
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(26)
@@ -6455,7 +6440,7 @@ public object RenderingServer : Object() {
     /**
      * Layered texture.
      */
-    TEXTURE_TYPE_LAYERED(1),
+    LAYERED(1),
     /**
      * 3D texture.
      */
@@ -6707,131 +6692,102 @@ public object RenderingServer : Object() {
     }
   }
 
-  public sealed interface ArrayFormat {
-    public val flag: Long
+  @JvmInline
+  public value class ArrayFormat(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.or(other.flag))
 
-    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.or(other.flag))
+    public infix fun or(other: Long): ArrayFormat = ArrayFormat(flag.or(other))
 
-    public infix fun or(other: Long): ArrayFormat = ArrayFormatValue(flag.or(other))
+    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.xor(other.flag))
 
-    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): ArrayFormat = ArrayFormat(flag.xor(other))
 
-    public infix fun xor(other: Long): ArrayFormat = ArrayFormatValue(flag.xor(other))
+    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.and(other.flag))
 
-    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.and(other.flag))
+    public infix fun and(other: Long): ArrayFormat = ArrayFormat(flag.and(other))
 
-    public infix fun and(other: Long): ArrayFormat = ArrayFormatValue(flag.and(other))
+    public fun unaryPlus(): ArrayFormat = ArrayFormat(flag.unaryPlus())
 
-    public operator fun plus(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.plus(other.flag))
+    public fun unaryMinus(): ArrayFormat = ArrayFormat(flag.unaryMinus())
 
-    public operator fun plus(other: Long): ArrayFormat = ArrayFormatValue(flag.plus(other))
+    public fun inv(): ArrayFormat = ArrayFormat(flag.inv())
 
-    public operator fun minus(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): ArrayFormat = ArrayFormat(flag shl bits)
 
-    public operator fun minus(other: Long): ArrayFormat = ArrayFormatValue(flag.minus(other))
+    public infix fun shr(bits: Int): ArrayFormat = ArrayFormat(flag shr bits)
 
-    public operator fun times(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): ArrayFormat = ArrayFormatValue(flag.times(other))
-
-    public operator fun div(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): ArrayFormat = ArrayFormatValue(flag.div(other))
-
-    public operator fun rem(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): ArrayFormat = ArrayFormatValue(flag.rem(other))
-
-    public fun unaryPlus(): ArrayFormat = ArrayFormatValue(flag.unaryPlus())
-
-    public fun unaryMinus(): ArrayFormat = ArrayFormatValue(flag.unaryMinus())
-
-    public fun inv(): ArrayFormat = ArrayFormatValue(flag.inv())
-
-    public infix fun shl(bits: Int): ArrayFormat = ArrayFormatValue(flag shl bits)
-
-    public infix fun shr(bits: Int): ArrayFormat = ArrayFormatValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormatValue(flag ushr bits)
+    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
 
     public companion object {
-      public val ARRAY_FORMAT_VERTEX: ArrayFormat = ArrayFormatValue(1)
+      public val VERTEX: ArrayFormat = ArrayFormat(1)
 
-      public val ARRAY_FORMAT_NORMAL: ArrayFormat = ArrayFormatValue(2)
+      public val NORMAL: ArrayFormat = ArrayFormat(2)
 
-      public val ARRAY_FORMAT_TANGENT: ArrayFormat = ArrayFormatValue(4)
+      public val TANGENT: ArrayFormat = ArrayFormat(4)
 
-      public val ARRAY_FORMAT_COLOR: ArrayFormat = ArrayFormatValue(8)
+      public val COLOR: ArrayFormat = ArrayFormat(8)
 
-      public val ARRAY_FORMAT_TEX_UV: ArrayFormat = ArrayFormatValue(16)
+      public val TEX_UV: ArrayFormat = ArrayFormat(16)
 
-      public val ARRAY_FORMAT_TEX_UV2: ArrayFormat = ArrayFormatValue(32)
+      public val TEX_UV2: ArrayFormat = ArrayFormat(32)
 
-      public val ARRAY_FORMAT_CUSTOM0: ArrayFormat = ArrayFormatValue(64)
+      public val CUSTOM0: ArrayFormat = ArrayFormat(64)
 
-      public val ARRAY_FORMAT_CUSTOM1: ArrayFormat = ArrayFormatValue(128)
+      public val CUSTOM1: ArrayFormat = ArrayFormat(128)
 
-      public val ARRAY_FORMAT_CUSTOM2: ArrayFormat = ArrayFormatValue(256)
+      public val CUSTOM2: ArrayFormat = ArrayFormat(256)
 
-      public val ARRAY_FORMAT_CUSTOM3: ArrayFormat = ArrayFormatValue(512)
+      public val CUSTOM3: ArrayFormat = ArrayFormat(512)
 
-      public val ARRAY_FORMAT_BONES: ArrayFormat = ArrayFormatValue(1024)
+      public val BONES: ArrayFormat = ArrayFormat(1024)
 
-      public val ARRAY_FORMAT_WEIGHTS: ArrayFormat = ArrayFormatValue(2048)
+      public val WEIGHTS: ArrayFormat = ArrayFormat(2048)
 
-      public val ARRAY_FORMAT_INDEX: ArrayFormat = ArrayFormatValue(4096)
+      public val INDEX: ArrayFormat = ArrayFormat(4096)
 
-      public val ARRAY_FORMAT_BLEND_SHAPE_MASK: ArrayFormat = ArrayFormatValue(7)
+      public val BLEND_SHAPE_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_FORMAT_CUSTOM_BASE: ArrayFormat = ArrayFormatValue(13)
+      public val CUSTOM_BASE: ArrayFormat = ArrayFormat(13)
 
-      public val ARRAY_FORMAT_CUSTOM_BITS: ArrayFormat = ArrayFormatValue(3)
+      public val CUSTOM_BITS: ArrayFormat = ArrayFormat(3)
 
-      public val ARRAY_FORMAT_CUSTOM0_SHIFT: ArrayFormat = ArrayFormatValue(13)
+      public val CUSTOM0_SHIFT: ArrayFormat = ArrayFormat(13)
 
-      public val ARRAY_FORMAT_CUSTOM1_SHIFT: ArrayFormat = ArrayFormatValue(16)
+      public val CUSTOM1_SHIFT: ArrayFormat = ArrayFormat(16)
 
-      public val ARRAY_FORMAT_CUSTOM2_SHIFT: ArrayFormat = ArrayFormatValue(19)
+      public val CUSTOM2_SHIFT: ArrayFormat = ArrayFormat(19)
 
-      public val ARRAY_FORMAT_CUSTOM3_SHIFT: ArrayFormat = ArrayFormatValue(22)
+      public val CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
-      public val ARRAY_FORMAT_CUSTOM_MASK: ArrayFormat = ArrayFormatValue(7)
+      public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormatValue(25)
+      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
-      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormatValue(33554432)
+      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
-      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormatValue(67108864)
+      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
-      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
+      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
-      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
+      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
-      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormatValue(536870912)
+      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormatValue(35)
+      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormatValue(35)
+      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormatValue(0)
+      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormat(0)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormatValue(34359738368)
+      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormatValue(34359738368)
+      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormatValue(255)
+      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormat(255)
     }
   }
-
-  @JvmInline
-  public value class ArrayFormatValue(
-    public override val flag: Long,
-  ) : ArrayFormat
 
   public enum class PrimitiveType(
     id: Long,
@@ -6879,11 +6835,11 @@ public object RenderingServer : Object() {
     /**
      * Blend shapes are normalized.
      */
-    BLEND_SHAPE_MODE_NORMALIZED(0),
+    NORMALIZED(0),
     /**
      * Blend shapes are relative to base weight.
      */
-    BLEND_SHAPE_MODE_RELATIVE(1),
+    RELATIVE(1),
     ;
 
     public val id: Long
@@ -6951,25 +6907,25 @@ public object RenderingServer : Object() {
      * are used for rendering, which means light projectors at a distance will look sharp but grainy.
      * This has roughly the same performance cost as using mipmaps.
      */
-    LIGHT_PROJECTOR_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * Linear filter for light projectors (use for non-pixel art light projectors). No mipmaps are
      * used for rendering, which means light projectors at a distance will look smooth but blurry. This
      * has roughly the same performance cost as using mipmaps.
      */
-    LIGHT_PROJECTOR_FILTER_LINEAR(1),
+    LINEAR(1),
     /**
      * Nearest-neighbor filter for light projectors (use for pixel art light projectors). Isotropic
      * mipmaps are used for rendering, which means light projectors at a distance will look smooth but
      * blurry. This has roughly the same performance cost as not using mipmaps.
      */
-    LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS(2),
+    NEAREST_MIPMAPS(2),
     /**
      * Linear filter for light projectors (use for non-pixel art light projectors). Isotropic
      * mipmaps are used for rendering, which means light projectors at a distance will look smooth but
      * blurry. This has roughly the same performance cost as not using mipmaps.
      */
-    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS(3),
+    LINEAR_MIPMAPS(3),
     /**
      * Nearest-neighbor filter for light projectors (use for pixel art light projectors).
      * Anisotropic mipmaps are used for rendering, which means light projectors at a distance will look
@@ -6977,7 +6933,7 @@ public object RenderingServer : Object() {
      * mipmaps, but is slower. The level of anisotropic filtering is defined by
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    LIGHT_PROJECTOR_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
+    NEAREST_MIPMAPS_ANISOTROPIC(4),
     /**
      * Linear filter for light projectors (use for non-pixel art light projectors). Anisotropic
      * mipmaps are used for rendering, which means light projectors at a distance will look smooth and
@@ -6985,7 +6941,7 @@ public object RenderingServer : Object() {
      * slower. The level of anisotropic filtering is defined by
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    LIGHT_PROJECTOR_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
+    LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
     public val id: Long
@@ -7031,73 +6987,73 @@ public object RenderingServer : Object() {
     /**
      * The light's energy multiplier.
      */
-    LIGHT_PARAM_ENERGY(0),
+    ENERGY(0),
     /**
      * The light's indirect energy multiplier (final indirect energy is [LIGHT_PARAM_ENERGY] *
      * [LIGHT_PARAM_INDIRECT_ENERGY]).
      */
-    LIGHT_PARAM_INDIRECT_ENERGY(1),
+    INDIRECT_ENERGY(1),
     /**
      * The light's volumetric fog energy multiplier (final volumetric fog energy is
      * [LIGHT_PARAM_ENERGY] * [LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY]).
      */
-    LIGHT_PARAM_VOLUMETRIC_FOG_ENERGY(2),
+    VOLUMETRIC_FOG_ENERGY(2),
     /**
      * The light's influence on specularity.
      */
-    LIGHT_PARAM_SPECULAR(3),
+    SPECULAR(3),
     /**
      * The light's range.
      */
-    LIGHT_PARAM_RANGE(4),
+    RANGE(4),
     /**
      * The size of the light when using spot light or omni light. The angular size of the light when
      * using directional light.
      */
-    LIGHT_PARAM_SIZE(5),
+    SIZE(5),
     /**
      * The light's attenuation.
      */
-    LIGHT_PARAM_ATTENUATION(6),
+    ATTENUATION(6),
     /**
      * The spotlight's angle.
      */
-    LIGHT_PARAM_SPOT_ANGLE(7),
+    SPOT_ANGLE(7),
     /**
      * The spotlight's attenuation.
      */
-    LIGHT_PARAM_SPOT_ATTENUATION(8),
+    SPOT_ATTENUATION(8),
     /**
      * The maximum distance for shadow splits. Increasing this value will make directional shadows
      * visible from further away, at the cost of lower overall shadow detail and performance (since
      * more objects need to be included in the directional shadow rendering).
      */
-    LIGHT_PARAM_SHADOW_MAX_DISTANCE(9),
+    SHADOW_MAX_DISTANCE(9),
     /**
      * Proportion of shadow atlas occupied by the first split.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET(10),
+    SHADOW_SPLIT_1_OFFSET(10),
     /**
      * Proportion of shadow atlas occupied by the second split.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET(11),
+    SHADOW_SPLIT_2_OFFSET(11),
     /**
      * Proportion of shadow atlas occupied by the third split. The fourth split occupies the rest.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET(12),
+    SHADOW_SPLIT_3_OFFSET(12),
     /**
      * Proportion of shadow max distance where the shadow will start to fade out.
      */
-    LIGHT_PARAM_SHADOW_FADE_START(13),
+    SHADOW_FADE_START(13),
     /**
      * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing
      * artifacts.
      */
-    LIGHT_PARAM_SHADOW_NORMAL_BIAS(14),
+    SHADOW_NORMAL_BIAS(14),
     /**
      * Bias the shadow lookup to fix self-shadowing artifacts.
      */
-    LIGHT_PARAM_SHADOW_BIAS(15),
+    SHADOW_BIAS(15),
     /**
      * Sets the size of the directional shadow pancake. The pancake offsets the start of the
      * shadow's camera frustum to provide a higher effective depth resolution for the shadow. However,
@@ -7105,29 +7061,29 @@ public object RenderingServer : Object() {
      * edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the
      * pancaking effect.
      */
-    LIGHT_PARAM_SHADOW_PANCAKE_SIZE(16),
+    SHADOW_PANCAKE_SIZE(16),
     /**
      * The light's shadow opacity. Values lower than `1.0` make the light appear through shadows.
      * This can be used to fake global illumination at a low performance cost.
      */
-    LIGHT_PARAM_SHADOW_OPACITY(17),
+    SHADOW_OPACITY(17),
     /**
      * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolution shadow
      * maps. A high value can make shadows appear grainy and can cause other unwanted artifacts. Try to
      * keep as near default as possible.
      */
-    LIGHT_PARAM_SHADOW_BLUR(18),
-    LIGHT_PARAM_TRANSMITTANCE_BIAS(19),
+    SHADOW_BLUR(18),
+    TRANSMITTANCE_BIAS(19),
     /**
      * Constant representing the intensity of the light, measured in Lumens when dealing with a
      * [SpotLight3D] or [OmniLight3D], or measured in Lux with a [DirectionalLight3D]. Only used when
      * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
      */
-    LIGHT_PARAM_INTENSITY(20),
+    INTENSITY(20),
     /**
      * Represents the size of the [LightParam] enum.
      */
-    LIGHT_PARAM_MAX(21),
+    MAX(21),
     ;
 
     public val id: Long
@@ -7234,15 +7190,15 @@ public object RenderingServer : Object() {
     /**
      * Use DirectionalLight3D in both sky rendering and scene lighting.
      */
-    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_AND_SKY(0),
+    LIGHT_AND_SKY(0),
     /**
      * Only use DirectionalLight3D in scene lighting.
      */
-    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_ONLY(1),
+    LIGHT_ONLY(1),
     /**
      * Only use DirectionalLight3D in sky rendering.
      */
-    LIGHT_DIRECTIONAL_SKY_MODE_SKY_ONLY(2),
+    SKY_ONLY(2),
     ;
 
     public val id: Long
@@ -7267,22 +7223,22 @@ public object RenderingServer : Object() {
      * case, [Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred,
      * instead the blur amount is treated as a maximum radius for the penumbra.
      */
-    SHADOW_QUALITY_HARD(0),
+    HARD(0),
     /**
      * Very low shadow filtering quality (faster). When using this quality setting,
      * [Light3D.shadowBlur] is automatically multiplied by 0.75× to avoid introducing too much noise.
      * This division only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance]
      * is `0.0`).
      */
-    SHADOW_QUALITY_SOFT_VERY_LOW(1),
+    SOFT_VERY_LOW(1),
     /**
      * Low shadow filtering quality (fast).
      */
-    SHADOW_QUALITY_SOFT_LOW(2),
+    SOFT_LOW(2),
     /**
      * Medium low shadow filtering quality (average).
      */
-    SHADOW_QUALITY_SOFT_MEDIUM(3),
+    SOFT_MEDIUM(3),
     /**
      * High low shadow filtering quality (slow). When using this quality setting,
      * [Light3D.shadowBlur] is automatically multiplied by 1.5× to better make use of the high sample
@@ -7290,7 +7246,7 @@ public object RenderingServer : Object() {
      * multiplier only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance] is
      * `0.0`).
      */
-    SHADOW_QUALITY_SOFT_HIGH(4),
+    SOFT_HIGH(4),
     /**
      * Highest low shadow filtering quality (slowest). When using this quality setting,
      * [Light3D.shadowBlur] is automatically multiplied by 2× to better make use of the high sample
@@ -7298,11 +7254,11 @@ public object RenderingServer : Object() {
      * multiplier only applies to lights whose [Light3D.lightSize] or [Light3D.lightAngularDistance] is
      * `0.0`).
      */
-    SHADOW_QUALITY_SOFT_ULTRA(5),
+    SOFT_ULTRA(5),
     /**
      * Represents the size of the [ShadowQuality] enum.
      */
-    SHADOW_QUALITY_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -7375,23 +7331,23 @@ public object RenderingServer : Object() {
     /**
      * Albedo texture slot in a decal ([Decal.textureAlbedo]).
      */
-    DECAL_TEXTURE_ALBEDO(0),
+    ALBEDO(0),
     /**
      * Normal map texture slot in a decal ([Decal.textureNormal]).
      */
-    DECAL_TEXTURE_NORMAL(1),
+    NORMAL(1),
     /**
      * Occlusion/Roughness/Metallic texture slot in a decal ([Decal.textureOrm]).
      */
-    DECAL_TEXTURE_ORM(2),
+    ORM(2),
     /**
      * Emission texture slot in a decal ([Decal.textureEmission]).
      */
-    DECAL_TEXTURE_EMISSION(3),
+    EMISSION(3),
     /**
      * Represents the size of the [DecalTexture] enum.
      */
-    DECAL_TEXTURE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -7412,25 +7368,25 @@ public object RenderingServer : Object() {
      * rendering, which means decals at a distance will look sharp but grainy. This has roughly the
      * same performance cost as using mipmaps.
      */
-    DECAL_FILTER_NEAREST(0),
+    NEAREST(0),
     /**
      * Linear filter for decals (use for non-pixel art decals). No mipmaps are used for rendering,
      * which means decals at a distance will look smooth but blurry. This has roughly the same
      * performance cost as using mipmaps.
      */
-    DECAL_FILTER_LINEAR(1),
+    LINEAR(1),
     /**
      * Nearest-neighbor filter for decals (use for pixel art decals). Isotropic mipmaps are used for
      * rendering, which means decals at a distance will look smooth but blurry. This has roughly the
      * same performance cost as not using mipmaps.
      */
-    DECAL_FILTER_NEAREST_MIPMAPS(2),
+    NEAREST_MIPMAPS(2),
     /**
      * Linear filter for decals (use for non-pixel art decals). Isotropic mipmaps are used for
      * rendering, which means decals at a distance will look smooth but blurry. This has roughly the
      * same performance cost as not using mipmaps.
      */
-    DECAL_FILTER_LINEAR_MIPMAPS(3),
+    LINEAR_MIPMAPS(3),
     /**
      * Nearest-neighbor filter for decals (use for pixel art decals). Anisotropic mipmaps are used
      * for rendering, which means decals at a distance will look smooth and sharp when viewed from
@@ -7438,7 +7394,7 @@ public object RenderingServer : Object() {
      * anisotropic filtering is defined by
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    DECAL_FILTER_NEAREST_MIPMAPS_ANISOTROPIC(4),
+    NEAREST_MIPMAPS_ANISOTROPIC(4),
     /**
      * Linear filter for decals (use for non-pixel art decals). Anisotropic mipmaps are used for
      * rendering, which means decals at a distance will look smooth and sharp when viewed from oblique
@@ -7446,7 +7402,7 @@ public object RenderingServer : Object() {
      * filtering is defined by
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
      */
-    DECAL_FILTER_LINEAR_MIPMAPS_ANISOTROPIC(5),
+    LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
     public val id: Long
@@ -7508,10 +7464,10 @@ public object RenderingServer : Object() {
   public enum class ParticlesTransformAlign(
     id: Long,
   ) {
-    PARTICLES_TRANSFORM_ALIGN_DISABLED(0),
-    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD(1),
-    PARTICLES_TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
-    PARTICLES_TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
+    DISABLED(0),
+    Z_BILLBOARD(1),
+    Y_TO_VELOCITY(2),
+    Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
     public val id: Long
@@ -7530,21 +7486,21 @@ public object RenderingServer : Object() {
     /**
      * Draw particles in the order that they appear in the particles array.
      */
-    PARTICLES_DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Sort particles based on their lifetime. In other words, the particle with the highest
      * lifetime is drawn at the front.
      */
-    PARTICLES_DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Sort particles based on the inverse of their lifetime. In other words, the particle with the
      * lowest lifetime is drawn at the front.
      */
-    PARTICLES_DRAW_ORDER_REVERSE_LIFETIME(2),
+    REVERSE_LIFETIME(2),
     /**
      * Sort particles based on their distance to the camera.
      */
-    PARTICLES_DRAW_ORDER_VIEW_DEPTH(3),
+    VIEW_DEPTH(3),
     ;
 
     public val id: Long
@@ -7560,13 +7516,13 @@ public object RenderingServer : Object() {
   public enum class ParticlesCollisionType(
     id: Long,
   ) {
-    PARTICLES_COLLISION_TYPE_SPHERE_ATTRACT(0),
-    PARTICLES_COLLISION_TYPE_BOX_ATTRACT(1),
-    PARTICLES_COLLISION_TYPE_VECTOR_FIELD_ATTRACT(2),
-    PARTICLES_COLLISION_TYPE_SPHERE_COLLIDE(3),
-    PARTICLES_COLLISION_TYPE_BOX_COLLIDE(4),
-    PARTICLES_COLLISION_TYPE_SDF_COLLIDE(5),
-    PARTICLES_COLLISION_TYPE_HEIGHTFIELD_COLLIDE(6),
+    SPHERE_ATTRACT(0),
+    BOX_ATTRACT(1),
+    VECTOR_FIELD_ATTRACT(2),
+    SPHERE_COLLIDE(3),
+    BOX_COLLIDE(4),
+    SDF_COLLIDE(5),
+    HEIGHTFIELD_COLLIDE(6),
     ;
 
     public val id: Long
@@ -7591,7 +7547,7 @@ public object RenderingServer : Object() {
     /**
      * Represents the size of the [ParticlesCollisionHeightfieldResolution] enum.
      */
-    PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -7611,32 +7567,32 @@ public object RenderingServer : Object() {
     /**
      * [FogVolume] will be shaped like an ellipsoid (stretched sphere).
      */
-    FOG_VOLUME_SHAPE_ELLIPSOID(0),
+    ELLIPSOID(0),
     /**
      * [FogVolume] will be shaped like a cone pointing upwards (in local coordinates). The cone's
      * angle is set automatically to fill the size. The cone will be adjusted to fit within the size.
      * Rotate the [FogVolume] node to reorient the cone. Non-uniform scaling via size is not supported
      * (scale the [FogVolume] node instead).
      */
-    FOG_VOLUME_SHAPE_CONE(1),
+    CONE(1),
     /**
      * [FogVolume] will be shaped like an upright cylinder (in local coordinates). Rotate the
      * [FogVolume] node to reorient the cylinder. The cylinder will be adjusted to fit within the size.
      * Non-uniform scaling via size is not supported (scale the [FogVolume] node instead).
      */
-    FOG_VOLUME_SHAPE_CYLINDER(2),
+    CYLINDER(2),
     /**
      * [FogVolume] will be shaped like a box.
      */
-    FOG_VOLUME_SHAPE_BOX(3),
+    BOX(3),
     /**
      * [FogVolume] will have no shape, will cover the whole world and will not be culled.
      */
-    FOG_VOLUME_SHAPE_WORLD(4),
+    WORLD(4),
     /**
      * Represents the size of the [FogVolumeShape] enum.
      */
-    FOG_VOLUME_SHAPE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -8019,19 +7975,19 @@ public object RenderingServer : Object() {
     /**
      * Number of objects drawn in a single frame.
      */
-    VIEWPORT_RENDER_INFO_OBJECTS_IN_FRAME(0),
+    OBJECTS_IN_FRAME(0),
     /**
      * Number of points, lines, or triangles drawn in a single frame.
      */
-    VIEWPORT_RENDER_INFO_PRIMITIVES_IN_FRAME(1),
+    PRIMITIVES_IN_FRAME(1),
     /**
      * Number of draw calls during this frame.
      */
-    VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
+    DRAW_CALLS_IN_FRAME(2),
     /**
      * Represents the size of the [ViewportRenderInfo] enum.
      */
-    VIEWPORT_RENDER_INFO_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -8050,20 +8006,20 @@ public object RenderingServer : Object() {
     /**
      * Visible render pass (excluding shadows).
      */
-    VIEWPORT_RENDER_INFO_TYPE_VISIBLE(0),
+    VISIBLE(0),
     /**
      * Shadow render pass. Objects will be rendered several times depending on the number of amounts
      * of lights with shadows and the number of directional shadow splits.
      */
-    VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
+    SHADOW(1),
     /**
      * Canvas item rendering. This includes all 2D rendering.
      */
-    VIEWPORT_RENDER_INFO_TYPE_CANVAS(2),
+    CANVAS(2),
     /**
      * Represents the size of the [ViewportRenderInfoType] enum.
      */
-    VIEWPORT_RENDER_INFO_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -8082,15 +8038,15 @@ public object RenderingServer : Object() {
     /**
      * Debug draw is disabled. Default setting.
      */
-    VIEWPORT_DEBUG_DRAW_DISABLED(0),
+    DISABLED(0),
     /**
      * Objects are displayed without light information.
      */
-    VIEWPORT_DEBUG_DRAW_UNSHADED(1),
+    UNSHADED(1),
     /**
      * Objects are displayed with only light information.
      */
-    VIEWPORT_DEBUG_DRAW_LIGHTING(2),
+    LIGHTING(2),
     /**
      * Objects are displayed semi-transparent with additive blending so you can see where they are
      * drawing over top of one another. A higher overdraw (represented by brighter colors) means you
@@ -8098,35 +8054,35 @@ public object RenderingServer : Object() {
      * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex
      * displacement won't be visible anymore.
      */
-    VIEWPORT_DEBUG_DRAW_OVERDRAW(3),
+    OVERDRAW(3),
     /**
      * Debug draw draws objects in wireframe.
      * **Note:** [setDebugGenerateWireframes] must be called before loading any meshes for
      * wireframes to be visible when using the Compatibility renderer.
      */
-    VIEWPORT_DEBUG_DRAW_WIREFRAME(4),
+    WIREFRAME(4),
     /**
      * Normal buffer is drawn instead of regular scene so you can see the per-pixel normals that
      * will be used by post-processing effects.
      */
-    VIEWPORT_DEBUG_DRAW_NORMAL_BUFFER(5),
+    NORMAL_BUFFER(5),
     /**
      * Objects are displayed with only the albedo value from [VoxelGI]s.
      */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
+    VOXEL_GI_ALBEDO(6),
     /**
      * Objects are displayed with only the lighting value from [VoxelGI]s.
      */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
+    VOXEL_GI_LIGHTING(7),
     /**
      * Objects are displayed with only the emission color from [VoxelGI]s.
      */
-    VIEWPORT_DEBUG_DRAW_VOXEL_GI_EMISSION(8),
+    VOXEL_GI_EMISSION(8),
     /**
      * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
      * upper left quadrant of the [Viewport].
      */
-    VIEWPORT_DEBUG_DRAW_SHADOW_ATLAS(9),
+    SHADOW_ATLAS(9),
     /**
      * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
      * quadrant of the [Viewport].
@@ -8136,88 +8092,88 @@ public object RenderingServer : Object() {
      * account when drawing the frustum slices.
      * The last cascade shows all frustum slices to illustrate the coverage of all slices.
      */
-    VIEWPORT_DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    DIRECTIONAL_SHADOW_ATLAS(10),
     /**
      * Draws the estimated scene luminance. This is a 1×1 texture that is generated when
      * autoexposure is enabled to control the scene's exposure.
      */
-    VIEWPORT_DEBUG_DRAW_SCENE_LUMINANCE(11),
+    SCENE_LUMINANCE(11),
     /**
      * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
-    VIEWPORT_DEBUG_DRAW_SSAO(12),
+    SSAO(12),
     /**
      * Draws the screen space indirect lighting texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
-    VIEWPORT_DEBUG_DRAW_SSIL(13),
+    SSIL(13),
     /**
      * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
      * can see where the splits are. In order they will be colored red, green, blue, yellow.
      */
-    VIEWPORT_DEBUG_DRAW_PSSM_SPLITS(14),
+    PSSM_SPLITS(14),
     /**
      * Draws the decal atlas that stores decal textures from [Decal]s.
      */
-    VIEWPORT_DEBUG_DRAW_DECAL_ATLAS(15),
+    DECAL_ATLAS(15),
     /**
      * Draws SDFGI cascade data. This is the data structure that is used to bounce lighting against
      * and create reflections.
      */
-    VIEWPORT_DEBUG_DRAW_SDFGI(16),
+    SDFGI(16),
     /**
      * Draws SDFGI probe data. This is the data structure that is used to give indirect lighting
      * dynamic objects moving within the scene.
      */
-    VIEWPORT_DEBUG_DRAW_SDFGI_PROBES(17),
+    SDFGI_PROBES(17),
     /**
      * Draws the global illumination buffer ([VoxelGI] or SDFGI).
      */
-    VIEWPORT_DEBUG_DRAW_GI_BUFFER(18),
+    GI_BUFFER(18),
     /**
      * Disable mesh LOD. All meshes are drawn with full detail, which can be used to compare
      * performance.
      */
-    VIEWPORT_DEBUG_DRAW_DISABLE_LOD(19),
+    DISABLE_LOD(19),
     /**
      * Draws the [OmniLight3D] cluster. Clustering determines where lights are positioned in
      * screen-space, which allows the engine to only process these portions of the screen for lighting.
      */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    CLUSTER_OMNI_LIGHTS(20),
     /**
      * Draws the [SpotLight3D] cluster. Clustering determines where lights are positioned in
      * screen-space, which allows the engine to only process these portions of the screen for lighting.
      */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    CLUSTER_SPOT_LIGHTS(21),
     /**
      * Draws the [Decal] cluster. Clustering determines where decals are positioned in screen-space,
      * which allows the engine to only process these portions of the screen for decals.
      */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_DECALS(22),
+    CLUSTER_DECALS(22),
     /**
      * Draws the [ReflectionProbe] cluster. Clustering determines where reflection probes are
      * positioned in screen-space, which allows the engine to only process these portions of the screen
      * for reflection probes.
      */
-    VIEWPORT_DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    CLUSTER_REFLECTION_PROBES(23),
     /**
      * Draws the occlusion culling buffer. This low-resolution occlusion culling buffer is
      * rasterized on the CPU and is used to check whether instances are occluded by other objects.
      */
-    VIEWPORT_DEBUG_DRAW_OCCLUDERS(24),
+    OCCLUDERS(24),
     /**
      * Draws the motion vectors buffer. This is used by temporal antialiasing to correct for motion
      * that occurs during gameplay.
      */
-    VIEWPORT_DEBUG_DRAW_MOTION_VECTORS(25),
+    MOTION_VECTORS(25),
     /**
      * Internal buffer is drawn instead of regular scene so you can see the per-pixel output that
      * will be used by post-processing effects.
      */
-    VIEWPORT_DEBUG_DRAW_INTERNAL_BUFFER(26),
+    INTERNAL_BUFFER(26),
     ;
 
     public val id: Long
@@ -8303,7 +8259,7 @@ public object RenderingServer : Object() {
      * `LIGHT_*` variables or any custom uniforms, this uses [SKY_MODE_INCREMENTAL]. Otherwise, this
      * defaults to [SKY_MODE_QUALITY].
      */
-    SKY_MODE_AUTOMATIC(0),
+    AUTOMATIC(0),
     /**
      * Uses high quality importance sampling to process the radiance map. In general, this results
      * in much higher quality than [SKY_MODE_REALTIME] but takes much longer to generate. This should
@@ -8311,14 +8267,14 @@ public object RenderingServer : Object() {
      * is not blurry enough and is showing sparkles or fireflies, try increasing
      * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
-    SKY_MODE_QUALITY(1),
+    QUALITY(1),
     /**
      * Uses the same high quality importance sampling to process the radiance map as
      * [SKY_MODE_QUALITY], but updates over several frames. The number of frames is determined by
      * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
      * highest quality radiance maps, but have a sky that updates slowly.
      */
-    SKY_MODE_INCREMENTAL(2),
+    INCREMENTAL(2),
     /**
      * Uses the fast filtering algorithm to process the radiance map. In general this results in
      * lower quality, but substantially faster run times. If you need better quality, but still need to
@@ -8328,7 +8284,7 @@ public object RenderingServer : Object() {
      * [skySetRadianceSize] must be set to `256`. Otherwise, a warning is printed and the overridden
      * radiance size is ignored.
      */
-    SKY_MODE_REALTIME(3),
+    REALTIME(3),
     ;
 
     public val id: Long
@@ -8383,27 +8339,27 @@ public object RenderingServer : Object() {
      * The callback is called before our opaque rendering pass, but after depth prepass (if
      * applicable).
      */
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_OPAQUE(0),
+    PRE_OPAQUE(0),
     /**
      * The callback is called after our opaque rendering pass, but before our sky is rendered.
      */
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_OPAQUE(1),
+    POST_OPAQUE(1),
     /**
      * The callback is called after our sky is rendered, but before our back buffers are created
      * (and if enabled, before subsurface scattering and/or screen space reflections).
      */
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_SKY(2),
+    POST_SKY(2),
     /**
      * The callback is called before our transparent rendering pass, but after our sky is rendered
      * and we've created our back buffers.
      */
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
+    PRE_TRANSPARENT(3),
     /**
      * The callback is called after our transparent rendering pass, but before any built-in
      * post-processing effects and output to our render target.
      */
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
-    COMPOSITOR_EFFECT_CALLBACK_TYPE_ANY(-1),
+    POST_TRANSPARENT(4),
+    ANY(-1),
     ;
 
     public val id: Long
@@ -8913,19 +8869,19 @@ public object RenderingServer : Object() {
      * Disables subsurface scattering entirely, even on materials that have
      * [BaseMaterial3D.subsurfScatterEnabled] set to `true`. This has the lowest GPU requirements.
      */
-    SUB_SURFACE_SCATTERING_QUALITY_DISABLED(0),
+    DISABLED(0),
     /**
      * Low subsurface scattering quality.
      */
-    SUB_SURFACE_SCATTERING_QUALITY_LOW(1),
+    LOW(1),
     /**
      * Medium subsurface scattering quality.
      */
-    SUB_SURFACE_SCATTERING_QUALITY_MEDIUM(2),
+    MEDIUM(2),
     /**
      * High subsurface scattering quality. This has the highest GPU requirements.
      */
-    SUB_SURFACE_SCATTERING_QUALITY_HIGH(3),
+    HIGH(3),
     ;
 
     public val id: Long
@@ -9119,20 +9075,20 @@ public object RenderingServer : Object() {
     /**
      * Disable shadows from this instance.
      */
-    SHADOW_CASTING_SETTING_OFF(0),
+    OFF(0),
     /**
      * Cast shadows from this instance.
      */
-    SHADOW_CASTING_SETTING_ON(1),
+    ON(1),
     /**
      * Disable backface culling when rendering the shadow of the object. This is slightly slower but
      * may result in more correct shadows.
      */
-    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
+    DOUBLE_SIDED(2),
     /**
      * Only render the shadows from the object. The object itself will not be drawn.
      */
-    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
+    SHADOWS_ONLY(3),
     ;
 
     public val id: Long
@@ -9218,15 +9174,15 @@ public object RenderingServer : Object() {
     /**
      * Diffuse canvas texture ([CanvasTexture.diffuseTexture]).
      */
-    CANVAS_TEXTURE_CHANNEL_DIFFUSE(0),
+    DIFFUSE(0),
     /**
      * Normal map canvas texture ([CanvasTexture.normalTexture]).
      */
-    CANVAS_TEXTURE_CHANNEL_NORMAL(1),
+    NORMAL(1),
     /**
      * Specular map canvas texture ([CanvasTexture.specularTexture]).
      */
-    CANVAS_TEXTURE_CHANNEL_SPECULAR(2),
+    SPECULAR(2),
     ;
 
     public val id: Long
@@ -9272,17 +9228,17 @@ public object RenderingServer : Object() {
     /**
      * Uses the default filter mode for this [Viewport].
      */
-    CANVAS_ITEM_TEXTURE_FILTER_DEFAULT(0),
+    DEFAULT(0),
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST(1),
+    NEAREST(1),
     /**
      * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR(2),
+    LINEAR(2),
     /**
      * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -9292,7 +9248,7 @@ public object RenderingServer : Object() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    NEAREST_WITH_MIPMAPS(3),
     /**
      * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -9302,7 +9258,7 @@ public object RenderingServer : Object() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
+    LINEAR_WITH_MIPMAPS(4),
     /**
      * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
      * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
@@ -9314,7 +9270,7 @@ public object RenderingServer : Object() {
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate in this case.
      */
-    CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
+    NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
      * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
      * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
@@ -9326,11 +9282,11 @@ public object RenderingServer : Object() {
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate in this case.
      */
-    CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
+    LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
      * Max value for [CanvasItemTextureFilter] enum.
      */
-    CANVAS_ITEM_TEXTURE_FILTER_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -9349,27 +9305,27 @@ public object RenderingServer : Object() {
     /**
      * Uses the default repeat mode for this [Viewport].
      */
-    CANVAS_ITEM_TEXTURE_REPEAT_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
      * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
      * texture.
      */
-    CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(1),
+    DISABLED(1),
     /**
      * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
      * the linear filtering modes, this can result in artifacts at the edges of a texture when the
      * sampler filters across the edges of the texture.
      */
-    CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(2),
+    ENABLED(2),
     /**
      * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
      */
-    CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(3),
+    MIRROR(3),
     /**
      * Max value for [CanvasItemTextureRepeat] enum.
      */
-    CANVAS_ITEM_TEXTURE_REPEAT_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -9388,18 +9344,18 @@ public object RenderingServer : Object() {
     /**
      * Child draws over parent and is not clipped.
      */
-    CANVAS_GROUP_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
      * area, parent is not drawn.
      */
-    CANVAS_GROUP_MODE_CLIP_ONLY(1),
+    CLIP_ONLY(1),
     /**
      * Parent is used for clipping child, but parent is also drawn underneath child as normal before
      * clipping child to its visible area.
      */
-    CANVAS_GROUP_MODE_CLIP_AND_DRAW(2),
-    CANVAS_GROUP_MODE_TRANSPARENT(3),
+    CLIP_AND_DRAW(2),
+    TRANSPARENT(3),
     ;
 
     public val id: Long
@@ -9418,11 +9374,11 @@ public object RenderingServer : Object() {
     /**
      * 2D point light (see [PointLight2D]).
      */
-    CANVAS_LIGHT_MODE_POINT(0),
+    POINT(0),
     /**
      * 2D directional (sun/moon) light (see [DirectionalLight2D]).
      */
-    CANVAS_LIGHT_MODE_DIRECTIONAL(1),
+    DIRECTIONAL(1),
     ;
 
     public val id: Long
@@ -9441,15 +9397,15 @@ public object RenderingServer : Object() {
     /**
      * Adds light color additive to the canvas.
      */
-    CANVAS_LIGHT_BLEND_MODE_ADD(0),
+    ADD(0),
     /**
      * Adds light color subtractive to the canvas.
      */
-    CANVAS_LIGHT_BLEND_MODE_SUB(1),
+    SUB(1),
     /**
      * The light adds color depending on transparency.
      */
-    CANVAS_LIGHT_BLEND_MODE_MIX(2),
+    MIX(2),
     ;
 
     public val id: Long
@@ -9678,26 +9634,26 @@ public object RenderingServer : Object() {
      * Number of objects rendered in the current 3D scene. This varies depending on camera position
      * and rotation.
      */
-    RENDERING_INFO_TOTAL_OBJECTS_IN_FRAME(0),
+    TOTAL_OBJECTS_IN_FRAME(0),
     /**
      * Number of points, lines, or triangles rendered in the current 3D scene. This varies depending
      * on camera position and rotation.
      */
-    RENDERING_INFO_TOTAL_PRIMITIVES_IN_FRAME(1),
+    TOTAL_PRIMITIVES_IN_FRAME(1),
     /**
      * Number of draw calls performed to render in the current 3D scene. This varies depending on
      * camera position and rotation.
      */
-    RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME(2),
+    TOTAL_DRAW_CALLS_IN_FRAME(2),
     /**
      * Texture memory used (in bytes).
      */
-    RENDERING_INFO_TEXTURE_MEM_USED(3),
+    TEXTURE_MEM_USED(3),
     /**
      * Buffer memory used (in bytes). This includes vertex data, uniform buffers, and many
      * miscellaneous buffer types used internally.
      */
-    RENDERING_INFO_BUFFER_MEM_USED(4),
+    BUFFER_MEM_USED(4),
     /**
      * Video memory used (in bytes). When using the Forward+ or Mobile renderers, this is always
      * greater than the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and [RENDERING_INFO_BUFFER_MEM_USED],
@@ -9705,34 +9661,34 @@ public object RenderingServer : Object() {
      * Compatibility renderer, this is equal to the sum of [RENDERING_INFO_TEXTURE_MEM_USED] and
      * [RENDERING_INFO_BUFFER_MEM_USED].
      */
-    RENDERING_INFO_VIDEO_MEM_USED(5),
+    VIDEO_MEM_USED(5),
     /**
      * Number of pipeline compilations that were triggered by the 2D canvas renderer.
      */
-    RENDERING_INFO_PIPELINE_COMPILATIONS_CANVAS(6),
+    PIPELINE_COMPILATIONS_CANVAS(6),
     /**
      * Number of pipeline compilations that were triggered by loading meshes. These compilations
      * will show up as longer loading times the first time a user runs the game and the pipeline is
      * required.
      */
-    RENDERING_INFO_PIPELINE_COMPILATIONS_MESH(7),
+    PIPELINE_COMPILATIONS_MESH(7),
     /**
      * Number of pipeline compilations that were triggered by building the surface cache before
      * rendering the scene. These compilations will show up as a stutter when loading an scene the
      * first time a user runs the game and the pipeline is required.
      */
-    RENDERING_INFO_PIPELINE_COMPILATIONS_SURFACE(8),
+    PIPELINE_COMPILATIONS_SURFACE(8),
     /**
      * Number of pipeline compilations that were triggered while drawing the scene. These
      * compilations will show up as stutters during gameplay the first time a user runs the game and
      * the pipeline is required.
      */
-    RENDERING_INFO_PIPELINE_COMPILATIONS_DRAW(9),
+    PIPELINE_COMPILATIONS_DRAW(9),
     /**
      * Number of pipeline compilations that were triggered to optimize the current scene. These
      * compilations are done in the background and should not cause any stutters whatsoever.
      */
-    RENDERING_INFO_PIPELINE_COMPILATIONS_SPECIALIZATION(10),
+    PIPELINE_COMPILATIONS_SPECIALIZATION(10),
     ;
 
     public val id: Long
@@ -9751,28 +9707,28 @@ public object RenderingServer : Object() {
     /**
      * Pipeline compilation that was triggered by the 2D canvas renderer.
      */
-    PIPELINE_SOURCE_CANVAS(0),
+    CANVAS(0),
     /**
      * Pipeline compilation that was triggered by loading a mesh.
      */
-    PIPELINE_SOURCE_MESH(1),
+    MESH(1),
     /**
      * Pipeline compilation that was triggered by building the surface cache before rendering the
      * scene.
      */
-    PIPELINE_SOURCE_SURFACE(2),
+    SURFACE(2),
     /**
      * Pipeline compilation that was triggered while drawing the scene.
      */
-    PIPELINE_SOURCE_DRAW(3),
+    DRAW(3),
     /**
      * Pipeline compilation that was triggered to optimize the current scene.
      */
-    PIPELINE_SOURCE_SPECIALIZATION(4),
+    SPECIALIZATION(4),
     /**
      * Represents the size of the [PipelineSource] enum.
      */
-    PIPELINE_SOURCE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

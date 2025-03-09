@@ -949,7 +949,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(151, scriptIndex)
+    createNativeObject(116, scriptIndex)
   }
 
   /**
@@ -1649,16 +1649,16 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in order of depth.
      */
-    DRAW_ORDER_VIEW_DEPTH(2),
+    VIEW_DEPTH(2),
     ;
 
     public val id: Long
@@ -1782,38 +1782,38 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * All particles will be emitted from a single point.
      */
-    EMISSION_SHAPE_POINT(0),
+    POINT(0),
     /**
      * Particles will be emitted in the volume of a sphere.
      */
-    EMISSION_SHAPE_SPHERE(1),
+    SPHERE(1),
     /**
      * Particles will be emitted on the surface of a sphere.
      */
-    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    SPHERE_SURFACE(2),
     /**
      * Particles will be emitted in the volume of a box.
      */
-    EMISSION_SHAPE_BOX(3),
+    BOX(3),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * color will be modulated by [emissionColors].
      */
-    EMISSION_SHAPE_POINTS(4),
+    POINTS(4),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
      * velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated
      * by [emissionColors].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(5),
+    DIRECTED_POINTS(5),
     /**
      * Particles will be emitted in a ring or cylinder.
      */
-    EMISSION_SHAPE_RING(6),
+    RING(6),
     /**
      * Represents the size of the [EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long

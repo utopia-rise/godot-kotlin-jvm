@@ -156,7 +156,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(187, scriptIndex)
+    createNativeObject(154, scriptIndex)
   }
 
   /**
@@ -482,19 +482,19 @@ public open class CollisionObject2D internal constructor() : Node2D() {
      * simulation to stop all physics interactions with this [CollisionObject2D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
-    DISABLE_MODE_REMOVE(0),
+    REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
      * affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.
      * Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed
      * again.
      */
-    DISABLE_MODE_MAKE_STATIC(1),
+    MAKE_STATIC(1),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
      * simulation.
      */
-    DISABLE_MODE_KEEP_ACTIVE(2),
+    KEEP_ACTIVE(2),
     ;
 
     public val id: Long

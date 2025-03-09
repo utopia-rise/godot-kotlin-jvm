@@ -28,7 +28,7 @@ public open class OpenXRBindingModifierEditor : PanelContainer() {
   public val bindingModifierRemoved: Signal1<Object> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(433, scriptIndex)
+    createNativeObject(417, scriptIndex)
   }
 
   /**

@@ -1765,22 +1765,22 @@ public object PhysicsServer2D : Object() {
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
      * collide with other bodies along its path when moved.
      */
-    BODY_MODE_STATIC(0),
+    STATIC(0),
     /**
      * Constant for kinematic bodies. In this mode, a body can be only moved by user code and
      * collides with other bodies along its path.
      */
-    BODY_MODE_KINEMATIC(1),
+    KINEMATIC(1),
     /**
      * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces
      * applied.
      */
-    BODY_MODE_RIGID(2),
+    RIGID(2),
     /**
      * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear
      * velocity is affected by external forces.
      */
-    BODY_MODE_RIGID_LINEAR(3),
+    RIGID_LINEAR(3),
     ;
 
     public val id: Long
@@ -1874,11 +1874,11 @@ public object PhysicsServer2D : Object() {
     /**
      * The body's damping value is added to any value set in areas or the default value.
      */
-    BODY_DAMP_MODE_COMBINE(0),
+    COMBINE(0),
     /**
      * The body's damping value replaces any value set in areas or the default value.
      */
-    BODY_DAMP_MODE_REPLACE(1),
+    REPLACE(1),
     ;
 
     public val id: Long
@@ -1897,23 +1897,23 @@ public object PhysicsServer2D : Object() {
     /**
      * Constant to set/get the current transform matrix of the body.
      */
-    BODY_STATE_TRANSFORM(0),
+    TRANSFORM(0),
     /**
      * Constant to set/get the current linear velocity of the body.
      */
-    BODY_STATE_LINEAR_VELOCITY(1),
+    LINEAR_VELOCITY(1),
     /**
      * Constant to set/get the current angular velocity of the body.
      */
-    BODY_STATE_ANGULAR_VELOCITY(2),
+    ANGULAR_VELOCITY(2),
     /**
      * Constant to sleep/wake up a body, or to get whether it is sleeping.
      */
-    BODY_STATE_SLEEPING(3),
+    SLEEPING(3),
     /**
      * Constant to set/get whether the body can sleep.
      */
-    BODY_STATE_CAN_SLEEP(4),
+    CAN_SLEEP(4),
     ;
 
     public val id: Long
@@ -1932,19 +1932,19 @@ public object PhysicsServer2D : Object() {
     /**
      * Constant to create pin joints.
      */
-    JOINT_TYPE_PIN(0),
+    PIN(0),
     /**
      * Constant to create groove joints.
      */
-    JOINT_TYPE_GROOVE(1),
+    GROOVE(1),
     /**
      * Constant to create damped spring joints.
      */
-    JOINT_TYPE_DAMPED_SPRING(2),
+    DAMPED_SPRING(2),
     /**
      * Represents the size of the [JointType] enum.
      */
-    JOINT_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -1966,19 +1966,19 @@ public object PhysicsServer2D : Object() {
      * parameter is `0.0`.
      * **Note:** In Godot Physics, this parameter is only used for pin joints and groove joints.
      */
-    JOINT_PARAM_BIAS(0),
+    BIAS(0),
     /**
      * Constant to set/get the maximum speed with which the joint can apply corrections. The default
      * value of this parameter is `3.40282e+38`.
      * **Note:** In Godot Physics, this parameter is only used for groove joints.
      */
-    JOINT_PARAM_MAX_BIAS(1),
+    MAX_BIAS(1),
     /**
      * Constant to set/get the maximum force that the joint can use to act on the two bodies. The
      * default value of this parameter is `3.40282e+38`.
      * **Note:** In Godot Physics, this parameter is only used for groove joints.
      */
-    JOINT_PARAM_MAX_FORCE(2),
+    MAX_FORCE(2),
     ;
 
     public val id: Long
@@ -2029,11 +2029,11 @@ public object PhysicsServer2D : Object() {
     /**
      * If `true`, the pin has a maximum and a minimum rotation.
      */
-    PIN_JOINT_FLAG_ANGULAR_LIMIT_ENABLED(0),
+    ANGULAR_LIMIT_ENABLED(0),
     /**
      * If `true`, a motor turns the pin.
      */
-    PIN_JOINT_FLAG_MOTOR_ENABLED(1),
+    MOTOR_ENABLED(1),
     ;
 
     public val id: Long

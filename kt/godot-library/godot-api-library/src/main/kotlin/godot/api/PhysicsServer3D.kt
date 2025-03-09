@@ -1897,19 +1897,19 @@ public object PhysicsServer3D : Object() {
     /**
      * The [Joint3D] is a [PinJoint3D].
      */
-    JOINT_TYPE_PIN(0),
+    PIN(0),
     /**
      * The [Joint3D] is a [HingeJoint3D].
      */
-    JOINT_TYPE_HINGE(1),
+    HINGE(1),
     /**
      * The [Joint3D] is a [SliderJoint3D].
      */
-    JOINT_TYPE_SLIDER(2),
+    SLIDER(2),
     /**
      * The [Joint3D] is a [ConeTwistJoint3D].
      */
-    JOINT_TYPE_CONE_TWIST(3),
+    CONE_TWIST(3),
     /**
      * The [Joint3D] is a [Generic6DOFJoint3D].
      */
@@ -1917,7 +1917,7 @@ public object PhysicsServer3D : Object() {
     /**
      * Represents the size of the [JointType] enum.
      */
-    JOINT_TYPE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -2011,11 +2011,11 @@ public object PhysicsServer3D : Object() {
     /**
      * If `true`, the Hinge has a maximum and a minimum rotation.
      */
-    HINGE_JOINT_FLAG_USE_LIMIT(0),
+    USE_LIMIT(0),
     /**
      * If `true`, a motor turns the Hinge.
      */
-    HINGE_JOINT_FLAG_ENABLE_MOTOR(1),
+    ENABLE_MOTOR(1),
     ;
 
     public val id: Long
@@ -2501,22 +2501,22 @@ public object PhysicsServer3D : Object() {
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
      * collide with other bodies along its path when moved.
      */
-    BODY_MODE_STATIC(0),
+    STATIC(0),
     /**
      * Constant for kinematic bodies. In this mode, a body can be only moved by user code and
      * collides with other bodies along its path.
      */
-    BODY_MODE_KINEMATIC(1),
+    KINEMATIC(1),
     /**
      * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces
      * applied.
      */
-    BODY_MODE_RIGID(2),
+    RIGID(2),
     /**
      * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear
      * velocity is affected by external forces.
      */
-    BODY_MODE_RIGID_LINEAR(3),
+    RIGID_LINEAR(3),
     ;
 
     public val id: Long
@@ -2594,11 +2594,11 @@ public object PhysicsServer3D : Object() {
     /**
      * The body's damping value is added to any value set in areas or the default value.
      */
-    BODY_DAMP_MODE_COMBINE(0),
+    COMBINE(0),
     /**
      * The body's damping value replaces any value set in areas or the default value.
      */
-    BODY_DAMP_MODE_REPLACE(1),
+    REPLACE(1),
     ;
 
     public val id: Long
@@ -2617,23 +2617,23 @@ public object PhysicsServer3D : Object() {
     /**
      * Constant to set/get the current transform matrix of the body.
      */
-    BODY_STATE_TRANSFORM(0),
+    TRANSFORM(0),
     /**
      * Constant to set/get the current linear velocity of the body.
      */
-    BODY_STATE_LINEAR_VELOCITY(1),
+    LINEAR_VELOCITY(1),
     /**
      * Constant to set/get the current angular velocity of the body.
      */
-    BODY_STATE_ANGULAR_VELOCITY(2),
+    ANGULAR_VELOCITY(2),
     /**
      * Constant to sleep/wake up a body, or to get whether it is sleeping.
      */
-    BODY_STATE_SLEEPING(3),
+    SLEEPING(3),
     /**
      * Constant to set/get whether the body can sleep.
      */
-    BODY_STATE_CAN_SLEEP(4),
+    CAN_SLEEP(4),
     ;
 
     public val id: Long
@@ -2758,12 +2758,12 @@ public object PhysicsServer3D : Object() {
   public enum class BodyAxis(
     id: Long,
   ) {
-    BODY_AXIS_LINEAR_X(1),
-    BODY_AXIS_LINEAR_Y(2),
-    BODY_AXIS_LINEAR_Z(4),
-    BODY_AXIS_ANGULAR_X(8),
-    BODY_AXIS_ANGULAR_Y(16),
-    BODY_AXIS_ANGULAR_Z(32),
+    LINEAR_X(1),
+    LINEAR_Y(2),
+    LINEAR_Z(4),
+    ANGULAR_X(8),
+    ANGULAR_Y(16),
+    ANGULAR_Z(32),
     ;
 
     public val id: Long

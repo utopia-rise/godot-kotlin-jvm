@@ -126,7 +126,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(48, scriptIndex)
+    createNativeObject(12, scriptIndex)
   }
 
   /**
@@ -491,7 +491,7 @@ public open class Animation : Resource() {
   public final fun trackFindKey(
     trackIdx: Int,
     time: Double,
-    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
+    findMode: FindMode = Animation.FindMode.NEAREST,
     limit: Boolean = false,
     backward: Boolean = false,
   ): Int {
@@ -1179,17 +1179,17 @@ public open class Animation : Resource() {
     /**
      * This flag indicates that the animation proceeds without any looping.
      */
-    LOOPED_FLAG_NONE(0),
+    NONE(0),
     /**
      * This flag indicates that the animation has reached the end of the animation and just after
      * loop processed.
      */
-    LOOPED_FLAG_END(1),
+    END(1),
     /**
      * This flag indicates that the animation has reached the start of the animation and just after
      * loop processed.
      */
-    LOOPED_FLAG_START(2),
+    START(2),
     ;
 
     public val id: Long
@@ -1208,15 +1208,15 @@ public open class Animation : Resource() {
     /**
      * Finds the nearest time key.
      */
-    FIND_MODE_NEAREST(0),
+    NEAREST(0),
     /**
      * Finds only the key with approximating the time.
      */
-    FIND_MODE_APPROX(1),
+    APPROX(1),
     /**
      * Finds only the key with matching the time.
      */
-    FIND_MODE_EXACT(2),
+    EXACT(2),
     ;
 
     public val id: Long

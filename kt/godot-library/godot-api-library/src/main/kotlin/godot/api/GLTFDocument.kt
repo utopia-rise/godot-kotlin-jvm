@@ -33,6 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then
@@ -90,7 +91,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(257, scriptIndex)
+    createNativeObject(228, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
@@ -220,20 +221,20 @@ public open class GLTFDocument : Resource() {
      * single root node via the `GODOT_single_root` glTF extension. This will be parsed the same as
      * [ROOT_NODE_MODE_KEEP_ROOT] if the implementation does not support `GODOT_single_root`.
      */
-    ROOT_NODE_MODE_SINGLE_ROOT(0),
+    SINGLE_ROOT(0),
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, but do not mark it as
      * anything special. An extra root node will be generated when importing into Godot. This uses only
      * vanilla glTF features. This is equivalent to the behavior in Godot 4.1 and earlier.
      */
-    ROOT_NODE_MODE_KEEP_ROOT(1),
+    KEEP_ROOT(1),
     /**
      * Treat the Godot scene's root node as the name of the glTF scene, and add all of its children
      * as root nodes of the glTF file. This uses only vanilla glTF features. This avoids an extra root
      * node, but only the name of the Godot scene's root node will be preserved, as it will not be
      * saved as a node.
      */
-    ROOT_NODE_MODE_MULTI_ROOT(2),
+    MULTI_ROOT(2),
     ;
 
     public val id: Long
@@ -253,6 +254,7 @@ public open class GLTFDocument : Resource() {
      * [GLTFObjectModelProperty] object. Additional mappings can be supplied via the
      * [GLTFDocumentExtension.ExportObjectModelProperty] callback method.
      */
+    @JvmStatic
     public final fun importObjectModelProperty(state: GLTFState?, jsonPointer: String):
         GLTFObjectModelProperty? {
       TransferContext.writeArguments(OBJECT to state, STRING to jsonPointer)
@@ -266,6 +268,7 @@ public open class GLTFDocument : Resource() {
      * [GLTFObjectModelProperty] object. Additional mappings can be supplied via the
      * [GLTFDocumentExtension.ImportObjectModelProperty] callback method.
      */
+    @JvmStatic
     public final fun exportObjectModelProperty(
       state: GLTFState?,
       nodePath: NodePath,
@@ -285,6 +288,7 @@ public open class GLTFDocument : Resource() {
      * `get_additional_data` methods in [GLTFState] or [GLTFNode].
      */
     @JvmOverloads
+    @JvmStatic
     public final fun registerGltfDocumentExtension(extension: GLTFDocumentExtension?,
         firstPriority: Boolean = false): Unit {
       TransferContext.writeArguments(OBJECT to extension, BOOL to firstPriority)
@@ -294,6 +298,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Unregisters the given [GLTFDocumentExtension] instance.
      */
+    @JvmStatic
     public final fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
       TransferContext.writeArguments(OBJECT to extension)
       TransferContext.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
@@ -307,6 +312,7 @@ public open class GLTFDocument : Resource() {
      * registered. If you run this when the engine starts, consider waiting a frame before calling this
      * method to ensure all extensions are registered.
      */
+    @JvmStatic
     public final fun getSupportedGltfExtensions(): PackedStringArray {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr,

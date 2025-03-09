@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(584, scriptIndex)
+    createNativeObject(578, scriptIndex)
   }
 
   public open fun _getName(): String {
@@ -361,17 +361,17 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public enum class CodeCompletionKind(
     id: Long,
   ) {
-    CODE_COMPLETION_KIND_CLASS(0),
-    CODE_COMPLETION_KIND_FUNCTION(1),
-    CODE_COMPLETION_KIND_SIGNAL(2),
-    CODE_COMPLETION_KIND_VARIABLE(3),
-    CODE_COMPLETION_KIND_MEMBER(4),
-    CODE_COMPLETION_KIND_ENUM(5),
-    CODE_COMPLETION_KIND_CONSTANT(6),
-    CODE_COMPLETION_KIND_NODE_PATH(7),
-    CODE_COMPLETION_KIND_FILE_PATH(8),
-    CODE_COMPLETION_KIND_PLAIN_TEXT(9),
-    CODE_COMPLETION_KIND_MAX(10),
+    CLASS(0),
+    FUNCTION(1),
+    SIGNAL(2),
+    VARIABLE(3),
+    MEMBER(4),
+    ENUM(5),
+    CONSTANT(6),
+    NODE_PATH(7),
+    FILE_PATH(8),
+    PLAIN_TEXT(9),
+    MAX(10),
     ;
 
     public val id: Long

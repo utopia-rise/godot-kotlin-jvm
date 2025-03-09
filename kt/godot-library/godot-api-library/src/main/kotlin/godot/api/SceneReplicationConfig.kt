@@ -27,7 +27,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(577, scriptIndex)
+    createNativeObject(571, scriptIndex)
   }
 
   /**
@@ -159,17 +159,17 @@ public open class SceneReplicationConfig : Resource() {
     /**
      * Do not keep the given property synchronized.
      */
-    REPLICATION_MODE_NEVER(0),
+    NEVER(0),
     /**
      * Replicate the given property on process by constantly sending updates using unreliable
      * transfer mode.
      */
-    REPLICATION_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Replicate the given property on process by sending updates using reliable transfer mode when
      * its value changes.
      */
-    REPLICATION_MODE_ON_CHANGE(2),
+    ON_CHANGE(2),
     ;
 
     public val id: Long

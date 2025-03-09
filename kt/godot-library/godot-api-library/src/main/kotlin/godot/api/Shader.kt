@@ -51,7 +51,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(592, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   /**
@@ -132,23 +132,23 @@ public open class Shader : Resource() {
     /**
      * Mode used to draw all 3D objects.
      */
-    MODE_SPATIAL(0),
+    SPATIAL(0),
     /**
      * Mode used to draw all 2D objects.
      */
-    MODE_CANVAS_ITEM(1),
+    CANVAS_ITEM(1),
     /**
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
-    MODE_PARTICLES(2),
+    PARTICLES(2),
     /**
      * Mode used for drawing skies. Only works with shaders attached to [Sky] objects.
      */
-    MODE_SKY(3),
+    SKY(3),
     /**
      * Mode used for setting the color and density of volumetric fog effect.
      */
-    MODE_FOG(4),
+    FOG(4),
     ;
 
     public val id: Long

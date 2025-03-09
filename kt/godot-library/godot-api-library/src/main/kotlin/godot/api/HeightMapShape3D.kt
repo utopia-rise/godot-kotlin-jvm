@@ -81,7 +81,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(306, scriptIndex)
+    createNativeObject(279, scriptIndex)
   }
 
   public final fun setMapWidth(width: Int): Unit {

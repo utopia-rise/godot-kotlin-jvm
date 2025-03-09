@@ -6,9 +6,9 @@ import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.NullableTrait
 import godot.codegen.traits.WithDefaultValueTrait
 import godot.codegen.workarounds.sanitizeApiType
-import godot.tools.common.constants.GodotTypes
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.escapeKotlinReservedNames
+import godot.tools.common.constants.GodotTypes
 
 class EnrichedArgument(model: Argument, canBeNull: Boolean) : CastableTrait, NullableTrait, WithDefaultValueTrait {
     val name = model.name.convertToCamelCase().escapeKotlinReservedNames()
@@ -19,7 +19,7 @@ class EnrichedArgument(model: Argument, canBeNull: Boolean) : CastableTrait, Nul
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if(other !is EnrichedArgument) return false
+        if (other !is EnrichedArgument) return false
         return name == other.name && type == other.type && meta == other.meta
     }
 

@@ -92,7 +92,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(51, scriptIndex)
+    createNativeObject(15, scriptIndex)
   }
 
   /**
@@ -289,7 +289,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
     TransferContext.callMethod(ptr, MethodBindings.blendAnimationPtr, NIL)

@@ -59,7 +59,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(726, scriptIndex)
+    createNativeObject(724, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {
@@ -90,15 +90,15 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
-    ENABLE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Corresponds to [Node.PROCESS_MODE_ALWAYS].
      */
-    ENABLE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Corresponds to [Node.PROCESS_MODE_WHEN_PAUSED].
      */
-    ENABLE_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     ;
 
     public val id: Long

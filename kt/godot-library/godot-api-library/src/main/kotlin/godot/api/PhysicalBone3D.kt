@@ -242,7 +242,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(474, scriptIndex)
+    createNativeObject(459, scriptIndex)
   }
 
   /**
@@ -613,11 +613,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
      */
-    DAMP_MODE_COMBINE(0),
+    COMBINE(0),
     /**
      * In this mode, the body's damping value replaces any value set in areas or the default value.
      */
-    DAMP_MODE_REPLACE(1),
+    REPLACE(1),
     ;
 
     public val id: Long
@@ -636,23 +636,23 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     /**
      * No joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_NONE(0),
+    NONE(0),
     /**
      * A pin joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_PIN(1),
+    PIN(1),
     /**
      * A cone joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_CONE(2),
+    CONE(2),
     /**
      * A hinge joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_HINGE(3),
+    HINGE(3),
     /**
      * A slider joint is applied to the PhysicsBone3D.
      */
-    JOINT_TYPE_SLIDER(4),
+    SLIDER(4),
     /**
      * A 6 degrees of freedom joint is applied to the PhysicsBone3D.
      */

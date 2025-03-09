@@ -37,6 +37,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and
@@ -50,7 +51,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(308, scriptIndex)
+    createNativeObject(282, scriptIndex)
   }
 
   /**
@@ -403,8 +404,8 @@ public open class Image : Resource() {
    * image is compressed, the original [source] must be specified.
    */
   @JvmOverloads
-  public final fun detectUsedChannels(source: CompressSource =
-      Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
+  public final fun detectUsedChannels(source: CompressSource = Image.CompressSource.GENERIC):
+      UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.detectUsedChannelsPtr, LONG)
     return Image.UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
@@ -420,7 +421,7 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun compress(
     mode: CompressMode,
-    source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
+    source: CompressSource = Image.CompressSource.GENERIC,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
@@ -866,84 +867,84 @@ public open class Image : Resource() {
     /**
      * Texture format with a single 8-bit depth representing luminance.
      */
-    FORMAT_L8(0),
+    L8(0),
     /**
      * OpenGL texture format with two values, luminance and alpha each stored with 8 bits.
      */
-    FORMAT_LA8(1),
+    LA8(1),
     /**
      * OpenGL texture format `RED` with a single component and a bitdepth of 8.
      */
-    FORMAT_R8(2),
+    R8(2),
     /**
      * OpenGL texture format `RG` with two components and a bitdepth of 8 for each.
      */
-    FORMAT_RG8(3),
+    RG8(3),
     /**
      * OpenGL texture format `RGB` with three components, each with a bitdepth of 8.
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_RGB8(4),
+    RGB8(4),
     /**
      * OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_RGBA8(5),
+    RGBA8(5),
     /**
      * OpenGL texture format `RGBA` with four components, each with a bitdepth of 4.
      */
-    FORMAT_RGBA4444(6),
+    RGBA4444(6),
     /**
      * OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and
      * green has a bitdepth of 6.
      */
-    FORMAT_RGB565(7),
+    RGB565(7),
     /**
      * OpenGL texture format `GL_R32F` where there's one component, a 32-bit floating-point value.
      */
-    FORMAT_RF(8),
+    RF(8),
     /**
      * OpenGL texture format `GL_RG32F` where there are two components, each a 32-bit floating-point
      * values.
      */
-    FORMAT_RGF(9),
+    RGF(9),
     /**
      * OpenGL texture format `GL_RGB32F` where there are three components, each a 32-bit
      * floating-point values.
      */
-    FORMAT_RGBF(10),
+    RGBF(10),
     /**
      * OpenGL texture format `GL_RGBA32F` where there are four components, each a 32-bit
      * floating-point values.
      */
-    FORMAT_RGBAF(11),
+    RGBAF(11),
     /**
      * OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision"
      * floating-point value.
      */
-    FORMAT_RH(12),
+    RH(12),
     /**
      * OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGH(13),
+    RGH(13),
     /**
      * OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGBH(14),
+    RGBH(14),
     /**
      * OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit
      * "half-precision" floating-point value.
      */
-    FORMAT_RGBAH(15),
+    RGBAH(15),
     /**
      * A special OpenGL texture format where the three color components have 9 bits of precision and
      * all three share a single 5-bit exponent.
      */
-    FORMAT_RGBE9995(16),
+    RGBE9995(16),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that
      * uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha
@@ -951,7 +952,7 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT1(17),
+    DXT1(17),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that
      * uses Block Compression 2, and color data is interpreted as not having been premultiplied by
@@ -959,7 +960,7 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT3(18),
+    DXT3(18),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also
      * known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64
@@ -968,21 +969,21 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_DXT5(19),
+    DXT5(19),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture
      * Compression[/url], normalizing the red channel data using the same compression algorithm that
      * DXT5 uses for the alpha channel.
      */
-    FORMAT_RGTC_R(20),
+    RGTC_R(20),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture
      * Compression[/url], normalizing the red and green channel data using the same compression
      * algorithm that DXT5 uses for the alpha channel.
      */
-    FORMAT_RGTC_RG(21),
+    RGTC_RG(21),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
@@ -990,47 +991,47 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_BPTC_RGBA(22),
+    BPTC_RGBA(22),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * signed floating-point RGB components.
      */
-    FORMAT_BPTC_RGBF(23),
+    BPTC_RGBF(23),
     /**
      * Texture format that uses
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * unsigned floating-point RGB components.
      */
-    FORMAT_BPTC_RGBFU(24),
+    BPTC_RGBFU(24),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture
      * Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics
      * standard. This format cannot store an alpha channel.
      */
-    FORMAT_ETC(25),
+    ETC(25),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`R11_EAC` variant), which provides one channel of unsigned data.
      */
-    FORMAT_ETC2_R11(26),
+    ETC2_R11(26),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`SIGNED_R11_EAC` variant), which provides one channel of signed
      * data.
      */
-    FORMAT_ETC2_R11S(27),
+    ETC2_R11S(27),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RG11_EAC` variant), which provides two channels of unsigned data.
      */
-    FORMAT_ETC2_RG11(28),
+    ETC2_RG11(28),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`SIGNED_RG11_EAC` variant), which provides two channels of signed
      * data.
      */
-    FORMAT_ETC2_RG11S(29),
+    ETC2_RG11S(29),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888
@@ -1038,7 +1039,7 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGB8(30),
+    ETC2_RGB8(30),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha
@@ -1046,7 +1047,7 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGBA8(31),
+    ETC2_RGBA8(31),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to
@@ -1054,41 +1055,41 @@ public open class Image : Resource() {
      * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
      * performed.
      */
-    FORMAT_ETC2_RGB8A1(32),
+    ETC2_RGB8A1(32),
     /**
      * [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture
      * Compression format 2[/url] (`RGBA8` variant), which compresses RA data and interprets it as two
      * channels (red and green). See also [FORMAT_ETC2_RGBA8].
      */
-    FORMAT_ETC2_RA_AS_RG(33),
+    ETC2_RA_AS_RG(33),
     /**
      * The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also
      * known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels
      * (red and green). See also [FORMAT_DXT5].
      */
-    FORMAT_DXT5_RA_AS_RG(34),
+    DXT5_RA_AS_RG(34),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
      * Texture Compression[/url]. This implements the 4×4 (high quality) mode.
      */
-    FORMAT_ASTC_4x4(35),
+    ASTC_4x4(35),
     /**
      * Same format as [FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR.
      */
-    FORMAT_ASTC_4x4_HDR(36),
+    ASTC_4x4_HDR(36),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
      * Texture Compression[/url]. This implements the 8×8 (low quality) mode.
      */
-    FORMAT_ASTC_8x8(37),
+    ASTC_8x8(37),
     /**
      * Same format as [FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR.
      */
-    FORMAT_ASTC_8x8_HDR(38),
+    ASTC_8x8_HDR(38),
     /**
      * Represents the size of the [Format] enum.
      */
-    FORMAT_MAX(39),
+    MAX(39),
     ;
 
     public val id: Long
@@ -1221,27 +1222,27 @@ public open class Image : Resource() {
     /**
      * The image only uses one channel for luminance (grayscale).
      */
-    USED_CHANNELS_L(0),
+    L(0),
     /**
      * The image uses two channels for luminance and alpha, respectively.
      */
-    USED_CHANNELS_LA(1),
+    LA(1),
     /**
      * The image only uses the red channel.
      */
-    USED_CHANNELS_R(2),
+    R(2),
     /**
      * The image uses two channels for red and green.
      */
-    USED_CHANNELS_RG(3),
+    RG(3),
     /**
      * The image uses three channels for red, green, and blue.
      */
-    USED_CHANNELS_RGB(4),
+    RGB(4),
     /**
      * The image uses four channels for red, green, blue, and alpha.
      */
-    USED_CHANNELS_RGBA(5),
+    RGBA(5),
     ;
 
     public val id: Long
@@ -1260,16 +1261,16 @@ public open class Image : Resource() {
     /**
      * Source texture (before compression) is a regular texture. Default for all textures.
      */
-    COMPRESS_SOURCE_GENERIC(0),
+    GENERIC(0),
     /**
      * Source texture (before compression) is in sRGB space.
      */
-    COMPRESS_SOURCE_SRGB(1),
+    SRGB(1),
     /**
      * Source texture (before compression) is a normal texture (e.g. it can be compressed into two
      * channels).
      */
-    COMPRESS_SOURCE_NORMAL(2),
+    NORMAL(2),
     ;
 
     public val id: Long
@@ -1320,6 +1321,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun create(
       width: Int,
       height: Int,
@@ -1335,6 +1337,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun createEmpty(
       width: Int,
       height: Int,
@@ -1351,6 +1354,7 @@ public open class Image : Resource() {
      * the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See
      * [generateMipmaps].
      */
+    @JvmStatic
     public final fun createFromData(
       width: Int,
       height: Int,
@@ -1366,6 +1370,7 @@ public open class Image : Resource() {
     /**
      * Creates a new [Image] and loads data from the specified file.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): Image? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
@@ -1421,22 +1426,11 @@ public open class Image : Resource() {
     internal val clearMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
 
-    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
-
-    internal val createEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
-
-    internal val createFromDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
-
     internal val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "set_data", 2740482212)
 
     internal val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "is_empty", 36873697)
 
     internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "load", 166001499)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
 
     internal val savePngPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_png", 2113323047)
 
@@ -1574,5 +1568,16 @@ public open class Image : Resource() {
 
     internal val loadSvgFromStringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
+
+    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
+
+    internal val createEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
+
+    internal val createFromDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
   }
 }

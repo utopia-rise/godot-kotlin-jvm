@@ -27,6 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A regular expression (or regex) is a compact language that can be used to recognize strings that
@@ -90,7 +91,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(549, scriptIndex)
+    createNativeObject(539, scriptIndex)
   }
 
   /**
@@ -219,6 +220,7 @@ public open class RegEx : RefCounted() {
      * Creates and compiles a new [RegEx] object. See also [compile].
      */
     @JvmOverloads
+    @JvmStatic
     public final fun createFromString(pattern: String, showError: Boolean = true): RegEx? {
       TransferContext.writeArguments(STRING to pattern, BOOL to showError)
       TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
@@ -227,9 +229,6 @@ public open class RegEx : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
-
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
 
     internal val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 3565188097)
@@ -251,5 +250,8 @@ public open class RegEx : RefCounted() {
 
     internal val getNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RegEx", "get_names", 1139954409)
+
+    internal val createFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
   }
 }

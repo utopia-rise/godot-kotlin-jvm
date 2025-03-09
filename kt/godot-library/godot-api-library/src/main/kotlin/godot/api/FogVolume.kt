@@ -86,7 +86,7 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(246, scriptIndex)
+    createNativeObject(216, scriptIndex)
   }
 
   /**

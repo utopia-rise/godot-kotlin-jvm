@@ -180,7 +180,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(576, scriptIndex)
+    createNativeObject(570, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {
@@ -312,7 +312,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun sendBytes(
     bytes: PackedByteArray,
     id: Int = 0,
-    mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
+    mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.RELIABLE,
     channel: Int = 0,
   ): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())

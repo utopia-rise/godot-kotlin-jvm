@@ -81,7 +81,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(808, scriptIndex)
+    createNativeObject(806, scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {
@@ -181,19 +181,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     /**
      * Defaults to fully opaque white color.
      */
-    COLOR_DEFAULT_WHITE(0),
+    WHITE(0),
     /**
      * Defaults to fully opaque black color.
      */
-    COLOR_DEFAULT_BLACK(1),
+    BLACK(1),
     /**
      * Defaults to fully transparent black color.
      */
-    COLOR_DEFAULT_TRANSPARENT(2),
+    TRANSPARENT(2),
     /**
      * Represents the size of the [ColorDefault] enum.
      */
-    COLOR_DEFAULT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

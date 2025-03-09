@@ -1,9 +1,8 @@
 package godot.codegen.traits
 
 import godot.codegen.constants.GodotMeta
-import godot.codegen.poet.TypeClass
 import godot.codegen.extensions.getTypeClass
-import godot.codegen.repositories.ICoreRepository
+import godot.codegen.poet.TypeClass
 
 interface CastableTrait : TypedTrait {
     val meta: String?

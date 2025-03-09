@@ -606,7 +606,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(854, scriptIndex)
+    createNativeObject(852, scriptIndex)
   }
 
   /**
@@ -1787,17 +1787,17 @@ public open class Window : Viewport() {
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
      * screen).
      */
-    MODE_WINDOWED(0),
+    WINDOWED(0),
     /**
      * Minimized window mode, i.e. [Window] is not visible and available on window manager's window
      * list. Normally happens when the minimize button is pressed.
      */
-    MODE_MINIMIZED(1),
+    MINIMIZED(1),
     /**
      * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still
      * display its borders. Normally happens when the maximize button is pressed.
      */
-    MODE_MAXIMIZED(2),
+    MAXIMIZED(2),
     /**
      * Full screen mode with full multi-window support.
      * Full screen window covers the entire display area of a screen and has no decorations. The
@@ -1811,7 +1811,7 @@ public open class Window : Viewport() {
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
      * enabling full screen mode.
      */
-    MODE_FULLSCREEN(3),
+    FULLSCREEN(3),
     /**
      * A single window full screen mode. This mode has less overhead, but only one window can be
      * open on a given screen at a time (opening a child window or application switching will trigger a
@@ -1830,7 +1830,7 @@ public open class Window : Viewport() {
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
      * enabling full screen mode.
      */
-    MODE_EXCLUSIVE_FULLSCREEN(4),
+    EXCLUSIVE_FULLSCREEN(4),
     ;
 
     public val id: Long
@@ -1930,17 +1930,17 @@ public open class Window : Viewport() {
     /**
      * The content will not be scaled to match the [Window]'s size.
      */
-    CONTENT_SCALE_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * The content will be rendered at the target size. This is more performance-expensive than
      * [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
-    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
+    CANVAS_ITEMS(1),
     /**
      * The content will be rendered at the base size and then scaled to the target size. More
      * performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
-    CONTENT_SCALE_MODE_VIEWPORT(2),
+    VIEWPORT(2),
     ;
 
     public val id: Long
@@ -1959,28 +1959,28 @@ public open class Window : Viewport() {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
-    CONTENT_SCALE_ASPECT_IGNORE(0),
+    IGNORE(0),
     /**
      * The content's aspect will be preserved. If the target size has different aspect from the base
      * one, the image will be centered and black bars will appear on left and right sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP(1),
+    KEEP(1),
     /**
      * The content can be expanded vertically. Scaling horizontally will result in keeping the width
      * ratio and then black bars on left and right sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    KEEP_WIDTH(2),
     /**
      * The content can be expanded horizontally. Scaling vertically will result in keeping the
      * height ratio and then black bars on top and bottom sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    KEEP_HEIGHT(3),
     /**
      * The content's aspect will be preserved. If the target size has different aspect from the base
      * one, the content will stay in the top-left corner and add an extra visible area in the stretched
      * space.
      */
-    CONTENT_SCALE_ASPECT_EXPAND(4),
+    EXPAND(4),
     ;
 
     public val id: Long
@@ -2000,12 +2000,12 @@ public open class Window : Viewport() {
      * The content will be stretched according to a fractional factor. This fills all the space
      * available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
      */
-    CONTENT_SCALE_STRETCH_FRACTIONAL(0),
+    FRACTIONAL(0),
     /**
      * The content will be stretched only according to an integer factor, preserving sharp pixels.
      * This may leave a black background visible on the window's edges depending on the window size.
      */
-    CONTENT_SCALE_STRETCH_INTEGER(1),
+    INTEGER(1),
     ;
 
     public val id: Long
@@ -2024,28 +2024,28 @@ public open class Window : Viewport() {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
      */
-    LAYOUT_DIRECTION_INHERITED(0),
+    INHERITED(0),
     /**
      * Automatic layout direction, determined from the current locale.
      */
-    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
+    APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
-    LAYOUT_DIRECTION_LTR(2),
+    LTR(2),
     /**
      * Right-to-left layout direction.
      */
-    LAYOUT_DIRECTION_RTL(3),
+    RTL(3),
     /**
      * Automatic layout direction, determined from the system locale.
      */
-    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    SYSTEM_LOCALE(4),
     /**
      * Represents the size of the [LayoutDirection] enum.
      */
-    LAYOUT_DIRECTION_MAX(5),
-    LAYOUT_DIRECTION_LOCALE(1),
+    MAX(5),
+    LOCALE(1),
     ;
 
     public val id: Long
@@ -2064,28 +2064,28 @@ public open class Window : Viewport() {
     /**
      * Initial window position is determined by [position].
      */
-    WINDOW_INITIAL_POSITION_ABSOLUTE(0),
+    ABSOLUTE(0),
     /**
      * Initial window position is the center of the primary screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN(1),
+    CENTER_PRIMARY_SCREEN(1),
     /**
      * Initial window position is the center of the main window screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN(2),
+    CENTER_MAIN_WINDOW_SCREEN(2),
     /**
      * Initial window position is the center of [currentScreen] screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN(3),
+    CENTER_OTHER_SCREEN(3),
     /**
      * Initial window position is the center of the screen containing the mouse pointer.
      */
-    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
+    CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
     /**
      * Initial window position is the center of the screen containing the window with the keyboard
      * focus.
      */
-    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
+    CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
 
     public val id: Long

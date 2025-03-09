@@ -214,7 +214,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(361, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   /**

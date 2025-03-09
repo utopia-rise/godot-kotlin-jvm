@@ -334,7 +334,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(853, scriptIndex)
+    createNativeObject(851, scriptIndex)
   }
 
   /**
@@ -488,19 +488,19 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     /**
      * We don't know the target ray mode.
      */
-    TARGET_RAY_MODE_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * Target ray originates at the viewer's eyes and points in the direction they are looking.
      */
-    TARGET_RAY_MODE_GAZE(1),
+    GAZE(1),
     /**
      * Target ray from a handheld pointer, most likely a VR touch controller.
      */
-    TARGET_RAY_MODE_TRACKED_POINTER(2),
+    TRACKED_POINTER(2),
     /**
      * Target ray from touch screen, mouse or other tactile input device.
      */
-    TARGET_RAY_MODE_SCREEN(3),
+    SCREEN(3),
     ;
 
     public val id: Long

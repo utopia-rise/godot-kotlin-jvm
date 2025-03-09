@@ -26,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
@@ -115,7 +116,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+    createNativeObject(84, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
@@ -189,6 +190,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
      * data.
      */
+    @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamMP3? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
@@ -199,6 +201,7 @@ public open class AudioStreamMP3 : AudioStream() {
      * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3
      * format.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamMP3? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
@@ -207,12 +210,6 @@ public open class AudioStreamMP3 : AudioStream() {
   }
 
   public object MethodBindings {
-    internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
-
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
 
@@ -248,5 +245,11 @@ public open class AudioStreamMP3 : AudioStream() {
 
     internal val getBarBeatsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
+
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
   }
 }

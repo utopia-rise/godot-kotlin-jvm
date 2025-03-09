@@ -22,29 +22,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.or(other.flag)
+public infix fun Long.or(other: RetargetModifier3D.TransformFlag): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: RetargetModifier3D.TransformFlag): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RetargetModifier3D.TransformFlag): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: RetargetModifier3D.TransformFlag): Long = this.and(other.flag)
 
 /**
  * Retrieves the pose (or global pose) relative to the parent Skeleton's rest in model space and
@@ -103,7 +85,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(569, scriptIndex)
+    createNativeObject(563, scriptIndex)
   }
 
   public final fun setProfile(profile: SkeletonProfile?): Unit {
@@ -136,7 +118,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   public final fun getEnableFlags(): TransformFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableFlagsPtr, LONG)
-    return TransformFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return TransformFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -190,76 +172,44 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public sealed interface TransformFlag {
-    public val flag: Long
+  @JvmInline
+  public value class TransformFlag(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: TransformFlag): TransformFlag = TransformFlag(flag.or(other.flag))
 
-    public infix fun or(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.or(other.flag))
+    public infix fun or(other: Long): TransformFlag = TransformFlag(flag.or(other))
 
-    public infix fun or(other: Long): TransformFlag = TransformFlagValue(flag.or(other))
+    public infix fun xor(other: TransformFlag): TransformFlag = TransformFlag(flag.xor(other.flag))
 
-    public infix fun xor(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): TransformFlag = TransformFlag(flag.xor(other))
 
-    public infix fun xor(other: Long): TransformFlag = TransformFlagValue(flag.xor(other))
+    public infix fun and(other: TransformFlag): TransformFlag = TransformFlag(flag.and(other.flag))
 
-    public infix fun and(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.and(other.flag))
+    public infix fun and(other: Long): TransformFlag = TransformFlag(flag.and(other))
 
-    public infix fun and(other: Long): TransformFlag = TransformFlagValue(flag.and(other))
+    public fun unaryPlus(): TransformFlag = TransformFlag(flag.unaryPlus())
 
-    public operator fun plus(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.plus(other.flag))
+    public fun unaryMinus(): TransformFlag = TransformFlag(flag.unaryMinus())
 
-    public operator fun plus(other: Long): TransformFlag = TransformFlagValue(flag.plus(other))
+    public fun inv(): TransformFlag = TransformFlag(flag.inv())
 
-    public operator fun minus(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): TransformFlag = TransformFlag(flag shl bits)
 
-    public operator fun minus(other: Long): TransformFlag = TransformFlagValue(flag.minus(other))
+    public infix fun shr(bits: Int): TransformFlag = TransformFlag(flag shr bits)
 
-    public operator fun times(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): TransformFlag = TransformFlagValue(flag.times(other))
-
-    public operator fun div(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): TransformFlag = TransformFlagValue(flag.div(other))
-
-    public operator fun rem(other: TransformFlag): TransformFlag =
-        TransformFlagValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): TransformFlag = TransformFlagValue(flag.rem(other))
-
-    public fun unaryPlus(): TransformFlag = TransformFlagValue(flag.unaryPlus())
-
-    public fun unaryMinus(): TransformFlag = TransformFlagValue(flag.unaryMinus())
-
-    public fun inv(): TransformFlag = TransformFlagValue(flag.inv())
-
-    public infix fun shl(bits: Int): TransformFlag = TransformFlagValue(flag shl bits)
-
-    public infix fun shr(bits: Int): TransformFlag = TransformFlagValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): TransformFlag = TransformFlagValue(flag ushr bits)
+    public infix fun ushr(bits: Int): TransformFlag = TransformFlag(flag ushr bits)
 
     public companion object {
-      public val TRANSFORM_FLAG_POSITION: TransformFlag = TransformFlagValue(1)
+      public val POSITION: TransformFlag = TransformFlag(1)
 
-      public val TRANSFORM_FLAG_ROTATION: TransformFlag = TransformFlagValue(2)
+      public val ROTATION: TransformFlag = TransformFlag(2)
 
-      public val TRANSFORM_FLAG_SCALE: TransformFlag = TransformFlagValue(4)
+      public val SCALE: TransformFlag = TransformFlag(4)
 
-      public val TRANSFORM_FLAG_ALL: TransformFlag = TransformFlagValue(7)
+      public val ALL: TransformFlag = TransformFlag(7)
     }
   }
-
-  @JvmInline
-  public value class TransformFlagValue(
-    public override val flag: Long,
-  ) : TransformFlag
 
   public companion object
 

@@ -1,7 +1,13 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
 package godot.core
 
 import kotlin.Long
+import kotlin.Suppress
 
 public enum class KeyLocation(
   id: Long,
@@ -12,15 +18,15 @@ public enum class KeyLocation(
    * For example, when using [InputEvent.isMatch], an event which has [KEY_LOCATION_UNSPECIFIED]
    * will match any [KeyLocation] on the passed event.
    */
-  KEY_LOCATION_UNSPECIFIED(0),
+  UNSPECIFIED(0),
   /**
    * A key which is to the left of its twin.
    */
-  KEY_LOCATION_LEFT(1),
+  LEFT(1),
   /**
    * A key which is to the right of its twin.
    */
-  KEY_LOCATION_RIGHT(2),
+  RIGHT(2),
   ;
 
   public val id: Long

@@ -29,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A WebRTC connection between the local computer and a remote peer. Provides an interface to
@@ -66,7 +67,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(849, scriptIndex)
+    createNativeObject(847, scriptIndex)
   }
 
   /**
@@ -279,17 +280,17 @@ public open class WebRTCPeerConnection : RefCounted() {
     /**
      * The peer connection was just created and hasn't done any networking yet.
      */
-    GATHERING_STATE_NEW(0),
+    NEW(0),
     /**
      * The ICE agent is in the process of gathering candidates for the connection.
      */
-    GATHERING_STATE_GATHERING(1),
+    GATHERING(1),
     /**
      * The ICE agent has finished gathering candidates. If something happens that requires
      * collecting new candidates, such as a new interface being added or the addition of a new ICE
      * server, the state will revert to gathering to gather those candidates.
      */
-    GATHERING_STATE_COMPLETE(2),
+    COMPLETE(2),
     ;
 
     public val id: Long
@@ -310,33 +311,33 @@ public open class WebRTCPeerConnection : RefCounted() {
      * [WebRTCPeerConnection] is new ([STATE_NEW]) or that negotiation is complete and a connection has
      * been established ([STATE_CONNECTED]).
      */
-    SIGNALING_STATE_STABLE(0),
+    STABLE(0),
     /**
      * The local peer has called [setLocalDescription], passing in SDP representing an offer
      * (usually created by calling [createOffer]), and the offer has been applied successfully.
      */
-    SIGNALING_STATE_HAVE_LOCAL_OFFER(1),
+    HAVE_LOCAL_OFFER(1),
     /**
      * The remote peer has created an offer and used the signaling server to deliver it to the local
      * peer, which has set the offer as the remote description by calling [setRemoteDescription].
      */
-    SIGNALING_STATE_HAVE_REMOTE_OFFER(2),
+    HAVE_REMOTE_OFFER(2),
     /**
      * The offer sent by the remote peer has been applied and an answer has been created and applied
      * by calling [setLocalDescription]. This provisional answer describes the supported media formats
      * and so forth, but may not have a complete set of ICE candidates included. Further candidates
      * will be delivered separately later.
      */
-    SIGNALING_STATE_HAVE_LOCAL_PRANSWER(3),
+    HAVE_LOCAL_PRANSWER(3),
     /**
      * A provisional answer has been received and successfully applied in response to an offer
      * previously sent and established by calling [setLocalDescription].
      */
-    SIGNALING_STATE_HAVE_REMOTE_PRANSWER(4),
+    HAVE_REMOTE_PRANSWER(4),
     /**
      * The [WebRTCPeerConnection] has been closed.
      */
-    SIGNALING_STATE_CLOSED(5),
+    CLOSED(5),
     ;
 
     public val id: Long
@@ -354,6 +355,7 @@ public open class WebRTCPeerConnection : RefCounted() {
      * Sets the [extensionClass] as the default [WebRTCPeerConnectionExtension] returned when
      * creating a new [WebRTCPeerConnection].
      */
+    @JvmStatic
     public final fun setDefaultExtension(extensionClass: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to extensionClass)
       TransferContext.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
@@ -361,9 +363,6 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val setDefaultExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
-
     internal val initializePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
 
@@ -396,5 +395,8 @@ public open class WebRTCPeerConnection : RefCounted() {
 
     internal val getSignalingStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
+
+    internal val setDefaultExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
   }
 }

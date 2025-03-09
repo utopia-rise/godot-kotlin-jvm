@@ -103,7 +103,7 @@ public open class HTTPClient : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(303, scriptIndex)
+    createNativeObject(276, scriptIndex)
   }
 
   /**
@@ -393,52 +393,52 @@ public open class HTTPClient : RefCounted() {
      * HTTP GET method. The GET method requests a representation of the specified resource. Requests
      * using GET should only retrieve data.
      */
-    METHOD_GET(0),
+    GET(0),
     /**
      * HTTP HEAD method. The HEAD method asks for a response identical to that of a GET request, but
      * without the response body. This is useful to request metadata like HTTP headers or to check if a
      * resource exists.
      */
-    METHOD_HEAD(1),
+    HEAD(1),
     /**
      * HTTP POST method. The POST method is used to submit an entity to the specified resource,
      * often causing a change in state or side effects on the server. This is often used for forms and
      * submitting data or uploading files.
      */
-    METHOD_POST(2),
+    POST(2),
     /**
      * HTTP PUT method. The PUT method asks to replace all current representations of the target
      * resource with the request payload. (You can think of POST as "create or update" and PUT as
      * "update", although many services tend to not make a clear distinction or change their meaning).
      */
-    METHOD_PUT(3),
+    PUT(3),
     /**
      * HTTP DELETE method. The DELETE method requests to delete the specified resource.
      */
-    METHOD_DELETE(4),
+    DELETE(4),
     /**
      * HTTP OPTIONS method. The OPTIONS method asks for a description of the communication options
      * for the target resource. Rarely used.
      */
-    METHOD_OPTIONS(5),
+    OPTIONS(5),
     /**
      * HTTP TRACE method. The TRACE method performs a message loop-back test along the path to the
      * target resource. Returns the entire HTTP request received in the response body. Rarely used.
      */
-    METHOD_TRACE(6),
+    TRACE(6),
     /**
      * HTTP CONNECT method. The CONNECT method establishes a tunnel to the server identified by the
      * target resource. Rarely used.
      */
-    METHOD_CONNECT(7),
+    CONNECT(7),
     /**
      * HTTP PATCH method. The PATCH method is used to apply partial modifications to a resource.
      */
-    METHOD_PATCH(8),
+    PATCH(8),
     /**
      * Represents the size of the [Method] enum.
      */
-    METHOD_MAX(9),
+    MAX(9),
     ;
 
     public val id: Long
@@ -457,43 +457,43 @@ public open class HTTPClient : RefCounted() {
     /**
      * Status: Disconnected from the server.
      */
-    STATUS_DISCONNECTED(0),
+    DISCONNECTED(0),
     /**
      * Status: Currently resolving the hostname for the given URL into an IP.
      */
-    STATUS_RESOLVING(1),
+    RESOLVING(1),
     /**
      * Status: DNS failure: Can't resolve the hostname for the given URL.
      */
-    STATUS_CANT_RESOLVE(2),
+    CANT_RESOLVE(2),
     /**
      * Status: Currently connecting to server.
      */
-    STATUS_CONNECTING(3),
+    CONNECTING(3),
     /**
      * Status: Can't connect to the server.
      */
-    STATUS_CANT_CONNECT(4),
+    CANT_CONNECT(4),
     /**
      * Status: Connection established.
      */
-    STATUS_CONNECTED(5),
+    CONNECTED(5),
     /**
      * Status: Currently sending request.
      */
-    STATUS_REQUESTING(6),
+    REQUESTING(6),
     /**
      * Status: HTTP body received.
      */
-    STATUS_BODY(7),
+    BODY(7),
     /**
      * Status: Error in HTTP connection.
      */
-    STATUS_CONNECTION_ERROR(8),
+    CONNECTION_ERROR(8),
     /**
      * Status: Error in TLS handshake.
      */
-    STATUS_TLS_HANDSHAKE_ERROR(9),
+    TLS_HANDSHAKE_ERROR(9),
     ;
 
     public val id: Long

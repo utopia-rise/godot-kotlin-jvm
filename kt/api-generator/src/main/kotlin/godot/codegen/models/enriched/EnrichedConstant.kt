@@ -1,9 +1,9 @@
 package godot.codegen.models.enriched
 
-import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Constant
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
+import godot.codegen.workarounds.sanitizeApiType
 
 class EnrichedConstant(model: Constant) : TypedTrait, IDocumented {
     override val type = model.type?.sanitizeApiType() ?: "int"

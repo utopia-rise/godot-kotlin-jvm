@@ -28,24 +28,11 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-public infix fun Long.or(other: godot.api.ResourceSaver.SaverFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: ResourceSaver.SaverFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.ResourceSaver.SaverFlags): Long = this.xor(other.flag)
+public infix fun Long.xor(other: ResourceSaver.SaverFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.ResourceSaver.SaverFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.ResourceSaver.SaverFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.ResourceSaver.SaverFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.ResourceSaver.SaverFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.ResourceSaver.SaverFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = this.rem(other.flag)
+public infix fun Long.and(other: ResourceSaver.SaverFlags): Long = this.and(other.flag)
 
 /**
  * A singleton for saving resource types to the filesystem.
@@ -56,7 +43,7 @@ public operator fun Long.rem(other: godot.api.ResourceSaver.SaverFlags): Long = 
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(13)
+    getSingleton(28)
   }
 
   /**
@@ -125,78 +112,52 @@ public object ResourceSaver : Object() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public sealed interface SaverFlags {
-    public val flag: Long
+  @JvmInline
+  public value class SaverFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: SaverFlags): SaverFlags = SaverFlags(flag.or(other.flag))
 
-    public infix fun or(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): SaverFlags = SaverFlags(flag.or(other))
 
-    public infix fun or(other: Long): SaverFlags = SaverFlagsValue(flag.or(other))
+    public infix fun xor(other: SaverFlags): SaverFlags = SaverFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): SaverFlags = SaverFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): SaverFlags = SaverFlagsValue(flag.xor(other))
+    public infix fun and(other: SaverFlags): SaverFlags = SaverFlags(flag.and(other.flag))
 
-    public infix fun and(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): SaverFlags = SaverFlags(flag.and(other))
 
-    public infix fun and(other: Long): SaverFlags = SaverFlagsValue(flag.and(other))
+    public fun unaryPlus(): SaverFlags = SaverFlags(flag.unaryPlus())
 
-    public operator fun plus(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): SaverFlags = SaverFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): SaverFlags = SaverFlagsValue(flag.plus(other))
+    public fun inv(): SaverFlags = SaverFlags(flag.inv())
 
-    public operator fun minus(other: SaverFlags): SaverFlags =
-        SaverFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): SaverFlags = SaverFlags(flag shl bits)
 
-    public operator fun minus(other: Long): SaverFlags = SaverFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): SaverFlags = SaverFlags(flag shr bits)
 
-    public operator fun times(other: SaverFlags): SaverFlags =
-        SaverFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): SaverFlags = SaverFlagsValue(flag.times(other))
-
-    public operator fun div(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): SaverFlags = SaverFlagsValue(flag.div(other))
-
-    public operator fun rem(other: SaverFlags): SaverFlags = SaverFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): SaverFlags = SaverFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): SaverFlags = SaverFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): SaverFlags = SaverFlagsValue(flag.unaryMinus())
-
-    public fun inv(): SaverFlags = SaverFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): SaverFlags = SaverFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): SaverFlags = SaverFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): SaverFlags = SaverFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): SaverFlags = SaverFlags(flag ushr bits)
 
     public companion object {
-      public val FLAG_NONE: SaverFlags = SaverFlagsValue(0)
+      public val FLAG_NONE: SaverFlags = SaverFlags(0)
 
-      public val FLAG_RELATIVE_PATHS: SaverFlags = SaverFlagsValue(1)
+      public val FLAG_RELATIVE_PATHS: SaverFlags = SaverFlags(1)
 
-      public val FLAG_BUNDLE_RESOURCES: SaverFlags = SaverFlagsValue(2)
+      public val FLAG_BUNDLE_RESOURCES: SaverFlags = SaverFlags(2)
 
-      public val FLAG_CHANGE_PATH: SaverFlags = SaverFlagsValue(4)
+      public val FLAG_CHANGE_PATH: SaverFlags = SaverFlags(4)
 
-      public val FLAG_OMIT_EDITOR_PROPERTIES: SaverFlags = SaverFlagsValue(8)
+      public val FLAG_OMIT_EDITOR_PROPERTIES: SaverFlags = SaverFlags(8)
 
-      public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlagsValue(16)
+      public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlags(16)
 
-      public val FLAG_COMPRESS: SaverFlags = SaverFlagsValue(32)
+      public val FLAG_COMPRESS: SaverFlags = SaverFlags(32)
 
-      public val FLAG_REPLACE_SUBRESOURCE_PATHS: SaverFlags = SaverFlagsValue(64)
+      public val FLAG_REPLACE_SUBRESOURCE_PATHS: SaverFlags = SaverFlags(64)
     }
   }
-
-  @JvmInline
-  public value class SaverFlagsValue(
-    public override val flag: Long,
-  ) : SaverFlags
 
   public object MethodBindings {
     internal val savePtr: VoidPtr =

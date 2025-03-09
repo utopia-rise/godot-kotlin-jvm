@@ -247,7 +247,7 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(163, scriptIndex)
+    createNativeObject(128, scriptIndex)
   }
 
   /**
@@ -721,21 +721,21 @@ public open class Camera3D : Node3D() {
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
      * (default).
      */
-    DOPPLER_TRACKING_DISABLED(0),
+    DISABLED(0),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_process`. Changes in the relative velocity of this
      * camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    DOPPLER_TRACKING_IDLE_STEP(1),
+    IDLE_STEP(1),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_physics_process`. Changes in the relative velocity of
      * this camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    DOPPLER_TRACKING_PHYSICS_STEP(2),
+    PHYSICS_STEP(2),
     ;
 
     public val id: Long

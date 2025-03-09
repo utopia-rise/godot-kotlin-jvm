@@ -107,14 +107,28 @@ public object XRServer : Object() {
    * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
    * from GDExtensions.
    */
-  @JvmStatic
   @CoreTypeLocalCopy
+  @JvmStatic
   public final inline var worldOrigin: Transform3D
     @JvmName("worldOriginProperty")
     get() = getWorldOrigin()
     @JvmName("worldOriginProperty")
     set(`value`) {
       setWorldOrigin(value)
+    }
+
+  /**
+   * If set to `true`, the scene will be rendered as if the camera is locked to the [XROrigin3D].
+   * **Note:** This doesn't provide a very comfortable experience for users. This setting exists for
+   * doing benchmarking or automated testing, where you want to control what is rendered via code.
+   */
+  @JvmStatic
+  public final inline var cameraLockedToOrigin: Boolean
+    @JvmName("cameraLockedToOriginProperty")
+    get() = isCameraLockedToOrigin()
+    @JvmName("cameraLockedToOriginProperty")
+    set(`value`) {
+      setCameraLockedToOrigin(value)
     }
 
   /**
@@ -153,7 +167,6 @@ public object XRServer : Object() {
    * xrserver.worldOrigin = myCoreType
    * ``````
    */
-  @JvmStatic
   @CoreTypeHelper
   public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D =
       worldOrigin.apply{

@@ -97,10 +97,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthLeft: Int
     @JvmName("borderWidthLeftProperty")
-    get() = getBorderWidth(Side.SIDE_LEFT)
+    get() = getBorderWidth(Side.LEFT)
     @JvmName("borderWidthLeftProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_LEFT, value)
+      setBorderWidth(Side.LEFT, value)
     }
 
   /**
@@ -108,10 +108,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthTop: Int
     @JvmName("borderWidthTopProperty")
-    get() = getBorderWidth(Side.SIDE_TOP)
+    get() = getBorderWidth(Side.TOP)
     @JvmName("borderWidthTopProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_TOP, value)
+      setBorderWidth(Side.TOP, value)
     }
 
   /**
@@ -119,10 +119,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthRight: Int
     @JvmName("borderWidthRightProperty")
-    get() = getBorderWidth(Side.SIDE_RIGHT)
+    get() = getBorderWidth(Side.RIGHT)
     @JvmName("borderWidthRightProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_RIGHT, value)
+      setBorderWidth(Side.RIGHT, value)
     }
 
   /**
@@ -130,10 +130,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var borderWidthBottom: Int
     @JvmName("borderWidthBottomProperty")
-    get() = getBorderWidth(Side.SIDE_BOTTOM)
+    get() = getBorderWidth(Side.BOTTOM)
     @JvmName("borderWidthBottomProperty")
     set(`value`) {
-      setBorderWidth(Side.SIDE_BOTTOM, value)
+      setBorderWidth(Side.BOTTOM, value)
     }
 
   /**
@@ -164,10 +164,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusTopLeft: Int
     @JvmName("cornerRadiusTopLeftProperty")
-    get() = getCornerRadius(Corner.CORNER_TOP_LEFT)
+    get() = getCornerRadius(Corner.TOP_LEFT)
     @JvmName("cornerRadiusTopLeftProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_TOP_LEFT, value)
+      setCornerRadius(Corner.TOP_LEFT, value)
     }
 
   /**
@@ -175,10 +175,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusTopRight: Int
     @JvmName("cornerRadiusTopRightProperty")
-    get() = getCornerRadius(Corner.CORNER_TOP_RIGHT)
+    get() = getCornerRadius(Corner.TOP_RIGHT)
     @JvmName("cornerRadiusTopRightProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_TOP_RIGHT, value)
+      setCornerRadius(Corner.TOP_RIGHT, value)
     }
 
   /**
@@ -186,10 +186,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusBottomRight: Int
     @JvmName("cornerRadiusBottomRightProperty")
-    get() = getCornerRadius(Corner.CORNER_BOTTOM_RIGHT)
+    get() = getCornerRadius(Corner.BOTTOM_RIGHT)
     @JvmName("cornerRadiusBottomRightProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_BOTTOM_RIGHT, value)
+      setCornerRadius(Corner.BOTTOM_RIGHT, value)
     }
 
   /**
@@ -197,10 +197,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var cornerRadiusBottomLeft: Int
     @JvmName("cornerRadiusBottomLeftProperty")
-    get() = getCornerRadius(Corner.CORNER_BOTTOM_LEFT)
+    get() = getCornerRadius(Corner.BOTTOM_LEFT)
     @JvmName("cornerRadiusBottomLeftProperty")
     set(`value`) {
-      setCornerRadius(Corner.CORNER_BOTTOM_LEFT, value)
+      setCornerRadius(Corner.BOTTOM_LEFT, value)
     }
 
   /**
@@ -229,10 +229,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
-    get() = getExpandMargin(Side.SIDE_LEFT)
+    get() = getExpandMargin(Side.LEFT)
     @JvmName("expandMarginLeftProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_LEFT, value)
+      setExpandMargin(Side.LEFT, value)
     }
 
   /**
@@ -244,10 +244,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
-    get() = getExpandMargin(Side.SIDE_TOP)
+    get() = getExpandMargin(Side.TOP)
     @JvmName("expandMarginTopProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_TOP, value)
+      setExpandMargin(Side.TOP, value)
     }
 
   /**
@@ -259,10 +259,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
-    get() = getExpandMargin(Side.SIDE_RIGHT)
+    get() = getExpandMargin(Side.RIGHT)
     @JvmName("expandMarginRightProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_RIGHT, value)
+      setExpandMargin(Side.RIGHT, value)
     }
 
   /**
@@ -274,10 +274,10 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
-    get() = getExpandMargin(Side.SIDE_BOTTOM)
+    get() = getExpandMargin(Side.BOTTOM)
     @JvmName("expandMarginBottomProperty")
     set(`value`) {
-      setExpandMargin(Side.SIDE_BOTTOM, value)
+      setExpandMargin(Side.BOTTOM, value)
     }
 
   /**
@@ -346,7 +346,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(651, scriptIndex)
+    createNativeObject(645, scriptIndex)
   }
 
   /**

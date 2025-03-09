@@ -442,7 +442,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(273, scriptIndex)
+    createNativeObject(244, scriptIndex)
   }
 
   /**
@@ -845,21 +845,21 @@ public open class GPUParticles3D : GeometryInstance3D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    DRAW_ORDER_INDEX(0),
+    INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    DRAW_ORDER_LIFETIME(1),
+    LIFETIME(1),
     /**
      * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
      * the lowest lifetime is drawn at the front.
      */
-    DRAW_ORDER_REVERSE_LIFETIME(2),
+    REVERSE_LIFETIME(2),
     /**
      * Particles are drawn in order of depth.
      */
-    DRAW_ORDER_VIEW_DEPTH(3),
+    VIEW_DEPTH(3),
     ;
 
     public val id: Long
@@ -911,10 +911,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public enum class TransformAlign(
     id: Long,
   ) {
-    TRANSFORM_ALIGN_DISABLED(0),
-    TRANSFORM_ALIGN_Z_BILLBOARD(1),
-    TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
-    TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
+    DISABLED(0),
+    Z_BILLBOARD(1),
+    Y_TO_VELOCITY(2),
+    Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
     public val id: Long

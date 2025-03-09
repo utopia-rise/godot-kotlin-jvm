@@ -89,7 +89,7 @@ public object OS : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(3)
+    getSingleton(19)
   }
 
   /**
@@ -1488,20 +1488,20 @@ public object OS : Object() {
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
      * from Vulkan 1.1 and 1.2 if available.
      */
-    RENDERING_DRIVER_VULKAN(0),
+    VULKAN(0),
     /**
      * The OpenGL 3 rendering driver. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL
      * ES 3.0 on mobile devices, and WebGL 2.0 on Web.
      */
-    RENDERING_DRIVER_OPENGL3(1),
+    OPENGL3(1),
     /**
      * The Direct3D 12 rendering driver.
      */
-    RENDERING_DRIVER_D3D12(2),
+    D3D12(2),
     /**
      * The Metal rendering driver.
      */
-    RENDERING_DRIVER_METAL(3),
+    METAL(3),
     ;
 
     public val id: Long
@@ -1520,35 +1520,35 @@ public object OS : Object() {
     /**
      * Refers to the Desktop directory path.
      */
-    SYSTEM_DIR_DESKTOP(0),
+    DESKTOP(0),
     /**
      * Refers to the DCIM (Digital Camera Images) directory path.
      */
-    SYSTEM_DIR_DCIM(1),
+    DCIM(1),
     /**
      * Refers to the Documents directory path.
      */
-    SYSTEM_DIR_DOCUMENTS(2),
+    DOCUMENTS(2),
     /**
      * Refers to the Downloads directory path.
      */
-    SYSTEM_DIR_DOWNLOADS(3),
+    DOWNLOADS(3),
     /**
      * Refers to the Movies (or Videos) directory path.
      */
-    SYSTEM_DIR_MOVIES(4),
+    MOVIES(4),
     /**
      * Refers to the Music directory path.
      */
-    SYSTEM_DIR_MUSIC(5),
+    MUSIC(5),
     /**
      * Refers to the Pictures directory path.
      */
-    SYSTEM_DIR_PICTURES(6),
+    PICTURES(6),
     /**
      * Refers to the Ringtones directory path.
      */
-    SYSTEM_DIR_RINGTONES(7),
+    RINGTONES(7),
     ;
 
     public val id: Long
