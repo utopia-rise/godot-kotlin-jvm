@@ -10,6 +10,7 @@ import godot.common.util.UNIT_EPSILON
 import godot.common.util.isEqualApprox
 import godot.common.util.isZeroApprox
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.PI
 import kotlin.math.asin
@@ -17,6 +18,11 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+
+// This epsilon value results in angles within a +/- 0.04 degree range being simplified/truncated.
+// Based on testing, this is the largest the epsilon can be without the angle truncation becoming
+// visually noticeable.
+private const val ANGLE_EPSILON = 0.00000025
 
 class Basis() : CoreType {
     @PublishedApi
@@ -95,7 +101,8 @@ class Basis() : CoreType {
         /**
          * Creates a Basis with a rotation such that the forward axis (-Z) points towards the [target] position.
          *
-         * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward axis. The resulting Basis is orthonormalized. The [target] and [up] vectors cannot be zero, and cannot be parallel to each other.
+         * 	The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The returned basis is orthonormalized (see [method orthonormalized]).
+         * 	The [param target] and the [param up] cannot be [constant Vector3.ZERO], and shouldn't be colinear to avoid unintended rotation around local Z axis.
          *
          * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
          */
@@ -113,11 +120,12 @@ class Basis() : CoreType {
             } else {
                 target.normalized()
             }
-            val vX: Vector3 = up.cross(vZ)
 
+            var vX: Vector3 = up.cross(vZ)
             if (GodotJvmBuildConfig.DEBUG) {
-                require(!vX.isZeroApprox()) {
-                    "The target vector and up vector can't be parallel to each other."
+                if (vX.isZeroApprox()) {
+                    GodotLogging.warning("Target and up vectors are colinear. This is not advised as it may cause unwanted rotation around local Z axis.")
+                    vX = up.getAnyPerpendicular(); // Vectors are almost parallel.
                 }
             }
 
@@ -272,8 +280,8 @@ class Basis() : CoreType {
         val euler = Vector3()
 
         val sy = this._x.z
-        if (sy < (1.0 - CMP_EPSILON)) {
-            if (sy > -(1.0 - CMP_EPSILON)) {
+        if (sy < (1.0 - ANGLE_EPSILON)) {
+            if (sy > -(1.0 - ANGLE_EPSILON)) {
                 // is this a pure Y rotation?
                 if (this._y.x == 0.0 && this._x.y == 0.0 && this._y.z == 0.0 && this._z.y == 0.0 && this._y.y == 1.0) {
                     // return the simplest form (human friendlier in editor and scripts)
@@ -308,8 +316,8 @@ class Basis() : CoreType {
     private fun getEulerXzy(): Vector3 {
         val euler = Vector3()
         val sz = _x.y
-        if (sz < (1.0f - CMP_EPSILON)) {
-            if (sz > -(1.0f - CMP_EPSILON)) {
+        if (sz < (1.0f - ANGLE_EPSILON)) {
+            if (sz > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(_z.y, _y.y)
                 euler.y = atan2(_x.z, _x.x)
                 euler.z = asin(-sz)
@@ -346,8 +354,8 @@ class Basis() : CoreType {
 
         val m12 = this._y.z
 
-        if (m12 < (1.0f - CMP_EPSILON)) {
-            if (m12 > -(1.0f - CMP_EPSILON)) {
+        if (m12 < (1.0f - ANGLE_EPSILON)) {
+            if (m12 > -(1.0f - ANGLE_EPSILON)) {
                 // is this a pure X rotation?
                 if (this._y.x == 0.0 && this._x.y == 0.0 && this._x.z == 0.0 && this._z.x == 0.0 && this._x.x == 1.0) {
                     // return the simplest form (human friendlier in editor and scripts)
@@ -383,8 +391,8 @@ class Basis() : CoreType {
     private fun getEulerYzx(): Vector3 {
         val euler = Vector3()
         val sz = _y.x
-        if (sz < (1.0f - CMP_EPSILON)) {
-            if (sz > -(1.0f - CMP_EPSILON)) {
+        if (sz < (1.0f - ANGLE_EPSILON)) {
+            if (sz > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(-_y.z, _y.y)
                 euler.y = atan2(-_z.x, _x.x)
                 euler.z = asin(sz)
@@ -415,8 +423,8 @@ class Basis() : CoreType {
         val euler = Vector3()
         val sx = _z.y
 
-        if (sx < 1.0f - CMP_EPSILON) {
-            if (sx > -(1.0f - CMP_EPSILON)) {
+        if (sx < 1.0f - ANGLE_EPSILON) {
+            if (sx > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = asin(sx)
                 euler.y = atan2(-_z.x, _z.z)
                 euler.z = atan2(-_x.y, _y.y)
@@ -440,8 +448,8 @@ class Basis() : CoreType {
         val euler = Vector3()
         val sy = _z.x
 
-        if (sy < 1.0f - CMP_EPSILON) {
-            if (sy > -(1.0f - CMP_EPSILON)) {
+        if (sy < 1.0f - ANGLE_EPSILON) {
+            if (sy > -(1.0f - ANGLE_EPSILON)) {
                 euler.x = atan2(_z.y, _z.z)
                 euler.y = asin(-sy)
                 euler.z = atan2(_y.x, _x.x)
@@ -946,9 +954,33 @@ class Basis() : CoreType {
     }
 
     operator fun times(scalar: Double) = Basis().also {
-        it._x = this._x * scalar
-        it._y = this._y * scalar
-        it._z = this._z * scalar
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Int) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Long) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Float) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
+    }
+
+    operator fun div(scalar: Double) = Basis().also {
+        it._x = this._x / scalar
+        it._y = this._y / scalar
+        it._z = this._z / scalar
     }
 
     operator fun times(vector: Vector3) = this.xform(vector)

@@ -53,9 +53,9 @@ class TestBasis {
 
         val res = toRotation.inverse() * rotationFromComputedEuler
 
-        checkMessage((res.getColumn(0) - Vector3(1.0, 0.0, 0.0)).length() <= 0.1) { "Fail due to X ${res.getColumn(0)}" }
-        checkMessage((res.getColumn(1) - Vector3(0.0, 1.0, 0.0)).length() <= 0.1) { "Fail due to Y ${res.getColumn(1)}" }
-        checkMessage((res.getColumn(2) - Vector3(0.0, 0.0, 1.0)).length() <= 0.1) { "Fail due to Z ${res.getColumn(2)}" }
+        checkMessage((res.getColumn(0) - Vector3(1.0, 0.0, 0.0)).length() <= 0.001) { "Fail due to X ${res.getColumn(0)}" }
+        checkMessage((res.getColumn(1) - Vector3(0.0, 1.0, 0.0)).length() <= 0.001) { "Fail due to Y ${res.getColumn(1)}" }
+        checkMessage((res.getColumn(2) - Vector3(0.0, 0.0, 1.0)).length() <= 0.001) { "Fail due to Z ${res.getColumn(2)}" }
 
         // Double check `toRotation` decomposing with XYZ rotation order.
         val eulerXyzFromRotation = toRotation.getEuler(EulerOrder.EULER_ORDER_XYZ)
@@ -63,9 +63,9 @@ class TestBasis {
 
         val res2 = toRotation.inverse() * rotationFromXyzComputedEuler
 
-        checkMessage((res2.getColumn(0) - Vector3(1.0, 0.0, 0.0)).length() <= 0.1) { "Double check with XYZ rot order failed, due to X ${res2.getColumn(0)}" }
-        checkMessage((res2.getColumn(1) - Vector3(0.0, 1.0, 0.0)).length() <= 0.1) { "Double check with XYZ rot order failed, due to Y ${res2.getColumn(1)}" }
-        checkMessage((res2.getColumn(2) - Vector3(0.0, 0.0, 1.0)).length() <= 0.1) { "Double check with XYZ rot order failed, due to Z ${res2.getColumn(2)}" }
+        checkMessage((res2.getColumn(0) - Vector3(1.0, 0.0, 0.0)).length() <= 0.001) { "Double check with XYZ rot order failed, due to X ${res2.getColumn(0)}" }
+        checkMessage((res2.getColumn(1) - Vector3(0.0, 1.0, 0.0)).length() <= 0.001) { "Double check with XYZ rot order failed, due to Y ${res2.getColumn(1)}" }
+        checkMessage((res2.getColumn(2) - Vector3(0.0, 0.0, 1.0)).length() <= 0.001) { "Double check with XYZ rot order failed, due to Z ${res2.getColumn(2)}" }
 
         println("Rotation order: ${getRotOrderName(rotOrder)}.")
         println("Original Rotation: $degOriginalEuler")
@@ -136,7 +136,13 @@ class TestBasis {
             Vector3(-120.0, -150.0, -130.0),
             Vector3(120.0, -150.0, -130.0),
             Vector3(120.0, 150.0, -130.0),
-            Vector3(120.0, 150.0, 130.0)
+            Vector3(120.0, 150.0, 130.0),
+            Vector3(89.9, 0.0, 0.0),
+            Vector3(-89.9, 0.0, 0.0),
+            Vector3(0.0, 89.9, 0.0),
+            Vector3(0.0, -89.9, 0.0),
+            Vector3(0.0, 0.0, 89.9),
+            Vector3(0.0, 0.0, -89.9),
         )
 
         for (rotOrder in eulerOrderToTest) {

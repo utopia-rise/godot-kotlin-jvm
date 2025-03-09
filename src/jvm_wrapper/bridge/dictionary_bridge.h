@@ -25,6 +25,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_make_read_only", "(J)V", DictionaryBridge::engine_call_make_read_only)
             INIT_NATIVE_METHOD("engine_call_merge", "(J)V", DictionaryBridge::engine_call_merge)
             INIT_NATIVE_METHOD("engine_call_size", "(J)V", DictionaryBridge::engine_call_size)
+            INIT_NATIVE_METHOD("engine_call_sort", "(J)V", DictionaryBridge::engine_call_sort)
             INIT_NATIVE_METHOD("engine_call_values", "(J)V", DictionaryBridge::engine_call_values)
             INIT_NATIVE_METHOD("engine_call_operator_get", "(J)V", DictionaryBridge::engine_call_operator_get)
             INIT_NATIVE_METHOD("engine_call_operator_set", "(J)V", DictionaryBridge::engine_call_operator_set)
@@ -48,6 +49,7 @@ namespace bridges {
         static void engine_call_make_read_only(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_merge(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_values(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_operator_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
