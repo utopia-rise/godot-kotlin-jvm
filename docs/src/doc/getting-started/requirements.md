@@ -8,9 +8,9 @@
 
 To use this module at least JDK 11 is needed, note you will need the JDK not just the JRE, and the environment variable `JAVA_HOME` to be present before being able to run the custom godot editor.
 
-### Mac & Linux
+### Mac
 
-You can install Java via [SDKMAN!](https://sdkman.io/). Once you installed it, you can run `sdk install java 11.0.11.hs-adpt` to install the LTS version of Java from [AdoptOpenJDK](https://adoptopenjdk.net/). If you want to pick a different version, you can run `sdk list java`.
+You can install Java via [homebrew](https://brew.sh/). Once you installed it, you can run `brew install openjdk@21` to install the LTS version of Java from openjdk. If you want to pick a different version, you can run `brew search jdk`.
 
 !!! warning
     On macOS apps started from the GUI cannot see environment variables from bash or zsh, only command line apps can. Set environment variable using launchctl.
@@ -18,9 +18,13 @@ You can install Java via [SDKMAN!](https://sdkman.io/). Once you installed it, y
     launchctl setenv JAVA_HOME pathtoyourjava
     ```
 
+### Linux
+
+You can install Java via your distributions package manager.
+
 ### Windows
 
-You can install Java via [Chocolatey](https://community.chocolatey.org/). For example, to install [AdoptOpenJDK](https://adoptopenjdk.net/) you can run `choco install adoptopenjdk11`.
+You can install Java via [Chocolatey](https://community.chocolatey.org/). For example, to install [AdoptOpenJDK](https://adoptopenjdk.net/) you can run `choco install adoptopenjdk21`.
 
 ## IDE
 

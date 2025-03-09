@@ -10,7 +10,11 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
     echo $JAVA_HOME
     ```
     If the command outputs a directory path, then Java is installed on your system. Otherwise, we strongly suggest you
-    to install the JDK using [SDKMAN!](https://sdkman.io/)
+    to install the JDK using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), [chocolatey](https://chocolatey.org/), [SDKMAN!](https://sdkman.io/), or another package manager on windows, [homebrew](https://brew.sh/) on macos or your distributions package manager on linux.
+
+!!! warning
+    The microsoft jdk is known for causing issues on windows while building code for our IDE plugin. The issue is the same as described in [this issue](https://github.com/microsoft/openjdk/issues/339).    
+    Either use a different jvm vendor like [Adoptium temurin](https://adoptium.net/temurin/releases/) or create the folder `Packages` manually in the `JAVA_HOME` folder: `'C:\Program Files\Microsoft\jdk-21.0.6.7-hotspot\Packages` in order to build our module.
 
 Once you have all the necessary dependencies, proceed to do the following:
 
