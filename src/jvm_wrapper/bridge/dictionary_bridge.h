@@ -11,6 +11,7 @@ namespace bridges {
         // clang-format off
         INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", DictionaryBridge::engine_call_constructor)
+            INIT_NATIVE_METHOD("engine_call_constructor_typed","()J", DictionaryBridge::engine_call_constructor_typed)
             INIT_NATIVE_METHOD("engine_call_clear", "(J)V", DictionaryBridge::engine_call_clear)
             INIT_NATIVE_METHOD("engine_call_duplicate", "(J)V", DictionaryBridge::engine_call_duplicate)
             INIT_NATIVE_METHOD("engine_call_is_empty","(J)V", DictionaryBridge::engine_call_is_empty)
@@ -35,6 +36,7 @@ namespace bridges {
 
     public:
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
+        static uintptr_t engine_call_constructor_typed(JNIEnv* p_raw_env, jobject p_instance);
         static void engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
