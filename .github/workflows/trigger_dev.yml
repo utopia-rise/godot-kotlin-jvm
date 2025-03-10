@@ -79,7 +79,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   build-linux:
     name: 🐧 Build Linux
