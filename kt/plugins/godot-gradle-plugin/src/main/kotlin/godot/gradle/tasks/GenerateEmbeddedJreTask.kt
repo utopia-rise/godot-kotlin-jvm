@@ -30,15 +30,17 @@ open class GenerateEmbeddedJreTask @Inject constructor(
     )
 
     @Input
-    var javaHome: String = System.getProperty("java.home")
+    var javaHome: String? = null
 
     @TaskAction
     fun createJre() {
         File(outputDir).deleteRecursively()
 
+        val resolvedJavaHome = javaHome ?: System.getProperty("java.home")
+
         execOperations.exec { spec ->
             spec.commandLine(
-                "$javaHome/bin/jlink",
+                "$resolvedJavaHome/bin/jlink",
                 "--add-modules", modules.joinToString(","),
                 "--output", outputDir,
                 *arguments,
@@ -48,7 +50,7 @@ open class GenerateEmbeddedJreTask @Inject constructor(
         logger.lifecycle(
             "Custom JRE created in $outputDir using modules: '${modules.joinToString(",")}', arguments: '${
                 arguments.joinToString(" ")
-            }' and java home: $javaHome"
+            }' and java home: $resolvedJavaHome"
         )
     }
 
