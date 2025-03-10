@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build-jvm:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: Build Jvm artifacts
 
     steps:
