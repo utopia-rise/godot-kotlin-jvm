@@ -1,12 +1,17 @@
 package godot.gradle.tasks
 
+import godot.tools.common.constants.Paths
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.process.ExecOperations
 import java.io.File
 import java.util.*
+import javax.inject.Inject
 
-open class GenerateEmbeddedJreTask : DefaultTask() {
+open class GenerateEmbeddedJreTask @Inject constructor(
+    private val execOperations: ExecOperations,
+) : DefaultTask() {
 
     @Input
     var modules: Array<String> = arrayOf(
@@ -15,7 +20,7 @@ open class GenerateEmbeddedJreTask : DefaultTask() {
     )
 
     @Input
-    var outputDir: String = "jvm/jre-${getArch()}-${getOs()}"
+    var outputDir: String = "${Paths.GODOT_KOTLIN_JVM_DIR}/jre-${getArch()}-${getOs()}"
 
     @Input
     var arguments: Array<String> = arrayOf(
@@ -30,8 +35,9 @@ open class GenerateEmbeddedJreTask : DefaultTask() {
     @TaskAction
     fun createJre() {
         File(outputDir).deleteRecursively()
-        project.exec {
-            it.commandLine(
+
+        execOperations.exec { spec ->
+            spec.commandLine(
                 "$javaHome/bin/jlink",
                 "--add-modules", modules.joinToString(","),
                 "--output", outputDir,
@@ -39,7 +45,11 @@ open class GenerateEmbeddedJreTask : DefaultTask() {
             )
         }
 
-        logger.lifecycle("Custom JRE created in $outputDir using modules: '${modules.joinToString(",")}', arguments: '${arguments.joinToString(" ")}' and java home: $javaHome")
+        logger.lifecycle(
+            "Custom JRE created in $outputDir using modules: '${modules.joinToString(",")}', arguments: '${
+                arguments.joinToString(" ")
+            }' and java home: $javaHome"
+        )
     }
 
     private fun getArch(): String {
