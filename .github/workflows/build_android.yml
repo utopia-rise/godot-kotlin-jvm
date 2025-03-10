@@ -16,7 +16,40 @@ concurrency:
 jobs:
   android-template:
     runs-on: ubuntu-20.04
-    name: Build android template (all)
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Build android debug (arm32)
+            cache-name: export_template_debug_android_arm32
+            target: template_debug
+            sconsflags: arch=arm32
+
+          - name: Build android release (arm32)
+            cache-name: export_template_release_android_arm32
+            target: template_release
+            sconsflags: arch=arm32
+
+          - name: Build android debug (arm64)
+            cache-name: export_template_debug_android_arm64
+            target: template_debug
+            sconsflags: arch=arm64
+
+          - name: Build android release (arm64)
+            cache-name: export_template_release_android_arm64
+            target: template_release
+            sconsflags: arch=arm64
+
+          - name: Build android debug (x86_64)
+            cache-name: export_template_debug_android_x86_64
+            target: template_debug
+            sconsflags: arch=x86_64
+
+          - name: Build android release (x86_64)
+            cache-name: export_template_release_android_x86_64
+            target: template_release
+            sconsflags: arch=x86_64
 
     steps:
       - name: Maximize build space
@@ -41,7 +74,7 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          distribution: adopt-hotspot
+          distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
@@ -63,50 +96,15 @@ jobs:
           platform: android
           target: template_release
 
-      - name: Compilation release (arm64)
+      - name: Compilation
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+          sconsflags: ${{ matrix.sconsflags }}
           platform: android
-          target: template_release
-
-      - name: Compilation release (x86_64)
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
-          platform: android
-          target: template_release
-
-      - name: Compilation debug (arm32)
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }} arch=arm32
-          platform: android
-          target: template_debug
-
-      - name: Compilation debug (arm64)
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
-          platform: android
-          target: template_debug
-
-      - name: Compilation debug (x86_64)
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
-          platform: android
-          target: template_debug
-
-      - name: Generate Godot templates
-        run: |
-          cd platform/android/java
-          ./gradlew generateGodotTemplates
-          cd ../../..
-          ls -l bin/
+          target: ${{ matrix.target }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: export_template_android_all
-          path: "bin/*"
+          name: ${{ matrix.cache-name }}
+          path: "platform/android/java/lib/libs/*"

@@ -70,6 +70,16 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
+  assemble-android:
+    name: 🤖 Assemble android
+    uses: ./.github/workflows/assemble_android.yml
+    needs:
+      - setup-build-variables
+      - build-android
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
   assemble-macos:
     name: 🍎 Assemble macos
     uses: ./.github/workflows/assemble_macos.yml
@@ -122,7 +132,7 @@ jobs:
     uses: ./.github/workflows/assemble_export_templates.yml
     needs:
       - setup-build-variables
-      - build-android # uploads finished export template directly
+      - assemble-android
       - assemble-ios # export templates need to be packed into xcode project
       - build-linux # uploads finished export template directly
       - assemble-macos # export templates need to be packed into app
