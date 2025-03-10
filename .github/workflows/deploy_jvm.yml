@@ -132,34 +132,7 @@ jobs:
         run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-gradle-plugin:publish :godot-gradle-plugin:publishPlugins -Pgradle.publish.key=$GRADLE_PUBLISH_KEY -Pgradle.publish.secret=$GRADLE_PUBLISH_SECRET
 
-  deploy_godot_intellij_plugin:
-    strategy:
-      matrix:
-        ij_sdk: [ 2024.2 ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
-      - name: Clone Godot JVM module.
-        uses: actions/checkout@v4
-        with:
-          path: modules/kotlin_jvm
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: adopt-hotspot
-          java-version: ${{ inputs.jvm-version }}
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
-
-      - name: Deploy intellij plugin ${{ matrix.ij_sdk }}
+      - name: Deploy intellij plugin
         shell: sh
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-intellij-plugin:publishPlugin -Pgodot.plugins.intellij.version=${{ matrix.ij_sdk }}
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-intellij-plugin:publishPlugin
