@@ -26,7 +26,7 @@ java {
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    compileOnly("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

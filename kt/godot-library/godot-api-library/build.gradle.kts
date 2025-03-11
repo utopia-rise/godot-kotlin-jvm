@@ -24,9 +24,9 @@ java {
 }
 
 dependencies {
-    compileOnly("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
-    compileOnly(project(":godot-internal-library"))
-    compileOnly(project(":godot-core-library"))
+    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    implementation(project(":godot-internal-library"))
+    api(project(":godot-core-library"))
 }
 
 tasks {

@@ -18,6 +18,8 @@ fun Project.setupConfigurationsAndCompilations() {
     //add our dependencies to the main compilation -> convenience for the user
     kotlinJvmExtension.target.compilations.getByName("main").apply {
         dependencies {
+            compileOnly("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
@@ -34,6 +36,8 @@ fun Project.setupConfigurationsAndCompilations() {
     val bootstrapConfiguration = configurations.create("bootstrap") {
         with(it.dependencies) {
             add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
+            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
