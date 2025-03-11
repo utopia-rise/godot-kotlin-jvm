@@ -27,11 +27,11 @@ java {
 
 dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
-    compileOnly("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
-    compileOnly(project(":godot-internal-library"))
-    compileOnly(project(":godot-core-library"))
-    compileOnly(project(":godot-api-library"))
-    compileOnly(project(":godot-extension-library"))
+    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    implementation(project(":godot-internal-library"))
+    api(project(":godot-core-library"))
+    api(project(":godot-api-library"))
+    api(project(":godot-extension-library"))
 }
 
 tasks {
