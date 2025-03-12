@@ -35,7 +35,7 @@ fun generateEntryUsingClassGraph(
                     clazz.extendsSuperclass(KtObject::class.java)
                         && !clazz.hasAnnotation(GodotBaseType::class.java)
                 }
-                .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqdn(classInfo.name) }
+                .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqName(classInfo.name) }
                 .map { classInfo ->
                     classInfo.mapToClazz(settings)
                 }
