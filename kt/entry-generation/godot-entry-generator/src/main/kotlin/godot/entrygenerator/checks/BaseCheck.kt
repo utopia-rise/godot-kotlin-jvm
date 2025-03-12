@@ -1,11 +1,11 @@
 package godot.entrygenerator.checks
 
-import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 
 abstract class BaseCheck(
     protected val logger: Logger,
-    protected val sourceFiles: List<SourceFile>
+    protected val registeredClasses: List<RegisteredClass>
 ) {
     abstract fun execute(): Boolean
 }
