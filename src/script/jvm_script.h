@@ -3,6 +3,7 @@
 
 #include "core/object/script_language.h"
 #include "jvm_wrapper/registration/kt_class.h"
+#include "resource_format/hash.h"
 
 class JvmInstance;
 

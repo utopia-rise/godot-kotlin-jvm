@@ -60,19 +60,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-
-    //TODO: Remove with 4.4 when NamedScript names are GUIDs
-    for (const Dictionary& item: ProjectSettings::get_singleton()->get_global_class_list()) {
-        String class_name = item["class"];
-        if (class_name != parent_name) {
-            continue;
-        }
-
-        String script_path = item["path"];
-        return ResourceLoader::load(script_path);
-    }
-
-    return {};
+    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
