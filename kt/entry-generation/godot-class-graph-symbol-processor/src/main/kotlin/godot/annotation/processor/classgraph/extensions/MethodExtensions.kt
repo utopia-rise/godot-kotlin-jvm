@@ -13,7 +13,7 @@ fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: 
 
     val typeDescriptor = TypeDescriptor(this)
     return RegisteredFunction(
-        fqName = fqdn.replace("$", "."),
+        fqName = fqName.replace("$", "."),
         isOverridee = isOverridee,
         isDeclaredInThisClass = classInfo == currentClass,
         parameters = parameters,

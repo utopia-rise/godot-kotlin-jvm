@@ -63,21 +63,21 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
     val isOverridee = this.isOverridee
 
     val getterFqName = if (classInfo.isScala) {
-        getGetter(classInfo).fqdn.replace("$", ".")
+        getGetter(classInfo).fqName.replace("$", ".")
     } else {
         null
     }
 
     val setterFqName = if (classInfo.isScala) {
-        val fqdn = getSetter(classInfo).fqdn
-        val split = fqdn.split("$")
+        val fqName = getSetter(classInfo).fqName
+        val split = fqName.split("$")
         "${split.dropLast(1).joinToString(".")}$${split.last()}"
     } else {
         null
     }
 
     return RegisteredProperty(
-        fqName = fqdn.replace("$", "."),
+        fqName = fqName.replace("$", "."),
         type = typeDescriptor.getMappedPropertyType(settings),
         getterFqName = getterFqName,
         setterFqName = setterFqName,
@@ -113,7 +113,7 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
         .parameterValues
 
     return RegisteredSignal(
-        fqName = fqdn.replace("$", "."),
+        fqName = fqName.replace("$", "."),
         type = type,
         parameterTypes = type.arguments(),
         parameterNames = (
