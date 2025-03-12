@@ -1,0 +1,36 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = ScalaTestClass
+fqName = godot.tests.ScalaTestClass
+baseType = Node
+supertypes = [
+    godot.api.Node,
+	godot.api.Object,
+	godot.core.KtObject,
+	godot.common.interop.NativeWrapper,
+	godot.common.interop.NativePointer
+]
+signals = [
+    test_signal,
+	test_signal2
+]
+properties = [
+    exported_int,
+	exported_long,
+	exported_float,
+	exported_double,
+	exported_boolean,
+	exported_string,
+	exported_byte,
+	exported_button,
+	signal_emitted,
+	variant_array,
+	dictionary
+]
+functions = [
+    greeting,
+	_ready,
+	connect_and_trigger_signal,
+	signal_callback
+]

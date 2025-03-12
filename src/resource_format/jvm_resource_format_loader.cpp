@@ -103,8 +103,9 @@ ResourceUID::ID JvmResourceFormatLoader::get_resource_uid(const String& p_path) 
         id = (JvmScript::get_script_file_name(p_path) + UUID_HASH_SEED).hash64();
         id &= 0x7FFFFFFFFFFFFFFF;
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        //TODO: ADAPT TO SOURCE SCRIPTS USING FQNAME ONCE CLASSGRAPH MERGED
-        id = (p_path + UUID_HASH_SEED).hash64();
+        String source;
+        Error error;
+        id = (String(SourceScript::parse_source_to_fqdn(p_path, source, &error)) + UUID_HASH_SEED).hash64();
         id &= 0x7FFFFFFFFFFFFFFF;
     }
     return id;
