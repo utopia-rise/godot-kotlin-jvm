@@ -40,6 +40,14 @@ fun generateEntryUsingClassGraph(
                     classInfo.mapToClazz(settings)
                 }
 
+            require(ErrorsDatabase.isEmpty()) {
+                buildString {
+                    for (error in ErrorsDatabase.errors) {
+                        appendLine(error)
+                    }
+                }
+            }
+
             val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
 
             RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
