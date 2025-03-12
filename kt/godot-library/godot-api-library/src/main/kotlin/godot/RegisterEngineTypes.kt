@@ -572,7 +572,6 @@ import godot.api.RichTextLabel
 import godot.api.RigidBody2D
 import godot.api.RigidBody3D
 import godot.api.RootMotionView
-import godot.api.ScalaScript
 import godot.api.SceneMultiplayer
 import godot.api.SceneReplicationConfig
 import godot.api.SceneState
@@ -1707,7 +1706,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RigidBody2D", RigidBody2D::class, ::RigidBody2D)
   TypeManager.registerEngineType("RigidBody3D", RigidBody3D::class, ::RigidBody3D)
   TypeManager.registerEngineType("RootMotionView", RootMotionView::class, ::RootMotionView)
-  TypeManager.registerEngineType("ScalaScript", ScalaScript::class, ::ScalaScript)
   TypeManager.registerEngineType("SceneMultiplayer", SceneMultiplayer::class, ::SceneMultiplayer)
   TypeManager.registerEngineType("SceneReplicationConfig", SceneReplicationConfig::class,
       ::SceneReplicationConfig)
@@ -2749,7 +2747,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RigidBody2D::class] = OBJECT
   variantMapper[RigidBody3D::class] = OBJECT
   variantMapper[RootMotionView::class] = OBJECT
-  variantMapper[ScalaScript::class] = OBJECT
   variantMapper[SceneMultiplayer::class] = OBJECT
   variantMapper[SceneReplicationConfig::class] = OBJECT
   variantMapper[SceneState::class] = OBJECT
@@ -3635,7 +3632,6 @@ public fun registerEngineTypeMethods(): Unit {
   RigidBody2D.MethodBindings
   RigidBody3D.MethodBindings
   RootMotionView.MethodBindings
-  ScalaScript.MethodBindings
   SceneMultiplayer.MethodBindings
   SceneReplicationConfig.MethodBindings
   SceneState.MethodBindings
