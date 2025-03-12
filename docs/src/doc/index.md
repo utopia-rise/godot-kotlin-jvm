@@ -48,7 +48,7 @@ If you don't have Discord or you don't want to use it, please file an issue on G
 
 ## Supported languages
 
-The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
+The main language supported is Kotlin. We do however support Java and Scala experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
 
 ## Supported platforms
 
@@ -85,7 +85,7 @@ Contrary to the official binaries, there are two builds of the editor per Platfo
 `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports. 
 
 !!! warning
-    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin and Java scripts in Godot, you need our Editor and Export Templates builds.
+    This module will NOT work with the official Godot Editor and Export Templates! To be able to use Kotlin, Java and Scala scripts in Godot, you need our Editor and Export Templates builds.
 
 ## Developer discussion
 
