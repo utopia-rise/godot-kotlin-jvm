@@ -35,6 +35,16 @@ public MyScript extends Node {
 ```
 ///
 
+/// tab | Scala
+```scala
+@RegisterClass
+class MyScript extends Node {
+    @RegisterSignal("reverse")
+    val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal") // Only one way to do it in Java.
+}
+```
+///
+
 !!! warning Signal parameter count
     In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. 
     At the moment, you can create signals and expose them to Godot up to 16 parameters.
@@ -52,6 +62,12 @@ reverseChanged.emit(false)
 /// tab | Java
 ```java
 reverseChanged.emit(false);
+```
+///
+
+/// tab | Scala
+```scala
+reverseChanged.emit(false)
 ```
 ///
 
@@ -77,6 +93,19 @@ You can use a classic Callable referencing a Godot Object and one of its method 
                 System.out.println(string);
             }
     );
+```
+///
+
+/// tab | Scala
+```scala
+    val regularCallable = Callable.create(this, "myMethod".toGodotName())
+    val customCallable = LambdaCallable1.create(
+      classOf[Void],
+      classOf[String],
+      (string: String) => {
+        println(string);
+      }
+    )
 ```
 ///
 
@@ -138,6 +167,33 @@ public class AnotherObject extends Object {
         mySignal.connect(Callable.create(targetObject, StringNames.toGodotName("onReverseChanged"))); // The recommanded way.
         mySignal.connect(Callable.create(targetObject, "on_reverse_changed")); // Unsafe, try to use snake_case in your code as least as possible.
         connect("my_signal", Callable.create(targetObject, "on_reverse_changed")); // Really, don't do that.
+    }
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class SomeObject extends Object {
+    @RegisterFunction
+    def onReverseChanged(boolean reverse): Unit = {
+        println(s"Value of reverse has changed: $reverse")
+    }
+}
+
+@RegisterClass
+class AnotherObject extends Object {
+    @RegisterSignal("reverse")
+    val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal")
+
+    private val targetObject = new SomeObject()
+
+    public AnotherObject() {
+        // Here are 3 different ways to connect a signal to a registered method. The method reference syntax is not implemented for Java.
+        mySignal.connect(Callable.create(targetObject, StringNames.toGodotName("onReverseChanged"))) // The recommanded way.
+        mySignal.connect(Callable.create(targetObject, "on_reverse_changed")) // Unsafe, try to use snake_case in your code as least as possible.
+        connect("my_signal", Callable.create(targetObject, "on_reverse_changed")) // Really, don't do that.
     }
 }
 ```
