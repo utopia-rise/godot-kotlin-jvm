@@ -4,7 +4,7 @@ import io.github.classgraph.ClassMemberInfo
 
 const val DELEGATE_SUFFIX = "\$delegate"
 
-val ClassMemberInfo.fqdn: String
+val ClassMemberInfo.fqName: String
     get() = "${classInfo.name}\$$sanitizedName"
 
 val ClassMemberInfo.sanitizedName: String

@@ -17,11 +17,11 @@ object RegisteredClassMetadataContainerDatabase {
             .getClassesWithAnyAnnotation(RegisteredClassMetadata::class.java)
             .map { classInfo ->
                 val annotation = classInfo.getAnnotationInfo(RegisteredClassMetadata::class.java)
-                val fqdn = annotation.getParameterValue<String>("fqName")
-                fqdn to RegisteredClassMetadataContainer(
+                val fqName = annotation.getParameterValue<String>("fqName")
+                fqName to RegisteredClassMetadataContainer(
                     registeredName = annotation.getParameterValue("registeredName"),
                     baseType = annotation.getParameterValue("baseType"),
-                    fqName = fqdn,
+                    fqName = fqName,
                     compilationTimeRelativeRegistrationFilePath = annotation.getParameterValue("compilationTimeRelativeRegistrationFilePath"),
                     projectName = annotation.getParameterValue("projectName"),
                     superTypes = annotation.getParameterValue("superTypes"),
@@ -59,7 +59,7 @@ object RegisteredClassMetadataContainerDatabase {
             }
     }
 
-    fun dependenciesContainsFqdn(fqdn: String): Boolean = dependenciesContainers.containsKey(fqdn)
+    fun dependenciesContainsFqName(fqName: String): Boolean = dependenciesContainers.containsKey(fqName)
 
     val dependenciesSize: Int
         get() = dependenciesContainers.size
