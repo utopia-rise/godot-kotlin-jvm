@@ -4,6 +4,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
 import godot.core.KtObject
@@ -44,8 +45,10 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     val shouldBeRegistered = shouldBeRegistered(methods, fields, signals)
 
     return if (shouldBeRegistered) {
-        require(constructorInfo.any { it.isPublic && it.parameterInfo.isEmpty() }) {
-            "You should provide a default constructor for class $fqName"
+        if (!constructorInfo.any { it.isPublic && it.parameterInfo.isEmpty() }) {
+            ErrorsDatabase.add(
+                "You should provide a default constructor for class $fqName"
+            )
         }
 
         RegisteredClass(

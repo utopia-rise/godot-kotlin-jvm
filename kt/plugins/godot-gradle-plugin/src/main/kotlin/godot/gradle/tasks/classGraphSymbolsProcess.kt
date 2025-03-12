@@ -31,11 +31,11 @@ fun Project.classGraphSymbolsProcess(
 
                 generateEntryUsingClassGraph(
                     Settings(
-                        godotJvmExtension.classPrefix.orNull,
-                        godotJvmExtension.isFqNameRegistrationEnabled.get(),
-                        (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_"),
-                        File(projectDir.absolutePath.replace(File.separator, "/")),
-                        (
+                        classPrefix = godotJvmExtension.classPrefix.orNull,
+                        isFqNameRegistrationEnabled = godotJvmExtension.isFqNameRegistrationEnabled.get(),
+                        projectName = (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_"),
+                        projectBaseDir = File(projectDir.absolutePath.replace(File.separator, "/")),
+                        registrationBaseDirPathRelativeToProjectDir = (
                             godotJvmExtension
                                 .registrationFileBaseDir
                                 .orNull
@@ -53,9 +53,9 @@ fun Project.classGraphSymbolsProcess(
                             .replace(File.separator, "/")
                             .removePrefix("/")
                             .removeSuffix("/"),
-                        godotJvmExtension.isRegistrationFileHierarchyEnabled.get(),
-                        godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true),
-                        layout.buildDirectory.get()
+                        isRegistrationFileHierarchyEnabled = godotJvmExtension.isRegistrationFileHierarchyEnabled.get(),
+                        isRegistrationFileGenerationEnabled = godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true),
+                        generatedSourceRootDir = layout.buildDirectory.get()
                             .asFile
                             .resolve("generated")
                             .resolve("classgraph")

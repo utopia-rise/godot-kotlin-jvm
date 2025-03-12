@@ -18,6 +18,7 @@ import godot.annotation.Sync
 import godot.annotation.Tool
 import godot.annotation.TransferMode
 import godot.annotation.processor.classgraph.Context
+import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.constants.SET
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
@@ -64,16 +65,22 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any): GodotAnnotation
         )
         "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) // is internal
         EnumFlag::class.java.name -> {
-            require(parentDeclaration is FieldInfo) {
-                "EnumFlag annotation should be placed on property."
+            if (parentDeclaration !is FieldInfo) {
+                ErrorsDatabase.add(
+                    "EnumFlag annotation should be placed on property."
+                )
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
             }
 
             val typeDescriptor = parentDeclaration.typeSignature
 
             require(typeDescriptor is ClassRefTypeSignature)
 
-            require(typeDescriptor.fullyQualifiedClassName == SET) {
-                "Property annotated with EnumFlag should be of type $SET"
+            if (typeDescriptor.fullyQualifiedClassName != SET) {
+                ErrorsDatabase.add(
+                    "Property annotated with EnumFlag should be of type $SET"
+                )
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
             }
 
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
