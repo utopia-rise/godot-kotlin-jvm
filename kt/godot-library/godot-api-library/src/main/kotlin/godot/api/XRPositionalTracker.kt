@@ -199,19 +199,19 @@ public open class XRPositionalTracker : XRTracker() {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
-    TRACKER_HAND_UNKNOWN(0),
+    UNKNOWN(0),
     /**
      * This tracker is the left hand controller.
      */
-    TRACKER_HAND_LEFT(1),
+    LEFT(1),
     /**
      * This tracker is the right hand controller.
      */
-    TRACKER_HAND_RIGHT(2),
+    RIGHT(2),
     /**
      * Represents the size of the [TrackerHand] enum.
      */
-    TRACKER_HAND_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

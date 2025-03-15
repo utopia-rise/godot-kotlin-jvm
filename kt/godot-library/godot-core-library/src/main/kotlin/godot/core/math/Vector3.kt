@@ -33,15 +33,15 @@ class Vector3(
 
     //CONSTANTS
     enum class Axis(val id: Long) {
-        AXIS_X(0L),
-        AXIS_Y(1L),
-        AXIS_Z(2L);
+        X(0L),
+        Y(1L),
+        Z(2L);
 
         companion object {
             fun from(value: Long) = when (value) {
-                0L -> AXIS_X
-                1L -> AXIS_Y
-                2L -> AXIS_Z
+                0L -> X
+                1L -> Y
+                2L -> Z
                 else -> throw AssertionError("Unknown axis for Vector3: $value")
             }
         }
@@ -375,15 +375,15 @@ class Vector3(
      */
     fun maxAxis() = if (x < y) {
         if (y < z) {
-            Axis.AXIS_Z
+            Axis.Z
         } else {
-            Axis.AXIS_Y
+            Axis.Y
         }
     } else {
         if (x < z) {
-            Axis.AXIS_Z
+            Axis.Z
         } else {
-            Axis.AXIS_X
+            Axis.X
         }
     }
 
@@ -402,15 +402,15 @@ class Vector3(
      */
     fun minAxis() = if (x < y) {
         if (x < z) {
-            Axis.AXIS_X
+            Axis.X
         } else {
-            Axis.AXIS_Z
+            Axis.Z
         }
     } else {
         if (y < z) {
-            Axis.AXIS_Y
+            Axis.Y
         } else {
-            Axis.AXIS_Z
+            Axis.Z
         }
     }
 
@@ -682,15 +682,15 @@ class Vector3(
     }
 
     operator fun get(axis: Axis): RealT = when (axis) {
-        Axis.AXIS_X -> x
-        Axis.AXIS_Y -> y
-        Axis.AXIS_Z -> z
+        Axis.X -> x
+        Axis.Y -> y
+        Axis.Z -> z
     }
 
     operator fun set(axis: Axis, f: RealT) = when (axis) {
-        Axis.AXIS_X -> x = f
-        Axis.AXIS_Y -> y = f
-        Axis.AXIS_Z -> z = f
+        Axis.X -> x = f
+        Axis.Y -> y = f
+        Axis.Z -> z = f
     }
 
     operator fun plus(vec: Vector3) = Vector3(x + vec.x, y + vec.y, z + vec.z)

@@ -8,7 +8,7 @@ import godot.api.ResourceLoader
 inline fun <T : Resource> ResourceLoader.loadAs(
     path: String,
     typeHint: String = "",
-    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
+    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.REUSE
 ): T? {
     return load(path, typeHint, cacheMode) as T?
 }

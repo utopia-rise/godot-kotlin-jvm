@@ -747,15 +747,15 @@ public open class TileMapLayer : Node2D() {
      * determine their visibility in game (i.e. [SceneTree.debugCollisionsHint] or
      * [SceneTree.debugNavigationHint]).
      */
-    DEBUG_VISIBILITY_MODE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Always hide the collisions or navigation debug shapes.
      */
-    DEBUG_VISIBILITY_MODE_FORCE_HIDE(2),
+    FORCE_HIDE(2),
     /**
      * Always show the collisions or navigation debug shapes.
      */
-    DEBUG_VISIBILITY_MODE_FORCE_SHOW(1),
+    FORCE_SHOW(1),
     ;
 
     public val id: Long

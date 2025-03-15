@@ -649,19 +649,19 @@ public object AudioServer : Object() {
     /**
      * Two or fewer speakers were detected.
      */
-    SPEAKER_MODE_STEREO(0),
+    STEREO(0),
     /**
      * A 3.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_31(1),
+    SURROUND_31(1),
     /**
      * A 5.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_51(2),
+    SURROUND_51(2),
     /**
      * A 7.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_71(3),
+    SURROUND_71(3),
     ;
 
     public val id: Long
@@ -681,22 +681,22 @@ public object AudioServer : Object() {
      * The playback will be considered of the type declared at
      * [ProjectSettings.audio/general/defaultPlaybackType].
      */
-    PLAYBACK_TYPE_DEFAULT(0),
+    DEFAULT(0),
     /**
      * Force the playback to be considered as a stream.
      */
-    PLAYBACK_TYPE_STREAM(1),
+    STREAM(1),
     /**
      * Force the playback to be considered as a sample. This can provide lower latency and more
      * stable playback (with less risk of audio crackling), at the cost of having less flexibility.
      * **Note:** Only currently supported on the web platform.
      * **Note:** [AudioEffect]s are not supported when playback is considered as a sample.
      */
-    PLAYBACK_TYPE_SAMPLE(2),
+    SAMPLE(2),
     /**
      * Represents the size of the [PlaybackType] enum.
      */
-    PLAYBACK_TYPE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

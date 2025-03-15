@@ -139,17 +139,17 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
       /**
        * The skeleton's upper body joints are updated.
        */
-      public val BODY_UPDATE_UPPER_BODY: BodyUpdate = BodyUpdate(1)
+      public val UPPER_BODY: BodyUpdate = BodyUpdate(1)
 
       /**
        * The skeleton's lower body joints are updated.
        */
-      public val BODY_UPDATE_LOWER_BODY: BodyUpdate = BodyUpdate(2)
+      public val LOWER_BODY: BodyUpdate = BodyUpdate(2)
 
       /**
        * The skeleton's hand joints are updated.
        */
-      public val BODY_UPDATE_HANDS: BodyUpdate = BodyUpdate(4)
+      public val HANDS: BodyUpdate = BodyUpdate(4)
     }
   }
 
@@ -160,16 +160,16 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    BONE_UPDATE_FULL(0),
+    FULL(0),
     /**
      * The skeleton's bones are only rotated to align with the tracked bones, preserving bone
      * length.
      */
-    BONE_UPDATE_ROTATION_ONLY(1),
+    ROTATION_ONLY(1),
     /**
      * Represents the size of the [BoneUpdate] enum.
      */
-    BONE_UPDATE_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

@@ -55,15 +55,15 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     /**
      * Perform the inverse operation on the [Transform3D] matrix.
      */
-    FUNC_INVERSE(0),
+    INVERSE(0),
     /**
      * Perform the transpose operation on the [Transform3D] matrix.
      */
-    FUNC_TRANSPOSE(1),
+    TRANSPOSE(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

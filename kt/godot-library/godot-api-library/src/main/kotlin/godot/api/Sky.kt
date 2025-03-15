@@ -136,7 +136,7 @@ public open class Sky : Resource() {
     /**
      * Represents the size of the [RadianceSize] enum.
      */
-    RADIANCE_SIZE_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -158,7 +158,7 @@ public open class Sky : Resource() {
      * `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise,
      * this defaults to [PROCESS_MODE_QUALITY].
      */
-    PROCESS_MODE_AUTOMATIC(0),
+    AUTOMATIC(0),
     /**
      * Uses high quality importance sampling to process the radiance map. In general, this results
      * in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This
@@ -166,14 +166,14 @@ public open class Sky : Resource() {
      * reflection is not blurry enough and is showing sparkles or fireflies, try increasing
      * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
-    PROCESS_MODE_QUALITY(1),
+    QUALITY(1),
     /**
      * Uses the same high quality importance sampling to process the radiance map as
      * [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by
      * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
      * highest quality radiance maps, but have a sky that updates slowly.
      */
-    PROCESS_MODE_INCREMENTAL(2),
+    INCREMENTAL(2),
     /**
      * Uses the fast filtering algorithm to process the radiance map. In general this results in
      * lower quality, but substantially faster run times. If you need better quality, but still need to
@@ -183,7 +183,7 @@ public open class Sky : Resource() {
      * be set to [RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size
      * is ignored.
      */
-    PROCESS_MODE_REALTIME(3),
+    REALTIME(3),
     ;
 
     public val id: Long

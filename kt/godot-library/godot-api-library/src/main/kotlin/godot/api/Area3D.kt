@@ -787,26 +787,26 @@ public open class Area3D : CollisionObject3D() {
     /**
      * This area does not affect gravity/damping.
      */
-    SPACE_OVERRIDE_DISABLED(0),
+    DISABLED(0),
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in
      * [priority] order).
      */
-    SPACE_OVERRIDE_COMBINE(1),
+    COMBINE(1),
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in
      * [priority] order), ignoring any lower priority areas.
      */
-    SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    COMBINE_REPLACE(2),
     /**
      * This area replaces any gravity/damping, even the defaults, ignoring any lower priority areas.
      */
-    SPACE_OVERRIDE_REPLACE(3),
+    REPLACE(3),
     /**
      * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps
      * calculating the rest of the areas.
      */
-    SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    REPLACE_COMBINE(4),
     ;
 
     public val id: Long

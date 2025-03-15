@@ -225,7 +225,7 @@ public open class PopupMenu : Popup() {
   public final fun addItem(
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addItemPtr, NIL)
@@ -243,7 +243,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D?,
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, NIL)
@@ -263,7 +263,7 @@ public open class PopupMenu : Popup() {
   public final fun addCheckItem(
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addCheckItemPtr, NIL)
@@ -284,7 +284,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D?,
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconCheckItemPtr, NIL)
@@ -304,7 +304,7 @@ public open class PopupMenu : Popup() {
   public final fun addRadioCheckItem(
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addRadioCheckItemPtr, NIL)
@@ -318,7 +318,7 @@ public open class PopupMenu : Popup() {
     texture: Texture2D?,
     label: String,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconRadioCheckItemPtr, NIL)
@@ -357,7 +357,7 @@ public open class PopupMenu : Popup() {
     maxStates: Int,
     defaultState: Int = 0,
     id: Int = -1,
-    accel: Key = Key.KEY_NONE,
+    accel: Key = Key.NONE,
   ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addMultistateItemPtr, NIL)

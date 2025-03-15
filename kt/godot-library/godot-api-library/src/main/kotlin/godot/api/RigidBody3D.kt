@@ -1038,12 +1038,12 @@ public open class RigidBody3D : PhysicsBody3D() {
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
      * only moved by user code and doesn't collide with other bodies along its path.
      */
-    FREEZE_MODE_STATIC(0),
+    STATIC(0),
     /**
      * Kinematic body freeze mode. Similar to [FREEZE_MODE_STATIC], but collides with other bodies
      * along its path when moved. Useful for a frozen body that needs to be animated.
      */
-    FREEZE_MODE_KINEMATIC(1),
+    KINEMATIC(1),
     ;
 
     public val id: Long
@@ -1063,12 +1063,12 @@ public open class RigidBody3D : PhysicsBody3D() {
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
      * assumes that the shapes' origins are also their center of mass.
      */
-    CENTER_OF_MASS_MODE_AUTO(0),
+    AUTO(0),
     /**
      * In this mode, the body's center of mass is set through [centerOfMass]. Defaults to the body's
      * origin position.
      */
-    CENTER_OF_MASS_MODE_CUSTOM(1),
+    CUSTOM(1),
     ;
 
     public val id: Long
@@ -1088,11 +1088,11 @@ public open class RigidBody3D : PhysicsBody3D() {
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
      */
-    DAMP_MODE_COMBINE(0),
+    COMBINE(0),
     /**
      * In this mode, the body's damping value replaces any value set in areas or the default value.
      */
-    DAMP_MODE_REPLACE(1),
+    REPLACE(1),
     ;
 
     public val id: Long

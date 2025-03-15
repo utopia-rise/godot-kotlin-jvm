@@ -113,27 +113,27 @@ public open class SkeletonModifier3D : Node3D() {
     /**
      * Enumerated value for the +X axis.
      */
-    BONE_AXIS_PLUS_X(0),
+    PLUS_X(0),
     /**
      * Enumerated value for the -X axis.
      */
-    BONE_AXIS_MINUS_X(1),
+    MINUS_X(1),
     /**
      * Enumerated value for the +Y axis.
      */
-    BONE_AXIS_PLUS_Y(2),
+    PLUS_Y(2),
     /**
      * Enumerated value for the -Y axis.
      */
-    BONE_AXIS_MINUS_Y(3),
+    MINUS_Y(3),
     /**
      * Enumerated value for the +Z axis.
      */
-    BONE_AXIS_PLUS_Z(4),
+    PLUS_Z(4),
     /**
      * Enumerated value for the -Z axis.
      */
-    BONE_AXIS_MINUS_Z(5),
+    MINUS_Z(5),
     ;
 
     public val id: Long

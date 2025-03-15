@@ -55,50 +55,50 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
     /**
      * Sums two numbers using `a + b`.
      */
-    OP_ADD(0),
+    ADD(0),
     /**
      * Subtracts two numbers using `a - b`.
      */
-    OP_SUB(1),
+    SUB(1),
     /**
      * Multiplies two numbers using `a * b`.
      */
-    OP_MUL(2),
+    MUL(2),
     /**
      * Divides two numbers using `a / b`.
      */
-    OP_DIV(3),
+    DIV(3),
     /**
      * Calculates the remainder of two numbers. Translates to `mod(a, b)` in the Godot Shader
      * Language.
      */
-    OP_MOD(4),
+    MOD(4),
     /**
      * Raises the `a` to the power of `b`. Translates to `pow(a, b)` in the Godot Shader Language.
      */
-    OP_POW(5),
+    POW(5),
     /**
      * Returns the greater of two numbers. Translates to `max(a, b)` in the Godot Shader Language.
      */
-    OP_MAX(6),
+    MAX(6),
     /**
      * Returns the lesser of two numbers. Translates to `min(a, b)` in the Godot Shader Language.
      */
-    OP_MIN(7),
+    MIN(7),
     /**
      * Returns the arc-tangent of the parameters. Translates to `atan(a, b)` in the Godot Shader
      * Language.
      */
-    OP_ATAN2(8),
+    ATAN2(8),
     /**
      * Generates a step function by comparing `b`(x) to `a`(edge). Returns 0.0 if `x` is smaller
      * than `edge` and otherwise 1.0. Translates to `step(a, b)` in the Godot Shader Language.
      */
-    OP_STEP(9),
+    STEP(9),
     /**
      * Represents the size of the [Operator] enum.
      */
-    OP_ENUM_SIZE(10),
+    ENUM_SIZE(10),
     ;
 
     public val id: Long

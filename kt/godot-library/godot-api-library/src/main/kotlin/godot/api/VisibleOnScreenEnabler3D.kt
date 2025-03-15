@@ -91,15 +91,15 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
      */
-    ENABLE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Corresponds to [Node.PROCESS_MODE_ALWAYS].
      */
-    ENABLE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Corresponds to [Node.PROCESS_MODE_WHEN_PAUSED].
      */
-    ENABLE_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     ;
 
     public val id: Long
