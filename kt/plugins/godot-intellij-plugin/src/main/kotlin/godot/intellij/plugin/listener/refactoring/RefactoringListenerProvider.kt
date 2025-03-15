@@ -49,8 +49,8 @@ private class PsiClassRefactoringListenerSingle(
         val module = psiClass.module ?: return
         val newFqName = psiClass.qualifiedName ?: return
 
-        val oldResPath = ResPath.fromFqName(oldFqName, module)
-        val newResPath = ResPath.fromFqName(newFqName, module)
+        val oldResPath = ResPath.scriptClassFqName(oldFqName, module)
+        val newResPath = ResPath.scriptClassFqName(newFqName, module)
 
         SceneAction.scriptMoved(
             module = module,
@@ -97,8 +97,8 @@ private class PsiClassRefactoringListenerBatch(
             val simpleName = newFqName.substringAfterLast(".")
             val oldFqName = "${oldPackagePath}.${simpleName}"
 
-            val oldResPath = ResPath.fromFqName(oldFqName, module)
-            val newResPath = ResPath.fromFqName(newFqName, module)
+            val oldResPath = ResPath.scriptClassFqName(oldFqName, module)
+            val newResPath = ResPath.scriptClassFqName(newFqName, module)
 
             SceneAction.scriptMoved(
                 module = module,

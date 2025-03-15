@@ -42,6 +42,10 @@
         <refactoring.elementListenerProvider implementation="godot.intellij.plugin.listener.refactoring.RefactoringListenerProvider"/>
     </extensions>
 
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true" />
+    </extensions>
+
     <resource-bundle>messages.generalLabels</resource-bundle>
 
     <depends>com.intellij.modules.java</depends>

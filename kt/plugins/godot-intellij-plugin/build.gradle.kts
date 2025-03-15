@@ -1,9 +1,7 @@
+import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import versioninfo.intellij.BuildConfig
-import versioninfo.intellij.VersionRange
 import versioninfo.fullGodotKotlinJvmVersion
 import versioninfo.isSnapshot
-import org.jetbrains.changelog.Changelog
 
 plugins {
     // Java support
@@ -63,6 +61,10 @@ intellijPlatform.pluginVerification.ides.ide(intellijVersion)
 tasks {
     runIde {
         jvmArgs("-Xmx2000m")
+
+        jvmArgumentProviders += CommandLineArgumentProvider {
+            listOf("-Didea.kotlin.plugin.use.k2=true")
+        }
     }
 
     patchPluginXml {
@@ -111,6 +113,13 @@ tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         compilerOptions {
             freeCompilerArgs.add("-Xjvm-default=all")
+            freeCompilerArgs.add("-Xcontext-receivers") // We have to add context receiver support because the analysis api from k2 is using context receivers...
+        }
+    }
+
+    test {
+        jvmArgumentProviders += CommandLineArgumentProvider {
+            listOf("-Didea.kotlin.plugin.use.k2=true")
         }
     }
 }

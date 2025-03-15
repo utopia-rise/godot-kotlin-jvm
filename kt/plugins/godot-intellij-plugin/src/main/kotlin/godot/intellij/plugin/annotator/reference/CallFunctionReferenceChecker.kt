@@ -1,19 +1,17 @@
 package godot.intellij.plugin.annotator.reference
 
+
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
+import godot.intellij.plugin.extension.isOrInheritsType
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotPackage
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
-import org.jetbrains.kotlin.name.FqName
-
-
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtClass
@@ -21,7 +19,6 @@ import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
 import org.jetbrains.kotlin.psi.psiUtil.isExtensionDeclaration
-import org.jetbrains.kotlin.types.typeUtil.supertypes
 import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstanceOrNull
 
 object CallFunctionReferenceChecker {
@@ -52,7 +49,7 @@ object CallFunctionReferenceChecker {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(asClassId(REGISTER_FUNCTION_ANNOTATION))
             if (targetFunction != null && registerFunctionAnnotation == null) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.general.calledFunctionNotRegistered"),
@@ -65,7 +62,7 @@ object CallFunctionReferenceChecker {
 
     private fun isGodotFunction(containingClass: KtClass?, callReference: KtNameReferenceExpression?) =
         containingClass?.fqName?.asString() == "$godotPackage.${GodotKotlinJvmTypes.obj}" ||
-            containingClass?.type()?.supertypes()?.map { it.getKotlinTypeFqName(false) }?.any { it == "$godotPackage.${GodotKotlinJvmTypes.obj}" } == true ||
+            containingClass?.isOrInheritsType(asClassId("$godotPackage.${GodotKotlinJvmTypes.obj}")) == true ||
             isGodotExtensionFunction(callReference)
 
     private fun isGodotExtensionFunction(callReference: KtNameReferenceExpression?): Boolean {

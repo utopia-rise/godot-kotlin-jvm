@@ -1,10 +1,20 @@
 package godot.intellij.plugin.extension
 
-import org.jetbrains.kotlin.descriptors.CallableDescriptor
-import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtProperty
-import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.analysis.api.analyze
+import org.jetbrains.kotlin.analysis.api.types.KaType
+import org.jetbrains.kotlin.analysis.api.types.symbol
+import org.jetbrains.kotlin.psi.KtDeclaration
 
-fun KtClass.type(): KotlinType? = (this.resolveToDescriptorIfAny() as? CallableDescriptor)?.returnType
-fun KtProperty.type(): KotlinType? = (this.resolveToDescriptorIfAny() as? CallableDescriptor)?.returnType
+fun KtDeclaration.type(): KaType {
+    val declaration = this
+    return analyze(this) {
+        declaration.returnType
+    }
+}
+
+fun KtDeclaration.fqName(): String? {
+    val declaration = this
+    return analyze(this) {
+        declaration.returnType.symbol?.classId?.asFqNameString()
+    }
+}
