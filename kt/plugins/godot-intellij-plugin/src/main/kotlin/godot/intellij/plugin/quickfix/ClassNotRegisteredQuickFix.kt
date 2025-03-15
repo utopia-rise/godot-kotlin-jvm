@@ -6,9 +6,9 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
 import org.jetbrains.kotlin.idea.util.addAnnotation
-import org.jetbrains.kotlin.name.FqName
 
 class ClassNotRegisteredQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.class.notRegistered.familyName")
@@ -21,7 +21,7 @@ class ClassNotRegisteredQuickFix : LocalQuickFix {
         } ?: return
 
         when(psiClass) {
-            is KtUltraLightClass -> psiClass.kotlinOrigin.addAnnotation(FqName(REGISTER_CLASS_ANNOTATION))
+            is KtUltraLightClass -> psiClass.kotlinOrigin.addAnnotation(asClassId(REGISTER_CLASS_ANNOTATION))
             else -> psiClass.modifierList?.addAnnotation(REGISTER_CLASS_ANNOTATION)
         }
     }

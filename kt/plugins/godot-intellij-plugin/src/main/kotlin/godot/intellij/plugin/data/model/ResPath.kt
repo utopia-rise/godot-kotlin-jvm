@@ -40,10 +40,10 @@ value class ResPath(private val path: String) {
 
     companion object {
         fun fromPsiClass(psiClass: PsiClass): ResPath? {
-            return fromFqName(psiClass.qualifiedName ?: return null, psiClass.module)
+            return scriptClassFqName(psiClass.qualifiedName ?: return null, psiClass.module)
         }
 
-        fun fromFqName(fqName: String, module: Module?): ResPath {
+        fun scriptClassFqName(fqName: String, module: Module?): ResPath {
             val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
             val isRegistrationFileHierarchyEnabled = GodotKotlinJvmSettings[module].isRegistrationFileHierarchyEnabled
             val registrationFileBaseDir = GodotKotlinJvmSettings[module].registrationFileBaseDir

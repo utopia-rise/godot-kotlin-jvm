@@ -5,8 +5,8 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import org.jetbrains.kotlin.idea.util.addAnnotation
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtModifierListOwner
 import org.jetbrains.kotlin.psi.KtProperty
 
@@ -22,6 +22,6 @@ class PropertyNotRegisteredQuickFix : LocalQuickFix {
 
         ktProperty
             .let { it as? KtModifierListOwner }
-            ?.addAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION))
+            ?.addAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION))
     }
 }

@@ -1,23 +1,21 @@
 package godot.intellij.plugin.annotator.function
 
+
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.RPC_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
-
-
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.FqName
-
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.psiUtil.getChildOfType
@@ -28,8 +26,8 @@ class RpcAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (!element.isInGodotRoot()) return
 
-        if (element is KtAnnotated && element.findAnnotation(FqName(RPC_ANNOTATION)) != null) {
-            val valueArgumentList = element.findAnnotation(FqName(RPC_ANNOTATION))?.valueArgumentList ?: return
+        if (element is KtAnnotated && element.findAnnotation(asClassId(RPC_ANNOTATION)) != null) {
+            val valueArgumentList = element.findAnnotation(asClassId(RPC_ANNOTATION))?.valueArgumentList ?: return
 
             val transferModeValueArgument = valueArgumentList
                 .arguments

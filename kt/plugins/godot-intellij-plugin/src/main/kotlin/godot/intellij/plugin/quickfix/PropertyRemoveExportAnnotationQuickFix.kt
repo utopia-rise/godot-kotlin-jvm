@@ -5,8 +5,8 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
 
 class PropertyRemoveExportAnnotationQuickFix : LocalQuickFix {
@@ -19,6 +19,6 @@ class PropertyRemoveExportAnnotationQuickFix : LocalQuickFix {
             descriptor.psiElement.parent
         }
 
-        (ktProperty as? KtProperty)?.findAnnotation(FqName(EXPORT_ANNOTATION))?.delete()
+        (ktProperty as? KtProperty)?.findAnnotation(asClassId(EXPORT_ANNOTATION))?.delete()
     }
 }

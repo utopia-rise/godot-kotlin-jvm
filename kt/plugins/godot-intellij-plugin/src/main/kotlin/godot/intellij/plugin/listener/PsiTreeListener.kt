@@ -87,8 +87,8 @@ class PsiTreeListener(
                                 val oldFqName = "${oldParentPackage.qualifiedName}.${simpleName}"
                                 val newFqName = "${newParentPackage.qualifiedName}.${simpleName}"
 
-                                val oldResPath = ResPath.fromFqName(oldFqName, registeredClass.module)
-                                val newResPath = ResPath.fromFqName(newFqName, registeredClass.module)
+                                val oldResPath = ResPath.scriptClassFqName(oldFqName, registeredClass.module)
+                                val newResPath = ResPath.scriptClassFqName(newFqName, registeredClass.module)
 
                                 if (oldResPath != newResPath) {
                                     SceneAction.scriptMoved(

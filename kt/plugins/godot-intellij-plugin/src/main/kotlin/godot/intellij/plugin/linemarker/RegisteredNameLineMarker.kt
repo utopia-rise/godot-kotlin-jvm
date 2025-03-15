@@ -12,19 +12,19 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import godot.common.extensions.convertToSnakeCase
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.getRegisteredClassName
 import godot.intellij.plugin.extension.isAbstract
 import godot.intellij.plugin.extension.isInGodotRoot
-import godot.common.extensions.convertToSnakeCase
 import org.jetbrains.kotlin.idea.refactoring.isAbstract
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
@@ -47,7 +47,7 @@ class RegisteredNameLineMarker : LineMarkerProvider {
         }
 
         val lineMarkerData = when(val parent = element.parent) {
-            is KtClass -> if (parent.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null) {
+            is KtClass -> if (parent.findAnnotation(asClassId(REGISTER_CLASS_ANNOTATION)) != null) {
                 val name = if (parent.isAbstract()) {
                     GodotPluginBundle.message(
                         "linemarker.registeredName.notRegisteredBecauseIsAbstract.text"
@@ -97,14 +97,14 @@ class RegisteredNameLineMarker : LineMarkerProvider {
                 else -> null
             }
             is KtProperty -> when {
-                parent.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null -> parent.name?.let { name ->
+                parent.findAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION)) != null -> parent.name?.let { name ->
                     LineMarkerData(
                         identifier = parent.nameIdentifier ?: parent.navigationElement,
                         convertedName = name.convertToSnakeCase(),
                         gutterIcon = IconLoader.getIcon("/linemarkerIcons/icon_member_property.svg", this::class.java)
                     )
                 }
-                parent.findAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION)) != null -> parent.name?.let { name ->
+                parent.findAnnotation(asClassId(REGISTER_SIGNAL_ANNOTATION)) != null -> parent.name?.let { name ->
                     LineMarkerData(
                         identifier = parent.nameIdentifier ?: parent.navigationElement,
                         convertedName = name.convertToSnakeCase(),
@@ -114,7 +114,7 @@ class RegisteredNameLineMarker : LineMarkerProvider {
                 else -> null
             }
             is KtFunction -> when {
-                parent.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) != null -> parent.name?.let { name ->
+                parent.findAnnotation(asClassId(REGISTER_FUNCTION_ANNOTATION)) != null -> parent.name?.let { name ->
                     LineMarkerData(
                         identifier = parent.nameIdentifier ?: parent.navigationElement,
                         convertedName = name.convertToSnakeCase(),

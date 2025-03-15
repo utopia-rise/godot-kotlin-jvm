@@ -6,12 +6,14 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.isInGodotRoot
-import godot.intellij.plugin.extension.isSignal
+import godot.intellij.plugin.extension.isOrInheritsType
 import godot.intellij.plugin.extension.signalConnectionCache
-import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtFunction
@@ -30,7 +32,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
         val signalConnectionHandler = element.module?.signalConnectionCache ?: return null
 
         val parent = element.parent
-        if (parent is KtProperty && parent.type().isSignal()) {
+        if (parent is KtProperty && parent.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.signal}"))) {
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val propertyName = parent.name ?: return null
 

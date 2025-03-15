@@ -1,9 +1,11 @@
 package godot.intellij.plugin.annotator.reference
 
+
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.RPC_ANNOTATION
+import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
@@ -13,12 +15,8 @@ import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotPackage
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
-
-
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.FqName
-
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
@@ -52,8 +50,8 @@ object RpcFunctionReferenceChecker {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION))
-            val rpcAnnotation = targetFunction?.findAnnotation(FqName(RPC_ANNOTATION))
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(asClassId(REGISTER_FUNCTION_ANNOTATION))
+            val rpcAnnotation = targetFunction?.findAnnotation(asClassId(RPC_ANNOTATION))
 
             when {
                 targetFunction != null && registerFunctionAnnotation == null -> {
