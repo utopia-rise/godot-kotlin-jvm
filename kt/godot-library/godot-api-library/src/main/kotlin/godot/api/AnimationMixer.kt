@@ -30,6 +30,7 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -740,6 +741,10 @@ public open class AnimationMixer internal constructor() : Node() {
    * returned and an error is logged.
    */
   public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
+
+  public final fun setRootNode(path: String) = setRootNode(path.asCachedNodePath())
+
+  public final fun setRootMotionTrack(path: String) = setRootMotionTrack(path.asCachedNodePath())
 
   /**
    * If the animation track specified by [name] has an option [Animation.UPDATE_CAPTURE], stores

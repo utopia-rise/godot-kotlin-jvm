@@ -26,6 +26,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -651,7 +652,6 @@ public open class SceneTree : MainLoop() {
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
    */
-  @JvmOverloads
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")):
       Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
@@ -663,7 +663,6 @@ public open class SceneTree : MainLoop() {
    * searches the parent paths until one is found. If the path is empty, or none is found, the default
    * one is returned. See [setMultiplayer].
    */
-  @JvmOverloads
   public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPtr, OBJECT)
@@ -794,6 +793,24 @@ public open class SceneTree : MainLoop() {
    */
   public final fun getNodeCountInGroup(group: String): Int =
       getNodeCountInGroup(group.asCachedStringName())
+
+  /**
+   * Sets a custom [MultiplayerAPI] with the given [rootPath] (controlling also the relative
+   * subpaths), or override the default one if [rootPath] is empty.
+   * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
+   * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
+   * `"/root/Foo/Bar"` will cause an error.
+   */
+  public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String) =
+      setMultiplayer(multiplayer, rootPath.asCachedNodePath())
+
+  /**
+   * Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it
+   * searches the parent paths until one is found. If the path is empty, or none is found, the default
+   * one is returned. See [setMultiplayer].
+   */
+  public final fun getMultiplayer(forPath: String): MultiplayerAPI? =
+      getMultiplayer(forPath.asCachedNodePath())
 
   public enum class GroupCallFlags(
     id: Long,

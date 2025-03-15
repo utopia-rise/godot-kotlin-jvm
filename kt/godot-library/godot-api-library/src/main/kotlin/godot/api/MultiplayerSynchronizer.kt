@@ -21,10 +21,12 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -244,6 +246,8 @@ public open class MultiplayerSynchronizer : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityForPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
 
   public enum class VisibilityUpdateMode(
     id: Long,

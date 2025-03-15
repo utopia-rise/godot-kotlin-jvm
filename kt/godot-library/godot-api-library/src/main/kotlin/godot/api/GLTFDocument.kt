@@ -23,6 +23,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -315,6 +316,21 @@ public open class GLTFDocument : Resource() {
           PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
+
+    /**
+     * Determines a mapping between the given Godot [nodePath] and the corresponding glTF Object
+     * Model JSON pointer(s) in the generated glTF file. The details of this mapping are returned in a
+     * [GLTFObjectModelProperty] object. Additional mappings can be supplied via the
+     * [GLTFDocumentExtension.ImportObjectModelProperty] callback method.
+     */
+    @JvmStatic
+    public final fun exportObjectModelProperty(
+      state: GLTFState?,
+      nodePath: String,
+      godotNode: Node?,
+      gltfNodeIndex: Int,
+    ): GLTFObjectModelProperty? =
+        exportObjectModelProperty(state, nodePath.asCachedNodePath(), godotNode, gltfNodeIndex)
   }
 
   public object MethodBindings {

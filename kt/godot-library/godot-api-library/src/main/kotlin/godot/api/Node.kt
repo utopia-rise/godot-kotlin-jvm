@@ -27,6 +27,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import godot.core.toGodotName
 import kotlin.Any
@@ -2152,6 +2153,111 @@ public open class Node : Object() {
     TransferContext.writeArguments(LONG to what.toLong())
     TransferContext.callMethod(ptr, MethodBindings.notifyThreadSafePtr, NIL)
   }
+
+  /**
+   * Returns `true` if the [path] points to a valid node. See also [getNode].
+   */
+  public final fun hasNode(path: String): Boolean = hasNode(path.asCachedNodePath())
+
+  /**
+   * Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute
+   * path (from the [SceneTree.root]) to a node. If [path] does not point to a valid node, generates an
+   * error and returns `null`. Attempts to access methods on the return value will result in an
+   * *"Attempt to call <method> on a null instance."* error.
+   * **Note:** Fetching by absolute path only works when the node is inside the scene tree (see
+   * [isInsideTree]).
+   * **Example:** Assume this method is called from the Character node, inside the following tree:
+   * [codeblock lang=text]
+   *  ┖╴root
+   *     ┠╴Character (you are here!)
+   *     ┃  ┠╴Sword
+   *     ┃  ┖╴Backpack
+   *     ┃     ┖╴Dagger
+   *     ┠╴MyGame
+   *     ┖╴Swamp
+   *        ┠╴Alligator
+   *        ┠╴Mosquito
+   *        ┖╴Goblin
+   * [/codeblock]
+   * The following calls will return a valid node:
+   *
+   * gdscript:
+   * ```gdscript
+   * get_node("Sword")
+   * get_node("Backpack/Dagger")
+   * get_node("../Swamp/Alligator")
+   * get_node("/root/MyGame")
+   * ```
+   * csharp:
+   * ```csharp
+   * GetNode("Sword");
+   * GetNode("Backpack/Dagger");
+   * GetNode("../Swamp/Alligator");
+   * GetNode("/root/MyGame");
+   * ```
+   */
+  public final fun getNode(path: String): Node? = getNode(path.asCachedNodePath())
+
+  /**
+   * Fetches a node by [NodePath]. Similar to [getNode], but does not generate an error if [path]
+   * does not point to a valid node.
+   */
+  public final fun getNodeOrNull(path: String): Node? = getNodeOrNull(path.asCachedNodePath())
+
+  /**
+   * Returns `true` if [path] points to a valid node and its subnames point to a valid [Resource],
+   * e.g. `Area2D/CollisionShape2D:shape`. Properties that are not [Resource] types (such as nodes or
+   * other [Variant] types) are not considered. See also [getNodeAndResource].
+   */
+  public final fun hasNodeAndResource(path: String): Boolean =
+      hasNodeAndResource(path.asCachedNodePath())
+
+  /**
+   * Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns
+   * an [Array] of size `3` where:
+   * - Element `0` is the [Node], or `null` if not found;
+   * - Element `1` is the subname's last nested [Resource], or `null` if not found;
+   * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
+   * (see [Object.getIndexed]).
+   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
+   *
+   * gdscript:
+   * ```gdscript
+   * var a = get_node_and_resource("Area2D/Sprite2D")
+   * print(a[0].name) # Prints Sprite2D
+   * print(a[1])      # Prints <null>
+   * print(a[2])      # Prints ^""
+   *
+   * var b = get_node_and_resource("Area2D/Sprite2D:texture:atlas")
+   * print(b[0].name)        # Prints Sprite2D
+   * print(b[1].get_class()) # Prints AtlasTexture
+   * print(b[2])             # Prints ^""
+   *
+   * var c = get_node_and_resource("Area2D/Sprite2D:texture:atlas:region")
+   * print(c[0].name)        # Prints Sprite2D
+   * print(c[1].get_class()) # Prints AtlasTexture
+   * print(c[2])             # Prints ^":region"
+   * ```
+   * csharp:
+   * ```csharp
+   * var a = GetNodeAndResource(NodePath("Area2D/Sprite2D"));
+   * GD.Print(a[0].Name); // Prints Sprite2D
+   * GD.Print(a[1]);      // Prints <null>
+   * GD.Print(a[2]);      // Prints ^"
+   *
+   * var b = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas"));
+   * GD.Print(b[0].name);        // Prints Sprite2D
+   * GD.Print(b[1].get_class()); // Prints AtlasTexture
+   * GD.Print(b[2]);             // Prints ^""
+   *
+   * var c = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas:region"));
+   * GD.Print(c[0].name);        // Prints Sprite2D
+   * GD.Print(c[1].get_class()); // Prints AtlasTexture
+   * GD.Print(c[2]);             // Prints ^":region"
+   * ```
+   */
+  public final fun getNodeAndResource(path: String): VariantArray<Any?> =
+      getNodeAndResource(path.asCachedNodePath())
 
   /**
    * Adds the node to the [group]. Groups can be helpful to organize a subset of nodes, for example

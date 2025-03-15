@@ -32,6 +32,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -1016,6 +1017,21 @@ public open class Animation : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.isCaptureIncludedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
+   * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
+   * properties or bones must append their name after the path, separated by `":"`.
+   * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
+   */
+  public final fun trackSetPath(trackIdx: Int, path: String) =
+      trackSetPath(trackIdx, path.asCachedNodePath())
+
+  /**
+   * Returns the index of the specified track. If the track is not found, return -1.
+   */
+  public final fun findTrack(path: String, type: TrackType): Int =
+      findTrack(path.asCachedNodePath(), type)
 
   /**
    * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be

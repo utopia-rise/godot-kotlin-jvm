@@ -19,10 +19,12 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -173,6 +175,8 @@ public open class RootMotionView : VisualInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.getZeroYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setAnimationPath(path: String) = setAnimationPath(path.asCachedNodePath())
 
   public companion object
 

@@ -23,6 +23,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
@@ -853,6 +854,11 @@ public open class AnimationPlayer : AnimationMixer() {
    */
   public final fun setSectionWithMarkers(startMarker: String, endMarker: String) =
       setSectionWithMarkers(startMarker.asCachedStringName(), endMarker.asCachedStringName())
+
+  /**
+   * Sets the node which node path references will travel from.
+   */
+  public final fun setRoot(path: String) = setRoot(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
     id: Long,

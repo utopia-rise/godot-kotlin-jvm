@@ -25,6 +25,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
@@ -393,6 +394,8 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   public final fun setRootBone(rootBone: String) = setRootBone(rootBone.asCachedStringName())
 
   public final fun setTipBone(tipBone: String) = setTipBone(tipBone.asCachedStringName())
+
+  public final fun setTargetNode(node: String) = setTargetNode(node.asCachedNodePath())
 
   public companion object
 
