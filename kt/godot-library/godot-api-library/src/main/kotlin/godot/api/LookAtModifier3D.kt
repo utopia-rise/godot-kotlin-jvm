@@ -427,7 +427,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -438,7 +437,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBoneName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -449,7 +447,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBone(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -460,7 +457,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getForwardAxis(): SkeletonModifier3D.BoneAxis {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getForwardAxisPtr, LONG)
     return SkeletonModifier3D.BoneAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -471,7 +467,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryRotationAxis(): Vector3.Axis {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryRotationAxisPtr, LONG)
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -482,7 +477,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun isUsingSecondaryRotation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSecondaryRotationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -493,7 +487,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginSafeMargin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginSafeMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -504,7 +497,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginFrom(): OriginFrom {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginFromPtr, LONG)
     return LookAtModifier3D.OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -515,7 +507,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginBoneName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginBoneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -526,7 +517,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginBone(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -537,7 +527,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginExternalNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginExternalNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -548,7 +537,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getOriginOffset(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -559,7 +547,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getDuration(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -570,7 +557,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getTransitionType(): Tween.TransitionType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransitionTypePtr, LONG)
     return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -581,7 +567,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getEaseType(): Tween.EaseType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEaseTypePtr, LONG)
     return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -592,7 +577,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun isUsingAngleLimitation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingAngleLimitationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -603,7 +587,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun isLimitationSymmetry(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLimitationSymmetryPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -614,7 +597,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -625,7 +607,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -636,7 +617,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryPositiveLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryPositiveLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -647,7 +627,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryPositiveDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryPositiveDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -658,7 +637,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryNegativeLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryNegativeLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -669,7 +647,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getPrimaryNegativeDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryNegativeDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -680,7 +657,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -691,7 +667,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -702,7 +677,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryPositiveLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryPositiveLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -713,7 +687,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryPositiveDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryPositiveDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -724,7 +697,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryNegativeLimitAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryNegativeLimitAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -735,7 +707,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getSecondaryNegativeDampThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSecondaryNegativeDampThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -744,7 +715,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * Returns the remaining seconds of the time-based interpolation.
    */
   public final fun getInterpolationRemaining(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationRemainingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -755,7 +725,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * This is useful to determine whether a [LookAtModifier3D] can be removed safely.
    */
   public final fun isInterpolating(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInterpolatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -767,7 +736,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * value correctly, we recommend using the signal [signal SkeletonModifier3D.modification_processed].
    */
   public final fun isTargetWithinLimitation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTargetWithinLimitationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

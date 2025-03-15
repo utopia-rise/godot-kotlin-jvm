@@ -84,7 +84,6 @@ public open class DampedSpringJoint2D : Joint2D() {
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -95,7 +94,6 @@ public open class DampedSpringJoint2D : Joint2D() {
   }
 
   public final fun getRestLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRestLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -106,7 +104,6 @@ public open class DampedSpringJoint2D : Joint2D() {
   }
 
   public final fun getStiffness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -117,7 +114,6 @@ public open class DampedSpringJoint2D : Joint2D() {
   }
 
   public final fun getDamping(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

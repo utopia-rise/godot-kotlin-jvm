@@ -43,7 +43,6 @@ public open class PacketPeerDTLS : PacketPeer() {
    * and keep the connection working.
    */
   public final fun poll(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
@@ -68,7 +67,6 @@ public open class PacketPeerDTLS : PacketPeer() {
    * Returns the status of the connection. See [Status] for values.
    */
   public final fun getStatus(): Status {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
     return PacketPeerDTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -77,7 +75,6 @@ public open class PacketPeerDTLS : PacketPeer() {
    * Disconnects this peer, terminating the DTLS session.
    */
   public final fun disconnectFromPeer(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromPeerPtr, NIL)
   }
 

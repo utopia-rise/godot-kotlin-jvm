@@ -129,8 +129,8 @@ public object JavaScriptBridge : Object() {
    * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
   @JvmStatic
-  public final fun createObject(`object`: String, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING to `object`,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun createObject(`object`: String, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING to `object`,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -162,7 +162,6 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun pwaNeedsUpdate(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -176,7 +175,6 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun pwaUpdate(): Error {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pwaUpdatePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -188,7 +186,6 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun forceFsSync(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceFsSyncPtr, NIL)
   }
 

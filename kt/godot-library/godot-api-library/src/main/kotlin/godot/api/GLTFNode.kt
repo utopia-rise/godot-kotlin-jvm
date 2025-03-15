@@ -30,6 +30,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -306,7 +307,6 @@ public open class GLTFNode : Resource() {
 
 
   public final fun getOriginalName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -317,7 +317,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getParent(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -328,7 +327,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -339,7 +337,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getXform(): Transform3D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -350,7 +347,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getMesh(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -361,7 +357,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getCamera(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -372,7 +367,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getSkin(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -383,7 +377,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getSkeleton(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -394,7 +387,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getPosition(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -405,7 +397,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getRotation(): Quaternion {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
@@ -416,7 +407,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getScale(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -427,7 +417,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getChildren(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -446,7 +435,6 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getLight(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -495,6 +483,25 @@ public open class GLTFNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getSceneNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 

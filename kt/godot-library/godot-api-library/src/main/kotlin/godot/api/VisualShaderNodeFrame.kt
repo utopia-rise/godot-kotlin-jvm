@@ -126,7 +126,6 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -137,7 +136,6 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public final fun isTintColorEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTintColorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -148,7 +146,6 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public final fun getTintColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTintColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -159,7 +156,6 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -188,7 +184,6 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public final fun getAttachedNodes(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }

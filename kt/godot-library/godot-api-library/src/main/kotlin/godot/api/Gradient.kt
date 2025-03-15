@@ -129,7 +129,6 @@ public open class Gradient : Resource() {
    * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public final fun reverse(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reversePtr, NIL)
   }
 
@@ -163,7 +162,6 @@ public open class Gradient : Resource() {
    * Returns the number of colors in the gradient.
    */
   public final fun getPointCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -174,7 +172,6 @@ public open class Gradient : Resource() {
   }
 
   public final fun getOffsets(): PackedFloat32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -185,7 +182,6 @@ public open class Gradient : Resource() {
   }
 
   public final fun getColors(): PackedColorArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
@@ -196,7 +192,6 @@ public open class Gradient : Resource() {
   }
 
   public final fun getInterpolationMode(): InterpolationMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationModePtr, LONG)
     return Gradient.InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -207,7 +202,6 @@ public open class Gradient : Resource() {
   }
 
   public final fun getInterpolationColorSpace(): ColorSpace {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationColorSpacePtr, LONG)
     return Gradient.ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
   }

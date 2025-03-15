@@ -106,7 +106,6 @@ public open class MultiplayerSpawner : Node() {
    * Returns the count of spawnable scene paths.
    */
   public final fun getSpawnableSceneCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpawnableSceneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -124,7 +123,6 @@ public open class MultiplayerSpawner : Node() {
    * Clears all spawnable scenes. Does not despawn existing instances on remote peers.
    */
   public final fun clearSpawnableScenes(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSpawnableScenesPtr, NIL)
   }
 
@@ -142,7 +140,6 @@ public open class MultiplayerSpawner : Node() {
   }
 
   public final fun getSpawnPath(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpawnPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -153,7 +150,6 @@ public open class MultiplayerSpawner : Node() {
   }
 
   public final fun getSpawnLimit(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpawnLimitPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -164,7 +160,6 @@ public open class MultiplayerSpawner : Node() {
   }
 
   public final fun getSpawnFunction(): Callable {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }

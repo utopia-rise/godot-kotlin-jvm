@@ -163,7 +163,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getDiffuseTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiffuseTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -174,7 +173,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getNormalTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -185,7 +183,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getSpecularTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -196,7 +193,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getSpecularColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -207,7 +203,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getSpecularShininess(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularShininessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -218,7 +213,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getTextureFilter(): CanvasItem.TextureFilter {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
     return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -229,7 +223,6 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun getTextureRepeat(): CanvasItem.TextureRepeat {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRepeatPtr, LONG)
     return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }

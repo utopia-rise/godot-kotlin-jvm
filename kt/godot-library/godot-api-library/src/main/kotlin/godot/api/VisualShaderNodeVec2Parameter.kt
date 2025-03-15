@@ -84,7 +84,6 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -95,7 +94,6 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
   }
 
   public final fun getDefaultValue(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

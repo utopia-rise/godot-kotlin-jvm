@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -175,7 +176,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getSwitchMode(): SwitchMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwitchModePtr, LONG)
     return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -186,7 +186,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getAdvanceMode(): AdvanceMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdvanceModePtr, LONG)
     return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -197,7 +196,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getAdvanceCondition(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -208,7 +206,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getXfadeTime(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXfadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -219,7 +216,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getXfadeCurve(): Curve? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXfadeCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -230,7 +226,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun isLoopBrokenAtEnd(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -241,7 +236,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun isReset(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -252,7 +246,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getPriority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -263,10 +256,12 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun getAdvanceExpression(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdvanceExpressionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
+
+  public final fun setAdvanceCondition(name: String) =
+      setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(
     id: Long,

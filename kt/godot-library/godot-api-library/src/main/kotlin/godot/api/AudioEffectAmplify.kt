@@ -60,7 +60,6 @@ public open class AudioEffectAmplify : AudioEffect() {
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -71,7 +70,6 @@ public open class AudioEffectAmplify : AudioEffect() {
   }
 
   public final fun getVolumeLinear(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

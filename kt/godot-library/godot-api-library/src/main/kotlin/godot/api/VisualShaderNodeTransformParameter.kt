@@ -85,7 +85,6 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -96,7 +95,6 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   }
 
   public final fun getDefaultValue(): Transform3D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }

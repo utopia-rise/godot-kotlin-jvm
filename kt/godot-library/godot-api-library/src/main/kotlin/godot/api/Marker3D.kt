@@ -46,7 +46,6 @@ public open class Marker3D : Node3D() {
   }
 
   public final fun getGizmoExtents(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

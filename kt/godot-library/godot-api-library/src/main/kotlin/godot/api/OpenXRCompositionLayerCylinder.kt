@@ -81,7 +81,6 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -92,7 +91,6 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public final fun getAspectRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAspectRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -103,7 +101,6 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public final fun getCentralAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCentralAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -114,7 +111,6 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public final fun getFallbackSegments(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

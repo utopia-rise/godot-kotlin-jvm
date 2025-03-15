@@ -23,6 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -63,7 +64,6 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script can be instantiated.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -85,13 +85,11 @@ public open class Script internal constructor() : Resource() {
    * [canInstantiate].
    */
   public final fun hasSourceCode(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasSourceCodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSourceCode(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -115,7 +113,6 @@ public open class Script internal constructor() : Resource() {
    * Returns the script directly inherited by this script.
    */
   public final fun getBaseScript(): Script? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaseScriptPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Script?)
   }
@@ -124,7 +121,6 @@ public open class Script internal constructor() : Resource() {
    * Returns the script's base type.
    */
   public final fun getInstanceBaseType(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -151,7 +147,6 @@ public open class Script internal constructor() : Resource() {
    * ```
    */
   public final fun getGlobalName(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -169,7 +164,6 @@ public open class Script internal constructor() : Resource() {
    * Returns the list of properties in this [Script].
    */
   public final fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -178,7 +172,6 @@ public open class Script internal constructor() : Resource() {
    * Returns the list of methods in this [Script].
    */
   public final fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -187,7 +180,6 @@ public open class Script internal constructor() : Resource() {
    * Returns the list of user signals defined in this [Script].
    */
   public final fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -196,7 +188,6 @@ public open class Script internal constructor() : Resource() {
    * Returns a dictionary containing constant names and their values.
    */
   public final fun getScriptConstantMap(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptConstantMapPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -214,7 +205,6 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script is a tool script. A tool script can run in the editor.
    */
   public final fun isTool(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isToolPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -224,7 +214,6 @@ public open class Script internal constructor() : Resource() {
    * constructor and cannot be instantiated.
    */
   public final fun isAbstract(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAbstractPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -233,10 +222,21 @@ public open class Script internal constructor() : Resource() {
    * Returns a [Dictionary] mapping method names to their RPC configuration defined by this script.
    */
   public final fun getRpcConfig(): Any? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
+
+  /**
+   * Returns `true` if the script, or a base class, defines a signal with the given name.
+   */
+  public final fun hasScriptSignal(signalName: String): Boolean =
+      hasScriptSignal(signalName.asCachedStringName())
+
+  /**
+   * Returns the default value of the specified property.
+   */
+  public final fun getPropertyDefaultValue(`property`: String): Any? =
+      getPropertyDefaultValue(property.asCachedStringName())
 
   public companion object
 

@@ -456,7 +456,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   }
 
   public final fun getSettingCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSettingCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -465,7 +464,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Clears all settings.
    */
   public final fun clearSettings(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSettingsPtr, NIL)
   }
 
@@ -775,7 +773,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [signal SkeletonModifier3D.modification_processed] signal if it's condition changes significantly.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 

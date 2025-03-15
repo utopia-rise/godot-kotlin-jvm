@@ -107,7 +107,6 @@ public open class ColorPickerButton : Button() {
   }
 
   public final fun getPickColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -118,7 +117,6 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getPicker(): ColorPicker? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ColorPicker?)
   }
@@ -130,7 +128,6 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupPanel? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
   }
@@ -141,7 +138,6 @@ public open class ColorPickerButton : Button() {
   }
 
   public final fun isEditingAlpha(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditingAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

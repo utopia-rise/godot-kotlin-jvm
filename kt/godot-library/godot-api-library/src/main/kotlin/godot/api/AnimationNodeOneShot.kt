@@ -208,7 +208,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getFadeinTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFadeinTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -219,7 +218,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getFadeinCurve(): Curve? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFadeinCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -230,7 +228,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getFadeoutTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFadeoutTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -241,7 +238,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getFadeoutCurve(): Curve? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFadeoutCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -252,7 +248,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun isLoopBrokenAtEnd(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -263,7 +258,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun hasAutorestart(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutorestartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -274,7 +268,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getAutorestartDelay(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -285,7 +278,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getAutorestartRandomDelay(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -296,7 +288,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun getMixMode(): MixMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixModePtr, LONG)
     return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

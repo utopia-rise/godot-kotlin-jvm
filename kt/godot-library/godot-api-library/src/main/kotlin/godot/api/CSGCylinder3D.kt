@@ -111,7 +111,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -122,7 +121,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -133,7 +131,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun getSides(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -144,7 +141,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun isCone(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isConePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -155,7 +151,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -166,7 +161,6 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

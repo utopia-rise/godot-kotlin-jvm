@@ -183,7 +183,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getDry(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -194,7 +193,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun isTap1Active(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTap1ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -205,7 +203,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap1DelayMs(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -216,7 +213,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap1LevelDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -227,7 +223,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap1Pan(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap1PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -238,7 +233,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun isTap2Active(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTap2ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -249,7 +243,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap2DelayMs(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -260,7 +253,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap2LevelDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -271,7 +263,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getTap2Pan(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTap2PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -282,7 +273,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun isFeedbackActive(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFeedbackActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -293,7 +283,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getFeedbackDelayMs(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -304,7 +293,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getFeedbackLevelDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -315,7 +303,6 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public final fun getFeedbackLowpass(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

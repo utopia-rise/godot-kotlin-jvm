@@ -138,7 +138,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -149,7 +148,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getRadialSteps(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadialStepsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -160,7 +158,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSections(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -171,7 +168,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSectionLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -182,7 +178,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSectionRings(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -193,7 +188,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun isCapTop(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCapTopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -204,7 +198,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun isCapBottom(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCapBottomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -215,7 +208,6 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }

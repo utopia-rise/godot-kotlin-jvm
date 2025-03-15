@@ -183,7 +183,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getMaxConcavity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxConcavityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -194,7 +193,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getSymmetryPlanesClippingBias(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSymmetryPlanesClippingBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -205,7 +203,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getRevolutionAxesClippingBias(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRevolutionAxesClippingBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -216,7 +213,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getMinVolumePerConvexHull(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinVolumePerConvexHullPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -227,7 +223,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getResolution(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -238,7 +233,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getMaxNumVerticesPerConvexHull(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxNumVerticesPerConvexHullPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -249,7 +243,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getPlaneDownsampling(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaneDownsamplingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -260,7 +253,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getConvexHullDownsampling(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConvexHullDownsamplingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -271,7 +263,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getNormalizeMesh(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalizeMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -282,7 +273,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -293,7 +283,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getConvexHullApproximation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConvexHullApproximationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -304,7 +293,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getMaxConvexHulls(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxConvexHullsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -315,7 +303,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun getProjectHullVertices(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectHullVerticesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

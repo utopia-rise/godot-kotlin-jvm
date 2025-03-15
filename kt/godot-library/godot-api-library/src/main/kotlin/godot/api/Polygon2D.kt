@@ -337,7 +337,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -348,7 +347,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getUv(): PackedVector2Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUvPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -359,7 +357,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -370,7 +367,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getPolygons(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -381,7 +377,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getVertexColors(): PackedColorArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVertexColorsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
@@ -392,7 +387,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -403,7 +397,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getTextureOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -414,7 +407,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getTextureRotation(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -425,7 +417,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getTextureScale(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -436,7 +427,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getInvertEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInvertEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -447,7 +437,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getAntialiased(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAntialiasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -458,7 +447,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getInvertBorder(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInvertBorderPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -469,7 +457,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -486,7 +473,6 @@ public open class Polygon2D : Node2D() {
    * Returns the number of bones in this [Polygon2D].
    */
   public final fun getBoneCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -521,7 +507,6 @@ public open class Polygon2D : Node2D() {
    * Removes all bones from this [Polygon2D].
    */
   public final fun clearBones(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBonesPtr, NIL)
   }
 
@@ -547,7 +532,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getSkeleton(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -558,7 +542,6 @@ public open class Polygon2D : Node2D() {
   }
 
   public final fun getInternalVertexCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInternalVertexCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

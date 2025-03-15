@@ -90,7 +90,6 @@ public open class OmniLight3D : Light3D() {
   }
 
   public final fun getShadowMode(): ShadowMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowModePtr, LONG)
     return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

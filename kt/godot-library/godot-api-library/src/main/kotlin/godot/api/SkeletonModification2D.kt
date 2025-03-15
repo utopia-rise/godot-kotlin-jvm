@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -65,12 +66,14 @@ public open class SkeletonModification2D : Resource() {
    * is designed to do.
    */
   public open fun _execute(delta: Double): Unit {
+    throw NotImplementedError("_execute is not implemented for SkeletonModification2D")
   }
 
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
   public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
+    throw NotImplementedError("_setupModification is not implemented for SkeletonModification2D")
   }
 
   /**
@@ -80,6 +83,7 @@ public open class SkeletonModification2D : Resource() {
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
+    throw NotImplementedError("_drawEditorGizmo is not implemented for SkeletonModification2D")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
@@ -88,7 +92,6 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public final fun getEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -98,7 +101,6 @@ public open class SkeletonModification2D : Resource() {
    * modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
@@ -117,7 +119,6 @@ public open class SkeletonModification2D : Resource() {
    * Returns whether this modification has been successfully setup or not.
    */
   public final fun getIsSetup(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -128,7 +129,6 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public final fun getExecutionMode(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExecutionModePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -162,7 +162,6 @@ public open class SkeletonModification2D : Resource() {
    * modification-specific gizmos.
    */
   public final fun getEditorDrawGizmo(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

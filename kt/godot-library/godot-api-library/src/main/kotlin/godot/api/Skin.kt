@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -35,7 +36,6 @@ public open class Skin : Resource() {
   }
 
   public final fun getBindCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -84,9 +84,11 @@ public open class Skin : Resource() {
   }
 
   public final fun clearBinds(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBindsPtr, NIL)
   }
+
+  public final fun setBindName(bindIndex: Int, name: String) =
+      setBindName(bindIndex, name.asCachedStringName())
 
   public companion object
 

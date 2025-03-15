@@ -160,7 +160,6 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -171,7 +170,6 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun getSize2dOverride(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -182,7 +180,6 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun isSize2dOverrideStretchEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -193,7 +190,6 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -204,7 +200,6 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun getClearMode(): ClearMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClearModePtr, LONG)
     return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

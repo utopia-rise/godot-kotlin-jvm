@@ -19,6 +19,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -74,7 +75,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLocale(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -85,7 +85,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getToolLocale(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToolLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -118,7 +117,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllLanguages(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -138,7 +136,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllScripts(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -158,7 +155,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllCountries(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -188,7 +184,6 @@ public object TranslationServer : Object() {
    * Returns the current locale's translation for the given message and context.
    * **Note:** This method always uses the main translation domain.
    */
-  @JvmOverloads
   @JvmStatic
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
@@ -203,7 +198,6 @@ public object TranslationServer : Object() {
    * translation system to fetch the correct plural form for the selected language.
    * **Note:** This method always uses the main translation domain.
    */
-  @JvmOverloads
   @JvmStatic
   public final fun translatePlural(
     message: StringName,
@@ -281,7 +275,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -290,14 +283,12 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLoadedLocales(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   @JvmStatic
   public final fun isPseudolocalizationEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -314,7 +305,6 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun reloadPseudolocalization(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reloadPseudolocalizationPtr, NIL)
   }
 
@@ -328,6 +318,58 @@ public object TranslationServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.pseudolocalizePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Returns the current locale's translation for the given message and context.
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun translate(message: String, context: String): StringName =
+      translate(message.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Returns the current locale's translation for the given message, plural message and context.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun translatePlural(
+    message: String,
+    pluralMessage: String,
+    n: Int,
+    context: String,
+  ): StringName =
+      translatePlural(message.asCachedStringName(), pluralMessage.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Returns `true` if a translation domain with the specified name exists.
+   */
+  @JvmStatic
+  public final fun hasDomain(domain: String): Boolean = hasDomain(domain.asCachedStringName())
+
+  /**
+   * Returns the translation domain with the specified name. An empty translation domain will be
+   * created and added if it does not exist.
+   */
+  @JvmStatic
+  public final fun getOrAddDomain(domain: String): TranslationDomain? =
+      getOrAddDomain(domain.asCachedStringName())
+
+  /**
+   * Removes the translation domain with the specified name.
+   * **Note:** Trying to remove the main translation domain is an error.
+   */
+  @JvmStatic
+  public final fun removeDomain(domain: String) = removeDomain(domain.asCachedStringName())
+
+  /**
+   * Returns the pseudolocalized string based on the [message] passed in.
+   * **Note:** This method always uses the main translation domain.
+   */
+  @JvmStatic
+  public final fun pseudolocalize(message: String): StringName =
+      pseudolocalize(message.asCachedStringName())
 
   public object MethodBindings {
     internal val setLocalePtr: VoidPtr =

@@ -43,7 +43,6 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
   }
 
   public final fun getTexture(): CurveXYZTexture? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CurveXYZTexture?)
   }

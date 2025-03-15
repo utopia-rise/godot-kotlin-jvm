@@ -93,7 +93,6 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public final fun getAction(): OpenXRAction? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAction?)
   }
@@ -104,7 +103,6 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public final fun getBindingPath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -113,7 +111,6 @@ public open class OpenXRIPBinding : Resource() {
    * Get the number of binding modifiers for this binding.
    */
   public final fun getBindingModifierCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingModifierCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -133,7 +130,6 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public final fun getBindingModifiers(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingModifiersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -144,7 +140,6 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public final fun getPaths(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -153,7 +148,6 @@ public open class OpenXRIPBinding : Resource() {
    * Get the number of input/output paths in this binding.
    */
   public final fun getPathCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

@@ -15,7 +15,9 @@ import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -64,7 +66,6 @@ public open class XRFaceModifier3D : Node3D() {
   }
 
   public final fun getFaceTracker(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -75,10 +76,12 @@ public open class XRFaceModifier3D : Node3D() {
   }
 
   public final fun getTarget(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  public final fun setFaceTracker(trackerName: String) =
+      setFaceTracker(trackerName.asCachedStringName())
 
   public companion object
 

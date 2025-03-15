@@ -58,7 +58,6 @@ public open class SpringBoneCollisionSphere3D : SpringBoneCollision3D() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -69,7 +68,6 @@ public open class SpringBoneCollisionSphere3D : SpringBoneCollision3D() {
   }
 
   public final fun isInside(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInsidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

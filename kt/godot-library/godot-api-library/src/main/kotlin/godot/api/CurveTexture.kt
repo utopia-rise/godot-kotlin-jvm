@@ -78,7 +78,6 @@ public open class CurveTexture : Texture2D() {
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -89,7 +88,6 @@ public open class CurveTexture : Texture2D() {
   }
 
   public final fun getTextureMode(): TextureMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
     return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

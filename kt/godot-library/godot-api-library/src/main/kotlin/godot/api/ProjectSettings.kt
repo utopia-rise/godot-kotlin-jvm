@@ -23,6 +23,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -156,7 +157,6 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalClassListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -319,7 +319,6 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun save(): Error {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -359,6 +358,25 @@ public object ProjectSettings : Object() {
     TransferContext.callMethod(ptr, MethodBindings.saveCustomPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
+   * **Example:** If the setting override `"application/config/name.windows"` exists, and the
+   * following code is executed on a *Windows* operating system, the overridden setting is printed
+   * instead:
+   *
+   * gdscript:
+   * ```gdscript
+   * print(ProjectSettings.get_setting_with_override("application/config/name"))
+   * ```
+   * csharp:
+   * ```csharp
+   * GD.Print(ProjectSettings.GetSettingWithOverride("application/config/name"));
+   * ```
+   */
+  @JvmStatic
+  public final fun getSettingWithOverride(name: String): Any? =
+      getSettingWithOverride(name.asCachedStringName())
 
   public object MethodBindings {
     internal val hasSettingPtr: VoidPtr =

@@ -115,7 +115,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
     return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -126,7 +125,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getLightMode(): LightMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightModePtr, LONG)
     return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -137,7 +135,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getParticlesAnimation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -148,7 +145,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getParticlesAnimHFrames(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -159,7 +155,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getParticlesAnimVFrames(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -170,7 +165,6 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun getParticlesAnimLoop(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

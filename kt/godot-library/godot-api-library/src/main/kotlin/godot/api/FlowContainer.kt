@@ -86,7 +86,6 @@ public open class FlowContainer : Container() {
    * Returns the current line count.
    */
   public final fun getLineCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -97,7 +96,6 @@ public open class FlowContainer : Container() {
   }
 
   public final fun getAlignment(): AlignmentMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
     return FlowContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -108,7 +106,6 @@ public open class FlowContainer : Container() {
   }
 
   public final fun getLastWrapAlignment(): LastWrapAlignmentMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastWrapAlignmentPtr, LONG)
     return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -119,7 +116,6 @@ public open class FlowContainer : Container() {
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -130,7 +126,6 @@ public open class FlowContainer : Container() {
   }
 
   public final fun isReverseFill(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isReverseFillPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

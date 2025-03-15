@@ -105,7 +105,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun getSoftness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSoftnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -116,7 +115,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun getAngularLimitLower(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -127,7 +125,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun getAngularLimitUpper(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -138,7 +135,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun getMotorTargetVelocity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -149,7 +145,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun isMotorEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMotorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -160,7 +155,6 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public final fun isAngularLimitEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

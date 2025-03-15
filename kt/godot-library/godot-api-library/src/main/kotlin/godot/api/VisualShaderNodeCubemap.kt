@@ -68,7 +68,6 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -79,7 +78,6 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public final fun getCubeMap(): TextureLayered? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCubeMapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
@@ -90,7 +88,6 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public final fun getTextureType(): TextureType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }

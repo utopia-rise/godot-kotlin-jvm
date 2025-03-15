@@ -34,7 +34,6 @@ public open class SceneReplicationConfig : Resource() {
    * Returns a list of synchronized property [NodePath]s.
    */
   public final fun getProperties(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPropertiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }

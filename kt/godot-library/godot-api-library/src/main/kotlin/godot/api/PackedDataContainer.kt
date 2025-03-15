@@ -67,7 +67,6 @@ public open class PackedDataContainer : Resource() {
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
   public final fun size(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.sizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

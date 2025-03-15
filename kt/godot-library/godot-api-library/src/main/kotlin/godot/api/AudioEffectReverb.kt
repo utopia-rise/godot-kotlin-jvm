@@ -128,7 +128,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getPredelayMsec(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPredelayMsecPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -139,7 +138,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getPredelayFeedback(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -150,7 +148,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getRoomSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRoomSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -161,7 +158,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getDamping(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -172,7 +168,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getSpread(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -183,7 +178,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getDry(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -194,7 +188,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getWet(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -205,7 +198,6 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public final fun getHpf(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHpfPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

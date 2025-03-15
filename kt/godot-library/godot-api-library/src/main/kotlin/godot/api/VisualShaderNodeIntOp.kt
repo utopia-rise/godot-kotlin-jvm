@@ -44,7 +44,6 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
   }
 
   public final fun getOperator(): Operator {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperatorPtr, LONG)
     return VisualShaderNodeIntOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }

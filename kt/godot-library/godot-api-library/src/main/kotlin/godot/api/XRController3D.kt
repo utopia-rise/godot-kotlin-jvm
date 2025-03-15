@@ -20,6 +20,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -116,10 +117,33 @@ public open class XRController3D : XRNode3D() {
    * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Returns `true` if the button with the given [name] is pressed.
+   */
+  public final fun isButtonPressed(name: String): Boolean =
+      isButtonPressed(name.asCachedStringName())
+
+  /**
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the
+   * variant will be typed according to the actions configuration.
+   */
+  public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
+
+  /**
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
+   * sensors.
+   */
+  public final fun getFloat(name: String): Float = getFloat(name.asCachedStringName())
+
+  /**
+   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
+   * thumbpads found on many controllers.
+   */
+  public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 
   public companion object
 

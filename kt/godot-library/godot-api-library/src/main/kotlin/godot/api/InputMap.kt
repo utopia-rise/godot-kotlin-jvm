@@ -18,10 +18,12 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -53,7 +55,6 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun getActions(): VariantArray<StringName> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -171,9 +172,96 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun loadFromProjectSettings(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }
+
+  /**
+   * Returns `true` if the [InputMap] has a registered action with the given name.
+   */
+  @JvmStatic
+  public final fun hasAction(action: String): Boolean = hasAction(action.asCachedStringName())
+
+  /**
+   * Adds an empty action to the [InputMap] with a configurable [deadzone].
+   * An [InputEvent] can then be added to this action with [actionAddEvent].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun addAction(action: String, deadzone: Float = 0.2f) =
+      addAction(action.asCachedStringName(), deadzone)
+
+  /**
+   * Removes an action from the [InputMap].
+   */
+  @JvmStatic
+  public final fun eraseAction(action: String) = eraseAction(action.asCachedStringName())
+
+  /**
+   * Sets a deadzone value for the action.
+   */
+  @JvmStatic
+  public final fun actionSetDeadzone(action: String, deadzone: Float) =
+      actionSetDeadzone(action.asCachedStringName(), deadzone)
+
+  /**
+   * Returns a deadzone value for the action.
+   */
+  @JvmStatic
+  public final fun actionGetDeadzone(action: String): Float =
+      actionGetDeadzone(action.asCachedStringName())
+
+  /**
+   * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
+   */
+  @JvmStatic
+  public final fun actionAddEvent(action: String, event: InputEvent?) =
+      actionAddEvent(action.asCachedStringName(), event)
+
+  /**
+   * Returns `true` if the action has the given [InputEvent] associated with it.
+   */
+  @JvmStatic
+  public final fun actionHasEvent(action: String, event: InputEvent?): Boolean =
+      actionHasEvent(action.asCachedStringName(), event)
+
+  /**
+   * Removes an [InputEvent] from an action.
+   */
+  @JvmStatic
+  public final fun actionEraseEvent(action: String, event: InputEvent?) =
+      actionEraseEvent(action.asCachedStringName(), event)
+
+  /**
+   * Removes all events from an action.
+   */
+  @JvmStatic
+  public final fun actionEraseEvents(action: String) =
+      actionEraseEvents(action.asCachedStringName())
+
+  /**
+   * Returns an array of [InputEvent]s associated with a given action.
+   * **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will
+   * return events for the editor action. If you want to access your project's input binds from the
+   * editor, read the `input&#47;*` settings from [ProjectSettings].
+   */
+  @JvmStatic
+  public final fun actionGetEvents(action: String): VariantArray<InputEvent> =
+      actionGetEvents(action.asCachedStringName())
+
+  /**
+   * Returns `true` if the given event is part of an existing action. This method ignores keyboard
+   * modifiers if the given [InputEvent] is not pressed (for proper release detection). See
+   * [actionHasEvent] if you don't want this behavior.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun eventIsAction(
+    event: InputEvent?,
+    action: String,
+    exactMatch: Boolean = false,
+  ): Boolean = eventIsAction(event, action.asCachedStringName(), exactMatch)
 
   public object MethodBindings {
     internal val hasActionPtr: VoidPtr =

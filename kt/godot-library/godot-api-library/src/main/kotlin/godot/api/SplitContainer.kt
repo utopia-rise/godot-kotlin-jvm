@@ -162,7 +162,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun getSplitOffset(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -172,7 +171,6 @@ public open class SplitContainer : Container() {
    * values.
    */
   public final fun clampSplitOffset(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
@@ -182,7 +180,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun isCollapsed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -193,7 +190,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun getDraggerVisibility(): DraggerVisibility {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDraggerVisibilityPtr, LONG)
     return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -204,7 +200,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -215,7 +210,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun isDraggingEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDraggingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -226,7 +220,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun getDragAreaMarginBegin(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragAreaMarginBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -237,7 +230,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun getDragAreaMarginEnd(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragAreaMarginEndPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -248,7 +240,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun getDragAreaOffset(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragAreaOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -259,7 +250,6 @@ public open class SplitContainer : Container() {
   }
 
   public final fun isDragAreaHighlightInEditorEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDragAreaHighlightInEditorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -278,7 +268,6 @@ public open class SplitContainer : Container() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash.
    */
   public final fun getDragAreaControl(): Control? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragAreaControlPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }

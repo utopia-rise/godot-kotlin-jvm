@@ -6,11 +6,11 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.extensions.getClassName
 import godot.codegen.generation.Context
-import godot.codegen.generation.task.ClassTask
-import godot.codegen.generation.task.ConstantTask
-import godot.codegen.generation.task.EnumTask
-import godot.codegen.generation.task.MethodTask
-import godot.codegen.generation.task.PropertyTask
+import godot.codegen.generation.task.EnrichedClassTask
+import godot.codegen.generation.task.EnrichedConstantTask
+import godot.codegen.generation.task.EnrichedEnumTask
+import godot.codegen.generation.task.EnrichedMethodTask
+import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.generation.task.SignalTask
 import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.GODOT_BASE_TYPE
@@ -19,12 +19,12 @@ import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VOID_PTR
 
 
-class MemberRules : GodotApiRule<ClassTask>() {
-    override fun apply(task: ClassTask, context: Context) = task.configure {
+class MemberRule : GodotApiRule<EnrichedClassTask>() {
+    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
         val clazz = task.clazz
 
         for (constant in clazz.constants) {
-            task.constants.add(ConstantTask(constant))
+            task.constants.add(EnrichedConstantTask(constant))
         }
 
         for (signal in clazz.signals) {
@@ -47,9 +47,9 @@ class MemberRules : GodotApiRule<ClassTask>() {
             }
 
             if (method.isStatic) {
-                task.staticMethods.add(MethodTask(method, clazz))
+                task.enrichedStaticMethods.add(EnrichedMethodTask(method, clazz))
             } else {
-                task.methods.add(MethodTask(method, clazz))
+                task.enrichedMethods.add(EnrichedMethodTask(method, clazz))
             }
         }
 
@@ -57,11 +57,11 @@ class MemberRules : GodotApiRule<ClassTask>() {
             if (property.getterMethod == null && property.setterMethod == null) {
                 continue
             }
-            task.properties.add(PropertyTask(property))
+            task.enrichedProperties.add(EnrichedPropertyTask(property))
         }
 
         for (enum in clazz.enums) {
-            task.enums.add(EnumTask(enum))
+            task.enums.add(EnrichedEnumTask(enum))
         }
 
         val baseClass = task.clazz.parent?.getClassName() ?: KT_OBJECT
@@ -119,10 +119,10 @@ class MemberRules : GodotApiRule<ClassTask>() {
 
 }
 
-class BindingRule : GodotApiRule<ClassTask>() {
-    override fun apply(classTask: ClassTask, context: Context) = classTask.configure {
+class BindingRule : GodotApiRule<EnrichedClassTask>() {
+    override fun apply(classTask: EnrichedClassTask, context: Context) = classTask.configure {
         val clazz = classTask.clazz
-        (classTask.methods + classTask.staticMethods).map { it.method }
+        clazz.methods
             .filter { !it.isVirtual }
             .onEach {
                 classTask.bindings.addProperty(

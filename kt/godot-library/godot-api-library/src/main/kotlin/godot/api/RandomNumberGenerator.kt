@@ -97,7 +97,6 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   public final fun getSeed(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -108,7 +107,6 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   public final fun getState(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -117,7 +115,6 @@ public open class RandomNumberGenerator : RefCounted() {
    * Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
    */
   public final fun randi(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.randiPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -126,7 +123,6 @@ public open class RandomNumberGenerator : RefCounted() {
    * Returns a pseudo-random float between `0.0` and `1.0` (inclusive).
    */
   public final fun randf(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.randfPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -192,7 +188,6 @@ public open class RandomNumberGenerator : RefCounted() {
    * seeds.
    */
   public final fun randomize(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.randomizePtr, NIL)
   }
 

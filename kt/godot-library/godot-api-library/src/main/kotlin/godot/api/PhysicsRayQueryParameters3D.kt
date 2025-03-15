@@ -193,7 +193,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun getFrom(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFromPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -204,7 +203,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun getTo(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -215,7 +213,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -226,7 +223,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun getExclude(): VariantArray<RID> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -237,7 +233,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -248,7 +243,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -259,7 +253,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun isHitFromInsideEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -270,7 +263,6 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public final fun isHitBackFacesEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -299,6 +291,9 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
+
     internal val setFromPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from", 3460891852)
 
@@ -346,8 +341,5 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
     internal val isHitBackFacesEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled", 36873697)
-
-    internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
   }
 }

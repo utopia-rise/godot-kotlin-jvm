@@ -314,7 +314,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getRegion(): Rect2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
@@ -325,7 +324,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -336,7 +334,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -347,7 +344,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getCellSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -358,7 +354,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getCellShape(): CellShape {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellShapePtr, LONG)
     return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -387,7 +382,6 @@ public open class AStarGrid2D : RefCounted() {
    * Indicates that the grid parameters were changed and [update] needs to be called.
    */
   public final fun isDirty(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDirtyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -399,7 +393,6 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public final fun update(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
   }
 
@@ -409,7 +402,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun isJumpingEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isJumpingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -420,7 +412,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getDiagonalMode(): DiagonalMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiagonalModePtr, LONG)
     return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -431,7 +422,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getDefaultComputeHeuristic(): Heuristic {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
     return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -442,7 +432,6 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun getDefaultEstimateHeuristic(): Heuristic {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
     return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -510,7 +499,6 @@ public open class AStarGrid2D : RefCounted() {
    * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

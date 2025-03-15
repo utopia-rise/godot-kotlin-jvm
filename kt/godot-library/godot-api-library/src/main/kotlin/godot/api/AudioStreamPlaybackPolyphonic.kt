@@ -17,10 +17,12 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -97,6 +99,28 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     TransferContext.writeArguments(LONG to stream)
     TransferContext.callMethod(ptr, MethodBindings.stopStreamPtr, NIL)
   }
+
+  /**
+   * Play an [AudioStream] at a given offset, volume, pitch scale, playback type, and bus. Playback
+   * starts immediately.
+   * The return value is a unique integer ID that is associated to this playback stream and which
+   * can be used to control it.
+   * This ID becomes invalid when the stream ends (if it does not loop), when the
+   * [AudioStreamPlaybackPolyphonic] is stopped, or when [stopStream] is called.
+   * This function returns [INVALID_ID] if the amount of streams currently playing equals
+   * [AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this
+   * value.
+   */
+  @JvmOverloads
+  public final fun playStream(
+    stream: AudioStream?,
+    fromOffset: Float = 0.0f,
+    volumeDb: Float = 0.0f,
+    pitchScale: Float = 1.0f,
+    playbackType: AudioServer.PlaybackType = AudioServer.PlaybackType.DEFAULT,
+    bus: String,
+  ): Long =
+      playStream(stream, fromOffset, volumeDb, pitchScale, playbackType, bus.asCachedStringName())
 
   public companion object {
     /**

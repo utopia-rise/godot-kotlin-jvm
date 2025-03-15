@@ -343,7 +343,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getIntensity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -354,7 +353,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getBlendDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -365,7 +363,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getAmbientMode(): AmbientMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientModePtr, LONG)
     return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -376,7 +373,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getAmbientColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -387,7 +383,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getAmbientColorEnergy(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientColorEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -398,7 +393,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getMaxDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -409,7 +403,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getMeshLodThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -420,7 +413,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -431,7 +423,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getOriginOffset(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -442,7 +433,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun isSetAsInterior(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSetAsInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -453,7 +443,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun isBoxProjectionEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBoxProjectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -464,7 +453,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun areShadowsEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areShadowsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -475,7 +463,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -486,7 +473,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getReflectionMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReflectionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -497,7 +483,6 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

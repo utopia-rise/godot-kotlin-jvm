@@ -93,7 +93,6 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * gravity overrides from [Area2D] nodes and the global world gravity.
    */
   public final fun getGravity(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -102,7 +101,6 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody2D>)
   }

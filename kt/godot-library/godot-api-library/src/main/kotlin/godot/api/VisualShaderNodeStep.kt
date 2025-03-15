@@ -45,7 +45,6 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeStep.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }

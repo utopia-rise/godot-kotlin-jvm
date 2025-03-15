@@ -44,7 +44,6 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeFloatFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -25,6 +25,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -199,7 +200,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun getPhysicsTicksPerSecond(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsTicksPerSecondPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -212,7 +212,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun getMaxPhysicsStepsPerFrame(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPhysicsStepsPerFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -225,7 +224,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun getPhysicsJitterFix(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsJitterFixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -236,7 +234,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getPhysicsInterpolationFraction(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -249,7 +246,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun getMaxFps(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -262,7 +258,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun getTimeScale(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -274,7 +269,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getFramesDrawn(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramesDrawnPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -284,7 +278,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getFramesPerSecond(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramesPerSecondPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -315,7 +308,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getPhysicsFrames(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -347,7 +339,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getProcessFrames(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -360,7 +351,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getMainLoop(): MainLoop? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMainLoopPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MainLoop?)
   }
@@ -406,7 +396,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getVersionInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVersionInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -418,7 +407,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getAuthorInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAuthorInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -436,7 +424,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCopyrightInfoPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -448,7 +435,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getDonorInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDonorInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -461,7 +447,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getLicenseInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLicenseInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -471,7 +456,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getLicenseText(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLicenseTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -490,7 +474,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getArchitectureName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getArchitectureNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -512,7 +495,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun isInPhysicsFrame(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInPhysicsFramePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -584,7 +566,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getSingletonList(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSingletonListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -623,7 +604,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getScriptLanguageCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptLanguageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -667,7 +647,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun isEditorHint(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditorHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -679,7 +658,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun isEmbeddedInEditor(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmbeddedInEditorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -691,7 +669,6 @@ public object Engine : Object() {
    */
   @JvmStatic
   public final fun getWriteMoviePath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteMoviePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -704,7 +681,6 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun isPrintingToStdout(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPrintingToStdoutPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -717,10 +693,59 @@ public object Engine : Object() {
 
   @JvmStatic
   public final fun isPrintingErrorMessages(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPrintingErrorMessagesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a singleton with the given [name] exists in the global scope. See also
+   * [getSingleton].
+   *
+   * gdscript:
+   * ```gdscript
+   * print(Engine.has_singleton("OS"))          # Prints true
+   * print(Engine.has_singleton("Engine"))      # Prints true
+   * print(Engine.has_singleton("AudioServer")) # Prints true
+   * print(Engine.has_singleton("Unknown"))     # Prints false
+   * ```
+   * csharp:
+   * ```csharp
+   * GD.Print(Engine.HasSingleton("OS"));          // Prints True
+   * GD.Print(Engine.HasSingleton("Engine"));      // Prints True
+   * GD.Print(Engine.HasSingleton("AudioServer")); // Prints True
+   * GD.Print(Engine.HasSingleton("Unknown"));     // Prints False
+   * ```
+   *
+   * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
+   * project settings.
+   */
+  @JvmStatic
+  public final fun hasSingleton(name: String): Boolean = hasSingleton(name.asCachedStringName())
+
+  /**
+   * Returns the global singleton with the given [name], or `null` if it does not exist. Often used
+   * for plugins. See also [hasSingleton] and [getSingletonList].
+   * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
+   * project settings.
+   */
+  @JvmStatic
+  public final fun getSingleton(name: String): Object? = getSingleton(name.asCachedStringName())
+
+  /**
+   * Registers the given [Object] [instance] as a singleton, available globally under [name]. Useful
+   * for plugins.
+   */
+  @JvmStatic
+  public final fun registerSingleton(name: String, instance: Object?) =
+      registerSingleton(name.asCachedStringName(), instance)
+
+  /**
+   * Removes the singleton registered under [name]. The singleton object is *not* freed. Only works
+   * with user-defined singletons registered with [registerSingleton].
+   */
+  @JvmStatic
+  public final fun unregisterSingleton(name: String) =
+      unregisterSingleton(name.asCachedStringName())
 
   public object MethodBindings {
     internal val setPhysicsTicksPerSecondPtr: VoidPtr =

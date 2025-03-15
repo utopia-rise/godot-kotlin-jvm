@@ -160,7 +160,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getAperture(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAperturePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -171,7 +170,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getShutterSpeed(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShutterSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -182,7 +180,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getFocalLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocalLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -193,7 +190,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getFocusDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -204,7 +200,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getNear(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -215,7 +210,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getFar(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFarPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -225,7 +219,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * calculated internally whenever [frustumFocalLength] is changed.
    */
   public final fun getFov(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -236,7 +229,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getAutoExposureMaxExposureValue(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureMaxExposureValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -247,7 +239,6 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public final fun getAutoExposureMinExposureValue(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureMinExposureValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

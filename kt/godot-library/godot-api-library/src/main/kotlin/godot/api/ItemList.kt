@@ -637,7 +637,6 @@ public open class ItemList : Control() {
    * Ensures there are no items selected.
    */
   public final fun deselectAll(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectAllPtr, NIL)
   }
 
@@ -654,7 +653,6 @@ public open class ItemList : Control() {
    * Returns an array with the indexes of the selected items.
    */
   public final fun getSelectedItems(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedItemsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -673,7 +671,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getItemCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -690,7 +687,6 @@ public open class ItemList : Control() {
    * Removes all items from the list.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -698,7 +694,6 @@ public open class ItemList : Control() {
    * Sorts items in the list by their text.
    */
   public final fun sortItemsByText(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.sortItemsByTextPtr, NIL)
   }
 
@@ -708,7 +703,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getFixedColumnWidth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedColumnWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -719,7 +713,6 @@ public open class ItemList : Control() {
   }
 
   public final fun isSameColumnWidth(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSameColumnWidthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -730,7 +723,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getMaxTextLines(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxTextLinesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -741,7 +733,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getMaxColumns(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxColumnsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -752,7 +743,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getSelectMode(): SelectMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectModePtr, LONG)
     return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -763,7 +753,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getIconMode(): IconMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconModePtr, LONG)
     return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -774,7 +763,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getFixedIconSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedIconSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -785,7 +773,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getIconScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -796,7 +783,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getAllowRmbSelect(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowRmbSelectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -807,7 +793,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getAllowReselect(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowReselectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -818,7 +803,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getAllowSearch(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowSearchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -829,7 +813,6 @@ public open class ItemList : Control() {
   }
 
   public final fun hasAutoWidth(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutoWidthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -840,7 +823,6 @@ public open class ItemList : Control() {
   }
 
   public final fun hasAutoHeight(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutoHeightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -849,7 +831,6 @@ public open class ItemList : Control() {
    * Returns `true` if one or more items are selected.
    */
   public final fun isAnythingSelected(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAnythingSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -872,7 +853,6 @@ public open class ItemList : Control() {
    * Ensure current selection is visible, adjusting the scroll position as necessary.
    */
   public final fun ensureCurrentIsVisible(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ensureCurrentIsVisiblePtr, NIL)
   }
 
@@ -882,7 +862,6 @@ public open class ItemList : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getVScrollBar(): VScrollBar? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VScrollBar?)
   }
@@ -893,7 +872,6 @@ public open class ItemList : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getHScrollBar(): HScrollBar? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as HScrollBar?)
   }
@@ -904,7 +882,6 @@ public open class ItemList : Control() {
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -915,7 +892,6 @@ public open class ItemList : Control() {
   }
 
   public final fun hasWraparoundItems(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasWraparoundItemsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -926,7 +902,6 @@ public open class ItemList : Control() {
    * trigger the update ahead of next drawing pass.
    */
   public final fun forceUpdateListSize(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateListSizePtr, NIL)
   }
 

@@ -94,7 +94,6 @@ public open class WorldBoundaryShape2D : Shape2D() {
   }
 
   public final fun getNormal(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -105,7 +104,6 @@ public open class WorldBoundaryShape2D : Shape2D() {
   }
 
   public final fun getDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

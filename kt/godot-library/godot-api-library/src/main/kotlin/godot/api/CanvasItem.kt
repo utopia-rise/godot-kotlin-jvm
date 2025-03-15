@@ -37,12 +37,14 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -358,13 +360,13 @@ public open class CanvasItem internal constructor() : Node() {
    * Corresponds to the [NOTIFICATION_DRAW] notification in [Object.Notification].
    */
   public open fun _draw(): Unit {
+    throw NotImplementedError("_draw is not implemented for CanvasItem")
   }
 
   /**
    * Returns the canvas item RID used by [RenderingServer] for this item.
    */
   public final fun getCanvasItem(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasItemPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -375,7 +377,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun isVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -391,7 +392,6 @@ public open class CanvasItem internal constructor() : Node() {
    * returns `true`, the node might end up not being rendered.
    */
   public final fun isVisibleInTree(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisibleInTreePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -402,7 +402,6 @@ public open class CanvasItem internal constructor() : Node() {
    * the multiple `popup*()` functions instead.
    */
   public final fun show(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
 
@@ -411,7 +410,6 @@ public open class CanvasItem internal constructor() : Node() {
    * `false`.
    */
   public final fun hide(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
@@ -421,7 +419,6 @@ public open class CanvasItem internal constructor() : Node() {
    * this method has been called multiple times.
    */
   public final fun queueRedraw(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.queueRedrawPtr, NIL)
   }
 
@@ -431,7 +428,6 @@ public open class CanvasItem internal constructor() : Node() {
    * nodes without a parent.
    */
   public final fun moveToFront(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToFrontPtr, NIL)
   }
 
@@ -441,7 +437,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun isSetAsTopLevel(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSetAsTopLevelPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -452,7 +447,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getLightMask(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -463,7 +457,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -474,7 +467,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getSelfModulate(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelfModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -485,7 +477,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getZIndex(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -496,7 +487,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun isZRelative(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isZRelativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -507,7 +497,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun isYSortEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isYSortEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -518,7 +507,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun isDrawBehindParentEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDrawBehindParentEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1118,7 +1106,6 @@ public open class CanvasItem internal constructor() : Node() {
    * not required.
    */
   public final fun drawEndAnimation(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.drawEndAnimationPtr, NIL)
   }
 
@@ -1126,7 +1113,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the transform matrix of this item.
    */
   public final fun getTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1137,7 +1123,6 @@ public open class CanvasItem internal constructor() : Node() {
    * non-[CanvasItem] parent or it has [topLevel] enabled.
    */
   public final fun getGlobalTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1147,7 +1132,6 @@ public open class CanvasItem internal constructor() : Node() {
    * coordinate system.
    */
   public final fun getGlobalTransformWithCanvas(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalTransformWithCanvasPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1157,7 +1141,6 @@ public open class CanvasItem internal constructor() : Node() {
    * [Viewport]s embedders coordinate system.
    */
   public final fun getViewportTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewportTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1166,7 +1149,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the viewport's boundaries as a [Rect2].
    */
   public final fun getViewportRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewportRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -1176,7 +1158,6 @@ public open class CanvasItem internal constructor() : Node() {
    * [Viewport]s coordinate system.
    */
   public final fun getCanvasTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1187,7 +1168,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Equals to [getGlobalTransform] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
    */
   public final fun getScreenTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -1197,7 +1177,6 @@ public open class CanvasItem internal constructor() : Node() {
    * [CanvasItem].
    */
   public final fun getLocalMousePosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalMousePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1209,7 +1188,6 @@ public open class CanvasItem internal constructor() : Node() {
    * [DisplayServer.mouseGetPosition].
    */
   public final fun getGlobalMousePosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalMousePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1218,7 +1196,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the [RID] of the [World2D] canvas where this item is in.
    */
   public final fun getCanvas(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1228,7 +1205,6 @@ public open class CanvasItem internal constructor() : Node() {
    * [CanvasLayer].
    */
   public final fun getCanvasLayerNode(): CanvasLayer? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasLayerNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CanvasLayer?)
   }
@@ -1237,7 +1213,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the [World2D] where this item is in.
    */
   public final fun getWorld2d(): World2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWorld2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as World2D?)
   }
@@ -1248,7 +1223,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -1283,7 +1257,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getUseParentMaterial(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseParentMaterialPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1301,7 +1274,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns `true` if local transform notifications are communicated to children.
    */
   public final fun isLocalTransformNotificationEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLocalTransformNotificationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1319,7 +1291,6 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns `true` if global transform notifications are communicated to children.
    */
   public final fun isTransformNotificationEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTransformNotificationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1330,7 +1301,6 @@ public open class CanvasItem internal constructor() : Node() {
    * when doing physics operations.
    */
   public final fun forceUpdateTransform(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateTransformPtr, NIL)
   }
 
@@ -1362,7 +1332,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getVisibilityLayer(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1391,7 +1360,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getTextureFilter(): TextureFilter {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
     return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1402,7 +1370,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getTextureRepeat(): TextureRepeat {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRepeatPtr, LONG)
     return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1413,10 +1380,28 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun getClipChildrenMode(): ClipChildrenMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipChildrenModePtr, LONG)
     return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   */
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+      setInstanceShaderParameter(name.asCachedStringName(), value)
+
+  /**
+   * Get the value of a shader parameter as set on this instance.
+   */
+  public final fun getInstanceShaderParameter(name: String): Any? =
+      getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class TextureFilter(
     id: Long,

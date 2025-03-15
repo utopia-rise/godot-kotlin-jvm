@@ -118,7 +118,6 @@ public open class Expression : RefCounted() {
    * Returns `true` if [execute] has failed.
    */
   public final fun hasExecuteFailed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasExecuteFailedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -127,7 +126,6 @@ public open class Expression : RefCounted() {
    * Returns the error text if [parse] or [execute] has failed.
    */
   public final fun getErrorText(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getErrorTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

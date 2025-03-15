@@ -14,8 +14,10 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -62,7 +64,6 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getHandTracker(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -73,10 +74,12 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setHandTracker(trackerName: String) =
+      setHandTracker(trackerName.asCachedStringName())
 
   public enum class BoneUpdate(
     id: Long,

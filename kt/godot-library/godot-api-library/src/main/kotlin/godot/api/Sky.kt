@@ -75,7 +75,6 @@ public open class Sky : Resource() {
   }
 
   public final fun getRadianceSize(): RadianceSize {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadianceSizePtr, LONG)
     return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -86,7 +85,6 @@ public open class Sky : Resource() {
   }
 
   public final fun getProcessMode(): ProcessMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessModePtr, LONG)
     return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -97,7 +95,6 @@ public open class Sky : Resource() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

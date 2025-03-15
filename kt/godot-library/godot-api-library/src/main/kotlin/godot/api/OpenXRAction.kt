@@ -82,7 +82,6 @@ public open class OpenXRAction : Resource() {
   }
 
   public final fun getLocalizedName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalizedNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -93,7 +92,6 @@ public open class OpenXRAction : Resource() {
   }
 
   public final fun getActionType(): ActionType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionTypePtr, LONG)
     return OpenXRAction.ActionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -104,7 +102,6 @@ public open class OpenXRAction : Resource() {
   }
 
   public final fun getToplevelPaths(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

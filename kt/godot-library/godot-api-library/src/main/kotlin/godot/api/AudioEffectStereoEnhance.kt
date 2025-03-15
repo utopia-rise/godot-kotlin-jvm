@@ -70,7 +70,6 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   }
 
   public final fun getPanPullout(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanPulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -81,7 +80,6 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   }
 
   public final fun getTimePullout(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimePulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -92,7 +90,6 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   }
 
   public final fun getSurround(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSurroundPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -63,7 +63,6 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

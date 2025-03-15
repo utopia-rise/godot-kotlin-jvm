@@ -22,8 +22,7 @@ public open class JvmScript internal constructor() : Script() {
     createNativeObject(324, scriptIndex)
   }
 
-  public final fun new(vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
+  public final fun new(vararg args: Any?): Any? {
     TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

@@ -56,7 +56,6 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * [_getRecognizedExtensions].
    */
   public final fun addFormatLoader(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.addFormatLoaderPtr, NIL)
   }
 
@@ -64,7 +63,6 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * Remove this format loader from the engine.
    */
   public final fun removeFormatLoader(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
 

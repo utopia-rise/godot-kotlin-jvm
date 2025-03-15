@@ -274,7 +274,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -335,7 +334,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun getRegionRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -346,7 +344,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -357,7 +354,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -368,7 +364,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun getHAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
     return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -379,7 +374,6 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun getVAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
     return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

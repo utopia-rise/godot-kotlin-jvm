@@ -72,7 +72,6 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
   }
 
   public final fun getDuration(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDurationPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -83,7 +82,6 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
   }
 
   public final fun getFrequency(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrequencyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -94,7 +92,6 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
   }
 
   public final fun getAmplitude(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmplitudePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

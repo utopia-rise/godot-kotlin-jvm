@@ -71,7 +71,6 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
   }
 
   public final fun getQuadSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getQuadSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

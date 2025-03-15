@@ -141,6 +141,7 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public open fun _setupLocalToScene(): Unit {
+    throw NotImplementedError("_setupLocalToScene is not implemented for Resource")
   }
 
   /**
@@ -156,12 +157,14 @@ public open class Resource : RefCounted() {
    * state.
    */
   public open fun _resetState(): Unit {
+    throw NotImplementedError("_resetState is not implemented for Resource")
   }
 
   /**
    * Sets the resource's path to [path] without involving the resource cache.
    */
   public open fun _setPathCache(path: String): Unit {
+    throw NotImplementedError("_setPathCache is not implemented for Resource")
   }
 
   public final fun setPath(path: String): Unit {
@@ -179,7 +182,6 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getPath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -198,7 +200,6 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -209,7 +210,6 @@ public open class Resource : RefCounted() {
    * ([DisplayServer], [RenderingServer], etc.), so this function will return the original [RID].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -220,7 +220,6 @@ public open class Resource : RefCounted() {
   }
 
   public final fun isLocalToScene(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLocalToScenePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -231,7 +230,6 @@ public open class Resource : RefCounted() {
    * Otherwise, returns `null`.
    */
   public final fun getLocalScene(): Node? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -242,7 +240,6 @@ public open class Resource : RefCounted() {
    * scene instance.
    */
   public final fun setupLocalToScene(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
@@ -251,7 +248,6 @@ public open class Resource : RefCounted() {
    * [Object.GetPropertyList], override [_resetState] to correctly clear the resource's state.
    */
   public final fun resetState(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetStatePtr, NIL)
   }
 
@@ -281,7 +277,6 @@ public open class Resource : RefCounted() {
    * Returns `true` if the resource is built-in (from the engine) or `false` if it is user-defined.
    */
   public final fun isBuiltIn(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBuiltInPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -292,7 +287,6 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getSceneUniqueId(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -312,7 +306,6 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public final fun emitChanged(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.emitChangedPtr, NIL)
   }
 
@@ -345,7 +338,6 @@ public open class Resource : RefCounted() {
      */
     @JvmStatic
     public final fun generateSceneUniqueId(): String {
-      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
       return (TransferContext.readReturnValue(STRING) as String)
     }
@@ -397,6 +389,9 @@ public open class Resource : RefCounted() {
     internal val isBuiltInPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "is_built_in", 36873697)
 
+    internal val generateSceneUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)
+
     internal val setSceneUniqueIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "set_scene_unique_id", 83702148)
 
@@ -408,8 +403,5 @@ public open class Resource : RefCounted() {
 
     internal val duplicatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "duplicate", 482882304)
-
-    internal val generateSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)
   }
 }

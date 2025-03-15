@@ -133,7 +133,6 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getLocalAddresses(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalAddressesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -152,7 +151,6 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }

@@ -81,7 +81,6 @@ public open class ProgressBar : Range() {
   }
 
   public final fun getFillMode(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillModePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -92,7 +91,6 @@ public open class ProgressBar : Range() {
   }
 
   public final fun isPercentageShown(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPercentageShownPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -103,7 +101,6 @@ public open class ProgressBar : Range() {
   }
 
   public final fun isIndeterminate(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIndeterminatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -114,7 +111,6 @@ public open class ProgressBar : Range() {
   }
 
   public final fun isEditorPreviewIndeterminateEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

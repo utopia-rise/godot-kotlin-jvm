@@ -198,7 +198,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun isPreferNativeMenu(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPreferNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -207,7 +206,6 @@ public open class PopupMenu : Popup() {
    * Returns `true` if the system native menu is supported and currently used by this [PopupMenu].
    */
   public final fun isNativeMenu(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -954,7 +952,6 @@ public open class PopupMenu : Popup() {
    * Returns the index of the currently focused item. Returns `-1` if no item is focused.
    */
   public final fun getFocusedItem(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusedItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -965,7 +962,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun getItemCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1014,7 +1010,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun isHideOnItemSelection(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHideOnItemSelectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1025,7 +1020,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun isHideOnCheckableItemSelection(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHideOnCheckableItemSelectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1036,7 +1030,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun isHideOnStateItemSelection(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHideOnStateItemSelectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1047,7 +1040,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun getSubmenuPopupDelay(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubmenuPopupDelayPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1058,7 +1050,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun getAllowSearch(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowSearchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1067,7 +1058,6 @@ public open class PopupMenu : Popup() {
    * Returns `true` if the menu is bound to the special system menu.
    */
   public final fun isSystemMenu(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSystemMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1078,7 +1068,6 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun getSystemMenu(): NativeMenu.SystemMenus {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSystemMenuPtr, LONG)
     return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
   }

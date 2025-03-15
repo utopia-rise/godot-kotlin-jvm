@@ -60,7 +60,6 @@ public open class GrooveJoint2D : Joint2D() {
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -71,7 +70,6 @@ public open class GrooveJoint2D : Joint2D() {
   }
 
   public final fun getInitialOffset(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInitialOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

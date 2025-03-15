@@ -116,7 +116,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getMesh(): ImporterMesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
@@ -127,7 +126,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getSkin(): Skin? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
@@ -138,7 +136,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getSkeletonPath(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -149,7 +146,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getLayerMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayerMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -162,7 +158,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getCastShadowsSetting(): GeometryInstance3D.ShadowCastingSetting {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCastShadowsSettingPtr, LONG)
     return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -173,7 +168,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getVisibilityRangeEndMargin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -184,7 +178,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getVisibilityRangeEnd(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -195,7 +188,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getVisibilityRangeBeginMargin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -206,7 +198,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getVisibilityRangeBegin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -218,7 +209,6 @@ public open class ImporterMeshInstance3D : Node3D() {
   }
 
   public final fun getVisibilityRangeFadeMode(): GeometryInstance3D.VisibilityRangeFadeMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

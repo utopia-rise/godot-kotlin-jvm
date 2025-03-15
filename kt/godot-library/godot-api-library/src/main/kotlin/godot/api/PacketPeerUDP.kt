@@ -86,7 +86,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * Closes the [PacketPeerUDP]'s underlying UDP socket.
    */
   public final fun close(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
 
@@ -126,8 +125,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * }
    * ```
    */
-  public final fun wait(): Error {
-    TransferContext.writeArguments()
+  public final fun waitFor(): Error {
     TransferContext.callMethod(ptr, MethodBindings.waitPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -136,7 +134,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * Returns whether this [PacketPeerUDP] is bound to an address and can receive packets.
    */
   public final fun isBound(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBoundPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -163,7 +160,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * [connectToHost].
    */
   public final fun isSocketConnected(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSocketConnectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -173,7 +169,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketIp(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketIpPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -183,7 +178,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketPort(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -192,7 +186,6 @@ public open class PacketPeerUDP : PacketPeer() {
    * Returns the local port to which this peer is bound.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

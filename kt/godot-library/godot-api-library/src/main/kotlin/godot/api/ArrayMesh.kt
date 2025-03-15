@@ -30,6 +30,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -172,7 +173,6 @@ public open class ArrayMesh : Mesh() {
    * Returns the number of blend shapes that the [ArrayMesh] holds.
    */
   public final fun getBlendShapeCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -198,7 +198,6 @@ public open class ArrayMesh : Mesh() {
    * Removes all blend shapes from this [ArrayMesh].
    */
   public final fun clearBlendShapes(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBlendShapesPtr, NIL)
   }
 
@@ -208,7 +207,6 @@ public open class ArrayMesh : Mesh() {
   }
 
   public final fun getBlendShapeMode(): Mesh.BlendShapeMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapeModePtr, LONG)
     return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -257,7 +255,6 @@ public open class ArrayMesh : Mesh() {
    * Removes all surfaces from this [ArrayMesh].
    */
   public final fun clearSurfaces(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
@@ -366,7 +363,6 @@ public open class ArrayMesh : Mesh() {
    * Regenerates tangents for each of the [ArrayMesh]'s surfaces.
    */
   public final fun regenNormalMaps(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.regenNormalMapsPtr, NIL)
   }
 
@@ -385,7 +381,6 @@ public open class ArrayMesh : Mesh() {
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -396,10 +391,21 @@ public open class ArrayMesh : Mesh() {
   }
 
   public final fun getShadowMesh(): ArrayMesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
+
+  /**
+   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
+   * before surface is added.
+   */
+  public final fun addBlendShape(name: String) = addBlendShape(name.asCachedStringName())
+
+  /**
+   * Sets the name of the blend shape at this index.
+   */
+  public final fun setBlendShapeName(index: Int, name: String) =
+      setBlendShapeName(index, name.asCachedStringName())
 
   public companion object
 

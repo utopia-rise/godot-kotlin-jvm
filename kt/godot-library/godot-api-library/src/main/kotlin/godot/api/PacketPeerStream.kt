@@ -66,7 +66,6 @@ public open class PacketPeerStream : PacketPeer() {
   }
 
   public final fun getStreamPeer(): StreamPeer? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPeerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
@@ -82,13 +81,11 @@ public open class PacketPeerStream : PacketPeer() {
   }
 
   public final fun getInputBufferMaxSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputBufferMaxSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getOutputBufferMaxSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

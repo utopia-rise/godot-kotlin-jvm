@@ -16,10 +16,12 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -140,7 +142,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getAnimation(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -151,7 +152,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getPlayMode(): PlayMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayModePtr, LONG)
     return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -162,7 +162,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isAdvanceOnStart(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAdvanceOnStartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -173,7 +172,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isUsingCustomTimeline(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -184,7 +182,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getTimelineLength(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimelineLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -195,7 +192,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isStretchingTimeScale(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStretchingTimeScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,7 +202,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getStartOffset(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStartOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -217,10 +212,11 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getLoopMode(): Animation.LoopMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
 
   public enum class PlayMode(
     id: Long,

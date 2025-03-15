@@ -29,6 +29,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -169,6 +170,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     normal: Vector3,
     shapeIdx: Int,
   ): Unit {
+    throw NotImplementedError("_inputEvent is not implemented for CollisionObject3D")
   }
 
   /**
@@ -177,6 +179,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * shapes within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseEnter(): Unit {
+    throw NotImplementedError("_mouseEnter is not implemented for CollisionObject3D")
   }
 
   /**
@@ -185,6 +188,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseExit(): Unit {
+    throw NotImplementedError("_mouseExit is not implemented for CollisionObject3D")
   }
 
   public final fun setCollisionLayer(layer: Long): Unit {
@@ -193,7 +197,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun getCollisionLayer(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -204,7 +207,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -253,7 +255,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun getCollisionPriority(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -264,7 +265,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun getDisableMode(): DisableMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisableModePtr, LONG)
     return CollisionObject3D.DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -275,7 +275,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun isRayPickable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRayPickablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -286,7 +285,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   public final fun getCaptureInputOnDrag(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCaptureInputOnDragPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -295,7 +293,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * Returns the object's [RID].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -323,7 +320,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * `owner_id` as an argument.
    */
   public final fun getShapeOwners(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapeOwnersPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }

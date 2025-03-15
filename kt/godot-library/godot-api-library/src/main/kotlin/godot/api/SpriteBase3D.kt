@@ -350,7 +350,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun isCentered(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCenteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -361,7 +360,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -372,7 +370,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFlippedHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -383,7 +380,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFlippedVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -394,7 +390,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -405,7 +400,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getRenderPriority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -416,7 +410,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getPixelSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPixelSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -427,7 +420,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAxis(): Vector3.Axis {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAxisPtr, LONG)
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -456,7 +448,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAlphaCutMode(): AlphaCutMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaCutModePtr, LONG)
     return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -467,7 +458,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAlphaScissorThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -478,7 +468,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAlphaHashScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -489,7 +478,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingPtr, LONG)
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -500,7 +488,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -511,7 +498,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getBillboardMode(): BaseMaterial3D.BillboardMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardModePtr, LONG)
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -522,7 +508,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getTextureFilter(): BaseMaterial3D.TextureFilter {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
     return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -531,7 +516,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * Returns the rectangle representing this sprite.
    */
   public final fun getItemRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -541,7 +525,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * as its [axis] and [pixelSize]).
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }

@@ -148,7 +148,6 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public final fun getMixRate(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -159,7 +158,6 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public final fun getMixRateMode(): AudioStreamGeneratorMixRate {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRateModePtr, LONG)
     return AudioStreamGenerator.AudioStreamGeneratorMixRate.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -170,7 +168,6 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

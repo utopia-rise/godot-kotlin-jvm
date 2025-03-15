@@ -48,7 +48,6 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   }
 
   public final fun getLoadPath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

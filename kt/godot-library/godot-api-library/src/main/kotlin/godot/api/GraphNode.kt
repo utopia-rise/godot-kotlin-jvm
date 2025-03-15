@@ -24,6 +24,7 @@ import godot.core.Vector2i
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -88,6 +89,7 @@ public open class GraphNode : GraphElement() {
     left: Boolean,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_drawPort is not implemented for GraphNode")
   }
 
   public final fun setTitle(title: String): Unit {
@@ -96,7 +98,6 @@ public open class GraphNode : GraphElement() {
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -107,7 +108,6 @@ public open class GraphNode : GraphElement() {
    * close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
@@ -161,7 +161,6 @@ public open class GraphNode : GraphElement() {
    * GraphNode.
    */
   public final fun clearAllSlots(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearAllSlotsPtr, NIL)
   }
 
@@ -330,7 +329,6 @@ public open class GraphNode : GraphElement() {
   }
 
   public final fun isIgnoringValidConnectionType(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -339,7 +337,6 @@ public open class GraphNode : GraphElement() {
    * Returns the number of slots with an enabled input port.
    */
   public final fun getInputPortCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -384,7 +381,6 @@ public open class GraphNode : GraphElement() {
    * Returns the number of slots with an enabled output port.
    */
   public final fun getOutputPortCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

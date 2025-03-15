@@ -71,7 +71,6 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   }
 
   public final fun getConstant(): Quaternion {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }

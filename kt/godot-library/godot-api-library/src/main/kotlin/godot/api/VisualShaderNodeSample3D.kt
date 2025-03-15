@@ -44,7 +44,6 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }

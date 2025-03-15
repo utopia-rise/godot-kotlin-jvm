@@ -93,7 +93,6 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public final fun getRangeMinHz(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRangeMinHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -104,7 +103,6 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public final fun getRangeMaxHz(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -115,7 +113,6 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public final fun getRateHz(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRateHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -126,7 +123,6 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public final fun getFeedback(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeedbackPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -137,7 +133,6 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public final fun getDepth(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

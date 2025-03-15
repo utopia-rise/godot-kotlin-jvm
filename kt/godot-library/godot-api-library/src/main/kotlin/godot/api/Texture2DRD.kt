@@ -45,7 +45,6 @@ public open class Texture2DRD : Texture2D() {
   }
 
   public final fun getTextureRdRid(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

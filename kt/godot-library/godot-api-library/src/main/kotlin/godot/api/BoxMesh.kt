@@ -112,7 +112,6 @@ public open class BoxMesh : PrimitiveMesh() {
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -123,7 +122,6 @@ public open class BoxMesh : PrimitiveMesh() {
   }
 
   public final fun getSubdivideWidth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubdivideWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -134,7 +132,6 @@ public open class BoxMesh : PrimitiveMesh() {
   }
 
   public final fun getSubdivideHeight(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubdivideHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -145,7 +142,6 @@ public open class BoxMesh : PrimitiveMesh() {
   }
 
   public final fun getSubdivideDepth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubdivideDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

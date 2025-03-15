@@ -42,7 +42,6 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    * Returns the [SkeletonModificationStack2D] that this modification is holding.
    */
   public final fun getHeldModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeldModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }

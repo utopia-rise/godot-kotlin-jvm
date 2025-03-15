@@ -16,6 +16,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -156,6 +157,7 @@ public open class CompositorEffect : Resource() {
    * access to the rendering state, it is only valid during rendering and should not be stored.
    */
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
+    throw NotImplementedError("_renderCallback is not implemented for CompositorEffect")
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
@@ -164,7 +166,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -175,7 +176,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getEffectCallbackType(): EffectCallbackType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEffectCallbackTypePtr, LONG)
     return CompositorEffect.EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -186,7 +186,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getAccessResolvedColor(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessResolvedColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -197,7 +196,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getAccessResolvedDepth(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -208,7 +206,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsMotionVectors(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -219,7 +216,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsNormalRoughness(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -230,7 +226,6 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsSeparateSpecular(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

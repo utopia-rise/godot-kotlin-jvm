@@ -71,7 +71,6 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * overflowing it. If the result is `0`, the buffer is full.
    */
   public final fun getFramesAvailable(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -81,7 +80,6 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * data. This value is reset at the start of the playback.
    */
   public final fun getSkips(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkipsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -90,7 +88,6 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * Clears the audio sample data buffer.
    */
   public final fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 

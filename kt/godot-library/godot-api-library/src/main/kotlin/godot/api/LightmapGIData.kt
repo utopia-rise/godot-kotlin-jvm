@@ -84,7 +84,6 @@ public open class LightmapGIData : Resource() {
   }
 
   public final fun getLightmapTextures(): VariantArray<TextureLayered> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapTexturesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
@@ -95,7 +94,6 @@ public open class LightmapGIData : Resource() {
   }
 
   public final fun getShadowmaskTextures(): VariantArray<TextureLayered> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowmaskTexturesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
@@ -118,7 +116,6 @@ public open class LightmapGIData : Resource() {
    * [LightmapGI.directional].
    */
   public final fun isUsingSphericalHarmonics(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -140,7 +137,6 @@ public open class LightmapGIData : Resource() {
    * Returns the number of objects that are considered baked within this [LightmapGIData].
    */
   public final fun getUserCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUserCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -158,7 +154,6 @@ public open class LightmapGIData : Resource() {
    * Clear all objects that are considered baked within this [LightmapGIData].
    */
   public final fun clearUsers(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearUsersPtr, NIL)
   }
 
@@ -168,7 +163,6 @@ public open class LightmapGIData : Resource() {
   }
 
   public final fun getLightTexture(): TextureLayered? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }

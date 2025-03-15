@@ -52,7 +52,6 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   }
 
   public final fun getPhysicalBoneChainLength(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -81,7 +80,6 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * that are children of the [Skeleton2D].
    */
   public final fun fetchPhysicalBones(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fetchPhysicalBonesPtr, NIL)
   }
 

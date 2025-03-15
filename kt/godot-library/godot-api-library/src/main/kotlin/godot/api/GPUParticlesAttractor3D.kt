@@ -100,7 +100,6 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -111,7 +110,6 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   }
 
   public final fun getStrength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -122,7 +120,6 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   }
 
   public final fun getAttenuation(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttenuationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -133,7 +130,6 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   }
 
   public final fun getDirectionality(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectionalityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

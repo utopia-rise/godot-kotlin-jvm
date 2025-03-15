@@ -237,7 +237,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getBaseFont(): Font? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaseFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -248,7 +247,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getVariationOpentype(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -259,7 +257,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getVariationEmbolden(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -270,7 +267,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getVariationFaceIndex(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVariationFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -281,7 +277,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getVariationTransform(): Transform2D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -306,7 +301,6 @@ public open class FontVariation : Font() {
   }
 
   public final fun getBaselineOffset(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

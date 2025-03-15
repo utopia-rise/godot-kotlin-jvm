@@ -161,7 +161,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -172,7 +171,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getJiggleDataChainLength(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJiggleDataChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -183,7 +181,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getStiffness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -194,7 +191,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -205,7 +201,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getDamping(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -216,7 +211,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getUseGravity(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseGravityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -227,7 +221,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   }
 
   public final fun getGravity(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -245,7 +238,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Returns whether the jiggle modifier is taking physics colliders into account when solving.
    */
   public final fun getUseColliders(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseCollidersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -263,7 +255,6 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Returns the collision mask used by the Jiggle modifier when collisions are enabled.
    */
   public final fun getCollisionMask(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

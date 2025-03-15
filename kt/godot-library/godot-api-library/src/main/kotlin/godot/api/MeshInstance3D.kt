@@ -19,11 +19,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -81,7 +83,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -92,7 +93,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   public final fun getSkeletonPath(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -103,7 +103,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   public final fun getSkin(): Skin? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
@@ -113,7 +112,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
    */
   public final fun getSkinReference(): SkinReference? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinReferencePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkinReference?)
   }
@@ -123,7 +121,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * See also [getSurfaceOverrideMaterial].
    */
   public final fun getSurfaceOverrideMaterialCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSurfaceOverrideMaterialCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -171,7 +168,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * calculated from the mesh geometry. It's mainly used for testing.
    */
   public final fun createTrimeshCollision(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTrimeshCollisionPtr, NIL)
   }
 
@@ -205,7 +201,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Returns the number of blend shapes available. Produces an error if [mesh] is `null`.
    */
   public final fun getBlendShapeCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -244,7 +239,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * the mesh geometry. It's mainly used for testing.
    */
   public final fun createDebugTangents(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createDebugTangentsPtr, NIL)
   }
 
@@ -276,6 +270,13 @@ public open class MeshInstance3D : GeometryInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentSkeletonPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
+
+  /**
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
+   * this name exists, including when [mesh] is `null`.
+   */
+  public final fun findBlendShapeByName(name: String): Int =
+      findBlendShapeByName(name.asCachedStringName())
 
   public companion object
 

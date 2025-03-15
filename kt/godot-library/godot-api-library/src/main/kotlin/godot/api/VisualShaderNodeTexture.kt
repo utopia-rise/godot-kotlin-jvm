@@ -69,7 +69,6 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -80,7 +79,6 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -91,7 +89,6 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public final fun getTextureType(): TextureType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }

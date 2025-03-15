@@ -14,9 +14,11 @@ import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -127,7 +129,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -138,7 +139,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -149,7 +149,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -160,7 +159,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getAttackUs(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttackUsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -171,7 +169,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getReleaseMs(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReleaseMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -182,7 +179,6 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getMix(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -193,10 +189,11 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getSidechain(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  public final fun setSidechain(sidechain: String) = setSidechain(sidechain.asCachedStringName())
 
   public companion object
 

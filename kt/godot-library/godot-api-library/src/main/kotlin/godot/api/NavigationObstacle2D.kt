@@ -170,7 +170,6 @@ public open class NavigationObstacle2D : Node2D() {
    * Returns the [RID] of this obstacle on the [NavigationServer2D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -181,7 +180,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getAvoidanceEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -203,7 +201,6 @@ public open class NavigationObstacle2D : Node2D() {
    * navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -214,7 +211,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -225,7 +221,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getVelocity(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -236,7 +231,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getVertices(): PackedVector2Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -247,7 +241,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getAvoidanceLayers(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -277,7 +270,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getAffectNavigationMesh(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -288,7 +280,6 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   public final fun getCarveNavigationMesh(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

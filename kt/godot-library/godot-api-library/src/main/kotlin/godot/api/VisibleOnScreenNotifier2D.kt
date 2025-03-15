@@ -90,7 +90,6 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   }
 
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -102,7 +101,6 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * instantiated, before the draw pass.
    */
   public final fun isOnScreen(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

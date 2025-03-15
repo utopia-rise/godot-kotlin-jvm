@@ -143,7 +143,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -154,7 +153,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun getCanvasInstanceId(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -165,7 +163,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -176,7 +173,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun getExclude(): VariantArray<RID> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -187,7 +183,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -198,7 +193,6 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

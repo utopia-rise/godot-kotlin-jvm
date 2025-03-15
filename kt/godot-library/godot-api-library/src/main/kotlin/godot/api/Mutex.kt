@@ -43,7 +43,6 @@ public open class Mutex : RefCounted() {
    * mutex.
    */
   public final fun lock(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.lockPtr, NIL)
   }
 
@@ -52,7 +51,6 @@ public open class Mutex : RefCounted() {
    * **Note:** This function returns `true` if the thread already has ownership of the mutex.
    */
   public final fun tryLock(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.tryLockPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -65,7 +63,6 @@ public open class Mutex : RefCounted() {
    * to unlock a non-locked mutex, is wrong and may causes crashes or deadlocks.
    */
   public final fun unlock(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unlockPtr, NIL)
   }
 

@@ -166,7 +166,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getEnableDepthClamp(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDepthClampPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -177,7 +176,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getDiscardPrimitives(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiscardPrimitivesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -188,7 +186,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getWireframe(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWireframePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -199,7 +196,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getCullMode(): RenderingDevice.PolygonCullMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
     return RenderingDevice.PolygonCullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -210,7 +206,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getFrontFace(): RenderingDevice.PolygonFrontFace {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontFacePtr, LONG)
     return RenderingDevice.PolygonFrontFace.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -221,7 +216,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getDepthBiasEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthBiasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -232,7 +226,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getDepthBiasConstantFactor(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthBiasConstantFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -243,7 +236,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getDepthBiasClamp(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthBiasClampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -254,7 +246,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getDepthBiasSlopeFactor(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthBiasSlopeFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -265,7 +256,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getLineWidth(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -276,7 +266,6 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun getPatchControlPoints(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPatchControlPointsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

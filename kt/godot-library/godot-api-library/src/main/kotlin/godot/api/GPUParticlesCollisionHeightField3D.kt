@@ -147,7 +147,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -158,7 +157,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun getResolution(): Resolution {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
     return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -169,7 +167,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
     return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -180,7 +177,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun getHeightfieldMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightfieldMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -210,7 +206,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun isFollowCameraEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

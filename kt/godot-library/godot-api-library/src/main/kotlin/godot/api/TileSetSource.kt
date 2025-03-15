@@ -42,7 +42,6 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns how many tiles this atlas source defines (not including alternative tiles).
    */
   public final fun getTilesCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTilesCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

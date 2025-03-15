@@ -31,7 +31,6 @@ public open class JavaObject : RefCounted() {
    * Returns the [JavaClass] that this object is an instance of.
    */
   public final fun getJavaClass(): JavaClass? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJavaClassPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }

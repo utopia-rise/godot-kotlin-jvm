@@ -102,7 +102,6 @@ public open class JSON : Resource() {
   }
 
   public final fun getData(): Any? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -116,7 +115,6 @@ public open class JSON : Resource() {
    * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
   public final fun getParsedText(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -126,7 +124,6 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorLine(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getErrorLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -136,7 +133,6 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorMessage(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getErrorMessagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -252,6 +248,12 @@ public open class JSON : Resource() {
   }
 
   public object MethodBindings {
+    internal val stringifyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
+
+    internal val parseStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
+
     internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885841341)
 
     internal val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data", 1214101251)
@@ -266,12 +268,6 @@ public open class JSON : Resource() {
 
     internal val getErrorMessagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
-
-    internal val stringifyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
-
-    internal val parseStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
 
     internal val fromNativePtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSON", "from_native", 2963479484)
