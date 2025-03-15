@@ -44,6 +44,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    * Adds the property identified by the given [path] to the list of the properties being
    * synchronized, optionally passing an [index].
+   *
    * **Note:** For details on restrictions and limitations on property synchronization, see
    * [MultiplayerSynchronizer].
    */
@@ -158,6 +159,7 @@ public open class SceneReplicationConfig : Resource() {
   /**
    * Adds the property identified by the given [path] to the list of the properties being
    * synchronized, optionally passing an [index].
+   *
    * **Note:** For details on restrictions and limitations on property synchronization, see
    * [MultiplayerSynchronizer].
    */

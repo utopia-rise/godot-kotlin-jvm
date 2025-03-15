@@ -35,16 +35,21 @@ import kotlin.jvm.JvmName
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
  * browser.
+ *
  * As such, this interface is only available when running in Web exports.
+ *
  * WebXR supports a wide range of devices, from the very capable (like Valve Index, HTC Vive, Oculus
  * Rift and Quest) down to the much less capable (like Google Cardboard, Oculus Go, GearVR, or plain
  * smartphones).
+ *
  * Since WebXR is based on JavaScript, it makes extensive use of callbacks, which means that
  * [WebXRInterface] is forced to use signals, where other XR interfaces would instead use functions
  * that return a result immediately. This makes [WebXRInterface] quite a bit more complicated to
  * initialize than other XR interfaces.
+ *
  * Here's the minimum code required to start an immersive VR session:
- * [codeblock]
+ *
+ * ```
  * extends Node3D
  *
  * var webxr_interface
@@ -122,15 +127,19 @@ import kotlin.jvm.JvmName
  *
  * func _webxr_session_failed(message):
  *     OS.alert("Failed to initialize: " + message)
- * [/codeblock]
+ * ```
+ *
  * There are a couple ways to handle "controller" input:
+ *
  * - Using [XRController3D] nodes and their [signal XRController3D.button_pressed] and [signal
  * XRController3D.button_released] signals. This is how controllers are typically handled in XR apps in
  * Godot, however, this will only work with advanced VR controllers like the Oculus Touch or Index
  * controllers, for example.
+ *
  * - Using the [signal select], [signal squeeze] and related signals. This method will work for both
  * advanced VR controllers, and non-traditional input sources like a tap on the screen, a spoken voice
  * command or a button press on the device itself.
+ *
  * You can use both methods to allow your game or app to support a wider or narrower set of devices
  * and input methods, or to allow more advanced interactions with more advanced devices.
  */
@@ -143,6 +152,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted by [XRInterface.initialize] if the session is successfully started.
+   *
    * At this point, it's safe to do `get_viewport().use_xr = true` to instruct Godot to start
    * rendering to the XR device.
    */
@@ -151,6 +161,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * Emitted when the user ends the WebXR session (which can be done using UI from the browser or
    * device).
+   *
    * At this point, you should do `get_viewport().use_xr = false` to instruct Godot to resume
    * rendering to the screen.
    */
@@ -158,6 +169,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted by [XRInterface.initialize] if the session fails to start.
+   *
    * [message] may optionally contain an error message from WebXR, or an empty string if no message
    * is available.
    */
@@ -165,6 +177,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted when one of the input source has started its "primary action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -172,6 +185,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted after one of the input sources has finished its "primary action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -179,6 +193,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted when one of the input sources has finished its "primary action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -186,6 +201,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted when one of the input sources has started its "primary squeeze action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -193,6 +209,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted after one of the input sources has finished its "primary squeeze action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -200,6 +217,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted when one of the input sources has finished its "primary squeeze action".
+   *
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
@@ -212,9 +230,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Emitted to indicate that the reference space has been reset or reconfigured.
+   *
    * When (or whether) this is emitted depends on the user's browser or device, but may include when
    * the user has changed the dimensions of their play space (which you may be able to access via
    * [XRInterface.getPlayArea]) or pressed/held a button to recenter their position.
+   *
    * See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/reset_event]WebXR's
    * XRReferenceSpace reset event[/url] for more information.
    */
@@ -227,7 +247,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * The session mode used by [XRInterface.initialize] when setting up the WebXR session.
+   *
    * This doesn't have any effect on the interface when already initialized.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url],
    * including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.
@@ -243,9 +265,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * A comma-seperated list of required features used by [XRInterface.initialize] when setting up
    * the WebXR session.
+   *
    * If a user's browser or device doesn't support one of the given features, initialization will
    * fail and [signal session_failed] will be emitted.
+   *
    * This doesn't have any effect on the interface when already initialized.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
    * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
@@ -262,9 +287,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * A comma-seperated list of optional features used by [XRInterface.initialize] when setting up
    * the WebXR session.
+   *
    * If a user's browser or device doesn't support one of the given features, initialization will
    * continue, but you won't be able to use the requested feature.
+   *
    * This doesn't have any effect on the interface when already initialized.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
    * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
@@ -281,10 +309,13 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * A comma-seperated list of reference space types used by [XRInterface.initialize] when setting
    * up the WebXR session.
+   *
    * The reference space types are requested in order, and the first one supported by the users
    * device or browser will be used. The [referenceSpaceType] property contains the reference space
    * type that was ultimately selected.
+   *
    * This doesn't have any effect on the interface when already initialized.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
    * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
@@ -302,6 +333,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * The reference space type (from the list of requested types set in the
    * [requestedReferenceSpaceTypes] property), that was ultimately used by [XRInterface.initialize]
    * when setting up the WebXR session.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's
    * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
@@ -314,8 +346,10 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * A comma-separated list of features that were successfully enabled by [XRInterface.initialize]
    * when setting up the WebXR session.
+   *
    * This may include features requested by setting [requiredFeatures] and [optionalFeatures], and
    * will only be available after [signal session_started] has been emitted.
+   *
    * **Note:** This may not be support by all web browsers, in which case it will be an empty
    * string.
    */
@@ -325,6 +359,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Indicates if the WebXR session's imagery is visible to the user.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRVisibilityState]WebXR's
    * XRVisibilityState[/url], including `"hidden"`, `"visible"`, and `"visible-blurred"`.
@@ -339,9 +374,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Checks if the given [sessionMode] is supported by the user's browser.
+   *
    * Possible values come from
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url],
    * including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.
+   *
    * This method returns nothing, instead it emits the [signal session_supported] signal with the
    * result.
    */
@@ -417,16 +454,24 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Gets an [XRControllerTracker] for the given [inputSourceId].
+   *
    * In the context of WebXR, an input source can be an advanced VR controller like the Oculus Touch
    * or Index controllers, or even a tap on the screen, a spoken voice command or a button press on the
    * device itself. When a non-traditional input source is used, interpret the position and orientation
    * of the [XRPositionalTracker] as a ray pointing at the object the user wishes to interact with.
+   *
    * Use this method to get information about the input source that triggered one of these signals:
+   *
    * - [signal selectstart]
+   *
    * - [signal select]
+   *
    * - [signal selectend]
+   *
    * - [signal squeezestart]
+   *
    * - [signal squeeze]
+   *
    * - [signal squeezestart]
    */
   public final fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
@@ -437,6 +482,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   /**
    * Returns the target ray mode for the given [inputSourceId].
+   *
    * This can help interpret the input coming from that input source. See
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode]XRInputSource.targetRayMode[/url]
    * for more information.

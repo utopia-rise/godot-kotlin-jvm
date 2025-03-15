@@ -29,12 +29,14 @@ import kotlin.jvm.JvmName
  * [CollisionShape3D]. This is useful for terrain, but it is limited as overhangs (such as caves)
  * cannot be stored. Holes in a [HeightMapShape3D] are created by assigning very low values to points
  * in the desired area.
+ *
  * **Performance:** [HeightMapShape3D] is faster to check collisions against than
  * [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
+ *
  * A heightmap collision shape can also be build by using an [Image] reference:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var heightmap_texture = ResourceLoader.load("res://heightmap_image.exr")
  * var heightmap_image = heightmap_texture.get_image()
  * heightmap_image.convert(Image.FORMAT_RF)
@@ -138,8 +140,10 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Updates [mapData] with data read from an [Image] reference. Automatically resizes heightmap
    * [mapWidth] and [mapDepth] to fit the full image width and height.
+   *
    * The image needs to be in either [Image.FORMAT_RF] (32 bit), [Image.FORMAT_RH] (16 bit), or
    * [Image.FORMAT_R8] (8 bit).
+   *
    * Each image pixel is read in as a float on the range from `0.0` (black pixel) to `1.0` (white
    * pixel). This range value gets remapped to [heightMin] and [heightMax] to form the final height
    * value.

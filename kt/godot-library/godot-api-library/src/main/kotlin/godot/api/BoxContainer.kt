@@ -41,6 +41,7 @@ public open class BoxContainer : Container() {
 
   /**
    * If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.
+   *
    * Can't be changed when using [HBoxContainer] and [VBoxContainer].
    */
   public final inline var vertical: Boolean

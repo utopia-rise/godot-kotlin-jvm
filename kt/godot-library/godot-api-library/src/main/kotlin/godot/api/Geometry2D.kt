@@ -100,11 +100,12 @@ public object Geometry2D : Object() {
   /**
    * Returns the point of intersection between the two lines ([fromA], [dirA]) and ([fromB],
    * [dirB]). Returns a [Vector2], or `null` if the lines are parallel.
+   *
    * `from` and `dir` are *not* endpoints of a line segment or ray but the slope (`dir`) and a known
    * point (`from`) on that line.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var from_a = Vector2.ZERO
    * var dir_a = Vector2.RIGHT
    * var from_b = Vector2.DOWN
@@ -116,8 +117,9 @@ public object Geometry2D : Object() {
    * # Returns null
    * Geometry2D.line_intersects_line(from_a, dir_a, from_b, Vector2.RIGHT)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var fromA = Vector2.Zero;
    * var dirA = Vector2.Right;
    * var fromB = Vector2.Down;
@@ -209,6 +211,7 @@ public object Geometry2D : Object() {
   /**
    * Returns `true` if [polygon]'s vertices are ordered in clockwise order, otherwise returns
    * `false`.
+   *
    * **Note:** Assumes a Cartesian coordinate system where `+x` is right and `+y` is up. If using
    * screen coordinates (`+y` is down), the result will need to be flipped (i.e. a `true` result will
    * indicate counter-clockwise).
@@ -285,6 +288,7 @@ public object Geometry2D : Object() {
   /**
    * Merges (combines) [polygonA] and [polygonB] and returns an array of merged polygons. This
    * performs [OPERATION_UNION] between polygons.
+   *
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes)
    * produced which could be distinguished by calling [isPolygonClockwise].
    */
@@ -300,6 +304,7 @@ public object Geometry2D : Object() {
    * Clips [polygonA] against [polygonB] and returns an array of clipped polygons. This performs
    * [OPERATION_DIFFERENCE] between polygons. Returns an empty array if [polygonB] completely overlaps
    * [polygonA].
+   *
    * If [polygonB] is enclosed by [polygonA], returns an outer polygon (boundary) and inner polygon
    * (hole) which could be distinguished by calling [isPolygonClockwise].
    */
@@ -315,6 +320,7 @@ public object Geometry2D : Object() {
    * Intersects [polygonA] with [polygonB] and returns an array of intersected polygons. This
    * performs [OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by
    * polygons. Returns an empty array if no intersection occurs.
+   *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -330,6 +336,7 @@ public object Geometry2D : Object() {
    * Mutually excludes common area defined by intersection of [polygonA] and [polygonB] (see
    * [intersectPolygons]) and returns an array of excluded polygons. This performs [OPERATION_XOR]
    * between polygons. In other words, returns all but common area between polygons.
+   *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -373,21 +380,25 @@ public object Geometry2D : Object() {
    * polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty
    * array if [delta] is negative and the absolute value of it approximately exceeds the minimum
    * bounding rectangle dimensions of the polygon.
+   *
    * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
+   *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
+   *
    * **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var polygon = PackedVector2Array([Vector2(0, 0), Vector2(100, 0), Vector2(100, 100), Vector2(0,
    * 100)])
    * var offset = Vector2(50, 50)
    * polygon = Transform2D(0, offset) * polygon
    * print(polygon) # Prints [(50.0, 50.0), (150.0, 50.0), (150.0, 150.0), (50.0, 150.0)]
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Vector2[] polygon = [new Vector2(0, 0), new Vector2(100, 0), new Vector2(100, 100), new
    * Vector2(0, 100)];
    * var offset = new Vector2(50, 50);
@@ -412,8 +423,11 @@ public object Geometry2D : Object() {
    * positive, makes the polyline grow outward. Returns an array of polygons because
    * inflating/deflating may result in multiple discrete polygons. If [delta] is negative, returns an
    * empty array.
+   *
    * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
+   *
    * Each polygon's endpoints will be rounded as determined by [endType], see [PolyEndType].
+   *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
    */
@@ -446,13 +460,15 @@ public object Geometry2D : Object() {
    * Returns the [url=https://en.wikipedia.org/wiki/Bresenham&#37;27s_line_algorithm]Bresenham
    * line[/url] between the [from] and [to] points. A Bresenham line is a series of pixels that draws a
    * line and is always 1-pixel thick on every row and column of the drawing (never more, never less).
+   *
    * Example code to draw a line between two [Marker2D] nodes using a series of
    * [CanvasItem.drawRect] calls:
-   * [codeblock]
+   *
+   * ```
    * func _draw():
    *     for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
    *         draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun bresenhamLine(from: Vector2i, to: Vector2i): VariantArray<Vector2i> {

@@ -43,12 +43,16 @@ import kotlin.jvm.JvmOverloads
 /**
  * GridMap lets you place meshes on a grid interactively. It works both from the editor and from
  * scripts, which can help you create in-game level editors.
+ *
  * GridMaps use a [MeshLibrary] which contains a list of tiles. Each tile is a mesh with materials
  * plus optional collision and navigation shapes.
+ *
  * A GridMap contains a collection of cells. Each grid cell refers to a tile in the [MeshLibrary].
  * All cells in the map have the same dimensions.
+ *
  * Internally, a GridMap is split into a sparse collection of octants for efficient rendering and
  * physics processing. Every octant has the same dimensions and can contain several cells.
+ *
  * **Note:** GridMap doesn't extend [VisualInstance3D] and therefore can't be hidden or cull masked
  * based on [VisualInstance3D.layers]. If you make a light not affect the first layer, the whole
  * GridMap won't be lit by the light in question.
@@ -89,6 +93,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The dimensions of the grid's cells.
+   *
    * This does not affect the size of the meshes. See [cellScale].
    */
   @CoreTypeLocalCopy
@@ -146,6 +151,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The scale of the cell items.
+   *
    * This does not affect the size of the grid cells themselves, only the items in them. This can be
    * used to make cell items overlap their neighbors.
    */
@@ -159,6 +165,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The physics layers this GridMap is in.
+   *
    * GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They
    * only affect other physics bodies that collide with them.
    */
@@ -215,6 +222,7 @@ public open class GridMap : Node3D() {
 
   /**
    * The dimensions of the grid's cells.
+   *
    * This does not affect the size of the meshes. See [cellScale].
    *
    * This is a helper function to make dealing with local copies easier.
@@ -343,6 +351,7 @@ public open class GridMap : Node3D() {
   /**
    * Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation
    * meshes.
+   *
    * This function returns always the map set on the GridMap node and not the map on the
    * NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node
    * will not be aware of the map change.
@@ -399,7 +408,9 @@ public open class GridMap : Node3D() {
 
   /**
    * Sets the mesh index for the cell referenced by its grid coordinates.
+   *
    * A negative item index such as [INVALID_CELL_ITEM] will clear the cell.
+   *
    * Optionally, the item's orientation can be passed. For valid orientation values, see
    * [getOrthogonalIndexFromBasis].
    */

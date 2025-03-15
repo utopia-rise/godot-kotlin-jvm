@@ -32,6 +32,7 @@ import kotlin.jvm.JvmName
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
  * to simulate different material roughnesses.
+ *
  * The [ReflectionProbe] is used to create high-quality reflections at a low performance cost (when
  * [updateMode] is [UPDATE_ONCE]). [ReflectionProbe]s can be blended together and with the rest of the
  * scene smoothly. [ReflectionProbe]s can also be combined with [VoxelGI], SDFGI
@@ -39,14 +40,17 @@ import kotlin.jvm.JvmName
  * accurate reflections in specific areas. [ReflectionProbe]s render all objects within their
  * [cullMask], so updating them can be quite expensive. It is best to update them once with the
  * important static objects and then leave them as-is.
+ *
  * **Note:** Unlike [VoxelGI] and SDFGI, [ReflectionProbe]s only source their environment from a
  * [WorldEnvironment] node. If you specify an [Environment] resource within a [Camera3D] node, it will
  * be ignored by the [ReflectionProbe]. This can lead to incorrect lighting within the
  * [ReflectionProbe].
+ *
  * **Note:** Reflection probes are only supported in the Forward+ and Mobile rendering methods, not
  * Compatibility. When using the Mobile rendering method, only 8 reflection probes can be displayed on
  * each mesh resource. Attempting to display more than 8 reflection probes on a single mesh resource
  * will result in reflection probes flickering in and out as the camera moves.
+ *
  * **Note:** When using the Mobile rendering method, reflection probes will only correctly affect
  * meshes whose visibility AABB intersects with the reflection probe's AABB. If using a shader to
  * deform the mesh in a way that makes it go outside its AABB, [GeometryInstance3D.extraCullMargin]
@@ -90,6 +94,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * The maximum distance away from the [ReflectionProbe] an object can be before it is culled.
    * Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
+   *
    * **Note:** The maximum reflection distance is always at least equal to the probe's extents. This
    * means that decreasing [maxDistance] will not always cull objects from reflections, especially if
    * the reflection probe's box defined by its [size] is already large.
@@ -106,6 +111,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The size of the reflection probe. The larger the size, the more space covered by the probe,
    * which will lower the perceived resolution. It is best to keep the size only as large as you need
    * it.
+   *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
    * [ReflectionProbe] node.
    */
@@ -135,6 +141,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * If `true`, enables box projection. This makes reflections look more correct in rectangle-shaped
    * rooms by offsetting the reflection center depending on the camera's location.
+   *
    * **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate
    * the [ReflectionProbe] node.
    */
@@ -174,6 +181,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. It is
    * best to only include large objects which are likely to take up a lot of space in the reflection in
    * order to save on rendering cost.
+   *
    * This can also be used to prevent an object from reflecting upon itself (for instance, a
    * [ReflectionProbe] centered on a vehicle).
    */
@@ -205,6 +213,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold]
    * to improve performance at the cost of geometry detail, especially when using the [UPDATE_ALWAYS]
    * [updateMode].
+   *
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
@@ -262,6 +271,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The size of the reflection probe. The larger the size, the more space covered by the probe,
    * which will lower the perceived resolution. It is best to keep the size only as large as you need
    * it.
+   *
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
    * [ReflectionProbe] node.
    *

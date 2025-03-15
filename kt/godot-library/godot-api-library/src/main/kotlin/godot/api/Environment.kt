@@ -34,9 +34,13 @@ import kotlin.jvm.JvmName
  * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
  * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
  * parameters affect the final render of the scene. The order of these operations is:
+ *
  * - Depth of Field Blur
+ *
  * - Glow
+ *
  * - Tonemap (Auto Exposure)
+ *
  * - Adjustments
  */
 @GodotBaseType
@@ -177,6 +181,7 @@ public open class Environment : Resource() {
    * provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that
    * affects the scene is provided by the sky, thus the ambient light parameter has no effect on the
    * scene.
+   *
    * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0`
    * (inclusive).
    */
@@ -226,6 +231,7 @@ public open class Environment : Resource() {
   /**
    * Adjusts the brightness of values before they are provided to the tonemapper. Higher
    * [tonemapExposure] values result in a brighter image. See also [tonemapWhite].
+   *
    * **Note:** Values provided to the tonemapper will also be multiplied by `2.0` and `1.8` for
    * [TONE_MAPPER_FILMIC] and [TONE_MAPPER_ACES] respectively to produce a similar apparent brightness
    * as [TONE_MAPPER_LINEAR].
@@ -243,6 +249,7 @@ public open class Environment : Resource() {
    * scale of values provided to the tonemapper. For photorealistic lighting, recommended values are
    * between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene
    * appear lower contrast. See also [tonemapExposure].
+   *
    * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] or [TONE_MAPPER_AGX].
    */
   public final inline var tonemapWhite: Float
@@ -257,6 +264,7 @@ public open class Environment : Resource() {
    * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate
    * than reflections from [VoxelGI]s or [ReflectionProbe]s, but are slower and can't reflect surfaces
    * occluded by others.
+   *
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssrEnabled: Boolean
@@ -321,6 +329,7 @@ public open class Environment : Resource() {
    * well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better
    * job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called
    * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
+   *
    * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssaoEnabled: Boolean
@@ -439,6 +448,7 @@ public open class Environment : Resource() {
    * only affects a limited range. It is intended to be used along with a form of proper global
    * illumination like SDFGI or [VoxelGI]. Screen-space indirect lighting is not affected by individual
    * light's [Light3D.lightIndirectEnergy].
+   *
    * **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var ssilEnabled: Boolean
@@ -510,11 +520,14 @@ public open class Environment : Resource() {
    * including in situations where geometry is created during gameplay. The signed distance field is
    * automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic
    * occluders and emissive surfaces are not.
+   *
    * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
+   *
    * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware
    * such as integrated graphics (consider [LightmapGI] instead). To improve SDFGI performance, enable
    * [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
+   *
    * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided
    * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge
    * the loops to close the mesh.
@@ -557,8 +570,10 @@ public open class Environment : Resource() {
    * Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic
    * appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also
    * [sdfgiEnergy].
+   *
    * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in
    * scenes with bright materials.
+   *
    * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in
    * reflections as light will only bounce one time.
    */
@@ -589,6 +604,7 @@ public open class Environment : Resource() {
    * be more precise up close, at the cost of making SDFGI updates more demanding. This can cause
    * stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also
    * reducing the performance impact of SDFGI updates.
+   *
    * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
@@ -615,6 +631,7 @@ public open class Environment : Resource() {
   /**
    * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or
    * other sources of GI such as [ReflectionProbe] will be used as a fallback.
+   *
    * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
@@ -679,8 +696,10 @@ public open class Environment : Resource() {
   /**
    * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where
    * bright pixels bleed onto surrounding pixels.
+   *
    * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic
    * range available in the Mobile rendering method.
+   *
    * **Note:** When using the Compatibility rendering method, glow uses a different implementation
    * with some properties being unavailable and hidden from the inspector: `glow_levels&#47;*`,
    * [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength].
@@ -697,6 +716,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, glow levels will be normalized so that summed together their intensities equal
    * `1.0`.
+   *
    * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -725,6 +745,7 @@ public open class Environment : Resource() {
    * The strength of the glow effect. This applies as the glow is blurred across the screen and
    * increases the distance and intensity of the blur. When using the Mobile rendering method, this
    * should be increased to compensate for the lower dynamic range.
+   *
    * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -740,6 +761,7 @@ public open class Environment : Resource() {
    * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image
    * is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value
    * of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
+   *
    * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -765,6 +787,7 @@ public open class Environment : Resource() {
 
   /**
    * The glow blending mode.
+   *
    * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -817,8 +840,10 @@ public open class Environment : Resource() {
    * How strong of an influence the [glowMap] should have on the overall glow effect. A strength of
    * `0.0` means the glow map has no influence, while a strength of `1.0` means the glow map has full
    * influence.
+   *
    * **Note:** If the glow map has black areas, a value of `1.0` can also turn off the glow effect
    * entirely in specific areas of the screen.
+   *
    * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -834,8 +859,10 @@ public open class Environment : Resource() {
    * The texture that should be used as a glow map to *multiply* the resulting glow color according
    * to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color
    * channels are used for modulation, but the alpha channel is ignored.
+   *
    * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a
    * texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
+   *
    * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
@@ -907,8 +934,10 @@ public open class Environment : Resource() {
   /**
    * The fog density to be used. This is demonstrated in different ways depending on the [fogMode]
    * mode chosen:
+   *
    * **Exponential Fog Mode:** Higher values result in denser fog. The fog rendering is exponential
    * like in real life.
+   *
    * **Depth Fog mode:** The maximum intensity of the deep fog, effect will appear in the distance
    * (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not
    * be visible.
@@ -925,10 +954,12 @@ public open class Environment : Resource() {
    * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
    * [Sky], as read from the radiance cubemap. This has a small performance cost when set above `0.0`.
    * Must have [backgroundMode] set to [BG_SKY].
+   *
    * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
    * perspective[/url] in large scenes with low density fog. However, it is not very useful for
    * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
    * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
+   *
    * Notice that this does not sample the [Sky] directly, but rather the radiance cubemap. The
    * cubemap is sampled at a mipmap level depending on the depth of the rendered pixel; the farther
    * away, the higher the resolution of the sampled mipmap. This results in the actual color being a
@@ -947,6 +978,7 @@ public open class Environment : Resource() {
    * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can
    * fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not
    * affecting sky rendering at all.
+   *
    * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
    */
   public final inline var fogSkyAffect: Float
@@ -1023,6 +1055,7 @@ public open class Environment : Resource() {
    * with [FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR
    * single-scattering model based on extinction, scattering, and emission which it exposes to users as
    * density, albedo, and emission.
+   *
    * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
    */
@@ -1038,8 +1071,10 @@ public open class Environment : Resource() {
    * The base *exponential* density of the volumetric fog. Set this to the lowest density you want
    * to have globally. [FogVolume]s can be used to add to or subtract from this density in specific
    * areas. Fog rendering is exponential as in real life.
+   *
    * A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display
    * volumetric fog in specific areas.
+   *
    * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to
    * the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to
    * values between `10000` and `100000` to compensate for the very low density.
@@ -1095,8 +1130,10 @@ public open class Environment : Resource() {
    * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value
    * of `0.0` means that Global Illumination will not impact the volumetric fog.
    * [volumetricFogGiInject] has a small performance cost when set above `0.0`.
+   *
    * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
    * [volumetricFogAlbedo] is a fully black color.
+   *
    * **Note:** Only [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) are taken into account when
    * using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL
    * (see [ssilEnabled]) will be ignored by volumetric fog.
@@ -1153,6 +1190,7 @@ public open class Environment : Resource() {
    * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that
    * ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small
    * performance cost when set above `0.0`.
+   *
    * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
    * [volumetricFogAlbedo] is a fully black color.
    */
@@ -1168,6 +1206,7 @@ public open class Environment : Resource() {
    * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog
    * can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with
    * `0.0` not affecting sky rendering at all.
+   *
    * **Note:** [volumetricFogSkyAffect] also affects [FogVolume]s, even if [volumetricFogDensity] is
    * `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set
    * [volumetricFogSkyAffect] to `1.0`.
@@ -2569,6 +2608,7 @@ public open class Environment : Resource() {
     /**
      * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
      * an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
+     *
      * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT]
      * produces an identical image to [TONE_MAPPER_LINEAR].
      */
@@ -2581,6 +2621,7 @@ public open class Environment : Resource() {
     /**
      * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
      * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
+     *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ACES(3),
@@ -2588,6 +2629,7 @@ public open class Environment : Resource() {
      * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
      * appearance. Better than other tonemappers at maintaining the hue of colors as they become
      * brighter. The slowest tonemapping option.
+     *
      * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
      * unsuitable for use with the Mobile rendering method.
      */

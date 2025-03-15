@@ -39,11 +39,14 @@ import kotlin.jvm.JvmName
  * renders with index `0`, so a [CanvasLayer] with index `-1` will be drawn below, and a [CanvasLayer]
  * with index `1` will be drawn above. This order will hold regardless of the [CanvasItem.zIndex] of
  * the nodes within each layer.
+ *
  * [CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them
  * useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1`
  * and lower).
+ *
  * **Note:** Embedded [Window]s are placed on layer `1024`. [CanvasItem]s on layers `1025` and
  * higher appear in front of embedded windows.
+ *
  * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between
  * multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a
  * split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be
@@ -58,6 +61,7 @@ public open class CanvasLayer : Node() {
 
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.
+   *
    * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one
    * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
    * is drawn in front is non-deterministic.
@@ -72,6 +76,7 @@ public open class CanvasLayer : Node() {
 
   /**
    * If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.
+   *
    * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying
    * layers.
    */
@@ -145,6 +150,7 @@ public open class CanvasLayer : Node() {
   /**
    * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the
    * [CanvasLayer] maintains its position in world space.
+   *
    * Together with [followViewportScale], this can be used for a pseudo-3D effect.
    */
   public final inline var followViewportEnabled: Boolean

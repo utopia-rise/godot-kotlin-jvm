@@ -28,6 +28,7 @@ import kotlin.jvm.JvmStatic
  * This singleton provides access to static information about [Theme] resources used by the engine
  * and by your projects. You can fetch the default engine theme, as well as your project configured
  * theme.
+ *
  * [ThemeDB] also contains fallback values for theme properties.
  */
 @GodotBaseType
@@ -42,6 +43,7 @@ public object ThemeDB : Object() {
   /**
    * The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other
    * value is available to the control.
+   *
    * See also [Theme.defaultBaseScale].
    */
   @JvmStatic
@@ -56,6 +58,7 @@ public object ThemeDB : Object() {
   /**
    * The fallback font of every [Control] node and [Theme] resource. Used when no other value is
    * available to the control.
+   *
    * See also [Theme.defaultFont].
    */
   @JvmStatic
@@ -70,6 +73,7 @@ public object ThemeDB : Object() {
   /**
    * The fallback font size of every [Control] node and [Theme] resource. Used when no other value
    * is available to the control.
+   *
    * See also [Theme.defaultFontSize].
    */
   @JvmStatic
@@ -125,6 +129,7 @@ public object ThemeDB : Object() {
   /**
    * Returns a reference to the custom project [Theme]. This theme resources allows to override the
    * default engine theme for every control node in the project.
+   *
    * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
   @JvmStatic

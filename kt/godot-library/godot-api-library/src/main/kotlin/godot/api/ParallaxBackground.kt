@@ -27,6 +27,7 @@ import kotlin.jvm.JvmName
  * Each [ParallaxLayer] can move at a different speed using [ParallaxLayer.motionOffset]. This creates
  * an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the
  * [scrollOffset].
+ *
  * **Note:** Each [ParallaxBackground] is drawn on one specific [Viewport] and cannot be shared
  * between multiple [Viewport]s, see [CanvasLayer.customViewport]. When using multiple [Viewport]s, for
  * example in a split-screen game, you need create an individual [ParallaxBackground] for each

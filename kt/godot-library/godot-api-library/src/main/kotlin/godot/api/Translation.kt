@@ -80,6 +80,7 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message if nonexistent, followed by its translation.
+   *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
@@ -94,6 +95,7 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message involving plural translation if nonexistent, followed by its translation.
+   *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
@@ -118,6 +120,7 @@ public open class Translation : Resource() {
 
   /**
    * Returns a message's translation involving plurals.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */
@@ -170,6 +173,7 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message if nonexistent, followed by its translation.
+   *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
@@ -182,6 +186,7 @@ public open class Translation : Resource() {
 
   /**
    * Adds a message involving plural translation if nonexistent, followed by its translation.
+   *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
@@ -200,6 +205,7 @@ public open class Translation : Resource() {
 
   /**
    * Returns a message's translation involving plurals.
+   *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */

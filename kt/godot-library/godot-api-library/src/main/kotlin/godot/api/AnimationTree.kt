@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].
+ *
  * **Note:** When linked with an [AnimationPlayer], several properties and methods of the
  * corresponding [AnimationPlayer] will not function as expected. Playback and transitions should be
  * handled using only the [AnimationTree] and its constituent [AnimationNode](s). The [AnimationPlayer]

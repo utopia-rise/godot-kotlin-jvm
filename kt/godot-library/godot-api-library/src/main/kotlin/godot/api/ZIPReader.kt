@@ -29,7 +29,8 @@ import kotlin.jvm.JvmOverloads
 /**
  * This class implements a reader that can extract the content of individual files inside a ZIP
  * archive. See also [ZIPPacker].
- * [codeblock]
+ *
+ * ```
  * # Read a single file from a ZIP archive.
  * func read_zip_file():
  *     var reader = ZIPReader.new()
@@ -67,7 +68,7 @@ import kotlin.jvm.JvmOverloads
  * FileAccess.WRITE)
  *         var buffer = reader.read_file(file_path)
  *         file.store_buffer(buffer)
- * [/codeblock]
+ * ```
  */
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
@@ -95,6 +96,7 @@ public open class ZIPReader : RefCounted() {
 
   /**
    * Returns the list of names of all files in the loaded archive.
+   *
    * Must be called after [open].
    */
   public final fun getFiles(): PackedStringArray {
@@ -105,6 +107,7 @@ public open class ZIPReader : RefCounted() {
 
   /**
    * Loads the whole content of a file in the loaded zip archive into memory and returns it.
+   *
    * Must be called after [open].
    */
   @JvmOverloads
@@ -116,6 +119,7 @@ public open class ZIPReader : RefCounted() {
 
   /**
    * Returns `true` if the file exists in the loaded zip archive.
+   *
    * Must be called after [open].
    */
   @JvmOverloads

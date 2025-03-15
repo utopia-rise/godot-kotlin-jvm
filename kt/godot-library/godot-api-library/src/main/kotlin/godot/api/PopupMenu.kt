@@ -37,12 +37,15 @@ import kotlin.jvm.JvmOverloads
 /**
  * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context
  * menus.
+ *
  * The size of a [PopupMenu] can be limited by using [Window.maxSize]. If the height of the list of
  * items is larger than the maximum height of the [PopupMenu], a [ScrollContainer] within the popup
  * will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the
  * [PopupMenu] height will be limited by its parent rect.
+ *
  * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
  * select the second-to-last item, and so on.
+ *
  * **Incremental search:** Like [ItemList] and [Tree], [PopupMenu] supports searching within the
  * list while the control is focused. Press a key that matches the first letter of an item's name to
  * select the first item starting with the given letter. After that point, there are two ways to
@@ -52,6 +55,7 @@ import kotlin.jvm.JvmOverloads
  * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
  * registered. You can adjust the timeout duration by changing
  * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ *
  * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
  * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  */
@@ -59,6 +63,7 @@ import kotlin.jvm.JvmOverloads
 public open class PopupMenu : Popup() {
   /**
    * Emitted when an item of some [id] is pressed or its accelerator is activated.
+   *
    * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the
    * corresponding index instead.
    */
@@ -151,6 +156,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * If `true`, [MenuBar] will use native menu when supported.
+   *
    * **Note:** If [PopupMenu] is linked to [StatusIndicator], [MenuBar], or another [PopupMenu] item
    * it can use native menu regardless of this property, use [isNativeMenu] to check it.
    */
@@ -181,7 +187,9 @@ public open class PopupMenu : Popup() {
    * Checks the provided [event] against the [PopupMenu]'s shortcuts and accelerators, and activates
    * the first item with matching events. If [forGlobalOnly] is `true`, only shortcuts and accelerators
    * with `global` set to `true` will be called.
+   *
    * Returns `true` if an item was successfully activated.
+   *
    * **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.
    */
   @JvmOverloads
@@ -214,10 +222,12 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new item with text [label].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   *
    * **Note:** The provided [id] is used only in [signal id_pressed] and [signal id_focused]
    * signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
@@ -233,6 +243,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new item with text [label] and icon [texture].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
@@ -251,10 +262,12 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new checkable item with text [label].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -271,10 +284,12 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new checkable item with text [label] and icon [texture].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -292,10 +307,12 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new radio check button with text [label].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -326,13 +343,16 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a new multistate item with text [label].
+   *
    * Contrarily to normal binary items, multistate items can have more than two states, as defined
    * by [maxStates]. The default value is defined by [defaultState].
+   *
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     add_multistate_item("Item", 3, 0)
    *
@@ -346,7 +366,8 @@ public open class PopupMenu : Popup() {
    *                 2:
    *                     print("Third state")
    *         )
-   * [/codeblock]
+   * ```
+   *
    * **Note:** Multistate items don't update their state automatically and must be done manually.
    * See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to
    * control it.
@@ -365,7 +386,9 @@ public open class PopupMenu : Popup() {
 
   /**
    * Adds a [Shortcut].
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
    * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
@@ -382,7 +405,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new item and assigns the specified [Shortcut] and icon [texture] to it. Sets the label
    * of the checkbox to the [Shortcut]'s name.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
    * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
@@ -400,7 +425,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the
    * checkbox to the [Shortcut]'s name.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -418,7 +445,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item and assigns the specified [Shortcut] and icon [texture] to it. Sets
    * the label of the checkbox to the [Shortcut]'s name.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -437,7 +466,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to
    * the [Shortcut]'s name.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
    * control it.
@@ -471,6 +502,7 @@ public open class PopupMenu : Popup() {
    * [submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to
    * this node. This submenu will be shown when the item is clicked, hovered for long enough, or
    * activated using the `ui_select` or `ui_right` input actions.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   @JvmOverloads
@@ -487,9 +519,11 @@ public open class PopupMenu : Popup() {
    * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. This
    * submenu will be shown when the item is clicked, hovered for long enough, or activated using the
    * `ui_select` or `ui_right` input actions.
+   *
    * [submenu] must be either child of this [PopupMenu] or has no parent node (in which case it will
    * be automatically added as a child). If the [submenu] popup has another parent, this method will
    * fail.
+   *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   @JvmOverloads
@@ -563,6 +597,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * Sets the [id] of the item at the given [index].
+   *
    * The [id] is used in [signal id_pressed] and [signal id_focused] signals.
    */
   public final fun setItemId(index: Int, id: Int): Unit {
@@ -631,6 +666,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets whether the item at the given [index] has a checkbox. If `false`, sets the type of the
    * item to plain text.
+   *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually.
    */
@@ -826,6 +862,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item at the given [index] is disabled. When it is disabled it can't be
    * selected, or its action invoked.
+   *
    * See [setItemDisabled] for more info on how to disable an item.
    */
   public final fun isItemDisabled(index: Int): Boolean {
@@ -867,6 +904,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item at the given [index] is checkable in some way, i.e. if it has a
    * checkbox or radio button.
+   *
    * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in
    * checking behavior and must be checked/unchecked manually.
    */
@@ -878,6 +916,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * Returns `true` if the item at the given [index] has radio button-style checkability.
+   *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
    */
@@ -943,6 +982,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * Sets the currently focused item as the given [index].
+   *
    * Passing `-1` as the index makes so that no item is focused.
    */
   public final fun setFocusedItem(index: Int): Unit {
@@ -980,6 +1020,7 @@ public open class PopupMenu : Popup() {
 
   /**
    * Removes the item at the given [index] from the menu.
+   *
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
   public final fun removeItem(index: Int): Unit {
@@ -990,6 +1031,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a separator between items. Separators also occupy an index, which you can set by using the
    * [id] parameter.
+   *
    * A [label] can optionally be provided, which will appear at the center of the separator.
    */
   @JvmOverloads

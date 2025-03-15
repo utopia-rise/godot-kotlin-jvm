@@ -34,13 +34,14 @@ import kotlin.jvm.JvmOverloads
  * Retrieve the [AnimationNodeStateMachinePlayback] object from the [AnimationTree] node to control it
  * programmatically.
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
  * state_machine.travel("some_state")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as
  * AnimationNodeStateMachinePlayback;
  * stateMachine.Travel("some_state");
@@ -75,6 +76,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
   /**
    * If `true`, treat the cross-fade to the start and end nodes as a blend with the RESET animation.
+   *
    * In most cases, when additional cross-fades are performed in the parent [AnimationNode] of the
    * state machine, setting this property to `false` and matching the cross-fade time of the parent
    * [AnimationNode] and the state machine's start node and end node gives good results.

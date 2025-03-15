@@ -24,8 +24,10 @@ import kotlin.jvm.JvmName
 
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
+ *
  * Positioning of hands is performed by creating an [XRNode3D] ancestor of the hand mesh driven by
  * the same [XRHandTracker].
+ *
  * The hand tracking position-data is scaled by [Skeleton3D.motionScale] when applied to the
  * skeleton, which can be used to adjust the tracked hand to match the scale of the hand model.
  */

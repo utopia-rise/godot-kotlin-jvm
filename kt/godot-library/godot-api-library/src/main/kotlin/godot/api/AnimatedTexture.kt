@@ -29,13 +29,17 @@ import kotlin.jvm.JvmName
  * chained automatically with a predefined delay for each frame. Unlike [AnimationPlayer] or
  * [AnimatedSprite2D], it isn't a [Node], but has the advantage of being usable anywhere a [Texture2D]
  * resource can be used, e.g. in a [TileSet].
+ *
  * The playback of the animation is controlled by the [speedScale] property, as well as each frame's
  * duration (see [setFrameDuration]). The animation loops, i.e. it will restart at frame 0
  * automatically after playing the last frame.
+ *
  * [AnimatedTexture] currently requires all frame textures to have the same size, otherwise the
  * bigger ones will be cropped to match the smallest one.
+ *
  * **Note:** AnimatedTexture doesn't support using [AtlasTexture]s. Each frame needs to be a
  * separate [Texture2D].
+ *
  * **Warning:** The current implementation is not efficient for the modern renderers.
  */
 @GodotBaseType
@@ -163,6 +167,7 @@ public open class AnimatedTexture : Texture2D() {
   /**
    * Assigns a [Texture2D] to the given frame. Frame IDs start at 0, so the first frame has ID 0,
    * and the last frame of the animation has ID [frames] - 1.
+   *
    * You can define any number of textures up to [MAX_FRAMES], but keep in mind that only frames
    * from 0 to [frames] - 1 will be part of the animation.
    */

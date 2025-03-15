@@ -50,6 +50,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current
    * [Font].
+   *
    * If this array is empty in a [FontVariation], the [FontVariation.baseFont]'s fallbacks are used
    * instead.
    */
@@ -107,6 +108,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the total average font height (ascent plus descent) in pixels.
+   *
    * **Note:** Real height of the string is context-dependent and can be significantly different
    * from the value returned by this function. Use it only as rough estimate (e.g. as the height of
    * empty line).
@@ -120,6 +122,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the average font ascent (number of pixels above the baseline).
+   *
    * **Note:** Real ascent of the string is context-dependent and can be significantly different
    * from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of
    * empty line).
@@ -133,6 +136,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the average font descent (number of pixels below the baseline).
+   *
    * **Note:** Real descent of the string is context-dependent and can be significantly different
    * from the value returned by this function. Use it only as rough estimate (e.g. as the descent of
    * empty line).
@@ -146,6 +150,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns average pixel offset of the underline below the baseline.
+   *
    * **Note:** Real underline position of the string is context-dependent and can be significantly
    * different from the value returned by this function. Use it only as rough estimate.
    */
@@ -158,6 +163,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns average thickness of the underline.
+   *
    * **Note:** Real underline thickness of the string is context-dependent and can be significantly
    * different from the value returned by this function. Use it only as rough estimate.
    */
@@ -256,15 +262,17 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the size of a bounding box of a single-line string, taking kerning, advance and
    * subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
+   *
    * For example, to get the string size as displayed by a single-line Label, use:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var string_size = $Label.get_theme_font("font").get_string_size($Label.text,
    * HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * Label label = GetNode<Label>("Label");
    * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text,
    * HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
@@ -274,6 +282,7 @@ public open class Font internal constructor() : Resource() {
    * [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the
    * results together will return a different result compared to using a single [getStringSize] call on
    * the full string.
+   *
    * **Note:** Real height of the string is context-dependent and can be significantly different
    * from the value returned by [getHeight].
    */
@@ -295,6 +304,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the size of a bounding box of a string broken into the lines, taking kerning and
    * advance into account.
+   *
    * See also [drawMultilineString].
    */
   @JvmOverloads
@@ -318,6 +328,7 @@ public open class Font internal constructor() : Resource() {
    * Draw [text] into a canvas item using the font, at a given position, with [modulate] color,
    * optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the
    * top. To draw from the top, *ascent* must be added to the Y axis.
+   *
    * See also [CanvasItem.drawString].
    */
   @JvmOverloads
@@ -342,6 +353,7 @@ public open class Font internal constructor() : Resource() {
    * using the font, at a given position, with [modulate] color, optionally clipping the width and
    * aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from
    * the top, *ascent* must be added to the Y axis.
+   *
    * See also [CanvasItem.drawMultilineString].
    */
   @JvmOverloads
@@ -367,6 +379,7 @@ public open class Font internal constructor() : Resource() {
    * Draw [text] outline into a canvas item using the font, at a given position, with [modulate]
    * color and [size] outline size, optionally clipping the width and aligning horizontally. [pos]
    * specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   *
    * See also [CanvasItem.drawStringOutline].
    */
   @JvmOverloads
@@ -392,6 +405,7 @@ public open class Font internal constructor() : Resource() {
    * canvas item using the font, at a given position, with [modulate] color and [size] outline size,
    * optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first
    * line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   *
    * See also [CanvasItem.drawMultilineStringOutline].
    */
   @JvmOverloads
@@ -416,6 +430,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the size of a character. Does not take kerning into account.
+   *
    * **Note:** Do not use this function to calculate width of the string character by character, use
    * [getStringSize] or [TextLine] instead. The height returned is the font height (see also
    * [getHeight]) and has no relation to the glyph height.
@@ -430,6 +445,7 @@ public open class Font internal constructor() : Resource() {
    * Draw a single Unicode character [char] into a canvas item using the font, at a given position,
    * with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent*
    * must be added to the Y axis.
+   *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
    */
@@ -450,6 +466,7 @@ public open class Font internal constructor() : Resource() {
    * Draw a single Unicode character [char] outline into a canvas item using the font, at a given
    * position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the
    * top. To draw from the top, *ascent* must be added to the Y axis.
+   *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
    */
@@ -478,6 +495,7 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns a string containing all the characters available in the font.
+   *
    * If a given character is included in more than one font data source, it appears only once in the
    * returned string.
    */
@@ -521,10 +539,13 @@ public open class Font internal constructor() : Resource() {
    * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]variation
    * coordinates[/url], each coordinate is returned as `tag:
    * Vector3i(min_value,max_value,default_value)`.
+   *
    * Font variations allow for continuous change of glyph characteristics along some given design
    * axis, such as weight, width or slant.
+   *
    * To print available variation axes of a variable font:
-   * [codeblock]
+   *
+   * ```
    * var fv = FontVariation.new()
    * fv.base_font = load("res://RobotoFlex.ttf")
    * var variation_list = fv.get_supported_variation_list()
@@ -533,7 +554,8 @@ public open class Font internal constructor() : Resource() {
    *     var values = variation_list[tag]
    *     print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
    * values])
-   * [/codeblock]
+   * ```
+   *
    * **Note:** To set and get variation coordinates of a [FontVariation], use
    * [FontVariation.variationOpentype].
    */

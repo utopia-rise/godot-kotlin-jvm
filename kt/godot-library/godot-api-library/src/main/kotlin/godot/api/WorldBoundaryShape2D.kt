@@ -48,6 +48,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * The distance from the origin to the line, expressed in terms of [normal] (according to its
    * direction and magnitude). Actual absolute distance from the origin to the line can be calculated
    * as `abs(distance) / normal.length()`.
+   *
    * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates
    * are represented by the [normal] property.
    */

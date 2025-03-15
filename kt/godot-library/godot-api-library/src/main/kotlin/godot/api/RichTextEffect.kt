@@ -16,12 +16,16 @@ import kotlin.Unit
 /**
  * A custom effect for a [RichTextLabel], which can be loaded in the [RichTextLabel] inspector or
  * using [RichTextLabel.installEffect].
+ *
  * **Note:** For a [RichTextEffect] to be usable, a BBCode tag must be defined as a member variable
  * called `bbcode` in the script.
  *
  * [gdscript skip-lint]
+ *
  * # The RichTextEffect will be usable like this: `[example]Some text[/example]`
+ *
  * var bbcode = "example"
+ *
  * ```
  * [csharp skip-lint]
  * // The RichTextEffect will be usable like this: `[example]Some text[/example]`

@@ -25,9 +25,11 @@ import kotlin.jvm.JvmName
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
  * triggers, etc.) and outputs (haptics).
+ *
  * OpenXR performs automatic conversion between action type and input type whenever possible. An
  * analog trigger bound to a boolean action will thus return `false` if the trigger is depressed and
  * `true` if pressed fully.
+ *
  * Actions are not directly bound to specific devices, instead OpenXR recognizes a limited number of
  * top level paths that identify devices by usage. We can restrict which devices an action can be bound
  * to by these top level paths. For instance an action that should only be used for hand held
@@ -35,6 +37,7 @@ import kotlin.jvm.JvmName
  * them. See the
  * [url=https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html#semantic-path-reserved]reserved
  * path section in the OpenXR specification[/url] for more info on the top level paths.
+ *
  * Note that the name of the resource is used to register the action with.
  */
 @GodotBaseType

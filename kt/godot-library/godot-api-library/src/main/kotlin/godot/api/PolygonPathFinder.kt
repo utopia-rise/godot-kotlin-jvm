@@ -38,17 +38,19 @@ public open class PolygonPathFinder : Resource() {
   /**
    * Sets up [PolygonPathFinder] with an array of points that define the vertices of the polygon,
    * and an array of indices that determine the edges of the polygon.
+   *
    * The length of [connections] must be even, returns an error if odd.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var polygon_path_finder = PolygonPathFinder.new()
    * var points = [Vector2(0.0, 0.0), Vector2(1.0, 0.0), Vector2(0.0, 1.0)]
    * var connections = [0, 1, 1, 2, 2, 0]
    * polygon_path_finder.setup(points, connections)
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [
@@ -86,8 +88,8 @@ public open class PolygonPathFinder : Resource() {
   /**
    * Returns `true` if [point] falls inside the polygon area.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var polygon_path_finder = PolygonPathFinder.new()
    * var points = [Vector2(0.0, 0.0), Vector2(1.0, 0.0), Vector2(0.0, 1.0)]
    * var connections = [0, 1, 1, 2, 2, 0]
@@ -95,8 +97,9 @@ public open class PolygonPathFinder : Resource() {
    * print(polygon_path_finder.is_point_inside(Vector2(0.2, 0.2))) # Prints true
    * print(polygon_path_finder.is_point_inside(Vector2(1.0, 1.0))) # Prints false
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [

@@ -37,17 +37,23 @@ import kotlin.jvm.JvmName
  * can also be added by creating [LightmapProbe] nodes. The downside is that lightmaps are fully static
  * and cannot be baked in an exported project. Baking a [LightmapGI] node is also slower compared to
  * [VoxelGI].
+ *
  * **Procedural generation:** Lightmap baking functionality is only available in the editor. This
  * means [LightmapGI] is not suited to procedurally generated or user-built levels. For procedurally
  * generated or user-built levels, use [VoxelGI] or SDFGI instead (see [Environment.sdfgiEnabled]).
+ *
  * **Performance:** [LightmapGI] provides the best possible run-time performance for global
  * illumination. It is suitable for low-end hardware including integrated graphics and mobile devices.
+ *
  * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps
  * are baked again.
+ *
  * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these
  * cannot store UV2 data required for baking.
+ *
  * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices
  * that support the Forward+ or Mobile renderers.
+ *
  * **Note:** The [LightmapGI] node only bakes light data for child nodes of its parent. Nodes
  * further up the hierarchy of the scene will not be baked.
  */
@@ -56,8 +62,10 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The quality preset to use when baking lightmaps. This affects bake times, but output file sizes
    * remain mostly identical across quality levels.
+   *
    * To further speed up bake times, decrease [bounces], disable [useDenoiser] and/or decrease
    * [texelScale].
+   *
    * To further increase quality, enable [supersampling] and/or increase [texelScale].
    */
   public final inline var quality: BakeQuality
@@ -72,6 +80,7 @@ public open class LightmapGI : VisualInstance3D() {
    * If `true`, lightmaps are baked with the texel scale multiplied with [supersamplingFactor] and
    * downsampled before saving the lightmap (so the effective texel density is identical to having
    * supersampling disabled).
+   *
    * Supersampling provides increased lightmap quality with less noise, smoother shadows and better
    * shadowing of small-scale features in objects. However, it may result in significantly increased
    * bake times and memory usage while baking lightmaps. Padding is automatically adjusted to avoid
@@ -89,8 +98,10 @@ public open class LightmapGI : VisualInstance3D() {
    * The factor by which the texel density is multiplied for supersampling. For best results, use an
    * integer value. While fractional values are allowed, they can result in increased light leaking and
    * a blurry lightmap.
+   *
    * Higher values may result in better quality, but also increase bake times and memory usage while
    * baking.
+   *
    * See [supersampling] for more information.
    */
   public final inline var supersamplingFactor: Float
@@ -119,6 +130,7 @@ public open class LightmapGI : VisualInstance3D() {
    * value of `1.0` represents physically accurate behavior, but higher values can be used to make
    * indirect lighting propagate more visibly when using a low number of bounces. This can be used to
    * speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy].
+   *
    * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
@@ -138,6 +150,7 @@ public open class LightmapGI : VisualInstance3D() {
    * rough reflections for static and dynamic objects. This has a small run-time performance cost as
    * the shader has to perform more work to interpret the direction information from the lightmap.
    * Directional lightmaps also take longer to bake and result in larger file sizes.
+   *
    * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional]
    * works with all light types.
    */
@@ -152,10 +165,12 @@ public open class LightmapGI : VisualInstance3D() {
   /**
    * The shadowmasking policy to use for directional shadows on static objects that are baked with
    * this [LightmapGI] instance.
+   *
    * Shadowmasking allows [DirectionalLight3D] nodes to cast shadows even outside the range defined
    * by their [DirectionalLight3D.directionalShadowMaxDistance] property. This is done by baking a
    * texture that contains a shadowmap for the directional light, then using this texture according to
    * the current shadowmask mode.
+   *
    * **Note:** The shadowmask texture is only created if [shadowmaskMode] is not
    * [LightmapGIData.SHADOWMASK_MODE_NONE]. To see a difference, you need to bake lightmaps again after
    * switching from [LightmapGIData.SHADOWMASK_MODE_NONE] to any other mode.
@@ -173,6 +188,7 @@ public open class LightmapGI : VisualInstance3D() {
    * of indirect lighting at the cost of some accuracy. The geometry might exhibit extra light leak
    * artifacts when using low resolution lightmaps or UVs that stretch the lightmap significantly
    * across surfaces. Leave [useTextureForBounces] at its default value of `true` if unsure.
+   *
    * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
@@ -254,6 +270,7 @@ public open class LightmapGI : VisualInstance3D() {
    * builds upon the existing lightmap texel size defined in each imported 3D scene, along with the
    * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
    * scales). Lower values will result in faster bake times.
+   *
    * For example, doubling [texelScale] doubles the lightmap texture resolution for all objects *on
    * each axis*, so it will *quadruple* the texel count.
    */
@@ -344,8 +361,10 @@ public open class LightmapGI : VisualInstance3D() {
    * The level of subdivision to use when automatically generating [LightmapProbe]s for dynamic
    * object lighting. Higher values result in more accurate indirect lighting on dynamic objects, at
    * the cost of longer bake times and larger file sizes.
+   *
    * **Note:** Automatically generated [LightmapProbe]s are not visible as nodes in the Scene tree
    * dock, and cannot be modified this way after they are generated.
+   *
    * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always
    * applied using [Light3D] nodes in real-time.
    */
@@ -794,6 +813,7 @@ public open class LightmapGI : VisualInstance3D() {
     DISABLED(0),
     /**
      * Use the scene's environment lighting when baking lightmaps.
+     *
      * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like
      * [ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into account by
      * [LightmapGI] when baking lightmaps.

@@ -28,10 +28,11 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.
+ *
  * Here's a sample on how to generate a triangular face:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var mesh = ImmediateMesh.new()
  * mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
  * mesh.surface_add_vertex(Vector3.LEFT)
@@ -39,8 +40,9 @@ import kotlin.jvm.JvmOverloads
  * mesh.surface_add_vertex(Vector3.ZERO)
  * mesh.surface_end()
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var mesh = new ImmediateMesh();
  * mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
  * mesh.SurfaceAddVertex(Vector3.Left);

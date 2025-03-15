@@ -25,8 +25,10 @@ import kotlin.jvm.JvmOverloads
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
  * unique IDs to each of them. See also [MultiplayerAPI].
+ *
  * **Note:** The [MultiplayerAPI] protocol is an implementation detail and isn't meant to be used by
  * non-Godot servers. It may change without notice.
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -73,6 +75,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * will only be in respect to the channel the packet is being sent on. Using different channels to
    * send **different and independent** state updates is a common way to optimize network usage and
    * decrease latency in fast-paced games.
+   *
    * **Note:** The default channel (`0`) actually works as 3 separate channels (one for each
    * [TransferMode]) so that [TRANSFER_MODE_RELIABLE] and [TRANSFER_MODE_UNRELIABLE_ORDERED] does not
    * interact with each other by default. Refer to the specific network API documentation (e.g. ENet or
@@ -114,6 +117,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   /**
    * Sets the peer to which packets will be sent.
+   *
    * The [id] can be one of: [TARGET_PEER_BROADCAST] to send to all connected peers,
    * [TARGET_PEER_SERVER] to send to the peer acting as server, a valid peer ID to send to that
    * specific peer, a negative peer ID to send to all peers except that one. By default, the target

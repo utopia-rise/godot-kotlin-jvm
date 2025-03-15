@@ -53,6 +53,7 @@ public open class CanvasItemMaterial : Material() {
    * If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and
    * [CPUParticles2D] nodes. The [ParticleProcessMaterial.animSpeedMax] or
    * [CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   *
    * This property (and other `particles_anim_*` properties that depend on it) has no effect on
    * other types of nodes.
    */
@@ -67,6 +68,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
    * [CPUParticles2D].
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */
@@ -81,6 +83,7 @@ public open class CanvasItemMaterial : Material() {
   /**
    * The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or
    * [CPUParticles2D].
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */
@@ -94,6 +97,7 @@ public open class CanvasItemMaterial : Material() {
 
   /**
    * If `true`, the particles animation will loop.
+   *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is
    * `true`.
    */

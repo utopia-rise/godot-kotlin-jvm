@@ -207,6 +207,7 @@ public open class TextLine : RefCounted() {
 
   /**
    * Overrides BiDi for the structured text.
+   *
    * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
    * each range separately.
    */

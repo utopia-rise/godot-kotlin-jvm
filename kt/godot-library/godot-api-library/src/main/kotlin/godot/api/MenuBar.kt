@@ -68,8 +68,10 @@ public open class MenuBar : Control() {
 
   /**
    * If `true`, [MenuBar] will use system global menu when supported.
+   *
    * **Note:** If `true` and global menu is supported, this node is not displayed, has zero size,
    * and all its child nodes except [PopupMenu]s are inaccessible.
+   *
    * **Note:** This property overrides the value of the [PopupMenu.preferNativeMenu] property of the
    * child nodes.
    */

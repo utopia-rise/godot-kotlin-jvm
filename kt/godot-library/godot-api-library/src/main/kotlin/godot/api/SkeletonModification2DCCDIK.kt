@@ -31,13 +31,16 @@ import kotlin.jvm.JvmName
  * This [SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse
  * Kinematics, or CCDIK, to manipulate a chain of bones in a [Skeleton2D] so it reaches a defined
  * target.
+ *
  * CCDIK works by rotating a set of bones, typically called a "bone chain", on a single axis. Each
  * bone is rotated to face the target from the tip (by default), which over a chain of bones allow it
  * to rotate properly to reach the target. Because the bones only rotate on a single axis, CCDIK *can*
  * look more robotic than other IK solvers.
+ *
  * **Note:** The CCDIK modifier has `ccdik_joints`, which are the data objects that hold the data
  * for each joint in the CCDIK chain. This is different from a bone! CCDIK joints hold the data needed
  * for each bone in the bone chain used by CCDIK.
+ *
  * CCDIK also fully supports angle constraints, allowing for more control over how a solution is
  * met.
  */
@@ -223,6 +226,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
 
   /**
    * Sets whether the CCDIK joint at [jointIdx] uses an inverted joint constraint.
+   *
    * An inverted joint constraint only constraints the CCDIK joint to the angles *outside of* the
    * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
    * constraint, as it constraints the joint to the outside of the inputted values.

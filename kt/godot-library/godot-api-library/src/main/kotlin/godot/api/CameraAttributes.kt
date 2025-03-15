@@ -23,11 +23,14 @@ import kotlin.jvm.JvmName
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
+ *
  * When used in a [WorldEnvironment] it provides default settings for exposure, auto-exposure, and
  * depth of field that will be used by all cameras without their own [CameraAttributes], including the
  * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
  * [WorldEnvironment]. When used in [VoxelGI] or [LightmapGI], only the exposure settings will be used.
+ *
  * See also [Environment] for general 3D environment settings.
+ *
  * This is a pure virtual class that is inherited by [CameraAttributesPhysical] and
  * [CameraAttributesPractical].
  */
@@ -36,8 +39,10 @@ public open class CameraAttributes : Resource() {
   /**
    * Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter
    * image.
+   *
    * If [autoExposureEnabled] is `true`, this can be used as a method of exposure compensation,
    * doubling the value will increase the exposure value (measured in EV100) by 1 stop.
+   *
    * **Note:** Only available when
    * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled.
    */

@@ -26,6 +26,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Stores information about mouse click events. See [Node.Input].
+ *
  * **Note:** On Wear OS devices, rotary input is mapped to [MOUSE_BUTTON_WHEEL_UP] and
  * [MOUSE_BUTTON_WHEEL_DOWN]. This can be changed to [MOUSE_BUTTON_WHEEL_LEFT] and
  * [MOUSE_BUTTON_WHEEL_RIGHT] with the

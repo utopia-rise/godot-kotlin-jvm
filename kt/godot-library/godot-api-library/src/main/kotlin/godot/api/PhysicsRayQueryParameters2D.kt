@@ -77,6 +77,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject2D.getRid]
    * to get the [RID] associated with a [CollisionObject2D]-derived node.
+   *
    * **Note:** The returned array is copied and any changes to it will not update the original
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
@@ -256,11 +257,12 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     /**
      * Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create
      * query parameters using the most common options.
-     * [codeblock]
+     *
+     * ```
      * var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0,
      * 100))
      * var collision = get_world_2d().direct_space_state.intersect_ray(query)
-     * [/codeblock]
+     * ```
      */
     @JvmOverloads
     @JvmStatic

@@ -57,6 +57,7 @@ public open class CollisionShape2D : Node2D() {
 
   /**
    * Sets whether this collision shape should only detect collision on one side (top or bottom).
+   *
    * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D]
    * node.
    */
@@ -83,6 +84,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.
@@ -103,6 +105,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The collision shape color that is displayed in the editor, or in the running project if **Debug
    * > Visible Collision Shapes** is checked at the top of the editor.
+   *
    * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
    * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
    * color.

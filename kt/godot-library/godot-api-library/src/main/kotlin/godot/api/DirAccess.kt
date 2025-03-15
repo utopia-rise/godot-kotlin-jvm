@@ -30,25 +30,30 @@ import kotlin.jvm.JvmStatic
 
 /**
  * This class is used to manage directories and their content, even outside of the project folder.
+ *
  * [DirAccess] can't be instantiated directly. Instead it is created with a static method that takes
  * a path for which it will be opened.
+ *
  * Most of the methods have a static alternative that can be used without creating a [DirAccess].
  * Static methods only support absolute paths (including `res://` and `user://`).
- * [codeblock]
+ *
+ * ```
  * # Standard
  * var dir = DirAccess.open("user://levels")
  * dir.make_dir("world1")
  * # Static
  * DirAccess.make_dir_absolute("user://levels/world1")
- * [/codeblock]
+ * ```
+ *
  * **Note:** Accessing project ("res://") directories once exported may behave unexpectedly as some
  * files are converted to engine-specific formats and their original source files may not be present in
  * the expected PCK package. Because of this, to access resources in an exported project, it is
  * recommended to use [ResourceLoader] instead of [FileAccess].
+ *
  * Here is an example on how to iterate through the files of a directory:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * func dir_contents(path):
  *     var dir = DirAccess.open(path)
  *     if dir:
@@ -63,8 +68,9 @@ import kotlin.jvm.JvmStatic
  *     else:
  *         print("An error occurred when trying to access the path.")
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * public void DirContents(string path)
  * {
  *     using var dir = DirAccess.Open(path);
@@ -99,6 +105,7 @@ import kotlin.jvm.JvmStatic
 public open class DirAccess internal constructor() : RefCounted() {
   /**
    * If `true`, `.` and `..` are included when navigating the directory.
+   *
    * Affects [listDirBegin] and [getDirectories].
    */
   public final inline var includeNavigational: Boolean
@@ -111,6 +118,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * If `true`, hidden files are included when navigating the directory.
+   *
    * Affects [listDirBegin], [getDirectories] and [getFiles].
    */
   public final inline var includeHidden: Boolean
@@ -129,7 +137,9 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Initializes the stream used to list all files and directories using the [getNext] function,
    * closing the currently opened stream if needed. Once the stream has been processed, it should
    * typically be closed with [listDirEnd].
+   *
    * Affected by [includeHidden] and [includeNavigational].
+   *
    * **Note:** The order of files and directories returned by this method is not deterministic, and
    * can vary between operating systems. If you want a list of all files or folders sorted
    * alphabetically, use [getFiles] or [getDirectories].
@@ -142,6 +152,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Returns the next element (file or directory) in the current directory.
+   *
    * The name of the file or directory is returned (and not its full path). Once the stream has been
    * fully processed, the method returns an empty [String] and closes the stream automatically (i.e.
    * [listDirEnd] would not be mandatory in such a case).
@@ -174,7 +185,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
    * directories. The array is sorted alphabetically.
+   *
    * Affected by [includeHidden].
+   *
    * **Note:** When used on a `res://` path in an exported project, only the files actually included
    * in the PCK at the given folder level are returned. In practice, this means that since imported
    * resources are stored in a top-level `.godot/` folder, only paths to `*.gd` and `*.import` files
@@ -191,7 +204,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns a [PackedStringArray] containing filenames of the directory contents, excluding files.
    * The array is sorted alphabetically.
+   *
    * Affected by [includeHidden] and [includeNavigational].
+   *
    * **Note:** The returned directories in the editor and after exporting in the `res://` directory
    * may differ as some files are converted to engine-specific formats when exported.
    */
@@ -215,7 +230,9 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Changes the currently opened directory to the one passed as an argument. The argument can be
    * relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g.
    * `/tmp/newdir` or `res://somedir/newdir`).
+   *
    * Returns one of the [Error] code constants ([OK] on success).
+   *
    * **Note:** The new directory must be within the same scope, e.g. when you had opened a directory
    * inside `res://`, you can't change it to `user://` directory. If you need to open a directory in
    * another access scope, use [open] to create a new instance instead.
@@ -241,6 +258,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Creates a directory. The argument can be relative to the current directory, or an absolute
    * path. The target directory should be placed in an already existing directory (to create the full
    * path recursively, see [makeDirRecursive]).
+   *
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun makeDir(path: String): Error {
@@ -252,6 +270,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Creates a target directory and all necessary intermediate directories in its path, by calling
    * [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
+   *
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun makeDirRecursive(path: String): Error {
@@ -263,7 +282,9 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns whether the target file exists. The argument can be relative to the current directory,
    * or an absolute path.
+   *
    * For a static equivalent, use [FileAccess.fileExists].
+   *
    * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
    * asset will not be included in the exported game, as only the imported version is used. See
    * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
@@ -277,6 +298,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns whether the target directory exists. The argument can be relative to the current
    * directory, or an absolute path.
+   *
    * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
    * `res://` directory may be different. Some files are converted to engine-specific formats when
    * exported, potentially changing the directory structure.
@@ -301,8 +323,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Copies the [from] file to the [to] destination. Both arguments should be paths to files, either
    * relative or absolute. If the destination file exists and is not access-protected, it will be
    * overwritten.
+   *
    * If [chmodFlags] is different than `-1`, the Unix permissions for the destination path will be
    * set to the provided value, if available on the current operating system.
+   *
    * Returns one of the [Error] code constants ([OK] on success).
    */
   @JvmOverloads
@@ -320,6 +344,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Renames (move) the [from] file or directory to the [to] destination. Both arguments should be
    * paths to files or directories, either relative or absolute. If the destination file or directory
    * exists and is not access-protected, it will be overwritten.
+   *
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun rename(from: String, to: String): Error {
@@ -332,7 +357,9 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Permanently deletes the target file or an empty directory. The argument can be relative to the
    * current directory, or an absolute path. If the target directory is not empty, the operation will
    * fail.
+   *
    * If you don't want to delete the file/directory permanently, use [OS.moveToTrash] instead.
+   *
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun remove(path: String): Error {
@@ -344,6 +371,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   /**
    * Returns `true` if the file or directory is a symbolic link, directory junction, or other
    * reparse point.
+   *
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun isLink(path: String): Boolean {
@@ -354,6 +382,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Returns target of the symbolic link.
+   *
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun readLink(path: String): String {
@@ -364,8 +393,10 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Creates symbolic link between files or folders.
+   *
    * **Note:** On Windows, this method works only if the application is running with elevated
    * privileges or Developer Mode is enabled.
+   *
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun createLink(source: String, target: String): Error {
@@ -376,6 +407,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if the directory is a macOS bundle.
+   *
    * **Note:** This method is implemented on macOS.
    */
   public final fun isBundle(path: String): Boolean {
@@ -408,6 +440,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if the file system or directory use case sensitive file names.
+   *
    * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
    * Windows. On other platforms, it always returns `true`.
    */
@@ -423,6 +456,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * [path] argument can be within the project tree (`res://folder`), the user directory
      * (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or
      * `C:\tmp\folder`).
+     *
      * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
      * that occurred.
      */
@@ -446,8 +480,11 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Creates a temporary directory. This directory will be freed when the returned [DirAccess] is
      * freed.
+     *
      * If [prefix] is not empty, it will be prefixed to the directory name, separated by a `-`.
+     *
      * If [keep] is `true`, the directory is not deleted when the returned [DirAccess] is freed.
+     *
      * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
      * that occurred.
      */
@@ -462,7 +499,9 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
      * directories, at the given [path]. The array is sorted alphabetically.
+     *
      * Use [getFiles] if you want more control of what gets included.
+     *
      * **Note:** When used on a `res://` path in an exported project, only the files included in the
      * PCK at the given folder level are returned. In practice, this means that since imported
      * resources are stored in a top-level `.godot/` folder, only paths to `.gd` and `.import` files
@@ -480,7 +519,9 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Returns a [PackedStringArray] containing filenames of the directory contents, excluding
      * files, at the given [path]. The array is sorted alphabetically.
+     *
      * Use [getDirectories] if you want more control of what gets included.
+     *
      * **Note:** The returned directories in the editor and after exporting in the `res://`
      * directory may differ as some files are converted to engine-specific formats when exported.
      */
@@ -493,8 +534,11 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * On Windows, returns the number of drives (partitions) mounted on the current filesystem.
+     *
      * On macOS, returns the number of mounted volumes.
+     *
      * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
+     *
      * On other platforms, the method returns 0.
      */
     @JvmStatic
@@ -506,8 +550,11 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`).
+     *
      * On macOS, returns the path to the mounted volume passed as an argument.
+     *
      * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
+     *
      * On other platforms, or if the requested drive does not exist, the method returns an empty
      * String.
      */
@@ -540,6 +587,7 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     /**
      * Static version of [dirExists]. Supports only absolute paths.
+     *
      * **Note:** The returned [bool] in the editor and after exporting when used on a path in the
      * `res://` directory may be different. Some files are converted to engine-specific formats when
      * exported, potentially changing the directory structure.

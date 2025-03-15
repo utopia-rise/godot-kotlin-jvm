@@ -25,6 +25,7 @@ import kotlin.jvm.JvmName
 /**
  * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
  * names.
+ *
  * By assigning the actual [Skeleton3D] bone name as the key value, it maps the [Skeleton3D] to the
  * [SkeletonProfile].
  */
@@ -70,6 +71,7 @@ public open class BoneMap : Resource() {
 
   /**
    * Returns a skeleton bone name is mapped to [profileBoneName].
+   *
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public final fun getSkeletonBoneName(profileBoneName: StringName): StringName {
@@ -80,6 +82,7 @@ public open class BoneMap : Resource() {
 
   /**
    * Maps a skeleton bone name to [profileBoneName].
+   *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
   public final fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName):
@@ -91,6 +94,7 @@ public open class BoneMap : Resource() {
   /**
    * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
    * be returned.
+   *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public final fun findProfileBoneName(skeletonBoneName: StringName): StringName {
@@ -101,6 +105,7 @@ public open class BoneMap : Resource() {
 
   /**
    * Returns a skeleton bone name is mapped to [profileBoneName].
+   *
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public final fun getSkeletonBoneName(profileBoneName: String): StringName =
@@ -108,6 +113,7 @@ public open class BoneMap : Resource() {
 
   /**
    * Maps a skeleton bone name to [profileBoneName].
+   *
    * In the retargeting process, the setting bone name is the bone name of the source skeleton.
    */
   public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String) =
@@ -116,6 +122,7 @@ public open class BoneMap : Resource() {
   /**
    * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
    * be returned.
+   *
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public final fun findProfileBoneName(skeletonBoneName: String): StringName =

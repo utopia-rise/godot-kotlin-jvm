@@ -50,10 +50,11 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Return the index of the currently playing clip. You can use this to get the name of the
    * currently playing clip with [AudioStreamInteractive.getClipName].
+   *
    * **Example:** Get the currently playing clip name from inside an [AudioStreamPlayer] node.
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * var playing_clip_name = stream.get_clip_name(get_stream_playback().get_current_clip_index())
    * ```
    */

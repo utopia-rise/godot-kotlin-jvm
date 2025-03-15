@@ -27,12 +27,13 @@ import kotlin.jvm.JvmName
  * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a
  * sub-animation and return once it finishes. Blend times for fading in and out can be customized, as
  * well as filters.
+ *
  * After setting the request and changing the animation playback, the one-shot node automatically
  * clears the request on the next process frame by setting its `request` value to
  * [ONE_SHOT_REQUEST_NONE].
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * # Play child animation connected to "shot" port.
  * animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
  * # Alternative syntax (same result as above).
@@ -58,8 +59,9 @@ import kotlin.jvm.JvmName
  * # Alternative syntax (same result as above).
  * animation_tree["parameters/OneShot/internal_active"]
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * // Play child animation connected to "shot" port.
  * animationTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Fire);
  *
@@ -93,6 +95,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will
    * produce a cross-fade that starts at 0 second and ends at 1 second during the animation.
+   *
    * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
    * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeinTime] is scaled
    * depending on the downstream delta. For example, if this value is set to `1.0` and a
@@ -122,6 +125,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will
    * produce a cross-fade that starts at 4 second and ends at 5 second during the animation.
+   *
    * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
    * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeoutTime] is scaled
    * depending on the downstream delta. For example, if this value is set to `1.0` and an
@@ -162,6 +166,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
+   *
    * In other words, to start auto restarting, the animation must be played once with the
    * [ONE_SHOT_REQUEST_FIRE] request. The [ONE_SHOT_REQUEST_ABORT] request stops the auto restarting,
    * but it does not disable the [autorestart] itself. So, the [ONE_SHOT_REQUEST_FIRE] request will

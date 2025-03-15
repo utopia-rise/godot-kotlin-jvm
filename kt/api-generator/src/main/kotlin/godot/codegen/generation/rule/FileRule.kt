@@ -77,24 +77,42 @@ class StaticRule : GodotApiRule<FileTask>() {
 private const val constantTitle = "constant"
 
 class DocumentationRule : GodotApiRule<ApiTask>() {
-    private val titlesToSanitize = arrayOf(
-        "member",
-        "method",
-        "enum",
-        constantTitle,
-        "param"
+    data class TypeBlock(val regex: Regex) {
+        constructor(name: String) :
+            this(Regex("""\[($name\s)(\S+)(])"""))
+    }
+
+    private val typeToSanitize = arrayOf(
+        TypeBlock("member"),
+        TypeBlock("method"),
+        TypeBlock("enum"),
+        TypeBlock(constantTitle),
+        TypeBlock("param")
     )
+
+    data class TagBlock(val output: String, val regex: Regex) {
+        constructor(input: String, output: String) :
+            this(
+                output,
+                Regex("""(\[$input])((?:(?!\[/$input]|\[$input]).)*)(\[/$input])""")
+            )
+    }
 
     private val tagsToSanitize = arrayOf(
-        "code" to "`",
-        "i" to "*",
-        "b" to "**"
+        TagBlock("code", "`"),
+        TagBlock("i", "*"),
+        TagBlock("b", "**")
     )
 
+    data class CodeBlock(val input: String, val named: Boolean)
+
     private val languages = arrayOf(
-        "gdscript",
-        "csharp"
+        CodeBlock("gdscript", true),
+        CodeBlock("csharp", true),
+        CodeBlock("codeblock", false),
     )
+    private val codeBlockRegex = Regex("""```[\s\S]*?```""")
+    private val doubleSkipRegex = Regex("(?<!\n)\n(?!\n)")
 
     override fun apply(fileTask: ApiTask, context: Context) {
         val enumValues = context
@@ -124,9 +142,7 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
             .replace("*/", "*&#92;")
             .replace(System.lineSeparator(), "\n")
 
-        for (title in titlesToSanitize) {
-            val regex = Regex("\\[($title\\s)(\\S+)(\\])")
-
+        for ((regex) in typeToSanitize) {
             var matchResult = unicodeString.let { regex.find(it) }
             while (matchResult != null) {
                 val titleRange = matchResult.groups[1]!!.range
@@ -144,16 +160,14 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
             }
         }
 
-        for (tag in tagsToSanitize) {
-            val regex = Regex("(\\[${tag.first}\\])((?:(?!\\[\\/${tag.first}\\]|\\[${tag.first}\\]).)*)(\\[\\/${tag.first}\\])")
-
+        for ((output, regex) in tagsToSanitize) {
             var matchResult = unicodeString.let { regex.find(it) }
             while (matchResult != null) {
                 val endTagRange = matchResult.groups[3]!!.range
                 val beginTagRange = matchResult.groups[1]!!.range
                 unicodeString = unicodeString
-                    .replaceRange(endTagRange, tag.second)
-                    .replaceRange(beginTagRange, tag.second)
+                    .replaceRange(endTagRange, output)
+                    .replaceRange(beginTagRange, output)
                 matchResult = unicodeString.let { regex.find(it) }
             }
         }
@@ -162,11 +176,29 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
             .replace("[codeblocks]", "")
             .replace("[/codeblocks]", "")
 
-        for (language in languages) {
+        for ((language, named) in languages) {
             unicodeString = unicodeString
-                .replace("[$language]", "$language:\n```$language")
+                .replace("[$language]", "```${if (named) "$language\n//$language" else ""}")
                 .replace("[/$language]", "```")
         }
+
+        // Split the document into parts outside the code blocks
+        val parts = codeBlockRegex.split(unicodeString)
+        // Find all code blocks to reinsert later
+        val codeBlocks = codeBlockRegex.findAll(unicodeString).map { it.value }.iterator()
+        val sanitized = StringBuilder()
+        parts.forEachIndexed { index, part ->
+            // Replace single newlines with double newlines in non-code parts.
+            // This regex finds newline characters that are not already doubled.
+            sanitized.append(
+                part.replace(doubleSkipRegex, "\n\n")
+            )
+            // If there's a corresponding code block, reinsert it unchanged.
+            if (codeBlocks.hasNext()) {
+                sanitized.append(codeBlocks.next())
+            }
+        }
+        unicodeString = sanitized.toString()
 
         return unicodeString
     }

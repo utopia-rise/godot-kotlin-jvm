@@ -32,6 +32,7 @@ import kotlin.jvm.JvmName
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
  * configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved,
  * all the attached [GraphElement]s inside it will be moved as well.
+ *
  * A GraphFrame is always kept behind the connection layer and other [GraphElement]s inside a
  * [GraphEdit].
  */
@@ -153,6 +154,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying
    * the title by default.
+   *
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {

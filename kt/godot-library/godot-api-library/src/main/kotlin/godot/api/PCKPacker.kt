@@ -26,15 +26,16 @@ import kotlin.jvm.JvmOverloads
  * The [PCKPacker] is used to create packages that can be loaded into a running project using
  * [ProjectSettings.loadResourcePack].
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * var packer = PCKPacker.new()
  * packer.pck_start("test.pck")
  * packer.add_file("res://text.txt", "text.txt")
  * packer.flush()
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * var packer = new PckPacker();
  * packer.PckStart("test.pck");
  * packer.AddFile("res://text.txt", "text.txt");
@@ -43,6 +44,7 @@ import kotlin.jvm.JvmOverloads
  *
  * The above [PCKPacker] creates package `test.pck`, then adds a file named `text.txt` at the root
  * of the package.
+ *
  * **Note:** PCK is Godot's own pack file format. To create ZIP archives that can be read by any
  * program, use [ZIPPacker] instead.
  */

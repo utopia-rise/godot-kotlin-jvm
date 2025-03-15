@@ -36,7 +36,9 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   /**
    * Returns a [Dictionary] of OpenXR extensions related to this extension. The [Dictionary] should
    * contain the name of the extension, mapped to a `bool *` cast to an integer:
+   *
    * - If the `bool *` is a `nullptr` this extension is mandatory.
+   *
    * - If the `bool *` points to a boolean, the boolean will be updated to `true` if the extension
    * is enabled.
    */
@@ -47,6 +49,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   /**
    * Returns the number of composition layers this extension wrapper provides via
    * [_getCompositionLayer].
+   *
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
@@ -57,6 +60,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   /**
    * Returns a pointer to an `XrCompositionLayerBaseHeader` struct to provide the given composition
    * layer.
+   *
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
@@ -69,6 +73,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [_getCompositionLayer]. Lower numbers will move the layer to the front of the list, and higher
    * numbers to the end. The default projection layer has an order of `0`, so layers provided by this
    * method should probably be above or below (but not exactly) `0`.
+   *
    * This will only be called if the extension previously registered itself with
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
@@ -87,6 +92,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   /**
    * Allows extensions to register additional controller metadata. This function is called even when
    * the OpenXR API is not constructed as the metadata needs to be available to the editor.
+   *
    * Extensions should also provide metadata regardless of whether they are supported on the host
    * system. The controller data is used to setup action maps for users who may have access to the
    * relevant hardware.
@@ -155,6 +161,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
 
   /**
    * Called right after the given viewport is rendered.
+   *
    * **Note:** The draw commands might only be queued at this point, not executed.
    */
   public open fun _onPostDrawViewport(viewport: RID): Unit {

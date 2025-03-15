@@ -28,7 +28,9 @@ import kotlin.jvm.JvmName
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
  * toggle the [ColorPicker]'s visibility.
+ *
  * See also [BaseButton] which contains common properties and methods associated with this node.
+ *
  * **Note:** By default, the button may not be wide enough for the color preview swatch to be
  * visible. Make sure to set [Control.customMinimumSize] to a big enough value to give the button
  * enough space.
@@ -114,6 +116,7 @@ public open class ColorPickerButton : Button() {
 
   /**
    * Returns the [ColorPicker] that this node toggles.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
@@ -126,6 +129,7 @@ public open class ColorPickerButton : Button() {
   /**
    * Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows
    * you to handle events when the ColorPicker is shown or hidden.
+   *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */

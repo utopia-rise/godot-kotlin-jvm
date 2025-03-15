@@ -21,14 +21,16 @@ import kotlin.Unit
  * [MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by
  * [SceneTree], which is the default game loop implementation used in Godot projects, though it is also
  * possible to write and use one's own [MainLoop] subclass instead of the scene tree.
+ *
  * Upon the application start, a [MainLoop] implementation must be provided to the OS; otherwise,
  * the application will exit. This happens automatically (and a [SceneTree] is created) unless a
  * [MainLoop] [Script] is provided from the command line (with e.g. `godot -s my_loop.gd`) or the
  * [ProjectSettings.application/run/mainLoopType] project setting is overwritten.
+ *
  * Here is an example script implementing a simple [MainLoop]:
  *
- * gdscript:
  * ```gdscript
+ * //gdscript
  * class_name CustomMainLoop
  * extends MainLoop
  *
@@ -47,8 +49,9 @@ import kotlin.Unit
  *     print("Finalized:")
  *     print("  End time: &#37;s" &#37; str(time_elapsed))
  * ```
- * csharp:
+ *
  * ```csharp
+ * //csharp
  * using Godot;
  *
  * [GlobalClass]
@@ -98,8 +101,10 @@ public open class MainLoop : Object() {
   /**
    * Called each physics frame with the time since the last physics frame as argument ([delta], in
    * seconds). Equivalent to [Node.PhysicsProcess].
+   *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
+   *
    * **Note:** [delta] will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -114,8 +119,10 @@ public open class MainLoop : Object() {
   /**
    * Called each process (idle) frame with the time since the last process frame as argument (in
    * seconds). Equivalent to [Node.Process].
+   *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
+   *
    * **Note:** [delta] will be larger than expected if running at a framerate lower than
    * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
    * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
@@ -137,6 +144,7 @@ public open class MainLoop : Object() {
   public companion object {
     /**
      * Notification received from the OS when the application is exceeding its allocated memory.
+     *
      * Specific to the iOS platform.
      */
     public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 2009
@@ -150,12 +158,14 @@ public open class MainLoop : Object() {
 
     /**
      * Notification received from the OS when a request for "About" information is sent.
+     *
      * Specific to the macOS platform.
      */
     public final const val NOTIFICATION_WM_ABOUT: Long = 2011
 
     /**
      * Notification received from Godot's crash handler when the engine is about to crash.
+     *
      * Implemented on desktop platforms if the crash handler is enabled.
      */
     public final const val NOTIFICATION_CRASH: Long = 2012
@@ -163,19 +173,23 @@ public open class MainLoop : Object() {
     /**
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g.
      * change of IME cursor position or composition string).
+     *
      * Specific to the macOS platform.
      */
     public final const val NOTIFICATION_OS_IME_UPDATE: Long = 2013
 
     /**
      * Notification received from the OS when the application is resumed.
+     *
      * Specific to the Android and iOS platforms.
      */
     public final const val NOTIFICATION_APPLICATION_RESUMED: Long = 2014
 
     /**
      * Notification received from the OS when the application is paused.
+     *
      * Specific to the Android and iOS platforms.
+     *
      * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this
      * signal. If you go over this allotment, iOS will kill the app instead of pausing it.
      */
@@ -184,6 +198,7 @@ public open class MainLoop : Object() {
     /**
      * Notification received from the OS when the application is focused, i.e. when changing the
      * focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
+     *
      * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
@@ -191,6 +206,7 @@ public open class MainLoop : Object() {
     /**
      * Notification received from the OS when the application is defocused, i.e. when changing the
      * focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
+     *
      * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_OUT: Long = 2017

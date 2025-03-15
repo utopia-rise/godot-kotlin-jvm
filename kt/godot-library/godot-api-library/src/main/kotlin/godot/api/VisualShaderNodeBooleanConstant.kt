@@ -20,6 +20,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Has only one output port and no inputs.
+ *
  * Translated to [code skip-lint]bool[/code] in the shader language.
  */
 @GodotBaseType

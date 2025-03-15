@@ -25,8 +25,10 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * UDP packet peer. Can be used to send and receive raw UDP packets as well as [Variant]s.
+ *
  * **Example:** Send a packet:
- * [codeblock]
+ *
+ * ```
  * var peer = PacketPeerUDP.new()
  *
  * # Optionally, you can select the local port used to send the packet.
@@ -34,9 +36,11 @@ import kotlin.jvm.JvmOverloads
  *
  * peer.set_dest_address("1.1.1.1", 4433)
  * peer.put_packet("hello".to_utf8_buffer())
- * [/codeblock]
+ * ```
+ *
  * **Example:** Listen for packets:
- * [codeblock]
+ *
+ * ```
  * var peer
  *
  * func _ready():
@@ -49,7 +53,8 @@ import kotlin.jvm.JvmOverloads
  *         var array_bytes = peer.get_packet()
  *         var packet_string = array_bytes.get_string_from_ascii()
  *         print("Received message: ", packet_string)
- * [/codeblock]
+ * ```
+ *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
  * export preset before exporting the project or using one-click deploy. Otherwise, network
  * communication of any kind will be blocked by Android.
@@ -63,10 +68,13 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Binds this [PacketPeerUDP] to the specified [port] and [bindAddress] with a buffer size
    * [recvBufSize], allowing it to receive incoming packets.
+   *
    * If [bindAddress] is set to `"*"` (default), the peer will be bound on all available addresses
    * (both IPv4 and IPv6).
+   *
    * If [bindAddress] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound
    * to all available addresses matching that IP type.
+   *
    * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the peer
    * will only be bound to the interface with that address (or fail if no interface with the given
    * address exists).
@@ -92,11 +100,12 @@ public open class PacketPeerUDP : PacketPeer() {
 
   /**
    * Waits for a packet to arrive on the bound address. See [bind].
+   *
    * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by
    * allowing the other party to send a specific "death pill" packet like this:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * socket = PacketPeerUDP.new()
    * # Server
    * socket.set_dest_address("127.0.0.1", 789)
@@ -108,8 +117,9 @@ public open class PacketPeerUDP : PacketPeer() {
    *     if data == "Time to stop":
    *         return
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * var socket = new PacketPeerUdp();
    * // Server
    * socket.SetDestAddress("127.0.0.1", 789);
@@ -148,6 +158,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * (future calls to [setDestAddress] are not allowed). This method does not send any data to the
    * remote peer, to do that, use [PacketPeer.putVar] or [PacketPeer.putPacket] as usual. See also
    * [UDPServer].
+   *
    * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP
    * spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your
    * application is transferring sensitive information.
@@ -200,6 +211,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Sets the destination address and port for sending packets and variables. A hostname will be
    * resolved using DNS if needed.
+   *
    * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address
    * (e.g. `255.255.255.255`).
    */
@@ -212,6 +224,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255",
    * 4343)`. This option is disabled by default.
+   *
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and
    * this option to be enabled to receive broadcast packets too.
    */
@@ -223,8 +236,10 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Joins the multicast group specified by [multicastAddress] using the interface identified by
    * [interfaceName].
+   *
    * You can join the same multicast group with multiple interfaces. Use [IP.getLocalInterfaces] to
    * know which are available.
+   *
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for
    * multicast to work.
    */

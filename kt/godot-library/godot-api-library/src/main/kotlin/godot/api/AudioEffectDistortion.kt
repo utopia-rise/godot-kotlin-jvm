@@ -23,6 +23,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
+ *
  * By distorting the waveform the frequency content changes, which will often make the sound
  * "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or
  * speaker very efficiently.

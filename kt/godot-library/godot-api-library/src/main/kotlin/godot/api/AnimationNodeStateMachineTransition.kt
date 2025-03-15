@@ -33,6 +33,7 @@ import kotlin.jvm.JvmName
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
  * connected by [AnimationNodeStateMachineTransition].
+ *
  * You can set the timing and conditions of the transition in detail.
  */
 @GodotBaseType
@@ -44,6 +45,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   /**
    * The time to cross-fade between this state and the next.
+   *
    * **Note:** [AnimationNodeStateMachine] transitions the current state immediately after the start
    * of the fading. The precise remaining time can only be inferred from the main animation. When
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
@@ -135,12 +137,13 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * AnimationTree[/url]). For example, if [AnimationTree.treeRoot] is an [AnimationNodeStateMachine]
    * and [advanceCondition] is set to `"idle"`:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * $animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
    * ```
-   * csharp:
+   *
    * ```csharp
+   * //csharp
    * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor &&
    * (LinearVelocity.X == 0));
    * ```

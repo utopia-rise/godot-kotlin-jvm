@@ -33,6 +33,7 @@ import kotlin.jvm.JvmName
 /**
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially
  * tracked.
+ *
  * Orientation, location, linear velocity and angular velocity are all provided for each pose by the
  * XR runtime. This object contains this state of a pose.
  */
@@ -53,10 +54,14 @@ public open class XRPose : RefCounted() {
   /**
    * The name of this pose. Usually, this name is derived from an action map set up by the user.
    * Godot also suggests some pose names that [XRInterface] objects are expected to implement:
+   *
    * - `root` is the root location, often used for tracked objects that do not have further nodes.
+   *
    * - `aim` is the tip of a controller with its orientation pointing outwards, often used for
    * raycasts.
+   *
    * - `grip` is the location where the user grips the controller.
+   *
    * - `skeleton` is the root location for a hand mesh, when using hand tracking and an animated
    * skeleton is supplied by the XR runtime.
    */

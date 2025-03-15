@@ -27,8 +27,10 @@ import kotlin.jvm.JvmName
  * target node will be automatically enabled (via its [Node.processMode] property) when any part of
  * this region becomes visible on the screen, and automatically disabled otherwise. This can for
  * example be used to activate enemies only when the player approaches them.
+ *
  * See [VisibleOnScreenNotifier2D] if you only want to be notified when the region is visible on
  * screen.
+ *
  * **Note:** [VisibleOnScreenEnabler2D] uses the render culling code to determine whether it's
  * visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
  */

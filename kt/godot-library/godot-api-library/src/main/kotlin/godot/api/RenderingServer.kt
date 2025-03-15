@@ -87,29 +87,37 @@ public infix fun Long.and(other: RenderingServer.ArrayFormat): Long = this.and(o
  * The rendering server is the API backend for everything visible. The whole scene system mounts on
  * it to display. The rendering server is completely opaque: the internals are entirely
  * implementation-specific and cannot be accessed.
+ *
  * The rendering server can be used to bypass the scene/[Node] system entirely. This can improve
  * performance in cases where the scene system is the bottleneck, but won't improve performance
  * otherwise (for instance, if the GPU is already fully utilized).
+ *
  * Resources are created using the `*_create` functions. These functions return [RID]s which are not
  * references to the objects themselves, but opaque *pointers* towards these objects.
+ *
  * All objects are drawn to a viewport. You can use the [Viewport] attached to the [SceneTree] or
  * you can create one yourself with [viewportCreate]. When using a custom scenario or canvas, the
  * scenario or canvas needs to be attached to the viewport using [viewportSetScenario] or
  * [viewportAttachCanvas].
+ *
  * **Scenarios:** In 3D, all visual objects must be associated with a scenario. The scenario is a
  * visual representation of the world. If accessing the rendering server from a running game, the
  * scenario can be accessed from the scene tree from any [Node3D] node with [Node3D.getWorld3d].
  * Otherwise, a scenario can be created with [scenarioCreate].
+ *
  * Similarly, in 2D, a canvas is needed to draw all canvas items.
+ *
  * **3D:** In 3D, all visible objects are comprised of a resource and an instance. A resource can be
  * a mesh, a particle system, a light, or any other 3D object. In order to be visible resources must be
  * attached to an instance using [instanceSetBase]. The instance must also be attached to the scenario
  * using [instanceSetScenario] in order to be visible. RenderingServer methods that don't have a prefix
  * are usually 3D-specific (but not always).
+ *
  * **2D:** In 2D, all visible objects are some form of canvas item. In order to be visible, a canvas
  * item needs to be the child of a canvas attached to a viewport, or it needs to be the child of
  * another canvas item that is eventually attached to the canvas. 2D-specific RenderingServer methods
  * generally start with `canvas_*`.
+ *
  * **Headless mode:** Starting the engine with the `--headless`
  * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url] disables all
  * rendering and window management functions. Most functions from [RenderingServer] will return dummy
@@ -213,9 +221,12 @@ public object RenderingServer : Object() {
   /**
    * Creates a 2-dimensional texture and adds it to the RenderingServer. It can be accessed with the
    * RID that is returned. This RID will be used in all `texture_2d_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [Texture2D].
+   *
    * **Note:** Not to be confused with [RenderingDevice.textureCreate], which creates the graphics
    * API's own texture type as opposed to the Godot-specific [Texture2D] resource.
    */
@@ -230,8 +241,10 @@ public object RenderingServer : Object() {
    * Creates a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed
    * with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer
    * functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [TextureLayered].
    */
   @JvmStatic
@@ -271,6 +284,7 @@ public object RenderingServer : Object() {
 
   /**
    * Creates a texture based on a native handle that was created outside of Godot's renderer.
+   *
    * **Note:** If using only the rendering device renderer, it's recommend to use
    * [RenderingDevice.textureCreateFromExtension] together with [RenderingServer.textureRdCreate],
    * rather than this method. It will give you much more control over the texture's format and usage.
@@ -295,6 +309,7 @@ public object RenderingServer : Object() {
   /**
    * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must
    * also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).
+   *
    * **Note:** The [image] must have the same width, height and format as the current [texture]
    * data. Otherwise, an error will be printed and the original texture won't be modified. If you need
    * to use different width, height or format, use [textureReplace] instead.
@@ -312,6 +327,7 @@ public object RenderingServer : Object() {
   /**
    * Updates the texture specified by the [texture] [RID]'s data with the data in [data]. All the
    * texture's layers must be replaced at once.
+   *
    * **Note:** The [texture] must have the same width, height, depth and format as the current
    * texture data. Otherwise, an error will be printed and the original texture won't be modified. If
    * you need to use different width, height, depth or format, use [textureReplace] instead.
@@ -336,8 +352,10 @@ public object RenderingServer : Object() {
    * It can be accessed with the RID that is returned. This RID will be used in all
    * `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also
    * [texture2dLayeredPlaceholderCreate].
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [PlaceholderTexture2D].
    */
   @JvmStatic
@@ -352,6 +370,7 @@ public object RenderingServer : Object() {
    * It can be accessed with the RID that is returned. This RID will be used in all
    * `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also
    * [texture2dPlaceholderCreate].
+   *
    * **Note:** The equivalent resource is [PlaceholderTextureLayered].
    */
   @JvmStatic
@@ -365,8 +384,10 @@ public object RenderingServer : Object() {
    * Creates a placeholder for a 3-dimensional texture and adds it to the RenderingServer. It can be
    * accessed with the RID that is returned. This RID will be used in all `texture_3d_*`
    * RenderingServer functions, although it does nothing when used.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [PlaceholderTexture3D].
    */
   @JvmStatic
@@ -378,12 +399,14 @@ public object RenderingServer : Object() {
 
   /**
    * Returns an [Image] instance from the given [texture] [RID].
+   *
    * **Example:** Get the test texture from [getTestTexture] and apply it to a [Sprite2D] node:
-   * [codeblock]
+   *
+   * ```
    * var texture_rid = RenderingServer.get_test_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
    * $Sprite2D.texture = texture
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun texture2dGet(texture: RID): Image? {
@@ -488,6 +511,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the internal graphics handle for this texture object. For use when communicating with
    * third-party APIs mostly with GDExtension.
+   *
    * **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or
    * `VkImage` (Vulkan).
    */
@@ -502,8 +526,10 @@ public object RenderingServer : Object() {
   /**
    * Creates an empty shader and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `shader_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [Shader].
    */
   @JvmStatic
@@ -565,6 +591,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets a shader's default texture. Overwrites the texture given by name.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -581,6 +608,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a default texture from a shader searched by name.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -598,8 +626,10 @@ public object RenderingServer : Object() {
   /**
    * Creates an empty material and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `material_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [Material].
    */
   @JvmStatic
@@ -671,10 +701,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `mesh_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned
    * RID.
+   *
    * **Note:** The equivalent resource is [Mesh].
    */
   @JvmStatic
@@ -935,10 +968,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a new multimesh on the RenderingServer and returns an [RID] handle. This RID will be
    * used in all `multimesh_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this multimesh to an instance using [instanceSetBase] using the
    * returned RID.
+   *
    * **Note:** The equivalent resource is [MultiMesh].
    */
   @JvmStatic
@@ -1144,24 +1180,40 @@ public object RenderingServer : Object() {
    * transforms and colors). [buffer]'s size must match the number of instances multiplied by the
    * per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error
    * message is printed and nothing is rendered. See also [multimeshGetBuffer].
+   *
    * The per-instance data size and expected data order is:
+   *
    * [codeblock lang=text]
+   *
    * 2D:
+   *
    *   - Position: 8 floats (8 floats for Transform2D)
+   *
    *   - Position + Vertex color: 12 floats (8 floats for Transform2D, 4 floats for Color)
+   *
    *   - Position + Custom data: 12 floats (8 floats for Transform2D, 4 floats of custom data)
+   *
    *   - Position + Vertex color + Custom data: 16 floats (8 floats for Transform2D, 4 floats for
    * Color, 4 floats of custom data)
+   *
    * 3D:
+   *
    *   - Position: 12 floats (12 floats for Transform3D)
+   *
    *   - Position + Vertex color: 16 floats (12 floats for Transform3D, 4 floats for Color)
+   *
    *   - Position + Custom data: 16 floats (12 floats for Transform3D, 4 floats of custom data)
+   *
    *   - Position + Vertex color + Custom data: 20 floats (12 floats for Transform3D, 4 floats for
    * Color, 4 floats of custom data)
-   * [/codeblock]
+   *
+   * ```
+   *
    * Instance transforms are in row-major order. Specifically:
+   *
    * - For [Transform2D] the float-order is: `(x.x, y.x, padding_float, origin.x, x.y, y.y,
    * padding_float, origin.y)`.
+   *
    * - For [Transform3D] the float-order is: `(basis.x.x, basis.y.x, basis.z.x, origin.x, basis.x.y,
    * basis.y.y, basis.z.y, origin.y, basis.x.z, basis.y.z, basis.z.z, origin.z)`.
    */
@@ -1175,23 +1227,39 @@ public object RenderingServer : Object() {
    * Returns the [RenderingDevice] [RID] handle of the [MultiMesh] command buffer. This [RID] is
    * only valid if `use_indirect` is set to `true` when allocating data through
    * [multimeshAllocateData]. It can be used to directly modify the instance count via buffer.
+   *
    * The data structure is dependent on both how many surfaces the mesh contains and whether it is
    * indexed or not, the buffer has 5 integers in it, with the last unused if the mesh is not indexed.
+   *
    * Each of the values in the buffer correspond to these options:
+   *
    * [codeblock lang=text]
+   *
    * Indexed:
+   *
    *   0 - indexCount;
+   *
    *   1 - instanceCount;
+   *
    *   2 - firstIndex;
+   *
    *   3 - vertexOffset;
+   *
    *   4 - firstInstance;
+   *
    * Non Indexed:
+   *
    *   0 - vertexCount;
+   *
    *   1 - instanceCount;
+   *
    *   2 - firstVertex;
+   *
    *   3 - firstInstance;
+   *
    *   4 - unused;
-   * [/codeblock]
+   *
+   * ```
    */
   @JvmStatic
   public final fun multimeshGetCommandBufferRdRid(multimesh: RID): RID {
@@ -1214,6 +1282,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the MultiMesh data (such as instance transforms, colors, etc.). See
    * [multimeshSetBuffer] for details on the returned data.
+   *
    * **Note:** If the buffer is in the engine's internal cache, it will have to be fetched from GPU
    * memory and possibly decompressed. This means [multimeshGetBuffer] is potentially a slow operation
    * and should be avoided whenever possible.
@@ -1227,6 +1296,7 @@ public object RenderingServer : Object() {
 
   /**
    * Alternative version of [multimeshSetBuffer] for use with physics interpolation.
+   *
    * Takes both an array of current data and an array of data for the previous physics tick.
    */
   @JvmStatic
@@ -1250,6 +1320,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the physics interpolation quality for the [MultiMesh].
+   *
    * A value of [MULTIMESH_INTERP_QUALITY_FAST] gives fast but low quality interpolation, a value of
    * [MULTIMESH_INTERP_QUALITY_HIGH] gives slower but higher quality interpolation.
    */
@@ -1262,6 +1333,7 @@ public object RenderingServer : Object() {
 
   /**
    * Prevents physics interpolation for the specified instance during the current physics tick.
+   *
    * This is useful when moving an instance to a new location, to give an instantaneous change
    * rather than interpolation from the previous location.
    */
@@ -1275,6 +1347,7 @@ public object RenderingServer : Object() {
   /**
    * Creates a skeleton and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `skeleton_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
    */
@@ -1361,10 +1434,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a directional light and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID can be used in most `light_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this directional light to an instance using [instanceSetBase] using
    * the returned RID.
+   *
    * **Note:** The equivalent node is [DirectionalLight3D].
    */
   @JvmStatic
@@ -1377,10 +1453,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a new omni light and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID can be used in most `light_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this omni light to an instance using [instanceSetBase] using the
    * returned RID.
+   *
    * **Note:** The equivalent node is [OmniLight3D].
    */
   @JvmStatic
@@ -1393,8 +1472,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a spot light and adds it to the RenderingServer. It can be accessed with the RID that
    * is returned. This RID can be used in most `light_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this spot light to an instance using [instanceSetBase] using the
    * returned RID.
    */
@@ -1623,10 +1704,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a reflection probe and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `reflection_probe_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this reflection probe to an instance using [instanceSetBase] using
    * the returned RID.
+   *
    * **Note:** The equivalent node is [ReflectionProbe].
    */
   @JvmStatic
@@ -1799,10 +1883,13 @@ public object RenderingServer : Object() {
   /**
    * Creates a decal and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `decal_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this decal to an instance using [instanceSetBase] using the
    * returned RID.
+   *
    * **Note:** The equivalent node is [Decal].
    */
   @JvmStatic
@@ -1941,8 +2028,10 @@ public object RenderingServer : Object() {
    * Creates a new voxel-based global illumination object and adds it to the RenderingServer. It can
    * be accessed with the RID that is returned. This RID will be used in all `voxel_gi_*`
    * RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [VoxelGI].
    */
   @JvmStatic
@@ -2098,8 +2187,10 @@ public object RenderingServer : Object() {
    * Creates a new lightmap global illumination instance and adds it to the RenderingServer. It can
    * be accessed with the RID that is returned. This RID will be used in all `lightmap_*`
    * RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [LightmapGI].
    */
   @JvmStatic
@@ -2201,11 +2292,15 @@ public object RenderingServer : Object() {
   /**
    * Creates a GPU-based particle system and adds it to the RenderingServer. It can be accessed with
    * the RID that is returned. This RID will be used in all `particles_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach these particles to an instance using [instanceSetBase] using the
    * returned RID.
+   *
    * **Note:** The equivalent nodes are [GPUParticles2D] and [GPUParticles3D].
+   *
    * **Note:** All `particles_*` methods only apply to GPU-based particles, not CPU-based particles.
    * [CPUParticles2D] and [CPUParticles3D] do not have equivalent RenderingServer functions available,
    * as these use [MultiMeshInstance2D] and [MultiMeshInstance3D] under the hood (see `multimesh_*`
@@ -2375,6 +2470,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the material for processing the particles.
+   *
    * **Note:** This is not the material used to draw the materials. Equivalent to
    * [GPUParticles3D.processMaterial].
    */
@@ -2554,6 +2650,7 @@ public object RenderingServer : Object() {
    * Creates a new 3D GPU particle collision or attractor and adds it to the RenderingServer. It can
    * be accessed with the RID that is returned. This RID can be used in most `particles_collision_*`
    * RenderingServer functions.
+   *
    * **Note:** The equivalent nodes are [GPUParticlesCollision3D] and [GPUParticlesAttractor3D].
    */
   @JvmStatic
@@ -2693,8 +2790,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a new fog volume and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `fog_volume_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [FogVolume].
    */
   @JvmStatic
@@ -2740,10 +2839,13 @@ public object RenderingServer : Object() {
    * Creates a new 3D visibility notifier object and adds it to the RenderingServer. It can be
    * accessed with the RID that is returned. This RID will be used in all `visibility_notifier_*`
    * RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * To place in a scene, attach this notifier to an instance using [instanceSetBase] using the
    * returned RID.
+   *
    * **Note:** The equivalent node is [VisibleOnScreenNotifier3D].
    */
   @JvmStatic
@@ -2772,8 +2874,10 @@ public object RenderingServer : Object() {
   /**
    * Creates an occluder instance and adds it to the RenderingServer. It can be accessed with the
    * RID that is returned. This RID will be used in all `occluder_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [Occluder3D] (not to be confused with the
    * [OccluderInstance3D] node).
    */
@@ -2801,8 +2905,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a 3D camera and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `camera_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [Camera3D].
    */
   @JvmStatic
@@ -2917,8 +3023,10 @@ public object RenderingServer : Object() {
   /**
    * Creates an empty viewport and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `viewport_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [Viewport].
    */
   @JvmStatic
@@ -2974,10 +3082,11 @@ public object RenderingServer : Object() {
    * contents of the viewport are rendered directly to screen. However, note that the root viewport is
    * drawn last, therefore it will draw over the screen. Accordingly, you must set the root viewport to
    * an area that does not cover the area that you have attached this viewport to.
+   *
    * For example, you can set the root viewport to not render at all with the following code:
    *
-   * gdscript:
    * ```gdscript
+   * //gdscript
    * func _ready():
    *     RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
    *     RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600,
@@ -3047,6 +3156,7 @@ public object RenderingServer : Object() {
    * than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a
    * high performance cost (supersampling). See also [ViewportMSAA] for multi-sample antialiasing,
    * which is significantly cheaper but only smoothens the edges of polygons.
+   *
    * When using FSR upscaling, AMD recommends exposing the following values as preset options to
    * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
    * exposing the entire scale.
@@ -3076,6 +3186,7 @@ public object RenderingServer : Object() {
    * and `0.0`. Enabling temporal antialiasing
    * ([ProjectSettings.rendering/antiAliasing/quality/useTaa]) can help reduce the graininess visible
    * when using negative mipmap bias.
+   *
    * **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the
    * automatic mipmap bias which is calculated internally based on the scale factor. The formula for
    * this is `-log2(1.0 / scale) + mipmap_bias`.
@@ -3091,12 +3202,15 @@ public object RenderingServer : Object() {
    * power of two). A higher sample count will result in sharper textures at oblique angles, but is
    * more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on
    * materials where it is enabled.
+   *
    * The anisotropic filtering level also affects decals and light projectors if they are configured
    * to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and
    * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   *
    * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to
    * [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
    * [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
+   *
    * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to
    * [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
    * [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying
@@ -3121,6 +3235,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the viewport's update mode. See [ViewportUpdateMode] constants for options.
+   *
    * **Warning:** Calling this from any thread other than the rendering thread will be detrimental
    * to performance.
    */
@@ -3292,6 +3407,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the stacking order for a viewport's canvas.
+   *
    * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas
    * among those in the same layer.
    */
@@ -3346,6 +3462,7 @@ public object RenderingServer : Object() {
    * is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having
    * less precision and may result in shadow acne, but can lead to performance improvements on some
    * devices.
+   *
    * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
    * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
    * calls are needed to draw the scene without shadows).
@@ -3409,6 +3526,7 @@ public object RenderingServer : Object() {
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients. This setting
    * has the same effect as [Viewport.useHdr2d].
+   *
    * **Note:** This setting will have no effect when using the Compatibility renderer, which always
    * renders in low dynamic range for performance reasons.
    */
@@ -3486,11 +3604,14 @@ public object RenderingServer : Object() {
    * (different passes will return different values). See [RenderingServer.ViewportRenderInfoType] for
    * a list of render pass types and [RenderingServer.ViewportRenderInfo] for a list of information
    * that can be queried.
+   *
    * See also [getRenderingInfo], which returns global information across all viewports.
+   *
    * **Note:** Viewport rendering information is not available until at least 2 frames have been
    * rendered by the engine. If rendering information is not available, [viewportGetRenderInfo] returns
    * `0`. To print rendering information in `_ready()` successfully, use the following:
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     for _i in 2:
    *         await get_tree().process_frame
@@ -3500,7 +3621,7 @@ public object RenderingServer : Object() {
    *             RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
    *             RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
    *     )
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun viewportGetRenderInfo(
@@ -3540,6 +3661,7 @@ public object RenderingServer : Object() {
    * sum the render times of all viewports that are drawn every frame plus [getFrameSetupTimeCpu].
    * Unlike [Engine.getFramesPerSecond], this method will accurately reflect CPU utilization even if
    * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeGpu].
+   *
    * **Note:** Requires measurements to be enabled on the specified [viewport] using
    * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
    */
@@ -3555,8 +3677,10 @@ public object RenderingServer : Object() {
    * of GPU time spent to render the scene, sum the render times of all viewports that are drawn every
    * frame. Unlike [Engine.getFramesPerSecond], this method accurately reflects GPU utilization even if
    * framerate is capped via V-Sync or [Engine.maxFps]. See also [viewportGetMeasuredRenderTimeCpu].
+   *
    * **Note:** Requires measurements to be enabled on the specified [viewport] using
    * [viewportSetMeasureRenderTime]. Otherwise, this method returns `0.0`.
+   *
    * **Note:** When GPU utilization is low enough during a certain period of time, GPUs will
    * decrease their power state (which in turn decreases core and memory clock speeds). This can cause
    * the reported GPU time to increase if GPU utilization is kept low enough by a framerate cap
@@ -3586,6 +3710,7 @@ public object RenderingServer : Object() {
    * texture to be converted to the format usable by the VRS method supported by the hardware. The
    * update mode defines how often this happens. If the GPU does not support VRS, or VRS is not
    * enabled, this property is ignored.
+   *
    * If set to [RenderingServer.VIEWPORT_VRS_UPDATE_ONCE], the input texture is copied once and the
    * mode is changed to [RenderingServer.VIEWPORT_VRS_UPDATE_DISABLED].
    */
@@ -3608,6 +3733,7 @@ public object RenderingServer : Object() {
   /**
    * Creates an empty sky and adds it to the RenderingServer. It can be accessed with the RID that
    * is returned. This RID will be used in all `sky_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
    */
@@ -3652,9 +3778,11 @@ public object RenderingServer : Object() {
    * irradiance map is saved instead of the radiance map. The radiance map is used to render reflected
    * light, while the irradiance map is used to render ambient light. See also
    * [environmentBakePanorama].
+   *
    * **Note:** The image is saved in linear color space without any tonemapping performed, which
    * means it will look too dark if viewed directly in an image editor. [energy] values above `1.0` can
    * be used to brighten the resulting image.
+   *
    * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
    * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
    * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
@@ -3675,6 +3803,7 @@ public object RenderingServer : Object() {
   /**
    * Creates a new rendering effect and adds it to the RenderingServer. It can be accessed with the
    * RID that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
    */
@@ -3724,6 +3853,7 @@ public object RenderingServer : Object() {
   /**
    * Creates a new compositor and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
    */
@@ -3748,8 +3878,10 @@ public object RenderingServer : Object() {
   /**
    * Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that
    * is returned. This RID will be used in all `environment_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [Environment].
    */
   @JvmStatic
@@ -4132,8 +4264,10 @@ public object RenderingServer : Object() {
    * `true`, the irradiance map is saved instead of the radiance map. The radiance map is used to
    * render reflected light, while the irradiance map is used to render ambient light. See also
    * [skyBakePanorama].
+   *
    * **Note:** The image is saved in linear color space without any tonemapping performed, which
    * means it will look too dark if viewed directly in an image editor.
+   *
    * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
    * For radiance maps, there is no point in using a height greater than [Sky.radianceSize], as it
    * won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no
@@ -4192,8 +4326,10 @@ public object RenderingServer : Object() {
    * Creates a camera attributes object and adds it to the RenderingServer. It can be accessed with
    * the RID that is returned. This RID will be used in all `camera_attributes_` RenderingServer
    * functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [CameraAttributes].
    */
   @JvmStatic
@@ -4248,17 +4384,21 @@ public object RenderingServer : Object() {
    * Sets the exposure values that will be used by the renderers. The normalization amount is used
    * to bake a given Exposure Value (EV) into rendering calculations to reduce the dynamic range of the
    * scene.
+   *
    * The normalization factor can be calculated from exposure value (EV100) as follows:
-   * [codeblock]
+   *
+   * ```
    * func get_exposure_normalization(ev100: float):
    *     return 1.0 / (pow(2.0, ev100) * 1.2)
-   * [/codeblock]
+   * ```
+   *
    * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds),
    * and sensitivity (in ISO) as follows:
-   * [codeblock]
+   *
+   * ```
    * func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
    *     return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun cameraAttributesSetExposure(
@@ -4290,8 +4430,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a scenario and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `scenario_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * The scenario is the 3D world that all the visual instances exist in.
    */
   @JvmStatic
@@ -4343,6 +4485,7 @@ public object RenderingServer : Object() {
    * Creates a visual instance, adds it to the RenderingServer, and sets both base and scenario. It
    * can be accessed with the RID that is returned. This RID will be used in all `instance_*`
    * RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method. This is a shorthand for using [instanceCreate] and setting the base and scenario
    * manually.
@@ -4357,11 +4500,14 @@ public object RenderingServer : Object() {
   /**
    * Creates a visual instance and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `instance_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * An instance is a way of placing a 3D object in the scenario. Objects like particles, meshes,
    * reflection probes and decals need to be associated with an instance to be visible in the scenario
    * using [instanceSetBase].
+   *
    * **Note:** The equivalent node is [VisualInstance3D].
    */
   @JvmStatic
@@ -4437,6 +4583,7 @@ public object RenderingServer : Object() {
 
   /**
    * Prevents physics interpolation for the current physics tick.
+   *
    * This is useful when moving an instance to a new location, to give an instantaneous change
    * rather than interpolation from the previous location.
    */
@@ -4495,12 +4642,15 @@ public object RenderingServer : Object() {
   /**
    * Sets the transparency for the given geometry instance. Equivalent to
    * [GeometryInstance3D.transparency].
+   *
    * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than
    * `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline,
    * which is slower to render and can exhibit rendering issues due to incorrect transparency sorting.
    * However, unlike using a transparent material, setting [transparency] to a value greater than `0.0`
    * (exclusive) will *not* disable shadow rendering.
+   *
    * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
+   *
    * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to
    * make transparent materials more opaque than they originally are.
    */
@@ -4664,6 +4814,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
    * Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   *
    * **Note:** Per-instance shader parameter names are case-sensitive.
    */
   @JvmStatic
@@ -4706,6 +4857,7 @@ public object RenderingServer : Object() {
    * [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided, which
    * is available in the [World3D] you want to query. This forces an update for all resources queued to
    * update.
+   *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
    * prefer physics collision.
    */
@@ -4723,6 +4875,7 @@ public object RenderingServer : Object() {
    * Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided,
    * which is available in the [World3D] you want to query. This forces an update for all resources
    * queued to update.
+   *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
    * prefer physics collision.
    */
@@ -4744,6 +4897,7 @@ public object RenderingServer : Object() {
    * Use [@GlobalScope.instanceFromId] to obtain the actual nodes. A scenario RID must be provided,
    * which is available in the [World3D] you want to query. This forces an update for all resources
    * queued to update.
+   *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases,
    * prefer physics collision.
    */
@@ -4775,8 +4929,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a canvas and returns the assigned [RID]. It can be accessed with the RID that is
    * returned. This RID will be used in all `canvas_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * Canvas has no [Resource] or [Node] equivalent.
    */
   @JvmStatic
@@ -4788,6 +4944,7 @@ public object RenderingServer : Object() {
 
   /**
    * A copy of the canvas item will be drawn with a local offset of the [mirroring].
+   *
    * **Note:** This is equivalent to calling [canvasSetItemRepeat] like
    * `canvas_set_item_repeat(item, mirroring, 1)`, with an additional check ensuring [canvas] is a
    * parent of [item].
@@ -4835,8 +4992,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a canvas texture and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `canvas_texture_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method. See also [texture2dCreate].
+   *
    * **Note:** The equivalent resource is [CanvasTexture] and is only meant to be used in 2D
    * rendering, not 3D.
    */
@@ -4902,8 +5061,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a new CanvasItem instance and returns its [RID]. It can be accessed with the RID that
    * is returned. This RID will be used in all `canvas_item_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [CanvasItem].
    */
   @JvmStatic
@@ -4990,6 +5151,7 @@ public object RenderingServer : Object() {
    * outside of its rect's coordinates. This clipping is fast, but works only with axis-aligned
    * rectangles. This means that rotation is ignored by the clipping rectangle. For more advanced
    * clipping shapes, use [canvasItemSetCanvasGroupMode] instead.
+   *
    * **Note:** The equivalent node functionality is found in [Label.clipText], [RichTextLabel]
    * (always enabled) and more.
    */
@@ -5068,6 +5230,7 @@ public object RenderingServer : Object() {
 
   /**
    * Prevents physics interpolation for the current physics tick.
+   *
    * This is useful when moving a canvas item to a new location, to give an instantaneous change
    * rather than interpolation from the previous location.
    */
@@ -5079,6 +5242,7 @@ public object RenderingServer : Object() {
 
   /**
    * Transforms both the current and previous stored transform for a canvas item.
+   *
    * This allows transforming a canvas item without creating a "glitch" in the interpolation, which
    * is particularly useful for large worlds utilizing a shifting origin.
    */
@@ -5286,6 +5450,7 @@ public object RenderingServer : Object() {
    * Draws a 2D polygon on the [CanvasItem] pointed to by the [item] [RID]. If you need more
    * flexibility (such as being able to use bones), use [canvasItemAddTriangleArray] instead. See also
    * [CanvasItem.drawPolygon].
+   *
    * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
    * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using
    * [CanvasItem.drawMesh], [CanvasItem.drawMultimesh], or [canvasItemAddTriangleArray].
@@ -5307,6 +5472,7 @@ public object RenderingServer : Object() {
    * Draws a triangle array on the [CanvasItem] pointed to by the [item] [RID]. This is internally
    * used by [Line2D] and [StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is highly
    * flexible, but more complex to use than [canvasItemAddPolygon].
+   *
    * **Note:** [count] is unused and can be left unspecified.
    */
   @JvmOverloads
@@ -5538,6 +5704,7 @@ public object RenderingServer : Object() {
   /**
    * Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform
    * from the specified canvas item instance.
+   *
    * The returned dictionary is in PropertyInfo format, with the keys `name`, `class_name`, `type`,
    * `hint`, `hint_string`, and `usage`.
    */
@@ -5555,6 +5722,7 @@ public object RenderingServer : Object() {
    * visibility. [enterCallable] is called when the [CanvasItem] enters the screen, [exitCallable] is
    * called when the [CanvasItem] exits the screen. If [enable] is `false`, the item will no longer
    * function as notifier.
+   *
    * This method can be used to manually mimic [VisibleOnScreenNotifier2D].
    */
   @JvmStatic
@@ -5572,6 +5740,7 @@ public object RenderingServer : Object() {
   /**
    * Sets the canvas group mode used during 2D rendering for the canvas item specified by the [item]
    * RID. For faster but more limited clipping, use [canvasItemSetClip] instead.
+   *
    * **Note:** The equivalent node functionality is found in [CanvasGroup] and
    * [CanvasItem.clipChildren].
    */
@@ -5592,6 +5761,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer.
    * This bound is used internally for culling.
+   *
    * **Warning:** This function is intended for debugging in the editor, and will pass through and
    * return a zero [Rect2] in exported projects.
    */
@@ -5605,8 +5775,10 @@ public object RenderingServer : Object() {
   /**
    * Creates a canvas light and adds it to the RenderingServer. It can be accessed with the RID that
    * is returned. This RID will be used in all `canvas_light_*` RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [Light2D].
    */
   @JvmStatic
@@ -5809,6 +5981,7 @@ public object RenderingServer : Object() {
 
   /**
    * Prevents physics interpolation for the current physics tick.
+   *
    * This is useful when moving a canvas item to a new location, to give an instantaneous change
    * rather than interpolation from the previous location.
    */
@@ -5820,6 +5993,7 @@ public object RenderingServer : Object() {
 
   /**
    * Transforms both the current and previous stored transform for a canvas light.
+   *
    * This allows transforming a light without creating a "glitch" in the interpolation, which is
    * particularly useful for large worlds utilizing a shifting origin.
    */
@@ -5834,8 +6008,10 @@ public object RenderingServer : Object() {
    * Creates a light occluder and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `canvas_light_occluder_*` RenderingServer
    * functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent node is [LightOccluder2D].
    */
   @JvmStatic
@@ -5907,6 +6083,7 @@ public object RenderingServer : Object() {
 
   /**
    * Prevents physics interpolation for the current physics tick.
+   *
    * This is useful when moving an occluder to a new location, to give an instantaneous change
    * rather than interpolation from the previous location.
    */
@@ -5919,6 +6096,7 @@ public object RenderingServer : Object() {
 
   /**
    * Transforms both the current and previous stored transform for a light occluder.
+   *
    * This allows transforming an occluder without creating a "glitch" in the interpolation, which is
    * particularly useful for large worlds utilizing a shifting origin.
    */
@@ -5934,8 +6112,10 @@ public object RenderingServer : Object() {
    * Creates a new light occluder polygon and adds it to the RenderingServer. It can be accessed
    * with the RID that is returned. This RID will be used in all `canvas_occluder_polygon_*`
    * RenderingServer functions.
+   *
    * Once finished with your RID, you will want to free the RID using the RenderingServer's
    * [freeRid] method.
+   *
    * **Note:** The equivalent resource is [OccluderPolygon2D].
    */
   @JvmStatic
@@ -5980,6 +6160,7 @@ public object RenderingServer : Object() {
 
   /**
    * Creates a new global shader uniform.
+   *
    * **Note:** Global shader parameter names are case-sensitive.
    */
   @JvmStatic
@@ -6003,6 +6184,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the list of global shader uniform names.
+   *
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -6037,6 +6219,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the value of the global shader uniform specified by [name].
+   *
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -6052,6 +6235,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the type associated to the global shader uniform specified by [name].
+   *
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -6100,18 +6284,21 @@ public object RenderingServer : Object() {
    * Returns a statistic about the rendering engine which can be used for performance profiling. See
    * [RenderingServer.RenderingInfo] for a list of values that can be queried. See also
    * [viewportGetRenderInfo], which returns information specific to a viewport.
+   *
    * **Note:** Only 3D rendering is currently taken into account by some of these values, such as
    * the number of draw calls.
+   *
    * **Note:** Rendering information is not available until at least 2 frames have been rendered by
    * the engine. If rendering information is not available, [getRenderingInfo] returns `0`. To print
    * rendering information in `_ready()` successfully, use the following:
-   * [codeblock]
+   *
+   * ```
    * func _ready():
    *     for _i in 2:
    *         await get_tree().process_frame
    *
    *     print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun getRenderingInfo(info: RenderingInfo): Long {
@@ -6122,7 +6309,9 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2").
+   *
    * **Note:** When running a headless or server binary, this function returns an empty string.
+   *
    * **Note:** On the web platform, some browsers such as Firefox may report a different, fixed GPU
    * name such as "GeForce GTX 980" (regardless of the user's actual GPU model). This is done to make
    * fingerprinting more difficult.
@@ -6136,6 +6325,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the vendor of the video adapter (e.g. "NVIDIA Corporation").
+   *
    * **Note:** When running a headless or server binary, this function returns an empty string.
    */
   @JvmStatic
@@ -6150,6 +6340,7 @@ public object RenderingServer : Object() {
    * will *usually* be significantly faster than integrated graphics made in the same generation, the
    * device type can be used as a basis for automatic graphics settings adjustment. However, this is
    * not always true, so make sure to provide users with a way to manually override graphics settings.
+   *
    * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
    * function always returns [RenderingDevice.DEVICE_TYPE_OTHER].
    */
@@ -6165,6 +6356,7 @@ public object RenderingServer : Object() {
    * Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest
    * version supported by the hardware, as Godot may not always request the latest version. See also
    * [OS.getVideoAdapterDriverInfo].
+   *
    * **Note:** When running a headless or server binary, this function returns an empty string.
    */
   @JvmStatic
@@ -6177,6 +6369,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the name of the current rendering driver. This can be `vulkan`, `d3d12`, `metal`,
    * `opengl3`, `opengl3_es`, or `opengl3_angle`. See also [getCurrentRenderingMethod].
+   *
    * The rendering driver is determined by [ProjectSettings.rendering/renderingDevice/driver], the
    * `--rendering-driver` command line argument that overrides this project setting, or an automatic
    * fallback that is applied depending on the hardware.
@@ -6191,6 +6384,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the name of the current rendering method. This can be `forward_plus`, `mobile`, or
    * `gl_compatibility`. See also [getCurrentRenderingDriverName].
+   *
    * The rendering method is determined by [ProjectSettings.rendering/renderer/renderingMethod], the
    * `--rendering-method` command line argument that overrides this project setting, or an automatic
    * fallback that is applied depending on the hardware.
@@ -6232,12 +6426,14 @@ public object RenderingServer : Object() {
    * Returns the RID of a 256×256 texture with a testing pattern on it (in [Image.FORMAT_RGB8]
    * format). This texture will be created and returned on the first call to [getTestTexture], then it
    * will be cached for subsequent calls. See also [getWhiteTexture].
+   *
    * **Example:** Get the test texture and apply it to a [Sprite2D] node:
-   * [codeblock]
+   *
+   * ```
    * var texture_rid = RenderingServer.get_test_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
    * $Sprite2D.texture = texture
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun getTestTexture(): RID {
@@ -6250,12 +6446,14 @@ public object RenderingServer : Object() {
    * Returns the ID of a 4×4 white texture (in [Image.FORMAT_RGB8] format). This texture will be
    * created and returned on the first call to [getWhiteTexture], then it will be cached for subsequent
    * calls. See also [getTestTexture].
+   *
    * **Example:** Get the white texture and apply it to a [Sprite2D] node:
-   * [codeblock]
+   *
+   * ```
    * var texture_rid = RenderingServer.get_white_texture()
    * var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
    * $Sprite2D.texture = texture
-   * [/codeblock]
+   * ```
    */
   @JvmStatic
   public final fun getWhiteTexture(): RID {
@@ -6318,6 +6516,7 @@ public object RenderingServer : Object() {
    * If [generate] is `true`, generates debug wireframes for all meshes that are loaded when using
    * the Compatibility renderer. By default, the engine does not generate debug wireframes at runtime,
    * since they slow down loading of assets and take up VRAM.
+   *
    * **Note:** You must call this method before loading any meshes when using the Compatibility
    * renderer, otherwise wireframes will not be used.
    */
@@ -6374,6 +6573,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the global RenderingDevice.
+   *
    * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
    * function always returns `null`.
    */
@@ -6387,6 +6587,7 @@ public object RenderingServer : Object() {
   /**
    * Creates a RenderingDevice that can be used to do draw and compute operations on a separate
    * thread. Cannot draw to the screen nor share data with the global RenderingDevice.
+   *
    * **Note:** When using the OpenGL rendering driver or when running in headless mode, this
    * function always returns `null`.
    */
@@ -6439,6 +6640,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets a shader's default texture. Overwrites the texture given by name.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -6452,6 +6654,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a default texture from a shader searched by name.
+   *
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
@@ -6493,6 +6696,7 @@ public object RenderingServer : Object() {
   /**
    * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
    * Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   *
    * **Note:** Per-instance shader parameter names are case-sensitive.
    */
   @JvmStatic
@@ -6538,6 +6742,7 @@ public object RenderingServer : Object() {
 
   /**
    * Creates a new global shader uniform.
+   *
    * **Note:** Global shader parameter names are case-sensitive.
    */
   @JvmStatic
@@ -6571,6 +6776,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the value of the global shader uniform specified by [name].
+   *
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -6583,6 +6789,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns the type associated to the global shader uniform specified by [name].
+   *
    * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
    * needs to synchronize with the calling thread, which is slow. Do not use this method during
    * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
@@ -7496,6 +7703,7 @@ public object RenderingServer : Object() {
      * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality
      * setting, which means the [Light3D.shadowBlur] property is ignored if [Light3D.lightSize] and
      * [Light3D.lightAngularDistance] is `0.0`.
+     *
      * **Note:** The variable shadow blur performed by [Light3D.lightSize] and
      * [Light3D.lightAngularDistance] is still effective when using hard shadow filtering. In this
      * case, [Light3D.shadowBlur] *is* taken into account. However, the results will not be blurred,
@@ -7912,6 +8120,7 @@ public object RenderingServer : Object() {
      * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
      * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
      * will be used instead. A value of `1.0` disables scaling.
+     *
      * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
      * mode to macOS and iOS.
      */
@@ -7921,6 +8130,7 @@ public object RenderingServer : Object() {
      * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
      * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
      * will be used instead. A value of `1.0` will use MetalFX at native resolution as a TAA solution.
+     *
      * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
      * mode to macOS and iOS.
      */
@@ -8329,12 +8539,14 @@ public object RenderingServer : Object() {
      * Objects are displayed semi-transparent with additive blending so you can see where they are
      * drawing over top of one another. A higher overdraw (represented by brighter colors) means you
      * are wasting performance on drawing pixels that are being hidden behind others.
+     *
      * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex
      * displacement won't be visible anymore.
      */
     OVERDRAW(3),
     /**
      * Debug draw draws objects in wireframe.
+     *
      * **Note:** [setDebugGenerateWireframes] must be called before loading any meshes for
      * wireframes to be visible when using the Compatibility renderer.
      */
@@ -8364,10 +8576,12 @@ public object RenderingServer : Object() {
     /**
      * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
      * quadrant of the [Viewport].
+     *
      * The slice of the camera frustum related to the shadow map cascade is superimposed to
      * visualize coverage. The color of each slice matches the colors used for
      * [VIEWPORT_DEBUG_DRAW_PSSM_SPLITS]. When shadow cascades are blended the overlap is taken into
      * account when drawing the frustum slices.
+     *
      * The last cascade shows all frustum slices to illustrate the coverage of all slices.
      */
     DIRECTIONAL_SHADOW_ATLAS(10),
@@ -8558,6 +8772,7 @@ public object RenderingServer : Object() {
      * lower quality, but substantially faster run times. If you need better quality, but still need to
      * update the sky every frame, consider turning on
      * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     *
      * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so
      * [skySetRadianceSize] must be set to `256`. Otherwise, a warning is printed and the overridden
      * radiance size is ignored.
@@ -8829,6 +9044,7 @@ public object RenderingServer : Object() {
     /**
      * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
      * an image that can appear dull and low contrast. Slower than [ENV_TONE_MAPPER_LINEAR].
+     *
      * **Note:** When [Environment.tonemapWhite] is left at the default value of `1.0`,
      * [ENV_TONE_MAPPER_REINHARD] produces an identical image to [ENV_TONE_MAPPER_LINEAR].
      */
@@ -8841,6 +9057,7 @@ public object RenderingServer : Object() {
     /**
      * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
      * realistic appearance. Slightly slower than [ENV_TONE_MAPPER_FILMIC].
+     *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ACES(3),
@@ -8848,6 +9065,7 @@ public object RenderingServer : Object() {
      * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
      * appearance. Better than other tonemappers at maintaining the hue of colors as they become
      * brighter. The slowest tonemapping option.
+     *
      * **Note:** [Environment.tonemapWhite] is fixed at a value of `16.29`, which makes
      * [ENV_TONE_MAPPER_AGX] unsuitable for use with the Mobile rendering method.
      */
@@ -9522,6 +9740,7 @@ public object RenderingServer : Object() {
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look pixelated from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -9532,6 +9751,7 @@ public object RenderingServer : Object() {
      * uses the nearest mipmap if
      * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
      * makes the texture look smooth from up close, and smooth from a distance.
+     *
      * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
@@ -9545,6 +9765,7 @@ public object RenderingServer : Object() {
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate in this case.
      */
@@ -9557,6 +9778,7 @@ public object RenderingServer : Object() {
      * quality on surfaces that are almost in line with the camera, but is slightly slower. The
      * anisotropic filtering level can be changed by adjusting
      * [ProjectSettings.rendering/textures/defaultFilters/anisotropicFilteringLevel].
+     *
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate in this case.
      */
