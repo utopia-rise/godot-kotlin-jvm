@@ -435,8 +435,8 @@ public open class AnimationPlayer : AnimationMixer() {
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
-    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+    transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.IN,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd, LONG to transType.id, LONG to easeType.id)
     TransferContext.callMethod(ptr, MethodBindings.playWithCapturePtr, NIL)
@@ -714,9 +714,9 @@ public open class AnimationPlayer : AnimationMixer() {
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
-    ANIMATION_PROCESS_PHYSICS(0),
-    ANIMATION_PROCESS_IDLE(1),
-    ANIMATION_PROCESS_MANUAL(2),
+    PHYSICS(0),
+    IDLE(1),
+    MANUAL(2),
     ;
 
     public val id: Long
@@ -732,8 +732,8 @@ public open class AnimationPlayer : AnimationMixer() {
   public enum class AnimationMethodCallMode(
     id: Long,
   ) {
-    ANIMATION_METHOD_CALL_DEFERRED(0),
-    ANIMATION_METHOD_CALL_IMMEDIATE(1),
+    DEFERRED(0),
+    IMMEDIATE(1),
     ;
 
     public val id: Long

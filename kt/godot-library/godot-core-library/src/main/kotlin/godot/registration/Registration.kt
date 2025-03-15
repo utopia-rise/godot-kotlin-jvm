@@ -66,7 +66,7 @@ data class KtFunctionArgument(
         type,
         name,
         className,
-        PropertyHint.PROPERTY_HINT_NONE,
+        PropertyHint.NONE,
         "", //always empty. Only used for properties
     )
 }
@@ -104,7 +104,7 @@ class ClassBuilderDsl<T : KtObject>(
         variantType: VariantConverter,
         type: VariantConverter,
         className: String,
-        hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
+        hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
         usage: Long
     ) {
@@ -141,7 +141,7 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantParser.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.PROPERTY_HINT_ENUM,
+                PropertyHint.ENUM,
                 hintString,
                 usage,
             ),
@@ -166,7 +166,7 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantParser.ARRAY,
                 propertyName,
                 "Int",
-                PropertyHint.PROPERTY_HINT_ENUM,
+                PropertyHint.ENUM,
                 hintString,
                 usage,
             ),
@@ -212,7 +212,7 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantParser.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.PROPERTY_HINT_FLAGS,
+                PropertyHint.FLAGS,
                 hintString,
                 usage,
             ),

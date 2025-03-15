@@ -269,11 +269,11 @@ public open class TouchScreenButton : Node2D() {
     /**
      * Always visible.
      */
-    VISIBILITY_ALWAYS(0),
+    ALWAYS(0),
     /**
      * Visible on touch screens only.
      */
-    VISIBILITY_TOUCHSCREEN_ONLY(1),
+    TOUCHSCREEN_ONLY(1),
     ;
 
     public val id: Long

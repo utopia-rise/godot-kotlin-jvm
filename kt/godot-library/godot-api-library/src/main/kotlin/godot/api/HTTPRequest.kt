@@ -320,7 +320,7 @@ public open class HTTPRequest : Node() {
   public final fun request(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
+    method: HTTPClient.Method = HTTPClient.Method.GET,
     requestData: String = "",
   ): Error {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
@@ -341,7 +341,7 @@ public open class HTTPRequest : Node() {
   public final fun requestRaw(
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
-    method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
+    method: HTTPClient.Method = HTTPClient.Method.GET,
     requestDataRaw: PackedByteArray = PackedByteArray(),
   ): Error {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
@@ -495,63 +495,63 @@ public open class HTTPRequest : Node() {
     /**
      * Request successful.
      */
-    RESULT_SUCCESS(0),
+    SUCCESS(0),
     /**
      * Request failed due to a mismatch between the expected and actual chunked body size during
      * transfer. Possible causes include network errors, server misconfiguration, or issues with
      * chunked encoding.
      */
-    RESULT_CHUNKED_BODY_SIZE_MISMATCH(1),
+    CHUNKED_BODY_SIZE_MISMATCH(1),
     /**
      * Request failed while connecting.
      */
-    RESULT_CANT_CONNECT(2),
+    CANT_CONNECT(2),
     /**
      * Request failed while resolving.
      */
-    RESULT_CANT_RESOLVE(3),
+    CANT_RESOLVE(3),
     /**
      * Request failed due to connection (read/write) error.
      */
-    RESULT_CONNECTION_ERROR(4),
+    CONNECTION_ERROR(4),
     /**
      * Request failed on TLS handshake.
      */
-    RESULT_TLS_HANDSHAKE_ERROR(5),
+    TLS_HANDSHAKE_ERROR(5),
     /**
      * Request does not have a response (yet).
      */
-    RESULT_NO_RESPONSE(6),
+    NO_RESPONSE(6),
     /**
      * Request exceeded its maximum size limit, see [bodySizeLimit].
      */
-    RESULT_BODY_SIZE_LIMIT_EXCEEDED(7),
+    BODY_SIZE_LIMIT_EXCEEDED(7),
     /**
      * Request failed due to an error while decompressing the response body. Possible causes include
      * unsupported or incorrect compression format, corrupted data, or incomplete transfer.
      */
-    RESULT_BODY_DECOMPRESS_FAILED(8),
+    BODY_DECOMPRESS_FAILED(8),
     /**
      * Request failed (currently unused).
      */
-    RESULT_REQUEST_FAILED(9),
+    REQUEST_FAILED(9),
     /**
      * HTTPRequest couldn't open the download file.
      */
-    RESULT_DOWNLOAD_FILE_CANT_OPEN(10),
+    DOWNLOAD_FILE_CANT_OPEN(10),
     /**
      * HTTPRequest couldn't write to the download file.
      */
-    RESULT_DOWNLOAD_FILE_WRITE_ERROR(11),
+    DOWNLOAD_FILE_WRITE_ERROR(11),
     /**
      * Request reached its maximum redirect limit, see [maxRedirects].
      */
-    RESULT_REDIRECT_LIMIT_REACHED(12),
+    REDIRECT_LIMIT_REACHED(12),
     /**
      * Request failed due to a timeout. If you expect requests to take a long time, try increasing
      * the value of [timeout] or setting it to `0.0` to remove the timeout completely.
      */
-    RESULT_TIMEOUT(13),
+    TIMEOUT(13),
     ;
 
     public val id: Long

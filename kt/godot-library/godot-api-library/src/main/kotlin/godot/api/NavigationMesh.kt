@@ -757,20 +757,20 @@ public open class NavigationMesh : Resource() {
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
      * this if you have large open areas.
      */
-    SAMPLE_PARTITION_WATERSHED(0),
+    WATERSHED(0),
     /**
      * Monotone partitioning. Use this if you want fast navigation mesh generation.
      */
-    SAMPLE_PARTITION_MONOTONE(1),
+    MONOTONE(1),
     /**
      * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized
      * tiles.
      */
-    SAMPLE_PARTITION_LAYERS(2),
+    LAYERS(2),
     /**
      * Represents the size of the [SamplePartitionType] enum.
      */
-    SAMPLE_PARTITION_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -790,20 +790,20 @@ public open class NavigationMesh : Resource() {
      * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
      * [GridMap] nodes.
      */
-    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    MESH_INSTANCES(0),
     /**
      * Parses [StaticBody3D] colliders as geometry. The collider should be in any of the layers
      * specified by [geometryCollisionMask].
      */
-    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    STATIC_COLLIDERS(1),
     /**
      * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
-    PARSED_GEOMETRY_BOTH(2),
+    BOTH(2),
     /**
      * Represents the size of the [ParsedGeometryType] enum.
      */
-    PARSED_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -822,20 +822,20 @@ public open class NavigationMesh : Resource() {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
+    ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
      * by [geometrySourceGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    GROUPS_WITH_CHILDREN(1),
     /**
      * Uses nodes in a group for geometry. The group is specified by [geometrySourceGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    GROUPS_EXPLICIT(2),
     /**
      * Represents the size of the [SourceGeometryMode] enum.
      */
-    SOURCE_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

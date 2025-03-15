@@ -55,16 +55,16 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     /**
      * Comparison with `INF` (Infinity).
      */
-    FUNC_IS_INF(0),
+    IS_INF(0),
     /**
      * Comparison with `NaN` (Not a Number; indicates invalid numeric results, such as division by
      * zero).
      */
-    FUNC_IS_NAN(1),
+    IS_NAN(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

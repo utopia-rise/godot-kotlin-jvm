@@ -94,16 +94,16 @@ public open class BoxContainer : Container() {
      * The child controls will be arranged at the beginning of the container, i.e. top if
      * orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
-    ALIGNMENT_BEGIN(0),
+    BEGIN(0),
     /**
      * The child controls will be centered in the container.
      */
-    ALIGNMENT_CENTER(1),
+    CENTER(1),
     /**
      * The child controls will be arranged at the end of the container, i.e. bottom if orientation
      * is vertical, right if orientation is horizontal (left for RTL layout).
      */
-    ALIGNMENT_END(2),
+    END(2),
     ;
 
     public val id: Long

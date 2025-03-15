@@ -845,7 +845,7 @@ public open class Node : Object() {
   public final fun addChild(
     node: Node?,
     forceReadableName: Boolean = false,
-    `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED,
+    `internal`: InternalMode = Node.InternalMode.DISABLED,
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
     TransferContext.callMethod(ptr, MethodBindings.addChildPtr, NIL)
@@ -2204,27 +2204,27 @@ public open class Node : Object() {
      * Inherits [processMode] from the node's parent. This is the default for any newly created
      * node.
      */
-    PROCESS_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Stops processing when [SceneTree.paused] is `true`. This is the inverse of
      * [PROCESS_MODE_WHEN_PAUSED], and the default for the root node.
      */
-    PROCESS_MODE_PAUSABLE(1),
+    PAUSABLE(1),
     /**
      * Process **only** when [SceneTree.paused] is `true`. This is the inverse of
      * [PROCESS_MODE_PAUSABLE].
      */
-    PROCESS_MODE_WHEN_PAUSED(2),
+    WHEN_PAUSED(2),
     /**
      * Always process. Keeps processing, ignoring [SceneTree.paused]. This is the inverse of
      * [PROCESS_MODE_DISABLED].
      */
-    PROCESS_MODE_ALWAYS(3),
+    ALWAYS(3),
     /**
      * Never process. Completely disables processing, ignoring [SceneTree.paused]. This is the
      * inverse of [PROCESS_MODE_ALWAYS].
      */
-    PROCESS_MODE_DISABLED(4),
+    DISABLED(4),
     ;
 
     public val id: Long
@@ -2244,17 +2244,17 @@ public open class Node : Object() {
      * Process this node based on the thread group mode of the first parent (or grandparent) node
      * that has a thread group mode that is not inherit. See [processThreadGroup] for more information.
      */
-    PROCESS_THREAD_GROUP_INHERIT(0),
+    INHERIT(0),
     /**
      * Process this node (and child nodes set to inherit) on the main thread. See
      * [processThreadGroup] for more information.
      */
-    PROCESS_THREAD_GROUP_MAIN_THREAD(1),
+    MAIN_THREAD(1),
     /**
      * Process this node (and child nodes set to inherit) on a sub-thread. See [processThreadGroup]
      * for more information.
      */
-    PROCESS_THREAD_GROUP_SUB_THREAD(2),
+    SUB_THREAD(2),
     ;
 
     public val id: Long
@@ -2305,20 +2305,19 @@ public open class Node : Object() {
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before [_process] is called.
        */
-      public val FLAG_PROCESS_THREAD_MESSAGES: ProcessThreadMessages = ProcessThreadMessages(1)
+      public val FLAG: ProcessThreadMessages = ProcessThreadMessages(1)
 
       /**
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before [_physicsProcess] is called.
        */
-      public val FLAG_PROCESS_THREAD_MESSAGES_PHYSICS: ProcessThreadMessages =
-          ProcessThreadMessages(2)
+      public val FLAG_PHYSICS: ProcessThreadMessages = ProcessThreadMessages(2)
 
       /**
        * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
        * before either [_process] or [_physicsProcess] are called.
        */
-      public val FLAG_PROCESS_THREAD_MESSAGES_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
+      public val FLAG_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
     }
   }
 
@@ -2329,17 +2328,17 @@ public open class Node : Object() {
      * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
      * created node.
      */
-    PHYSICS_INTERPOLATION_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Enables physics interpolation for this node and for children set to
      * [PHYSICS_INTERPOLATION_MODE_INHERIT]. This is the default for the root node.
      */
-    PHYSICS_INTERPOLATION_MODE_ON(1),
+    ON(1),
     /**
      * Disables physics interpolation for this node and for children set to
      * [PHYSICS_INTERPOLATION_MODE_INHERIT].
      */
-    PHYSICS_INTERPOLATION_MODE_OFF(2),
+    OFF(2),
     ;
 
     public val id: Long
@@ -2358,21 +2357,21 @@ public open class Node : Object() {
     /**
      * Duplicate the node's signal connections.
      */
-    DUPLICATE_SIGNALS(1),
+    SIGNALS(1),
     /**
      * Duplicate the node's groups.
      */
-    DUPLICATE_GROUPS(2),
+    GROUPS(2),
     /**
      * Duplicate the node's script (also overriding the duplicated children's scripts, if combined
      * with [DUPLICATE_USE_INSTANTIATION]).
      */
-    DUPLICATE_SCRIPTS(4),
+    SCRIPTS(4),
     /**
      * Duplicate using [PackedScene.instantiate]. If the node comes from a scene saved on disk,
      * reuses [PackedScene.instantiate] as the base for the duplicated node and its children.
      */
-    DUPLICATE_USE_INSTANTIATION(8),
+    USE_INSTANTIATION(8),
     ;
 
     public val id: Long
@@ -2391,16 +2390,16 @@ public open class Node : Object() {
     /**
      * The node will not be internal.
      */
-    INTERNAL_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * The node will be placed at the beginning of the parent's children, before any non-internal
      * sibling.
      */
-    INTERNAL_MODE_FRONT(1),
+    FRONT(1),
     /**
      * The node will be placed at the end of the parent's children, after any non-internal sibling.
      */
-    INTERNAL_MODE_BACK(2),
+    BACK(2),
     ;
 
     public val id: Long
@@ -2420,18 +2419,18 @@ public open class Node : Object() {
      * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
      * created node.
      */
-    AUTO_TRANSLATE_MODE_INHERIT(0),
+    INHERIT(0),
     /**
      * Always automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_DISABLED], and
      * the default for the root node.
      */
-    AUTO_TRANSLATE_MODE_ALWAYS(1),
+    ALWAYS(1),
     /**
      * Never automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_ALWAYS].
      * String parsing for POT generation will be skipped for this node and children that are set to
      * [AUTO_TRANSLATE_MODE_INHERIT].
      */
-    AUTO_TRANSLATE_MODE_DISABLED(2),
+    DISABLED(2),
     ;
 
     public val id: Long

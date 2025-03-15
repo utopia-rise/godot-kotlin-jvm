@@ -200,10 +200,10 @@ class Rect2i(
      */
 
     fun growSide(side: Side, amount: Int) = growIndividual(
-        if (Side.SIDE_LEFT === side) amount else 0,
-        if (Side.SIDE_TOP === side) amount else 0,
-        if (Side.SIDE_RIGHT === side) amount else 0,
-        if (Side.SIDE_BOTTOM === side) amount else 0
+        if (Side.LEFT === side) amount else 0,
+        if (Side.TOP === side) amount else 0,
+        if (Side.RIGHT === side) amount else 0,
+        if (Side.BOTTOM === side) amount else 0
     )
 
     /**

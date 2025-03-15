@@ -590,19 +590,19 @@ public open class FastNoiseLite : Noise() {
     /**
      * No fractal noise.
      */
-    FRACTAL_NONE(0),
+    NONE(0),
     /**
      * Method using Fractional Brownian Motion to combine octaves into a fractal.
      */
-    FRACTAL_FBM(1),
+    FBM(1),
     /**
      * Method of combining octaves into a fractal resulting in a "ridged" look.
      */
-    FRACTAL_RIDGED(2),
+    RIDGED(2),
     /**
      * Method of combining octaves into a fractal with a ping pong effect.
      */
-    FRACTAL_PING_PONG(3),
+    PING_PONG(3),
     ;
 
     public val id: Long
@@ -698,16 +698,16 @@ public open class FastNoiseLite : Noise() {
     /**
      * The domain is warped using the simplex noise algorithm.
      */
-    DOMAIN_WARP_SIMPLEX(0),
+    SIMPLEX(0),
     /**
      * The domain is warped using a simplified version of the simplex noise algorithm.
      */
-    DOMAIN_WARP_SIMPLEX_REDUCED(1),
+    SIMPLEX_REDUCED(1),
     /**
      * The domain is warped using a simple noise grid (not as smooth as the other methods, but more
      * performant).
      */
-    DOMAIN_WARP_BASIC_GRID(2),
+    BASIC_GRID(2),
     ;
 
     public val id: Long
@@ -726,16 +726,16 @@ public open class FastNoiseLite : Noise() {
     /**
      * No fractal noise for warping the space.
      */
-    DOMAIN_WARP_FRACTAL_NONE(0),
+    NONE(0),
     /**
      * Warping the space progressively, octave for octave, resulting in a more "liquified"
      * distortion.
      */
-    DOMAIN_WARP_FRACTAL_PROGRESSIVE(1),
+    PROGRESSIVE(1),
     /**
      * Warping the space independently for each octave, resulting in a more chaotic distortion.
      */
-    DOMAIN_WARP_FRACTAL_INDEPENDENT(2),
+    INDEPENDENT(2),
     ;
 
     public val id: Long

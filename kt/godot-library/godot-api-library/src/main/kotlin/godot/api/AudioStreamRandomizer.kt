@@ -194,17 +194,17 @@ public open class AudioStreamRandomizer : AudioStream() {
      * avoid playing the same stream twice in a row whenever possible. If only 1 sound is present in
      * the pool, the same sound will always play, effectively allowing repeats to occur.
      */
-    PLAYBACK_RANDOM_NO_REPEATS(0),
+    RANDOM_NO_REPEATS(0),
     /**
      * Pick a stream at random according to the probability weights chosen for each stream. If only
      * 1 sound is present in the pool, the same sound will always play.
      */
-    PLAYBACK_RANDOM(1),
+    RANDOM(1),
     /**
      * Play streams in the order they appear in the stream pool. If only 1 sound is present in the
      * pool, the same sound will always play.
      */
-    PLAYBACK_SEQUENTIAL(2),
+    SEQUENTIAL(2),
     ;
 
     public val id: Long

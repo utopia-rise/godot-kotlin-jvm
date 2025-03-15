@@ -335,10 +335,10 @@ public open class Window : Viewport() {
    */
   public final inline var unresizable: Boolean
     @JvmName("unresizableProperty")
-    get() = getFlag(Window.Flags.FLAG_RESIZE_DISABLED)
+    get() = getFlag(Window.Flags.RESIZE_DISABLED)
     @JvmName("unresizableProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_RESIZE_DISABLED, value)
+      setFlag(Window.Flags.RESIZE_DISABLED, value)
     }
 
   /**
@@ -346,10 +346,10 @@ public open class Window : Viewport() {
    */
   public final inline var borderless: Boolean
     @JvmName("borderlessProperty")
-    get() = getFlag(Window.Flags.FLAG_BORDERLESS)
+    get() = getFlag(Window.Flags.BORDERLESS)
     @JvmName("borderlessProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_BORDERLESS, value)
+      setFlag(Window.Flags.BORDERLESS, value)
     }
 
   /**
@@ -358,10 +358,10 @@ public open class Window : Viewport() {
    */
   public final inline var alwaysOnTop: Boolean
     @JvmName("alwaysOnTopProperty")
-    get() = getFlag(Window.Flags.FLAG_ALWAYS_ON_TOP)
+    get() = getFlag(Window.Flags.ALWAYS_ON_TOP)
     @JvmName("alwaysOnTopProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_ALWAYS_ON_TOP, value)
+      setFlag(Window.Flags.ALWAYS_ON_TOP, value)
     }
 
   /**
@@ -374,10 +374,10 @@ public open class Window : Viewport() {
    */
   public final inline var transparent: Boolean
     @JvmName("transparentProperty")
-    get() = getFlag(Window.Flags.FLAG_TRANSPARENT)
+    get() = getFlag(Window.Flags.TRANSPARENT)
     @JvmName("transparentProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_TRANSPARENT, value)
+      setFlag(Window.Flags.TRANSPARENT, value)
     }
 
   /**
@@ -385,10 +385,10 @@ public open class Window : Viewport() {
    */
   public final inline var unfocusable: Boolean
     @JvmName("unfocusableProperty")
-    get() = getFlag(Window.Flags.FLAG_NO_FOCUS)
+    get() = getFlag(Window.Flags.NO_FOCUS)
     @JvmName("unfocusableProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_NO_FOCUS, value)
+      setFlag(Window.Flags.NO_FOCUS, value)
     }
 
   /**
@@ -398,10 +398,10 @@ public open class Window : Viewport() {
    */
   public final inline var popupWindow: Boolean
     @JvmName("popupWindowProperty")
-    get() = getFlag(Window.Flags.FLAG_POPUP)
+    get() = getFlag(Window.Flags.POPUP)
     @JvmName("popupWindowProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_POPUP, value)
+      setFlag(Window.Flags.POPUP, value)
     }
 
   /**
@@ -412,10 +412,10 @@ public open class Window : Viewport() {
    */
   public final inline var extendToTitle: Boolean
     @JvmName("extendToTitleProperty")
-    get() = getFlag(Window.Flags.FLAG_EXTEND_TO_TITLE)
+    get() = getFlag(Window.Flags.EXTEND_TO_TITLE)
     @JvmName("extendToTitleProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_EXTEND_TO_TITLE, value)
+      setFlag(Window.Flags.EXTEND_TO_TITLE, value)
     }
 
   /**
@@ -426,10 +426,10 @@ public open class Window : Viewport() {
    */
   public final inline var mousePassthrough: Boolean
     @JvmName("mousePassthroughProperty")
-    get() = getFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH)
+    get() = getFlag(Window.Flags.MOUSE_PASSTHROUGH)
     @JvmName("mousePassthroughProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH, value)
+      setFlag(Window.Flags.MOUSE_PASSTHROUGH, value)
     }
 
   /**
@@ -439,10 +439,10 @@ public open class Window : Viewport() {
    */
   public final inline var sharpCorners: Boolean
     @JvmName("sharpCornersProperty")
-    get() = getFlag(Window.Flags.FLAG_SHARP_CORNERS)
+    get() = getFlag(Window.Flags.SHARP_CORNERS)
     @JvmName("sharpCornersProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_SHARP_CORNERS, value)
+      setFlag(Window.Flags.SHARP_CORNERS, value)
     }
 
   /**
@@ -451,10 +451,10 @@ public open class Window : Viewport() {
    */
   public final inline var excludeFromCapture: Boolean
     @JvmName("excludeFromCaptureProperty")
-    get() = getFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE)
+    get() = getFlag(Window.Flags.EXCLUDE_FROM_CAPTURE)
     @JvmName("excludeFromCaptureProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE, value)
+      setFlag(Window.Flags.EXCLUDE_FROM_CAPTURE, value)
     }
 
   /**
@@ -1787,17 +1787,17 @@ public open class Window : Viewport() {
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
      * screen).
      */
-    MODE_WINDOWED(0),
+    WINDOWED(0),
     /**
      * Minimized window mode, i.e. [Window] is not visible and available on window manager's window
      * list. Normally happens when the minimize button is pressed.
      */
-    MODE_MINIMIZED(1),
+    MINIMIZED(1),
     /**
      * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still
      * display its borders. Normally happens when the maximize button is pressed.
      */
-    MODE_MAXIMIZED(2),
+    MAXIMIZED(2),
     /**
      * Full screen mode with full multi-window support.
      * Full screen window covers the entire display area of a screen and has no decorations. The
@@ -1811,7 +1811,7 @@ public open class Window : Viewport() {
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
      * enabling full screen mode.
      */
-    MODE_FULLSCREEN(3),
+    FULLSCREEN(3),
     /**
      * A single window full screen mode. This mode has less overhead, but only one window can be
      * open on a given screen at a time (opening a child window or application switching will trigger a
@@ -1830,7 +1830,7 @@ public open class Window : Viewport() {
      * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
      * enabling full screen mode.
      */
-    MODE_EXCLUSIVE_FULLSCREEN(4),
+    EXCLUSIVE_FULLSCREEN(4),
     ;
 
     public val id: Long
@@ -1850,29 +1850,29 @@ public open class Window : Viewport() {
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
      */
-    FLAG_RESIZE_DISABLED(0),
+    RESIZE_DISABLED(0),
     /**
      * The window do not have native title bar and other decorations. This flag is ignored for
      * full-screen windows. Set with [borderless].
      */
-    FLAG_BORDERLESS(1),
+    BORDERLESS(1),
     /**
      * The window is floating on top of all other windows. This flag is ignored for full-screen
      * windows. Set with [alwaysOnTop].
      */
-    FLAG_ALWAYS_ON_TOP(2),
+    ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent. Set with [transparent].
      * **Note:** This flag has no effect if either
      * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
      * [Viewport.transparentBg] is set to `false`.
      */
-    FLAG_TRANSPARENT(3),
+    TRANSPARENT(3),
     /**
      * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set
      * with [unfocusable].
      */
-    FLAG_NO_FOCUS(4),
+    NO_FOCUS(4),
     /**
      * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window
      * is visible. An active popup window will exclusively receive all input, without stealing focus
@@ -1880,7 +1880,7 @@ public open class Window : Viewport() {
      * application is switched. Popup window must have transient parent set (see [transient]).
      * **Note:** This flag has no effect in embedded windows (unless said window is a [Popup]).
      */
-    FLAG_POPUP(5),
+    POPUP(5),
     /**
      * Window content is expanded to the full size of the window. Unlike borderless window, the
      * frame is left intact and can be used to resize the window, title bar is transparent, but have
@@ -1888,18 +1888,18 @@ public open class Window : Viewport() {
      * **Note:** This flag is implemented only on macOS.
      * **Note:** This flag has no effect in embedded windows.
      */
-    FLAG_EXTEND_TO_TITLE(6),
+    EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
      * **Note:** This flag has no effect in embedded windows.
      */
-    FLAG_MOUSE_PASSTHROUGH(7),
+    MOUSE_PASSTHROUGH(7),
     /**
      * Window style is overridden, forcing sharp corners.
      * **Note:** This flag has no effect in embedded windows.
      * **Note:** This flag is implemented only on Windows (11).
      */
-    FLAG_SHARP_CORNERS(8),
+    SHARP_CORNERS(8),
     /**
      * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
      * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
@@ -1907,11 +1907,11 @@ public open class Window : Viewport() {
      * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
      * should not be used as a security measure.
      */
-    FLAG_EXCLUDE_FROM_CAPTURE(9),
+    EXCLUDE_FROM_CAPTURE(9),
     /**
      * Max value of the [Flags].
      */
-    FLAG_MAX(10),
+    MAX(10),
     ;
 
     public val id: Long
@@ -1930,17 +1930,17 @@ public open class Window : Viewport() {
     /**
      * The content will not be scaled to match the [Window]'s size.
      */
-    CONTENT_SCALE_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * The content will be rendered at the target size. This is more performance-expensive than
      * [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
-    CONTENT_SCALE_MODE_CANVAS_ITEMS(1),
+    CANVAS_ITEMS(1),
     /**
      * The content will be rendered at the base size and then scaled to the target size. More
      * performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
-    CONTENT_SCALE_MODE_VIEWPORT(2),
+    VIEWPORT(2),
     ;
 
     public val id: Long
@@ -1959,28 +1959,28 @@ public open class Window : Viewport() {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
      */
-    CONTENT_SCALE_ASPECT_IGNORE(0),
+    IGNORE(0),
     /**
      * The content's aspect will be preserved. If the target size has different aspect from the base
      * one, the image will be centered and black bars will appear on left and right sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP(1),
+    KEEP(1),
     /**
      * The content can be expanded vertically. Scaling horizontally will result in keeping the width
      * ratio and then black bars on left and right sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP_WIDTH(2),
+    KEEP_WIDTH(2),
     /**
      * The content can be expanded horizontally. Scaling vertically will result in keeping the
      * height ratio and then black bars on top and bottom sides.
      */
-    CONTENT_SCALE_ASPECT_KEEP_HEIGHT(3),
+    KEEP_HEIGHT(3),
     /**
      * The content's aspect will be preserved. If the target size has different aspect from the base
      * one, the content will stay in the top-left corner and add an extra visible area in the stretched
      * space.
      */
-    CONTENT_SCALE_ASPECT_EXPAND(4),
+    EXPAND(4),
     ;
 
     public val id: Long
@@ -2000,12 +2000,12 @@ public open class Window : Viewport() {
      * The content will be stretched according to a fractional factor. This fills all the space
      * available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
      */
-    CONTENT_SCALE_STRETCH_FRACTIONAL(0),
+    FRACTIONAL(0),
     /**
      * The content will be stretched only according to an integer factor, preserving sharp pixels.
      * This may leave a black background visible on the window's edges depending on the window size.
      */
-    CONTENT_SCALE_STRETCH_INTEGER(1),
+    INTEGER(1),
     ;
 
     public val id: Long
@@ -2024,28 +2024,28 @@ public open class Window : Viewport() {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
      */
-    LAYOUT_DIRECTION_INHERITED(0),
+    INHERITED(0),
     /**
      * Automatic layout direction, determined from the current locale.
      */
-    LAYOUT_DIRECTION_APPLICATION_LOCALE(1),
+    APPLICATION_LOCALE(1),
     /**
      * Left-to-right layout direction.
      */
-    LAYOUT_DIRECTION_LTR(2),
+    LTR(2),
     /**
      * Right-to-left layout direction.
      */
-    LAYOUT_DIRECTION_RTL(3),
+    RTL(3),
     /**
      * Automatic layout direction, determined from the system locale.
      */
-    LAYOUT_DIRECTION_SYSTEM_LOCALE(4),
+    SYSTEM_LOCALE(4),
     /**
      * Represents the size of the [LayoutDirection] enum.
      */
-    LAYOUT_DIRECTION_MAX(5),
-    LAYOUT_DIRECTION_LOCALE(1),
+    MAX(5),
+    LOCALE(1),
     ;
 
     public val id: Long
@@ -2064,28 +2064,28 @@ public open class Window : Viewport() {
     /**
      * Initial window position is determined by [position].
      */
-    WINDOW_INITIAL_POSITION_ABSOLUTE(0),
+    ABSOLUTE(0),
     /**
      * Initial window position is the center of the primary screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN(1),
+    CENTER_PRIMARY_SCREEN(1),
     /**
      * Initial window position is the center of the main window screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN(2),
+    CENTER_MAIN_WINDOW_SCREEN(2),
     /**
      * Initial window position is the center of [currentScreen] screen.
      */
-    WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN(3),
+    CENTER_OTHER_SCREEN(3),
     /**
      * Initial window position is the center of the screen containing the mouse pointer.
      */
-    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
+    CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
     /**
      * Initial window position is the center of the screen containing the window with the keyboard
      * focus.
      */
-    WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
+    CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
 
     public val id: Long

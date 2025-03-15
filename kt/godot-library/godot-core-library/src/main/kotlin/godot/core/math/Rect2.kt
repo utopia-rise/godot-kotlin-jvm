@@ -221,10 +221,10 @@ class Rect2(
     fun growSide(side: Side, amount: RealT): Rect2 {
         var g = Rect2(this)
         g = g.growIndividual(
-            if (Side.SIDE_LEFT == side) amount else 0.0,
-            if (Side.SIDE_TOP == side) amount else 0.0,
-            if (Side.SIDE_RIGHT == side) amount else 0.0,
-            if (Side.SIDE_BOTTOM == side) amount else 0.0,
+            if (Side.LEFT == side) amount else 0.0,
+            if (Side.TOP == side) amount else 0.0,
+            if (Side.RIGHT == side) amount else 0.0,
+            if (Side.BOTTOM == side) amount else 0.0,
         )
         return g
     }
