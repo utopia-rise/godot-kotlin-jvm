@@ -2459,34 +2459,34 @@ public open class Environment : Resource() {
      * Clears the background using the clear color defined in
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
      */
-    BG_CLEAR_COLOR(0),
+    CLEAR_COLOR(0),
     /**
      * Clears the background using a custom clear color.
      */
-    BG_COLOR(1),
+    COLOR(1),
     /**
      * Displays a user-defined sky in the background.
      */
-    BG_SKY(2),
+    SKY(2),
     /**
      * Displays a [CanvasLayer] in the background.
      */
-    BG_CANVAS(3),
+    CANVAS(3),
     /**
      * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but
      * it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If
      * enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when
      * moving the camera.
      */
-    BG_KEEP(4),
+    KEEP(4),
     /**
      * Displays a camera feed in the background.
      */
-    BG_CAMERA_FEED(5),
+    CAMERA_FEED(5),
     /**
      * Represents the size of the [BGMode] enum.
      */
-    BG_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -2677,18 +2677,18 @@ public open class Environment : Resource() {
      * floors and ceilings. This is usually the best choice for scenes that don't feature much
      * verticality.
      */
-    SDFGI_Y_SCALE_50_PERCENT(0),
+    Y_SCALE_50_PERCENT(0),
     /**
      * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
      * and 100&#37; SDFGI Y scales.
      */
-    SDFGI_Y_SCALE_75_PERCENT(1),
+    Y_SCALE_75_PERCENT(1),
     /**
      * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
      * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
      * leaking may become more noticeable with thin floors and ceilings.
      */
-    SDFGI_Y_SCALE_100_PERCENT(2),
+    Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long

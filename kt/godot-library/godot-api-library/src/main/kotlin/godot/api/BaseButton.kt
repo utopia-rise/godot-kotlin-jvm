@@ -340,23 +340,23 @@ public open class BaseButton : Control() {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
      */
-    DRAW_NORMAL(0),
+    NORMAL(0),
     /**
      * The state of buttons are pressed.
      */
-    DRAW_PRESSED(1),
+    PRESSED(1),
     /**
      * The state of buttons are hovered.
      */
-    DRAW_HOVER(2),
+    HOVER(2),
     /**
      * The state of buttons are disabled.
      */
-    DRAW_DISABLED(3),
+    DISABLED(3),
     /**
      * The state of buttons are both hovered and pressed.
      */
-    DRAW_HOVER_PRESSED(4),
+    HOVER_PRESSED(4),
     ;
 
     public val id: Long

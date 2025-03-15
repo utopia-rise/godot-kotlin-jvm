@@ -102,11 +102,11 @@ public open class OmniLight3D : Light3D() {
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but
      * lower-quality.
      */
-    SHADOW_DUAL_PARABOLOID(0),
+    DUAL_PARABOLOID(0),
     /**
      * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality.
      */
-    SHADOW_CUBE(1),
+    CUBE(1),
     ;
 
     public val id: Long

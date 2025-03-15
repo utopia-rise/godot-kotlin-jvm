@@ -661,8 +661,7 @@ public open class RichTextLabel : Control() {
     alignment: HorizontalAlignment,
     baseDirection: Control.TextDirection = Control.TextDirection.AUTO,
     language: String = "",
-    stParser: TextServer.StructuredTextParser =
-        TextServer.StructuredTextParser.STRUCTURED_TEXT_DEFAULT,
+    stParser: TextServer.StructuredTextParser = TextServer.StructuredTextParser.DEFAULT,
     justificationFlags: JustificationFlag = TextServer.JustificationFlag(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
@@ -1597,19 +1596,19 @@ public open class RichTextLabel : Control() {
     /**
      * Each list item has a number marker.
      */
-    LIST_NUMBERS(0),
+    NUMBERS(0),
     /**
      * Each list item has a letter marker.
      */
-    LIST_LETTERS(1),
+    LETTERS(1),
     /**
      * Each list item has a roman number marker.
      */
-    LIST_ROMAN(2),
+    ROMAN(2),
     /**
      * Each list item has a filled circle marker.
      */
-    LIST_DOTS(3),
+    DOTS(3),
     ;
 
     public val id: Long
@@ -1628,15 +1627,15 @@ public open class RichTextLabel : Control() {
     /**
      * Copies the selected text.
      */
-    MENU_COPY(0),
+    COPY(0),
     /**
      * Selects the whole [RichTextLabel] text.
      */
-    MENU_SELECT_ALL(1),
+    SELECT_ALL(1),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MENU_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

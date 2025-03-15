@@ -46,21 +46,21 @@ public value class MethodFlags(
   public infix fun ushr(bits: Int): MethodFlags = MethodFlags(flag ushr bits)
 
   public companion object {
-    public val METHOD_FLAG_NORMAL: MethodFlags = MethodFlags(1)
+    public val NORMAL: MethodFlags = MethodFlags(1)
 
-    public val METHOD_FLAG_EDITOR: MethodFlags = MethodFlags(2)
+    public val EDITOR: MethodFlags = MethodFlags(2)
 
-    public val METHOD_FLAG_CONST: MethodFlags = MethodFlags(4)
+    public val CONST: MethodFlags = MethodFlags(4)
 
-    public val METHOD_FLAG_VIRTUAL: MethodFlags = MethodFlags(8)
+    public val VIRTUAL: MethodFlags = MethodFlags(8)
 
-    public val METHOD_FLAG_VARARG: MethodFlags = MethodFlags(16)
+    public val VARARG: MethodFlags = MethodFlags(16)
 
-    public val METHOD_FLAG_STATIC: MethodFlags = MethodFlags(32)
+    public val STATIC: MethodFlags = MethodFlags(32)
 
-    public val METHOD_FLAG_OBJECT_CORE: MethodFlags = MethodFlags(64)
+    public val OBJECT_CORE: MethodFlags = MethodFlags(64)
 
-    public val METHOD_FLAG_VIRTUAL_REQUIRED: MethodFlags = MethodFlags(128)
+    public val VIRTUAL_REQUIRED: MethodFlags = MethodFlags(128)
 
     public val DEFAULT: MethodFlags = MethodFlags(1)
   }

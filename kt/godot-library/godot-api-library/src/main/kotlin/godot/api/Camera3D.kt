@@ -664,17 +664,17 @@ public open class Camera3D : Node3D() {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
-    PROJECTION_PERSPECTIVE(0),
+    PERSPECTIVE(0),
     /**
      * Orthogonal projection, also known as orthographic projection. Objects remain the same size on
      * the screen no matter how far away they are.
      */
-    PROJECTION_ORTHOGONAL(1),
+    ORTHOGONAL(1),
     /**
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum"
      * effects.
      */
-    PROJECTION_FRUSTUM(2),
+    FRUSTUM(2),
     ;
 
     public val id: Long
@@ -695,13 +695,13 @@ public open class Camera3D : Node3D() {
      * option for projects running in portrait mode, as taller aspect ratios will benefit from a wider
      * vertical FOV.
      */
-    KEEP_WIDTH(0),
+    WIDTH(0),
     /**
      * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best
      * option for projects running in landscape mode, as wider aspect ratios will automatically benefit
      * from a wider horizontal FOV.
      */
-    KEEP_HEIGHT(1),
+    HEIGHT(1),
     ;
 
     public val id: Long

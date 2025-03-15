@@ -149,10 +149,10 @@ public open class FontVariation : Font() {
    */
   public final inline var spacingGlyph: Int
     @JvmName("spacingGlyphProperty")
-    get() = getSpacing(TextServer.SpacingType.SPACING_GLYPH)
+    get() = getSpacing(TextServer.SpacingType.GLYPH)
     @JvmName("spacingGlyphProperty")
     set(`value`) {
-      setSpacing(TextServer.SpacingType.SPACING_GLYPH, value)
+      setSpacing(TextServer.SpacingType.GLYPH, value)
     }
 
   /**
@@ -160,10 +160,10 @@ public open class FontVariation : Font() {
    */
   public final inline var spacingSpace: Int
     @JvmName("spacingSpaceProperty")
-    get() = getSpacing(TextServer.SpacingType.SPACING_SPACE)
+    get() = getSpacing(TextServer.SpacingType.SPACE)
     @JvmName("spacingSpaceProperty")
     set(`value`) {
-      setSpacing(TextServer.SpacingType.SPACING_SPACE, value)
+      setSpacing(TextServer.SpacingType.SPACE, value)
     }
 
   /**
@@ -171,10 +171,10 @@ public open class FontVariation : Font() {
    */
   public final inline var spacingTop: Int
     @JvmName("spacingTopProperty")
-    get() = getSpacing(TextServer.SpacingType.SPACING_TOP)
+    get() = getSpacing(TextServer.SpacingType.TOP)
     @JvmName("spacingTopProperty")
     set(`value`) {
-      setSpacing(TextServer.SpacingType.SPACING_TOP, value)
+      setSpacing(TextServer.SpacingType.TOP, value)
     }
 
   /**
@@ -182,10 +182,10 @@ public open class FontVariation : Font() {
    */
   public final inline var spacingBottom: Int
     @JvmName("spacingBottomProperty")
-    get() = getSpacing(TextServer.SpacingType.SPACING_BOTTOM)
+    get() = getSpacing(TextServer.SpacingType.BOTTOM)
     @JvmName("spacingBottomProperty")
     set(`value`) {
-      setSpacing(TextServer.SpacingType.SPACING_BOTTOM, value)
+      setSpacing(TextServer.SpacingType.BOTTOM, value)
     }
 
   /**

@@ -394,10 +394,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagAlignY: Boolean
     @JvmName("particleFlagAlignYProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.ALIGN_Y_TO_VELOCITY)
     @JvmName("particleFlagAlignYProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.ALIGN_Y_TO_VELOCITY, value)
     }
 
   /**
@@ -405,10 +405,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagRotateY: Boolean
     @JvmName("particleFlagRotateYProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ROTATE_Y)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.ROTATE_Y)
     @JvmName("particleFlagRotateYProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ROTATE_Y, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.ROTATE_Y, value)
     }
 
   /**
@@ -416,10 +416,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var particleFlagDisableZ: Boolean
     @JvmName("particleFlagDisableZProperty")
-    get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_DISABLE_Z)
+    get() = getParticleFlag(CPUParticles3D.ParticleFlags.DISABLE_Z)
     @JvmName("particleFlagDisableZProperty")
     set(`value`) {
-      setParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_DISABLE_Z, value)
+      setParticleFlag(CPUParticles3D.ParticleFlags.DISABLE_Z, value)
     }
 
   /**
@@ -474,10 +474,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var initialVelocityMin: Float
     @JvmName("initialVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -485,10 +485,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var initialVelocityMax: Float
     @JvmName("initialVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -497,10 +497,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityMin: Float
     @JvmName("angularVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -509,10 +509,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityMax: Float
     @JvmName("angularVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -521,10 +521,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angularVelocityCurve: Curve?
     @JvmName("angularVelocityCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANGULAR_VELOCITY)
     @JvmName("angularVelocityCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY, value)
+      setParamCurve(CPUParticles3D.Parameter.ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -532,10 +532,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityMin: Float
     @JvmName("orbitVelocityMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamMin(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamMin(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -543,10 +543,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityMax: Float
     @JvmName("orbitVelocityMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamMax(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamMax(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -554,10 +554,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var orbitVelocityCurve: Curve?
     @JvmName("orbitVelocityCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
+    get() = getParamCurve(CPUParticles3D.Parameter.ORBIT_VELOCITY)
     @JvmName("orbitVelocityCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY, value)
+      setParamCurve(CPUParticles3D.Parameter.ORBIT_VELOCITY, value)
     }
 
   /**
@@ -565,10 +565,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelMin: Float
     @JvmName("linearAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -576,10 +576,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelMax: Float
     @JvmName("linearAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -587,10 +587,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var linearAccelCurve: Curve?
     @JvmName("linearAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.LINEAR_ACCEL)
     @JvmName("linearAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.LINEAR_ACCEL, value)
     }
 
   /**
@@ -598,10 +598,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelMin: Float
     @JvmName("radialAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -609,10 +609,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelMax: Float
     @JvmName("radialAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -620,10 +620,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var radialAccelCurve: Curve?
     @JvmName("radialAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.RADIAL_ACCEL)
     @JvmName("radialAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.RADIAL_ACCEL, value)
     }
 
   /**
@@ -631,10 +631,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelMin: Float
     @JvmName("tangentialAccelMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamMin(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamMin(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -642,10 +642,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelMax: Float
     @JvmName("tangentialAccelMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamMax(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamMax(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -653,10 +653,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var tangentialAccelCurve: Curve?
     @JvmName("tangentialAccelCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
+    get() = getParamCurve(CPUParticles3D.Parameter.TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL, value)
+      setParamCurve(CPUParticles3D.Parameter.TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -664,10 +664,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingMin: Float
     @JvmName("dampingMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamMin(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamMin(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -675,10 +675,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingMax: Float
     @JvmName("dampingMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamMax(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamMax(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -686,10 +686,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var dampingCurve: Curve?
     @JvmName("dampingCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_DAMPING)
+    get() = getParamCurve(CPUParticles3D.Parameter.DAMPING)
     @JvmName("dampingCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_DAMPING, value)
+      setParamCurve(CPUParticles3D.Parameter.DAMPING, value)
     }
 
   /**
@@ -697,10 +697,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleMin: Float
     @JvmName("angleMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamMin(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamMin(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -708,10 +708,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleMax: Float
     @JvmName("angleMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamMax(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamMax(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -719,10 +719,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var angleCurve: Curve?
     @JvmName("angleCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGLE)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANGLE)
     @JvmName("angleCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANGLE, value)
+      setParamCurve(CPUParticles3D.Parameter.ANGLE, value)
     }
 
   /**
@@ -730,10 +730,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountMin: Float
     @JvmName("scaleAmountMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamMin(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamMin(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -741,10 +741,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountMax: Float
     @JvmName("scaleAmountMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamMax(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamMax(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -752,10 +752,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var scaleAmountCurve: Curve?
     @JvmName("scaleAmountCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_SCALE)
+    get() = getParamCurve(CPUParticles3D.Parameter.SCALE)
     @JvmName("scaleAmountCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_SCALE, value)
+      setParamCurve(CPUParticles3D.Parameter.SCALE, value)
     }
 
   /**
@@ -854,10 +854,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationMin: Float
     @JvmName("hueVariationMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamMin(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamMin(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -865,10 +865,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationMax: Float
     @JvmName("hueVariationMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamMax(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamMax(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -876,10 +876,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var hueVariationCurve: Curve?
     @JvmName("hueVariationCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
+    get() = getParamCurve(CPUParticles3D.Parameter.HUE_VARIATION)
     @JvmName("hueVariationCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_HUE_VARIATION, value)
+      setParamCurve(CPUParticles3D.Parameter.HUE_VARIATION, value)
     }
 
   /**
@@ -887,10 +887,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedMin: Float
     @JvmName("animSpeedMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamMin(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamMin(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -898,10 +898,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedMax: Float
     @JvmName("animSpeedMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamMax(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamMax(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -909,10 +909,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animSpeedCurve: Curve?
     @JvmName("animSpeedCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANIM_SPEED)
     @JvmName("animSpeedCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_SPEED, value)
+      setParamCurve(CPUParticles3D.Parameter.ANIM_SPEED, value)
     }
 
   /**
@@ -920,10 +920,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetMin: Float
     @JvmName("animOffsetMinProperty")
-    get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamMin(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetMinProperty")
     set(`value`) {
-      setParamMin(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamMin(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   /**
@@ -931,10 +931,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetMax: Float
     @JvmName("animOffsetMaxProperty")
-    get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamMax(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetMaxProperty")
     set(`value`) {
-      setParamMax(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamMax(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   /**
@@ -942,10 +942,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   public final inline var animOffsetCurve: Curve?
     @JvmName("animOffsetCurveProperty")
-    get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
+    get() = getParamCurve(CPUParticles3D.Parameter.ANIM_OFFSET)
     @JvmName("animOffsetCurveProperty")
     set(`value`) {
-      setParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET, value)
+      setParamCurve(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -1678,61 +1678,61 @@ public open class CPUParticles3D : GeometryInstance3D() {
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
      * properties.
      */
-    PARAM_INITIAL_LINEAR_VELOCITY(0),
+    INITIAL_LINEAR_VELOCITY(0),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity
      * properties.
      */
-    PARAM_ANGULAR_VELOCITY(1),
+    ANGULAR_VELOCITY(1),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity
      * properties.
      */
-    PARAM_ORBIT_VELOCITY(2),
+    ORBIT_VELOCITY(2),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration
      * properties.
      */
-    PARAM_LINEAR_ACCEL(3),
+    LINEAR_ACCEL(3),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration
      * properties.
      */
-    PARAM_RADIAL_ACCEL(4),
+    RADIAL_ACCEL(4),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration
      * properties.
      */
-    PARAM_TANGENTIAL_ACCEL(5),
+    TANGENTIAL_ACCEL(5),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set damping properties.
      */
-    PARAM_DAMPING(6),
+    DAMPING(6),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angle properties.
      */
-    PARAM_ANGLE(7),
+    ANGLE(7),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set scale properties.
      */
-    PARAM_SCALE(8),
+    SCALE(8),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set hue variation properties.
      */
-    PARAM_HUE_VARIATION(9),
+    HUE_VARIATION(9),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation speed properties.
      */
-    PARAM_ANIM_SPEED(10),
+    ANIM_SPEED(10),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset
      * properties.
      */
-    PARAM_ANIM_OFFSET(11),
+    ANIM_OFFSET(11),
     /**
      * Represents the size of the [Parameter] enum.
      */
-    PARAM_MAX(12),
+    MAX(12),
     ;
 
     public val id: Long
@@ -1751,19 +1751,19 @@ public open class CPUParticles3D : GeometryInstance3D() {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
-    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
+    ALIGN_Y_TO_VELOCITY(0),
     /**
      * Use with [setParticleFlag] to set [particleFlagRotateY].
      */
-    PARTICLE_FLAG_ROTATE_Y(1),
+    ROTATE_Y(1),
     /**
      * Use with [setParticleFlag] to set [particleFlagDisableZ].
      */
-    PARTICLE_FLAG_DISABLE_Z(2),
+    DISABLE_Z(2),
     /**
      * Represents the size of the [ParticleFlags] enum.
      */
-    PARTICLE_FLAG_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

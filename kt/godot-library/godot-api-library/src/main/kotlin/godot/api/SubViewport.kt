@@ -242,23 +242,23 @@ public open class SubViewport : Viewport() {
     /**
      * Do not update the render target.
      */
-    UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * Update the render target once, then switch to [UPDATE_DISABLED].
      */
-    UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * Update the render target only when it is visible. This is the default value.
      */
-    UPDATE_WHEN_VISIBLE(2),
+    WHEN_VISIBLE(2),
     /**
      * Update the render target only when its parent is visible.
      */
-    UPDATE_WHEN_PARENT_VISIBLE(3),
+    WHEN_PARENT_VISIBLE(3),
     /**
      * Always update the render target.
      */
-    UPDATE_ALWAYS(4),
+    ALWAYS(4),
     ;
 
     public val id: Long

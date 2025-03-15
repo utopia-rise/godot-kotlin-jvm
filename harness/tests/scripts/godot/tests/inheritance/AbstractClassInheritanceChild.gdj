@@ -21,6 +21,7 @@ signals = [
 properties = [
     child_open_function_has_been_called,
 	open_var,
+	speed,
 	registered_exported_property_in_parent,
 	closed_function_has_been_called,
 	closed_var

@@ -190,17 +190,17 @@ public open class DirectionalLight3D : Light3D() {
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest
      * directional shadow mode. May result in blurrier shadows on close objects.
      */
-    SHADOW_ORTHOGONAL(0),
+    ORTHOGONAL(0),
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a
      * compromise between [SHADOW_ORTHOGONAL] and [SHADOW_PARALLEL_4_SPLITS] in terms of performance.
      */
-    SHADOW_PARALLEL_2_SPLITS(1),
+    PARALLEL_2_SPLITS(1),
     /**
      * Splits the view frustum in 4 areas, each with its own shadow map. This is the slowest
      * directional shadow mode.
      */
-    SHADOW_PARALLEL_4_SPLITS(2),
+    PARALLEL_4_SPLITS(2),
     ;
 
     public val id: Long

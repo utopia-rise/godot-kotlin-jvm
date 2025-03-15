@@ -258,19 +258,19 @@ public object ResourceLoader : Object() {
     /**
      * The resource is invalid, or has not been loaded with [loadThreadedRequest].
      */
-    THREAD_LOAD_INVALID_RESOURCE(0),
+    INVALID_RESOURCE(0),
     /**
      * The resource is still being loaded.
      */
-    THREAD_LOAD_IN_PROGRESS(1),
+    IN_PROGRESS(1),
     /**
      * Some error occurred during loading and it failed.
      */
-    THREAD_LOAD_FAILED(2),
+    FAILED(2),
     /**
      * The resource was loaded successfully and can be accessed via [loadThreadedGet].
      */
-    THREAD_LOAD_LOADED(3),
+    LOADED(3),
     ;
 
     public val id: Long

@@ -791,11 +791,11 @@ public open class Camera2D : Node2D() {
     /**
      * The camera updates during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    CAMERA2D_PROCESS_PHYSICS(0),
+    PHYSICS(0),
     /**
      * The camera updates during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    CAMERA2D_PROCESS_IDLE(1),
+    IDLE(1),
     ;
 
     public val id: Long

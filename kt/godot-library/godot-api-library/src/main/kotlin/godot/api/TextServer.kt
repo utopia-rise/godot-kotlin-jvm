@@ -1964,7 +1964,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetWordBreaks(
     shaped: RID,
     graphemeFlags: GraphemeFlag = TextServer.GraphemeFlag(264),
-    skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.GRAPHEME_IS_VIRTUAL,
+    skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.IS_VIRTUAL,
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag, LONG to skipGraphemeFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetWordBreaksPtr, PACKED_INT_32_ARRAY)
@@ -2618,24 +2618,23 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): JustificationFlag = JustificationFlag(flag ushr bits)
 
     public companion object {
-      public val JUSTIFICATION_NONE: JustificationFlag = JustificationFlag(0)
+      public val NONE: JustificationFlag = JustificationFlag(0)
 
-      public val JUSTIFICATION_KASHIDA: JustificationFlag = JustificationFlag(1)
+      public val KASHIDA: JustificationFlag = JustificationFlag(1)
 
-      public val JUSTIFICATION_WORD_BOUND: JustificationFlag = JustificationFlag(2)
+      public val WORD_BOUND: JustificationFlag = JustificationFlag(2)
 
-      public val JUSTIFICATION_TRIM_EDGE_SPACES: JustificationFlag = JustificationFlag(4)
+      public val TRIM_EDGE_SPACES: JustificationFlag = JustificationFlag(4)
 
-      public val JUSTIFICATION_AFTER_LAST_TAB: JustificationFlag = JustificationFlag(8)
+      public val AFTER_LAST_TAB: JustificationFlag = JustificationFlag(8)
 
-      public val JUSTIFICATION_CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlag(16)
+      public val CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlag(16)
 
-      public val JUSTIFICATION_SKIP_LAST_LINE: JustificationFlag = JustificationFlag(32)
+      public val SKIP_LAST_LINE: JustificationFlag = JustificationFlag(32)
 
-      public val JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag =
-          JustificationFlag(64)
+      public val SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag = JustificationFlag(64)
 
-      public val JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE: JustificationFlag = JustificationFlag(128)
+      public val DO_NOT_SKIP_SINGLE_LINE: JustificationFlag = JustificationFlag(128)
     }
   }
 
@@ -2645,21 +2644,21 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Autowrap is disabled.
      */
-    AUTOWRAP_OFF(0),
+    OFF(0),
     /**
      * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary
      * positions, which is useful when very limited space is available.
      */
-    AUTOWRAP_ARBITRARY(1),
+    ARBITRARY(1),
     /**
      * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
      */
-    AUTOWRAP_WORD(2),
+    WORD(2),
     /**
      * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not
      * fit in one line.
      */
-    AUTOWRAP_WORD_SMART(3),
+    WORD_SMART(3),
     ;
 
     public val id: Long
@@ -2765,23 +2764,23 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * No text trimming is performed.
      */
-    OVERRUN_NO_TRIMMING(0),
+    NO_TRIMMING(0),
     /**
      * Trims the text per character.
      */
-    OVERRUN_TRIM_CHAR(1),
+    TRIM_CHAR(1),
     /**
      * Trims the text per word.
      */
-    OVERRUN_TRIM_WORD(2),
+    TRIM_WORD(2),
     /**
      * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
      */
-    OVERRUN_TRIM_ELLIPSIS(3),
+    TRIM_ELLIPSIS(3),
     /**
      * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
      */
-    OVERRUN_TRIM_WORD_ELLIPSIS(4),
+    TRIM_WORD_ELLIPSIS(4),
     ;
 
     public val id: Long
@@ -2869,33 +2868,33 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): GraphemeFlag = GraphemeFlag(flag ushr bits)
 
     public companion object {
-      public val GRAPHEME_IS_VALID: GraphemeFlag = GraphemeFlag(1)
+      public val IS_VALID: GraphemeFlag = GraphemeFlag(1)
 
-      public val GRAPHEME_IS_RTL: GraphemeFlag = GraphemeFlag(2)
+      public val IS_RTL: GraphemeFlag = GraphemeFlag(2)
 
-      public val GRAPHEME_IS_VIRTUAL: GraphemeFlag = GraphemeFlag(4)
+      public val IS_VIRTUAL: GraphemeFlag = GraphemeFlag(4)
 
-      public val GRAPHEME_IS_SPACE: GraphemeFlag = GraphemeFlag(8)
+      public val IS_SPACE: GraphemeFlag = GraphemeFlag(8)
 
-      public val GRAPHEME_IS_BREAK_HARD: GraphemeFlag = GraphemeFlag(16)
+      public val IS_BREAK_HARD: GraphemeFlag = GraphemeFlag(16)
 
-      public val GRAPHEME_IS_BREAK_SOFT: GraphemeFlag = GraphemeFlag(32)
+      public val IS_BREAK_SOFT: GraphemeFlag = GraphemeFlag(32)
 
-      public val GRAPHEME_IS_TAB: GraphemeFlag = GraphemeFlag(64)
+      public val IS_TAB: GraphemeFlag = GraphemeFlag(64)
 
-      public val GRAPHEME_IS_ELONGATION: GraphemeFlag = GraphemeFlag(128)
+      public val IS_ELONGATION: GraphemeFlag = GraphemeFlag(128)
 
-      public val GRAPHEME_IS_PUNCTUATION: GraphemeFlag = GraphemeFlag(256)
+      public val IS_PUNCTUATION: GraphemeFlag = GraphemeFlag(256)
 
-      public val GRAPHEME_IS_UNDERSCORE: GraphemeFlag = GraphemeFlag(512)
+      public val IS_UNDERSCORE: GraphemeFlag = GraphemeFlag(512)
 
-      public val GRAPHEME_IS_CONNECTED: GraphemeFlag = GraphemeFlag(1024)
+      public val IS_CONNECTED: GraphemeFlag = GraphemeFlag(1024)
 
-      public val GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlag(2048)
+      public val IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlag(2048)
 
-      public val GRAPHEME_IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlag(4096)
+      public val IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlag(4096)
 
-      public val GRAPHEME_IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlag(8192)
+      public val IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlag(8192)
     }
   }
 
@@ -3059,16 +3058,16 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Contour point is on the curve.
      */
-    CONTOUR_CURVE_TAG_ON(1),
+    CURVE_TAG_ON(1),
     /**
      * Contour point isn't on the curve, but serves as a control point for a conic (quadratic)
      * Bézier arc.
      */
-    CONTOUR_CURVE_TAG_OFF_CONIC(0),
+    CURVE_TAG_OFF_CONIC(0),
     /**
      * Contour point isn't on the curve, but serves as a control point for a cubic Bézier arc.
      */
-    CONTOUR_CURVE_TAG_OFF_CUBIC(2),
+    CURVE_TAG_OFF_CUBIC(2),
     ;
 
     public val id: Long
@@ -3087,23 +3086,23 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Spacing for each glyph.
      */
-    SPACING_GLYPH(0),
+    GLYPH(0),
     /**
      * Spacing for the space character.
      */
-    SPACING_SPACE(1),
+    SPACE(1),
     /**
      * Spacing at the top of the line.
      */
-    SPACING_TOP(2),
+    TOP(2),
     /**
      * Spacing at the bottom of the line.
      */
-    SPACING_BOTTOM(3),
+    BOTTOM(3),
     /**
      * Represents the size of the [SpacingType] enum.
      */
-    SPACING_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -3145,11 +3144,11 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): FontStyle = FontStyle(flag ushr bits)
 
     public companion object {
-      public val FONT_BOLD: FontStyle = FontStyle(1)
+      public val BOLD: FontStyle = FontStyle(1)
 
-      public val FONT_ITALIC: FontStyle = FontStyle(2)
+      public val ITALIC: FontStyle = FontStyle(2)
 
-      public val FONT_FIXED_WIDTH: FontStyle = FontStyle(4)
+      public val FIXED_WIDTH: FontStyle = FontStyle(4)
     }
   }
 
@@ -3159,31 +3158,31 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Use default Unicode BiDi algorithm.
      */
-    STRUCTURED_TEXT_DEFAULT(0),
+    DEFAULT(0),
     /**
      * BiDi override for URI.
      */
-    STRUCTURED_TEXT_URI(1),
+    URI(1),
     /**
      * BiDi override for file path.
      */
-    STRUCTURED_TEXT_FILE(2),
+    FILE(2),
     /**
      * BiDi override for email.
      */
-    STRUCTURED_TEXT_EMAIL(3),
+    EMAIL(3),
     /**
      * BiDi override for lists. Structured text options: list separator [String].
      */
-    STRUCTURED_TEXT_LIST(4),
+    LIST(4),
     /**
      * BiDi override for GDScript.
      */
-    STRUCTURED_TEXT_GDSCRIPT(5),
+    GDSCRIPT(5),
     /**
      * User defined structured text BiDi override function.
      */
-    STRUCTURED_TEXT_CUSTOM(6),
+    CUSTOM(6),
     ;
 
     public val id: Long
@@ -3202,17 +3201,17 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Bitmap font is not scaled.
      */
-    FIXED_SIZE_SCALE_DISABLE(0),
+    DISABLE(0),
     /**
      * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the
      * recommended option for pixel art fonts.
      */
-    FIXED_SIZE_SCALE_INTEGER_ONLY(1),
+    INTEGER_ONLY(1),
     /**
      * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for
      * non-pixel art fonts.
      */
-    FIXED_SIZE_SCALE_ENABLED(2),
+    ENABLED(2),
     ;
 
     public val id: Long

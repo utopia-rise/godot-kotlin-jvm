@@ -1568,27 +1568,27 @@ public object OS : Object() {
      * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
      * devices.
      */
-    STD_HANDLE_INVALID(0),
+    INVALID(0),
     /**
      * Standard I/O device is a console. This typically occurs when Godot is run from a terminal
      * with no redirection. This is also used for all standard I/O devices when running Godot from the
      * editor, at least on desktop platforms.
      */
-    STD_HANDLE_CONSOLE(1),
+    CONSOLE(1),
     /**
      * Standard I/O device is a regular file. This typically occurs with redirection from a
      * terminal, e.g. `godot > stdout.txt`, `godot < stdin.txt` or `godot > stdout_stderr.txt 2>&1`.
      */
-    STD_HANDLE_FILE(2),
+    FILE(2),
     /**
      * Standard I/O device is a FIFO/pipe. This typically occurs with pipe usage from a terminal,
      * e.g. `echo "Hello" | godot`.
      */
-    STD_HANDLE_PIPE(3),
+    PIPE(3),
     /**
      * Standard I/O device type is unknown.
      */
-    STD_HANDLE_UNKNOWN(4),
+    UNKNOWN(4),
     ;
 
     public val id: Long

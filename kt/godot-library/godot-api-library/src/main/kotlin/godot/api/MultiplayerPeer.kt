@@ -236,15 +236,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     /**
      * The MultiplayerPeer is disconnected.
      */
-    CONNECTION_DISCONNECTED(0),
+    DISCONNECTED(0),
     /**
      * The MultiplayerPeer is currently connecting to a server.
      */
-    CONNECTION_CONNECTING(1),
+    CONNECTING(1),
     /**
      * This MultiplayerPeer is connected.
      */
-    CONNECTION_CONNECTED(2),
+    CONNECTED(2),
     ;
 
     public val id: Long

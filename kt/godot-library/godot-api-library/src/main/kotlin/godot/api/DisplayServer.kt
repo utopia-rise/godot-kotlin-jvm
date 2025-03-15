@@ -2385,7 +2385,7 @@ public object DisplayServer : Object() {
   @JvmStatic
   public final fun cursorSetCustomImage(
     cursor: Resource?,
-    shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
+    shape: CursorShape = DisplayServer.CursorShape.ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
@@ -3065,31 +3065,31 @@ public object DisplayServer : Object() {
     /**
      * Default landscape orientation.
      */
-    SCREEN_LANDSCAPE(0),
+    LANDSCAPE(0),
     /**
      * Default portrait orientation.
      */
-    SCREEN_PORTRAIT(1),
+    PORTRAIT(1),
     /**
      * Reverse landscape orientation (upside down).
      */
-    SCREEN_REVERSE_LANDSCAPE(2),
+    REVERSE_LANDSCAPE(2),
     /**
      * Reverse portrait orientation (upside down).
      */
-    SCREEN_REVERSE_PORTRAIT(3),
+    REVERSE_PORTRAIT(3),
     /**
      * Automatic landscape orientation (default or reverse depending on sensor).
      */
-    SCREEN_SENSOR_LANDSCAPE(4),
+    SENSOR_LANDSCAPE(4),
     /**
      * Automatic portrait orientation (default or reverse depending on sensor).
      */
-    SCREEN_SENSOR_PORTRAIT(5),
+    SENSOR_PORTRAIT(5),
     /**
      * Automatic landscape or portrait orientation (default or reverse depending on sensor).
      */
-    SCREEN_SENSOR(6),
+    SENSOR(6),
     ;
 
     public val id: Long
@@ -3159,97 +3159,97 @@ public object DisplayServer : Object() {
      * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse
      * cursor, such as a [LineEdit] or [TextEdit].
      */
-    CURSOR_ARROW(0),
+    ARROW(0),
     /**
      * I-beam cursor shape. This is used by default when hovering a control that accepts text input,
      * such as [LineEdit] or [TextEdit].
      */
-    CURSOR_IBEAM(1),
+    IBEAM(1),
     /**
      * Pointing hand cursor shape. This is used by default when hovering a [LinkButton] or a URL tag
      * in a [RichTextLabel].
      */
-    CURSOR_POINTING_HAND(2),
+    POINTING_HAND(2),
     /**
      * Crosshair cursor. This is intended to be displayed when the user needs precise aim over an
      * element, such as a rectangle selection tool or a color picker.
      */
-    CURSOR_CROSS(3),
+    CROSS(3),
     /**
      * Wait cursor. On most cursor themes, this displays a spinning icon *besides* the arrow.
      * Intended to be used for non-blocking operations (when the user can do something else at the
      * moment). See also [CURSOR_BUSY].
      */
-    CURSOR_WAIT(4),
+    WAIT(4),
     /**
      * Wait cursor. On most cursor themes, this *replaces* the arrow with a spinning icon. Intended
      * to be used for blocking operations (when the user can't do anything else at the moment). See
      * also [CURSOR_WAIT].
      */
-    CURSOR_BUSY(5),
+    BUSY(5),
     /**
      * Dragging hand cursor. This is displayed during drag-and-drop operations. See also
      * [CURSOR_CAN_DROP].
      */
-    CURSOR_DRAG(6),
+    DRAG(6),
     /**
      * "Can drop" cursor. This is displayed during drag-and-drop operations if hovering over a
      * [Control] that can accept the drag-and-drop event. On most cursor themes, this displays a
      * dragging hand with an arrow symbol besides it. See also [CURSOR_DRAG].
      */
-    CURSOR_CAN_DROP(7),
+    CAN_DROP(7),
     /**
      * Forbidden cursor. This is displayed during drag-and-drop operations if the hovered [Control]
      * can't accept the drag-and-drop event.
      */
-    CURSOR_FORBIDDEN(8),
+    FORBIDDEN(8),
     /**
      * Vertical resize cursor. Intended to be displayed when the hovered [Control] can be vertically
      * resized using the mouse. See also [CURSOR_VSPLIT].
      */
-    CURSOR_VSIZE(9),
+    VSIZE(9),
     /**
      * Horizontal resize cursor. Intended to be displayed when the hovered [Control] can be
      * horizontally resized using the mouse. See also [CURSOR_HSPLIT].
      */
-    CURSOR_HSIZE(10),
+    HSIZE(10),
     /**
      * Secondary diagonal resize cursor (top-right/bottom-left). Intended to be displayed when the
      * hovered [Control] can be resized on both axes at once using the mouse.
      */
-    CURSOR_BDIAGSIZE(11),
+    BDIAGSIZE(11),
     /**
      * Main diagonal resize cursor (top-left/bottom-right). Intended to be displayed when the
      * hovered [Control] can be resized on both axes at once using the mouse.
      */
-    CURSOR_FDIAGSIZE(12),
+    FDIAGSIZE(12),
     /**
      * Move cursor. Intended to be displayed when the hovered [Control] can be moved using the
      * mouse.
      */
-    CURSOR_MOVE(13),
+    MOVE(13),
     /**
      * Vertical split cursor. This is displayed when hovering a [Control] with splits that can be
      * vertically resized using the mouse, such as [VSplitContainer]. On some cursor themes, this
      * cursor may have the same appearance as [CURSOR_VSIZE].
      */
-    CURSOR_VSPLIT(14),
+    VSPLIT(14),
     /**
      * Horizontal split cursor. This is displayed when hovering a [Control] with splits that can be
      * horizontally resized using the mouse, such as [HSplitContainer]. On some cursor themes, this
      * cursor may have the same appearance as [CURSOR_HSIZE].
      */
-    CURSOR_HSPLIT(15),
+    HSPLIT(15),
     /**
      * Help cursor. On most cursor themes, this displays a question mark icon instead of the mouse
      * cursor. Intended to be used when the user has requested help on the next element that will be
      * clicked.
      */
-    CURSOR_HELP(16),
+    HELP(16),
     /**
      * Represents the size of the [CursorShape] enum.
      */
-    CURSOR_MAX(17),
+    MAX(17),
     ;
 
     public val id: Long
@@ -3369,35 +3369,35 @@ public object DisplayServer : Object() {
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [windowSetSize]. This flag is ignored for full screen windows.
      */
-    WINDOW_FLAG_RESIZE_DISABLED(0),
+    RESIZE_DISABLED(0),
     /**
      * The window do not have native title bar and other decorations. This flag is ignored for
      * full-screen windows.
      */
-    WINDOW_FLAG_BORDERLESS(1),
+    BORDERLESS(1),
     /**
      * The window is floating on top of all other windows. This flag is ignored for full-screen
      * windows.
      */
-    WINDOW_FLAG_ALWAYS_ON_TOP(2),
+    ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent.
      * **Note:** This flag has no effect if [isWindowTransparencyAvailable] returns `false`.
      * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but
      * availability might vary depending on GPU driver, display manager, and compositor capabilities.
      */
-    WINDOW_FLAG_TRANSPARENT(3),
+    TRANSPARENT(3),
     /**
      * The window can't be focused. No-focus window will ignore all input, except mouse clicks.
      */
-    WINDOW_FLAG_NO_FOCUS(4),
+    NO_FOCUS(4),
     /**
      * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window
      * is visible. An active popup window will exclusively receive all input, without stealing focus
      * from its parent. Popup windows are automatically closed when uses click outside it, or when an
      * application is switched. Popup window must have transient parent set (see [windowSetTransient]).
      */
-    WINDOW_FLAG_POPUP(5),
+    POPUP(5),
     /**
      * Window content is expanded to the full size of the window. Unlike borderless window, the
      * frame is left intact and can be used to resize the window, title bar is transparent, but have
@@ -3407,16 +3407,16 @@ public object DisplayServer : Object() {
      * decorations.
      * **Note:** This flag is implemented only on macOS.
      */
-    WINDOW_FLAG_EXTEND_TO_TITLE(6),
+    EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
      */
-    WINDOW_FLAG_MOUSE_PASSTHROUGH(7),
+    MOUSE_PASSTHROUGH(7),
     /**
      * Window style is overridden, forcing sharp corners.
      * **Note:** This flag is implemented only on Windows (11).
      */
-    WINDOW_FLAG_SHARP_CORNERS(8),
+    SHARP_CORNERS(8),
     /**
      * Windows is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and
      * [screenGetPixel].
@@ -3424,11 +3424,11 @@ public object DisplayServer : Object() {
      * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
      * should not be used as a security measure.
      */
-    WINDOW_FLAG_EXCLUDE_FROM_CAPTURE(9),
+    EXCLUDE_FROM_CAPTURE(9),
     /**
      * Max value of the [WindowFlags].
      */
-    WINDOW_FLAG_MAX(10),
+    MAX(10),
     ;
 
     public val id: Long
@@ -3498,39 +3498,39 @@ public object DisplayServer : Object() {
     /**
      * Top-left edge of a window.
      */
-    WINDOW_EDGE_TOP_LEFT(0),
+    EDGE_TOP_LEFT(0),
     /**
      * Top edge of a window.
      */
-    WINDOW_EDGE_TOP(1),
+    EDGE_TOP(1),
     /**
      * Top-right edge of a window.
      */
-    WINDOW_EDGE_TOP_RIGHT(2),
+    EDGE_TOP_RIGHT(2),
     /**
      * Left edge of a window.
      */
-    WINDOW_EDGE_LEFT(3),
+    EDGE_LEFT(3),
     /**
      * Right edge of a window.
      */
-    WINDOW_EDGE_RIGHT(4),
+    EDGE_RIGHT(4),
     /**
      * Bottom-left edge of a window.
      */
-    WINDOW_EDGE_BOTTOM_LEFT(5),
+    EDGE_BOTTOM_LEFT(5),
     /**
      * Bottom edge of a window.
      */
-    WINDOW_EDGE_BOTTOM(6),
+    EDGE_BOTTOM(6),
     /**
      * Bottom-right edge of a window.
      */
-    WINDOW_EDGE_BOTTOM_RIGHT(7),
+    EDGE_BOTTOM_RIGHT(7),
     /**
      * Represents the size of the [WindowResizeEdge] enum.
      */
-    WINDOW_EDGE_MAX(8),
+    EDGE_MAX(8),
     ;
 
     public val id: Long
@@ -3653,19 +3653,19 @@ public object DisplayServer : Object() {
     /**
      * Utterance has begun to be spoken.
      */
-    TTS_UTTERANCE_STARTED(0),
+    STARTED(0),
     /**
      * Utterance was successfully finished.
      */
-    TTS_UTTERANCE_ENDED(1),
+    ENDED(1),
     /**
      * Utterance was canceled, or TTS service was unable to process it.
      */
-    TTS_UTTERANCE_CANCELED(2),
+    CANCELED(2),
     /**
      * Utterance reached a word or sentence boundary.
      */
-    TTS_UTTERANCE_BOUNDARY(3),
+    BOUNDARY(3),
     ;
 
     public val id: Long

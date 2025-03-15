@@ -155,11 +155,11 @@ public open class XRBodyTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): BodyFlags = BodyFlags(flag ushr bits)
 
     public companion object {
-      public val BODY_FLAG_UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
+      public val UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
 
-      public val BODY_FLAG_LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
+      public val LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
 
-      public val BODY_FLAG_HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
+      public val HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
     }
   }
 
@@ -515,13 +515,13 @@ public open class XRBodyTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): JointFlags = JointFlags(flag ushr bits)
 
     public companion object {
-      public val JOINT_FLAG_ORIENTATION_VALID: JointFlags = JointFlags(1)
+      public val ORIENTATION_VALID: JointFlags = JointFlags(1)
 
-      public val JOINT_FLAG_ORIENTATION_TRACKED: JointFlags = JointFlags(2)
+      public val ORIENTATION_TRACKED: JointFlags = JointFlags(2)
 
-      public val JOINT_FLAG_POSITION_VALID: JointFlags = JointFlags(4)
+      public val POSITION_VALID: JointFlags = JointFlags(4)
 
-      public val JOINT_FLAG_POSITION_TRACKED: JointFlags = JointFlags(8)
+      public val POSITION_TRACKED: JointFlags = JointFlags(8)
     }
   }
 

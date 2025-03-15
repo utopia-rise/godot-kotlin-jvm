@@ -1937,17 +1937,17 @@ public object PhysicsServer3D : Object() {
      * The strength with which the pinned objects try to stay in positional relation to each other.
      * The higher, the stronger.
      */
-    PIN_JOINT_BIAS(0),
+    BIAS(0),
     /**
      * The strength with which the pinned objects try to stay in velocity relation to each other.
      * The higher, the stronger.
      */
-    PIN_JOINT_DAMPING(1),
+    DAMPING(1),
     /**
      * If above 0, this value is the maximum value for an impulse that this Joint3D puts on its
      * ends.
      */
-    PIN_JOINT_IMPULSE_CLAMP(2),
+    IMPULSE_CLAMP(2),
     ;
 
     public val id: Long
@@ -1967,32 +1967,32 @@ public object PhysicsServer3D : Object() {
      * The speed with which the two bodies get pulled together when they move in different
      * directions.
      */
-    HINGE_JOINT_BIAS(0),
+    BIAS(0),
     /**
      * The maximum rotation across the Hinge.
      */
-    HINGE_JOINT_LIMIT_UPPER(1),
+    LIMIT_UPPER(1),
     /**
      * The minimum rotation across the Hinge.
      */
-    HINGE_JOINT_LIMIT_LOWER(2),
+    LIMIT_LOWER(2),
     /**
      * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
      */
-    HINGE_JOINT_LIMIT_BIAS(3),
-    HINGE_JOINT_LIMIT_SOFTNESS(4),
+    LIMIT_BIAS(3),
+    LIMIT_SOFTNESS(4),
     /**
      * The lower this value, the more the rotation gets slowed down.
      */
-    HINGE_JOINT_LIMIT_RELAXATION(5),
+    LIMIT_RELAXATION(5),
     /**
      * Target speed for the motor.
      */
-    HINGE_JOINT_MOTOR_TARGET_VELOCITY(6),
+    MOTOR_TARGET_VELOCITY(6),
     /**
      * Maximum acceleration for the motor.
      */
-    HINGE_JOINT_MOTOR_MAX_IMPULSE(7),
+    MOTOR_MAX_IMPULSE(7),
     ;
 
     public val id: Long
@@ -2034,98 +2034,98 @@ public object PhysicsServer3D : Object() {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.
      */
-    SLIDER_JOINT_LINEAR_LIMIT_UPPER(0),
+    LINEAR_LIMIT_UPPER(0),
     /**
      * The minimum difference between the pivot points on their X axis before damping happens.
      */
-    SLIDER_JOINT_LINEAR_LIMIT_LOWER(1),
+    LINEAR_LIMIT_LOWER(1),
     /**
      * A factor applied to the movement across the slider axis once the limits get surpassed. The
      * lower, the slower the movement.
      */
-    SLIDER_JOINT_LINEAR_LIMIT_SOFTNESS(2),
+    LINEAR_LIMIT_SOFTNESS(2),
     /**
      * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy
      * gets lost.
      */
-    SLIDER_JOINT_LINEAR_LIMIT_RESTITUTION(3),
+    LINEAR_LIMIT_RESTITUTION(3),
     /**
      * The amount of damping once the slider limits are surpassed.
      */
-    SLIDER_JOINT_LINEAR_LIMIT_DAMPING(4),
+    LINEAR_LIMIT_DAMPING(4),
     /**
      * A factor applied to the movement across the slider axis as long as the slider is in the
      * limits. The lower, the slower the movement.
      */
-    SLIDER_JOINT_LINEAR_MOTION_SOFTNESS(5),
+    LINEAR_MOTION_SOFTNESS(5),
     /**
      * The amount of restitution inside the slider limits.
      */
-    SLIDER_JOINT_LINEAR_MOTION_RESTITUTION(6),
+    LINEAR_MOTION_RESTITUTION(6),
     /**
      * The amount of damping inside the slider limits.
      */
-    SLIDER_JOINT_LINEAR_MOTION_DAMPING(7),
+    LINEAR_MOTION_DAMPING(7),
     /**
      * A factor applied to the movement across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_LINEAR_ORTHOGONAL_SOFTNESS(8),
+    LINEAR_ORTHOGONAL_SOFTNESS(8),
     /**
      * The amount of restitution when movement is across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_LINEAR_ORTHOGONAL_RESTITUTION(9),
+    LINEAR_ORTHOGONAL_RESTITUTION(9),
     /**
      * The amount of damping when movement is across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_LINEAR_ORTHOGONAL_DAMPING(10),
+    LINEAR_ORTHOGONAL_DAMPING(10),
     /**
      * The upper limit of rotation in the slider.
      */
-    SLIDER_JOINT_ANGULAR_LIMIT_UPPER(11),
+    ANGULAR_LIMIT_UPPER(11),
     /**
      * The lower limit of rotation in the slider.
      */
-    SLIDER_JOINT_ANGULAR_LIMIT_LOWER(12),
+    ANGULAR_LIMIT_LOWER(12),
     /**
      * A factor applied to the all rotation once the limit is surpassed.
      */
-    SLIDER_JOINT_ANGULAR_LIMIT_SOFTNESS(13),
+    ANGULAR_LIMIT_SOFTNESS(13),
     /**
      * The amount of restitution of the rotation when the limit is surpassed.
      */
-    SLIDER_JOINT_ANGULAR_LIMIT_RESTITUTION(14),
+    ANGULAR_LIMIT_RESTITUTION(14),
     /**
      * The amount of damping of the rotation when the limit is surpassed.
      */
-    SLIDER_JOINT_ANGULAR_LIMIT_DAMPING(15),
+    ANGULAR_LIMIT_DAMPING(15),
     /**
      * A factor that gets applied to the all rotation in the limits.
      */
-    SLIDER_JOINT_ANGULAR_MOTION_SOFTNESS(16),
+    ANGULAR_MOTION_SOFTNESS(16),
     /**
      * The amount of restitution of the rotation in the limits.
      */
-    SLIDER_JOINT_ANGULAR_MOTION_RESTITUTION(17),
+    ANGULAR_MOTION_RESTITUTION(17),
     /**
      * The amount of damping of the rotation in the limits.
      */
-    SLIDER_JOINT_ANGULAR_MOTION_DAMPING(18),
+    ANGULAR_MOTION_DAMPING(18),
     /**
      * A factor that gets applied to the all rotation across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_ANGULAR_ORTHOGONAL_SOFTNESS(19),
+    ANGULAR_ORTHOGONAL_SOFTNESS(19),
     /**
      * The amount of restitution of the rotation across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_ANGULAR_ORTHOGONAL_RESTITUTION(20),
+    ANGULAR_ORTHOGONAL_RESTITUTION(20),
     /**
      * The amount of damping of the rotation across axes orthogonal to the slider.
      */
-    SLIDER_JOINT_ANGULAR_ORTHOGONAL_DAMPING(21),
+    ANGULAR_ORTHOGONAL_DAMPING(21),
     /**
      * Represents the size of the [SliderJointParam] enum.
      */
-    SLIDER_JOINT_MAX(22),
+    MAX(22),
     ;
 
     public val id: Long
@@ -2147,26 +2147,26 @@ public object PhysicsServer3D : Object() {
      * Could be defined as looseness in the [ConeTwistJoint3D].
      * If below 0.05, this behavior is locked.
      */
-    CONE_TWIST_JOINT_SWING_SPAN(0),
+    SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
      * Twist is locked if below 0.05.
      */
-    CONE_TWIST_JOINT_TWIST_SPAN(1),
+    TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
      * The higher, the faster.
      */
-    CONE_TWIST_JOINT_BIAS(2),
+    BIAS(2),
     /**
      * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the
      * joint.
      */
-    CONE_TWIST_JOINT_SOFTNESS(3),
+    SOFTNESS(3),
     /**
      * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
      */
-    CONE_TWIST_JOINT_RELAXATION(4),
+    RELAXATION(4),
     ;
 
     public val id: Long
@@ -2185,80 +2185,80 @@ public object PhysicsServer3D : Object() {
     /**
      * The minimum difference between the pivot points' axes.
      */
-    G6DOF_JOINT_LINEAR_LOWER_LIMIT(0),
+    LINEAR_LOWER_LIMIT(0),
     /**
      * The maximum difference between the pivot points' axes.
      */
-    G6DOF_JOINT_LINEAR_UPPER_LIMIT(1),
+    LINEAR_UPPER_LIMIT(1),
     /**
      * A factor that gets applied to the movement across the axes. The lower, the slower the
      * movement.
      */
-    G6DOF_JOINT_LINEAR_LIMIT_SOFTNESS(2),
+    LINEAR_LIMIT_SOFTNESS(2),
     /**
      * The amount of restitution on the axes movement. The lower, the more velocity-energy gets
      * lost.
      */
-    G6DOF_JOINT_LINEAR_RESTITUTION(3),
+    LINEAR_RESTITUTION(3),
     /**
      * The amount of damping that happens at the linear motion across the axes.
      */
-    G6DOF_JOINT_LINEAR_DAMPING(4),
+    LINEAR_DAMPING(4),
     /**
      * The velocity that the joint's linear motor will attempt to reach.
      */
-    G6DOF_JOINT_LINEAR_MOTOR_TARGET_VELOCITY(5),
+    LINEAR_MOTOR_TARGET_VELOCITY(5),
     /**
      * The maximum force that the linear motor can apply while trying to reach the target velocity.
      */
-    G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT(6),
-    G6DOF_JOINT_LINEAR_SPRING_STIFFNESS(7),
-    G6DOF_JOINT_LINEAR_SPRING_DAMPING(8),
-    G6DOF_JOINT_LINEAR_SPRING_EQUILIBRIUM_POINT(9),
+    LINEAR_MOTOR_FORCE_LIMIT(6),
+    LINEAR_SPRING_STIFFNESS(7),
+    LINEAR_SPRING_DAMPING(8),
+    LINEAR_SPRING_EQUILIBRIUM_POINT(9),
     /**
      * The minimum rotation in negative direction to break loose and rotate around the axes.
      */
-    G6DOF_JOINT_ANGULAR_LOWER_LIMIT(10),
+    ANGULAR_LOWER_LIMIT(10),
     /**
      * The minimum rotation in positive direction to break loose and rotate around the axes.
      */
-    G6DOF_JOINT_ANGULAR_UPPER_LIMIT(11),
+    ANGULAR_UPPER_LIMIT(11),
     /**
      * A factor that gets multiplied onto all rotations across the axes.
      */
-    G6DOF_JOINT_ANGULAR_LIMIT_SOFTNESS(12),
+    ANGULAR_LIMIT_SOFTNESS(12),
     /**
      * The amount of rotational damping across the axes. The lower, the more damping occurs.
      */
-    G6DOF_JOINT_ANGULAR_DAMPING(13),
+    ANGULAR_DAMPING(13),
     /**
      * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
      */
-    G6DOF_JOINT_ANGULAR_RESTITUTION(14),
+    ANGULAR_RESTITUTION(14),
     /**
      * The maximum amount of force that can occur, when rotating around the axes.
      */
-    G6DOF_JOINT_ANGULAR_FORCE_LIMIT(15),
+    ANGULAR_FORCE_LIMIT(15),
     /**
      * When correcting the crossing of limits in rotation across the axes, this error tolerance
      * factor defines how much the correction gets slowed down. The lower, the slower.
      */
-    G6DOF_JOINT_ANGULAR_ERP(16),
+    ANGULAR_ERP(16),
     /**
      * Target speed for the motor at the axes.
      */
-    G6DOF_JOINT_ANGULAR_MOTOR_TARGET_VELOCITY(17),
+    ANGULAR_MOTOR_TARGET_VELOCITY(17),
     /**
      * Maximum acceleration for the motor at the axes.
      */
-    G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT(18),
-    G6DOF_JOINT_ANGULAR_SPRING_STIFFNESS(19),
-    G6DOF_JOINT_ANGULAR_SPRING_DAMPING(20),
-    G6DOF_JOINT_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
+    ANGULAR_MOTOR_FORCE_LIMIT(18),
+    ANGULAR_SPRING_STIFFNESS(19),
+    ANGULAR_SPRING_DAMPING(20),
+    ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
     /**
      * Represents the size of the [G6DOFJointAxisParam] enum.
      */
-    G6DOF_JOINT_MAX(22),
+    MAX(22),
     ;
 
     public val id: Long
@@ -2277,25 +2277,25 @@ public object PhysicsServer3D : Object() {
     /**
      * If set, linear motion is possible within the given limits.
      */
-    G6DOF_JOINT_FLAG_ENABLE_LINEAR_LIMIT(0),
+    FLAG_ENABLE_LINEAR_LIMIT(0),
     /**
      * If set, rotational motion is possible.
      */
-    G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT(1),
-    G6DOF_JOINT_FLAG_ENABLE_ANGULAR_SPRING(2),
-    G6DOF_JOINT_FLAG_ENABLE_LINEAR_SPRING(3),
+    FLAG_ENABLE_ANGULAR_LIMIT(1),
+    FLAG_ENABLE_ANGULAR_SPRING(2),
+    FLAG_ENABLE_LINEAR_SPRING(3),
     /**
      * If set, there is a rotational motor across these axes.
      */
-    G6DOF_JOINT_FLAG_ENABLE_MOTOR(4),
+    FLAG_ENABLE_MOTOR(4),
     /**
      * If set, there is a linear motor on this axis that targets a specific velocity.
      */
-    G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR(5),
+    FLAG_ENABLE_LINEAR_MOTOR(5),
     /**
      * Represents the size of the [G6DOFJointAxisFlag] enum.
      */
-    G6DOF_JOINT_FLAG_MAX(6),
+    FLAG_MAX(6),
     ;
 
     public val id: Long
@@ -2314,49 +2314,49 @@ public object PhysicsServer3D : Object() {
     /**
      * The [Shape3D] is a [WorldBoundaryShape3D].
      */
-    SHAPE_WORLD_BOUNDARY(0),
+    WORLD_BOUNDARY(0),
     /**
      * The [Shape3D] is a [SeparationRayShape3D].
      */
-    SHAPE_SEPARATION_RAY(1),
+    SEPARATION_RAY(1),
     /**
      * The [Shape3D] is a [SphereShape3D].
      */
-    SHAPE_SPHERE(2),
+    SPHERE(2),
     /**
      * The [Shape3D] is a [BoxShape3D].
      */
-    SHAPE_BOX(3),
+    BOX(3),
     /**
      * The [Shape3D] is a [CapsuleShape3D].
      */
-    SHAPE_CAPSULE(4),
+    CAPSULE(4),
     /**
      * The [Shape3D] is a [CylinderShape3D].
      */
-    SHAPE_CYLINDER(5),
+    CYLINDER(5),
     /**
      * The [Shape3D] is a [ConvexPolygonShape3D].
      */
-    SHAPE_CONVEX_POLYGON(6),
+    CONVEX_POLYGON(6),
     /**
      * The [Shape3D] is a [ConcavePolygonShape3D].
      */
-    SHAPE_CONCAVE_POLYGON(7),
+    CONCAVE_POLYGON(7),
     /**
      * The [Shape3D] is a [HeightMapShape3D].
      */
-    SHAPE_HEIGHTMAP(8),
+    HEIGHTMAP(8),
     /**
      * The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape
      * results in an error.
      */
-    SHAPE_SOFT_BODY(9),
+    SOFT_BODY(9),
     /**
      * This constant is used internally by the engine. Any attempt to create this kind of shape
      * results in an error.
      */
-    SHAPE_CUSTOM(10),
+    CUSTOM(10),
     ;
 
     public val id: Long
@@ -2376,19 +2376,19 @@ public object PhysicsServer3D : Object() {
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values.
      */
-    AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
+    GRAVITY_OVERRIDE_MODE(0),
     /**
      * Constant to set/get gravity strength in an area.
      */
-    AREA_PARAM_GRAVITY(1),
+    GRAVITY(1),
     /**
      * Constant to set/get gravity vector/center in an area.
      */
-    AREA_PARAM_GRAVITY_VECTOR(2),
+    GRAVITY_VECTOR(2),
     /**
      * Constant to set/get whether the gravity vector of an area is a direction, or a center point.
      */
-    AREA_PARAM_GRAVITY_IS_POINT(3),
+    GRAVITY_IS_POINT(3),
     /**
      * Constant to set/get the distance at which the gravity strength is equal to the gravity
      * controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface
@@ -2399,49 +2399,49 @@ public object PhysicsServer3D : Object() {
      * The above is true only when the unit distance is a positive number. When this is set to 0.0,
      * the gravity will be constant regardless of distance.
      */
-    AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE(4),
+    GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
      * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values.
      */
-    AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(5),
+    LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
      * Constant to set/get the linear damping factor of an area.
      */
-    AREA_PARAM_LINEAR_DAMP(6),
+    LINEAR_DAMP(6),
     /**
      * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
      * possible values.
      */
-    AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(7),
+    ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
      * Constant to set/get the angular damping factor of an area.
      */
-    AREA_PARAM_ANGULAR_DAMP(8),
+    ANGULAR_DAMP(8),
     /**
      * Constant to set/get the priority (order of processing) of an area.
      */
-    AREA_PARAM_PRIORITY(9),
+    PRIORITY(9),
     /**
      * Constant to set/get the magnitude of area-specific wind force. This wind force only applies
      * to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.
      */
-    AREA_PARAM_WIND_FORCE_MAGNITUDE(10),
+    WIND_FORCE_MAGNITUDE(10),
     /**
      * Constant to set/get the 3D vector that specifies the origin from which an area-specific wind
      * blows.
      */
-    AREA_PARAM_WIND_SOURCE(11),
+    WIND_SOURCE(11),
     /**
      * Constant to set/get the 3D vector that specifies the direction in which an area-specific wind
      * blows.
      */
-    AREA_PARAM_WIND_DIRECTION(12),
+    WIND_DIRECTION(12),
     /**
      * Constant to set/get the exponential rate at which wind force decreases with distance from its
      * origin.
      */
-    AREA_PARAM_WIND_ATTENUATION_FACTOR(13),
+    WIND_ATTENUATION_FACTOR(13),
     ;
 
     public val id: Long
@@ -2461,27 +2461,27 @@ public object PhysicsServer3D : Object() {
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
      * collisions, and objects entering or exiting them.
      */
-    AREA_SPACE_OVERRIDE_DISABLED(0),
+    DISABLED(0),
     /**
      * This area adds its gravity/damp values to whatever has been calculated so far. This way, many
      * overlapping areas can combine their physics to make interesting effects.
      */
-    AREA_SPACE_OVERRIDE_COMBINE(1),
+    COMBINE(1),
     /**
      * This area adds its gravity/damp values to whatever has been calculated so far. Then stops
      * taking into account the rest of the areas, even the default one.
      */
-    AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
+    COMBINE_REPLACE(2),
     /**
      * This area replaces any gravity/damp, even the default one, and stops taking into account the
      * rest of the areas.
      */
-    AREA_SPACE_OVERRIDE_REPLACE(3),
+    REPLACE(3),
     /**
      * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the
      * areas, down to the default one.
      */
-    AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    REPLACE_COMBINE(4),
     ;
 
     public val id: Long
@@ -2535,47 +2535,47 @@ public object PhysicsServer3D : Object() {
     /**
      * Constant to set/get a body's bounce factor.
      */
-    BODY_PARAM_BOUNCE(0),
+    BOUNCE(0),
     /**
      * Constant to set/get a body's friction.
      */
-    BODY_PARAM_FRICTION(1),
+    FRICTION(1),
     /**
      * Constant to set/get a body's mass.
      */
-    BODY_PARAM_MASS(2),
+    MASS(2),
     /**
      * Constant to set/get a body's inertia.
      */
-    BODY_PARAM_INERTIA(3),
+    INERTIA(3),
     /**
      * Constant to set/get a body's center of mass position in the body's local coordinate system.
      */
-    BODY_PARAM_CENTER_OF_MASS(4),
+    CENTER_OF_MASS(4),
     /**
      * Constant to set/get a body's gravity multiplier.
      */
-    BODY_PARAM_GRAVITY_SCALE(5),
+    GRAVITY_SCALE(5),
     /**
      * Constant to set/get a body's linear damping mode. See [BodyDampMode] for possible values.
      */
-    BODY_PARAM_LINEAR_DAMP_MODE(6),
+    LINEAR_DAMP_MODE(6),
     /**
      * Constant to set/get a body's angular damping mode. See [BodyDampMode] for possible values.
      */
-    BODY_PARAM_ANGULAR_DAMP_MODE(7),
+    ANGULAR_DAMP_MODE(7),
     /**
      * Constant to set/get a body's linear damping factor.
      */
-    BODY_PARAM_LINEAR_DAMP(8),
+    LINEAR_DAMP(8),
     /**
      * Constant to set/get a body's angular damping factor.
      */
-    BODY_PARAM_ANGULAR_DAMP(9),
+    ANGULAR_DAMP(9),
     /**
      * Represents the size of the [BodyParameter] enum.
      */
-    BODY_PARAM_MAX(10),
+    MAX(10),
     ;
 
     public val id: Long
@@ -2653,12 +2653,12 @@ public object PhysicsServer3D : Object() {
      * The value of the first parameter and area callback function receives, when an object enters
      * one of its shapes.
      */
-    AREA_BODY_ADDED(0),
+    ADDED(0),
     /**
      * The value of the first parameter and area callback function receives, when an object exits
      * one of its shapes.
      */
-    AREA_BODY_REMOVED(1),
+    REMOVED(1),
     ;
 
     public val id: Long
@@ -2705,44 +2705,44 @@ public object PhysicsServer3D : Object() {
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
      * status has to be recalculated.
      */
-    SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
+    CONTACT_RECYCLE_RADIUS(0),
     /**
      * Constant to set/get the maximum distance a shape can be from another before they are
      * considered separated and the contact is discarded.
      */
-    SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
+    CONTACT_MAX_SEPARATION(1),
     /**
      * Constant to set/get the maximum distance a shape can penetrate another shape before it is
      * considered a collision.
      */
-    SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
+    CONTACT_MAX_ALLOWED_PENETRATION(2),
     /**
      * Constant to set/get the default solver bias for all physics contacts. A solver bias is a
      * factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in
      * that state because of numerical imprecision.
      */
-    SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
+    CONTACT_DEFAULT_BIAS(3),
     /**
      * Constant to set/get the threshold linear velocity of activity. A body marked as potentially
      * inactive for both linear and angular velocity will be put to sleep after the time given.
      */
-    SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
+    BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
     /**
      * Constant to set/get the threshold angular velocity of activity. A body marked as potentially
      * inactive for both linear and angular velocity will be put to sleep after the time given.
      */
-    SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
+    BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
     /**
      * Constant to set/get the maximum time of activity. A body marked as potentially inactive for
      * both linear and angular velocity will be put to sleep after this time.
      */
-    SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
+    BODY_TIME_TO_SLEEP(6),
     /**
      * Constant to set/get the number of solver iterations for contacts and constraints. The greater
      * the number of iterations, the more accurate the collisions and constraints will be. However, a
      * greater number of iterations requires more CPU power, which can decrease performance.
      */
-    SPACE_PARAM_SOLVER_ITERATIONS(7),
+    SOLVER_ITERATIONS(7),
     ;
 
     public val id: Long

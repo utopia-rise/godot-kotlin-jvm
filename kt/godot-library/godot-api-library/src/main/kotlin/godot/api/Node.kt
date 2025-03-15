@@ -2346,21 +2346,21 @@ public open class Node : Object() {
     /**
      * Duplicate the node's signal connections.
      */
-    DUPLICATE_SIGNALS(1),
+    SIGNALS(1),
     /**
      * Duplicate the node's groups.
      */
-    DUPLICATE_GROUPS(2),
+    GROUPS(2),
     /**
      * Duplicate the node's script (also overriding the duplicated children's scripts, if combined
      * with [DUPLICATE_USE_INSTANTIATION]).
      */
-    DUPLICATE_SCRIPTS(4),
+    SCRIPTS(4),
     /**
      * Duplicate using [PackedScene.instantiate]. If the node comes from a scene saved on disk,
      * reuses [PackedScene.instantiate] as the base for the duplicated node and its children.
      */
-    DUPLICATE_USE_INSTANTIATION(8),
+    USE_INSTANTIATION(8),
     ;
 
     public val id: Long

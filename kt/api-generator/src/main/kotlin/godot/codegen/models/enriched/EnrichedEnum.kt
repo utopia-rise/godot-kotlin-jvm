@@ -6,8 +6,8 @@ import godot.codegen.models.Enum
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.TypedTrait
 import godot.codegen.workarounds.sanitizeApiType
-import godot.common.extensions.convertToSnakeCase
 import godot.common.extensions.isValidKotlinIdentifier
+import godot.common.extensions.removePrefixWords
 import godot.common.extensions.toScreamingSnakeCase
 
 class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
@@ -30,11 +30,13 @@ class EnrichedEnum(model: Enum, val outerClass: String?) : TypedTrait {
 }
 
 class EnrichedEnumValue(valueName: String, ownerName: String, val value: Long, override val description: String?) : IDocumented {
-    val name = valueName
-        .removePrefix(ownerName.toScreamingSnakeCase())
-        .removePrefix("_")
-        .takeIf { it.isValidKotlinIdentifier() }
-        ?: valueName
+    val name = run {
+        val screamingSnakeCase = ownerName.toScreamingSnakeCase()
+        valueName
+            .removePrefixWords(screamingSnakeCase)
+            .takeIf { it.isValidKotlinIdentifier() }
+            ?: valueName
+    }
 }
 
 fun List<Enum>.toEnriched(outerClass: String? = null) = map { EnrichedEnum(it, outerClass) }

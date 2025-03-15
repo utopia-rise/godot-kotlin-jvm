@@ -617,21 +617,21 @@ public open class AudioStreamPlayer3D : Node3D() {
     /**
      * Attenuation of loudness according to linear distance.
      */
-    ATTENUATION_INVERSE_DISTANCE(0),
+    INVERSE_DISTANCE(0),
     /**
      * Attenuation of loudness according to squared distance.
      */
-    ATTENUATION_INVERSE_SQUARE_DISTANCE(1),
+    INVERSE_SQUARE_DISTANCE(1),
     /**
      * Attenuation of loudness according to logarithmic distance.
      */
-    ATTENUATION_LOGARITHMIC(2),
+    LOGARITHMIC(2),
     /**
      * No attenuation of loudness according to distance. The sound will still be heard positionally,
      * unlike an [AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value
      * greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
-    ATTENUATION_DISABLED(3),
+    DISABLED(3),
     ;
 
     public val id: Long

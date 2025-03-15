@@ -1156,15 +1156,15 @@ public open class Image : Resource() {
     /**
      * Image does not have alpha.
      */
-    ALPHA_NONE(0),
+    NONE(0),
     /**
      * Image stores alpha in a single bit.
      */
-    ALPHA_BIT(1),
+    BIT(1),
     /**
      * Image uses alpha.
      */
-    ALPHA_BLEND(2),
+    BLEND(2),
     ;
 
     public val id: Long
@@ -1183,27 +1183,27 @@ public open class Image : Resource() {
     /**
      * Use S3TC compression.
      */
-    COMPRESS_S3TC(0),
+    S3TC(0),
     /**
      * Use ETC compression.
      */
-    COMPRESS_ETC(1),
+    ETC(1),
     /**
      * Use ETC2 compression.
      */
-    COMPRESS_ETC2(2),
+    ETC2(2),
     /**
      * Use BPTC compression.
      */
-    COMPRESS_BPTC(3),
+    BPTC(3),
     /**
      * Use ASTC compression.
      */
-    COMPRESS_ASTC(4),
+    ASTC(4),
     /**
      * Represents the size of the [CompressMode] enum.
      */
-    COMPRESS_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

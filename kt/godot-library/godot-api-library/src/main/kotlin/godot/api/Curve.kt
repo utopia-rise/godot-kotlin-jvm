@@ -138,8 +138,8 @@ public open class Curve : Resource() {
     position: Vector2,
     leftTangent: Float = 0.0f,
     rightTangent: Float = 0.0f,
-    leftMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
-    rightMode: TangentMode = Curve.TangentMode.TANGENT_FREE,
+    leftMode: TangentMode = Curve.TangentMode.FREE,
+    rightMode: TangentMode = Curve.TangentMode.FREE,
   ): Int {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent.toDouble(), DOUBLE to rightTangent.toDouble(), LONG to leftMode.id, LONG to rightMode.id)
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, LONG)
@@ -371,12 +371,12 @@ public open class Curve : Resource() {
     /**
      * The tangent on this side of the point is user-defined.
      */
-    TANGENT_FREE(0),
+    FREE(0),
     /**
      * The curve calculates the tangent on this side of the point as the slope halfway towards the
      * adjacent point.
      */
-    TANGENT_LINEAR(1),
+    LINEAR(1),
     /**
      * The total number of available tangent modes.
      */

@@ -653,15 +653,15 @@ public object AudioServer : Object() {
     /**
      * A 3.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_31(1),
+    SURROUND_31(1),
     /**
      * A 5.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_51(2),
+    SURROUND_51(2),
     /**
      * A 7.1 channel surround setup was detected.
      */
-    SPEAKER_SURROUND_71(3),
+    SURROUND_71(3),
     ;
 
     public val id: Long

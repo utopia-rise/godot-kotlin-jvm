@@ -757,7 +757,7 @@ public object RenderingServer : Object() {
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
-    compressFormat: ArrayFormat = RenderingServer.ArrayFormat.ARRAY_FLAG_FORMAT_VERSION_1,
+    compressFormat: ArrayFormat = RenderingServer.ArrayFormat.FLAG_FORMAT_VERSION_1,
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
     TransferContext.callMethod(ptr, MethodBindings.meshAddSurfaceFromArraysPtr, NIL)
@@ -3845,12 +3845,10 @@ public object RenderingServer : Object() {
   public final fun environmentSetAmbientLight(
     env: RID,
     color: Color,
-    ambient: EnvironmentAmbientSource =
-        RenderingServer.EnvironmentAmbientSource.ENV_AMBIENT_SOURCE_BG,
+    ambient: EnvironmentAmbientSource = RenderingServer.EnvironmentAmbientSource.BG,
     energy: Float = 1.0f,
     skyContribution: Float = 0.0f,
-    reflectionSource: EnvironmentReflectionSource =
-        RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG,
+    reflectionSource: EnvironmentReflectionSource = RenderingServer.EnvironmentReflectionSource.BG,
   ): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy.toDouble(), DOUBLE to skyContribution.toDouble(), LONG to reflectionSource.id)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetAmbientLightPtr, NIL)
@@ -3968,7 +3966,7 @@ public object RenderingServer : Object() {
     heightDensity: Float,
     aerialPerspective: Float,
     skyAffect: Float,
-    fogMode: EnvironmentFogMode = RenderingServer.EnvironmentFogMode.ENV_FOG_MODE_EXPONENTIAL,
+    fogMode: EnvironmentFogMode = RenderingServer.EnvironmentFogMode.EXPONENTIAL,
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble(), LONG to fogMode.id)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetFogPtr, NIL)
@@ -5258,8 +5256,8 @@ public object RenderingServer : Object() {
     texture: RID,
     topleft: Vector2,
     bottomright: Vector2,
-    xAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
-    yAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
+    xAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.STRETCH,
+    yAxisMode: NinePatchAxisMode = RenderingServer.NinePatchAxisMode.STRETCH,
     drawCenter: Boolean = true,
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
@@ -6467,11 +6465,11 @@ public object RenderingServer : Object() {
     /**
      * Cubemap texture (see [Cubemap]).
      */
-    TEXTURE_LAYERED_CUBEMAP(1),
+    CUBEMAP(1),
     /**
      * Array of cubemap textures (see [CubemapArray]).
      */
-    TEXTURE_LAYERED_CUBEMAP_ARRAY(2),
+    CUBEMAP_ARRAY(2),
     ;
 
     public val id: Long
@@ -6529,27 +6527,27 @@ public object RenderingServer : Object() {
     /**
      * Shader is a 3D shader.
      */
-    SHADER_SPATIAL(0),
+    SPATIAL(0),
     /**
      * Shader is a 2D shader.
      */
-    SHADER_CANVAS_ITEM(1),
+    CANVAS_ITEM(1),
     /**
      * Shader is a particle shader (can be used in both 2D and 3D).
      */
-    SHADER_PARTICLES(2),
+    PARTICLES(2),
     /**
      * Shader is a 3D sky shader.
      */
-    SHADER_SKY(3),
+    SKY(3),
     /**
      * Shader is a 3D fog shader.
      */
-    SHADER_FOG(4),
+    FOG(4),
     /**
      * Represents the size of the [ShaderMode] enum.
      */
-    SHADER_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -6568,59 +6566,59 @@ public object RenderingServer : Object() {
     /**
      * Array is a vertex position array.
      */
-    ARRAY_VERTEX(0),
+    VERTEX(0),
     /**
      * Array is a normal array.
      */
-    ARRAY_NORMAL(1),
+    NORMAL(1),
     /**
      * Array is a tangent array.
      */
-    ARRAY_TANGENT(2),
+    TANGENT(2),
     /**
      * Array is a vertex color array.
      */
-    ARRAY_COLOR(3),
+    COLOR(3),
     /**
      * Array is a UV coordinates array.
      */
-    ARRAY_TEX_UV(4),
+    TEX_UV(4),
     /**
      * Array is a UV coordinates array for the second set of UV coordinates.
      */
-    ARRAY_TEX_UV2(5),
+    TEX_UV2(5),
     /**
      * Array is a custom data array for the first set of custom data.
      */
-    ARRAY_CUSTOM0(6),
+    CUSTOM0(6),
     /**
      * Array is a custom data array for the second set of custom data.
      */
-    ARRAY_CUSTOM1(7),
+    CUSTOM1(7),
     /**
      * Array is a custom data array for the third set of custom data.
      */
-    ARRAY_CUSTOM2(8),
+    CUSTOM2(8),
     /**
      * Array is a custom data array for the fourth set of custom data.
      */
-    ARRAY_CUSTOM3(9),
+    CUSTOM3(9),
     /**
      * Array contains bone information.
      */
-    ARRAY_BONES(10),
+    BONES(10),
     /**
      * Array is weight information.
      */
-    ARRAY_WEIGHTS(11),
+    WEIGHTS(11),
     /**
      * Array is an index array.
      */
-    ARRAY_INDEX(12),
+    INDEX(12),
     /**
      * Represents the size of the [ArrayType] enum.
      */
-    ARRAY_MAX(13),
+    MAX(13),
     ;
 
     public val id: Long
@@ -6640,46 +6638,46 @@ public object RenderingServer : Object() {
      * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
      * normalized, unsigned floating-point in the `[0.0, 1.0]` range.
      */
-    ARRAY_CUSTOM_RGBA8_UNORM(0),
+    RGBA8_UNORM(0),
     /**
      * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
      * normalized, signed floating-point in the `[-1.0, 1.0]` range.
      */
-    ARRAY_CUSTOM_RGBA8_SNORM(1),
+    RGBA8_SNORM(1),
     /**
      * Custom data array contains 16-bit-per-channel red/green color data. Values are floating-point
      * in half precision.
      */
-    ARRAY_CUSTOM_RG_HALF(2),
+    RG_HALF(2),
     /**
      * Custom data array contains 16-bit-per-channel red/green/blue/alpha color data. Values are
      * floating-point in half precision.
      */
-    ARRAY_CUSTOM_RGBA_HALF(3),
+    RGBA_HALF(3),
     /**
      * Custom data array contains 32-bit-per-channel red color data. Values are floating-point in
      * single precision.
      */
-    ARRAY_CUSTOM_R_FLOAT(4),
+    R_FLOAT(4),
     /**
      * Custom data array contains 32-bit-per-channel red/green color data. Values are floating-point
      * in single precision.
      */
-    ARRAY_CUSTOM_RG_FLOAT(5),
+    RG_FLOAT(5),
     /**
      * Custom data array contains 32-bit-per-channel red/green/blue color data. Values are
      * floating-point in single precision.
      */
-    ARRAY_CUSTOM_RGB_FLOAT(6),
+    RGB_FLOAT(6),
     /**
      * Custom data array contains 32-bit-per-channel red/green/blue/alpha color data. Values are
      * floating-point in single precision.
      */
-    ARRAY_CUSTOM_RGBA_FLOAT(7),
+    RGBA_FLOAT(7),
     /**
      * Represents the size of the [ArrayCustomFormat] enum.
      */
-    ARRAY_CUSTOM_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -6763,29 +6761,29 @@ public object RenderingServer : Object() {
 
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
+      public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
-      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
+      public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
-      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
+      public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
-      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
+      public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
-      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
+      public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
-      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
+      public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormat(35)
+      public val FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormat(35)
+      public val FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormat(0)
+      public val FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormat(0)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormat(34359738368)
+      public val FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormat(34359738368)
+      public val FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormat(255)
+      public val FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormat(255)
     }
   }
 
@@ -6795,28 +6793,28 @@ public object RenderingServer : Object() {
     /**
      * Primitive to draw consists of points.
      */
-    PRIMITIVE_POINTS(0),
+    POINTS(0),
     /**
      * Primitive to draw consists of lines.
      */
-    PRIMITIVE_LINES(1),
+    LINES(1),
     /**
      * Primitive to draw consists of a line strip from start to end.
      */
-    PRIMITIVE_LINE_STRIP(2),
+    LINE_STRIP(2),
     /**
      * Primitive to draw consists of triangles.
      */
-    PRIMITIVE_TRIANGLES(3),
+    TRIANGLES(3),
     /**
      * Primitive to draw consists of a triangle strip (the last 3 vertices are always combined to
      * make a triangle).
      */
-    PRIMITIVE_TRIANGLE_STRIP(4),
+    TRIANGLE_STRIP(4),
     /**
      * Represents the size of the [PrimitiveType] enum.
      */
-    PRIMITIVE_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -6881,11 +6879,11 @@ public object RenderingServer : Object() {
     /**
      * MultiMesh physics interpolation favors speed over quality.
      */
-    MULTIMESH_INTERP_QUALITY_FAST(0),
+    INTERP_QUALITY_FAST(0),
     /**
      * MultiMesh physics interpolation favors quality over speed.
      */
-    MULTIMESH_INTERP_QUALITY_HIGH(1),
+    INTERP_QUALITY_HIGH(1),
     ;
 
     public val id: Long
@@ -6960,15 +6958,15 @@ public object RenderingServer : Object() {
     /**
      * Directional (sun/moon) light (see [DirectionalLight3D]).
      */
-    LIGHT_DIRECTIONAL(0),
+    DIRECTIONAL(0),
     /**
      * Omni light (see [OmniLight3D]).
      */
-    LIGHT_OMNI(1),
+    OMNI(1),
     /**
      * Spot light (see [SpotLight3D]).
      */
-    LIGHT_SPOT(2),
+    SPOT(2),
     ;
 
     public val id: Long
@@ -7104,14 +7102,14 @@ public object RenderingServer : Object() {
      * account when baking global illumination. This mode should generally be used for dynamic lights
      * that change quickly, as the effect of global illumination is less noticeable on those lights.
      */
-    LIGHT_BAKE_DISABLED(0),
+    DISABLED(0),
     /**
      * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI
      * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
      * illumination will not update in real-time. This is suitable for subtle changes (such as
      * flickering torches), but generally not large changes such as toggling a light on and off.
      */
-    LIGHT_BAKE_STATIC(1),
+    STATIC(1),
     /**
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
@@ -7120,7 +7118,7 @@ public object RenderingServer : Object() {
      * [LIGHT_BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
      * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
-    LIGHT_BAKE_DYNAMIC(2),
+    DYNAMIC(2),
     ;
 
     public val id: Long
@@ -7139,11 +7137,11 @@ public object RenderingServer : Object() {
     /**
      * Use a dual paraboloid shadow map for omni lights.
      */
-    LIGHT_OMNI_SHADOW_DUAL_PARABOLOID(0),
+    DUAL_PARABOLOID(0),
     /**
      * Use a cubemap shadow map for omni lights. Slower but better quality than dual paraboloid.
      */
-    LIGHT_OMNI_SHADOW_CUBE(1),
+    CUBE(1),
     ;
 
     public val id: Long
@@ -7162,15 +7160,15 @@ public object RenderingServer : Object() {
     /**
      * Use orthogonal shadow projection for directional light.
      */
-    LIGHT_DIRECTIONAL_SHADOW_ORTHOGONAL(0),
+    ORTHOGONAL(0),
     /**
      * Use 2 splits for shadow projection when using directional light.
      */
-    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_2_SPLITS(1),
+    PARALLEL_2_SPLITS(1),
     /**
      * Use 4 splits for shadow projection when using directional light.
      */
-    LIGHT_DIRECTIONAL_SHADOW_PARALLEL_4_SPLITS(2),
+    PARALLEL_4_SPLITS(2),
     ;
 
     public val id: Long
@@ -7277,11 +7275,11 @@ public object RenderingServer : Object() {
     /**
      * Reflection probe will update reflections once and then stop.
      */
-    REFLECTION_PROBE_UPDATE_ONCE(0),
+    ONCE(0),
     /**
      * Reflection probe will update each frame. This mode is necessary to capture moving objects.
      */
-    REFLECTION_PROBE_UPDATE_ALWAYS(1),
+    ALWAYS(1),
     ;
 
     public val id: Long
@@ -7301,17 +7299,17 @@ public object RenderingServer : Object() {
     /**
      * Do not apply any ambient lighting inside the reflection probe's box defined by its size.
      */
-    REFLECTION_PROBE_AMBIENT_DISABLED(0),
+    DISABLED(0),
     /**
      * Apply automatically-sourced environment lighting inside the reflection probe's box defined by
      * its size.
      */
-    REFLECTION_PROBE_AMBIENT_ENVIRONMENT(1),
+    ENVIRONMENT(1),
     /**
      * Apply custom ambient lighting inside the reflection probe's box defined by its size. See
      * [reflectionProbeSetAmbientColor] and [reflectionProbeSetAmbientEnergy].
      */
-    REFLECTION_PROBE_AMBIENT_COLOR(2),
+    COLOR(2),
     ;
 
     public val id: Long
@@ -7669,23 +7667,23 @@ public object RenderingServer : Object() {
     /**
      * Do not update the viewport's render target.
      */
-    VIEWPORT_UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * Update the viewport's render target once, then switch to [VIEWPORT_UPDATE_DISABLED].
      */
-    VIEWPORT_UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * Update the viewport's render target only when it is visible. This is the default value.
      */
-    VIEWPORT_UPDATE_WHEN_VISIBLE(2),
+    WHEN_VISIBLE(2),
     /**
      * Update the viewport's render target only when its parent is visible.
      */
-    VIEWPORT_UPDATE_WHEN_PARENT_VISIBLE(3),
+    WHEN_PARENT_VISIBLE(3),
     /**
      * Always update the viewport's render target.
      */
-    VIEWPORT_UPDATE_ALWAYS(4),
+    ALWAYS(4),
     ;
 
     public val id: Long
@@ -7704,15 +7702,15 @@ public object RenderingServer : Object() {
     /**
      * Always clear the viewport's render target before drawing.
      */
-    VIEWPORT_CLEAR_ALWAYS(0),
+    ALWAYS(0),
     /**
      * Never clear the viewport's render target.
      */
-    VIEWPORT_CLEAR_NEVER(1),
+    NEVER(1),
     /**
      * Clear the viewport's render target on the next frame, then switch to [VIEWPORT_CLEAR_NEVER].
      */
-    VIEWPORT_CLEAR_ONLY_NEXT_FRAME(2),
+    ONLY_NEXT_FRAME(2),
     ;
 
     public val id: Long
@@ -7731,21 +7729,21 @@ public object RenderingServer : Object() {
     /**
      * Disable rendering of 3D environment over 2D canvas.
      */
-    VIEWPORT_ENVIRONMENT_DISABLED(0),
+    DISABLED(0),
     /**
      * Enable rendering of 3D environment over 2D canvas.
      */
-    VIEWPORT_ENVIRONMENT_ENABLED(1),
+    ENABLED(1),
     /**
      * Inherit enable/disable value from parent. If the topmost parent is also set to
      * [VIEWPORT_ENVIRONMENT_INHERIT], then this has the same behavior as
      * [VIEWPORT_ENVIRONMENT_ENABLED].
      */
-    VIEWPORT_ENVIRONMENT_INHERIT(2),
+    INHERIT(2),
     /**
      * Represents the size of the [ViewportEnvironmentMode] enum.
      */
-    VIEWPORT_ENVIRONMENT_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -7876,27 +7874,27 @@ public object RenderingServer : Object() {
     /**
      * Anisotropic filtering is disabled.
      */
-    VIEWPORT_ANISOTROPY_DISABLED(0),
+    ANISOTROPY_DISABLED(0),
     /**
      * Use 2× anisotropic filtering.
      */
-    VIEWPORT_ANISOTROPY_2X(1),
+    ANISOTROPY_2X(1),
     /**
      * Use 4× anisotropic filtering. This is the default value.
      */
-    VIEWPORT_ANISOTROPY_4X(2),
+    ANISOTROPY_4X(2),
     /**
      * Use 8× anisotropic filtering.
      */
-    VIEWPORT_ANISOTROPY_8X(3),
+    ANISOTROPY_8X(3),
     /**
      * Use 16× anisotropic filtering.
      */
-    VIEWPORT_ANISOTROPY_16X(4),
+    ANISOTROPY_16X(4),
     /**
      * Represents the size of the [ViewportAnisotropicFiltering] enum.
      */
-    VIEWPORT_ANISOTROPY_MAX(5),
+    ANISOTROPY_MAX(5),
     ;
 
     public val id: Long
@@ -7946,16 +7944,16 @@ public object RenderingServer : Object() {
      * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU
      * usage, but least effective culling.
      */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_LOW(0),
+    BUILD_QUALITY_LOW(0),
     /**
      * Medium occlusion culling BVH build quality (as defined by Embree).
      */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_MEDIUM(1),
+    BUILD_QUALITY_MEDIUM(1),
     /**
      * High occlusion culling BVH build quality (as defined by Embree). Results in the highest CPU
      * usage, but most effective culling.
      */
-    VIEWPORT_OCCLUSION_BUILD_QUALITY_HIGH(2),
+    BUILD_QUALITY_HIGH(2),
     ;
 
     public val id: Long
@@ -8192,21 +8190,21 @@ public object RenderingServer : Object() {
     /**
      * Variable rate shading is disabled.
      */
-    VIEWPORT_VRS_DISABLED(0),
+    DISABLED(0),
     /**
      * Variable rate shading uses a texture. Note, for stereoscopic use a texture atlas with a
      * texture for each view.
      */
-    VIEWPORT_VRS_TEXTURE(1),
+    TEXTURE(1),
     /**
      * Variable rate shading texture is supplied by the primary [XRInterface]. Note that this may
      * override the update mode.
      */
-    VIEWPORT_VRS_XR(2),
+    XR(2),
     /**
      * Represents the size of the [ViewportVRSMode] enum.
      */
-    VIEWPORT_VRS_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -8225,19 +8223,19 @@ public object RenderingServer : Object() {
     /**
      * The input texture for variable rate shading will not be processed.
      */
-    VIEWPORT_VRS_UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * The input texture for variable rate shading will be processed once.
      */
-    VIEWPORT_VRS_UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * The input texture for variable rate shading will be processed each frame.
      */
-    VIEWPORT_VRS_UPDATE_ALWAYS(2),
+    ALWAYS(2),
     /**
      * Represents the size of the [ViewportVRSUpdateMode] enum.
      */
-    VIEWPORT_VRS_UPDATE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -8303,23 +8301,23 @@ public object RenderingServer : Object() {
     /**
      * The rendering effect requires the color buffer to be resolved if MSAA is enabled.
      */
-    COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_COLOR(1),
+    ACCESS_RESOLVED_COLOR(1),
     /**
      * The rendering effect requires the depth buffer to be resolved if MSAA is enabled.
      */
-    COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_DEPTH(2),
+    ACCESS_RESOLVED_DEPTH(2),
     /**
      * The rendering effect requires motion vectors to be produced.
      */
-    COMPOSITOR_EFFECT_FLAG_NEEDS_MOTION_VECTORS(4),
+    NEEDS_MOTION_VECTORS(4),
     /**
      * The rendering effect requires normals and roughness g-buffer to be produced (Forward+ only).
      */
-    COMPOSITOR_EFFECT_FLAG_NEEDS_ROUGHNESS(8),
+    NEEDS_ROUGHNESS(8),
     /**
      * The rendering effect requires specular data to be separated out (Forward+ only).
      */
-    COMPOSITOR_EFFECT_FLAG_NEEDS_SEPARATE_SPECULAR(16),
+    NEEDS_SEPARATE_SPECULAR(16),
     ;
 
     public val id: Long
@@ -8379,32 +8377,32 @@ public object RenderingServer : Object() {
     /**
      * Use the clear color as background.
      */
-    ENV_BG_CLEAR_COLOR(0),
+    CLEAR_COLOR(0),
     /**
      * Use a specified color as the background.
      */
-    ENV_BG_COLOR(1),
+    COLOR(1),
     /**
      * Use a sky resource for the background.
      */
-    ENV_BG_SKY(2),
+    SKY(2),
     /**
      * Use a specified canvas layer as the background. This can be useful for instantiating a 2D
      * scene in a 3D world.
      */
-    ENV_BG_CANVAS(3),
+    CANVAS(3),
     /**
      * Do not clear the background, use whatever was rendered last frame as the background.
      */
-    ENV_BG_KEEP(4),
+    KEEP(4),
     /**
      * Displays a camera feed in the background.
      */
-    ENV_BG_CAMERA_FEED(5),
+    CAMERA_FEED(5),
     /**
      * Represents the size of the [EnvironmentBG] enum.
      */
-    ENV_BG_MAX(6),
+    MAX(6),
     ;
 
     public val id: Long
@@ -8423,19 +8421,19 @@ public object RenderingServer : Object() {
     /**
      * Gather ambient light from whichever source is specified as the background.
      */
-    ENV_AMBIENT_SOURCE_BG(0),
+    BG(0),
     /**
      * Disable ambient light.
      */
-    ENV_AMBIENT_SOURCE_DISABLED(1),
+    DISABLED(1),
     /**
      * Specify a specific [Color] for ambient light.
      */
-    ENV_AMBIENT_SOURCE_COLOR(2),
+    COLOR(2),
     /**
      * Gather ambient light from the [Sky] regardless of what the background is.
      */
-    ENV_AMBIENT_SOURCE_SKY(3),
+    SKY(3),
     ;
 
     public val id: Long
@@ -8454,15 +8452,15 @@ public object RenderingServer : Object() {
     /**
      * Use the background for reflections.
      */
-    ENV_REFLECTION_SOURCE_BG(0),
+    BG(0),
     /**
      * Disable reflections.
      */
-    ENV_REFLECTION_SOURCE_DISABLED(1),
+    DISABLED(1),
     /**
      * Use the [Sky] for reflections regardless of what the background is.
      */
-    ENV_REFLECTION_SOURCE_SKY(2),
+    SKY(2),
     ;
 
     public val id: Long
@@ -8483,27 +8481,27 @@ public object RenderingServer : Object() {
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
      * sources.
      */
-    ENV_GLOW_BLEND_MODE_ADDITIVE(0),
+    ADDITIVE(0),
     /**
      * Screen glow blending mode. Increases brightness, used frequently with bloom.
      */
-    ENV_GLOW_BLEND_MODE_SCREEN(1),
+    SCREEN(1),
     /**
      * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
      * bloom).
      */
-    ENV_GLOW_BLEND_MODE_SOFTLIGHT(2),
+    SOFTLIGHT(2),
     /**
      * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
      * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
      * brightness.
      */
-    ENV_GLOW_BLEND_MODE_REPLACE(3),
+    REPLACE(3),
     /**
      * Mixes the glow with the underlying color to avoid increasing brightness as much while still
      * maintaining a glow effect.
      */
-    ENV_GLOW_BLEND_MODE_MIX(4),
+    MIX(4),
     ;
 
     public val id: Long
@@ -8522,12 +8520,12 @@ public object RenderingServer : Object() {
     /**
      * Use a physically-based fog model defined primarily by fog density.
      */
-    ENV_FOG_MODE_EXPONENTIAL(0),
+    EXPONENTIAL(0),
     /**
      * Use a simple fog model defined by start and end positions and a custom curve. While not
      * physically accurate, this model can be useful when you need more artistic control.
      */
-    ENV_FOG_MODE_DEPTH(1),
+    DEPTH(1),
     ;
 
     public val id: Long
@@ -8547,25 +8545,25 @@ public object RenderingServer : Object() {
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
      * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
-    ENV_TONE_MAPPER_LINEAR(0),
+    LINEAR(0),
     /**
      * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
      * an image that can appear dull and low contrast. Slower than [ENV_TONE_MAPPER_LINEAR].
      * **Note:** When [Environment.tonemapWhite] is left at the default value of `1.0`,
      * [ENV_TONE_MAPPER_REINHARD] produces an identical image to [ENV_TONE_MAPPER_LINEAR].
      */
-    ENV_TONE_MAPPER_REINHARD(1),
+    REINHARD(1),
     /**
      * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
      * contrast than [ENV_TONE_MAPPER_REINHARD]. Slightly slower than [ENV_TONE_MAPPER_REINHARD].
      */
-    ENV_TONE_MAPPER_FILMIC(2),
+    FILMIC(2),
     /**
      * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
      * realistic appearance. Slightly slower than [ENV_TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
-    ENV_TONE_MAPPER_ACES(3),
+    ACES(3),
     /**
      * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
      * appearance. Better than other tonemappers at maintaining the hue of colors as they become
@@ -8573,7 +8571,7 @@ public object RenderingServer : Object() {
      * **Note:** [Environment.tonemapWhite] is fixed at a value of `16.29`, which makes
      * [ENV_TONE_MAPPER_AGX] unsuitable for use with the Mobile rendering method.
      */
-    ENV_TONE_MAPPER_AGX(4),
+    AGX(4),
     ;
 
     public val id: Long
@@ -8594,19 +8592,19 @@ public object RenderingServer : Object() {
      * have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the
      * fastest option.
      */
-    ENV_SSR_ROUGHNESS_QUALITY_DISABLED(0),
+    DISABLED(0),
     /**
      * Low quality of roughness filter for screen-space reflections.
      */
-    ENV_SSR_ROUGHNESS_QUALITY_LOW(1),
+    LOW(1),
     /**
      * Medium quality of roughness filter for screen-space reflections.
      */
-    ENV_SSR_ROUGHNESS_QUALITY_MEDIUM(2),
+    MEDIUM(2),
     /**
      * High quality of roughness filter for screen-space reflections. This is the slowest option.
      */
-    ENV_SSR_ROUGHNESS_QUALITY_HIGH(3),
+    HIGH(3),
     ;
 
     public val id: Long
@@ -8626,24 +8624,24 @@ public object RenderingServer : Object() {
     /**
      * Lowest quality of screen-space ambient occlusion.
      */
-    ENV_SSAO_QUALITY_VERY_LOW(0),
+    VERY_LOW(0),
     /**
      * Low quality screen-space ambient occlusion.
      */
-    ENV_SSAO_QUALITY_LOW(1),
+    LOW(1),
     /**
      * Medium quality screen-space ambient occlusion.
      */
-    ENV_SSAO_QUALITY_MEDIUM(2),
+    MEDIUM(2),
     /**
      * High quality screen-space ambient occlusion.
      */
-    ENV_SSAO_QUALITY_HIGH(3),
+    HIGH(3),
     /**
      * Highest quality screen-space ambient occlusion. Uses the adaptive target setting which can be
      * dynamically adjusted to smoothly balance performance and visual quality.
      */
-    ENV_SSAO_QUALITY_ULTRA(4),
+    ULTRA(4),
     ;
 
     public val id: Long
@@ -8662,24 +8660,24 @@ public object RenderingServer : Object() {
     /**
      * Lowest quality of screen-space indirect lighting.
      */
-    ENV_SSIL_QUALITY_VERY_LOW(0),
+    VERY_LOW(0),
     /**
      * Low quality screen-space indirect lighting.
      */
-    ENV_SSIL_QUALITY_LOW(1),
+    LOW(1),
     /**
      * High quality screen-space indirect lighting.
      */
-    ENV_SSIL_QUALITY_MEDIUM(2),
+    MEDIUM(2),
     /**
      * High quality screen-space indirect lighting.
      */
-    ENV_SSIL_QUALITY_HIGH(3),
+    HIGH(3),
     /**
      * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be
      * dynamically adjusted to smoothly balance performance and visual quality.
      */
-    ENV_SSIL_QUALITY_ULTRA(4),
+    ULTRA(4),
     ;
 
     public val id: Long
@@ -8701,18 +8699,18 @@ public object RenderingServer : Object() {
      * floors and ceilings. This is usually the best choice for scenes that don't feature much
      * verticality.
      */
-    ENV_SDFGI_Y_SCALE_50_PERCENT(0),
+    Y_SCALE_50_PERCENT(0),
     /**
      * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
      * and 100&#37; SDFGI Y scales.
      */
-    ENV_SDFGI_Y_SCALE_75_PERCENT(1),
+    Y_SCALE_75_PERCENT(1),
     /**
      * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
      * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
      * leaking may become more noticeable with thin floors and ceilings.
      */
-    ENV_SDFGI_Y_SCALE_100_PERCENT(2),
+    Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long
@@ -8761,7 +8759,7 @@ public object RenderingServer : Object() {
     /**
      * Represents the size of the [EnvironmentSDFGIRayCount] enum.
      */
-    ENV_SDFGI_RAY_COUNT_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -8781,32 +8779,32 @@ public object RenderingServer : Object() {
      * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result
      * with a given ray count.
      */
-    ENV_SDFGI_CONVERGE_IN_5_FRAMES(0),
+    CONVERGE_IN_5_FRAMES(0),
     /**
      * Configure SDFGI to fully converge over 10 frames.
      */
-    ENV_SDFGI_CONVERGE_IN_10_FRAMES(1),
+    CONVERGE_IN_10_FRAMES(1),
     /**
      * Configure SDFGI to fully converge over 15 frames.
      */
-    ENV_SDFGI_CONVERGE_IN_15_FRAMES(2),
+    CONVERGE_IN_15_FRAMES(2),
     /**
      * Configure SDFGI to fully converge over 20 frames.
      */
-    ENV_SDFGI_CONVERGE_IN_20_FRAMES(3),
+    CONVERGE_IN_20_FRAMES(3),
     /**
      * Configure SDFGI to fully converge over 25 frames.
      */
-    ENV_SDFGI_CONVERGE_IN_25_FRAMES(4),
+    CONVERGE_IN_25_FRAMES(4),
     /**
      * Configure SDFGI to fully converge over 30 frames. This is the least responsive, but creates
      * the least noisy result with a given ray count.
      */
-    ENV_SDFGI_CONVERGE_IN_30_FRAMES(5),
+    CONVERGE_IN_30_FRAMES(5),
     /**
      * Represents the size of the [EnvironmentSDFGIFramesToConverge] enum.
      */
-    ENV_SDFGI_CONVERGE_MAX(6),
+    CONVERGE_MAX(6),
     ;
 
     public val id: Long
@@ -8827,28 +8825,28 @@ public object RenderingServer : Object() {
      * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive,
      * but has the highest GPU requirements.
      */
-    ENV_SDFGI_UPDATE_LIGHT_IN_1_FRAME(0),
+    UPDATE_LIGHT_IN_1_FRAME(0),
     /**
      * Update indirect light from dynamic lights in SDFGI over 2 frames.
      */
-    ENV_SDFGI_UPDATE_LIGHT_IN_2_FRAMES(1),
+    UPDATE_LIGHT_IN_2_FRAMES(1),
     /**
      * Update indirect light from dynamic lights in SDFGI over 4 frames.
      */
-    ENV_SDFGI_UPDATE_LIGHT_IN_4_FRAMES(2),
+    UPDATE_LIGHT_IN_4_FRAMES(2),
     /**
      * Update indirect light from dynamic lights in SDFGI over 8 frames.
      */
-    ENV_SDFGI_UPDATE_LIGHT_IN_8_FRAMES(3),
+    UPDATE_LIGHT_IN_8_FRAMES(3),
     /**
      * Update indirect light from dynamic lights in SDFGI over 16 frames. This is the least
      * responsive, but has the lowest GPU requirements.
      */
-    ENV_SDFGI_UPDATE_LIGHT_IN_16_FRAMES(4),
+    UPDATE_LIGHT_IN_16_FRAMES(4),
     /**
      * Represents the size of the [EnvironmentSDFGIFramesToUpdateLight] enum.
      */
-    ENV_SDFGI_UPDATE_LIGHT_MAX(5),
+    UPDATE_LIGHT_MAX(5),
     ;
 
     public val id: Long
@@ -8902,17 +8900,17 @@ public object RenderingServer : Object() {
      * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines
      * in blur pattern.
      */
-    DOF_BOKEH_BOX(0),
+    BOX(0),
     /**
      * Calculates DOF blur using a hexagon shaped filter.
      */
-    DOF_BOKEH_HEXAGON(1),
+    HEXAGON(1),
     /**
      * Calculates DOF blur using a circle shaped filter. Best quality and most realistic, but
      * slowest. Use only for areas where a lot of performance can be dedicated to post-processing (e.g.
      * cutscenes).
      */
-    DOF_BOKEH_CIRCLE(2),
+    CIRCLE(2),
     ;
 
     public val id: Long
@@ -8964,63 +8962,63 @@ public object RenderingServer : Object() {
     /**
      * The instance does not have a type.
      */
-    INSTANCE_NONE(0),
+    NONE(0),
     /**
      * The instance is a mesh.
      */
-    INSTANCE_MESH(1),
+    MESH(1),
     /**
      * The instance is a multimesh.
      */
-    INSTANCE_MULTIMESH(2),
+    MULTIMESH(2),
     /**
      * The instance is a particle emitter.
      */
-    INSTANCE_PARTICLES(3),
+    PARTICLES(3),
     /**
      * The instance is a GPUParticles collision shape.
      */
-    INSTANCE_PARTICLES_COLLISION(4),
+    PARTICLES_COLLISION(4),
     /**
      * The instance is a light.
      */
-    INSTANCE_LIGHT(5),
+    LIGHT(5),
     /**
      * The instance is a reflection probe.
      */
-    INSTANCE_REFLECTION_PROBE(6),
+    REFLECTION_PROBE(6),
     /**
      * The instance is a decal.
      */
-    INSTANCE_DECAL(7),
+    DECAL(7),
     /**
      * The instance is a VoxelGI.
      */
-    INSTANCE_VOXEL_GI(8),
+    VOXEL_GI(8),
     /**
      * The instance is a lightmap.
      */
-    INSTANCE_LIGHTMAP(9),
+    LIGHTMAP(9),
     /**
      * The instance is an occlusion culling occluder.
      */
-    INSTANCE_OCCLUDER(10),
+    OCCLUDER(10),
     /**
      * The instance is a visible on-screen notifier.
      */
-    INSTANCE_VISIBLITY_NOTIFIER(11),
+    VISIBLITY_NOTIFIER(11),
     /**
      * The instance is a fog volume.
      */
-    INSTANCE_FOG_VOLUME(12),
+    FOG_VOLUME(12),
     /**
      * Represents the size of the [InstanceType] enum.
      */
-    INSTANCE_MAX(13),
+    MAX(13),
     /**
      * A combination of the flags of geometry instances (mesh, multimesh, immediate and particles).
      */
-    INSTANCE_GEOMETRY_MASK(14),
+    GEOMETRY_MASK(14),
     ;
 
     public val id: Long
@@ -9039,24 +9037,24 @@ public object RenderingServer : Object() {
     /**
      * Allows the instance to be used in baked lighting.
      */
-    INSTANCE_FLAG_USE_BAKED_LIGHT(0),
+    USE_BAKED_LIGHT(0),
     /**
      * Allows the instance to be used with dynamic global illumination.
      */
-    INSTANCE_FLAG_USE_DYNAMIC_GI(1),
+    USE_DYNAMIC_GI(1),
     /**
      * When set, manually requests to draw geometry on next frame.
      */
-    INSTANCE_FLAG_DRAW_NEXT_FRAME_IF_VISIBLE(2),
+    DRAW_NEXT_FRAME_IF_VISIBLE(2),
     /**
      * Always draw, even if the instance would be culled by occlusion culling. Does not affect view
      * frustum culling.
      */
-    INSTANCE_FLAG_IGNORE_OCCLUSION_CULLING(3),
+    IGNORE_OCCLUSION_CULLING(3),
     /**
      * Represents the size of the [InstanceFlags] enum.
      */
-    INSTANCE_FLAG_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -9107,15 +9105,15 @@ public object RenderingServer : Object() {
     /**
      * Disable visibility range fading for the given instance.
      */
-    VISIBILITY_RANGE_FADE_DISABLED(0),
+    DISABLED(0),
     /**
      * Fade-out the given instance when it approaches its visibility range limits.
      */
-    VISIBILITY_RANGE_FADE_SELF(1),
+    SELF(1),
     /**
      * Fade-in the given instance's dependencies when reaching its visibility range limits.
      */
-    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
+    DEPENDENCIES(2),
     ;
 
     public val id: Long
@@ -9136,26 +9134,26 @@ public object RenderingServer : Object() {
      * [Image.FORMAT_RGBA8] and contains albedo color in the `.rgb` channels and alpha in the `.a`
      * channel.
      */
-    BAKE_CHANNEL_ALBEDO_ALPHA(0),
+    ALBEDO_ALPHA(0),
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
      * [Image.FORMAT_RGBA8] and contains the per-pixel normal of the object in the `.rgb` channels and
      * nothing in the `.a` channel. The per-pixel normal is encoded as `normal * 0.5 + 0.5`.
      */
-    BAKE_CHANNEL_NORMAL(1),
+    NORMAL(1),
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
      * [Image.FORMAT_RGBA8] and contains ambient occlusion (from material and decals only) in the `.r`
      * channel, roughness in the `.g` channel, metallic in the `.b` channel and sub surface scattering
      * amount in the `.a` channel.
      */
-    BAKE_CHANNEL_ORM(2),
+    ORM(2),
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
      * [Image.FORMAT_RGBAH] and contains emission color in the `.rgb` channels and nothing in the `.a`
      * channel.
      */
-    BAKE_CHANNEL_EMISSION(3),
+    EMISSION(3),
     ;
 
     public val id: Long
@@ -9201,15 +9199,15 @@ public object RenderingServer : Object() {
     /**
      * The nine patch gets stretched where needed.
      */
-    NINE_PATCH_STRETCH(0),
+    STRETCH(0),
     /**
      * The nine patch gets filled with tiles where needed.
      */
-    NINE_PATCH_TILE(1),
+    TILE(1),
     /**
      * The nine patch gets filled with tiles where needed and stretches them a bit if needed.
      */
-    NINE_PATCH_TILE_FIT(2),
+    TILE_FIT(2),
     ;
 
     public val id: Long
@@ -9424,19 +9422,19 @@ public object RenderingServer : Object() {
     /**
      * Do not apply a filter to canvas light shadows.
      */
-    CANVAS_LIGHT_FILTER_NONE(0),
+    FILTER_NONE(0),
     /**
      * Use PCF5 filtering to filter canvas light shadows.
      */
-    CANVAS_LIGHT_FILTER_PCF5(1),
+    FILTER_PCF5(1),
     /**
      * Use PCF13 filtering to filter canvas light shadows.
      */
-    CANVAS_LIGHT_FILTER_PCF13(2),
+    FILTER_PCF13(2),
     /**
      * Max value of the [CanvasLightShadowFilter] enum.
      */
-    CANVAS_LIGHT_FILTER_MAX(3),
+    FILTER_MAX(3),
     ;
 
     public val id: Long
@@ -9455,15 +9453,15 @@ public object RenderingServer : Object() {
     /**
      * Culling of the canvas occluder is disabled.
      */
-    CANVAS_OCCLUDER_POLYGON_CULL_DISABLED(0),
+    DISABLED(0),
     /**
      * Culling of the canvas occluder is clockwise.
      */
-    CANVAS_OCCLUDER_POLYGON_CULL_CLOCKWISE(1),
+    CLOCKWISE(1),
     /**
      * Culling of the canvas occluder is counterclockwise.
      */
-    CANVAS_OCCLUDER_POLYGON_CULL_COUNTER_CLOCKWISE(2),
+    COUNTER_CLOCKWISE(2),
     ;
 
     public val id: Long
@@ -9483,137 +9481,137 @@ public object RenderingServer : Object() {
     /**
      * Boolean global shader parameter (`global uniform bool ...`).
      */
-    GLOBAL_VAR_TYPE_BOOL(0),
+    VAR_TYPE_BOOL(0),
     /**
      * 2-dimensional boolean vector global shader parameter (`global uniform bvec2 ...`).
      */
-    GLOBAL_VAR_TYPE_BVEC2(1),
+    VAR_TYPE_BVEC2(1),
     /**
      * 3-dimensional boolean vector global shader parameter (`global uniform bvec3 ...`).
      */
-    GLOBAL_VAR_TYPE_BVEC3(2),
+    VAR_TYPE_BVEC3(2),
     /**
      * 4-dimensional boolean vector global shader parameter (`global uniform bvec4 ...`).
      */
-    GLOBAL_VAR_TYPE_BVEC4(3),
+    VAR_TYPE_BVEC4(3),
     /**
      * Integer global shader parameter (`global uniform int ...`).
      */
-    GLOBAL_VAR_TYPE_INT(4),
+    VAR_TYPE_INT(4),
     /**
      * 2-dimensional integer vector global shader parameter (`global uniform ivec2 ...`).
      */
-    GLOBAL_VAR_TYPE_IVEC2(5),
+    VAR_TYPE_IVEC2(5),
     /**
      * 3-dimensional integer vector global shader parameter (`global uniform ivec3 ...`).
      */
-    GLOBAL_VAR_TYPE_IVEC3(6),
+    VAR_TYPE_IVEC3(6),
     /**
      * 4-dimensional integer vector global shader parameter (`global uniform ivec4 ...`).
      */
-    GLOBAL_VAR_TYPE_IVEC4(7),
+    VAR_TYPE_IVEC4(7),
     /**
      * 2-dimensional integer rectangle global shader parameter (`global uniform ivec4 ...`).
      * Equivalent to [GLOBAL_VAR_TYPE_IVEC4] in shader code, but exposed as a [Rect2i] in the editor
      * UI.
      */
-    GLOBAL_VAR_TYPE_RECT2I(8),
+    VAR_TYPE_RECT2I(8),
     /**
      * Unsigned integer global shader parameter (`global uniform uint ...`).
      */
-    GLOBAL_VAR_TYPE_UINT(9),
+    VAR_TYPE_UINT(9),
     /**
      * 2-dimensional unsigned integer vector global shader parameter (`global uniform uvec2 ...`).
      */
-    GLOBAL_VAR_TYPE_UVEC2(10),
+    VAR_TYPE_UVEC2(10),
     /**
      * 3-dimensional unsigned integer vector global shader parameter (`global uniform uvec3 ...`).
      */
-    GLOBAL_VAR_TYPE_UVEC3(11),
+    VAR_TYPE_UVEC3(11),
     /**
      * 4-dimensional unsigned integer vector global shader parameter (`global uniform uvec4 ...`).
      */
-    GLOBAL_VAR_TYPE_UVEC4(12),
+    VAR_TYPE_UVEC4(12),
     /**
      * Single-precision floating-point global shader parameter (`global uniform float ...`).
      */
-    GLOBAL_VAR_TYPE_FLOAT(13),
+    VAR_TYPE_FLOAT(13),
     /**
      * 2-dimensional floating-point vector global shader parameter (`global uniform vec2 ...`).
      */
-    GLOBAL_VAR_TYPE_VEC2(14),
+    VAR_TYPE_VEC2(14),
     /**
      * 3-dimensional floating-point vector global shader parameter (`global uniform vec3 ...`).
      */
-    GLOBAL_VAR_TYPE_VEC3(15),
+    VAR_TYPE_VEC3(15),
     /**
      * 4-dimensional floating-point vector global shader parameter (`global uniform vec4 ...`).
      */
-    GLOBAL_VAR_TYPE_VEC4(16),
+    VAR_TYPE_VEC4(16),
     /**
      * Color global shader parameter (`global uniform vec4 ...`). Equivalent to
      * [GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Color] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_COLOR(17),
+    VAR_TYPE_COLOR(17),
     /**
      * 2-dimensional floating-point rectangle global shader parameter (`global uniform vec4 ...`).
      * Equivalent to [GLOBAL_VAR_TYPE_VEC4] in shader code, but exposed as a [Rect2] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_RECT2(18),
+    VAR_TYPE_RECT2(18),
     /**
      * 2×2 matrix global shader parameter (`global uniform mat2 ...`). Exposed as a
      * [PackedInt32Array] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_MAT2(19),
+    VAR_TYPE_MAT2(19),
     /**
      * 3×3 matrix global shader parameter (`global uniform mat3 ...`). Exposed as a [Basis] in the
      * editor UI.
      */
-    GLOBAL_VAR_TYPE_MAT3(20),
+    VAR_TYPE_MAT3(20),
     /**
      * 4×4 matrix global shader parameter (`global uniform mat4 ...`). Exposed as a [Projection] in
      * the editor UI.
      */
-    GLOBAL_VAR_TYPE_MAT4(21),
+    VAR_TYPE_MAT4(21),
     /**
      * 2-dimensional transform global shader parameter (`global uniform mat2x3 ...`). Exposed as a
      * [Transform2D] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_TRANSFORM_2D(22),
+    VAR_TYPE_TRANSFORM_2D(22),
     /**
      * 3-dimensional transform global shader parameter (`global uniform mat3x4 ...`). Exposed as a
      * [Transform3D] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_TRANSFORM(23),
+    VAR_TYPE_TRANSFORM(23),
     /**
      * 2D sampler global shader parameter (`global uniform sampler2D ...`). Exposed as a [Texture2D]
      * in the editor UI.
      */
-    GLOBAL_VAR_TYPE_SAMPLER2D(24),
+    VAR_TYPE_SAMPLER2D(24),
     /**
      * 2D sampler array global shader parameter (`global uniform sampler2DArray ...`). Exposed as a
      * [Texture2DArray] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_SAMPLER2DARRAY(25),
+    VAR_TYPE_SAMPLER2DARRAY(25),
     /**
      * 3D sampler global shader parameter (`global uniform sampler3D ...`). Exposed as a [Texture3D]
      * in the editor UI.
      */
-    GLOBAL_VAR_TYPE_SAMPLER3D(26),
+    VAR_TYPE_SAMPLER3D(26),
     /**
      * Cubemap sampler global shader parameter (`global uniform samplerCube ...`). Exposed as a
      * [Cubemap] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_SAMPLERCUBE(27),
+    VAR_TYPE_SAMPLERCUBE(27),
     /**
      * External sampler global shader parameter (`global uniform samplerExternalOES ...`). Exposed
      * as a [ExternalTexture] in the editor UI.
      */
-    GLOBAL_VAR_TYPE_SAMPLEREXT(28),
+    VAR_TYPE_SAMPLEREXT(28),
     /**
      * Represents the size of the [GlobalShaderParameterType] enum.
      */
-    GLOBAL_VAR_TYPE_MAX(29),
+    VAR_TYPE_MAX(29),
     ;
 
     public val id: Long
@@ -9744,8 +9742,8 @@ public object RenderingServer : Object() {
   public enum class Features(
     id: Long,
   ) {
-    FEATURE_SHADERS(0),
-    FEATURE_MULTITHREADED(1),
+    SHADERS(0),
+    MULTITHREADED(1),
     ;
 
     public val id: Long

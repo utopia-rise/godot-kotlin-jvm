@@ -501,111 +501,111 @@ public open class OpenXRInterface : XRInterface() {
     /**
      * Palm joint.
      */
-    HAND_JOINT_PALM(0),
+    PALM(0),
     /**
      * Wrist joint.
      */
-    HAND_JOINT_WRIST(1),
+    WRIST(1),
     /**
      * Thumb metacarpal joint.
      */
-    HAND_JOINT_THUMB_METACARPAL(2),
+    THUMB_METACARPAL(2),
     /**
      * Thumb proximal joint.
      */
-    HAND_JOINT_THUMB_PROXIMAL(3),
+    THUMB_PROXIMAL(3),
     /**
      * Thumb distal joint.
      */
-    HAND_JOINT_THUMB_DISTAL(4),
+    THUMB_DISTAL(4),
     /**
      * Thumb tip joint.
      */
-    HAND_JOINT_THUMB_TIP(5),
+    THUMB_TIP(5),
     /**
      * Index metacarpal joint.
      */
-    HAND_JOINT_INDEX_METACARPAL(6),
+    INDEX_METACARPAL(6),
     /**
      * Index proximal joint.
      */
-    HAND_JOINT_INDEX_PROXIMAL(7),
+    INDEX_PROXIMAL(7),
     /**
      * Index intermediate joint.
      */
-    HAND_JOINT_INDEX_INTERMEDIATE(8),
+    INDEX_INTERMEDIATE(8),
     /**
      * Index distal joint.
      */
-    HAND_JOINT_INDEX_DISTAL(9),
+    INDEX_DISTAL(9),
     /**
      * Index tip joint.
      */
-    HAND_JOINT_INDEX_TIP(10),
+    INDEX_TIP(10),
     /**
      * Middle metacarpal joint.
      */
-    HAND_JOINT_MIDDLE_METACARPAL(11),
+    MIDDLE_METACARPAL(11),
     /**
      * Middle proximal joint.
      */
-    HAND_JOINT_MIDDLE_PROXIMAL(12),
+    MIDDLE_PROXIMAL(12),
     /**
      * Middle intermediate joint.
      */
-    HAND_JOINT_MIDDLE_INTERMEDIATE(13),
+    MIDDLE_INTERMEDIATE(13),
     /**
      * Middle distal joint.
      */
-    HAND_JOINT_MIDDLE_DISTAL(14),
+    MIDDLE_DISTAL(14),
     /**
      * Middle tip joint.
      */
-    HAND_JOINT_MIDDLE_TIP(15),
+    MIDDLE_TIP(15),
     /**
      * Ring metacarpal joint.
      */
-    HAND_JOINT_RING_METACARPAL(16),
+    RING_METACARPAL(16),
     /**
      * Ring proximal joint.
      */
-    HAND_JOINT_RING_PROXIMAL(17),
+    RING_PROXIMAL(17),
     /**
      * Ring intermediate joint.
      */
-    HAND_JOINT_RING_INTERMEDIATE(18),
+    RING_INTERMEDIATE(18),
     /**
      * Ring distal joint.
      */
-    HAND_JOINT_RING_DISTAL(19),
+    RING_DISTAL(19),
     /**
      * Ring tip joint.
      */
-    HAND_JOINT_RING_TIP(20),
+    RING_TIP(20),
     /**
      * Little metacarpal joint.
      */
-    HAND_JOINT_LITTLE_METACARPAL(21),
+    LITTLE_METACARPAL(21),
     /**
      * Little proximal joint.
      */
-    HAND_JOINT_LITTLE_PROXIMAL(22),
+    LITTLE_PROXIMAL(22),
     /**
      * Little intermediate joint.
      */
-    HAND_JOINT_LITTLE_INTERMEDIATE(23),
+    LITTLE_INTERMEDIATE(23),
     /**
      * Little distal joint.
      */
-    HAND_JOINT_LITTLE_DISTAL(24),
+    LITTLE_DISTAL(24),
     /**
      * Little tip joint.
      */
-    HAND_JOINT_LITTLE_TIP(25),
+    LITTLE_TIP(25),
     /**
      * Maximum value for the hand joint enum.
      */
-    HAND_JOINT_MAX(26),
+    MAX(26),
     ;
 
     public val id: Long
@@ -649,19 +649,19 @@ public open class OpenXRInterface : XRInterface() {
     public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
-      public val HAND_JOINT_NONE: HandJointFlags = HandJointFlags(0)
+      public val NONE: HandJointFlags = HandJointFlags(0)
 
-      public val HAND_JOINT_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
+      public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
-      public val HAND_JOINT_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
+      public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
-      public val HAND_JOINT_POSITION_VALID: HandJointFlags = HandJointFlags(4)
+      public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
-      public val HAND_JOINT_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
+      public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
-      public val HAND_JOINT_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
+      public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
-      public val HAND_JOINT_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
+      public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
 

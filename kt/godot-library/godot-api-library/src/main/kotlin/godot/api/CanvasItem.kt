@@ -1536,21 +1536,21 @@ public open class CanvasItem internal constructor() : Node() {
     /**
      * Child draws over parent and is not clipped.
      */
-    CLIP_CHILDREN_DISABLED(0),
+    DISABLED(0),
     /**
      * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
      * area, parent is not drawn.
      */
-    CLIP_CHILDREN_ONLY(1),
+    ONLY(1),
     /**
      * Parent is used for clipping child, but parent is also drawn underneath child as normal before
      * clipping child to its visible area.
      */
-    CLIP_CHILDREN_AND_DRAW(2),
+    AND_DRAW(2),
     /**
      * Represents the size of the [ClipChildrenMode] enum.
      */
-    CLIP_CHILDREN_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

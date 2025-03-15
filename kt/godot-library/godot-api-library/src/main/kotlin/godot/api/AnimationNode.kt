@@ -308,7 +308,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -330,7 +330,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -364,19 +364,19 @@ public open class AnimationNode : Resource() {
     /**
      * Do not use filtering.
      */
-    FILTER_IGNORE(0),
+    IGNORE(0),
     /**
      * Paths matching the filter will be allowed to pass.
      */
-    FILTER_PASS(1),
+    PASS(1),
     /**
      * Paths matching the filter will be discarded.
      */
-    FILTER_STOP(2),
+    STOP(2),
     /**
      * Paths matching the filter will be blended (by the blend value).
      */
-    FILTER_BLEND(3),
+    BLEND(3),
     ;
 
     public val id: Long

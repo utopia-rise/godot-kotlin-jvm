@@ -331,18 +331,18 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
      * gridbased layouts can face artificial corners with diagonal movement due to a jagged path
      * corridor imposed by the cell shapes.
      */
-    PATH_POSTPROCESSING_CORRIDORFUNNEL(0),
+    POSTPROCESSING_CORRIDORFUNNEL(0),
     /**
      * Centers every path position in the middle of the traveled navigation mesh polygon edge. This
      * creates better paths for tile- or gridbased layouts that restrict the movement to the cells
      * center.
      */
-    PATH_POSTPROCESSING_EDGECENTERED(1),
+    POSTPROCESSING_EDGECENTERED(1),
     /**
      * Applies no postprocessing and returns the raw path corridor as found by the pathfinding
      * algorithm.
      */
-    PATH_POSTPROCESSING_NONE(2),
+    POSTPROCESSING_NONE(2),
     ;
 
     public val id: Long
@@ -387,15 +387,15 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag ushr bits)
 
     public companion object {
-      public val PATH_METADATA_INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
+      public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
-      public val PATH_METADATA_INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
+      public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
 
-      public val PATH_METADATA_INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
+      public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
-      public val PATH_METADATA_INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
+      public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
 
-      public val PATH_METADATA_INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
+      public val INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
     }
   }
 

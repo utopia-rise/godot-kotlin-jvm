@@ -135,19 +135,19 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     /**
      * Sum of absolute derivative in `x` and `y`.
      */
-    FUNC_SUM(0),
+    SUM(0),
     /**
      * Derivative in `x` using local differencing.
      */
-    FUNC_X(1),
+    X(1),
     /**
      * Derivative in `y` using local differencing.
      */
-    FUNC_Y(2),
+    Y(2),
     /**
      * Represents the size of the [Function] enum.
      */
-    FUNC_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

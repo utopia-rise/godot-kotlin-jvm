@@ -155,15 +155,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * Tracking the player's left hand.
      */
-    HAND_LEFT(0),
+    LEFT(0),
     /**
      * Tracking the player's right hand.
      */
-    HAND_RIGHT(1),
+    RIGHT(1),
     /**
      * Maximum supported hands.
      */
-    HAND_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long

@@ -67,6 +67,27 @@ fun String.toScreamingSnakeCase(): String {
     return result.toString().uppercase(Locale.getDefault())
 }
 
+fun String.removePrefixWords(wordWithDashes: String): String {
+    // We split the 2 strings into different "words"
+    val otherWords = wordWithDashes.split('_')
+    val valueWords = this.split('_')
+
+    var index = 0
+    for (enumWord in otherWords) {
+        if (index >= valueWords.size) break
+        val valueWord = valueWords[index]
+        // Remove the word if the receiver word is not longer than the parameter word
+        // and the parameter word starts with the entire value word.
+        if (valueWord.length <= enumWord.length && enumWord.startsWith(valueWord)) {
+            index++
+        } else {
+            break
+        }
+    }
+    // Join the remaining words with underscores.
+    return valueWords.drop(index).joinToString("_")
+}
+
 fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null)
     "`$this`"
 else

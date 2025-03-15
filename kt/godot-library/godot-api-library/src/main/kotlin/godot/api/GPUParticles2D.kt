@@ -823,24 +823,24 @@ public open class GPUParticles2D : Node2D() {
     /**
      * Particle starts at the specified position.
      */
-    EMIT_FLAG_POSITION(1),
+    POSITION(1),
     /**
      * Particle starts with specified rotation and scale.
      */
-    EMIT_FLAG_ROTATION_SCALE(2),
+    ROTATION_SCALE(2),
     /**
      * Particle starts with the specified velocity vector, which defines the emission direction and
      * speed.
      */
-    EMIT_FLAG_VELOCITY(4),
+    VELOCITY(4),
     /**
      * Particle starts with specified color.
      */
-    EMIT_FLAG_COLOR(8),
+    COLOR(8),
     /**
      * Particle starts with specified `CUSTOM` data.
      */
-    EMIT_FLAG_CUSTOM(16),
+    CUSTOM(16),
     ;
 
     public val id: Long

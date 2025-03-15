@@ -335,10 +335,10 @@ public open class Window : Viewport() {
    */
   public final inline var unresizable: Boolean
     @JvmName("unresizableProperty")
-    get() = getFlag(Window.Flags.FLAG_RESIZE_DISABLED)
+    get() = getFlag(Window.Flags.RESIZE_DISABLED)
     @JvmName("unresizableProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_RESIZE_DISABLED, value)
+      setFlag(Window.Flags.RESIZE_DISABLED, value)
     }
 
   /**
@@ -346,10 +346,10 @@ public open class Window : Viewport() {
    */
   public final inline var borderless: Boolean
     @JvmName("borderlessProperty")
-    get() = getFlag(Window.Flags.FLAG_BORDERLESS)
+    get() = getFlag(Window.Flags.BORDERLESS)
     @JvmName("borderlessProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_BORDERLESS, value)
+      setFlag(Window.Flags.BORDERLESS, value)
     }
 
   /**
@@ -358,10 +358,10 @@ public open class Window : Viewport() {
    */
   public final inline var alwaysOnTop: Boolean
     @JvmName("alwaysOnTopProperty")
-    get() = getFlag(Window.Flags.FLAG_ALWAYS_ON_TOP)
+    get() = getFlag(Window.Flags.ALWAYS_ON_TOP)
     @JvmName("alwaysOnTopProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_ALWAYS_ON_TOP, value)
+      setFlag(Window.Flags.ALWAYS_ON_TOP, value)
     }
 
   /**
@@ -374,10 +374,10 @@ public open class Window : Viewport() {
    */
   public final inline var transparent: Boolean
     @JvmName("transparentProperty")
-    get() = getFlag(Window.Flags.FLAG_TRANSPARENT)
+    get() = getFlag(Window.Flags.TRANSPARENT)
     @JvmName("transparentProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_TRANSPARENT, value)
+      setFlag(Window.Flags.TRANSPARENT, value)
     }
 
   /**
@@ -385,10 +385,10 @@ public open class Window : Viewport() {
    */
   public final inline var unfocusable: Boolean
     @JvmName("unfocusableProperty")
-    get() = getFlag(Window.Flags.FLAG_NO_FOCUS)
+    get() = getFlag(Window.Flags.NO_FOCUS)
     @JvmName("unfocusableProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_NO_FOCUS, value)
+      setFlag(Window.Flags.NO_FOCUS, value)
     }
 
   /**
@@ -398,10 +398,10 @@ public open class Window : Viewport() {
    */
   public final inline var popupWindow: Boolean
     @JvmName("popupWindowProperty")
-    get() = getFlag(Window.Flags.FLAG_POPUP)
+    get() = getFlag(Window.Flags.POPUP)
     @JvmName("popupWindowProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_POPUP, value)
+      setFlag(Window.Flags.POPUP, value)
     }
 
   /**
@@ -412,10 +412,10 @@ public open class Window : Viewport() {
    */
   public final inline var extendToTitle: Boolean
     @JvmName("extendToTitleProperty")
-    get() = getFlag(Window.Flags.FLAG_EXTEND_TO_TITLE)
+    get() = getFlag(Window.Flags.EXTEND_TO_TITLE)
     @JvmName("extendToTitleProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_EXTEND_TO_TITLE, value)
+      setFlag(Window.Flags.EXTEND_TO_TITLE, value)
     }
 
   /**
@@ -426,10 +426,10 @@ public open class Window : Viewport() {
    */
   public final inline var mousePassthrough: Boolean
     @JvmName("mousePassthroughProperty")
-    get() = getFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH)
+    get() = getFlag(Window.Flags.MOUSE_PASSTHROUGH)
     @JvmName("mousePassthroughProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH, value)
+      setFlag(Window.Flags.MOUSE_PASSTHROUGH, value)
     }
 
   /**
@@ -439,10 +439,10 @@ public open class Window : Viewport() {
    */
   public final inline var sharpCorners: Boolean
     @JvmName("sharpCornersProperty")
-    get() = getFlag(Window.Flags.FLAG_SHARP_CORNERS)
+    get() = getFlag(Window.Flags.SHARP_CORNERS)
     @JvmName("sharpCornersProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_SHARP_CORNERS, value)
+      setFlag(Window.Flags.SHARP_CORNERS, value)
     }
 
   /**
@@ -451,10 +451,10 @@ public open class Window : Viewport() {
    */
   public final inline var excludeFromCapture: Boolean
     @JvmName("excludeFromCaptureProperty")
-    get() = getFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE)
+    get() = getFlag(Window.Flags.EXCLUDE_FROM_CAPTURE)
     @JvmName("excludeFromCaptureProperty")
     set(`value`) {
-      setFlag(Window.Flags.FLAG_EXCLUDE_FROM_CAPTURE, value)
+      setFlag(Window.Flags.EXCLUDE_FROM_CAPTURE, value)
     }
 
   /**
@@ -1850,29 +1850,29 @@ public open class Window : Viewport() {
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
      */
-    FLAG_RESIZE_DISABLED(0),
+    RESIZE_DISABLED(0),
     /**
      * The window do not have native title bar and other decorations. This flag is ignored for
      * full-screen windows. Set with [borderless].
      */
-    FLAG_BORDERLESS(1),
+    BORDERLESS(1),
     /**
      * The window is floating on top of all other windows. This flag is ignored for full-screen
      * windows. Set with [alwaysOnTop].
      */
-    FLAG_ALWAYS_ON_TOP(2),
+    ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent. Set with [transparent].
      * **Note:** This flag has no effect if either
      * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
      * [Viewport.transparentBg] is set to `false`.
      */
-    FLAG_TRANSPARENT(3),
+    TRANSPARENT(3),
     /**
      * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set
      * with [unfocusable].
      */
-    FLAG_NO_FOCUS(4),
+    NO_FOCUS(4),
     /**
      * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window
      * is visible. An active popup window will exclusively receive all input, without stealing focus
@@ -1880,7 +1880,7 @@ public open class Window : Viewport() {
      * application is switched. Popup window must have transient parent set (see [transient]).
      * **Note:** This flag has no effect in embedded windows (unless said window is a [Popup]).
      */
-    FLAG_POPUP(5),
+    POPUP(5),
     /**
      * Window content is expanded to the full size of the window. Unlike borderless window, the
      * frame is left intact and can be used to resize the window, title bar is transparent, but have
@@ -1888,18 +1888,18 @@ public open class Window : Viewport() {
      * **Note:** This flag is implemented only on macOS.
      * **Note:** This flag has no effect in embedded windows.
      */
-    FLAG_EXTEND_TO_TITLE(6),
+    EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
      * **Note:** This flag has no effect in embedded windows.
      */
-    FLAG_MOUSE_PASSTHROUGH(7),
+    MOUSE_PASSTHROUGH(7),
     /**
      * Window style is overridden, forcing sharp corners.
      * **Note:** This flag has no effect in embedded windows.
      * **Note:** This flag is implemented only on Windows (11).
      */
-    FLAG_SHARP_CORNERS(8),
+    SHARP_CORNERS(8),
     /**
      * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
      * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
@@ -1907,11 +1907,11 @@ public open class Window : Viewport() {
      * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
      * should not be used as a security measure.
      */
-    FLAG_EXCLUDE_FROM_CAPTURE(9),
+    EXCLUDE_FROM_CAPTURE(9),
     /**
      * Max value of the [Flags].
      */
-    FLAG_MAX(10),
+    MAX(10),
     ;
 
     public val id: Long

@@ -1062,7 +1062,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public final fun drawListBegin(
     framebuffer: RID,
-    drawFlags: DrawFlags = RenderingDevice.DrawFlags.DRAW_DEFAULT_ALL,
+    drawFlags: DrawFlags = RenderingDevice.DrawFlags.DEFAULT_ALL,
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepthValue: Float = 1.0f,
     clearStencilValue: Long = 0,
@@ -3309,25 +3309,25 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBits(flag ushr bits)
 
     public companion object {
-      public val TEXTURE_USAGE_SAMPLING_BIT: TextureUsageBits = TextureUsageBits(1)
+      public val SAMPLING_BIT: TextureUsageBits = TextureUsageBits(1)
 
-      public val TEXTURE_USAGE_COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(2)
+      public val COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(2)
 
-      public val TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(4)
+      public val DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(4)
 
-      public val TEXTURE_USAGE_STORAGE_BIT: TextureUsageBits = TextureUsageBits(8)
+      public val STORAGE_BIT: TextureUsageBits = TextureUsageBits(8)
 
-      public val TEXTURE_USAGE_STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBits(16)
+      public val STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBits(16)
 
-      public val TEXTURE_USAGE_CPU_READ_BIT: TextureUsageBits = TextureUsageBits(32)
+      public val CPU_READ_BIT: TextureUsageBits = TextureUsageBits(32)
 
-      public val TEXTURE_USAGE_CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBits(64)
+      public val CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBits(64)
 
-      public val TEXTURE_USAGE_CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBits(128)
+      public val CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBits(128)
 
-      public val TEXTURE_USAGE_CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBits(256)
+      public val CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBits(256)
 
-      public val TEXTURE_USAGE_INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(512)
+      public val INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(512)
     }
   }
 
@@ -3388,7 +3388,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Cubemap texture slice.
      */
-    TEXTURE_SLICE_CUBEMAP(1),
+    CUBEMAP(1),
     /**
      * 3-dimensional texture slice.
      */
@@ -3642,9 +3642,9 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBits(flag ushr bits)
 
     public companion object {
-      public val BUFFER_CREATION_DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBits(1)
+      public val DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBits(1)
 
-      public val BUFFER_CREATION_AS_STORAGE_BIT: BufferCreationBits = BufferCreationBits(2)
+      public val AS_STORAGE_BIT: BufferCreationBits = BufferCreationBits(2)
     }
   }
 
@@ -3788,15 +3788,15 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Do not use polygon front face or backface culling.
      */
-    POLYGON_CULL_DISABLED(0),
+    DISABLED(0),
     /**
      * Use polygon frontface culling (faces pointing towards the camera are hidden).
      */
-    POLYGON_CULL_FRONT(1),
+    FRONT(1),
     /**
      * Use polygon backface culling (faces pointing away from the camera are hidden).
      */
-    POLYGON_CULL_BACK(2),
+    BACK(2),
     ;
 
     public val id: Long
@@ -3838,43 +3838,43 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Keep the current stencil value.
      */
-    STENCIL_OP_KEEP(0),
+    KEEP(0),
     /**
      * Set the stencil value to `0`.
      */
-    STENCIL_OP_ZERO(1),
+    ZERO(1),
     /**
      * Replace the existing stencil value with the new one.
      */
-    STENCIL_OP_REPLACE(2),
+    REPLACE(2),
     /**
      * Increment the existing stencil value and clamp to the maximum representable unsigned value if
      * reached. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_INCREMENT_AND_CLAMP(3),
+    INCREMENT_AND_CLAMP(3),
     /**
      * Decrement the existing stencil value and clamp to the minimum value if reached. Stencil bits
      * are considered as an unsigned integer.
      */
-    STENCIL_OP_DECREMENT_AND_CLAMP(4),
+    DECREMENT_AND_CLAMP(4),
     /**
      * Bitwise-invert the existing stencil value.
      */
-    STENCIL_OP_INVERT(5),
+    INVERT(5),
     /**
      * Increment the stencil value and wrap around to `0` if reaching the maximum representable
      * unsigned. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_INCREMENT_AND_WRAP(6),
+    INCREMENT_AND_WRAP(6),
     /**
      * Decrement the stencil value and wrap around to the maximum representable unsigned if reaching
      * the minimum. Stencil bits are considered as an unsigned integer.
      */
-    STENCIL_OP_DECREMENT_AND_WRAP(7),
+    DECREMENT_AND_WRAP(7),
     /**
      * Represents the size of the [StencilOperation] enum.
      */
-    STENCIL_OP_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -3893,39 +3893,39 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * "Never" comparison (opposite of [COMPARE_OP_ALWAYS]).
      */
-    COMPARE_OP_NEVER(0),
+    NEVER(0),
     /**
      * "Less than" comparison.
      */
-    COMPARE_OP_LESS(1),
+    LESS(1),
     /**
      * "Equal" comparison.
      */
-    COMPARE_OP_EQUAL(2),
+    EQUAL(2),
     /**
      * "Less than or equal" comparison.
      */
-    COMPARE_OP_LESS_OR_EQUAL(3),
+    LESS_OR_EQUAL(3),
     /**
      * "Greater than" comparison.
      */
-    COMPARE_OP_GREATER(4),
+    GREATER(4),
     /**
      * "Not equal" comparison.
      */
-    COMPARE_OP_NOT_EQUAL(5),
+    NOT_EQUAL(5),
     /**
      * "Greater than or equal" comparison.
      */
-    COMPARE_OP_GREATER_OR_EQUAL(6),
+    GREATER_OR_EQUAL(6),
     /**
      * "Always" comparison (opposite of [COMPARE_OP_NEVER]).
      */
-    COMPARE_OP_ALWAYS(7),
+    ALWAYS(7),
     /**
      * Represents the size of the [CompareOperator] enum.
      */
-    COMPARE_OP_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -3944,75 +3944,75 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Clear logic operation (result is always `0`). See also [LOGIC_OP_SET].
      */
-    LOGIC_OP_CLEAR(0),
+    CLEAR(0),
     /**
      * AND logic operation.
      */
-    LOGIC_OP_AND(1),
+    AND(1),
     /**
      * AND logic operation with the *destination* operand being inverted. See also
      * [LOGIC_OP_AND_INVERTED].
      */
-    LOGIC_OP_AND_REVERSE(2),
+    AND_REVERSE(2),
     /**
      * Copy logic operation (keeps the *source* value as-is). See also [LOGIC_OP_COPY_INVERTED] and
      * [LOGIC_OP_NO_OP].
      */
-    LOGIC_OP_COPY(3),
+    COPY(3),
     /**
      * AND logic operation with the *source* operand being inverted. See also
      * [LOGIC_OP_AND_REVERSE].
      */
-    LOGIC_OP_AND_INVERTED(4),
+    AND_INVERTED(4),
     /**
      * No-op logic operation (keeps the *destination* value as-is). See also [LOGIC_OP_COPY].
      */
-    LOGIC_OP_NO_OP(5),
+    NO_OP(5),
     /**
      * Exclusive or (XOR) logic operation.
      */
-    LOGIC_OP_XOR(6),
+    XOR(6),
     /**
      * OR logic operation.
      */
-    LOGIC_OP_OR(7),
+    OR(7),
     /**
      * Not-OR (NOR) logic operation.
      */
-    LOGIC_OP_NOR(8),
+    NOR(8),
     /**
      * Not-XOR (XNOR) logic operation.
      */
-    LOGIC_OP_EQUIVALENT(9),
+    EQUIVALENT(9),
     /**
      * Invert logic operation.
      */
-    LOGIC_OP_INVERT(10),
+    INVERT(10),
     /**
      * OR logic operation with the *destination* operand being inverted. See also
      * [LOGIC_OP_OR_REVERSE].
      */
-    LOGIC_OP_OR_REVERSE(11),
+    OR_REVERSE(11),
     /**
      * NOT logic operation (inverts the value). See also [LOGIC_OP_COPY].
      */
-    LOGIC_OP_COPY_INVERTED(12),
+    COPY_INVERTED(12),
     /**
      * OR logic operation with the *source* operand being inverted. See also [LOGIC_OP_OR_REVERSE].
      */
-    LOGIC_OP_OR_INVERTED(13),
+    OR_INVERTED(13),
     /**
      * Not-AND (NAND) logic operation.
      */
-    LOGIC_OP_NAND(14),
+    NAND(14),
     /**
      * SET logic operation (result is always `1`). See also [LOGIC_OP_CLEAR].
      */
-    LOGIC_OP_SET(15),
+    SET(15),
     /**
      * Represents the size of the [LogicOperation] enum.
      */
-    LOGIC_OP_MAX(16),
+    MAX(16),
     ;
 
     public val id: Long
@@ -4135,27 +4135,27 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Additive blending operation (`source + destination`).
      */
-    BLEND_OP_ADD(0),
+    ADD(0),
     /**
      * Subtractive blending operation (`source - destination`).
      */
-    BLEND_OP_SUBTRACT(1),
+    SUBTRACT(1),
     /**
      * Reverse subtractive blending operation (`destination - source`).
      */
-    BLEND_OP_REVERSE_SUBTRACT(2),
+    REVERSE_SUBTRACT(2),
     /**
      * Minimum blending operation (keep the lowest value of the two).
      */
-    BLEND_OP_MINIMUM(3),
+    MINIMUM(3),
     /**
      * Maximum blending operation (keep the highest value of the two).
      */
-    BLEND_OP_MAXIMUM(4),
+    MAXIMUM(4),
     /**
      * Represents the size of the [BlendOperation] enum.
      */
-    BLEND_OP_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -4618,16 +4618,16 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * Memory taken by textures.
      */
-    MEMORY_TEXTURES(0),
+    TEXTURES(0),
     /**
      * Memory taken by buffers.
      */
-    MEMORY_BUFFERS(1),
+    BUFFERS(1),
     /**
      * Total memory taken. This is greater than the sum of [MEMORY_TEXTURES] and [MEMORY_BUFFERS],
      * as it also includes miscellaneous memory usage.
      */
-    MEMORY_TOTAL(2),
+    TOTAL(2),
     ;
 
     public val id: Long
@@ -4697,59 +4697,59 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): DrawFlags = DrawFlags(flag ushr bits)
 
     public companion object {
-      public val DRAW_DEFAULT_ALL: DrawFlags = DrawFlags(0)
+      public val DEFAULT_ALL: DrawFlags = DrawFlags(0)
 
-      public val DRAW_CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
+      public val CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
 
-      public val DRAW_CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
+      public val CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
 
-      public val DRAW_CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
+      public val CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
 
-      public val DRAW_CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
+      public val CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
 
-      public val DRAW_CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
+      public val CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
 
-      public val DRAW_CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
+      public val CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
 
-      public val DRAW_CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
+      public val CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
 
-      public val DRAW_CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
+      public val CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
 
-      public val DRAW_CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
+      public val CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
 
-      public val DRAW_CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
+      public val CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
 
-      public val DRAW_IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
+      public val IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
 
-      public val DRAW_IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
+      public val IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
 
-      public val DRAW_IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
+      public val IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
 
-      public val DRAW_IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
+      public val IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
 
-      public val DRAW_IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
+      public val IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
 
-      public val DRAW_IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
+      public val IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
 
-      public val DRAW_IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
+      public val IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
 
-      public val DRAW_IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
+      public val IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
 
-      public val DRAW_IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
+      public val IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
 
-      public val DRAW_IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
+      public val IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
 
-      public val DRAW_CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
+      public val CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
 
-      public val DRAW_IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
+      public val IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
 
-      public val DRAW_CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
+      public val CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
 
-      public val DRAW_IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
+      public val IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
 
-      public val DRAW_CLEAR_ALL: DrawFlags = DrawFlags(327935)
+      public val CLEAR_ALL: DrawFlags = DrawFlags(327935)
 
-      public val DRAW_IGNORE_ALL: DrawFlags = DrawFlags(720640)
+      public val IGNORE_ALL: DrawFlags = DrawFlags(720640)
     }
   }
 

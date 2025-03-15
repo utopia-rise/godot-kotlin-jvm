@@ -368,17 +368,17 @@ public open class XRHandTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
-      public val HAND_JOINT_FLAG_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
+      public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
-      public val HAND_JOINT_FLAG_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
+      public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
-      public val HAND_JOINT_FLAG_POSITION_VALID: HandJointFlags = HandJointFlags(4)
+      public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
-      public val HAND_JOINT_FLAG_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
+      public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
-      public val HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
+      public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
-      public val HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
+      public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
 

@@ -337,23 +337,23 @@ public open class Mesh : Resource() {
     /**
      * Render array as points (one vertex equals one point).
      */
-    PRIMITIVE_POINTS(0),
+    POINTS(0),
     /**
      * Render array as lines (every two vertices a line is created).
      */
-    PRIMITIVE_LINES(1),
+    LINES(1),
     /**
      * Render array as line strip.
      */
-    PRIMITIVE_LINE_STRIP(2),
+    LINE_STRIP(2),
     /**
      * Render array as triangles (every three vertices a triangle is created).
      */
-    PRIMITIVE_TRIANGLES(3),
+    TRIANGLES(3),
     /**
      * Render array as triangle strips.
      */
-    PRIMITIVE_TRIANGLE_STRIP(4),
+    TRIANGLE_STRIP(4),
     ;
 
     public val id: Long
@@ -372,69 +372,69 @@ public open class Mesh : Resource() {
     /**
      * [PackedVector3Array], [PackedVector2Array], or [Array] of vertex positions.
      */
-    ARRAY_VERTEX(0),
+    VERTEX(0),
     /**
      * [PackedVector3Array] of vertex normals.
      * **Note:** The array has to consist of normal vectors, otherwise they will be normalized by
      * the engine, potentially causing visual discrepancies.
      */
-    ARRAY_NORMAL(1),
+    NORMAL(1),
     /**
      * [PackedFloat32Array] of vertex tangents. Each element in groups of 4 floats, first 3 floats
      * determine the tangent, and the last the binormal direction as -1 or 1.
      */
-    ARRAY_TANGENT(2),
+    TANGENT(2),
     /**
      * [PackedColorArray] of vertex colors.
      */
-    ARRAY_COLOR(3),
+    COLOR(3),
     /**
      * [PackedVector2Array] for UV coordinates.
      */
-    ARRAY_TEX_UV(4),
+    TEX_UV(4),
     /**
      * [PackedVector2Array] for second UV coordinates.
      */
-    ARRAY_TEX_UV2(5),
+    TEX_UV2(5),
     /**
      * Contains custom color channel 0. [PackedByteArray] if `(format >>
      * Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
      * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
      * [PackedFloat32Array] otherwise.
      */
-    ARRAY_CUSTOM0(6),
+    CUSTOM0(6),
     /**
      * Contains custom color channel 1. [PackedByteArray] if `(format >>
      * Mesh.ARRAY_FORMAT_CUSTOM1_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
      * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
      * [PackedFloat32Array] otherwise.
      */
-    ARRAY_CUSTOM1(7),
+    CUSTOM1(7),
     /**
      * Contains custom color channel 2. [PackedByteArray] if `(format >>
      * Mesh.ARRAY_FORMAT_CUSTOM2_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
      * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
      * [PackedFloat32Array] otherwise.
      */
-    ARRAY_CUSTOM2(8),
+    CUSTOM2(8),
     /**
      * Contains custom color channel 3. [PackedByteArray] if `(format >>
      * Mesh.ARRAY_FORMAT_CUSTOM3_SHIFT) & Mesh.ARRAY_FORMAT_CUSTOM_MASK` is [ARRAY_CUSTOM_RGBA8_UNORM],
      * [ARRAY_CUSTOM_RGBA8_SNORM], [ARRAY_CUSTOM_RG_HALF], or [ARRAY_CUSTOM_RGBA_HALF].
      * [PackedFloat32Array] otherwise.
      */
-    ARRAY_CUSTOM3(9),
+    CUSTOM3(9),
     /**
      * [PackedFloat32Array] or [PackedInt32Array] of bone indices. Contains either 4 or 8 numbers
      * per vertex depending on the presence of the [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
-    ARRAY_BONES(10),
+    BONES(10),
     /**
      * [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0`
      * (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the
      * [ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag.
      */
-    ARRAY_WEIGHTS(11),
+    WEIGHTS(11),
     /**
      * [PackedInt32Array] of integers used as indices referencing vertices, colors, normals,
      * tangents, and textures. All of those arrays must have the same number of elements as the vertex
@@ -445,11 +445,11 @@ public open class Mesh : Resource() {
      * For triangles, the index array is interpreted as triples, referring to the vertices of each
      * triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */
-    ARRAY_INDEX(12),
+    INDEX(12),
     /**
      * Represents the size of the [ArrayType] enum.
      */
-    ARRAY_MAX(13),
+    MAX(13),
     ;
 
     public val id: Long
@@ -469,45 +469,45 @@ public open class Mesh : Resource() {
      * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded
      * as [PackedByteArray].
      */
-    ARRAY_CUSTOM_RGBA8_UNORM(0),
+    RGBA8_UNORM(0),
     /**
      * Indicates this custom channel contains signed normalized byte colors from -1 to 1, encoded as
      * [PackedByteArray].
      */
-    ARRAY_CUSTOM_RGBA8_SNORM(1),
+    RGBA8_SNORM(1),
     /**
      * Indicates this custom channel contains half precision float colors, encoded as
      * [PackedByteArray]. Only red and green channels are used.
      */
-    ARRAY_CUSTOM_RG_HALF(2),
+    RG_HALF(2),
     /**
      * Indicates this custom channel contains half precision float colors, encoded as
      * [PackedByteArray].
      */
-    ARRAY_CUSTOM_RGBA_HALF(3),
+    RGBA_HALF(3),
     /**
      * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only the
      * red channel is used.
      */
-    ARRAY_CUSTOM_R_FLOAT(4),
+    R_FLOAT(4),
     /**
      * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only red
      * and green channels are used.
      */
-    ARRAY_CUSTOM_RG_FLOAT(5),
+    RG_FLOAT(5),
     /**
      * Indicates this custom channel contains full float colors, in a [PackedFloat32Array]. Only
      * red, green and blue channels are used.
      */
-    ARRAY_CUSTOM_RGB_FLOAT(6),
+    RGB_FLOAT(6),
     /**
      * Indicates this custom channel contains full float colors, in a [PackedFloat32Array].
      */
-    ARRAY_CUSTOM_RGBA_FLOAT(7),
+    RGBA_FLOAT(7),
     /**
      * Represents the size of the [ArrayCustomFormat] enum.
      */
-    ARRAY_CUSTOM_MAX(8),
+    MAX(8),
     ;
 
     public val id: Long
@@ -591,17 +591,17 @@ public open class Mesh : Resource() {
 
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
+      public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
-      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
+      public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
-      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
+      public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
-      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
+      public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
-      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
+      public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
-      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
+      public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
     }
   }
 

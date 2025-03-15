@@ -2306,16 +2306,16 @@ public open class Control : CanvasItem() {
     /**
      * The node cannot grab focus. Use with [focusMode].
      */
-    FOCUS_NONE(0),
+    NONE(0),
     /**
      * The node can only grab focus on mouse clicks. Use with [focusMode].
      */
-    FOCUS_CLICK(1),
+    CLICK(1),
     /**
      * The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or
      * using the D-pad buttons on a gamepad. Use with [focusMode].
      */
-    FOCUS_ALL(2),
+    ALL(2),
     ;
 
     public val id: Long
@@ -2335,88 +2335,88 @@ public open class Control : CanvasItem() {
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
      * [mouseDefaultCursorShape].
      */
-    CURSOR_ARROW(0),
+    ARROW(0),
     /**
      * Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a
      * shape similar to "I". It tells the user they can highlight or insert text.
      */
-    CURSOR_IBEAM(1),
+    IBEAM(1),
     /**
      * Show the system's pointing hand mouse cursor when the user hovers the node.
      */
-    CURSOR_POINTING_HAND(2),
+    POINTING_HAND(2),
     /**
      * Show the system's cross mouse cursor when the user hovers the node.
      */
-    CURSOR_CROSS(3),
+    CROSS(3),
     /**
      * Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
      */
-    CURSOR_WAIT(4),
+    WAIT(4),
     /**
      * Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a
      * small hourglass.
      */
-    CURSOR_BUSY(5),
+    BUSY(5),
     /**
      * Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user
      * hovers the node. It tells the user they're currently dragging an item, like a node in the Scene
      * dock.
      */
-    CURSOR_DRAG(6),
+    DRAG(6),
     /**
      * Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It
      * tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
      */
-    CURSOR_CAN_DROP(7),
+    CAN_DROP(7),
     /**
      * Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed
      * circle.
      */
-    CURSOR_FORBIDDEN(8),
+    FORBIDDEN(8),
     /**
      * Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed
      * vertical arrow. It tells the user they can resize the window or the panel vertically.
      */
-    CURSOR_VSIZE(9),
+    VSIZE(9),
     /**
      * Show the system's horizontal resize mouse cursor when the user hovers the node. A
      * double-headed horizontal arrow. It tells the user they can resize the window or the panel
      * horizontally.
      */
-    CURSOR_HSIZE(10),
+    HSIZE(10),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the bottom left to the top right. It tells the user they can
      * resize the window or the panel both horizontally and vertically.
      */
-    CURSOR_BDIAGSIZE(11),
+    BDIAGSIZE(11),
     /**
      * Show the system's window resize mouse cursor when the user hovers the node. The cursor is a
      * double-headed arrow that goes from the top left to the bottom right, the opposite of
      * [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally
      * and vertically.
      */
-    CURSOR_FDIAGSIZE(12),
+    FDIAGSIZE(12),
     /**
      * Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed
      * arrows at a 90 degree angle. It tells the user they can move a UI element freely.
      */
-    CURSOR_MOVE(13),
+    MOVE(13),
     /**
      * Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's
      * the same as [CURSOR_VSIZE].
      */
-    CURSOR_VSPLIT(14),
+    VSPLIT(14),
     /**
      * Show the system's horizontal split mouse cursor when the user hovers the node. On Windows,
      * it's the same as [CURSOR_HSIZE].
      */
-    CURSOR_HSPLIT(15),
+    HSPLIT(15),
     /**
      * Show the system's help mouse cursor when the user hovers the node, a question mark.
      */
-    CURSOR_HELP(16),
+    HELP(16),
     ;
 
     public val id: Long
@@ -2588,17 +2588,17 @@ public open class Control : CanvasItem() {
     public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
 
     public companion object {
-      public val SIZE_SHRINK_BEGIN: SizeFlags = SizeFlags(0)
+      public val SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
-      public val SIZE_FILL: SizeFlags = SizeFlags(1)
+      public val FILL: SizeFlags = SizeFlags(1)
 
-      public val SIZE_EXPAND: SizeFlags = SizeFlags(2)
+      public val EXPAND: SizeFlags = SizeFlags(2)
 
-      public val SIZE_EXPAND_FILL: SizeFlags = SizeFlags(3)
+      public val EXPAND_FILL: SizeFlags = SizeFlags(3)
 
-      public val SIZE_SHRINK_CENTER: SizeFlags = SizeFlags(4)
+      public val SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
-      public val SIZE_SHRINK_END: SizeFlags = SizeFlags(8)
+      public val SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }
 

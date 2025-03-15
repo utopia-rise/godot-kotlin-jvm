@@ -623,7 +623,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * on how the LOD meshes are authored. See [visibilityRangeBegin] and [Node3D.visibilityParent] for
      * more information.
      */
-    VISIBILITY_RANGE_FADE_DISABLED(0),
+    DISABLED(0),
     /**
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
      * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
@@ -632,7 +632,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    VISIBILITY_RANGE_FADE_SELF(1),
+    SELF(1),
     /**
      * Will fade-in its visibility dependencies (see [Node3D.visibilityParent]) when reaching the
      * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
@@ -642,7 +642,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
+    DEPENDENCIES(2),
     ;
 
     public val id: Long

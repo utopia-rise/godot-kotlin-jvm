@@ -496,11 +496,11 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
      * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
      * each interval of the path will extrude.
      */
-    PATH_INTERVAL_DISTANCE(0),
+    DISTANCE(0),
     /**
      * When [mode] is set to [MODE_PATH], [pathInterval] will subdivide the polygons along the path.
      */
-    PATH_INTERVAL_SUBDIVIDE(1),
+    SUBDIVIDE(1),
     ;
 
     public val id: Long

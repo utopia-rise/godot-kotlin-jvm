@@ -55,60 +55,60 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
     /**
      * Sums two numbers using `a + b`.
      */
-    OP_ADD(0),
+    ADD(0),
     /**
      * Subtracts two numbers using `a - b`.
      */
-    OP_SUB(1),
+    SUB(1),
     /**
      * Multiplies two numbers using `a * b`.
      */
-    OP_MUL(2),
+    MUL(2),
     /**
      * Divides two numbers using `a / b`.
      */
-    OP_DIV(3),
+    DIV(3),
     /**
      * Calculates the remainder of two numbers using `a &#37; b`.
      */
-    OP_MOD(4),
+    MOD(4),
     /**
      * Returns the greater of two numbers. Translates to `max(a, b)` in the Godot Shader Language.
      */
-    OP_MAX(5),
+    MAX(5),
     /**
      * Returns the lesser of two numbers. Translates to `max(a, b)` in the Godot Shader Language.
      */
-    OP_MIN(6),
+    MIN(6),
     /**
      * Returns the result of bitwise `AND` operation on the integer. Translates to `a & b` in the
      * Godot Shader Language.
      */
-    OP_BITWISE_AND(7),
+    BITWISE_AND(7),
     /**
      * Returns the result of bitwise `OR` operation for two integers. Translates to `a | b` in the
      * Godot Shader Language.
      */
-    OP_BITWISE_OR(8),
+    BITWISE_OR(8),
     /**
      * Returns the result of bitwise `XOR` operation for two integers. Translates to `a ^ b` in the
      * Godot Shader Language.
      */
-    OP_BITWISE_XOR(9),
+    BITWISE_XOR(9),
     /**
      * Returns the result of bitwise left shift operation on the integer. Translates to `a << b` in
      * the Godot Shader Language.
      */
-    OP_BITWISE_LEFT_SHIFT(10),
+    BITWISE_LEFT_SHIFT(10),
     /**
      * Returns the result of bitwise right shift operation on the integer. Translates to `a >> b` in
      * the Godot Shader Language.
      */
-    OP_BITWISE_RIGHT_SHIFT(11),
+    BITWISE_RIGHT_SHIFT(11),
     /**
      * Represents the size of the [Operator] enum.
      */
-    OP_ENUM_SIZE(12),
+    ENUM_SIZE(12),
     ;
 
     public val id: Long

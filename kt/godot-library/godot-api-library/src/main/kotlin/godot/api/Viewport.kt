@@ -2276,20 +2276,20 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Variable Rate Shading is disabled.
      */
-    VRS_DISABLED(0),
+    DISABLED(0),
     /**
      * Variable Rate Shading uses a texture. Note, for stereoscopic use a texture atlas with a
      * texture for each view.
      */
-    VRS_TEXTURE(1),
+    TEXTURE(1),
     /**
      * Variable Rate Shading's texture is supplied by the primary [XRInterface].
      */
-    VRS_XR(2),
+    XR(2),
     /**
      * Represents the size of the [VRSMode] enum.
      */
-    VRS_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -2308,19 +2308,19 @@ public open class Viewport internal constructor() : Node() {
     /**
      * The input texture for variable rate shading will not be processed.
      */
-    VRS_UPDATE_DISABLED(0),
+    DISABLED(0),
     /**
      * The input texture for variable rate shading will be processed once.
      */
-    VRS_UPDATE_ONCE(1),
+    ONCE(1),
     /**
      * The input texture for variable rate shading will be processed each frame.
      */
-    VRS_UPDATE_ALWAYS(2),
+    ALWAYS(2),
     /**
      * Represents the size of the [VRSUpdateMode] enum.
      */
-    VRS_UPDATE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

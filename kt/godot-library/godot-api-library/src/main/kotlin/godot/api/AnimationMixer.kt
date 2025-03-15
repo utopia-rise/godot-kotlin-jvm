@@ -671,8 +671,8 @@ public open class AnimationMixer internal constructor() : Node() {
   public final fun capture(
     name: StringName,
     duration: Double,
-    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
-    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+    transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.IN,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
     TransferContext.callMethod(ptr, MethodBindings.capturePtr, NIL)

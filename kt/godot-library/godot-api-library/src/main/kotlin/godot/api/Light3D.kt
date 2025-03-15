@@ -737,7 +737,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still
      * affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
      */
-    BAKE_DISABLED(0),
+    DISABLED(0),
     /**
      * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI
      * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
@@ -745,7 +745,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * flickering torches), but generally not large changes such as toggling a light on and off.
      * **Note:** The light is not baked in [LightmapGI] if [editorOnly] is `true`.
      */
-    BAKE_STATIC(1),
+    STATIC(1),
     /**
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
@@ -754,7 +754,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * [BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
      * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
-    BAKE_DYNAMIC(2),
+    DYNAMIC(2),
     ;
 
     public val id: Long

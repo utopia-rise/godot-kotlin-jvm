@@ -959,15 +959,15 @@ public open class ItemList : Control() {
     /**
      * Only allow selecting a single item.
      */
-    SELECT_SINGLE(0),
+    SINGLE(0),
     /**
      * Allows selecting multiple items by holding [kbd]Ctrl[/kbd] or [kbd]Shift[/kbd].
      */
-    SELECT_MULTI(1),
+    MULTI(1),
     /**
      * Allows selecting multiple items by toggling them on and off.
      */
-    SELECT_TOGGLE(2),
+    TOGGLE(2),
     ;
 
     public val id: Long
