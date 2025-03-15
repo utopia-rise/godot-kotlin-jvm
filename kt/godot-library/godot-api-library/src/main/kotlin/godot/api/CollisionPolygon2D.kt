@@ -106,6 +106,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -116,6 +117,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun getBuildMode(): BuildMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBuildModePtr, LONG)
     return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -126,6 +128,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun isDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -136,6 +139,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun isOneWayCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -146,6 +150,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun getOneWayCollisionMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

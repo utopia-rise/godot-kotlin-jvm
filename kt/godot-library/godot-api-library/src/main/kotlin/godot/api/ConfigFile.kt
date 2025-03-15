@@ -188,6 +188,7 @@ public open class ConfigFile : RefCounted() {
    * Returns an array of all defined section identifiers.
    */
   public final fun getSections(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -257,6 +258,7 @@ public open class ConfigFile : RefCounted() {
    * Obtain the text version of this config file (the same text that would be written to a file).
    */
   public final fun encodeToText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.encodeToTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -312,6 +314,7 @@ public open class ConfigFile : RefCounted() {
    * Removes the entire contents of the config.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

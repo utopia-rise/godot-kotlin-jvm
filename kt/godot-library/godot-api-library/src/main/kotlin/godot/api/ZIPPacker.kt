@@ -83,6 +83,7 @@ public open class ZIPPacker : RefCounted() {
    * It will fail if there is no open file.
    */
   public final fun closeFile(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closeFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -91,6 +92,7 @@ public open class ZIPPacker : RefCounted() {
    * Closes the underlying resources used by this instance.
    */
   public final fun close(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

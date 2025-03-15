@@ -161,6 +161,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun isDofBlurFarEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -171,6 +172,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getDofBlurFarDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -181,6 +183,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getDofBlurFarTransition(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -191,6 +194,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun isDofBlurNearEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -201,6 +205,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getDofBlurNearDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -211,6 +216,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getDofBlurNearTransition(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -221,6 +227,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getDofBlurAmount(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -231,6 +238,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getAutoExposureMaxSensitivity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -241,6 +249,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   }
 
   public final fun getAutoExposureMinSensitivity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

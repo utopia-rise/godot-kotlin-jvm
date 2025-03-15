@@ -147,6 +147,7 @@ public open class TileSet : Resource() {
    * return.
    */
   public final fun getNextSourceId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextSourceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -185,6 +186,7 @@ public open class TileSet : Resource() {
    * Returns the number of [TileSetSource] in this TileSet.
    */
   public final fun getSourceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -222,6 +224,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun getTileShape(): TileShape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileShapePtr, LONG)
     return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -232,6 +235,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun getTileLayout(): TileLayout {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileLayoutPtr, LONG)
     return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -242,6 +246,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun getTileOffsetAxis(): TileOffsetAxis {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileOffsetAxisPtr, LONG)
     return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -252,6 +257,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun getTileSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTileSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -262,6 +268,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun isUvClipping(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUvClippingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -270,6 +277,7 @@ public open class TileSet : Resource() {
    * Returns the occlusion layers count.
    */
   public final fun getOcclusionLayersCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOcclusionLayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -341,6 +349,7 @@ public open class TileSet : Resource() {
    * Returns the physics layers count.
    */
   public final fun getPhysicsLayersCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsLayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -448,6 +457,7 @@ public open class TileSet : Resource() {
    * Returns the terrain sets count.
    */
   public final fun getTerrainSetsCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTerrainSetsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -585,6 +595,7 @@ public open class TileSet : Resource() {
    * Returns the navigation layers count.
    */
   public final fun getNavigationLayersCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -665,6 +676,7 @@ public open class TileSet : Resource() {
    * Returns the custom data layers count.
    */
   public final fun getCustomDataLayersCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomDataLayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -918,6 +930,7 @@ public open class TileSet : Resource() {
    * Clears tile proxies pointing to invalid tiles.
    */
   public final fun cleanupInvalidTileProxies(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cleanupInvalidTileProxiesPtr, NIL)
   }
 
@@ -925,6 +938,7 @@ public open class TileSet : Resource() {
    * Clears all tile proxies.
    */
   public final fun clearTileProxies(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearTileProxiesPtr, NIL)
   }
 
@@ -961,6 +975,7 @@ public open class TileSet : Resource() {
    * Returns the number of [TileMapPattern] this tile set handles.
    */
   public final fun getPatternsCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPatternsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

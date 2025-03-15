@@ -161,6 +161,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getTextureNormal(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureNormalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -171,6 +172,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getTexturePressed(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePressedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -181,6 +183,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getBitmask(): BitMap? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBitmaskPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BitMap?)
   }
@@ -191,6 +194,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getShape(): Shape2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
@@ -201,6 +205,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun isShapeCentered(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShapeCenteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -211,6 +216,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun isShapeVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShapeVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -221,6 +227,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getAction(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -231,6 +238,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun getVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityModePtr, LONG)
     return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -241,6 +249,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public final fun isPassbyPressEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -249,6 +258,7 @@ public open class TouchScreenButton : Node2D() {
    * Returns `true` if this button is currently pressed.
    */
   public final fun isPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

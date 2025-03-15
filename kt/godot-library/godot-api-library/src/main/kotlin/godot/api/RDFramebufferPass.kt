@@ -98,6 +98,7 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public final fun getColorAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -108,6 +109,7 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public final fun getInputAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -118,6 +120,7 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public final fun getResolveAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResolveAttachmentsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -128,6 +131,7 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public final fun getPreserveAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreserveAttachmentsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -138,6 +142,7 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public final fun getDepthAttachment(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthAttachmentPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

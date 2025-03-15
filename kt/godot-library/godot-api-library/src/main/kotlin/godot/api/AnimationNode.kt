@@ -215,6 +215,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendTree].
    */
   public final fun getInputCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -251,6 +252,7 @@ public open class AnimationNode : Resource() {
   }
 
   public final fun isFilterEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFilterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -261,6 +263,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
    */
   public final fun getProcessingAnimationTreeInstanceId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessingAnimationTreeInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -269,6 +272,7 @@ public open class AnimationNode : Resource() {
    * Returns `true` if this animation node is being processed in test-only mode.
    */
   public final fun isProcessTesting(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessTestingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -381,7 +385,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
   ) =
       blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
 

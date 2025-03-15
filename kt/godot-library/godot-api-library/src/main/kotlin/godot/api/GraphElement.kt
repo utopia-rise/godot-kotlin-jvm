@@ -166,6 +166,7 @@ public open class GraphElement : Container() {
   }
 
   public final fun isResizable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isResizablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -176,6 +177,7 @@ public open class GraphElement : Container() {
   }
 
   public final fun isDraggable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDraggablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -186,6 +188,7 @@ public open class GraphElement : Container() {
   }
 
   public final fun isSelectable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -196,6 +199,7 @@ public open class GraphElement : Container() {
   }
 
   public final fun isSelected(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,6 +210,7 @@ public open class GraphElement : Container() {
   }
 
   public final fun getPositionOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

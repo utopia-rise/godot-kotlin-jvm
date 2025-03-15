@@ -111,6 +111,7 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public final fun getFrames(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -121,6 +122,7 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public final fun getCurrentFrame(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -131,6 +133,7 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public final fun getPause(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPausePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -141,6 +144,7 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public final fun getOneShot(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -151,6 +155,7 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public final fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

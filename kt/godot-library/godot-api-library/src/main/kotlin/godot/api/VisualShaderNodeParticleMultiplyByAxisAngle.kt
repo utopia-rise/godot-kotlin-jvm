@@ -45,6 +45,7 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   }
 
   public final fun isDegreesMode(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDegreesModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -209,6 +209,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
     return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -219,6 +220,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getPathPostprocessing(): PathPostProcessing {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
     return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -229,6 +231,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -239,6 +242,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getStartPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStartPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -249,6 +253,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getTargetPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -259,6 +264,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -269,6 +275,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getMetadataFlags(): PathMetadataFlags {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetadataFlagsPtr, LONG)
     return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -279,6 +286,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getSimplifyPath(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -289,6 +297,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun getSimplifyEpsilon(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

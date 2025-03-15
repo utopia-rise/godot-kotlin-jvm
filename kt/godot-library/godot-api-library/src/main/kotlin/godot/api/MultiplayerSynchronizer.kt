@@ -148,6 +148,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun getRootPath(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -158,6 +159,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun getReplicationInterval(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -168,6 +170,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun getDeltaInterval(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -178,6 +181,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun getReplicationConfig(): SceneReplicationConfig? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReplicationConfigPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SceneReplicationConfig?)
   }
@@ -188,6 +192,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun getVisibilityUpdateMode(): VisibilityUpdateMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityUpdateModePtr, LONG)
     return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -208,6 +213,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun isVisibilityPublic(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisibilityPublicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -169,6 +169,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getSupportedProtocols(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedProtocolsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -179,6 +180,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getHandshakeHeaders(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -189,6 +191,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getInboundBufferSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInboundBufferSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -199,6 +202,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getOutboundBufferSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutboundBufferSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -209,6 +213,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getHandshakeTimeout(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandshakeTimeoutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -224,6 +229,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getMaxQueuedPackets(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

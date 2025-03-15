@@ -71,6 +71,7 @@ public open class RDShaderFile : Resource() {
    * Returns the list of compiled versions for this shader.
    */
   public final fun getVersionList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVersionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -81,6 +82,7 @@ public open class RDShaderFile : Resource() {
   }
 
   public final fun getBaseError(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaseErrorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

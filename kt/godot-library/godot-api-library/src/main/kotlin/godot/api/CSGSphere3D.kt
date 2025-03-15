@@ -99,6 +99,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -109,6 +110,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -119,6 +121,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun getRings(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -129,6 +132,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun getSmoothFaces(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -139,6 +143,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

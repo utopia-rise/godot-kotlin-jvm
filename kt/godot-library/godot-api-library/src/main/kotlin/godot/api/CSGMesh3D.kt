@@ -71,6 +71,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   }
 
   public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -81,6 +82,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   }
 
   public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

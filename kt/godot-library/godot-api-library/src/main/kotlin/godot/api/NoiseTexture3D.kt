@@ -175,6 +175,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun getInvert(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -185,6 +186,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun getSeamless(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeamlessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -195,6 +197,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun getSeamlessBlendSkirt(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -205,6 +208,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun isNormalized(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -215,6 +219,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun getColorRamp(): Gradient? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorRampPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
@@ -225,6 +230,7 @@ public open class NoiseTexture3D : Texture3D() {
   }
 
   public final fun getNoise(): Noise? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Noise?)
   }

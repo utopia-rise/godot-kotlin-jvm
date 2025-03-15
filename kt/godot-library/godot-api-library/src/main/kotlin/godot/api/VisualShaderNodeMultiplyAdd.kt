@@ -44,6 +44,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   }
 
   public final fun getOpType(): OpType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeMultiplyAdd.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }

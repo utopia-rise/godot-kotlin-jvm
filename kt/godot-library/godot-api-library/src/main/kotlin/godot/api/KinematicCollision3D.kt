@@ -42,6 +42,7 @@ public open class KinematicCollision3D : RefCounted() {
    * Returns the moving object's travel before collision.
    */
   public final fun getTravel(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTravelPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -50,6 +51,7 @@ public open class KinematicCollision3D : RefCounted() {
    * Returns the moving object's remaining movement vector.
    */
   public final fun getRemainder(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemainderPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -58,6 +60,7 @@ public open class KinematicCollision3D : RefCounted() {
    * Returns the colliding body's length of overlap along the collision normal.
    */
   public final fun getDepth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -66,6 +69,7 @@ public open class KinematicCollision3D : RefCounted() {
    * Returns the number of detected collisions.
    */
   public final fun getCollisionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

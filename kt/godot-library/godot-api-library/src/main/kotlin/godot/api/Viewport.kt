@@ -810,6 +810,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getWorld2d(): World2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWorld2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as World2D?)
   }
@@ -819,6 +820,7 @@ public open class Viewport internal constructor() : Node() {
    * and any Viewport ancestor.
    */
   public final fun findWorld2d(): World2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.findWorld2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as World2D?)
   }
@@ -829,6 +831,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getCanvasTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -839,6 +842,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getGlobalCanvasTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalCanvasTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -857,6 +861,7 @@ public open class Viewport internal constructor() : Node() {
    * may differ *significantly*.
    */
   public final fun getStretchTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -866,6 +871,7 @@ public open class Viewport internal constructor() : Node() {
    * system.
    */
   public final fun getFinalTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -875,6 +881,7 @@ public open class Viewport internal constructor() : Node() {
    * containing window manager window.
    */
   public final fun getScreenTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -883,6 +890,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the visible rectangle in global screen coordinates.
    */
   public final fun getVisibleRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -893,6 +901,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun hasTransparentBackground(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasTransparentBackgroundPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -903,6 +912,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingHdr2d(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingHdr2dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -913,6 +923,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getMsaa2d(): MSAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa2dPtr, LONG)
     return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -923,6 +934,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getMsaa3d(): MSAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
     return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -933,6 +945,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getScreenSpaceAa(): ScreenSpaceAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
     return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -943,6 +956,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingTaa(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingTaaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -953,6 +967,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingDebanding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -963,6 +978,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingOcclusionCulling(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingOcclusionCullingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -973,6 +989,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getDebugDraw(): DebugDraw {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugDrawPtr, LONG)
     return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1001,6 +1018,7 @@ public open class Viewport internal constructor() : Node() {
    * space.
    */
   public final fun getTexture(): ViewportTexture? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ViewportTexture?)
   }
@@ -1011,6 +1029,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getPhysicsObjectPicking(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsObjectPickingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1021,6 +1040,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getPhysicsObjectPickingSort(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsObjectPickingSortPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1031,6 +1051,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getPhysicsObjectPickingFirstOnly(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsObjectPickingFirstOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1039,6 +1060,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the viewport's RID from the [RenderingServer].
    */
   public final fun getViewportRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewportRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1112,6 +1134,7 @@ public open class Viewport internal constructor() : Node() {
    * with an [Area3D] that forwards input events.
    */
   public final fun notifyMouseEntered(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.notifyMouseEnteredPtr, NIL)
   }
 
@@ -1125,6 +1148,7 @@ public open class Viewport internal constructor() : Node() {
    * with an [Area3D] that forwards input events.
    */
   public final fun notifyMouseExited(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.notifyMouseExitedPtr, NIL)
   }
 
@@ -1132,6 +1156,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport].
    */
   public final fun getMousePosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMousePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1154,6 +1179,7 @@ public open class Viewport internal constructor() : Node() {
    * Window.mouse_entered] signals and their respective `mouse_exited` counterparts.
    */
   public final fun updateMouseCursorState(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateMouseCursorStatePtr, NIL)
   }
 
@@ -1162,6 +1188,7 @@ public open class Viewport internal constructor() : Node() {
    * with [Control.forceDrag].
    */
   public final fun guiCancelDrag(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiCancelDragPtr, NIL)
   }
 
@@ -1169,6 +1196,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the drag data from the GUI, that was previously returned by [Control.GetDragData].
    */
   public final fun guiGetDragData(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiGetDragDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -1180,6 +1208,7 @@ public open class Viewport internal constructor() : Node() {
    * polling the value.
    */
   public final fun guiIsDragging(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiIsDraggingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1188,6 +1217,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns `true` if the drag operation is successful.
    */
   public final fun guiIsDragSuccessful(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiIsDragSuccessfulPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1197,6 +1227,7 @@ public open class Viewport internal constructor() : Node() {
    * has the focus, does nothing.
    */
   public final fun guiReleaseFocus(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiReleaseFocusPtr, NIL)
   }
 
@@ -1205,6 +1236,7 @@ public open class Viewport internal constructor() : Node() {
    * returns `null`.
    */
   public final fun guiGetFocusOwner(): Control? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiGetFocusOwnerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -1217,6 +1249,7 @@ public open class Viewport internal constructor() : Node() {
    * tree.
    */
   public final fun guiGetHoveredControl(): Control? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiGetHoveredControlPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -1227,6 +1260,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isInputDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInputDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1237,6 +1271,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getPositionalShadowAtlasSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionalShadowAtlasSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1247,6 +1282,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getPositionalShadowAtlas16Bits(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionalShadowAtlas16BitsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1257,6 +1293,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isSnapControlsToPixelsEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSnapControlsToPixelsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1267,6 +1304,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isSnap2dTransformsToPixelEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSnap2dTransformsToPixelEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1277,6 +1315,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isSnap2dVerticesToPixelEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSnap2dVerticesToPixelEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1308,6 +1347,7 @@ public open class Viewport internal constructor() : Node() {
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun setInputAsHandled(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setInputAsHandledPtr, NIL)
   }
 
@@ -1320,6 +1360,7 @@ public open class Viewport internal constructor() : Node() {
    * viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
   public final fun isInputHandled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInputHandledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1330,6 +1371,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isHandlingInputLocally(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHandlingInputLocallyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1340,6 +1382,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getDefaultCanvasItemTextureFilter(): DefaultCanvasItemTextureFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCanvasItemTextureFilterPtr, LONG)
     return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1350,6 +1393,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isEmbeddingSubwindows(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmbeddingSubwindowsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1359,6 +1403,7 @@ public open class Viewport internal constructor() : Node() {
    * **Note:** [Window]s inside other viewports will not be listed.
    */
   public final fun getEmbeddedSubwindows(): VariantArray<Window> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmbeddedSubwindowsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Window>)
   }
@@ -1369,6 +1414,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getCanvasCullMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1397,6 +1443,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getDefaultCanvasItemTextureRepeat(): DefaultCanvasItemTextureRepeat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCanvasItemTextureRepeatPtr, LONG)
     return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1407,6 +1454,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getSdfOversize(): SDFOversize {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfOversizePtr, LONG)
     return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1417,6 +1465,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getSdfScale(): SDFScale {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfScalePtr, LONG)
     return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1427,6 +1476,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getMeshLodThreshold(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1437,6 +1487,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isAudioListener2d(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAudioListener2dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1446,6 +1497,7 @@ public open class Viewport internal constructor() : Node() {
    * listeners, in which case the active 2D camera will be treated as listener.
    */
   public final fun getAudioListener2d(): AudioListener2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAudioListener2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioListener2D?)
   }
@@ -1454,6 +1506,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the currently active 2D camera. Returns `null` if there are no active cameras.
    */
   public final fun getCamera2d(): Camera2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCamera2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Camera2D?)
   }
@@ -1464,6 +1517,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getWorld3d(): World3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWorld3dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as World3D?)
   }
@@ -1473,6 +1527,7 @@ public open class Viewport internal constructor() : Node() {
    * and any Viewport ancestor.
    */
   public final fun findWorld3d(): World3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.findWorld3dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as World3D?)
   }
@@ -1483,6 +1538,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingOwnWorld3d(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingOwnWorld3dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1492,6 +1548,7 @@ public open class Viewport internal constructor() : Node() {
    * listeners, in which case the active 3D camera will be treated as listener.
    */
   public final fun getAudioListener3d(): AudioListener3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAudioListener3dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioListener3D?)
   }
@@ -1500,6 +1557,7 @@ public open class Viewport internal constructor() : Node() {
    * Returns the currently active 3D camera.
    */
   public final fun getCamera3d(): Camera3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCamera3dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
@@ -1510,6 +1568,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isAudioListener3d(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAudioListener3dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1520,6 +1579,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun is3dDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.is3dDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1530,6 +1590,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun isUsingXr(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingXrPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1540,6 +1601,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getScaling3dMode(): Scaling3DMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
     return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1550,6 +1612,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getScaling3dScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1560,6 +1623,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getFsrSharpness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1570,6 +1634,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getTextureMipmapBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1581,6 +1646,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getAnisotropicFilteringLevel(): AnisotropicFiltering {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnisotropicFilteringLevelPtr, LONG)
     return Viewport.AnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1591,6 +1657,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getVrsMode(): VRSMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsModePtr, LONG)
     return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1601,6 +1668,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getVrsUpdateMode(): VRSUpdateMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsUpdateModePtr, LONG)
     return Viewport.VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1611,6 +1679,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun getVrsTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

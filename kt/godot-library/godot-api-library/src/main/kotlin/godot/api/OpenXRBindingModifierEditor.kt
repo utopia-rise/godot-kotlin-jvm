@@ -35,6 +35,7 @@ public open class OpenXRBindingModifierEditor : PanelContainer() {
    * Returns the [OpenXRBindingModifier] currently being edited.
    */
   public final fun getBindingModifier(): OpenXRBindingModifier? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingModifierPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRBindingModifier?)
   }

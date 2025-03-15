@@ -63,6 +63,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Clears the internal data.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -70,6 +71,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Returns `true` when parsed source geometry data exists.
    */
   public final fun hasData(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -87,6 +89,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Returns all the traversable area outlines arrays.
    */
   public final fun getTraversableOutlines(): VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
@@ -104,6 +107,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Returns all the obstructed area outlines arrays.
    */
   public final fun getObstructionOutlines(): VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
@@ -167,6 +171,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Clears all projected obstructions.
    */
   public final fun clearProjectedObstructions(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearProjectedObstructionsPtr, NIL)
   }
 
@@ -193,6 +198,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * If `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
   public final fun getProjectedObstructions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -203,6 +209,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * made.
    */
   public final fun getBounds(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }

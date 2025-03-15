@@ -37,6 +37,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the moving object's travel before collision.
    */
   public final fun getTravel(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTravelPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -45,6 +46,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the moving object's remaining movement vector.
    */
   public final fun getRemainder(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemainderPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -53,6 +55,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the point of collision in global coordinates, if a collision occurred.
    */
   public final fun getCollisionPoint(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -61,6 +64,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the colliding body's shape's normal at the point of collision, if a collision occurred.
    */
   public final fun getCollisionNormal(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionNormalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -69,6 +73,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the colliding body's velocity, if a collision occurred.
    */
   public final fun getColliderVelocity(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColliderVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -78,6 +83,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * occurred. See [Object.getInstanceId].
    */
   public final fun getColliderId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColliderIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -86,6 +92,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the colliding body's [RID] used by the [PhysicsServer2D], if a collision occurred.
    */
   public final fun getColliderRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -94,6 +101,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the colliding body's attached [Object], if a collision occurred.
    */
   public final fun getCollider(): Object? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
@@ -102,6 +110,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the colliding body's shape index, if a collision occurred. See [CollisionObject2D].
    */
   public final fun getColliderShape(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -110,6 +119,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the moving object's colliding shape, if a collision occurred.
    */
   public final fun getCollisionLocalShape(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionLocalShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -118,6 +128,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * Returns the length of overlap along the collision normal, if a collision occurred.
    */
   public final fun getCollisionDepth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -127,6 +138,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * `1`.
    */
   public final fun getCollisionSafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -136,6 +148,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
    * `0` and `1`.
    */
   public final fun getCollisionUnsafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

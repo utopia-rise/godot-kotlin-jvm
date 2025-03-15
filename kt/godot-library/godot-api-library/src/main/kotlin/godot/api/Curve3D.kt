@@ -93,6 +93,7 @@ public open class Curve3D : Resource() {
   }
 
   public final fun getPointCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -215,6 +216,7 @@ public open class Curve3D : Resource() {
    * Removes all points from the curve.
    */
   public final fun clearPoints(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
   }
 
@@ -247,6 +249,7 @@ public open class Curve3D : Resource() {
   }
 
   public final fun isClosed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -257,6 +260,7 @@ public open class Curve3D : Resource() {
   }
 
   public final fun getBakeInterval(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -267,6 +271,7 @@ public open class Curve3D : Resource() {
   }
 
   public final fun isUpVectorEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUpVectorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -276,6 +281,7 @@ public open class Curve3D : Resource() {
    * [bakeInterval]), it should be approximate enough.
    */
   public final fun getBakedLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -330,6 +336,7 @@ public open class Curve3D : Resource() {
    * Returns the cache of points as a [PackedVector3Array].
    */
   public final fun getBakedPoints(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -338,6 +345,7 @@ public open class Curve3D : Resource() {
    * Returns the cache of tilts as a [PackedFloat32Array].
    */
   public final fun getBakedTilts(): PackedFloat32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedTiltsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -347,6 +355,7 @@ public open class Curve3D : Resource() {
    * If [upVectorEnabled] is `false`, the cache will be empty.
    */
   public final fun getBakedUpVectors(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedUpVectorsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }

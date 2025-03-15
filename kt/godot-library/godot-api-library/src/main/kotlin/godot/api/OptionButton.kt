@@ -262,6 +262,7 @@ public open class OptionButton : Button() {
    * Clears all the items in the [OptionButton].
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -276,6 +277,7 @@ public open class OptionButton : Button() {
   }
 
   public final fun getSelected(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -284,6 +286,7 @@ public open class OptionButton : Button() {
    * Returns the ID of the selected item, or `-1` if no item is selected.
    */
   public final fun getSelectedId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -292,6 +295,7 @@ public open class OptionButton : Button() {
    * Gets the metadata of the selected item. Metadata for items can be set using [setItemMetadata].
    */
   public final fun getSelectedMetadata(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -310,6 +314,7 @@ public open class OptionButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupMenu? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
@@ -319,6 +324,7 @@ public open class OptionButton : Button() {
    * this over using `get_popup().popup()`.
    */
   public final fun showPopup(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPopupPtr, NIL)
   }
 
@@ -328,6 +334,7 @@ public open class OptionButton : Button() {
   }
 
   public final fun getItemCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -337,6 +344,7 @@ public open class OptionButton : Button() {
    * separator.
    */
   public final fun hasSelectableItems(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasSelectableItemsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -359,6 +367,7 @@ public open class OptionButton : Button() {
   }
 
   public final fun isFitToLongestItem(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFitToLongestItemPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -369,6 +378,7 @@ public open class OptionButton : Button() {
   }
 
   public final fun getAllowReselect(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowReselectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

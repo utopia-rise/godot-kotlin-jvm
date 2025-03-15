@@ -80,6 +80,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * by three) is naturally divided into triples; each triple of vertices defines a triangle.
    */
   public final fun getFaces(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -90,6 +91,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
   }
 
   public final fun isBackfaceCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

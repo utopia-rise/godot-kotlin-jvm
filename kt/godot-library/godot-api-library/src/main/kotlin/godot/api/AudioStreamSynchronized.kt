@@ -50,6 +50,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   }
 
   public final fun getStreamCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

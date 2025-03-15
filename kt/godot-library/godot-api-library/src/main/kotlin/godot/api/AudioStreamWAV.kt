@@ -139,6 +139,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getData(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -149,6 +150,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getFormat(): Format {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -159,6 +161,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopMode(): LoopMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -169,6 +172,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopBegin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -179,6 +183,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopEnd(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopEndPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -189,6 +194,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getMixRate(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -199,6 +205,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun isStereo(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStereoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

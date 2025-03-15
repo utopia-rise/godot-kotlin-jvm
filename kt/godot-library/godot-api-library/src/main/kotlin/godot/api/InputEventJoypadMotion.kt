@@ -61,6 +61,7 @@ public open class InputEventJoypadMotion : InputEvent() {
   }
 
   public final fun getAxis(): JoyAxis {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAxisPtr, LONG)
     return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -71,6 +72,7 @@ public open class InputEventJoypadMotion : InputEvent() {
   }
 
   public final fun getAxisValue(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAxisValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

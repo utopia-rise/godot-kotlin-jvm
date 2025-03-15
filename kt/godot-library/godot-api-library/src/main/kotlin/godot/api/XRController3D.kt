@@ -117,6 +117,7 @@ public open class XRController3D : XRNode3D() {
    * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }

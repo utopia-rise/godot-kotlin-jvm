@@ -134,6 +134,7 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public final fun getShape(): Shape2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
@@ -144,6 +145,7 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public final fun isDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -154,6 +156,7 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public final fun isOneWayCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -164,6 +167,7 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public final fun getOneWayCollisionMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -174,6 +178,7 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public final fun getDebugColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }

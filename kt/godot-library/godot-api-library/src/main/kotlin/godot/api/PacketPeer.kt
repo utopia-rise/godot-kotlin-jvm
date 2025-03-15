@@ -86,6 +86,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Gets a raw packet.
    */
   public final fun getPacket(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -103,6 +104,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Returns the error state of the last packet received (via [getPacket] and [getVar]).
    */
   public final fun getPacketError(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketErrorPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -111,11 +113,13 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Returns the number of packets currently available in the ring-buffer.
    */
   public final fun getAvailablePacketCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvailablePacketCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getEncodeBufferMaxSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

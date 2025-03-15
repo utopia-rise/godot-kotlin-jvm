@@ -129,6 +129,7 @@ public object NativeMenu : Object() {
    */
   @JvmStatic
   public final fun createMenu(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createMenuPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

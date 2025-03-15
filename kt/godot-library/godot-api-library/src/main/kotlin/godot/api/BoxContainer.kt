@@ -71,6 +71,7 @@ public open class BoxContainer : Container() {
   }
 
   public final fun getAlignment(): AlignmentMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
     return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -81,6 +82,7 @@ public open class BoxContainer : Container() {
   }
 
   public final fun isVertical(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

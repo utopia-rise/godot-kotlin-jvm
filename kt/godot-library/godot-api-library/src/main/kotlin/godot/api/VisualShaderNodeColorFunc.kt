@@ -44,6 +44,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   }
 
   public final fun getFunction(): Function {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeColorFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }

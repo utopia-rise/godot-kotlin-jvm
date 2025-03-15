@@ -147,6 +147,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun getDepth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -157,6 +158,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -167,6 +169,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun isDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -177,6 +180,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun getDebugColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -187,6 +191,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun getEnableDebugFill(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDebugFillPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -197,6 +202,7 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

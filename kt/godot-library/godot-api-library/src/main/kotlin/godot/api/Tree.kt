@@ -319,6 +319,7 @@ public open class Tree : Control() {
    * Clears the tree. This removes all items.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -341,6 +342,7 @@ public open class Tree : Control() {
    * Returns the tree's root item, or `null` if the tree is empty.
    */
   public final fun getRoot(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -423,6 +425,7 @@ public open class Tree : Control() {
   }
 
   public final fun isRootHidden(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRootHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -445,6 +448,7 @@ public open class Tree : Control() {
    * To get the currently selected item(s), use [getNextSelected].
    */
   public final fun getSelected(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -465,6 +469,7 @@ public open class Tree : Control() {
    * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
   public final fun getSelectedColumn(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -473,6 +478,7 @@ public open class Tree : Control() {
    * Returns the last pressed button's index.
    */
   public final fun getPressedButton(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPressedButtonPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -483,6 +489,7 @@ public open class Tree : Control() {
   }
 
   public final fun getSelectMode(): SelectMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectModePtr, LONG)
     return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -492,6 +499,7 @@ public open class Tree : Control() {
    * cursor.
    */
   public final fun deselectAll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectAllPtr, NIL)
   }
 
@@ -501,6 +509,7 @@ public open class Tree : Control() {
   }
 
   public final fun getColumns(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColumnsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -531,6 +540,7 @@ public open class Tree : Control() {
    * ```
    */
   public final fun getEdited(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -539,6 +549,7 @@ public open class Tree : Control() {
    * Returns the column for the currently edited item.
    */
   public final fun getEditedColumn(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditedColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -560,6 +571,7 @@ public open class Tree : Control() {
    * popup. See [TreeItem.setCellMode].
    */
   public final fun getCustomPopupRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomPopupRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -627,6 +639,7 @@ public open class Tree : Control() {
    * [SELECT_MULTI] mode.
    */
   public final fun ensureCursorIsVisible(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ensureCursorIsVisiblePtr, NIL)
   }
 
@@ -636,6 +649,7 @@ public open class Tree : Control() {
   }
 
   public final fun areColumnTitlesVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areColumnTitlesVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -714,6 +728,7 @@ public open class Tree : Control() {
    * Returns the current scrolling position.
    */
   public final fun getScroll(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -733,6 +748,7 @@ public open class Tree : Control() {
   }
 
   public final fun isHScrollEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHScrollEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -743,6 +759,7 @@ public open class Tree : Control() {
   }
 
   public final fun isVScrollEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVScrollEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -753,6 +770,7 @@ public open class Tree : Control() {
   }
 
   public final fun isFoldingHidden(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFoldingHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -763,6 +781,7 @@ public open class Tree : Control() {
   }
 
   public final fun isRecursiveFoldingEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -773,6 +792,7 @@ public open class Tree : Control() {
   }
 
   public final fun getDropModeFlags(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDropModeFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -783,6 +803,7 @@ public open class Tree : Control() {
   }
 
   public final fun getAllowRmbSelect(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowRmbSelectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -793,6 +814,7 @@ public open class Tree : Control() {
   }
 
   public final fun getAllowReselect(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowReselectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -803,6 +825,7 @@ public open class Tree : Control() {
   }
 
   public final fun getAllowSearch(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowSearchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -813,6 +836,7 @@ public open class Tree : Control() {
   }
 
   public final fun isAutoTooltipEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

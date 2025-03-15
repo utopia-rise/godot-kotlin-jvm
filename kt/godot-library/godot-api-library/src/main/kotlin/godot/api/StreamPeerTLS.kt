@@ -40,6 +40,7 @@ public open class StreamPeerTLS : StreamPeer() {
    * [StreamPeer.getAvailableBytes] for it to work properly.
    */
   public final fun poll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
@@ -73,6 +74,7 @@ public open class StreamPeerTLS : StreamPeer() {
    * Returns the status of the connection. See [Status] for values.
    */
   public final fun getStatus(): Status {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
     return StreamPeerTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -81,6 +83,7 @@ public open class StreamPeerTLS : StreamPeer() {
    * Returns the underlying [StreamPeer] connection, used in [acceptStream] or [connectToStream].
    */
   public final fun getStream(): StreamPeer? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
@@ -89,6 +92,7 @@ public open class StreamPeerTLS : StreamPeer() {
    * Disconnects from host.
    */
   public final fun disconnectFromStream(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromStreamPtr, NIL)
   }
 

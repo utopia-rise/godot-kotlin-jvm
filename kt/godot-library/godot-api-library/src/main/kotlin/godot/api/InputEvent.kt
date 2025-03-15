@@ -62,6 +62,7 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   public final fun getDevice(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDevicePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -130,6 +131,7 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event has been canceled.
    */
   public final fun isCanceled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCanceledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -142,6 +144,7 @@ public open class InputEvent internal constructor() : Resource() {
    * examples[/url] in the documentation for more information.
    */
   public final fun isPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -151,6 +154,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    */
   public final fun isReleased(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -166,6 +170,7 @@ public open class InputEvent internal constructor() : Resource() {
    * configuration in your project's behavior.
    */
   public final fun isEcho(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEchoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -174,6 +179,7 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns a [String] representation of the event.
    */
   public final fun asText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -198,6 +204,7 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event's type is one that can be assigned to an input action.
    */
   public final fun isActionType(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

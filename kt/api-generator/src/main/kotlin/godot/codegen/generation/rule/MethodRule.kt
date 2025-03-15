@@ -122,9 +122,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
     }
 
     override fun FunSpec.Builder.writeCode(method: EnrichedMethod, clazz: EnrichedClass) {
-        if (method.arguments.isNotEmpty()) {
-            generateWriteArgument(method)
-        }
+        generateWriteArgument(method)
         generateMethodCall(method, clazz)
         if (method.variantParser != VARIANT_PARSER_NIL) {
             generateReturn(method)

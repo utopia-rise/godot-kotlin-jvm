@@ -72,6 +72,7 @@ public open class LightOccluder2D : Node2D() {
   }
 
   public final fun getOccluderPolygon(): OccluderPolygon2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOccluderPolygonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OccluderPolygon2D?)
   }
@@ -82,6 +83,7 @@ public open class LightOccluder2D : Node2D() {
   }
 
   public final fun getOccluderLightMask(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOccluderLightMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -92,6 +94,7 @@ public open class LightOccluder2D : Node2D() {
   }
 
   public final fun isSetAsSdfCollision(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -192,6 +192,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getStream(): AudioStream? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
@@ -202,6 +203,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getVolumeDb(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -212,6 +214,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getVolumeLinear(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -222,6 +225,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getPitchScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPitchScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -248,10 +252,12 @@ public open class AudioStreamPlayer : Node() {
    * Stops all sounds from this node.
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -266,6 +272,7 @@ public open class AudioStreamPlayer : Node() {
    * since it can have multiple clips playing at once.
    */
   public final fun getPlaybackPosition(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -276,6 +283,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getBus(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBusPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -286,6 +294,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun isAutoplayEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoplayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -296,6 +305,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getMixTarget(): MixTarget {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixTargetPtr, LONG)
     return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -311,6 +321,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getStreamPaused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -321,6 +332,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getMaxPolyphony(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -330,6 +342,7 @@ public open class AudioStreamPlayer : Node() {
    * [playing] and [getStreamPlayback].
    */
   public final fun hasStreamPlayback(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasStreamPlaybackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -339,6 +352,7 @@ public open class AudioStreamPlayer : Node() {
    * [play]. If no sounds are playing, this method fails and returns an empty playback.
    */
   public final fun getStreamPlayback(): AudioStreamPlayback? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
@@ -349,6 +363,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun getPlaybackType(): AudioServer.PlaybackType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackTypePtr, LONG)
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }

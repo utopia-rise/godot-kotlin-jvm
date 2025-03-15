@@ -138,6 +138,7 @@ public open class NavigationRegion3D : Node3D() {
    * closest to a point on the merged navigation map.
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -148,6 +149,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun getNavigationMesh(): NavigationMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
   }
@@ -158,6 +160,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -176,6 +179,7 @@ public open class NavigationRegion3D : Node3D() {
    * Returns the current navigation map [RID] used by this region.
    */
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -186,6 +190,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun getUseEdgeConnections(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -196,6 +201,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -223,6 +229,7 @@ public open class NavigationRegion3D : Node3D() {
    * Returns the [RID] of this region on the [NavigationServer3D].
    */
   public final fun getRegionRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -233,6 +240,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun getEnterCost(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnterCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -243,6 +251,7 @@ public open class NavigationRegion3D : Node3D() {
   }
 
   public final fun getTravelCost(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTravelCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -266,6 +275,7 @@ public open class NavigationRegion3D : Node3D() {
    * Returns `true` when the [NavigationMesh] is being baked on a background thread.
    */
   public final fun isBaking(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBakingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -274,6 +284,7 @@ public open class NavigationRegion3D : Node3D() {
    * Returns the axis-aligned bounding box for the region's transformed navigation mesh.
    */
   public final fun getBounds(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }

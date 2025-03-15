@@ -36,6 +36,7 @@ public open class WeakRef : RefCounted() {
    * exists.
    */
   public final fun getRef(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRefPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

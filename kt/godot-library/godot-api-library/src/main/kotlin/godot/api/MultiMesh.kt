@@ -193,6 +193,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -203,6 +204,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun isUsingColors(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingColorsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -213,6 +215,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun isUsingCustomData(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCustomDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -223,6 +226,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getTransformFormat(): TransformFormat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformFormatPtr, LONG)
     return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -233,6 +237,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getInstanceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstanceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -243,6 +248,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getVisibleInstanceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleInstanceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -253,6 +259,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getPhysicsInterpolationQuality(): PhysicsInterpolationQuality {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationQualityPtr, LONG)
     return MultiMesh.PhysicsInterpolationQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -355,6 +362,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun getCustomAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -363,11 +371,13 @@ public open class MultiMesh : Resource() {
    * Returns the visibility axis-aligned bounding box in local space.
    */
   public final fun getAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getBuffer(): PackedFloat32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }

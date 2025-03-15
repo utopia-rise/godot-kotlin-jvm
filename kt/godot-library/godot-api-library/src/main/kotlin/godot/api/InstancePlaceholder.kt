@@ -74,6 +74,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * [createInstance]. Not thread-safe. Use [Object.callDeferred] if calling from a thread.
    */
   public final fun getInstancePath(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstancePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

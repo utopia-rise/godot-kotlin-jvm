@@ -58,6 +58,7 @@ public open class BoneMap : Resource() {
   }
 
   public final fun getProfile(): SkeletonProfile? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProfilePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }

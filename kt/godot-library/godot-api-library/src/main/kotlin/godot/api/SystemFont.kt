@@ -235,6 +235,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getAntialiasing(): TextServer.FontAntialiasing {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -245,6 +246,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getDisableEmbeddedBitmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -255,6 +257,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getGenerateMipmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGenerateMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -265,6 +268,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun isAllowSystemFallback(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -275,6 +279,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun isForceAutohinter(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isForceAutohinterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -285,6 +290,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getHinting(): TextServer.Hinting {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintingPtr, LONG)
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -296,6 +302,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -306,6 +313,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getKeepRoundingRemainders(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepRoundingRemaindersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -316,6 +324,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun isMultichannelSignedDistanceField(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -326,6 +335,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getMsdfPixelRange(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfPixelRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -336,6 +346,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getMsdfSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -346,11 +357,13 @@ public open class SystemFont : Font() {
   }
 
   public final fun getOversampling(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFontNames(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -361,6 +374,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun getFontItalic(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontItalicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -45,6 +45,7 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
   }
 
   public final fun getParameterName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

@@ -54,6 +54,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * created during the initialization of the OpenXR API.
    */
   public final fun getInstance(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstancePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -64,6 +65,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * to an integer.
    */
   public final fun getSystemId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSystemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -74,6 +76,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * an integer.
    */
   public final fun getSession(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSessionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -153,6 +156,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [beginDebugLabelRegion].
    */
   public final fun endDebugLabelRegion(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endDebugLabelRegionPtr, NIL)
   }
 
@@ -170,6 +174,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns `true` if OpenXR is initialized.
    */
   public final fun isInitialized(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInitializedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -180,6 +185,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * was successfully called and the swapchains were created).
    */
   public final fun isRunning(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -190,6 +196,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * integer.
    */
   public final fun getPlaySpace(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaySpacePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -198,6 +205,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns the predicted display timing for the current frame.
    */
   public final fun getPredictedDisplayTime(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPredictedDisplayTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -206,6 +214,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns the predicted display timing for the next frame.
    */
   public final fun getNextFrameTime(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextFrameTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -214,6 +223,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns `true` if OpenXR is initialized for rendering with an XR viewport.
    */
   public final fun canRender(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canRenderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -288,6 +298,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * **Note:** This is only accessible in the render thread.
    */
   public final fun getRenderStateZNear(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderStateZNearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -297,6 +308,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * **Note:** This is only accessible in the render thread.
    */
   public final fun getRenderStateZFar(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderStateZFarPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -329,6 +341,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns an array of supported swapchain formats.
    */
   public final fun getSupportedSwapchainFormats(): PackedInt64Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedSwapchainFormatsPtr,
         PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
@@ -398,6 +411,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * **Note:** This method should only be called from the rendering thread.
    */
   public final fun getProjectionLayer(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -424,6 +438,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
    */
   public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
     return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
   }

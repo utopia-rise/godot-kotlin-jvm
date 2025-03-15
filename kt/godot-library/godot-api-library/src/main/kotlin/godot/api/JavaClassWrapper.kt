@@ -62,6 +62,7 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun getException(): JavaObject? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExceptionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }

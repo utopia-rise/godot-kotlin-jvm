@@ -55,6 +55,7 @@ public open class Shortcut : Resource() {
   }
 
   public final fun getEvents(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEventsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -63,6 +64,7 @@ public open class Shortcut : Resource() {
    * Returns whether [events] contains an [InputEvent] which is valid.
    */
   public final fun hasValidEvent(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasValidEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -81,6 +83,7 @@ public open class Shortcut : Resource() {
    * Returns the shortcut's first valid [InputEvent] as a [String].
    */
   public final fun getAsText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

@@ -87,6 +87,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
   }
 
   public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -97,6 +98,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
   }
 
   public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

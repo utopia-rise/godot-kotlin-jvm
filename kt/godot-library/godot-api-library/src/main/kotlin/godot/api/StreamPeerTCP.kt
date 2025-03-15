@@ -63,6 +63,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Poll the socket, updating its state. See [getStatus].
    */
   public final fun poll(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -71,6 +72,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Returns the status of the connection, see [Status].
    */
   public final fun getStatus(): Status {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
     return StreamPeerTCP.Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -79,6 +81,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Returns the IP of this peer.
    */
   public final fun getConnectedHost(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedHostPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -87,6 +90,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Returns the port of this peer.
    */
   public final fun getConnectedPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -95,6 +99,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Returns the local port to which this peer is bound.
    */
   public final fun getLocalPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -103,6 +108,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Disconnects from host.
    */
   public final fun disconnectFromHost(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromHostPtr, NIL)
   }
 

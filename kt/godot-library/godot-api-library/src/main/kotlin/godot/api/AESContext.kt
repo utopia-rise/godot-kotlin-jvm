@@ -138,6 +138,7 @@ public open class AESContext : RefCounted() {
    * [MODE_CBC_DECRYPT].
    */
   public final fun getIvState(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIvStatePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -146,6 +147,7 @@ public open class AESContext : RefCounted() {
    * Close this AES context so it can be started again. See [start].
    */
   public final fun finish(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.finishPtr, NIL)
   }
 

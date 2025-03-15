@@ -124,6 +124,7 @@ public object AudioServer : Object() {
 
   @JvmStatic
   public final fun getBusCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBusCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -437,6 +438,7 @@ public object AudioServer : Object() {
 
   @JvmStatic
   public final fun getPlaybackSpeedScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -447,6 +449,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun lock(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.lockPtr, NIL)
   }
 
@@ -455,6 +458,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun unlock(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unlockPtr, NIL)
   }
 
@@ -463,6 +467,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getSpeakerMode(): SpeakerMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeakerModePtr, LONG)
     return AudioServer.SpeakerMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -472,6 +477,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getMixRate(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -481,6 +487,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getInputMixRate(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputMixRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -494,6 +501,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getDriverName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDriverNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -503,12 +511,14 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getOutputDeviceList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputDeviceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   @JvmStatic
   public final fun getOutputDevice(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputDevicePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -524,6 +534,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getTimeToNextMix(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeToNextMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -533,6 +544,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getTimeSinceLastMix(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeSinceLastMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -545,6 +557,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getOutputLatency(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputLatencyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -557,12 +570,14 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun getInputDeviceList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputDeviceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   @JvmStatic
   public final fun getInputDevice(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputDevicePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -587,6 +602,7 @@ public object AudioServer : Object() {
    */
   @JvmStatic
   public final fun generateBusLayout(): AudioBusLayout? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateBusLayoutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioBusLayout?)
   }

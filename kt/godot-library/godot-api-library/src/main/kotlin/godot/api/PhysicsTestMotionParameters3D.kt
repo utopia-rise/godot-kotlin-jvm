@@ -192,6 +192,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
 
   public final fun getFrom(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFromPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -202,6 +203,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun getMotion(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -212,6 +214,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -222,6 +225,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun getMaxCollisions(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxCollisionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -232,6 +236,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun isCollideSeparationRayEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideSeparationRayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -242,6 +247,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun getExcludeBodies(): VariantArray<RID> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludeBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -252,6 +258,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun getExcludeObjects(): VariantArray<Long> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludeObjectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
@@ -262,6 +269,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   }
 
   public final fun isRecoveryAsCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecoveryAsCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

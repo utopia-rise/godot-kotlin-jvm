@@ -117,6 +117,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Return the image format used (valid after initialized).
    */
   public final fun getFormat(): Image.Format {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -125,6 +126,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Return the compression mode used (valid after initialized).
    */
   public final fun getCompressionMode(): CompressionMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCompressionModePtr, LONG)
     return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -135,6 +137,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public final fun getSizeOverride(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizeOverridePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -145,6 +148,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public final fun isKeepingCompressedBuffer(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -186,6 +190,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
      */
     @JvmStatic
     public final fun isKeepingAllCompressedBuffers(): Boolean {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL) as Boolean)
     }

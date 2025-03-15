@@ -128,6 +128,7 @@ public open class ImmediateMesh : Mesh() {
    * function is called.
    */
   public final fun surfaceEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.surfaceEndPtr, NIL)
   }
 
@@ -135,6 +136,7 @@ public open class ImmediateMesh : Mesh() {
    * Clear all surfaces.
    */
   public final fun clearSurfaces(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
   }
 

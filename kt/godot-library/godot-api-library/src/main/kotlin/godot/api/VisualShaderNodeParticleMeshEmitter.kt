@@ -71,6 +71,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   }
 
   public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -81,6 +82,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   }
 
   public final fun isUseAllSurfaces(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUseAllSurfacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -91,6 +93,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   }
 
   public final fun getSurfaceIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSurfaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

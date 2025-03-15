@@ -224,6 +224,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * Returns the number of connections in the graph.
    */
   public final fun getTransitionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransitionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -256,6 +257,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * Returns the draw offset of the graph. Used for display in the editor.
    */
   public final fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -266,6 +268,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun getStateMachineType(): StateMachineType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStateMachineTypePtr, LONG)
     return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -276,6 +279,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun isAllowTransitionToSelf(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -286,6 +290,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun areEndsReset(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areEndsResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

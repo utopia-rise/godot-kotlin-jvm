@@ -104,6 +104,7 @@ public open class CanvasGroup : Node2D() {
   }
 
   public final fun getFitMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFitMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -114,6 +115,7 @@ public open class CanvasGroup : Node2D() {
   }
 
   public final fun getClearMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClearMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -124,6 +126,7 @@ public open class CanvasGroup : Node2D() {
   }
 
   public final fun isUsingMipmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

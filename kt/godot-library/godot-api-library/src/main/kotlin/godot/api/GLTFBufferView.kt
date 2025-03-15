@@ -124,6 +124,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getBuffer(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -134,6 +135,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getByteOffset(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -144,6 +146,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getByteLength(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -154,6 +157,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getByteStride(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -164,6 +168,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getIndices(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -174,6 +179,7 @@ public open class GLTFBufferView : Resource() {
   }
 
   public final fun getVertexAttributes(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVertexAttributesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

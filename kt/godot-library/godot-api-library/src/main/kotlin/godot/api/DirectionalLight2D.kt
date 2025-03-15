@@ -65,6 +65,7 @@ public open class DirectionalLight2D : Light2D() {
   }
 
   public final fun getMaxDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

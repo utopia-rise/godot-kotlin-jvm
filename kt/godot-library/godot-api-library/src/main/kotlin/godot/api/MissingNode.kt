@@ -73,6 +73,7 @@ public open class MissingNode : Node() {
   }
 
   public final fun getOriginalClass(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -83,6 +84,7 @@ public open class MissingNode : Node() {
   }
 
   public final fun getOriginalScene(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalScenePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -93,6 +95,7 @@ public open class MissingNode : Node() {
   }
 
   public final fun isRecordingProperties(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecordingPropertiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

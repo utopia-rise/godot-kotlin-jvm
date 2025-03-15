@@ -135,6 +135,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * alphabetically, use [getFiles] or [getDirectories].
    */
   public final fun listDirBegin(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.listDirBeginPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -146,6 +147,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [listDirEnd] would not be mandatory in such a case).
    */
   public final fun getNext(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -155,6 +157,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * `..` are considered directories).
    */
   public final fun currentIsDir(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.currentIsDirPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -164,6 +167,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [getNext] does not matter).
    */
   public final fun listDirEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.listDirEndPtr, NIL)
   }
 
@@ -179,6 +183,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
    */
   public final fun getFiles(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -191,6 +196,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * may differ as some files are converted to engine-specific formats when exported.
    */
   public final fun getDirectories(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectoriesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -200,6 +206,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * index to the name of the drive.
    */
   public final fun getCurrentDrive(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentDrivePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -285,6 +292,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * platform-specific method to query the available space fails.
    */
   public final fun getSpaceLeft(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpaceLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -382,6 +390,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public final fun getIncludeNavigational(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIncludeNavigationalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -392,6 +401,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public final fun getIncludeHidden(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIncludeHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -428,6 +438,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getOpenError(): Error {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
@@ -488,6 +499,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDriveCount(): Int {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDriveCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG) as Long).toInt()
     }

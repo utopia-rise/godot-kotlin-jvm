@@ -82,6 +82,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * the playback.
    */
   public final fun clearBuffer(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
   }
 
@@ -91,6 +92,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   public final fun getBufferLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -99,6 +101,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of frames available to read using [getBuffer].
    */
   public final fun getFramesAvailable(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -107,6 +110,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of audio frames discarded from the audio bus due to full buffer.
    */
   public final fun getDiscardedFrames(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiscardedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -115,6 +119,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the total size of the internal ring buffer in frames.
    */
   public final fun getBufferLengthFrames(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -123,6 +128,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of audio frames inserted from the audio bus.
    */
   public final fun getPushedFrames(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPushedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

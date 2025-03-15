@@ -160,6 +160,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -170,6 +171,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getWidth(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -180,6 +182,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getHeight(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -190,6 +193,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getDepth(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -200,6 +204,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getArrayLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getArrayLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -210,6 +215,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getMipmaps(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMipmapsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -220,6 +226,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getTextureType(): RenderingDevice.TextureType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureTypePtr, LONG)
     return RenderingDevice.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -230,6 +237,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -240,6 +248,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getUsageBits(): TextureUsageBits {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsageBitsPtr, LONG)
     return TextureUsageBits(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -250,6 +259,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getIsResolveBuffer(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsResolveBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -260,6 +270,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun getIsDiscardable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsDiscardablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

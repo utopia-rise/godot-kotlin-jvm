@@ -199,6 +199,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
 
   public final fun getRenderTarget(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderTargetPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -209,6 +210,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getInternalSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInternalSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -219,6 +221,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getTargetSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -229,6 +232,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getViewCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -239,6 +243,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -249,6 +254,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -259,6 +265,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -269,6 +276,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getFsrSharpness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -279,6 +287,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getTextureMipmapBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -289,6 +298,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun getAnisotropicFilteringLevel(): RenderingServer.ViewportAnisotropicFiltering {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnisotropicFilteringLevelPtr, LONG)
     return RenderingServer.ViewportAnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }

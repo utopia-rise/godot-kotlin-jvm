@@ -222,6 +222,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getMagFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMagFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -232,6 +233,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getMinFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -242,6 +244,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getMipFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMipFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -252,6 +255,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getRepeatU(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatUPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -262,6 +266,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getRepeatV(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatVPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -272,6 +277,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getRepeatW(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatWPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -282,6 +288,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getLodBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLodBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -292,6 +299,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getUseAnisotropy(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseAnisotropyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -302,6 +310,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getAnisotropyMax(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -312,6 +321,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getEnableCompare(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableComparePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -322,6 +332,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getCompareOp(): RenderingDevice.CompareOperator {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCompareOpPtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -332,6 +343,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getMinLod(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinLodPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -342,6 +354,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getMaxLod(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxLodPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -352,6 +365,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getBorderColor(): RenderingDevice.SamplerBorderColor {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderColorPtr, LONG)
     return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -362,6 +376,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun getUnnormalizedUvw(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

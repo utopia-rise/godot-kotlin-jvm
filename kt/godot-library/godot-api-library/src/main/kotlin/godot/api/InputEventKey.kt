@@ -177,6 +177,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun getKeycode(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeycodePtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -187,6 +188,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun getPhysicalKeycode(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicalKeycodePtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -197,6 +199,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun getKeyLabel(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeyLabelPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -207,6 +210,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun getUnicode(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnicodePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -217,6 +221,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun getLocation(): KeyLocation {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocationPtr, LONG)
     return KeyLocation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -233,6 +238,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * `OS.get_keycode_string(event.get_keycode_with_modifiers())` where `event` is the [InputEventKey].
    */
   public final fun getKeycodeWithModifiers(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -245,6 +251,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [InputEventKey].
    */
   public final fun getPhysicalKeycodeWithModifiers(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicalKeycodeWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -257,6 +264,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [InputEventKey].
    */
   public final fun getKeyLabelWithModifiers(): Key {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeyLabelWithModifiersPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -265,6 +273,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * Returns a [String] representation of the event's [keycode] and modifiers.
    */
   public final fun asTextKeycode(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -273,6 +282,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * Returns a [String] representation of the event's [physicalKeycode] and modifiers.
    */
   public final fun asTextPhysicalKeycode(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextPhysicalKeycodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -281,6 +291,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * Returns a [String] representation of the event's [keyLabel] and modifiers.
    */
   public final fun asTextKeyLabel(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextKeyLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -290,6 +301,7 @@ public open class InputEventKey : InputEventWithModifiers() {
    * event is not specific to a location.
    */
   public final fun asTextLocation(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextLocationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

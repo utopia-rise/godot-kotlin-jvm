@@ -406,6 +406,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getSamplePartitionType(): SamplePartitionType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
     return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -416,6 +417,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getParsedGeometryType(): ParsedGeometryType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
     return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -426,6 +428,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -455,6 +458,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getSourceGeometryMode(): SourceGeometryMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
     return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -465,6 +469,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getSourceGroupName(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -475,6 +480,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getCellSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -485,6 +491,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getCellHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -495,6 +502,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getBorderSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -505,6 +513,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getAgentHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAgentHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -515,6 +524,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getAgentRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAgentRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -525,6 +535,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getAgentMaxClimb(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -535,6 +546,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getAgentMaxSlope(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -545,6 +557,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getRegionMinSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionMinSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -555,6 +568,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getRegionMergeSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -565,6 +579,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getEdgeMaxLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -575,6 +590,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getEdgeMaxError(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -585,6 +601,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getVerticesPerPolygon(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -595,6 +612,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getDetailSampleDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -605,6 +623,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getDetailSampleMaxError(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -615,6 +634,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getFilterLowHangingObstacles(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -625,6 +645,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getFilterLedgeSpans(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -635,6 +656,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getFilterWalkableLowHeightSpans(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -645,6 +667,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getFilterBakingAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
@@ -656,6 +679,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun getFilterBakingAabbOffset(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -672,6 +696,7 @@ public open class NavigationMesh : Resource() {
    * Returns a [PackedVector3Array] containing all the vertices being used to create the polygons.
    */
   public final fun getVertices(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -688,6 +713,7 @@ public open class NavigationMesh : Resource() {
    * Returns the number of polygons in the navigation mesh.
    */
   public final fun getPolygonCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -705,6 +731,7 @@ public open class NavigationMesh : Resource() {
    * Clears the array of polygons, but it doesn't clear the array of vertices.
    */
   public final fun clearPolygons(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
@@ -721,6 +748,7 @@ public open class NavigationMesh : Resource() {
    * Clears the internal arrays for vertices and polygon indices.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

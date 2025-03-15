@@ -83,6 +83,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun getRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -93,6 +94,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun getStretchMode(): StretchMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
     return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -103,6 +105,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun getAlignmentHorizontal(): AlignmentMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentHorizontalPtr, LONG)
     return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -113,6 +116,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun getAlignmentVertical(): AlignmentMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentVerticalPtr, LONG)
     return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -87,6 +87,7 @@ public open class SpriteFrames : Resource() {
    * alphabetical order.
    */
   public final fun getAnimationNames(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -213,6 +214,7 @@ public open class SpriteFrames : Resource() {
    * Removes all animations. An empty `default` animation will be created.
    */
   public final fun clearAll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearAllPtr, NIL)
   }
 

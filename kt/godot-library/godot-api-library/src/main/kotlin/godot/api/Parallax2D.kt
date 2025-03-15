@@ -357,6 +357,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getScrollScale(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -367,6 +368,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getRepeatSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -377,6 +379,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getRepeatTimes(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatTimesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -387,6 +390,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getAutoscroll(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoscrollPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -397,6 +401,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getScrollOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -407,6 +412,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getScreenOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -417,6 +423,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getLimitBegin(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLimitBeginPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -427,6 +434,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getLimitEnd(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLimitEndPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -437,6 +445,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun getFollowViewport(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFollowViewportPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -447,6 +456,7 @@ public open class Parallax2D : Node2D() {
   }
 
   public final fun isIgnoreCameraScroll(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIgnoreCameraScrollPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

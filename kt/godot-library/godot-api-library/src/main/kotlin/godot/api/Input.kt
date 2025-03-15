@@ -130,6 +130,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isAnythingPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAnythingPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -442,6 +443,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getConnectedJoypads(): VariantArray<Long> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedJoypadsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
@@ -527,6 +529,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getGravity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -544,6 +547,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getAccelerometer(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccelerometerPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -558,6 +562,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getMagnetometer(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMagnetometerPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -571,6 +576,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getGyroscope(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGyroscopePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -629,6 +635,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getLastMouseVelocity(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastMouseVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -640,6 +647,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getLastMouseScreenVelocity(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastMouseScreenVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -650,6 +658,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getMouseButtonMask(): MouseButtonMask {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseButtonMaskPtr, LONG)
     return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -662,6 +671,7 @@ public object Input : Object() {
 
   @JvmStatic
   public final fun getMouseMode(): MouseMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseModePtr, LONG)
     return Input.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -723,6 +733,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getCurrentCursorShape(): CursorShape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentCursorShapePtr, LONG)
     return Input.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -792,6 +803,7 @@ public object Input : Object() {
 
   @JvmStatic
   public final fun isUsingAccumulatedInput(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingAccumulatedInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -806,6 +818,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun flushBufferedEvents(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.flushBufferedEventsPtr, NIL)
   }
 
@@ -817,6 +830,7 @@ public object Input : Object() {
 
   @JvmStatic
   public final fun isEmulatingMouseFromTouch(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmulatingMouseFromTouchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -829,6 +843,7 @@ public object Input : Object() {
 
   @JvmStatic
   public final fun isEmulatingTouchFromMouse(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmulatingTouchFromMousePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

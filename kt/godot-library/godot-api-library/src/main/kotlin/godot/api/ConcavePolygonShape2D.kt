@@ -63,6 +63,7 @@ public open class ConcavePolygonShape2D : Shape2D() {
   }
 
   public final fun getSegments(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }

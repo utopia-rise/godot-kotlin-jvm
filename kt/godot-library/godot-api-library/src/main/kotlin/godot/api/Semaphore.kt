@@ -40,6 +40,7 @@ public open class Semaphore : RefCounted() {
    * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
   public final fun waitFor(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.waitPtr, NIL)
   }
 
@@ -48,6 +49,7 @@ public open class Semaphore : RefCounted() {
    * If non-zero, it returns `true` to report success.
    */
   public final fun tryWait(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.tryWaitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

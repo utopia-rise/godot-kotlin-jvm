@@ -97,6 +97,7 @@ public open class TileMapPattern : Resource() {
    * Returns the list of used cell coordinates in the pattern.
    */
   public final fun getUsedCells(): VariantArray<Vector2i> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsedCellsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
@@ -105,6 +106,7 @@ public open class TileMapPattern : Resource() {
    * Returns the size, in cells, of the pattern.
    */
   public final fun getSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -121,6 +123,7 @@ public open class TileMapPattern : Resource() {
    * Returns whether the pattern is empty or not.
    */
   public final fun isEmpty(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmptyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

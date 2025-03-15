@@ -101,6 +101,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public final fun getFactor(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -111,6 +112,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public final fun getButtonIndex(): MouseButton {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonIndexPtr, LONG)
     return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -131,6 +133,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public final fun isDoubleClick(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDoubleClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

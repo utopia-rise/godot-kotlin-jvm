@@ -51,6 +51,7 @@ public open class GLTFAnimation : Resource() {
   }
 
   public final fun getOriginalName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -61,6 +62,7 @@ public open class GLTFAnimation : Resource() {
   }
 
   public final fun getLoop(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

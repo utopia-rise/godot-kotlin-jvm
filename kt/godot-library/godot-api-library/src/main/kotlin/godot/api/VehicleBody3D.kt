@@ -91,6 +91,7 @@ public open class VehicleBody3D : RigidBody3D() {
   }
 
   public final fun getEngineForce(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEngineForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -101,6 +102,7 @@ public open class VehicleBody3D : RigidBody3D() {
   }
 
   public final fun getBrake(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBrakePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -111,6 +113,7 @@ public open class VehicleBody3D : RigidBody3D() {
   }
 
   public final fun getSteering(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSteeringPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

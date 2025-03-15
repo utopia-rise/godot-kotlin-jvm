@@ -51,6 +51,7 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

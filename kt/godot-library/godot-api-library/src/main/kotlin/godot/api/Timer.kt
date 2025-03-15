@@ -140,6 +140,7 @@ public open class Timer : Node() {
   }
 
   public final fun getWaitTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWaitTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -150,6 +151,7 @@ public open class Timer : Node() {
   }
 
   public final fun isOneShot(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -160,6 +162,7 @@ public open class Timer : Node() {
   }
 
   public final fun hasAutostart(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutostartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -179,6 +182,7 @@ public open class Timer : Node() {
    * Stops the timer.
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -188,6 +192,7 @@ public open class Timer : Node() {
   }
 
   public final fun isPaused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -198,6 +203,7 @@ public open class Timer : Node() {
   }
 
   public final fun isIgnoringTimeScale(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIgnoringTimeScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,11 +212,13 @@ public open class Timer : Node() {
    * Returns `true` if the timer is stopped or has not started.
    */
   public final fun isStopped(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStoppedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTimeLeft(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeLeftPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -221,6 +229,7 @@ public open class Timer : Node() {
   }
 
   public final fun getTimerProcessCallback(): TimerProcessCallback {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimerProcessCallbackPtr, LONG)
     return Timer.TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -89,6 +89,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun getLocation(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocationPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -99,6 +100,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun getOffset(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -109,6 +111,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -119,6 +122,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun getStride(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -129,6 +133,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun getFrequency(): RenderingDevice.VertexFrequency {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrequencyPtr, LONG)
     return RenderingDevice.VertexFrequency.from(TransferContext.readReturnValue(LONG) as Long)
   }

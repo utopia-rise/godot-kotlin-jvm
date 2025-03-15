@@ -145,6 +145,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun getTitle(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -155,6 +156,7 @@ public open class GraphFrame : GraphElement() {
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
@@ -165,6 +167,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -175,6 +178,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun getAutoshrinkMargin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoshrinkMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -185,6 +189,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun getDragMargin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -195,6 +200,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun isTintColorEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTintColorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -205,6 +211,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   public final fun getTintColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTintColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }

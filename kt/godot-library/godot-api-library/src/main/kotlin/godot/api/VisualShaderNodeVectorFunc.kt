@@ -44,6 +44,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public final fun getFunction(): Function {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeVectorFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -48,6 +48,7 @@ public open class CircleShape2D : Shape2D() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

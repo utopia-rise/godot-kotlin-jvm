@@ -253,6 +253,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getDefaultBlendTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -263,6 +264,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun isAutoCapture(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoCapturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -273,6 +275,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getAutoCaptureDuration(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -284,6 +287,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getAutoCaptureTransitionType(): Tween.TransitionType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
     return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -294,6 +298,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getAutoCaptureEaseType(): Tween.EaseType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
     return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -446,6 +451,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * See also [stop].
    */
   public final fun pause(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
   }
 
@@ -466,6 +472,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * are `0`).
    */
   public final fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -476,6 +483,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getCurrentAnimation(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -486,6 +494,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getAssignedAnimation(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAssignedAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -505,6 +514,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns a list of the animation keys that are currently queued to play.
    */
   public final fun getQueue(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getQueuePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -513,6 +523,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Clears all queued, unplayed animations.
    */
   public final fun clearQueue(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearQueuePtr, NIL)
   }
 
@@ -522,6 +533,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -533,6 +545,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns a negative value if the current animation is playing backwards.
    */
   public final fun getPlayingSpeed(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -543,6 +556,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun getAutoplay(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoplayPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -553,16 +567,19 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun isMovieQuitOnFinishEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getCurrentAnimationPosition(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getCurrentAnimationLength(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -593,6 +610,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Resets the current section if section is set.
    */
   public final fun resetSection(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSectionPtr, NIL)
   }
 
@@ -600,6 +618,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the start time of the section currently being played.
    */
   public final fun getSectionStartTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionStartTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -608,6 +627,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the end time of the section currently being played.
    */
   public final fun getSectionEndTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionEndTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -616,6 +636,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns `true` if an animation is currently playing with section.
    */
   public final fun hasSection(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasSectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -652,6 +673,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the process notification in which to update animations.
    */
   public final fun getProcessCallback(): AnimationProcessCallback {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -668,6 +690,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the call mode used for "Call Method" tracks.
    */
   public final fun getMethodCallMode(): AnimationMethodCallMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMethodCallModePtr, LONG)
     return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -684,6 +707,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns the node which node path references will travel from.
    */
   public final fun getRoot(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }

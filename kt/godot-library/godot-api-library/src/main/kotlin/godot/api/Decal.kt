@@ -345,6 +345,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -408,6 +409,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getEmissionEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -418,6 +420,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getAlbedoMix(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlbedoMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -428,6 +431,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getModulate(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -438,6 +442,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getUpperFade(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpperFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -448,6 +453,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getLowerFade(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLowerFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -458,6 +464,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getNormalFade(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalFadePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -468,6 +475,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun isDistanceFadeEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -478,6 +486,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getDistanceFadeBegin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -488,6 +497,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getDistanceFadeLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -498,6 +508,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

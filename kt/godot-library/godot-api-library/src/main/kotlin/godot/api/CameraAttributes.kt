@@ -106,6 +106,7 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun getExposureMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -116,6 +117,7 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun getExposureSensitivity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -126,6 +128,7 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun isAutoExposureEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -136,6 +139,7 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun getAutoExposureSpeed(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -146,6 +150,7 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun getAutoExposureScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -75,6 +75,7 @@ public open class GLTFTextureSampler : Resource() {
   }
 
   public final fun getMagFilter(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMagFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -85,6 +86,7 @@ public open class GLTFTextureSampler : Resource() {
   }
 
   public final fun getMinFilter(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -95,6 +97,7 @@ public open class GLTFTextureSampler : Resource() {
   }
 
   public final fun getWrapS(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWrapSPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -105,6 +108,7 @@ public open class GLTFTextureSampler : Resource() {
   }
 
   public final fun getWrapT(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWrapTPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

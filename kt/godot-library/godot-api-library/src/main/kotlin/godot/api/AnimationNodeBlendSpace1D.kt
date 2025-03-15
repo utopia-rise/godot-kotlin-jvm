@@ -168,6 +168,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * Returns the number of points on the blend axis.
    */
   public final fun getBlendPointCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -178,6 +179,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun getMinSpace(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinSpacePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -188,6 +190,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun getMaxSpace(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSpacePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -198,6 +201,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun getSnap(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSnapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -208,6 +212,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun getValueLabel(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getValueLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -218,6 +223,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
     return AnimationNodeBlendSpace1D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -228,6 +234,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public final fun isUsingSync(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSyncPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

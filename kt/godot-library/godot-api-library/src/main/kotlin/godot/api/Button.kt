@@ -218,6 +218,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -228,6 +229,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -238,6 +240,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -248,6 +251,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -258,6 +262,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getLanguage(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -268,6 +273,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getButtonIcon(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -278,6 +284,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun isFlat(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFlatPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -288,6 +295,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getClipText(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipTextPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -298,6 +306,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getTextAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -308,6 +317,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getIconAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -318,6 +328,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun getVerticalIconAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalIconAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -328,6 +339,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun isExpandIcon(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isExpandIconPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -45,6 +45,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   }
 
   public final fun getWindowId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

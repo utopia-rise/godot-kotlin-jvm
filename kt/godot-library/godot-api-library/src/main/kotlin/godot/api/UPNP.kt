@@ -149,6 +149,7 @@ public open class UPNP : RefCounted() {
    * Returns the number of discovered [UPNPDevice]s.
    */
   public final fun getDeviceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeviceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -190,6 +191,7 @@ public open class UPNP : RefCounted() {
    * Clears the list of discovered devices.
    */
   public final fun clearDevices(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearDevicesPtr, NIL)
   }
 
@@ -198,6 +200,7 @@ public open class UPNP : RefCounted() {
    * (InternetGatewayDevice).
    */
   public final fun getGateway(): UPNPDevice? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGatewayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as UPNPDevice?)
   }
@@ -225,6 +228,7 @@ public open class UPNP : RefCounted() {
    * an empty string on error.
    */
   public final fun queryExternalAddress(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.queryExternalAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -287,6 +291,7 @@ public open class UPNP : RefCounted() {
   }
 
   public final fun getDiscoverMulticastIf(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -297,6 +302,7 @@ public open class UPNP : RefCounted() {
   }
 
   public final fun getDiscoverLocalPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiscoverLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -307,6 +313,7 @@ public open class UPNP : RefCounted() {
   }
 
   public final fun isDiscoverIpv6(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

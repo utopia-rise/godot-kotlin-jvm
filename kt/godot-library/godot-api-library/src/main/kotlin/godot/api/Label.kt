@@ -301,6 +301,7 @@ public open class Label : Control() {
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -311,6 +312,7 @@ public open class Label : Control() {
   }
 
   public final fun getVerticalAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -321,6 +323,7 @@ public open class Label : Control() {
   }
 
   public final fun getText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -331,6 +334,7 @@ public open class Label : Control() {
   }
 
   public final fun getLabelSettings(): LabelSettings? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLabelSettingsPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as LabelSettings?)
   }
@@ -341,6 +345,7 @@ public open class Label : Control() {
   }
 
   public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -351,6 +356,7 @@ public open class Label : Control() {
   }
 
   public final fun getLanguage(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -361,6 +367,7 @@ public open class Label : Control() {
   }
 
   public final fun getParagraphSeparator(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParagraphSeparatorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -371,6 +378,7 @@ public open class Label : Control() {
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -381,6 +389,7 @@ public open class Label : Control() {
   }
 
   public final fun getJustificationFlags(): JustificationFlag {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -391,6 +400,7 @@ public open class Label : Control() {
   }
 
   public final fun isClippingText(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isClippingTextPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -401,6 +411,7 @@ public open class Label : Control() {
   }
 
   public final fun getTabStops(): PackedFloat32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -411,6 +422,7 @@ public open class Label : Control() {
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -421,6 +433,7 @@ public open class Label : Control() {
   }
 
   public final fun getEllipsisChar(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEllipsisCharPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -431,6 +444,7 @@ public open class Label : Control() {
   }
 
   public final fun isUppercase(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUppercasePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -451,6 +465,7 @@ public open class Label : Control() {
    * Returns the number of lines of text the Label has.
    */
   public final fun getLineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -460,6 +475,7 @@ public open class Label : Control() {
    * lines.
    */
   public final fun getVisibleLineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -468,6 +484,7 @@ public open class Label : Control() {
    * Returns the total number of printable characters in the text (excluding spaces and newlines).
    */
   public final fun getTotalCharacterCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTotalCharacterCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -478,11 +495,13 @@ public open class Label : Control() {
   }
 
   public final fun getVisibleCharacters(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleCharactersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
     return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -499,6 +518,7 @@ public open class Label : Control() {
   }
 
   public final fun getVisibleRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -509,6 +529,7 @@ public open class Label : Control() {
   }
 
   public final fun getLinesSkipped(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinesSkippedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -519,6 +540,7 @@ public open class Label : Control() {
   }
 
   public final fun getMaxLinesVisible(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxLinesVisiblePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -529,6 +551,7 @@ public open class Label : Control() {
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -539,6 +562,7 @@ public open class Label : Control() {
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

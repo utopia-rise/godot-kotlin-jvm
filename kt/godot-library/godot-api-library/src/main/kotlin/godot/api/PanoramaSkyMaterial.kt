@@ -77,6 +77,7 @@ public open class PanoramaSkyMaterial : Material() {
   }
 
   public final fun getPanorama(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -87,6 +88,7 @@ public open class PanoramaSkyMaterial : Material() {
   }
 
   public final fun isFilteringEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFilteringEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -97,6 +99,7 @@ public open class PanoramaSkyMaterial : Material() {
   }
 
   public final fun getEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

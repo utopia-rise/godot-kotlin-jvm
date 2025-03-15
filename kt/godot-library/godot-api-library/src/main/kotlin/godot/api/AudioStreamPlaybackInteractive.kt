@@ -58,6 +58,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
    * ```
    */
   public final fun getCurrentClipIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentClipIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

@@ -53,6 +53,7 @@ public open class CompressedTexture3D : Texture3D() {
   }
 
   public final fun getLoadPath(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

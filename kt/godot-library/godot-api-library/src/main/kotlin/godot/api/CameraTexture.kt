@@ -70,6 +70,7 @@ public open class CameraTexture : Texture2D() {
   }
 
   public final fun getCameraFeedId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraFeedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -80,6 +81,7 @@ public open class CameraTexture : Texture2D() {
   }
 
   public final fun getWhichFeed(): CameraServer.FeedImage {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWhichFeedPtr, LONG)
     return CameraServer.FeedImage.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -90,6 +92,7 @@ public open class CameraTexture : Texture2D() {
   }
 
   public final fun getCameraActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

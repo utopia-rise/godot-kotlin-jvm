@@ -533,6 +533,7 @@ public open class NavigationAgent2D : Node() {
    * Returns the [RID] of this agent on the [NavigationServer2D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -543,6 +544,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getAvoidanceEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -553,6 +555,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getPathDesiredDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -563,6 +566,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getTargetDesiredDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -573,6 +577,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -583,6 +588,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getNeighborDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeighborDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -593,6 +599,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getMaxNeighbors(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxNeighborsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -603,6 +610,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getTimeHorizonAgents(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -613,6 +621,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getTimeHorizonObstacles(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -623,6 +632,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getMaxSpeed(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -633,6 +643,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getPathMaxDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -643,6 +654,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -674,6 +686,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getPathfindingAlgorithm(): NavigationPathQueryParameters2D.PathfindingAlgorithm {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
     return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -686,6 +699,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getPathPostprocessing(): NavigationPathQueryParameters2D.PathPostProcessing {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
     return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -696,6 +710,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getPathMetadataFlags(): PathMetadataFlags {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
     return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -717,6 +732,7 @@ public open class NavigationAgent2D : Node() {
    * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -727,6 +743,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getTargetPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -737,6 +754,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getSimplifyPath(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -747,6 +765,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getSimplifyEpsilon(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -758,6 +777,7 @@ public open class NavigationAgent2D : Node() {
    * update the internal path logic of the NavigationAgent.
    */
   public final fun getNextPathPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextPathPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -778,6 +798,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getVelocity(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -787,6 +808,7 @@ public open class NavigationAgent2D : Node() {
    * set [targetPosition] in order for this to be accurate.
    */
   public final fun distanceToTarget(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.distanceToTargetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -795,6 +817,7 @@ public open class NavigationAgent2D : Node() {
    * Returns the path query result for the path the agent is currently following.
    */
   public final fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationPathQueryResult2D?)
   }
@@ -808,6 +831,7 @@ public open class NavigationAgent2D : Node() {
    * also updates the internal path logic.
    */
   public final fun getCurrentNavigationPath(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr,
         PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
@@ -817,6 +841,7 @@ public open class NavigationAgent2D : Node() {
    * Returns which index the agent is currently on in the navigation path's [PackedVector2Array].
    */
   public final fun getCurrentNavigationPathIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -827,6 +852,7 @@ public open class NavigationAgent2D : Node() {
    * but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public final fun isTargetReached(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTargetReachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -835,6 +861,7 @@ public open class NavigationAgent2D : Node() {
    * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
   public final fun isTargetReachable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTargetReachablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -847,6 +874,7 @@ public open class NavigationAgent2D : Node() {
    * avoids jittering the standing agent due to calling repeated path updates.
    */
   public final fun isNavigationFinished(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNavigationFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -857,6 +885,7 @@ public open class NavigationAgent2D : Node() {
    * the [signal path_changed] signal.
    */
   public final fun getFinalPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFinalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -867,6 +896,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getAvoidanceLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -877,6 +907,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getAvoidanceMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -925,6 +956,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getAvoidancePriority(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -935,6 +967,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getDebugEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -945,6 +978,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getDebugUseCustom(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugUseCustomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -955,6 +989,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getDebugPathCustomColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -965,6 +1000,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getDebugPathCustomPointSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -975,6 +1011,7 @@ public open class NavigationAgent2D : Node() {
   }
 
   public final fun getDebugPathCustomLineWidth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugPathCustomLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -190,6 +190,7 @@ public open class UDPServer : RefCounted() {
    * via [maxPendingConnections].
    */
   public final fun poll(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -198,6 +199,7 @@ public open class UDPServer : RefCounted() {
    * Returns `true` if a packet with a new address/port combination was received on the socket.
    */
   public final fun isConnectionAvailable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isConnectionAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,6 +208,7 @@ public open class UDPServer : RefCounted() {
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -214,6 +217,7 @@ public open class UDPServer : RefCounted() {
    * Returns `true` if the socket is open and listening on a port.
    */
   public final fun isListening(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isListeningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -224,6 +228,7 @@ public open class UDPServer : RefCounted() {
    * [PacketPeerUDP.connectToHost].
    */
   public final fun takeConnection(): PacketPeerUDP? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PacketPeerUDP?)
   }
@@ -233,6 +238,7 @@ public open class UDPServer : RefCounted() {
    * accepted via [takeConnection] (remote peers will not be notified).
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -242,6 +248,7 @@ public open class UDPServer : RefCounted() {
   }
 
   public final fun getMaxPendingConnections(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

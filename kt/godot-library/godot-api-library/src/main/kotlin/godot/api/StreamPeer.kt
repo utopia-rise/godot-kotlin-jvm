@@ -105,6 +105,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Returns the number of bytes this [StreamPeer] has available.
    */
   public final fun getAvailableBytes(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvailableBytesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -115,6 +116,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   public final fun isBigEndianEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBigEndianEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -260,6 +262,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a signed byte from the stream.
    */
   public final fun get8(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.get8Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -268,6 +271,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets an unsigned byte from the stream.
    */
   public final fun getU8(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getU8Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -276,6 +280,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a signed 16-bit value from the stream.
    */
   public final fun get16(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.get16Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -284,6 +289,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets an unsigned 16-bit value from the stream.
    */
   public final fun getU16(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getU16Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -292,6 +298,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a signed 32-bit value from the stream.
    */
   public final fun get32(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.get32Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -300,6 +307,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets an unsigned 32-bit value from the stream.
    */
   public final fun getU32(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getU32Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -308,6 +316,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a signed 64-bit value from the stream.
    */
   public final fun get64(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.get64Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -316,6 +325,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets an unsigned 64-bit value from the stream.
    */
   public final fun getU64(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getU64Ptr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -324,6 +334,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a half-precision float from the stream.
    */
   public final fun getHalf(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHalfPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -332,6 +343,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a single-precision float from the stream.
    */
   public final fun getFloat(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFloatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -340,6 +352,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Gets a double-precision float from the stream.
    */
   public final fun getDouble(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDoublePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }

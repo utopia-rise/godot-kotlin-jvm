@@ -754,6 +754,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getTitle(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -762,6 +763,7 @@ public open class Window : Viewport() {
    * Returns the ID of the window.
    */
   public final fun getWindowId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -772,6 +774,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getInitialPosition(): WindowInitialPosition {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInitialPositionPtr, LONG)
     return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -782,6 +785,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getCurrentScreen(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -792,6 +796,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getPosition(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -801,6 +806,7 @@ public open class Window : Viewport() {
    * [Viewport].
    */
   public final fun moveToCenter(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToCenterPtr, NIL)
   }
 
@@ -810,6 +816,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -820,6 +827,7 @@ public open class Window : Viewport() {
    * size below the minimum).
    */
   public final fun resetSize(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
   }
 
@@ -828,6 +836,7 @@ public open class Window : Viewport() {
    * **Note:** If [visible] is `false`, this method returns the same value as [position].
    */
   public final fun getPositionWithDecorations(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -837,6 +846,7 @@ public open class Window : Viewport() {
    * **Note:** If [visible] is `false`, this method returns the same value as [size].
    */
   public final fun getSizeWithDecorations(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizeWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -847,6 +857,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getMaxSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -857,6 +868,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getMinSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -867,6 +879,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getMode(): Mode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -892,6 +905,7 @@ public open class Window : Viewport() {
    * Returns `true` if the window can be maximized (the maximize button is enabled).
    */
   public final fun isMaximizeAllowed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMaximizeAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -901,6 +915,7 @@ public open class Window : Viewport() {
    * depending on the system, e.g. it might blink on the task bar.
    */
   public final fun requestAttention(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestAttentionPtr, NIL)
   }
 
@@ -908,6 +923,7 @@ public open class Window : Viewport() {
    * Causes the window to grab focus, allowing it to receive user input.
    */
   public final fun moveToForeground(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToForegroundPtr, NIL)
   }
 
@@ -917,6 +933,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -926,6 +943,7 @@ public open class Window : Viewport() {
    * with and needs to be made visible with [show].
    */
   public final fun hide(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
@@ -934,6 +952,7 @@ public open class Window : Viewport() {
    * of its property other than visibility (unlike e.g. [popup]).
    */
   public final fun show(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
 
@@ -943,6 +962,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isTransient(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTransientPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -953,6 +973,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isTransientToFocused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTransientToFocusedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -963,6 +984,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isExclusive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isExclusivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -981,6 +1003,7 @@ public open class Window : Viewport() {
    * Returns whether the window is being drawn to the screen.
    */
   public final fun canDraw(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canDrawPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -989,6 +1012,7 @@ public open class Window : Viewport() {
    * Returns `true` if the window is focused.
    */
   public final fun hasFocus(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -997,6 +1021,7 @@ public open class Window : Viewport() {
    * Causes the window to grab focus, allowing it to receive user input.
    */
   public final fun grabFocus(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
   }
 
@@ -1007,6 +1032,7 @@ public open class Window : Viewport() {
    * other system features.
    */
   public final fun startDrag(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.startDragPtr, NIL)
   }
 
@@ -1040,6 +1066,7 @@ public open class Window : Viewport() {
    * Returns `true` if the window is currently embedded in another window.
    */
   public final fun isEmbedded(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmbeddedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1050,6 +1077,7 @@ public open class Window : Viewport() {
    * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */
   public final fun getContentsMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentsMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1060,6 +1088,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getForceNative(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getForceNativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1070,6 +1099,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -1080,6 +1110,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleMode(): ContentScaleMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleModePtr, LONG)
     return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1090,6 +1121,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleAspect(): ContentScaleAspect {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleAspectPtr, LONG)
     return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1100,6 +1132,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleStretch(): ContentScaleStretch {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleStretchPtr, LONG)
     return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1110,6 +1143,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getKeepTitleVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepTitleVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1120,6 +1154,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleFactor(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1136,6 +1171,7 @@ public open class Window : Viewport() {
    * Returns `true` if font oversampling is enabled. See [setUseFontOversampling].
    */
   public final fun isUsingFontOversampling(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingFontOversamplingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1146,6 +1182,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getMousePassthroughPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr,
         PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
@@ -1157,6 +1194,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isWrappingControls(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isWrappingControlsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1165,6 +1203,7 @@ public open class Window : Viewport() {
    * Requests an update of the [Window] size to fit underlying [Control] nodes.
    */
   public final fun childControlsChanged(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.childControlsChangedPtr, NIL)
   }
 
@@ -1174,6 +1213,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getTheme(): Theme? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
@@ -1184,6 +1224,7 @@ public open class Window : Viewport() {
   }
 
   public final fun getThemeTypeVariation(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -1193,6 +1234,7 @@ public open class Window : Viewport() {
    * [endBulkThemeOverride] is called.
    */
   public final fun beginBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginBulkThemeOverridePtr, NIL)
   }
 
@@ -1200,6 +1242,7 @@ public open class Window : Viewport() {
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
   public final fun endBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endBulkThemeOverridePtr, NIL)
   }
 
@@ -1533,6 +1576,7 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1543,6 +1587,7 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -1553,6 +1598,7 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1570,6 +1616,7 @@ public open class Window : Viewport() {
    * Returns layout direction and text writing direction.
    */
   public final fun getLayoutDirection(): LayoutDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
     return Window.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1578,6 +1625,7 @@ public open class Window : Viewport() {
    * Returns `true` if layout is right-to-left.
    */
   public final fun isLayoutRtl(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLayoutRtlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1588,6 +1636,7 @@ public open class Window : Viewport() {
   }
 
   public final fun isAutoTranslating(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoTranslatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -102,6 +102,7 @@ public open class JSON : Resource() {
   }
 
   public final fun getData(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -115,6 +116,7 @@ public open class JSON : Resource() {
    * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
   public final fun getParsedText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -124,6 +126,7 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorLine(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getErrorLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -133,6 +136,7 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorMessage(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getErrorMessagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

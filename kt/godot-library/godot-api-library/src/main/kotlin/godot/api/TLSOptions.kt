@@ -49,6 +49,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns `true` if created with [TLSOptions.server], `false` otherwise.
    */
   public final fun isServer(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isServerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -57,6 +58,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns `true` if created with [TLSOptions.clientUnsafe], `false` otherwise.
    */
   public final fun isUnsafeClient(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUnsafeClientPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -66,6 +68,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * [TLSOptions.client].
    */
   public final fun getCommonNameOverride(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCommonNameOverridePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -75,6 +78,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * [TLSOptions.clientUnsafe].
    */
   public final fun getTrustedCaChain(): X509Certificate? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrustedCaChainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
@@ -83,6 +87,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns the [CryptoKey] specified when creating with [TLSOptions.server].
    */
   public final fun getPrivateKey(): CryptoKey? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrivateKeyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CryptoKey?)
   }
@@ -91,6 +96,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns the [X509Certificate] specified when creating with [TLSOptions.server].
    */
   public final fun getOwnCertificate(): X509Certificate? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOwnCertificatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }

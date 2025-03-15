@@ -71,6 +71,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public final fun isClosed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -81,6 +82,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public final fun getCullMode(): CullMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
     return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -91,6 +93,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public final fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }

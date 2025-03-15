@@ -184,11 +184,13 @@ public open class GLTFPhysicsShape : Resource() {
    * `OMI_physics_shape`.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getShapeType(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapeTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -199,6 +201,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -209,6 +212,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -219,6 +223,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -229,6 +234,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getIsTrigger(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsTriggerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -239,6 +245,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getMeshIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -249,6 +256,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public final fun getImporterMesh(): ImporterMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImporterMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }

@@ -59,6 +59,7 @@ public open class Shader : Resource() {
    * Returns the shader mode for the shader.
    */
   public final fun getMode(): Mode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -69,6 +70,7 @@ public open class Shader : Resource() {
   }
 
   public final fun getCode(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -121,6 +123,7 @@ public open class Shader : Resource() {
    * [Material.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
 

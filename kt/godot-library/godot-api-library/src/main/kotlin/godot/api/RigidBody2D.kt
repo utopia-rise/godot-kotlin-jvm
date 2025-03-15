@@ -536,11 +536,13 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getMass(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInertia(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInertiaPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -556,6 +558,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getCenterOfMassMode(): CenterOfMassMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassModePtr, LONG)
     return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -566,6 +569,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getCenterOfMass(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -576,6 +580,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
@@ -586,6 +591,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getGravityScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -596,6 +602,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getLinearDampMode(): DampMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
     return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -606,6 +613,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getAngularDampMode(): DampMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
     return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -616,6 +624,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getLinearDamp(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -626,6 +635,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getAngularDamp(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -636,6 +646,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getLinearVelocity(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -646,6 +657,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getAngularVelocity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -656,6 +668,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getMaxContactsReported(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxContactsReportedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -666,6 +679,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
   public final fun getContactCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContactCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -676,6 +690,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isUsingCustomIntegrator(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -686,6 +701,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isContactMonitorEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -696,6 +712,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getContinuousCollisionDetectionMode(): CCDMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContinuousCollisionDetectionModePtr, LONG)
     return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -816,6 +833,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getConstantForce(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantForcePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -826,6 +844,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getConstantTorque(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantTorquePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -836,6 +855,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isSleeping(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSleepingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -846,6 +866,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isAbleToSleep(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAbleToSleepPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -856,6 +877,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isLockRotationEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLockRotationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -866,6 +888,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun isFreezeEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFreezeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -876,6 +899,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun getFreezeMode(): FreezeMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreezeModePtr, LONG)
     return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -888,6 +912,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * instead.
    */
   public final fun getCollidingBodies(): VariantArray<Node2D> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollidingBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node2D>)
   }

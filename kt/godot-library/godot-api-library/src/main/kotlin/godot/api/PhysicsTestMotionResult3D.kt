@@ -38,6 +38,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * Returns the moving object's travel before collision.
    */
   public final fun getTravel(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTravelPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -46,6 +47,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * Returns the moving object's remaining movement vector.
    */
   public final fun getRemainder(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemainderPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -55,6 +57,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * `1`.
    */
   public final fun getCollisionSafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -64,6 +67,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * `0` and `1`.
    */
   public final fun getCollisionUnsafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -72,6 +76,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * Returns the number of detected collisions.
    */
   public final fun getCollisionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

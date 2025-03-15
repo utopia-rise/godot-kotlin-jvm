@@ -82,6 +82,7 @@ public open class SkeletonModifier3D : Node3D() {
    * Get parent [Skeleton3D] node if found.
    */
   public final fun getSkeleton(): Skeleton3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
@@ -92,6 +93,7 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -102,6 +104,7 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public final fun getInfluence(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

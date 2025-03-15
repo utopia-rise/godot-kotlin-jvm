@@ -34,6 +34,7 @@ public open class AudioListener3D : Node3D() {
    * Enables the listener. This will override the current camera's listener.
    */
   public final fun makeCurrent(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makeCurrentPtr, NIL)
   }
 
@@ -41,6 +42,7 @@ public open class AudioListener3D : Node3D() {
    * Disables the listener to use the current camera's listener instead.
    */
   public final fun clearCurrent(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearCurrentPtr, NIL)
   }
 
@@ -50,6 +52,7 @@ public open class AudioListener3D : Node3D() {
    * only the one that was made current last will be used.
    */
   public final fun isCurrent(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -58,6 +61,7 @@ public open class AudioListener3D : Node3D() {
    * Returns the listener's global orthonormalized [Transform3D].
    */
   public final fun getListenerTransform(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getListenerTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }

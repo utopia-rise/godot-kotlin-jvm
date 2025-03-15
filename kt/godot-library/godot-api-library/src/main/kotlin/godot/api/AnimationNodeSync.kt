@@ -46,6 +46,7 @@ public open class AnimationNodeSync : AnimationNode() {
   }
 
   public final fun isUsingSync(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSyncPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

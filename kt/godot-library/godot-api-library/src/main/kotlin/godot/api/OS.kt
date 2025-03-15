@@ -111,6 +111,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getSystemCaCertificates(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSystemCaCertificatesPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -129,6 +130,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getConnectedMidiInputs(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedMidiInputsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -146,6 +148,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun openMidiInputs(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.openMidiInputsPtr, NIL)
   }
 
@@ -156,6 +159,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun closeMidiInputs(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closeMidiInputsPtr, NIL)
   }
 
@@ -190,6 +194,7 @@ public object OS : Object() {
 
   @JvmStatic
   public final fun isInLowProcessorUsageMode(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInLowProcessorUsageModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -202,6 +207,7 @@ public object OS : Object() {
 
   @JvmStatic
   public final fun getLowProcessorUsageModeSleepUsec(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLowProcessorUsageModeSleepUsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -214,6 +220,7 @@ public object OS : Object() {
 
   @JvmStatic
   public final fun isDeltaSmoothingEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDeltaSmoothingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -224,6 +231,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessorCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessorCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -236,6 +244,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessorName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessorNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -246,6 +255,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getSystemFonts(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSystemFontsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -307,6 +317,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getExecutablePath(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExecutablePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -365,6 +376,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStdinType(): StdHandleType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStdinTypePtr, LONG)
     return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -374,6 +386,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStdoutType(): StdHandleType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStdoutTypePtr, LONG)
     return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -383,6 +396,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStderrType(): StdHandleType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStderrTypePtr, LONG)
     return OS.StdHandleType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -633,6 +647,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -756,6 +771,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -770,6 +786,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getDistributionName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistributionNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -789,6 +806,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getVersion(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVersionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -805,6 +823,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getVersionAlias(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVersionAliasPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -857,6 +876,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCmdlineArgs(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCmdlineArgsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -876,6 +896,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCmdlineUserArgs(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCmdlineUserArgsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -892,6 +913,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterDriverInfo(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterDriverInfoPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -924,6 +946,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isRestartOnExitSet(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRestartOnExitSetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -934,6 +957,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getRestartOnExitArguments(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRestartOnExitArgumentsPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -993,6 +1017,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getLocale(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1008,6 +1033,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getLocaleLanguage(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocaleLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1019,6 +1045,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getModelName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModelNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1030,6 +1057,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isUserfsPersistent(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUserfsPersistentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1041,6 +1069,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isStdoutVerbose(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStdoutVerbosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1054,6 +1083,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isDebugBuild(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebugBuildPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1064,6 +1094,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStaticMemoryUsage(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStaticMemoryUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1073,6 +1104,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStaticMemoryPeakUsage(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStaticMemoryPeakUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1093,6 +1125,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getMemoryInfo(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMemoryInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -1147,6 +1180,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getUserDataDir(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUserDataDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1178,6 +1212,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getConfigDir(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConfigDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1192,6 +1227,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getDataDir(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1206,6 +1242,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCacheDir(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCacheDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1215,6 +1252,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getTempDir(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTempDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1231,6 +1269,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getUniqueId(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1346,6 +1385,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getThreadCallerId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThreadCallerIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1356,6 +1396,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getMainThreadId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMainThreadIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1383,6 +1424,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isSandboxed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSandboxedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1412,6 +1454,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun requestPermissions(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestPermissionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1423,6 +1466,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getGrantedPermissions(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -1433,6 +1477,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun revokeGrantedPermissions(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.revokeGrantedPermissionsPtr, NIL)
   }
 

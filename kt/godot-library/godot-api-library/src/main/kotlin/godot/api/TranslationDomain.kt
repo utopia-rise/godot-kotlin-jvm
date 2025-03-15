@@ -203,6 +203,7 @@ public open class TranslationDomain : RefCounted() {
    * Removes all translations.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -233,6 +234,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -243,6 +245,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationAccentsEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationAccentsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -253,6 +256,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationDoubleVowelsEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationDoubleVowelsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -263,6 +267,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationFakeBidiEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationFakeBidiEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -273,6 +278,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationOverrideEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationOverrideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -283,6 +289,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun isPseudolocalizationSkipPlaceholdersEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationSkipPlaceholdersEnabledPtr,
         BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -295,6 +302,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun getPseudolocalizationExpansionRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPseudolocalizationExpansionRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -305,6 +313,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun getPseudolocalizationPrefix(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPseudolocalizationPrefixPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -315,6 +324,7 @@ public open class TranslationDomain : RefCounted() {
   }
 
   public final fun getPseudolocalizationSuffix(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPseudolocalizationSuffixPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

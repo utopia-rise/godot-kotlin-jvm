@@ -80,6 +80,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
    */
   public final fun setup(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
   }
 
@@ -142,6 +143,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   public final fun getModificationCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModificationCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -150,6 +152,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * Returns a boolean that indicates whether the modification stack is setup and can execute.
    */
   public final fun getIsSetup(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -160,6 +163,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   public final fun getEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -170,6 +174,7 @@ public open class SkeletonModificationStack2D : Resource() {
   }
 
   public final fun getStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -178,6 +183,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to.
    */
   public final fun getSkeleton(): Skeleton2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton2D?)
   }

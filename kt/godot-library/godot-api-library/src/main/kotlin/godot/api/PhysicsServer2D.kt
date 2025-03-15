@@ -76,6 +76,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun worldBoundaryShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.worldBoundaryShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -86,6 +87,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun separationRayShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.separationRayShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -96,6 +98,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun segmentShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.segmentShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -106,6 +109,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun circleShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.circleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -116,6 +120,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun rectangleShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.rectangleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -126,6 +131,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun capsuleShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.capsuleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -136,6 +142,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun convexPolygonShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.convexPolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -146,6 +153,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun concavePolygonShapeCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.concavePolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -208,6 +216,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun spaceCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.spaceCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -278,6 +287,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun areaCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areaCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -599,6 +609,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun bodyCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bodyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1275,6 +1286,7 @@ public object PhysicsServer2D : Object() {
    */
   @JvmStatic
   public final fun jointCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.jointCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

@@ -101,6 +101,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public final fun getImageFormat(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImageFormatPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -111,6 +112,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public final fun getLossyQuality(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLossyQualityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -121,6 +123,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public final fun getRootNodeMode(): RootNodeMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
     return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -312,6 +315,7 @@ public open class GLTFDocument : Resource() {
      */
     @JvmStatic
     public final fun getSupportedGltfExtensions(): PackedStringArray {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr,
           PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)

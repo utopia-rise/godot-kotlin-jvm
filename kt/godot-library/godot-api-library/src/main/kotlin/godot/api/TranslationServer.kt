@@ -75,6 +75,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLocale(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -85,6 +86,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getToolLocale(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToolLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -117,6 +119,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllLanguages(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -136,6 +139,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllScripts(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -155,6 +159,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllCountries(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -275,6 +280,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -283,12 +289,14 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLoadedLocales(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   @JvmStatic
   public final fun isPseudolocalizationEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -305,6 +313,7 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun reloadPseudolocalization(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reloadPseudolocalizationPtr, NIL)
   }
 

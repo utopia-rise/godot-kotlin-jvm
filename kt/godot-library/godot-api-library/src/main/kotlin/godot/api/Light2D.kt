@@ -265,6 +265,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -275,6 +276,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun isEditorOnly(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditorOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -285,6 +287,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -295,6 +298,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -305,6 +309,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getZRangeMin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZRangeMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -315,6 +320,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getZRangeMax(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZRangeMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -325,6 +331,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getLayerRangeMin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayerRangeMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -335,6 +342,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getLayerRangeMax(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayerRangeMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -345,6 +353,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getItemCullMask(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -355,6 +364,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getItemShadowCullMask(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemShadowCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -365,6 +375,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun isShadowEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShadowEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -375,6 +386,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getShadowSmooth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowSmoothPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -385,6 +397,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getShadowFilter(): ShadowFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowFilterPtr, LONG)
     return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -395,6 +408,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getShadowColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -405,6 +419,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
     return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -423,6 +438,7 @@ public open class Light2D internal constructor() : Node2D() {
    * [DirectionalLight2D.height].
    */
   public final fun getHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

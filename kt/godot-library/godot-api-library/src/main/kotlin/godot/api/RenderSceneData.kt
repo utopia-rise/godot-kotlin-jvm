@@ -39,6 +39,7 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a centered transform.
    */
   public final fun getCamTransform(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -48,6 +49,7 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a combined projection.
    */
   public final fun getCamProjection(): Projection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCamProjectionPtr, PROJECTION)
     return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
@@ -56,6 +58,7 @@ public open class RenderSceneData internal constructor() : Object() {
    * Returns the number of views being rendered.
    */
   public final fun getViewCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -85,6 +88,7 @@ public open class RenderSceneData internal constructor() : Object() {
    * Return the [RID] of the uniform buffer containing the scene data as a UBO.
    */
   public final fun getUniformBuffer(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniformBufferPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

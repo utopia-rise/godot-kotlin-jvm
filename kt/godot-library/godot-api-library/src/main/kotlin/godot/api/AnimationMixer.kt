@@ -306,6 +306,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * Returns the list of stored library keys.
    */
   public final fun getAnimationLibraryList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationLibraryListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -333,6 +334,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * Returns the list of stored animation keys.
    */
   public final fun getAnimationList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -343,6 +345,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -353,6 +356,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun isDeterministic(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDeterministicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -363,6 +367,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getRootNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -373,6 +378,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getCallbackModeProcess(): AnimationCallbackModeProcess {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeProcessPtr, LONG)
     return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -383,6 +389,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getCallbackModeMethod(): AnimationCallbackModeMethod {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeMethodPtr, LONG)
     return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -393,6 +400,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getCallbackModeDiscrete(): AnimationCallbackModeDiscrete {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCallbackModeDiscretePtr, LONG)
     return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -403,6 +411,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getAudioMaxPolyphony(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -413,6 +422,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun getRootMotionTrack(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -423,6 +433,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun isRootMotionLocal(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRootMotionLocalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -479,6 +490,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -500,6 +512,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionRotation(): Quaternion {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
@@ -527,6 +540,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionScale(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -558,6 +572,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionPositionAccumulator(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionPositionAccumulatorPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -592,6 +607,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionRotationAccumulator(): Quaternion {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionRotationAccumulatorPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
@@ -621,6 +637,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionScaleAccumulator(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootMotionScaleAccumulatorPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -630,6 +647,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * forces it to update the cache again.
    */
   public final fun clearCaches(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearCachesPtr, NIL)
   }
 
@@ -669,6 +687,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun isResetOnSaveEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

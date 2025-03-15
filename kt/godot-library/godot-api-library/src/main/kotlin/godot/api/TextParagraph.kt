@@ -206,6 +206,7 @@ public open class TextParagraph : RefCounted() {
    * Clears text paragraph (removes text and inline objects).
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -215,6 +216,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getDirection(): TextServer.Direction {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -225,6 +227,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getCustomPunctuation(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomPunctuationPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -235,6 +238,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getOrientation(): TextServer.Orientation {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOrientationPtr, LONG)
     return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -245,6 +249,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getPreserveInvalid(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreserveInvalidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -255,6 +260,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getPreserveControl(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreserveControlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -290,6 +296,7 @@ public open class TextParagraph : RefCounted() {
    * Removes dropcap.
    */
   public final fun clearDropcap(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearDropcapPtr, NIL)
   }
 
@@ -347,6 +354,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -365,6 +373,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getBreakFlags(): LineBreakFlag {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBreakFlagsPtr, LONG)
     return LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -375,6 +384,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getJustificationFlags(): JustificationFlag {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -385,6 +395,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -395,6 +406,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getEllipsisChar(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEllipsisCharPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -405,6 +417,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getWidth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -413,6 +426,7 @@ public open class TextParagraph : RefCounted() {
    * Returns the size of the bounding box of the paragraph, without line breaks.
    */
   public final fun getNonWrappedSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNonWrappedSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -421,6 +435,7 @@ public open class TextParagraph : RefCounted() {
    * Returns the size of the bounding box of the paragraph.
    */
   public final fun getSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -429,6 +444,7 @@ public open class TextParagraph : RefCounted() {
    * Returns TextServer full string buffer RID.
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -446,6 +462,7 @@ public open class TextParagraph : RefCounted() {
    * Returns drop cap text buffer RID.
    */
   public final fun getDropcapRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDropcapRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -454,6 +471,7 @@ public open class TextParagraph : RefCounted() {
    * Returns number of lines in the paragraph.
    */
   public final fun getLineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -464,6 +482,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getMaxLinesVisible(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxLinesVisiblePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -474,6 +493,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   public final fun getLineSpacing(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -565,6 +585,7 @@ public open class TextParagraph : RefCounted() {
    * Returns drop cap bounding box size.
    */
   public final fun getDropcapSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDropcapSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -573,6 +594,7 @@ public open class TextParagraph : RefCounted() {
    * Returns number of lines used by dropcap.
    */
   public final fun getDropcapLines(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDropcapLinesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

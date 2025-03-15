@@ -67,6 +67,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Returns the number or scene tiles this TileSet source has.
    */
   public final fun getSceneTilesCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneTilesCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -157,6 +158,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Returns the scene ID a following call to [createSceneTile] would return.
    */
   public final fun getNextSceneTileId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextSceneTileIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

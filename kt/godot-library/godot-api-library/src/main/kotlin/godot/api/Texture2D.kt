@@ -128,6 +128,7 @@ public open class Texture2D : Texture() {
    * Returns the texture width in pixels.
    */
   public final fun getWidth(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -136,6 +137,7 @@ public open class Texture2D : Texture() {
    * Returns the texture height in pixels.
    */
   public final fun getHeight(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -144,6 +146,7 @@ public open class Texture2D : Texture() {
    * Returns the texture size in pixels.
    */
   public final fun getSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -152,6 +155,7 @@ public open class Texture2D : Texture() {
    * Returns `true` if this [Texture2D] has an alpha channel.
    */
   public final fun hasAlpha(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -210,6 +214,7 @@ public open class Texture2D : Texture() {
    * when overused. Avoid calling [getImage] every frame, especially on large textures.
    */
   public final fun getImage(): Image? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
@@ -218,6 +223,7 @@ public open class Texture2D : Texture() {
    * Creates a placeholder version of this resource ([PlaceholderTexture2D]).
    */
   public final fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }

@@ -144,6 +144,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * [getPeer].
    */
   public final fun getPeers(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPeersPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }

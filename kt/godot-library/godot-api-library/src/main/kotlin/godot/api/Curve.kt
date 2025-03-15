@@ -118,6 +118,7 @@ public open class Curve : Resource() {
   }
 
   public final fun getPointCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -157,6 +158,7 @@ public open class Curve : Resource() {
    * Removes all points from the curve.
    */
   public final fun clearPoints(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
   }
 
@@ -274,6 +276,7 @@ public open class Curve : Resource() {
   }
 
   public final fun getMinValue(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -284,6 +287,7 @@ public open class Curve : Resource() {
   }
 
   public final fun getMaxValue(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -297,11 +301,13 @@ public open class Curve : Resource() {
    * Returns the difference between [minValue] and [maxValue].
    */
   public final fun getValueRange(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getValueRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getMinDomain(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinDomainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -312,6 +318,7 @@ public open class Curve : Resource() {
   }
 
   public final fun getMaxDomain(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxDomainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -325,6 +332,7 @@ public open class Curve : Resource() {
    * Returns the difference between [minDomain] and [maxDomain].
    */
   public final fun getDomainRange(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDomainRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -334,6 +342,7 @@ public open class Curve : Resource() {
    * away from their neighbor on the curve.
    */
   public final fun cleanDupes(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cleanDupesPtr, NIL)
   }
 
@@ -341,10 +350,12 @@ public open class Curve : Resource() {
    * Recomputes the baked cache of points for the curve.
    */
   public final fun bake(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
   }
 
   public final fun getBakeResolution(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeResolutionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

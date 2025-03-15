@@ -75,6 +75,7 @@ public open class InputEventPanGesture : InputEventGesture() {
   }
 
   public final fun getDelta(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeltaPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
