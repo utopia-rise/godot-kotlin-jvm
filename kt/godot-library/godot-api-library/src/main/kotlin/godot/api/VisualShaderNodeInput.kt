@@ -52,6 +52,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   }
 
   public final fun getInputName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -61,6 +62,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    * if the [inputName] equal to `"albedo"`.
    */
   public final fun getInputRealName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputRealNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

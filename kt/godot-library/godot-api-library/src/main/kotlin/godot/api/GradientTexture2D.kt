@@ -190,6 +190,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun getGradient(): Gradient? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGradientPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
@@ -210,6 +211,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun isUsingHdr(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingHdrPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -220,6 +222,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun getFill(): Fill {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillPtr, LONG)
     return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -230,6 +233,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun getFillFrom(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillFromPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -240,6 +244,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun getFillTo(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillToPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -250,6 +255,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun getRepeat(): Repeat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRepeatPtr, LONG)
     return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
   }

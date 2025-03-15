@@ -96,6 +96,7 @@ public open class ReferenceRect : Control() {
 
 
   public final fun getBorderColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -106,6 +107,7 @@ public open class ReferenceRect : Control() {
   }
 
   public final fun getBorderWidth(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -116,6 +118,7 @@ public open class ReferenceRect : Control() {
   }
 
   public final fun getEditorOnly(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditorOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

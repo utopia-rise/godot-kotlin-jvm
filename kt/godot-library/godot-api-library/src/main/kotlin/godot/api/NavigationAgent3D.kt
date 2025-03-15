@@ -580,6 +580,7 @@ public open class NavigationAgent3D : Node() {
    * Returns the [RID] of this agent on the [NavigationServer3D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -590,6 +591,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getAvoidanceEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -600,6 +602,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathDesiredDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -610,6 +613,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getTargetDesiredDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -620,6 +624,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -630,6 +635,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -640,6 +646,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathHeightOffset(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathHeightOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -650,6 +657,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getUse3dAvoidance(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUse3dAvoidancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -660,6 +668,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getKeepYVelocity(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepYVelocityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -670,6 +679,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getNeighborDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeighborDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -680,6 +690,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getMaxNeighbors(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxNeighborsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -690,6 +701,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getTimeHorizonAgents(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -700,6 +712,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getTimeHorizonObstacles(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -710,6 +723,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getMaxSpeed(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -720,6 +734,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathMaxDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -730,6 +745,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -761,6 +777,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathfindingAlgorithm(): NavigationPathQueryParameters3D.PathfindingAlgorithm {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
     return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -773,6 +790,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathPostprocessing(): NavigationPathQueryParameters3D.PathPostProcessing {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
     return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -783,6 +801,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getPathMetadataFlags(): PathMetadataFlags {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
     return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -804,6 +823,7 @@ public open class NavigationAgent3D : Node() {
    * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -814,6 +834,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getTargetPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -824,6 +845,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getSimplifyPath(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -834,6 +856,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getSimplifyEpsilon(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -845,6 +868,7 @@ public open class NavigationAgent3D : Node() {
    * update the internal path logic of the NavigationAgent.
    */
   public final fun getNextPathPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextPathPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -865,6 +889,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -874,6 +899,7 @@ public open class NavigationAgent3D : Node() {
    * set [targetPosition] in order for this to be accurate.
    */
   public final fun distanceToTarget(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.distanceToTargetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -882,6 +908,7 @@ public open class NavigationAgent3D : Node() {
    * Returns the path query result for the path the agent is currently following.
    */
   public final fun getCurrentNavigationResult(): NavigationPathQueryResult3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationPathQueryResult3D?)
   }
@@ -895,6 +922,7 @@ public open class NavigationAgent3D : Node() {
    * also updates the internal path logic.
    */
   public final fun getCurrentNavigationPath(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr,
         PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
@@ -904,6 +932,7 @@ public open class NavigationAgent3D : Node() {
    * Returns which index the agent is currently on in the navigation path's [PackedVector3Array].
    */
   public final fun getCurrentNavigationPathIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -914,6 +943,7 @@ public open class NavigationAgent3D : Node() {
    * but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public final fun isTargetReached(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTargetReachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -922,6 +952,7 @@ public open class NavigationAgent3D : Node() {
    * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
   public final fun isTargetReachable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTargetReachablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -934,6 +965,7 @@ public open class NavigationAgent3D : Node() {
    * avoids jittering the standing agent due to calling repeated path updates.
    */
   public final fun isNavigationFinished(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNavigationFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -944,6 +976,7 @@ public open class NavigationAgent3D : Node() {
    * the [signal path_changed] signal.
    */
   public final fun getFinalPosition(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFinalPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -954,6 +987,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getAvoidanceLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -964,6 +998,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getAvoidanceMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1012,6 +1047,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getAvoidancePriority(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1022,6 +1058,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getDebugEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1032,6 +1069,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getDebugUseCustom(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugUseCustomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1042,6 +1080,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getDebugPathCustomColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1052,6 +1091,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   public final fun getDebugPathCustomPointSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

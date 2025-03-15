@@ -70,6 +70,7 @@ public open class InputEventJoypadButton : InputEvent() {
   }
 
   public final fun getButtonIndex(): JoyButton {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonIndexPtr, LONG)
     return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -80,6 +81,7 @@ public open class InputEventJoypadButton : InputEvent() {
   }
 
   public final fun getPressure(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPressurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

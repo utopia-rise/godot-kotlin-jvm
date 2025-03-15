@@ -55,6 +55,7 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun getActions(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -172,6 +173,7 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun loadFromProjectSettings(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }
 

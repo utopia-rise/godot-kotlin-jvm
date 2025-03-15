@@ -192,6 +192,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun getTileset(): TileSet? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTilesetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TileSet?)
   }
@@ -202,6 +203,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun getRenderingQuadrantSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderingQuadrantSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -210,6 +212,7 @@ public open class TileMap : Node2D() {
    * Returns the number of layers in the TileMap.
    */
   public final fun getLayersCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -415,6 +418,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun isCollisionAnimatable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollisionAnimatablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -425,6 +429,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun getCollisionVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
     return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -435,6 +440,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun getNavigationVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationVisibilityModePtr, LONG)
     return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -708,6 +714,7 @@ public open class TileMap : Node2D() {
    * Clears cells that do not exist in the tileset.
    */
   public final fun fixInvalidTiles(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fixInvalidTilesPtr, NIL)
   }
 
@@ -724,6 +731,7 @@ public open class TileMap : Node2D() {
    * Clears all cells.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -736,6 +744,7 @@ public open class TileMap : Node2D() {
    * to limit the number of updates and how many tiles they impact.
    */
   public final fun updateInternals(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateInternalsPtr, NIL)
   }
 
@@ -803,6 +812,7 @@ public open class TileMap : Node2D() {
    * Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers.
    */
   public final fun getUsedRect(): Rect2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsedRectPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }

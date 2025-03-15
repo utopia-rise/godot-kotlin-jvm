@@ -1171,67 +1171,80 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun isEmitting(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmittingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLifetimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreProcessTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getVisibilityAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityAabbPtr,
         godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getLifetimeRandomness(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFractionalDeltaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSpeedScale(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -1242,6 +1255,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getDrawOrder(): DrawOrder {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
     return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1252,6 +1266,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -1262,6 +1277,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getUseFixedSeed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1272,6 +1288,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getSeed(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1302,6 +1319,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * current frame.
    */
   public final fun captureAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -1312,6 +1330,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getDirection(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -1322,6 +1341,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getSpread(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1332,6 +1352,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getFlatness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlatnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1393,6 +1414,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1403,6 +1425,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getColorRamp(): Gradient? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorRampPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
@@ -1413,6 +1436,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getColorInitialRamp(): Gradient? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorInitialRampPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
@@ -1440,6 +1464,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionShape(): EmissionShape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
     return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1450,6 +1475,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionSphereRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1460,6 +1486,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionBoxExtents(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -1470,6 +1497,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionPoints(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -1480,6 +1508,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionNormals(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -1490,6 +1519,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionColors(): PackedColorArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
@@ -1500,6 +1530,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionRingAxis(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -1510,6 +1541,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionRingHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1520,6 +1552,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionRingRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1530,6 +1563,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionRingInnerRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1540,11 +1574,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getEmissionRingConeAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionRingConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getGravity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -1555,6 +1591,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getSplitScale(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSplitScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1565,6 +1602,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getScaleCurveX(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaleCurveXPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -1575,6 +1613,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getScaleCurveY(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaleCurveYPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -1585,6 +1624,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun getScaleCurveZ(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaleCurveZPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }

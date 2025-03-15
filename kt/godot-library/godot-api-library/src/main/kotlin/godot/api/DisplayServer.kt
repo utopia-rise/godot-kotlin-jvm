@@ -135,6 +135,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -995,6 +996,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -1007,6 +1009,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsIsSpeaking(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsIsSpeakingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1019,6 +1022,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsIsPaused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsIsPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1041,6 +1045,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsGetVoicesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -1100,6 +1105,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsPause(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsPausePtr, NIL)
   }
 
@@ -1111,6 +1117,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsResume(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsResumePtr, NIL)
   }
 
@@ -1122,6 +1129,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsStop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsStopPtr, NIL)
   }
 
@@ -1149,6 +1157,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isDarkModeSupported(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDarkModeSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1159,6 +1168,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isDarkMode(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDarkModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1169,6 +1179,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getAccentColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccentColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1180,6 +1191,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getBaseColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaseColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1209,6 +1221,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetMode(): MouseMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mouseGetModePtr, LONG)
     return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1230,6 +1243,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetPosition(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -1241,6 +1255,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetButtonState(): MouseButtonMask {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mouseGetButtonStatePtr, LONG)
     return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1259,6 +1274,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGet(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clipboardGetPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1270,6 +1286,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGetImage(): Image? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clipboardGetImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
@@ -1279,6 +1296,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardHas(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clipboardHasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1288,6 +1306,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardHasImage(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clipboardHasImagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1318,6 +1337,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGetPrimary(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clipboardGetPrimaryPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1331,6 +1351,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getDisplayCutouts(): VariantArray<Rect2> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Rect2>)
   }
@@ -1344,6 +1365,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getDisplaySafeArea(): Rect2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
@@ -1353,6 +1375,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getScreenCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1362,6 +1385,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getPrimaryScreen(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1372,6 +1396,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getKeyboardFocusScreen(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1481,6 +1506,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isTouchscreenAvailable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1493,6 +1519,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenGetMaxScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1598,6 +1625,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenIsKeptOn(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.screenIsKeptOnPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1608,6 +1636,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getWindowList(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -1650,6 +1679,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowGetActivePopup(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.windowGetActivePopupPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2197,6 +2227,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowMaximizeOnTitleDblClick(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2207,6 +2238,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowMinimizeOnTitleDblClick(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2246,6 +2278,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun imeGetSelection(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -2257,6 +2290,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun imeGetText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.imeGetTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -2292,6 +2326,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun virtualKeyboardHide(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.virtualKeyboardHidePtr, NIL)
   }
 
@@ -2301,6 +2336,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun virtualKeyboardGetHeight(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2312,6 +2348,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun hasHardwareKeyboard(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasHardwareKeyboardPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2331,6 +2368,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun cursorGetShape(): CursorShape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cursorGetShapePtr, LONG)
     return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2363,6 +2401,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getSwapCancelOk(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwapCancelOkPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2499,6 +2538,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun beep(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beepPtr, NIL)
   }
 
@@ -2508,6 +2548,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLayoutCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2518,6 +2559,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetCurrentLayout(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2583,6 +2625,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun showEmojiAndSymbolPicker(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showEmojiAndSymbolPickerPtr, NIL)
   }
 
@@ -2592,6 +2635,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun processEvents(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.processEventsPtr, NIL)
   }
 
@@ -2601,6 +2645,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun forceProcessAndDropEvents(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
   }
 
@@ -2722,6 +2767,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletGetDriverCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.tabletGetDriverCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2743,6 +2789,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletGetCurrentDriver(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -2768,6 +2815,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isWindowTransparencyAvailable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2799,6 +2847,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun hasAdditionalOutputs(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

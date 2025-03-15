@@ -216,6 +216,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getChannel(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getChannelPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -226,6 +227,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getMessage(): MIDIMessage {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMessagePtr, LONG)
     return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -236,6 +238,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getPitch(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPitchPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -246,6 +249,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getVelocity(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -256,6 +260,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getInstrument(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstrumentPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -266,6 +271,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getPressure(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPressurePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -276,6 +282,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getControllerNumber(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getControllerNumberPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -286,6 +293,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun getControllerValue(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getControllerValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

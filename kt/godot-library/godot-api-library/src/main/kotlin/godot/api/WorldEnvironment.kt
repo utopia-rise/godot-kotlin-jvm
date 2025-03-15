@@ -72,6 +72,7 @@ public open class WorldEnvironment : Node() {
   }
 
   public final fun getEnvironment(): Environment? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
@@ -82,6 +83,7 @@ public open class WorldEnvironment : Node() {
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
@@ -92,6 +94,7 @@ public open class WorldEnvironment : Node() {
   }
 
   public final fun getCompositor(): Compositor? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCompositorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Compositor?)
   }

@@ -99,6 +99,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   public final fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -109,6 +110,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   public final fun getTargetMinimumDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -119,6 +121,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   public final fun getTargetMaximumDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -129,6 +132,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   }
 
   public final fun getFlipBendDirection(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlipBendDirectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -145,6 +149,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * Returns the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
   public final fun getJointOneBone2dNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -163,6 +168,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun getJointOneBoneIdx(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointOneBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -179,6 +185,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * Returns the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
   public final fun getJointTwoBone2dNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -197,6 +204,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun getJointTwoBoneIdx(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

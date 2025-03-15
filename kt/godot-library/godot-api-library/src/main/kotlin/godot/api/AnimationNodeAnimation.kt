@@ -142,6 +142,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getAnimation(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -152,6 +153,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getPlayMode(): PlayMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlayModePtr, LONG)
     return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -162,6 +164,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isAdvanceOnStart(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAdvanceOnStartPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -172,6 +175,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isUsingCustomTimeline(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -182,6 +186,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getTimelineLength(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimelineLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -192,6 +197,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun isStretchingTimeScale(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStretchingTimeScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -202,6 +208,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getStartOffset(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStartOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -212,6 +219,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun getLoopMode(): Animation.LoopMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

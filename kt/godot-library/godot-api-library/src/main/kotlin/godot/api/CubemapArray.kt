@@ -57,6 +57,7 @@ public open class CubemapArray : ImageTextureLayered() {
    * Creates a placeholder version of this resource ([PlaceholderCubemapArray]).
    */
   public final fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }

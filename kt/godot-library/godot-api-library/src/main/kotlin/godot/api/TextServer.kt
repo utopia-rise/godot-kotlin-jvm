@@ -121,6 +121,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns the name of the server interface.
    */
   public final fun getName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -129,6 +130,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns text server features, see [Feature].
    */
   public final fun getFeatures(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeaturesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -148,6 +150,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename.
    */
   public final fun getSupportDataFilename(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportDataFilenamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -156,6 +159,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns TextServer database (e.g. ICU break iterators and dictionaries) description.
    */
   public final fun getSupportDataInfo(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportDataInfoPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -174,6 +178,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries).
    */
   public final fun getSupportData(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -227,6 +232,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * [freeRid] method.
    */
   public final fun createFont(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createFontPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1495,6 +1501,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns the font oversampling factor, shared by all fonts in the TextServer.
    */
   public final fun fontGetGlobalOversampling(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fontGetGlobalOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }

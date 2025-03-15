@@ -163,11 +163,13 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * model type maps to accessor types.
    */
   public final fun getAccessorType(): GLTFAccessor.GLTFAccessorType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessorTypePtr, LONG)
     return GLTFAccessor.GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getGltfToGodotExpression(): Expression? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGltfToGodotExpressionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Expression?)
   }
@@ -178,6 +180,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun getGodotToGltfExpression(): Expression? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGodotToGltfExpressionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Expression?)
   }
@@ -188,6 +191,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun getNodePaths(): VariantArray<NodePath> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodePathsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
@@ -197,6 +201,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * [GLTFObjectModelProperty] can handle converting a glTF object model property to a Godot property.
    */
   public final fun hasNodePaths(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasNodePathsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -207,6 +212,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun getObjectModelType(): GLTFObjectModelType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getObjectModelTypePtr, LONG)
     return GLTFObjectModelProperty.GLTFObjectModelType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -217,6 +223,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun getJsonPointers(): VariantArray<PackedStringArray> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJsonPointersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedStringArray>)
   }
@@ -226,6 +233,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * [GLTFObjectModelProperty] can handle converting a Godot property to a glTF object model property.
    */
   public final fun hasJsonPointers(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasJsonPointersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -236,6 +244,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun getVariantType(): VariantType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVariantTypePtr, LONG)
     return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
   }

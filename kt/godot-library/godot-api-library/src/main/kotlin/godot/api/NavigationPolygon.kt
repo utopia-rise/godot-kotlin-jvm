@@ -287,6 +287,7 @@ public open class NavigationPolygon : Resource() {
    * Returns a [PackedVector2Array] containing all the vertices being used to create the polygons.
    */
   public final fun getVertices(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
@@ -303,6 +304,7 @@ public open class NavigationPolygon : Resource() {
    * Returns the count of all polygons.
    */
   public final fun getPolygonCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -320,6 +322,7 @@ public open class NavigationPolygon : Resource() {
    * Clears the array of polygons, but it doesn't clear the array of outlines and vertices.
    */
   public final fun clearPolygons(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
@@ -330,6 +333,7 @@ public open class NavigationPolygon : Resource() {
    * scene).
    */
   public final fun getNavigationMesh(): NavigationMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
   }
@@ -356,6 +360,7 @@ public open class NavigationPolygon : Resource() {
    * Returns the number of outlines that were created in the editor or by script.
    */
   public final fun getOutlineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutlineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -393,6 +398,7 @@ public open class NavigationPolygon : Resource() {
    * created by them.
    */
   public final fun clearOutlines(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearOutlinesPtr, NIL)
   }
 
@@ -400,6 +406,7 @@ public open class NavigationPolygon : Resource() {
    * Creates polygons from the outlines added in the editor or by script.
    */
   public final fun makePolygonsFromOutlines(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makePolygonsFromOutlinesPtr, NIL)
   }
 
@@ -409,6 +416,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getCellSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -419,6 +427,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getBorderSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -429,6 +438,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getSamplePartitionType(): SamplePartitionType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePartitionTypePtr, LONG)
     return NavigationPolygon.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -439,6 +449,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getParsedGeometryType(): ParsedGeometryType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedGeometryTypePtr, LONG)
     return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -449,6 +460,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getParsedCollisionMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -478,6 +490,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getSourceGeometryMode(): SourceGeometryMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryModePtr, LONG)
     return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -488,6 +501,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getSourceGeometryGroupName(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -498,6 +512,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getAgentRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAgentRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -508,6 +523,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getBakingRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakingRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -518,6 +534,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun getBakingRectOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -526,6 +543,7 @@ public open class NavigationPolygon : Resource() {
    * Clears the internal arrays for vertices and polygon indices.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

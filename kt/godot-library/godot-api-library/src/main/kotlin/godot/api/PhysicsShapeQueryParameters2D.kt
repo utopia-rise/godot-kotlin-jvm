@@ -238,6 +238,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getShape(): Resource? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
@@ -248,6 +249,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getShapeRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapeRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -258,6 +260,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -268,6 +271,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getMotion(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMotionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -278,6 +282,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -288,6 +293,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -298,6 +304,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun getExclude(): VariantArray<RID> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -308,6 +315,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -318,6 +326,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

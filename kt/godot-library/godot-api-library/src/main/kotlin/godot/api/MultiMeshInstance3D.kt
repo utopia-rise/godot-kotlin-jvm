@@ -47,6 +47,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
   }
 
   public final fun getMultimesh(): MultiMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMultimeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }

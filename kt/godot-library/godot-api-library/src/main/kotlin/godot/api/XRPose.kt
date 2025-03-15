@@ -199,6 +199,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getHasTrackingData(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -209,6 +210,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getName(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -219,6 +221,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getTransform(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -228,6 +231,7 @@ public open class XRPose : RefCounted() {
    * used to position [XRNode3D] objects.
    */
   public final fun getAdjustedTransform(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -238,6 +242,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getLinearVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -248,6 +253,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -258,6 +264,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun getTrackingConfidence(): TrackingConfidence {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackingConfidencePtr, LONG)
     return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -188,6 +188,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -215,6 +216,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun getRegionRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -225,6 +227,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -235,6 +238,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun getHAxisStretchMode(): AxisStretchMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -245,6 +249,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun getVAxisStretchMode(): AxisStretchMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

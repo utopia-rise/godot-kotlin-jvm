@@ -200,6 +200,7 @@ public open class Mesh : Resource() {
   }
 
   public final fun getLightmapSizeHint(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -209,6 +210,7 @@ public open class Mesh : Resource() {
    * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
   public final fun getAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -218,6 +220,7 @@ public open class Mesh : Resource() {
    * triangle.
    */
   public final fun getFaces(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -227,6 +230,7 @@ public open class Mesh : Resource() {
    * [MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
   public final fun getSurfaceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -279,6 +283,7 @@ public open class Mesh : Resource() {
    * Creates a placeholder version of this resource ([PlaceholderMesh]).
    */
   public final fun createPlaceholder(): Resource? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
@@ -287,6 +292,7 @@ public open class Mesh : Resource() {
    * Calculate a [ConcavePolygonShape3D] from the mesh.
    */
   public final fun createTrimeshShape(): ConcavePolygonShape3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTrimeshShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
   }
@@ -322,6 +328,7 @@ public open class Mesh : Resource() {
    * types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }

@@ -447,6 +447,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun isEditorOnly(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditorOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -474,6 +475,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun hasShadow(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasShadowPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -484,6 +486,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun isNegative(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNegativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -494,6 +497,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -504,6 +508,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun isDistanceFadeEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -514,6 +519,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getDistanceFadeBegin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -524,6 +530,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getDistanceFadeShadow(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -534,6 +541,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getDistanceFadeLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -544,6 +552,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -554,6 +563,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getShadowReverseCullFace(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -564,6 +574,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getShadowCasterMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowCasterMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -574,6 +585,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getBakeMode(): BakeMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeModePtr, LONG)
     return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -584,6 +596,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getProjector(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -594,6 +607,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun getTemperature(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTemperaturePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -604,6 +618,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * before being sent to the [RenderingServer].
    */
   public final fun getCorrelatedColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCorrelatedColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }

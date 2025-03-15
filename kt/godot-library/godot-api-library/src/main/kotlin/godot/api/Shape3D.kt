@@ -67,6 +67,7 @@ public open class Shape3D internal constructor() : Resource() {
   }
 
   public final fun getCustomSolverBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -77,6 +78,7 @@ public open class Shape3D internal constructor() : Resource() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -85,6 +87,7 @@ public open class Shape3D internal constructor() : Resource() {
    * Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D].
    */
   public final fun getDebugMesh(): ArrayMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }

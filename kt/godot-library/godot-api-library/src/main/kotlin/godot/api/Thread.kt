@@ -63,6 +63,7 @@ public open class Thread : RefCounted() {
    * has not started running or if [waitToFinish] has been called, this returns an empty string.
    */
   public final fun getId(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -73,6 +74,7 @@ public open class Thread : RefCounted() {
    * [isAlive].
    */
   public final fun isStarted(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStartedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -83,6 +85,7 @@ public open class Thread : RefCounted() {
    * To check if a [Thread] is joinable, use [isStarted].
    */
   public final fun isAlive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAlivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -96,6 +99,7 @@ public open class Thread : RefCounted() {
    * `false`.
    */
   public final fun waitToFinish(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.waitToFinishPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

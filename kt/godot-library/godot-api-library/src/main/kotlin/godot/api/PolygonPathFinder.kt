@@ -128,6 +128,7 @@ public open class PolygonPathFinder : Resource() {
   }
 
   public final fun getBounds(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }

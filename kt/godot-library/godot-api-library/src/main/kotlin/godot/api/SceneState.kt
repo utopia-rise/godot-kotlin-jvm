@@ -51,6 +51,7 @@ public open class SceneState internal constructor() : RefCounted() {
    * get_node_count() - 1]`.
    */
   public final fun getNodeCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -178,6 +179,7 @@ public open class SceneState internal constructor() : RefCounted() {
    * interval `[0, get_connection_count() - 1]`.
    */
   public final fun getConnectionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

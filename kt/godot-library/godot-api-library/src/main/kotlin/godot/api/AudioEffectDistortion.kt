@@ -97,6 +97,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun getMode(): Mode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -107,6 +108,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun getPreGain(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -117,6 +119,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun getKeepHfHz(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepHfHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -127,6 +130,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun getDrive(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrivePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -137,6 +141,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun getPostGain(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPostGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

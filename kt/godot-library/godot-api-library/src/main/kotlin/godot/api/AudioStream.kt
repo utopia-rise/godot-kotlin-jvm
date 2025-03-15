@@ -118,6 +118,7 @@ public open class AudioStream : Resource() {
    * Returns the length of the audio stream in seconds.
    */
   public final fun getLength(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -127,6 +128,7 @@ public open class AudioStream : Resource() {
    * audio stream supports two or more channels (*polyphony*).
    */
   public final fun isMonophonic(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMonophonicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -138,6 +140,7 @@ public open class AudioStream : Resource() {
    * `AudioStreamRandomPitch::instantiate_playback`.
    */
   public final fun instantiatePlayback(): AudioStreamPlayback? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.instantiatePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
@@ -147,6 +150,7 @@ public open class AudioStream : Resource() {
    * sampled.
    */
   public final fun canBeSampled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canBeSampledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -155,6 +159,7 @@ public open class AudioStream : Resource() {
    * Generates an [AudioSample] based on the current stream.
    */
   public final fun generateSample(): AudioSample? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateSamplePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioSample?)
   }
@@ -163,6 +168,7 @@ public open class AudioStream : Resource() {
    * Returns `true` if the stream is a collection of other streams, `false` otherwise.
    */
   public final fun isMetaStream(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMetaStreamPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

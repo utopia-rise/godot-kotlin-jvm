@@ -72,6 +72,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   }
 
   public final fun getConstant(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }

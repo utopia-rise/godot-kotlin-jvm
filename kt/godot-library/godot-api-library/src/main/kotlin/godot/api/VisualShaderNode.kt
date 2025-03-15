@@ -82,6 +82,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public final fun getOutputPortForPreview(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputPortForPreviewPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -120,6 +121,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * Clears the default input ports value.
    */
   public final fun clearDefaultInputValues(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearDefaultInputValuesPtr, NIL)
   }
 
@@ -137,6 +139,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * `[index0, value0, index1, value1, ...]`.
    */
   public final fun getDefaultInputValues(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -147,6 +150,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public final fun getFrame(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

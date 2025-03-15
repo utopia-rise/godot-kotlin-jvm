@@ -119,6 +119,7 @@ public open class AcceptDialog : Window() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getOkButton(): Button? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOkButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
@@ -129,6 +130,7 @@ public open class AcceptDialog : Window() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLabel(): Label? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLabelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Label?)
   }
@@ -139,6 +141,7 @@ public open class AcceptDialog : Window() {
   }
 
   public final fun getHideOnOk(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHideOnOkPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -149,6 +152,7 @@ public open class AcceptDialog : Window() {
   }
 
   public final fun getCloseOnEscape(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCloseOnEscapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,6 +210,7 @@ public open class AcceptDialog : Window() {
   }
 
   public final fun getText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -216,6 +221,7 @@ public open class AcceptDialog : Window() {
   }
 
   public final fun hasAutowrap(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutowrapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -226,6 +232,7 @@ public open class AcceptDialog : Window() {
   }
 
   public final fun getOkButtonText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOkButtonTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

@@ -45,6 +45,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public final fun getOperator(): Operator {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperatorPtr, LONG)
     return VisualShaderNodeTransformVecMult.Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }

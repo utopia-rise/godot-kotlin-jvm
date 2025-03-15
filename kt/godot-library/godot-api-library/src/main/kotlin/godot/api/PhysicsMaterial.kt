@@ -89,6 +89,7 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public final fun getFriction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrictionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -99,6 +100,7 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public final fun isRough(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRoughPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -109,6 +111,7 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public final fun getBounce(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBouncePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -119,6 +122,7 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public final fun isAbsorbent(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAbsorbentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

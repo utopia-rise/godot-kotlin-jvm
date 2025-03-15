@@ -74,6 +74,7 @@ public open class PropertyTweener : Tweener() {
    * ```
    */
   public final fun fromCurrent(): PropertyTweener? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fromCurrentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
@@ -94,6 +95,7 @@ public open class PropertyTweener : Tweener() {
    * ```
    */
   public final fun asRelative(): PropertyTweener? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asRelativePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }

@@ -162,6 +162,7 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun pwaNeedsUpdate(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -175,6 +176,7 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun pwaUpdate(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pwaUpdatePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -186,6 +188,7 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun forceFsSync(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceFsSyncPtr, NIL)
   }
 

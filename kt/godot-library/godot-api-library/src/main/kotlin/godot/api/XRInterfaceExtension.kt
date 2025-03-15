@@ -282,16 +282,19 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   public final fun getColorTexture(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getDepthTexture(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getVelocityTexture(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

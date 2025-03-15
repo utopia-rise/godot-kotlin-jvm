@@ -55,6 +55,7 @@ public open class X509Certificate : Resource() {
    * invalid.
    */
   public final fun saveToString(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

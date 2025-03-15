@@ -111,6 +111,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -121,6 +122,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSections(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -131,6 +133,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSectionLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -141,6 +144,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getSectionSegments(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSectionSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -151,6 +155,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getCurve(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -161,6 +166,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun getShape(): Shape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, LONG)
     return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)
   }

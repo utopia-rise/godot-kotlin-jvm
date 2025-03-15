@@ -109,6 +109,7 @@ public open class AnimationLibrary : Resource() {
    * Returns the keys for the [Animation]s stored in the library.
    */
   public final fun getAnimationList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -117,6 +118,7 @@ public open class AnimationLibrary : Resource() {
    * Returns the key count for the [Animation]s stored in the library.
    */
   public final fun getAnimationListSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationListSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

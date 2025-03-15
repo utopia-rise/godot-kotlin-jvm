@@ -157,6 +157,7 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalClassListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -319,6 +320,7 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun save(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

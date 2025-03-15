@@ -82,6 +82,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBodyTracker(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -92,6 +93,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBodyUpdate(): BodyUpdate {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyUpdatePtr, LONG)
     return BodyUpdate(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -102,6 +104,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -110,6 +110,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun getEnableLogicOp(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableLogicOpPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -120,6 +121,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun getLogicOp(): RenderingDevice.LogicOperation {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLogicOpPtr, LONG)
     return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -130,6 +132,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun getBlendConstant(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendConstantPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -141,6 +144,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttachmentsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
   }

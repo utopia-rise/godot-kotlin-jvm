@@ -546,6 +546,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   public final fun isCollapsed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -575,6 +576,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   public final fun isVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -583,6 +585,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns `true` if [visible] is `true` and all its ancestors are also visible.
    */
   public final fun isVisibleInTree(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisibleInTreePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -591,6 +594,7 @@ public open class TreeItem internal constructor() : Object() {
    * Uncollapses all [TreeItem]s necessary to reveal this [TreeItem], i.e. all ancestor [TreeItem]s.
    */
   public final fun uncollapseTree(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.uncollapseTreePtr, NIL)
   }
 
@@ -600,6 +604,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   public final fun getCustomMinimumHeight(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomMinimumHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -773,6 +778,7 @@ public open class TreeItem internal constructor() : Object() {
    * Removes all buttons from all columns of this item.
    */
   public final fun clearButtons(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearButtonsPtr, NIL)
   }
 
@@ -973,6 +979,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   public final fun isFoldingDisabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFoldingDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1014,6 +1021,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the [Tree] that owns this TreeItem.
    */
   public final fun getTree(): Tree? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTreePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tree?)
   }
@@ -1022,6 +1030,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the next sibling TreeItem in the tree or a `null` object if there is none.
    */
   public final fun getNext(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -1030,6 +1039,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the previous sibling TreeItem in the tree or a `null` object if there is none.
    */
   public final fun getPrev(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrevPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -1038,6 +1048,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the parent TreeItem or a `null` object if there is none.
    */
   public final fun getParent(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -1046,6 +1057,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the TreeItem's first child.
    */
   public final fun getFirstChild(): TreeItem? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFirstChildPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
   }
@@ -1117,6 +1129,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns the number of child items.
    */
   public final fun getChildCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getChildCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1125,6 +1138,7 @@ public open class TreeItem internal constructor() : Object() {
    * Returns an array of references to the item's children.
    */
   public final fun getChildren(): VariantArray<TreeItem> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getChildrenPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TreeItem>)
   }
@@ -1134,6 +1148,7 @@ public open class TreeItem internal constructor() : Object() {
    * position is `0`.
    */
   public final fun getIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

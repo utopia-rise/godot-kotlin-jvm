@@ -92,6 +92,7 @@ public open class Joint3D internal constructor() : Node3D() {
   }
 
   public final fun getNodeA(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeAPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -102,6 +103,7 @@ public open class Joint3D internal constructor() : Node3D() {
   }
 
   public final fun getNodeB(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeBPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -112,6 +114,7 @@ public open class Joint3D internal constructor() : Node3D() {
   }
 
   public final fun getSolverPriority(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSolverPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -122,6 +125,7 @@ public open class Joint3D internal constructor() : Node3D() {
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -130,6 +134,7 @@ public open class Joint3D internal constructor() : Node3D() {
    * Returns the joint's internal [RID] from the [PhysicsServer3D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

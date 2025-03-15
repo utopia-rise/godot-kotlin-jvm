@@ -88,6 +88,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   public final fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -98,6 +99,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   public final fun getTipNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTipNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -108,6 +110,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   public final fun getCcdikDataChainLength(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCcdikDataChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

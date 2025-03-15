@@ -123,6 +123,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * the audio sample of this stream.
    */
   public final fun getSamplePlayback(): AudioSamplePlayback? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioSamplePlayback?)
   }
@@ -163,6 +164,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Stops the stream.
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -170,6 +172,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Returns the number of times the stream has looped.
    */
   public final fun getLoopCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -178,6 +181,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Returns the current position in the stream, in seconds.
    */
   public final fun getPlaybackPosition(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -186,6 +190,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Returns `true` if the stream is playing.
    */
   public final fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

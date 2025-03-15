@@ -38,6 +38,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * simulating.
    */
   public final fun isSimulatingPhysics(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -46,6 +47,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
   public final fun physicalBonesStopSimulation(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
   }
 

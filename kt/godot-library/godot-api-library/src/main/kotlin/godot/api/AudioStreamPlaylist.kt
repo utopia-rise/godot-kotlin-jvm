@@ -594,6 +594,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public final fun getStreamCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -602,6 +603,7 @@ public open class AudioStreamPlaylist : AudioStream() {
    * Returns the BPM of the playlist, which can vary depending on the clip being played.
    */
   public final fun getBpm(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -629,6 +631,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public final fun getShuffle(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShufflePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -639,6 +642,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public final fun getFadeTime(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -649,6 +653,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public final fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

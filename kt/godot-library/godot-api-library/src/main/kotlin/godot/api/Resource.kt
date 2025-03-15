@@ -182,6 +182,7 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getPath(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -200,6 +201,7 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -210,6 +212,7 @@ public open class Resource : RefCounted() {
    * ([DisplayServer], [RenderingServer], etc.), so this function will return the original [RID].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -220,6 +223,7 @@ public open class Resource : RefCounted() {
   }
 
   public final fun isLocalToScene(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLocalToScenePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -230,6 +234,7 @@ public open class Resource : RefCounted() {
    * Otherwise, returns `null`.
    */
   public final fun getLocalScene(): Node? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -240,6 +245,7 @@ public open class Resource : RefCounted() {
    * scene instance.
    */
   public final fun setupLocalToScene(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
@@ -248,6 +254,7 @@ public open class Resource : RefCounted() {
    * [Object.GetPropertyList], override [_resetState] to correctly clear the resource's state.
    */
   public final fun resetState(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetStatePtr, NIL)
   }
 
@@ -277,6 +284,7 @@ public open class Resource : RefCounted() {
    * Returns `true` if the resource is built-in (from the engine) or `false` if it is user-defined.
    */
   public final fun isBuiltIn(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBuiltInPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -287,6 +295,7 @@ public open class Resource : RefCounted() {
   }
 
   public final fun getSceneUniqueId(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -306,6 +315,7 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public final fun emitChanged(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.emitChangedPtr, NIL)
   }
 
@@ -338,6 +348,7 @@ public open class Resource : RefCounted() {
      */
     @JvmStatic
     public final fun generateSceneUniqueId(): String {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
       return (TransferContext.readReturnValue(STRING) as String)
     }

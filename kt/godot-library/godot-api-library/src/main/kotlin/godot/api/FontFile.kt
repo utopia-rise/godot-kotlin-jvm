@@ -373,6 +373,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getData(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -408,6 +409,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getAntialiasing(): TextServer.FontAntialiasing {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -418,6 +420,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getDisableEmbeddedBitmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -428,6 +431,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getGenerateMipmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGenerateMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -438,6 +442,7 @@ public open class FontFile : Font() {
   }
 
   public final fun isMultichannelSignedDistanceField(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -448,6 +453,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getMsdfPixelRange(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfPixelRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -458,6 +464,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getMsdfSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -468,6 +475,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getFixedSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -478,6 +486,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getFixedSizeScaleMode(): TextServer.FixedSizeScaleMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedSizeScaleModePtr, LONG)
     return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -488,6 +497,7 @@ public open class FontFile : Font() {
   }
 
   public final fun isAllowSystemFallback(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -498,6 +508,7 @@ public open class FontFile : Font() {
   }
 
   public final fun isForceAutohinter(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isForceAutohinterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -508,6 +519,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getHinting(): TextServer.Hinting {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintingPtr, LONG)
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -519,6 +531,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -529,6 +542,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getKeepRoundingRemainders(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepRoundingRemaindersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -539,6 +553,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getOversampling(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -547,6 +562,7 @@ public open class FontFile : Font() {
    * Returns number of the font cache entries.
    */
   public final fun getCacheCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCacheCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -555,6 +571,7 @@ public open class FontFile : Font() {
    * Removes all font cache entries.
    */
   public final fun clearCache(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearCachePtr, NIL)
   }
 
@@ -1171,6 +1188,7 @@ public open class FontFile : Font() {
    * Returns list of language support overrides.
    */
   public final fun getLanguageSupportOverrides(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguageSupportOverridesPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -1205,6 +1223,7 @@ public open class FontFile : Font() {
    * Returns list of script support overrides.
    */
   public final fun getScriptSupportOverrides(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptSupportOverridesPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -1216,6 +1235,7 @@ public open class FontFile : Font() {
   }
 
   public final fun getOpentypeFeatureOverrides(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpentypeFeatureOverridesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }

@@ -96,6 +96,7 @@ public open class MeshDataTool : RefCounted() {
    * Clears all data currently in MeshDataTool.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -125,6 +126,7 @@ public open class MeshDataTool : RefCounted() {
    * [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
    */
   public final fun getFormat(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -133,6 +135,7 @@ public open class MeshDataTool : RefCounted() {
    * Returns the total number of vertices in [Mesh].
    */
   public final fun getVertexCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVertexCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -141,6 +144,7 @@ public open class MeshDataTool : RefCounted() {
    * Returns the number of edges in this [Mesh].
    */
   public final fun getEdgeCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEdgeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -149,6 +153,7 @@ public open class MeshDataTool : RefCounted() {
    * Returns the number of faces in this [Mesh].
    */
   public final fun getFaceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -433,6 +438,7 @@ public open class MeshDataTool : RefCounted() {
    * Returns the material assigned to the [Mesh].
    */
   public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

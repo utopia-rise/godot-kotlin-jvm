@@ -693,6 +693,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * defer compiling the shader to a later time.
    */
   public final fun shaderCreatePlaceholder(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.shaderCreatePlaceholderPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1216,6 +1217,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Switches to the next draw pass.
    */
   public final fun drawListSwitchToNextPass(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.drawListSwitchToNextPassPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1234,6 +1236,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Finishes a list of raster drawing commands created with the `draw_*` methods.
    */
   public final fun drawListEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.drawListEndPtr, NIL)
   }
 
@@ -1260,6 +1263,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [/codeblock]
    */
   public final fun computeListBegin(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.computeListBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1342,6 +1346,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Finishes a list of compute commands created with the `compute_*` methods.
    */
   public final fun computeListEnd(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.computeListEndPtr, NIL)
   }
 
@@ -1369,6 +1374,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns the total number of timestamps (rendering steps) available for profiling.
    */
   public final fun getCapturedTimestampsCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCapturedTimestampsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1378,6 +1384,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * querying.
    */
   public final fun getCapturedTimestampsFrame(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCapturedTimestampsFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1440,6 +1447,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * triple-buffered V-Sync enabled). However, local [RenderingDevice]s only have 1 frame.
    */
   public final fun getFrameDelay(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrameDelayPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1450,6 +1458,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * **Note:** Only available in local RenderingDevices.
    */
   public final fun submit(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.submitPtr, NIL)
   }
 
@@ -1460,6 +1469,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * **Note:** [sync] can only be called after a [submit].
    */
   public final fun sync(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.syncPtr, NIL)
   }
 
@@ -1478,6 +1488,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * This method does nothing.
    */
   public final fun fullBarrier(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fullBarrierPtr, NIL)
   }
 
@@ -1486,6 +1497,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * the GPU independently from the rest of the engine.
    */
   public final fun createLocalDevice(): RenderingDevice? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createLocalDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
@@ -1532,6 +1544,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Ends the command buffer debug label region started by a [drawCommandBeginLabel] call.
    */
   public final fun drawCommandEndLabel(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.drawCommandEndLabelPtr, NIL)
   }
 
@@ -1540,6 +1553,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [RenderingServer.getVideoAdapterVendor]. See also [getDeviceName].
    */
   public final fun getDeviceVendorName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeviceVendorNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1549,6 +1563,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [RenderingServer.getVideoAdapterName]. See also [getDeviceVendorName].
    */
   public final fun getDeviceName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeviceNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1560,6 +1575,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * drivers will invalidate the shader cache.
    */
   public final fun getDevicePipelineCacheUuid(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDevicePipelineCacheUuidPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1595,6 +1611,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns a string with a performance report from the past frame. Updates every frame.
    */
   public final fun getPerfReport(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPerfReportPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1616,6 +1633,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * line argument[/url].
    */
   public final fun getDriverAndDeviceMemoryReport(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDriverAndDeviceMemoryReportPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1650,6 +1668,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * line argument[/url].
    */
   public final fun getTrackedObjectTypeCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackedObjectTypeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1660,6 +1679,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * tracked or unknown.
    */
   public final fun getDriverTotalMemory(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDriverTotalMemoryPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1670,6 +1690,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * tracked or unknown.
    */
   public final fun getDriverAllocationCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDriverAllocationCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1706,6 +1727,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * tracked or unknown.
    */
   public final fun getDeviceTotalMemory(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeviceTotalMemoryPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1716,6 +1738,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * tracked or unknown.
    */
   public final fun getDeviceAllocationCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeviceAllocationCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

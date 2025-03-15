@@ -102,6 +102,7 @@ public open class GLTFCamera : Resource() {
    * Converts this GLTFCamera instance into a Godot [Camera3D] node.
    */
   public final fun toNode(): Camera3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
@@ -110,11 +111,13 @@ public open class GLTFCamera : Resource() {
    * Serializes this GLTFCamera instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getPerspective(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPerspectivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -125,6 +128,7 @@ public open class GLTFCamera : Resource() {
   }
 
   public final fun getFov(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -135,6 +139,7 @@ public open class GLTFCamera : Resource() {
   }
 
   public final fun getSizeMag(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizeMagPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -145,6 +150,7 @@ public open class GLTFCamera : Resource() {
   }
 
   public final fun getDepthFar(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthFarPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -155,6 +161,7 @@ public open class GLTFCamera : Resource() {
   }
 
   public final fun getDepthNear(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthNearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

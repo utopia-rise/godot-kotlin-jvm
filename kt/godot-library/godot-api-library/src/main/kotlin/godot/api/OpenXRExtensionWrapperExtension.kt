@@ -249,6 +249,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API.
    */
   public final fun getOpenxrApi(): OpenXRAPIExtension? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpenxrApiPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAPIExtension?)
   }
@@ -257,6 +258,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Registers the extension. This should happen at core module initialization level.
    */
   public final fun registerExtensionWrapper(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.registerExtensionWrapperPtr, NIL)
   }
 

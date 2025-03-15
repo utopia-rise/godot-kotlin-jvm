@@ -185,6 +185,7 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitorModificationTime(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMonitorModificationTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -194,6 +195,7 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitorNames(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }

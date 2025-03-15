@@ -206,6 +206,7 @@ public open class WebSocketPeer : PacketPeer() {
    * Returns `true` if the last received packet was sent as a text payload. See [WriteMode].
    */
   public final fun wasStringPacket(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.wasStringPacketPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -215,6 +216,7 @@ public open class WebSocketPeer : PacketPeer() {
    * it in a clean state.
    */
   public final fun poll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
@@ -239,6 +241,7 @@ public open class WebSocketPeer : PacketPeer() {
    * **Note:** Not available in the Web export.
    */
   public final fun getConnectedHost(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedHostPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -248,6 +251,7 @@ public open class WebSocketPeer : PacketPeer() {
    * **Note:** Not available in the Web export.
    */
   public final fun getConnectedPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectedPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -257,6 +261,7 @@ public open class WebSocketPeer : PacketPeer() {
    * sub-protocol has not been selected yet.
    */
   public final fun getSelectedProtocol(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedProtocolPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -266,6 +271,7 @@ public open class WebSocketPeer : PacketPeer() {
    * [connectToUrl] or from the HTTP headers when acting as server (i.e. when using [acceptStream]).
    */
   public final fun getRequestedUrl(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRequestedUrlPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -285,6 +291,7 @@ public open class WebSocketPeer : PacketPeer() {
    * WebSocket.bufferedAmount, while other platforms use an internal buffer.
    */
   public final fun getCurrentOutboundBufferedAmount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentOutboundBufferedAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -293,6 +300,7 @@ public open class WebSocketPeer : PacketPeer() {
    * Returns the ready state of the connection. See [State].
    */
   public final fun getReadyState(): State {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReadyStatePtr, LONG)
     return WebSocketPeer.State.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -302,6 +310,7 @@ public open class WebSocketPeer : PacketPeer() {
    * cleanly closed. Only call this method when [getReadyState] returns [STATE_CLOSED].
    */
   public final fun getCloseCode(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCloseCodePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -311,11 +320,13 @@ public open class WebSocketPeer : PacketPeer() {
    * [getReadyState] returns [STATE_CLOSED].
    */
   public final fun getCloseReason(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCloseReasonPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getSupportedProtocols(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedProtocolsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -326,6 +337,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public final fun getHandshakeHeaders(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -336,6 +348,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public final fun getInboundBufferSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInboundBufferSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -346,6 +359,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public final fun getOutboundBufferSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutboundBufferSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -361,6 +375,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public final fun getMaxQueuedPackets(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -371,6 +386,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public final fun getHeartbeatInterval(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeartbeatIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }

@@ -65,6 +65,7 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   public final fun getCustomSolverBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -164,6 +165,7 @@ public open class Shape2D internal constructor() : Resource() {
    * Returns a [Rect2] representing the shapes boundary.
    */
   public final fun getRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }

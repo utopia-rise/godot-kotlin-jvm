@@ -152,6 +152,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getLayerViewport(): SubViewport? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayerViewportPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SubViewport?)
   }
@@ -162,6 +163,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getUseAndroidSurface(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseAndroidSurfacePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -172,6 +174,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getAndroidSurfaceSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAndroidSurfaceSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -182,6 +185,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getEnableHolePunch(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableHolePunchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -192,6 +196,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getSortOrder(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSortOrderPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -202,6 +207,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public final fun getAlphaBlend(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -214,6 +220,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * session fully starts.
    */
   public final fun getAndroidSurface(): JavaObject? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAndroidSurfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }
@@ -223,6 +230,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * **Note:** This will only return an accurate result after the OpenXR session has started.
    */
   public final fun isNativelySupported(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNativelySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -67,6 +67,7 @@ public open class XRFaceModifier3D : Node3D() {
   }
 
   public final fun getFaceTracker(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -77,6 +78,7 @@ public open class XRFaceModifier3D : Node3D() {
   }
 
   public final fun getTarget(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }

@@ -98,6 +98,7 @@ public open class SpringArm3D : Node3D() {
    * Returns the spring arm's current length.
    */
   public final fun getHitLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHitLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -108,6 +109,7 @@ public open class SpringArm3D : Node3D() {
   }
 
   public final fun getLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -118,6 +120,7 @@ public open class SpringArm3D : Node3D() {
   }
 
   public final fun getShape(): Shape3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
@@ -145,6 +148,7 @@ public open class SpringArm3D : Node3D() {
    * Clears the list of [PhysicsBody3D] objects excluded from the collision check.
    */
   public final fun clearExcludedObjects(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearExcludedObjectsPtr, NIL)
   }
 
@@ -154,6 +158,7 @@ public open class SpringArm3D : Node3D() {
   }
 
   public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -164,6 +169,7 @@ public open class SpringArm3D : Node3D() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -76,6 +76,7 @@ public open class OpenXRInteractionProfile : Resource() {
   }
 
   public final fun getInteractionProfilePath(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInteractionProfilePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -84,6 +85,7 @@ public open class OpenXRInteractionProfile : Resource() {
    * Get the number of bindings in this interaction profile.
    */
   public final fun getBindingCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -103,6 +105,7 @@ public open class OpenXRInteractionProfile : Resource() {
   }
 
   public final fun getBindings(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -111,6 +114,7 @@ public open class OpenXRInteractionProfile : Resource() {
    * Get the number of binding modifiers in this interaction profile.
    */
   public final fun getBindingModifierCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingModifierCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -130,6 +134,7 @@ public open class OpenXRInteractionProfile : Resource() {
   }
 
   public final fun getBindingModifiers(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingModifiersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

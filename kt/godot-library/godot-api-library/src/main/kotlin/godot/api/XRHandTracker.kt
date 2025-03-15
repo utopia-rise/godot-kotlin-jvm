@@ -74,6 +74,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   public final fun getHasTrackingData(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -84,6 +85,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   public final fun getHandTrackingSource(): HandTrackingSource {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandTrackingSourcePtr, LONG)
     return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
   }

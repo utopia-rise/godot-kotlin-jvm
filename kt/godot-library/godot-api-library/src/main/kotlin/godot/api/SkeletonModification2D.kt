@@ -92,6 +92,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public final fun getEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -101,6 +102,7 @@ public open class SkeletonModification2D : Resource() {
    * modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
@@ -119,6 +121,7 @@ public open class SkeletonModification2D : Resource() {
    * Returns whether this modification has been successfully setup or not.
    */
   public final fun getIsSetup(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -129,6 +132,7 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public final fun getExecutionMode(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExecutionModePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -162,6 +166,7 @@ public open class SkeletonModification2D : Resource() {
    * modification-specific gizmos.
    */
   public final fun getEditorDrawGizmo(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

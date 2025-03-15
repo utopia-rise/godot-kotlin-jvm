@@ -83,6 +83,7 @@ public open class GLTFMesh : Resource() {
   }
 
   public final fun getOriginalName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -93,6 +94,7 @@ public open class GLTFMesh : Resource() {
   }
 
   public final fun getMesh(): ImporterMesh? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
@@ -103,6 +105,7 @@ public open class GLTFMesh : Resource() {
   }
 
   public final fun getBlendWeights(): PackedFloat32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -113,6 +116,7 @@ public open class GLTFMesh : Resource() {
   }
 
   public final fun getInstanceMaterials(): VariantArray<Material> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }

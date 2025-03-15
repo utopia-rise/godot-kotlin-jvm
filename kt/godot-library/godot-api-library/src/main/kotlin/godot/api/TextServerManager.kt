@@ -64,6 +64,7 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getInterfaceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -93,6 +94,7 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -121,6 +123,7 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getPrimaryInterface(): TextServer? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextServer?)
   }

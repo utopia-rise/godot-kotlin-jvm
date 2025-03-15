@@ -36,6 +36,7 @@ public open class Skin : Resource() {
   }
 
   public final fun getBindCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -84,6 +85,7 @@ public open class Skin : Resource() {
   }
 
   public final fun clearBinds(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBindsPtr, NIL)
   }
 

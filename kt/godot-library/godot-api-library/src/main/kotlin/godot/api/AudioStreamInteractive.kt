@@ -74,6 +74,7 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   public final fun getClipCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -84,6 +85,7 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   public final fun getInitialClip(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInitialClipPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -210,6 +212,7 @@ public open class AudioStreamInteractive : AudioStream() {
    * Return the list of transitions (from, to interleaved).
    */
   public final fun getTransitionList(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransitionListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }

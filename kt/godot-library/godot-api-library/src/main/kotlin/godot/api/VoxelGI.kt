@@ -142,6 +142,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public final fun getProbeData(): VoxelGIData? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProbeDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VoxelGIData?)
   }
@@ -152,6 +153,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public final fun getSubdiv(): Subdiv {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubdivPtr, LONG)
     return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -162,6 +164,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -172,6 +175,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
@@ -199,6 +203,7 @@ public open class VoxelGI : VisualInstance3D() {
    * Calls [bake] with `create_visual_debug` enabled.
    */
   public final fun debugBake(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.debugBakePtr, NIL)
   }
 

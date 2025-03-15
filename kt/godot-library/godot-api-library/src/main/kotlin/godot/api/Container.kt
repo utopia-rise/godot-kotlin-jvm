@@ -69,6 +69,7 @@ public open class Container : Control() {
    * upon request.
    */
   public final fun queueSort(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.queueSortPtr, NIL)
   }
 

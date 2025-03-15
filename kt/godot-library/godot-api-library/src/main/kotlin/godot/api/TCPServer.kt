@@ -58,6 +58,7 @@ public open class TCPServer : RefCounted() {
    * Returns `true` if a connection is available for taking.
    */
   public final fun isConnectionAvailable(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isConnectionAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -66,6 +67,7 @@ public open class TCPServer : RefCounted() {
    * Returns `true` if the server is currently listening for connections.
    */
   public final fun isListening(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isListeningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -74,6 +76,7 @@ public open class TCPServer : RefCounted() {
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -82,6 +85,7 @@ public open class TCPServer : RefCounted() {
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
   public final fun takeConnection(): StreamPeerTCP? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
@@ -90,6 +94,7 @@ public open class TCPServer : RefCounted() {
    * Stops listening.
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 

@@ -78,6 +78,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   public final fun getBone2dNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -88,6 +89,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   public final fun getBoneIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -98,6 +100,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
   }
 
   public final fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -116,6 +119,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * executes.
    */
   public final fun getAdditionalRotation(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdditionalRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -133,6 +137,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * Returns `true` if the LookAt modification is using constraints.
    */
   public final fun getEnableConstraint(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableConstraintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -149,6 +154,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * Returns the constraint's minimum allowed angle.
    */
   public final fun getConstraintAngleMin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstraintAngleMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -165,6 +171,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * Returns the constraint's maximum allowed angle.
    */
   public final fun getConstraintAngleMax(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstraintAngleMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -184,6 +191,7 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * Returns whether the constraints to this modification are inverted or not.
    */
   public final fun getConstraintAngleInvert(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstraintAngleInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

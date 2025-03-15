@@ -178,6 +178,7 @@ public object XRServer : Object() {
 
   @JvmStatic
   public final fun getWorldScale(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWorldScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -190,6 +191,7 @@ public object XRServer : Object() {
 
   @JvmStatic
   public final fun getWorldOrigin(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWorldOriginPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -206,6 +208,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun getReferenceFrame(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReferenceFramePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -215,6 +218,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun clearReferenceFrame(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearReferenceFramePtr, NIL)
   }
 
@@ -246,6 +250,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun getHmdTransform(): Transform3D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHmdTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -258,6 +263,7 @@ public object XRServer : Object() {
 
   @JvmStatic
   public final fun isCameraLockedToOrigin(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCameraLockedToOriginPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -279,6 +285,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun getInterfaceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -307,6 +314,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -362,6 +370,7 @@ public object XRServer : Object() {
 
   @JvmStatic
   public final fun getPrimaryInterface(): XRInterface? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as XRInterface?)
   }

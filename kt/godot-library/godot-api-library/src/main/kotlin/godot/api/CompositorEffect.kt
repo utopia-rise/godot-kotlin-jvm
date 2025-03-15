@@ -166,6 +166,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -176,6 +177,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getEffectCallbackType(): EffectCallbackType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEffectCallbackTypePtr, LONG)
     return CompositorEffect.EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -186,6 +188,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getAccessResolvedColor(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessResolvedColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -196,6 +199,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getAccessResolvedDepth(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,6 +210,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsMotionVectors(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -216,6 +221,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsNormalRoughness(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -226,6 +232,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun getNeedsSeparateSpecular(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

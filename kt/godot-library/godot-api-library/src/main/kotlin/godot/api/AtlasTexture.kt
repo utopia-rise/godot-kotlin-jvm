@@ -145,6 +145,7 @@ public open class AtlasTexture : Texture2D() {
   }
 
   public final fun getAtlas(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAtlasPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -155,6 +156,7 @@ public open class AtlasTexture : Texture2D() {
   }
 
   public final fun getRegion(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -165,6 +167,7 @@ public open class AtlasTexture : Texture2D() {
   }
 
   public final fun getMargin(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -175,6 +178,7 @@ public open class AtlasTexture : Texture2D() {
   }
 
   public final fun hasFilterClip(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasFilterClipPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

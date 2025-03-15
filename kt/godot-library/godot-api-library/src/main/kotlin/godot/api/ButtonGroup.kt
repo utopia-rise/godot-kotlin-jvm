@@ -54,6 +54,7 @@ public open class ButtonGroup : Resource() {
    * Returns the current pressed button.
    */
   public final fun getPressedButton(): BaseButton? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPressedButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as BaseButton?)
   }
@@ -63,6 +64,7 @@ public open class ButtonGroup : Resource() {
    * [BaseButton.buttonGroup]).
    */
   public final fun getButtons(): VariantArray<BaseButton> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
@@ -73,6 +75,7 @@ public open class ButtonGroup : Resource() {
   }
 
   public final fun isAllowUnpress(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowUnpressPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

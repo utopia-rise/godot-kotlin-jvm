@@ -93,16 +93,19 @@ public open class World3D : Resource() {
   }
 
   public final fun getSpace(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getScenario(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScenarioPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -113,6 +116,7 @@ public open class World3D : Resource() {
   }
 
   public final fun getEnvironment(): Environment? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
@@ -123,6 +127,7 @@ public open class World3D : Resource() {
   }
 
   public final fun getFallbackEnvironment(): Environment? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
@@ -133,11 +138,13 @@ public open class World3D : Resource() {
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun getDirectSpaceState(): PhysicsDirectSpaceState3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
   }

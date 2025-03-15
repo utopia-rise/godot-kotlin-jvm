@@ -45,6 +45,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * `id,type,name;` (see [addInputPort]).
    */
   public final fun getInputs(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputsPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -63,6 +64,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * `id,type,name;` (see [addOutputPort]).
    */
   public final fun getOutputs(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputsPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -101,6 +103,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns the number of input ports in use. Alternative for [getFreeInputPortId].
    */
   public final fun getInputPortCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -118,6 +121,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Removes all previously specified input ports.
    */
   public final fun clearInputPorts(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearInputPortsPtr, NIL)
   }
 
@@ -145,6 +149,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns the number of output ports in use. Alternative for [getFreeOutputPortId].
    */
   public final fun getOutputPortCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutputPortCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -162,6 +167,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Removes all previously specified output ports.
    */
   public final fun clearOutputPorts(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearOutputPortsPtr, NIL)
   }
 
@@ -201,6 +207,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns a free input port ID which can be used in [addInputPort].
    */
   public final fun getFreeInputPortId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreeInputPortIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -209,6 +216,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns a free output port ID which can be used in [addOutputPort].
    */
   public final fun getFreeOutputPortId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreeOutputPortIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

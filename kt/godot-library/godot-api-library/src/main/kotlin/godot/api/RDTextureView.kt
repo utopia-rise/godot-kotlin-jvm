@@ -90,6 +90,7 @@ public open class RDTextureView : RefCounted() {
   }
 
   public final fun getFormatOverride(): RenderingDevice.DataFormat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatOverridePtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -100,6 +101,7 @@ public open class RDTextureView : RefCounted() {
   }
 
   public final fun getSwizzleR(): RenderingDevice.TextureSwizzle {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwizzleRPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -110,6 +112,7 @@ public open class RDTextureView : RefCounted() {
   }
 
   public final fun getSwizzleG(): RenderingDevice.TextureSwizzle {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwizzleGPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -120,6 +123,7 @@ public open class RDTextureView : RefCounted() {
   }
 
   public final fun getSwizzleB(): RenderingDevice.TextureSwizzle {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwizzleBPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -130,6 +134,7 @@ public open class RDTextureView : RefCounted() {
   }
 
   public final fun getSwizzleA(): RenderingDevice.TextureSwizzle {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSwizzleAPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }

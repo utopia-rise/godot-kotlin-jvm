@@ -91,6 +91,7 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public final fun getNodeA(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeAPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -101,6 +102,7 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public final fun getNodeB(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeBPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -111,6 +113,7 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public final fun getBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -121,6 +124,7 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -129,6 +133,7 @@ public open class Joint2D internal constructor() : Node2D() {
    * Returns the joint's internal [RID] from the [PhysicsServer2D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

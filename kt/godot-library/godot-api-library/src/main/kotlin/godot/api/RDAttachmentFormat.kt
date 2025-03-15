@@ -66,6 +66,7 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -76,6 +77,7 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -86,6 +88,7 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public final fun getUsageFlags(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsageFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

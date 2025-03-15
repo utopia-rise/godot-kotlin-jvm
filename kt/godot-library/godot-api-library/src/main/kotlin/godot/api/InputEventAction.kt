@@ -96,6 +96,7 @@ public open class InputEventAction : InputEvent() {
   }
 
   public final fun getAction(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -111,6 +112,7 @@ public open class InputEventAction : InputEvent() {
   }
 
   public final fun getStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -121,6 +123,7 @@ public open class InputEventAction : InputEvent() {
   }
 
   public final fun getEventIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEventIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

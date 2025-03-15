@@ -94,6 +94,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -104,6 +105,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public final fun getCentralHorizontalAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -114,6 +116,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public final fun getUpperVerticalAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -124,6 +127,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public final fun getLowerVerticalAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -134,6 +138,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public final fun getFallbackSegments(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

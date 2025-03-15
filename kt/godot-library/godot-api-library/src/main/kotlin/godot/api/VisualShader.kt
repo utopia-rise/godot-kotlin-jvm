@@ -263,6 +263,7 @@ public open class VisualShader : Shader() {
   }
 
   public final fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

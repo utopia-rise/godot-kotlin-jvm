@@ -111,6 +111,7 @@ public open class VisualInstance3D : Node3D() {
    * Node is a [MeshInstance3D], this will return the RID of the associated [Mesh].
    */
   public final fun getBase(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBasePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -121,6 +122,7 @@ public open class VisualInstance3D : Node3D() {
    * functions directly on this [VisualInstance3D].
    */
   public final fun getInstance(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -131,6 +133,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   public final fun getLayerMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayerMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -160,6 +163,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   public final fun getSortingOffset(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSortingOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -170,6 +174,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   public final fun isSortingUseAabbCenter(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -178,6 +183,7 @@ public open class VisualInstance3D : Node3D() {
    * Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D].
    */
   public final fun getAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }

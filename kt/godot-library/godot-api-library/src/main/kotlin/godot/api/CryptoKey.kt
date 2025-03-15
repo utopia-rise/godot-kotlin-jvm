@@ -61,6 +61,7 @@ public open class CryptoKey : Resource() {
    * Returns `true` if this CryptoKey only has the public part, and not the private one.
    */
   public final fun isPublicOnly(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPublicOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

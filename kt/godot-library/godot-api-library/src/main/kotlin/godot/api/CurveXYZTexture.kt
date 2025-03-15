@@ -88,6 +88,7 @@ public open class CurveXYZTexture : Texture2D() {
   }
 
   public final fun getCurveX(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurveXPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -98,6 +99,7 @@ public open class CurveXYZTexture : Texture2D() {
   }
 
   public final fun getCurveY(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurveYPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -108,6 +110,7 @@ public open class CurveXYZTexture : Texture2D() {
   }
 
   public final fun getCurveZ(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurveZPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }

@@ -1433,6 +1433,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getBackground(): BGMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackgroundPtr, LONG)
     return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1443,6 +1444,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSky(): Sky? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Sky?)
   }
@@ -1453,6 +1455,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSkyCustomFov(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyCustomFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1463,6 +1466,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSkyRotation(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyRotationPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -1473,6 +1477,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getBgColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1483,6 +1488,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getBgEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBgEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1493,6 +1499,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getBgIntensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBgIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1503,6 +1510,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getCanvasMaxLayer(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCanvasMaxLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1513,6 +1521,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getCameraFeedId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraFeedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1523,6 +1532,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAmbientLightColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientLightColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1533,6 +1543,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAmbientSource(): AmbientSource {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientSourcePtr, LONG)
     return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1543,6 +1554,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAmbientLightEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientLightEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1553,6 +1565,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAmbientLightSkyContribution(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmbientLightSkyContributionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1563,6 +1576,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getReflectionSource(): ReflectionSource {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReflectionSourcePtr, LONG)
     return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1573,6 +1587,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getTonemapper(): ToneMapper {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapperPtr, LONG)
     return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1583,6 +1598,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getTonemapExposure(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapExposurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1593,6 +1609,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getTonemapWhite(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapWhitePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1603,6 +1620,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSsrEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSsrEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1613,6 +1631,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsrMaxSteps(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsrMaxStepsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1623,6 +1642,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsrFadeIn(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsrFadeInPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1633,6 +1653,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsrFadeOut(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsrFadeOutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1643,6 +1664,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsrDepthTolerance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsrDepthTolerancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1653,6 +1675,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSsaoEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSsaoEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1663,6 +1686,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1673,6 +1697,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoIntensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1683,6 +1708,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoPower(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoPowerPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1693,6 +1719,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoDetail(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoDetailPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1703,6 +1730,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoHorizon(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoHorizonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1713,6 +1741,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoSharpness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1723,6 +1752,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoDirectLightAffect(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoDirectLightAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1733,6 +1763,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsaoAoChannelAffect(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsaoAoChannelAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1743,6 +1774,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSsilEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSsilEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1753,6 +1785,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsilRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsilRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1763,6 +1796,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsilIntensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsilIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1773,6 +1807,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsilSharpness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsilSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1783,6 +1818,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSsilNormalRejection(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSsilNormalRejectionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1793,6 +1829,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSdfgiEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSdfgiEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1803,6 +1840,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiCascades(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiCascadesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1813,6 +1851,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiMinCellSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiMinCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1823,6 +1862,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiMaxDistance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1833,6 +1873,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiCascade0Distance(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiCascade0DistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1843,6 +1884,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiYScale(): SDFGIYScale {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiYScalePtr, LONG)
     return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1853,6 +1895,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSdfgiUsingOcclusion(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSdfgiUsingOcclusionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1863,6 +1906,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiBounceFeedback(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiBounceFeedbackPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1873,6 +1917,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isSdfgiReadingSkyLight(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSdfgiReadingSkyLightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1883,6 +1928,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1893,6 +1939,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiNormalBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiNormalBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1903,6 +1950,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getSdfgiProbeBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSdfgiProbeBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1913,6 +1961,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isGlowEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isGlowEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1942,6 +1991,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isGlowNormalized(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isGlowNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1952,6 +2002,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowIntensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1962,6 +2013,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1972,6 +2024,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowMix(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1982,6 +2035,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowBloom(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowBloomPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1992,6 +2046,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowBlendMode(): GlowBlendMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowBlendModePtr, LONG)
     return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2002,6 +2057,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowHdrBleedThreshold(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowHdrBleedThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2012,6 +2068,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowHdrBleedScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowHdrBleedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2022,6 +2079,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowHdrLuminanceCap(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowHdrLuminanceCapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2032,6 +2090,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowMapStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowMapStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2042,6 +2101,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getGlowMap(): Texture? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlowMapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture?)
   }
@@ -2052,6 +2112,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isFogEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFogEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2062,6 +2123,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogMode(): FogMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogModePtr, LONG)
     return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2072,6 +2134,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogLightColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogLightColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -2082,6 +2145,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogLightEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogLightEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2092,6 +2156,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogSunScatter(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogSunScatterPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2102,6 +2167,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogDensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2112,6 +2178,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2122,6 +2189,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogHeightDensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogHeightDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2132,6 +2200,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogAerialPerspective(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogAerialPerspectivePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2142,6 +2211,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogSkyAffect(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogSkyAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2152,6 +2222,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogDepthCurve(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogDepthCurvePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2162,6 +2233,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogDepthBegin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogDepthBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2172,6 +2244,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getFogDepthEnd(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFogDepthEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2182,6 +2255,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isVolumetricFogEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2192,6 +2266,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogEmission(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogEmissionPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -2202,6 +2277,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogAlbedo(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogAlbedoPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -2212,6 +2288,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogDensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2222,6 +2299,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogEmissionEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogEmissionEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2232,6 +2310,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogAnisotropy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogAnisotropyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2242,6 +2321,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2252,6 +2332,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogDetailSpread(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogDetailSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2262,6 +2343,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogGiInject(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogGiInjectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2272,6 +2354,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogAmbientInject(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogAmbientInjectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2282,6 +2365,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogSkyAffect(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogSkyAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2293,6 +2377,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr,
         BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -2306,6 +2391,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getVolumetricFogTemporalReprojectionAmount(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
         DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
@@ -2317,6 +2403,7 @@ public open class Environment : Resource() {
   }
 
   public final fun isAdjustmentEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAdjustmentEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2327,6 +2414,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAdjustmentBrightness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdjustmentBrightnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2337,6 +2425,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAdjustmentContrast(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdjustmentContrastPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2347,6 +2436,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAdjustmentSaturation(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdjustmentSaturationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2357,6 +2447,7 @@ public open class Environment : Resource() {
   }
 
   public final fun getAdjustmentColorCorrection(): Texture? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture?)
   }

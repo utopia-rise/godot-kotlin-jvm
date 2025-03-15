@@ -151,6 +151,7 @@ public open class GLTFLight : Resource() {
    * Converts this GLTFLight instance into a Godot [Light3D] node.
    */
   public final fun toNode(): Light3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Light3D?)
   }
@@ -159,11 +160,13 @@ public open class GLTFLight : Resource() {
    * Serializes this GLTFLight instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -174,6 +177,7 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getIntensity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -184,6 +188,7 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getLightType(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -194,6 +199,7 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getRange(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -204,6 +210,7 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getInnerConeAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -214,6 +221,7 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getOuterConeAngle(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

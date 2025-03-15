@@ -180,6 +180,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   public final fun getXfadeTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXfadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -190,6 +191,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   public final fun getXfadeCurve(): Curve? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXfadeCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -200,6 +202,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   public final fun isAllowTransitionToSelf(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

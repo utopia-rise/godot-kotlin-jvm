@@ -48,6 +48,7 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun getClassList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

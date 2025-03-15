@@ -309,6 +309,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getMaterialOverride(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -319,6 +320,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getMaterialOverlay(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialOverlayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -329,6 +331,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getCastShadowsSetting(): ShadowCastingSetting {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCastShadowsSettingPtr, LONG)
     return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -339,6 +342,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getLodBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLodBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -349,6 +353,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getTransparency(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransparencyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -359,6 +364,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getVisibilityRangeEndMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -369,6 +375,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getVisibilityRangeEnd(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -379,6 +386,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getVisibilityRangeBeginMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -389,6 +397,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getVisibilityRangeBegin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -399,6 +408,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -435,6 +445,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getExtraCullMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -445,6 +456,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getLightmapTexelScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapTexelScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -455,6 +467,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getLightmapScale(): LightmapScale {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapScalePtr, LONG)
     return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -465,6 +478,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getGiMode(): GIMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGiModePtr, LONG)
     return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -475,6 +489,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun isIgnoringOcclusionCulling(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -485,6 +500,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun getCustomAabb(): AABB {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }

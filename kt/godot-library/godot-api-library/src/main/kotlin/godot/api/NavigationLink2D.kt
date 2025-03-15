@@ -189,6 +189,7 @@ public open class NavigationLink2D : Node2D() {
    * Returns the [RID] of this link on the [NavigationServer2D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -199,6 +200,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -217,6 +219,7 @@ public open class NavigationLink2D : Node2D() {
    * Returns the current navigation map [RID] used by this link.
    */
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -227,6 +230,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun isBidirectional(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBidirectionalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -237,6 +241,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -266,6 +271,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun getStartPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStartPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -276,6 +282,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun getEndPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEndPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -292,6 +299,7 @@ public open class NavigationLink2D : Node2D() {
    * Returns the [startPosition] that is relative to the link as a global position.
    */
   public final fun getGlobalStartPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalStartPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -308,6 +316,7 @@ public open class NavigationLink2D : Node2D() {
    * Returns the [endPosition] that is relative to the link as a global position.
    */
   public final fun getGlobalEndPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalEndPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -318,6 +327,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun getEnterCost(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnterCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -328,6 +338,7 @@ public open class NavigationLink2D : Node2D() {
   }
 
   public final fun getTravelCost(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTravelCostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -73,6 +73,7 @@ public open class Translation : Resource() {
   }
 
   public final fun getLocale(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -144,6 +145,7 @@ public open class Translation : Resource() {
    * Returns all the messages (keys).
    */
   public final fun getMessageList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -152,6 +154,7 @@ public open class Translation : Resource() {
    * Returns all the messages (translated text).
    */
   public final fun getTranslatedMessageList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTranslatedMessageListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -160,6 +163,7 @@ public open class Translation : Resource() {
    * Returns the number of existing messages.
    */
   public final fun getMessageCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMessageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

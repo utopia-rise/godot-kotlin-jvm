@@ -114,6 +114,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getSkinRoot(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinRootPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -124,6 +125,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getJointsOriginal(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointsOriginalPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -134,6 +136,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getInverseBinds(): VariantArray<Transform3D> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInverseBindsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Transform3D>)
   }
@@ -144,6 +147,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getJoints(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -154,6 +158,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getNonJoints(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNonJointsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -164,6 +169,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getRoots(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -174,6 +180,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getSkeleton(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -184,6 +191,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getJointIToBoneI(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointIToBoneIPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -194,6 +202,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getJointIToName(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointIToNamePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -204,6 +213,7 @@ public open class GLTFSkin : Resource() {
   }
 
   public final fun getGodotSkin(): Skin? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGodotSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }

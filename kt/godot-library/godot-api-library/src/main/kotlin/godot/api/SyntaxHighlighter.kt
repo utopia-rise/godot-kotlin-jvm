@@ -86,6 +86,7 @@ public open class SyntaxHighlighter : Resource() {
    * cache.
    */
   public final fun updateCache(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateCachePtr, NIL)
   }
 
@@ -94,6 +95,7 @@ public open class SyntaxHighlighter : Resource() {
    * Then calls overridable method [_clearHighlightingCache].
    */
   public final fun clearHighlightingCache(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
 
@@ -101,6 +103,7 @@ public open class SyntaxHighlighter : Resource() {
    * Returns the associated [TextEdit] node.
    */
   public final fun getTextEdit(): TextEdit? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }

@@ -133,11 +133,13 @@ public open class CameraFeed : RefCounted() {
    * Returns the unique ID for this feed.
    */
   public final fun getId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -151,6 +153,7 @@ public open class CameraFeed : RefCounted() {
    * Returns the camera's name.
    */
   public final fun getName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -167,6 +170,7 @@ public open class CameraFeed : RefCounted() {
    * Returns the position of camera on the device.
    */
   public final fun getPosition(): FeedPosition {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, LONG)
     return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -180,6 +184,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   public final fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -227,11 +232,13 @@ public open class CameraFeed : RefCounted() {
    * Returns feed image data type.
    */
   public final fun getDatatype(): FeedDataType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDatatypePtr, LONG)
     return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getFormats(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

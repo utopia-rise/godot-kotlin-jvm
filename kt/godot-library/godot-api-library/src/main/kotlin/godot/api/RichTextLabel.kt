@@ -461,6 +461,7 @@ public open class RichTextLabel : Control() {
    * Returns the text without BBCode mark-up.
    */
   public final fun getParsedText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParsedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -534,6 +535,7 @@ public open class RichTextLabel : Control() {
    * Adds a newline tag to the tag stack.
    */
   public final fun newline(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.newlinePtr, NIL)
   }
 
@@ -586,6 +588,7 @@ public open class RichTextLabel : Control() {
    * Adds a [code skip-lint][font][/code] tag with a normal font to the tag stack.
    */
   public final fun pushNormal(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushNormalPtr, NIL)
   }
 
@@ -594,6 +597,7 @@ public open class RichTextLabel : Control() {
    * adding a [code skip-lint][b][/code] tag if not currently in a [code skip-lint][i][/code] tag.
    */
   public final fun pushBold(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushBoldPtr, NIL)
   }
 
@@ -601,6 +605,7 @@ public open class RichTextLabel : Control() {
    * Adds a [code skip-lint][font][/code] tag with a bold italics font to the tag stack.
    */
   public final fun pushBoldItalics(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushBoldItalicsPtr, NIL)
   }
 
@@ -610,6 +615,7 @@ public open class RichTextLabel : Control() {
    * tag.
    */
   public final fun pushItalics(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushItalicsPtr, NIL)
   }
 
@@ -617,6 +623,7 @@ public open class RichTextLabel : Control() {
    * Adds a [code skip-lint][font][/code] tag with a monospace font to the tag stack.
    */
   public final fun pushMono(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushMonoPtr, NIL)
   }
 
@@ -726,6 +733,7 @@ public open class RichTextLabel : Control() {
    * Adds a [code skip-lint][u][/code] tag to the tag stack.
    */
   public final fun pushUnderline(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushUnderlinePtr, NIL)
   }
 
@@ -733,6 +741,7 @@ public open class RichTextLabel : Control() {
    * Adds a [code skip-lint][s][/code] tag to the tag stack.
    */
   public final fun pushStrikethrough(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushStrikethroughPtr, NIL)
   }
 
@@ -826,6 +835,7 @@ public open class RichTextLabel : Control() {
    * padding.
    */
   public final fun pushCell(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushCellPtr, NIL)
   }
 
@@ -858,6 +868,7 @@ public open class RichTextLabel : Control() {
    * Adds a context marker to the tag stack. See [popContext].
    */
   public final fun pushContext(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pushContextPtr, NIL)
   }
 
@@ -866,6 +877,7 @@ public open class RichTextLabel : Control() {
    * tags if there's no context marker on the stack.
    */
   public final fun popContext(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.popContextPtr, NIL)
   }
 
@@ -874,6 +886,7 @@ public open class RichTextLabel : Control() {
    * to follow `add_*` methods.
    */
   public final fun pop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.popPtr, NIL)
   }
 
@@ -881,6 +894,7 @@ public open class RichTextLabel : Control() {
    * Terminates all tags opened by `push_*` methods.
    */
   public final fun popAll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.popAllPtr, NIL)
   }
 
@@ -890,6 +904,7 @@ public open class RichTextLabel : Control() {
    * redrawn. However, setting [text] to an empty [String] also clears the stack.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -899,6 +914,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -909,6 +925,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -919,6 +936,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -929,6 +947,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getLanguage(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -939,6 +958,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -949,6 +969,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getVerticalAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -959,6 +980,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getJustificationFlags(): JustificationFlag {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -969,6 +991,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getTabStops(): PackedFloat32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -979,6 +1002,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -989,6 +1013,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isMetaUnderlined(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMetaUnderlinedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -999,6 +1024,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isHintUnderlined(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHintUnderlinedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1009,6 +1035,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isScrollActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isScrollActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1019,6 +1046,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isScrollFollowing(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isScrollFollowingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1029,6 +1057,7 @@ public open class RichTextLabel : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getVScrollBar(): VScrollBar? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VScrollBar?)
   }
@@ -1053,6 +1082,7 @@ public open class RichTextLabel : Control() {
    * Scrolls to the beginning of the current selection.
    */
   public final fun scrollToSelection(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.scrollToSelectionPtr, NIL)
   }
 
@@ -1062,6 +1092,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getTabSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1072,6 +1103,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isFitContentEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFitContentEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1082,6 +1114,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isSelectionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSelectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1092,6 +1125,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isContextMenuEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isContextMenuEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1102,6 +1136,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isShortcutKeysEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1112,6 +1147,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isDeselectOnFocusLossEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1122,6 +1158,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isDragAndDropSelectionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1131,6 +1168,7 @@ public open class RichTextLabel : Control() {
    * Does not include BBCodes.
    */
   public final fun getSelectionFrom(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectionFromPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1140,6 +1178,7 @@ public open class RichTextLabel : Control() {
    * Does not include BBCodes.
    */
   public final fun getSelectionTo(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectionToPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1148,6 +1187,7 @@ public open class RichTextLabel : Control() {
    * Returns the current selection vertical line offset if a selection is active, `-1.0` otherwise.
    */
   public final fun getSelectionLineOffset(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectionLineOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1157,6 +1197,7 @@ public open class RichTextLabel : Control() {
    * If [selectionEnabled] is `false`, no selection will occur.
    */
   public final fun selectAll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectAllPtr, NIL)
   }
 
@@ -1164,6 +1205,7 @@ public open class RichTextLabel : Control() {
    * Returns the current selection text. Does not include BBCodes.
    */
   public final fun getSelectedText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1172,6 +1214,7 @@ public open class RichTextLabel : Control() {
    * Clears the current selection.
    */
   public final fun deselect(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
   }
 
@@ -1196,6 +1239,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1205,6 +1249,7 @@ public open class RichTextLabel : Control() {
    * otherwise always return `true`.
    */
   public final fun isReady(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isReadyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1214,6 +1259,7 @@ public open class RichTextLabel : Control() {
    * otherwise always return `true`.
    */
   public final fun isFinished(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1224,6 +1270,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isThreaded(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isThreadedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1234,6 +1281,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getProgressBarDelay(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProgressBarDelayPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1244,11 +1292,13 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getVisibleCharacters(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleCharactersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
     return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1265,6 +1315,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getVisibleRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1297,6 +1348,7 @@ public open class RichTextLabel : Control() {
    * Returns the total number of characters from text tags. Does not include BBCodes.
    */
   public final fun getTotalCharacterCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTotalCharacterCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1307,6 +1359,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun isUsingBbcode(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingBbcodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1319,6 +1372,7 @@ public open class RichTextLabel : Control() {
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getLineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1343,6 +1397,7 @@ public open class RichTextLabel : Control() {
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleLineCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1352,6 +1407,7 @@ public open class RichTextLabel : Control() {
    * Considers wrapped text as one paragraph.
    */
   public final fun getParagraphCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParagraphCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1363,6 +1419,7 @@ public open class RichTextLabel : Control() {
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleParagraphCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibleParagraphCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1373,6 +1430,7 @@ public open class RichTextLabel : Control() {
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentHeight(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1383,6 +1441,7 @@ public open class RichTextLabel : Control() {
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentWidth(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1425,6 +1484,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun getEffects(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEffectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -1508,6 +1568,7 @@ public open class RichTextLabel : Control() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getMenu(): PopupMenu? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMenuPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
@@ -1517,6 +1578,7 @@ public open class RichTextLabel : Control() {
    * performance (so the creation of the menu is avoided).
    */
   public final fun isMenuVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMenuVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

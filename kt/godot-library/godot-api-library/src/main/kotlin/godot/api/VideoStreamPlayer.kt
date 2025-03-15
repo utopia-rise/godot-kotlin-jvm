@@ -178,6 +178,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getStream(): VideoStream? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VideoStream?)
   }
@@ -187,6 +188,7 @@ public open class VideoStreamPlayer : Control() {
    * video.
    */
   public final fun play(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
 
@@ -196,6 +198,7 @@ public open class VideoStreamPlayer : Control() {
    * won't become the current frame.
    */
   public final fun stop(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -204,6 +207,7 @@ public open class VideoStreamPlayer : Control() {
    * **Note:** The video is still considered playing if paused during playback.
    */
   public final fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -214,6 +218,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun isPaused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -224,6 +229,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -234,6 +240,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getVolume(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -244,6 +251,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getVolumeDb(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -254,6 +262,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getAudioTrack(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAudioTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -262,6 +271,7 @@ public open class VideoStreamPlayer : Control() {
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
   public final fun getStreamName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -273,6 +283,7 @@ public open class VideoStreamPlayer : Control() {
    * supported by video formats implemented by a GDExtension add-on.
    */
   public final fun getStreamLength(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -283,6 +294,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getStreamPosition(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -293,6 +305,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun hasAutoplay(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAutoplayPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -303,6 +316,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun hasExpand(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasExpandPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -313,6 +327,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getBufferingMsec(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferingMsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -323,6 +338,7 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun getBus(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBusPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -331,6 +347,7 @@ public open class VideoStreamPlayer : Control() {
    * Returns the current frame as a [Texture2D].
    */
   public final fun getVideoTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

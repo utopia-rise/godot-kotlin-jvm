@@ -117,7 +117,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     fromOffset: Float = 0.0f,
     volumeDb: Float = 0.0f,
     pitchScale: Float = 1.0f,
-    playbackType: AudioServer.PlaybackType = AudioServer.PlaybackType.DEFAULT,
+    playbackType: AudioServer.PlaybackType = AudioServer.PlaybackType.PLAYBACK_TYPE_DEFAULT,
     bus: String,
   ): Long =
       playStream(stream, fromOffset, volumeDb, pitchScale, playbackType, bus.asCachedStringName())

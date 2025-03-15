@@ -47,6 +47,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -153,6 +154,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun linePoll(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.linePollPtr, NIL)
   }
 
@@ -205,6 +207,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun getLinesLeft(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinesLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -223,6 +226,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun getDepth(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -242,6 +246,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isSkippingBreakpoints(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSkippingBreakpointsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -269,6 +274,7 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun clearBreakpoints(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBreakpointsPtr, NIL)
   }
 

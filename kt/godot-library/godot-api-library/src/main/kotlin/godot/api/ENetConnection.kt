@@ -87,6 +87,7 @@ public open class ENetConnection : RefCounted() {
    * Destroys the host and all resources associated with it.
    */
   public final fun destroy(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.destroyPtr, NIL)
   }
 
@@ -130,6 +131,7 @@ public open class ENetConnection : RefCounted() {
    * Sends any queued packets on the host specified to its designated peers.
    */
   public final fun flush(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.flushPtr, NIL)
   }
 
@@ -226,6 +228,7 @@ public open class ENetConnection : RefCounted() {
    * Returns the maximum number of channels allowed for connected peers.
    */
   public final fun getMaxChannels(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxChannelsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -234,6 +237,7 @@ public open class ENetConnection : RefCounted() {
    * Returns the local port to which this peer is bound.
    */
   public final fun getLocalPort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -244,6 +248,7 @@ public open class ENetConnection : RefCounted() {
    * disconnected.
    */
   public final fun getPeers(): VariantArray<ENetPacketPeer> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPeersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<ENetPacketPeer>)
   }

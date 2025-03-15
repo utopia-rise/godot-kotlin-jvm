@@ -58,6 +58,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   }
 
   public final fun getVaryingName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVaryingNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -68,6 +69,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   }
 
   public final fun getVaryingType(): VisualShader.VaryingType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVaryingTypePtr, LONG)
     return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
   }

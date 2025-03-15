@@ -59,6 +59,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public final fun getParameterName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -69,6 +70,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public final fun getQualifier(): Qualifier {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getQualifierPtr, LONG)
     return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }

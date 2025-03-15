@@ -257,6 +257,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getLineSpacing(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -267,6 +268,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getParagraphSpacing(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParagraphSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -277,6 +279,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getFont(): Font? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -287,6 +290,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getFontSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -297,6 +301,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getFontColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -307,6 +312,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getOutlineSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutlineSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -317,6 +323,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getOutlineColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOutlineColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -327,6 +334,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getShadowSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -337,6 +345,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getShadowColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -347,6 +356,7 @@ public open class LabelSettings : Resource() {
   }
 
   public final fun getShadowOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

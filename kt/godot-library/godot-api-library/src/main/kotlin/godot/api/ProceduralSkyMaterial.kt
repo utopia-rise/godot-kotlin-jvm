@@ -342,6 +342,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyTopColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyTopColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -352,6 +353,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyHorizonColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyHorizonColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -362,6 +364,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyCurve(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyCurvePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -372,6 +375,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -382,6 +386,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyCover(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyCoverPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -392,6 +397,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSkyCoverModulate(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkyCoverModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -402,6 +408,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getGroundBottomColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroundBottomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -412,6 +419,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getGroundHorizonColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroundHorizonColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -422,6 +430,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getGroundCurve(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroundCurvePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -432,6 +441,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getGroundEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroundEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -442,6 +452,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSunAngleMax(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSunAngleMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -452,6 +463,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getSunCurve(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSunCurvePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -462,6 +474,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getUseDebanding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -472,6 +485,7 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun getEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

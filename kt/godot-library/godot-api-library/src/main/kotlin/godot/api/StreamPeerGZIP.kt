@@ -65,6 +65,7 @@ public open class StreamPeerGZIP : StreamPeer() {
    * Finalizes the stream, compressing or decompressing any buffered chunk left.
    */
   public final fun finish(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.finishPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -73,6 +74,7 @@ public open class StreamPeerGZIP : StreamPeer() {
    * Clears this stream, resetting the internal state.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

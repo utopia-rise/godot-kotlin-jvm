@@ -68,6 +68,7 @@ public open class MenuButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupMenu? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
@@ -77,6 +78,7 @@ public open class MenuButton : Button() {
    * over using `get_popup().popup()`.
    */
   public final fun showPopup(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPopupPtr, NIL)
   }
 
@@ -86,6 +88,7 @@ public open class MenuButton : Button() {
   }
 
   public final fun isSwitchOnHover(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSwitchOnHoverPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -104,6 +107,7 @@ public open class MenuButton : Button() {
   }
 
   public final fun getItemCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

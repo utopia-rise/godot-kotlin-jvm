@@ -1054,6 +1054,7 @@ public open class Control : CanvasItem() {
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun acceptEvent(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.acceptEventPtr, NIL)
   }
 
@@ -1061,6 +1062,7 @@ public open class Control : CanvasItem() {
    * Returns the minimum size for this control. See [customMinimumSize].
    */
   public final fun getMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1069,6 +1071,7 @@ public open class Control : CanvasItem() {
    * Returns combined minimum size from [customMinimumSize] and [getMinimumSize].
    */
   public final fun getCombinedMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCombinedMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1220,6 +1223,7 @@ public open class Control : CanvasItem() {
    * `set_size(Vector2())` (or any size below the minimum).
    */
   public final fun resetSize(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
   }
 
@@ -1262,6 +1266,7 @@ public open class Control : CanvasItem() {
    * Returns [offsetLeft] and [offsetTop]. See also [position].
    */
   public final fun getBegin(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBeginPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1270,41 +1275,49 @@ public open class Control : CanvasItem() {
    * Returns [offsetRight] and [offsetBottom].
    */
   public final fun getEnd(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEndPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getRotation(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRotationDegrees(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationDegreesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getScale(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPivotOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPivotOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getCustomMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1313,11 +1326,13 @@ public open class Control : CanvasItem() {
    * Returns the width/height occupied in the parent control.
    */
   public final fun getParentAreaSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentAreaSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getGlobalPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1334,6 +1349,7 @@ public open class Control : CanvasItem() {
    * [/codeblock]
    */
   public final fun getScreenPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1346,6 +1362,7 @@ public open class Control : CanvasItem() {
    * inaccuracies between the displayed control and the returned [Rect2].
    */
   public final fun getRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -1359,6 +1376,7 @@ public open class Control : CanvasItem() {
    * inaccuracies between the displayed control and the returned [Rect2].
    */
   public final fun getGlobalRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -1369,6 +1387,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getFocusMode(): FocusMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusModePtr, LONG)
     return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1377,6 +1396,7 @@ public open class Control : CanvasItem() {
    * Returns `true` if this is the current focused control. See [focusMode].
    */
   public final fun hasFocus(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1387,6 +1407,7 @@ public open class Control : CanvasItem() {
    * especially when called inside [Node.Ready].
    */
   public final fun grabFocus(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
   }
 
@@ -1394,6 +1415,7 @@ public open class Control : CanvasItem() {
    * Give up the focus. No other control will be able to receive input.
    */
   public final fun releaseFocus(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.releaseFocusPtr, NIL)
   }
 
@@ -1401,6 +1423,7 @@ public open class Control : CanvasItem() {
    * Finds the previous (above in the tree) [Control] that can receive the focus.
    */
   public final fun findPrevValidFocus(): Control? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.findPrevValidFocusPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -1409,6 +1432,7 @@ public open class Control : CanvasItem() {
    * Finds the next (below in the tree) [Control] that can receive the focus.
    */
   public final fun findNextValidFocus(): Control? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.findNextValidFocusPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -1430,6 +1454,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getHSizeFlags(): SizeFlags {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHSizeFlagsPtr, LONG)
     return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1440,6 +1465,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getStretchRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1450,6 +1476,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getVSizeFlags(): SizeFlags {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
     return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1460,6 +1487,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getTheme(): Theme? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
@@ -1470,6 +1498,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getThemeTypeVariation(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -1479,6 +1508,7 @@ public open class Control : CanvasItem() {
    * [endBulkThemeOverride] is called.
    */
   public final fun beginBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginBulkThemeOverridePtr, NIL)
   }
 
@@ -1486,6 +1516,7 @@ public open class Control : CanvasItem() {
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
   public final fun endBulkThemeOverride(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endBulkThemeOverridePtr, NIL)
   }
 
@@ -1894,6 +1925,7 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1904,6 +1936,7 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -1914,6 +1947,7 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1922,6 +1956,7 @@ public open class Control : CanvasItem() {
    * Returns the parent control node.
    */
   public final fun getParentControl(): Control? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentControlPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -1932,6 +1967,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getHGrowDirection(): GrowDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHGrowDirectionPtr, LONG)
     return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1942,6 +1978,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getVGrowDirection(): GrowDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVGrowDirectionPtr, LONG)
     return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1952,6 +1989,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getTooltipAutoTranslateMode(): Node.AutoTranslateMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTooltipAutoTranslateModePtr, LONG)
     return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1962,6 +2000,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getTooltipText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTooltipTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1987,6 +2026,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getDefaultCursorShape(): CursorShape {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultCursorShapePtr, LONG)
     return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2029,6 +2069,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getFocusNext(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusNextPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -2039,6 +2080,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getFocusPrevious(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFocusPreviousPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -2060,6 +2102,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getMouseFilter(): MouseFilter {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseFilterPtr, LONG)
     return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2070,6 +2113,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun isForcePassScrollEvents(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isForcePassScrollEventsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2080,6 +2124,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun isClippingContents(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isClippingContentsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2102,6 +2147,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun grabClickFocus(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabClickFocusPtr, NIL)
   }
 
@@ -2168,6 +2214,7 @@ public open class Control : CanvasItem() {
    * Best used with [Node.NOTIFICATION_DRAG_END].
    */
   public final fun isDragSuccessful(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDragSuccessfulPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2188,6 +2235,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getShortcutContext(): Node? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShortcutContextPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -2198,6 +2246,7 @@ public open class Control : CanvasItem() {
    * calls this method automatically.
    */
   public final fun updateMinimumSize(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateMinimumSizePtr, NIL)
   }
 
@@ -2207,6 +2256,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun getLayoutDirection(): LayoutDirection {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
     return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2215,6 +2265,7 @@ public open class Control : CanvasItem() {
    * Returns `true` if layout is right-to-left. See also [layoutDirection].
    */
   public final fun isLayoutRtl(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLayoutRtlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2225,6 +2276,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun isAutoTranslating(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoTranslatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2235,6 +2287,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun isLocalizingNumeralSystem(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

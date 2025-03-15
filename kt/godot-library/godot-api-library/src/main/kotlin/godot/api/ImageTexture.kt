@@ -62,6 +62,7 @@ public open class ImageTexture : Texture2D() {
    * Returns the format of the texture, one of [Image.Format].
    */
   public final fun getFormat(): Image.Format {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }

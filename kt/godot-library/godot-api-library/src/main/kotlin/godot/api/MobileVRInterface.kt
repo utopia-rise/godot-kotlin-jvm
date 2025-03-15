@@ -199,6 +199,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getEyeHeight(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEyeHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -209,6 +210,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getIod(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIodPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -219,6 +221,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getDisplayWidth(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisplayWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -229,6 +232,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getDisplayToLens(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisplayToLensPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -239,6 +243,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getOffsetRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -249,6 +254,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getOversample(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOversamplePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -259,6 +265,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getK1(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getK1Ptr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -269,11 +276,13 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getK2(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getK2Ptr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getVrsMinRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -284,6 +293,7 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public final fun getVrsStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

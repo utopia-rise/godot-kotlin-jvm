@@ -192,6 +192,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -202,6 +203,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getShape(): Shape2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
@@ -212,6 +214,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getTargetPosition(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -222,6 +225,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getMargin(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -232,6 +236,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getMaxResults(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxResultsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -241,6 +246,7 @@ public open class ShapeCast2D : Node2D() {
    * length).
    */
   public final fun isColliding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollidingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -251,6 +257,7 @@ public open class ShapeCast2D : Node2D() {
    * [getCollisionNormal] methods.
    */
   public final fun getCollisionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -262,6 +269,7 @@ public open class ShapeCast2D : Node2D() {
    * **Note:** Setting [enabled] to `true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceShapecastUpdatePtr, NIL)
   }
 
@@ -319,6 +327,7 @@ public open class ShapeCast2D : Node2D() {
    * move without triggering a collision, as a value between `0.0` and `1.0`.
    */
   public final fun getClosestCollisionSafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClosestCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -331,6 +340,7 @@ public open class ShapeCast2D : Node2D() {
    * calculated positions.
    */
   public final fun getClosestCollisionUnsafeFraction(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClosestCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -371,6 +381,7 @@ public open class ShapeCast2D : Node2D() {
    * Removes all collision exceptions for this shape.
    */
   public final fun clearExceptions(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
@@ -380,6 +391,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -409,6 +421,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun getExcludeParentBody(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExcludeParentBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -419,6 +432,7 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -429,11 +443,13 @@ public open class ShapeCast2D : Node2D() {
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getCollisionResult(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionResultPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

@@ -191,6 +191,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun getRootPath(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -200,6 +201,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * you are doing).
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -216,6 +218,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI].
    */
   public final fun getAuthenticatingPeers(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAuthenticatingPeersPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -254,6 +257,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun getAuthCallback(): Callable {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAuthCallbackPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
@@ -264,6 +268,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun getAuthTimeout(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAuthTimeoutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -274,6 +279,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun isRefusingNewConnections(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -284,6 +290,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun isObjectDecodingAllowed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isObjectDecodingAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -294,6 +301,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun isServerRelayEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isServerRelayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -315,6 +323,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun getMaxSyncPacketSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSyncPacketSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -325,6 +334,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun getMaxDeltaPacketSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxDeltaPacketSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

@@ -78,6 +78,7 @@ public open class OpenXRActionSet : Resource() {
   }
 
   public final fun getLocalizedName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLocalizedNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -88,6 +89,7 @@ public open class OpenXRActionSet : Resource() {
   }
 
   public final fun getPriority(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -96,6 +98,7 @@ public open class OpenXRActionSet : Resource() {
    * Retrieve the number of actions in our action set.
    */
   public final fun getActionCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -106,6 +109,7 @@ public open class OpenXRActionSet : Resource() {
   }
 
   public final fun getActions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

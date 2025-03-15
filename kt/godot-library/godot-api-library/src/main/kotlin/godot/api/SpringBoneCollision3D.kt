@@ -143,6 +143,7 @@ public open class SpringBoneCollision3D : Node3D() {
    * Get parent [Skeleton3D] node of the parent [SpringBoneSimulator3D] if found.
    */
   public final fun getSkeleton(): Skeleton3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
@@ -153,6 +154,7 @@ public open class SpringBoneCollision3D : Node3D() {
   }
 
   public final fun getBoneName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -163,6 +165,7 @@ public open class SpringBoneCollision3D : Node3D() {
   }
 
   public final fun getBone(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -173,6 +176,7 @@ public open class SpringBoneCollision3D : Node3D() {
   }
 
   public final fun getPositionOffset(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -183,6 +187,7 @@ public open class SpringBoneCollision3D : Node3D() {
   }
 
   public final fun getRotationOffset(): Quaternion {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRotationOffsetPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }

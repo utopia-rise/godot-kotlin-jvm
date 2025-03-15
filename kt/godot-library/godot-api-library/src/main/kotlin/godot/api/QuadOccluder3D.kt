@@ -73,6 +73,7 @@ public open class QuadOccluder3D : Occluder3D() {
   }
 
   public final fun getSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

@@ -67,6 +67,7 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun createId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

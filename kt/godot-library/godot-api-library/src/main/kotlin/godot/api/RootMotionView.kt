@@ -132,6 +132,7 @@ public open class RootMotionView : VisualInstance3D() {
   }
 
   public final fun getAnimationPath(): NodePath {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -142,6 +143,7 @@ public open class RootMotionView : VisualInstance3D() {
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -152,6 +154,7 @@ public open class RootMotionView : VisualInstance3D() {
   }
 
   public final fun getCellSize(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -162,6 +165,7 @@ public open class RootMotionView : VisualInstance3D() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -172,6 +176,7 @@ public open class RootMotionView : VisualInstance3D() {
   }
 
   public final fun getZeroY(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZeroYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

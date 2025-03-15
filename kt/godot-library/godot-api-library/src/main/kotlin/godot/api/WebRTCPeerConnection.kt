@@ -144,6 +144,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * session is ready to be sent.
    */
   public final fun createOffer(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createOfferPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -192,6 +193,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * receive signals.
    */
   public final fun poll(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -201,6 +203,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * **Note:** You cannot reuse this object for a new connection unless you call [initialize].
    */
   public final fun close(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
 
@@ -208,6 +211,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * Returns the connection state. See [ConnectionState].
    */
   public final fun getConnectionState(): ConnectionState {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionStatePtr, LONG)
     return WebRTCPeerConnection.ConnectionState.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -217,6 +221,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * collection of ICE candidates has finished.
    */
   public final fun getGatheringState(): GatheringState {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGatheringStatePtr, LONG)
     return WebRTCPeerConnection.GatheringState.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -226,6 +231,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * to another peer.
    */
   public final fun getSignalingState(): SignalingState {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSignalingStatePtr, LONG)
     return WebRTCPeerConnection.SignalingState.from(TransferContext.readReturnValue(LONG) as Long)
   }

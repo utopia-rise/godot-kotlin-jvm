@@ -53,6 +53,7 @@ public open class PolygonOccluder3D : Occluder3D() {
   }
 
   public final fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }

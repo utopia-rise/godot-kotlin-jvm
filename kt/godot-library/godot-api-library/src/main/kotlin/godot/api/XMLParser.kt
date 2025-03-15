@@ -75,6 +75,7 @@ public open class XMLParser : RefCounted() {
    * Parses the next node in the file. This method returns an error code.
    */
   public final fun read(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.readPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -83,6 +84,7 @@ public open class XMLParser : RefCounted() {
    * Returns the type of the current node. Compare with [NodeType] constants.
    */
   public final fun getNodeType(): NodeType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeTypePtr, LONG)
     return XMLParser.NodeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -94,6 +96,7 @@ public open class XMLParser : RefCounted() {
    * are also considered names.
    */
   public final fun getNodeName(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -103,6 +106,7 @@ public open class XMLParser : RefCounted() {
    * is of any other type.
    */
   public final fun getNodeData(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeDataPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -112,6 +116,7 @@ public open class XMLParser : RefCounted() {
    * This is usually equivalent to the number of characters before the read position.
    */
   public final fun getNodeOffset(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -122,6 +127,7 @@ public open class XMLParser : RefCounted() {
    * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public final fun getAttributeCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttributeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -178,6 +184,7 @@ public open class XMLParser : RefCounted() {
    * Returns `true` if the currently parsed element is empty, e.g. `<element />`.
    */
   public final fun isEmpty(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmptyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -186,6 +193,7 @@ public open class XMLParser : RefCounted() {
    * Returns the current line in the parsed file, counting from 0.
    */
   public final fun getCurrentLine(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -195,6 +203,7 @@ public open class XMLParser : RefCounted() {
    * ignored and the cursor will go to the closing of the current element.
    */
   public final fun skipSection(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.skipSectionPtr, NIL)
   }
 

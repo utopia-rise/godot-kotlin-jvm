@@ -88,6 +88,7 @@ public open class TextureLayered : Texture() {
    * Returns the current format being used by this texture. See [Image.Format] for details.
    */
   public final fun getFormat(): Image.Format {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -97,6 +98,7 @@ public open class TextureLayered : Texture() {
    * cubemaps having special types.
    */
   public final fun getLayeredType(): LayeredType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayeredTypePtr, LONG)
     return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -105,6 +107,7 @@ public open class TextureLayered : Texture() {
    * Returns the width of the texture in pixels. Width is typically represented by the X axis.
    */
   public final fun getWidth(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -113,6 +116,7 @@ public open class TextureLayered : Texture() {
    * Returns the height of the texture in pixels. Height is typically represented by the Y axis.
    */
   public final fun getHeight(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -121,6 +125,7 @@ public open class TextureLayered : Texture() {
    * Returns the number of referenced [Image]s.
    */
   public final fun getLayers(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -129,6 +134,7 @@ public open class TextureLayered : Texture() {
    * Returns `true` if the layers have generated mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

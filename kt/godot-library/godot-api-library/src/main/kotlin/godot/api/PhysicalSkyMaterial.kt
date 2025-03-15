@@ -260,6 +260,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getRayleighCoefficient(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -270,6 +271,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getRayleighColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRayleighColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -280,6 +282,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getMieCoefficient(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMieCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -290,6 +293,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getMieEccentricity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMieEccentricityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -300,6 +304,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getMieColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMieColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -310,6 +315,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getTurbidity(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTurbidityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -320,6 +326,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getSunDiskScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSunDiskScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -330,6 +337,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getGroundColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroundColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -340,6 +348,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -350,6 +359,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getUseDebanding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -360,6 +370,7 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public final fun getNightSky(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNightSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

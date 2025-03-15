@@ -169,6 +169,7 @@ public open class Theme : Resource() {
    * list of all unique theme types.
    */
   public final fun getIconTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -245,6 +246,7 @@ public open class Theme : Resource() {
    * get a list of all unique theme types.
    */
   public final fun getStyleboxTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStyleboxTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -324,6 +326,7 @@ public open class Theme : Resource() {
    * list of all unique theme types.
    */
   public final fun getFontTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -403,6 +406,7 @@ public open class Theme : Resource() {
    * get a list of all unique theme types.
    */
   public final fun getFontSizeTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontSizeTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -479,6 +483,7 @@ public open class Theme : Resource() {
    * a list of all unique theme types.
    */
   public final fun getColorTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -554,6 +559,7 @@ public open class Theme : Resource() {
    * a list of all unique theme types.
    */
   public final fun getConstantTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -564,6 +570,7 @@ public open class Theme : Resource() {
   }
 
   public final fun getDefaultBaseScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -573,6 +580,7 @@ public open class Theme : Resource() {
    * Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
    */
   public final fun hasDefaultBaseScale(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasDefaultBaseScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -583,6 +591,7 @@ public open class Theme : Resource() {
   }
 
   public final fun getDefaultFont(): Font? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -592,6 +601,7 @@ public open class Theme : Resource() {
    * Returns `false` if it doesn't.
    */
   public final fun hasDefaultFont(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasDefaultFontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -602,6 +612,7 @@ public open class Theme : Resource() {
   }
 
   public final fun getDefaultFontSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -611,6 +622,7 @@ public open class Theme : Resource() {
    * Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
    */
   public final fun hasDefaultFontSize(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasDefaultFontSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -798,6 +810,7 @@ public open class Theme : Resource() {
    * get a list of unique theme types for a single data type.
    */
   public final fun getTypeList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -816,6 +829,7 @@ public open class Theme : Resource() {
    * Removes all the theme properties defined on the theme resource.
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

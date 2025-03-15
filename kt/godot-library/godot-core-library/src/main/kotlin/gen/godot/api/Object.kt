@@ -110,6 +110,7 @@ public open class Object : KtObject() {
    * `class_name`, the base, built-in class name is returned instead.
    */
   public final fun getGodotClass(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -269,6 +270,7 @@ public open class Object : KtObject() {
    * attributes.
    */
   public final fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -286,6 +288,7 @@ public open class Object : KtObject() {
    * [getPropertyList], although not all entries are used.
    */
   public final fun getMethodList(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -356,6 +359,7 @@ public open class Object : KtObject() {
    * [_toString] to customize the string representation of the object.
    */
   public final override fun toString(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -367,6 +371,7 @@ public open class Object : KtObject() {
    * object if the ID is sent over a network, or loaded from a file at a later time.
    */
   public final fun getInstanceId(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -386,6 +391,7 @@ public open class Object : KtObject() {
    * Returns the object's [Script] instance, or `null` if no script is attached.
    */
   public final fun getScript(): Any? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScriptPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -455,6 +461,7 @@ public open class Object : KtObject() {
    * Returns the object's metadata entry names as an [Array] of [StringName]s.
    */
   public final fun getMetaList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetaListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -714,6 +721,7 @@ public open class Object : KtObject() {
    * returned values of [getMethodList].
    */
   public final fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -740,6 +748,7 @@ public open class Object : KtObject() {
    * - `flags` is a combination of [ConnectFlags].
    */
   public final fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIncomingConnectionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -956,6 +965,7 @@ public open class Object : KtObject() {
    * Returns `true` if the object is blocking its signals from being emitted. See [setBlockSignals].
    */
   public final fun isBlockingSignals(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isBlockingSignalsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -965,6 +975,7 @@ public open class Object : KtObject() {
    * that the Inspector and editor plugins are properly updated.
    */
   public final fun notifyPropertyListChanged(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.notifyPropertyListChangedPtr, NIL)
   }
 
@@ -982,6 +993,7 @@ public open class Object : KtObject() {
    * [setMessageTranslation].
    */
   public final fun canTranslateMessages(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canTranslateMessagesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1036,6 +1048,7 @@ public open class Object : KtObject() {
    * [TranslationServer].
    */
   public final fun getTranslationDomain(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTranslationDomainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -1052,6 +1065,7 @@ public open class Object : KtObject() {
    * Returns `true` if the [Node.queueFree] method was called for the object.
    */
   public final fun isQueuedForDeletion(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isQueuedForDeletionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1062,6 +1076,7 @@ public open class Object : KtObject() {
    * the user from freeing objects when they are not intended to.
    */
   public final fun cancelFree(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cancelFreePtr, NIL)
   }
 

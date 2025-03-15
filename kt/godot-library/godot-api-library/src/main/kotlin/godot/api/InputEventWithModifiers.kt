@@ -98,6 +98,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public final fun isCommandOrControlAutoremap(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -107,6 +108,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
    */
   public final fun isCommandOrControlPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCommandOrControlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -117,6 +119,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public final fun isAltPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAltPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -127,6 +130,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public final fun isShiftPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShiftPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -137,6 +141,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public final fun isCtrlPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCtrlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -147,6 +152,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public final fun isMetaPressed(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMetaPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -155,6 +161,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * Returns the keycode combination of modifier keys.
    */
   public final fun getModifiersMask(): KeyModifierMask {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModifiersMaskPtr, LONG)
     return KeyModifierMask(TransferContext.readReturnValue(LONG) as Long)
   }

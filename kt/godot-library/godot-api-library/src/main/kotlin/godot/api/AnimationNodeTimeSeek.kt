@@ -70,6 +70,7 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
   }
 
   public final fun isExplicitElapse(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isExplicitElapsePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

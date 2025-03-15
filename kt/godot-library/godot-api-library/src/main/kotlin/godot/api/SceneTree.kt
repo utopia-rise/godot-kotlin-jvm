@@ -250,6 +250,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getRoot(): Window? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Window?)
   }
@@ -264,6 +265,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isAutoAcceptQuit(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -274,6 +276,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isQuitOnGoBack(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isQuitOnGoBackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -289,6 +292,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingCollisionsHint(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -299,6 +303,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingPathsHint(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -309,6 +314,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingNavigationHint(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -319,6 +325,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getEditedSceneRoot(): Node? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditedSceneRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -329,6 +336,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isPaused(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -385,6 +393,7 @@ public open class SceneTree : MainLoop() {
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
   public final fun createTween(): Tween? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTweenPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -393,6 +402,7 @@ public open class SceneTree : MainLoop() {
    * Returns an [Array] of currently existing [Tween]s in the tree, including paused tweens.
    */
   public final fun getProcessedTweens(): VariantArray<Tween> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessedTweensPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Tween>)
   }
@@ -401,6 +411,7 @@ public open class SceneTree : MainLoop() {
    * Returns the number of nodes inside this tree.
    */
   public final fun getNodeCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -410,6 +421,7 @@ public open class SceneTree : MainLoop() {
    * measurement of elapsed time.
    */
   public final fun getFrame(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -434,6 +446,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isPhysicsInterpolationEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -589,6 +602,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getCurrentScene(): Node? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -634,6 +648,7 @@ public open class SceneTree : MainLoop() {
    * instantiated.
    */
   public final fun reloadCurrentScene(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reloadCurrentScenePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -642,6 +657,7 @@ public open class SceneTree : MainLoop() {
    * If a current scene is loaded, calling this method will unload it.
    */
   public final fun unloadCurrentScene(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unloadCurrentScenePtr, NIL)
   }
 
@@ -675,6 +691,7 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isMultiplayerPollEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -85,6 +85,7 @@ public open class ResourcePreloader : Node() {
    * Returns the list of resources inside the preloader.
    */
   public final fun getResourceList(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

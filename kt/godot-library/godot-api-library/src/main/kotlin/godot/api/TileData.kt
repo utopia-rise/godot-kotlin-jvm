@@ -234,6 +234,7 @@ public open class TileData : Object() {
   }
 
   public final fun getFlipH(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlipHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -244,6 +245,7 @@ public open class TileData : Object() {
   }
 
   public final fun getFlipV(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlipVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -254,6 +256,7 @@ public open class TileData : Object() {
   }
 
   public final fun getTranspose(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransposePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -264,6 +267,7 @@ public open class TileData : Object() {
   }
 
   public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -274,6 +278,7 @@ public open class TileData : Object() {
   }
 
   public final fun getTextureOrigin(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureOriginPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -284,6 +289,7 @@ public open class TileData : Object() {
   }
 
   public final fun getModulate(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -294,6 +300,7 @@ public open class TileData : Object() {
   }
 
   public final fun getZIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -304,6 +311,7 @@ public open class TileData : Object() {
   }
 
   public final fun getYSortOrigin(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getYSortOriginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -543,6 +551,7 @@ public open class TileData : Object() {
   }
 
   public final fun getTerrainSet(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTerrainSetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -553,6 +562,7 @@ public open class TileData : Object() {
   }
 
   public final fun getTerrain(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTerrainPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -616,6 +626,7 @@ public open class TileData : Object() {
   }
 
   public final fun getProbability(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProbabilityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -78,6 +78,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * intervals, however, this function may be called to ensure more frequent ping requests.
    */
   public final fun ping(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pingPtr, NIL)
   }
 
@@ -97,6 +98,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * disconnection and will timeout on its connection to the local host.
    */
   public final fun reset(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 
@@ -165,6 +167,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * receiving peer.
    */
   public final fun getPacketFlags(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPacketFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -173,6 +176,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the IP address of this peer.
    */
   public final fun getRemoteAddress(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemoteAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -181,6 +185,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the remote port of this peer.
    */
   public final fun getRemotePort(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemotePortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -198,6 +203,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the current peer state. See [PeerState].
    */
   public final fun getState(): PeerState {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatePtr, LONG)
     return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -206,6 +212,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the number of channels allocated for communication with peer.
    */
   public final fun getChannels(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getChannelsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -215,6 +222,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * valid).
    */
   public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

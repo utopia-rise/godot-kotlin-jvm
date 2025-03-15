@@ -74,6 +74,7 @@ public open class RectangleShape2D : Shape2D() {
   }
 
   public final fun getSize(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

@@ -108,6 +108,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   public final fun getRootBone(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -118,6 +119,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   public final fun getScaleBaseBone(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -128,6 +130,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   public final fun getGroupSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroupSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -176,6 +179,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   public final fun getBoneSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

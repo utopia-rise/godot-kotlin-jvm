@@ -140,6 +140,7 @@ public open class GLTFSpecGloss : Resource() {
 
 
   public final fun getDiffuseImg(): Image? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiffuseImgPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
@@ -150,6 +151,7 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   public final fun getDiffuseFactor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiffuseFactorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -160,6 +162,7 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   public final fun getGlossFactor(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlossFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -170,6 +173,7 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   public final fun getSpecularFactor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularFactorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -180,6 +184,7 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   public final fun getSpecGlossImg(): Image? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecGlossImgPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }

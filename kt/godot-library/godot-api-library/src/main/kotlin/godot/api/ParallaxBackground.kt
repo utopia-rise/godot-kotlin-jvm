@@ -244,6 +244,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun getScrollOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -254,6 +255,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun getScrollBaseOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -264,6 +266,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun getScrollBaseScale(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -274,6 +277,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun getLimitBegin(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLimitBeginPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -284,6 +288,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun getLimitEnd(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLimitEndPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -294,6 +299,7 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public final fun isIgnoreCameraZoom(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

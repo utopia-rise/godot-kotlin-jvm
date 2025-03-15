@@ -210,6 +210,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getBufferView(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -220,6 +221,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getByteOffset(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -230,6 +232,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getComponentType(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getComponentTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -240,6 +243,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getNormalized(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -250,6 +254,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -260,6 +265,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getAccessorType(): GLTFAccessorType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessorTypePtr, LONG)
     return GLTFAccessor.GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -270,6 +276,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getType(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -280,6 +287,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getMin(): PackedFloat64Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinPtr, PACKED_FLOAT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
@@ -290,6 +298,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getMax(): PackedFloat64Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, PACKED_FLOAT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
@@ -300,6 +309,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -310,6 +320,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseIndicesBufferView(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -320,6 +331,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseIndicesByteOffset(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -330,6 +342,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseIndicesComponentType(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -340,6 +353,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseValuesBufferView(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseValuesBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -350,6 +364,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun getSparseValuesByteOffset(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

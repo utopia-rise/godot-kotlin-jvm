@@ -49,6 +49,7 @@ public open class GridContainer : Container() {
   }
 
   public final fun getColumns(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColumnsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

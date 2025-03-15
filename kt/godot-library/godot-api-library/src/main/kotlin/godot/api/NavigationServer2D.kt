@@ -87,6 +87,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun getMaps(): VariantArray<RID> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMapsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -96,6 +97,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun mapCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.mapCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -386,6 +388,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun regionCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.regionCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -649,6 +652,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun linkCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.linkCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -830,6 +834,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun agentCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.agentCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1173,6 +1178,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun obstacleCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.obstacleCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1404,6 +1410,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun sourceGeometryParserCreate(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.sourceGeometryParserCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1461,6 +1468,7 @@ public object NavigationServer2D : Object() {
    */
   @JvmStatic
   public final fun getDebugEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

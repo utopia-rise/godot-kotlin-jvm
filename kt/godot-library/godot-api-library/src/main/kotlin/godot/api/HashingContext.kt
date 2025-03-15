@@ -105,6 +105,7 @@ public open class HashingContext : RefCounted() {
    * Closes the current context, and return the computed hash.
    */
   public final fun finish(): PackedByteArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }

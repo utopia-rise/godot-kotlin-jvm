@@ -405,6 +405,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getLightData(): LightmapGIData? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as LightmapGIData?)
   }
@@ -415,6 +416,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getBakeQuality(): BakeQuality {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeQualityPtr, LONG)
     return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -425,6 +427,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getBounces(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBouncesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -435,6 +438,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getBounceIndirectEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -445,6 +449,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getGenerateProbes(): GenerateProbes {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGenerateProbesPtr, LONG)
     return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -455,6 +460,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getBias(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -465,6 +471,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getEnvironmentMode(): EnvironmentMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentModePtr, LONG)
     return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -475,6 +482,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getEnvironmentCustomSky(): Sky? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Sky?)
   }
@@ -485,6 +493,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getEnvironmentCustomColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -495,6 +504,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getEnvironmentCustomEnergy(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -505,6 +515,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getTexelScale(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexelScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -515,6 +526,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getMaxTextureSize(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxTextureSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -525,6 +537,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun isSupersamplingEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSupersamplingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -535,6 +548,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getSupersamplingFactor(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupersamplingFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -545,6 +559,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun isUsingDenoiser(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingDenoiserPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -555,6 +570,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getDenoiserStrength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -565,6 +581,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getDenoiserRange(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDenoiserRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -575,6 +592,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun isInterior(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -585,6 +603,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun isDirectional(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDirectionalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -595,6 +614,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getShadowmaskMode(): LightmapGIData.ShadowmaskMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowmaskModePtr, LONG)
     return LightmapGIData.ShadowmaskMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -605,6 +625,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun isUsingTextureForBounces(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -615,6 +636,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }

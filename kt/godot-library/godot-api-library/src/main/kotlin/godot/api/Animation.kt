@@ -154,6 +154,7 @@ public open class Animation : Resource() {
    * Returns the amount of tracks in the animation.
    */
   public final fun getTrackCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -914,6 +915,7 @@ public open class Animation : Resource() {
    * Returns every marker in this Animation, sorted ascending by time.
    */
   public final fun getMarkerNames(): PackedStringArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarkerNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -941,6 +943,7 @@ public open class Animation : Resource() {
   }
 
   public final fun getLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -951,6 +954,7 @@ public open class Animation : Resource() {
   }
 
   public final fun getLoopMode(): LoopMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -961,6 +965,7 @@ public open class Animation : Resource() {
   }
 
   public final fun getStep(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -969,6 +974,7 @@ public open class Animation : Resource() {
    * Clear the animation (clear all tracks and reset all).
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -1014,6 +1020,7 @@ public open class Animation : Resource() {
   }
 
   public final fun isCaptureIncluded(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCaptureIncludedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

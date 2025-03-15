@@ -94,6 +94,7 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -104,6 +105,7 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public final fun getHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -114,6 +116,7 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -124,6 +127,7 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public final fun getRings(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -134,6 +138,7 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public final fun getIsHemisphere(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsHemispherePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

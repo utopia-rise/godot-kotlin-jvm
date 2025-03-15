@@ -66,6 +66,7 @@ public open class Curve2D : Resource() {
   }
 
   public final fun getPointCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -166,6 +167,7 @@ public open class Curve2D : Resource() {
    * Removes all points from the curve.
    */
   public final fun clearPoints(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
   }
 
@@ -198,6 +200,7 @@ public open class Curve2D : Resource() {
   }
 
   public final fun getBakeInterval(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -207,6 +210,7 @@ public open class Curve2D : Resource() {
    * [bakeInterval]), it should be approximate enough.
    */
   public final fun getBakedLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -251,6 +255,7 @@ public open class Curve2D : Resource() {
    * Returns the cache of points as a [PackedVector2Array].
    */
   public final fun getBakedPoints(): PackedVector2Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }

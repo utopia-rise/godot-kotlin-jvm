@@ -103,11 +103,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * Returns `true` if there is a [multiplayerPeer] set.
    */
   public final fun hasMultiplayerPeer(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasMultiplayerPeerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getMultiplayerPeer(): MultiplayerPeer? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MultiplayerPeer?)
   }
@@ -121,6 +123,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * Returns the unique peer ID of this MultiplayerAPI's [multiplayerPeer].
    */
   public final fun getUniqueId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniqueIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -130,6 +133,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * (listening for connections).
    */
   public final fun isServer(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isServerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -140,6 +144,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * may be lost when code execution is delayed (such as with GDScript's `await` keyword).
    */
   public final fun getRemoteSenderId(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemoteSenderIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -152,6 +157,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * context of this function (e.g. `_process`, `physics`, [Thread]).
    */
   public final fun poll(): Error {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -210,6 +216,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * Returns the peer IDs of all connected peers of this MultiplayerAPI's [multiplayerPeer].
    */
   public final fun getPeers(): PackedInt32Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPeersPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -279,6 +286,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDefaultInterface(): StringName {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
       return (TransferContext.readReturnValue(STRING_NAME) as StringName)
     }
@@ -288,6 +296,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun createDefaultInterface(): MultiplayerAPI? {
+      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
     }

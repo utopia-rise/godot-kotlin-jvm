@@ -286,6 +286,7 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTimeZoneFromSystemPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -300,6 +301,7 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getUnixTimeFromSystem(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnixTimeFromSystemPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -311,6 +313,7 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTicksMsec(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTicksMsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -322,6 +325,7 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTicksUsec(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTicksUsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

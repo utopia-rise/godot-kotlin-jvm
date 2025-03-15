@@ -253,6 +253,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the render target associated with this buffers object.
    */
   public final fun getRenderTarget(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderTargetPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -261,6 +262,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the view count for the associated viewport.
    */
   public final fun getViewCount(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -270,6 +272,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * created by default.
    */
   public final fun getInternalSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInternalSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -278,6 +281,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the target size of the render buffer (size after upscaling).
    */
   public final fun getTargetSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -286,6 +290,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the scaling mode used for upscaling.
    */
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -295,6 +300,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * an FSR mode).
    */
   public final fun getFsrSharpness(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -303,6 +309,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the applied 3D MSAA mode for this viewport.
    */
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -311,6 +318,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the number of MSAA samples used.
    */
   public final fun getTextureSamples(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -319,6 +327,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the screen-space antialiasing method applied.
    */
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -327,6 +336,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if TAA is enabled.
    */
   public final fun getUseTaa(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseTaaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -335,6 +345,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if debanding is enabled.
    */
   public final fun getUseDebanding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

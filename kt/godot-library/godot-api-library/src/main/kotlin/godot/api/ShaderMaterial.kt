@@ -56,6 +56,7 @@ public open class ShaderMaterial : Material() {
   }
 
   public final fun getShader(): Shader? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShaderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shader?)
   }

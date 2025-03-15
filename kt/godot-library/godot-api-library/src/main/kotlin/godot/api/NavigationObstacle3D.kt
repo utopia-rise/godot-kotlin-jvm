@@ -197,6 +197,7 @@ public open class NavigationObstacle3D : Node3D() {
    * Returns the [RID] of this obstacle on the [NavigationServer3D].
    */
   public final fun getRid(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -207,6 +208,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getAvoidanceEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -228,6 +230,7 @@ public open class NavigationObstacle3D : Node3D() {
    * navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -238,6 +241,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getRadius(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -248,6 +252,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getHeight(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -258,6 +263,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -268,6 +274,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getVertices(): PackedVector3Array {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -278,6 +285,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getAvoidanceLayers(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -307,6 +315,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getUse3dAvoidance(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUse3dAvoidancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -317,6 +326,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getAffectNavigationMesh(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -327,6 +337,7 @@ public open class NavigationObstacle3D : Node3D() {
   }
 
   public final fun getCarveNavigationMesh(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

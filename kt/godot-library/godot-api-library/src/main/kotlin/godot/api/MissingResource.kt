@@ -62,6 +62,7 @@ public open class MissingResource : Resource() {
   }
 
   public final fun getOriginalClass(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOriginalClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -72,6 +73,7 @@ public open class MissingResource : Resource() {
   }
 
   public final fun isRecordingProperties(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecordingPropertiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

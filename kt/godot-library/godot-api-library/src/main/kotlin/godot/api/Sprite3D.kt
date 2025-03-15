@@ -191,6 +191,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -201,6 +202,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun isRegionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRegionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -211,6 +213,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getRegionRect(): Rect2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -221,6 +224,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getFrame(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -231,6 +235,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getFrameCoords(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -241,6 +246,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getVframes(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVframesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -251,6 +257,7 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   public final fun getHframes(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHframesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

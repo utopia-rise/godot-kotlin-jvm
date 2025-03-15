@@ -318,6 +318,7 @@ public open class GLTFPhysicsBody : Resource() {
    * Converts this GLTFPhysicsBody instance into a Godot [CollisionObject3D] node.
    */
   public final fun toNode(): CollisionObject3D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CollisionObject3D?)
   }
@@ -327,11 +328,13 @@ public open class GLTFPhysicsBody : Resource() {
    * by the `OMI_physics_body` glTF extension.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBodyType(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -342,6 +345,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getMass(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -352,6 +356,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getLinearVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -362,6 +367,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -372,6 +378,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getCenterOfMass(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -382,6 +389,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getInertiaDiagonal(): Vector3 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -392,6 +400,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getInertiaOrientation(): Quaternion {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
@@ -402,6 +411,7 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public final fun getInertiaTensor(): Basis {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInertiaTensorPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }

@@ -196,6 +196,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -206,6 +207,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public final fun getMargins(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarginsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -216,6 +218,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public final fun getSeparation(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeparationPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -226,6 +229,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public final fun getTextureRegionSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRegionSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -236,6 +240,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public final fun getUseTexturePadding(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseTexturePaddingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -335,6 +340,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * completely).
    */
   public final fun hasTilesOutsideTexture(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasTilesOutsideTexturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -344,6 +350,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * source's tiles, so it's advised to use [hasTilesOutsideTexture] beforehand.
    */
   public final fun clearTilesOutsideTexture(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearTilesOutsideTexturePtr, NIL)
   }
 
@@ -532,6 +539,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * depends on the [texture]'s size, the atlas [margins], and the tiles' [textureRegionSize].
    */
   public final fun getAtlasGridSize(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAtlasGridSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -552,6 +560,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * [ImageTexture] created that includes the padding.
    */
   public final fun getRuntimeTexture(): Texture2D? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRuntimeTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

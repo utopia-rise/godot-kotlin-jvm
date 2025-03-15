@@ -208,6 +208,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun getPickColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -218,6 +219,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun isDeferredMode(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDeferredModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -228,6 +230,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun getColorMode(): ColorModeType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorModePtr, LONG)
     return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -238,6 +241,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun isEditingAlpha(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditingAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -248,6 +252,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun areSwatchesEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areSwatchesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -258,6 +263,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun arePresetsVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.arePresetsVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -268,6 +274,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun areModesVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areModesVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -278,6 +285,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun isSamplerVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSamplerVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -288,6 +296,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun areSlidersVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areSlidersVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -298,6 +307,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun isHexVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHexVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -324,6 +334,7 @@ public open class ColorPicker : VBoxContainer() {
    * Returns the list of colors in the presets of the color picker.
    */
   public final fun getPresets(): PackedColorArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
@@ -351,6 +362,7 @@ public open class ColorPicker : VBoxContainer() {
    * Returns the list of colors in the recent presets of the color picker.
    */
   public final fun getRecentPresets(): PackedColorArray {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRecentPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
@@ -361,6 +373,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun getPickerShape(): PickerShapeType {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPickerShapePtr, LONG)
     return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }

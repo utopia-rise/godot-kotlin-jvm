@@ -56,6 +56,7 @@ public open class VideoStream : Resource() {
   }
 
   public final fun getFile(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

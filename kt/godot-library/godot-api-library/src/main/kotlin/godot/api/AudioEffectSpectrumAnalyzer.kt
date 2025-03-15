@@ -74,6 +74,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public final fun getBufferLength(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -84,6 +85,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public final fun getTapBackPos(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTapBackPosPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -94,6 +96,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public final fun getFftSize(): FFTSize {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
     return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }

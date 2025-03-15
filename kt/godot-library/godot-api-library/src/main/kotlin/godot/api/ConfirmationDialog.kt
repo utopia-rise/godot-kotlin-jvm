@@ -57,6 +57,7 @@ public open class ConfirmationDialog : AcceptDialog() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getCancelButton(): Button? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
@@ -67,6 +68,7 @@ public open class ConfirmationDialog : AcceptDialog() {
   }
 
   public final fun getCancelButtonText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCancelButtonTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

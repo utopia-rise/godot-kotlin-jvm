@@ -61,6 +61,7 @@ public open class ImporterMesh : Resource() {
    * Returns the number of blend shapes that the mesh holds.
    */
   public final fun getBlendShapeCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -86,6 +87,7 @@ public open class ImporterMesh : Resource() {
    * Returns the blend shape mode for this Mesh.
    */
   public final fun getBlendShapeMode(): Mesh.BlendShapeMode {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapeModePtr, LONG)
     return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -136,6 +138,7 @@ public open class ImporterMesh : Resource() {
    * Returns the number of surfaces that the mesh holds.
    */
   public final fun getSurfaceCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -277,6 +280,7 @@ public open class ImporterMesh : Resource() {
    * Removes all surfaces and blend shapes from this [ImporterMesh].
    */
   public final fun clear(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -292,6 +296,7 @@ public open class ImporterMesh : Resource() {
    * Returns the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
   public final fun getLightmapSizeHint(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }

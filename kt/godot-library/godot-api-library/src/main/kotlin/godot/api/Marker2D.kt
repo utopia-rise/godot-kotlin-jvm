@@ -47,6 +47,7 @@ public open class Marker2D : Node2D() {
   }
 
   public final fun getGizmoExtents(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

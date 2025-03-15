@@ -318,6 +318,7 @@ public open class CharFXTransform : RefCounted() {
 
 
   public final fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
@@ -328,6 +329,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getRange(): Vector2i {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRangePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -338,6 +340,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getElapsedTime(): Double {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getElapsedTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -348,6 +351,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun isVisible(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -358,6 +362,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun isOutline(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOutlinePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -368,6 +373,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -378,6 +384,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getColor(): Color {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -388,6 +395,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getEnvironment(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -398,6 +406,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getGlyphIndex(): Long {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlyphIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -408,6 +417,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getRelativeIndex(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRelativeIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -418,6 +428,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getGlyphCount(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlyphCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -428,6 +439,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getGlyphFlags(): Int {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlyphFlagsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -438,6 +450,7 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public final fun getFont(): RID {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

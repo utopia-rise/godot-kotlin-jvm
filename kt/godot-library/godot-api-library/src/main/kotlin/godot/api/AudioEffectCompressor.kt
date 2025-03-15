@@ -129,6 +129,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getThreshold(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -139,6 +140,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getRatio(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -149,6 +151,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getGain(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -159,6 +162,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getAttackUs(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttackUsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -169,6 +173,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getReleaseMs(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReleaseMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -179,6 +184,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getMix(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -189,6 +195,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun getSidechain(): StringName {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }

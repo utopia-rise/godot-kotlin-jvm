@@ -120,6 +120,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getSampleCount(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSampleCountPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -130,6 +131,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getEnableSampleShading(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableSampleShadingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -140,6 +142,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getMinSampleShading(): Float {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -150,6 +153,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getEnableAlphaToCoverage(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -160,6 +164,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getEnableAlphaToOne(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -170,6 +175,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun getSampleMasks(): VariantArray<Long> {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSampleMasksPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }

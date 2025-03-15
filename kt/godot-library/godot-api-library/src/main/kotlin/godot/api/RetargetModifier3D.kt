@@ -94,6 +94,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getProfile(): SkeletonProfile? {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProfilePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }
@@ -104,6 +105,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   }
 
   public final fun isUsingGlobalPose(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingGlobalPosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -114,6 +116,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   }
 
   public final fun getEnableFlags(): TransformFlag {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableFlagsPtr, LONG)
     return TransformFlag(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -130,6 +133,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
    * Returns `true` if [enable] has [TRANSFORM_FLAG_POSITION].
    */
   public final fun isPositionEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPositionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -146,6 +150,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
    * Returns `true` if [enable] has [TRANSFORM_FLAG_ROTATION].
    */
   public final fun isRotationEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRotationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -162,6 +167,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
    * Returns `true` if [enable] has [TRANSFORM_FLAG_SCALE].
    */
   public final fun isScaleEnabled(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isScaleEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
