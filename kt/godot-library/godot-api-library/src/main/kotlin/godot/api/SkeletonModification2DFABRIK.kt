@@ -17,9 +17,11 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -165,6 +167,15 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getFabrikJointUseTargetRotationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
+   */
+  public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
+      setFabrikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object
 

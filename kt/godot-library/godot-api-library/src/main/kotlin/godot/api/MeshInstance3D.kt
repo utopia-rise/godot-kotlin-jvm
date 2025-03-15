@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
@@ -270,6 +271,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentSkeletonPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
+
+  public final fun setSkeletonPath(skeletonPath: String) =
+      setSkeletonPath(skeletonPath.asCachedNodePath())
 
   /**
    * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with

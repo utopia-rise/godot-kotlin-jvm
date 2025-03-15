@@ -16,10 +16,12 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.asCachedNodePath
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -212,6 +214,9 @@ public open class ImporterMeshInstance3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setSkeletonPath(skeletonPath: String) =
+      setSkeletonPath(skeletonPath.asCachedNodePath())
 
   public companion object
 

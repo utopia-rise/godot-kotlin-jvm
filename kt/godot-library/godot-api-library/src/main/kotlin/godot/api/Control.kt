@@ -36,6 +36,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3i
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -2555,6 +2556,19 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeConstant(name: String, themeType: String): Boolean =
       hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Sets the focus neighbor for the specified [Side] to the [Control] at [neighbor] node path. A
+   * setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and
+   * [focusNeighborTop].
+   */
+  public final fun setFocusNeighbor(side: Side, neighbor: String) =
+      setFocusNeighbor(side, neighbor.asCachedNodePath())
+
+  public final fun setFocusNext(next: String) = setFocusNext(next.asCachedNodePath())
+
+  public final fun setFocusPrevious(previous: String) =
+      setFocusPrevious(previous.asCachedNodePath())
 
   public enum class FocusMode(
     id: Long,

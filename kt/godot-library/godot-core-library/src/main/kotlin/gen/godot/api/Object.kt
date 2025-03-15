@@ -27,6 +27,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -1110,6 +1111,62 @@ public open class Object : KtObject() {
    * on each call.
    */
   public final fun `get`(`property`: String): Any? = get(property.asCachedStringName())
+
+  /**
+   * Assigns a new [value] to the property identified by the [propertyPath]. The path should be a
+   * [NodePath] relative to this object, and can use the colon character (`:`) to access nested
+   * properties.
+   *
+   * gdscript:
+   * ```gdscript
+   * var node = Node2D.new()
+   * node.set_indexed("position", Vector2(42, 0))
+   * node.set_indexed("position:y", -10)
+   * print(node.position) # Prints (42.0, -10.0)
+   * ```
+   * csharp:
+   * ```csharp
+   * var node = new Node2D();
+   * node.SetIndexed("position", new Vector2(42, 0));
+   * node.SetIndexed("position:y", -10);
+   * GD.Print(node.Position); // Prints (42, -10)
+   * ```
+   *
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot
+   * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
+   * [StringName] on each call.
+   */
+  public final fun setIndexed(propertyPath: String, `value`: Any?) =
+      setIndexed(propertyPath.asCachedNodePath(), value)
+
+  /**
+   * Gets the object's property indexed by the given [propertyPath]. The path should be a [NodePath]
+   * relative to the current object and can use the colon character (`:`) to access nested properties.
+   * **Examples:** `"position:x"` or `"material:next_pass:blend_mode"`.
+   *
+   * gdscript:
+   * ```gdscript
+   * var node = Node2D.new()
+   * node.position = Vector2(5, -10)
+   * var a = node.get_indexed("position")   # a is Vector2(5, -10)
+   * var b = node.get_indexed("position:y") # b is -10
+   * ```
+   * csharp:
+   * ```csharp
+   * var node = new Node2D();
+   * node.Position = new Vector2(5, -10);
+   * var a = node.GetIndexed("position");   // a is Vector2(5, -10)
+   * var b = node.GetIndexed("position:y"); // b is -10
+   * ```
+   *
+   * **Note:** In C#, [propertyPath] must be in snake_case when referring to built-in Godot
+   * properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new
+   * [StringName] on each call.
+   * **Note:** This method does not support actual paths to nodes in the [SceneTree], only
+   * sub-property paths. In the context of nodes, use [Node.getNodeAndResource] instead.
+   */
+  public final fun getIndexed(propertyPath: String): Any? =
+      getIndexed(propertyPath.asCachedNodePath())
 
   /**
    * Returns `true` if the given [property] has a custom default value. Use [propertyGetRevert] to

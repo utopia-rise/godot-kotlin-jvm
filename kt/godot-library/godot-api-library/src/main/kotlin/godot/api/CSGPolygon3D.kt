@@ -19,11 +19,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -415,6 +417,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setPathNode(path: String) = setPathNode(path.asCachedNodePath())
 
   public enum class Mode(
     id: Long,

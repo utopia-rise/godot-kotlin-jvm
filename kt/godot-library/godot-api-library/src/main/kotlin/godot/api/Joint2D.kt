@@ -17,10 +17,12 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -130,6 +132,10 @@ public open class Joint2D internal constructor() : Node2D() {
     TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
+
+  public final fun setNodeA(node: String) = setNodeA(node.asCachedNodePath())
+
+  public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
   public companion object
 

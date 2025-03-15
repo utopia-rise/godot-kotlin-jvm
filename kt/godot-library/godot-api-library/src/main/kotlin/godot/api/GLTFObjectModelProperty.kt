@@ -22,6 +22,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantType
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
@@ -255,12 +256,20 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   /**
+   * Appends a [NodePath] to [nodePaths]. This can be used by [GLTFDocumentExtension] classes to
+   * define how a glTF object model property maps to a Godot property, or multiple Godot properties.
+   * Prefer using [appendPathToProperty] for simple cases. Be sure to also call [setTypes] once (the
+   * order does not matter).
+   */
+  public final fun appendNodePath(nodePath: String) = appendNodePath(nodePath.asCachedNodePath())
+
+  /**
    * High-level wrapper over [appendNodePath] that handles the most common cases. It constructs a
    * new [NodePath] using [nodePath] as a base and appends [propName] to the subpath. Be sure to also
    * call [setTypes] once (the order does not matter).
    */
-  public final fun appendPathToProperty(nodePath: NodePath, propName: String) =
-      appendPathToProperty(nodePath, propName.asCachedStringName())
+  public final fun appendPathToProperty(nodePath: String, propName: String) =
+      appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
 
   public enum class GLTFObjectModelType(
     id: Long,

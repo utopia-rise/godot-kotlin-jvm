@@ -20,11 +20,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -399,6 +401,15 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     TransferContext.callMethod(ptr, MethodBindings.getJiggleJointGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
+
+  public final fun setTargetNode(targetNodepath: String) =
+      setTargetNode(targetNodepath.asCachedNodePath())
+
+  /**
+   * Sets the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
+   */
+  public final fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: String) =
+      setJiggleJointBone2dNode(jointIdx, bone2dNode.asCachedNodePath())
 
   public companion object
 

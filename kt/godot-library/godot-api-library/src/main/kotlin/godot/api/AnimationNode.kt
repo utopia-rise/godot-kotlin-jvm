@@ -26,6 +26,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
@@ -354,6 +355,17 @@ public open class AnimationNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
+
+  /**
+   * Adds or removes a path for the filter.
+   */
+  public final fun setFilterPath(path: String, enable: Boolean) =
+      setFilterPath(path.asCachedNodePath(), enable)
+
+  /**
+   * Returns `true` if the given path is filtered.
+   */
+  public final fun isPathFiltered(path: String): Boolean = isPathFiltered(path.asCachedNodePath())
 
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A

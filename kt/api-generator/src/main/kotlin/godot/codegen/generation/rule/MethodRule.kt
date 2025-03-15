@@ -231,7 +231,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
         if (method.isVirtual) {
             return null
         }
-        if (method.arguments.none { it.type == GodotTypes.stringName }) {
+        if (method.arguments.none { it.type == GodotTypes.stringName || it.type == GodotTypes.nodePath }) {
             return null
         }
 
@@ -246,7 +246,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
     ) {
         method.arguments.withIndex().forEach {
             val index = it.index
-            val parameterBuilder = if (it.value.type == GodotTypes.stringName) {
+            val parameterBuilder = if (it.value.type == GodotTypes.stringName || it.value.type == GodotTypes.nodePath) {
                 ParameterSpec.builder(
                     method.arguments[index].name,
                     STRING
@@ -287,6 +287,9 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
                 if (argument.type == GodotTypes.stringName) {
                     clazz.additionalImports.add(AdditionalImport(godotCorePackage, "asCachedStringName"))
                     append(".asCachedStringName()")
+                } else if (argument.type == GodotTypes.nodePath) {
+                    clazz.additionalImports.add(AdditionalImport(godotCorePackage, "asCachedNodePath"))
+                    append(".asCachedNodePath()")
                 }
             }
             if (method.isVararg && isNotEmpty()) append(",·")
@@ -299,7 +302,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
 
 class OverLoadRule : GodotApiRule<EnrichedMethodTask>() {
     override fun apply(task: EnrichedMethodTask, context: Context) = task.configure {
-        if (task.method.arguments.none {it.defaultValue != null && it.type != GodotTypes.stringName}) {
+        if (task.method.arguments.none { it.defaultValue != null && it.type != GodotTypes.stringName && it.type != GodotTypes.nodePath }) {
             return
         }
         // add @JvmOverloads annotation for java support if not already present

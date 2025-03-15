@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -156,6 +157,13 @@ public open class BoneAttachment3D : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
+
+  /**
+   * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
+   * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
+   */
+  public final fun setExternalSkeleton(externalSkeleton: String) =
+      setExternalSkeleton(externalSkeleton.asCachedNodePath())
 
   public companion object
 
