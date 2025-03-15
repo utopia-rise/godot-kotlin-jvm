@@ -2301,12 +2301,11 @@ public open class Node : Object() {
     public infix fun ushr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag ushr bits)
 
     public companion object {
-      public val FLAG_PROCESS_THREAD_MESSAGES: ProcessThreadMessages = ProcessThreadMessages(1)
+      public val FLAG: ProcessThreadMessages = ProcessThreadMessages(1)
 
-      public val FLAG_PROCESS_THREAD_MESSAGES_PHYSICS: ProcessThreadMessages =
-          ProcessThreadMessages(2)
+      public val FLAG_PHYSICS: ProcessThreadMessages = ProcessThreadMessages(2)
 
-      public val FLAG_PROCESS_THREAD_MESSAGES_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
+      public val FLAG_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
     }
   }
 

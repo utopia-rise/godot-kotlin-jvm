@@ -49,7 +49,7 @@ public value class KeyModifierMask(
   public infix fun ushr(bits: Int): KeyModifierMask = KeyModifierMask(flag ushr bits)
 
   public companion object {
-    public val CODE_MASK: KeyModifierMask = KeyModifierMask(8388607)
+    public val CODE: KeyModifierMask = KeyModifierMask(8388607)
 
     public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMask(2130706432)
 

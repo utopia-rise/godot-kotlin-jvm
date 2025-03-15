@@ -3309,25 +3309,25 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBits(flag ushr bits)
 
     public companion object {
-      public val SAMPLING_BIT: TextureUsageBits = TextureUsageBits(1)
+      public val SAMPLING: TextureUsageBits = TextureUsageBits(1)
 
-      public val COLOR_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(2)
+      public val COLOR_ATTACHMENT: TextureUsageBits = TextureUsageBits(2)
 
-      public val DEPTH_STENCIL_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(4)
+      public val DEPTH_STENCIL_ATTACHMENT: TextureUsageBits = TextureUsageBits(4)
 
-      public val STORAGE_BIT: TextureUsageBits = TextureUsageBits(8)
+      public val STORAGE: TextureUsageBits = TextureUsageBits(8)
 
-      public val STORAGE_ATOMIC_BIT: TextureUsageBits = TextureUsageBits(16)
+      public val STORAGE_ATOMIC: TextureUsageBits = TextureUsageBits(16)
 
-      public val CPU_READ_BIT: TextureUsageBits = TextureUsageBits(32)
+      public val CPU_READ: TextureUsageBits = TextureUsageBits(32)
 
-      public val CAN_UPDATE_BIT: TextureUsageBits = TextureUsageBits(64)
+      public val CAN_UPDATE: TextureUsageBits = TextureUsageBits(64)
 
-      public val CAN_COPY_FROM_BIT: TextureUsageBits = TextureUsageBits(128)
+      public val CAN_COPY_FROM: TextureUsageBits = TextureUsageBits(128)
 
-      public val CAN_COPY_TO_BIT: TextureUsageBits = TextureUsageBits(256)
+      public val CAN_COPY_TO: TextureUsageBits = TextureUsageBits(256)
 
-      public val INPUT_ATTACHMENT_BIT: TextureUsageBits = TextureUsageBits(512)
+      public val INPUT_ATTACHMENT: TextureUsageBits = TextureUsageBits(512)
     }
   }
 
@@ -3642,9 +3642,9 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBits(flag ushr bits)
 
     public companion object {
-      public val DEVICE_ADDRESS_BIT: BufferCreationBits = BufferCreationBits(1)
+      public val DEVICE_ADDRESS: BufferCreationBits = BufferCreationBits(1)
 
-      public val AS_STORAGE_BIT: BufferCreationBits = BufferCreationBits(2)
+      public val AS_STORAGE: BufferCreationBits = BufferCreationBits(2)
     }
   }
 
@@ -3967,7 +3967,7 @@ public open class RenderingDevice internal constructor() : Object() {
     /**
      * No-op logic operation (keeps the *destination* value as-is). See also [LOGIC_OP_COPY].
      */
-    NO_OP(5),
+    NO(5),
     /**
      * Exclusive or (XOR) logic operation.
      */

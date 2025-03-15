@@ -48,7 +48,7 @@ public enum class Error(
   /**
    * Parameter range error.
    */
-  PARAMETER_RANGE_ERROR(5),
+  PARAMETER_RANGE(5),
   /**
    * Out of memory (OOM) error.
    */
@@ -136,7 +136,7 @@ public enum class Error(
   /**
    * Connection error.
    */
-  CONNECTION_ERROR(27),
+  CONNECTION(27),
   /**
    * Can't acquire resource error.
    */
@@ -200,7 +200,7 @@ public enum class Error(
   /**
    * Parse error.
    */
-  PARSE_ERROR(43),
+  PARSE(43),
   /**
    * Busy error.
    */
