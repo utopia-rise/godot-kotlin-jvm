@@ -126,7 +126,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * }
    * ```
    */
-  public final fun wait(): Error {
+  public final fun waitFor(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.waitPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)

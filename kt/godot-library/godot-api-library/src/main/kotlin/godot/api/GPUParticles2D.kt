@@ -28,11 +28,13 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -787,6 +789,8 @@ public open class GPUParticles2D : Node2D() {
     TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
 
   public enum class DrawOrder(
     id: Long,

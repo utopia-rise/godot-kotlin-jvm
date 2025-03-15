@@ -44,12 +44,14 @@ public open class SyntaxHighlighter : Resource() {
    * Virtual method which can be overridden to clear any local caches.
    */
   public open fun _clearHighlightingCache(): Unit {
+    throw NotImplementedError("_clearHighlightingCache is not implemented for SyntaxHighlighter")
   }
 
   /**
    * Virtual method which can be overridden to update any local caches.
    */
   public open fun _updateCache(): Unit {
+    throw NotImplementedError("_updateCache is not implemented for SyntaxHighlighter")
   }
 
   /**

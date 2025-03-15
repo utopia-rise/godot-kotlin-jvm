@@ -17,9 +17,11 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -152,6 +154,86 @@ public open class SceneReplicationConfig : Resource() {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.propertySetWatchPtr, NIL)
   }
+
+  /**
+   * Adds the property identified by the given [path] to the list of the properties being
+   * synchronized, optionally passing an [index].
+   * **Note:** For details on restrictions and limitations on property synchronization, see
+   * [MultiplayerSynchronizer].
+   */
+  @JvmOverloads
+  public final fun addProperty(path: String, index: Int = -1) =
+      addProperty(path.asCachedNodePath(), index)
+
+  /**
+   * Returns `true` if the given [path] is configured for synchronization.
+   */
+  public final fun hasProperty(path: String): Boolean = hasProperty(path.asCachedNodePath())
+
+  /**
+   * Removes the property identified by the given [path] from the configuration.
+   */
+  public final fun removeProperty(path: String) = removeProperty(path.asCachedNodePath())
+
+  /**
+   * Finds the index of the given [path].
+   */
+  public final fun propertyGetIndex(path: String): Int = propertyGetIndex(path.asCachedNodePath())
+
+  /**
+   * Returns `true` if the property identified by the given [path] is configured to be synchronized
+   * on spawn.
+   */
+  public final fun propertyGetSpawn(path: String): Boolean =
+      propertyGetSpawn(path.asCachedNodePath())
+
+  /**
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * spawn.
+   */
+  public final fun propertySetSpawn(path: String, enabled: Boolean) =
+      propertySetSpawn(path.asCachedNodePath(), enabled)
+
+  /**
+   * Returns the replication mode for the property identified by the given [path]. See
+   * [ReplicationMode].
+   */
+  public final fun propertyGetReplicationMode(path: String): ReplicationMode =
+      propertyGetReplicationMode(path.asCachedNodePath())
+
+  /**
+   * Sets the synchronization mode for the property identified by the given [path]. See
+   * [ReplicationMode].
+   */
+  public final fun propertySetReplicationMode(path: String, mode: ReplicationMode) =
+      propertySetReplicationMode(path.asCachedNodePath(), mode)
+
+  /**
+   * Returns `true` if the property identified by the given [path] is configured to be synchronized
+   * on process.
+   */
+  public final fun propertyGetSync(path: String): Boolean = propertyGetSync(path.asCachedNodePath())
+
+  /**
+   * Sets whether the property identified by the given [path] is configured to be synchronized on
+   * process.
+   */
+  public final fun propertySetSync(path: String, enabled: Boolean) =
+      propertySetSync(path.asCachedNodePath(), enabled)
+
+  /**
+   * Returns `true` if the property identified by the given [path] is configured to be reliably
+   * synchronized when changes are detected on process.
+   */
+  public final fun propertyGetWatch(path: String): Boolean =
+      propertyGetWatch(path.asCachedNodePath())
+
+  /**
+   * Sets whether the property identified by the given [path] is configured to be reliably
+   * synchronized when changes are detected on process.
+   */
+  public final fun propertySetWatch(path: String, enabled: Boolean) =
+      propertySetWatch(path.asCachedNodePath(), enabled)
 
   public enum class ReplicationMode(
     id: Long,

@@ -18,6 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -26,7 +27,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmOverloads
 
 /**
  * [TranslationDomain] is a self-contained collection of [Translation] resources. Translations can
@@ -210,7 +210,6 @@ public open class TranslationDomain : RefCounted() {
   /**
    * Returns the current locale's translation for the given message and context.
    */
-  @JvmOverloads
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
@@ -223,7 +222,6 @@ public open class TranslationDomain : RefCounted() {
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */
-  @JvmOverloads
   public final fun translatePlural(
     message: StringName,
     messagePlural: StringName,
@@ -344,6 +342,31 @@ public open class TranslationDomain : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.pseudolocalizePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Returns the current locale's translation for the given message and context.
+   */
+  public final fun translate(message: String, context: String): StringName =
+      translate(message.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Returns the current locale's translation for the given message, plural message and context.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
+   */
+  public final fun translatePlural(
+    message: String,
+    messagePlural: String,
+    n: Int,
+    context: String,
+  ): StringName =
+      translatePlural(message.asCachedStringName(), messagePlural.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Returns the pseudolocalized string based on the [message] passed in.
+   */
+  public final fun pseudolocalize(message: String): StringName =
+      pseudolocalize(message.asCachedStringName())
 
   public companion object
 

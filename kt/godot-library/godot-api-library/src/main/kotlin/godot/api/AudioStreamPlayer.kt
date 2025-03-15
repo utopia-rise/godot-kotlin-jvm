@@ -18,11 +18,13 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -365,6 +367,8 @@ public open class AudioStreamPlayer : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackTypePtr, LONG)
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public enum class MixTarget(
     id: Long,

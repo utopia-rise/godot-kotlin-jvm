@@ -20,6 +20,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import godot.core.asCachedNodePath
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -173,6 +174,8 @@ public open class MultiplayerSpawner : Node() {
     TransferContext.writeArguments(CALLABLE to spawnFunction)
     TransferContext.callMethod(ptr, MethodBindings.setSpawnFunctionPtr, NIL)
   }
+
+  public final fun setSpawnPath(path: String) = setSpawnPath(path.asCachedNodePath())
 
   public companion object
 

@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -24,7 +25,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmOverloads
 
 /**
  * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
@@ -83,7 +83,6 @@ public open class Translation : Resource() {
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
-  @JvmOverloads
   public final fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
@@ -98,7 +97,6 @@ public open class Translation : Resource() {
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
-  @JvmOverloads
   public final fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
@@ -111,7 +109,6 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation.
    */
-  @JvmOverloads
   public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
       StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
@@ -124,7 +121,6 @@ public open class Translation : Resource() {
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
    */
-  @JvmOverloads
   public final fun getPluralMessage(
     srcMessage: StringName,
     srcPluralMessage: StringName,
@@ -139,7 +135,6 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
-  @JvmOverloads
   public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
       Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
@@ -172,6 +167,55 @@ public open class Translation : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getMessageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  /**
+   * Adds a message if nonexistent, followed by its translation.
+   * An additional context could be used to specify the translation context or differentiate
+   * polysemic words.
+   */
+  public final fun addMessage(
+    srcMessage: String,
+    xlatedMessage: String,
+    context: String,
+  ) =
+      addMessage(srcMessage.asCachedStringName(), xlatedMessage.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Adds a message involving plural translation if nonexistent, followed by its translation.
+   * An additional context could be used to specify the translation context or differentiate
+   * polysemic words.
+   */
+  public final fun addPluralMessage(
+    srcMessage: String,
+    xlatedMessages: PackedStringArray,
+    context: String,
+  ) =
+      addPluralMessage(srcMessage.asCachedStringName(), xlatedMessages, context.asCachedStringName())
+
+  /**
+   * Returns a message's translation.
+   */
+  public final fun getMessage(srcMessage: String, context: String): StringName =
+      getMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
+
+  /**
+   * Returns a message's translation involving plurals.
+   * The number [n] is the number or quantity of the plural object. It will be used to guide the
+   * translation system to fetch the correct plural form for the selected language.
+   */
+  public final fun getPluralMessage(
+    srcMessage: String,
+    srcPluralMessage: String,
+    n: Int,
+    context: String,
+  ): StringName =
+      getPluralMessage(srcMessage.asCachedStringName(), srcPluralMessage.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Erases a message.
+   */
+  public final fun eraseMessage(srcMessage: String, context: String) =
+      eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
   public companion object
 

@@ -23,10 +23,12 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -279,9 +281,9 @@ public object ClassDB : Object() {
   public final fun classCallStatic(
     `class`: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Any? {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.classCallStaticPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -402,6 +404,263 @@ public object ClassDB : Object() {
     TransferContext.callMethod(ptr, MethodBindings.isClassEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns the names of all the classes that directly or indirectly inherit from [class].
+   */
+  @JvmStatic
+  public final fun getInheritersFromClass(`class`: String): PackedStringArray =
+      getInheritersFromClass(`class`.asCachedStringName())
+
+  /**
+   * Returns the parent class of [class].
+   */
+  @JvmStatic
+  public final fun getParentClass(`class`: String): StringName =
+      getParentClass(`class`.asCachedStringName())
+
+  /**
+   * Returns whether the specified [class] is available or not.
+   */
+  @JvmStatic
+  public final fun classExists(`class`: String): Boolean = classExists(`class`.asCachedStringName())
+
+  /**
+   * Returns whether [inherits] is an ancestor of [class] or not.
+   */
+  @JvmStatic
+  public final fun isParentClass(`class`: String, inherits: String): Boolean =
+      isParentClass(`class`.asCachedStringName(), inherits.asCachedStringName())
+
+  /**
+   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns
+   * `false`.
+   */
+  @JvmStatic
+  public final fun canInstantiate(`class`: String): Boolean =
+      canInstantiate(`class`.asCachedStringName())
+
+  /**
+   * Creates an instance of [class].
+   */
+  @JvmStatic
+  public final fun instantiate(`class`: String): Any? = instantiate(`class`.asCachedStringName())
+
+  /**
+   * Returns the API type of [class]. See [APIType].
+   */
+  @JvmStatic
+  public final fun classGetApiType(`class`: String): APIType =
+      classGetApiType(`class`.asCachedStringName())
+
+  /**
+   * Returns whether [class] or its ancestry has a signal called [signal] or not.
+   */
+  @JvmStatic
+  public final fun classHasSignal(`class`: String, signal: String): Boolean =
+      classHasSignal(`class`.asCachedStringName(), signal.asCachedStringName())
+
+  /**
+   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with
+   * the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint,
+   * hint_string, name, type, usage)`.
+   */
+  @JvmStatic
+  public final fun classGetSignal(`class`: String, signal: String): Dictionary<Any?, Any?> =
+      classGetSignal(`class`.asCachedStringName(), signal.asCachedStringName())
+
+  /**
+   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`.
+   * Every element of the array is a [Dictionary] as described in [classGetSignal].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetSignalList(`class`: String, noInheritance: Boolean = false):
+      VariantArray<Dictionary<Any?, Any?>> =
+      classGetSignalList(`class`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is
+   * `false`.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetPropertyList(`class`: String, noInheritance: Boolean = false):
+      VariantArray<Dictionary<Any?, Any?>> =
+      classGetPropertyList(`class`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns the getter method name of [property] of [class].
+   */
+  @JvmStatic
+  public final fun classGetPropertyGetter(`class`: String, `property`: String): StringName =
+      classGetPropertyGetter(`class`.asCachedStringName(), property.asCachedStringName())
+
+  /**
+   * Returns the setter method name of [property] of [class].
+   */
+  @JvmStatic
+  public final fun classGetPropertySetter(`class`: String, `property`: String): StringName =
+      classGetPropertySetter(`class`.asCachedStringName(), property.asCachedStringName())
+
+  /**
+   * Returns the value of [property] of [object] or its ancestry.
+   */
+  @JvmStatic
+  public final fun classGetProperty(`object`: Object?, `property`: String): Any? =
+      classGetProperty(`object`, property.asCachedStringName())
+
+  /**
+   * Sets [property] value of [object] to [value].
+   */
+  @JvmStatic
+  public final fun classSetProperty(
+    `object`: Object?,
+    `property`: String,
+    `value`: Any?,
+  ): Error = classSetProperty(`object`, property.asCachedStringName(), value)
+
+  /**
+   * Returns the default value of [property] of [class] or its ancestor classes.
+   */
+  @JvmStatic
+  public final fun classGetPropertyDefaultValue(`class`: String, `property`: String): Any? =
+      classGetPropertyDefaultValue(`class`.asCachedStringName(), property.asCachedStringName())
+
+  /**
+   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called
+   * [method] or not.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classHasMethod(
+    `class`: String,
+    method: String,
+    noInheritance: Boolean = false,
+  ): Boolean =
+      classHasMethod(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns the number of arguments of the method [method] of [class] or its ancestry if
+   * [noInheritance] is `false`.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetMethodArgumentCount(
+    `class`: String,
+    method: String,
+    noInheritance: Boolean = false,
+  ): Int =
+      classGetMethodArgumentCount(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`.
+   * Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`,
+   * `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * **Note:** In exported release builds the debug info is not available, so the returned
+   * dictionaries will contain only method names.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetMethodList(`class`: String, noInheritance: Boolean = false):
+      VariantArray<Dictionary<Any?, Any?>> =
+      classGetMethodList(`class`.asCachedStringName(), noInheritance)
+
+  /**
+   * Calls a static method on a class.
+   */
+  @JvmStatic
+  public final fun classCallStatic(
+    `class`: String,
+    method: String,
+    vararg args: Any?,
+  ): Any? = classCallStatic(`class`.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Returns an array with the names all the integer constants of [class] or its ancestry.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetIntegerConstantList(`class`: String, noInheritance: Boolean = false):
+      PackedStringArray = classGetIntegerConstantList(`class`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns whether [class] or its ancestry has an integer constant called [name] or not.
+   */
+  @JvmStatic
+  public final fun classHasIntegerConstant(`class`: String, name: String): Boolean =
+      classHasIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0
+   * when the constant could not be found.
+   */
+  @JvmStatic
+  public final fun classGetIntegerConstant(`class`: String, name: String): Long =
+      classGetIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns whether [class] or its ancestry has an enum called [name] or not.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classHasEnum(
+    `class`: String,
+    name: String,
+    noInheritance: Boolean = false,
+  ): Boolean = classHasEnum(`class`.asCachedStringName(), name.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns an array with all the enums of [class] or its ancestry.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetEnumList(`class`: String, noInheritance: Boolean = false):
+      PackedStringArray = classGetEnumList(`class`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns an array with all the keys in [enum] of [class] or its ancestry.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetEnumConstants(
+    `class`: String,
+    `enum`: String,
+    noInheritance: Boolean = false,
+  ): PackedStringArray =
+      classGetEnumConstants(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun classGetIntegerConstantEnum(
+    `class`: String,
+    name: String,
+    noInheritance: Boolean = false,
+  ): StringName =
+      classGetIntegerConstantEnum(`class`.asCachedStringName(), name.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum
+   * called [enum] that is a bitfield.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isClassEnumBitfield(
+    `class`: String,
+    `enum`: String,
+    noInheritance: Boolean = false,
+  ): Boolean =
+      isClassEnumBitfield(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
+
+  /**
+   * Returns whether this [class] is enabled or not.
+   */
+  @JvmStatic
+  public final fun isClassEnabled(`class`: String): Boolean =
+      isClassEnabled(`class`.asCachedStringName())
 
   public enum class APIType(
     id: Long,

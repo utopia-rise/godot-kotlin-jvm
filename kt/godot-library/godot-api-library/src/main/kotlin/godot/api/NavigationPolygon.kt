@@ -27,11 +27,13 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -544,6 +546,9 @@ public open class NavigationPolygon : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
+
+  public final fun setSourceGeometryGroupName(groupName: String) =
+      setSourceGeometryGroupName(groupName.asCachedStringName())
 
   public enum class SamplePartitionType(
     id: Long,

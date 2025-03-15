@@ -11,18 +11,20 @@ import godot.codegen.generation.rule.EnumRule
 import godot.codegen.generation.rule.FileRule
 import godot.codegen.generation.rule.HeaderCommentRule
 import godot.codegen.generation.rule.ImportRule
-import godot.codegen.generation.rule.MemberRules
+import godot.codegen.generation.rule.MemberRule
 import godot.codegen.generation.rule.MethodRule
 import godot.codegen.generation.rule.ObjectRule
+import godot.codegen.generation.rule.OverLoadRule
 import godot.codegen.generation.rule.PropertyRule
 import godot.codegen.generation.rule.RegistrationRule
 import godot.codegen.generation.rule.RuleSet
 import godot.codegen.generation.rule.SignalRule
 import godot.codegen.generation.rule.StaticRule
+import godot.codegen.generation.rule.StringOnlyRule
 import godot.codegen.generation.rule.WarningRule
 import godot.codegen.generation.rule.compile
 import godot.codegen.generation.task.ApiTask
-import godot.codegen.generation.task.ClassTask
+import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.generation.task.RegistrationTask
 import godot.codegen.repositories.IClassRepository
@@ -46,13 +48,16 @@ class ApiGenerationService(
             rule(::FileRule)
             subRules(FileTask::classes) {
                 rule(::ObjectRule)
-                rule(::MemberRules)
-                subRule(ClassTask::enums, ::EnumRule)
-                subRule(ClassTask::methods, ::MethodRule)
-                subRule(ClassTask::properties, ::PropertyRule)
-                subRule(ClassTask::signals, ::SignalRule)
-                subRule(ClassTask::constants, ::ConstantRule)
-                subRule(ClassTask::staticMethods, ::MethodRule)
+                rule(::MemberRule)
+                subRule(EnrichedClassTask::enums, ::EnumRule)
+                subRule(EnrichedClassTask::enrichedMethods, ::MethodRule)
+                subRule(EnrichedClassTask::enrichedProperties, ::PropertyRule)
+                subRule(EnrichedClassTask::signals, ::SignalRule)
+                subRule(EnrichedClassTask::constants, ::ConstantRule)
+                subRule(EnrichedClassTask::enrichedStaticMethods, ::MethodRule)
+                rule(::StringOnlyRule)
+                subRule(EnrichedClassTask::enrichedMethods, ::OverLoadRule)
+                subRule(EnrichedClassTask::enrichedStaticMethods, ::OverLoadRule)
                 rule(::BindingRule)
                 rule(::CoreTypeHelperRule)
             }

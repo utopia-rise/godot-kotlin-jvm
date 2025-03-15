@@ -20,9 +20,11 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -172,6 +174,16 @@ public open class LightmapGIData : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getLightTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
+
+  /**
+   * Adds an object that is considered baked within this [LightmapGIData].
+   */
+  public final fun addUser(
+    path: String,
+    uvScale: Rect2,
+    sliceIndex: Int,
+    subInstance: Int,
+  ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
 
   public enum class ShadowmaskMode(
     id: Long,

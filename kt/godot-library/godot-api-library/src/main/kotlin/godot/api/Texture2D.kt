@@ -86,6 +86,7 @@ public open class Texture2D : Texture() {
     modulate: Color,
     transpose: Boolean,
   ): Unit {
+    throw NotImplementedError("_draw is not implemented for Texture2D")
   }
 
   /**
@@ -102,6 +103,7 @@ public open class Texture2D : Texture() {
     modulate: Color,
     transpose: Boolean,
   ): Unit {
+    throw NotImplementedError("_drawRect is not implemented for Texture2D")
   }
 
   /**
@@ -119,6 +121,7 @@ public open class Texture2D : Texture() {
     transpose: Boolean,
     clipUv: Boolean,
   ): Unit {
+    throw NotImplementedError("_drawRectRegion is not implemented for Texture2D")
   }
 
   /**

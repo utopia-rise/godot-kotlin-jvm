@@ -10,17 +10,17 @@ import godot.codegen.extensions.isBitField
 import godot.codegen.extensions.isEnum
 import godot.codegen.extensions.isLocalCopyCoreTypes
 import godot.codegen.generation.Context
-import godot.codegen.generation.task.ClassTask
-import godot.codegen.generation.task.ConstantTask
-import godot.codegen.generation.task.PropertyTask
+import godot.codegen.generation.task.EnrichedClassTask
+import godot.codegen.generation.task.EnrichedConstantTask
+import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 
-class PropertyRule : GodotApiRule<PropertyTask>() {
-    override fun apply(task: PropertyTask, context: Context) = task.configure {
+class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
+    override fun apply(task: EnrichedPropertyTask, context: Context) = task.configure {
         val property = task.property
 
         if (!property.hasGetter && !property.hasSetter) return
@@ -127,10 +127,10 @@ class PropertyRule : GodotApiRule<PropertyTask>() {
     }
 }
 
-class CoreTypeHelperRule : GodotApiRule<ClassTask>() {
-    override fun apply(task: ClassTask, context: Context) = task.configure {
+class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
+    override fun apply(task: EnrichedClassTask, context: Context) = task.configure {
         val clazz = task.clazz
-        for (propertyTask in task.properties) {
+        for (propertyTask in task.enrichedProperties) {
             val property = propertyTask.property
             if (property.hasSetter && property.isLocalCopyCoreTypes()) {
                 addFunction(getHelper(clazz, property))
@@ -193,8 +193,8 @@ class CoreTypeHelperRule : GodotApiRule<ClassTask>() {
     }
 }
 
-class ConstantRule : GodotApiRule<ConstantTask>() {
-    override fun apply(task: ConstantTask, context: Context) = task.configure {
+class ConstantRule : GodotApiRule<EnrichedConstantTask>() {
+    override fun apply(task: EnrichedConstantTask, context: Context) = task.configure {
         val constant = task.constant
         addModifiers(KModifier.CONST, KModifier.FINAL)
         initializer("%L", constant.value)

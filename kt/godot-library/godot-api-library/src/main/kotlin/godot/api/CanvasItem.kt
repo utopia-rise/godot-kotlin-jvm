@@ -37,12 +37,14 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -358,6 +360,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Corresponds to the [NOTIFICATION_DRAW] notification in [Object.Notification].
    */
   public open fun _draw(): Unit {
+    throw NotImplementedError("_draw is not implemented for CanvasItem")
   }
 
   /**
@@ -1417,6 +1420,25 @@ public open class CanvasItem internal constructor() : Node() {
     TransferContext.callMethod(ptr, MethodBindings.getClipChildrenModePtr, LONG)
     return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  /**
+   * Set the value of a shader uniform for this instance only
+   * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
+   * uniform[/url]). See also [ShaderMaterial.setShaderParameter] to assign a uniform on all instances
+   * using the same [ShaderMaterial].
+   * **Note:** For a shader uniform to be assignable on a per-instance basis, it *must* be defined
+   * with `instance uniform ...` rather than `uniform ...` in the shader code.
+   * **Note:** [name] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   */
+  public final fun setInstanceShaderParameter(name: String, `value`: Any?) =
+      setInstanceShaderParameter(name.asCachedStringName(), value)
+
+  /**
+   * Get the value of a shader parameter as set on this instance.
+   */
+  public final fun getInstanceShaderParameter(name: String): Any? =
+      getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class TextureFilter(
     id: Long,

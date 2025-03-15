@@ -19,6 +19,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -169,6 +170,7 @@ public open class Range : Control() {
    * value_changed]).
    */
   public open fun _valueChanged(newValue: Double): Unit {
+    throw NotImplementedError("_valueChanged is not implemented for Range")
   }
 
   public final fun getValue(): Double {

@@ -344,6 +344,7 @@ public open class CodeEdit : TextEdit() {
    * `true`, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
+    throw NotImplementedError("_confirmCodeCompletion is not implemented for CodeEdit")
   }
 
   /**
@@ -351,6 +352,7 @@ public open class CodeEdit : TextEdit() {
    * is `true`, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
+    throw NotImplementedError("_requestCodeCompletion is not implemented for CodeEdit")
   }
 
   /**

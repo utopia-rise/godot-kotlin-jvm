@@ -30,6 +30,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -400,6 +401,18 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(ptr, MethodBindings.getShadowMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
+
+  /**
+   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
+   * before surface is added.
+   */
+  public final fun addBlendShape(name: String) = addBlendShape(name.asCachedStringName())
+
+  /**
+   * Sets the name of the blend shape at this index.
+   */
+  public final fun setBlendShapeName(index: Int, name: String) =
+      setBlendShapeName(index, name.asCachedStringName())
 
   public companion object
 

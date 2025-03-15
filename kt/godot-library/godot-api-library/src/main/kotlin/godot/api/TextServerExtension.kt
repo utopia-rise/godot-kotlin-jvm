@@ -70,6 +70,7 @@ public open class TextServerExtension : TextServer() {
    * Frees an object created by this [TextServer].
    */
   public open fun _freeRid(rid: RID): Unit {
+    throw NotImplementedError("_freeRid is not implemented for TextServerExtension")
   }
 
   /**
@@ -165,6 +166,7 @@ public open class TextServerExtension : TextServer() {
    * Sets font source data, e.g contents of the dynamic font source file.
    */
   public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
+    throw NotImplementedError("_fontSetData is not implemented for TextServerExtension")
   }
 
   /**
@@ -172,6 +174,7 @@ public open class TextServerExtension : TextServer() {
    * Sets an active face index in the TrueType / OpenType collection.
    */
   public open fun _fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
+    throw NotImplementedError("_fontSetFaceIndex is not implemented for TextServerExtension")
   }
 
   /**
@@ -195,6 +198,7 @@ public open class TextServerExtension : TextServer() {
    * Sets the font style flags, see [TextServer.FontStyle].
    */
   public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle): Unit {
+    throw NotImplementedError("_fontSetStyle is not implemented for TextServerExtension")
   }
 
   /**
@@ -210,6 +214,7 @@ public open class TextServerExtension : TextServer() {
    * Sets the font family name.
    */
   public open fun _fontSetName(fontRid: RID, name: String): Unit {
+    throw NotImplementedError("_fontSetName is not implemented for TextServerExtension")
   }
 
   /**
@@ -234,6 +239,7 @@ public open class TextServerExtension : TextServer() {
    * Sets the font style name.
    */
   public open fun _fontSetStyleName(fontRid: RID, nameStyle: String): Unit {
+    throw NotImplementedError("_fontSetStyleName is not implemented for TextServerExtension")
   }
 
   /**
@@ -250,6 +256,7 @@ public open class TextServerExtension : TextServer() {
    * `400`, bold font weight is `700`.
    */
   public open fun _fontSetWeight(fontRid: RID, weight: Long): Unit {
+    throw NotImplementedError("_fontSetWeight is not implemented for TextServerExtension")
   }
 
   /**
@@ -267,6 +274,7 @@ public open class TextServerExtension : TextServer() {
    * `200&#37;`.
    */
   public open fun _fontSetStretch(fontRid: RID, stretch: Long): Unit {
+    throw NotImplementedError("_fontSetStretch is not implemented for TextServerExtension")
   }
 
   /**
@@ -284,6 +292,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing):
       Unit {
+    throw NotImplementedError("_fontSetAntialiasing is not implemented for TextServerExtension")
   }
 
   /**
@@ -300,6 +309,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean):
       Unit {
+    throw NotImplementedError("_fontSetDisableEmbeddedBitmaps is not implemented for TextServerExtension")
   }
 
   /**
@@ -315,6 +325,7 @@ public open class TextServerExtension : TextServer() {
    * If set to `true` font texture mipmap generation is enabled.
    */
   public open fun _fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
+    throw NotImplementedError("_fontSetGenerateMipmaps is not implemented for TextServerExtension")
   }
 
   /**
@@ -335,6 +346,7 @@ public open class TextServerExtension : TextServer() {
    * small sizes.
    */
   public open fun _fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
+    throw NotImplementedError("_fontSetMultichannelSignedDistanceField is not implemented for TextServerExtension")
   }
 
   /**
@@ -352,6 +364,7 @@ public open class TextServerExtension : TextServer() {
    * signed distance.
    */
   public open fun _fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
+    throw NotImplementedError("_fontSetMsdfPixelRange is not implemented for TextServerExtension")
   }
 
   /**
@@ -368,6 +381,7 @@ public open class TextServerExtension : TextServer() {
    * Sets source font size used to generate MSDF textures.
    */
   public open fun _fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
+    throw NotImplementedError("_fontSetMsdfSize is not implemented for TextServerExtension")
   }
 
   /**
@@ -384,6 +398,7 @@ public open class TextServerExtension : TextServer() {
    * for all font sizes.
    */
   public open fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
+    throw NotImplementedError("_fontSetFixedSize is not implemented for TextServerExtension")
   }
 
   /**
@@ -400,6 +415,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetFixedSizeScaleMode(fontRid: RID,
       fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+    throw NotImplementedError("_fontSetFixedSizeScaleMode is not implemented for TextServerExtension")
   }
 
   /**
@@ -415,6 +431,7 @@ public open class TextServerExtension : TextServer() {
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
   public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+    throw NotImplementedError("_fontSetAllowSystemFallback is not implemented for TextServerExtension")
   }
 
   /**
@@ -430,6 +447,7 @@ public open class TextServerExtension : TextServer() {
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
   public open fun _fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
+    throw NotImplementedError("_fontSetForceAutohinter is not implemented for TextServerExtension")
   }
 
   /**
@@ -445,6 +463,7 @@ public open class TextServerExtension : TextServer() {
    * Sets font hinting mode. Used by dynamic fonts only.
    */
   public open fun _fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
+    throw NotImplementedError("_fontSetHinting is not implemented for TextServerExtension")
   }
 
   /**
@@ -461,6 +480,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetSubpixelPositioning(fontRid: RID,
       subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+    throw NotImplementedError("_fontSetSubpixelPositioning is not implemented for TextServerExtension")
   }
 
   /**
@@ -479,6 +499,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetKeepRoundingRemainders(fontRid: RID, keepRoundingRemainders: Boolean):
       Unit {
+    throw NotImplementedError("_fontSetKeepRoundingRemainders is not implemented for TextServerExtension")
   }
 
   /**
@@ -496,6 +517,7 @@ public open class TextServerExtension : TextServer() {
    * Negative values reduce the outline thickness.
    */
   public open fun _fontSetEmbolden(fontRid: RID, strength: Double): Unit {
+    throw NotImplementedError("_fontSetEmbolden is not implemented for TextServerExtension")
   }
 
   /**
@@ -516,6 +538,7 @@ public open class TextServerExtension : TextServer() {
     spacing: TextServer.SpacingType,
     `value`: Long,
   ): Unit {
+    throw NotImplementedError("_fontSetSpacing is not implemented for TextServerExtension")
   }
 
   /**
@@ -532,6 +555,7 @@ public open class TextServerExtension : TextServer() {
    * Sets extra baseline offset (as a fraction of font height).
    */
   public open fun _fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
+    throw NotImplementedError("_fontSetBaselineOffset is not implemented for TextServerExtension")
   }
 
   /**
@@ -548,6 +572,7 @@ public open class TextServerExtension : TextServer() {
    * rotating glyphs.
    */
   public open fun _fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
+    throw NotImplementedError("_fontSetTransform is not implemented for TextServerExtension")
   }
 
   /**
@@ -564,6 +589,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetVariationCoordinates(fontRid: RID,
       variationCoordinates: Dictionary<Any?, Any?>): Unit {
+    throw NotImplementedError("_fontSetVariationCoordinates is not implemented for TextServerExtension")
   }
 
   /**
@@ -580,6 +606,7 @@ public open class TextServerExtension : TextServer() {
    * by dynamic fonts only.
    */
   public open fun _fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
+    throw NotImplementedError("_fontSetOversampling is not implemented for TextServerExtension")
   }
 
   /**
@@ -605,6 +632,7 @@ public open class TextServerExtension : TextServer() {
    * Removes all font sizes from the cache entry.
    */
   public open fun _fontClearSizeCache(fontRid: RID): Unit {
+    throw NotImplementedError("_fontClearSizeCache is not implemented for TextServerExtension")
   }
 
   /**
@@ -612,6 +640,7 @@ public open class TextServerExtension : TextServer() {
    * Removes specified font size from the cache entry.
    */
   public open fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("_fontRemoveSizeCache is not implemented for TextServerExtension")
   }
 
   /**
@@ -623,6 +652,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     ascent: Double,
   ): Unit {
+    throw NotImplementedError("_fontSetAscent is not implemented for TextServerExtension")
   }
 
   /**
@@ -642,6 +672,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     descent: Double,
   ): Unit {
+    throw NotImplementedError("_fontSetDescent is not implemented for TextServerExtension")
   }
 
   /**
@@ -661,6 +692,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     underlinePosition: Double,
   ): Unit {
+    throw NotImplementedError("_fontSetUnderlinePosition is not implemented for TextServerExtension")
   }
 
   /**
@@ -680,6 +712,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     underlineThickness: Double,
   ): Unit {
+    throw NotImplementedError("_fontSetUnderlineThickness is not implemented for TextServerExtension")
   }
 
   /**
@@ -699,6 +732,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     scale: Double,
   ): Unit {
+    throw NotImplementedError("_fontSetScale is not implemented for TextServerExtension")
   }
 
   /**
@@ -722,6 +756,7 @@ public open class TextServerExtension : TextServer() {
    * Removes all textures from font cache entry.
    */
   public open fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("_fontClearTextures is not implemented for TextServerExtension")
   }
 
   /**
@@ -733,6 +768,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     textureIndex: Long,
   ): Unit {
+    throw NotImplementedError("_fontRemoveTexture is not implemented for TextServerExtension")
   }
 
   /**
@@ -745,6 +781,7 @@ public open class TextServerExtension : TextServer() {
     textureIndex: Long,
     image: Image?,
   ): Unit {
+    throw NotImplementedError("_fontSetTextureImage is not implemented for TextServerExtension")
   }
 
   /**
@@ -769,6 +806,7 @@ public open class TextServerExtension : TextServer() {
     textureIndex: Long,
     offset: PackedInt32Array,
   ): Unit {
+    throw NotImplementedError("_fontSetTextureOffsets is not implemented for TextServerExtension")
   }
 
   /**
@@ -796,6 +834,7 @@ public open class TextServerExtension : TextServer() {
    * Removes all rendered glyph information from the cache entry.
    */
   public open fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("_fontClearGlyphs is not implemented for TextServerExtension")
   }
 
   /**
@@ -807,6 +846,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long,
   ): Unit {
+    throw NotImplementedError("_fontRemoveGlyph is not implemented for TextServerExtension")
   }
 
   /**
@@ -831,6 +871,7 @@ public open class TextServerExtension : TextServer() {
     glyph: Long,
     advance: Vector2,
   ): Unit {
+    throw NotImplementedError("_fontSetGlyphAdvance is not implemented for TextServerExtension")
   }
 
   /**
@@ -855,6 +896,7 @@ public open class TextServerExtension : TextServer() {
     glyph: Long,
     offset: Vector2,
   ): Unit {
+    throw NotImplementedError("_fontSetGlyphOffset is not implemented for TextServerExtension")
   }
 
   /**
@@ -879,6 +921,7 @@ public open class TextServerExtension : TextServer() {
     glyph: Long,
     glSize: Vector2,
   ): Unit {
+    throw NotImplementedError("_fontSetGlyphSize is not implemented for TextServerExtension")
   }
 
   /**
@@ -903,6 +946,7 @@ public open class TextServerExtension : TextServer() {
     glyph: Long,
     uvRect: Rect2,
   ): Unit {
+    throw NotImplementedError("_fontSetGlyphUvRect is not implemented for TextServerExtension")
   }
 
   /**
@@ -927,6 +971,7 @@ public open class TextServerExtension : TextServer() {
     glyph: Long,
     textureIdx: Long,
   ): Unit {
+    throw NotImplementedError("_fontSetGlyphTextureIdx is not implemented for TextServerExtension")
   }
 
   /**
@@ -978,6 +1023,7 @@ public open class TextServerExtension : TextServer() {
    * Removes all kerning overrides.
    */
   public open fun _fontClearKerningMap(fontRid: RID, size: Long): Unit {
+    throw NotImplementedError("_fontClearKerningMap is not implemented for TextServerExtension")
   }
 
   /**
@@ -989,6 +1035,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     glyphPair: Vector2i,
   ): Unit {
+    throw NotImplementedError("_fontRemoveKerning is not implemented for TextServerExtension")
   }
 
   /**
@@ -1001,6 +1048,7 @@ public open class TextServerExtension : TextServer() {
     glyphPair: Vector2i,
     kerning: Vector2,
   ): Unit {
+    throw NotImplementedError("_fontSetKerning is not implemented for TextServerExtension")
   }
 
   /**
@@ -1074,6 +1122,7 @@ public open class TextServerExtension : TextServer() {
     start: Long,
     end: Long,
   ): Unit {
+    throw NotImplementedError("_fontRenderRange is not implemented for TextServerExtension")
   }
 
   /**
@@ -1085,6 +1134,7 @@ public open class TextServerExtension : TextServer() {
     size: Vector2i,
     index: Long,
   ): Unit {
+    throw NotImplementedError("_fontRenderGlyph is not implemented for TextServerExtension")
   }
 
   /**
@@ -1099,6 +1149,7 @@ public open class TextServerExtension : TextServer() {
     index: Long,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_fontDrawGlyph is not implemented for TextServerExtension")
   }
 
   /**
@@ -1115,6 +1166,7 @@ public open class TextServerExtension : TextServer() {
     index: Long,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_fontDrawGlyphOutline is not implemented for TextServerExtension")
   }
 
   /**
@@ -1135,6 +1187,7 @@ public open class TextServerExtension : TextServer() {
     language: String,
     supported: Boolean,
   ): Unit {
+    throw NotImplementedError("_fontSetLanguageSupportOverride is not implemented for TextServerExtension")
   }
 
   /**
@@ -1150,6 +1203,7 @@ public open class TextServerExtension : TextServer() {
    * Remove language support override.
    */
   public open fun _fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
+    throw NotImplementedError("_fontRemoveLanguageSupportOverride is not implemented for TextServerExtension")
   }
 
   /**
@@ -1177,6 +1231,7 @@ public open class TextServerExtension : TextServer() {
     script: String,
     supported: Boolean,
   ): Unit {
+    throw NotImplementedError("_fontSetScriptSupportOverride is not implemented for TextServerExtension")
   }
 
   /**
@@ -1192,6 +1247,7 @@ public open class TextServerExtension : TextServer() {
    * Removes script support override.
    */
   public open fun _fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
+    throw NotImplementedError("_fontRemoveScriptSupportOverride is not implemented for TextServerExtension")
   }
 
   /**
@@ -1208,6 +1264,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
       Unit {
+    throw NotImplementedError("_fontSetOpentypeFeatureOverrides is not implemented for TextServerExtension")
   }
 
   /**
@@ -1247,6 +1304,7 @@ public open class TextServerExtension : TextServer() {
    * Sets oversampling factor, shared by all font in the TextServer.
    */
   public open fun _fontSetGlobalOversampling(oversampling: Double): Unit {
+    throw NotImplementedError("_fontSetGlobalOversampling is not implemented for TextServerExtension")
   }
 
   /**
@@ -1269,6 +1327,7 @@ public open class TextServerExtension : TextServer() {
     index: Long,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_drawHexCodeBox is not implemented for TextServerExtension")
   }
 
   /**
@@ -1285,6 +1344,7 @@ public open class TextServerExtension : TextServer() {
    * Clears text buffer (removes text and inline objects).
    */
   public open fun _shapedTextClear(shaped: RID): Unit {
+    throw NotImplementedError("_shapedTextClear is not implemented for TextServerExtension")
   }
 
   /**
@@ -1293,6 +1353,7 @@ public open class TextServerExtension : TextServer() {
    * based on the buffer contents and current locale.
    */
   public open fun _shapedTextSetDirection(shaped: RID, direction: TextServer.Direction): Unit {
+    throw NotImplementedError("_shapedTextSetDirection is not implemented for TextServerExtension")
   }
 
   /**
@@ -1316,6 +1377,7 @@ public open class TextServerExtension : TextServer() {
    * Overrides BiDi for the structured text.
    */
   public open fun _shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
+    throw NotImplementedError("_shapedTextSetBidiOverride is not implemented for TextServerExtension")
   }
 
   /**
@@ -1324,6 +1386,7 @@ public open class TextServerExtension : TextServer() {
    * defaults are used.
    */
   public open fun _shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
+    throw NotImplementedError("_shapedTextSetCustomPunctuation is not implemented for TextServerExtension")
   }
 
   /**
@@ -1340,6 +1403,7 @@ public open class TextServerExtension : TextServer() {
    * Sets ellipsis character used for text clipping.
    */
   public open fun _shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
+    throw NotImplementedError("_shapedTextSetCustomEllipsis is not implemented for TextServerExtension")
   }
 
   /**
@@ -1356,6 +1420,7 @@ public open class TextServerExtension : TextServer() {
    */
   public open fun _shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation):
       Unit {
+    throw NotImplementedError("_shapedTextSetOrientation is not implemented for TextServerExtension")
   }
 
   /**
@@ -1372,6 +1437,7 @@ public open class TextServerExtension : TextServer() {
    * nothing is displayed.
    */
   public open fun _shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
+    throw NotImplementedError("_shapedTextSetPreserveInvalid is not implemented for TextServerExtension")
   }
 
   /**
@@ -1388,6 +1454,7 @@ public open class TextServerExtension : TextServer() {
    * If set to `true` text buffer will display control characters.
    */
   public open fun _shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
+    throw NotImplementedError("_shapedTextSetPreserveControl is not implemented for TextServerExtension")
   }
 
   /**
@@ -1407,6 +1474,7 @@ public open class TextServerExtension : TextServer() {
     spacing: TextServer.SpacingType,
     `value`: Long,
   ): Unit {
+    throw NotImplementedError("_shapedTextSetSpacing is not implemented for TextServerExtension")
   }
 
   /**
@@ -1498,6 +1566,7 @@ public open class TextServerExtension : TextServer() {
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?>,
   ): Unit {
+    throw NotImplementedError("_shapedSetSpanUpdateFont is not implemented for TextServerExtension")
   }
 
   /**
@@ -1664,6 +1733,7 @@ public open class TextServerExtension : TextServer() {
     width: Double,
     trimFlags: TextServer.TextOverrunFlag,
   ): Unit {
+    throw NotImplementedError("_shapedTextOverrunTrimToWidth is not implemented for TextServerExtension")
   }
 
   /**
@@ -1803,6 +1873,7 @@ public open class TextServerExtension : TextServer() {
     clipR: Double,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_shapedTextDraw is not implemented for TextServerExtension")
   }
 
   /**
@@ -1820,6 +1891,7 @@ public open class TextServerExtension : TextServer() {
     outlineSize: Long,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_shapedTextDrawOutline is not implemented for TextServerExtension")
   }
 
   /**
@@ -2002,6 +2074,7 @@ public open class TextServerExtension : TextServer() {
    * This method is called before text server is unregistered.
    */
   public open fun _cleanup(): Unit {
+    throw NotImplementedError("_cleanup is not implemented for TextServerExtension")
   }
 
   public companion object

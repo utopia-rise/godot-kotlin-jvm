@@ -23,11 +23,13 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -409,6 +411,21 @@ public open class SoftBody3D : MeshInstance3D() {
     TransferContext.callMethod(ptr, MethodBindings.isRayPickablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setParentCollisionIgnore(parentCollisionIgnore: String) =
+      setParentCollisionIgnore(parentCollisionIgnore.asCachedNodePath())
+
+  /**
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
+   * can define a [Node3D] the pinned vertex will be attached to.
+   */
+  @JvmOverloads
+  public final fun setPointPinned(
+    pointIndex: Int,
+    pinned: Boolean,
+    attachmentPath: String,
+    insertAt: Int = -1,
+  ) = setPointPinned(pointIndex, pinned, attachmentPath.asCachedNodePath(), insertAt)
 
   public enum class DisableMode(
     id: Long,

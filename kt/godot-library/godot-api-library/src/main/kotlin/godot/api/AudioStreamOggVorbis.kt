@@ -189,6 +189,12 @@ public open class AudioStreamOggVorbis : AudioStream() {
   }
 
   public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354904730)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797568536)
+
     internal val setPacketSequencePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence", 438882457)
 
@@ -224,11 +230,5 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
     internal val getBarBeatsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3905245786)
-
-    internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354904730)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797568536)
   }
 }

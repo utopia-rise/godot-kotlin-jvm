@@ -24,10 +24,12 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -219,6 +221,22 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
+  /**
+   * Sends an RPC to the target [peer]. The given [method] will be called on the remote [object]
+   * with the provided [arguments]. The RPC may also be called locally depending on the implementation
+   * and RPC configuration. See [Node.rpc] and [Node.rpcConfig].
+   * **Note:** Prefer using [Node.rpc], [Node.rpcId], or `my_method.rpc(peer, arg1, arg2, ...)` (in
+   * GDScript), since they are faster. This method is mostly useful in conjunction with
+   * [MultiplayerAPIExtension] when extending or replacing the multiplayer capabilities.
+   */
+  @JvmOverloads
+  public final fun rpc(
+    peer: Int,
+    `object`: Object?,
+    method: String,
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
+  ): Error = rpc(peer, `object`, method.asCachedStringName(), arguments)
+
   public enum class RPCMode(
     id: Long,
   ) {
@@ -282,6 +300,14 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
       TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
     }
+
+    /**
+     * Sets the default MultiplayerAPI implementation class. This method can be used by modules and
+     * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
+     */
+    @JvmStatic
+    public final fun setDefaultInterface(interfaceName: String) =
+        setDefaultInterface(interfaceName.asCachedStringName())
   }
 
   public object MethodBindings {

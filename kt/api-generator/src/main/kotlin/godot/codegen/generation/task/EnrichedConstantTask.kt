@@ -4,9 +4,9 @@ import com.squareup.kotlinpoet.PropertySpec
 import godot.codegen.extensions.getTypeName
 import godot.codegen.models.enriched.EnrichedConstant
 
-class ConstantTask(
+class EnrichedConstantTask(
     val constant: EnrichedConstant
-) : GenerationTask<PropertySpec.Builder, PropertySpec>() {
+) : PropertyTask() {
 
     override val generator = PropertySpec.builder(constant.name, constant.getTypeName())
 
