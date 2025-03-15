@@ -711,11 +711,11 @@ public open class Tween : RefCounted() {
     /**
      * The [Tween] updates after each physics frame (see [Node.PhysicsProcess]).
      */
-    PHYSICS(0),
+    TWEEN_PROCESS_PHYSICS(0),
     /**
      * The [Tween] updates after each process frame (see [Node.Process]).
      */
-    IDLE(1),
+    TWEEN_PROCESS_IDLE(1),
     ;
 
     public val id: Long
@@ -735,15 +735,15 @@ public open class Tween : RefCounted() {
      * If the [Tween] has a bound node, it will process when that node can process (see
      * [Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
      */
-    BOUND(0),
+    TWEEN_PAUSE_BOUND(0),
     /**
      * If [SceneTree] is paused, the [Tween] will also pause.
      */
-    STOP(1),
+    TWEEN_PAUSE_STOP(1),
     /**
      * The [Tween] will process regardless of whether [SceneTree] is paused.
      */
-    PROCESS(2),
+    TWEEN_PAUSE_PROCESS(2),
     ;
 
     public val id: Long
@@ -762,51 +762,51 @@ public open class Tween : RefCounted() {
     /**
      * The animation is interpolated linearly.
      */
-    LINEAR(0),
+    TRANS_LINEAR(0),
     /**
      * The animation is interpolated using a sine function.
      */
-    SINE(1),
+    TRANS_SINE(1),
     /**
      * The animation is interpolated with a quintic (to the power of 5) function.
      */
-    QUINT(2),
+    TRANS_QUINT(2),
     /**
      * The animation is interpolated with a quartic (to the power of 4) function.
      */
-    QUART(3),
+    TRANS_QUART(3),
     /**
      * The animation is interpolated with a quadratic (to the power of 2) function.
      */
-    QUAD(4),
+    TRANS_QUAD(4),
     /**
      * The animation is interpolated with an exponential (to the power of x) function.
      */
-    EXPO(5),
+    TRANS_EXPO(5),
     /**
      * The animation is interpolated with elasticity, wiggling around the edges.
      */
-    ELASTIC(6),
+    TRANS_ELASTIC(6),
     /**
      * The animation is interpolated with a cubic (to the power of 3) function.
      */
-    CUBIC(7),
+    TRANS_CUBIC(7),
     /**
      * The animation is interpolated with a function using square roots.
      */
-    CIRC(8),
+    TRANS_CIRC(8),
     /**
      * The animation is interpolated by bouncing at the end.
      */
-    BOUNCE(9),
+    TRANS_BOUNCE(9),
     /**
      * The animation is interpolated backing out at ends.
      */
-    BACK(10),
+    TRANS_BACK(10),
     /**
      * The animation is interpolated like a spring towards the end.
      */
-    SPRING(11),
+    TRANS_SPRING(11),
     ;
 
     public val id: Long
@@ -825,19 +825,19 @@ public open class Tween : RefCounted() {
     /**
      * The interpolation starts slowly and speeds up towards the end.
      */
-    IN(0),
+    EASE_IN(0),
     /**
      * The interpolation starts quickly and slows down towards the end.
      */
-    OUT(1),
+    EASE_OUT(1),
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is slowest at both ends.
      */
-    IN_OUT(2),
+    EASE_IN_OUT(2),
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is fastest at both ends.
      */
-    OUT_IN(3),
+    EASE_OUT_IN(3),
     ;
 
     public val id: Long

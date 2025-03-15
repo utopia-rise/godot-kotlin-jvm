@@ -116,15 +116,15 @@ public open class HashingContext : RefCounted() {
     /**
      * Hashing algorithm: MD5.
      */
-    MD5(0),
+    HASH_MD5(0),
     /**
      * Hashing algorithm: SHA-1.
      */
-    SHA1(1),
+    HASH_SHA1(1),
     /**
      * Hashing algorithm: SHA-256.
      */
-    SHA256(2),
+    HASH_SHA256(2),
     ;
 
     public val id: Long

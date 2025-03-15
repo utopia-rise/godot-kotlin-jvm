@@ -211,16 +211,16 @@ public open class LinkButton : BaseButton() {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
-    ALWAYS(0),
+    UNDERLINE_MODE_ALWAYS(0),
     /**
      * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over
      * it.
      */
-    ON_HOVER(1),
+    UNDERLINE_MODE_ON_HOVER(1),
     /**
      * The LinkButton will never show an underline at the bottom of its text.
      */
-    NEVER(2),
+    UNDERLINE_MODE_NEVER(2),
     ;
 
     public val id: Long

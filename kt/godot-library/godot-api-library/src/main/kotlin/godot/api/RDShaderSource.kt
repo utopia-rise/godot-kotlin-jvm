@@ -33,10 +33,10 @@ public open class RDShaderSource : RefCounted() {
    */
   public final inline var sourceVertex: String
     @JvmName("sourceVertexProperty")
-    get() = getStageSource(RenderingDevice.ShaderStage.VERTEX)
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
     @JvmName("sourceVertexProperty")
     set(`value`) {
-      setStageSource(RenderingDevice.ShaderStage.VERTEX, value)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
     }
 
   /**
@@ -44,10 +44,10 @@ public open class RDShaderSource : RefCounted() {
    */
   public final inline var sourceFragment: String
     @JvmName("sourceFragmentProperty")
-    get() = getStageSource(RenderingDevice.ShaderStage.FRAGMENT)
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
     @JvmName("sourceFragmentProperty")
     set(`value`) {
-      setStageSource(RenderingDevice.ShaderStage.FRAGMENT, value)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
     }
 
   /**
@@ -55,10 +55,10 @@ public open class RDShaderSource : RefCounted() {
    */
   public final inline var sourceTesselationControl: String
     @JvmName("sourceTesselationControlProperty")
-    get() = getStageSource(RenderingDevice.ShaderStage.TESSELATION_CONTROL)
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
     @JvmName("sourceTesselationControlProperty")
     set(`value`) {
-      setStageSource(RenderingDevice.ShaderStage.TESSELATION_CONTROL, value)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
     }
 
   /**
@@ -66,10 +66,10 @@ public open class RDShaderSource : RefCounted() {
    */
   public final inline var sourceTesselationEvaluation: String
     @JvmName("sourceTesselationEvaluationProperty")
-    get() = getStageSource(RenderingDevice.ShaderStage.TESSELATION_EVALUATION)
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
     @JvmName("sourceTesselationEvaluationProperty")
     set(`value`) {
-      setStageSource(RenderingDevice.ShaderStage.TESSELATION_EVALUATION, value)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
     }
 
   /**
@@ -77,10 +77,10 @@ public open class RDShaderSource : RefCounted() {
    */
   public final inline var sourceCompute: String
     @JvmName("sourceComputeProperty")
-    get() = getStageSource(RenderingDevice.ShaderStage.COMPUTE)
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
     @JvmName("sourceComputeProperty")
     set(`value`) {
-      setStageSource(RenderingDevice.ShaderStage.COMPUTE, value)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
     }
 
   /**

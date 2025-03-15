@@ -28,13 +28,13 @@ public open class ResourceImporter internal constructor() : RefCounted() {
     /**
      * The default import order.
      */
-    DEFAULT(0),
+    IMPORT_ORDER_DEFAULT(0),
     /**
      * The import order for scenes, which ensures scenes are imported *after* all other core
      * resources such as textures. Custom importers should generally have an import order lower than
      * `100` to avoid issues when importing scenes that rely on custom resources.
      */
-    SCENE(100),
+    IMPORT_ORDER_SCENE(100),
     ;
 
     public val id: Long

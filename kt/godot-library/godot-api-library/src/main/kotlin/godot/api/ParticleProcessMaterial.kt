@@ -67,10 +67,11 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var particleFlagAlignY: Boolean
     @JvmName("particleFlagAlignYProperty")
-    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.ALIGN_Y_TO_VELOCITY)
+    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY)
     @JvmName("particleFlagAlignYProperty")
     set(`value`) {
-      setParticleFlag(ParticleProcessMaterial.ParticleFlags.ALIGN_Y_TO_VELOCITY, value)
+      setParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY,
+          value)
     }
 
   /**
@@ -78,10 +79,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var particleFlagRotateY: Boolean
     @JvmName("particleFlagRotateYProperty")
-    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.ROTATE_Y)
+    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_ROTATE_Y)
     @JvmName("particleFlagRotateYProperty")
     set(`value`) {
-      setParticleFlag(ParticleProcessMaterial.ParticleFlags.ROTATE_Y, value)
+      setParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_ROTATE_Y, value)
     }
 
   /**
@@ -89,10 +90,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var particleFlagDisableZ: Boolean
     @JvmName("particleFlagDisableZProperty")
-    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.DISABLE_Z)
+    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_DISABLE_Z)
     @JvmName("particleFlagDisableZProperty")
     set(`value`) {
-      setParticleFlag(ParticleProcessMaterial.ParticleFlags.DISABLE_Z, value)
+      setParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_DISABLE_Z, value)
     }
 
   /**
@@ -101,10 +102,11 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var particleFlagDampingAsFriction: Boolean
     @JvmName("particleFlagDampingAsFrictionProperty")
-    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.DAMPING_AS_FRICTION)
+    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_DAMPING_AS_FRICTION)
     @JvmName("particleFlagDampingAsFrictionProperty")
     set(`value`) {
-      setParticleFlag(ParticleProcessMaterial.ParticleFlags.DAMPING_AS_FRICTION, value)
+      setParticleFlag(ParticleProcessMaterial.ParticleFlags.PARTICLE_FLAG_DAMPING_AS_FRICTION,
+          value)
     }
 
   /**
@@ -286,10 +288,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var angle: Vector2
     @JvmName("angleProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.ANGLE)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_ANGLE)
     @JvmName("angleProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.ANGLE, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_ANGLE, value)
     }
 
   /**
@@ -297,10 +299,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angleMin: Float
     @JvmName("angleMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.ANGLE)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_ANGLE)
     @JvmName("angleMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.ANGLE, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_ANGLE, value)
     }
 
   /**
@@ -310,10 +312,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angleMax: Float
     @JvmName("angleMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.ANGLE)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_ANGLE)
     @JvmName("angleMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.ANGLE, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_ANGLE, value)
     }
 
   /**
@@ -321,10 +323,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angleCurve: Texture2D?
     @JvmName("angleCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.ANGLE)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANGLE)
     @JvmName("angleCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.ANGLE, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANGLE, value)
     }
 
   /**
@@ -388,10 +390,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var initialVelocity: Vector2
     @JvmName("initialVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -399,10 +401,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var initialVelocityMin: Float
     @JvmName("initialVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
     }
 
   /**
@@ -411,19 +413,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var initialVelocityMax: Float
     @JvmName("initialVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.INITIAL_LINEAR_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_INITIAL_LINEAR_VELOCITY, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector2
     @JvmName("angularVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -431,10 +433,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angularVelocityMin: Float
     @JvmName("angularVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -445,10 +447,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angularVelocityMax: Float
     @JvmName("angularVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY, value)
     }
 
   /**
@@ -457,19 +459,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var angularVelocityCurve: Texture2D?
     @JvmName("angularVelocityCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.ANGULAR_VELOCITY, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANGULAR_VELOCITY, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var directionalVelocity: Vector2
     @JvmName("directionalVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY)
     @JvmName("directionalVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY, value)
     }
 
   /**
@@ -479,10 +481,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var directionalVelocityMin: Float
     @JvmName("directionalVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY)
     @JvmName("directionalVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY, value)
     }
 
   /**
@@ -492,10 +494,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var directionalVelocityMax: Float
     @JvmName("directionalVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY)
     @JvmName("directionalVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY, value)
     }
 
   /**
@@ -506,19 +508,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var directionalVelocityCurve: Texture2D?
     @JvmName("directionalVelocityCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY)
     @JvmName("directionalVelocityCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.DIRECTIONAL_VELOCITY, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_DIRECTIONAL_VELOCITY, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var orbitVelocity: Vector2
     @JvmName("orbitVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY, value)
     }
 
   /**
@@ -528,10 +530,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var orbitVelocityMin: Float
     @JvmName("orbitVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY, value)
     }
 
   /**
@@ -542,10 +544,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var orbitVelocityMax: Float
     @JvmName("orbitVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY, value)
     }
 
   /**
@@ -556,19 +558,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var orbitVelocityCurve: Texture2D?
     @JvmName("orbitVelocityCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.ORBIT_VELOCITY, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_ORBIT_VELOCITY, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var radialVelocity: Vector2
     @JvmName("radialVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY)
     @JvmName("radialVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY, value)
     }
 
   /**
@@ -579,10 +581,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialVelocityMin: Float
     @JvmName("radialVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY)
     @JvmName("radialVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY, value)
     }
 
   /**
@@ -593,10 +595,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialVelocityMax: Float
     @JvmName("radialVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY)
     @JvmName("radialVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY, value)
     }
 
   /**
@@ -607,10 +609,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialVelocityCurve: Texture2D?
     @JvmName("radialVelocityCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY)
     @JvmName("radialVelocityCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.RADIAL_VELOCITY, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_RADIAL_VELOCITY, value)
     }
 
   /**
@@ -639,10 +641,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var linearAccel: Vector2
     @JvmName("linearAccelProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.LINEAR_ACCEL)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.LINEAR_ACCEL, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL, value)
     }
 
   /**
@@ -650,10 +652,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var linearAccelMin: Float
     @JvmName("linearAccelMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.LINEAR_ACCEL)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.LINEAR_ACCEL, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL, value)
     }
 
   /**
@@ -661,10 +663,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var linearAccelMax: Float
     @JvmName("linearAccelMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.LINEAR_ACCEL)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.LINEAR_ACCEL, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL, value)
     }
 
   /**
@@ -672,19 +674,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var linearAccelCurve: Texture2D?
     @JvmName("linearAccelCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.LINEAR_ACCEL)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.LINEAR_ACCEL, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_LINEAR_ACCEL, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var radialAccel: Vector2
     @JvmName("radialAccelProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.RADIAL_ACCEL)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.RADIAL_ACCEL, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL, value)
     }
 
   /**
@@ -692,10 +694,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialAccelMin: Float
     @JvmName("radialAccelMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.RADIAL_ACCEL)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.RADIAL_ACCEL, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL, value)
     }
 
   /**
@@ -704,10 +706,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialAccelMax: Float
     @JvmName("radialAccelMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.RADIAL_ACCEL)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.RADIAL_ACCEL, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL, value)
     }
 
   /**
@@ -715,19 +717,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var radialAccelCurve: Texture2D?
     @JvmName("radialAccelCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.RADIAL_ACCEL)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.RADIAL_ACCEL, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_RADIAL_ACCEL, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var tangentialAccel: Vector2
     @JvmName("tangentialAccelProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -735,10 +737,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var tangentialAccelMin: Float
     @JvmName("tangentialAccelMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -747,10 +749,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var tangentialAccelMax: Float
     @JvmName("tangentialAccelMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL, value)
     }
 
   /**
@@ -758,19 +760,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var tangentialAccelCurve: Texture2D?
     @JvmName("tangentialAccelCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.TANGENTIAL_ACCEL, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_TANGENTIAL_ACCEL, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var damping: Vector2
     @JvmName("dampingProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.DAMPING)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_DAMPING)
     @JvmName("dampingProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.DAMPING, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_DAMPING, value)
     }
 
   /**
@@ -778,10 +780,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var dampingMin: Float
     @JvmName("dampingMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.DAMPING)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_DAMPING)
     @JvmName("dampingMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.DAMPING, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_DAMPING, value)
     }
 
   /**
@@ -790,10 +792,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var dampingMax: Float
     @JvmName("dampingMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.DAMPING)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_DAMPING)
     @JvmName("dampingMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.DAMPING, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_DAMPING, value)
     }
 
   /**
@@ -801,10 +803,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var dampingCurve: Texture2D?
     @JvmName("dampingCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.DAMPING)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_DAMPING)
     @JvmName("dampingCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.DAMPING, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_DAMPING, value)
     }
 
   /**
@@ -822,10 +824,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
     @JvmName("scaleProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.SCALE)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_SCALE)
     @JvmName("scaleProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.SCALE, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_SCALE, value)
     }
 
   /**
@@ -833,10 +835,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleMin: Float
     @JvmName("scaleMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.SCALE)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_SCALE)
     @JvmName("scaleMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.SCALE, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_SCALE, value)
     }
 
   /**
@@ -844,10 +846,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleMax: Float
     @JvmName("scaleMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.SCALE)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_SCALE)
     @JvmName("scaleMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.SCALE, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_SCALE, value)
     }
 
   /**
@@ -856,19 +858,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleCurve: Texture2D?
     @JvmName("scaleCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.SCALE)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_SCALE)
     @JvmName("scaleCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.SCALE, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_SCALE, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var scaleOverVelocity: Vector2
     @JvmName("scaleOverVelocityProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY)
     @JvmName("scaleOverVelocityProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY, value)
     }
 
   /**
@@ -878,10 +880,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleOverVelocityMin: Float
     @JvmName("scaleOverVelocityMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY)
     @JvmName("scaleOverVelocityMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY, value)
     }
 
   /**
@@ -891,10 +893,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleOverVelocityMax: Float
     @JvmName("scaleOverVelocityMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY)
     @JvmName("scaleOverVelocityMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY, value)
     }
 
   /**
@@ -902,10 +904,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var scaleOverVelocityCurve: Texture2D?
     @JvmName("scaleOverVelocityCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY)
     @JvmName("scaleOverVelocityCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.SCALE_OVER_VELOCITY, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_SCALE_OVER_VELOCITY, value)
     }
 
   /**
@@ -991,10 +993,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var hueVariation: Vector2
     @JvmName("hueVariationProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.HUE_VARIATION)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.HUE_VARIATION, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION, value)
     }
 
   /**
@@ -1002,10 +1004,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var hueVariationMin: Float
     @JvmName("hueVariationMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.HUE_VARIATION)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.HUE_VARIATION, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION, value)
     }
 
   /**
@@ -1013,10 +1015,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var hueVariationMax: Float
     @JvmName("hueVariationMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.HUE_VARIATION)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.HUE_VARIATION, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION, value)
     }
 
   /**
@@ -1024,19 +1026,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var hueVariationCurve: Texture2D?
     @JvmName("hueVariationCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.HUE_VARIATION)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.HUE_VARIATION, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_HUE_VARIATION, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var animSpeed: Vector2
     @JvmName("animSpeedProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.ANIM_SPEED)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.ANIM_SPEED, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED, value)
     }
 
   /**
@@ -1044,10 +1046,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animSpeedMin: Float
     @JvmName("animSpeedMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.ANIM_SPEED)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.ANIM_SPEED, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED, value)
     }
 
   /**
@@ -1058,10 +1060,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animSpeedMax: Float
     @JvmName("animSpeedMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.ANIM_SPEED)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.ANIM_SPEED, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED, value)
     }
 
   /**
@@ -1069,19 +1071,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animSpeedCurve: Texture2D?
     @JvmName("animSpeedCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.ANIM_SPEED)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.ANIM_SPEED, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANIM_SPEED, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var animOffset: Vector2
     @JvmName("animOffsetProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.ANIM_OFFSET)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.ANIM_OFFSET, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET, value)
     }
 
   /**
@@ -1089,10 +1091,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animOffsetMin: Float
     @JvmName("animOffsetMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.ANIM_OFFSET)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.ANIM_OFFSET, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET, value)
     }
 
   /**
@@ -1101,10 +1103,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animOffsetMax: Float
     @JvmName("animOffsetMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.ANIM_OFFSET)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.ANIM_OFFSET, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET, value)
     }
 
   /**
@@ -1112,10 +1114,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var animOffsetCurve: Texture2D?
     @JvmName("animOffsetCurveProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.ANIM_OFFSET)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetCurveProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.ANIM_OFFSET, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_ANIM_OFFSET, value)
     }
 
   /**
@@ -1190,10 +1192,10 @@ public open class ParticleProcessMaterial : Material() {
   @CoreTypeLocalCopy
   public final inline var turbulenceInfluence: Vector2
     @JvmName("turbulenceInfluenceProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE)
     @JvmName("turbulenceInfluenceProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE, value)
     }
 
   /**
@@ -1204,10 +1206,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var turbulenceInfluenceMin: Float
     @JvmName("turbulenceInfluenceMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE)
     @JvmName("turbulenceInfluenceMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE, value)
     }
 
   /**
@@ -1218,19 +1220,19 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var turbulenceInfluenceMax: Float
     @JvmName("turbulenceInfluenceMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE)
     @JvmName("turbulenceInfluenceMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.TURB_VEL_INFLUENCE, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_TURB_VEL_INFLUENCE, value)
     }
 
   @CoreTypeLocalCopy
   public final inline var turbulenceInitialDisplacement: Vector2
     @JvmName("turbulenceInitialDisplacementProperty")
-    get() = getParam(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT)
+    get() = getParam(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT)
     @JvmName("turbulenceInitialDisplacementProperty")
     set(`value`) {
-      setParam(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT, value)
+      setParam(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT, value)
     }
 
   /**
@@ -1240,10 +1242,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var turbulenceInitialDisplacementMin: Float
     @JvmName("turbulenceInitialDisplacementMinProperty")
-    get() = getParamMin(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT)
+    get() = getParamMin(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT)
     @JvmName("turbulenceInitialDisplacementMinProperty")
     set(`value`) {
-      setParamMin(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT, value)
+      setParamMin(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT, value)
     }
 
   /**
@@ -1253,10 +1255,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var turbulenceInitialDisplacementMax: Float
     @JvmName("turbulenceInitialDisplacementMaxProperty")
-    get() = getParamMax(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT)
+    get() = getParamMax(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT)
     @JvmName("turbulenceInitialDisplacementMaxProperty")
     set(`value`) {
-      setParamMax(ParticleProcessMaterial.Parameter.TURB_INIT_DISPLACEMENT, value)
+      setParamMax(ParticleProcessMaterial.Parameter.PARAM_TURB_INIT_DISPLACEMENT, value)
     }
 
   /**
@@ -1265,10 +1267,10 @@ public open class ParticleProcessMaterial : Material() {
    */
   public final inline var turbulenceInfluenceOverLife: Texture2D?
     @JvmName("turbulenceInfluenceOverLifeProperty")
-    get() = getParamTexture(ParticleProcessMaterial.Parameter.TURB_INFLUENCE_OVER_LIFE)
+    get() = getParamTexture(ParticleProcessMaterial.Parameter.PARAM_TURB_INFLUENCE_OVER_LIFE)
     @JvmName("turbulenceInfluenceOverLifeProperty")
     set(`value`) {
-      setParamTexture(ParticleProcessMaterial.Parameter.TURB_INFLUENCE_OVER_LIFE, value)
+      setParamTexture(ParticleProcessMaterial.Parameter.PARAM_TURB_INFLUENCE_OVER_LIFE, value)
     }
 
   /**
@@ -2593,91 +2595,91 @@ public open class ParticleProcessMaterial : Material() {
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
      * properties.
      */
-    INITIAL_LINEAR_VELOCITY(0),
+    PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity
      * properties.
      */
-    ANGULAR_VELOCITY(1),
+    PARAM_ANGULAR_VELOCITY(1),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity
      * properties.
      */
-    ORBIT_VELOCITY(2),
+    PARAM_ORBIT_VELOCITY(2),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration
      * properties.
      */
-    LINEAR_ACCEL(3),
+    PARAM_LINEAR_ACCEL(3),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration
      * properties.
      */
-    RADIAL_ACCEL(4),
+    PARAM_RADIAL_ACCEL(4),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration
      * properties.
      */
-    TANGENTIAL_ACCEL(5),
+    PARAM_TANGENTIAL_ACCEL(5),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set damping properties.
      */
-    DAMPING(6),
+    PARAM_DAMPING(6),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angle properties.
      */
-    ANGLE(7),
+    PARAM_ANGLE(7),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale properties.
      */
-    SCALE(8),
+    PARAM_SCALE(8),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set hue variation properties.
      */
-    HUE_VARIATION(9),
+    PARAM_HUE_VARIATION(9),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed
      * properties.
      */
-    ANIM_SPEED(10),
+    PARAM_ANIM_SPEED(10),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset
      * properties.
      */
-    ANIM_OFFSET(11),
+    PARAM_ANIM_OFFSET(11),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial velocity
      * properties.
      */
-    RADIAL_VELOCITY(15),
+    PARAM_RADIAL_VELOCITY(15),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set directional velocity
      * properties.
      */
-    DIRECTIONAL_VELOCITY(16),
+    PARAM_DIRECTIONAL_VELOCITY(16),
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale over velocity
      * properties.
      */
-    SCALE_OVER_VELOCITY(17),
+    PARAM_SCALE_OVER_VELOCITY(17),
     /**
      * Represents the size of the [Parameter] enum.
      */
-    MAX(18),
+    PARAM_MAX(18),
     /**
      * Use with [setParamMin] and [setParamMax] to set the turbulence minimum und maximum influence
      * on each particles velocity.
      */
-    TURB_VEL_INFLUENCE(13),
+    PARAM_TURB_VEL_INFLUENCE(13),
     /**
      * Use with [setParamMin] and [setParamMax] to set the turbulence minimum and maximum
      * displacement of the particles spawn position.
      */
-    TURB_INIT_DISPLACEMENT(14),
+    PARAM_TURB_INIT_DISPLACEMENT(14),
     /**
      * Use with [setParamTexture] to set the turbulence influence over the particles life time.
      */
-    TURB_INFLUENCE_OVER_LIFE(12),
+    PARAM_TURB_INFLUENCE_OVER_LIFE(12),
     ;
 
     public val id: Long
@@ -2696,20 +2698,20 @@ public open class ParticleProcessMaterial : Material() {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
-    ALIGN_Y_TO_VELOCITY(0),
+    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
     /**
      * Use with [setParticleFlag] to set [particleFlagRotateY].
      */
-    ROTATE_Y(1),
+    PARTICLE_FLAG_ROTATE_Y(1),
     /**
      * Use with [setParticleFlag] to set [particleFlagDisableZ].
      */
-    DISABLE_Z(2),
-    DAMPING_AS_FRICTION(3),
+    PARTICLE_FLAG_DISABLE_Z(2),
+    PARTICLE_FLAG_DAMPING_AS_FRICTION(3),
     /**
      * Represents the size of the [ParticleFlags] enum.
      */
-    MAX(4),
+    PARTICLE_FLAG_MAX(4),
     ;
 
     public val id: Long
@@ -2728,38 +2730,38 @@ public open class ParticleProcessMaterial : Material() {
     /**
      * All particles will be emitted from a single point.
      */
-    POINT(0),
+    EMISSION_SHAPE_POINT(0),
     /**
      * Particles will be emitted in the volume of a sphere.
      */
-    SPHERE(1),
+    EMISSION_SHAPE_SPHERE(1),
     /**
      * Particles will be emitted on the surface of a sphere.
      */
-    SPHERE_SURFACE(2),
+    EMISSION_SHAPE_SPHERE_SURFACE(2),
     /**
      * Particles will be emitted in the volume of a box.
      */
-    BOX(3),
+    EMISSION_SHAPE_BOX(3),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the
      * [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    POINTS(4),
+    EMISSION_SHAPE_POINTS(4),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the
      * [emissionPointTexture]. Particle velocity and rotation will be set based on
      * [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    DIRECTED_POINTS(5),
+    EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
      * Particles will be emitted in a ring or cylinder.
      */
-    RING(6),
+    EMISSION_SHAPE_RING(6),
     /**
      * Represents the size of the [EmissionShape] enum.
      */
-    MAX(7),
+    EMISSION_SHAPE_MAX(7),
     ;
 
     public val id: Long
@@ -2775,15 +2777,15 @@ public open class ParticleProcessMaterial : Material() {
   public enum class SubEmitterMode(
     id: Long,
   ) {
-    DISABLED(0),
-    CONSTANT(1),
-    AT_END(2),
-    AT_COLLISION(3),
-    AT_START(4),
+    SUB_EMITTER_DISABLED(0),
+    SUB_EMITTER_CONSTANT(1),
+    SUB_EMITTER_AT_END(2),
+    SUB_EMITTER_AT_COLLISION(3),
+    SUB_EMITTER_AT_START(4),
     /**
      * Represents the size of the [SubEmitterMode] enum.
      */
-    MAX(5),
+    SUB_EMITTER_MAX(5),
     ;
 
     public val id: Long
@@ -2802,21 +2804,21 @@ public open class ParticleProcessMaterial : Material() {
     /**
      * No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes.
      */
-    DISABLED(0),
+    COLLISION_DISABLED(0),
     /**
      * [RigidBody3D]-style collision for particles using [GPUParticlesCollision3D] nodes.
      */
-    RIGID(1),
+    COLLISION_RIGID(1),
     /**
      * Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be
      * combined with a subemitter that uses the [COLLISION_RIGID] collision mode to "replace" the
      * parent particle with the subemitter on impact.
      */
-    HIDE_ON_CONTACT(2),
+    COLLISION_HIDE_ON_CONTACT(2),
     /**
      * Represents the size of the [CollisionMode] enum.
      */
-    MAX(3),
+    COLLISION_MAX(3),
     ;
 
     public val id: Long

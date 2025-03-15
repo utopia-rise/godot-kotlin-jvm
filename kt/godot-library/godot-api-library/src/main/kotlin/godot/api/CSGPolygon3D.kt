@@ -439,15 +439,15 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     /**
      * The [polygon] shape is extruded along the negative Z axis.
      */
-    DEPTH(0),
+    MODE_DEPTH(0),
     /**
      * The [polygon] shape is extruded by rotating it around the Y axis.
      */
-    SPIN(1),
+    MODE_SPIN(1),
     /**
      * The [polygon] shape is extruded along the [Path3D] specified in [pathNode].
      */
-    PATH(2),
+    MODE_PATH(2),
     ;
 
     public val id: Long
@@ -467,16 +467,16 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
      * The [polygon] shape is not rotated.
      * **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.
      */
-    POLYGON(0),
+    PATH_ROTATION_POLYGON(0),
     /**
      * The [polygon] shape is rotated along the path, but it is not rotated around the path axis.
      * **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.
      */
-    PATH(1),
+    PATH_ROTATION_PATH(1),
     /**
      * The [polygon] shape follows the path and its rotations around the path axis.
      */
-    PATH_FOLLOW(2),
+    PATH_ROTATION_PATH_FOLLOW(2),
     ;
 
     public val id: Long
@@ -496,11 +496,11 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
      * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
      * each interval of the path will extrude.
      */
-    DISTANCE(0),
+    PATH_INTERVAL_DISTANCE(0),
     /**
      * When [mode] is set to [MODE_PATH], [pathInterval] will subdivide the polygons along the path.
      */
-    SUBDIVIDE(1),
+    PATH_INTERVAL_SUBDIVIDE(1),
     ;
 
     public val id: Long

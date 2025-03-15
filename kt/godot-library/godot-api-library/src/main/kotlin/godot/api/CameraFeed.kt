@@ -262,23 +262,23 @@ public open class CameraFeed : RefCounted() {
     /**
      * No image set for the feed.
      */
-    NOIMAGE(0),
+    FEED_NOIMAGE(0),
     /**
      * Feed supplies RGB images.
      */
-    RGB(1),
+    FEED_RGB(1),
     /**
      * Feed supplies YCbCr images that need to be converted to RGB.
      */
-    YCBCR(2),
+    FEED_YCBCR(2),
     /**
      * Feed supplies separate Y and CbCr images that need to be combined and converted to RGB.
      */
-    YCBCR_SEP(3),
+    FEED_YCBCR_SEP(3),
     /**
      * Feed supplies external image.
      */
-    EXTERNAL(4),
+    FEED_EXTERNAL(4),
     ;
 
     public val id: Long
@@ -297,15 +297,15 @@ public open class CameraFeed : RefCounted() {
     /**
      * Unspecified position.
      */
-    UNSPECIFIED(0),
+    FEED_UNSPECIFIED(0),
     /**
      * Camera is mounted at the front of the device.
      */
-    FRONT(1),
+    FEED_FRONT(1),
     /**
      * Camera is mounted at the back of the device.
      */
-    BACK(2),
+    FEED_BACK(2),
     ;
 
     public val id: Long

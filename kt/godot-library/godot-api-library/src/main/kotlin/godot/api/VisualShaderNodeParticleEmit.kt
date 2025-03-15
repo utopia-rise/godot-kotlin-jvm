@@ -57,23 +57,23 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     /**
      * If enabled, the particle starts with the position defined by this node.
      */
-    POSITION(1),
+    EMIT_FLAG_POSITION(1),
     /**
      * If enabled, the particle starts with the rotation and scale defined by this node.
      */
-    ROT_SCALE(2),
+    EMIT_FLAG_ROT_SCALE(2),
     /**
      * If enabled,the particle starts with the velocity defined by this node.
      */
-    VELOCITY(4),
+    EMIT_FLAG_VELOCITY(4),
     /**
      * If enabled, the particle starts with the color defined by this node.
      */
-    COLOR(8),
+    EMIT_FLAG_COLOR(8),
     /**
      * If enabled, the particle starts with the `CUSTOM` data defined by this node.
      */
-    CUSTOM(16),
+    EMIT_FLAG_CUSTOM(16),
     ;
 
     public val id: Long

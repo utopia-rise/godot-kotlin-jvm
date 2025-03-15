@@ -702,24 +702,24 @@ public open class SceneTree : MainLoop() {
     /**
      * Call nodes within a group with no special behavior (default).
      */
-    DEFAULT(0),
+    GROUP_CALL_DEFAULT(0),
     /**
      * Call nodes within a group in reverse tree hierarchy order (all nested children are called
      * before their respective parent nodes).
      */
-    REVERSE(1),
+    GROUP_CALL_REVERSE(1),
     /**
      * Call nodes within a group at the end of the current frame (can be either process or physics
      * frame), similar to [Object.callDeferred].
      */
-    DEFERRED(2),
+    GROUP_CALL_DEFERRED(2),
     /**
      * Call nodes within a group only once, even if the call is executed many times in the same
      * frame. Must be combined with [GROUP_CALL_DEFERRED] to work.
      * **Note:** Different arguments are not taken into account. Therefore, when the same call is
      * executed with different arguments, only the first call will be performed.
      */
-    UNIQUE(4),
+    GROUP_CALL_UNIQUE(4),
     ;
 
     public val id: Long

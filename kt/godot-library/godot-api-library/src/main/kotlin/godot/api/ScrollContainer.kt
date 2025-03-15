@@ -316,26 +316,26 @@ public open class ScrollContainer : Container() {
     /**
      * Scrolling disabled, scrollbar will be invisible.
      */
-    DISABLED(0),
+    SCROLL_MODE_DISABLED(0),
     /**
      * Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is
      * bigger than the container.
      */
-    AUTO(1),
+    SCROLL_MODE_AUTO(1),
     /**
      * Scrolling enabled, scrollbar will be always visible.
      */
-    SHOW_ALWAYS(2),
+    SCROLL_MODE_SHOW_ALWAYS(2),
     /**
      * Scrolling enabled, scrollbar will be hidden.
      */
-    SHOW_NEVER(3),
+    SCROLL_MODE_SHOW_NEVER(3),
     /**
      * Combines [SCROLL_MODE_AUTO] and [SCROLL_MODE_SHOW_ALWAYS]. The scrollbar is only visible if
      * necessary, but the content size is adjusted as if it was always visible. It's useful for
      * ensuring that content size stays the same regardless if the scrollbar is visible.
      */
-    RESERVE(4),
+    SCROLL_MODE_RESERVE(4),
     ;
 
     public val id: Long

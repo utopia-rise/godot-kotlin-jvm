@@ -102,16 +102,16 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is
      * ignored.
      */
-    TEXTURE(0),
+    SOURCE_TEXTURE(0),
     /**
      * Use the [Cubemap] sampler reference passed via the `samplerCube` port. If this is set to
      * [source], the [cubeMap] texture is ignored.
      */
-    PORT(1),
+    SOURCE_PORT(1),
     /**
      * Represents the size of the [Source] enum.
      */
-    MAX(2),
+    SOURCE_MAX(2),
     ;
 
     public val id: Long

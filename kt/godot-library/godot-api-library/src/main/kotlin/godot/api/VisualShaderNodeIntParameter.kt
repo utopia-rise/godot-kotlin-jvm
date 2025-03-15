@@ -197,24 +197,24 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     /**
      * The parameter will not constrain its value.
      */
-    NONE(0),
+    HINT_NONE(0),
     /**
      * The parameter's value must be within the specified [min]/[max] range.
      */
-    RANGE(1),
+    HINT_RANGE(1),
     /**
      * The parameter's value must be within the specified range, with the given [step] between
      * values.
      */
-    RANGE_STEP(2),
+    HINT_RANGE_STEP(2),
     /**
      * The parameter uses an enum to associate preset values to names in the editor.
      */
-    ENUM(3),
+    HINT_ENUM(3),
     /**
      * Represents the size of the [Hint] enum.
      */
-    MAX(4),
+    HINT_MAX(4),
     ;
 
     public val id: Long

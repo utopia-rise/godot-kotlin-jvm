@@ -721,7 +721,8 @@ public object Input : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.ARROW): Unit {
+  public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW):
+      Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCursorShapePtr, NIL)
   }
@@ -756,7 +757,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun setCustomMouseCursor(
     image: Resource?,
-    shape: CursorShape = Input.CursorShape.ARROW,
+    shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
@@ -852,30 +853,30 @@ public object Input : Object() {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
-    VISIBLE(0),
+    MOUSE_MODE_VISIBLE(0),
     /**
      * Makes the mouse cursor hidden if it is visible.
      */
-    HIDDEN(1),
+    MOUSE_MODE_HIDDEN(1),
     /**
      * Captures the mouse. The mouse will be hidden and its position locked at the center of the
      * window manager's window.
      * **Note:** If you want to process the mouse's movement in this mode, you need to use
      * [InputEventMouseMotion.relative].
      */
-    CAPTURED(2),
+    MOUSE_MODE_CAPTURED(2),
     /**
      * Confines the mouse cursor to the game window, and make it visible.
      */
-    CONFINED(3),
+    MOUSE_MODE_CONFINED(3),
     /**
      * Confines the mouse cursor to the game window, and make it hidden.
      */
-    CONFINED_HIDDEN(4),
+    MOUSE_MODE_CONFINED_HIDDEN(4),
     /**
      * Max value of the [MouseMode].
      */
-    MAX(5),
+    MOUSE_MODE_MAX(5),
     ;
 
     public val id: Long
@@ -894,86 +895,86 @@ public object Input : Object() {
     /**
      * Arrow cursor. Standard, default pointing cursor.
      */
-    ARROW(0),
+    CURSOR_ARROW(0),
     /**
      * I-beam cursor. Usually used to show where the text cursor will appear when the mouse is
      * clicked.
      */
-    IBEAM(1),
+    CURSOR_IBEAM(1),
     /**
      * Pointing hand cursor. Usually used to indicate the pointer is over a link or other
      * interactable item.
      */
-    POINTING_HAND(2),
+    CURSOR_POINTING_HAND(2),
     /**
      * Cross cursor. Typically appears over regions in which a drawing operation can be performed or
      * for selections.
      */
-    CROSS(3),
+    CURSOR_CROSS(3),
     /**
      * Wait cursor. Indicates that the application is busy performing an operation, and that it
      * cannot be used during the operation (e.g. something is blocking its main thread).
      */
-    WAIT(4),
+    CURSOR_WAIT(4),
     /**
      * Busy cursor. Indicates that the application is busy performing an operation, and that it is
      * still usable during the operation.
      */
-    BUSY(5),
+    CURSOR_BUSY(5),
     /**
      * Drag cursor. Usually displayed when dragging something.
      * **Note:** Windows lacks a dragging cursor, so [CURSOR_DRAG] is the same as [CURSOR_MOVE] for
      * this platform.
      */
-    DRAG(6),
+    CURSOR_DRAG(6),
     /**
      * Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped
      * at the current position.
      */
-    CAN_DROP(7),
+    CURSOR_CAN_DROP(7),
     /**
      * Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging
      * something) or that the control at a position is disabled.
      */
-    FORBIDDEN(8),
+    CURSOR_FORBIDDEN(8),
     /**
      * Vertical resize mouse cursor. A double-headed vertical arrow. It tells the user they can
      * resize the window or the panel vertically.
      */
-    VSIZE(9),
+    CURSOR_VSIZE(9),
     /**
      * Horizontal resize mouse cursor. A double-headed horizontal arrow. It tells the user they can
      * resize the window or the panel horizontally.
      */
-    HSIZE(10),
+    CURSOR_HSIZE(10),
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the bottom
      * left to the top right. It tells the user they can resize the window or the panel both
      * horizontally and vertically.
      */
-    BDIAGSIZE(11),
+    CURSOR_BDIAGSIZE(11),
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left
      * to the bottom right, the opposite of [CURSOR_BDIAGSIZE]. It tells the user they can resize the
      * window or the panel both horizontally and vertically.
      */
-    FDIAGSIZE(12),
+    CURSOR_FDIAGSIZE(12),
     /**
      * Move cursor. Indicates that something can be moved.
      */
-    MOVE(13),
+    CURSOR_MOVE(13),
     /**
      * Vertical split mouse cursor. On Windows, it's the same as [CURSOR_VSIZE].
      */
-    VSPLIT(14),
+    CURSOR_VSPLIT(14),
     /**
      * Horizontal split mouse cursor. On Windows, it's the same as [CURSOR_HSIZE].
      */
-    HSPLIT(15),
+    CURSOR_HSPLIT(15),
     /**
      * Help cursor. Usually a question mark.
      */
-    HELP(16),
+    CURSOR_HELP(16),
     ;
 
     public val id: Long

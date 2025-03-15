@@ -649,25 +649,25 @@ public open class LightmapGI : VisualInstance3D() {
      * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/lowQualityProbeRayCount].
      */
-    LOW(0),
+    BAKE_QUALITY_LOW(0),
     /**
      * Medium bake quality (fast bake times). The quality of this preset can be adjusted by changing
      * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/mediumQualityProbeRayCount].
      */
-    MEDIUM(1),
+    BAKE_QUALITY_MEDIUM(1),
     /**
      * High bake quality (slow bake times). The quality of this preset can be adjusted by changing
      * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/highQualityProbeRayCount].
      */
-    HIGH(2),
+    BAKE_QUALITY_HIGH(2),
     /**
      * Highest bake quality (slowest bake times). The quality of this preset can be adjusted by
      * changing [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityRayCount] and
      * [ProjectSettings.rendering/lightmapping/bakeQuality/ultraQualityProbeRayCount].
      */
-    ULTRA(3),
+    BAKE_QUALITY_ULTRA(3),
     ;
 
     public val id: Long
@@ -686,23 +686,23 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
      */
-    DISABLED(0),
+    GENERATE_PROBES_DISABLED(0),
     /**
      * Lowest level of subdivision (fastest bake times, smallest file sizes).
      */
-    SUBDIV_4(1),
+    GENERATE_PROBES_SUBDIV_4(1),
     /**
      * Low level of subdivision (fast bake times, small file sizes).
      */
-    SUBDIV_8(2),
+    GENERATE_PROBES_SUBDIV_8(2),
     /**
      * High level of subdivision (slow bake times, large file sizes).
      */
-    SUBDIV_16(3),
+    GENERATE_PROBES_SUBDIV_16(3),
     /**
      * Highest level of subdivision (slowest bake times, largest file sizes).
      */
-    SUBDIV_32(4),
+    GENERATE_PROBES_SUBDIV_32(4),
     ;
 
     public val id: Long
@@ -721,58 +721,58 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Lightmap baking was successful.
      */
-    OK(0),
+    BAKE_ERROR_OK(0),
     /**
      * Lightmap baking failed because the root node for the edited scene could not be accessed.
      */
-    NO_SCENE_ROOT(1),
+    BAKE_ERROR_NO_SCENE_ROOT(1),
     /**
      * Lightmap baking failed as the lightmap data resource is embedded in a foreign resource.
      */
-    FOREIGN_DATA(2),
+    BAKE_ERROR_FOREIGN_DATA(2),
     /**
      * Lightmap baking failed as there is no lightmapper available in this Godot build.
      */
-    NO_LIGHTMAPPER(3),
+    BAKE_ERROR_NO_LIGHTMAPPER(3),
     /**
      * Lightmap baking failed as the [LightmapGIData] save path isn't configured in the resource.
      */
-    NO_SAVE_PATH(4),
+    BAKE_ERROR_NO_SAVE_PATH(4),
     /**
      * Lightmap baking failed as there are no meshes whose [GeometryInstance3D.giMode] is
      * [GeometryInstance3D.GI_MODE_STATIC] and with valid UV2 mapping in the current scene. You may
      * need to select 3D scenes in the Import dock and change their global illumination mode
      * accordingly.
      */
-    NO_MESHES(5),
+    BAKE_ERROR_NO_MESHES(5),
     /**
      * Lightmap baking failed as the lightmapper failed to analyze some of the meshes marked as
      * static for baking.
      */
-    MESHES_INVALID(6),
+    BAKE_ERROR_MESHES_INVALID(6),
     /**
      * Lightmap baking failed as the resulting image couldn't be saved or imported by Godot after it
      * was saved.
      */
-    CANT_CREATE_IMAGE(7),
+    BAKE_ERROR_CANT_CREATE_IMAGE(7),
     /**
      * The user aborted the lightmap baking operation (typically by clicking the **Cancel** button
      * in the progress dialog).
      */
-    USER_ABORTED(8),
+    BAKE_ERROR_USER_ABORTED(8),
     /**
      * Lightmap baking failed as the maximum texture size is too small to fit some of the meshes
      * marked for baking.
      */
-    TEXTURE_SIZE_TOO_SMALL(9),
+    BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
     /**
      * Lightmap baking failed as the lightmap is too small.
      */
-    LIGHTMAP_TOO_SMALL(10),
+    BAKE_ERROR_LIGHTMAP_TOO_SMALL(10),
     /**
      * Lightmap baking failed as the lightmap was unable to fit into an atlas.
      */
-    ATLAS_TOO_SMALL(11),
+    BAKE_ERROR_ATLAS_TOO_SMALL(11),
     ;
 
     public val id: Long
@@ -791,23 +791,23 @@ public open class LightmapGI : VisualInstance3D() {
     /**
      * Ignore environment lighting when baking lightmaps.
      */
-    DISABLED(0),
+    ENVIRONMENT_MODE_DISABLED(0),
     /**
      * Use the scene's environment lighting when baking lightmaps.
      * **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like
      * [ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is *not* taken into account by
      * [LightmapGI] when baking lightmaps.
      */
-    SCENE(1),
+    ENVIRONMENT_MODE_SCENE(1),
     /**
      * Use [environmentCustomSky] as a source of environment lighting when baking lightmaps.
      */
-    CUSTOM_SKY(2),
+    ENVIRONMENT_MODE_CUSTOM_SKY(2),
     /**
      * Use [environmentCustomColor] multiplied by [environmentCustomEnergy] as a constant source of
      * environment lighting when baking lightmaps.
      */
-    CUSTOM_COLOR(3),
+    ENVIRONMENT_MODE_CUSTOM_COLOR(3),
     ;
 
     public val id: Long

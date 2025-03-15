@@ -986,20 +986,20 @@ public open class TileSet : Resource() {
     /**
      * Rectangular tile shape.
      */
-    SQUARE(0),
+    TILE_SHAPE_SQUARE(0),
     /**
      * Diamond tile shape (for isometric look).
      * **Note:** Isometric [TileSet] works best if [TileMap] and all its layers have Y-sort enabled.
      */
-    ISOMETRIC(1),
+    TILE_SHAPE_ISOMETRIC(1),
     /**
      * Rectangular tile shape with one row/column out of two offset by half a tile.
      */
-    HALF_OFFSET_SQUARE(2),
+    TILE_SHAPE_HALF_OFFSET_SQUARE(2),
     /**
      * Hexagonal tile shape.
      */
-    HEXAGON(3),
+    TILE_SHAPE_HEXAGON(3),
     ;
 
     public val id: Long
@@ -1019,31 +1019,31 @@ public open class TileSet : Resource() {
      * Tile coordinates layout where both axis stay consistent with their respective local
      * horizontal and vertical axis.
      */
-    STACKED(0),
+    TILE_LAYOUT_STACKED(0),
     /**
      * Same as [TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive.
      */
-    STACKED_OFFSET(1),
+    TILE_LAYOUT_STACKED_OFFSET(1),
     /**
      * Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes
      * down-right.
      */
-    STAIRS_RIGHT(2),
+    TILE_LAYOUT_STAIRS_RIGHT(2),
     /**
      * Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes
      * down-right.
      */
-    STAIRS_DOWN(3),
+    TILE_LAYOUT_STAIRS_DOWN(3),
     /**
      * Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes
      * down-right.
      */
-    DIAMOND_RIGHT(4),
+    TILE_LAYOUT_DIAMOND_RIGHT(4),
     /**
      * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes
      * down-left.
      */
-    DIAMOND_DOWN(5),
+    TILE_LAYOUT_DIAMOND_DOWN(5),
     ;
 
     public val id: Long
@@ -1062,11 +1062,11 @@ public open class TileSet : Resource() {
     /**
      * Horizontal half-offset.
      */
-    HORIZONTAL(0),
+    TILE_OFFSET_AXIS_HORIZONTAL(0),
     /**
      * Vertical half-offset.
      */
-    VERTICAL(1),
+    TILE_OFFSET_AXIS_VERTICAL(1),
     ;
 
     public val id: Long
@@ -1085,67 +1085,67 @@ public open class TileSet : Resource() {
     /**
      * Neighbor on the right side.
      */
-    RIGHT_SIDE(0),
+    CELL_NEIGHBOR_RIGHT_SIDE(0),
     /**
      * Neighbor in the right corner.
      */
-    RIGHT_CORNER(1),
+    CELL_NEIGHBOR_RIGHT_CORNER(1),
     /**
      * Neighbor on the bottom right side.
      */
-    BOTTOM_RIGHT_SIDE(2),
+    CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE(2),
     /**
      * Neighbor in the bottom right corner.
      */
-    BOTTOM_RIGHT_CORNER(3),
+    CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER(3),
     /**
      * Neighbor on the bottom side.
      */
-    BOTTOM_SIDE(4),
+    CELL_NEIGHBOR_BOTTOM_SIDE(4),
     /**
      * Neighbor in the bottom corner.
      */
-    BOTTOM_CORNER(5),
+    CELL_NEIGHBOR_BOTTOM_CORNER(5),
     /**
      * Neighbor on the bottom left side.
      */
-    BOTTOM_LEFT_SIDE(6),
+    CELL_NEIGHBOR_BOTTOM_LEFT_SIDE(6),
     /**
      * Neighbor in the bottom left corner.
      */
-    BOTTOM_LEFT_CORNER(7),
+    CELL_NEIGHBOR_BOTTOM_LEFT_CORNER(7),
     /**
      * Neighbor on the left side.
      */
-    LEFT_SIDE(8),
+    CELL_NEIGHBOR_LEFT_SIDE(8),
     /**
      * Neighbor in the left corner.
      */
-    LEFT_CORNER(9),
+    CELL_NEIGHBOR_LEFT_CORNER(9),
     /**
      * Neighbor on the top left side.
      */
-    TOP_LEFT_SIDE(10),
+    CELL_NEIGHBOR_TOP_LEFT_SIDE(10),
     /**
      * Neighbor in the top left corner.
      */
-    TOP_LEFT_CORNER(11),
+    CELL_NEIGHBOR_TOP_LEFT_CORNER(11),
     /**
      * Neighbor on the top side.
      */
-    TOP_SIDE(12),
+    CELL_NEIGHBOR_TOP_SIDE(12),
     /**
      * Neighbor in the top corner.
      */
-    TOP_CORNER(13),
+    CELL_NEIGHBOR_TOP_CORNER(13),
     /**
      * Neighbor on the top right side.
      */
-    TOP_RIGHT_SIDE(14),
+    CELL_NEIGHBOR_TOP_RIGHT_SIDE(14),
     /**
      * Neighbor in the top right corner.
      */
-    TOP_RIGHT_CORNER(15),
+    CELL_NEIGHBOR_TOP_RIGHT_CORNER(15),
     ;
 
     public val id: Long
@@ -1164,15 +1164,15 @@ public open class TileSet : Resource() {
     /**
      * Requires both corners and side to match with neighboring tiles' terrains.
      */
-    MATCH_CORNERS_AND_SIDES(0),
+    TERRAIN_MODE_MATCH_CORNERS_AND_SIDES(0),
     /**
      * Requires corners to match with neighboring tiles' terrains.
      */
-    MATCH_CORNERS(1),
+    TERRAIN_MODE_MATCH_CORNERS(1),
     /**
      * Requires sides to match with neighboring tiles' terrains.
      */
-    MATCH_SIDES(2),
+    TERRAIN_MODE_MATCH_SIDES(2),
     ;
 
     public val id: Long

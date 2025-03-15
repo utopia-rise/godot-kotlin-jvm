@@ -439,19 +439,19 @@ public open class CollisionObject3D internal constructor() : Node3D() {
      * simulation to stop all physics interactions with this [CollisionObject3D].
      * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
-    REMOVE(0),
+    DISABLE_MODE_REMOVE(0),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
      * affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
      * Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed
      * again.
      */
-    MAKE_STATIC(1),
+    DISABLE_MODE_MAKE_STATIC(1),
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
      * simulation.
      */
-    KEEP_ACTIVE(2),
+    DISABLE_MODE_KEEP_ACTIVE(2),
     ;
 
     public val id: Long

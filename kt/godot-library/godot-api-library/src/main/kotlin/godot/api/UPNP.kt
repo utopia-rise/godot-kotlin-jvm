@@ -324,126 +324,126 @@ public open class UPNP : RefCounted() {
     /**
      * UPNP command or discovery was successful.
      */
-    SUCCESS(0),
+    UPNP_RESULT_SUCCESS(0),
     /**
      * Not authorized to use the command on the [UPNPDevice]. May be returned when the user disabled
      * UPNP on their router.
      */
-    NOT_AUTHORIZED(1),
+    UPNP_RESULT_NOT_AUTHORIZED(1),
     /**
      * No port mapping was found for the given port, protocol combination on the given [UPNPDevice].
      */
-    PORT_MAPPING_NOT_FOUND(2),
+    UPNP_RESULT_PORT_MAPPING_NOT_FOUND(2),
     /**
      * Inconsistent parameters.
      */
-    INCONSISTENT_PARAMETERS(3),
+    UPNP_RESULT_INCONSISTENT_PARAMETERS(3),
     /**
      * No such entry in array. May be returned if a given port, protocol combination is not found on
      * an [UPNPDevice].
      */
-    NO_SUCH_ENTRY_IN_ARRAY(4),
+    UPNP_RESULT_NO_SUCH_ENTRY_IN_ARRAY(4),
     /**
      * The action failed.
      */
-    ACTION_FAILED(5),
+    UPNP_RESULT_ACTION_FAILED(5),
     /**
      * The [UPNPDevice] does not allow wildcard values for the source IP address.
      */
-    SRC_IP_WILDCARD_NOT_PERMITTED(6),
+    UPNP_RESULT_SRC_IP_WILDCARD_NOT_PERMITTED(6),
     /**
      * The [UPNPDevice] does not allow wildcard values for the external port.
      */
-    EXT_PORT_WILDCARD_NOT_PERMITTED(7),
+    UPNP_RESULT_EXT_PORT_WILDCARD_NOT_PERMITTED(7),
     /**
      * The [UPNPDevice] does not allow wildcard values for the internal port.
      */
-    INT_PORT_WILDCARD_NOT_PERMITTED(8),
+    UPNP_RESULT_INT_PORT_WILDCARD_NOT_PERMITTED(8),
     /**
      * The remote host value must be a wildcard.
      */
-    REMOTE_HOST_MUST_BE_WILDCARD(9),
+    UPNP_RESULT_REMOTE_HOST_MUST_BE_WILDCARD(9),
     /**
      * The external port value must be a wildcard.
      */
-    EXT_PORT_MUST_BE_WILDCARD(10),
+    UPNP_RESULT_EXT_PORT_MUST_BE_WILDCARD(10),
     /**
      * No port maps are available. May also be returned if port mapping functionality is not
      * available.
      */
-    NO_PORT_MAPS_AVAILABLE(11),
+    UPNP_RESULT_NO_PORT_MAPS_AVAILABLE(11),
     /**
      * Conflict with other mechanism. May be returned instead of
      * [UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING] if a port mapping conflicts with an existing one.
      */
-    CONFLICT_WITH_OTHER_MECHANISM(12),
+    UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM(12),
     /**
      * Conflict with an existing port mapping.
      */
-    CONFLICT_WITH_OTHER_MAPPING(13),
+    UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING(13),
     /**
      * External and internal port values must be the same.
      */
-    SAME_PORT_VALUES_REQUIRED(14),
+    UPNP_RESULT_SAME_PORT_VALUES_REQUIRED(14),
     /**
      * Only permanent leases are supported. Do not use the `duration` parameter when adding port
      * mappings.
      */
-    ONLY_PERMANENT_LEASE_SUPPORTED(15),
+    UPNP_RESULT_ONLY_PERMANENT_LEASE_SUPPORTED(15),
     /**
      * Invalid gateway.
      */
-    INVALID_GATEWAY(16),
+    UPNP_RESULT_INVALID_GATEWAY(16),
     /**
      * Invalid port.
      */
-    INVALID_PORT(17),
+    UPNP_RESULT_INVALID_PORT(17),
     /**
      * Invalid protocol.
      */
-    INVALID_PROTOCOL(18),
+    UPNP_RESULT_INVALID_PROTOCOL(18),
     /**
      * Invalid duration.
      */
-    INVALID_DURATION(19),
+    UPNP_RESULT_INVALID_DURATION(19),
     /**
      * Invalid arguments.
      */
-    INVALID_ARGS(20),
+    UPNP_RESULT_INVALID_ARGS(20),
     /**
      * Invalid response.
      */
-    INVALID_RESPONSE(21),
+    UPNP_RESULT_INVALID_RESPONSE(21),
     /**
      * Invalid parameter.
      */
-    INVALID_PARAM(22),
+    UPNP_RESULT_INVALID_PARAM(22),
     /**
      * HTTP error.
      */
-    HTTP_ERROR(23),
+    UPNP_RESULT_HTTP_ERROR(23),
     /**
      * Socket error.
      */
-    SOCKET_ERROR(24),
+    UPNP_RESULT_SOCKET_ERROR(24),
     /**
      * Error allocating memory.
      */
-    MEM_ALLOC_ERROR(25),
+    UPNP_RESULT_MEM_ALLOC_ERROR(25),
     /**
      * No gateway available. You may need to call [discover] first, or discovery didn't detect any
      * valid IGDs (InternetGatewayDevices).
      */
-    NO_GATEWAY(26),
+    UPNP_RESULT_NO_GATEWAY(26),
     /**
      * No devices available. You may need to call [discover] first, or discovery didn't detect any
      * valid [UPNPDevice]s.
      */
-    NO_DEVICES(27),
+    UPNP_RESULT_NO_DEVICES(27),
     /**
      * Unknown error.
      */
-    UNKNOWN_ERROR(28),
+    UPNP_RESULT_UNKNOWN_ERROR(28),
     ;
 
     public val id: Long

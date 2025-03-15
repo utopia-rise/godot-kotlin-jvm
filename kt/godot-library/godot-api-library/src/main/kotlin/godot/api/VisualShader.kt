@@ -323,47 +323,47 @@ public open class VisualShader : Shader() {
     /**
      * A vertex shader, operating on vertices.
      */
-    VERTEX(0),
+    TYPE_VERTEX(0),
     /**
      * A fragment shader, operating on fragments (pixels).
      */
-    FRAGMENT(1),
+    TYPE_FRAGMENT(1),
     /**
      * A shader for light calculations.
      */
-    LIGHT(2),
+    TYPE_LIGHT(2),
     /**
      * A function for the "start" stage of particle shader.
      */
-    START(3),
+    TYPE_START(3),
     /**
      * A function for the "process" stage of particle shader.
      */
-    PROCESS(4),
+    TYPE_PROCESS(4),
     /**
      * A function for the "collide" stage (particle collision handler) of particle shader.
      */
-    COLLIDE(5),
+    TYPE_COLLIDE(5),
     /**
      * A function for the "start" stage of particle shader, with customized output.
      */
-    START_CUSTOM(6),
+    TYPE_START_CUSTOM(6),
     /**
      * A function for the "process" stage of particle shader, with customized output.
      */
-    PROCESS_CUSTOM(7),
+    TYPE_PROCESS_CUSTOM(7),
     /**
      * A shader for 3D environment's sky.
      */
-    SKY(8),
+    TYPE_SKY(8),
     /**
      * A compute shader that runs for each froxel of the volumetric fog map.
      */
-    FOG(9),
+    TYPE_FOG(9),
     /**
      * Represents the size of the [Type] enum.
      */
-    MAX(10),
+    TYPE_MAX(10),
     ;
 
     public val id: Long
@@ -382,15 +382,15 @@ public open class VisualShader : Shader() {
     /**
      * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
      */
-    VERTEX_TO_FRAG_LIGHT(0),
+    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
     /**
      * Varying is passed from `Fragment` function to `Light` function.
      */
-    FRAG_TO_LIGHT(1),
+    VARYING_MODE_FRAG_TO_LIGHT(1),
     /**
      * Represents the size of the [VaryingMode] enum.
      */
-    MAX(2),
+    VARYING_MODE_MAX(2),
     ;
 
     public val id: Long
@@ -409,39 +409,39 @@ public open class VisualShader : Shader() {
     /**
      * Varying is of type [float].
      */
-    FLOAT(0),
+    VARYING_TYPE_FLOAT(0),
     /**
      * Varying is of type [int].
      */
-    INT(1),
+    VARYING_TYPE_INT(1),
     /**
      * Varying is of type unsigned [int].
      */
-    UINT(2),
+    VARYING_TYPE_UINT(2),
     /**
      * Varying is of type [Vector2].
      */
-    VECTOR_2D(3),
+    VARYING_TYPE_VECTOR_2D(3),
     /**
      * Varying is of type [Vector3].
      */
-    VECTOR_3D(4),
+    VARYING_TYPE_VECTOR_3D(4),
     /**
      * Varying is of type [Vector4].
      */
-    VECTOR_4D(5),
+    VARYING_TYPE_VECTOR_4D(5),
     /**
      * Varying is of type [bool].
      */
-    BOOLEAN(6),
+    VARYING_TYPE_BOOLEAN(6),
     /**
      * Varying is of type [Transform3D].
      */
-    TRANSFORM(7),
+    VARYING_TYPE_TRANSFORM(7),
     /**
      * Represents the size of the [VaryingType] enum.
      */
-    MAX(8),
+    VARYING_TYPE_MAX(8),
     ;
 
     public val id: Long

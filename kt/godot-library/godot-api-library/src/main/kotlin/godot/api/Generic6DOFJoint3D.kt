@@ -106,78 +106,78 @@ public open class Generic6DOFJoint3D : Joint3D() {
     /**
      * The minimum difference between the pivot points' axes.
      */
-    LINEAR_LOWER_LIMIT(0),
+    PARAM_LINEAR_LOWER_LIMIT(0),
     /**
      * The maximum difference between the pivot points' axes.
      */
-    LINEAR_UPPER_LIMIT(1),
+    PARAM_LINEAR_UPPER_LIMIT(1),
     /**
      * A factor applied to the movement across the axes. The lower, the slower the movement.
      */
-    LINEAR_LIMIT_SOFTNESS(2),
+    PARAM_LINEAR_LIMIT_SOFTNESS(2),
     /**
      * The amount of restitution on the axes' movement. The lower, the more momentum gets lost.
      */
-    LINEAR_RESTITUTION(3),
+    PARAM_LINEAR_RESTITUTION(3),
     /**
      * The amount of damping that happens at the linear motion across the axes.
      */
-    LINEAR_DAMPING(4),
+    PARAM_LINEAR_DAMPING(4),
     /**
      * The velocity the linear motor will try to reach.
      */
-    LINEAR_MOTOR_TARGET_VELOCITY(5),
+    PARAM_LINEAR_MOTOR_TARGET_VELOCITY(5),
     /**
      * The maximum force the linear motor will apply while trying to reach the velocity target.
      */
-    LINEAR_MOTOR_FORCE_LIMIT(6),
-    LINEAR_SPRING_STIFFNESS(7),
-    LINEAR_SPRING_DAMPING(8),
-    LINEAR_SPRING_EQUILIBRIUM_POINT(9),
+    PARAM_LINEAR_MOTOR_FORCE_LIMIT(6),
+    PARAM_LINEAR_SPRING_STIFFNESS(7),
+    PARAM_LINEAR_SPRING_DAMPING(8),
+    PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT(9),
     /**
      * The minimum rotation in negative direction to break loose and rotate around the axes.
      */
-    ANGULAR_LOWER_LIMIT(10),
+    PARAM_ANGULAR_LOWER_LIMIT(10),
     /**
      * The minimum rotation in positive direction to break loose and rotate around the axes.
      */
-    ANGULAR_UPPER_LIMIT(11),
+    PARAM_ANGULAR_UPPER_LIMIT(11),
     /**
      * The speed of all rotations across the axes.
      */
-    ANGULAR_LIMIT_SOFTNESS(12),
+    PARAM_ANGULAR_LIMIT_SOFTNESS(12),
     /**
      * The amount of rotational damping across the axes. The lower, the more damping occurs.
      */
-    ANGULAR_DAMPING(13),
+    PARAM_ANGULAR_DAMPING(13),
     /**
      * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
      */
-    ANGULAR_RESTITUTION(14),
+    PARAM_ANGULAR_RESTITUTION(14),
     /**
      * The maximum amount of force that can occur, when rotating around the axes.
      */
-    ANGULAR_FORCE_LIMIT(15),
+    PARAM_ANGULAR_FORCE_LIMIT(15),
     /**
      * When rotating across the axes, this error tolerance factor defines how much the correction
      * gets slowed down. The lower, the slower.
      */
-    ANGULAR_ERP(16),
+    PARAM_ANGULAR_ERP(16),
     /**
      * Target speed for the motor at the axes.
      */
-    ANGULAR_MOTOR_TARGET_VELOCITY(17),
+    PARAM_ANGULAR_MOTOR_TARGET_VELOCITY(17),
     /**
      * Maximum acceleration for the motor at the axes.
      */
-    ANGULAR_MOTOR_FORCE_LIMIT(18),
-    ANGULAR_SPRING_STIFFNESS(19),
-    ANGULAR_SPRING_DAMPING(20),
-    ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
+    PARAM_ANGULAR_MOTOR_FORCE_LIMIT(18),
+    PARAM_ANGULAR_SPRING_STIFFNESS(19),
+    PARAM_ANGULAR_SPRING_DAMPING(20),
+    PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
     /**
      * Represents the size of the [Param] enum.
      */
-    MAX(22),
+    PARAM_MAX(22),
     ;
 
     public val id: Long
@@ -196,25 +196,25 @@ public open class Generic6DOFJoint3D : Joint3D() {
     /**
      * If enabled, linear motion is possible within the given limits.
      */
-    ENABLE_LINEAR_LIMIT(0),
+    FLAG_ENABLE_LINEAR_LIMIT(0),
     /**
      * If enabled, rotational motion is possible within the given limits.
      */
-    ENABLE_ANGULAR_LIMIT(1),
-    ENABLE_LINEAR_SPRING(3),
-    ENABLE_ANGULAR_SPRING(2),
+    FLAG_ENABLE_ANGULAR_LIMIT(1),
+    FLAG_ENABLE_LINEAR_SPRING(3),
+    FLAG_ENABLE_ANGULAR_SPRING(2),
     /**
      * If enabled, there is a rotational motor across these axes.
      */
-    ENABLE_MOTOR(4),
+    FLAG_ENABLE_MOTOR(4),
     /**
      * If enabled, there is a linear motor across these axes.
      */
-    ENABLE_LINEAR_MOTOR(5),
+    FLAG_ENABLE_LINEAR_MOTOR(5),
     /**
      * Represents the size of the [Flag] enum.
      */
-    MAX(6),
+    FLAG_MAX(6),
     ;
 
     public val id: Long

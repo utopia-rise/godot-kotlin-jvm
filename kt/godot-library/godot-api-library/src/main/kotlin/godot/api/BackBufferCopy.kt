@@ -114,15 +114,15 @@ public open class BackBufferCopy : Node2D() {
      * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
      * portion of screen it covers.
      */
-    DISABLED(0),
+    COPY_MODE_DISABLED(0),
     /**
      * [BackBufferCopy] buffers a rectangular region.
      */
-    RECT(1),
+    COPY_MODE_RECT(1),
     /**
      * [BackBufferCopy] buffers the entire screen.
      */
-    VIEWPORT(2),
+    COPY_MODE_VIEWPORT(2),
     ;
 
     public val id: Long

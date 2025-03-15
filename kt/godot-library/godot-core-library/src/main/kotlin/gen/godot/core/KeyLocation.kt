@@ -18,15 +18,15 @@ public enum class KeyLocation(
    * For example, when using [InputEvent.isMatch], an event which has [KEY_LOCATION_UNSPECIFIED]
    * will match any [KeyLocation] on the passed event.
    */
-  UNSPECIFIED(0),
+  KEY_LOCATION_UNSPECIFIED(0),
   /**
    * A key which is to the left of its twin.
    */
-  LEFT(1),
+  KEY_LOCATION_LEFT(1),
   /**
    * A key which is to the right of its twin.
    */
-  RIGHT(2),
+  KEY_LOCATION_RIGHT(2),
   ;
 
   public val id: Long

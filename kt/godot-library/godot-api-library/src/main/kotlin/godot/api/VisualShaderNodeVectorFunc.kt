@@ -55,141 +55,141 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
     /**
      * Normalizes the vector so that it has a length of `1` but points in the same direction.
      */
-    NORMALIZE(0),
+    FUNC_NORMALIZE(0),
     /**
      * Clamps the value between `0.0` and `1.0`.
      */
-    SATURATE(1),
+    FUNC_SATURATE(1),
     /**
      * Returns the opposite value of the parameter.
      */
-    NEGATE(2),
+    FUNC_NEGATE(2),
     /**
      * Returns `1/vector`.
      */
-    RECIPROCAL(3),
+    FUNC_RECIPROCAL(3),
     /**
      * Returns the absolute value of the parameter.
      */
-    ABS(4),
+    FUNC_ABS(4),
     /**
      * Returns the arc-cosine of the parameter.
      */
-    ACOS(5),
+    FUNC_ACOS(5),
     /**
      * Returns the inverse hyperbolic cosine of the parameter.
      */
-    ACOSH(6),
+    FUNC_ACOSH(6),
     /**
      * Returns the arc-sine of the parameter.
      */
-    ASIN(7),
+    FUNC_ASIN(7),
     /**
      * Returns the inverse hyperbolic sine of the parameter.
      */
-    ASINH(8),
+    FUNC_ASINH(8),
     /**
      * Returns the arc-tangent of the parameter.
      */
-    ATAN(9),
+    FUNC_ATAN(9),
     /**
      * Returns the inverse hyperbolic tangent of the parameter.
      */
-    ATANH(10),
+    FUNC_ATANH(10),
     /**
      * Finds the nearest integer that is greater than or equal to the parameter.
      */
-    CEIL(11),
+    FUNC_CEIL(11),
     /**
      * Returns the cosine of the parameter.
      */
-    COS(12),
+    FUNC_COS(12),
     /**
      * Returns the hyperbolic cosine of the parameter.
      */
-    COSH(13),
+    FUNC_COSH(13),
     /**
      * Converts a quantity in radians to degrees.
      */
-    DEGREES(14),
+    FUNC_DEGREES(14),
     /**
      * Base-e Exponential.
      */
-    EXP(15),
+    FUNC_EXP(15),
     /**
      * Base-2 Exponential.
      */
-    EXP2(16),
+    FUNC_EXP2(16),
     /**
      * Finds the nearest integer less than or equal to the parameter.
      */
-    FLOOR(17),
+    FUNC_FLOOR(17),
     /**
      * Computes the fractional part of the argument.
      */
-    FRACT(18),
+    FUNC_FRACT(18),
     /**
      * Returns the inverse of the square root of the parameter.
      */
-    INVERSE_SQRT(19),
+    FUNC_INVERSE_SQRT(19),
     /**
      * Natural logarithm.
      */
-    LOG(20),
+    FUNC_LOG(20),
     /**
      * Base-2 logarithm.
      */
-    LOG2(21),
+    FUNC_LOG2(21),
     /**
      * Converts a quantity in degrees to radians.
      */
-    RADIANS(22),
+    FUNC_RADIANS(22),
     /**
      * Finds the nearest integer to the parameter.
      */
-    ROUND(23),
+    FUNC_ROUND(23),
     /**
      * Finds the nearest even integer to the parameter.
      */
-    ROUNDEVEN(24),
+    FUNC_ROUNDEVEN(24),
     /**
      * Extracts the sign of the parameter, i.e. returns `-1` if the parameter is negative, `1` if
      * it's positive and `0` otherwise.
      */
-    SIGN(25),
+    FUNC_SIGN(25),
     /**
      * Returns the sine of the parameter.
      */
-    SIN(26),
+    FUNC_SIN(26),
     /**
      * Returns the hyperbolic sine of the parameter.
      */
-    SINH(27),
+    FUNC_SINH(27),
     /**
      * Returns the square root of the parameter.
      */
-    SQRT(28),
+    FUNC_SQRT(28),
     /**
      * Returns the tangent of the parameter.
      */
-    TAN(29),
+    FUNC_TAN(29),
     /**
      * Returns the hyperbolic tangent of the parameter.
      */
-    TANH(30),
+    FUNC_TANH(30),
     /**
      * Returns a value equal to the nearest integer to the parameter whose absolute value is not
      * larger than the absolute value of the parameter.
      */
-    TRUNC(31),
+    FUNC_TRUNC(31),
     /**
      * Returns `1.0 - vector`.
      */
-    ONEMINUS(32),
+    FUNC_ONEMINUS(32),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(33),
+    FUNC_MAX(33),
     ;
 
     public val id: Long

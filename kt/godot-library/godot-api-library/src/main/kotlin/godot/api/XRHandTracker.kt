@@ -182,26 +182,26 @@ public open class XRHandTracker : XRPositionalTracker() {
     /**
      * The source of hand tracking data is unknown.
      */
-    UNKNOWN(0),
+    HAND_TRACKING_SOURCE_UNKNOWN(0),
     /**
      * The source of hand tracking data is unobstructed, meaning that an accurate method of hand
      * tracking is used. These include optical hand tracking, data gloves, etc.
      */
-    UNOBSTRUCTED(1),
+    HAND_TRACKING_SOURCE_UNOBSTRUCTED(1),
     /**
      * The source of hand tracking data is a controller, meaning that joint positions are inferred
      * from controller inputs.
      */
-    CONTROLLER(2),
+    HAND_TRACKING_SOURCE_CONTROLLER(2),
     /**
      * No hand tracking data is tracked, this either means the hand is obscured, the controller is
      * turned off, or tracking is not supported for the current input type.
      */
-    NOT_TRACKED(3),
+    HAND_TRACKING_SOURCE_NOT_TRACKED(3),
     /**
      * Represents the size of the [HandTrackingSource] enum.
      */
-    MAX(4),
+    HAND_TRACKING_SOURCE_MAX(4),
     ;
 
     public val id: Long
@@ -220,111 +220,111 @@ public open class XRHandTracker : XRPositionalTracker() {
     /**
      * Palm joint.
      */
-    PALM(0),
+    HAND_JOINT_PALM(0),
     /**
      * Wrist joint.
      */
-    WRIST(1),
+    HAND_JOINT_WRIST(1),
     /**
      * Thumb metacarpal joint.
      */
-    THUMB_METACARPAL(2),
+    HAND_JOINT_THUMB_METACARPAL(2),
     /**
      * Thumb phalanx proximal joint.
      */
-    THUMB_PHALANX_PROXIMAL(3),
+    HAND_JOINT_THUMB_PHALANX_PROXIMAL(3),
     /**
      * Thumb phalanx distal joint.
      */
-    THUMB_PHALANX_DISTAL(4),
+    HAND_JOINT_THUMB_PHALANX_DISTAL(4),
     /**
      * Thumb tip joint.
      */
-    THUMB_TIP(5),
+    HAND_JOINT_THUMB_TIP(5),
     /**
      * Index finger metacarpal joint.
      */
-    INDEX_FINGER_METACARPAL(6),
+    HAND_JOINT_INDEX_FINGER_METACARPAL(6),
     /**
      * Index finger phalanx proximal joint.
      */
-    INDEX_FINGER_PHALANX_PROXIMAL(7),
+    HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL(7),
     /**
      * Index finger phalanx intermediate joint.
      */
-    INDEX_FINGER_PHALANX_INTERMEDIATE(8),
+    HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE(8),
     /**
      * Index finger phalanx distal joint.
      */
-    INDEX_FINGER_PHALANX_DISTAL(9),
+    HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL(9),
     /**
      * Index finger tip joint.
      */
-    INDEX_FINGER_TIP(10),
+    HAND_JOINT_INDEX_FINGER_TIP(10),
     /**
      * Middle finger metacarpal joint.
      */
-    MIDDLE_FINGER_METACARPAL(11),
+    HAND_JOINT_MIDDLE_FINGER_METACARPAL(11),
     /**
      * Middle finger phalanx proximal joint.
      */
-    MIDDLE_FINGER_PHALANX_PROXIMAL(12),
+    HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL(12),
     /**
      * Middle finger phalanx intermediate joint.
      */
-    MIDDLE_FINGER_PHALANX_INTERMEDIATE(13),
+    HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(13),
     /**
      * Middle finger phalanx distal joint.
      */
-    MIDDLE_FINGER_PHALANX_DISTAL(14),
+    HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL(14),
     /**
      * Middle finger tip joint.
      */
-    MIDDLE_FINGER_TIP(15),
+    HAND_JOINT_MIDDLE_FINGER_TIP(15),
     /**
      * Ring finger metacarpal joint.
      */
-    RING_FINGER_METACARPAL(16),
+    HAND_JOINT_RING_FINGER_METACARPAL(16),
     /**
      * Ring finger phalanx proximal joint.
      */
-    RING_FINGER_PHALANX_PROXIMAL(17),
+    HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL(17),
     /**
      * Ring finger phalanx intermediate joint.
      */
-    RING_FINGER_PHALANX_INTERMEDIATE(18),
+    HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE(18),
     /**
      * Ring finger phalanx distal joint.
      */
-    RING_FINGER_PHALANX_DISTAL(19),
+    HAND_JOINT_RING_FINGER_PHALANX_DISTAL(19),
     /**
      * Ring finger tip joint.
      */
-    RING_FINGER_TIP(20),
+    HAND_JOINT_RING_FINGER_TIP(20),
     /**
      * Pinky finger metacarpal joint.
      */
-    PINKY_FINGER_METACARPAL(21),
+    HAND_JOINT_PINKY_FINGER_METACARPAL(21),
     /**
      * Pinky finger phalanx proximal joint.
      */
-    PINKY_FINGER_PHALANX_PROXIMAL(22),
+    HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL(22),
     /**
      * Pinky finger phalanx intermediate joint.
      */
-    PINKY_FINGER_PHALANX_INTERMEDIATE(23),
+    HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE(23),
     /**
      * Pinky finger phalanx distal joint.
      */
-    PINKY_FINGER_PHALANX_DISTAL(24),
+    HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL(24),
     /**
      * Pinky finger tip joint.
      */
-    PINKY_FINGER_TIP(25),
+    HAND_JOINT_PINKY_FINGER_TIP(25),
     /**
      * Represents the size of the [HandJoint] enum.
      */
-    MAX(26),
+    HAND_JOINT_MAX(26),
     ;
 
     public val id: Long
@@ -371,34 +371,34 @@ public open class XRHandTracker : XRPositionalTracker() {
       /**
        * The hand joint's orientation data is valid.
        */
-      public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
+      public val HAND_JOINT_FLAG_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
       /**
        * The hand joint's orientation is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
-      public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
+      public val HAND_JOINT_FLAG_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
       /**
        * The hand joint's position data is valid.
        */
-      public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
+      public val HAND_JOINT_FLAG_POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
       /**
        * The hand joint's position is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
-      public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
+      public val HAND_JOINT_FLAG_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
       /**
        * The hand joint's linear velocity data is valid.
        */
-      public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
+      public val HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
       /**
        * The hand joint's angular velocity data is valid.
        */
-      public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
+      public val HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
 

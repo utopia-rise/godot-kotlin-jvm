@@ -1169,15 +1169,15 @@ public open class Node3D : Node() {
     /**
      * The rotation is edited using [Vector3] Euler angles.
      */
-    EULER(0),
+    ROTATION_EDIT_MODE_EULER(0),
     /**
      * The rotation is edited using a [Quaternion].
      */
-    QUATERNION(1),
+    ROTATION_EDIT_MODE_QUATERNION(1),
     /**
      * The rotation is edited using a [Basis]. In this mode, [scale] can't be edited separately.
      */
-    BASIS(2),
+    ROTATION_EDIT_MODE_BASIS(2),
     ;
 
     public val id: Long

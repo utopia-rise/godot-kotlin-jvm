@@ -77,7 +77,7 @@ class ArrayAndDictionaryHintStringGenerator(
             //      -> 2 == int -> variant type ordinal
             // example: Dictionary<Int, Button>() -> 2:int;24/34:Button
             //      -> 24 == Object -> variant type ordinal -> VariantParser.OBJECT.id
-            //      -> 34 == Button -> node type property hint ordinal -> PropertyHint.NODE_TYPE.id
+            //      -> 34 == Button -> node type property hint ordinal -> PropertyHint.PROPERTY_HINT_NODE_TYPE.id
             loop@ while (currentElementType != null) {
                 when {
                     currentElementType.isCompatibleList() -> {
@@ -107,7 +107,7 @@ class ArrayAndDictionaryHintStringGenerator(
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
-                            "/${PropertyHint.NODE_TYPE.id}:$className"
+                            "/${PropertyHint.PROPERTY_HINT_NODE_TYPE.id}:$className"
                         } else {
                             ""
                         }
@@ -123,7 +123,7 @@ class ArrayAndDictionaryHintStringGenerator(
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
-                            "/${PropertyHint.RESOURCE_TYPE.id}:$className"
+                            "/${PropertyHint.PROPERTY_HINT_RESOURCE_TYPE.id}:$className"
                         } else {
                             ""
                         }

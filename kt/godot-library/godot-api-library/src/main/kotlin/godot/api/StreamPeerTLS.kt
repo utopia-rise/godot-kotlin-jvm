@@ -102,24 +102,24 @@ public open class StreamPeerTLS : StreamPeer() {
     /**
      * A status representing a [StreamPeerTLS] that is disconnected.
      */
-    DISCONNECTED(0),
+    STATUS_DISCONNECTED(0),
     /**
      * A status representing a [StreamPeerTLS] during handshaking.
      */
-    HANDSHAKING(1),
+    STATUS_HANDSHAKING(1),
     /**
      * A status representing a [StreamPeerTLS] that is connected to a host.
      */
-    CONNECTED(2),
+    STATUS_CONNECTED(2),
     /**
      * A status representing a [StreamPeerTLS] in error state.
      */
-    ERROR(3),
+    STATUS_ERROR(3),
     /**
      * An error status that shows a mismatch in the TLS certificate domain presented by the host and
      * the domain requested for validation.
      */
-    ERROR_HOSTNAME_MISMATCH(4),
+    STATUS_ERROR_HOSTNAME_MISMATCH(4),
     ;
 
     public val id: Long

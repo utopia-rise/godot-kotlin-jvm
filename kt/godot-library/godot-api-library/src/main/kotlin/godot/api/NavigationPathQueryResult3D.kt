@@ -141,11 +141,11 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     /**
      * This segment of the path goes through a region.
      */
-    REGION(0),
+    PATH_SEGMENT_TYPE_REGION(0),
     /**
      * This segment of the path goes through a link.
      */
-    LINK(1),
+    PATH_SEGMENT_TYPE_LINK(1),
     ;
 
     public val id: Long

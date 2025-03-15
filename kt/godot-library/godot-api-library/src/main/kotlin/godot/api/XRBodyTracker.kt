@@ -158,17 +158,17 @@ public open class XRBodyTracker : XRPositionalTracker() {
       /**
        * Upper body tracking supported.
        */
-      public val UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
+      public val BODY_FLAG_UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
 
       /**
        * Lower body tracking supported.
        */
-      public val LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
+      public val BODY_FLAG_LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
 
       /**
        * Hand tracking supported.
        */
-      public val HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
+      public val BODY_FLAG_HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
     }
   }
 
@@ -178,311 +178,311 @@ public open class XRBodyTracker : XRPositionalTracker() {
     /**
      * Root joint.
      */
-    ROOT(0),
+    JOINT_ROOT(0),
     /**
      * Hips joint.
      */
-    HIPS(1),
+    JOINT_HIPS(1),
     /**
      * Spine joint.
      */
-    SPINE(2),
+    JOINT_SPINE(2),
     /**
      * Chest joint.
      */
-    CHEST(3),
+    JOINT_CHEST(3),
     /**
      * Upper chest joint.
      */
-    UPPER_CHEST(4),
+    JOINT_UPPER_CHEST(4),
     /**
      * Neck joint.
      */
-    NECK(5),
+    JOINT_NECK(5),
     /**
      * Head joint.
      */
-    HEAD(6),
+    JOINT_HEAD(6),
     /**
      * Head tip joint.
      */
-    HEAD_TIP(7),
+    JOINT_HEAD_TIP(7),
     /**
      * Left shoulder joint.
      */
-    LEFT_SHOULDER(8),
+    JOINT_LEFT_SHOULDER(8),
     /**
      * Left upper arm joint.
      */
-    LEFT_UPPER_ARM(9),
+    JOINT_LEFT_UPPER_ARM(9),
     /**
      * Left lower arm joint.
      */
-    LEFT_LOWER_ARM(10),
+    JOINT_LEFT_LOWER_ARM(10),
     /**
      * Right shoulder joint.
      */
-    RIGHT_SHOULDER(11),
+    JOINT_RIGHT_SHOULDER(11),
     /**
      * Right upper arm joint.
      */
-    RIGHT_UPPER_ARM(12),
+    JOINT_RIGHT_UPPER_ARM(12),
     /**
      * Right lower arm joint.
      */
-    RIGHT_LOWER_ARM(13),
+    JOINT_RIGHT_LOWER_ARM(13),
     /**
      * Left upper leg joint.
      */
-    LEFT_UPPER_LEG(14),
+    JOINT_LEFT_UPPER_LEG(14),
     /**
      * Left lower leg joint.
      */
-    LEFT_LOWER_LEG(15),
+    JOINT_LEFT_LOWER_LEG(15),
     /**
      * Left foot joint.
      */
-    LEFT_FOOT(16),
+    JOINT_LEFT_FOOT(16),
     /**
      * Left toes joint.
      */
-    LEFT_TOES(17),
+    JOINT_LEFT_TOES(17),
     /**
      * Right upper leg joint.
      */
-    RIGHT_UPPER_LEG(18),
+    JOINT_RIGHT_UPPER_LEG(18),
     /**
      * Right lower leg joint.
      */
-    RIGHT_LOWER_LEG(19),
+    JOINT_RIGHT_LOWER_LEG(19),
     /**
      * Right foot joint.
      */
-    RIGHT_FOOT(20),
+    JOINT_RIGHT_FOOT(20),
     /**
      * Right toes joint.
      */
-    RIGHT_TOES(21),
+    JOINT_RIGHT_TOES(21),
     /**
      * Left hand joint.
      */
-    LEFT_HAND(22),
+    JOINT_LEFT_HAND(22),
     /**
      * Left palm joint.
      */
-    LEFT_PALM(23),
+    JOINT_LEFT_PALM(23),
     /**
      * Left wrist joint.
      */
-    LEFT_WRIST(24),
+    JOINT_LEFT_WRIST(24),
     /**
      * Left thumb metacarpal joint.
      */
-    LEFT_THUMB_METACARPAL(25),
+    JOINT_LEFT_THUMB_METACARPAL(25),
     /**
      * Left thumb phalanx proximal joint.
      */
-    LEFT_THUMB_PHALANX_PROXIMAL(26),
+    JOINT_LEFT_THUMB_PHALANX_PROXIMAL(26),
     /**
      * Left thumb phalanx distal joint.
      */
-    LEFT_THUMB_PHALANX_DISTAL(27),
+    JOINT_LEFT_THUMB_PHALANX_DISTAL(27),
     /**
      * Left thumb tip joint.
      */
-    LEFT_THUMB_TIP(28),
+    JOINT_LEFT_THUMB_TIP(28),
     /**
      * Left index finger metacarpal joint.
      */
-    LEFT_INDEX_FINGER_METACARPAL(29),
+    JOINT_LEFT_INDEX_FINGER_METACARPAL(29),
     /**
      * Left index finger phalanx proximal joint.
      */
-    LEFT_INDEX_FINGER_PHALANX_PROXIMAL(30),
+    JOINT_LEFT_INDEX_FINGER_PHALANX_PROXIMAL(30),
     /**
      * Left index finger phalanx intermediate joint.
      */
-    LEFT_INDEX_FINGER_PHALANX_INTERMEDIATE(31),
+    JOINT_LEFT_INDEX_FINGER_PHALANX_INTERMEDIATE(31),
     /**
      * Left index finger phalanx distal joint.
      */
-    LEFT_INDEX_FINGER_PHALANX_DISTAL(32),
+    JOINT_LEFT_INDEX_FINGER_PHALANX_DISTAL(32),
     /**
      * Left index finger tip joint.
      */
-    LEFT_INDEX_FINGER_TIP(33),
+    JOINT_LEFT_INDEX_FINGER_TIP(33),
     /**
      * Left middle finger metacarpal joint.
      */
-    LEFT_MIDDLE_FINGER_METACARPAL(34),
+    JOINT_LEFT_MIDDLE_FINGER_METACARPAL(34),
     /**
      * Left middle finger phalanx proximal joint.
      */
-    LEFT_MIDDLE_FINGER_PHALANX_PROXIMAL(35),
+    JOINT_LEFT_MIDDLE_FINGER_PHALANX_PROXIMAL(35),
     /**
      * Left middle finger phalanx intermediate joint.
      */
-    LEFT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(36),
+    JOINT_LEFT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(36),
     /**
      * Left middle finger phalanx distal joint.
      */
-    LEFT_MIDDLE_FINGER_PHALANX_DISTAL(37),
+    JOINT_LEFT_MIDDLE_FINGER_PHALANX_DISTAL(37),
     /**
      * Left middle finger tip joint.
      */
-    LEFT_MIDDLE_FINGER_TIP(38),
+    JOINT_LEFT_MIDDLE_FINGER_TIP(38),
     /**
      * Left ring finger metacarpal joint.
      */
-    LEFT_RING_FINGER_METACARPAL(39),
+    JOINT_LEFT_RING_FINGER_METACARPAL(39),
     /**
      * Left ring finger phalanx proximal joint.
      */
-    LEFT_RING_FINGER_PHALANX_PROXIMAL(40),
+    JOINT_LEFT_RING_FINGER_PHALANX_PROXIMAL(40),
     /**
      * Left ring finger phalanx intermediate joint.
      */
-    LEFT_RING_FINGER_PHALANX_INTERMEDIATE(41),
+    JOINT_LEFT_RING_FINGER_PHALANX_INTERMEDIATE(41),
     /**
      * Left ring finger phalanx distal joint.
      */
-    LEFT_RING_FINGER_PHALANX_DISTAL(42),
+    JOINT_LEFT_RING_FINGER_PHALANX_DISTAL(42),
     /**
      * Left ring finger tip joint.
      */
-    LEFT_RING_FINGER_TIP(43),
+    JOINT_LEFT_RING_FINGER_TIP(43),
     /**
      * Left pinky finger metacarpal joint.
      */
-    LEFT_PINKY_FINGER_METACARPAL(44),
+    JOINT_LEFT_PINKY_FINGER_METACARPAL(44),
     /**
      * Left pinky finger phalanx proximal joint.
      */
-    LEFT_PINKY_FINGER_PHALANX_PROXIMAL(45),
+    JOINT_LEFT_PINKY_FINGER_PHALANX_PROXIMAL(45),
     /**
      * Left pinky finger phalanx intermediate joint.
      */
-    LEFT_PINKY_FINGER_PHALANX_INTERMEDIATE(46),
+    JOINT_LEFT_PINKY_FINGER_PHALANX_INTERMEDIATE(46),
     /**
      * Left pinky finger phalanx distal joint.
      */
-    LEFT_PINKY_FINGER_PHALANX_DISTAL(47),
+    JOINT_LEFT_PINKY_FINGER_PHALANX_DISTAL(47),
     /**
      * Left pinky finger tip joint.
      */
-    LEFT_PINKY_FINGER_TIP(48),
+    JOINT_LEFT_PINKY_FINGER_TIP(48),
     /**
      * Right hand joint.
      */
-    RIGHT_HAND(49),
+    JOINT_RIGHT_HAND(49),
     /**
      * Right palm joint.
      */
-    RIGHT_PALM(50),
+    JOINT_RIGHT_PALM(50),
     /**
      * Right wrist joint.
      */
-    RIGHT_WRIST(51),
+    JOINT_RIGHT_WRIST(51),
     /**
      * Right thumb metacarpal joint.
      */
-    RIGHT_THUMB_METACARPAL(52),
+    JOINT_RIGHT_THUMB_METACARPAL(52),
     /**
      * Right thumb phalanx proximal joint.
      */
-    RIGHT_THUMB_PHALANX_PROXIMAL(53),
+    JOINT_RIGHT_THUMB_PHALANX_PROXIMAL(53),
     /**
      * Right thumb phalanx distal joint.
      */
-    RIGHT_THUMB_PHALANX_DISTAL(54),
+    JOINT_RIGHT_THUMB_PHALANX_DISTAL(54),
     /**
      * Right thumb tip joint.
      */
-    RIGHT_THUMB_TIP(55),
+    JOINT_RIGHT_THUMB_TIP(55),
     /**
      * Right index finger metacarpal joint.
      */
-    RIGHT_INDEX_FINGER_METACARPAL(56),
+    JOINT_RIGHT_INDEX_FINGER_METACARPAL(56),
     /**
      * Right index finger phalanx proximal joint.
      */
-    RIGHT_INDEX_FINGER_PHALANX_PROXIMAL(57),
+    JOINT_RIGHT_INDEX_FINGER_PHALANX_PROXIMAL(57),
     /**
      * Right index finger phalanx intermediate joint.
      */
-    RIGHT_INDEX_FINGER_PHALANX_INTERMEDIATE(58),
+    JOINT_RIGHT_INDEX_FINGER_PHALANX_INTERMEDIATE(58),
     /**
      * Right index finger phalanx distal joint.
      */
-    RIGHT_INDEX_FINGER_PHALANX_DISTAL(59),
+    JOINT_RIGHT_INDEX_FINGER_PHALANX_DISTAL(59),
     /**
      * Right index finger tip joint.
      */
-    RIGHT_INDEX_FINGER_TIP(60),
+    JOINT_RIGHT_INDEX_FINGER_TIP(60),
     /**
      * Right middle finger metacarpal joint.
      */
-    RIGHT_MIDDLE_FINGER_METACARPAL(61),
+    JOINT_RIGHT_MIDDLE_FINGER_METACARPAL(61),
     /**
      * Right middle finger phalanx proximal joint.
      */
-    RIGHT_MIDDLE_FINGER_PHALANX_PROXIMAL(62),
+    JOINT_RIGHT_MIDDLE_FINGER_PHALANX_PROXIMAL(62),
     /**
      * Right middle finger phalanx intermediate joint.
      */
-    RIGHT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(63),
+    JOINT_RIGHT_MIDDLE_FINGER_PHALANX_INTERMEDIATE(63),
     /**
      * Right middle finger phalanx distal joint.
      */
-    RIGHT_MIDDLE_FINGER_PHALANX_DISTAL(64),
+    JOINT_RIGHT_MIDDLE_FINGER_PHALANX_DISTAL(64),
     /**
      * Right middle finger tip joint.
      */
-    RIGHT_MIDDLE_FINGER_TIP(65),
+    JOINT_RIGHT_MIDDLE_FINGER_TIP(65),
     /**
      * Right ring finger metacarpal joint.
      */
-    RIGHT_RING_FINGER_METACARPAL(66),
+    JOINT_RIGHT_RING_FINGER_METACARPAL(66),
     /**
      * Right ring finger phalanx proximal joint.
      */
-    RIGHT_RING_FINGER_PHALANX_PROXIMAL(67),
+    JOINT_RIGHT_RING_FINGER_PHALANX_PROXIMAL(67),
     /**
      * Right ring finger phalanx intermediate joint.
      */
-    RIGHT_RING_FINGER_PHALANX_INTERMEDIATE(68),
+    JOINT_RIGHT_RING_FINGER_PHALANX_INTERMEDIATE(68),
     /**
      * Right ring finger phalanx distal joint.
      */
-    RIGHT_RING_FINGER_PHALANX_DISTAL(69),
+    JOINT_RIGHT_RING_FINGER_PHALANX_DISTAL(69),
     /**
      * Right ring finger tip joint.
      */
-    RIGHT_RING_FINGER_TIP(70),
+    JOINT_RIGHT_RING_FINGER_TIP(70),
     /**
      * Right pinky finger metacarpal joint.
      */
-    RIGHT_PINKY_FINGER_METACARPAL(71),
+    JOINT_RIGHT_PINKY_FINGER_METACARPAL(71),
     /**
      * Right pinky finger phalanx proximal joint.
      */
-    RIGHT_PINKY_FINGER_PHALANX_PROXIMAL(72),
+    JOINT_RIGHT_PINKY_FINGER_PHALANX_PROXIMAL(72),
     /**
      * Right pinky finger phalanx intermediate joint.
      */
-    RIGHT_PINKY_FINGER_PHALANX_INTERMEDIATE(73),
+    JOINT_RIGHT_PINKY_FINGER_PHALANX_INTERMEDIATE(73),
     /**
      * Right pinky finger phalanx distal joint.
      */
-    RIGHT_PINKY_FINGER_PHALANX_DISTAL(74),
+    JOINT_RIGHT_PINKY_FINGER_PHALANX_DISTAL(74),
     /**
      * Right pinky finger tip joint.
      */
-    RIGHT_PINKY_FINGER_TIP(75),
+    JOINT_RIGHT_PINKY_FINGER_TIP(75),
     /**
      * Represents the size of the [Joint] enum.
      */
-    MAX(76),
+    JOINT_MAX(76),
     ;
 
     public val id: Long
@@ -527,24 +527,24 @@ public open class XRBodyTracker : XRPositionalTracker() {
       /**
        * The joint's orientation data is valid.
        */
-      public val ORIENTATION_VALID: JointFlags = JointFlags(1)
+      public val JOINT_FLAG_ORIENTATION_VALID: JointFlags = JointFlags(1)
 
       /**
        * The joint's orientation is actively tracked. May not be set if tracking has been
        * temporarily lost.
        */
-      public val ORIENTATION_TRACKED: JointFlags = JointFlags(2)
+      public val JOINT_FLAG_ORIENTATION_TRACKED: JointFlags = JointFlags(2)
 
       /**
        * The joint's position data is valid.
        */
-      public val POSITION_VALID: JointFlags = JointFlags(4)
+      public val JOINT_FLAG_POSITION_VALID: JointFlags = JointFlags(4)
 
       /**
        * The joint's position is actively tracked. May not be set if tracking has been temporarily
        * lost.
        */
-      public val POSITION_TRACKED: JointFlags = JointFlags(8)
+      public val JOINT_FLAG_POSITION_TRACKED: JointFlags = JointFlags(8)
     }
   }
 

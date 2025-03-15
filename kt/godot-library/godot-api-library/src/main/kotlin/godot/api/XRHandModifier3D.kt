@@ -85,16 +85,16 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    FULL(0),
+    BONE_UPDATE_FULL(0),
     /**
      * The skeleton's bones are only rotated to align with the tracked bones, preserving bone
      * length.
      */
-    ROTATION_ONLY(1),
+    BONE_UPDATE_ROTATION_ONLY(1),
     /**
      * Represents the size of the [BoneUpdate] enum.
      */
-    MAX(2),
+    BONE_UPDATE_MAX(2),
     ;
 
     public val id: Long

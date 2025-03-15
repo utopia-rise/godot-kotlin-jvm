@@ -172,22 +172,22 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     /**
      * No hint used.
      */
-    NONE(0),
+    HINT_NONE(0),
     /**
      * A range hint for scalar value, which limits possible input values between [min] and [max].
      * Translated to `hint_range(min, max)` in shader code.
      */
-    RANGE(1),
+    HINT_RANGE(1),
     /**
      * A range hint for scalar value with step, which limits possible input values between [min] and
      * [max], with a step (increment) of [step]). Translated to `hint_range(min, max, step)` in shader
      * code.
      */
-    RANGE_STEP(2),
+    HINT_RANGE_STEP(2),
     /**
      * Represents the size of the [Hint] enum.
      */
-    MAX(3),
+    HINT_MAX(3),
     ;
 
     public val id: Long

@@ -303,15 +303,15 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     /**
      * Geometry of both primitives is merged, intersecting geometry is removed.
      */
-    UNION(0),
+    OPERATION_UNION(0),
     /**
      * Only intersecting geometry remains, the rest is removed.
      */
-    INTERSECTION(1),
+    OPERATION_INTERSECTION(1),
     /**
      * The second shape is subtracted from the first, leaving a dent with its shape.
      */
-    SUBTRACTION(2),
+    OPERATION_SUBTRACTION(2),
     ;
 
     public val id: Long

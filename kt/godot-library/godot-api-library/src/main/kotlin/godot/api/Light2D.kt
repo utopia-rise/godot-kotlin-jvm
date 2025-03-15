@@ -450,17 +450,17 @@ public open class Light2D internal constructor() : Node2D() {
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
      * render. See [shadowFilter].
      */
-    NONE(0),
+    SHADOW_FILTER_NONE(0),
     /**
      * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to
      * hard shadow rendering. See [shadowFilter].
      */
-    PCF5(1),
+    SHADOW_FILTER_PCF5(1),
     /**
      * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest
      * shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
-    PCF13(2),
+    SHADOW_FILTER_PCF13(2),
     ;
 
     public val id: Long
@@ -480,17 +480,17 @@ public open class Light2D internal constructor() : Node2D() {
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
      * is the common behavior of a light.
      */
-    ADD(0),
+    BLEND_MODE_ADD(0),
     /**
      * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it,
      * resulting in inversed light effect.
      */
-    SUB(1),
+    BLEND_MODE_SUB(1),
     /**
      * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by
      * linear interpolation.
      */
-    MIX(2),
+    BLEND_MODE_MIX(2),
     ;
 
     public val id: Long

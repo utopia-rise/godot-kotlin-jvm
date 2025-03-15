@@ -409,23 +409,23 @@ public object ClassDB : Object() {
     /**
      * Native Core class type.
      */
-    CORE(0),
+    API_CORE(0),
     /**
      * Native Editor class type.
      */
-    EDITOR(1),
+    API_EDITOR(1),
     /**
      * GDExtension class type.
      */
-    EXTENSION(2),
+    API_EXTENSION(2),
     /**
      * GDExtension Editor class type.
      */
-    EDITOR_EXTENSION(3),
+    API_EDITOR_EXTENSION(3),
     /**
      * Unknown class type.
      */
-    NONE(4),
+    API_NONE(4),
     ;
 
     public val id: Long

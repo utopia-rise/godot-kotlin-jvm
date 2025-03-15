@@ -81,19 +81,19 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     /**
      * The parameter will be tied to the [ShaderMaterial] using this shader.
      */
-    NONE(0),
+    QUAL_NONE(0),
     /**
      * The parameter will use a global value, defined in Project Settings.
      */
-    GLOBAL(1),
+    QUAL_GLOBAL(1),
     /**
      * The parameter will be tied to the node with attached [ShaderMaterial] using this shader.
      */
-    INSTANCE(2),
+    QUAL_INSTANCE(2),
     /**
      * Represents the size of the [Qualifier] enum.
      */
-    MAX(3),
+    QUAL_MAX(3),
     ;
 
     public val id: Long

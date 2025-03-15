@@ -388,43 +388,43 @@ public object XRServer : Object() {
      * between the players eyes. Note that for handheld AR devices this can be the current location of
      * the device.
      */
-    HEAD(1),
+    TRACKER_HEAD(1),
     /**
      * The tracker tracks the location of a controller.
      */
-    CONTROLLER(2),
+    TRACKER_CONTROLLER(2),
     /**
      * The tracker tracks the location of a base station.
      */
-    BASESTATION(4),
+    TRACKER_BASESTATION(4),
     /**
      * The tracker tracks the location and size of an AR anchor.
      */
-    ANCHOR(8),
+    TRACKER_ANCHOR(8),
     /**
      * The tracker tracks the location and joints of a hand.
      */
-    HAND(16),
+    TRACKER_HAND(16),
     /**
      * The tracker tracks the location and joints of a body.
      */
-    BODY(32),
+    TRACKER_BODY(32),
     /**
      * The tracker tracks the expressions of a face.
      */
-    FACE(64),
+    TRACKER_FACE(64),
     /**
      * Used internally to filter trackers of any known type.
      */
-    ANY_KNOWN(127),
+    TRACKER_ANY_KNOWN(127),
     /**
      * Used internally if we haven't set the tracker type yet.
      */
-    UNKNOWN(128),
+    TRACKER_UNKNOWN(128),
     /**
      * Used internally to select all trackers.
      */
-    ANY(255),
+    TRACKER_ANY(255),
     ;
 
     public val id: Long

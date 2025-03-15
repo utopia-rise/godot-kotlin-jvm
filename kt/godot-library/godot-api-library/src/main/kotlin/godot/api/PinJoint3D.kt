@@ -55,16 +55,16 @@ public open class PinJoint3D : Joint3D() {
      * The force with which the pinned objects stay in positional relation to each other. The
      * higher, the stronger.
      */
-    BIAS(0),
+    PARAM_BIAS(0),
     /**
      * The force with which the pinned objects stay in velocity relation to each other. The higher,
      * the stronger.
      */
-    DAMPING(1),
+    PARAM_DAMPING(1),
     /**
      * If above 0, this value is the maximum value for an impulse that this Joint3D produces.
      */
-    IMPULSE_CLAMP(2),
+    PARAM_IMPULSE_CLAMP(2),
     ;
 
     public val id: Long

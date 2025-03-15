@@ -221,20 +221,20 @@ public open class GLTFDocument : Resource() {
      * single root node via the `GODOT_single_root` glTF extension. This will be parsed the same as
      * [ROOT_NODE_MODE_KEEP_ROOT] if the implementation does not support `GODOT_single_root`.
      */
-    SINGLE_ROOT(0),
+    ROOT_NODE_MODE_SINGLE_ROOT(0),
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, but do not mark it as
      * anything special. An extra root node will be generated when importing into Godot. This uses only
      * vanilla glTF features. This is equivalent to the behavior in Godot 4.1 and earlier.
      */
-    KEEP_ROOT(1),
+    ROOT_NODE_MODE_KEEP_ROOT(1),
     /**
      * Treat the Godot scene's root node as the name of the glTF scene, and add all of its children
      * as root nodes of the glTF file. This uses only vanilla glTF features. This avoids an extra root
      * node, but only the name of the Godot scene's root node will be preserved, as it will not be
      * saved as a node.
      */
-    MULTI_ROOT(2),
+    ROOT_NODE_MODE_MULTI_ROOT(2),
     ;
 
     public val id: Long

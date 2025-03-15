@@ -48,48 +48,6 @@ fun String.convertToSnakeCase(): String =
         else accumulator.append(character)
     }.toString()
 
-fun String.toScreamingSnakeCase(): String {
-    if (this.isEmpty()) return this
-
-    val result = StringBuilder()
-    for (i in this.indices) {
-        val currentChar = this[i]
-        if (i > 0 && currentChar.isUpperCase()) {
-            val prevChar = this[i - 1]
-            // Insert underscore if the previous character is lowercase
-            // OR if the previous character is uppercase but the next character exists and is lowercase
-            if (prevChar.isLowerCase() || (prevChar.isUpperCase() && i < this.lastIndex && this[i + 1].isLowerCase())) {
-                result.append('_')
-            }
-        }
-        result.append(currentChar)
-    }
-    return result.toString().uppercase(Locale.getDefault())
-}
-
-fun String.removePrefixWords(wordWithDashes: String): String {
-    // We split the 2 strings into different "words"
-    val otherWords = wordWithDashes.split('_')
-    val valueWords = this.split('_')
-
-    var index = 0
-    for (enumWord in otherWords) {
-        if (index >= valueWords.size) break
-        val valueWord = valueWords[index]
-        // Remove the word if the receiver word is not longer than the parameter word
-        // and the parameter word starts with the entire value word.
-        if (valueWord.length <= enumWord.length && enumWord.startsWith(valueWord)) {
-            index++
-        } else {
-            break
-        }
-    }
-    // Join the remaining words with underscores.
-    return valueWords.drop(index).joinToString("_")
-}
-
-fun String.removeWords(other: String) =replace("_" + other + "_", "_")
-
 fun String.removeSuffixWords(wordWithDashes: String): String {
     // We split the 2 strings into different "words"
     val otherWords = wordWithDashes.split('_')

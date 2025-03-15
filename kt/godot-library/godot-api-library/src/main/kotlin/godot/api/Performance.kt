@@ -385,7 +385,7 @@ public object Performance : Object() {
     /**
      * Represents the size of the [Monitor] enum.
      */
-    MAX(39),
+    MONITOR_MAX(39),
     ;
 
     public val id: Long

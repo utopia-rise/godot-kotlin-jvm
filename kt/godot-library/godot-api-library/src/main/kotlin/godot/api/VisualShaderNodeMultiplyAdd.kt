@@ -55,23 +55,23 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
     /**
      * A floating-point scalar type.
      */
-    SCALAR(0),
+    OP_TYPE_SCALAR(0),
     /**
      * A 2D vector type.
      */
-    VECTOR_2D(1),
+    OP_TYPE_VECTOR_2D(1),
     /**
      * A 3D vector type.
      */
-    VECTOR_3D(2),
+    OP_TYPE_VECTOR_3D(2),
     /**
      * A 4D vector type.
      */
-    VECTOR_4D(3),
+    OP_TYPE_VECTOR_4D(3),
     /**
      * Represents the size of the [OpType] enum.
      */
-    MAX(4),
+    OP_TYPE_MAX(4),
     ;
 
     public val id: Long

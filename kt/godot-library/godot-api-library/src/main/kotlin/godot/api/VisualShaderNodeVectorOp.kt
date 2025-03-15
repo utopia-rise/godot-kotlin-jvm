@@ -55,57 +55,57 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     /**
      * Adds two vectors.
      */
-    ADD(0),
+    OP_ADD(0),
     /**
      * Subtracts a vector from a vector.
      */
-    SUB(1),
+    OP_SUB(1),
     /**
      * Multiplies two vectors.
      */
-    MUL(2),
+    OP_MUL(2),
     /**
      * Divides vector by vector.
      */
-    DIV(3),
+    OP_DIV(3),
     /**
      * Returns the remainder of the two vectors.
      */
-    MOD(4),
+    OP_MOD(4),
     /**
      * Returns the value of the first parameter raised to the power of the second, for each
      * component of the vectors.
      */
-    POW(5),
+    OP_POW(5),
     /**
      * Returns the greater of two values, for each component of the vectors.
      */
-    MAX(6),
+    OP_MAX(6),
     /**
      * Returns the lesser of two values, for each component of the vectors.
      */
-    MIN(7),
+    OP_MIN(7),
     /**
      * Calculates the cross product of two vectors.
      */
-    CROSS(8),
+    OP_CROSS(8),
     /**
      * Returns the arc-tangent of the parameters.
      */
-    ATAN2(9),
+    OP_ATAN2(9),
     /**
      * Returns the vector that points in the direction of reflection. `a` is incident vector and `b`
      * is the normal vector.
      */
-    REFLECT(10),
+    OP_REFLECT(10),
     /**
      * Vector step operator. Returns `0.0` if `a` is smaller than `b` and `1.0` otherwise.
      */
-    STEP(11),
+    OP_STEP(11),
     /**
      * Represents the size of the [Operator] enum.
      */
-    ENUM_SIZE(12),
+    OP_ENUM_SIZE(12),
     ;
 
     public val id: Long

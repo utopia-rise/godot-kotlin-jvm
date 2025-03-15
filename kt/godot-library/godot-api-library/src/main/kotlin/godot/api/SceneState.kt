@@ -254,25 +254,25 @@ public open class SceneState internal constructor() : RefCounted() {
     /**
      * If passed to [PackedScene.instantiate], blocks edits to the scene state.
      */
-    DISABLED(0),
+    GEN_EDIT_STATE_DISABLED(0),
     /**
      * If passed to [PackedScene.instantiate], provides inherited scene resources to the local
      * scene.
      * **Note:** Only available in editor builds.
      */
-    INSTANCE(1),
+    GEN_EDIT_STATE_INSTANCE(1),
     /**
      * If passed to [PackedScene.instantiate], provides local scene resources to the local scene.
      * Only the main scene should receive the main edit state.
      * **Note:** Only available in editor builds.
      */
-    MAIN(2),
+    GEN_EDIT_STATE_MAIN(2),
     /**
      * If passed to [PackedScene.instantiate], it's similar to [GEN_EDIT_STATE_MAIN], but for the
      * case where the scene is being instantiated to be the base of another one.
      * **Note:** Only available in editor builds.
      */
-    MAIN_INHERITED(3),
+    GEN_EDIT_STATE_MAIN_INHERITED(3),
     ;
 
     public val id: Long

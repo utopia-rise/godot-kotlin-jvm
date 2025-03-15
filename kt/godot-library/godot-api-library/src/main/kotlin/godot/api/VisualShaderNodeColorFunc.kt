@@ -62,15 +62,15 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * return vec3(max3, max3, max3);
      * [/codeblock]
      */
-    GRAYSCALE(0),
+    FUNC_GRAYSCALE(0),
     /**
      * Converts HSV vector to RGB equivalent.
      */
-    HSV2RGB(1),
+    FUNC_HSV2RGB(1),
     /**
      * Converts RGB vector to HSV equivalent.
      */
-    RGB2HSV(2),
+    FUNC_RGB2HSV(2),
     /**
      * Applies sepia tone effect using the following formula:
      * [codeblock]
@@ -81,7 +81,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * return vec3(r, g, b);
      * [/codeblock]
      */
-    SEPIA(3),
+    FUNC_SEPIA(3),
     /**
      * Converts color from linear color space to sRGB color space using the following formula:
      * [codeblock]
@@ -96,7 +96,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * return max(vec3(1.055) * pow(c, vec3(0.416666667)) - vec3(0.055), vec3(0.0));
      * [/codeblock]
      */
-    LINEAR_TO_SRGB(4),
+    FUNC_LINEAR_TO_SRGB(4),
     /**
      * Converts color from sRGB color space to linear color space using the following formula:
      * [codeblock]
@@ -110,11 +110,11 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);
      * [/codeblock]
      */
-    SRGB_TO_LINEAR(5),
+    FUNC_SRGB_TO_LINEAR(5),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(6),
+    FUNC_MAX(6),
     ;
 
     public val id: Long

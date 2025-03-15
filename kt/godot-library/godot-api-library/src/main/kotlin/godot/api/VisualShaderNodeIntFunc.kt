@@ -56,24 +56,24 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
      * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
      * Language.
      */
-    ABS(0),
+    FUNC_ABS(0),
     /**
      * Negates the `x` using `-(x)`.
      */
-    NEGATE(1),
+    FUNC_NEGATE(1),
     /**
      * Extracts the sign of the parameter. Translates to `sign(x)` in the Godot Shader Language.
      */
-    SIGN(2),
+    FUNC_SIGN(2),
     /**
      * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
      * Shader Language.
      */
-    BITWISE_NOT(3),
+    FUNC_BITWISE_NOT(3),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(4),
+    FUNC_MAX(4),
     ;
 
     public val id: Long

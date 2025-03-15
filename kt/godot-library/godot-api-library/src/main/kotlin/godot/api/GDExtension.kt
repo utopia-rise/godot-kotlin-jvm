@@ -57,21 +57,21 @@ public open class GDExtension : Resource() {
     /**
      * The library is initialized at the same time as the core features of the engine.
      */
-    CORE(0),
+    INITIALIZATION_LEVEL_CORE(0),
     /**
      * The library is initialized at the same time as the engine's servers (such as
      * [RenderingServer] or [PhysicsServer3D]).
      */
-    SERVERS(1),
+    INITIALIZATION_LEVEL_SERVERS(1),
     /**
      * The library is initialized at the same time as the engine's scene-related classes.
      */
-    SCENE(2),
+    INITIALIZATION_LEVEL_SCENE(2),
     /**
      * The library is initialized at the same time as the engine's editor classes. Only happens when
      * loading the GDExtension in the editor.
      */
-    EDITOR(3),
+    INITIALIZATION_LEVEL_EDITOR(3),
     ;
 
     public val id: Long

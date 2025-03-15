@@ -49,10 +49,10 @@ public open class StyleBox : Resource() {
    */
   public final inline var contentMarginLeft: Float
     @JvmName("contentMarginLeftProperty")
-    get() = getContentMargin(Side.LEFT)
+    get() = getContentMargin(Side.SIDE_LEFT)
     @JvmName("contentMarginLeftProperty")
     set(`value`) {
-      setContentMargin(Side.LEFT, value)
+      setContentMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -62,10 +62,10 @@ public open class StyleBox : Resource() {
    */
   public final inline var contentMarginTop: Float
     @JvmName("contentMarginTopProperty")
-    get() = getContentMargin(Side.TOP)
+    get() = getContentMargin(Side.SIDE_TOP)
     @JvmName("contentMarginTopProperty")
     set(`value`) {
-      setContentMargin(Side.TOP, value)
+      setContentMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -75,10 +75,10 @@ public open class StyleBox : Resource() {
    */
   public final inline var contentMarginRight: Float
     @JvmName("contentMarginRightProperty")
-    get() = getContentMargin(Side.RIGHT)
+    get() = getContentMargin(Side.SIDE_RIGHT)
     @JvmName("contentMarginRightProperty")
     set(`value`) {
-      setContentMargin(Side.RIGHT, value)
+      setContentMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -93,10 +93,10 @@ public open class StyleBox : Resource() {
    */
   public final inline var contentMarginBottom: Float
     @JvmName("contentMarginBottomProperty")
-    get() = getContentMargin(Side.BOTTOM)
+    get() = getContentMargin(Side.SIDE_BOTTOM)
     @JvmName("contentMarginBottomProperty")
     set(`value`) {
-      setContentMargin(Side.BOTTOM, value)
+      setContentMargin(Side.SIDE_BOTTOM, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {

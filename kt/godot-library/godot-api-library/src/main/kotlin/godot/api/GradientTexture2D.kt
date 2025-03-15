@@ -266,15 +266,15 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The colors are linearly interpolated in a straight line.
      */
-    LINEAR(0),
+    FILL_LINEAR(0),
     /**
      * The colors are linearly interpolated in a circular pattern.
      */
-    RADIAL(1),
+    FILL_RADIAL(1),
     /**
      * The colors are linearly interpolated in a square pattern.
      */
-    SQUARE(2),
+    FILL_SQUARE(2),
     ;
 
     public val id: Long
@@ -293,7 +293,7 @@ public open class GradientTexture2D : Texture2D() {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.
      */
-    NONE(0),
+    REPEAT_NONE(0),
     /**
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, repeating the same
      * pattern in both directions.
@@ -303,7 +303,7 @@ public open class GradientTexture2D : Texture2D() {
      * The texture is filled starting from [fillFrom] to [fillTo] offsets, mirroring the pattern in
      * both directions.
      */
-    MIRROR(2),
+    REPEAT_MIRROR(2),
     ;
 
     public val id: Long

@@ -170,12 +170,12 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
      * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
      * receive this as a string.
      */
-    TEXT(0),
+    WRITE_MODE_TEXT(0),
     /**
      * Tells the channel to send data over this channel as binary. An external peer (non-Godot)
      * would receive this as array buffer or blob.
      */
-    BINARY(1),
+    WRITE_MODE_BINARY(1),
     ;
 
     public val id: Long

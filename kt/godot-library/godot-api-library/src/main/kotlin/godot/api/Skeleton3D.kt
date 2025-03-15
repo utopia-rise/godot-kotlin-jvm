@@ -649,12 +649,12 @@ public open class Skeleton3D : Node3D() {
      * Set a flag to process modification during physics frames (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    PHYSICS(0),
+    MODIFIER_CALLBACK_MODE_PROCESS_PHYSICS(0),
     /**
      * Set a flag to process modification during process frames (see
      * [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    IDLE(1),
+    MODIFIER_CALLBACK_MODE_PROCESS_IDLE(1),
     ;
 
     public val id: Long

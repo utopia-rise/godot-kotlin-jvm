@@ -56,20 +56,20 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     /**
      * The particles will be accelerated based on their velocity.
      */
-    LINEAR(0),
+    MODE_LINEAR(0),
     /**
      * The particles will be accelerated towards or away from the center.
      */
-    RADIAL(1),
+    MODE_RADIAL(1),
     /**
      * The particles will be accelerated tangentially to the radius vector from center to their
      * position.
      */
-    TANGENTIAL(2),
+    MODE_TANGENTIAL(2),
     /**
      * Represents the size of the [Mode] enum.
      */
-    MAX(3),
+    MODE_MAX(3),
     ;
 
     public val id: Long

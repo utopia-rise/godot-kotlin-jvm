@@ -185,7 +185,7 @@ public open class WebSocketPeer : PacketPeer() {
    */
   @JvmOverloads
   public final fun send(message: PackedByteArray, writeMode: WriteMode =
-      WebSocketPeer.WriteMode.BINARY): Error {
+      WebSocketPeer.WriteMode.WRITE_MODE_BINARY): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.sendPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -398,12 +398,12 @@ public open class WebSocketPeer : PacketPeer() {
      * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
      * allowed).
      */
-    TEXT(0),
+    WRITE_MODE_TEXT(0),
     /**
      * Specifies that WebSockets messages should be transferred as binary payload (any byte
      * combination is allowed).
      */
-    BINARY(1),
+    WRITE_MODE_BINARY(1),
     ;
 
     public val id: Long
@@ -422,20 +422,20 @@ public open class WebSocketPeer : PacketPeer() {
     /**
      * Socket has been created. The connection is not yet open.
      */
-    CONNECTING(0),
+    STATE_CONNECTING(0),
     /**
      * The connection is open and ready to communicate.
      */
-    OPEN(1),
+    STATE_OPEN(1),
     /**
      * The connection is in the process of closing. This means a close request has been sent to the
      * remote peer but confirmation has not been received.
      */
-    CLOSING(2),
+    STATE_CLOSING(2),
     /**
      * The connection is closed or couldn't be opened.
      */
-    CLOSED(3),
+    STATE_CLOSED(3),
     ;
 
     public val id: Long

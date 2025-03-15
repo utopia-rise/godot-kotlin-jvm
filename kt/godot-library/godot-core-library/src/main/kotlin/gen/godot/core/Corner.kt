@@ -15,19 +15,19 @@ public enum class Corner(
   /**
    * Top-left corner.
    */
-  TOP_LEFT(0),
+  CORNER_TOP_LEFT(0),
   /**
    * Top-right corner.
    */
-  TOP_RIGHT(1),
+  CORNER_TOP_RIGHT(1),
   /**
    * Bottom-right corner.
    */
-  BOTTOM_RIGHT(2),
+  CORNER_BOTTOM_RIGHT(2),
   /**
    * Bottom-left corner.
    */
-  BOTTOM_LEFT(3),
+  CORNER_BOTTOM_LEFT(3),
   ;
 
   public val id: Long

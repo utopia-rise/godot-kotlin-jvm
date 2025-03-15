@@ -152,23 +152,23 @@ public open class AudioEffectDistortion : AudioEffect() {
     /**
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
      */
-    CLIP(0),
-    ATAN(1),
+    MODE_CLIP(0),
+    MODE_ATAN(1),
     /**
      * Low-resolution digital distortion effect (bit depth reduction). You can use it to emulate the
      * sound of early digital audio devices.
      */
-    LOFI(2),
+    MODE_LOFI(2),
     /**
      * Emulates the warm distortion produced by a field effect transistor, which is commonly used in
      * solid-state musical instrument amplifiers. The [drive] property has no effect in this mode.
      */
-    OVERDRIVE(3),
+    MODE_OVERDRIVE(3),
     /**
      * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive
      * sound.
      */
-    WAVESHAPE(4),
+    MODE_WAVESHAPE(4),
     ;
 
     public val id: Long

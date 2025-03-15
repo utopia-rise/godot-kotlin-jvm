@@ -239,7 +239,7 @@ public open class TextLine : RefCounted() {
   public final fun addObject(
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     length: Int = 1,
     baseline: Float = 0.0f,
   ): Boolean {
@@ -255,7 +255,7 @@ public open class TextLine : RefCounted() {
   public final fun resizeObject(
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
     baseline: Float = 0.0f,
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())

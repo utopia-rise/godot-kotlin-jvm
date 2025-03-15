@@ -228,11 +228,11 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     /**
      * Plays animation in forward direction.
      */
-    FORWARD(0),
+    PLAY_MODE_FORWARD(0),
     /**
      * Plays animation in backward direction.
      */
-    BACKWARD(1),
+    PLAY_MODE_BACKWARD(1),
     ;
 
     public val id: Long

@@ -458,17 +458,17 @@ public open class Line2D : Node2D() {
      * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
      * joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
-    SHARP(0),
+    LINE_JOINT_SHARP(0),
     /**
      * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with
      * a simple line.
      */
-    BEVEL(1),
+    LINE_JOINT_BEVEL(1),
     /**
      * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc.
      * The detail of this arc depends on [roundPrecision].
      */
-    ROUND(2),
+    LINE_JOINT_ROUND(2),
     ;
 
     public val id: Long
@@ -487,15 +487,15 @@ public open class Line2D : Node2D() {
     /**
      * Draws no line cap.
      */
-    NONE(0),
+    LINE_CAP_NONE(0),
     /**
      * Draws the line cap as a box, slightly extending the first/last segment.
      */
-    BOX(1),
+    LINE_CAP_BOX(1),
     /**
      * Draws the line cap as a semicircle attached to the first/last segment.
      */
-    ROUND(2),
+    LINE_CAP_ROUND(2),
     ;
 
     public val id: Long
@@ -514,18 +514,18 @@ public open class Line2D : Node2D() {
     /**
      * Takes the left pixels of the texture and renders them over the whole polyline.
      */
-    NONE(0),
+    LINE_TEXTURE_NONE(0),
     /**
      * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
      * [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work
      * properly.
      */
-    TILE(1),
+    LINE_TEXTURE_TILE(1),
     /**
      * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
      * must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
-    STRETCH(2),
+    LINE_TEXTURE_STRETCH(2),
     ;
 
     public val id: Long

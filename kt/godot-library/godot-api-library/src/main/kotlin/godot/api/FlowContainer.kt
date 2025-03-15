@@ -142,16 +142,16 @@ public open class FlowContainer : Container() {
      * The child controls will be arranged at the beginning of the container, i.e. top if
      * orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
-    BEGIN(0),
+    ALIGNMENT_BEGIN(0),
     /**
      * The child controls will be centered in the container.
      */
-    CENTER(1),
+    ALIGNMENT_CENTER(1),
     /**
      * The child controls will be arranged at the end of the container, i.e. bottom if orientation
      * is vertical, right if orientation is horizontal (left for RTL layout).
      */
-    END(2),
+    ALIGNMENT_END(2),
     ;
 
     public val id: Long
@@ -171,22 +171,22 @@ public open class FlowContainer : Container() {
      * The last partially filled row or column will wrap aligned to the previous row or column in
      * accordance with [alignment].
      */
-    INHERIT(0),
+    LAST_WRAP_ALIGNMENT_INHERIT(0),
     /**
      * The last partially filled row or column will wrap aligned to the beginning of the previous
      * row or column.
      */
-    BEGIN(1),
+    LAST_WRAP_ALIGNMENT_BEGIN(1),
     /**
      * The last partially filled row or column will wrap aligned to the center of the previous row
      * or column.
      */
-    CENTER(2),
+    LAST_WRAP_ALIGNMENT_CENTER(2),
     /**
      * The last partially filled row or column will wrap aligned to the end of the previous row or
      * column.
      */
-    END(3),
+    LAST_WRAP_ALIGNMENT_END(3),
     ;
 
     public val id: Long

@@ -127,16 +127,16 @@ public open class AspectRatioContainer : Container() {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
      */
-    WIDTH_CONTROLS_HEIGHT(0),
+    STRETCH_WIDTH_CONTROLS_HEIGHT(0),
     /**
      * The width of child controls is automatically adjusted based on the height of the container.
      */
-    HEIGHT_CONTROLS_WIDTH(1),
+    STRETCH_HEIGHT_CONTROLS_WIDTH(1),
     /**
      * The bounding rectangle of child controls is automatically adjusted to fit inside the
      * container while keeping the aspect ratio.
      */
-    FIT(2),
+    STRETCH_FIT(2),
     /**
      * The width and height of child controls is automatically adjusted to make their bounding
      * rectangle cover the entire area of the container while keeping the aspect ratio.
@@ -144,7 +144,7 @@ public open class AspectRatioContainer : Container() {
      * [Control.clipContents] is enabled, this allows to show only the container's area restricted by
      * its own bounding rectangle.
      */
-    COVER(3),
+    STRETCH_COVER(3),
     ;
 
     public val id: Long
@@ -163,15 +163,15 @@ public open class AspectRatioContainer : Container() {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
      */
-    BEGIN(0),
+    ALIGNMENT_BEGIN(0),
     /**
      * Aligns child controls with the center of the container.
      */
-    CENTER(1),
+    ALIGNMENT_CENTER(1),
     /**
      * Aligns child controls with the end (right or bottom) of the container.
      */
-    END(2),
+    ALIGNMENT_END(2),
     ;
 
     public val id: Long

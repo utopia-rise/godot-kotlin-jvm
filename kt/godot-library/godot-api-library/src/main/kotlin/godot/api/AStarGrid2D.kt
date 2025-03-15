@@ -587,7 +587,7 @@ public open class AStarGrid2D : RefCounted() {
      * **Note:** This is also the internal heuristic used in [AStar3D] and [AStar2D] by default
      * (with the inclusion of possible z-axis coordinate).
      */
-    EUCLIDEAN(0),
+    HEURISTIC_EUCLIDEAN(0),
     /**
      * The [url=https://en.wikipedia.org/wiki/Taxicab_geometry]Manhattan heuristic[/url] to be used
      * for the pathfinding using the following formula:
@@ -599,7 +599,7 @@ public open class AStarGrid2D : RefCounted() {
      * **Note:** This heuristic is intended to be used with 4-side orthogonal movements, provided by
      * setting the [diagonalMode] to [DIAGONAL_MODE_NEVER].
      */
-    MANHATTAN(1),
+    HEURISTIC_MANHATTAN(1),
     /**
      * The Octile heuristic to be used for the pathfinding using the following formula:
      * [codeblock]
@@ -609,7 +609,7 @@ public open class AStarGrid2D : RefCounted() {
      * result = (dx < dy) ? f * dx + dy : f * dy + dx;
      * [/codeblock]
      */
-    OCTILE(2),
+    HEURISTIC_OCTILE(2),
     /**
      * The [url=https://en.wikipedia.org/wiki/Chebyshev_distance]Chebyshev heuristic[/url] to be
      * used for the pathfinding using the following formula:
@@ -619,11 +619,11 @@ public open class AStarGrid2D : RefCounted() {
      * result = max(dx, dy)
      * [/codeblock]
      */
-    CHEBYSHEV(3),
+    HEURISTIC_CHEBYSHEV(3),
     /**
      * Represents the size of the [Heuristic] enum.
      */
-    MAX(4),
+    HEURISTIC_MAX(4),
     ;
 
     public val id: Long
@@ -643,25 +643,25 @@ public open class AStarGrid2D : RefCounted() {
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
      * passing using diagonals.
      */
-    ALWAYS(0),
+    DIAGONAL_MODE_ALWAYS(0),
     /**
      * The pathfinding algorithm will ignore all diagonals and the way will be always orthogonal.
      */
-    NEVER(1),
+    DIAGONAL_MODE_NEVER(1),
     /**
      * The pathfinding algorithm will avoid using diagonals if at least two obstacles have been
      * placed around the neighboring cells of the specific path segment.
      */
-    AT_LEAST_ONE_WALKABLE(2),
+    DIAGONAL_MODE_AT_LEAST_ONE_WALKABLE(2),
     /**
      * The pathfinding algorithm will avoid using diagonals if any obstacle has been placed around
      * the neighboring cells of the specific path segment.
      */
-    ONLY_IF_NO_OBSTACLES(3),
+    DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES(3),
     /**
      * Represents the size of the [DiagonalMode] enum.
      */
-    MAX(4),
+    DIAGONAL_MODE_MAX(4),
     ;
 
     public val id: Long
@@ -680,21 +680,21 @@ public open class AStarGrid2D : RefCounted() {
     /**
      * Rectangular cell shape.
      */
-    SQUARE(0),
+    CELL_SHAPE_SQUARE(0),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes up-right, and the vertical one goes down-right.
      */
-    ISOMETRIC_RIGHT(1),
+    CELL_SHAPE_ISOMETRIC_RIGHT(1),
     /**
      * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
      * goes down-right, and the vertical one goes down-left.
      */
-    ISOMETRIC_DOWN(2),
+    CELL_SHAPE_ISOMETRIC_DOWN(2),
     /**
      * Represents the size of the [CellShape] enum.
      */
-    MAX(3),
+    CELL_SHAPE_MAX(3),
     ;
 
     public val id: Long

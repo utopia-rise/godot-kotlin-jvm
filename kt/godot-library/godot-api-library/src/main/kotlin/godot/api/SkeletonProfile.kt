@@ -345,15 +345,15 @@ public open class SkeletonProfile : Resource() {
     /**
      * Direction to the average coordinates of bone children.
      */
-    AVERAGE_CHILDREN(0),
+    TAIL_DIRECTION_AVERAGE_CHILDREN(0),
     /**
      * Direction to the coordinates of specified bone child.
      */
-    SPECIFIC_CHILD(1),
+    TAIL_DIRECTION_SPECIFIC_CHILD(1),
     /**
      * Direction is not calculated.
      */
-    END(2),
+    TAIL_DIRECTION_END(2),
     ;
 
     public val id: Long

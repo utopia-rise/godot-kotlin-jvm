@@ -657,19 +657,19 @@ public open class TabBar : Control() {
     /**
      * Places tabs to the left.
      */
-    LEFT(0),
+    ALIGNMENT_LEFT(0),
     /**
      * Places tabs in the middle.
      */
-    CENTER(1),
+    ALIGNMENT_CENTER(1),
     /**
      * Places tabs to the right.
      */
-    RIGHT(2),
+    ALIGNMENT_RIGHT(2),
     /**
      * Represents the size of the [AlignmentMode] enum.
      */
-    MAX(3),
+    ALIGNMENT_MAX(3),
     ;
 
     public val id: Long
@@ -688,19 +688,19 @@ public open class TabBar : Control() {
     /**
      * Never show the close buttons.
      */
-    SHOW_NEVER(0),
+    CLOSE_BUTTON_SHOW_NEVER(0),
     /**
      * Only show the close button on the currently active tab.
      */
-    SHOW_ACTIVE_ONLY(1),
+    CLOSE_BUTTON_SHOW_ACTIVE_ONLY(1),
     /**
      * Show the close button on all tabs.
      */
-    SHOW_ALWAYS(2),
+    CLOSE_BUTTON_SHOW_ALWAYS(2),
     /**
      * Represents the size of the [CloseButtonDisplayPolicy] enum.
      */
-    MAX(3),
+    CLOSE_BUTTON_MAX(3),
     ;
 
     public val id: Long

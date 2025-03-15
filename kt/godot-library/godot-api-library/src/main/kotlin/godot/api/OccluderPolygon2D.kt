@@ -104,15 +104,15 @@ public open class OccluderPolygon2D : Resource() {
     /**
      * Culling is disabled. See [cullMode].
      */
-    DISABLED(0),
+    CULL_DISABLED(0),
     /**
      * Culling is performed in the clockwise direction. See [cullMode].
      */
-    CLOCKWISE(1),
+    CULL_CLOCKWISE(1),
     /**
      * Culling is performed in the counterclockwise direction. See [cullMode].
      */
-    COUNTER_CLOCKWISE(2),
+    CULL_COUNTER_CLOCKWISE(2),
     ;
 
     public val id: Long

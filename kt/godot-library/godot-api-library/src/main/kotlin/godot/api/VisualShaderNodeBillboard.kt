@@ -81,23 +81,23 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     /**
      * Billboarding is disabled and the node does nothing.
      */
-    DISABLED(0),
+    BILLBOARD_TYPE_DISABLED(0),
     /**
      * A standard billboarding algorithm is enabled.
      */
-    ENABLED(1),
+    BILLBOARD_TYPE_ENABLED(1),
     /**
      * A billboarding algorithm to rotate around Y-axis is enabled.
      */
-    FIXED_Y(2),
+    BILLBOARD_TYPE_FIXED_Y(2),
     /**
      * A billboarding algorithm designed to use on particles is enabled.
      */
-    PARTICLES(3),
+    BILLBOARD_TYPE_PARTICLES(3),
     /**
      * Represents the size of the [BillboardType] enum.
      */
-    MAX(4),
+    BILLBOARD_TYPE_MAX(4),
     ;
 
     public val id: Long

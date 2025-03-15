@@ -293,16 +293,16 @@ public open class SplitContainer : Container() {
      * The dragger icon is automatically hidden if the length of the grabber icon is longer than the
      * split bar.
      */
-    VISIBLE(0),
+    DRAGGER_VISIBLE(0),
     /**
      * The split dragger icon is never visible regardless of the value of [theme_item autohide].
      * The size of the grabber icon determines the minimum [theme_item separation].
      */
-    HIDDEN(1),
+    DRAGGER_HIDDEN(1),
     /**
      * The split dragger icon is not visible, and the split bar is collapsed to zero thickness.
      */
-    HIDDEN_COLLAPSED(2),
+    DRAGGER_HIDDEN_COLLAPSED(2),
     ;
 
     public val id: Long

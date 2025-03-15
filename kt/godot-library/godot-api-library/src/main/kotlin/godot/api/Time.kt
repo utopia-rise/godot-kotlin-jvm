@@ -336,51 +336,51 @@ public object Time : Object() {
     /**
      * The month of January, represented numerically as `01`.
      */
-    JANUARY(1),
+    MONTH_JANUARY(1),
     /**
      * The month of February, represented numerically as `02`.
      */
-    FEBRUARY(2),
+    MONTH_FEBRUARY(2),
     /**
      * The month of March, represented numerically as `03`.
      */
-    MARCH(3),
+    MONTH_MARCH(3),
     /**
      * The month of April, represented numerically as `04`.
      */
-    APRIL(4),
+    MONTH_APRIL(4),
     /**
      * The month of May, represented numerically as `05`.
      */
-    MAY(5),
+    MONTH_MAY(5),
     /**
      * The month of June, represented numerically as `06`.
      */
-    JUNE(6),
+    MONTH_JUNE(6),
     /**
      * The month of July, represented numerically as `07`.
      */
-    JULY(7),
+    MONTH_JULY(7),
     /**
      * The month of August, represented numerically as `08`.
      */
-    AUGUST(8),
+    MONTH_AUGUST(8),
     /**
      * The month of September, represented numerically as `09`.
      */
-    SEPTEMBER(9),
+    MONTH_SEPTEMBER(9),
     /**
      * The month of October, represented numerically as `10`.
      */
-    OCTOBER(10),
+    MONTH_OCTOBER(10),
     /**
      * The month of November, represented numerically as `11`.
      */
-    NOVEMBER(11),
+    MONTH_NOVEMBER(11),
     /**
      * The month of December, represented numerically as `12`.
      */
-    DECEMBER(12),
+    MONTH_DECEMBER(12),
     ;
 
     public val id: Long
@@ -399,31 +399,31 @@ public object Time : Object() {
     /**
      * The day of the week Sunday, represented numerically as `0`.
      */
-    SUNDAY(0),
+    WEEKDAY_SUNDAY(0),
     /**
      * The day of the week Monday, represented numerically as `1`.
      */
-    MONDAY(1),
+    WEEKDAY_MONDAY(1),
     /**
      * The day of the week Tuesday, represented numerically as `2`.
      */
-    TUESDAY(2),
+    WEEKDAY_TUESDAY(2),
     /**
      * The day of the week Wednesday, represented numerically as `3`.
      */
-    WEDNESDAY(3),
+    WEEKDAY_WEDNESDAY(3),
     /**
      * The day of the week Thursday, represented numerically as `4`.
      */
-    THURSDAY(4),
+    WEEKDAY_THURSDAY(4),
     /**
      * The day of the week Friday, represented numerically as `5`.
      */
-    FRIDAY(5),
+    WEEKDAY_FRIDAY(5),
     /**
      * The day of the week Saturday, represented numerically as `6`.
      */
-    SATURDAY(6),
+    WEEKDAY_SATURDAY(6),
     ;
 
     public val id: Long

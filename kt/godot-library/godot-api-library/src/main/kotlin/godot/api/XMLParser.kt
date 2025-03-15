@@ -241,31 +241,31 @@ public open class XMLParser : RefCounted() {
     /**
      * There's no node (no file or buffer opened).
      */
-    NONE(0),
+    NODE_NONE(0),
     /**
      * An element node type, also known as a tag, e.g. `<title>`.
      */
-    ELEMENT(1),
+    NODE_ELEMENT(1),
     /**
      * An end of element node type, e.g. `</title>`.
      */
-    ELEMENT_END(2),
+    NODE_ELEMENT_END(2),
     /**
      * A text node type, i.e. text that is not inside an element. This includes whitespace.
      */
-    TEXT(3),
+    NODE_TEXT(3),
     /**
      * A comment node type, e.g. `<!--A comment-->`.
      */
-    COMMENT(4),
+    NODE_COMMENT(4),
     /**
      * A node type for CDATA (Character Data) sections, e.g. `<![CDATA[CDATA section]]>`.
      */
-    CDATA(5),
+    NODE_CDATA(5),
     /**
      * An unknown node type.
      */
-    UNKNOWN(6),
+    NODE_UNKNOWN(6),
     ;
 
     public val id: Long

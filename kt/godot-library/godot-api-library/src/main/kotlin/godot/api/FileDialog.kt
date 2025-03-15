@@ -505,23 +505,23 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog allows selecting one, and only one file.
      */
-    OPEN_FILE(0),
+    FILE_MODE_OPEN_FILE(0),
     /**
      * The dialog allows selecting multiple files.
      */
-    OPEN_FILES(1),
+    FILE_MODE_OPEN_FILES(1),
     /**
      * The dialog only allows selecting a directory, disallowing the selection of any file.
      */
-    OPEN_DIR(2),
+    FILE_MODE_OPEN_DIR(2),
     /**
      * The dialog allows selecting one file or directory.
      */
-    OPEN_ANY(3),
+    FILE_MODE_OPEN_ANY(3),
     /**
      * The dialog will warn when a file exists.
      */
-    SAVE_FILE(4),
+    FILE_MODE_SAVE_FILE(4),
     ;
 
     public val id: Long
@@ -540,15 +540,15 @@ public open class FileDialog : ConfirmationDialog() {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
      */
-    RESOURCES(0),
+    ACCESS_RESOURCES(0),
     /**
      * The dialog only allows accessing files under user data path (`user://`).
      */
-    USERDATA(1),
+    ACCESS_USERDATA(1),
     /**
      * The dialog allows accessing files on the whole file system.
      */
-    FILESYSTEM(2),
+    ACCESS_FILESYSTEM(2),
     ;
 
     public val id: Long

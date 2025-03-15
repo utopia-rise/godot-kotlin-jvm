@@ -56,11 +56,11 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     /**
      * Multiplies transform `a` by the vector `b`.
      */
-    AxB(0),
+    OP_AxB(0),
     /**
      * Multiplies vector `b` by the transform `a`.
      */
-    BxA(1),
+    OP_BxA(1),
     /**
      * Multiplies transform `a` by the vector `b`, skipping the last row and column of the
      * transform.
@@ -74,7 +74,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     /**
      * Represents the size of the [Operator] enum.
      */
-    MAX(4),
+    OP_MAX(4),
     ;
 
     public val id: Long

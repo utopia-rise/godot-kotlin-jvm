@@ -283,28 +283,28 @@ public open class ENetConnection : RefCounted() {
      * resources. This option may also be used to make network debugging using tools like Wireshark
      * easier.
      */
-    NONE(0),
+    COMPRESS_NONE(0),
     /**
      * ENet's built-in range encoding. Works well on small packets, but is not the most efficient
      * algorithm on packets larger than 4 KB.
      */
-    RANGE_CODER(1),
+    COMPRESS_RANGE_CODER(1),
     /**
      * [url=https://fastlz.org/]FastLZ[/url] compression. This option uses less CPU resources
      * compared to [COMPRESS_ZLIB], at the expense of using more bandwidth.
      */
-    FASTLZ(2),
+    COMPRESS_FASTLZ(2),
     /**
      * [url=https://www.zlib.net/]Zlib[/url] compression. This option uses less bandwidth compared
      * to [COMPRESS_FASTLZ], at the expense of using more CPU resources.
      */
-    ZLIB(3),
+    COMPRESS_ZLIB(3),
     /**
      * [url=https://facebook.github.io/zstd/]Zstandard[/url] compression. Note that this algorithm
      * is not very efficient on packets smaller than 4 KB. Therefore, it's recommended to use other
      * compression algorithms in most cases.
      */
-    ZSTD(4),
+    COMPRESS_ZSTD(4),
     ;
 
     public val id: Long
@@ -324,16 +324,16 @@ public open class ENetConnection : RefCounted() {
      * An error occurred during [service]. You will likely need to [destroy] the host and recreate
      * it.
      */
-    ERROR(-1),
+    EVENT_ERROR(-1),
     /**
      * No event occurred within the specified time limit.
      */
-    NONE(0),
+    EVENT_NONE(0),
     /**
      * A connection request initiated by enet_host_connect has completed. The array will contain the
      * peer which successfully connected.
      */
-    CONNECT(1),
+    EVENT_CONNECT(1),
     /**
      * A peer has disconnected. This event is generated on a successful completion of a disconnect
      * initiated by [ENetPacketPeer.peerDisconnect], if a peer has timed out, or if a connection
@@ -341,13 +341,13 @@ public open class ENetConnection : RefCounted() {
      * disconnected. The data field contains user supplied data describing the disconnection, or 0, if
      * none is available.
      */
-    DISCONNECT(2),
+    EVENT_DISCONNECT(2),
     /**
      * A packet has been received from a peer. The array will contain the peer which sent the packet
      * and the channel number upon which the packet was received. The received packet will be queued to
      * the associated [ENetPacketPeer].
      */
-    RECEIVE(3),
+    EVENT_RECEIVE(3),
     ;
 
     public val id: Long
@@ -366,19 +366,19 @@ public open class ENetConnection : RefCounted() {
     /**
      * Total data sent.
      */
-    TOTAL_SENT_DATA(0),
+    HOST_TOTAL_SENT_DATA(0),
     /**
      * Total UDP packets sent.
      */
-    TOTAL_SENT_PACKETS(1),
+    HOST_TOTAL_SENT_PACKETS(1),
     /**
      * Total data received.
      */
-    TOTAL_RECEIVED_DATA(2),
+    HOST_TOTAL_RECEIVED_DATA(2),
     /**
      * Total UDP packets received.
      */
-    TOTAL_RECEIVED_PACKETS(3),
+    HOST_TOTAL_RECEIVED_PACKETS(3),
     ;
 
     public val id: Long

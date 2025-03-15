@@ -48,10 +48,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightIntensityLumens: Float
     @JvmName("lightIntensityLumensProperty")
-    get() = getParam(Light3D.Param.INTENSITY)
+    get() = getParam(Light3D.Param.PARAM_INTENSITY)
     @JvmName("lightIntensityLumensProperty")
     set(`value`) {
-      setParam(Light3D.Param.INTENSITY, value)
+      setParam(Light3D.Param.PARAM_INTENSITY, value)
     }
 
   /**
@@ -65,10 +65,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightIntensityLux: Float
     @JvmName("lightIntensityLuxProperty")
-    get() = getParam(Light3D.Param.INTENSITY)
+    get() = getParam(Light3D.Param.PARAM_INTENSITY)
     @JvmName("lightIntensityLuxProperty")
     set(`value`) {
-      setParam(Light3D.Param.INTENSITY, value)
+      setParam(Light3D.Param.PARAM_INTENSITY, value)
     }
 
   /**
@@ -105,10 +105,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightEnergy: Float
     @JvmName("lightEnergyProperty")
-    get() = getParam(Light3D.Param.ENERGY)
+    get() = getParam(Light3D.Param.PARAM_ENERGY)
     @JvmName("lightEnergyProperty")
     set(`value`) {
-      setParam(Light3D.Param.ENERGY, value)
+      setParam(Light3D.Param.PARAM_ENERGY, value)
     }
 
   /**
@@ -119,10 +119,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightIndirectEnergy: Float
     @JvmName("lightIndirectEnergyProperty")
-    get() = getParam(Light3D.Param.INDIRECT_ENERGY)
+    get() = getParam(Light3D.Param.PARAM_INDIRECT_ENERGY)
     @JvmName("lightIndirectEnergyProperty")
     set(`value`) {
-      setParam(Light3D.Param.INDIRECT_ENERGY, value)
+      setParam(Light3D.Param.PARAM_INDIRECT_ENERGY, value)
     }
 
   /**
@@ -136,10 +136,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightVolumetricFogEnergy: Float
     @JvmName("lightVolumetricFogEnergyProperty")
-    get() = getParam(Light3D.Param.VOLUMETRIC_FOG_ENERGY)
+    get() = getParam(Light3D.Param.PARAM_VOLUMETRIC_FOG_ENERGY)
     @JvmName("lightVolumetricFogEnergyProperty")
     set(`value`) {
-      setParam(Light3D.Param.VOLUMETRIC_FOG_ENERGY, value)
+      setParam(Light3D.Param.PARAM_VOLUMETRIC_FOG_ENERGY, value)
     }
 
   /**
@@ -173,10 +173,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightSize: Float
     @JvmName("lightSizeProperty")
-    get() = getParam(Light3D.Param.SIZE)
+    get() = getParam(Light3D.Param.PARAM_SIZE)
     @JvmName("lightSizeProperty")
     set(`value`) {
-      setParam(Light3D.Param.SIZE, value)
+      setParam(Light3D.Param.PARAM_SIZE, value)
     }
 
   /**
@@ -192,10 +192,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightAngularDistance: Float
     @JvmName("lightAngularDistanceProperty")
-    get() = getParam(Light3D.Param.SIZE)
+    get() = getParam(Light3D.Param.PARAM_SIZE)
     @JvmName("lightAngularDistanceProperty")
     set(`value`) {
-      setParam(Light3D.Param.SIZE, value)
+      setParam(Light3D.Param.PARAM_SIZE, value)
     }
 
   /**
@@ -216,10 +216,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var lightSpecular: Float
     @JvmName("lightSpecularProperty")
-    get() = getParam(Light3D.Param.SPECULAR)
+    get() = getParam(Light3D.Param.PARAM_SPECULAR)
     @JvmName("lightSpecularProperty")
     set(`value`) {
-      setParam(Light3D.Param.SPECULAR, value)
+      setParam(Light3D.Param.PARAM_SPECULAR, value)
     }
 
   /**
@@ -267,10 +267,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var shadowBias: Float
     @JvmName("shadowBiasProperty")
-    get() = getParam(Light3D.Param.SHADOW_BIAS)
+    get() = getParam(Light3D.Param.PARAM_SHADOW_BIAS)
     @JvmName("shadowBiasProperty")
     set(`value`) {
-      setParam(Light3D.Param.SHADOW_BIAS, value)
+      setParam(Light3D.Param.PARAM_SHADOW_BIAS, value)
     }
 
   /**
@@ -280,10 +280,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var shadowNormalBias: Float
     @JvmName("shadowNormalBiasProperty")
-    get() = getParam(Light3D.Param.SHADOW_NORMAL_BIAS)
+    get() = getParam(Light3D.Param.PARAM_SHADOW_NORMAL_BIAS)
     @JvmName("shadowNormalBiasProperty")
     set(`value`) {
-      setParam(Light3D.Param.SHADOW_NORMAL_BIAS, value)
+      setParam(Light3D.Param.PARAM_SHADOW_NORMAL_BIAS, value)
     }
 
   /**
@@ -301,10 +301,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   public final inline var shadowTransmittanceBias: Float
     @JvmName("shadowTransmittanceBiasProperty")
-    get() = getParam(Light3D.Param.TRANSMITTANCE_BIAS)
+    get() = getParam(Light3D.Param.PARAM_TRANSMITTANCE_BIAS)
     @JvmName("shadowTransmittanceBiasProperty")
     set(`value`) {
-      setParam(Light3D.Param.TRANSMITTANCE_BIAS, value)
+      setParam(Light3D.Param.PARAM_TRANSMITTANCE_BIAS, value)
     }
 
   /**
@@ -314,10 +314,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var shadowOpacity: Float
     @JvmName("shadowOpacityProperty")
-    get() = getParam(Light3D.Param.SHADOW_OPACITY)
+    get() = getParam(Light3D.Param.PARAM_SHADOW_OPACITY)
     @JvmName("shadowOpacityProperty")
     set(`value`) {
-      setParam(Light3D.Param.SHADOW_OPACITY, value)
+      setParam(Light3D.Param.PARAM_SHADOW_OPACITY, value)
     }
 
   /**
@@ -327,10 +327,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    */
   public final inline var shadowBlur: Float
     @JvmName("shadowBlurProperty")
-    get() = getParam(Light3D.Param.SHADOW_BLUR)
+    get() = getParam(Light3D.Param.PARAM_SHADOW_BLUR)
     @JvmName("shadowBlurProperty")
     set(`value`) {
-      setParam(Light3D.Param.SHADOW_BLUR, value)
+      setParam(Light3D.Param.PARAM_SHADOW_BLUR, value)
     }
 
   /**
@@ -629,92 +629,92 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     /**
      * Constant for accessing [lightEnergy].
      */
-    ENERGY(0),
+    PARAM_ENERGY(0),
     /**
      * Constant for accessing [lightIndirectEnergy].
      */
-    INDIRECT_ENERGY(1),
+    PARAM_INDIRECT_ENERGY(1),
     /**
      * Constant for accessing [lightVolumetricFogEnergy].
      */
-    VOLUMETRIC_FOG_ENERGY(2),
+    PARAM_VOLUMETRIC_FOG_ENERGY(2),
     /**
      * Constant for accessing [lightSpecular].
      */
-    SPECULAR(3),
+    PARAM_SPECULAR(3),
     /**
      * Constant for accessing [OmniLight3D.omniRange] or [SpotLight3D.spotRange].
      */
-    RANGE(4),
+    PARAM_RANGE(4),
     /**
      * Constant for accessing [lightSize].
      */
-    SIZE(5),
+    PARAM_SIZE(5),
     /**
      * Constant for accessing [OmniLight3D.omniAttenuation] or [SpotLight3D.spotAttenuation].
      */
-    ATTENUATION(6),
+    PARAM_ATTENUATION(6),
     /**
      * Constant for accessing [SpotLight3D.spotAngle].
      */
-    SPOT_ANGLE(7),
+    PARAM_SPOT_ANGLE(7),
     /**
      * Constant for accessing [SpotLight3D.spotAngleAttenuation].
      */
-    SPOT_ATTENUATION(8),
+    PARAM_SPOT_ATTENUATION(8),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowMaxDistance].
      */
-    SHADOW_MAX_DISTANCE(9),
+    PARAM_SHADOW_MAX_DISTANCE(9),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowSplit1].
      */
-    SHADOW_SPLIT_1_OFFSET(10),
+    PARAM_SHADOW_SPLIT_1_OFFSET(10),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowSplit2].
      */
-    SHADOW_SPLIT_2_OFFSET(11),
+    PARAM_SHADOW_SPLIT_2_OFFSET(11),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowSplit3].
      */
-    SHADOW_SPLIT_3_OFFSET(12),
+    PARAM_SHADOW_SPLIT_3_OFFSET(12),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowFadeStart].
      */
-    SHADOW_FADE_START(13),
+    PARAM_SHADOW_FADE_START(13),
     /**
      * Constant for accessing [shadowNormalBias].
      */
-    SHADOW_NORMAL_BIAS(14),
+    PARAM_SHADOW_NORMAL_BIAS(14),
     /**
      * Constant for accessing [shadowBias].
      */
-    SHADOW_BIAS(15),
+    PARAM_SHADOW_BIAS(15),
     /**
      * Constant for accessing [DirectionalLight3D.directionalShadowPancakeSize].
      */
-    SHADOW_PANCAKE_SIZE(16),
+    PARAM_SHADOW_PANCAKE_SIZE(16),
     /**
      * Constant for accessing [shadowOpacity].
      */
-    SHADOW_OPACITY(17),
+    PARAM_SHADOW_OPACITY(17),
     /**
      * Constant for accessing [shadowBlur].
      */
-    SHADOW_BLUR(18),
+    PARAM_SHADOW_BLUR(18),
     /**
      * Constant for accessing [shadowTransmittanceBias].
      */
-    TRANSMITTANCE_BIAS(19),
+    PARAM_TRANSMITTANCE_BIAS(19),
     /**
      * Constant for accessing [lightIntensityLumens] and [lightIntensityLux]. Only used when
      * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
      */
-    INTENSITY(20),
+    PARAM_INTENSITY(20),
     /**
      * Represents the size of the [Param] enum.
      */
-    MAX(21),
+    PARAM_MAX(21),
     ;
 
     public val id: Long
@@ -737,7 +737,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still
      * affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
      */
-    DISABLED(0),
+    BAKE_DISABLED(0),
     /**
      * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI
      * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
@@ -745,7 +745,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * flickering torches), but generally not large changes such as toggling a light on and off.
      * **Note:** The light is not baked in [LightmapGI] if [editorOnly] is `true`.
      */
-    STATIC(1),
+    BAKE_STATIC(1),
     /**
      * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
      * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
@@ -754,7 +754,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * [BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
      * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
-    DYNAMIC(2),
+    BAKE_DYNAMIC(2),
     ;
 
     public val id: Long

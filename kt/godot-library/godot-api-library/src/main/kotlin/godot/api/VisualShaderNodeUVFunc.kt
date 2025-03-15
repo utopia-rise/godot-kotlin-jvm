@@ -57,16 +57,16 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
      * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv +
      * offset * scale`. `uv` port is connected to `UV` built-in by default.
      */
-    PANNING(0),
+    FUNC_PANNING(0),
     /**
      * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv -
      * pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
      */
-    SCALING(1),
+    FUNC_SCALING(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(2),
+    FUNC_MAX(2),
     ;
 
     public val id: Long

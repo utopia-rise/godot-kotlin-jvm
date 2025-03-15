@@ -83,10 +83,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginLeft: Int
     @JvmName("patchMarginLeftProperty")
-    get() = getPatchMargin(Side.LEFT)
+    get() = getPatchMargin(Side.SIDE_LEFT)
     @JvmName("patchMarginLeftProperty")
     set(`value`) {
-      setPatchMargin(Side.LEFT, value)
+      setPatchMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -96,10 +96,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginTop: Int
     @JvmName("patchMarginTopProperty")
-    get() = getPatchMargin(Side.TOP)
+    get() = getPatchMargin(Side.SIDE_TOP)
     @JvmName("patchMarginTopProperty")
     set(`value`) {
-      setPatchMargin(Side.TOP, value)
+      setPatchMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -109,10 +109,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginRight: Int
     @JvmName("patchMarginRightProperty")
-    get() = getPatchMargin(Side.RIGHT)
+    get() = getPatchMargin(Side.SIDE_RIGHT)
     @JvmName("patchMarginRightProperty")
     set(`value`) {
-      setPatchMargin(Side.RIGHT, value)
+      setPatchMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -122,10 +122,10 @@ public open class NinePatchRect : Control() {
    */
   public final inline var patchMarginBottom: Int
     @JvmName("patchMarginBottomProperty")
-    get() = getPatchMargin(Side.BOTTOM)
+    get() = getPatchMargin(Side.SIDE_BOTTOM)
     @JvmName("patchMarginBottomProperty")
     set(`value`) {
-      setPatchMargin(Side.BOTTOM, value)
+      setPatchMargin(Side.SIDE_BOTTOM, value)
     }
 
   /**
@@ -261,19 +261,19 @@ public open class NinePatchRect : Control() {
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be
      * distorted.
      */
-    STRETCH(0),
+    AXIS_STRETCH_MODE_STRETCH(0),
     /**
      * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion.
      * The texture must be seamless for this to work without displaying artifacts between edges.
      */
-    TILE(1),
+    AXIS_STRETCH_MODE_TILE(1),
     /**
      * Repeats the center texture across the NinePatchRect, but will also stretch the texture to
      * make sure each tile is visible in full. This may cause the texture to be distorted, but less
      * than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without
      * displaying artifacts between edges.
      */
-    TILE_FIT(2),
+    AXIS_STRETCH_MODE_TILE_FIT(2),
     ;
 
     public val id: Long

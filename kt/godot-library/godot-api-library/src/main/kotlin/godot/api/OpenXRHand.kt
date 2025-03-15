@@ -155,15 +155,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * Tracking the player's left hand.
      */
-    LEFT(0),
+    HAND_LEFT(0),
     /**
      * Tracking the player's right hand.
      */
-    RIGHT(1),
+    HAND_RIGHT(1),
     /**
      * Maximum supported hands.
      */
-    MAX(2),
+    HAND_MAX(2),
     ;
 
     public val id: Long
@@ -182,15 +182,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * When player grips, hand skeleton will form a full fist.
      */
-    UNOBSTRUCTED(0),
+    MOTION_RANGE_UNOBSTRUCTED(0),
     /**
      * When player grips, hand skeleton conforms to the controller the player is holding.
      */
-    CONFORM_TO_CONTROLLER(1),
+    MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
     /**
      * Maximum supported motion ranges.
      */
-    MAX(2),
+    MOTION_RANGE_MAX(2),
     ;
 
     public val id: Long
@@ -209,15 +209,15 @@ public open class OpenXRHand : Node3D() {
     /**
      * An OpenXR compliant skeleton.
      */
-    OPENXR(0),
+    SKELETON_RIG_OPENXR(0),
     /**
      * A [SkeletonProfileHumanoid] compliant skeleton.
      */
-    HUMANOID(1),
+    SKELETON_RIG_HUMANOID(1),
     /**
      * Maximum supported hands.
      */
-    MAX(2),
+    SKELETON_RIG_MAX(2),
     ;
 
     public val id: Long
@@ -237,15 +237,15 @@ public open class OpenXRHand : Node3D() {
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
      * bones.
      */
-    FULL(0),
+    BONE_UPDATE_FULL(0),
     /**
      * The skeletons bones are only rotated to align with the tracked bones, preserving bone length.
      */
-    ROTATION_ONLY(1),
+    BONE_UPDATE_ROTATION_ONLY(1),
     /**
      * Maximum supported bone update mode.
      */
-    MAX(2),
+    BONE_UPDATE_MAX(2),
     ;
 
     public val id: Long

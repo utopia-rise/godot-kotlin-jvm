@@ -491,7 +491,7 @@ public open class Animation : Resource() {
   public final fun trackFindKey(
     trackIdx: Int,
     time: Double,
-    findMode: FindMode = Animation.FindMode.NEAREST,
+    findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
     limit: Boolean = false,
     backward: Boolean = false,
   ): Int {
@@ -1083,27 +1083,27 @@ public open class Animation : Resource() {
     /**
      * No interpolation (nearest value).
      */
-    NEAREST(0),
+    INTERPOLATION_NEAREST(0),
     /**
      * Linear interpolation.
      */
-    LINEAR(1),
+    INTERPOLATION_LINEAR(1),
     /**
      * Cubic interpolation. This looks smoother than linear interpolation, but is more expensive to
      * interpolate. Stick to [INTERPOLATION_LINEAR] for complex 3D animations imported from external
      * software, even if it requires using a higher animation framerate in return.
      */
-    CUBIC(2),
+    INTERPOLATION_CUBIC(2),
     /**
      * Linear interpolation with shortest path rotation.
      * **Note:** The result value is always normalized and may not match the key value.
      */
-    LINEAR_ANGLE(3),
+    INTERPOLATION_LINEAR_ANGLE(3),
     /**
      * Cubic interpolation with shortest path rotation.
      * **Note:** The result value is always normalized and may not match the key value.
      */
-    CUBIC_ANGLE(4),
+    INTERPOLATION_CUBIC_ANGLE(4),
     ;
 
     public val id: Long
@@ -1122,17 +1122,17 @@ public open class Animation : Resource() {
     /**
      * Update between keyframes and hold the value.
      */
-    CONTINUOUS(0),
+    UPDATE_CONTINUOUS(0),
     /**
      * Update at the keyframes.
      */
-    DISCRETE(1),
+    UPDATE_DISCRETE(1),
     /**
      * Same as [UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object
      * and perform interpolation in some methods. See also [AnimationMixer.capture],
      * [AnimationPlayer.playbackAutoCapture], and [AnimationPlayer.playWithCapture].
      */
-    CAPTURE(2),
+    UPDATE_CAPTURE(2),
     ;
 
     public val id: Long
@@ -1151,16 +1151,16 @@ public open class Animation : Resource() {
     /**
      * At both ends of the animation, the animation will stop playing.
      */
-    NONE(0),
+    LOOP_NONE(0),
     /**
      * At both ends of the animation, the animation will be repeated without changing the playback
      * direction.
      */
-    LINEAR(1),
+    LOOP_LINEAR(1),
     /**
      * Repeats playback and reverse playback at both ends of the animation.
      */
-    PINGPONG(2),
+    LOOP_PINGPONG(2),
     ;
 
     public val id: Long
@@ -1179,17 +1179,17 @@ public open class Animation : Resource() {
     /**
      * This flag indicates that the animation proceeds without any looping.
      */
-    NONE(0),
+    LOOPED_FLAG_NONE(0),
     /**
      * This flag indicates that the animation has reached the end of the animation and just after
      * loop processed.
      */
-    END(1),
+    LOOPED_FLAG_END(1),
     /**
      * This flag indicates that the animation has reached the start of the animation and just after
      * loop processed.
      */
-    START(2),
+    LOOPED_FLAG_START(2),
     ;
 
     public val id: Long
@@ -1208,15 +1208,15 @@ public open class Animation : Resource() {
     /**
      * Finds the nearest time key.
      */
-    NEAREST(0),
+    FIND_MODE_NEAREST(0),
     /**
      * Finds only the key with approximating the time.
      */
-    APPROX(1),
+    FIND_MODE_APPROX(1),
     /**
      * Finds only the key with matching the time.
      */
-    EXACT(2),
+    FIND_MODE_EXACT(2),
     ;
 
     public val id: Long

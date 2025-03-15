@@ -56,35 +56,35 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
     /**
      * A floating-point scalar type.
      */
-    SCALAR(0),
+    OP_TYPE_SCALAR(0),
     /**
      * A 2D vector type.
      */
-    VECTOR_2D(1),
+    OP_TYPE_VECTOR_2D(1),
     /**
      * The `x` port uses a 2D vector type, while the `edge` port uses a floating-point scalar type.
      */
-    VECTOR_2D_SCALAR(2),
+    OP_TYPE_VECTOR_2D_SCALAR(2),
     /**
      * A 3D vector type.
      */
-    VECTOR_3D(3),
+    OP_TYPE_VECTOR_3D(3),
     /**
      * The `x` port uses a 3D vector type, while the `edge` port uses a floating-point scalar type.
      */
-    VECTOR_3D_SCALAR(4),
+    OP_TYPE_VECTOR_3D_SCALAR(4),
     /**
      * A 4D vector type.
      */
-    VECTOR_4D(5),
+    OP_TYPE_VECTOR_4D(5),
     /**
      * The `a` and `b` ports use a 4D vector type. The `weight` port uses a scalar type.
      */
-    VECTOR_4D_SCALAR(6),
+    OP_TYPE_VECTOR_4D_SCALAR(6),
     /**
      * Represents the size of the [OpType] enum.
      */
-    MAX(7),
+    OP_TYPE_MAX(7),
     ;
 
     public val id: Long

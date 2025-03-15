@@ -845,21 +845,21 @@ public open class GPUParticles3D : GeometryInstance3D() {
     /**
      * Particles are drawn in the order emitted.
      */
-    INDEX(0),
+    DRAW_ORDER_INDEX(0),
     /**
      * Particles are drawn in order of remaining lifetime. In other words, the particle with the
      * highest lifetime is drawn at the front.
      */
-    LIFETIME(1),
+    DRAW_ORDER_LIFETIME(1),
     /**
      * Particles are drawn in reverse order of remaining lifetime. In other words, the particle with
      * the lowest lifetime is drawn at the front.
      */
-    REVERSE_LIFETIME(2),
+    DRAW_ORDER_REVERSE_LIFETIME(2),
     /**
      * Particles are drawn in order of depth.
      */
-    VIEW_DEPTH(3),
+    DRAW_ORDER_VIEW_DEPTH(3),
     ;
 
     public val id: Long
@@ -878,24 +878,24 @@ public open class GPUParticles3D : GeometryInstance3D() {
     /**
      * Particle starts at the specified position.
      */
-    POSITION(1),
+    EMIT_FLAG_POSITION(1),
     /**
      * Particle starts with specified rotation and scale.
      */
-    ROTATION_SCALE(2),
+    EMIT_FLAG_ROTATION_SCALE(2),
     /**
      * Particle starts with the specified velocity vector, which defines the emission direction and
      * speed.
      */
-    VELOCITY(4),
+    EMIT_FLAG_VELOCITY(4),
     /**
      * Particle starts with specified color.
      */
-    COLOR(8),
+    EMIT_FLAG_COLOR(8),
     /**
      * Particle starts with specified `CUSTOM` data.
      */
-    CUSTOM(16),
+    EMIT_FLAG_CUSTOM(16),
     ;
 
     public val id: Long
@@ -911,10 +911,10 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public enum class TransformAlign(
     id: Long,
   ) {
-    DISABLED(0),
-    Z_BILLBOARD(1),
-    Y_TO_VELOCITY(2),
-    Z_BILLBOARD_Y_TO_VELOCITY(3),
+    TRANSFORM_ALIGN_DISABLED(0),
+    TRANSFORM_ALIGN_Z_BILLBOARD(1),
+    TRANSFORM_ALIGN_Y_TO_VELOCITY(2),
+    TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
     public val id: Long

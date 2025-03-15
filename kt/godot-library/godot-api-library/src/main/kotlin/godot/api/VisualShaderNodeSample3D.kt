@@ -55,15 +55,15 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     /**
      * Creates internal uniform and provides a way to assign it within node.
      */
-    TEXTURE(0),
+    SOURCE_TEXTURE(0),
     /**
      * Use the uniform texture from sampler port.
      */
-    PORT(1),
+    SOURCE_PORT(1),
     /**
      * Represents the size of the [Source] enum.
      */
-    MAX(2),
+    SOURCE_MAX(2),
     ;
 
     public val id: Long

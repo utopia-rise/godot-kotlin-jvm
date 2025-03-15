@@ -181,19 +181,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     /**
      * Defaults to fully opaque white color.
      */
-    WHITE(0),
+    COLOR_DEFAULT_WHITE(0),
     /**
      * Defaults to fully opaque black color.
      */
-    BLACK(1),
+    COLOR_DEFAULT_BLACK(1),
     /**
      * Defaults to fully transparent black color.
      */
-    TRANSPARENT(2),
+    COLOR_DEFAULT_TRANSPARENT(2),
     /**
      * Represents the size of the [ColorDefault] enum.
      */
-    MAX(3),
+    COLOR_DEFAULT_MAX(3),
     ;
 
     public val id: Long

@@ -1488,20 +1488,20 @@ public object OS : Object() {
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
      * from Vulkan 1.1 and 1.2 if available.
      */
-    VULKAN(0),
+    RENDERING_DRIVER_VULKAN(0),
     /**
      * The OpenGL 3 rendering driver. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL
      * ES 3.0 on mobile devices, and WebGL 2.0 on Web.
      */
-    OPENGL3(1),
+    RENDERING_DRIVER_OPENGL3(1),
     /**
      * The Direct3D 12 rendering driver.
      */
-    D3D12(2),
+    RENDERING_DRIVER_D3D12(2),
     /**
      * The Metal rendering driver.
      */
-    METAL(3),
+    RENDERING_DRIVER_METAL(3),
     ;
 
     public val id: Long
@@ -1520,35 +1520,35 @@ public object OS : Object() {
     /**
      * Refers to the Desktop directory path.
      */
-    DESKTOP(0),
+    SYSTEM_DIR_DESKTOP(0),
     /**
      * Refers to the DCIM (Digital Camera Images) directory path.
      */
-    DCIM(1),
+    SYSTEM_DIR_DCIM(1),
     /**
      * Refers to the Documents directory path.
      */
-    DOCUMENTS(2),
+    SYSTEM_DIR_DOCUMENTS(2),
     /**
      * Refers to the Downloads directory path.
      */
-    DOWNLOADS(3),
+    SYSTEM_DIR_DOWNLOADS(3),
     /**
      * Refers to the Movies (or Videos) directory path.
      */
-    MOVIES(4),
+    SYSTEM_DIR_MOVIES(4),
     /**
      * Refers to the Music directory path.
      */
-    MUSIC(5),
+    SYSTEM_DIR_MUSIC(5),
     /**
      * Refers to the Pictures directory path.
      */
-    PICTURES(6),
+    SYSTEM_DIR_PICTURES(6),
     /**
      * Refers to the Ringtones directory path.
      */
-    RINGTONES(7),
+    SYSTEM_DIR_RINGTONES(7),
     ;
 
     public val id: Long
@@ -1568,27 +1568,27 @@ public object OS : Object() {
      * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
      * devices.
      */
-    INVALID(0),
+    STD_HANDLE_INVALID(0),
     /**
      * Standard I/O device is a console. This typically occurs when Godot is run from a terminal
      * with no redirection. This is also used for all standard I/O devices when running Godot from the
      * editor, at least on desktop platforms.
      */
-    CONSOLE(1),
+    STD_HANDLE_CONSOLE(1),
     /**
      * Standard I/O device is a regular file. This typically occurs with redirection from a
      * terminal, e.g. `godot > stdout.txt`, `godot < stdin.txt` or `godot > stdout_stderr.txt 2>&1`.
      */
-    FILE(2),
+    STD_HANDLE_FILE(2),
     /**
      * Standard I/O device is a FIFO/pipe. This typically occurs with pipe usage from a terminal,
      * e.g. `echo "Hello" | godot`.
      */
-    PIPE(3),
+    STD_HANDLE_PIPE(3),
     /**
      * Standard I/O device type is unknown.
      */
-    UNKNOWN(4),
+    STD_HANDLE_UNKNOWN(4),
     ;
 
     public val id: Long

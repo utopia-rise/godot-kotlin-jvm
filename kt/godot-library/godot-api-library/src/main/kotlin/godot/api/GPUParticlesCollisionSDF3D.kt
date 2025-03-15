@@ -249,7 +249,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     /**
      * Represents the size of the [Resolution] enum.
      */
-    MAX(6),
+    RESOLUTION_MAX(6),
     ;
 
     public val id: Long

@@ -275,17 +275,17 @@ public open class AnimationNodeStateMachineTransition : Resource() {
      * Switch to the next state immediately. The current state will end and blend into the beginning
      * of the new one.
      */
-    IMMEDIATE(0),
+    SWITCH_MODE_IMMEDIATE(0),
     /**
      * Switch to the next state immediately, but will seek the new state to the playback position of
      * the old state.
      */
-    SYNC(1),
+    SWITCH_MODE_SYNC(1),
     /**
      * Wait for the current state playback to end, then switch to the beginning of the next state
      * animation.
      */
-    AT_END(2),
+    SWITCH_MODE_AT_END(2),
     ;
 
     public val id: Long
@@ -304,16 +304,16 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     /**
      * Don't use this transition.
      */
-    DISABLED(0),
+    ADVANCE_MODE_DISABLED(0),
     /**
      * Only use this transition during [AnimationNodeStateMachinePlayback.travel].
      */
-    ENABLED(1),
+    ADVANCE_MODE_ENABLED(1),
     /**
      * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks
      * are `true` (if assigned).
      */
-    AUTO(2),
+    ADVANCE_MODE_AUTO(2),
     ;
 
     public val id: Long

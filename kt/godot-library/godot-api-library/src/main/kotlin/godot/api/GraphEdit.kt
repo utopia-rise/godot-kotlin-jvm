@@ -1175,11 +1175,11 @@ public open class GraphEdit : Control() {
     /**
      * Draw the grid using solid lines.
      */
-    LINES(0),
+    GRID_PATTERN_LINES(0),
     /**
      * Draw the grid using dots.
      */
-    DOTS(1),
+    GRID_PATTERN_DOTS(1),
     ;
 
     public val id: Long

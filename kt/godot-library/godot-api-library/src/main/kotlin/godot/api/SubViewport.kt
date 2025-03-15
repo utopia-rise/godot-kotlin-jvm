@@ -215,15 +215,15 @@ public open class SubViewport : Viewport() {
     /**
      * Always clear the render target before drawing.
      */
-    ALWAYS(0),
+    CLEAR_MODE_ALWAYS(0),
     /**
      * Never clear the render target.
      */
-    NEVER(1),
+    CLEAR_MODE_NEVER(1),
     /**
      * Clear the render target on the next frame, then switch to [CLEAR_MODE_NEVER].
      */
-    ONCE(2),
+    CLEAR_MODE_ONCE(2),
     ;
 
     public val id: Long
@@ -242,23 +242,23 @@ public open class SubViewport : Viewport() {
     /**
      * Do not update the render target.
      */
-    DISABLED(0),
+    UPDATE_DISABLED(0),
     /**
      * Update the render target once, then switch to [UPDATE_DISABLED].
      */
-    ONCE(1),
+    UPDATE_ONCE(1),
     /**
      * Update the render target only when it is visible. This is the default value.
      */
-    WHEN_VISIBLE(2),
+    UPDATE_WHEN_VISIBLE(2),
     /**
      * Update the render target only when its parent is visible.
      */
-    WHEN_PARENT_VISIBLE(3),
+    UPDATE_WHEN_PARENT_VISIBLE(3),
     /**
      * Always update the render target.
      */
-    ALWAYS(4),
+    UPDATE_ALWAYS(4),
     ;
 
     public val id: Long

@@ -32,7 +32,7 @@ public suspend inline fun ResourceLoader.awaitLoad(
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
     crossinline onProgress: (RealT) -> Unit = {},
 ): Resource? {
     // early return in case the resource is already loaded
@@ -62,7 +62,7 @@ public suspend inline fun <R> ResourceLoader.awaitLoadAs(
     path: String,
     typeHint: String = "",
     useSubThreads: Boolean = false,
-    cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
+    cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
     crossinline onProgress: (RealT) -> Unit = {},
 ): R? {
     @Suppress("UNCHECKED_CAST")

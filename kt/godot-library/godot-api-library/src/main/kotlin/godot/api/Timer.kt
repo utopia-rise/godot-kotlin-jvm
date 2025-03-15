@@ -241,11 +241,11 @@ public open class Timer : Node() {
      * Update the timer every physics process frame (see
      * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    PHYSICS(0),
+    TIMER_PROCESS_PHYSICS(0),
     /**
      * Update the timer every process (rendered) frame (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    IDLE(1),
+    TIMER_PROCESS_IDLE(1),
     ;
 
     public val id: Long

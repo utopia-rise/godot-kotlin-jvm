@@ -488,19 +488,19 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     /**
      * We don't know the target ray mode.
      */
-    UNKNOWN(0),
+    TARGET_RAY_MODE_UNKNOWN(0),
     /**
      * Target ray originates at the viewer's eyes and points in the direction they are looking.
      */
-    GAZE(1),
+    TARGET_RAY_MODE_GAZE(1),
     /**
      * Target ray from a handheld pointer, most likely a VR touch controller.
      */
-    TRACKED_POINTER(2),
+    TARGET_RAY_MODE_TRACKED_POINTER(2),
     /**
      * Target ray from touch screen, mouse or other tactile input device.
      */
-    SCREEN(3),
+    TARGET_RAY_MODE_SCREEN(3),
     ;
 
     public val id: Long

@@ -582,15 +582,15 @@ public open class TileSetAtlasSource : TileSetSource() {
     /**
      * Tile animations start at same time, looking identical.
      */
-    DEFAULT(0),
+    TILE_ANIMATION_MODE_DEFAULT(0),
     /**
      * Tile animations start at random times, looking varied.
      */
-    RANDOM_START_TIMES(1),
+    TILE_ANIMATION_MODE_RANDOM_START_TIMES(1),
     /**
      * Represents the size of the [TileAnimationMode] enum.
      */
-    MAX(2),
+    TILE_ANIMATION_MODE_MAX(2),
     ;
 
     public val id: Long

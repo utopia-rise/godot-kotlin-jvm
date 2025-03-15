@@ -922,12 +922,12 @@ public open class RigidBody2D : PhysicsBody2D() {
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
      * only moved by user code and doesn't collide with other bodies along its path.
      */
-    STATIC(0),
+    FREEZE_MODE_STATIC(0),
     /**
      * Kinematic body freeze mode. Similar to [FREEZE_MODE_STATIC], but collides with other bodies
      * along its path when moved. Useful for a frozen body that needs to be animated.
      */
-    KINEMATIC(1),
+    FREEZE_MODE_KINEMATIC(1),
     ;
 
     public val id: Long
@@ -947,12 +947,12 @@ public open class RigidBody2D : PhysicsBody2D() {
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
      * assumes that the shapes' origins are also their center of mass.
      */
-    AUTO(0),
+    CENTER_OF_MASS_MODE_AUTO(0),
     /**
      * In this mode, the body's center of mass is set through [centerOfMass]. Defaults to the body's
      * origin position.
      */
-    CUSTOM(1),
+    CENTER_OF_MASS_MODE_CUSTOM(1),
     ;
 
     public val id: Long
@@ -972,11 +972,11 @@ public open class RigidBody2D : PhysicsBody2D() {
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
      */
-    COMBINE(0),
+    DAMP_MODE_COMBINE(0),
     /**
      * In this mode, the body's damping value replaces any value set in areas or the default value.
      */
-    REPLACE(1),
+    DAMP_MODE_REPLACE(1),
     ;
 
     public val id: Long
@@ -996,17 +996,17 @@ public open class RigidBody2D : PhysicsBody2D() {
      * Continuous collision detection disabled. This is the fastest way to detect body collisions,
      * but can miss small, fast-moving objects.
      */
-    DISABLED(0),
+    CCD_MODE_DISABLED(0),
     /**
      * Continuous collision detection enabled using raycasting. This is faster than shapecasting but
      * less precise.
      */
-    CAST_RAY(1),
+    CCD_MODE_CAST_RAY(1),
     /**
      * Continuous collision detection enabled using shapecasting. This is the slowest CCD method and
      * the most precise.
      */
-    CAST_SHAPE(2),
+    CCD_MODE_CAST_SHAPE(2),
     ;
 
     public val id: Long

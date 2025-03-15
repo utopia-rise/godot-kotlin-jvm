@@ -15,19 +15,19 @@ public enum class HorizontalAlignment(
   /**
    * Horizontal left alignment, usually for text-derived classes.
    */
-  LEFT(0),
+  HORIZONTAL_ALIGNMENT_LEFT(0),
   /**
    * Horizontal center alignment, usually for text-derived classes.
    */
-  CENTER(1),
+  HORIZONTAL_ALIGNMENT_CENTER(1),
   /**
    * Horizontal right alignment, usually for text-derived classes.
    */
-  RIGHT(2),
+  HORIZONTAL_ALIGNMENT_RIGHT(2),
   /**
    * Expand row to fit width, usually for text-derived classes.
    */
-  FILL(3),
+  HORIZONTAL_ALIGNMENT_FILL(3),
   ;
 
   public val id: Long

@@ -157,23 +157,23 @@ public open class AESContext : RefCounted() {
     /**
      * AES electronic codebook encryption mode.
      */
-    ECB_ENCRYPT(0),
+    MODE_ECB_ENCRYPT(0),
     /**
      * AES electronic codebook decryption mode.
      */
-    ECB_DECRYPT(1),
+    MODE_ECB_DECRYPT(1),
     /**
      * AES cipher blocker chaining encryption mode.
      */
-    CBC_ENCRYPT(2),
+    MODE_CBC_ENCRYPT(2),
     /**
      * AES cipher blocker chaining decryption mode.
      */
-    CBC_DECRYPT(3),
+    MODE_CBC_DECRYPT(3),
     /**
      * Maximum value for the mode enum.
      */
-    MAX(4),
+    MODE_MAX(4),
     ;
 
     public val id: Long

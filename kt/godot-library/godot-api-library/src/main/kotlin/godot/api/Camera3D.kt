@@ -664,17 +664,17 @@ public open class Camera3D : Node3D() {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
-    PERSPECTIVE(0),
+    PROJECTION_PERSPECTIVE(0),
     /**
      * Orthogonal projection, also known as orthographic projection. Objects remain the same size on
      * the screen no matter how far away they are.
      */
-    ORTHOGONAL(1),
+    PROJECTION_ORTHOGONAL(1),
     /**
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum"
      * effects.
      */
-    FRUSTUM(2),
+    PROJECTION_FRUSTUM(2),
     ;
 
     public val id: Long
@@ -695,13 +695,13 @@ public open class Camera3D : Node3D() {
      * option for projects running in portrait mode, as taller aspect ratios will benefit from a wider
      * vertical FOV.
      */
-    WIDTH(0),
+    KEEP_WIDTH(0),
     /**
      * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best
      * option for projects running in landscape mode, as wider aspect ratios will automatically benefit
      * from a wider horizontal FOV.
      */
-    HEIGHT(1),
+    KEEP_HEIGHT(1),
     ;
 
     public val id: Long
@@ -721,21 +721,21 @@ public open class Camera3D : Node3D() {
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
      * (default).
      */
-    DISABLED(0),
+    DOPPLER_TRACKING_DISABLED(0),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_process`. Changes in the relative velocity of this
      * camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    IDLE_STEP(1),
+    DOPPLER_TRACKING_IDLE_STEP(1),
     /**
      * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
      * positions of objects that are changed in `_physics_process`. Changes in the relative velocity of
      * this camera compared to those objects affect how audio is perceived (changing the audio's
      * [AudioStreamPlayer3D.pitchScale]).
      */
-    PHYSICS_STEP(2),
+    DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;
 
     public val id: Long

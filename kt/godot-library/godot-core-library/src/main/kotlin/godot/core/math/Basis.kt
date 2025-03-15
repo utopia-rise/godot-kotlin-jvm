@@ -89,7 +89,7 @@ class Basis() : CoreType {
         /**
          * Constructs a pure rotation Basis matrix from Euler angles in the specified Euler rotation order. By default, use YXZ order (most common). See the EulerOrder enum for possible values.
          */
-        fun fromEuler(euler: Vector3, order: EulerOrder = EulerOrder.YXZ) = Basis().also {
+        fun fromEuler(euler: Vector3, order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = Basis().also {
             it.setEuler(euler, order)
         }
 
@@ -250,13 +250,13 @@ class Basis() : CoreType {
      * Consider using the [getRotationQuaternion] method instead, which returns a [Quaternion] quaternion instead of
      * Euler angles.
      */
-    fun getEuler(order: EulerOrder = EulerOrder.YXZ) = when (order) {
-        EulerOrder.XYZ -> getEulerXyz()
-        EulerOrder.XZY -> getEulerXzy()
-        EulerOrder.YXZ -> getEulerYxz()
-        EulerOrder.YZX -> getEulerYzx()
-        EulerOrder.ZXY -> getEulerZxy()
-        EulerOrder.ZYX -> getEulerZyx()
+    fun getEuler(order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) = when (order) {
+        EulerOrder.EULER_ORDER_XYZ -> getEulerXyz()
+        EulerOrder.EULER_ORDER_XZY -> getEulerXzy()
+        EulerOrder.EULER_ORDER_YXZ -> getEulerYxz()
+        EulerOrder.EULER_ORDER_YZX -> getEulerYzx()
+        EulerOrder.EULER_ORDER_ZXY -> getEulerZxy()
+        EulerOrder.EULER_ORDER_ZYX -> getEulerZyx()
     }
 
     /**
@@ -768,7 +768,7 @@ class Basis() : CoreType {
         this._z = basis._z
     }
 
-    internal fun setEuler(euler: Vector3, order: EulerOrder = EulerOrder.YXZ) {
+    internal fun setEuler(euler: Vector3, order: EulerOrder = EulerOrder.EULER_ORDER_YXZ) {
         var c: RealT = cos(euler.x)
         var s: RealT = sin(euler.x)
 
@@ -783,12 +783,12 @@ class Basis() : CoreType {
         val zmat = Basis(c, -s, 0.0, s, c, 0.0, 0.0, 0.0, 1.0)
 
         when (order) {
-            EulerOrder.XYZ -> set(xmat * (ymat * zmat))
-            EulerOrder.XZY -> set(xmat * zmat * ymat)
-            EulerOrder.YXZ -> set(ymat * xmat * zmat)
-            EulerOrder.YZX -> set(ymat * zmat * xmat)
-            EulerOrder.ZXY -> set(zmat * xmat * ymat)
-            EulerOrder.ZYX -> set(zmat * ymat * xmat)
+            EulerOrder.EULER_ORDER_XYZ -> set(xmat * (ymat * zmat))
+            EulerOrder.EULER_ORDER_XZY -> set(xmat * zmat * ymat)
+            EulerOrder.EULER_ORDER_YXZ -> set(ymat * xmat * zmat)
+            EulerOrder.EULER_ORDER_YZX -> set(ymat * zmat * xmat)
+            EulerOrder.EULER_ORDER_ZXY -> set(zmat * xmat * ymat)
+            EulerOrder.EULER_ORDER_ZYX -> set(zmat * ymat * xmat)
         }
     }
 

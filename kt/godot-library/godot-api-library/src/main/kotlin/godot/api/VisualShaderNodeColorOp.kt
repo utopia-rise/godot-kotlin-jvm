@@ -58,28 +58,28 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      * result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
      * [/codeblock]
      */
-    SCREEN(0),
+    OP_SCREEN(0),
     /**
      * Produce a difference effect with the following formula:
      * [codeblock]
      * result = abs(a - b);
      * [/codeblock]
      */
-    DIFFERENCE(1),
+    OP_DIFFERENCE(1),
     /**
      * Produce a darken effect with the following formula:
      * [codeblock]
      * result = min(a, b);
      * [/codeblock]
      */
-    DARKEN(2),
+    OP_DARKEN(2),
     /**
      * Produce a lighten effect with the following formula:
      * [codeblock]
      * result = max(a, b);
      * [/codeblock]
      */
-    LIGHTEN(3),
+    OP_LIGHTEN(3),
     /**
      * Produce an overlay effect with the following formula:
      * [codeblock]
@@ -94,21 +94,21 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      * }
      * [/codeblock]
      */
-    OVERLAY(4),
+    OP_OVERLAY(4),
     /**
      * Produce a dodge effect with the following formula:
      * [codeblock]
      * result = a / (vec3(1.0) - b);
      * [/codeblock]
      */
-    DODGE(5),
+    OP_DODGE(5),
     /**
      * Produce a burn effect with the following formula:
      * [codeblock]
      * result = vec3(1.0) - (vec3(1.0) - a) / b;
      * [/codeblock]
      */
-    BURN(6),
+    OP_BURN(6),
     /**
      * Produce a soft light effect with the following formula:
      * [codeblock]
@@ -123,7 +123,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      * }
      * [/codeblock]
      */
-    SOFT_LIGHT(7),
+    OP_SOFT_LIGHT(7),
     /**
      * Produce a hard light effect with the following formula:
      * [codeblock]
@@ -138,11 +138,11 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      * }
      * [/codeblock]
      */
-    HARD_LIGHT(8),
+    OP_HARD_LIGHT(8),
     /**
      * Represents the size of the [Operator] enum.
      */
-    MAX(9),
+    OP_MAX(9),
     ;
 
     public val id: Long

@@ -300,19 +300,19 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
      * Seeking to the beginning is treated as playing from the start state. Transition to the end
      * state is treated as exiting the state machine.
      */
-    ROOT(0),
+    STATE_MACHINE_TYPE_ROOT(0),
     /**
      * Seeking to the beginning is treated as seeking to the beginning of the animation in the
      * current state. Transition to the end state, or the absence of transitions in each state, is
      * treated as exiting the state machine.
      */
-    NESTED(1),
+    STATE_MACHINE_TYPE_NESTED(1),
     /**
      * This is a grouped state machine that can be controlled from a parent state machine. It does
      * not work independently. There must be a state machine with [stateMachineType] of
      * [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
      */
-    GROUPED(2),
+    STATE_MACHINE_TYPE_GROUPED(2),
     ;
 
     public val id: Long

@@ -132,7 +132,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     /**
      * Represents the size of the [FFTSize] enum.
      */
-    MAX(5),
+    FFT_SIZE_MAX(5),
     ;
 
     public val id: Long

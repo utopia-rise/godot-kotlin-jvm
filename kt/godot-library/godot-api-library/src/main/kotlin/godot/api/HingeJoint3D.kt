@@ -74,36 +74,36 @@ public open class HingeJoint3D : Joint3D() {
      * The speed with which the two bodies get pulled together when they move in different
      * directions.
      */
-    BIAS(0),
+    PARAM_BIAS(0),
     /**
      * The maximum rotation. Only active if [angularLimit/enable] is `true`.
      */
-    LIMIT_UPPER(1),
+    PARAM_LIMIT_UPPER(1),
     /**
      * The minimum rotation. Only active if [angularLimit/enable] is `true`.
      */
-    LIMIT_LOWER(2),
+    PARAM_LIMIT_LOWER(2),
     /**
      * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
      */
-    LIMIT_BIAS(3),
-    LIMIT_SOFTNESS(4),
+    PARAM_LIMIT_BIAS(3),
+    PARAM_LIMIT_SOFTNESS(4),
     /**
      * The lower this value, the more the rotation gets slowed down.
      */
-    LIMIT_RELAXATION(5),
+    PARAM_LIMIT_RELAXATION(5),
     /**
      * Target speed for the motor.
      */
-    MOTOR_TARGET_VELOCITY(6),
+    PARAM_MOTOR_TARGET_VELOCITY(6),
     /**
      * Maximum acceleration for the motor.
      */
-    MOTOR_MAX_IMPULSE(7),
+    PARAM_MOTOR_MAX_IMPULSE(7),
     /**
      * Represents the size of the [Param] enum.
      */
-    MAX(8),
+    PARAM_MAX(8),
     ;
 
     public val id: Long
@@ -123,15 +123,15 @@ public open class HingeJoint3D : Joint3D() {
      * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
      * [angularLimit/upper] has effects.
      */
-    USE_LIMIT(0),
+    FLAG_USE_LIMIT(0),
     /**
      * When activated, a motor turns the hinge.
      */
-    ENABLE_MOTOR(1),
+    FLAG_ENABLE_MOTOR(1),
     /**
      * Represents the size of the [Flag] enum.
      */
-    MAX(2),
+    FLAG_MAX(2),
     ;
 
     public val id: Long

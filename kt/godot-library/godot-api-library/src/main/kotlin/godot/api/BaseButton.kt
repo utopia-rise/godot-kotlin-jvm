@@ -340,23 +340,23 @@ public open class BaseButton : Control() {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
      */
-    NORMAL(0),
+    DRAW_NORMAL(0),
     /**
      * The state of buttons are pressed.
      */
-    PRESSED(1),
+    DRAW_PRESSED(1),
     /**
      * The state of buttons are hovered.
      */
-    HOVER(2),
+    DRAW_HOVER(2),
     /**
      * The state of buttons are disabled.
      */
-    DISABLED(3),
+    DRAW_DISABLED(3),
     /**
      * The state of buttons are both hovered and pressed.
      */
-    HOVER_PRESSED(4),
+    DRAW_HOVER_PRESSED(4),
     ;
 
     public val id: Long
@@ -375,11 +375,11 @@ public open class BaseButton : Control() {
     /**
      * Require just a press to consider the button clicked.
      */
-    BUTTON_PRESS(0),
+    ACTION_MODE_BUTTON_PRESS(0),
     /**
      * Require a press and a subsequent release before considering the button clicked.
      */
-    BUTTON_RELEASE(1),
+    ACTION_MODE_BUTTON_RELEASE(1),
     ;
 
     public val id: Long

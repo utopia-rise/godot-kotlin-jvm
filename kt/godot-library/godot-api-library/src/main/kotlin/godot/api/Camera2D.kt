@@ -148,10 +148,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var limitLeft: Int
     @JvmName("limitLeftProperty")
-    get() = getLimit(Side.LEFT)
+    get() = getLimit(Side.SIDE_LEFT)
     @JvmName("limitLeftProperty")
     set(`value`) {
-      setLimit(Side.LEFT, value)
+      setLimit(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -160,10 +160,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var limitTop: Int
     @JvmName("limitTopProperty")
-    get() = getLimit(Side.TOP)
+    get() = getLimit(Side.SIDE_TOP)
     @JvmName("limitTopProperty")
     set(`value`) {
-      setLimit(Side.TOP, value)
+      setLimit(Side.SIDE_TOP, value)
     }
 
   /**
@@ -172,10 +172,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var limitRight: Int
     @JvmName("limitRightProperty")
-    get() = getLimit(Side.RIGHT)
+    get() = getLimit(Side.SIDE_RIGHT)
     @JvmName("limitRightProperty")
     set(`value`) {
-      setLimit(Side.RIGHT, value)
+      setLimit(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -184,10 +184,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var limitBottom: Int
     @JvmName("limitBottomProperty")
-    get() = getLimit(Side.BOTTOM)
+    get() = getLimit(Side.SIDE_BOTTOM)
     @JvmName("limitBottomProperty")
     set(`value`) {
-      setLimit(Side.BOTTOM, value)
+      setLimit(Side.SIDE_BOTTOM, value)
     }
 
   /**
@@ -313,10 +313,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var dragLeftMargin: Float
     @JvmName("dragLeftMarginProperty")
-    get() = getDragMargin(Side.LEFT)
+    get() = getDragMargin(Side.SIDE_LEFT)
     @JvmName("dragLeftMarginProperty")
     set(`value`) {
-      setDragMargin(Side.LEFT, value)
+      setDragMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -325,10 +325,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var dragTopMargin: Float
     @JvmName("dragTopMarginProperty")
-    get() = getDragMargin(Side.TOP)
+    get() = getDragMargin(Side.SIDE_TOP)
     @JvmName("dragTopMarginProperty")
     set(`value`) {
-      setDragMargin(Side.TOP, value)
+      setDragMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -337,10 +337,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var dragRightMargin: Float
     @JvmName("dragRightMarginProperty")
-    get() = getDragMargin(Side.RIGHT)
+    get() = getDragMargin(Side.SIDE_RIGHT)
     @JvmName("dragRightMarginProperty")
     set(`value`) {
-      setDragMargin(Side.RIGHT, value)
+      setDragMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -349,10 +349,10 @@ public open class Camera2D : Node2D() {
    */
   public final inline var dragBottomMargin: Float
     @JvmName("dragBottomMarginProperty")
-    get() = getDragMargin(Side.BOTTOM)
+    get() = getDragMargin(Side.SIDE_BOTTOM)
     @JvmName("dragBottomMarginProperty")
     set(`value`) {
-      setDragMargin(Side.BOTTOM, value)
+      setDragMargin(Side.SIDE_BOTTOM, value)
     }
 
   /**
@@ -768,11 +768,11 @@ public open class Camera2D : Node2D() {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
      */
-    FIXED_TOP_LEFT(0),
+    ANCHOR_MODE_FIXED_TOP_LEFT(0),
     /**
      * The camera's position takes into account vertical/horizontal offsets and the screen size.
      */
-    DRAG_CENTER(1),
+    ANCHOR_MODE_DRAG_CENTER(1),
     ;
 
     public val id: Long
@@ -791,11 +791,11 @@ public open class Camera2D : Node2D() {
     /**
      * The camera updates during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
-    PHYSICS(0),
+    CAMERA2D_PROCESS_PHYSICS(0),
     /**
      * The camera updates during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    IDLE(1),
+    CAMERA2D_PROCESS_IDLE(1),
     ;
 
     public val id: Long

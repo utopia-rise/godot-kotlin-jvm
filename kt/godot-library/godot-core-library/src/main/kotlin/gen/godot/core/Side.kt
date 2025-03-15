@@ -15,19 +15,19 @@ public enum class Side(
   /**
    * Left side, usually used for [Control] or [StyleBox]-derived classes.
    */
-  LEFT(0),
+  SIDE_LEFT(0),
   /**
    * Top side, usually used for [Control] or [StyleBox]-derived classes.
    */
-  TOP(1),
+  SIDE_TOP(1),
   /**
    * Right side, usually used for [Control] or [StyleBox]-derived classes.
    */
-  RIGHT(2),
+  SIDE_RIGHT(2),
   /**
    * Bottom side, usually used for [Control] or [StyleBox]-derived classes.
    */
-  BOTTOM(3),
+  SIDE_BOTTOM(3),
   ;
 
   public val id: Long

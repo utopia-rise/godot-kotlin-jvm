@@ -16,43 +16,43 @@ public enum class MouseButton(
    * Enum value which doesn't correspond to any mouse button. This is used to initialize
    * [MouseButton] properties with a generic state.
    */
-  NONE(0),
+  MOUSE_BUTTON_NONE(0),
   /**
    * Primary mouse button, usually assigned to the left button.
    */
-  LEFT(1),
+  MOUSE_BUTTON_LEFT(1),
   /**
    * Secondary mouse button, usually assigned to the right button.
    */
-  RIGHT(2),
+  MOUSE_BUTTON_RIGHT(2),
   /**
    * Middle mouse button.
    */
-  MIDDLE(3),
+  MOUSE_BUTTON_MIDDLE(3),
   /**
    * Mouse wheel scrolling up.
    */
-  WHEEL_UP(4),
+  MOUSE_BUTTON_WHEEL_UP(4),
   /**
    * Mouse wheel scrolling down.
    */
-  WHEEL_DOWN(5),
+  MOUSE_BUTTON_WHEEL_DOWN(5),
   /**
    * Mouse wheel left button (only present on some mice).
    */
-  WHEEL_LEFT(6),
+  MOUSE_BUTTON_WHEEL_LEFT(6),
   /**
    * Mouse wheel right button (only present on some mice).
    */
-  WHEEL_RIGHT(7),
+  MOUSE_BUTTON_WHEEL_RIGHT(7),
   /**
    * Extra mouse button 1. This is sometimes present, usually to the sides of the mouse.
    */
-  XBUTTON1(8),
+  MOUSE_BUTTON_XBUTTON1(8),
   /**
    * Extra mouse button 2. This is sometimes present, usually to the sides of the mouse.
    */
-  XBUTTON2(9),
+  MOUSE_BUTTON_XBUTTON2(9),
   ;
 
   public val id: Long

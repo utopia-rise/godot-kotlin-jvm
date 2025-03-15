@@ -247,7 +247,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     /**
      * Represents the size of the [Resolution] enum.
      */
-    MAX(6),
+    RESOLUTION_MAX(6),
     ;
 
     public val id: Long
@@ -269,13 +269,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
      * moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling
      * [RenderingServer.particlesCollisionHeightFieldUpdate].
      */
-    WHEN_MOVED(0),
+    UPDATE_MODE_WHEN_MOVED(0),
     /**
      * Update the heightmap every frame. This has a significant performance cost. This update should
      * only be used when geometry that particles can collide with changes significantly during
      * gameplay.
      */
-    ALWAYS(1),
+    UPDATE_MODE_ALWAYS(1),
     ;
 
     public val id: Long

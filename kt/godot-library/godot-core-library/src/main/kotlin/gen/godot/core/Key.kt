@@ -16,555 +16,555 @@ public enum class Key(
    * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties
    * with a generic state.
    */
-  NONE(0),
+  KEY_NONE(0),
   /**
    * Keycodes with this bit applied are non-printable.
    */
-  SPECIAL(4194304),
+  KEY_SPECIAL(4194304),
   /**
    * Escape key.
    */
-  ESCAPE(4194305),
+  KEY_ESCAPE(4194305),
   /**
    * Tab key.
    */
-  TAB(4194306),
+  KEY_TAB(4194306),
   /**
    * Shift + Tab key.
    */
-  BACKTAB(4194307),
+  KEY_BACKTAB(4194307),
   /**
    * Backspace key.
    */
-  BACKSPACE(4194308),
+  KEY_BACKSPACE(4194308),
   /**
    * Return key (on the main keyboard).
    */
-  ENTER(4194309),
+  KEY_ENTER(4194309),
   /**
    * Enter key on the numeric keypad.
    */
-  KP_ENTER(4194310),
+  KEY_KP_ENTER(4194310),
   /**
    * Insert key.
    */
-  INSERT(4194311),
+  KEY_INSERT(4194311),
   /**
    * Delete key.
    */
-  DELETE(4194312),
+  KEY_DELETE(4194312),
   /**
    * Pause key.
    */
-  PAUSE(4194313),
+  KEY_PAUSE(4194313),
   /**
    * Print Screen key.
    */
-  PRINT(4194314),
+  KEY_PRINT(4194314),
   /**
    * System Request key.
    */
-  SYSREQ(4194315),
+  KEY_SYSREQ(4194315),
   /**
    * Clear key.
    */
-  CLEAR(4194316),
+  KEY_CLEAR(4194316),
   /**
    * Home key.
    */
-  HOME(4194317),
+  KEY_HOME(4194317),
   /**
    * End key.
    */
-  END(4194318),
+  KEY_END(4194318),
   /**
    * Left arrow key.
    */
-  LEFT(4194319),
+  KEY_LEFT(4194319),
   /**
    * Up arrow key.
    */
-  UP(4194320),
+  KEY_UP(4194320),
   /**
    * Right arrow key.
    */
-  RIGHT(4194321),
+  KEY_RIGHT(4194321),
   /**
    * Down arrow key.
    */
-  DOWN(4194322),
+  KEY_DOWN(4194322),
   /**
    * Page Up key.
    */
-  PAGEUP(4194323),
+  KEY_PAGEUP(4194323),
   /**
    * Page Down key.
    */
-  PAGEDOWN(4194324),
+  KEY_PAGEDOWN(4194324),
   /**
    * Shift key.
    */
-  SHIFT(4194325),
+  KEY_SHIFT(4194325),
   /**
    * Control key.
    */
-  CTRL(4194326),
+  KEY_CTRL(4194326),
   /**
    * Meta key.
    */
-  META(4194327),
+  KEY_META(4194327),
   /**
    * Alt key.
    */
-  ALT(4194328),
+  KEY_ALT(4194328),
   /**
    * Caps Lock key.
    */
-  CAPSLOCK(4194329),
+  KEY_CAPSLOCK(4194329),
   /**
    * Num Lock key.
    */
-  NUMLOCK(4194330),
+  KEY_NUMLOCK(4194330),
   /**
    * Scroll Lock key.
    */
-  SCROLLLOCK(4194331),
+  KEY_SCROLLLOCK(4194331),
   /**
    * F1 key.
    */
-  F1(4194332),
+  KEY_F1(4194332),
   /**
    * F2 key.
    */
-  F2(4194333),
+  KEY_F2(4194333),
   /**
    * F3 key.
    */
-  F3(4194334),
+  KEY_F3(4194334),
   /**
    * F4 key.
    */
-  F4(4194335),
+  KEY_F4(4194335),
   /**
    * F5 key.
    */
-  F5(4194336),
+  KEY_F5(4194336),
   /**
    * F6 key.
    */
-  F6(4194337),
+  KEY_F6(4194337),
   /**
    * F7 key.
    */
-  F7(4194338),
+  KEY_F7(4194338),
   /**
    * F8 key.
    */
-  F8(4194339),
+  KEY_F8(4194339),
   /**
    * F9 key.
    */
-  F9(4194340),
+  KEY_F9(4194340),
   /**
    * F10 key.
    */
-  F10(4194341),
+  KEY_F10(4194341),
   /**
    * F11 key.
    */
-  F11(4194342),
+  KEY_F11(4194342),
   /**
    * F12 key.
    */
-  F12(4194343),
+  KEY_F12(4194343),
   /**
    * F13 key.
    */
-  F13(4194344),
+  KEY_F13(4194344),
   /**
    * F14 key.
    */
-  F14(4194345),
+  KEY_F14(4194345),
   /**
    * F15 key.
    */
-  F15(4194346),
+  KEY_F15(4194346),
   /**
    * F16 key.
    */
-  F16(4194347),
+  KEY_F16(4194347),
   /**
    * F17 key.
    */
-  F17(4194348),
+  KEY_F17(4194348),
   /**
    * F18 key.
    */
-  F18(4194349),
+  KEY_F18(4194349),
   /**
    * F19 key.
    */
-  F19(4194350),
+  KEY_F19(4194350),
   /**
    * F20 key.
    */
-  F20(4194351),
+  KEY_F20(4194351),
   /**
    * F21 key.
    */
-  F21(4194352),
+  KEY_F21(4194352),
   /**
    * F22 key.
    */
-  F22(4194353),
+  KEY_F22(4194353),
   /**
    * F23 key.
    */
-  F23(4194354),
+  KEY_F23(4194354),
   /**
    * F24 key.
    */
-  F24(4194355),
+  KEY_F24(4194355),
   /**
    * F25 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F25(4194356),
+  KEY_F25(4194356),
   /**
    * F26 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F26(4194357),
+  KEY_F26(4194357),
   /**
    * F27 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F27(4194358),
+  KEY_F27(4194358),
   /**
    * F28 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F28(4194359),
+  KEY_F28(4194359),
   /**
    * F29 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F29(4194360),
+  KEY_F29(4194360),
   /**
    * F30 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F30(4194361),
+  KEY_F30(4194361),
   /**
    * F31 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F31(4194362),
+  KEY_F31(4194362),
   /**
    * F32 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F32(4194363),
+  KEY_F32(4194363),
   /**
    * F33 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F33(4194364),
+  KEY_F33(4194364),
   /**
    * F34 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F34(4194365),
+  KEY_F34(4194365),
   /**
    * F35 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F35(4194366),
+  KEY_F35(4194366),
   /**
    * Multiply (*) key on the numeric keypad.
    */
-  KP_MULTIPLY(4194433),
+  KEY_KP_MULTIPLY(4194433),
   /**
    * Divide (/) key on the numeric keypad.
    */
-  KP_DIVIDE(4194434),
+  KEY_KP_DIVIDE(4194434),
   /**
    * Subtract (-) key on the numeric keypad.
    */
-  KP_SUBTRACT(4194435),
+  KEY_KP_SUBTRACT(4194435),
   /**
    * Period (.) key on the numeric keypad.
    */
-  KP_PERIOD(4194436),
+  KEY_KP_PERIOD(4194436),
   /**
    * Add (+) key on the numeric keypad.
    */
-  KP_ADD(4194437),
+  KEY_KP_ADD(4194437),
   /**
    * Number 0 on the numeric keypad.
    */
-  KP_0(4194438),
+  KEY_KP_0(4194438),
   /**
    * Number 1 on the numeric keypad.
    */
-  KP_1(4194439),
+  KEY_KP_1(4194439),
   /**
    * Number 2 on the numeric keypad.
    */
-  KP_2(4194440),
+  KEY_KP_2(4194440),
   /**
    * Number 3 on the numeric keypad.
    */
-  KP_3(4194441),
+  KEY_KP_3(4194441),
   /**
    * Number 4 on the numeric keypad.
    */
-  KP_4(4194442),
+  KEY_KP_4(4194442),
   /**
    * Number 5 on the numeric keypad.
    */
-  KP_5(4194443),
+  KEY_KP_5(4194443),
   /**
    * Number 6 on the numeric keypad.
    */
-  KP_6(4194444),
+  KEY_KP_6(4194444),
   /**
    * Number 7 on the numeric keypad.
    */
-  KP_7(4194445),
+  KEY_KP_7(4194445),
   /**
    * Number 8 on the numeric keypad.
    */
-  KP_8(4194446),
+  KEY_KP_8(4194446),
   /**
    * Number 9 on the numeric keypad.
    */
-  KP_9(4194447),
+  KEY_KP_9(4194447),
   /**
    * Context menu key.
    */
-  MENU(4194370),
+  KEY_MENU(4194370),
   /**
    * Hyper key. (On Linux/X11 only).
    */
-  HYPER(4194371),
+  KEY_HYPER(4194371),
   /**
    * Help key.
    */
-  HELP(4194373),
+  KEY_HELP(4194373),
   /**
    * Back key.
    */
-  BACK(4194376),
+  KEY_BACK(4194376),
   /**
    * Forward key.
    */
-  FORWARD(4194377),
+  KEY_FORWARD(4194377),
   /**
    * Media stop key.
    */
-  STOP(4194378),
+  KEY_STOP(4194378),
   /**
    * Refresh key.
    */
-  REFRESH(4194379),
+  KEY_REFRESH(4194379),
   /**
    * Volume down key.
    */
-  VOLUMEDOWN(4194380),
+  KEY_VOLUMEDOWN(4194380),
   /**
    * Mute volume key.
    */
-  VOLUMEMUTE(4194381),
+  KEY_VOLUMEMUTE(4194381),
   /**
    * Volume up key.
    */
-  VOLUMEUP(4194382),
+  KEY_VOLUMEUP(4194382),
   /**
    * Media play key.
    */
-  MEDIAPLAY(4194388),
+  KEY_MEDIAPLAY(4194388),
   /**
    * Media stop key.
    */
-  MEDIASTOP(4194389),
+  KEY_MEDIASTOP(4194389),
   /**
    * Previous song key.
    */
-  MEDIAPREVIOUS(4194390),
+  KEY_MEDIAPREVIOUS(4194390),
   /**
    * Next song key.
    */
-  MEDIANEXT(4194391),
+  KEY_MEDIANEXT(4194391),
   /**
    * Media record key.
    */
-  MEDIARECORD(4194392),
+  KEY_MEDIARECORD(4194392),
   /**
    * Home page key.
    */
-  HOMEPAGE(4194393),
+  KEY_HOMEPAGE(4194393),
   /**
    * Favorites key.
    */
-  FAVORITES(4194394),
+  KEY_FAVORITES(4194394),
   /**
    * Search key.
    */
-  SEARCH(4194395),
+  KEY_SEARCH(4194395),
   /**
    * Standby key.
    */
-  STANDBY(4194396),
+  KEY_STANDBY(4194396),
   /**
    * Open URL / Launch Browser key.
    */
-  OPENURL(4194397),
+  KEY_OPENURL(4194397),
   /**
    * Launch Mail key.
    */
-  LAUNCHMAIL(4194398),
+  KEY_LAUNCHMAIL(4194398),
   /**
    * Launch Media key.
    */
-  LAUNCHMEDIA(4194399),
+  KEY_LAUNCHMEDIA(4194399),
   /**
    * Launch Shortcut 0 key.
    */
-  LAUNCH0(4194400),
+  KEY_LAUNCH0(4194400),
   /**
    * Launch Shortcut 1 key.
    */
-  LAUNCH1(4194401),
+  KEY_LAUNCH1(4194401),
   /**
    * Launch Shortcut 2 key.
    */
-  LAUNCH2(4194402),
+  KEY_LAUNCH2(4194402),
   /**
    * Launch Shortcut 3 key.
    */
-  LAUNCH3(4194403),
+  KEY_LAUNCH3(4194403),
   /**
    * Launch Shortcut 4 key.
    */
-  LAUNCH4(4194404),
+  KEY_LAUNCH4(4194404),
   /**
    * Launch Shortcut 5 key.
    */
-  LAUNCH5(4194405),
+  KEY_LAUNCH5(4194405),
   /**
    * Launch Shortcut 6 key.
    */
-  LAUNCH6(4194406),
+  KEY_LAUNCH6(4194406),
   /**
    * Launch Shortcut 7 key.
    */
-  LAUNCH7(4194407),
+  KEY_LAUNCH7(4194407),
   /**
    * Launch Shortcut 8 key.
    */
-  LAUNCH8(4194408),
+  KEY_LAUNCH8(4194408),
   /**
    * Launch Shortcut 9 key.
    */
-  LAUNCH9(4194409),
+  KEY_LAUNCH9(4194409),
   /**
    * Launch Shortcut A key.
    */
-  LAUNCHA(4194410),
+  KEY_LAUNCHA(4194410),
   /**
    * Launch Shortcut B key.
    */
-  LAUNCHB(4194411),
+  KEY_LAUNCHB(4194411),
   /**
    * Launch Shortcut C key.
    */
-  LAUNCHC(4194412),
+  KEY_LAUNCHC(4194412),
   /**
    * Launch Shortcut D key.
    */
-  LAUNCHD(4194413),
+  KEY_LAUNCHD(4194413),
   /**
    * Launch Shortcut E key.
    */
-  LAUNCHE(4194414),
+  KEY_LAUNCHE(4194414),
   /**
    * Launch Shortcut F key.
    */
-  LAUNCHF(4194415),
+  KEY_LAUNCHF(4194415),
   /**
    * "Globe" key on Mac / iPad keyboard.
    */
-  GLOBE(4194416),
+  KEY_GLOBE(4194416),
   /**
    * "On-screen keyboard" key on iPad keyboard.
    */
-  KEYBOARD(4194417),
+  KEY_KEYBOARD(4194417),
   /**
    * 英数 key on Mac keyboard.
    */
-  JIS_EISU(4194418),
+  KEY_JIS_EISU(4194418),
   /**
    * かな key on Mac keyboard.
    */
-  JIS_KANA(4194419),
+  KEY_JIS_KANA(4194419),
   /**
    * Unknown key.
    */
-  UNKNOWN(8388607),
+  KEY_UNKNOWN(8388607),
   /**
    * Space key.
    */
-  SPACE(32),
+  KEY_SPACE(32),
   /**
    * Exclamation mark (`!`) key.
    */
-  EXCLAM(33),
+  KEY_EXCLAM(33),
   /**
    * Double quotation mark (`"`) key.
    */
-  QUOTEDBL(34),
+  KEY_QUOTEDBL(34),
   /**
    * Number sign or *hash* (`#`) key.
    */
-  NUMBERSIGN(35),
+  KEY_NUMBERSIGN(35),
   /**
    * Dollar sign (`$`) key.
    */
-  DOLLAR(36),
+  KEY_DOLLAR(36),
   /**
    * Percent sign (`&#37;`) key.
    */
-  PERCENT(37),
+  KEY_PERCENT(37),
   /**
    * Ampersand (`&`) key.
    */
-  AMPERSAND(38),
+  KEY_AMPERSAND(38),
   /**
    * Apostrophe (`'`) key.
    */
-  APOSTROPHE(39),
+  KEY_APOSTROPHE(39),
   /**
    * Left parenthesis (`(`) key.
    */
-  PARENLEFT(40),
+  KEY_PARENLEFT(40),
   /**
    * Right parenthesis (`)`) key.
    */
-  PARENRIGHT(41),
+  KEY_PARENRIGHT(41),
   /**
    * Asterisk (`*`) key.
    */
-  ASTERISK(42),
+  KEY_ASTERISK(42),
   /**
    * Plus (`+`) key.
    */
-  PLUS(43),
+  KEY_PLUS(43),
   /**
    * Comma (`,`) key.
    */
-  COMMA(44),
+  KEY_COMMA(44),
   /**
    * Minus (`-`) key.
    */
-  MINUS(45),
+  KEY_MINUS(45),
   /**
    * Period (`.`) key.
    */
-  PERIOD(46),
+  KEY_PERIOD(46),
   /**
    * Slash (`/`) key.
    */
-  SLASH(47),
+  KEY_SLASH(47),
   /**
    * Number 0 key.
    */
@@ -608,183 +608,183 @@ public enum class Key(
   /**
    * Colon (`:`) key.
    */
-  COLON(58),
+  KEY_COLON(58),
   /**
    * Semicolon (`;`) key.
    */
-  SEMICOLON(59),
+  KEY_SEMICOLON(59),
   /**
    * Less-than sign (`<`) key.
    */
-  LESS(60),
+  KEY_LESS(60),
   /**
    * Equal sign (`=`) key.
    */
-  EQUAL(61),
+  KEY_EQUAL(61),
   /**
    * Greater-than sign (`>`) key.
    */
-  GREATER(62),
+  KEY_GREATER(62),
   /**
    * Question mark (`?`) key.
    */
-  QUESTION(63),
+  KEY_QUESTION(63),
   /**
    * At sign (`@`) key.
    */
-  AT(64),
+  KEY_AT(64),
   /**
    * A key.
    */
-  A(65),
+  KEY_A(65),
   /**
    * B key.
    */
-  B(66),
+  KEY_B(66),
   /**
    * C key.
    */
-  C(67),
+  KEY_C(67),
   /**
    * D key.
    */
-  D(68),
+  KEY_D(68),
   /**
    * E key.
    */
-  E(69),
+  KEY_E(69),
   /**
    * F key.
    */
-  F(70),
+  KEY_F(70),
   /**
    * G key.
    */
-  G(71),
+  KEY_G(71),
   /**
    * H key.
    */
-  H(72),
+  KEY_H(72),
   /**
    * I key.
    */
-  I(73),
+  KEY_I(73),
   /**
    * J key.
    */
-  J(74),
+  KEY_J(74),
   /**
    * K key.
    */
-  K(75),
+  KEY_K(75),
   /**
    * L key.
    */
-  L(76),
+  KEY_L(76),
   /**
    * M key.
    */
-  M(77),
+  KEY_M(77),
   /**
    * N key.
    */
-  N(78),
+  KEY_N(78),
   /**
    * O key.
    */
-  O(79),
+  KEY_O(79),
   /**
    * P key.
    */
-  P(80),
+  KEY_P(80),
   /**
    * Q key.
    */
-  Q(81),
+  KEY_Q(81),
   /**
    * R key.
    */
-  R(82),
+  KEY_R(82),
   /**
    * S key.
    */
-  S(83),
+  KEY_S(83),
   /**
    * T key.
    */
-  T(84),
+  KEY_T(84),
   /**
    * U key.
    */
-  U(85),
+  KEY_U(85),
   /**
    * V key.
    */
-  V(86),
+  KEY_V(86),
   /**
    * W key.
    */
-  W(87),
+  KEY_W(87),
   /**
    * X key.
    */
-  X(88),
+  KEY_X(88),
   /**
    * Y key.
    */
-  Y(89),
+  KEY_Y(89),
   /**
    * Z key.
    */
-  Z(90),
+  KEY_Z(90),
   /**
    * Left bracket (`[lb]`) key.
    */
-  BRACKETLEFT(91),
+  KEY_BRACKETLEFT(91),
   /**
    * Backslash (`\`) key.
    */
-  BACKSLASH(92),
+  KEY_BACKSLASH(92),
   /**
    * Right bracket (`[rb]`) key.
    */
-  BRACKETRIGHT(93),
+  KEY_BRACKETRIGHT(93),
   /**
    * Caret (`^`) key.
    */
-  ASCIICIRCUM(94),
+  KEY_ASCIICIRCUM(94),
   /**
    * Underscore (`_`) key.
    */
-  UNDERSCORE(95),
+  KEY_UNDERSCORE(95),
   /**
    * Backtick (```) key.
    */
-  QUOTELEFT(96),
+  KEY_QUOTELEFT(96),
   /**
    * Left brace (`{`) key.
    */
-  BRACELEFT(123),
+  KEY_BRACELEFT(123),
   /**
    * Vertical bar or *pipe* (`|`) key.
    */
-  BAR(124),
+  KEY_BAR(124),
   /**
    * Right brace (`}`) key.
    */
-  BRACERIGHT(125),
+  KEY_BRACERIGHT(125),
   /**
    * Tilde (`~`) key.
    */
-  ASCIITILDE(126),
+  KEY_ASCIITILDE(126),
   /**
    * Yen symbol (`¥`) key.
    */
-  YEN(165),
+  KEY_YEN(165),
   /**
    * Section sign (`§`) key.
    */
-  SECTION(167),
+  KEY_SECTION(167),
   ;
 
   public val id: Long

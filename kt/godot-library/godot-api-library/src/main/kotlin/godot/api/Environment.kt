@@ -2459,34 +2459,34 @@ public open class Environment : Resource() {
      * Clears the background using the clear color defined in
      * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
      */
-    CLEAR_COLOR(0),
+    BG_CLEAR_COLOR(0),
     /**
      * Clears the background using a custom clear color.
      */
-    COLOR(1),
+    BG_COLOR(1),
     /**
      * Displays a user-defined sky in the background.
      */
-    SKY(2),
+    BG_SKY(2),
     /**
      * Displays a [CanvasLayer] in the background.
      */
-    CANVAS(3),
+    BG_CANVAS(3),
     /**
      * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but
      * it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If
      * enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when
      * moving the camera.
      */
-    KEEP(4),
+    BG_KEEP(4),
     /**
      * Displays a camera feed in the background.
      */
-    CAMERA_FEED(5),
+    BG_CAMERA_FEED(5),
     /**
      * Represents the size of the [BGMode] enum.
      */
-    MAX(6),
+    BG_MAX(6),
     ;
 
     public val id: Long
@@ -2505,20 +2505,20 @@ public open class Environment : Resource() {
     /**
      * Gather ambient light from whichever source is specified as the background.
      */
-    BG(0),
+    AMBIENT_SOURCE_BG(0),
     /**
      * Disable ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
      */
-    DISABLED(1),
+    AMBIENT_SOURCE_DISABLED(1),
     /**
      * Specify a specific [Color] for ambient light. This provides a slight performance boost over
      * [AMBIENT_SOURCE_SKY].
      */
-    COLOR(2),
+    AMBIENT_SOURCE_COLOR(2),
     /**
      * Gather ambient light from the [Sky] regardless of what the background is.
      */
-    SKY(3),
+    AMBIENT_SOURCE_SKY(3),
     ;
 
     public val id: Long
@@ -2537,15 +2537,15 @@ public open class Environment : Resource() {
     /**
      * Use the background for reflections.
      */
-    BG(0),
+    REFLECTION_SOURCE_BG(0),
     /**
      * Disable reflections. This provides a slight performance boost over other options.
      */
-    DISABLED(1),
+    REFLECTION_SOURCE_DISABLED(1),
     /**
      * Use the [Sky] for reflections regardless of what the background is.
      */
-    SKY(2),
+    REFLECTION_SOURCE_SKY(2),
     ;
 
     public val id: Long
@@ -2565,25 +2565,25 @@ public open class Environment : Resource() {
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
      * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
-    LINEAR(0),
+    TONE_MAPPER_LINEAR(0),
     /**
      * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
      * an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
      * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT]
      * produces an identical image to [TONE_MAPPER_LINEAR].
      */
-    REINHARDT(1),
+    TONE_MAPPER_REINHARDT(1),
     /**
      * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
      * contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
      */
-    FILMIC(2),
+    TONE_MAPPER_FILMIC(2),
     /**
      * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
      * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
-    ACES(3),
+    TONE_MAPPER_ACES(3),
     /**
      * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
      * appearance. Better than other tonemappers at maintaining the hue of colors as they become
@@ -2591,7 +2591,7 @@ public open class Environment : Resource() {
      * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
      * unsuitable for use with the Mobile rendering method.
      */
-    AGX(4),
+    TONE_MAPPER_AGX(4),
     ;
 
     public val id: Long
@@ -2611,27 +2611,27 @@ public open class Environment : Resource() {
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
      * sources.
      */
-    ADDITIVE(0),
+    GLOW_BLEND_MODE_ADDITIVE(0),
     /**
      * Screen glow blending mode. Increases brightness, used frequently with bloom.
      */
-    SCREEN(1),
+    GLOW_BLEND_MODE_SCREEN(1),
     /**
      * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
      * bloom).
      */
-    SOFTLIGHT(2),
+    GLOW_BLEND_MODE_SOFTLIGHT(2),
     /**
      * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
      * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
      * brightness.
      */
-    REPLACE(3),
+    GLOW_BLEND_MODE_REPLACE(3),
     /**
      * Mixes the glow with the underlying color to avoid increasing brightness as much while still
      * maintaining a glow effect.
      */
-    MIX(4),
+    GLOW_BLEND_MODE_MIX(4),
     ;
 
     public val id: Long
@@ -2650,12 +2650,12 @@ public open class Environment : Resource() {
     /**
      * Use a physically-based fog model defined primarily by fog density.
      */
-    EXPONENTIAL(0),
+    FOG_MODE_EXPONENTIAL(0),
     /**
      * Use a simple fog model defined by start and end positions and a custom curve. While not
      * physically accurate, this model can be useful when you need more artistic control.
      */
-    DEPTH(1),
+    FOG_MODE_DEPTH(1),
     ;
 
     public val id: Long
@@ -2677,18 +2677,18 @@ public open class Environment : Resource() {
      * floors and ceilings. This is usually the best choice for scenes that don't feature much
      * verticality.
      */
-    Y_SCALE_50_PERCENT(0),
+    SDFGI_Y_SCALE_50_PERCENT(0),
     /**
      * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
      * and 100&#37; SDFGI Y scales.
      */
-    Y_SCALE_75_PERCENT(1),
+    SDFGI_Y_SCALE_75_PERCENT(1),
     /**
      * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
      * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
      * leaking may become more noticeable with thin floors and ceilings.
      */
-    Y_SCALE_100_PERCENT(2),
+    SDFGI_Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long

@@ -100,23 +100,23 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     /**
      * A floating-point scalar.
      */
-    SCALAR(0),
+    OP_TYPE_SCALAR(0),
     /**
      * A 2D vector type.
      */
-    VECTOR_2D(1),
+    OP_TYPE_VECTOR_2D(1),
     /**
      * A 3D vector type.
      */
-    VECTOR_3D(2),
+    OP_TYPE_VECTOR_3D(2),
     /**
      * A 4D vector type.
      */
-    VECTOR_4D(3),
+    OP_TYPE_VECTOR_4D(3),
     /**
      * Represents the size of the [OpType] enum.
      */
-    MAX(4),
+    OP_TYPE_MAX(4),
     ;
 
     public val id: Long
@@ -135,19 +135,19 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     /**
      * Sum of absolute derivative in `x` and `y`.
      */
-    SUM(0),
+    FUNC_SUM(0),
     /**
      * Derivative in `x` using local differencing.
      */
-    X(1),
+    FUNC_X(1),
     /**
      * Derivative in `y` using local differencing.
      */
-    Y(2),
+    FUNC_Y(2),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(3),
+    FUNC_MAX(3),
     ;
 
     public val id: Long
@@ -168,24 +168,24 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
      * chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text
      * shaders.
      */
-    NONE(0),
+    PRECISION_NONE(0),
     /**
      * The derivative will be calculated using the current fragment's neighbors (which may not
      * include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not
      * be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
      * `dFdyCoarse()` in text shaders.
      */
-    COARSE(1),
+    PRECISION_COARSE(1),
     /**
      * The derivative will be calculated using the current fragment and its immediate neighbors.
      * This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision
      * is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
      */
-    FINE(2),
+    PRECISION_FINE(2),
     /**
      * Represents the size of the [Precision] enum.
      */
-    MAX(3),
+    PRECISION_MAX(3),
     ;
 
     public val id: Long

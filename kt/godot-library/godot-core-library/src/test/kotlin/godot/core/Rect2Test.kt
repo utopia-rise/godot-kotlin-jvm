@@ -142,8 +142,8 @@ class TestRect2 {
         checkTrue(rect.growIndividual(100.0, 200.0, 300.0, 400.0) == Rect2(-100.0, -100.0, 1680.0, 1320.0))
         checkTrue(rect.growIndividual(-100.0, 200.0, 300.0, -400.0) == Rect2(100.0, -100.0, 1480.0, 520.0))
 
-        checkTrue(rect.growSide(Side.TOP, 500.0) == Rect2(0.0, -400.0, 1280.0, 1220.0))
-        checkTrue(rect.growSide(Side.TOP, -500.0) == Rect2(0.0, 600.0, 1280.0, 220.0))
+        checkTrue(rect.growSide(Side.SIDE_TOP, 500.0) == Rect2(0.0, -400.0, 1280.0, 1220.0))
+        checkTrue(rect.growSide(Side.SIDE_TOP, -500.0) == Rect2(0.0, 600.0, 1280.0, 220.0))
     }
 
     @Test

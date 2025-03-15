@@ -132,23 +132,23 @@ public open class Shader : Resource() {
     /**
      * Mode used to draw all 3D objects.
      */
-    SPATIAL(0),
+    MODE_SPATIAL(0),
     /**
      * Mode used to draw all 2D objects.
      */
-    CANVAS_ITEM(1),
+    MODE_CANVAS_ITEM(1),
     /**
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
-    PARTICLES(2),
+    MODE_PARTICLES(2),
     /**
      * Mode used for drawing skies. Only works with shaders attached to [Sky] objects.
      */
-    SKY(3),
+    MODE_SKY(3),
     /**
      * Mode used for setting the color and density of volumetric fog effect.
      */
-    FOG(4),
+    MODE_FOG(4),
     ;
 
     public val id: Long

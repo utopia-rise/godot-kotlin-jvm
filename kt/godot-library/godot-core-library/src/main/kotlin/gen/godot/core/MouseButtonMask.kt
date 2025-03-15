@@ -52,26 +52,26 @@ public value class MouseButtonMask(
     /**
      * Primary mouse button mask, usually for the left button.
      */
-    public val LEFT: MouseButtonMask = MouseButtonMask(1)
+    public val MOUSE_BUTTON_MASK_LEFT: MouseButtonMask = MouseButtonMask(1)
 
     /**
      * Secondary mouse button mask, usually for the right button.
      */
-    public val RIGHT: MouseButtonMask = MouseButtonMask(2)
+    public val MOUSE_BUTTON_MASK_RIGHT: MouseButtonMask = MouseButtonMask(2)
 
     /**
      * Middle mouse button mask.
      */
-    public val MIDDLE: MouseButtonMask = MouseButtonMask(4)
+    public val MOUSE_BUTTON_MASK_MIDDLE: MouseButtonMask = MouseButtonMask(4)
 
     /**
      * Extra mouse button 1 mask.
      */
-    public val MB_XBUTTON1: MouseButtonMask = MouseButtonMask(128)
+    public val MOUSE_BUTTON_MASK_MB_XBUTTON1: MouseButtonMask = MouseButtonMask(128)
 
     /**
      * Extra mouse button 2 mask.
      */
-    public val MB_XBUTTON2: MouseButtonMask = MouseButtonMask(256)
+    public val MOUSE_BUTTON_MASK_MB_XBUTTON2: MouseButtonMask = MouseButtonMask(256)
   }
 }

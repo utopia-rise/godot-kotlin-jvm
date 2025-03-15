@@ -1113,133 +1113,133 @@ public open class LineEdit : Control() {
     /**
      * Cuts (copies and clears) the selected text.
      */
-    CUT(0),
+    MENU_CUT(0),
     /**
      * Copies the selected text.
      */
-    COPY(1),
+    MENU_COPY(1),
     /**
      * Pastes the clipboard text over the selected text (or at the caret's position).
      * Non-printable escape characters are automatically stripped from the OS clipboard via
      * [String.stripEscapes].
      */
-    PASTE(2),
+    MENU_PASTE(2),
     /**
      * Erases the whole [LineEdit] text.
      */
-    CLEAR(3),
+    MENU_CLEAR(3),
     /**
      * Selects the whole [LineEdit] text.
      */
-    SELECT_ALL(4),
+    MENU_SELECT_ALL(4),
     /**
      * Undoes the previous action.
      */
-    UNDO(5),
+    MENU_UNDO(5),
     /**
      * Reverse the last undo action.
      */
-    REDO(6),
+    MENU_REDO(6),
     /**
      * ID of "Text Writing Direction" submenu.
      */
-    SUBMENU_TEXT_DIR(7),
+    MENU_SUBMENU_TEXT_DIR(7),
     /**
      * Sets text direction to inherited.
      */
-    DIR_INHERITED(8),
+    MENU_DIR_INHERITED(8),
     /**
      * Sets text direction to automatic.
      */
-    DIR_AUTO(9),
+    MENU_DIR_AUTO(9),
     /**
      * Sets text direction to left-to-right.
      */
-    DIR_LTR(10),
+    MENU_DIR_LTR(10),
     /**
      * Sets text direction to right-to-left.
      */
-    DIR_RTL(11),
+    MENU_DIR_RTL(11),
     /**
      * Toggles control character display.
      */
-    DISPLAY_UCC(12),
+    MENU_DISPLAY_UCC(12),
     /**
      * ID of "Insert Control Character" submenu.
      */
-    SUBMENU_INSERT_UCC(13),
+    MENU_SUBMENU_INSERT_UCC(13),
     /**
      * Inserts left-to-right mark (LRM) character.
      */
-    INSERT_LRM(14),
+    MENU_INSERT_LRM(14),
     /**
      * Inserts right-to-left mark (RLM) character.
      */
-    INSERT_RLM(15),
+    MENU_INSERT_RLM(15),
     /**
      * Inserts start of left-to-right embedding (LRE) character.
      */
-    INSERT_LRE(16),
+    MENU_INSERT_LRE(16),
     /**
      * Inserts start of right-to-left embedding (RLE) character.
      */
-    INSERT_RLE(17),
+    MENU_INSERT_RLE(17),
     /**
      * Inserts start of left-to-right override (LRO) character.
      */
-    INSERT_LRO(18),
+    MENU_INSERT_LRO(18),
     /**
      * Inserts start of right-to-left override (RLO) character.
      */
-    INSERT_RLO(19),
+    MENU_INSERT_RLO(19),
     /**
      * Inserts pop direction formatting (PDF) character.
      */
-    INSERT_PDF(20),
+    MENU_INSERT_PDF(20),
     /**
      * Inserts Arabic letter mark (ALM) character.
      */
-    INSERT_ALM(21),
+    MENU_INSERT_ALM(21),
     /**
      * Inserts left-to-right isolate (LRI) character.
      */
-    INSERT_LRI(22),
+    MENU_INSERT_LRI(22),
     /**
      * Inserts right-to-left isolate (RLI) character.
      */
-    INSERT_RLI(23),
+    MENU_INSERT_RLI(23),
     /**
      * Inserts first strong isolate (FSI) character.
      */
-    INSERT_FSI(24),
+    MENU_INSERT_FSI(24),
     /**
      * Inserts pop direction isolate (PDI) character.
      */
-    INSERT_PDI(25),
+    MENU_INSERT_PDI(25),
     /**
      * Inserts zero width joiner (ZWJ) character.
      */
-    INSERT_ZWJ(26),
+    MENU_INSERT_ZWJ(26),
     /**
      * Inserts zero width non-joiner (ZWNJ) character.
      */
-    INSERT_ZWNJ(27),
+    MENU_INSERT_ZWNJ(27),
     /**
      * Inserts word joiner (WJ) character.
      */
-    INSERT_WJ(28),
+    MENU_INSERT_WJ(28),
     /**
      * Inserts soft hyphen (SHY) character.
      */
-    INSERT_SHY(29),
+    MENU_INSERT_SHY(29),
     /**
      * Opens system emoji and symbol picker.
      */
-    EMOJI_AND_SYMBOL(30),
+    MENU_EMOJI_AND_SYMBOL(30),
     /**
      * Represents the size of the [MenuItems] enum.
      */
-    MAX(31),
+    MENU_MAX(31),
     ;
 
     public val id: Long

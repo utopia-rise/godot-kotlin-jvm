@@ -850,14 +850,14 @@ public open class Tree : Control() {
      * The focus cursor is always hidden in this mode, but it is positioned at the current
      * selection, making the currently selected item the currently focused item.
      */
-    SINGLE(0),
+    SELECT_SINGLE(0),
     /**
      * Allows selection of a single row at a time. From the perspective of items, only a single
      * items is allowed to be selected. And all the columns are selected in the selected item.
      * The focus cursor is always hidden in this mode, but it is positioned at the first column of
      * the current selection, making the currently selected item the currently focused item.
      */
-    ROW(1),
+    SELECT_ROW(1),
     /**
      * Allows selection of multiple cells at the same time. From the perspective of items, multiple
      * items are allowed to be selected. And there can be multiple columns selected in each selected
@@ -865,7 +865,7 @@ public open class Tree : Control() {
      * The focus cursor is visible in this mode, the item or column under the cursor is not
      * necessarily selected.
      */
-    MULTI(2),
+    SELECT_MULTI(2),
     ;
 
     public val id: Long
@@ -886,20 +886,20 @@ public open class Tree : Control() {
      * [getDropSectionAtPosition].
      * **Note:** This is the default flag, it has no effect when combined with other flags.
      */
-    DISABLED(0),
+    DROP_MODE_DISABLED(0),
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
      * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays
      * centered vertically.
      */
-    ON_ITEM(1),
+    DROP_MODE_ON_ITEM(1),
     /**
      * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
      * top half of the item, and the "below item" drop section covers the bottom half.
      * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on
      * top / bottom accordingly.
      */
-    INBETWEEN(2),
+    DROP_MODE_INBETWEEN(2),
     ;
 
     public val id: Long

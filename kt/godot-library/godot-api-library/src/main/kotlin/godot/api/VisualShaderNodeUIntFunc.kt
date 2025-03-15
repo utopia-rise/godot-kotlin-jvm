@@ -56,16 +56,16 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     /**
      * Negates the `x` using `-(x)`.
      */
-    NEGATE(0),
+    FUNC_NEGATE(0),
     /**
      * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
      * Shader Language.
      */
-    BITWISE_NOT(1),
+    FUNC_BITWISE_NOT(1),
     /**
      * Represents the size of the [Function] enum.
      */
-    MAX(2),
+    FUNC_MAX(2),
     ;
 
     public val id: Long

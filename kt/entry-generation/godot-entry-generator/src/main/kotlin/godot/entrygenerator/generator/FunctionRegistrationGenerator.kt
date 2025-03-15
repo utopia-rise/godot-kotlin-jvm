@@ -131,18 +131,18 @@ object FunctionRegistrationGenerator {
     private fun getRpcModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.rpcMode) {
             null,
-            RpcMode.DISABLED -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "DISABLED")
-            RpcMode.ANY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "ANY_PEER")
-            RpcMode.AUTHORITY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "AUTHORITY")
+            RpcMode.DISABLED -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_DISABLED")
+            RpcMode.ANY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_ANY_PEER")
+            RpcMode.AUTHORITY -> ClassName("$godotApiPackage.${GodotTypes.rpcMode}", "RPC_MODE_AUTHORITY")
         }
     }
 
     private fun getRpcTransferModeEnum(registeredFunction: RegisteredFunction): ClassName {
         return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.transferMode) {
             null,
-            TransferMode.RELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "RELIABLE")
-            TransferMode.UNRELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "UNRELIABLE")
-            TransferMode.UNRELIABLE_ORDERED -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "UNRELIABLE_ORDERED")
+            TransferMode.RELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_RELIABLE")
+            TransferMode.UNRELIABLE -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE")
+            TransferMode.UNRELIABLE_ORDERED -> ClassName("$godotApiPackage.${GodotTypes.transferMode}", "TRANSFER_MODE_UNRELIABLE_ORDERED")
         }
     }
 

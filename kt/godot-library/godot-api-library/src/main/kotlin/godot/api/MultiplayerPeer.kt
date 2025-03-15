@@ -236,15 +236,15 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     /**
      * The MultiplayerPeer is disconnected.
      */
-    DISCONNECTED(0),
+    CONNECTION_DISCONNECTED(0),
     /**
      * The MultiplayerPeer is currently connecting to a server.
      */
-    CONNECTING(1),
+    CONNECTION_CONNECTING(1),
     /**
      * This MultiplayerPeer is connected.
      */
-    CONNECTED(2),
+    CONNECTION_CONNECTED(2),
     ;
 
     public val id: Long
@@ -265,14 +265,14 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      * arrive in any order. Potentially faster than [TRANSFER_MODE_UNRELIABLE_ORDERED]. Use for
      * non-critical data, and always consider whether the order matters.
      */
-    UNRELIABLE(0),
+    TRANSFER_MODE_UNRELIABLE(0),
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets are
      * received in the order they were sent in. Potentially faster than [TRANSFER_MODE_RELIABLE]. Use
      * for non-critical data or data that would be outdated if received late due to resend attempt(s)
      * anyway, for example movement and positional data.
      */
-    UNRELIABLE_ORDERED(1),
+    TRANSFER_MODE_UNRELIABLE_ORDERED(1),
     /**
      * Packets must be received and resend attempts should be made until the packets are
      * acknowledged. Packets must be received in the order they were sent in. Most reliable transfer
@@ -280,7 +280,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      * transmitted and arrive in order, for example an ability being triggered or a chat message.
      * Consider carefully if the information really is critical, and use sparingly.
      */
-    RELIABLE(2),
+    TRANSFER_MODE_RELIABLE(2),
     ;
 
     public val id: Long

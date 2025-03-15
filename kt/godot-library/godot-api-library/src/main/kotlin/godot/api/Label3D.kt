@@ -878,7 +878,7 @@ public open class Label3D : GeometryInstance3D() {
      * [GeometryInstance3D.castShadow] has no effect when this transparency mode is used; the [Label3D]
      * will never cast shadows.
      */
-    DISABLED(0),
+    ALPHA_CUT_DISABLED(0),
     /**
      * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
      * unless some form of screen-space antialiasing is enabled (see
@@ -889,7 +889,7 @@ public open class Label3D : GeometryInstance3D() {
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
      * have transparency sorting issues between the main text and the outline.
      */
-    DISCARD(1),
+    ALPHA_CUT_DISCARD(1),
     /**
      * This mode draws fully opaque pixels in the depth prepass. This is slower than
      * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
@@ -897,12 +897,12 @@ public open class Label3D : GeometryInstance3D() {
      * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
      * have transparency sorting issues between the main text and the outline.
      */
-    OPAQUE_PREPASS(2),
+    ALPHA_CUT_OPAQUE_PREPASS(2),
     /**
      * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
      * remain opaque.
      */
-    HASH(3),
+    ALPHA_CUT_HASH(3),
     ;
 
     public val id: Long

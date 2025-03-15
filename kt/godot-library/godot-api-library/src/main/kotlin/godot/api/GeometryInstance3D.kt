@@ -510,25 +510,25 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Will not cast any shadows. Use this to improve performance for small geometry that is
      * unlikely to cast noticeable shadows (such as debris).
      */
-    OFF(0),
+    SHADOW_CASTING_SETTING_OFF(0),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
      * Will take culling into account, so faces not being rendered will not be taken into account
      * when shadow casting.
      */
-    ON(1),
+    SHADOW_CASTING_SETTING_ON(1),
     /**
      * Will cast shadows from all visible faces in the GeometryInstance3D.
      * Will not take culling into account, so all faces will be taken into account when shadow
      * casting.
      */
-    DOUBLE_SIDED(2),
+    SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
     /**
      * Will only show the shadows casted from this object.
      * In other words, the actual mesh will not be visible, only the shadows casted from the mesh
      * will be.
      */
-    SHADOWS_ONLY(3),
+    SHADOW_CASTING_SETTING_SHADOWS_ONLY(3),
     ;
 
     public val id: Long
@@ -549,13 +549,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
      * indirect lighting and reflections but the geometry will not be considered in GI baking.
      */
-    DISABLED(0),
+    GI_MODE_DISABLED(0),
     /**
      * Baked global illumination mode. Use for static objects that contribute to global illumination
      * (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and
      * [LightmapGI].
      */
-    STATIC(1),
+    GI_MODE_STATIC(1),
     /**
      * Dynamic global illumination mode. Use for dynamic objects that contribute to global
      * illumination. This GI mode is only effective when using [VoxelGI], but it has a higher
@@ -563,7 +563,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * [GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using
      * lightmap probes instead of using the baked lightmap texture.
      */
-    DYNAMIC(2),
+    GI_MODE_DYNAMIC(2),
     ;
 
     public val id: Long
@@ -601,7 +601,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     /**
      * Represents the size of the [LightmapScale] enum.
      */
-    MAX(4),
+    LIGHTMAP_SCALE_MAX(4),
     ;
 
     public val id: Long
@@ -623,7 +623,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * on how the LOD meshes are authored. See [visibilityRangeBegin] and [Node3D.visibilityParent] for
      * more information.
      */
-    DISABLED(0),
+    VISIBILITY_RANGE_FADE_DISABLED(0),
     /**
      * Will fade-out itself when reaching the limits of its own visibility range. This is slower
      * than [VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range
@@ -632,7 +632,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    SELF(1),
+    VISIBILITY_RANGE_FADE_SELF(1),
     /**
      * Will fade-in its visibility dependencies (see [Node3D.visibilityParent]) when reaching the
      * limits of its own visibility range. This is slower than [VISIBILITY_RANGE_FADE_DISABLED], but it
@@ -642,7 +642,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * Compatibility rendering method, this mode acts like [VISIBILITY_RANGE_FADE_DISABLED] but with
      * hysteresis disabled.
      */
-    DEPENDENCIES(2),
+    VISIBILITY_RANGE_FADE_DEPENDENCIES(2),
     ;
 
     public val id: Long

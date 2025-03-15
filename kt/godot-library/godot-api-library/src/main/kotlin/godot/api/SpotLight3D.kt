@@ -38,10 +38,10 @@ public open class SpotLight3D : Light3D() {
    */
   public final inline var spotRange: Float
     @JvmName("spotRangeProperty")
-    get() = getParam(Light3D.Param.RANGE)
+    get() = getParam(Light3D.Param.PARAM_RANGE)
     @JvmName("spotRangeProperty")
     set(`value`) {
-      setParam(Light3D.Param.RANGE, value)
+      setParam(Light3D.Param.PARAM_RANGE, value)
     }
 
   /**
@@ -57,10 +57,10 @@ public open class SpotLight3D : Light3D() {
    */
   public final inline var spotAttenuation: Float
     @JvmName("spotAttenuationProperty")
-    get() = getParam(Light3D.Param.ATTENUATION)
+    get() = getParam(Light3D.Param.PARAM_ATTENUATION)
     @JvmName("spotAttenuationProperty")
     set(`value`) {
-      setParam(Light3D.Param.ATTENUATION, value)
+      setParam(Light3D.Param.PARAM_ATTENUATION, value)
     }
 
   /**
@@ -70,10 +70,10 @@ public open class SpotLight3D : Light3D() {
    */
   public final inline var spotAngle: Float
     @JvmName("spotAngleProperty")
-    get() = getParam(Light3D.Param.SPOT_ANGLE)
+    get() = getParam(Light3D.Param.PARAM_SPOT_ANGLE)
     @JvmName("spotAngleProperty")
     set(`value`) {
-      setParam(Light3D.Param.SPOT_ANGLE, value)
+      setParam(Light3D.Param.PARAM_SPOT_ANGLE, value)
     }
 
   /**
@@ -81,10 +81,10 @@ public open class SpotLight3D : Light3D() {
    */
   public final inline var spotAngleAttenuation: Float
     @JvmName("spotAngleAttenuationProperty")
-    get() = getParam(Light3D.Param.SPOT_ATTENUATION)
+    get() = getParam(Light3D.Param.PARAM_SPOT_ATTENUATION)
     @JvmName("spotAngleAttenuationProperty")
     set(`value`) {
-      setParam(Light3D.Param.SPOT_ATTENUATION, value)
+      setParam(Light3D.Param.PARAM_SPOT_ATTENUATION, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {

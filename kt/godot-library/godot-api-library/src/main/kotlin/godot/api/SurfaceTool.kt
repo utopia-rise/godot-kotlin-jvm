@@ -378,7 +378,7 @@ public open class SurfaceTool : RefCounted() {
    */
   @JvmOverloads
   public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
-      Mesh.PrimitiveType.TRIANGLES): Unit {
+      Mesh.PrimitiveType.PRIMITIVE_TRIANGLES): Unit {
     TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
     TransferContext.callMethod(ptr, MethodBindings.createFromArraysPtr, NIL)
   }
@@ -440,46 +440,46 @@ public open class SurfaceTool : RefCounted() {
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
-    RGBA8_UNORM(0),
+    CUSTOM_RGBA8_UNORM(0),
     /**
      * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
-    RGBA8_SNORM(1),
+    CUSTOM_RGBA8_SNORM(1),
     /**
      * Stores data passed to [setCustom] as half precision floats, and uses only red and green color
      * channels. See [Mesh.ARRAY_CUSTOM_RG_HALF].
      */
-    RG_HALF(2),
+    CUSTOM_RG_HALF(2),
     /**
      * Stores data passed to [setCustom] as half precision floats and uses all color channels. See
      * [Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
-    RGBA_HALF(3),
+    CUSTOM_RGBA_HALF(3),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red color channel.
      * See [Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
-    R_FLOAT(4),
+    CUSTOM_R_FLOAT(4),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red and green color
      * channels. See [Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
-    RG_FLOAT(5),
+    CUSTOM_RG_FLOAT(5),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue
      * color channels. See [Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
-    RGB_FLOAT(6),
+    CUSTOM_RGB_FLOAT(6),
     /**
      * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See
      * [Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
-    RGBA_FLOAT(7),
+    CUSTOM_RGBA_FLOAT(7),
     /**
      * Used to indicate a disabled custom channel.
      */
-    MAX(8),
+    CUSTOM_MAX(8),
     ;
 
     public val id: Long

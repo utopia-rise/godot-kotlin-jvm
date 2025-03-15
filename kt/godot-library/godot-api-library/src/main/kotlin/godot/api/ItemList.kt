@@ -936,11 +936,11 @@ public open class ItemList : Control() {
     /**
      * Icon is drawn above the text.
      */
-    TOP(0),
+    ICON_MODE_TOP(0),
     /**
      * Icon is drawn to the left of the text.
      */
-    LEFT(1),
+    ICON_MODE_LEFT(1),
     ;
 
     public val id: Long
@@ -959,15 +959,15 @@ public open class ItemList : Control() {
     /**
      * Only allow selecting a single item.
      */
-    SINGLE(0),
+    SELECT_SINGLE(0),
     /**
      * Allows selecting multiple items by holding [kbd]Ctrl[/kbd] or [kbd]Shift[/kbd].
      */
-    MULTI(1),
+    SELECT_MULTI(1),
     /**
      * Allows selecting multiple items by toggling them on and off.
      */
-    TOGGLE(2),
+    SELECT_TOGGLE(2),
     ;
 
     public val id: Long

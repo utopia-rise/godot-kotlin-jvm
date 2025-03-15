@@ -284,19 +284,19 @@ public open class AudioStreamInteractive : AudioStream() {
     /**
      * Start transition as soon as possible, don't wait for any specific time position.
      */
-    IMMEDIATE(0),
+    TRANSITION_FROM_TIME_IMMEDIATE(0),
     /**
      * Transition when the clip playback position reaches the next beat.
      */
-    NEXT_BEAT(1),
+    TRANSITION_FROM_TIME_NEXT_BEAT(1),
     /**
      * Transition when the clip playback position reaches the next bar.
      */
-    NEXT_BAR(2),
+    TRANSITION_FROM_TIME_NEXT_BAR(2),
     /**
      * Transition when the current clip finished playing.
      */
-    END(3),
+    TRANSITION_FROM_TIME_END(3),
     ;
 
     public val id: Long
@@ -316,11 +316,11 @@ public open class AudioStreamInteractive : AudioStream() {
      * Transition to the same position in the destination clip. This is useful when both clips have
      * exactly the same length and the music should fade between them.
      */
-    SAME_POSITION(0),
+    TRANSITION_TO_TIME_SAME_POSITION(0),
     /**
      * Transition to the start of the destination clip.
      */
-    START(1),
+    TRANSITION_TO_TIME_START(1),
     ;
 
     public val id: Long
@@ -340,24 +340,24 @@ public open class AudioStreamInteractive : AudioStream() {
      * Do not use fade for the transition. This is useful when transitioning from a clip-end to
      * clip-beginning, and each clip has their begin/end.
      */
-    DISABLED(0),
+    FADE_DISABLED(0),
     /**
      * Use a fade-in in the next clip, let the current clip finish.
      */
-    IN(1),
+    FADE_IN(1),
     /**
      * Use a fade-out in the current clip, the next clip will start by itself.
      */
-    OUT(2),
+    FADE_OUT(2),
     /**
      * Use a cross-fade between clips.
      */
-    CROSS(3),
+    FADE_CROSS(3),
     /**
      * Use automatic fade logic depending on the transition from/to. It is recommended to use this
      * by default.
      */
-    AUTOMATIC(4),
+    FADE_AUTOMATIC(4),
     ;
 
     public val id: Long
@@ -376,16 +376,16 @@ public open class AudioStreamInteractive : AudioStream() {
     /**
      * Disable auto-advance (default).
      */
-    DISABLED(0),
+    AUTO_ADVANCE_DISABLED(0),
     /**
      * Enable auto-advance, a clip must be specified.
      */
-    ENABLED(1),
+    AUTO_ADVANCE_ENABLED(1),
     /**
      * Enable auto-advance, but instead of specifying a clip, the playback will return to hold (see
      * [addTransition]).
      */
-    RETURN_TO_HOLD(2),
+    AUTO_ADVANCE_RETURN_TO_HOLD(2),
     ;
 
     public val id: Long

@@ -55,19 +55,19 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     /**
      * A 2D vector type.
      */
-    VECTOR_2D(0),
+    OP_TYPE_VECTOR_2D(0),
     /**
      * A 3D vector type.
      */
-    VECTOR_3D(1),
+    OP_TYPE_VECTOR_3D(1),
     /**
      * A 4D vector type.
      */
-    VECTOR_4D(2),
+    OP_TYPE_VECTOR_4D(2),
     /**
      * Represents the size of the [OpType] enum.
      */
-    MAX(3),
+    OP_TYPE_MAX(3),
     ;
 
     public val id: Long

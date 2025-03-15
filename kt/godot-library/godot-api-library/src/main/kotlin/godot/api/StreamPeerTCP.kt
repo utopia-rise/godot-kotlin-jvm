@@ -130,19 +130,19 @@ public open class StreamPeerTCP : StreamPeer() {
     /**
      * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
      */
-    NONE(0),
+    STATUS_NONE(0),
     /**
      * A status representing a [StreamPeerTCP] that is connecting to a host.
      */
-    CONNECTING(1),
+    STATUS_CONNECTING(1),
     /**
      * A status representing a [StreamPeerTCP] that is connected to a host.
      */
-    CONNECTED(2),
+    STATUS_CONNECTED(2),
     /**
      * A status representing a [StreamPeerTCP] in error state.
      */
-    ERROR(3),
+    STATUS_ERROR(3),
     ;
 
     public val id: Long

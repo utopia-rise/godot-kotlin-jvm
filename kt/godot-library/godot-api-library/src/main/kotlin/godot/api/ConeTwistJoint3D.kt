@@ -37,10 +37,10 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public final inline var swingSpan: Float
     @JvmName("swingSpanProperty")
-    get() = getParam(ConeTwistJoint3D.Param.SWING_SPAN)
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_SWING_SPAN)
     @JvmName("swingSpanProperty")
     set(`value`) {
-      setParam(ConeTwistJoint3D.Param.SWING_SPAN, value)
+      setParam(ConeTwistJoint3D.Param.PARAM_SWING_SPAN, value)
     }
 
   /**
@@ -49,10 +49,10 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public final inline var twistSpan: Float
     @JvmName("twistSpanProperty")
-    get() = getParam(ConeTwistJoint3D.Param.TWIST_SPAN)
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_TWIST_SPAN)
     @JvmName("twistSpanProperty")
     set(`value`) {
-      setParam(ConeTwistJoint3D.Param.TWIST_SPAN, value)
+      setParam(ConeTwistJoint3D.Param.PARAM_TWIST_SPAN, value)
     }
 
   /**
@@ -61,10 +61,10 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public final inline var bias: Float
     @JvmName("biasProperty")
-    get() = getParam(ConeTwistJoint3D.Param.BIAS)
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_BIAS)
     @JvmName("biasProperty")
     set(`value`) {
-      setParam(ConeTwistJoint3D.Param.BIAS, value)
+      setParam(ConeTwistJoint3D.Param.PARAM_BIAS, value)
     }
 
   /**
@@ -73,10 +73,10 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public final inline var softness: Float
     @JvmName("softnessProperty")
-    get() = getParam(ConeTwistJoint3D.Param.SOFTNESS)
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_SOFTNESS)
     @JvmName("softnessProperty")
     set(`value`) {
-      setParam(ConeTwistJoint3D.Param.SOFTNESS, value)
+      setParam(ConeTwistJoint3D.Param.PARAM_SOFTNESS, value)
     }
 
   /**
@@ -84,10 +84,10 @@ public open class ConeTwistJoint3D : Joint3D() {
    */
   public final inline var relaxation: Float
     @JvmName("relaxationProperty")
-    get() = getParam(ConeTwistJoint3D.Param.RELAXATION)
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_RELAXATION)
     @JvmName("relaxationProperty")
     set(`value`) {
-      setParam(ConeTwistJoint3D.Param.RELAXATION, value)
+      setParam(ConeTwistJoint3D.Param.PARAM_RELAXATION, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -120,30 +120,30 @@ public open class ConeTwistJoint3D : Joint3D() {
      * Could be defined as looseness in the [ConeTwistJoint3D].
      * If below 0.05, this behavior is locked.
      */
-    SWING_SPAN(0),
+    PARAM_SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
      * Twist is locked if below 0.05.
      */
-    TWIST_SPAN(1),
+    PARAM_TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
      * The higher, the faster.
      */
-    BIAS(2),
+    PARAM_BIAS(2),
     /**
      * The ease with which the joint starts to twist. If it's too low, it takes more force to start
      * twisting the joint.
      */
-    SOFTNESS(3),
+    PARAM_SOFTNESS(3),
     /**
      * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
      */
-    RELAXATION(4),
+    PARAM_RELAXATION(4),
     /**
      * Represents the size of the [Param] enum.
      */
-    MAX(5),
+    PARAM_MAX(5),
     ;
 
     public val id: Long

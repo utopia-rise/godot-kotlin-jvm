@@ -307,19 +307,19 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     /**
      * The default state of the request. Nothing is done.
      */
-    NONE(0),
+    ONE_SHOT_REQUEST_NONE(0),
     /**
      * The request to play the animation connected to "shot" port.
      */
-    FIRE(1),
+    ONE_SHOT_REQUEST_FIRE(1),
     /**
      * The request to stop the animation connected to "shot" port.
      */
-    ABORT(2),
+    ONE_SHOT_REQUEST_ABORT(2),
     /**
      * The request to fade out the animation connected to "shot" port.
      */
-    FADE_OUT(3),
+    ONE_SHOT_REQUEST_FADE_OUT(3),
     ;
 
     public val id: Long
@@ -338,11 +338,11 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     /**
      * Blends two animations. See also [AnimationNodeBlend2].
      */
-    BLEND(0),
+    MIX_MODE_BLEND(0),
     /**
      * Blends two animations additively. See also [AnimationNodeAdd2].
      */
-    ADD(1),
+    MIX_MODE_ADD(1),
     ;
 
     public val id: Long

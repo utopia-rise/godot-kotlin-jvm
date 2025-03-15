@@ -177,11 +177,11 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     /**
      * Gives the mesh a single flat face.
      */
-    FLAT(0),
+    SHAPE_FLAT(0),
     /**
      * Gives the mesh two perpendicular flat faces, making a cross shape.
      */
-    CROSS(1),
+    SHAPE_CROSS(1),
     ;
 
     public val id: Long

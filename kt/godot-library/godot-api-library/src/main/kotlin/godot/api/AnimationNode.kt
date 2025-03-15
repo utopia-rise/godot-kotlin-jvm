@@ -289,7 +289,7 @@ public open class AnimationNode : Resource() {
     seeked: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.LOOPED_FLAG_NONE,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
     TransferContext.callMethod(ptr, MethodBindings.blendAnimationPtr, NIL)
@@ -308,7 +308,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -330,7 +330,7 @@ public open class AnimationNode : Resource() {
     seek: Boolean,
     isExternalSeeking: Boolean,
     blend: Float,
-    filter: FilterAction = AnimationNode.FilterAction.IGNORE,
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
@@ -364,19 +364,19 @@ public open class AnimationNode : Resource() {
     /**
      * Do not use filtering.
      */
-    IGNORE(0),
+    FILTER_IGNORE(0),
     /**
      * Paths matching the filter will be allowed to pass.
      */
-    PASS(1),
+    FILTER_PASS(1),
     /**
      * Paths matching the filter will be discarded.
      */
-    STOP(2),
+    FILTER_STOP(2),
     /**
      * Paths matching the filter will be blended (by the blend value).
      */
-    BLEND(3),
+    FILTER_BLEND(3),
     ;
 
     public val id: Long

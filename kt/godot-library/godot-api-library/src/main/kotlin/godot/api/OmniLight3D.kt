@@ -44,10 +44,10 @@ public open class OmniLight3D : Light3D() {
    */
   public final inline var omniRange: Float
     @JvmName("omniRangeProperty")
-    get() = getParam(Light3D.Param.RANGE)
+    get() = getParam(Light3D.Param.PARAM_RANGE)
     @JvmName("omniRangeProperty")
     set(`value`) {
-      setParam(Light3D.Param.RANGE, value)
+      setParam(Light3D.Param.PARAM_RANGE, value)
     }
 
   /**
@@ -63,10 +63,10 @@ public open class OmniLight3D : Light3D() {
    */
   public final inline var omniAttenuation: Float
     @JvmName("omniAttenuationProperty")
-    get() = getParam(Light3D.Param.ATTENUATION)
+    get() = getParam(Light3D.Param.PARAM_ATTENUATION)
     @JvmName("omniAttenuationProperty")
     set(`value`) {
-      setParam(Light3D.Param.ATTENUATION, value)
+      setParam(Light3D.Param.PARAM_ATTENUATION, value)
     }
 
   /**
@@ -102,11 +102,11 @@ public open class OmniLight3D : Light3D() {
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but
      * lower-quality.
      */
-    DUAL_PARABOLOID(0),
+    SHADOW_DUAL_PARABOLOID(0),
     /**
      * Shadows are rendered to a cubemap. Slower than [SHADOW_DUAL_PARABOLOID], but higher-quality.
      */
-    CUBE(1),
+    SHADOW_CUBE(1),
     ;
 
     public val id: Long

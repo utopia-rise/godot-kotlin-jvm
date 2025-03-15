@@ -150,30 +150,30 @@ public open class TextureRect : Control() {
      * The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the
      * texture.
      */
-    KEEP_SIZE(0),
+    EXPAND_KEEP_SIZE(0),
     /**
      * The size of the texture won't be considered for minimum size calculation, so the
      * [TextureRect] can be shrunk down past the texture size.
      */
-    IGNORE_SIZE(1),
+    EXPAND_IGNORE_SIZE(1),
     /**
      * The height of the texture will be ignored. Minimum width will be equal to the current height.
      * Useful for horizontal layouts, e.g. inside [HBoxContainer].
      */
-    FIT_WIDTH(2),
+    EXPAND_FIT_WIDTH(2),
     /**
      * Same as [EXPAND_FIT_WIDTH], but keeps texture's aspect ratio.
      */
-    FIT_WIDTH_PROPORTIONAL(3),
+    EXPAND_FIT_WIDTH_PROPORTIONAL(3),
     /**
      * The width of the texture will be ignored. Minimum height will be equal to the current width.
      * Useful for vertical layouts, e.g. inside [VBoxContainer].
      */
-    FIT_HEIGHT(4),
+    EXPAND_FIT_HEIGHT(4),
     /**
      * Same as [EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio.
      */
-    FIT_HEIGHT_PROPORTIONAL(5),
+    EXPAND_FIT_HEIGHT_PROPORTIONAL(5),
     ;
 
     public val id: Long
@@ -192,34 +192,34 @@ public open class TextureRect : Control() {
     /**
      * Scale to fit the node's bounding rectangle.
      */
-    SCALE(0),
+    STRETCH_SCALE(0),
     /**
      * Tile inside the node's bounding rectangle.
      */
-    TILE(1),
+    STRETCH_TILE(1),
     /**
      * The texture keeps its original size and stays in the bounding rectangle's top-left corner.
      */
-    KEEP(2),
+    STRETCH_KEEP(2),
     /**
      * The texture keeps its original size and stays centered in the node's bounding rectangle.
      */
-    KEEP_CENTERED(3),
+    STRETCH_KEEP_CENTERED(3),
     /**
      * Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect
      * ratio.
      */
-    KEEP_ASPECT(4),
+    STRETCH_KEEP_ASPECT(4),
     /**
      * Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect
      * ratio.
      */
-    KEEP_ASPECT_CENTERED(5),
+    STRETCH_KEEP_ASPECT_CENTERED(5),
     /**
      * Scale the texture so that the shorter side fits the bounding rectangle. The other side clips
      * to the node's limits.
      */
-    KEEP_ASPECT_COVERED(6),
+    STRETCH_KEEP_ASPECT_COVERED(6),
     ;
 
     public val id: Long
