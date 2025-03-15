@@ -290,67 +290,67 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     /**
      * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
      */
-    PEER_PACKET_LOSS(0),
+    PACKET_LOSS(0),
     /**
      * Packet loss variance.
      */
-    PEER_PACKET_LOSS_VARIANCE(1),
+    PACKET_LOSS_VARIANCE(1),
     /**
      * The time at which packet loss statistics were last updated (in milliseconds since the
      * connection started). The interval for packet loss statistics updates is 10 seconds, and at least
      * one packet must have been sent since the last statistics update.
      */
-    PEER_PACKET_LOSS_EPOCH(2),
+    PACKET_LOSS_EPOCH(2),
     /**
      * Mean packet round trip time for reliable packets.
      */
-    PEER_ROUND_TRIP_TIME(3),
+    ROUND_TRIP_TIME(3),
     /**
      * Variance of the mean round trip time.
      */
-    PEER_ROUND_TRIP_TIME_VARIANCE(4),
+    ROUND_TRIP_TIME_VARIANCE(4),
     /**
      * Last recorded round trip time for a reliable packet.
      */
-    PEER_LAST_ROUND_TRIP_TIME(5),
+    LAST_ROUND_TRIP_TIME(5),
     /**
      * Variance of the last trip time recorded.
      */
-    PEER_LAST_ROUND_TRIP_TIME_VARIANCE(6),
+    LAST_ROUND_TRIP_TIME_VARIANCE(6),
     /**
      * The peer's current throttle status.
      */
-    PEER_PACKET_THROTTLE(7),
+    PACKET_THROTTLE(7),
     /**
      * The maximum number of unreliable packets that should not be dropped. This value is always
      * greater than or equal to `1`. The initial value is equal to [PACKET_THROTTLE_SCALE].
      */
-    PEER_PACKET_THROTTLE_LIMIT(8),
+    PACKET_THROTTLE_LIMIT(8),
     /**
      * Internal value used to increment the packet throttle counter. The value is hardcoded to `7`
      * and cannot be changed. You probably want to look at [PEER_PACKET_THROTTLE_ACCELERATION] instead.
      */
-    PEER_PACKET_THROTTLE_COUNTER(9),
+    PACKET_THROTTLE_COUNTER(9),
     /**
      * The time at which throttle statistics were last updated (in milliseconds since the connection
      * started). The interval for throttle statistics updates is [PEER_PACKET_THROTTLE_INTERVAL].
      */
-    PEER_PACKET_THROTTLE_EPOCH(10),
+    PACKET_THROTTLE_EPOCH(10),
     /**
      * The throttle's acceleration factor. Higher values will make ENet adapt to fluctuating network
      * conditions faster, causing unrelaible packets to be sent *more* often. The default value is `2`.
      */
-    PEER_PACKET_THROTTLE_ACCELERATION(11),
+    PACKET_THROTTLE_ACCELERATION(11),
     /**
      * The throttle's deceleration factor. Higher values will make ENet adapt to fluctuating network
      * conditions faster, causing unrelaible packets to be sent *less* often. The default value is `2`.
      */
-    PEER_PACKET_THROTTLE_DECELERATION(12),
+    PACKET_THROTTLE_DECELERATION(12),
     /**
      * The interval over which the lowest mean round trip time should be measured for use by the
      * throttle mechanism (in milliseconds). The default value is `5000`.
      */
-    PEER_PACKET_THROTTLE_INTERVAL(13),
+    PACKET_THROTTLE_INTERVAL(13),
     ;
 
     public val id: Long

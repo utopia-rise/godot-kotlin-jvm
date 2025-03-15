@@ -513,14 +513,14 @@ public open class ReflectionProbe : VisualInstance3D() {
      * geometry changes. You can force a [ReflectionProbe] update by moving the [ReflectionProbe]
      * slightly in any direction.
      */
-    UPDATE_ONCE(0),
+    ONCE(0),
     /**
      * Update the probe every frame. This provides better results for fast-moving dynamic objects
      * (such as cars). However, it has a significant performance cost. Due to the cost, it's
      * recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all
      * other use cases, use [UPDATE_ONCE].
      */
-    UPDATE_ALWAYS(1),
+    ALWAYS(1),
     ;
 
     public val id: Long
@@ -539,17 +539,17 @@ public open class ReflectionProbe : VisualInstance3D() {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
      */
-    AMBIENT_DISABLED(0),
+    DISABLED(0),
     /**
      * Apply automatically-sourced environment lighting inside the [ReflectionProbe]'s box defined
      * by its [size].
      */
-    AMBIENT_ENVIRONMENT(1),
+    ENVIRONMENT(1),
     /**
      * Apply custom ambient lighting inside the [ReflectionProbe]'s box defined by its [size]. See
      * [ambientColor] and [ambientColorEnergy].
      */
-    AMBIENT_COLOR(2),
+    COLOR(2),
     ;
 
     public val id: Long

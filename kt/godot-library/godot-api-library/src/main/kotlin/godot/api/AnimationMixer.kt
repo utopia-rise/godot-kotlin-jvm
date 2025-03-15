@@ -671,8 +671,8 @@ public open class AnimationMixer internal constructor() : Node() {
   public final fun capture(
     name: StringName,
     duration: Double,
-    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
-    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+    transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.IN,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
     TransferContext.callMethod(ptr, MethodBindings.capturePtr, NIL)
@@ -715,15 +715,15 @@ public open class AnimationMixer internal constructor() : Node() {
      * Process animation during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      * This is especially useful when animating physics bodies.
      */
-    ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS(0),
+    PHYSICS(0),
     /**
      * Process animation during process frames (see [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
-    ANIMATION_CALLBACK_MODE_PROCESS_IDLE(1),
+    IDLE(1),
     /**
      * Do not process animation. Use [advance] to process the animation manually.
      */
-    ANIMATION_CALLBACK_MODE_PROCESS_MANUAL(2),
+    MANUAL(2),
     ;
 
     public val id: Long
@@ -745,11 +745,11 @@ public open class AnimationMixer internal constructor() : Node() {
      * processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while
      * playing.
      */
-    ANIMATION_CALLBACK_MODE_METHOD_DEFERRED(0),
+    DEFERRED(0),
     /**
      * Make method calls immediately when reached in the animation.
      */
-    ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE(1),
+    IMMEDIATE(1),
     ;
 
     public val id: Long
@@ -771,14 +771,14 @@ public open class AnimationMixer internal constructor() : Node() {
      * [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
      * [Animation.UPDATE_DISCRETE] track values.
      */
-    ANIMATION_CALLBACK_MODE_DISCRETE_DOMINANT(0),
+    DOMINANT(0),
     /**
      * An [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track value takes precedence
      * when blending the [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
      * the [Animation.UPDATE_DISCRETE] track values. This is the default behavior for
      * [AnimationPlayer].
      */
-    ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE(1),
+    RECESSIVE(1),
     /**
      * Always treat the [Animation.UPDATE_DISCRETE] track value as [Animation.UPDATE_CONTINUOUS]
      * with [Animation.INTERPOLATION_NEAREST]. This is the default behavior for [AnimationTree].
@@ -802,7 +802,7 @@ public open class AnimationMixer internal constructor() : Node() {
      * character codes and lengths, but note that there is a difference in algorithm between
      * interpolation between keys and interpolation by blending.
      */
-    ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS(2),
+    FORCE_CONTINUOUS(2),
     ;
 
     public val id: Long

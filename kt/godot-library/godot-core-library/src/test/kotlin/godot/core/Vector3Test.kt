@@ -39,13 +39,13 @@ class TestVector3 {
     @Test
     fun `Axis Methods`() {
         val vector = Vector3(1.2, 3.4, 5.6)
-        checkMessage(Vector3.Axis.AXIS_Z == vector.maxAxis()) { "Vector3 max_axis_index should work as expected." }
-        checkMessage(Vector3.Axis.AXIS_X == vector.minAxis()) { "Vector3 min_axis_index should work as expected." }
-        checkMessage(5.6.isEqualApprox(vector[Vector3.Axis.AXIS_Z])) { "Vector3 array operator should work as expected." }
-        checkMessage(1.2.isEqualApprox(vector[Vector3.Axis.AXIS_X])) { "Vector3 array operator should work as expected." }
+        checkMessage(Vector3.Axis.Z == vector.maxAxis()) { "Vector3 max_axis_index should work as expected." }
+        checkMessage(Vector3.Axis.X == vector.minAxis()) { "Vector3 min_axis_index should work as expected." }
+        checkMessage(5.6.isEqualApprox(vector[Vector3.Axis.Z])) { "Vector3 array operator should work as expected." }
+        checkMessage(1.2.isEqualApprox(vector[Vector3.Axis.X])) { "Vector3 array operator should work as expected." }
 
-        vector[Vector3.Axis.AXIS_Y] = 3.7
-        checkMessage(3.7.isEqualApprox(vector[Vector3.Axis.AXIS_Y])) { "Vector3 array operator setter should work as expected." }
+        vector[Vector3.Axis.Y] = 3.7
+        checkMessage(3.7.isEqualApprox(vector[Vector3.Axis.Y])) { "Vector3 array operator setter should work as expected." }
     }
 
     @Test

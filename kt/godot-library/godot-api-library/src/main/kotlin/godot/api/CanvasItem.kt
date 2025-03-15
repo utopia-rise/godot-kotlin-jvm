@@ -926,13 +926,13 @@ public open class CanvasItem internal constructor() : Node() {
     font: Font?,
     pos: Vector2,
     text: String,
-    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
-    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
+    direction: TextServer.Direction = TextServer.Direction.AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawStringPtr, NIL)
@@ -948,15 +948,15 @@ public open class CanvasItem internal constructor() : Node() {
     font: Font?,
     pos: Vector2,
     text: String,
-    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
     maxLines: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
-    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
+    direction: TextServer.Direction = TextServer.Direction.AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringPtr, NIL)
@@ -972,14 +972,14 @@ public open class CanvasItem internal constructor() : Node() {
     font: Font?,
     pos: Vector2,
     text: String,
-    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
     size: Int = 1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
-    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
+    direction: TextServer.Direction = TextServer.Direction.AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawStringOutlinePtr, NIL)
@@ -995,7 +995,7 @@ public open class CanvasItem internal constructor() : Node() {
     font: Font?,
     pos: Vector2,
     text: String,
-    alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+    alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
     width: Float = -1.0f,
     fontSize: Int = 16,
     maxLines: Int = -1,
@@ -1003,8 +1003,8 @@ public open class CanvasItem internal constructor() : Node() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     brkFlags: TextServer.LineBreakFlag = TextServer.LineBreakFlag(3),
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
-    direction: TextServer.Direction = TextServer.Direction.DIRECTION_AUTO,
-    orientation: TextServer.Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL,
+    direction: TextServer.Direction = TextServer.Direction.AUTO,
+    orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
     TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringOutlinePtr, NIL)
@@ -1424,17 +1424,17 @@ public open class CanvasItem internal constructor() : Node() {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
      */
-    TEXTURE_FILTER_PARENT_NODE(0),
+    PARENT_NODE(0),
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    TEXTURE_FILTER_NEAREST(1),
+    NEAREST(1),
     /**
      * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
-    TEXTURE_FILTER_LINEAR(2),
+    LINEAR(2),
     /**
      * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -1444,7 +1444,7 @@ public open class CanvasItem internal constructor() : Node() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    NEAREST_WITH_MIPMAPS(3),
     /**
      * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
      * uses the nearest mipmap if
@@ -1454,7 +1454,7 @@ public open class CanvasItem internal constructor() : Node() {
      * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
      * on-screen pixels.
      */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(4),
+    LINEAR_WITH_MIPMAPS(4),
     /**
      * The texture filter reads from the nearest pixel and blends between 2 mipmaps (or uses the
      * nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is
@@ -1466,7 +1466,7 @@ public open class CanvasItem internal constructor() : Node() {
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [TEXTURE_FILTER_NEAREST_WITH_MIPMAPS] is usually more appropriate in this case.
      */
-    TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
+    NEAREST_WITH_MIPMAPS_ANISOTROPIC(5),
     /**
      * The texture filter blends between the nearest 4 pixels and blends between 2 mipmaps (or uses
      * the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter]
@@ -1478,11 +1478,11 @@ public open class CanvasItem internal constructor() : Node() {
      * **Note:** This texture filter is rarely useful in 2D projects.
      * [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS] is usually more appropriate in this case.
      */
-    TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
+    LINEAR_WITH_MIPMAPS_ANISOTROPIC(6),
     /**
      * Represents the size of the [TextureFilter] enum.
      */
-    TEXTURE_FILTER_MAX(7),
+    MAX(7),
     ;
 
     public val id: Long
@@ -1501,23 +1501,23 @@ public open class CanvasItem internal constructor() : Node() {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
      */
-    TEXTURE_REPEAT_PARENT_NODE(0),
+    PARENT_NODE(0),
     /**
      * Texture will not repeat.
      */
-    TEXTURE_REPEAT_DISABLED(1),
+    DISABLED(1),
     /**
      * Texture will repeat normally.
      */
-    TEXTURE_REPEAT_ENABLED(2),
+    ENABLED(2),
     /**
      * Texture will repeat in a 2×2 tiled mode, where elements at even positions are mirrored.
      */
-    TEXTURE_REPEAT_MIRROR(3),
+    MIRROR(3),
     /**
      * Represents the size of the [TextureRepeat] enum.
      */
-    TEXTURE_REPEAT_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -1536,21 +1536,21 @@ public open class CanvasItem internal constructor() : Node() {
     /**
      * Child draws over parent and is not clipped.
      */
-    CLIP_CHILDREN_DISABLED(0),
+    DISABLED(0),
     /**
      * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
      * area, parent is not drawn.
      */
-    CLIP_CHILDREN_ONLY(1),
+    ONLY(1),
     /**
      * Parent is used for clipping child, but parent is also drawn underneath child as normal before
      * clipping child to its visible area.
      */
-    CLIP_CHILDREN_AND_DRAW(2),
+    AND_DRAW(2),
     /**
      * Represents the size of the [ClipChildrenMode] enum.
      */
-    CLIP_CHILDREN_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

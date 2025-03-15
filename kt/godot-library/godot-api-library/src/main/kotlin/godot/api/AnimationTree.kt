@@ -127,9 +127,9 @@ public open class AnimationTree : AnimationMixer() {
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
-    ANIMATION_PROCESS_PHYSICS(0),
-    ANIMATION_PROCESS_IDLE(1),
-    ANIMATION_PROCESS_MANUAL(2),
+    PHYSICS(0),
+    IDLE(1),
+    MANUAL(2),
     ;
 
     public val id: Long

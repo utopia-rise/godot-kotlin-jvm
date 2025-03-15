@@ -102,19 +102,19 @@ public object CameraServer : Object() {
     /**
      * The RGBA camera image.
      */
-    FEED_RGBA_IMAGE(0),
+    RGBA(0),
     /**
      * The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image.
      */
-    FEED_YCBCR_IMAGE(0),
+    YCBCR(0),
     /**
      * The Y component camera image.
      */
-    FEED_Y_IMAGE(0),
+    Y(0),
     /**
      * The CbCr component camera image.
      */
-    FEED_CBCR_IMAGE(1),
+    CBCR(1),
     ;
 
     public val id: Long

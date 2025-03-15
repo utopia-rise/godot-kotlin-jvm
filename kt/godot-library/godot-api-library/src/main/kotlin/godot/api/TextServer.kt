@@ -1548,8 +1548,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
-  public final fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
-      orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
+  public final fun createShapedText(direction: Direction = TextServer.Direction.AUTO,
+      orientation: Orientation = TextServer.Orientation.HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.createShapedTextPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
@@ -1571,7 +1571,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun shapedTextSetDirection(shaped: RID, direction: Direction =
-      TextServer.Direction.DIRECTION_AUTO): Unit {
+      TextServer.Direction.AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextSetDirectionPtr, NIL)
   }
@@ -1647,7 +1647,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
-      TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
+      TextServer.Orientation.HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextSetOrientationPtr, NIL)
   }
@@ -1746,7 +1746,7 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     length: Long = 1,
     baseline: Double = 0.0,
   ): Boolean {
@@ -1763,7 +1763,7 @@ public open class TextServer internal constructor() : RefCounted() {
     shaped: RID,
     key: Any?,
     size: Vector2,
-    inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
+    inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     baseline: Double = 0.0,
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
@@ -1964,7 +1964,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetWordBreaks(
     shaped: RID,
     graphemeFlags: GraphemeFlag = TextServer.GraphemeFlag(264),
-    skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.GRAPHEME_IS_VIRTUAL,
+    skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.IS_VIRTUAL,
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag, LONG to skipGraphemeFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetWordBreaksPtr, PACKED_INT_32_ARRAY)
@@ -2466,11 +2466,11 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Font glyphs are rasterized as 1-bit bitmaps.
      */
-    FONT_ANTIALIASING_NONE(0),
+    NONE(0),
     /**
      * Font glyphs are rasterized as 8-bit grayscale anti-aliased bitmaps.
      */
-    FONT_ANTIALIASING_GRAY(1),
+    GRAY(1),
     /**
      * Font glyphs are rasterized for LCD screens.
      * LCD subpixel layout is determined by the value of `gui/theme/lcd_subpixel_layout` project
@@ -2478,7 +2478,7 @@ public open class TextServer internal constructor() : RefCounted() {
      * LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in
      * 2D.
      */
-    FONT_ANTIALIASING_LCD(2),
+    LCD(2),
     ;
 
     public val id: Long
@@ -2497,27 +2497,27 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_NONE(0),
+    NONE(0),
     /**
      * Horizontal RGB subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_HRGB(1),
+    HRGB(1),
     /**
      * Horizontal BGR subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_HBGR(2),
+    HBGR(2),
     /**
      * Vertical RGB subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_VRGB(3),
+    VRGB(3),
     /**
      * Vertical BGR subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_VBGR(4),
+    VBGR(4),
     /**
      * Represents the size of the [FontLCDSubpixelLayout] enum.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long
@@ -2536,20 +2536,20 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Text direction is determined based on contents and current locale.
      */
-    DIRECTION_AUTO(0),
+    AUTO(0),
     /**
      * Text is written from left to right.
      */
-    DIRECTION_LTR(1),
+    LTR(1),
     /**
      * Text is written from right to left.
      */
-    DIRECTION_RTL(2),
+    RTL(2),
     /**
      * Text writing direction is the same as base string writing direction. Used for BiDi override
      * only.
      */
-    DIRECTION_INHERITED(3),
+    INHERITED(3),
     ;
 
     public val id: Long
@@ -2568,12 +2568,12 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Text is written horizontally.
      */
-    ORIENTATION_HORIZONTAL(0),
+    HORIZONTAL(0),
     /**
      * Left to right text is written vertically from top to bottom.
      * Right to left text is written vertically from bottom to top.
      */
-    ORIENTATION_VERTICAL(1),
+    VERTICAL(1),
     ;
 
     public val id: Long
@@ -2621,51 +2621,50 @@ public open class TextServer internal constructor() : RefCounted() {
       /**
        * Do not justify text.
        */
-      public val JUSTIFICATION_NONE: JustificationFlag = JustificationFlag(0)
+      public val NONE: JustificationFlag = JustificationFlag(0)
 
       /**
        * Justify text by adding and removing kashidas.
        */
-      public val JUSTIFICATION_KASHIDA: JustificationFlag = JustificationFlag(1)
+      public val KASHIDA: JustificationFlag = JustificationFlag(1)
 
       /**
        * Justify text by changing width of the spaces between the words.
        */
-      public val JUSTIFICATION_WORD_BOUND: JustificationFlag = JustificationFlag(2)
+      public val WORD_BOUND: JustificationFlag = JustificationFlag(2)
 
       /**
        * Remove trailing and leading spaces from the justified text.
        */
-      public val JUSTIFICATION_TRIM_EDGE_SPACES: JustificationFlag = JustificationFlag(4)
+      public val TRIM_EDGE_SPACES: JustificationFlag = JustificationFlag(4)
 
       /**
        * Only apply justification to the part of the text after the last tab.
        */
-      public val JUSTIFICATION_AFTER_LAST_TAB: JustificationFlag = JustificationFlag(8)
+      public val AFTER_LAST_TAB: JustificationFlag = JustificationFlag(8)
 
       /**
        * Apply justification to the trimmed line with ellipsis.
        */
-      public val JUSTIFICATION_CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlag(16)
+      public val CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlag(16)
 
       /**
        * Do not apply justification to the last line of the paragraph.
        */
-      public val JUSTIFICATION_SKIP_LAST_LINE: JustificationFlag = JustificationFlag(32)
+      public val SKIP_LAST_LINE: JustificationFlag = JustificationFlag(32)
 
       /**
        * Do not apply justification to the last line of the paragraph with visible characters (takes
        * precedence over [JUSTIFICATION_SKIP_LAST_LINE]).
        */
-      public val JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag =
-          JustificationFlag(64)
+      public val SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag = JustificationFlag(64)
 
       /**
        * Always apply justification to the paragraphs with a single line
        * ([JUSTIFICATION_SKIP_LAST_LINE] and [JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS] are
        * ignored).
        */
-      public val JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE: JustificationFlag = JustificationFlag(128)
+      public val DO_NOT_SKIP_SINGLE_LINE: JustificationFlag = JustificationFlag(128)
     }
   }
 
@@ -2675,21 +2674,21 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Autowrap is disabled.
      */
-    AUTOWRAP_OFF(0),
+    OFF(0),
     /**
      * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary
      * positions, which is useful when very limited space is available.
      */
-    AUTOWRAP_ARBITRARY(1),
+    ARBITRARY(1),
     /**
      * Wraps the text inside the node's bounding rectangle by soft-breaking between words.
      */
-    AUTOWRAP_WORD(2),
+    WORD(2),
     /**
      * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not
      * fit in one line.
      */
-    AUTOWRAP_WORD_SMART(3),
+    WORD_SMART(3),
     ;
 
     public val id: Long
@@ -2817,23 +2816,23 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * No text trimming is performed.
      */
-    OVERRUN_NO_TRIMMING(0),
+    NO_TRIMMING(0),
     /**
      * Trims the text per character.
      */
-    OVERRUN_TRIM_CHAR(1),
+    TRIM_CHAR(1),
     /**
      * Trims the text per word.
      */
-    OVERRUN_TRIM_WORD(2),
+    TRIM_WORD(2),
     /**
      * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
      */
-    OVERRUN_TRIM_ELLIPSIS(3),
+    TRIM_ELLIPSIS(3),
     /**
      * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
      */
-    OVERRUN_TRIM_WORD_ELLIPSIS(4),
+    TRIM_WORD_ELLIPSIS(4),
     ;
 
     public val id: Long
@@ -2943,73 +2942,73 @@ public open class TextServer internal constructor() : RefCounted() {
       /**
        * Grapheme is supported by the font, and can be drawn.
        */
-      public val GRAPHEME_IS_VALID: GraphemeFlag = GraphemeFlag(1)
+      public val IS_VALID: GraphemeFlag = GraphemeFlag(1)
 
       /**
        * Grapheme is part of right-to-left or bottom-to-top run.
        */
-      public val GRAPHEME_IS_RTL: GraphemeFlag = GraphemeFlag(2)
+      public val IS_RTL: GraphemeFlag = GraphemeFlag(2)
 
       /**
        * Grapheme is not part of source text, it was added by justification process.
        */
-      public val GRAPHEME_IS_VIRTUAL: GraphemeFlag = GraphemeFlag(4)
+      public val IS_VIRTUAL: GraphemeFlag = GraphemeFlag(4)
 
       /**
        * Grapheme is whitespace.
        */
-      public val GRAPHEME_IS_SPACE: GraphemeFlag = GraphemeFlag(8)
+      public val IS_SPACE: GraphemeFlag = GraphemeFlag(8)
 
       /**
        * Grapheme is mandatory break point (e.g. `"\n"`).
        */
-      public val GRAPHEME_IS_BREAK_HARD: GraphemeFlag = GraphemeFlag(16)
+      public val IS_BREAK_HARD: GraphemeFlag = GraphemeFlag(16)
 
       /**
        * Grapheme is optional break point (e.g. space).
        */
-      public val GRAPHEME_IS_BREAK_SOFT: GraphemeFlag = GraphemeFlag(32)
+      public val IS_BREAK_SOFT: GraphemeFlag = GraphemeFlag(32)
 
       /**
        * Grapheme is the tabulation character.
        */
-      public val GRAPHEME_IS_TAB: GraphemeFlag = GraphemeFlag(64)
+      public val IS_TAB: GraphemeFlag = GraphemeFlag(64)
 
       /**
        * Grapheme is kashida.
        */
-      public val GRAPHEME_IS_ELONGATION: GraphemeFlag = GraphemeFlag(128)
+      public val IS_ELONGATION: GraphemeFlag = GraphemeFlag(128)
 
       /**
        * Grapheme is punctuation character.
        */
-      public val GRAPHEME_IS_PUNCTUATION: GraphemeFlag = GraphemeFlag(256)
+      public val IS_PUNCTUATION: GraphemeFlag = GraphemeFlag(256)
 
       /**
        * Grapheme is underscore character.
        */
-      public val GRAPHEME_IS_UNDERSCORE: GraphemeFlag = GraphemeFlag(512)
+      public val IS_UNDERSCORE: GraphemeFlag = GraphemeFlag(512)
 
       /**
        * Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not
        * safe.
        */
-      public val GRAPHEME_IS_CONNECTED: GraphemeFlag = GraphemeFlag(1024)
+      public val IS_CONNECTED: GraphemeFlag = GraphemeFlag(1024)
 
       /**
        * It is safe to insert a U+0640 before this grapheme for elongation.
        */
-      public val GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlag(2048)
+      public val IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlag(2048)
 
       /**
        * Grapheme is an object replacement character for the embedded object.
        */
-      public val GRAPHEME_IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlag(4096)
+      public val IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlag(4096)
 
       /**
        * Grapheme is a soft hyphen.
        */
-      public val GRAPHEME_IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlag(8192)
+      public val IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlag(8192)
     }
   }
 
@@ -3019,17 +3018,17 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Disables font hinting (smoother but less crisp).
      */
-    HINTING_NONE(0),
+    NONE(0),
     /**
      * Use the light font hinting mode.
      */
-    HINTING_LIGHT(1),
+    LIGHT(1),
     /**
      * Use the default font hinting mode (crisper but less smooth).
      * **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to
      * monospace font, some glyphs might have different width.
      */
-    HINTING_NORMAL(2),
+    NORMAL(2),
     ;
 
     public val id: Long
@@ -3048,7 +3047,7 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
      */
-    SUBPIXEL_POSITIONING_DISABLED(0),
+    DISABLED(0),
     /**
      * Glyph horizontal position is rounded based on font size.
      * - To one quarter of the pixel size if font size is smaller or equal to
@@ -3057,27 +3056,27 @@ public open class TextServer internal constructor() : RefCounted() {
      * [SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
      * - To the whole pixel size for larger fonts.
      */
-    SUBPIXEL_POSITIONING_AUTO(1),
+    AUTO(1),
     /**
      * Glyph horizontal position is rounded to one half of the pixel size, each glyph is rasterized
      * up to two times.
      */
-    SUBPIXEL_POSITIONING_ONE_HALF(2),
+    ONE_HALF(2),
     /**
      * Glyph horizontal position is rounded to one quarter of the pixel size, each glyph is
      * rasterized up to four times.
      */
-    SUBPIXEL_POSITIONING_ONE_QUARTER(3),
+    ONE_QUARTER(3),
     /**
      * Maximum font size which will use one half of the pixel subpixel positioning in
      * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
-    SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE(20),
+    ONE_HALF_MAX_SIZE(20),
     /**
      * Maximum font size which will use one quarter of the pixel subpixel positioning in
      * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
-    SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE(16),
+    ONE_QUARTER_MAX_SIZE(16),
     ;
 
     public val id: Long
@@ -3096,65 +3095,65 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * TextServer supports simple text layouts.
      */
-    FEATURE_SIMPLE_LAYOUT(1),
+    SIMPLE_LAYOUT(1),
     /**
      * TextServer supports bidirectional text layouts.
      */
-    FEATURE_BIDI_LAYOUT(2),
+    BIDI_LAYOUT(2),
     /**
      * TextServer supports vertical layouts.
      */
-    FEATURE_VERTICAL_LAYOUT(4),
+    VERTICAL_LAYOUT(4),
     /**
      * TextServer supports complex text shaping.
      */
-    FEATURE_SHAPING(8),
+    SHAPING(8),
     /**
      * TextServer supports justification using kashidas.
      */
-    FEATURE_KASHIDA_JUSTIFICATION(16),
+    KASHIDA_JUSTIFICATION(16),
     /**
      * TextServer supports complex line/word breaking rules (e.g. dictionary based).
      */
-    FEATURE_BREAK_ITERATORS(32),
+    BREAK_ITERATORS(32),
     /**
      * TextServer supports loading bitmap fonts.
      */
-    FEATURE_FONT_BITMAP(64),
+    FONT_BITMAP(64),
     /**
      * TextServer supports loading dynamic (TrueType, OpeType, etc.) fonts.
      */
-    FEATURE_FONT_DYNAMIC(128),
+    FONT_DYNAMIC(128),
     /**
      * TextServer supports multichannel signed distance field dynamic font rendering.
      */
-    FEATURE_FONT_MSDF(256),
+    FONT_MSDF(256),
     /**
      * TextServer supports loading system fonts.
      */
-    FEATURE_FONT_SYSTEM(512),
+    FONT_SYSTEM(512),
     /**
      * TextServer supports variable fonts.
      */
-    FEATURE_FONT_VARIABLE(1024),
+    FONT_VARIABLE(1024),
     /**
      * TextServer supports locale dependent and context sensitive case conversion.
      */
-    FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION(2048),
+    CONTEXT_SENSITIVE_CASE_CONVERSION(2048),
     /**
      * TextServer require external data file for some features, see [loadSupportData].
      */
-    FEATURE_USE_SUPPORT_DATA(4096),
+    USE_SUPPORT_DATA(4096),
     /**
      * TextServer supports UAX #31 identifier validation, see [isValidIdentifier].
      */
-    FEATURE_UNICODE_IDENTIFIERS(8192),
+    UNICODE_IDENTIFIERS(8192),
     /**
      * TextServer supports [url=https://unicode.org/reports/tr36/]Unicode Technical Report #36[/url]
      * and [url=https://unicode.org/reports/tr39/]Unicode Technical Standard #39[/url] based spoof
      * detection features.
      */
-    FEATURE_UNICODE_SECURITY(16384),
+    UNICODE_SECURITY(16384),
     ;
 
     public val id: Long
@@ -3173,16 +3172,16 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Contour point is on the curve.
      */
-    CONTOUR_CURVE_TAG_ON(1),
+    CURVE_TAG_ON(1),
     /**
      * Contour point isn't on the curve, but serves as a control point for a conic (quadratic)
      * Bézier arc.
      */
-    CONTOUR_CURVE_TAG_OFF_CONIC(0),
+    CURVE_TAG_OFF_CONIC(0),
     /**
      * Contour point isn't on the curve, but serves as a control point for a cubic Bézier arc.
      */
-    CONTOUR_CURVE_TAG_OFF_CUBIC(2),
+    CURVE_TAG_OFF_CUBIC(2),
     ;
 
     public val id: Long
@@ -3201,23 +3200,23 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Spacing for each glyph.
      */
-    SPACING_GLYPH(0),
+    GLYPH(0),
     /**
      * Spacing for the space character.
      */
-    SPACING_SPACE(1),
+    SPACE(1),
     /**
      * Spacing at the top of the line.
      */
-    SPACING_TOP(2),
+    TOP(2),
     /**
      * Spacing at the bottom of the line.
      */
-    SPACING_BOTTOM(3),
+    BOTTOM(3),
     /**
      * Represents the size of the [SpacingType] enum.
      */
-    SPACING_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -3262,17 +3261,17 @@ public open class TextServer internal constructor() : RefCounted() {
       /**
        * Font is bold.
        */
-      public val FONT_BOLD: FontStyle = FontStyle(1)
+      public val BOLD: FontStyle = FontStyle(1)
 
       /**
        * Font is italic or oblique.
        */
-      public val FONT_ITALIC: FontStyle = FontStyle(2)
+      public val ITALIC: FontStyle = FontStyle(2)
 
       /**
        * Font have fixed-width characters.
        */
-      public val FONT_FIXED_WIDTH: FontStyle = FontStyle(4)
+      public val FIXED_WIDTH: FontStyle = FontStyle(4)
     }
   }
 
@@ -3282,31 +3281,31 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Use default Unicode BiDi algorithm.
      */
-    STRUCTURED_TEXT_DEFAULT(0),
+    DEFAULT(0),
     /**
      * BiDi override for URI.
      */
-    STRUCTURED_TEXT_URI(1),
+    URI(1),
     /**
      * BiDi override for file path.
      */
-    STRUCTURED_TEXT_FILE(2),
+    FILE(2),
     /**
      * BiDi override for email.
      */
-    STRUCTURED_TEXT_EMAIL(3),
+    EMAIL(3),
     /**
      * BiDi override for lists. Structured text options: list separator [String].
      */
-    STRUCTURED_TEXT_LIST(4),
+    LIST(4),
     /**
      * BiDi override for GDScript.
      */
-    STRUCTURED_TEXT_GDSCRIPT(5),
+    GDSCRIPT(5),
     /**
      * User defined structured text BiDi override function.
      */
-    STRUCTURED_TEXT_CUSTOM(6),
+    CUSTOM(6),
     ;
 
     public val id: Long
@@ -3325,17 +3324,17 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Bitmap font is not scaled.
      */
-    FIXED_SIZE_SCALE_DISABLE(0),
+    DISABLE(0),
     /**
      * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the
      * recommended option for pixel art fonts.
      */
-    FIXED_SIZE_SCALE_INTEGER_ONLY(1),
+    INTEGER_ONLY(1),
     /**
      * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for
      * non-pixel art fonts.
      */
-    FIXED_SIZE_SCALE_ENABLED(2),
+    ENABLED(2),
     ;
 
     public val id: Long

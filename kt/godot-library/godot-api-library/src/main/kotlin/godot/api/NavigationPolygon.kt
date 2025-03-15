@@ -551,15 +551,15 @@ public open class NavigationPolygon : Resource() {
     /**
      * Convex partitioning that yields navigation mesh with convex polygons.
      */
-    SAMPLE_PARTITION_CONVEX_PARTITION(0),
+    CONVEX_PARTITION(0),
     /**
      * Triangulation partitioning that yields navigation mesh with triangle polygons.
      */
-    SAMPLE_PARTITION_TRIANGULATE(1),
+    TRIANGULATE(1),
     /**
      * Represents the size of the [SamplePartitionType] enum.
      */
-    SAMPLE_PARTITION_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -580,20 +580,20 @@ public open class NavigationPolygon : Resource() {
      * [MultiMeshInstance2D], and [TileMap] nodes.
      * Meshes are only parsed when they use a 2D vertices surface format.
      */
-    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    MESH_INSTANCES(0),
     /**
      * Parses [StaticBody2D] and [TileMap] colliders as obstruction geometry. The collider should be
      * in any of the layers specified by [parsedCollisionMask].
      */
-    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    STATIC_COLLIDERS(1),
     /**
      * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
-    PARSED_GEOMETRY_BOTH(2),
+    BOTH(2),
     /**
      * Represents the size of the [ParsedGeometryType] enum.
      */
-    PARSED_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -612,20 +612,20 @@ public open class NavigationPolygon : Resource() {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
-    SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
+    ROOT_NODE_CHILDREN(0),
     /**
      * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
      * by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    GROUPS_WITH_CHILDREN(1),
     /**
      * Uses nodes in a group for geometry. The group is specified by [sourceGeometryGroupName].
      */
-    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    GROUPS_EXPLICIT(2),
     /**
      * Represents the size of the [SourceGeometryMode] enum.
      */
-    SOURCE_GEOMETRY_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

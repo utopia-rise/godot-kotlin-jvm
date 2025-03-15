@@ -235,11 +235,11 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Audio is lossily compressed as IMA ADPCM.
      */
-    FORMAT_IMA_ADPCM(2),
+    IMA_ADPCM(2),
     /**
      * Audio is lossily compressed as [url=https://qoaformat.org/]Quite OK Audio[/url].
      */
-    FORMAT_QOA(3),
+    QOA(3),
     ;
 
     public val id: Long
@@ -258,19 +258,19 @@ public open class AudioStreamWAV : AudioStream() {
     /**
      * Audio does not loop.
      */
-    LOOP_DISABLED(0),
+    DISABLED(0),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing forward only.
      */
-    LOOP_FORWARD(1),
+    FORWARD(1),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
      */
-    LOOP_PINGPONG(2),
+    PINGPONG(2),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
      */
-    LOOP_BACKWARD(3),
+    BACKWARD(3),
     ;
 
     public val id: Long

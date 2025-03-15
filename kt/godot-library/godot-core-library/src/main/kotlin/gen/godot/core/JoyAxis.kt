@@ -15,40 +15,40 @@ public enum class JoyAxis(
   /**
    * An invalid game controller axis.
    */
-  JOY_AXIS_INVALID(-1),
+  INVALID(-1),
   /**
    * Game controller left joystick x-axis.
    */
-  JOY_AXIS_LEFT_X(0),
+  LEFT_X(0),
   /**
    * Game controller left joystick y-axis.
    */
-  JOY_AXIS_LEFT_Y(1),
+  LEFT_Y(1),
   /**
    * Game controller right joystick x-axis.
    */
-  JOY_AXIS_RIGHT_X(2),
+  RIGHT_X(2),
   /**
    * Game controller right joystick y-axis.
    */
-  JOY_AXIS_RIGHT_Y(3),
+  RIGHT_Y(3),
   /**
    * Game controller left trigger axis.
    */
-  JOY_AXIS_TRIGGER_LEFT(4),
+  TRIGGER_LEFT(4),
   /**
    * Game controller right trigger axis.
    */
-  JOY_AXIS_TRIGGER_RIGHT(5),
+  TRIGGER_RIGHT(5),
   /**
    * The number of SDL game controller axes.
    */
-  JOY_AXIS_SDL_MAX(6),
+  SDL_MAX(6),
   /**
    * The maximum number of game controller axes: OpenVR supports up to 5 Joysticks making a total of
    * 10 axes.
    */
-  JOY_AXIS_MAX(10),
+  MAX(10),
   ;
 
   public val id: Long

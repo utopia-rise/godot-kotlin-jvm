@@ -46,10 +46,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowSplit1: Float
     @JvmName("directionalShadowSplit1Property")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_SPLIT_1_OFFSET)
+    get() = getParam(Light3D.Param.SHADOW_SPLIT_1_OFFSET)
     @JvmName("directionalShadowSplit1Property")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_SPLIT_1_OFFSET, value)
+      setParam(Light3D.Param.SHADOW_SPLIT_1_OFFSET, value)
     }
 
   /**
@@ -58,10 +58,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowSplit2: Float
     @JvmName("directionalShadowSplit2Property")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_SPLIT_2_OFFSET)
+    get() = getParam(Light3D.Param.SHADOW_SPLIT_2_OFFSET)
     @JvmName("directionalShadowSplit2Property")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_SPLIT_2_OFFSET, value)
+      setParam(Light3D.Param.SHADOW_SPLIT_2_OFFSET, value)
     }
 
   /**
@@ -70,10 +70,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowSplit3: Float
     @JvmName("directionalShadowSplit3Property")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_SPLIT_3_OFFSET)
+    get() = getParam(Light3D.Param.SHADOW_SPLIT_3_OFFSET)
     @JvmName("directionalShadowSplit3Property")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_SPLIT_3_OFFSET, value)
+      setParam(Light3D.Param.SHADOW_SPLIT_3_OFFSET, value)
     }
 
   /**
@@ -100,10 +100,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowFadeStart: Float
     @JvmName("directionalShadowFadeStartProperty")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_FADE_START)
+    get() = getParam(Light3D.Param.SHADOW_FADE_START)
     @JvmName("directionalShadowFadeStartProperty")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_FADE_START, value)
+      setParam(Light3D.Param.SHADOW_FADE_START, value)
     }
 
   /**
@@ -113,10 +113,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowMaxDistance: Float
     @JvmName("directionalShadowMaxDistanceProperty")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_MAX_DISTANCE)
+    get() = getParam(Light3D.Param.SHADOW_MAX_DISTANCE)
     @JvmName("directionalShadowMaxDistanceProperty")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_MAX_DISTANCE, value)
+      setParam(Light3D.Param.SHADOW_MAX_DISTANCE, value)
     }
 
   /**
@@ -128,10 +128,10 @@ public open class DirectionalLight3D : Light3D() {
    */
   public final inline var directionalShadowPancakeSize: Float
     @JvmName("directionalShadowPancakeSizeProperty")
-    get() = getParam(Light3D.Param.PARAM_SHADOW_PANCAKE_SIZE)
+    get() = getParam(Light3D.Param.SHADOW_PANCAKE_SIZE)
     @JvmName("directionalShadowPancakeSizeProperty")
     set(`value`) {
-      setParam(Light3D.Param.PARAM_SHADOW_PANCAKE_SIZE, value)
+      setParam(Light3D.Param.SHADOW_PANCAKE_SIZE, value)
     }
 
   /**
@@ -190,17 +190,17 @@ public open class DirectionalLight3D : Light3D() {
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest
      * directional shadow mode. May result in blurrier shadows on close objects.
      */
-    SHADOW_ORTHOGONAL(0),
+    ORTHOGONAL(0),
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a
      * compromise between [SHADOW_ORTHOGONAL] and [SHADOW_PARALLEL_4_SPLITS] in terms of performance.
      */
-    SHADOW_PARALLEL_2_SPLITS(1),
+    PARALLEL_2_SPLITS(1),
     /**
      * Splits the view frustum in 4 areas, each with its own shadow map. This is the slowest
      * directional shadow mode.
      */
-    SHADOW_PARALLEL_4_SPLITS(2),
+    PARALLEL_4_SPLITS(2),
     ;
 
     public val id: Long
@@ -219,19 +219,19 @@ public open class DirectionalLight3D : Light3D() {
     /**
      * Makes the light visible in both scene lighting and sky rendering.
      */
-    SKY_MODE_LIGHT_AND_SKY(0),
+    LIGHT_AND_SKY(0),
     /**
      * Makes the light visible in scene lighting only (including direct lighting and global
      * illumination). When using this mode, the light will not be visible from sky shaders.
      */
-    SKY_MODE_LIGHT_ONLY(1),
+    LIGHT_ONLY(1),
     /**
      * Makes the light visible to sky shaders only. When using this mode the light will not cast
      * light into the scene (either through direct lighting or through global illumination), but can be
      * accessed through sky shaders. This can be useful, for example, when you want to control sky
      * effects without illuminating the scene (during a night cycle, for example).
      */
-    SKY_MODE_SKY_ONLY(2),
+    SKY_ONLY(2),
     ;
 
     public val id: Long

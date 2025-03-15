@@ -156,12 +156,12 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public enum class CompressionMode(
     id: Long,
   ) {
-    COMPRESSION_MODE_LOSSLESS(0),
-    COMPRESSION_MODE_LOSSY(1),
-    COMPRESSION_MODE_BASIS_UNIVERSAL(2),
-    COMPRESSION_MODE_S3TC(3),
-    COMPRESSION_MODE_ETC2(4),
-    COMPRESSION_MODE_BPTC(5),
+    LOSSLESS(0),
+    LOSSY(1),
+    BASIS_UNIVERSAL(2),
+    S3TC(3),
+    ETC2(4),
+    BPTC(5),
     ;
 
     public val id: Long

@@ -372,15 +372,15 @@ public open class AudioStreamPlayer : Node() {
     /**
      * The audio will be played only on the first channel. This is the default.
      */
-    MIX_TARGET_STEREO(0),
+    STEREO(0),
     /**
      * The audio will be played on all surround channels.
      */
-    MIX_TARGET_SURROUND(1),
+    SURROUND(1),
     /**
      * The audio will be played on the second channel, which is usually the center.
      */
-    MIX_TARGET_CENTER(2),
+    CENTER(2),
     ;
 
     public val id: Long
