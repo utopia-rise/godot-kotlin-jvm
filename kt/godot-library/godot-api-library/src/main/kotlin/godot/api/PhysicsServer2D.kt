@@ -2085,17 +2085,17 @@ public object PhysicsServer2D : Object() {
      * Disables continuous collision detection. This is the fastest way to detect body collisions,
      * but it can miss small and/or fast-moving objects.
      */
-    CCD_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Enables continuous collision detection by raycasting. It is faster than shapecasting, but
      * less precise.
      */
-    CCD_MODE_CAST_RAY(1),
+    CAST_RAY(1),
     /**
      * Enables continuous collision detection by shapecasting. It is the slowest CCD method, and the
      * most precise.
      */
-    CCD_MODE_CAST_SHAPE(2),
+    CAST_SHAPE(2),
     ;
 
     public val id: Long

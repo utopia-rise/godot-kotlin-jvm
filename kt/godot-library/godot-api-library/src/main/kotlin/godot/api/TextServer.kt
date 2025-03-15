@@ -2497,27 +2497,27 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_NONE(0),
+    NONE(0),
     /**
      * Horizontal RGB subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_HRGB(1),
+    HRGB(1),
     /**
      * Horizontal BGR subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_HBGR(2),
+    HBGR(2),
     /**
      * Vertical RGB subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_VRGB(3),
+    VRGB(3),
     /**
      * Vertical BGR subpixel layout.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_VBGR(4),
+    VBGR(4),
     /**
      * Represents the size of the [FontLCDSubpixelLayout] enum.
      */
-    FONT_LCD_SUBPIXEL_LAYOUT_MAX(5),
+    MAX(5),
     ;
 
     public val id: Long

@@ -7421,11 +7421,11 @@ public object RenderingServer : Object() {
     /**
      * Low [VoxelGI] rendering quality using 4 cones.
      */
-    VOXEL_GI_QUALITY_LOW(0),
+    LOW(0),
     /**
      * High [VoxelGI] rendering quality using 6 cones.
      */
-    VOXEL_GI_QUALITY_HIGH(1),
+    HIGH(1),
     ;
 
     public val id: Long
@@ -7785,7 +7785,7 @@ public object RenderingServer : Object() {
     /**
      * Represents the size of the [ViewportSDFOversize] enum.
      */
-    VIEWPORT_SDF_OVERSIZE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -7818,7 +7818,7 @@ public object RenderingServer : Object() {
     /**
      * Represents the size of the [ViewportSDFScale] enum.
      */
-    VIEWPORT_SDF_SCALE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long
@@ -7838,7 +7838,7 @@ public object RenderingServer : Object() {
      * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest
      * setting.
      */
-    VIEWPORT_MSAA_DISABLED(0),
+    DISABLED(0),
     /**
      * Multisample antialiasing uses 2 samples per pixel for 3D. This has a moderate impact on
      * performance.
@@ -7857,7 +7857,7 @@ public object RenderingServer : Object() {
     /**
      * Represents the size of the [ViewportMSAA] enum.
      */
-    VIEWPORT_MSAA_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -7916,17 +7916,17 @@ public object RenderingServer : Object() {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
-    VIEWPORT_SCREEN_SPACE_AA_DISABLED(0),
+    DISABLED(0),
     /**
      * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
      * is fast but will make the image look blurry, especially at lower resolutions. It can still work
      * relatively well at large resolutions such as 1440p and 4K.
      */
-    VIEWPORT_SCREEN_SPACE_AA_FXAA(1),
+    FXAA(1),
     /**
      * Represents the size of the [ViewportScreenSpaceAA] enum.
      */
-    VIEWPORT_SCREEN_SPACE_AA_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -8932,20 +8932,20 @@ public object RenderingServer : Object() {
      * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering
      * artifacts.
      */
-    DOF_BLUR_QUALITY_VERY_LOW(0),
+    VERY_LOW(0),
     /**
      * Low quality DOF blur.
      */
-    DOF_BLUR_QUALITY_LOW(1),
+    LOW(1),
     /**
      * Medium quality DOF blur.
      */
-    DOF_BLUR_QUALITY_MEDIUM(2),
+    MEDIUM(2),
     /**
      * Highest quality DOF blur. Results in the smoothest looking blur by taking the most samples,
      * but is also significantly slower.
      */
-    DOF_BLUR_QUALITY_HIGH(3),
+    HIGH(3),
     ;
 
     public val id: Long

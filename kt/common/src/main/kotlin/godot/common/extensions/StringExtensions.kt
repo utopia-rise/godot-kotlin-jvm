@@ -48,6 +48,25 @@ fun String.convertToSnakeCase(): String =
         else accumulator.append(character)
     }.toString()
 
+fun String.toScreamingSnakeCase(): String {
+    if (this.isEmpty()) return this
+
+    val result = StringBuilder()
+    for (i in this.indices) {
+        val currentChar = this[i]
+        if (i > 0 && currentChar.isUpperCase()) {
+            val prevChar = this[i - 1]
+            // Insert underscore if the previous character is lowercase
+            // OR if the previous character is uppercase but the next character exists and is lowercase
+            if (prevChar.isLowerCase() || (prevChar.isUpperCase() && i < this.lastIndex && this[i + 1].isLowerCase())) {
+                result.append('_')
+            }
+        }
+        result.append(currentChar)
+    }
+    return result.toString().uppercase(Locale.getDefault())
+}
+
 fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null)
     "`$this`"
 else

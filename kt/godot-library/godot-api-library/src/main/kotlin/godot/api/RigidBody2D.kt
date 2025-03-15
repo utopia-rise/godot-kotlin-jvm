@@ -996,17 +996,17 @@ public open class RigidBody2D : PhysicsBody2D() {
      * Continuous collision detection disabled. This is the fastest way to detect body collisions,
      * but can miss small, fast-moving objects.
      */
-    CCD_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Continuous collision detection enabled using raycasting. This is faster than shapecasting but
      * less precise.
      */
-    CCD_MODE_CAST_RAY(1),
+    CAST_RAY(1),
     /**
      * Continuous collision detection enabled using shapecasting. This is the slowest CCD method and
      * the most precise.
      */
-    CCD_MODE_CAST_SHAPE(2),
+    CAST_SHAPE(2),
     ;
 
     public val id: Long

@@ -1811,7 +1811,7 @@ public open class Viewport internal constructor() : Node() {
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
      * setting.
      */
-    MSAA_DISABLED(0),
+    DISABLED(0),
     /**
      * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce
      * aliasing noticeably, but 4× MSAA still looks substantially better.
@@ -1831,7 +1831,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [MSAA] enum.
      */
-    MSAA_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -1889,17 +1889,17 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
-    SCREEN_SPACE_AA_DISABLED(0),
+    DISABLED(0),
     /**
      * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
      * is fast but will make the image look blurry, especially at lower resolutions. It can still work
      * relatively well at large resolutions such as 1440p and 4K.
      */
-    SCREEN_SPACE_AA_FXAA(1),
+    FXAA(1),
     /**
      * Represents the size of the [ScreenSpaceAA] enum.
      */
-    SCREEN_SPACE_AA_MAX(2),
+    MAX(2),
     ;
 
     public val id: Long
@@ -2226,7 +2226,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [SDFOversize] enum.
      */
-    SDF_OVERSIZE_MAX(4),
+    MAX(4),
     ;
 
     public val id: Long
@@ -2257,7 +2257,7 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Represents the size of the [SDFScale] enum.
      */
-    SDF_SCALE_MAX(3),
+    MAX(3),
     ;
 
     public val id: Long

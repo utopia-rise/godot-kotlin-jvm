@@ -549,13 +549,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
      * indirect lighting and reflections but the geometry will not be considered in GI baking.
      */
-    GI_MODE_DISABLED(0),
+    DISABLED(0),
     /**
      * Baked global illumination mode. Use for static objects that contribute to global illumination
      * (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and
      * [LightmapGI].
      */
-    GI_MODE_STATIC(1),
+    STATIC(1),
     /**
      * Dynamic global illumination mode. Use for dynamic objects that contribute to global
      * illumination. This GI mode is only effective when using [VoxelGI], but it has a higher
@@ -563,7 +563,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
      * [GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using
      * lightmap probes instead of using the baked lightmap texture.
      */
-    GI_MODE_DYNAMIC(2),
+    DYNAMIC(2),
     ;
 
     public val id: Long
