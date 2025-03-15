@@ -26,6 +26,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -213,7 +214,6 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendTree].
    */
   public final fun getInputCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -250,7 +250,6 @@ public open class AnimationNode : Resource() {
   }
 
   public final fun isFilterEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFilterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -261,7 +260,6 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
    */
   public final fun getProcessingAnimationTreeInstanceId(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessingAnimationTreeInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -270,7 +268,6 @@ public open class AnimationNode : Resource() {
    * Returns `true` if this animation node is being processed in test-only mode.
    */
   public final fun isProcessTesting(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessTestingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -357,6 +354,56 @@ public open class AnimationNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.getParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
+
+  /**
+   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
+   * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also
+   * [Animation.LoopedFlag].
+   */
+  @JvmOverloads
+  public final fun blendAnimation(
+    animation: String,
+    time: Double,
+    delta: Double,
+    seeked: Boolean,
+    isExternalSeeking: Boolean,
+    blend: Float,
+    loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
+  ) =
+      blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
+
+  /**
+   * Blend another animation node (in case this animation node contains child animation nodes). This
+   * function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will
+   * not display your animation node for addition.
+   */
+  @JvmOverloads
+  public final fun blendNode(
+    name: String,
+    node: AnimationNode?,
+    time: Double,
+    seek: Boolean,
+    isExternalSeeking: Boolean,
+    blend: Float,
+    filter: FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
+    sync: Boolean = true,
+    testOnly: Boolean = false,
+  ): Double =
+      blendNode(name.asCachedStringName(), node, time, seek, isExternalSeeking, blend, filter, sync, testOnly)
+
+  /**
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across
+   * the tree or scenes.
+   */
+  public final fun setParameter(name: String, `value`: Any?) =
+      setParameter(name.asCachedStringName(), value)
+
+  /**
+   * Gets the value of a parameter. Parameters are custom local memory used for your animation
+   * nodes, given a resource can be reused in multiple trees.
+   */
+  public final fun getParameter(name: String): Any? = getParameter(name.asCachedStringName())
 
   public enum class FilterAction(
     id: Long,

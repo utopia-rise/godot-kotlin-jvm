@@ -150,7 +150,6 @@ public open class SpinBox : Range() {
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -161,7 +160,6 @@ public open class SpinBox : Range() {
   }
 
   public final fun getSuffix(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSuffixPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -172,7 +170,6 @@ public open class SpinBox : Range() {
   }
 
   public final fun getPrefix(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrefixPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -188,13 +185,11 @@ public open class SpinBox : Range() {
   }
 
   public final fun getCustomArrowStep(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun isEditable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -205,7 +200,6 @@ public open class SpinBox : Range() {
   }
 
   public final fun getUpdateOnTextChanged(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -216,7 +210,6 @@ public open class SpinBox : Range() {
   }
 
   public final fun isSelectAllOnFocus(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -225,7 +218,6 @@ public open class SpinBox : Range() {
    * Applies the current value of this [SpinBox].
    */
   public final fun apply(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.applyPtr, NIL)
   }
 
@@ -236,7 +228,6 @@ public open class SpinBox : Range() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLineEdit(): LineEdit? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLineEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
   }

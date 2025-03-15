@@ -12,6 +12,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -30,12 +31,14 @@ public open class EngineProfiler : RefCounted() {
    * Called when the profiler is enabled/disabled, along with a set of [options].
    */
   public open fun _toggle(enable: Boolean, options: VariantArray<Any?>): Unit {
+    throw NotImplementedError("_toggle is not implemented for EngineProfiler")
   }
 
   /**
    * Called when data is added to profiler using [EngineDebugger.profilerAddFrameData].
    */
   public open fun _addFrame(`data`: VariantArray<Any?>): Unit {
+    throw NotImplementedError("_addFrame is not implemented for EngineProfiler")
   }
 
   /**
@@ -49,6 +52,7 @@ public open class EngineProfiler : RefCounted() {
     physicsTime: Double,
     physicsFrameTime: Double,
   ): Unit {
+    throw NotImplementedError("_tick is not implemented for EngineProfiler")
   }
 
   public companion object

@@ -61,7 +61,6 @@ public open class RegExMatch : RefCounted() {
   }
 
   public final fun getSubject(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubjectPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -70,19 +69,16 @@ public open class RegExMatch : RefCounted() {
    * Returns the number of capturing groups.
    */
   public final fun getGroupCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getNames(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getStrings(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

@@ -95,7 +95,6 @@ public open class MeshTexture : Texture2D() {
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -106,7 +105,6 @@ public open class MeshTexture : Texture2D() {
   }
 
   public final fun getImageSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImageSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -117,7 +115,6 @@ public open class MeshTexture : Texture2D() {
   }
 
   public final fun getBaseTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBaseTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

@@ -298,7 +298,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getTilt(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTiltPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -309,7 +308,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getPressure(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPressurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -320,7 +318,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getPenInverted(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPenInvertedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -331,7 +328,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getRelative(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRelativePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -342,7 +338,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getScreenRelative(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenRelativePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -353,7 +348,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getVelocity(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -364,7 +358,6 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public final fun getScreenVelocity(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

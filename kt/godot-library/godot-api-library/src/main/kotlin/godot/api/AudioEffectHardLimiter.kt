@@ -73,7 +73,6 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   }
 
   public final fun getCeilingDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCeilingDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -84,7 +83,6 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   }
 
   public final fun getPreGainDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -95,7 +93,6 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   }
 
   public final fun getRelease(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReleasePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

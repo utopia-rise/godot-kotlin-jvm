@@ -10,8 +10,8 @@ class FileTask(
 
     override val generator = FileSpec.builder(type.getClassName().packageName, type.getClassName().simpleName)
 
-    val classes by subTask<ClassTask, _, _> { task, output -> addType(output) }
-    val enums by subTask<EnumTask, _, _> { task, output -> addType(output) }
+    val classes by subTask<EnrichedClassTask, _, _> { task, output -> addType(output) }
+    val enums by subTask<EnrichedEnumTask, _, _> { task, output -> addType(output) }
 
     override fun executeSingle() = generator.build()
 }

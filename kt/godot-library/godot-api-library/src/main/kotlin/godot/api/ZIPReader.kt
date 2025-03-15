@@ -88,7 +88,6 @@ public open class ZIPReader : RefCounted() {
    * Closes the underlying resources used by this instance.
    */
   public final fun close(): Error {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -98,7 +97,6 @@ public open class ZIPReader : RefCounted() {
    * Must be called after [open].
    */
   public final fun getFiles(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

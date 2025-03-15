@@ -25,11 +25,13 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -255,7 +257,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getRootBone(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -266,7 +267,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getTipBone(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTipBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -277,7 +277,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getTargetTransform(): Transform3D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -288,7 +287,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -299,7 +297,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun isOverrideTipBasis(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOverrideTipBasisPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -310,7 +307,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun isUsingMagnet(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingMagnetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -321,7 +317,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getMagnetPosition(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMagnetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -332,7 +327,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * tree.
    */
   public final fun getParentSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
@@ -343,7 +337,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * set to `true`.
    */
   public final fun isRunning(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -354,7 +347,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getMinDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -365,7 +357,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getMaxIterations(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxIterationsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -386,7 +377,6 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * [Skeleton3D.clearBonesGlobalPoseOverride] to remove existing overrides on all bones.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -396,10 +386,13 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   public final fun getInterpolation(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
+
+  public final fun setRootBone(rootBone: String) = setRootBone(rootBone.asCachedStringName())
+
+  public final fun setTipBone(tipBone: String) = setTipBone(tipBone.asCachedStringName())
 
   public companion object
 

@@ -277,7 +277,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * Returns the number of points in the blend space.
    */
   public final fun getBlendPointCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -319,7 +318,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * Returns the number of triangles in the blend space.
    */
   public final fun getTriangleCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTriangleCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -330,7 +328,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getMinSpace(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinSpacePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -341,7 +338,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getMaxSpace(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSpacePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -352,7 +348,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getSnap(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSnapPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -363,7 +358,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getXLabel(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getXLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -374,7 +368,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getYLabel(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getYLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -385,7 +378,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getAutoTriangles(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoTrianglesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -396,7 +388,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
     return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -407,7 +398,6 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun isUsingSync(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSyncPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

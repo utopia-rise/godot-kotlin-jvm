@@ -139,7 +139,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getData(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -150,7 +149,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getFormat(): Format {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -161,7 +159,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopMode(): LoopMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -172,7 +169,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopBegin(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -183,7 +179,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getLoopEnd(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopEndPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -194,7 +189,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun getMixRate(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -205,7 +199,6 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun isStereo(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStereoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -330,6 +323,12 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public object MethodBindings {
+    internal val loadFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
+
     internal val setDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data", 2971499966)
 
@@ -374,11 +373,5 @@ public open class AudioStreamWAV : AudioStream() {
 
     internal val saveToWavPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166001499)
-
-    internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
   }
 }

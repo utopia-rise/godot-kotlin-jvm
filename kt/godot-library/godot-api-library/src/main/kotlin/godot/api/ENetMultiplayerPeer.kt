@@ -134,7 +134,6 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   public final fun getHost(): ENetConnection? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHostPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ENetConnection?)
   }

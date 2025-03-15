@@ -94,7 +94,6 @@ public open class TextureRect : Control() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -105,7 +104,6 @@ public open class TextureRect : Control() {
   }
 
   public final fun getExpandMode(): ExpandMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExpandModePtr, LONG)
     return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -116,7 +114,6 @@ public open class TextureRect : Control() {
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFlippedHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -127,7 +124,6 @@ public open class TextureRect : Control() {
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFlippedVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -138,7 +134,6 @@ public open class TextureRect : Control() {
   }
 
   public final fun getStretchMode(): StretchMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
     return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

@@ -148,7 +148,6 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public final fun getStreamsCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamsCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -159,7 +158,6 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public final fun getRandomPitch(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRandomPitchPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -170,7 +168,6 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public final fun getRandomVolumeOffsetDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRandomVolumeOffsetDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -181,7 +178,6 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public final fun getPlaybackMode(): PlaybackMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackModePtr, LONG)
     return AudioStreamRandomizer.PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
   }

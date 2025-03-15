@@ -84,7 +84,6 @@ public open class ExternalTexture : Texture2D() {
    * creating an `android.graphics.SurfaceTexture` on Android.
    */
   public final fun getExternalTextureId(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExternalTextureIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

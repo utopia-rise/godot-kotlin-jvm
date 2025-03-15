@@ -62,7 +62,6 @@ public open class AudioEffectRecord : AudioEffect() {
    * Returns whether the recording is active or not.
    */
   public final fun isRecordingActive(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecordingActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -73,7 +72,6 @@ public open class AudioEffectRecord : AudioEffect() {
   }
 
   public final fun getFormat(): AudioStreamWAV.Format {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -82,7 +80,6 @@ public open class AudioEffectRecord : AudioEffect() {
    * Returns the recorded sample.
    */
   public final fun getRecording(): AudioStreamWAV? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRecordingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
   }

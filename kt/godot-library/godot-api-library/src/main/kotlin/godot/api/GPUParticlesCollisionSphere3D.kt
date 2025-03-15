@@ -51,7 +51,6 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

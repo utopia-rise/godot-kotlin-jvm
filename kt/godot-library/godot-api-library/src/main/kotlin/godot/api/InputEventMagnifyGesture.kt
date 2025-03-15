@@ -50,7 +50,6 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
   }
 
   public final fun getFactor(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -21,9 +21,11 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -107,7 +109,6 @@ public open class AnimationLibrary : Resource() {
    * Returns the keys for the [Animation]s stored in the library.
    */
   public final fun getAnimationList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -116,10 +117,37 @@ public open class AnimationLibrary : Resource() {
    * Returns the key count for the [Animation]s stored in the library.
    */
   public final fun getAnimationListSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationListSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  /**
+   * Adds the [animation] to the library, accessible by the key [name].
+   */
+  public final fun addAnimation(name: String, animation: Animation?): Error =
+      addAnimation(name.asCachedStringName(), animation)
+
+  /**
+   * Removes the [Animation] with the key [name].
+   */
+  public final fun removeAnimation(name: String) = removeAnimation(name.asCachedStringName())
+
+  /**
+   * Changes the key of the [Animation] associated with the key [name] to [newname].
+   */
+  public final fun renameAnimation(name: String, newname: String) =
+      renameAnimation(name.asCachedStringName(), newname.asCachedStringName())
+
+  /**
+   * Returns `true` if the library stores an [Animation] with [name] as the key.
+   */
+  public final fun hasAnimation(name: String): Boolean = hasAnimation(name.asCachedStringName())
+
+  /**
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
+   * returned and an error is logged.
+   */
+  public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
 
   public companion object
 

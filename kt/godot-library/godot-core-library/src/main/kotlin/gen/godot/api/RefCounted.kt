@@ -53,7 +53,6 @@ public open class RefCounted : Object() {
    * Returns whether the initialization was successful.
    */
   public final fun initRef(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.initRefPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -63,7 +62,6 @@ public open class RefCounted : Object() {
    * Returns `true` if the increment was successful, `false` otherwise.
    */
   public final fun reference(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.referencePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -73,7 +71,6 @@ public open class RefCounted : Object() {
    * Returns `true` if the object should be freed after the decrement, `false` otherwise.
    */
   public final fun unreference(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unreferencePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -82,7 +79,6 @@ public open class RefCounted : Object() {
    * Returns the current reference count.
    */
   public final fun getReferenceCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getReferenceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

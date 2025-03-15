@@ -105,7 +105,6 @@ public open class SurfaceTool : RefCounted() {
    * **Note:** This function returns an enum, not the exact number of weights.
    */
   public final fun getSkinWeightCount(): SkinWeightCount {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinWeightCountPtr, LONG)
     return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -269,7 +268,6 @@ public open class SurfaceTool : RefCounted() {
    * vertex reuse.
    */
   public final fun index(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.indexPtr, NIL)
   }
 
@@ -277,7 +275,6 @@ public open class SurfaceTool : RefCounted() {
    * Removes the index array by expanding the vertex array.
    */
   public final fun deindex(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deindexPtr, NIL)
   }
 
@@ -304,7 +301,6 @@ public open class SurfaceTool : RefCounted() {
    * normals set (see [generateNormals]).
    */
   public final fun generateTangents(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateTangentsPtr, NIL)
   }
 
@@ -313,7 +309,6 @@ public open class SurfaceTool : RefCounted() {
    * [Mesh.PRIMITIVE_TRIANGLES].
    */
   public final fun optimizeIndicesForCache(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.optimizeIndicesForCachePtr, NIL)
   }
 
@@ -321,7 +316,6 @@ public open class SurfaceTool : RefCounted() {
    * Returns the axis-aligned bounding box of the vertex positions.
    */
   public final fun getAabb(): AABB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -349,7 +343,6 @@ public open class SurfaceTool : RefCounted() {
    * Returns the type of mesh geometry, such as [Mesh.PRIMITIVE_TRIANGLES].
    */
   public final fun getPrimitiveType(): Mesh.PrimitiveType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPrimitiveTypePtr, LONG)
     return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -358,7 +351,6 @@ public open class SurfaceTool : RefCounted() {
    * Clear all information passed into the surface tool so far.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -428,7 +420,6 @@ public open class SurfaceTool : RefCounted() {
    * using the [ArrayMesh] or [ImporterMesh] APIs.
    */
   public final fun commitToArrays(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.commitToArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

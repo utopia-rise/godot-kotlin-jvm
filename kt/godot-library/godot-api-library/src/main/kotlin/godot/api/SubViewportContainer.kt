@@ -93,7 +93,6 @@ public open class SubViewportContainer : Container() {
   }
 
   public final fun isStretchEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -104,7 +103,6 @@ public open class SubViewportContainer : Container() {
   }
 
   public final fun getStretchShrink(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStretchShrinkPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -115,7 +113,6 @@ public open class SubViewportContainer : Container() {
   }
 
   public final fun isMouseTargetEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMouseTargetEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

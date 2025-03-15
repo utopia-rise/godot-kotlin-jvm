@@ -66,7 +66,6 @@ public open class GLTFSkeleton : Resource() {
   }
 
   public final fun getJoints(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -77,7 +76,6 @@ public open class GLTFSkeleton : Resource() {
   }
 
   public final fun getRoots(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -88,13 +86,11 @@ public open class GLTFSkeleton : Resource() {
   }
 
   public final fun getGodotSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGodotSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun getUniqueNames(): VariantArray<String> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniqueNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
@@ -110,7 +106,6 @@ public open class GLTFSkeleton : Resource() {
    * Godot converts skeleton bones to glTF nodes.
    */
   public final fun getGodotBoneNode(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGodotBoneNodePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -126,7 +121,6 @@ public open class GLTFSkeleton : Resource() {
   }
 
   public final fun getBoneAttachmentCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneAttachmentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

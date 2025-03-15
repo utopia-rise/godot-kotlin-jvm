@@ -151,7 +151,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getActionSet(): OpenXRActionSet? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionSetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRActionSet?)
   }
@@ -162,7 +161,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getInputPath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInputPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -173,7 +171,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -184,7 +181,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getThresholdReleased(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThresholdReleasedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -195,7 +191,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getCenterRegion(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterRegionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -206,7 +201,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getWedgeAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWedgeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -217,7 +211,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getIsSticky(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIsStickyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -228,7 +221,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getOnHaptic(): OpenXRHapticBase? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOnHapticPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
@@ -239,7 +231,6 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   }
 
   public final fun getOffHaptic(): OpenXRHapticBase? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffHapticPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }

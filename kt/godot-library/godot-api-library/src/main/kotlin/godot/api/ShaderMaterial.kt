@@ -15,8 +15,10 @@ import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -54,7 +56,6 @@ public open class ShaderMaterial : Material() {
   }
 
   public final fun getShader(): Shader? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShaderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shader?)
   }
@@ -82,6 +83,25 @@ public open class ShaderMaterial : Material() {
     TransferContext.callMethod(ptr, MethodBindings.getShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
+
+  /**
+   * Changes the value set for this material of a uniform in the shader.
+   * **Note:** [param] is case-sensitive and must match the name of the uniform in the code exactly
+   * (not the capitalized name in the inspector).
+   * **Note:** Changes to the shader uniform will be effective on all instances using this
+   * [ShaderMaterial]. To prevent this, use per-instance uniforms with
+   * [GeometryInstance3D.setInstanceShaderParameter] or duplicate the [ShaderMaterial] resource using
+   * [Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore
+   * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
+   */
+  public final fun setShaderParameter(`param`: String, `value`: Any?) =
+      setShaderParameter(param.asCachedStringName(), value)
+
+  /**
+   * Returns the current value set for this material of a uniform in the shader.
+   */
+  public final fun getShaderParameter(`param`: String): Any? =
+      getShaderParameter(param.asCachedStringName())
 
   public companion object
 

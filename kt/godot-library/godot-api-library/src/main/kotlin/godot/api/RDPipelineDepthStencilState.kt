@@ -278,7 +278,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getEnableDepthTest(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDepthTestPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -289,7 +288,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getEnableDepthWrite(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDepthWritePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -300,7 +298,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getDepthCompareOperator(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthCompareOperatorPtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -311,7 +308,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getEnableDepthRange(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDepthRangePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -322,7 +318,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getDepthRangeMin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthRangeMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -333,7 +328,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getDepthRangeMax(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthRangeMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -344,7 +338,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getEnableStencil(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableStencilPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -355,7 +348,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -366,7 +358,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpPass(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpPassPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -377,7 +368,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpDepthFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpDepthFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -388,7 +378,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpCompare(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpComparePtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -399,7 +388,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpCompareMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpCompareMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -410,7 +398,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpWriteMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpWriteMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -421,7 +408,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getFrontOpReference(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrontOpReferencePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -432,7 +418,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -443,7 +428,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpPass(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpPassPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -454,7 +438,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpDepthFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpDepthFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -465,7 +448,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpCompare(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpComparePtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -476,7 +458,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpCompareMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpCompareMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -487,7 +468,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpWriteMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpWriteMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -498,7 +478,6 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   }
 
   public final fun getBackOpReference(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBackOpReferencePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

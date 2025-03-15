@@ -130,7 +130,6 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -141,7 +140,6 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   public final fun getShape(): RenderingServer.FogVolumeShape {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, LONG)
     return RenderingServer.FogVolumeShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -152,7 +150,6 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }

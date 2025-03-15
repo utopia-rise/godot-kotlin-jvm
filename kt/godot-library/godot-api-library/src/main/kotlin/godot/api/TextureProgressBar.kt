@@ -378,7 +378,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getUnderTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnderTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -389,7 +388,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getProgressTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProgressTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -400,7 +398,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getOverTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOverTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -411,7 +408,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getFillMode(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillModePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -422,7 +418,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getTintUnder(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTintUnderPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -433,7 +428,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getTintProgress(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTintProgressPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -444,7 +438,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getTintOver(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTintOverPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -455,7 +448,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getTextureProgressOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureProgressOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -466,7 +458,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getRadialInitialAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -477,7 +468,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getRadialCenterOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -488,7 +478,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getFillDegrees(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFillDegreesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -518,7 +507,6 @@ public open class TextureProgressBar : Range() {
   }
 
   public final fun getNinePatchStretch(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNinePatchStretchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

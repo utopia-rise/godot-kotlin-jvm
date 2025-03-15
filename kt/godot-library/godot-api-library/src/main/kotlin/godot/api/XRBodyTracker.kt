@@ -75,7 +75,6 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public final fun getHasTrackingData(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -86,7 +85,6 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public final fun getBodyFlags(): BodyFlags {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyFlagsPtr, LONG)
     return BodyFlags(TransferContext.readReturnValue(LONG) as Long)
   }

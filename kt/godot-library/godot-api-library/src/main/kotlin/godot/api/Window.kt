@@ -33,6 +33,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -753,7 +754,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -762,7 +762,6 @@ public open class Window : Viewport() {
    * Returns the ID of the window.
    */
   public final fun getWindowId(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -773,7 +772,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getInitialPosition(): WindowInitialPosition {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInitialPositionPtr, LONG)
     return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -784,7 +782,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getCurrentScreen(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -795,7 +792,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getPosition(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -805,7 +801,6 @@ public open class Window : Viewport() {
    * [Viewport].
    */
   public final fun moveToCenter(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToCenterPtr, NIL)
   }
 
@@ -815,7 +810,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -826,7 +820,6 @@ public open class Window : Viewport() {
    * size below the minimum).
    */
   public final fun resetSize(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
   }
 
@@ -835,7 +828,6 @@ public open class Window : Viewport() {
    * **Note:** If [visible] is `false`, this method returns the same value as [position].
    */
   public final fun getPositionWithDecorations(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -845,7 +837,6 @@ public open class Window : Viewport() {
    * **Note:** If [visible] is `false`, this method returns the same value as [size].
    */
   public final fun getSizeWithDecorations(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizeWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -856,7 +847,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getMaxSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -867,7 +857,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getMinSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -878,7 +867,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -904,7 +892,6 @@ public open class Window : Viewport() {
    * Returns `true` if the window can be maximized (the maximize button is enabled).
    */
   public final fun isMaximizeAllowed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMaximizeAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -914,7 +901,6 @@ public open class Window : Viewport() {
    * depending on the system, e.g. it might blink on the task bar.
    */
   public final fun requestAttention(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestAttentionPtr, NIL)
   }
 
@@ -922,7 +908,6 @@ public open class Window : Viewport() {
    * Causes the window to grab focus, allowing it to receive user input.
    */
   public final fun moveToForeground(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToForegroundPtr, NIL)
   }
 
@@ -932,7 +917,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -942,7 +926,6 @@ public open class Window : Viewport() {
    * with and needs to be made visible with [show].
    */
   public final fun hide(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
@@ -951,7 +934,6 @@ public open class Window : Viewport() {
    * of its property other than visibility (unlike e.g. [popup]).
    */
   public final fun show(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
 
@@ -961,7 +943,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isTransient(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTransientPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -972,7 +953,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isTransientToFocused(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTransientToFocusedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -983,7 +963,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isExclusive(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isExclusivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1002,7 +981,6 @@ public open class Window : Viewport() {
    * Returns whether the window is being drawn to the screen.
    */
   public final fun canDraw(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canDrawPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1011,7 +989,6 @@ public open class Window : Viewport() {
    * Returns `true` if the window is focused.
    */
   public final fun hasFocus(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1020,7 +997,6 @@ public open class Window : Viewport() {
    * Causes the window to grab focus, allowing it to receive user input.
    */
   public final fun grabFocus(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
   }
 
@@ -1031,7 +1007,6 @@ public open class Window : Viewport() {
    * other system features.
    */
   public final fun startDrag(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.startDragPtr, NIL)
   }
 
@@ -1065,7 +1040,6 @@ public open class Window : Viewport() {
    * Returns `true` if the window is currently embedded in another window.
    */
   public final fun isEmbedded(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmbeddedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1076,7 +1050,6 @@ public open class Window : Viewport() {
    * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */
   public final fun getContentsMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentsMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1087,7 +1060,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getForceNative(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getForceNativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1098,7 +1070,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -1109,7 +1080,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleMode(): ContentScaleMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleModePtr, LONG)
     return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1120,7 +1090,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleAspect(): ContentScaleAspect {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleAspectPtr, LONG)
     return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1131,7 +1100,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleStretch(): ContentScaleStretch {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleStretchPtr, LONG)
     return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1142,7 +1110,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getKeepTitleVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getKeepTitleVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1153,7 +1120,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getContentScaleFactor(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1170,7 +1136,6 @@ public open class Window : Viewport() {
    * Returns `true` if font oversampling is enabled. See [setUseFontOversampling].
    */
   public final fun isUsingFontOversampling(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingFontOversamplingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1181,7 +1146,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getMousePassthroughPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr,
         PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
@@ -1193,7 +1157,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isWrappingControls(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isWrappingControlsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1202,7 +1165,6 @@ public open class Window : Viewport() {
    * Requests an update of the [Window] size to fit underlying [Control] nodes.
    */
   public final fun childControlsChanged(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.childControlsChangedPtr, NIL)
   }
 
@@ -1212,7 +1174,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getTheme(): Theme? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
@@ -1223,7 +1184,6 @@ public open class Window : Viewport() {
   }
 
   public final fun getThemeTypeVariation(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -1233,7 +1193,6 @@ public open class Window : Viewport() {
    * [endBulkThemeOverride] is called.
    */
   public final fun beginBulkThemeOverride(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginBulkThemeOverridePtr, NIL)
   }
 
@@ -1241,7 +1200,6 @@ public open class Window : Viewport() {
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
   public final fun endBulkThemeOverride(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endBulkThemeOverridePtr, NIL)
   }
 
@@ -1370,7 +1328,6 @@ public open class Window : Viewport() {
    * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
       Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1383,7 +1340,6 @@ public open class Window : Viewport() {
    * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1396,7 +1352,6 @@ public open class Window : Viewport() {
    * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontPtr, OBJECT)
@@ -1408,7 +1363,6 @@ public open class Window : Viewport() {
    * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontSizePtr, LONG)
@@ -1420,7 +1374,6 @@ public open class Window : Viewport() {
    * with the specified [name] and [themeType].
    * See [Control.getThemeColor] for more details.
    */
-  @JvmOverloads
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeColorPtr, COLOR)
@@ -1432,7 +1385,6 @@ public open class Window : Viewport() {
    * item with the specified [name] and [themeType].
    * See [Control.getThemeColor] for more details.
    */
-  @JvmOverloads
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeConstantPtr, LONG)
@@ -1510,7 +1462,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeIconPtr, BOOL)
@@ -1522,7 +1473,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1535,7 +1485,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeFontPtr, BOOL)
@@ -1547,7 +1496,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1560,7 +1508,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1573,7 +1520,6 @@ public open class Window : Viewport() {
    * specified [name] and [themeType].
    * See [Control.getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1587,7 +1533,6 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1598,7 +1543,6 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -1609,7 +1553,6 @@ public open class Window : Viewport() {
    * See [Control.getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1627,7 +1570,6 @@ public open class Window : Viewport() {
    * Returns layout direction and text writing direction.
    */
   public final fun getLayoutDirection(): LayoutDirection {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
     return Window.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1636,7 +1578,6 @@ public open class Window : Viewport() {
    * Returns `true` if layout is right-to-left.
    */
   public final fun isLayoutRtl(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLayoutRtlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1647,7 +1588,6 @@ public open class Window : Viewport() {
   }
 
   public final fun isAutoTranslating(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoTranslatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1779,6 +1719,249 @@ public open class Window : Viewport() {
     TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.popupExclusiveCenteredClampedPtr, NIL)
   }
+
+  public final fun setThemeTypeVariation(themeType: String) =
+      setThemeTypeVariation(themeType.asCachedStringName())
+
+  /**
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeIconOverride].
+   * See also [getThemeIcon].
+   */
+  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
+      addThemeIconOverride(name.asCachedStringName(), texture)
+
+  /**
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeStyleboxOverride].
+   * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
+   */
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
+      addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
+
+  /**
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontOverride].
+   * See also [getThemeFont].
+   */
+  public final fun addThemeFontOverride(name: String, font: Font?) =
+      addThemeFontOverride(name.asCachedStringName(), font)
+
+  /**
+   * Creates a local override for a theme font size with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontSizeOverride].
+   * See also [getThemeFontSize].
+   */
+  public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
+      addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
+
+  /**
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeColorOverride].
+   * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
+   */
+  public final fun addThemeColorOverride(name: String, color: Color) =
+      addThemeColorOverride(name.asCachedStringName(), color)
+
+  /**
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeConstantOverride].
+   * See also [getThemeConstant].
+   */
+  public final fun addThemeConstantOverride(name: String, constant: Int) =
+      addThemeConstantOverride(name.asCachedStringName(), constant)
+
+  /**
+   * Removes a local override for a theme icon with the specified [name] previously added by
+   * [addThemeIconOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeIconOverride(name: String) =
+      removeThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
+   * [addThemeStyleboxOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeStyleboxOverride(name: String) =
+      removeThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Font] with the specified [name] previously added by
+   * [addThemeFontOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontOverride(name: String) =
+      removeThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme font size with the specified [name] previously added by
+   * [addThemeFontSizeOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontSizeOverride(name: String) =
+      removeThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Color] with the specified [name] previously added by
+   * [addThemeColorOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeColorOverride(name: String) =
+      removeThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme constant with the specified [name] previously added by
+   * [addThemeConstantOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeConstantOverride(name: String) =
+      removeThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
+   * with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun getThemeIcon(name: String, themeType: String): Texture2D? =
+      getThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
+   * item with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun getThemeStylebox(name: String, themeType: String): StyleBox? =
+      getThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
+   * with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun getThemeFont(name: String, themeType: String): Font? =
+      getThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
+   * item with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun getThemeFontSize(name: String, themeType: String): Int =
+      getThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
+   * with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for more details.
+   */
+  public final fun getThemeColor(name: String, themeType: String): Color =
+      getThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
+   * item with the specified [name] and [themeType].
+   * See [Control.getThemeColor] for more details.
+   */
+  public final fun getThemeConstant(name: String, themeType: String): Int =
+      getThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
+   * [Control] node.
+   * See [addThemeIconOverride].
+   */
+  public final fun hasThemeIconOverride(name: String): Boolean =
+      hasThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeStyleboxOverride].
+   */
+  public final fun hasThemeStyleboxOverride(name: String): Boolean =
+      hasThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeFontOverride].
+   */
+  public final fun hasThemeFontOverride(name: String): Boolean =
+      hasThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in
+   * this [Control] node.
+   * See [addThemeFontSizeOverride].
+   */
+  public final fun hasThemeFontSizeOverride(name: String): Boolean =
+      hasThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeColorOverride].
+   */
+  public final fun hasThemeColorOverride(name: String): Boolean =
+      hasThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in
+   * this [Control] node.
+   * See [addThemeConstantOverride].
+   */
+  public final fun hasThemeConstantOverride(name: String): Boolean =
+      hasThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeIcon(name: String, themeType: String): Boolean =
+      hasThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeStylebox(name: String, themeType: String): Boolean =
+      hasThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeFont(name: String, themeType: String): Boolean =
+      hasThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeFontSize(name: String, themeType: String): Boolean =
+      hasThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeColor(name: String, themeType: String): Boolean =
+      hasThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
+   * specified [name] and [themeType].
+   * See [Control.getThemeColor] for details.
+   */
+  public final fun hasThemeConstant(name: String, themeType: String): Boolean =
+      hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   public enum class Mode(
     id: Long,

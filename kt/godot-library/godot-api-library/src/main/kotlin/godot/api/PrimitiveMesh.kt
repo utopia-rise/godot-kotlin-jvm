@@ -143,7 +143,6 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -166,7 +165,6 @@ public open class PrimitiveMesh : Mesh() {
    * ```
    */
   public final fun getMeshArrays(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -177,7 +175,6 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
@@ -188,7 +185,6 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun getFlipFaces(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFlipFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -199,7 +195,6 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun getAddUv2(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAddUv2Ptr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -210,7 +205,6 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun getUv2Padding(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv2PaddingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -219,7 +213,6 @@ public open class PrimitiveMesh : Mesh() {
    * Request an update of this primitive mesh based on its properties.
    */
   public final fun requestUpdate(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestUpdatePtr, NIL)
   }
 

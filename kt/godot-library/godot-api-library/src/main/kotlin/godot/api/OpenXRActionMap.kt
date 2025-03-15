@@ -68,7 +68,6 @@ public open class OpenXRActionMap : Resource() {
   }
 
   public final fun getActionSets(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -77,7 +76,6 @@ public open class OpenXRActionMap : Resource() {
    * Retrieve the number of actions sets in our action map.
    */
   public final fun getActionSetCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionSetCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -122,7 +120,6 @@ public open class OpenXRActionMap : Resource() {
   }
 
   public final fun getInteractionProfiles(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInteractionProfilesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -131,7 +128,6 @@ public open class OpenXRActionMap : Resource() {
    * Retrieve the number of interaction profiles in our action map.
    */
   public final fun getInteractionProfileCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInteractionProfileCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -174,7 +170,6 @@ public open class OpenXRActionMap : Resource() {
    * Setup this action set with our default actions.
    */
   public final fun createDefaultActionSets(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createDefaultActionSetsPtr, NIL)
   }
 

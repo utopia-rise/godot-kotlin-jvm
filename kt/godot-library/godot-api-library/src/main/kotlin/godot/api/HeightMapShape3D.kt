@@ -90,7 +90,6 @@ public open class HeightMapShape3D : Shape3D() {
   }
 
   public final fun getMapWidth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMapWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -101,7 +100,6 @@ public open class HeightMapShape3D : Shape3D() {
   }
 
   public final fun getMapDepth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMapDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -112,7 +110,6 @@ public open class HeightMapShape3D : Shape3D() {
   }
 
   public final fun getMapData(): PackedFloat32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -121,7 +118,6 @@ public open class HeightMapShape3D : Shape3D() {
    * Returns the smallest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
   public final fun getMinHeight(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -130,7 +126,6 @@ public open class HeightMapShape3D : Shape3D() {
    * Returns the largest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
   public final fun getMaxHeight(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -110,7 +110,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getInnerRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInnerRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -121,7 +120,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getOuterRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOuterRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -132,7 +130,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getSides(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -143,7 +140,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getRingSides(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRingSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -154,7 +150,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -165,7 +160,6 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

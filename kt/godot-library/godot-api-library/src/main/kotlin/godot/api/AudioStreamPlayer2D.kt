@@ -18,11 +18,13 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -222,7 +224,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getStream(): AudioStream? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
@@ -233,7 +234,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -244,7 +244,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getVolumeLinear(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -255,7 +254,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getPitchScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPitchScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -282,12 +280,10 @@ public open class AudioStreamPlayer2D : Node2D() {
    * Stops the audio.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -296,7 +292,6 @@ public open class AudioStreamPlayer2D : Node2D() {
    * Returns the position in the [AudioStream].
    */
   public final fun getPlaybackPosition(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -307,7 +302,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getBus(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBusPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -318,7 +312,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun isAutoplayEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoplayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -334,7 +327,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getMaxDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -345,7 +337,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getAttenuation(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAttenuationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -356,7 +347,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getAreaMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAreaMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -367,7 +357,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getStreamPaused(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -378,7 +367,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getMaxPolyphony(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -389,7 +377,6 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getPanningStrength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanningStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -398,7 +385,6 @@ public open class AudioStreamPlayer2D : Node2D() {
    * Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not.
    */
   public final fun hasStreamPlayback(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasStreamPlaybackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -407,7 +393,6 @@ public open class AudioStreamPlayer2D : Node2D() {
    * Returns the [AudioStreamPlayback] object associated with this [AudioStreamPlayer2D].
    */
   public final fun getStreamPlayback(): AudioStreamPlayback? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStreamPlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
@@ -418,10 +403,11 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun getPlaybackType(): AudioServer.PlaybackType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackTypePtr, LONG)
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
+
+  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public companion object
 

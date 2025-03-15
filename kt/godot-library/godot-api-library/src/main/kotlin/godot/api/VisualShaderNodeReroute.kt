@@ -35,7 +35,6 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
    * Returns the port type of the reroute node.
    */
   public final fun getPortType(): VisualShaderNode.PortType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPortTypePtr, LONG)
     return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
   }

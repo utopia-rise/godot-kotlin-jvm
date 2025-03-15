@@ -19,11 +19,13 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -85,7 +87,6 @@ public open class SpriteFrames : Resource() {
    * alphabetical order.
    */
   public final fun getAnimationNames(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -212,9 +213,122 @@ public open class SpriteFrames : Resource() {
    * Removes all animations. An empty `default` animation will be created.
    */
   public final fun clearAll(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearAllPtr, NIL)
   }
+
+  /**
+   * Adds a new [anim] animation to the library.
+   */
+  public final fun addAnimation(anim: String) = addAnimation(anim.asCachedStringName())
+
+  /**
+   * Returns `true` if the [anim] animation exists.
+   */
+  public final fun hasAnimation(anim: String): Boolean = hasAnimation(anim.asCachedStringName())
+
+  /**
+   * Duplicates the animation [animFrom] to a new animation named [animTo]. Fails if [animTo]
+   * already exists, or if [animFrom] does not exist.
+   */
+  public final fun duplicateAnimation(animFrom: String, animTo: String) =
+      duplicateAnimation(animFrom.asCachedStringName(), animTo.asCachedStringName())
+
+  /**
+   * Removes the [anim] animation.
+   */
+  public final fun removeAnimation(anim: String) = removeAnimation(anim.asCachedStringName())
+
+  /**
+   * Changes the [anim] animation's name to [newname].
+   */
+  public final fun renameAnimation(anim: String, newname: String) =
+      renameAnimation(anim.asCachedStringName(), newname.asCachedStringName())
+
+  /**
+   * Sets the speed for the [anim] animation in frames per second.
+   */
+  public final fun setAnimationSpeed(anim: String, fps: Double) =
+      setAnimationSpeed(anim.asCachedStringName(), fps)
+
+  /**
+   * Returns the speed in frames per second for the [anim] animation.
+   */
+  public final fun getAnimationSpeed(anim: String): Double =
+      getAnimationSpeed(anim.asCachedStringName())
+
+  /**
+   * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it
+   * is played in reverse.
+   */
+  public final fun setAnimationLoop(anim: String, loop: Boolean) =
+      setAnimationLoop(anim.asCachedStringName(), loop)
+
+  /**
+   * Returns `true` if the given animation is configured to loop when it finishes playing.
+   * Otherwise, returns `false`.
+   */
+  public final fun getAnimationLoop(anim: String): Boolean =
+      getAnimationLoop(anim.asCachedStringName())
+
+  /**
+   * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the
+   * end of the animation. [duration] specifies the relative duration, see [getFrameDuration] for
+   * details.
+   */
+  @JvmOverloads
+  public final fun addFrame(
+    anim: String,
+    texture: Texture2D?,
+    duration: Float = 1.0f,
+    atPosition: Int = -1,
+  ) = addFrame(anim.asCachedStringName(), texture, duration, atPosition)
+
+  /**
+   * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation. [duration]
+   * specifies the relative duration, see [getFrameDuration] for details.
+   */
+  @JvmOverloads
+  public final fun setFrame(
+    anim: String,
+    idx: Int,
+    texture: Texture2D?,
+    duration: Float = 1.0f,
+  ) = setFrame(anim.asCachedStringName(), idx, texture, duration)
+
+  /**
+   * Removes the [anim] animation's frame [idx].
+   */
+  public final fun removeFrame(anim: String, idx: Int) = removeFrame(anim.asCachedStringName(), idx)
+
+  /**
+   * Returns the number of frames for the [anim] animation.
+   */
+  public final fun getFrameCount(anim: String): Int = getFrameCount(anim.asCachedStringName())
+
+  /**
+   * Returns the texture of the frame [idx] in the [anim] animation.
+   */
+  public final fun getFrameTexture(anim: String, idx: Int): Texture2D? =
+      getFrameTexture(anim.asCachedStringName(), idx)
+
+  /**
+   * Returns a relative duration of the frame [idx] in the [anim] animation (defaults to `1.0`). For
+   * example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of
+   * `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following
+   * formula:
+   * [codeblock]
+   * absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
+   * [/codeblock]
+   * In this example, `playing_speed` refers to either [AnimatedSprite2D.getPlayingSpeed] or
+   * [AnimatedSprite3D.getPlayingSpeed].
+   */
+  public final fun getFrameDuration(anim: String, idx: Int): Float =
+      getFrameDuration(anim.asCachedStringName(), idx)
+
+  /**
+   * Removes all frames from the [anim] animation.
+   */
+  public final fun clear(anim: String) = clear(anim.asCachedStringName())
 
   public companion object
 

@@ -21,11 +21,13 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -251,7 +253,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the render target associated with this buffers object.
    */
   public final fun getRenderTarget(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderTargetPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -260,7 +261,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the view count for the associated viewport.
    */
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -270,7 +270,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * created by default.
    */
   public final fun getInternalSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInternalSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -279,7 +278,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the target size of the render buffer (size after upscaling).
    */
   public final fun getTargetSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -288,7 +286,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the scaling mode used for upscaling.
    */
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -298,7 +295,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * an FSR mode).
    */
   public final fun getFsrSharpness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -307,7 +303,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the applied 3D MSAA mode for this viewport.
    */
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -316,7 +311,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the number of MSAA samples used.
    */
   public final fun getTextureSamples(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureSamplesPtr, LONG)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -325,7 +319,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the screen-space antialiasing method applied.
    */
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -334,7 +327,6 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if TAA is enabled.
    */
   public final fun getUseTaa(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseTaaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -343,10 +335,112 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if debanding is enabled.
    */
   public final fun getUseDebanding(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a cached texture exists for this name.
+   */
+  public final fun hasTexture(context: String, name: String): Boolean =
+      hasTexture(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Create a new texture with the given definition and cache this under the given name. Will return
+   * the existing texture if it already exists.
+   */
+  public final fun createTexture(
+    context: String,
+    name: String,
+    dataFormat: RenderingDevice.DataFormat,
+    usageBits: Long,
+    textureSamples: RenderingDevice.TextureSamples,
+    size: Vector2i,
+    layers: Long,
+    mipmaps: Long,
+    unique: Boolean,
+    discardable: Boolean,
+  ): RID =
+      createTexture(context.asCachedStringName(), name.asCachedStringName(), dataFormat, usageBits, textureSamples, size, layers, mipmaps, unique, discardable)
+
+  /**
+   * Create a new texture using the given format and view and cache this under the given name. Will
+   * return the existing texture if it already exists.
+   */
+  public final fun createTextureFromFormat(
+    context: String,
+    name: String,
+    format: RDTextureFormat?,
+    view: RDTextureView?,
+    unique: Boolean,
+  ): RID =
+      createTextureFromFormat(context.asCachedStringName(), name.asCachedStringName(), format, view, unique)
+
+  /**
+   * Create a new texture view for an existing texture and cache this under the given [viewName].
+   * Will return the existing texture view if it already exists. Will error if the source texture
+   * doesn't exist.
+   */
+  public final fun createTextureView(
+    context: String,
+    name: String,
+    viewName: String,
+    view: RDTextureView?,
+  ): RID =
+      createTextureView(context.asCachedStringName(), name.asCachedStringName(), viewName.asCachedStringName(), view)
+
+  /**
+   * Returns a cached texture with this name.
+   */
+  public final fun getTexture(context: String, name: String): RID =
+      getTexture(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns the texture format information with which a cached texture was created.
+   */
+  public final fun getTextureFormat(context: String, name: String): RDTextureFormat? =
+      getTextureFormat(context.asCachedStringName(), name.asCachedStringName())
+
+  /**
+   * Returns a specific slice (layer or mipmap) for a cached texture.
+   */
+  public final fun getTextureSlice(
+    context: String,
+    name: String,
+    layer: Long,
+    mipmap: Long,
+    layers: Long,
+    mipmaps: Long,
+  ): RID =
+      getTextureSlice(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps)
+
+  /**
+   * Returns a specific view of a slice (layer or mipmap) for a cached texture.
+   */
+  public final fun getTextureSliceView(
+    context: String,
+    name: String,
+    layer: Long,
+    mipmap: Long,
+    layers: Long,
+    mipmaps: Long,
+    view: RDTextureView?,
+  ): RID =
+      getTextureSliceView(context.asCachedStringName(), name.asCachedStringName(), layer, mipmap, layers, mipmaps, view)
+
+  /**
+   * Returns the texture size of a given slice of a cached texture.
+   */
+  public final fun getTextureSliceSize(
+    context: String,
+    name: String,
+    mipmap: Long,
+  ): Vector2i = getTextureSliceSize(context.asCachedStringName(), name.asCachedStringName(), mipmap)
+
+  /**
+   * Frees all buffers related to this context.
+   */
+  public final fun clearContext(context: String) = clearContext(context.asCachedStringName())
 
   public companion object
 

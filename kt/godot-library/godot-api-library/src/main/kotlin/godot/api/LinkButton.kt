@@ -134,7 +134,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -145,7 +144,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -156,7 +154,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -167,7 +164,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getUri(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUriPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -178,7 +174,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getUnderlineMode(): UnderlineMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUnderlineModePtr, LONG)
     return LinkButton.UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -189,7 +184,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -200,7 +194,6 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }

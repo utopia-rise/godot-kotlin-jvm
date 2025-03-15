@@ -36,7 +36,6 @@ public open class JavaClass : RefCounted() {
    * Returns the Java class name.
    */
   public final fun getJavaClassName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJavaClassNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -46,7 +45,6 @@ public open class JavaClass : RefCounted() {
    * same format as [Object.getMethodList].
    */
   public final fun getJavaMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJavaMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -55,7 +53,6 @@ public open class JavaClass : RefCounted() {
    * Returns a [JavaClass] representing the Java parent class of this class.
    */
   public final fun getJavaParentClass(): JavaClass? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJavaParentClassPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }

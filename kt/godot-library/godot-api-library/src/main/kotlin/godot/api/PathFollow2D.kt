@@ -133,7 +133,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun getProgress(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProgressPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -144,7 +143,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun getHOffset(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -155,7 +153,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun getVOffset(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -166,7 +163,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun getProgressRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProgressRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -177,7 +173,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun isRotating(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRotatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -188,7 +183,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun getCubicInterpolation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCubicInterpolationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -199,7 +193,6 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

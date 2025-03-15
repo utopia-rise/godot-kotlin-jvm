@@ -143,7 +143,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Returns `true` if this is a root shape and is thus the object that is rendered.
    */
   public final fun isRootShape(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRootShapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -154,7 +153,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getOperation(): Operation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOperationPtr, LONG)
     return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -165,7 +163,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getSnap(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSnapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -176,7 +173,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun isUsingCollision(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -187,7 +183,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getCollisionLayer(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -198,7 +193,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -247,7 +241,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun getCollisionPriority(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -258,7 +251,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun isCalculatingTangents(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCalculatingTangentsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -268,7 +260,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * second is the root [Mesh] of this node. Only works when this node is the root shape.
    */
   public final fun getMeshes(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -279,7 +270,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * node or has no valid geometry.
    */
   public final fun bakeStaticMesh(): ArrayMesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bakeStaticMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
@@ -292,7 +282,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * level geometry and not with dynamic objects that are moving.
    */
   public final fun bakeCollisionShape(): ConcavePolygonShape3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bakeCollisionShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
   }

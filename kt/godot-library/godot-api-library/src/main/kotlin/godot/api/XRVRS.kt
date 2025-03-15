@@ -100,7 +100,6 @@ public open class XRVRS : Object() {
 
 
   public final fun getVrsMinRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -111,7 +110,6 @@ public open class XRVRS : Object() {
   }
 
   public final fun getVrsStrength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -122,7 +120,6 @@ public open class XRVRS : Object() {
   }
 
   public final fun getVrsRenderRegion(): Rect2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsRenderRegionPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }

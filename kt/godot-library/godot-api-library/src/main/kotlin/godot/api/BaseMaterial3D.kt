@@ -1774,7 +1774,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAlbedo(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlbedoPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1785,7 +1784,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getTransparency(): Transparency {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransparencyPtr, LONG)
     return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1796,7 +1794,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAlphaAntialiasing(): AlphaAntiAliasing {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingPtr, LONG)
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1807,7 +1804,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1818,7 +1814,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getShadingMode(): ShadingMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadingModePtr, LONG)
     return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1829,7 +1824,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getSpecular(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1840,7 +1834,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getMetallic(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetallicPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1851,7 +1844,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRoughness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRoughnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1862,7 +1854,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getEmission(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1873,7 +1864,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getEmissionEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1884,7 +1874,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getEmissionIntensity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1895,7 +1884,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getNormalScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1906,7 +1894,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRim(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRimPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1917,7 +1904,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRimTint(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRimTintPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1928,7 +1914,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getClearcoat(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClearcoatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1939,7 +1924,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getClearcoatRoughness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1950,7 +1934,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAnisotropy(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnisotropyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1961,7 +1944,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getHeightmapScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightmapScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1972,7 +1954,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getSubsurfaceScatteringStrength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1983,7 +1964,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getTransmittanceColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransmittanceColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -1994,7 +1974,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getTransmittanceDepth(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2005,7 +1984,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getTransmittanceBoost(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2016,7 +1994,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getBacklight(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBacklightPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -2027,7 +2004,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRefraction(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRefractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2038,7 +2014,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getPointSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2049,7 +2024,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDetailUv(): DetailUV {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailUvPtr, LONG)
     return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2060,7 +2034,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
     return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2071,7 +2044,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDepthDrawMode(): DepthDrawMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthDrawModePtr, LONG)
     return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2082,7 +2054,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getCullMode(): CullMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
     return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2093,7 +2064,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDiffuseMode(): DiffuseMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDiffuseModePtr, LONG)
     return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2104,7 +2074,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getSpecularMode(): SpecularMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpecularModePtr, LONG)
     return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2135,7 +2104,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getTextureFilter(): TextureFilter {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureFilterPtr, LONG)
     return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2183,7 +2151,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDetailBlendMode(): BlendMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDetailBlendModePtr, LONG)
     return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2194,7 +2161,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv1Scale(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv1ScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -2205,7 +2171,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv1Offset(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv1OffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -2216,7 +2181,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv1TriplanarBlendSharpness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2227,7 +2191,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv2Scale(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv2ScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -2238,7 +2201,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv2Offset(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv2OffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -2249,7 +2211,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getUv2TriplanarBlendSharpness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2260,7 +2221,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getBillboardMode(): BillboardMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardModePtr, LONG)
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2271,7 +2231,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getParticlesAnimHFrames(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2282,7 +2241,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getParticlesAnimVFrames(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2293,7 +2251,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getParticlesAnimLoop(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2304,7 +2261,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun isHeightmapDeepParallaxEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2315,7 +2271,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getHeightmapDeepParallaxMinLayers(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2326,7 +2281,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getHeightmapDeepParallaxMaxLayers(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -2337,7 +2291,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getHeightmapDeepParallaxFlipTangent(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2348,7 +2301,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getHeightmapDeepParallaxFlipBinormal(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2359,7 +2311,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getGrow(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGrowPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2370,7 +2321,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getEmissionOperator(): EmissionOperator {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmissionOperatorPtr, LONG)
     return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2381,7 +2331,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAoLightAffect(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAoLightAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2392,7 +2341,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAlphaScissorThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2403,7 +2351,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAlphaHashScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2414,7 +2361,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun isGrowEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isGrowEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2425,7 +2371,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getMetallicTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMetallicTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2436,7 +2381,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRoughnessTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2447,7 +2391,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getAoTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAoTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2458,7 +2401,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getRefractionTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRefractionTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2469,7 +2411,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun isProximityFadeEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2480,7 +2421,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getProximityFadeDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2491,7 +2431,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getMsdfPixelRange(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2502,7 +2441,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getMsdfOutlineSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2513,7 +2451,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDistanceFade(): DistanceFadeMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadePtr, LONG)
     return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2524,7 +2461,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDistanceFadeMaxDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2535,7 +2471,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun getDistanceFadeMinDistance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

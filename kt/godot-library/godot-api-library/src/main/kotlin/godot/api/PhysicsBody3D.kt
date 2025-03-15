@@ -167,7 +167,6 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * gravity overrides from [Area3D] nodes and the global world gravity.
    */
   public final fun getGravity(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -193,7 +192,6 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
   }

@@ -482,7 +482,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getBgColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -493,7 +492,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getBorderColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -510,7 +508,6 @@ public open class StyleBoxFlat : StyleBox() {
    * Returns the smallest border width out of all four borders.
    */
   public final fun getBorderWidthMin(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderWidthMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -538,7 +535,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getBorderBlend(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBorderBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -600,7 +596,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -611,7 +606,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getSkew(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkewPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -622,7 +616,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getShadowColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -633,7 +626,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getShadowSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -644,7 +636,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getShadowOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShadowOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -655,7 +646,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun isAntiAliased(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAntiAliasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -666,7 +656,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getAaSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAaSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -677,7 +666,6 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   public final fun getCornerDetail(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCornerDetailPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

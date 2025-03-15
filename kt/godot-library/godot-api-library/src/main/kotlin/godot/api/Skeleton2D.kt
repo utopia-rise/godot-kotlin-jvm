@@ -50,7 +50,6 @@ public open class Skeleton2D : Node2D() {
    * Returns the number of [Bone2D] nodes in the node hierarchy parented by Skeleton2D.
    */
   public final fun getBoneCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -70,7 +69,6 @@ public open class Skeleton2D : Node2D() {
    * Returns the [RID] of a Skeleton2D instance.
    */
   public final fun getSkeleton(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -87,7 +85,6 @@ public open class Skeleton2D : Node2D() {
    * Returns the [SkeletonModificationStack2D] attached to this skeleton, if one exists.
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }

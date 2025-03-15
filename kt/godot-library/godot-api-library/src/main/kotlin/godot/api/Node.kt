@@ -27,6 +27,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import godot.core.toGodotName
 import kotlin.Any
 import kotlin.Boolean
@@ -620,6 +621,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Unit {
+    throw NotImplementedError("_process is not implemented for Node")
   }
 
   /**
@@ -642,6 +644,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Unit {
+    throw NotImplementedError("_physicsProcess is not implemented for Node")
   }
 
   /**
@@ -651,6 +654,7 @@ public open class Node : Object() {
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
   public open fun _enterTree(): Unit {
+    throw NotImplementedError("_enterTree is not implemented for Node")
   }
 
   /**
@@ -662,6 +666,7 @@ public open class Node : Object() {
    * the [signal tree_exited].
    */
   public open fun _exitTree(): Unit {
+    throw NotImplementedError("_exitTree is not implemented for Node")
   }
 
   /**
@@ -678,6 +683,7 @@ public open class Node : Object() {
    * adding the node again.
    */
   public open fun _ready(): Unit {
+    throw NotImplementedError("_ready is not implemented for Node")
   }
 
   /**
@@ -715,6 +721,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _input(event: InputEvent?): Unit {
+    throw NotImplementedError("_input is not implemented for Node")
   }
 
   /**
@@ -731,6 +738,7 @@ public open class Node : Object() {
    * orphan).
    */
   public open fun _shortcutInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_shortcutInput is not implemented for Node")
   }
 
   /**
@@ -749,6 +757,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_unhandledInput is not implemented for Node")
   }
 
   /**
@@ -769,6 +778,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_unhandledKeyInput is not implemented for Node")
   }
 
   /**
@@ -794,7 +804,6 @@ public open class Node : Object() {
   }
 
   public final fun getName(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -991,7 +1000,6 @@ public open class Node : Object() {
    * Returns this node's parent node, or `null` if the node doesn't have a parent.
    */
   public final fun getParent(): Node? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getParentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -1129,7 +1137,6 @@ public open class Node : Object() {
    * Returns `true` if this node is currently inside a [SceneTree]. See also [getTree].
    */
   public final fun isInsideTree(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInsideTreePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1138,7 +1145,6 @@ public open class Node : Object() {
    * Returns `true` if the node is part of the scene currently opened in the editor.
    */
   public final fun isPartOfEditedScene(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPartOfEditedScenePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1167,7 +1173,6 @@ public open class Node : Object() {
    * the scene tree, this method fails and returns an empty [NodePath].
    */
   public final fun getPath(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -1265,7 +1270,6 @@ public open class Node : Object() {
    * ```
    */
   public final fun getGroups(): VariantArray<StringName> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroupsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -1276,7 +1280,6 @@ public open class Node : Object() {
   }
 
   public final fun getOwner(): Node? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOwnerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -1309,7 +1312,6 @@ public open class Node : Object() {
    * [/codeblock]
    */
   public final fun printTree(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.printTreePtr, NIL)
   }
 
@@ -1328,7 +1330,6 @@ public open class Node : Object() {
    * [/codeblock]
    */
   public final fun printTreePretty(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.printTreePrettyPtr, NIL)
   }
 
@@ -1347,7 +1348,6 @@ public open class Node : Object() {
    * [/codeblock]
    */
   public final fun getTreeString(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTreeStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1367,7 +1367,6 @@ public open class Node : Object() {
    * [/codeblock]
    */
   public final fun getTreeStringPretty(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTreeStringPrettyPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1378,7 +1377,6 @@ public open class Node : Object() {
   }
 
   public final fun getSceneFilePath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneFilePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1432,7 +1430,6 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public final fun getPhysicsProcessDeltaTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsProcessDeltaTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -1441,7 +1438,6 @@ public open class Node : Object() {
    * Returns `true` if physics processing is enabled (see [setPhysicsProcess]).
    */
   public final fun isPhysicsProcessing(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsProcessingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1458,7 +1454,6 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public final fun getProcessDeltaTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessDeltaTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -1484,7 +1479,6 @@ public open class Node : Object() {
   }
 
   public final fun getProcessPriority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1495,7 +1489,6 @@ public open class Node : Object() {
   }
 
   public final fun getPhysicsProcessPriority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsProcessPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1504,7 +1497,6 @@ public open class Node : Object() {
    * Returns `true` if processing is enabled (see [setProcess]).
    */
   public final fun isProcessing(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1524,7 +1516,6 @@ public open class Node : Object() {
    * Returns `true` if the node is processing input (see [setProcessInput]).
    */
   public final fun isProcessingInput(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1543,7 +1534,6 @@ public open class Node : Object() {
    * Returns `true` if the node is processing shortcuts (see [setProcessShortcutInput]).
    */
   public final fun isProcessingShortcutInput(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingShortcutInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1564,7 +1554,6 @@ public open class Node : Object() {
    * Returns `true` if the node is processing unhandled input (see [setProcessUnhandledInput]).
    */
   public final fun isProcessingUnhandledInput(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingUnhandledInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1584,7 +1573,6 @@ public open class Node : Object() {
    * [setProcessUnhandledKeyInput]).
    */
   public final fun isProcessingUnhandledKeyInput(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingUnhandledKeyInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1595,7 +1583,6 @@ public open class Node : Object() {
   }
 
   public final fun getProcessMode(): ProcessMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessModePtr, LONG)
     return Node.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1615,7 +1602,6 @@ public open class Node : Object() {
    * If the node is not inside the tree, returns `false` no matter the value of [processMode].
    */
   public final fun canProcess(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canProcessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1626,7 +1612,6 @@ public open class Node : Object() {
   }
 
   public final fun getProcessThreadGroup(): ProcessThreadGroup {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessThreadGroupPtr, LONG)
     return Node.ProcessThreadGroup.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1637,7 +1622,6 @@ public open class Node : Object() {
   }
 
   public final fun getProcessThreadMessages(): ProcessThreadMessages {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessThreadMessagesPtr, LONG)
     return ProcessThreadMessages(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1648,7 +1632,6 @@ public open class Node : Object() {
   }
 
   public final fun getProcessThreadGroupOrder(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessThreadGroupOrderPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1668,7 +1651,6 @@ public open class Node : Object() {
    * be used in editor plugins and tools. See also [setDisplayFolded].
    */
   public final fun isDisplayedFolded(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisplayedFoldedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1690,7 +1672,6 @@ public open class Node : Object() {
    * Returns `true` if internal processing is enabled (see [setProcessInternal]).
    */
   public final fun isProcessingInternal(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isProcessingInternalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1712,7 +1693,6 @@ public open class Node : Object() {
    * Returns `true` if internal physics processing is enabled (see [setPhysicsProcessInternal]).
    */
   public final fun isPhysicsProcessingInternal(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsProcessingInternalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1723,7 +1703,6 @@ public open class Node : Object() {
   }
 
   public final fun getPhysicsInterpolationMode(): PhysicsInterpolationMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsInterpolationModePtr, LONG)
     return Node.PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1736,7 +1715,6 @@ public open class Node : Object() {
    * [isPhysicsInterpolatedAndEnabled].
    */
   public final fun isPhysicsInterpolated(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsInterpolatedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1749,7 +1727,6 @@ public open class Node : Object() {
    * See [SceneTree.physicsInterpolation] and [ProjectSettings.physics/common/physicsInterpolation].
    */
   public final fun isPhysicsInterpolatedAndEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsInterpolatedAndEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1765,7 +1742,6 @@ public open class Node : Object() {
    * **Note:** This function should be called **after** moving the node, rather than before.
    */
   public final fun resetPhysicsInterpolation(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPhysicsInterpolationPtr, NIL)
   }
 
@@ -1775,7 +1751,6 @@ public open class Node : Object() {
   }
 
   public final fun getAutoTranslateMode(): AutoTranslateMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutoTranslateModePtr, LONG)
     return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1787,7 +1762,6 @@ public open class Node : Object() {
    * behavior.
    */
   public final fun setTranslationDomainInherited(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setTranslationDomainInheritedPtr, NIL)
   }
 
@@ -1796,7 +1770,6 @@ public open class Node : Object() {
    * equivalent to getting the root node (`get_tree().get_root()`).
    */
   public final fun getWindow(): Window? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWindowPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Window?)
   }
@@ -1806,7 +1779,6 @@ public open class Node : Object() {
    * starting with the one that contains this node.
    */
   public final fun getLastExclusiveWindow(): Window? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastExclusiveWindowPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Window?)
   }
@@ -1816,7 +1788,6 @@ public open class Node : Object() {
    * an error and returns `null`. See also [isInsideTree].
    */
   public final fun getTree(): SceneTree? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTreePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SceneTree?)
   }
@@ -1840,7 +1811,6 @@ public open class Node : Object() {
    * an unlikely case of using a custom [MainLoop].
    */
   public final fun createTween(): Tween? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTweenPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -1886,7 +1856,6 @@ public open class Node : Object() {
    * [setSceneInstanceLoadPlaceholder].
    */
   public final fun getSceneInstanceLoadPlaceholder(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneInstanceLoadPlaceholderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1916,7 +1885,6 @@ public open class Node : Object() {
    * returns `null`.
    */
   public final fun getViewport(): Viewport? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getViewportPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Viewport?)
   }
@@ -1931,7 +1899,6 @@ public open class Node : Object() {
    * method is not always the same as calling [Object.free] through [Object.callDeferred].
    */
   public final fun queueFree(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.queueFreePtr, NIL)
   }
 
@@ -1943,7 +1910,6 @@ public open class Node : Object() {
    * enter the tree again, the order of [_ready] callbacks will be the same as normal.
    */
   public final fun requestReady(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestReadyPtr, NIL)
   }
 
@@ -1953,7 +1919,6 @@ public open class Node : Object() {
    * [requestReady] resets it back to `false`.
    */
   public final fun isNodeReady(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNodeReadyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1979,7 +1944,6 @@ public open class Node : Object() {
    * Returns the peer ID of the multiplayer authority for this node. See [setMultiplayerAuthority].
    */
   public final fun getMultiplayerAuthority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerAuthorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1988,13 +1952,11 @@ public open class Node : Object() {
    * Returns `true` if the local system is the multiplayer authority of this node.
    */
   public final fun isMultiplayerAuthority(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMultiplayerAuthorityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getMultiplayer(): MultiplayerAPI? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
   }
@@ -2021,7 +1983,6 @@ public open class Node : Object() {
    * using [rpcConfig].
    */
   public final fun getRpcConfig(): Any? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2032,7 +1993,6 @@ public open class Node : Object() {
   }
 
   public final fun getEditorDescription(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditorDescriptionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -2043,7 +2003,6 @@ public open class Node : Object() {
   }
 
   public final fun isUniqueNameInOwner(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUniqueNameInOwnerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2060,7 +2019,6 @@ public open class Node : Object() {
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
    */
-  @JvmOverloads
   public final fun atr(message: String, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING to message, STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.atrPtr, STRING)
@@ -2081,7 +2039,6 @@ public open class Node : Object() {
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
    * recommended to handle these cases with [atr].
    */
-  @JvmOverloads
   public final fun atrN(
     message: String,
     pluralMessage: StringName,
@@ -2109,8 +2066,8 @@ public open class Node : Object() {
    * MultiplayerAPI.server_disconnected] or by checking
    * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
    */
-  public final fun rpc(method: StringName, vararg __var_args: Any?): Error {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun rpc(method: StringName, vararg args: Any?): Error {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2125,9 +2082,9 @@ public open class Node : Object() {
   public final fun rpcId(
     peerId: Long,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Error {
-    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcIdPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2137,7 +2094,6 @@ public open class Node : Object() {
    * [_getConfigurationWarnings] to customize the warning messages to display.
    */
   public final fun updateConfigurationWarnings(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateConfigurationWarningsPtr, NIL)
   }
 
@@ -2148,8 +2104,8 @@ public open class Node : Object() {
    * [NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are
    * called.
    */
-  public final fun callDeferredThreadGroup(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun callDeferredThreadGroup(method: StringName, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callDeferredThreadGroupPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2175,8 +2131,8 @@ public open class Node : Object() {
    * being done from a thread or not. If called from a thread that is not allowed to call the function,
    * the call will become deferred. Otherwise, the call will go through directly.
    */
-  public final fun callThreadSafe(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun callThreadSafe(method: StringName, vararg args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callThreadSafePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2196,6 +2152,159 @@ public open class Node : Object() {
     TransferContext.writeArguments(LONG to what.toLong())
     TransferContext.callMethod(ptr, MethodBindings.notifyThreadSafePtr, NIL)
   }
+
+  /**
+   * Adds the node to the [group]. Groups can be helpful to organize a subset of nodes, for example
+   * `"enemies"` or `"collectables"`. See notes in the description, and the group methods in
+   * [SceneTree].
+   * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
+   * groups created and displayed in the Node dock are persistent.
+   * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
+   * between project runs. Therefore, do not rely on the group order.
+   * **Note:** [SceneTree]'s group methods will *not* work on this node if not inside the tree (see
+   * [isInsideTree]).
+   */
+  @JvmOverloads
+  public final fun addToGroup(group: String, persistent: Boolean = false) =
+      addToGroup(group.asCachedStringName(), persistent)
+
+  /**
+   * Removes the node from the given [group]. Does nothing if the node is not in the [group]. See
+   * also notes in the description, and the [SceneTree]'s group methods.
+   */
+  public final fun removeFromGroup(group: String) = removeFromGroup(group.asCachedStringName())
+
+  /**
+   * Returns `true` if this node has been added to the given [group]. See [addToGroup] and
+   * [removeFromGroup]. See also notes in the description, and the [SceneTree]'s group methods.
+   */
+  public final fun isInGroup(group: String): Boolean = isInGroup(group.asCachedStringName())
+
+  /**
+   * Calls the given [method] name, passing [args] as arguments, on this node and all of its
+   * children, recursively.
+   * If [parentFirst] is `true`, the method is called on this node first, then on all of its
+   * children. If `false`, the children's methods are called first.
+   */
+  @JvmOverloads
+  public final fun propagateCall(
+    method: String,
+    args: VariantArray<Any?> = godot.core.variantArrayOf(),
+    parentFirst: Boolean = false,
+  ) = propagateCall(method.asCachedStringName(), args, parentFirst)
+
+  /**
+   * Changes the RPC configuration for the given [method]. [config] should either be `null` to
+   * disable the feature (as by default), or a [Dictionary] containing the following entries:
+   * - `rpc_mode`: see [MultiplayerAPI.RPCMode];
+   * - `transfer_mode`: see [MultiplayerPeer.TransferMode];
+   * - `call_local`: if `true`, the method will also be called locally;
+   * - `channel`: an [int] representing the channel to send the RPC on.
+   * **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation,
+   * with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the
+   * [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url]
+   * tutorial.
+   */
+  public final fun rpcConfig(method: String, config: Any?) =
+      rpcConfig(method.asCachedStringName(), config)
+
+  /**
+   * Translates a [message], using the translation catalogs configured in the Project Settings.
+   * Further [context] can be specified to help with the translation. Note that most [Control] nodes
+   * automatically translate their strings, so this method is mostly useful for formatted strings or
+   * custom drawn text.
+   * This method works the same as [Object.tr], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns the [message] without changes. See [Object.setMessageTranslation].
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
+   */
+  public final fun atr(message: String, context: String): String =
+      atr(message, context.asCachedStringName())
+
+  /**
+   * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
+   * Project Settings. Further [context] can be specified to help with the translation.
+   * This method works the same as [Object.trN], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns [message] or [pluralMessage], without changes. See [Object.setMessageTranslation].
+   * The [n] is the number, or amount, of the message's subject. It is used by the translation
+   * system to fetch the correct plural form for the current language.
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
+   * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
+   * recommended to handle these cases with [atr].
+   */
+  public final fun atrN(
+    message: String,
+    pluralMessage: String,
+    n: Int,
+    context: String,
+  ): String = atrN(message, pluralMessage.asCachedStringName(), n, context.asCachedStringName())
+
+  /**
+   * Sends a remote procedure call request for the given [method] to peers on the network (and
+   * locally), sending additional arguments to the method called by the RPC. The call request will only
+   * be received by nodes with the same [NodePath], including the exact same [name]. Behavior depends
+   * on the RPC configuration for the given [method] (see [rpcConfig] and [annotation @GDScript.@rpc]).
+   * By default, methods are not exposed to RPCs.
+   * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
+   * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
+   * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
+   * not available.
+   * **Note:** You can only safely use RPCs on clients after you received the [signal
+   * MultiplayerAPI.connected_to_server] signal from the [MultiplayerAPI]. You also need to keep track
+   * of the connection state, either by the [MultiplayerAPI] signals like [signal
+   * MultiplayerAPI.server_disconnected] or by checking
+   * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
+   */
+  public final fun rpc(method: String, vararg args: Any?): Error =
+      rpc(method.asCachedStringName(), )
+
+  /**
+   * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
+   * May return [OK] if the call is successful, [ERR_INVALID_PARAMETER] if the arguments passed in
+   * the [method] do not match, [ERR_UNCONFIGURED] if the node's [multiplayer] cannot be fetched (such
+   * as when the node is not inside the tree), [ERR_CONNECTION_ERROR] if [multiplayer]'s connection is
+   * not available.
+   */
+  public final fun rpcId(
+    peerId: Long,
+    method: String,
+    vararg args: Any?,
+  ): Error = rpcId(peerId, method.asCachedStringName(), )
+
+  /**
+   * This function is similar to [Object.callDeferred] except that the call will take place when the
+   * node thread group is processed. If the node thread group processes in sub-threads, then the call
+   * will be done on that thread, right before [NOTIFICATION_PROCESS] or
+   * [NOTIFICATION_PHYSICS_PROCESS], the [_process] or [_physicsProcess] or their internal versions are
+   * called.
+   */
+  public final fun callDeferredThreadGroup(method: String, vararg args: Any?): Any? =
+      callDeferredThreadGroup(method.asCachedStringName(), )
+
+  /**
+   * Similar to [callDeferredThreadGroup], but for setting properties.
+   */
+  public final fun setDeferredThreadGroup(`property`: String, `value`: Any?) =
+      setDeferredThreadGroup(property.asCachedStringName(), value)
+
+  /**
+   * This function ensures that the calling of this function will succeed, no matter whether it's
+   * being done from a thread or not. If called from a thread that is not allowed to call the function,
+   * the call will become deferred. Otherwise, the call will go through directly.
+   */
+  public final fun callThreadSafe(method: String, vararg args: Any?): Any? =
+      callThreadSafe(method.asCachedStringName(), )
+
+  /**
+   * Similar to [callThreadSafe], but for setting properties.
+   */
+  public final fun setThreadSafe(`property`: String, `value`: Any?) =
+      setThreadSafe(property.asCachedStringName(), value)
 
   public enum class ProcessMode(
     id: Long,
@@ -2734,12 +2843,14 @@ public open class Node : Object() {
      */
     @JvmStatic
     public final fun printOrphanNodes(): Unit {
-      TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.printOrphanNodesPtr, NIL)
     }
   }
 
   public object MethodBindings {
+    internal val printOrphanNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
+
     internal val addSiblingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "add_sibling", 2570952461)
 
@@ -3074,8 +3185,5 @@ public open class Node : Object() {
 
     internal val notifyThreadSafePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "notify_thread_safe", 1286410249)
-
-    internal val printOrphanNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
   }
 }

@@ -117,6 +117,7 @@ public open class MovieWriter : Object() {
    * result in [_writeEnd] being called.
    */
   public open fun _writeEnd(): Unit {
+    throw NotImplementedError("_writeEnd is not implemented for MovieWriter")
   }
 
   public companion object {

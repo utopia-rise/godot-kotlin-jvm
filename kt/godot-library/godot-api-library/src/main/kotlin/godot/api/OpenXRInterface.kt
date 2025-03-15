@@ -176,7 +176,6 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public final fun getDisplayRefreshRate(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -187,7 +186,6 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public final fun getRenderTargetSizeMultiplier(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -204,13 +202,11 @@ public open class OpenXRInterface : XRInterface() {
    * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
    */
   public final fun isFoveationSupported(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFoveationSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFoveationLevel(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFoveationLevelPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -221,7 +217,6 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public final fun getFoveationDynamic(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFoveationDynamicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -252,7 +247,6 @@ public open class OpenXRInterface : XRInterface() {
    * Returns a list of action sets registered with Godot (loaded from the action map at runtime).
    */
   public final fun getActionSets(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -262,7 +256,6 @@ public open class OpenXRInterface : XRInterface() {
    * supported by the OpenXR runtime and after the interface has been initialized.
    */
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -360,7 +353,6 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandTrackingSupported(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -370,7 +362,6 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandInteractionSupported(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -380,13 +371,11 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isEyeGazeInteractionSupported(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getVrsMinRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -397,7 +386,6 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public final fun getVrsStrength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

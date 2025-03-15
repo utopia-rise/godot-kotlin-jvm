@@ -63,7 +63,6 @@ public open class MeshInstance2D : Node2D() {
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
@@ -74,7 +73,6 @@ public open class MeshInstance2D : Node2D() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }

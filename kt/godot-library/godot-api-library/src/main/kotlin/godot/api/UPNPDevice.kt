@@ -106,7 +106,6 @@ public open class UPNPDevice : RefCounted() {
    * forwarding.
    */
   public final fun isValidGateway(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isValidGatewayPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -115,7 +114,6 @@ public open class UPNPDevice : RefCounted() {
    * Returns the external IP address of this [UPNPDevice] or an empty string.
    */
   public final fun queryExternalAddress(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.queryExternalAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -154,7 +152,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getDescriptionUrl(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDescriptionUrlPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -165,7 +162,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getServiceType(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getServiceTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -176,7 +172,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getIgdControlUrl(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIgdControlUrlPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -187,7 +182,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getIgdServiceType(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIgdServiceTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -198,7 +192,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getIgdOurAddr(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIgdOurAddrPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -209,7 +202,6 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun getIgdStatus(): IGDStatus {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIgdStatusPtr, LONG)
     return UPNPDevice.IGDStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }

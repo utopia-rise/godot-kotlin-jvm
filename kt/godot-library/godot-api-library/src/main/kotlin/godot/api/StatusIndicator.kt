@@ -91,7 +91,6 @@ public open class StatusIndicator : Node() {
   }
 
   public final fun getTooltip(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -102,7 +101,6 @@ public open class StatusIndicator : Node() {
   }
 
   public final fun getIcon(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -113,7 +111,6 @@ public open class StatusIndicator : Node() {
   }
 
   public final fun isVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -124,7 +121,6 @@ public open class StatusIndicator : Node() {
   }
 
   public final fun getMenu(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMenuPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -134,7 +130,6 @@ public open class StatusIndicator : Node() {
    * visible, returns an empty [Rect2].
    */
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }

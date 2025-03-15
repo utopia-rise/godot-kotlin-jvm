@@ -59,7 +59,6 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public final fun getBillboardType(): BillboardType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBillboardTypePtr, LONG)
     return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -70,7 +69,6 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public final fun isKeepScaleEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -84,7 +84,6 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
   }
 
   public final fun getOnThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOnThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -95,7 +94,6 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
   }
 
   public final fun getOffThreshold(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -106,7 +104,6 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
   }
 
   public final fun getOnHaptic(): OpenXRHapticBase? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOnHapticPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
@@ -117,7 +114,6 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
   }
 
   public final fun getOffHaptic(): OpenXRHapticBase? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffHapticPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }

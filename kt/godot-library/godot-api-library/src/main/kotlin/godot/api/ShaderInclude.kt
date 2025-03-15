@@ -48,7 +48,6 @@ public open class ShaderInclude : Resource() {
   }
 
   public final fun getCode(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

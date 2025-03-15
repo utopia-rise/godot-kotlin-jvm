@@ -451,7 +451,6 @@ public open class Tween : RefCounted() {
    * [SceneTree.getProcessedTweens].
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
@@ -462,7 +461,6 @@ public open class Tween : RefCounted() {
    * [SceneTree.getProcessedTweens].
    */
   public final fun pause(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
   }
 
@@ -470,7 +468,6 @@ public open class Tween : RefCounted() {
    * Resumes a paused or stopped [Tween].
    */
   public final fun play(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
 
@@ -478,7 +475,6 @@ public open class Tween : RefCounted() {
    * Aborts all tweening operations and invalidates the [Tween].
    */
   public final fun kill(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.killPtr, NIL)
   }
 
@@ -490,7 +486,6 @@ public open class Tween : RefCounted() {
    * finished animating will be slightly greater than the actual [Tween] duration.
    */
   public final fun getTotalElapsedTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -499,7 +494,6 @@ public open class Tween : RefCounted() {
    * Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished.
    */
   public final fun isRunning(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -511,7 +505,6 @@ public open class Tween : RefCounted() {
    * Invalid [Tween]s can't have [Tweener]s appended.
    */
   public final fun isValid(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -606,7 +599,6 @@ public open class Tween : RefCounted() {
    * already finished.
    */
   public final fun getLoopsLeft(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopsLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -676,7 +668,6 @@ public open class Tween : RefCounted() {
    * You can make the [Tween] parallel by default by using [setParallel].
    */
   public final fun parallel(): Tween? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.parallelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -700,7 +691,6 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun chain(): Tween? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.chainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }

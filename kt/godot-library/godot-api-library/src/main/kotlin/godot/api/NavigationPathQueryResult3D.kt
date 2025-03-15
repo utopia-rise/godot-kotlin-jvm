@@ -88,7 +88,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public final fun getPath(): PackedVector3Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
@@ -99,7 +98,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public final fun getPathTypes(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -110,7 +108,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public final fun getPathRids(): VariantArray<RID> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathRidsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -121,7 +118,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public final fun getPathOwnerIds(): PackedInt64Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
@@ -131,7 +127,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * multiple queries.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 

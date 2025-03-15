@@ -78,7 +78,6 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -89,7 +88,6 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   }
 
   public final fun getFabrikDataChainLength(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

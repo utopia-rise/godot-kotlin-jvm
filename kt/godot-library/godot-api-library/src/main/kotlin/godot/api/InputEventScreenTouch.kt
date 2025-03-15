@@ -122,7 +122,6 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   public final fun getIndex(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -133,7 +132,6 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -154,7 +152,6 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   public final fun isDoubleTap(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDoubleTapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

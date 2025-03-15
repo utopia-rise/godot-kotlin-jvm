@@ -81,7 +81,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Returns the parsed source geometry data vertices array.
    */
   public final fun getVertices(): PackedFloat32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
@@ -101,7 +100,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Returns the parsed source geometry data indices array.
    */
   public final fun getIndices(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -119,7 +117,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Clears the internal data.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -127,7 +124,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Returns `true` when parsed source geometry data exists.
    */
   public final fun hasData(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -193,7 +189,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Clears all projected obstructions.
    */
   public final fun clearProjectedObstructions(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearProjectedObstructionsPtr, NIL)
   }
 
@@ -224,7 +219,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
   public final fun getProjectedObstructions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
@@ -235,7 +229,6 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * made.
    */
   public final fun getBounds(): AABB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }

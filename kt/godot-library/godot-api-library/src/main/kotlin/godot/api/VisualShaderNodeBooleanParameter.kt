@@ -55,7 +55,6 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -66,7 +65,6 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
   }
 
   public final fun getDefaultValue(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -236,7 +236,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getTabCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -247,7 +246,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getCurrentTab(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -256,7 +254,6 @@ public open class TabBar : Control() {
    * Returns the previously active tab index.
    */
   public final fun getPreviousTab(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreviousTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -266,7 +263,6 @@ public open class TabBar : Control() {
    * tab selection changed.
    */
   public final fun selectPreviousAvailable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectPreviousAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -276,7 +272,6 @@ public open class TabBar : Control() {
    * if tab selection changed.
    */
   public final fun selectNextAvailable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectNextAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -495,7 +490,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getTabAlignment(): AlignmentMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabAlignmentPtr, LONG)
     return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -506,7 +500,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getClipTabs(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipTabsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -515,7 +508,6 @@ public open class TabBar : Control() {
    * Returns the number of hidden tabs offsetted to the left.
    */
   public final fun getTabOffset(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -525,7 +517,6 @@ public open class TabBar : Control() {
    * all tabs) are visible.
    */
   public final fun getOffsetButtonsVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetButtonsVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -561,7 +552,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getTabCloseDisplayPolicy(): CloseButtonDisplayPolicy {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
     return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -572,7 +562,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getMaxTabWidth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxTabWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -583,7 +572,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getScrollingEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -594,7 +582,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getDragToRearrangeEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -605,7 +592,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getTabsRearrangeGroup(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -616,7 +602,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getScrollToSelected(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollToSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -627,7 +612,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getSelectWithRmb(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSelectWithRmbPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -638,7 +622,6 @@ public open class TabBar : Control() {
   }
 
   public final fun getDeselectEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeselectEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -647,7 +630,6 @@ public open class TabBar : Control() {
    * Clears all tabs.
    */
   public final fun clearTabs(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearTabsPtr, NIL)
   }
 

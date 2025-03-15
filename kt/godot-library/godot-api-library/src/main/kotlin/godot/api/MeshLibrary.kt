@@ -231,7 +231,6 @@ public open class MeshLibrary : Resource() {
    * Clears the library.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -239,7 +238,6 @@ public open class MeshLibrary : Resource() {
    * Returns the list of item IDs in use.
    */
   public final fun getItemList(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getItemListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -248,7 +246,6 @@ public open class MeshLibrary : Resource() {
    * Gets an unused ID for a new item.
    */
   public final fun getLastUnusedItemId(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLastUnusedItemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

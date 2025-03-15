@@ -23,6 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
@@ -150,7 +151,6 @@ public open class GLTFLight : Resource() {
    * Converts this GLTFLight instance into a Godot [Light3D] node.
    */
   public final fun toNode(): Light3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Light3D?)
   }
@@ -159,13 +159,11 @@ public open class GLTFLight : Resource() {
    * Serializes this GLTFLight instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -176,7 +174,6 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getIntensity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -187,7 +184,6 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getLightType(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightTypePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -198,7 +194,6 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getRange(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -209,7 +204,6 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getInnerConeAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -220,7 +214,6 @@ public open class GLTFLight : Resource() {
   }
 
   public final fun getOuterConeAngle(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -240,6 +233,12 @@ public open class GLTFLight : Resource() {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
+
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**
@@ -264,8 +263,14 @@ public open class GLTFLight : Resource() {
   }
 
   public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
+
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
@@ -311,11 +316,5 @@ public open class GLTFLight : Resource() {
 
     internal val setAdditionalDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
-
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
   }
 }

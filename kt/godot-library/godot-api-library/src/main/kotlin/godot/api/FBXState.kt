@@ -40,7 +40,6 @@ public open class FBXState : GLTFState() {
   }
 
   public final fun getAllowGeometryHelperNodes(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

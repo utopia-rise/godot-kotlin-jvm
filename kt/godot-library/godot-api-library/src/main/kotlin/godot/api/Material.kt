@@ -107,7 +107,6 @@ public open class Material : Resource() {
   }
 
   public final fun getNextPass(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNextPassPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
@@ -118,7 +117,6 @@ public open class Material : Resource() {
   }
 
   public final fun getRenderPriority(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -128,7 +126,6 @@ public open class Material : Resource() {
    * code, including all variants and internal shader code. See also [Shader.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
 
@@ -136,7 +133,6 @@ public open class Material : Resource() {
    * Creates a placeholder version of this resource ([PlaceholderMaterial]).
    */
   public final fun createPlaceholder(): Resource? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }

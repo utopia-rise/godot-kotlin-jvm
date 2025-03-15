@@ -109,7 +109,6 @@ public open class PointLight2D : Light2D() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -120,7 +119,6 @@ public open class PointLight2D : Light2D() {
   }
 
   public final fun getTextureOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -131,7 +129,6 @@ public open class PointLight2D : Light2D() {
   }
 
   public final fun getTextureScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

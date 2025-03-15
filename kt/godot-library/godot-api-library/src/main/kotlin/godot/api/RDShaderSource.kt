@@ -127,7 +127,6 @@ public open class RDShaderSource : RefCounted() {
   }
 
   public final fun getLanguage(): RenderingDevice.ShaderLanguage {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, LONG)
     return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
   }

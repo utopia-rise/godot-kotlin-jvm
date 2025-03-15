@@ -59,7 +59,6 @@ public open class RDUniform : RefCounted() {
   }
 
   public final fun getUniformType(): RenderingDevice.UniformType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniformTypePtr, LONG)
     return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -70,7 +69,6 @@ public open class RDUniform : RefCounted() {
   }
 
   public final fun getBinding(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBindingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -88,7 +86,6 @@ public open class RDUniform : RefCounted() {
    * Unbinds all ids currently bound to the uniform.
    */
   public final fun clearIds(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearIdsPtr, NIL)
   }
 
@@ -96,7 +93,6 @@ public open class RDUniform : RefCounted() {
    * Returns an array of all ids currently bound to the uniform.
    */
   public final fun getIds(): VariantArray<RID> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getIdsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }

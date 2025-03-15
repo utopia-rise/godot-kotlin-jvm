@@ -19,6 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -58,7 +59,6 @@ public open class Shader : Resource() {
    * Returns the shader mode for the shader.
    */
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
     return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -69,7 +69,6 @@ public open class Shader : Resource() {
   }
 
   public final fun getCode(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -122,9 +121,30 @@ public open class Shader : Resource() {
    * [Material.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
+
+  /**
+   * Sets the default texture to be used with a texture uniform. The default is used if a texture is
+   * not set in the [ShaderMaterial].
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  public final fun setDefaultTextureParameter(
+    name: String,
+    texture: Texture?,
+    index: Int = 0,
+  ) = setDefaultTextureParameter(name.asCachedStringName(), texture, index)
+
+  /**
+   * Returns the texture that is set as default for the specified parameter.
+   * **Note:** [name] must match the name of the uniform in the code exactly.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  public final fun getDefaultTextureParameter(name: String, index: Int = 0): Texture? =
+      getDefaultTextureParameter(name.asCachedStringName(), index)
 
   public enum class Mode(
     id: Long,

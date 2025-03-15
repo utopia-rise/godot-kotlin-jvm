@@ -78,7 +78,6 @@ public open class BoneAttachment3D : Node3D() {
    * Get parent or external [Skeleton3D] node if found.
    */
   public final fun getSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
@@ -89,7 +88,6 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   public final fun getBoneName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -100,7 +98,6 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   public final fun getBoneIdx(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -111,7 +108,6 @@ public open class BoneAttachment3D : Node3D() {
    * set to override the bone pose.
    */
   public final fun onSkeletonUpdate(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.onSkeletonUpdatePtr, NIL)
   }
 
@@ -121,7 +117,6 @@ public open class BoneAttachment3D : Node3D() {
   }
 
   public final fun getOverridePose(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOverridePosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -141,7 +136,6 @@ public open class BoneAttachment3D : Node3D() {
    * attempting to use its parent node as the [Skeleton3D].
    */
   public final fun getUseExternalSkeleton(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -159,7 +153,6 @@ public open class BoneAttachment3D : Node3D() {
    * Returns the [NodePath] to the external [Skeleton3D] node, if one has been set.
    */
   public final fun getExternalSkeleton(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }

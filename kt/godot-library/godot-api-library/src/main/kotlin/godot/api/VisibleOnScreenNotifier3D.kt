@@ -97,7 +97,6 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * instantiated.
    */
   public final fun isOnScreen(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

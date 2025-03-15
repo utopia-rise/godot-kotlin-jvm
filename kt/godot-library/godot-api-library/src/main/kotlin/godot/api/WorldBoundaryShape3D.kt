@@ -78,7 +78,6 @@ public open class WorldBoundaryShape3D : Shape3D() {
   }
 
   public final fun getPlane(): Plane {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlanePtr, PLANE)
     return (TransferContext.readReturnValue(PLANE) as Plane)
   }

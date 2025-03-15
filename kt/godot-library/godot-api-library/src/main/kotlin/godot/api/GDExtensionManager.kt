@@ -109,7 +109,6 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun getLoadedExtensions(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }

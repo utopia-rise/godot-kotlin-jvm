@@ -27,6 +27,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -375,7 +376,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getJson(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJsonPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -386,7 +386,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getMajorVersion(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMajorVersionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -397,7 +396,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getMinorVersion(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinorVersionPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -408,7 +406,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getCopyright(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCopyrightPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -419,7 +416,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getGlbData(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlbDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -430,7 +426,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getUseNamedSkinBinds(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseNamedSkinBindsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -446,7 +441,6 @@ public open class GLTFState : Resource() {
    * Godot scene, or nodes that may generate multiple Godot scene nodes.
    */
   public final fun getNodes(): VariantArray<GLTFNode> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFNode>)
   }
@@ -462,7 +456,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getBuffers(): VariantArray<PackedByteArray> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBuffersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedByteArray>)
   }
@@ -473,7 +466,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getBufferViews(): VariantArray<GLTFBufferView> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferViewsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFBufferView>)
   }
@@ -484,7 +476,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getAccessors(): VariantArray<GLTFAccessor> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessorsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFAccessor>)
   }
@@ -499,7 +490,6 @@ public open class GLTFState : Resource() {
    * [GLTFNode.mesh] index refers to.
    */
   public final fun getMeshes(): VariantArray<GLTFMesh> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFMesh>)
   }
@@ -534,7 +524,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getMaterials(): VariantArray<Material> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaterialsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
@@ -545,7 +534,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getSceneName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSceneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -556,7 +544,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getBasePath(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBasePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -567,7 +554,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getFilename(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFilenamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -578,7 +564,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getRootNodes(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -589,7 +574,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getTextures(): VariantArray<GLTFTexture> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFTexture>)
   }
@@ -603,7 +587,6 @@ public open class GLTFState : Resource() {
    * Retrieves the array of texture samplers that are used by the textures contained in the glTF.
    */
   public final fun getTextureSamplers(): VariantArray<GLTFTextureSampler> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureSamplersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFTextureSampler>)
   }
@@ -621,7 +604,6 @@ public open class GLTFState : Resource() {
    * [GLTFTexture.srcImage] index refers to.
    */
   public final fun getImages(): VariantArray<Texture2D> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImagesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Texture2D>)
   }
@@ -640,7 +622,6 @@ public open class GLTFState : Resource() {
    * [GLTFNode.skin] index refers to.
    */
   public final fun getSkins(): VariantArray<GLTFSkin> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkinsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFSkin>)
   }
@@ -659,7 +640,6 @@ public open class GLTFState : Resource() {
    * [GLTFNode.camera] index refers to.
    */
   public final fun getCameras(): VariantArray<GLTFCamera> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCamerasPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFCamera>)
   }
@@ -678,7 +658,6 @@ public open class GLTFState : Resource() {
    * [GLTFNode.light] index refers to.
    */
   public final fun getLights(): VariantArray<GLTFLight> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLightsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFLight>)
   }
@@ -697,7 +676,6 @@ public open class GLTFState : Resource() {
    * process.
    */
   public final fun getUniqueNames(): VariantArray<String> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniqueNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
@@ -715,7 +693,6 @@ public open class GLTFState : Resource() {
    * Returns an array of unique animation names. This is only used during the import process.
    */
   public final fun getUniqueAnimationNames(): VariantArray<String> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUniqueAnimationNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
@@ -733,7 +710,6 @@ public open class GLTFState : Resource() {
    * [GLTFNode.skeleton] index refers to.
    */
   public final fun getSkeletons(): VariantArray<GLTFSkeleton> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSkeletonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFSkeleton>)
   }
@@ -748,7 +724,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getCreateAnimations(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCreateAnimationsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -759,7 +734,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getImportAsSkeletonBones(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getImportAsSkeletonBonesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -775,7 +749,6 @@ public open class GLTFState : Resource() {
    * Godot [AnimationPlayer] nodes.
    */
   public final fun getAnimations(): VariantArray<GLTFAnimation> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAnimationsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFAnimation>)
   }
@@ -841,7 +814,6 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getHandleBinaryImage(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHandleBinaryImagePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -857,10 +829,28 @@ public open class GLTFState : Resource() {
   }
 
   public final fun getBakeFps(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeFpsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
+
+  /**
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is `null`.
+   */
+  public final fun getAdditionalData(extensionName: String): Any? =
+      getAdditionalData(extensionName.asCachedStringName())
+
+  /**
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the glTF file), and the second argument can be anything you want.
+   */
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
+      setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**

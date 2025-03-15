@@ -47,7 +47,6 @@ public open class SphereOccluder3D : Occluder3D() {
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

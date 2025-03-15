@@ -51,7 +51,6 @@ public open class AnimatableBody2D : StaticBody2D() {
   }
 
   public final fun isSyncToPhysicsEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

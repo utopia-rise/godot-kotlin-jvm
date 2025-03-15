@@ -223,7 +223,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
    */
   public final fun setAsMix(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setAsMixPtr, NIL)
   }
 
@@ -233,7 +232,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getEnableBlend(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -244,7 +242,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getSrcColorBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSrcColorBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -255,7 +252,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getDstColorBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDstColorBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -266,7 +262,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getColorBlendOp(): RenderingDevice.BlendOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorBlendOpPtr, LONG)
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -277,7 +272,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getSrcAlphaBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSrcAlphaBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -288,7 +282,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getDstAlphaBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDstAlphaBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -299,7 +292,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getAlphaBlendOp(): RenderingDevice.BlendOperation {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAlphaBlendOpPtr, LONG)
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -310,7 +302,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getWriteR(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteRPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -321,7 +312,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getWriteG(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteGPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -332,7 +322,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getWriteB(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteBPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -343,7 +332,6 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun getWriteA(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWriteAPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -133,7 +133,7 @@ fun TypedTrait.getTypeName() = getTypeClass().typeName
 
 fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrimitive() || isCoreType() || isBitField())
 
-val TypedTrait.jvmVariantTypeValue: ClassName
+val TypedTrait.variantParser: ClassName
     get() {
         return when {
             type.isNullOrEmpty() -> VARIANT_PARSER_NIL

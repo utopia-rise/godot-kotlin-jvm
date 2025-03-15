@@ -4,7 +4,8 @@ object MemberNameMapping {
     object KotlinNameToJavaName {
         object GodotApi {
             val functions = mapOf(
-                "getClass" to "getGodotClass"
+                "getClass" to "getGodotClass",
+                "wait" to "waitFor"
             )
         }
     }

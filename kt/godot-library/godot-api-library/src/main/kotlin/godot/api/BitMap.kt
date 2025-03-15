@@ -109,7 +109,6 @@ public open class BitMap : Resource() {
    * Returns the number of bitmap elements that are set to `true`.
    */
   public final fun getTrueBitCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrueBitCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -118,7 +117,6 @@ public open class BitMap : Resource() {
    * Returns bitmap's dimensions.
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -148,7 +146,6 @@ public open class BitMap : Resource() {
    * bits into black.
    */
   public final fun convertToImage(): Image? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.convertToImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }

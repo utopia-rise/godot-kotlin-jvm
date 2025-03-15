@@ -63,7 +63,6 @@ public open class SeparationRayShape3D : Shape3D() {
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -74,7 +73,6 @@ public open class SeparationRayShape3D : Shape3D() {
   }
 
   public final fun getSlideOnSlope(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSlideOnSlopePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

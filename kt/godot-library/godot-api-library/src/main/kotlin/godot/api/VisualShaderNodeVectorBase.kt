@@ -44,7 +44,6 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeVectorBase.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }

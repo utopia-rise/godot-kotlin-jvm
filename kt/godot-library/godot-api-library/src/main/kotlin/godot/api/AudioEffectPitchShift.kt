@@ -76,7 +76,6 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public final fun getPitchScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPitchScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -87,7 +86,6 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public final fun getOversampling(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -98,7 +96,6 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public final fun getFftSize(): FFTSize {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
     return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }

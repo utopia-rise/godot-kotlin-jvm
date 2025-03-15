@@ -117,7 +117,6 @@ public object ThemeDB : Object() {
    */
   @JvmStatic
   public final fun getDefaultTheme(): Theme? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
@@ -129,7 +128,6 @@ public object ThemeDB : Object() {
    */
   @JvmStatic
   public final fun getProjectTheme(): Theme? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProjectThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
@@ -142,7 +140,6 @@ public object ThemeDB : Object() {
 
   @JvmStatic
   public final fun getFallbackBaseScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -155,7 +152,6 @@ public object ThemeDB : Object() {
 
   @JvmStatic
   public final fun getFallbackFont(): Font? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
@@ -168,7 +164,6 @@ public object ThemeDB : Object() {
 
   @JvmStatic
   public final fun getFallbackFontSize(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -181,7 +176,6 @@ public object ThemeDB : Object() {
 
   @JvmStatic
   public final fun getFallbackIcon(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -194,7 +188,6 @@ public object ThemeDB : Object() {
 
   @JvmStatic
   public final fun getFallbackStylebox(): StyleBox? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }

@@ -134,7 +134,6 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   public final fun getButtonMask(): MouseButtonMask {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -145,7 +144,6 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -156,7 +154,6 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   public final fun getGlobalPosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

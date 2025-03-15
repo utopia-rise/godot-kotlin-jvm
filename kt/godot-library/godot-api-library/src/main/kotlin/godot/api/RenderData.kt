@@ -31,7 +31,6 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RenderSceneBuffers] object managing the scene buffers for rendering this viewport.
    */
   public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneBuffers?)
   }
@@ -40,7 +39,6 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RenderSceneData] object managing this frames scene data.
    */
   public final fun getRenderSceneData(): RenderSceneData? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderSceneDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneData?)
   }
@@ -50,7 +48,6 @@ public open class RenderData internal constructor() : Object() {
    * viewport.
    */
   public final fun getEnvironment(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -60,7 +57,6 @@ public open class RenderData internal constructor() : Object() {
    * this viewport.
    */
   public final fun getCameraAttributes(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

@@ -32,12 +32,14 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -151,7 +153,6 @@ public open class Animation : Resource() {
    * Returns the amount of tracks in the animation.
    */
   public final fun getTrackCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -912,7 +913,6 @@ public open class Animation : Resource() {
    * Returns every marker in this Animation, sorted ascending by time.
    */
   public final fun getMarkerNames(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMarkerNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -940,7 +940,6 @@ public open class Animation : Resource() {
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -951,7 +950,6 @@ public open class Animation : Resource() {
   }
 
   public final fun getLoopMode(): LoopMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -962,7 +960,6 @@ public open class Animation : Resource() {
   }
 
   public final fun getStep(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -971,7 +968,6 @@ public open class Animation : Resource() {
    * Clear the animation (clear all tracks and reset all).
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -1017,10 +1013,61 @@ public open class Animation : Resource() {
   }
 
   public final fun isCaptureIncluded(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCaptureIncludedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
+   * the index of an Animation Track.
+   */
+  public final fun animationTrackInsertKey(
+    trackIdx: Int,
+    time: Double,
+    animation: String,
+  ): Int = animationTrackInsertKey(trackIdx, time, animation.asCachedStringName())
+
+  /**
+   * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
+   * an Animation Track.
+   */
+  public final fun animationTrackSetKeyAnimation(
+    trackIdx: Int,
+    keyIdx: Int,
+    animation: String,
+  ) = animationTrackSetKeyAnimation(trackIdx, keyIdx, animation.asCachedStringName())
+
+  /**
+   * Adds a marker to this Animation.
+   */
+  public final fun addMarker(name: String, time: Double) =
+      addMarker(name.asCachedStringName(), time)
+
+  /**
+   * Removes the marker with the given name from this Animation.
+   */
+  public final fun removeMarker(name: String) = removeMarker(name.asCachedStringName())
+
+  /**
+   * Returns `true` if this Animation contains a marker with the given name.
+   */
+  public final fun hasMarker(name: String): Boolean = hasMarker(name.asCachedStringName())
+
+  /**
+   * Returns the given marker's time.
+   */
+  public final fun getMarkerTime(name: String): Double = getMarkerTime(name.asCachedStringName())
+
+  /**
+   * Returns the given marker's color.
+   */
+  public final fun getMarkerColor(name: String): Color = getMarkerColor(name.asCachedStringName())
+
+  /**
+   * Sets the given marker's color.
+   */
+  public final fun setMarkerColor(name: String, color: Color) =
+      setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(
     id: Long,

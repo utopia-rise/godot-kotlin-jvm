@@ -84,7 +84,6 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -95,7 +94,6 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getDefaultValue(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }

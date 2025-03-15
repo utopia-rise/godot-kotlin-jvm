@@ -35,6 +35,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,6 +43,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -666,7 +668,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -732,7 +733,6 @@ public open class GraphEdit : Control() {
    * Removes all connections between nodes.
    */
   public final fun clearConnections(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearConnectionsPtr, NIL)
   }
 
@@ -745,12 +745,10 @@ public open class GraphEdit : Control() {
    * connection_drag_ended].
    */
   public final fun forceConnectionDragEnd(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceConnectionDragEndPtr, NIL)
   }
 
   public final fun getScrollOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -880,7 +878,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getPanningScheme(): PanningScheme {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPanningSchemePtr, LONG)
     return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -891,7 +888,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getZoom(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZoomPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -902,7 +898,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getZoomMin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZoomMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -913,7 +908,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getZoomMax(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZoomMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -924,7 +918,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getZoomStep(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getZoomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -935,7 +928,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingGrid(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingGridPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -946,7 +938,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getGridPattern(): GridPattern {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGridPatternPtr, LONG)
     return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -957,7 +948,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isSnappingEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSnappingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -968,7 +958,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getSnappingDistance(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSnappingDistancePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -979,7 +968,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getConnectionLinesCurvature(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -990,7 +978,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getConnectionLinesThickness(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1001,7 +988,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isConnectionLinesAntialiased(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1012,7 +998,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getMinimapSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimapSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -1023,7 +1008,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun getMinimapOpacity(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1034,7 +1018,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isMinimapEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMinimapEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1045,7 +1028,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingMenu(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1056,7 +1038,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingZoomLabel(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingZoomLabelPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1067,7 +1048,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingGridButtons(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingGridButtonsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1078,7 +1058,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingZoomButtons(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1089,7 +1068,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingMinimapButton(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1100,7 +1078,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isShowingArrangeButton(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1111,7 +1088,6 @@ public open class GraphEdit : Control() {
   }
 
   public final fun isRightDisconnectsEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1124,7 +1100,6 @@ public open class GraphEdit : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getMenuHbox(): HBoxContainer? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMenuHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
@@ -1134,7 +1109,6 @@ public open class GraphEdit : Control() {
    * horizontal and vertical gap between nodes.
    */
   public final fun arrangeNodes(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.arrangeNodesPtr, NIL)
   }
 
@@ -1145,6 +1119,89 @@ public open class GraphEdit : Control() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
+
+  /**
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
+   * redraw.
+   */
+  @JvmOverloads
+  public final fun connectNode(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+    keepAlive: Boolean = false,
+  ): Error =
+      connectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, keepAlive)
+
+  /**
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
+   * the [toNode] [GraphNode].
+   */
+  public final fun isNodeConnected(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+  ): Boolean =
+      isNodeConnected(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+
+  /**
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
+   */
+  public final fun disconnectNode(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+  ) = disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+
+  /**
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
+   * with the color provided in the [theme_item activity] theme property. The color is linearly
+   * interpolated between the connection color and the activity color using [amount] as weight.
+   */
+  public final fun setConnectionActivity(
+    fromNode: String,
+    fromPort: Int,
+    toNode: String,
+    toPort: Int,
+    amount: Float,
+  ) =
+      setConnectionActivity(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, amount)
+
+  /**
+   * Returns the number of connections from [fromPort] of [fromNode].
+   */
+  public final fun getConnectionCount(fromNode: String, fromPort: Int): Int =
+      getConnectionCount(fromNode.asCachedStringName(), fromPort)
+
+  /**
+   * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
+   */
+  public final fun attachGraphElementToFrame(element: String, frame: String) =
+      attachGraphElementToFrame(element.asCachedStringName(), frame.asCachedStringName())
+
+  /**
+   * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
+   */
+  public final fun detachGraphElementFromFrame(element: String) =
+      detachGraphElementFromFrame(element.asCachedStringName())
+
+  /**
+   * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
+   */
+  public final fun getElementFrame(element: String): GraphFrame? =
+      getElementFrame(element.asCachedStringName())
+
+  /**
+   * Returns an array of node names that are attached to the [GraphFrame] with the given name.
+   */
+  public final fun getAttachedNodesOfFrame(frame: String): VariantArray<StringName> =
+      getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
     id: Long,

@@ -62,7 +62,6 @@ public open class AStar2D : RefCounted() {
    * Returns the next available point ID with no point associated to it.
    */
   public final fun getAvailablePointId(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAvailablePointIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -191,7 +190,6 @@ public open class AStar2D : RefCounted() {
    * Returns an array of all point IDs.
    */
   public final fun getPointIds(): PackedInt64Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
@@ -277,7 +275,6 @@ public open class AStar2D : RefCounted() {
    * Returns the number of points currently in the points pool.
    */
   public final fun getPointCount(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -287,7 +284,6 @@ public open class AStar2D : RefCounted() {
    * [reserveSpace].
    */
   public final fun getPointCapacity(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPointCapacityPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -306,7 +302,6 @@ public open class AStar2D : RefCounted() {
    * Clears all the points and segments.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 

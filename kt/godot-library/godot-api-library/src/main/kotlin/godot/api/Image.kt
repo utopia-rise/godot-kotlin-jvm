@@ -58,7 +58,6 @@ public open class Image : Resource() {
    * Returns the image's width.
    */
   public final fun getWidth(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -67,7 +66,6 @@ public open class Image : Resource() {
    * Returns the image's height.
    */
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -76,7 +74,6 @@ public open class Image : Resource() {
    * Returns the image's size (width and height).
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -85,7 +82,6 @@ public open class Image : Resource() {
    * Returns `true` if the image has generated mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -94,7 +90,6 @@ public open class Image : Resource() {
    * Returns the image's format. See [Format] constants.
    */
   public final fun getFormat(): Format {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -103,7 +98,6 @@ public open class Image : Resource() {
    * Returns a copy of the image's raw data.
    */
   public final fun getData(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -112,7 +106,6 @@ public open class Image : Resource() {
    * Returns size (in bytes) of the image's raw data.
    */
   public final fun getDataSize(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -131,7 +124,6 @@ public open class Image : Resource() {
    * to this count.
    */
   public final fun getMipmapCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMipmapCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -176,7 +168,6 @@ public open class Image : Resource() {
    * Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4).
    */
   public final fun shrinkX2(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.shrinkX2Ptr, NIL)
   }
 
@@ -193,7 +184,6 @@ public open class Image : Resource() {
    * Flips the image horizontally.
    */
   public final fun flipX(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.flipXPtr, NIL)
   }
 
@@ -201,7 +191,6 @@ public open class Image : Resource() {
    * Flips the image vertically.
    */
   public final fun flipY(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.flipYPtr, NIL)
   }
 
@@ -227,7 +216,6 @@ public open class Image : Resource() {
    * Removes the image's mipmaps.
    */
   public final fun clearMipmaps(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearMipmapsPtr, NIL)
   }
 
@@ -249,7 +237,6 @@ public open class Image : Resource() {
    * Returns `true` if the image has no data.
    */
   public final fun isEmpty(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmptyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -282,7 +269,6 @@ public open class Image : Resource() {
    * Saves the image as a PNG file to a byte array.
    */
   public final fun savePngToBuffer(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.savePngToBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -384,7 +370,6 @@ public open class Image : Resource() {
    * found.
    */
   public final fun detectAlpha(): AlphaMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.detectAlphaPtr, LONG)
     return Image.AlphaMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -394,7 +379,6 @@ public open class Image : Resource() {
    * has an alpha value higher than 0.
    */
   public final fun isInvisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInvisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -455,7 +439,6 @@ public open class Image : Resource() {
    * are not supported.
    */
   public final fun decompress(): Error {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.decompressPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -464,7 +447,6 @@ public open class Image : Resource() {
    * Returns `true` if the image is compressed.
    */
   public final fun isCompressed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCompressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -482,7 +464,6 @@ public open class Image : Resource() {
    * Rotates the image by `180` degrees. The width and height of the image must be greater than `1`.
    */
   public final fun rotate180(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.rotate180Ptr, NIL)
   }
 
@@ -490,7 +471,6 @@ public open class Image : Resource() {
    * Blends low-alpha pixels with nearby pixels.
    */
   public final fun fixAlphaEdges(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fixAlphaEdgesPtr, NIL)
   }
 
@@ -499,7 +479,6 @@ public open class Image : Resource() {
    * alpha)/256`. See also [CanvasItemMaterial.blendMode].
    */
   public final fun premultiplyAlpha(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.premultiplyAlphaPtr, NIL)
   }
 
@@ -508,7 +487,6 @@ public open class Image : Resource() {
    * [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
    */
   public final fun srgbToLinear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.srgbToLinearPtr, NIL)
   }
 
@@ -517,7 +495,6 @@ public open class Image : Resource() {
    * images with [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
    */
   public final fun linearToSrgb(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.linearToSrgbPtr, NIL)
   }
 
@@ -527,7 +504,6 @@ public open class Image : Resource() {
    * the polygon count.
    */
   public final fun normalMapToXy(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.normalMapToXyPtr, NIL)
   }
 
@@ -535,7 +511,6 @@ public open class Image : Resource() {
    * Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image.
    */
   public final fun rgbeToSrgb(): Image? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.rgbeToSrgbPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
@@ -647,7 +622,6 @@ public open class Image : Resource() {
    * non-zero alpha channel as visible.
    */
   public final fun getUsedRect(): Rect2i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUsedRectPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
@@ -1426,11 +1400,22 @@ public open class Image : Resource() {
     internal val clearMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
 
+    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
+
+    internal val createEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
+
+    internal val createFromDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
+
     internal val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "set_data", 2740482212)
 
     internal val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "is_empty", 36873697)
 
     internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "load", 166001499)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
 
     internal val savePngPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_png", 2113323047)
 
@@ -1568,16 +1553,5 @@ public open class Image : Resource() {
 
     internal val loadSvgFromStringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
-
-    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
-
-    internal val createEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
-
-    internal val createFromDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
   }
 }

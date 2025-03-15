@@ -63,7 +63,6 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun getFeedCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFeedCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -73,7 +72,6 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun feeds(): VariantArray<CameraFeed> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.feedsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
   }

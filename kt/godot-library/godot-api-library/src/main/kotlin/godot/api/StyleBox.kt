@@ -104,6 +104,7 @@ public open class StyleBox : Resource() {
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("_draw is not implemented for StyleBox")
   }
 
   public open fun _getDrawRect(rect: Rect2): Rect2 {
@@ -128,7 +129,6 @@ public open class StyleBox : Resource() {
    * Returns the minimum size that this stylebox can be shrunk to.
    */
   public final fun getMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -173,7 +173,6 @@ public open class StyleBox : Resource() {
    * `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -194,7 +193,6 @@ public open class StyleBox : Resource() {
    * callback at this moment.
    */
   public final fun getCurrentItemDrawn(): CanvasItem? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as CanvasItem?)
   }

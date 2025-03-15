@@ -15,6 +15,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -74,7 +75,6 @@ public open class XRTracker internal constructor() : RefCounted() {
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerTypePtr, LONG)
     return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -85,7 +85,6 @@ public open class XRTracker internal constructor() : RefCounted() {
   }
 
   public final fun getTrackerName(): StringName {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -96,7 +95,6 @@ public open class XRTracker internal constructor() : RefCounted() {
   }
 
   public final fun getTrackerDesc(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrackerDescPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -105,6 +103,8 @@ public open class XRTracker internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to description)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerDescPtr, NIL)
   }
+
+  public final fun setTrackerName(name: String) = setTrackerName(name.asCachedStringName())
 
   public companion object
 

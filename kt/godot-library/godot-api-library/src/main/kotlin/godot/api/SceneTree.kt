@@ -26,6 +26,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -248,7 +249,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getRoot(): Window? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Window?)
   }
@@ -263,7 +263,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isAutoAcceptQuit(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -274,7 +273,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isQuitOnGoBack(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isQuitOnGoBackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -290,7 +288,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingCollisionsHint(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -301,7 +298,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingPathsHint(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -312,7 +308,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isDebuggingNavigationHint(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -323,7 +318,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getEditedSceneRoot(): Node? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEditedSceneRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -334,7 +328,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -391,7 +384,6 @@ public open class SceneTree : MainLoop() {
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
   public final fun createTween(): Tween? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTweenPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -400,7 +392,6 @@ public open class SceneTree : MainLoop() {
    * Returns an [Array] of currently existing [Tween]s in the tree, including paused tweens.
    */
   public final fun getProcessedTweens(): VariantArray<Tween> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessedTweensPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Tween>)
   }
@@ -409,7 +400,6 @@ public open class SceneTree : MainLoop() {
    * Returns the number of nodes inside this tree.
    */
   public final fun getNodeCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNodeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -419,7 +409,6 @@ public open class SceneTree : MainLoop() {
    * measurement of elapsed time.
    */
   public final fun getFrame(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -444,7 +433,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isPhysicsInterpolationEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -478,9 +466,9 @@ public open class SceneTree : MainLoop() {
     flags: Long,
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupFlagsPtr, NIL)
   }
 
@@ -529,9 +517,9 @@ public open class SceneTree : MainLoop() {
   public final fun callGroup(
     group: StringName,
     method: StringName,
-    vararg __var_args: Any?,
+    vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupPtr, NIL)
   }
 
@@ -600,7 +588,6 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun getCurrentScene(): Node? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -646,7 +633,6 @@ public open class SceneTree : MainLoop() {
    * instantiated.
    */
   public final fun reloadCurrentScene(): Error {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reloadCurrentScenePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -655,7 +641,6 @@ public open class SceneTree : MainLoop() {
    * If a current scene is loaded, calling this method will unload it.
    */
   public final fun unloadCurrentScene(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.unloadCurrentScenePtr, NIL)
   }
 
@@ -691,10 +676,124 @@ public open class SceneTree : MainLoop() {
   }
 
   public final fun isMultiplayerPollEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a node added to the given group [name] exists in the tree.
+   */
+  public final fun hasGroup(name: String): Boolean = hasGroup(name.asCachedStringName())
+
+  /**
+   * Calls the given [method] on each node inside this tree added to the given [group]. Use [flags]
+   * to customize this method's behavior (see [GroupCallFlags]). Additional arguments for [method] can
+   * be passed at the end of this method. Nodes that cannot call [method] (either because the method
+   * doesn't exist or the arguments do not match) are ignored.
+   * [codeblock]
+   * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
+   * order.
+   * get_tree().call_group_flags(
+   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   *         "enemies", "hide")
+   * [/codeblock]
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroupFlags(
+    flags: Long,
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. Use [callFlags] to customize this method's behavior (see [GroupCallFlags]).
+   */
+  public final fun notifyGroupFlags(
+    callFlags: Long,
+    group: String,
+    notification: Int,
+  ) = notifyGroupFlags(callFlags, group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. Use [callFlags] to customize this method's
+   * behavior (see [GroupCallFlags]).
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroupFlags(
+    callFlags: Long,
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroupFlags(callFlags, group.asCachedStringName(), property, value)
+
+  /**
+   * Calls [method] on each node inside this tree added to the given [group]. You can pass arguments
+   * to [method] by specifying them at the end of this method call. Nodes that cannot call [method]
+   * (either because the method doesn't exist or the arguments do not match) are ignored. See also
+   * [setGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public final fun callGroup(
+    group: String,
+    method: String,
+    vararg args: Any?,
+  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
+
+  /**
+   * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
+   * to the [group]. See also [url=$DOCS_URL/tutorials/best_practices/godot_notifications.html]Godot
+   * notifications[/url] and [callGroup] and [setGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   */
+  public final fun notifyGroup(group: String, notification: Int) =
+      notifyGroup(group.asCachedStringName(), notification)
+
+  /**
+   * Sets the given [property] to [value] on all nodes inside this tree added to the given [group].
+   * Nodes that do not have the [property] are ignored. See also [callGroup] and [notifyGroup].
+   * **Note:** This method acts immediately on all selected nodes at once, which may cause
+   * stuttering in some performance-intensive situations.
+   * **Note:** In C#, [property] must be in snake_case when referring to built-in Godot properties.
+   * Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName]
+   * on each call.
+   */
+  public final fun setGroup(
+    group: String,
+    `property`: String,
+    `value`: Any?,
+  ) = setGroup(group.asCachedStringName(), property, value)
+
+  /**
+   * Returns an [Array] containing all nodes inside this tree, that have been added to the given
+   * [group], in scene hierarchy order.
+   */
+  public final fun getNodesInGroup(group: String): VariantArray<Node> =
+      getNodesInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the first [Node] found inside the tree, that has been added to the given [group], in
+   * scene hierarchy order. Returns `null` if no match is found. See also [getNodesInGroup].
+   */
+  public final fun getFirstNodeInGroup(group: String): Node? =
+      getFirstNodeInGroup(group.asCachedStringName())
+
+  /**
+   * Returns the number of nodes assigned to the given group.
+   */
+  public final fun getNodeCountInGroup(group: String): Int =
+      getNodeCountInGroup(group.asCachedStringName())
 
   public enum class GroupCallFlags(
     id: Long,

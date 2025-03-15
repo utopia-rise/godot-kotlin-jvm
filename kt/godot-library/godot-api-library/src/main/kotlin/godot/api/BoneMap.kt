@@ -15,7 +15,9 @@ import godot.core.StringName
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -56,7 +58,6 @@ public open class BoneMap : Resource() {
   }
 
   public final fun getProfile(): SkeletonProfile? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProfilePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }
@@ -96,6 +97,28 @@ public open class BoneMap : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.findProfileBoneNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
+
+  /**
+   * Returns a skeleton bone name is mapped to [profileBoneName].
+   * In the retargeting process, the returned bone name is the bone name of the source skeleton.
+   */
+  public final fun getSkeletonBoneName(profileBoneName: String): StringName =
+      getSkeletonBoneName(profileBoneName.asCachedStringName())
+
+  /**
+   * Maps a skeleton bone name to [profileBoneName].
+   * In the retargeting process, the setting bone name is the bone name of the source skeleton.
+   */
+  public final fun setSkeletonBoneName(profileBoneName: String, skeletonBoneName: String) =
+      setSkeletonBoneName(profileBoneName.asCachedStringName(), skeletonBoneName.asCachedStringName())
+
+  /**
+   * Returns a profile bone name having [skeletonBoneName]. If not found, an empty [StringName] will
+   * be returned.
+   * In the retargeting process, the returned bone name is the bone name of the target skeleton.
+   */
+  public final fun findProfileBoneName(skeletonBoneName: String): StringName =
+      findProfileBoneName(skeletonBoneName.asCachedStringName())
 
   public companion object
 

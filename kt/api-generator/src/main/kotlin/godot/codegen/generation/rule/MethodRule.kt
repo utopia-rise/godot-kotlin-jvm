@@ -3,259 +3,309 @@ package godot.codegen.generation.rule
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
-import godot.codegen.constants.jvmReservedMethods
-import godot.codegen.extensions.applyJvmNameIfNecessary
 import godot.codegen.extensions.getClassName
 import godot.codegen.extensions.getDefaultValueKotlinString
 import godot.codegen.extensions.getTypeName
 import godot.codegen.extensions.isBitField
 import godot.codegen.extensions.isEnum
-import godot.codegen.extensions.jvmVariantTypeValue
+import godot.codegen.extensions.variantParser
 import godot.codegen.generation.Context
-import godot.codegen.generation.task.MethodTask
+import godot.codegen.generation.task.EnrichedClassTask
+import godot.codegen.generation.task.EnrichedMethodTask
 import godot.codegen.models.custom.AdditionalImport
+import godot.codegen.models.enriched.EnrichedArgument
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
-import godot.codegen.models.enriched.isSameSignature
 import godot.codegen.services.impl.methodBindingsInnerClassName
-import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
+import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
+import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotApiPackage
-import java.util.*
+import godot.tools.common.constants.godotCorePackage
 
-class MethodRule : GodotApiRule<MethodTask>() {
-    override fun apply(task: MethodTask, context: Context) = task.configure {
-        val method = task.method
-        val modifiers = mutableListOf<KModifier>()
+interface BaseMethodeRule {
+    fun FunSpec.Builder.configureMethod(method: EnrichedMethod, clazz: EnrichedClass, context: Context) {
 
+        addKdoc(method)
         // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
         if (method.name == "toString") {
-            modifiers.add(KModifier.OVERRIDE)
+            addModifiers(KModifier.OVERRIDE)
         }
 
         // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
         if (method.isVirtual) {
-            modifiers.add(KModifier.OPEN)
+            addModifiers(KModifier.OPEN)
         } else {
-            modifiers.add(KModifier.FINAL)
+            addModifiers(KModifier.FINAL)
         }
-
-        addModifiers(modifiers)
-        applyJvmNameIfNecessary(method.name)
 
         val methodTypeName = method.getCastedType()
         val shouldReturn = method.getTypeName() != UNIT
-
         if (shouldReturn) {
             returns(methodTypeName.typeName)
-
-            if (method.isEnum()) {
-                val methodTypeSimpleName = methodTypeName.className.simpleName
-                if (methodTypeSimpleName.contains('.')) {
-                    task.owner.additionalImports.add(
-                        AdditionalImport(
-                            methodTypeName.className.packageName,
-                            methodTypeSimpleName.split('.')[0]
-                        )
-                    )
-                }
-            }
         }
 
-        //TODO: move adding arguments to generatedFunBuilder to separate function
-        val callArgumentsAsString = buildCallArgumentsString(
-            this,
-            method,
-            context
-        ) //cannot be inlined as it also adds the arguments to the generatedFunBuilder
+        generateParameters(method, context)
+
+        if (!method.isVirtual) {
+            writeCode(method, clazz)
+        } else {
+            addStatement(
+                "%L·%T(%S)",
+                "throw",
+                NotImplementedError::class,
+                "${method.name} is not implemented for ${clazz.type}"
+            )
+        }
+    }
+
+    fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: Context)
+    fun FunSpec.Builder.writeCode(method: EnrichedMethod, clazz: EnrichedClass)
+
+    fun ParameterSpec.Builder.applyDefault(argument: EnrichedArgument, context: Context): ParameterSpec.Builder {
+        val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
+        val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
+            context.generateEnumDefaultValue(
+                argument,
+                defaultValueKotlinCode.first.toLong()
+            )
+        } else {
+            defaultValueKotlinCode?.first
+        }
+        if (appliedDefault != null) {
+            defaultValue(appliedDefault, *defaultValueKotlinCode!!.second)
+        }
+        return this
+    }
+}
+
+class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
+    override fun apply(task: EnrichedMethodTask, context: Context) = task.configure {
+        configureMethod(task.method, task.owner, context)
+    }
+
+    override fun FunSpec.Builder.generateParameters(method: EnrichedMethod, context: Context) {
+        method.arguments.withIndex().forEach {
+            val index = it.index
+            val argument = it.value
+
+            val parameterBuilder = ParameterSpec.builder(
+                method.arguments[index].name,
+                argument.getCastedType().typeName
+            )
+
+            addParameter(
+                parameterBuilder
+                    .applyDefault(argument, context)
+                    .build()
+            )
+        }
 
         if (method.isVararg) {
             addParameter(
-                "__var_args",
+                "args",
                 ANY.copy(nullable = true),
                 KModifier.VARARG
             )
         }
+    }
 
-        generateCodeBlock(task.owner, method, callArgumentsAsString, method.isStatic)
-
-        addKdoc(method)
-
-        for (jvmReservedMethod in jvmReservedMethods) {
-            if (method.isSameSignature(jvmReservedMethod) && !method.isVirtual) {
-                addAnnotation(
-                    AnnotationSpec.builder(JvmName::class)
-                        .addMember(
-                            CodeBlock.of(
-                                "\"%L%L\"",
-                                task.owner.type.replaceFirstChar { it.lowercase(Locale.US) },
-                                method.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
-                            )
-                        )
-                        .build()
-                )
-
-            }
+    override fun FunSpec.Builder.writeCode(method: EnrichedMethod, clazz: EnrichedClass) {
+        if (method.arguments.isNotEmpty()) {
+            generateWriteArgument(method)
+        }
+        generateMethodCall(method, clazz)
+        if (method.variantParser != VARIANT_PARSER_NIL) {
+            generateReturn(method)
         }
     }
 
-    private fun buildCallArgumentsString(
-        generatedFunBuilder: FunSpec.Builder,
-        method: EnrichedMethod,
-        context: Context
-    ): String {
-        return buildString {
+    private fun FunSpec.Builder.generateWriteArgument(method: EnrichedMethod) {
+        val arguments = buildString {
             method.arguments.withIndex().forEach {
                 val index = it.index
                 val argument = it.value
 
                 val shouldAddComa = index != 0
-
                 if (shouldAddComa) append(",·")
 
-                val sanitisedArgumentName = method.arguments[index].name
-
-                append("%T·to·$sanitisedArgumentName${argument.getToBufferCastingMethod()}")
+                append("%T·to·${method.arguments[index].name}${argument.getToBufferCastingMethod()}")
 
                 if (argument.isEnum()) append(".id")
                 if (argument.isBitField()) append(".flag")
 
-                val parameterBuilder = ParameterSpec.builder(
-                    sanitisedArgumentName,
-                    argument.getCastedType().typeName
-                )
-
-                val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
-                val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
-                    context.generateEnumDefaultValue(
-                        argument,
-                        defaultValueKotlinCode.first.toLong()
-                    )
-                } else {
-                    defaultValueKotlinCode?.first
-                }
-                if (appliedDefault != null) {
-                    parameterBuilder.defaultValue(appliedDefault, *defaultValueKotlinCode!!.second)
-
-                    // add @JvmOverloads annotation for java support if not already present
-                    val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()
-                    if (!generatedFunBuilder.annotations.contains(jvmOverloadAnnotationSpec)) {
-                        generatedFunBuilder.addAnnotation(jvmOverloadAnnotationSpec)
-                    }
-                }
-
-                generatedFunBuilder.addParameter(parameterBuilder.build())
             }
             if (method.isVararg && isNotEmpty()) append(",·")
         }
-    }
 
-    private fun FunSpec.Builder.generateCodeBlock(
-        clazz: EnrichedClass,
-        enrichedMethod: EnrichedMethod,
-        callArgumentsAsString: String,
-        isStatic: Boolean
-    ) {
-        if (!enrichedMethod.isVirtual) {
-            generateJvmMethodCall(
-                clazz,
-                callable = enrichedMethod,
-                callArgumentsAsString = callArgumentsAsString,
-                isStatic = isStatic
-            )
-        } else if (enrichedMethod.getTypeName() != UNIT) {
+        val ktVariantClassNames = method.arguments.map { it.variantParser }.toTypedArray()
+
+        if (method.isVararg) {
             addStatement(
-                "%L·%T(%S)",
-                "throw",
-                NotImplementedError::class,
-                "${enrichedMethod.name} is not implemented for ${clazz.type}"
-            )
-        }
-    }
-
-    private fun <T : CallableTrait> FunSpec.Builder.generateJvmMethodCall(
-        clazz: EnrichedClass,
-        callable: T,
-        callArgumentsAsString: String,
-        isStatic: Boolean
-    ): FunSpec.Builder {
-        val ktVariantClassNames = callable.arguments.map {
-            it.jvmVariantTypeValue
-        }.toTypedArray()
-
-        if (callable.isVararg) {
-            addStatement(
-                "%T.writeArguments($callArgumentsAsString·*__var_args.map·{·%T·to·it·}.toTypedArray())",
+                "%T.writeArguments($arguments·*args.map·{·%T·to·it·}.toTypedArray())",
                 TRANSFER_CONTEXT,
                 *ktVariantClassNames,
                 VARIANT_CASTER_ANY
             )
         } else {
             addStatement(
-                "%T.writeArguments($callArgumentsAsString)",
+                "%T.writeArguments($arguments)",
                 TRANSFER_CONTEXT,
                 *ktVariantClassNames
             )
         }
+    }
 
-        val returnTypeVariantTypeClass = callable.jvmVariantTypeValue
-
-        val ptr = if (isStatic) {
+    private fun FunSpec.Builder.generateMethodCall(method: EnrichedMethod, clazz: EnrichedClass) {
+        val ptr = if (method.isStatic) {
             "0" //nullpointer
         } else {
             "ptr"
         }
-
         addStatement(
             "%T.callMethod($ptr, %T.%M, %T)",
             TRANSFER_CONTEXT,
             clazz.getClassName().nestedClass(methodBindingsInnerClassName),
-            MemberName(godotApiPackage, callable.voidPtrVariableName),
-            returnTypeVariantTypeClass
+            MemberName(godotApiPackage, method.voidPtrVariableName),
+            method.variantParser
         )
+    }
 
-        val methodReturnType = callable.getBufferType()
+    private fun FunSpec.Builder.generateReturn(method: EnrichedMethod) {
+        val methodReturnType = method.getBufferType()
+        if (method.isEnum()) {
+            addStatement(
+                "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
+                TRANSFER_CONTEXT,
+                VARIANT_PARSER_LONG,
+                LONG
+            )
+        } else if (method.isBitField()) {
+            val simpleNames = methodReturnType.className.simpleNames
+            addStatement(
+                "return·%T(%T.readReturnValue(%T)·as·%T)",
+                ClassName(
+                    "${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}",
+                    method.getClassName().simpleName
+                ),
+                TRANSFER_CONTEXT,
+                VARIANT_PARSER_LONG,
+                LONG
+            )
+        } else {
+            addStatement(
+                "return·(%T.readReturnValue(%T)·as·%T)${method.getFromBufferCastingMethod()}",
+                TRANSFER_CONTEXT,
+                method.variantParser,
+                methodReturnType.typeName
+            )
+        }
+    }
+}
 
-        if (methodReturnType.className != UNIT) {
-            if (callable.isEnum()) {
-                addStatement(
-                    "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
-                    TRANSFER_CONTEXT,
-                    VARIANT_PARSER_LONG,
-                    LONG
-                )
-            } else if (callable.isBitField()) {
-                val simpleNames = methodReturnType.className.simpleNames
-                addStatement(
-                    "return·%T(%T.readReturnValue(%T)·as·%T)",
-                    ClassName(
-                        "${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}",
-                        callable.getClassName().simpleName
-                    ),
-                    TRANSFER_CONTEXT,
-                    VARIANT_PARSER_LONG,
-                    LONG
+class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
+
+    override fun apply(task: EnrichedClassTask, context: Context) {
+        for (method in task.enrichedMethods.toList()) {
+            val methodTask = createStringOnlyMethod(method.method, task.clazz, context) ?: continue
+            task.enrichedMethods.add(methodTask)
+        }
+        for (method in task.enrichedStaticMethods.toList()) {
+            val methodTask = createStringOnlyMethod(method.method, task.clazz, context) ?: continue
+            task.enrichedStaticMethods.add(methodTask)
+        }
+    }
+
+    private fun createStringOnlyMethod(method: EnrichedMethod, clazz: EnrichedClass, context: Context): EnrichedMethodTask? {
+        if (method.isVirtual) {
+            return null
+        }
+        if (method.arguments.none { it.type == GodotTypes.stringName }) {
+            return null
+        }
+
+        val methodTask = EnrichedMethodTask(method, clazz)
+        methodTask.generator.configureMethod(method, clazz, context)
+        return methodTask
+    }
+
+    override fun FunSpec.Builder.generateParameters(
+        method: EnrichedMethod,
+        context: Context
+    ) {
+        method.arguments.withIndex().forEach {
+            val index = it.index
+            val parameterBuilder = if (it.value.type == GodotTypes.stringName) {
+                ParameterSpec.builder(
+                    method.arguments[index].name,
+                    STRING
                 )
             } else {
-                addStatement(
-                    "return·(%T.readReturnValue(%T)·as·%T)${callable.getFromBufferCastingMethod()}",
-                    TRANSFER_CONTEXT,
-                    returnTypeVariantTypeClass,
-                    methodReturnType.typeName
-                )
+                val argument = it.value
+                ParameterSpec.builder(
+                    method.arguments[index].name,
+                    argument.getCastedType().typeName
+                ).applyDefault(argument, context)
             }
+            addParameter(parameterBuilder.build())
         }
-        return this
+
+        if (method.isVararg) {
+            addParameter(
+                "args",
+                ANY.copy(nullable = true),
+                KModifier.VARARG
+            )
+        }
+    }
+
+    override fun FunSpec.Builder.writeCode(
+        method: EnrichedMethod,
+        clazz: EnrichedClass
+    ) {
+        val arguments = buildString {
+            method.arguments.withIndex().forEach {
+                val index = it.index
+                val argument = it.value
+
+                val shouldAddComa = index != 0
+                if (shouldAddComa) append(",·")
+
+                append(method.arguments[index].name)
+
+                if (argument.type == GodotTypes.stringName) {
+                    clazz.additionalImports.add(AdditionalImport(godotCorePackage, "asCachedStringName"))
+                    append(".asCachedStringName()")
+                }
+            }
+            if (method.isVararg && isNotEmpty()) append(",·")
+        }
+
+        addStatement("return·${method.name}($arguments)")
+    }
+}
+
+
+class OverLoadRule : GodotApiRule<EnrichedMethodTask>() {
+    override fun apply(task: EnrichedMethodTask, context: Context) = task.configure {
+        if (task.method.arguments.none {it.defaultValue != null && it.type != GodotTypes.stringName}) {
+            return
+        }
+        // add @JvmOverloads annotation for java support if not already present
+        val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()
+        if (!annotations.contains(jvmOverloadAnnotationSpec)) {
+            addAnnotation(jvmOverloadAnnotationSpec)
+        }
     }
 }

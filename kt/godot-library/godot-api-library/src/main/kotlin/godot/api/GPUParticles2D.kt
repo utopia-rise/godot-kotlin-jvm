@@ -532,97 +532,81 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun isEmitting(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEmittingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLifetimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreProcessTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getVisibilityRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVisibilityRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFixedFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFractionalDeltaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getInterpolate(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpolatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getProcessMaterial(): Material? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getProcessMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun getSpeedScale(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getCollisionBaseSize(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInterpToEnd(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInterpToEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -633,7 +617,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getDrawOrder(): DrawOrder {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
     return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -644,7 +627,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -655,7 +637,6 @@ public open class GPUParticles2D : Node2D() {
    * it often may have a negative impact on performance.
    */
   public final fun captureRect(): Rect2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.captureRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
@@ -679,7 +660,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getSubEmitter(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSubEmitterPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -714,13 +694,11 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun isTrailEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isTrailEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTrailLifetime(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrailLifetimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -731,7 +709,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getTrailSections(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrailSectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -742,7 +719,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getTrailSectionSubdivisions(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTrailSectionSubdivisionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -761,7 +737,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getAmountRatio(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAmountRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -772,7 +747,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getUseFixedSeed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -783,7 +757,6 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun getSeed(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

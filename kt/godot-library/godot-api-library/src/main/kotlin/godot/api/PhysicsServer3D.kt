@@ -73,70 +73,60 @@ public object PhysicsServer3D : Object() {
 
   @JvmStatic
   public final fun worldBoundaryShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.worldBoundaryShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun separationRayShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.separationRayShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun sphereShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.sphereShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun boxShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.boxShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun capsuleShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.capsuleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun cylinderShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cylinderShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun convexPolygonShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.convexPolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun concavePolygonShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.concavePolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun heightmapShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.heightmapShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun customShapeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.customShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -199,7 +189,6 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.spaceCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -268,7 +257,6 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areaCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -559,7 +547,6 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bodyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1189,7 +1176,6 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.softBodyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1525,7 +1511,6 @@ public object PhysicsServer3D : Object() {
 
   @JvmStatic
   public final fun jointCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.jointCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

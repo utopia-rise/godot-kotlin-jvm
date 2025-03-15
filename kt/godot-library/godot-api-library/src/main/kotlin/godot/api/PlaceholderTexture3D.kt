@@ -78,7 +78,6 @@ public open class PlaceholderTexture3D : Texture3D() {
   }
 
   public final fun getSize(): Vector3i {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }

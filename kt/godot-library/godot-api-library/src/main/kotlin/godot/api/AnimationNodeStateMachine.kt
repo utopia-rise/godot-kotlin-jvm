@@ -18,9 +18,11 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -222,7 +224,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * Returns the number of connections in the graph.
    */
   public final fun getTransitionCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTransitionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -255,7 +256,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * Returns the draw offset of the graph. Used for display in the editor.
    */
   public final fun getGraphOffset(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -266,7 +266,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun getStateMachineType(): StateMachineType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStateMachineTypePtr, LONG)
     return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -277,7 +276,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun isAllowTransitionToSelf(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -288,10 +286,79 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun areEndsReset(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areEndsResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Adds a new animation node to the graph. The [position] is used for display in the editor.
+   */
+  @JvmOverloads
+  public final fun addNode(
+    name: String,
+    node: AnimationNode?,
+    position: Vector2 = Vector2(0, 0),
+  ) = addNode(name.asCachedStringName(), node, position)
+
+  /**
+   * Replaces the given animation node with a new animation node.
+   */
+  public final fun replaceNode(name: String, node: AnimationNode?) =
+      replaceNode(name.asCachedStringName(), node)
+
+  /**
+   * Returns the animation node with the given name.
+   */
+  public final fun getNode(name: String): AnimationNode? = getNode(name.asCachedStringName())
+
+  /**
+   * Deletes the given animation node from the graph.
+   */
+  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+
+  /**
+   * Renames the given animation node.
+   */
+  public final fun renameNode(name: String, newName: String) =
+      renameNode(name.asCachedStringName(), newName.asCachedStringName())
+
+  /**
+   * Returns `true` if the graph contains the given animation node.
+   */
+  public final fun hasNode(name: String): Boolean = hasNode(name.asCachedStringName())
+
+  /**
+   * Sets the animation node's coordinates. Used for display in the editor.
+   */
+  public final fun setNodePosition(name: String, position: Vector2) =
+      setNodePosition(name.asCachedStringName(), position)
+
+  /**
+   * Returns the given animation node's coordinates. Used for display in the editor.
+   */
+  public final fun getNodePosition(name: String): Vector2 =
+      getNodePosition(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a transition between the given animation nodes.
+   */
+  public final fun hasTransition(from: String, to: String): Boolean =
+      hasTransition(from.asCachedStringName(), to.asCachedStringName())
+
+  /**
+   * Adds a transition between the given animation nodes.
+   */
+  public final fun addTransition(
+    from: String,
+    to: String,
+    transition: AnimationNodeStateMachineTransition?,
+  ) = addTransition(from.asCachedStringName(), to.asCachedStringName(), transition)
+
+  /**
+   * Deletes the transition between the two specified animation nodes.
+   */
+  public final fun removeTransition(from: String, to: String) =
+      removeTransition(from.asCachedStringName(), to.asCachedStringName())
 
   public enum class StateMachineType(
     id: Long,

@@ -68,7 +68,6 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public final fun getEnableMode(): EnableMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableModePtr, LONG)
     return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -79,7 +78,6 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public final fun getEnableNodePath(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }

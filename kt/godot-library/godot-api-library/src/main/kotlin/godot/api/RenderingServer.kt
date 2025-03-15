@@ -62,6 +62,7 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -341,7 +342,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun texture2dPlaceholderCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.texture2dPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -370,7 +370,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun texture3dPlaceholderCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.texture3dPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -507,7 +506,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun shaderCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.shaderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -603,7 +601,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun materialCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.materialCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -678,7 +675,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun meshCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.meshCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -942,7 +938,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun multimeshCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.multimeshCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1279,7 +1274,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun skeletonCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.skeletonCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1368,7 +1362,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun directionalLightCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.directionalLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1384,7 +1377,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun omniLightCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.omniLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1399,7 +1391,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun spotLightCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.spotLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1630,7 +1621,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun reflectionProbeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.reflectionProbeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1806,7 +1796,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun decalCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.decalCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1946,7 +1935,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun voxelGiCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.voxelGiCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2103,7 +2091,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun lightmapCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.lightmapCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2212,7 +2199,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun particlesCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.particlesCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2557,7 +2543,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun particlesCollisionCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.particlesCollisionCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2698,7 +2683,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun fogVolumeCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fogVolumeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2747,7 +2731,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun visibilityNotifierCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.visibilityNotifierCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2778,7 +2761,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun occluderCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.occluderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2806,7 +2788,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun cameraCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cameraCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2922,7 +2903,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.viewportCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -3612,7 +3592,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun skyCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.skyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -3679,7 +3658,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun compositorEffectCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.compositorEffectCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -3728,7 +3706,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun compositorCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.compositorCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -3753,7 +3730,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun environmentCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.environmentCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4199,7 +4175,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun cameraAttributesCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cameraAttributesCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4297,7 +4272,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun scenarioCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.scenarioCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4367,7 +4341,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun instanceCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.instanceCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4782,7 +4755,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4843,7 +4815,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasTextureCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasTextureCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -4909,7 +4880,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasItemCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasItemCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -5612,7 +5582,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasLightCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -5841,7 +5810,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasLightOccluderCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -5941,7 +5909,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasOccluderPolygonCreate(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canvasOccluderPolygonCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -6012,7 +5979,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun globalShaderParameterGetList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterGetListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
@@ -6092,7 +6058,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun hasChanged(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasChangedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -6130,7 +6095,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -6141,7 +6105,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterVendor(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterVendorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -6156,7 +6119,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterType(): RenderingDevice.DeviceType {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterTypePtr, LONG)
     return RenderingDevice.DeviceType.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -6170,7 +6132,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterApiVersion(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterApiVersionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -6184,7 +6145,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getCurrentRenderingDriverName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentRenderingDriverNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -6198,7 +6158,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getCurrentRenderingMethod(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentRenderingMethodPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -6224,7 +6183,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getTestCube(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTestCubePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -6242,7 +6200,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getTestTexture(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTestTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -6260,7 +6217,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getWhiteTexture(): RID {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWhiteTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -6289,7 +6245,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getDefaultClearColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultClearColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -6330,7 +6285,6 @@ public object RenderingServer : Object() {
 
   @JvmStatic
   public final fun isRenderLoopEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRenderLoopEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -6348,7 +6302,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getFrameSetupTimeCpu(): Double {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFrameSetupTimeCpuPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -6359,7 +6312,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun forceSync(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceSyncPtr, NIL)
   }
 
@@ -6380,7 +6332,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getRenderingDevice(): RenderingDevice? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRenderingDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
@@ -6393,7 +6344,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun createLocalRenderingDevice(): RenderingDevice? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createLocalRenderingDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
@@ -6403,7 +6353,6 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun isOnRenderThread(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isOnRenderThreadPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -6429,6 +6378,170 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns the default value for the specified shader uniform. This is usually the value written
+   * in the shader source code.
+   */
+  @JvmStatic
+  public final fun shaderGetParameterDefault(shader: RID, name: String): Any? =
+      shaderGetParameterDefault(shader, name.asCachedStringName())
+
+  /**
+   * Sets a shader's default texture. Overwrites the texture given by name.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun shaderSetDefaultTextureParameter(
+    shader: RID,
+    name: String,
+    texture: RID,
+    index: Int = 0,
+  ) = shaderSetDefaultTextureParameter(shader, name.asCachedStringName(), texture, index)
+
+  /**
+   * Returns a default texture from a shader searched by name.
+   * **Note:** If the sampler array is used use [index] to access the specified texture.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun shaderGetDefaultTextureParameter(
+    shader: RID,
+    name: String,
+    index: Int = 0,
+  ): RID = shaderGetDefaultTextureParameter(shader, name.asCachedStringName(), index)
+
+  /**
+   * Sets a material's parameter.
+   */
+  @JvmStatic
+  public final fun materialSetParam(
+    material: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = materialSetParam(material, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of a certain material's parameter.
+   */
+  @JvmStatic
+  public final fun materialGetParam(material: RID, parameter: String): Any? =
+      materialGetParam(material, parameter.asCachedStringName())
+
+  /**
+   * Sets the per-instance shader uniform on the specified 3D geometry instance. Equivalent to
+   * [GeometryInstance3D.setInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun instanceGeometrySetShaderParameter(
+    instance: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = instanceGeometrySetShaderParameter(instance, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the per-instance shader uniform from the specified 3D geometry instance.
+   * Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   * **Note:** Per-instance shader parameter names are case-sensitive.
+   */
+  @JvmStatic
+  public final fun instanceGeometryGetShaderParameter(instance: RID, parameter: String): Any? =
+      instanceGeometryGetShaderParameter(instance, parameter.asCachedStringName())
+
+  /**
+   * Returns the default value of the per-instance shader uniform from the specified 3D geometry
+   * instance. Equivalent to [GeometryInstance3D.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun instanceGeometryGetShaderParameterDefaultValue(instance: RID, parameter: String):
+      Any? =
+      instanceGeometryGetShaderParameterDefaultValue(instance, parameter.asCachedStringName())
+
+  /**
+   * Sets the per-instance shader uniform on the specified canvas item instance. Equivalent to
+   * [CanvasItem.setInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemSetInstanceShaderParameter(
+    instance: RID,
+    parameter: String,
+    `value`: Any?,
+  ) = canvasItemSetInstanceShaderParameter(instance, parameter.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the per-instance shader uniform from the specified canvas item instance.
+   * Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameter(instance: RID, parameter: String): Any? =
+      canvasItemGetInstanceShaderParameter(instance, parameter.asCachedStringName())
+
+  /**
+   * Returns the default value of the per-instance shader uniform from the specified canvas item
+   * instance. Equivalent to [CanvasItem.getInstanceShaderParameter].
+   */
+  @JvmStatic
+  public final fun canvasItemGetInstanceShaderParameterDefaultValue(instance: RID,
+      parameter: String): Any? =
+      canvasItemGetInstanceShaderParameterDefaultValue(instance, parameter.asCachedStringName())
+
+  /**
+   * Creates a new global shader uniform.
+   * **Note:** Global shader parameter names are case-sensitive.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterAdd(
+    name: String,
+    type: GlobalShaderParameterType,
+    defaultValue: Any?,
+  ) = globalShaderParameterAdd(name.asCachedStringName(), type, defaultValue)
+
+  /**
+   * Removes the global shader uniform specified by [name].
+   */
+  @JvmStatic
+  public final fun globalShaderParameterRemove(name: String) =
+      globalShaderParameterRemove(name.asCachedStringName())
+
+  /**
+   * Sets the global shader uniform [name] to [value].
+   */
+  @JvmStatic
+  public final fun globalShaderParameterSet(name: String, `value`: Any?) =
+      globalShaderParameterSet(name.asCachedStringName(), value)
+
+  /**
+   * Overrides the global shader uniform [name] with [value]. Equivalent to the
+   * [ShaderGlobalsOverride] node.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterSetOverride(name: String, `value`: Any?) =
+      globalShaderParameterSetOverride(name.asCachedStringName(), value)
+
+  /**
+   * Returns the value of the global shader uniform specified by [name].
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterGet(name: String): Any? =
+      globalShaderParameterGet(name.asCachedStringName())
+
+  /**
+   * Returns the type associated to the global shader uniform specified by [name].
+   * **Note:** [globalShaderParameterGet] has a large performance penalty as the rendering thread
+   * needs to synchronize with the calling thread, which is slow. Do not use this method during
+   * gameplay to avoid stuttering. If you need to read values in a script after setting them, consider
+   * creating an autoload where you store the values you need to query at the same time you're setting
+   * them as global parameters.
+   */
+  @JvmStatic
+  public final fun globalShaderParameterGetType(name: String): GlobalShaderParameterType =
+      globalShaderParameterGetType(name.asCachedStringName())
 
   public enum class TextureType(
     id: Long,

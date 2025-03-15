@@ -106,7 +106,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getHint(): Hint {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -117,7 +116,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getMin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -128,7 +126,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getMax(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -139,7 +136,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getStep(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -150,7 +146,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -161,7 +156,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getDefaultValue(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

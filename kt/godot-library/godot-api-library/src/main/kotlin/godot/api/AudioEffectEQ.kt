@@ -53,7 +53,6 @@ public open class AudioEffectEQ : AudioEffect() {
    * Returns the number of bands of the equalizer.
    */
   public final fun getBandCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBandCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

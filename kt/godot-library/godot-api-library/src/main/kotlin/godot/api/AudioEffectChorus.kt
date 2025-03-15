@@ -70,7 +70,6 @@ public open class AudioEffectChorus : AudioEffect() {
   }
 
   public final fun getVoiceCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVoiceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -147,7 +146,6 @@ public open class AudioEffectChorus : AudioEffect() {
   }
 
   public final fun getWet(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getWetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -158,7 +156,6 @@ public open class AudioEffectChorus : AudioEffect() {
   }
 
   public final fun getDry(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

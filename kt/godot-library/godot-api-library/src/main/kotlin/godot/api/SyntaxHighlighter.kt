@@ -44,12 +44,14 @@ public open class SyntaxHighlighter : Resource() {
    * Virtual method which can be overridden to clear any local caches.
    */
   public open fun _clearHighlightingCache(): Unit {
+    throw NotImplementedError("_clearHighlightingCache is not implemented for SyntaxHighlighter")
   }
 
   /**
    * Virtual method which can be overridden to update any local caches.
    */
   public open fun _updateCache(): Unit {
+    throw NotImplementedError("_updateCache is not implemented for SyntaxHighlighter")
   }
 
   /**
@@ -84,7 +86,6 @@ public open class SyntaxHighlighter : Resource() {
    * cache.
    */
   public final fun updateCache(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateCachePtr, NIL)
   }
 
@@ -93,7 +94,6 @@ public open class SyntaxHighlighter : Resource() {
    * Then calls overridable method [_clearHighlightingCache].
    */
   public final fun clearHighlightingCache(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
 
@@ -101,7 +101,6 @@ public open class SyntaxHighlighter : Resource() {
    * Returns the associated [TextEdit] node.
    */
   public final fun getTextEdit(): TextEdit? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }

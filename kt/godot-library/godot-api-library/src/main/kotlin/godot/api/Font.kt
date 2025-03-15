@@ -71,7 +71,6 @@ public open class Font internal constructor() : Resource() {
   }
 
   public final fun getFallbacks(): VariantArray<Font> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFallbacksPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Font>)
   }
@@ -100,7 +99,6 @@ public open class Font internal constructor() : Resource() {
    * Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods.
    */
   public final fun getRids(): VariantArray<RID> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRidsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
@@ -172,7 +170,6 @@ public open class Font internal constructor() : Resource() {
    * Returns font family name.
    */
   public final fun getFontName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -181,7 +178,6 @@ public open class Font internal constructor() : Resource() {
    * Returns font style name.
    */
   public final fun getFontStyleName(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStyleNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -191,7 +187,6 @@ public open class Font internal constructor() : Resource() {
    * description, license information, sample text, etc.).
    */
   public final fun getOtNameStrings(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOtNameStringsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -200,7 +195,6 @@ public open class Font internal constructor() : Resource() {
    * Returns font style flags, see [TextServer.FontStyle].
    */
   public final fun getFontStyle(): FontStyle {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStylePtr, LONG)
     return FontStyle(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -210,7 +204,6 @@ public open class Font internal constructor() : Resource() {
    * `400`, bold font weight is `700`.
    */
   public final fun getFontWeight(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontWeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -220,7 +213,6 @@ public open class Font internal constructor() : Resource() {
    * and `200&#37;`.
    */
   public final fun getFontStretch(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStretchPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -240,7 +232,6 @@ public open class Font internal constructor() : Resource() {
    * tags[/url].
    */
   public final fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOpentypeFeaturesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -482,7 +473,6 @@ public open class Font internal constructor() : Resource() {
    * returned string.
    */
   public final fun getSupportedChars(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedCharsPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -511,7 +501,6 @@ public open class Font internal constructor() : Resource() {
    * Returns list of OpenType features supported by font.
    */
   public final fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedFeatureListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -538,7 +527,6 @@ public open class Font internal constructor() : Resource() {
    * [FontVariation.variationOpentype].
    */
   public final fun getSupportedVariationList(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSupportedVariationListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -547,7 +535,6 @@ public open class Font internal constructor() : Resource() {
    * Returns number of faces in the TrueType / OpenType collection.
    */
   public final fun getFaceCount(): Long {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

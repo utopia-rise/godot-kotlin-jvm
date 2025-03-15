@@ -81,7 +81,6 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun getCutoff(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCutoffPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -92,7 +91,6 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun getResonance(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getResonancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -103,7 +101,6 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -114,7 +111,6 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun getDb(): FilterDB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDbPtr, LONG)
     return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
   }

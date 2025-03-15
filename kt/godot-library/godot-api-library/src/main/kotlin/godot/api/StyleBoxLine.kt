@@ -125,7 +125,6 @@ public open class StyleBoxLine : StyleBox() {
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -136,7 +135,6 @@ public open class StyleBoxLine : StyleBox() {
   }
 
   public final fun getThickness(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getThicknessPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -147,7 +145,6 @@ public open class StyleBoxLine : StyleBox() {
   }
 
   public final fun getGrowBegin(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGrowBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -158,7 +155,6 @@ public open class StyleBoxLine : StyleBox() {
   }
 
   public final fun getGrowEnd(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGrowEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -169,7 +165,6 @@ public open class StyleBoxLine : StyleBox() {
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

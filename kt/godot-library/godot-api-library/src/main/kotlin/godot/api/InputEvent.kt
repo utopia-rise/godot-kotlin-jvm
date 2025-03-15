@@ -22,6 +22,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -61,7 +62,6 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   public final fun getDevice(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDevicePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -130,7 +130,6 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event has been canceled.
    */
   public final fun isCanceled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCanceledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -143,7 +142,6 @@ public open class InputEvent internal constructor() : Resource() {
    * examples[/url] in the documentation for more information.
    */
   public final fun isPressed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -153,7 +151,6 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    */
   public final fun isReleased(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -169,7 +166,6 @@ public open class InputEvent internal constructor() : Resource() {
    * configuration in your project's behavior.
    */
   public final fun isEcho(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEchoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -178,7 +174,6 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns a [String] representation of the event.
    */
   public final fun asText(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -203,7 +198,6 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event's type is one that can be assigned to an input action.
    */
   public final fun isActionType(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isActionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -232,6 +226,53 @@ public open class InputEvent internal constructor() : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.xformedByPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
   }
+
+  /**
+   * Returns `true` if this input event matches a pre-defined action of any type.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun isAction(action: String, exactMatch: Boolean = false): Boolean =
+      isAction(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` if the given action is being pressed (and is not an echo event for
+   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
+   * [InputEventMouseMotion] or [InputEventScreenDrag].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  public final fun isActionPressed(
+    action: String,
+    allowEcho: Boolean = false,
+    exactMatch: Boolean = false,
+  ): Boolean = isActionPressed(action.asCachedStringName(), allowEcho, exactMatch)
+
+  /**
+   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
+   * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun isActionReleased(action: String, exactMatch: Boolean = false): Boolean =
+      isActionReleased(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting
+   * the value of events of type [InputEventJoypadMotion].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  public final fun getActionStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionStrength(action.asCachedStringName(), exactMatch)
 
   public companion object {
     /**

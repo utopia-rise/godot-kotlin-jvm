@@ -74,7 +74,6 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }

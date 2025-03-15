@@ -32,6 +32,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -633,6 +634,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+    throw NotImplementedError("_integrateForces is not implemented for RigidBody3D")
   }
 
   public final fun setMass(mass: Float): Unit {
@@ -641,7 +643,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -652,7 +653,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getInertia(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInertiaPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -663,7 +663,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getCenterOfMassMode(): CenterOfMassMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassModePtr, LONG)
     return RigidBody3D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -674,7 +673,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getCenterOfMass(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCenterOfMassPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -685,7 +683,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
@@ -696,7 +693,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getLinearVelocity(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -707,7 +703,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -717,7 +712,6 @@ public open class RigidBody3D : PhysicsBody3D() {
    * resulting from a torque applied to the [RigidBody3D].
    */
   public final fun getInverseInertiaTensor(): Basis {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getInverseInertiaTensorPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }
@@ -728,7 +722,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getGravityScale(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -739,7 +732,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getLinearDampMode(): DampMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
     return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -750,7 +742,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getAngularDampMode(): DampMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
     return RigidBody3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -761,7 +752,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getLinearDamp(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLinearDampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -772,7 +762,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getAngularDamp(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAngularDampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -783,7 +772,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getMaxContactsReported(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxContactsReportedPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -794,7 +782,6 @@ public open class RigidBody3D : PhysicsBody3D() {
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
   public final fun getContactCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContactCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -805,7 +792,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isUsingCustomIntegrator(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -816,7 +802,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isContactMonitorEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -827,7 +812,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isUsingContinuousCollisionDetection(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingContinuousCollisionDetectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -947,7 +931,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getConstantForce(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantForcePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -958,7 +941,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getConstantTorque(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getConstantTorquePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -969,7 +951,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isSleeping(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSleepingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -980,7 +961,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isAbleToSleep(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAbleToSleepPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -991,7 +971,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isLockRotationEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLockRotationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1002,7 +981,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun isFreezeEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isFreezeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1013,7 +991,6 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun getFreezeMode(): FreezeMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFreezeModePtr, LONG)
     return RigidBody3D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1026,7 +1003,6 @@ public open class RigidBody3D : PhysicsBody3D() {
    * instead.
    */
   public final fun getCollidingBodies(): VariantArray<Node3D> {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollidingBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node3D>)
   }

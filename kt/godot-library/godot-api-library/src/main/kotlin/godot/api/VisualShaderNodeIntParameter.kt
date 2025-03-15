@@ -120,7 +120,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getHint(): Hint {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -131,7 +130,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getMin(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -142,7 +140,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getMax(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -153,7 +150,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getStep(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStepPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -164,7 +160,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getEnumNames(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnumNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -175,7 +170,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -186,7 +180,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun getDefaultValue(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }

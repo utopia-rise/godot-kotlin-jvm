@@ -96,13 +96,11 @@ public open class Slider internal constructor() : Range() {
   }
 
   public final fun getTicks(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTicksPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getTicksOnBorders(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTicksOnBordersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -118,7 +116,6 @@ public open class Slider internal constructor() : Range() {
   }
 
   public final fun isEditable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -129,7 +126,6 @@ public open class Slider internal constructor() : Range() {
   }
 
   public final fun isScrollable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isScrollablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

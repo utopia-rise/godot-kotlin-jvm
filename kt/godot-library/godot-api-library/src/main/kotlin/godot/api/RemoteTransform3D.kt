@@ -93,7 +93,6 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   public final fun getRemoteNode(): NodePath {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRemoteNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -103,7 +102,6 @@ public open class RemoteTransform3D : Node3D() {
    * [forceUpdateCache] forces it to update the cache again.
    */
   public final fun forceUpdateCache(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateCachePtr, NIL)
   }
 
@@ -113,7 +111,6 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   public final fun getUseGlobalCoordinates(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -124,7 +121,6 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   public final fun getUpdatePosition(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdatePositionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -135,7 +131,6 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   public final fun getUpdateRotation(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateRotationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -146,7 +141,6 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   public final fun getUpdateScale(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUpdateScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

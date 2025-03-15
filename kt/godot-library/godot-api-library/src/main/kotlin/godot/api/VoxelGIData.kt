@@ -163,37 +163,31 @@ public open class VoxelGIData : Resource() {
    * [getBounds] and [VoxelGI.size] will not match.
    */
   public final fun getBounds(): AABB {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getOctreeSize(): Vector3 {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOctreeSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getToCellXform(): Transform3D {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun getOctreeCells(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getDataCells(): PackedByteArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getLevelCounts(): PackedInt32Array {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -204,7 +198,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun getDynamicRange(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDynamicRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -215,7 +208,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun getEnergy(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -226,7 +218,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun getBias(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -237,7 +228,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun getNormalBias(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNormalBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -248,7 +238,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun getPropagation(): Float {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPropagationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -259,7 +248,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun isInterior(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -270,7 +258,6 @@ public open class VoxelGIData : Resource() {
   }
 
   public final fun isUsingTwoBounces(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

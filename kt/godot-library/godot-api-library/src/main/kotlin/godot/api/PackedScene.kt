@@ -130,7 +130,6 @@ public open class PackedScene : Resource() {
    * Returns `true` if the scene file has nodes.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -139,7 +138,6 @@ public open class PackedScene : Resource() {
    * Returns the [SceneState] representing the scene file contents.
    */
   public final fun getState(): SceneState? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as SceneState?)
   }

@@ -211,7 +211,6 @@ public open class TabContainer : Container() {
    * Returns the number of tabs.
    */
   public final fun getTabCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -222,7 +221,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getCurrentTab(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -231,7 +229,6 @@ public open class TabContainer : Container() {
    * Returns the previously active tab index.
    */
   public final fun getPreviousTab(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPreviousTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -241,7 +238,6 @@ public open class TabContainer : Container() {
    * tab selection changed.
    */
   public final fun selectPreviousAvailable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectPreviousAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -251,7 +247,6 @@ public open class TabContainer : Container() {
    * if tab selection changed.
    */
   public final fun selectNextAvailable(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectNextAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -260,7 +255,6 @@ public open class TabContainer : Container() {
    * Returns the child [Control] node located at the active tab index.
    */
   public final fun getCurrentTabControl(): Control? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentTabControlPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -271,7 +265,6 @@ public open class TabContainer : Container() {
    * cause a crash. If you wish to edit the tabs, use the methods provided in [TabContainer].
    */
   public final fun getTabBar(): TabBar? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as TabBar?)
   }
@@ -291,7 +284,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getTabAlignment(): TabBar.AlignmentMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabAlignmentPtr, LONG)
     return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -302,7 +294,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getTabsPosition(): TabPosition {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabsPositionPtr, LONG)
     return TabContainer.TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -313,7 +304,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getClipTabs(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getClipTabsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -324,7 +314,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun areTabsVisible(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.areTabsVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -335,7 +324,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun isAllTabsInFront(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAllTabsInFrontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -521,7 +509,6 @@ public open class TabContainer : Container() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): Popup? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Popup?)
   }
@@ -532,7 +519,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getDragToRearrangeEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -543,7 +529,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getTabsRearrangeGroup(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -554,7 +539,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getUseHiddenTabsForMinSize(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseHiddenTabsForMinSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -565,7 +549,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getTabFocusMode(): Control.FocusMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTabFocusModePtr, LONG)
     return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -576,7 +559,6 @@ public open class TabContainer : Container() {
   }
 
   public final fun getDeselectEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeselectEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

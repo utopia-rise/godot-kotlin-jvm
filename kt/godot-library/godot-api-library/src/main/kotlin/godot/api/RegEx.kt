@@ -99,7 +99,6 @@ public open class RegEx : RefCounted() {
    * the regular expression of this object.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
@@ -182,7 +181,6 @@ public open class RegEx : RefCounted() {
    * Returns whether this object has a valid search pattern assigned.
    */
   public final fun isValid(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -191,7 +189,6 @@ public open class RegEx : RefCounted() {
    * Returns the original search pattern that was compiled.
    */
   public final fun getPattern(): String {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPatternPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -200,7 +197,6 @@ public open class RegEx : RefCounted() {
    * Returns the number of capturing groups in compiled pattern.
    */
   public final fun getGroupCount(): Int {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -210,7 +206,6 @@ public open class RegEx : RefCounted() {
    * by appearance.
    */
   public final fun getNames(): PackedStringArray {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -229,6 +224,9 @@ public open class RegEx : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val createFromStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
+
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
 
     internal val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 3565188097)
@@ -250,8 +248,5 @@ public open class RegEx : RefCounted() {
 
     internal val getNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RegEx", "get_names", 1139954409)
-
-    internal val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 4249111514)
   }
 }

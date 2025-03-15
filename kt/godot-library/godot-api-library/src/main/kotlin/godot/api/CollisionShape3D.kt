@@ -127,7 +127,6 @@ public open class CollisionShape3D : Node3D() {
   }
 
   public final fun getShape(): Shape3D? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
@@ -138,7 +137,6 @@ public open class CollisionShape3D : Node3D() {
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -148,7 +146,6 @@ public open class CollisionShape3D : Node3D() {
    * geometry.
    */
   public final fun makeConvexFromSiblings(): Unit {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
@@ -158,7 +155,6 @@ public open class CollisionShape3D : Node3D() {
   }
 
   public final fun getDebugColor(): Color {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
@@ -169,7 +165,6 @@ public open class CollisionShape3D : Node3D() {
   }
 
   public final fun getEnableDebugFill(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEnableDebugFillPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

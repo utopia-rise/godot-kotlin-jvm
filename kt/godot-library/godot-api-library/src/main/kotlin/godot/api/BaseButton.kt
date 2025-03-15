@@ -20,6 +20,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -185,12 +186,14 @@ public open class BaseButton : Control() {
    * [toggleMode] is active), use [_toggled] instead.
    */
   public open fun _pressed(): Unit {
+    throw NotImplementedError("_pressed is not implemented for BaseButton")
   }
 
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
   public open fun _toggled(toggledOn: Boolean): Unit {
+    throw NotImplementedError("_toggled is not implemented for BaseButton")
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
@@ -199,7 +202,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isPressed(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -219,7 +221,6 @@ public open class BaseButton : Control() {
    * Returns `true` if the mouse has entered the button and has not left it yet.
    */
   public final fun isHovered(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isHoveredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -230,7 +231,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isToggleMode(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isToggleModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -241,7 +241,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isShortcutInTooltipEnabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -252,7 +251,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -263,7 +261,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun getActionMode(): ActionMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getActionModePtr, LONG)
     return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -274,7 +271,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun getButtonMask(): MouseButtonMask {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -285,7 +281,6 @@ public open class BaseButton : Control() {
    * button is defined by the [DrawMode] enum.
    */
   public final fun getDrawMode(): DrawMode {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDrawModePtr, LONG)
     return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -296,7 +291,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isKeepPressedOutside(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -307,7 +301,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun isShortcutFeedback(): Boolean {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isShortcutFeedbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -318,7 +311,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun getShortcut(): Shortcut? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getShortcutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
@@ -329,7 +321,6 @@ public open class BaseButton : Control() {
   }
 
   public final fun getButtonGroup(): ButtonGroup? {
-    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getButtonGroupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ButtonGroup?)
   }
