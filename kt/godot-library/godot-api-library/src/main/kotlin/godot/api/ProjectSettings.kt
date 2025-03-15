@@ -58,7 +58,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(2)
+    getSingleton(25)
   }
 
   /**

@@ -78,7 +78,7 @@ public open class GLTFMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(261, scriptIndex)
+    createNativeObject(232, scriptIndex)
   }
 
   public final fun getOriginalName(): String {

@@ -66,7 +66,7 @@ public open class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(369, scriptIndex)
+    createNativeObject(348, scriptIndex)
   }
 
   /**
@@ -74,7 +74,7 @@ public open class Material : Resource() {
    * internally by various editor tools. Used to access the RID of the [Material]'s [Shader].
    */
   public open fun _getShaderRid(): RID {
-    throw NotImplementedError("_get_shader_rid is not implemented for Material")
+    throw NotImplementedError("_getShaderRid is not implemented for Material")
   }
 
   /**
@@ -82,7 +82,7 @@ public open class Material : Resource() {
    * internally by various editor tools.
    */
   public open fun _getShaderMode(): Shader.Mode {
-    throw NotImplementedError("_get_shader_mode is not implemented for Material")
+    throw NotImplementedError("_getShaderMode is not implemented for Material")
   }
 
   /**
@@ -90,7 +90,7 @@ public open class Material : Resource() {
    * internally to determine if [nextPass] should be shown in the editor or not.
    */
   public open fun _canDoNextPass(): Boolean {
-    throw NotImplementedError("_can_do_next_pass is not implemented for Material")
+    throw NotImplementedError("_canDoNextPass is not implemented for Material")
   }
 
   /**
@@ -98,7 +98,7 @@ public open class Material : Resource() {
    * internally to determine if [renderPriority] should be shown in the editor or not.
    */
   public open fun _canUseRenderPriority(): Boolean {
-    throw NotImplementedError("_can_use_render_priority is not implemented for Material")
+    throw NotImplementedError("_canUseRenderPriority is not implemented for Material")
   }
 
   public final fun setNextPass(nextPass: Material?): Unit {

@@ -21,26 +21,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
+public infix fun Long.or(other: XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.XRBodyModifier3D.BodyUpdate): Long = this.xor(other.flag)
+public infix fun Long.xor(other: XRBodyModifier3D.BodyUpdate): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.XRBodyModifier3D.BodyUpdate): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.XRBodyModifier3D.BodyUpdate): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.XRBodyModifier3D.BodyUpdate): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.XRBodyModifier3D.BodyUpdate): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.XRBodyModifier3D.BodyUpdate): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.XRBodyModifier3D.BodyUpdate): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: XRBodyModifier3D.BodyUpdate): Long = this.and(other.flag)
 
 /**
  * This node uses body tracking data from an [XRBodyTracker] to pose the skeleton of a body mesh.
@@ -86,7 +71,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(863, scriptIndex)
+    createNativeObject(862, scriptIndex)
   }
 
   public final fun setBodyTracker(trackerName: StringName): Unit {
@@ -108,7 +93,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   public final fun getBodyUpdate(): BodyUpdate {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyUpdatePtr, LONG)
-    return BodyUpdateValue(TransferContext.readReturnValue(LONG) as Long)
+    return BodyUpdate(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
@@ -122,68 +107,51 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public sealed interface BodyUpdate {
-    public val flag: Long
+  @JvmInline
+  public value class BodyUpdate(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.or(other.flag))
 
-    public infix fun or(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.or(other.flag))
+    public infix fun or(other: Long): BodyUpdate = BodyUpdate(flag.or(other))
 
-    public infix fun or(other: Long): BodyUpdate = BodyUpdateValue(flag.or(other))
+    public infix fun xor(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.xor(other.flag))
 
-    public infix fun xor(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): BodyUpdate = BodyUpdate(flag.xor(other))
 
-    public infix fun xor(other: Long): BodyUpdate = BodyUpdateValue(flag.xor(other))
+    public infix fun and(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.and(other.flag))
 
-    public infix fun and(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.and(other.flag))
+    public infix fun and(other: Long): BodyUpdate = BodyUpdate(flag.and(other))
 
-    public infix fun and(other: Long): BodyUpdate = BodyUpdateValue(flag.and(other))
+    public fun unaryPlus(): BodyUpdate = BodyUpdate(flag.unaryPlus())
 
-    public operator fun plus(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.plus(other.flag))
+    public fun unaryMinus(): BodyUpdate = BodyUpdate(flag.unaryMinus())
 
-    public operator fun plus(other: Long): BodyUpdate = BodyUpdateValue(flag.plus(other))
+    public fun inv(): BodyUpdate = BodyUpdate(flag.inv())
 
-    public operator fun minus(other: BodyUpdate): BodyUpdate =
-        BodyUpdateValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): BodyUpdate = BodyUpdate(flag shl bits)
 
-    public operator fun minus(other: Long): BodyUpdate = BodyUpdateValue(flag.minus(other))
+    public infix fun shr(bits: Int): BodyUpdate = BodyUpdate(flag shr bits)
 
-    public operator fun times(other: BodyUpdate): BodyUpdate =
-        BodyUpdateValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): BodyUpdate = BodyUpdateValue(flag.times(other))
-
-    public operator fun div(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): BodyUpdate = BodyUpdateValue(flag.div(other))
-
-    public operator fun rem(other: BodyUpdate): BodyUpdate = BodyUpdateValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): BodyUpdate = BodyUpdateValue(flag.rem(other))
-
-    public fun unaryPlus(): BodyUpdate = BodyUpdateValue(flag.unaryPlus())
-
-    public fun unaryMinus(): BodyUpdate = BodyUpdateValue(flag.unaryMinus())
-
-    public fun inv(): BodyUpdate = BodyUpdateValue(flag.inv())
-
-    public infix fun shl(bits: Int): BodyUpdate = BodyUpdateValue(flag shl bits)
-
-    public infix fun shr(bits: Int): BodyUpdate = BodyUpdateValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): BodyUpdate = BodyUpdateValue(flag ushr bits)
+    public infix fun ushr(bits: Int): BodyUpdate = BodyUpdate(flag ushr bits)
 
     public companion object {
-      public val BODY_UPDATE_UPPER_BODY: BodyUpdate = BodyUpdateValue(1)
+      /**
+       * The skeleton's upper body joints are updated.
+       */
+      public val BODY_UPDATE_UPPER_BODY: BodyUpdate = BodyUpdate(1)
 
-      public val BODY_UPDATE_LOWER_BODY: BodyUpdate = BodyUpdateValue(2)
+      /**
+       * The skeleton's lower body joints are updated.
+       */
+      public val BODY_UPDATE_LOWER_BODY: BodyUpdate = BodyUpdate(2)
 
-      public val BODY_UPDATE_HANDS: BodyUpdate = BodyUpdateValue(4)
+      /**
+       * The skeleton's hand joints are updated.
+       */
+      public val BODY_UPDATE_HANDS: BodyUpdate = BodyUpdate(4)
     }
   }
-
-  @JvmInline
-  public value class BodyUpdateValue(
-    public override val flag: Long,
-  ) : BodyUpdate
 
   public enum class BoneUpdate(
     id: Long,

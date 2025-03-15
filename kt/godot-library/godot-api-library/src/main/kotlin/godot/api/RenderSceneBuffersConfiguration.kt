@@ -147,7 +147,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(557, scriptIndex)
+    createNativeObject(547, scriptIndex)
   }
 
   /**

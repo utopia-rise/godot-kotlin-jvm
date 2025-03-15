@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * A [Texture2D] based on an [Image]. For an image to be displayed, an [ImageTexture] has to be
@@ -54,7 +55,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(311, scriptIndex)
+    createNativeObject(285, scriptIndex)
   }
 
   /**
@@ -103,6 +104,7 @@ public open class ImageTexture : Texture2D() {
      * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an
      * [Image].
      */
+    @JvmStatic
     public final fun createFromImage(image: Image?): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
       TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
@@ -111,9 +113,6 @@ public open class ImageTexture : Texture2D() {
   }
 
   public object MethodBindings {
-    internal val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
-
     internal val getFormatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
 
@@ -125,5 +124,8 @@ public open class ImageTexture : Texture2D() {
 
     internal val setSizeOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImageTexture", "set_size_override", 1130785943)
+
+    internal val createFromImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
   }
 }

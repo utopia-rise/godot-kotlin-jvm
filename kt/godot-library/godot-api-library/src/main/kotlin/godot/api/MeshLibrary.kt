@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(377, scriptIndex)
+    createNativeObject(356, scriptIndex)
   }
 
   /**

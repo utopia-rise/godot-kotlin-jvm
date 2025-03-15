@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(566, scriptIndex)
+    createNativeObject(557, scriptIndex)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * constant in case of failure.
    */
   public open fun _setUid(path: String, uid: Long): Error {
-    throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_setUid is not implemented for ResourceFormatSaver")
   }
 
   /**
@@ -66,7 +66,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * recognized (see [_recognize]).
    */
   public open fun _getRecognizedExtensions(resource: Resource?): PackedStringArray {
-    throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_getRecognizedExtensions is not implemented for ResourceFormatSaver")
   }
 
   /**
@@ -75,7 +75,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * within the ones provided by [_getRecognizedExtensions].
    */
   public open fun _recognizePath(resource: Resource?, path: String): Boolean {
-    throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")
+    throw NotImplementedError("_recognizePath is not implemented for ResourceFormatSaver")
   }
 
   public companion object

@@ -1,9 +1,8 @@
 package godot.codegen.traits
 
-import com.squareup.kotlinpoet.ClassName
 import godot.codegen.constants.GodotMeta
-import godot.codegen.extensions.getTypeClassName
-import godot.codegen.poet.ClassTypeNameWrapper
+import godot.codegen.extensions.getTypeClass
+import godot.codegen.poet.TypeClass
 
 interface CastableTrait : TypedTrait {
     val meta: String?
@@ -15,17 +14,8 @@ interface CastableTrait : TypedTrait {
         }
 
     fun getToBufferCastingMethod() = metaInformation?.toBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
-
     fun getFromBufferCastingMethod() = metaInformation?.fromBufferCastMethodLiteral ?: GodotMeta.CastLiterals.none
 
-    fun getCastedType() = getTypeClassName(metaInformation?.castedType)
-
-    fun getBufferType() = getTypeClassName(metaInformation?.bufferType)
-
-    private fun getTypeClassName(className: ClassName?): ClassTypeNameWrapper {
-        if (className == null) {
-            return getTypeClassName()
-        }
-        return ClassTypeNameWrapper(className)
-    }
+    fun getCastedType() = metaInformation?.castedType?.let { TypeClass(it) } ?: getTypeClass()
+    fun getBufferType() = metaInformation?.bufferType?.let { TypeClass(it) } ?: getTypeClass()
 }

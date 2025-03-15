@@ -94,7 +94,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(872, scriptIndex)
+    createNativeObject(871, scriptIndex)
   }
 
   /**

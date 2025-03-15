@@ -79,7 +79,7 @@ public open class BoxMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(145, scriptIndex)
+    createNativeObject(110, scriptIndex)
   }
 
   /**

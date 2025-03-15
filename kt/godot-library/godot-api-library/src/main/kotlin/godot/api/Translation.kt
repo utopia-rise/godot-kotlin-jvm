@@ -45,7 +45,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(699, scriptIndex)
+    createNativeObject(696, scriptIndex)
   }
 
   /**
@@ -57,14 +57,14 @@ public open class Translation : Resource() {
     n: Int,
     context: StringName,
   ): StringName {
-    throw NotImplementedError("_get_plural_message is not implemented for Translation")
+    throw NotImplementedError("_getPluralMessage is not implemented for Translation")
   }
 
   /**
    * Virtual method to override [getMessage].
    */
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
-    throw NotImplementedError("_get_message is not implemented for Translation")
+    throw NotImplementedError("_getMessage is not implemented for Translation")
   }
 
   public final fun setLocale(locale: String): Unit {

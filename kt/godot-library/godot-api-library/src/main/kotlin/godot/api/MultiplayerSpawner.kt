@@ -90,7 +90,7 @@ public open class MultiplayerSpawner : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(391, scriptIndex)
+    createNativeObject(370, scriptIndex)
   }
 
   /**

@@ -174,7 +174,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(225, scriptIndex)
+    createNativeObject(192, scriptIndex)
   }
 
   /**

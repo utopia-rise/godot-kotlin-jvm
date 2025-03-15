@@ -29,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A WebRTC connection between the local computer and a remote peer. Provides an interface to
@@ -66,7 +67,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(849, scriptIndex)
+    createNativeObject(847, scriptIndex)
   }
 
   /**
@@ -354,6 +355,7 @@ public open class WebRTCPeerConnection : RefCounted() {
      * Sets the [extensionClass] as the default [WebRTCPeerConnectionExtension] returned when
      * creating a new [WebRTCPeerConnection].
      */
+    @JvmStatic
     public final fun setDefaultExtension(extensionClass: StringName): Unit {
       TransferContext.writeArguments(STRING_NAME to extensionClass)
       TransferContext.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
@@ -361,9 +363,6 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val setDefaultExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
-
     internal val initializePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
 
@@ -396,5 +395,8 @@ public open class WebRTCPeerConnection : RefCounted() {
 
     internal val getSignalingStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
+
+    internal val setDefaultExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
   }
 }

@@ -336,7 +336,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(185, scriptIndex)
+    createNativeObject(152, scriptIndex)
   }
 
   /**
@@ -360,7 +360,7 @@ public open class CodeEdit : TextEdit() {
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):
       VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_filter_code_completion_candidates is not implemented for CodeEdit")
+    throw NotImplementedError("_filterCodeCompletionCandidates is not implemented for CodeEdit")
   }
 
   public final fun setIndentSize(size: Int): Unit {

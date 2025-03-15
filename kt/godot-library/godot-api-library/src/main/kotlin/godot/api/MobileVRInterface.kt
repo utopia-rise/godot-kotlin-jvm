@@ -165,7 +165,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(382, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   /**

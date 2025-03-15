@@ -11,7 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
+import godot.api.TextServer.JustificationFlag
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
@@ -145,7 +145,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -255,7 +255,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(666, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   /**
@@ -359,15 +359,15 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {

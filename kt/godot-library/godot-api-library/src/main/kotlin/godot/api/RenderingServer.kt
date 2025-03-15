@@ -72,29 +72,15 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-public infix fun Long.or(other: godot.api.RenderingServer.ArrayFormat): Long = this.or(other.flag)
+public infix fun Long.or(other: RenderingServer.ArrayFormat): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
+public infix fun Long.xor(other: RenderingServer.ArrayFormat): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.RenderingServer.ArrayFormat): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.RenderingServer.ArrayFormat): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: RenderingServer.ArrayFormat): Long = this.and(other.flag)
 
 /**
  * The rendering server is the API backend for everything visible. The whole scene system mounts on
@@ -130,6 +116,32 @@ public operator fun Long.rem(other: godot.api.RenderingServer.ArrayFormat): Long
  */
 @GodotBaseType
 public object RenderingServer : Object() {
+  /**
+   * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
+   */
+  @JvmStatic
+  public val framePreDraw: Signal0 by Signal0
+
+  /**
+   * Emitted at the end of the frame, after the RenderingServer has finished updating all the
+   * Viewports.
+   */
+  @JvmStatic
+  public val framePostDraw: Signal0 by Signal0
+
+  /**
+   * If `false`, disables rendering completely, but the engine logic is still being processed. You
+   * can call [forceDraw] to draw a frame even with rendering disabled.
+   */
+  @JvmStatic
+  public final inline var renderLoopEnabled: Boolean
+    @JvmName("renderLoopEnabledProperty")
+    get() = isRenderLoopEnabled()
+    @JvmName("renderLoopEnabledProperty")
+    set(`value`) {
+      setRenderLoopEnabled(value)
+    }
+
   /**
    * Marks an error that shows that the index array is empty.
    */
@@ -193,21 +205,8 @@ public object RenderingServer : Object() {
 
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
-  /**
-   * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
-   */
-  @JvmStatic
-  public val framePreDraw: Signal0 by Signal0
-
-  /**
-   * Emitted at the end of the frame, after the RenderingServer has finished updating all the
-   * Viewports.
-   */
-  @JvmStatic
-  public val framePostDraw: Signal0 by Signal0
-
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(32)
+    getSingleton(26)
   }
 
   /**
@@ -6693,131 +6692,217 @@ public object RenderingServer : Object() {
     }
   }
 
-  public sealed interface ArrayFormat {
-    public val flag: Long
+  @JvmInline
+  public value class ArrayFormat(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.or(other.flag))
 
-    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.or(other.flag))
+    public infix fun or(other: Long): ArrayFormat = ArrayFormat(flag.or(other))
 
-    public infix fun or(other: Long): ArrayFormat = ArrayFormatValue(flag.or(other))
+    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.xor(other.flag))
 
-    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): ArrayFormat = ArrayFormat(flag.xor(other))
 
-    public infix fun xor(other: Long): ArrayFormat = ArrayFormatValue(flag.xor(other))
+    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.and(other.flag))
 
-    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormatValue(flag.and(other.flag))
+    public infix fun and(other: Long): ArrayFormat = ArrayFormat(flag.and(other))
 
-    public infix fun and(other: Long): ArrayFormat = ArrayFormatValue(flag.and(other))
+    public fun unaryPlus(): ArrayFormat = ArrayFormat(flag.unaryPlus())
 
-    public operator fun plus(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.plus(other.flag))
+    public fun unaryMinus(): ArrayFormat = ArrayFormat(flag.unaryMinus())
 
-    public operator fun plus(other: Long): ArrayFormat = ArrayFormatValue(flag.plus(other))
+    public fun inv(): ArrayFormat = ArrayFormat(flag.inv())
 
-    public operator fun minus(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): ArrayFormat = ArrayFormat(flag shl bits)
 
-    public operator fun minus(other: Long): ArrayFormat = ArrayFormatValue(flag.minus(other))
+    public infix fun shr(bits: Int): ArrayFormat = ArrayFormat(flag shr bits)
 
-    public operator fun times(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): ArrayFormat = ArrayFormatValue(flag.times(other))
-
-    public operator fun div(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): ArrayFormat = ArrayFormatValue(flag.div(other))
-
-    public operator fun rem(other: ArrayFormat): ArrayFormat =
-        ArrayFormatValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): ArrayFormat = ArrayFormatValue(flag.rem(other))
-
-    public fun unaryPlus(): ArrayFormat = ArrayFormatValue(flag.unaryPlus())
-
-    public fun unaryMinus(): ArrayFormat = ArrayFormatValue(flag.unaryMinus())
-
-    public fun inv(): ArrayFormat = ArrayFormatValue(flag.inv())
-
-    public infix fun shl(bits: Int): ArrayFormat = ArrayFormatValue(flag shl bits)
-
-    public infix fun shr(bits: Int): ArrayFormat = ArrayFormatValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormatValue(flag ushr bits)
+    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
 
     public companion object {
-      public val ARRAY_FORMAT_VERTEX: ArrayFormat = ArrayFormatValue(1)
+      /**
+       * Flag used to mark a vertex position array.
+       */
+      public val ARRAY_FORMAT_VERTEX: ArrayFormat = ArrayFormat(1)
 
-      public val ARRAY_FORMAT_NORMAL: ArrayFormat = ArrayFormatValue(2)
+      /**
+       * Flag used to mark a normal array.
+       */
+      public val ARRAY_FORMAT_NORMAL: ArrayFormat = ArrayFormat(2)
 
-      public val ARRAY_FORMAT_TANGENT: ArrayFormat = ArrayFormatValue(4)
+      /**
+       * Flag used to mark a tangent array.
+       */
+      public val ARRAY_FORMAT_TANGENT: ArrayFormat = ArrayFormat(4)
 
-      public val ARRAY_FORMAT_COLOR: ArrayFormat = ArrayFormatValue(8)
+      /**
+       * Flag used to mark a vertex color array.
+       */
+      public val ARRAY_FORMAT_COLOR: ArrayFormat = ArrayFormat(8)
 
-      public val ARRAY_FORMAT_TEX_UV: ArrayFormat = ArrayFormatValue(16)
+      /**
+       * Flag used to mark a UV coordinates array.
+       */
+      public val ARRAY_FORMAT_TEX_UV: ArrayFormat = ArrayFormat(16)
 
-      public val ARRAY_FORMAT_TEX_UV2: ArrayFormat = ArrayFormatValue(32)
+      /**
+       * Flag used to mark a UV coordinates array for the second UV coordinates.
+       */
+      public val ARRAY_FORMAT_TEX_UV2: ArrayFormat = ArrayFormat(32)
 
-      public val ARRAY_FORMAT_CUSTOM0: ArrayFormat = ArrayFormatValue(64)
+      /**
+       * Flag used to mark an array of custom per-vertex data for the first set of custom data.
+       */
+      public val ARRAY_FORMAT_CUSTOM0: ArrayFormat = ArrayFormat(64)
 
-      public val ARRAY_FORMAT_CUSTOM1: ArrayFormat = ArrayFormatValue(128)
+      /**
+       * Flag used to mark an array of custom per-vertex data for the second set of custom data.
+       */
+      public val ARRAY_FORMAT_CUSTOM1: ArrayFormat = ArrayFormat(128)
 
-      public val ARRAY_FORMAT_CUSTOM2: ArrayFormat = ArrayFormatValue(256)
+      /**
+       * Flag used to mark an array of custom per-vertex data for the third set of custom data.
+       */
+      public val ARRAY_FORMAT_CUSTOM2: ArrayFormat = ArrayFormat(256)
 
-      public val ARRAY_FORMAT_CUSTOM3: ArrayFormat = ArrayFormatValue(512)
+      /**
+       * Flag used to mark an array of custom per-vertex data for the fourth set of custom data.
+       */
+      public val ARRAY_FORMAT_CUSTOM3: ArrayFormat = ArrayFormat(512)
 
-      public val ARRAY_FORMAT_BONES: ArrayFormat = ArrayFormatValue(1024)
+      /**
+       * Flag used to mark a bone information array.
+       */
+      public val ARRAY_FORMAT_BONES: ArrayFormat = ArrayFormat(1024)
 
-      public val ARRAY_FORMAT_WEIGHTS: ArrayFormat = ArrayFormatValue(2048)
+      /**
+       * Flag used to mark a weights array.
+       */
+      public val ARRAY_FORMAT_WEIGHTS: ArrayFormat = ArrayFormat(2048)
 
-      public val ARRAY_FORMAT_INDEX: ArrayFormat = ArrayFormatValue(4096)
+      /**
+       * Flag used to mark an index array.
+       */
+      public val ARRAY_FORMAT_INDEX: ArrayFormat = ArrayFormat(4096)
 
-      public val ARRAY_FORMAT_BLEND_SHAPE_MASK: ArrayFormat = ArrayFormatValue(7)
+      /**
+       * Mask of mesh channels permitted in blend shapes.
+       */
+      public val ARRAY_FORMAT_BLEND_SHAPE_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_FORMAT_CUSTOM_BASE: ArrayFormat = ArrayFormatValue(13)
+      /**
+       * Shift of first custom channel.
+       */
+      public val ARRAY_FORMAT_CUSTOM_BASE: ArrayFormat = ArrayFormat(13)
 
-      public val ARRAY_FORMAT_CUSTOM_BITS: ArrayFormat = ArrayFormatValue(3)
+      /**
+       * Number of format bits per custom channel. See [ArrayCustomFormat].
+       */
+      public val ARRAY_FORMAT_CUSTOM_BITS: ArrayFormat = ArrayFormat(3)
 
-      public val ARRAY_FORMAT_CUSTOM0_SHIFT: ArrayFormat = ArrayFormatValue(13)
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 0.
+       */
+      public val ARRAY_FORMAT_CUSTOM0_SHIFT: ArrayFormat = ArrayFormat(13)
 
-      public val ARRAY_FORMAT_CUSTOM1_SHIFT: ArrayFormat = ArrayFormatValue(16)
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 1.
+       */
+      public val ARRAY_FORMAT_CUSTOM1_SHIFT: ArrayFormat = ArrayFormat(16)
 
-      public val ARRAY_FORMAT_CUSTOM2_SHIFT: ArrayFormat = ArrayFormatValue(19)
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 2.
+       */
+      public val ARRAY_FORMAT_CUSTOM2_SHIFT: ArrayFormat = ArrayFormat(19)
 
-      public val ARRAY_FORMAT_CUSTOM3_SHIFT: ArrayFormat = ArrayFormatValue(22)
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 3.
+       */
+      public val ARRAY_FORMAT_CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
-      public val ARRAY_FORMAT_CUSTOM_MASK: ArrayFormat = ArrayFormatValue(7)
+      /**
+       * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT
+       * constants. See [ArrayCustomFormat].
+       */
+      public val ARRAY_FORMAT_CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
-      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormatValue(25)
+      /**
+       * Shift of first compress flag. Compress flags should be passed to
+       * [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
+       */
+      public val ARRAY_COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
-      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormatValue(33554432)
+      /**
+       * Flag used to mark that the array contains 2D vertices.
+       */
+      public val ARRAY_FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
-      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormatValue(67108864)
+      /**
+       * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
+       */
+      public val ARRAY_FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
-      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormatValue(134217728)
+      /**
+       * Flag used to mark that the array uses 8 bone weights instead of 4.
+       */
+      public val ARRAY_FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
-      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormatValue(268435456)
+      /**
+       * Flag used to mark that the mesh does not have a vertex array and instead will infer vertex
+       * positions in the shader using indices and other information.
+       */
+      public val ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
-      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormatValue(536870912)
+      /**
+       * Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents,
+       * UVs). When this form of compression is enabled, vertex positions will be packed into an
+       * RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed
+       * into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the
+       * vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using
+       * this compression mode you must use either vertices, normals, and tangents or only vertices.
+       * You cannot use normals without tangents. Importers will automatically enable this compression
+       * if they can.
+       */
+      public val ARRAY_FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormatValue(35)
+      /**
+       * Flag used to mark the start of the bits used to store the mesh version.
+       */
+      public val ARRAY_FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormatValue(35)
+      /**
+       * Flag used to shift a mesh format int to bring the version into the lowest digits.
+       */
+      public val ARRAY_FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormat(35)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormatValue(0)
+      /**
+       * Flag used to record the format used by prior mesh versions before the introduction of a
+       * version.
+       */
+      public val ARRAY_FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormat(0)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormatValue(34359738368)
+      /**
+       * Flag used to record the second iteration of the mesh version flag. The primary difference
+       * between this and [ARRAY_FLAG_FORMAT_VERSION_1] is that this version supports
+       * [ARRAY_FLAG_COMPRESS_ATTRIBUTES] and in this version vertex positions are de-interleaved from
+       * normals and tangents.
+       */
+      public val ARRAY_FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormatValue(34359738368)
+      /**
+       * Flag used to record the current version that the engine expects. Currently this is the same
+       * as [ARRAY_FLAG_FORMAT_VERSION_2].
+       */
+      public val ARRAY_FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormat(34359738368)
 
-      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormatValue(255)
+      /**
+       * Flag used to isolate the bits used for mesh version after using
+       * [ARRAY_FLAG_FORMAT_VERSION_SHIFT] to shift them into place.
+       */
+      public val ARRAY_FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormat(255)
     }
   }
-
-  @JvmInline
-  public value class ArrayFormatValue(
-    public override val flag: Long,
-  ) : ArrayFormat
 
   public enum class PrimitiveType(
     id: Long,

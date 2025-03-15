@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
@@ -42,8 +43,152 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Engine : Object() {
+  /**
+   * If `false`, stops printing error and warning messages to the console and editor Output log.
+   * This can be used to hide error and warning messages during unit test suite runs. This property is
+   * equivalent to the [ProjectSettings.application/run/disableStderr] project setting.
+   * **Note:** This property does not impact the editor's Errors tab when running a project from the
+   * editor.
+   * **Warning:** If set to `false` anywhere in the project, important error messages may be hidden
+   * even if they are emitted from other scripts. In a `@tool` script, this will also impact the editor
+   * itself. Do *not* report bugs before ensuring error messages are enabled (as they are by default).
+   */
+  @JvmStatic
+  public final inline var printErrorMessages: Boolean
+    @JvmName("printErrorMessagesProperty")
+    get() = isPrintingErrorMessages()
+    @JvmName("printErrorMessagesProperty")
+    set(`value`) {
+      setPrintErrorMessages(value)
+    }
+
+  /**
+   * If `false`, stops printing messages (for example using [@GlobalScope.print]) to the console,
+   * log files, and editor Output log. This property is equivalent to the
+   * [ProjectSettings.application/run/disableStdout] project setting.
+   * **Note:** This does not stop printing errors or warnings produced by scripts to the console or
+   * log files, for more details see [printErrorMessages].
+   */
+  @JvmStatic
+  public final inline var printToStdout: Boolean
+    @JvmName("printToStdoutProperty")
+    get() = isPrintingToStdout()
+    @JvmName("printToStdoutProperty")
+    set(`value`) {
+      setPrintToStdout(value)
+    }
+
+  /**
+   * The number of fixed iterations per second. This controls how often physics simulation and
+   * [Node.PhysicsProcess] methods are run. This value should generally always be set to `60` or above,
+   * as Godot doesn't interpolate the physics step. As a result, values lower than `60` will look
+   * stuttery. This value can be increased to make input more reactive or work around collision
+   * tunneling issues, but keep in mind doing so will increase CPU usage. See also [maxFps] and
+   * [ProjectSettings.physics/common/physicsTicksPerSecond].
+   * **Note:** Only [maxPhysicsStepsPerFrame] physics ticks may be simulated per rendered frame at
+   * most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the
+   * project will appear to slow down (even if `delta` is used consistently in physics calculations).
+   * Therefore, it is recommended to also increase [maxPhysicsStepsPerFrame] if increasing
+   * [physicsTicksPerSecond] significantly above its default value.
+   */
+  @JvmStatic
+  public final inline var physicsTicksPerSecond: Int
+    @JvmName("physicsTicksPerSecondProperty")
+    get() = getPhysicsTicksPerSecond()
+    @JvmName("physicsTicksPerSecondProperty")
+    set(`value`) {
+      setPhysicsTicksPerSecond(value)
+    }
+
+  /**
+   * The maximum number of physics steps that can be simulated each rendered frame.
+   * **Note:** The default value is tuned to prevent expensive physics simulations from triggering
+   * even more expensive simulations indefinitely. However, the game will appear to slow down if the
+   * rendering FPS is less than `1 / max_physics_steps_per_frame` of [physicsTicksPerSecond]. This
+   * occurs even if `delta` is consistently used in physics calculations. To avoid this, increase
+   * [maxPhysicsStepsPerFrame] if you have increased [physicsTicksPerSecond] significantly above its
+   * default value.
+   */
+  @JvmStatic
+  public final inline var maxPhysicsStepsPerFrame: Int
+    @JvmName("maxPhysicsStepsPerFrameProperty")
+    get() = getMaxPhysicsStepsPerFrame()
+    @JvmName("maxPhysicsStepsPerFrameProperty")
+    set(`value`) {
+      setMaxPhysicsStepsPerFrame(value)
+    }
+
+  /**
+   * The maximum number of frames that can be rendered every second (FPS). A value of `0` means the
+   * framerate is uncapped.
+   * Limiting the FPS can be useful to reduce the host machine's power consumption, which reduces
+   * heat, noise emissions, and improves battery life.
+   * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled** or **Adaptive**, the setting
+   * takes precedence and the max FPS number cannot exceed the monitor's refresh rate.
+   * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled**, on monitors with variable
+   * refresh rate enabled (G-Sync/FreeSync), using an FPS limit a few frames lower than the monitor's
+   * refresh rate will [url=https://blurbusters.com/howto-low-lag-vsync-on/]reduce input lag while
+   * avoiding tearing[/url].
+   * See also [physicsTicksPerSecond] and [ProjectSettings.application/run/maxFps].
+   * **Note:** The actual number of frames per second may still be below this value if the CPU or
+   * GPU cannot keep up with the project's logic and rendering.
+   * **Note:** If [ProjectSettings.display/window/vsync/vsyncMode] is **Disabled**, limiting the FPS
+   * to a high value that can be consistently reached on the system can reduce input lag compared to an
+   * uncapped framerate. Since this works by ensuring the GPU load is lower than 100&#37;, this latency
+   * reduction is only effective in GPU-bottlenecked scenarios, not CPU-bottlenecked scenarios.
+   */
+  @JvmStatic
+  public final inline var maxFps: Int
+    @JvmName("maxFpsProperty")
+    get() = getMaxFps()
+    @JvmName("maxFpsProperty")
+    set(`value`) {
+      setMaxFps(value)
+    }
+
+  /**
+   * The speed multiplier at which the in-game clock updates, compared to real time. For example, if
+   * set to `2.0` the game runs twice as fast, and if set to `0.5` the game runs half as fast.
+   * This value affects [Timer], [SceneTreeTimer], and all other simulations that make use of
+   * `delta` time (such as [Node.Process] and [Node.PhysicsProcess]).
+   * **Note:** It's recommended to keep this property above `0.0`, as the game may behave
+   * unexpectedly otherwise.
+   * **Note:** This does not affect audio playback speed. Use [AudioServer.playbackSpeedScale] to
+   * adjust audio playback speed independently of [Engine.timeScale].
+   * **Note:** This does not automatically adjust [physicsTicksPerSecond]. With values above `1.0`
+   * physics simulation may become less precise, as each physics tick will stretch over a larger period
+   * of engine time. If you're modifying [Engine.timeScale] to speed up simulation by a large factor,
+   * consider also increasing [physicsTicksPerSecond] to make the simulation more reliable.
+   */
+  @JvmStatic
+  public final inline var timeScale: Double
+    @JvmName("timeScaleProperty")
+    get() = getTimeScale()
+    @JvmName("timeScaleProperty")
+    set(`value`) {
+      setTimeScale(value)
+    }
+
+  /**
+   * How much physics ticks are synchronized with real time. If `0` or less, the ticks are fully
+   * synchronized. Higher values cause the in-game clock to deviate more from the real clock, but they
+   * smooth out framerate jitters.
+   * **Note:** The default value of `0.5` should be good enough for most cases; values above `2`
+   * could cause the game to react to dropped frames with a noticeable delay and are not recommended.
+   * **Note:** When using a custom physics interpolation solution, or within a network game, it's
+   * recommended to disable the physics jitter fix by setting this property to `0`.
+   */
+  @JvmStatic
+  public final inline var physicsJitterFix: Double
+    @JvmName("physicsJitterFixProperty")
+    get() = getPhysicsJitterFix()
+    @JvmName("physicsJitterFixProperty")
+    set(`value`) {
+      setPhysicsJitterFix(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(1)
+    getSingleton(4)
   }
 
   @JvmStatic

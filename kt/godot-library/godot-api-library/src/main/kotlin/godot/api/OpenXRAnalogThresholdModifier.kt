@@ -75,7 +75,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(431, scriptIndex)
+    createNativeObject(415, scriptIndex)
   }
 
   public final fun setOnThreshold(onThreshold: Float): Unit {

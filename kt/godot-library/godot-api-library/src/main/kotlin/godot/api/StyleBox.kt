@@ -100,14 +100,14 @@ public open class StyleBox : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(649, scriptIndex)
+    createNativeObject(643, scriptIndex)
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
   }
 
   public open fun _getDrawRect(rect: Rect2): Rect2 {
-    throw NotImplementedError("_get_draw_rect is not implemented for StyleBox")
+    throw NotImplementedError("_getDrawRect is not implemented for StyleBox")
   }
 
   /**
@@ -117,11 +117,11 @@ public open class StyleBox : Resource() {
    * behavior and the output of this method will be used, to account for both sizes.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_get_minimum_size is not implemented for StyleBox")
+    throw NotImplementedError("_getMinimumSize is not implemented for StyleBox")
   }
 
   public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
-    throw NotImplementedError("_test_mask is not implemented for StyleBox")
+    throw NotImplementedError("_testMask is not implemented for StyleBox")
   }
 
   /**

@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(439, scriptIndex)
+    createNativeObject(423, scriptIndex)
   }
 
   /**
@@ -41,7 +41,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * is enabled.
    */
   public open fun _getRequestedExtensions(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_requested_extensions is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getRequestedExtensions is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -51,7 +51,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayerCount(): Int {
-    throw NotImplementedError("_get_composition_layer_count is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getCompositionLayerCount is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -61,7 +61,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayer(index: Int): Long {
-    throw NotImplementedError("_get_composition_layer is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getCompositionLayer is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -73,7 +73,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayerOrder(index: Int): Int {
-    throw NotImplementedError("_get_composition_layer_order is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getCompositionLayerOrder is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -81,7 +81,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * wrapper.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
-    throw NotImplementedError("_get_suggested_tracker_names is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getSuggestedTrackerNames is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -215,7 +215,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    */
   public open fun _getViewportCompositionLayerExtensionProperties():
       VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_get_viewport_composition_layer_extension_properties is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getViewportCompositionLayerExtensionProperties is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**
@@ -223,7 +223,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [_getViewportCompositionLayerExtensionProperties].
    */
   public open fun _getViewportCompositionLayerExtensionPropertyDefaults(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_viewport_composition_layer_extension_property_defaults is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("_getViewportCompositionLayerExtensionPropertyDefaults is not implemented for OpenXRExtensionWrapperExtension")
   }
 
   /**

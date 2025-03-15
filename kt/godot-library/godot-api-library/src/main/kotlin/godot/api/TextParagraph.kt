@@ -9,8 +9,8 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.TextServer.JustificationFlagValue
-import godot.api.TextServer.LineBreakFlagValue
+import godot.api.TextServer.JustificationFlag
+import godot.api.TextServer.LineBreakFlag
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.HorizontalAlignment
@@ -122,7 +122,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Line breaking rules. For more info see [TextServer].
    */
-  public final inline var breakFlags: TextServer.LineBreakFlag
+  public final inline var breakFlags: LineBreakFlag
     @JvmName("breakFlagsProperty")
     get() = getBreakFlags()
     @JvmName("breakFlagsProperty")
@@ -133,7 +133,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
    */
-  public final inline var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -199,7 +199,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(667, scriptIndex)
+    createNativeObject(661, scriptIndex)
   }
 
   /**
@@ -367,26 +367,26 @@ public open class TextParagraph : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.tabAlignPtr, NIL)
   }
 
-  public final fun setBreakFlags(flags: TextServer.LineBreakFlag): Unit {
+  public final fun setBreakFlags(flags: LineBreakFlag): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setBreakFlagsPtr, NIL)
   }
 
-  public final fun getBreakFlags(): TextServer.LineBreakFlag {
+  public final fun getBreakFlags(): LineBreakFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBreakFlagsPtr, LONG)
-    return LineBreakFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(flags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(flags: JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public final fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    return JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {

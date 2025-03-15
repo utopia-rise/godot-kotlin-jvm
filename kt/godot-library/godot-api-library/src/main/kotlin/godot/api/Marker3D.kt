@@ -37,7 +37,7 @@ public open class Marker3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(368, scriptIndex)
+    createNativeObject(346, scriptIndex)
   }
 
   public final fun setGizmoExtents(extents: Float): Unit {

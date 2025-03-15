@@ -193,7 +193,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(604, scriptIndex)
+    createNativeObject(598, scriptIndex)
   }
 
   /**

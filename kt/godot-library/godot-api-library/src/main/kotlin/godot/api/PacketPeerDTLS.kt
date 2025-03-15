@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(458, scriptIndex)
+    createNativeObject(442, scriptIndex)
   }
 
   /**

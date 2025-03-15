@@ -152,7 +152,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(352, scriptIndex)
+    createNativeObject(330, scriptIndex)
   }
 
   /**

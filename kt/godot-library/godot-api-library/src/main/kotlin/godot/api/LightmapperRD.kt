@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(360, scriptIndex)
+    createNativeObject(338, scriptIndex)
   }
 
   public companion object

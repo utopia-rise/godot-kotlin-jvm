@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AStar2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(39, scriptIndex)
+    createNativeObject(3, scriptIndex)
   }
 
   /**
@@ -47,7 +47,7 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default [AStar2D] class.
    */
   public open fun _estimateCost(fromId: Long, endId: Long): Float {
-    throw NotImplementedError("_estimate_cost is not implemented for AStar2D")
+    throw NotImplementedError("_estimateCost is not implemented for AStar2D")
   }
 
   /**
@@ -55,7 +55,7 @@ public open class AStar2D : RefCounted() {
    * Note that this function is hidden in the default [AStar2D] class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Float {
-    throw NotImplementedError("_compute_cost is not implemented for AStar2D")
+    throw NotImplementedError("_computeCost is not implemented for AStar2D")
   }
 
   /**

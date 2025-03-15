@@ -112,7 +112,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(291, scriptIndex)
+    createNativeObject(264, scriptIndex)
   }
 
   /**

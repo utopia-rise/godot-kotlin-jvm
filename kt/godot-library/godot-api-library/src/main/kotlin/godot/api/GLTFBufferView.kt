@@ -109,7 +109,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(255, scriptIndex)
+    createNativeObject(226, scriptIndex)
   }
 
   /**

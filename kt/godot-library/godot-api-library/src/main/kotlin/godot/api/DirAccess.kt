@@ -26,6 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is used to manage directories and their content, even outside of the project folder.
@@ -121,7 +122,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(228, scriptIndex)
+    createNativeObject(195, scriptIndex)
   }
 
   /**
@@ -425,6 +426,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
      * that occurred.
      */
+    @JvmStatic
     public final fun `open`(path: String): DirAccess? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
@@ -434,6 +436,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
+    @JvmStatic
     public final fun getOpenError(): Error {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
@@ -449,6 +452,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * that occurred.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun createTemp(prefix: String = "", keep: Boolean = false): DirAccess? {
       TransferContext.writeArguments(STRING to prefix, BOOL to keep)
       TransferContext.callMethod(0, MethodBindings.createTempPtr, OBJECT)
@@ -466,6 +470,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * project icon). In an exported project, the list of returned files will also vary depending on
      * [ProjectSettings.editor/export/convertTextResourcesToBinary].
      */
+    @JvmStatic
     public final fun getFilesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFilesAtPtr, PACKED_STRING_ARRAY)
@@ -479,6 +484,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * **Note:** The returned directories in the editor and after exporting in the `res://`
      * directory may differ as some files are converted to engine-specific formats when exported.
      */
+    @JvmStatic
     public final fun getDirectoriesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getDirectoriesAtPtr, PACKED_STRING_ARRAY)
@@ -491,6 +497,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
      * On other platforms, the method returns 0.
      */
+    @JvmStatic
     public final fun getDriveCount(): Int {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDriveCountPtr, LONG)
@@ -504,6 +511,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * On other platforms, or if the requested drive does not exist, the method returns an empty
      * String.
      */
+    @JvmStatic
     public final fun getDriveName(idx: Int): String {
       TransferContext.writeArguments(LONG to idx.toLong())
       TransferContext.callMethod(0, MethodBindings.getDriveNamePtr, STRING)
@@ -513,6 +521,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [makeDir]. Supports only absolute paths.
      */
+    @JvmStatic
     public final fun makeDirAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirAbsolutePtr, LONG)
@@ -522,6 +531,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [makeDirRecursive]. Supports only absolute paths.
      */
+    @JvmStatic
     public final fun makeDirRecursiveAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirRecursiveAbsolutePtr, LONG)
@@ -534,6 +544,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * `res://` directory may be different. Some files are converted to engine-specific formats when
      * exported, potentially changing the directory structure.
      */
+    @JvmStatic
     public final fun dirExistsAbsolute(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.dirExistsAbsolutePtr, BOOL)
@@ -544,6 +555,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * Static version of [copy]. Supports only absolute paths.
      */
     @JvmOverloads
+    @JvmStatic
     public final fun copyAbsolute(
       from: String,
       to: String,
@@ -557,6 +569,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [rename]. Supports only absolute paths.
      */
+    @JvmStatic
     public final fun renameAbsolute(from: String, to: String): Error {
       TransferContext.writeArguments(STRING to from, STRING to to)
       TransferContext.callMethod(0, MethodBindings.renameAbsolutePtr, LONG)
@@ -566,6 +579,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [remove]. Supports only absolute paths.
      */
+    @JvmStatic
     public final fun removeAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.removeAbsolutePtr, LONG)
@@ -574,14 +588,6 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "open", 1923528528)
-
-    internal val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_open_error", 166280745)
-
-    internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "create_temp", 812913566)
-
     internal val listDirBeginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "list_dir_begin", 166280745)
 
@@ -597,20 +603,8 @@ public open class DirAccess internal constructor() : RefCounted() {
     internal val getFilesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_files", 2981934095)
 
-    internal val getFilesAtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_files_at", 3538744774)
-
     internal val getDirectoriesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_directories", 2981934095)
-
-    internal val getDirectoriesAtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_directories_at", 3538744774)
-
-    internal val getDriveCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_drive_count", 2455072627)
-
-    internal val getDriveNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "get_drive_name", 990163283)
 
     internal val getCurrentDrivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_current_drive", 2455072627)
@@ -624,14 +618,8 @@ public open class DirAccess internal constructor() : RefCounted() {
     internal val makeDirPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "make_dir", 166001499)
 
-    internal val makeDirAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir_absolute", 166001499)
-
     internal val makeDirRecursivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive", 166001499)
-
-    internal val makeDirRecursiveAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive_absolute", 166001499)
 
     internal val fileExistsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "file_exists", 2323990056)
@@ -639,26 +627,14 @@ public open class DirAccess internal constructor() : RefCounted() {
     internal val dirExistsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "dir_exists", 2323990056)
 
-    internal val dirExistsAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "dir_exists_absolute", 2323990056)
-
     internal val getSpaceLeftPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_space_left", 2455072627)
 
     internal val copyPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "copy", 1063198817)
 
-    internal val copyAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "copy_absolute", 1063198817)
-
     internal val renamePtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "rename", 852856452)
 
-    internal val renameAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "rename_absolute", 852856452)
-
     internal val removePtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "remove", 166001499)
-
-    internal val removeAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirAccess", "remove_absolute", 166001499)
 
     internal val isLinkPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "is_link", 2323990056)
@@ -686,5 +662,43 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     internal val isCaseSensitivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive", 3927539163)
+
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("DirAccess", "open", 1923528528)
+
+    internal val getOpenErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_open_error", 166280745)
+
+    internal val createTempPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "create_temp", 812913566)
+
+    internal val getFilesAtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_files_at", 3538744774)
+
+    internal val getDirectoriesAtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_directories_at", 3538744774)
+
+    internal val getDriveCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_drive_count", 2455072627)
+
+    internal val getDriveNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_drive_name", 990163283)
+
+    internal val makeDirAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir_absolute", 166001499)
+
+    internal val makeDirRecursiveAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "make_dir_recursive_absolute", 166001499)
+
+    internal val dirExistsAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "dir_exists_absolute", 2323990056)
+
+    internal val copyAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "copy_absolute", 1063198817)
+
+    internal val renameAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "rename_absolute", 852856452)
+
+    internal val removeAbsolutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "remove_absolute", 166001499)
   }
 }
