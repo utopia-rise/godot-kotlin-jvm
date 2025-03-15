@@ -22,7 +22,7 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
     val properties = model.properties?.toEnriched() ?: listOf()
     val methods = model.methods?.toEnriched() ?: listOf()
 
-    override val description = model.description
+    override var description = model.description
     val additionalImports = mutableSetOf<AdditionalImport>()
 
     fun makeSingleton() {

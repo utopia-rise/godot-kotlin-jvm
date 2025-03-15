@@ -6,5 +6,5 @@ import godot.codegen.traits.TypedTrait
 
 data class Singleton @JsonCreator constructor(
     @JsonProperty("name") val name: String,
-    @JsonProperty("type") override val type: String
-) : TypedTrait
+    @JsonProperty("type") val type: String
+)

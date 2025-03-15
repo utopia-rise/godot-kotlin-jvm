@@ -165,10 +165,9 @@ class CoreTypeHelperRule : GodotApiRule<EnrichedClassTask>() {
                 |""".trimMargin()
             ).apply {
                 val kDoc = buildString {
-                    val propertyKdoc =
-                        property.sanitizedDocumentation
-                    if (propertyKdoc != null) {
-                        appendLine(propertyKdoc.replace("/*", "&#47;*"))
+                    val propertyKdoc = property.description
+                    if (propertyKdoc != null && propertyKdoc.isNotBlank()) {
+                        appendLine(propertyKdoc)
                         appendLine()
                     }
 
