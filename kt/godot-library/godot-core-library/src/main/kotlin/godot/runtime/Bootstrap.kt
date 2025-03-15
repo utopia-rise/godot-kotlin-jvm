@@ -116,8 +116,8 @@ internal class Bootstrap {
     }
 
     private fun forceJvmInitializationOfSingletons() {
-        TypeManager.engineSingletonsNames.forEachIndexed { index, _ ->
-            TypeManager.engineTypesConstructors[index]()
+        TypeManager.singletonsConstructors.forEach {
+            it()
         }
     }
 

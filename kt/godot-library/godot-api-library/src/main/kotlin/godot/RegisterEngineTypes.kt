@@ -888,6 +888,8 @@ import godot.core.variantMapper
 import kotlin.Unit
 
 public fun registerVariantMapping(): Unit {
+  variantMapper[Object::class] = OBJECT
+  variantMapper[RefCounted::class] = OBJECT
   variantMapper[AESContext::class] = OBJECT
   variantMapper[AStar2D::class] = OBJECT
   variantMapper[AStar3D::class] = OBJECT
@@ -1289,7 +1291,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[NoiseTexture3D::class] = OBJECT
   variantMapper[ORMMaterial3D::class] = OBJECT
   variantMapper[OS::class] = OBJECT
-  variantMapper[Object::class] = OBJECT
   variantMapper[Occluder3D::class] = OBJECT
   variantMapper[OccluderInstance3D::class] = OBJECT
   variantMapper[OccluderPolygon2D::class] = OBJECT
@@ -1424,7 +1425,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RayCast2D::class] = OBJECT
   variantMapper[RayCast3D::class] = OBJECT
   variantMapper[RectangleShape2D::class] = OBJECT
-  variantMapper[RefCounted::class] = OBJECT
   variantMapper[ReferenceRect::class] = OBJECT
   variantMapper[ReflectionProbe::class] = OBJECT
   variantMapper[RegEx::class] = OBJECT
@@ -1773,6 +1773,8 @@ public fun registerVariantMapping(): Unit {
 }
 
 public fun registerEngineTypeMethods(): Unit {
+  Object.MethodBindings
+  RefCounted.MethodBindings
   AESContext.MethodBindings
   AStar2D.MethodBindings
   AStar3D.MethodBindings
@@ -2174,7 +2176,6 @@ public fun registerEngineTypeMethods(): Unit {
   NoiseTexture3D.MethodBindings
   ORMMaterial3D.MethodBindings
   OS.MethodBindings
-  Object.MethodBindings
   Occluder3D.MethodBindings
   OccluderInstance3D.MethodBindings
   OccluderPolygon2D.MethodBindings
@@ -2309,7 +2310,6 @@ public fun registerEngineTypeMethods(): Unit {
   RayCast2D.MethodBindings
   RayCast3D.MethodBindings
   RectangleShape2D.MethodBindings
-  RefCounted.MethodBindings
   ReferenceRect.MethodBindings
   ReflectionProbe.MethodBindings
   RegEx.MethodBindings
@@ -2658,6 +2658,8 @@ public fun registerEngineTypeMethods(): Unit {
 }
 
 public fun registerEngineTypes(): Unit {
+  TypeManager.registerEngineType("Object", Object::class, ::Object)
+  TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("AESContext", AESContext::class, ::AESContext)
   TypeManager.registerEngineType("AStar2D", AStar2D::class, ::AStar2D)
   TypeManager.registerEngineType("AStar3D", AStar3D::class, ::AStar3D)
@@ -2674,38 +2676,23 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AnimationNode", AnimationNode::class, ::AnimationNode)
   TypeManager.registerEngineType("AnimationNodeAdd2", AnimationNodeAdd2::class, ::AnimationNodeAdd2)
   TypeManager.registerEngineType("AnimationNodeAdd3", AnimationNodeAdd3::class, ::AnimationNodeAdd3)
-  TypeManager.registerEngineType("AnimationNodeAnimation", AnimationNodeAnimation::class,
-      ::AnimationNodeAnimation)
-  TypeManager.registerEngineType("AnimationNodeBlend2", AnimationNodeBlend2::class,
-      ::AnimationNodeBlend2)
-  TypeManager.registerEngineType("AnimationNodeBlend3", AnimationNodeBlend3::class,
-      ::AnimationNodeBlend3)
-  TypeManager.registerEngineType("AnimationNodeBlendSpace1D", AnimationNodeBlendSpace1D::class,
-      ::AnimationNodeBlendSpace1D)
-  TypeManager.registerEngineType("AnimationNodeBlendSpace2D", AnimationNodeBlendSpace2D::class,
-      ::AnimationNodeBlendSpace2D)
-  TypeManager.registerEngineType("AnimationNodeBlendTree", AnimationNodeBlendTree::class,
-      ::AnimationNodeBlendTree)
-  TypeManager.registerEngineType("AnimationNodeExtension", AnimationNodeExtension::class,
-      ::AnimationNodeExtension)
-  TypeManager.registerEngineType("AnimationNodeOneShot", AnimationNodeOneShot::class,
-      ::AnimationNodeOneShot)
-  TypeManager.registerEngineType("AnimationNodeOutput", AnimationNodeOutput::class,
-      ::AnimationNodeOutput)
-  TypeManager.registerEngineType("AnimationNodeStateMachine", AnimationNodeStateMachine::class,
-      ::AnimationNodeStateMachine)
-  TypeManager.registerEngineType("AnimationNodeStateMachinePlayback",
-      AnimationNodeStateMachinePlayback::class, ::AnimationNodeStateMachinePlayback)
-  TypeManager.registerEngineType("AnimationNodeStateMachineTransition",
-      AnimationNodeStateMachineTransition::class, ::AnimationNodeStateMachineTransition)
+  TypeManager.registerEngineType("AnimationNodeAnimation", AnimationNodeAnimation::class, ::AnimationNodeAnimation)
+  TypeManager.registerEngineType("AnimationNodeBlend2", AnimationNodeBlend2::class, ::AnimationNodeBlend2)
+  TypeManager.registerEngineType("AnimationNodeBlend3", AnimationNodeBlend3::class, ::AnimationNodeBlend3)
+  TypeManager.registerEngineType("AnimationNodeBlendSpace1D", AnimationNodeBlendSpace1D::class, ::AnimationNodeBlendSpace1D)
+  TypeManager.registerEngineType("AnimationNodeBlendSpace2D", AnimationNodeBlendSpace2D::class, ::AnimationNodeBlendSpace2D)
+  TypeManager.registerEngineType("AnimationNodeBlendTree", AnimationNodeBlendTree::class, ::AnimationNodeBlendTree)
+  TypeManager.registerEngineType("AnimationNodeExtension", AnimationNodeExtension::class, ::AnimationNodeExtension)
+  TypeManager.registerEngineType("AnimationNodeOneShot", AnimationNodeOneShot::class, ::AnimationNodeOneShot)
+  TypeManager.registerEngineType("AnimationNodeOutput", AnimationNodeOutput::class, ::AnimationNodeOutput)
+  TypeManager.registerEngineType("AnimationNodeStateMachine", AnimationNodeStateMachine::class, ::AnimationNodeStateMachine)
+  TypeManager.registerEngineType("AnimationNodeStateMachinePlayback", AnimationNodeStateMachinePlayback::class, ::AnimationNodeStateMachinePlayback)
+  TypeManager.registerEngineType("AnimationNodeStateMachineTransition", AnimationNodeStateMachineTransition::class, ::AnimationNodeStateMachineTransition)
   TypeManager.registerEngineType("AnimationNodeSub2", AnimationNodeSub2::class, ::AnimationNodeSub2)
   TypeManager.registerEngineType("AnimationNodeSync", AnimationNodeSync::class, ::AnimationNodeSync)
-  TypeManager.registerEngineType("AnimationNodeTimeScale", AnimationNodeTimeScale::class,
-      ::AnimationNodeTimeScale)
-  TypeManager.registerEngineType("AnimationNodeTimeSeek", AnimationNodeTimeSeek::class,
-      ::AnimationNodeTimeSeek)
-  TypeManager.registerEngineType("AnimationNodeTransition", AnimationNodeTransition::class,
-      ::AnimationNodeTransition)
+  TypeManager.registerEngineType("AnimationNodeTimeScale", AnimationNodeTimeScale::class, ::AnimationNodeTimeScale)
+  TypeManager.registerEngineType("AnimationNodeTimeSeek", AnimationNodeTimeSeek::class, ::AnimationNodeTimeSeek)
+  TypeManager.registerEngineType("AnimationNodeTransition", AnimationNodeTransition::class, ::AnimationNodeTransition)
   TypeManager.registerEngineType("AnimationPlayer", AnimationPlayer::class, ::AnimationPlayer)
   TypeManager.registerEngineType("AnimationRootNode", AnimationRootNode::class, ::AnimationRootNode)
   TypeManager.registerEngineType("AnimationTree", AnimationTree::class, ::AnimationTree)
@@ -2713,104 +2700,66 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Area3D", Area3D::class, ::Area3D)
   TypeManager.registerEngineType("ArrayMesh", ArrayMesh::class, ::ArrayMesh)
   TypeManager.registerEngineType("ArrayOccluder3D", ArrayOccluder3D::class, ::ArrayOccluder3D)
-  TypeManager.registerEngineType("AspectRatioContainer", AspectRatioContainer::class,
-      ::AspectRatioContainer)
+  TypeManager.registerEngineType("AspectRatioContainer", AspectRatioContainer::class, ::AspectRatioContainer)
   TypeManager.registerEngineType("AtlasTexture", AtlasTexture::class, ::AtlasTexture)
   TypeManager.registerEngineType("AudioBusLayout", AudioBusLayout::class, ::AudioBusLayout)
   TypeManager.registerEngineType("AudioEffect", AudioEffect::class, ::AudioEffect)
-  TypeManager.registerEngineType("AudioEffectAmplify", AudioEffectAmplify::class,
-      ::AudioEffectAmplify)
-  TypeManager.registerEngineType("AudioEffectBandLimitFilter", AudioEffectBandLimitFilter::class,
-      ::AudioEffectBandLimitFilter)
-  TypeManager.registerEngineType("AudioEffectBandPassFilter", AudioEffectBandPassFilter::class,
-      ::AudioEffectBandPassFilter)
-  TypeManager.registerEngineType("AudioEffectCapture", AudioEffectCapture::class,
-      ::AudioEffectCapture)
+  TypeManager.registerEngineType("AudioEffectAmplify", AudioEffectAmplify::class, ::AudioEffectAmplify)
+  TypeManager.registerEngineType("AudioEffectBandLimitFilter", AudioEffectBandLimitFilter::class, ::AudioEffectBandLimitFilter)
+  TypeManager.registerEngineType("AudioEffectBandPassFilter", AudioEffectBandPassFilter::class, ::AudioEffectBandPassFilter)
+  TypeManager.registerEngineType("AudioEffectCapture", AudioEffectCapture::class, ::AudioEffectCapture)
   TypeManager.registerEngineType("AudioEffectChorus", AudioEffectChorus::class, ::AudioEffectChorus)
-  TypeManager.registerEngineType("AudioEffectCompressor", AudioEffectCompressor::class,
-      ::AudioEffectCompressor)
+  TypeManager.registerEngineType("AudioEffectCompressor", AudioEffectCompressor::class, ::AudioEffectCompressor)
   TypeManager.registerEngineType("AudioEffectDelay", AudioEffectDelay::class, ::AudioEffectDelay)
-  TypeManager.registerEngineType("AudioEffectDistortion", AudioEffectDistortion::class,
-      ::AudioEffectDistortion)
+  TypeManager.registerEngineType("AudioEffectDistortion", AudioEffectDistortion::class, ::AudioEffectDistortion)
   TypeManager.registerEngineType("AudioEffectEQ", AudioEffectEQ::class, ::AudioEffectEQ)
   TypeManager.registerEngineType("AudioEffectEQ10", AudioEffectEQ10::class, ::AudioEffectEQ10)
   TypeManager.registerEngineType("AudioEffectEQ21", AudioEffectEQ21::class, ::AudioEffectEQ21)
   TypeManager.registerEngineType("AudioEffectEQ6", AudioEffectEQ6::class, ::AudioEffectEQ6)
   TypeManager.registerEngineType("AudioEffectFilter", AudioEffectFilter::class, ::AudioEffectFilter)
-  TypeManager.registerEngineType("AudioEffectHardLimiter", AudioEffectHardLimiter::class,
-      ::AudioEffectHardLimiter)
-  TypeManager.registerEngineType("AudioEffectHighPassFilter", AudioEffectHighPassFilter::class,
-      ::AudioEffectHighPassFilter)
-  TypeManager.registerEngineType("AudioEffectHighShelfFilter", AudioEffectHighShelfFilter::class,
-      ::AudioEffectHighShelfFilter)
-  TypeManager.registerEngineType("AudioEffectInstance", AudioEffectInstance::class,
-      ::AudioEffectInstance)
-  TypeManager.registerEngineType("AudioEffectLimiter", AudioEffectLimiter::class,
-      ::AudioEffectLimiter)
-  TypeManager.registerEngineType("AudioEffectLowPassFilter", AudioEffectLowPassFilter::class,
-      ::AudioEffectLowPassFilter)
-  TypeManager.registerEngineType("AudioEffectLowShelfFilter", AudioEffectLowShelfFilter::class,
-      ::AudioEffectLowShelfFilter)
-  TypeManager.registerEngineType("AudioEffectNotchFilter", AudioEffectNotchFilter::class,
-      ::AudioEffectNotchFilter)
+  TypeManager.registerEngineType("AudioEffectHardLimiter", AudioEffectHardLimiter::class, ::AudioEffectHardLimiter)
+  TypeManager.registerEngineType("AudioEffectHighPassFilter", AudioEffectHighPassFilter::class, ::AudioEffectHighPassFilter)
+  TypeManager.registerEngineType("AudioEffectHighShelfFilter", AudioEffectHighShelfFilter::class, ::AudioEffectHighShelfFilter)
+  TypeManager.registerEngineType("AudioEffectInstance", AudioEffectInstance::class, ::AudioEffectInstance)
+  TypeManager.registerEngineType("AudioEffectLimiter", AudioEffectLimiter::class, ::AudioEffectLimiter)
+  TypeManager.registerEngineType("AudioEffectLowPassFilter", AudioEffectLowPassFilter::class, ::AudioEffectLowPassFilter)
+  TypeManager.registerEngineType("AudioEffectLowShelfFilter", AudioEffectLowShelfFilter::class, ::AudioEffectLowShelfFilter)
+  TypeManager.registerEngineType("AudioEffectNotchFilter", AudioEffectNotchFilter::class, ::AudioEffectNotchFilter)
   TypeManager.registerEngineType("AudioEffectPanner", AudioEffectPanner::class, ::AudioEffectPanner)
   TypeManager.registerEngineType("AudioEffectPhaser", AudioEffectPhaser::class, ::AudioEffectPhaser)
-  TypeManager.registerEngineType("AudioEffectPitchShift", AudioEffectPitchShift::class,
-      ::AudioEffectPitchShift)
+  TypeManager.registerEngineType("AudioEffectPitchShift", AudioEffectPitchShift::class, ::AudioEffectPitchShift)
   TypeManager.registerEngineType("AudioEffectRecord", AudioEffectRecord::class, ::AudioEffectRecord)
   TypeManager.registerEngineType("AudioEffectReverb", AudioEffectReverb::class, ::AudioEffectReverb)
-  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzer", AudioEffectSpectrumAnalyzer::class,
-      ::AudioEffectSpectrumAnalyzer)
-  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzerInstance",
-      AudioEffectSpectrumAnalyzerInstance::class, ::AudioEffectSpectrumAnalyzerInstance)
-  TypeManager.registerEngineType("AudioEffectStereoEnhance", AudioEffectStereoEnhance::class,
-      ::AudioEffectStereoEnhance)
+  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzer", AudioEffectSpectrumAnalyzer::class, ::AudioEffectSpectrumAnalyzer)
+  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzerInstance", AudioEffectSpectrumAnalyzerInstance::class, ::AudioEffectSpectrumAnalyzerInstance)
+  TypeManager.registerEngineType("AudioEffectStereoEnhance", AudioEffectStereoEnhance::class, ::AudioEffectStereoEnhance)
   TypeManager.registerEngineType("AudioListener2D", AudioListener2D::class, ::AudioListener2D)
   TypeManager.registerEngineType("AudioListener3D", AudioListener3D::class, ::AudioListener3D)
   TypeManager.registerEngineType("AudioSample", AudioSample::class, ::AudioSample)
-  TypeManager.registerEngineType("AudioSamplePlayback", AudioSamplePlayback::class,
-      ::AudioSamplePlayback)
-  TypeManager.registerSingleton("AudioServer")
+  TypeManager.registerEngineType("AudioSamplePlayback", AudioSamplePlayback::class, ::AudioSamplePlayback)
+  TypeManager.registerSingleton("AudioServer") { AudioServer }
   TypeManager.registerEngineType("AudioServer", AudioServer::class) { AudioServer }
   TypeManager.registerEngineType("AudioStream", AudioStream::class, ::AudioStream)
-  TypeManager.registerEngineType("AudioStreamGenerator", AudioStreamGenerator::class,
-      ::AudioStreamGenerator)
-  TypeManager.registerEngineType("AudioStreamGeneratorPlayback",
-      AudioStreamGeneratorPlayback::class, ::AudioStreamGeneratorPlayback)
-  TypeManager.registerEngineType("AudioStreamInteractive", AudioStreamInteractive::class,
-      ::AudioStreamInteractive)
+  TypeManager.registerEngineType("AudioStreamGenerator", AudioStreamGenerator::class, ::AudioStreamGenerator)
+  TypeManager.registerEngineType("AudioStreamGeneratorPlayback", AudioStreamGeneratorPlayback::class, ::AudioStreamGeneratorPlayback)
+  TypeManager.registerEngineType("AudioStreamInteractive", AudioStreamInteractive::class, ::AudioStreamInteractive)
   TypeManager.registerEngineType("AudioStreamMP3", AudioStreamMP3::class, ::AudioStreamMP3)
-  TypeManager.registerEngineType("AudioStreamMicrophone", AudioStreamMicrophone::class,
-      ::AudioStreamMicrophone)
-  TypeManager.registerEngineType("AudioStreamOggVorbis", AudioStreamOggVorbis::class,
-      ::AudioStreamOggVorbis)
-  TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class,
-      ::AudioStreamPlayback)
-  TypeManager.registerEngineType("AudioStreamPlaybackInteractive",
-      AudioStreamPlaybackInteractive::class, ::AudioStreamPlaybackInteractive)
-  TypeManager.registerEngineType("AudioStreamPlaybackOggVorbis",
-      AudioStreamPlaybackOggVorbis::class, ::AudioStreamPlaybackOggVorbis)
-  TypeManager.registerEngineType("AudioStreamPlaybackPlaylist", AudioStreamPlaybackPlaylist::class,
-      ::AudioStreamPlaybackPlaylist)
-  TypeManager.registerEngineType("AudioStreamPlaybackPolyphonic",
-      AudioStreamPlaybackPolyphonic::class, ::AudioStreamPlaybackPolyphonic)
-  TypeManager.registerEngineType("AudioStreamPlaybackResampled",
-      AudioStreamPlaybackResampled::class, ::AudioStreamPlaybackResampled)
-  TypeManager.registerEngineType("AudioStreamPlaybackSynchronized",
-      AudioStreamPlaybackSynchronized::class, ::AudioStreamPlaybackSynchronized)
+  TypeManager.registerEngineType("AudioStreamMicrophone", AudioStreamMicrophone::class, ::AudioStreamMicrophone)
+  TypeManager.registerEngineType("AudioStreamOggVorbis", AudioStreamOggVorbis::class, ::AudioStreamOggVorbis)
+  TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class, ::AudioStreamPlayback)
+  TypeManager.registerEngineType("AudioStreamPlaybackInteractive", AudioStreamPlaybackInteractive::class, ::AudioStreamPlaybackInteractive)
+  TypeManager.registerEngineType("AudioStreamPlaybackOggVorbis", AudioStreamPlaybackOggVorbis::class, ::AudioStreamPlaybackOggVorbis)
+  TypeManager.registerEngineType("AudioStreamPlaybackPlaylist", AudioStreamPlaybackPlaylist::class, ::AudioStreamPlaybackPlaylist)
+  TypeManager.registerEngineType("AudioStreamPlaybackPolyphonic", AudioStreamPlaybackPolyphonic::class, ::AudioStreamPlaybackPolyphonic)
+  TypeManager.registerEngineType("AudioStreamPlaybackResampled", AudioStreamPlaybackResampled::class, ::AudioStreamPlaybackResampled)
+  TypeManager.registerEngineType("AudioStreamPlaybackSynchronized", AudioStreamPlaybackSynchronized::class, ::AudioStreamPlaybackSynchronized)
   TypeManager.registerEngineType("AudioStreamPlayer", AudioStreamPlayer::class, ::AudioStreamPlayer)
-  TypeManager.registerEngineType("AudioStreamPlayer2D", AudioStreamPlayer2D::class,
-      ::AudioStreamPlayer2D)
-  TypeManager.registerEngineType("AudioStreamPlayer3D", AudioStreamPlayer3D::class,
-      ::AudioStreamPlayer3D)
-  TypeManager.registerEngineType("AudioStreamPlaylist", AudioStreamPlaylist::class,
-      ::AudioStreamPlaylist)
-  TypeManager.registerEngineType("AudioStreamPolyphonic", AudioStreamPolyphonic::class,
-      ::AudioStreamPolyphonic)
-  TypeManager.registerEngineType("AudioStreamRandomizer", AudioStreamRandomizer::class,
-      ::AudioStreamRandomizer)
-  TypeManager.registerEngineType("AudioStreamSynchronized", AudioStreamSynchronized::class,
-      ::AudioStreamSynchronized)
+  TypeManager.registerEngineType("AudioStreamPlayer2D", AudioStreamPlayer2D::class, ::AudioStreamPlayer2D)
+  TypeManager.registerEngineType("AudioStreamPlayer3D", AudioStreamPlayer3D::class, ::AudioStreamPlayer3D)
+  TypeManager.registerEngineType("AudioStreamPlaylist", AudioStreamPlaylist::class, ::AudioStreamPlaylist)
+  TypeManager.registerEngineType("AudioStreamPolyphonic", AudioStreamPolyphonic::class, ::AudioStreamPolyphonic)
+  TypeManager.registerEngineType("AudioStreamRandomizer", AudioStreamRandomizer::class, ::AudioStreamRandomizer)
+  TypeManager.registerEngineType("AudioStreamSynchronized", AudioStreamSynchronized::class, ::AudioStreamSynchronized)
   TypeManager.registerEngineType("AudioStreamWAV", AudioStreamWAV::class, ::AudioStreamWAV)
   TypeManager.registerEngineType("BackBufferCopy", BackBufferCopy::class, ::BackBufferCopy)
   TypeManager.registerEngineType("BaseButton", BaseButton::class, ::BaseButton)
@@ -2840,18 +2789,15 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Camera2D", Camera2D::class, ::Camera2D)
   TypeManager.registerEngineType("Camera3D", Camera3D::class, ::Camera3D)
   TypeManager.registerEngineType("CameraAttributes", CameraAttributes::class, ::CameraAttributes)
-  TypeManager.registerEngineType("CameraAttributesPhysical", CameraAttributesPhysical::class,
-      ::CameraAttributesPhysical)
-  TypeManager.registerEngineType("CameraAttributesPractical", CameraAttributesPractical::class,
-      ::CameraAttributesPractical)
+  TypeManager.registerEngineType("CameraAttributesPhysical", CameraAttributesPhysical::class, ::CameraAttributesPhysical)
+  TypeManager.registerEngineType("CameraAttributesPractical", CameraAttributesPractical::class, ::CameraAttributesPractical)
   TypeManager.registerEngineType("CameraFeed", CameraFeed::class, ::CameraFeed)
-  TypeManager.registerSingleton("CameraServer")
+  TypeManager.registerSingleton("CameraServer") { CameraServer }
   TypeManager.registerEngineType("CameraServer", CameraServer::class) { CameraServer }
   TypeManager.registerEngineType("CameraTexture", CameraTexture::class, ::CameraTexture)
   TypeManager.registerEngineType("CanvasGroup", CanvasGroup::class, ::CanvasGroup)
   TypeManager.registerEngineType("CanvasItem", CanvasItem::class, ::CanvasItem)
-  TypeManager.registerEngineType("CanvasItemMaterial", CanvasItemMaterial::class,
-      ::CanvasItemMaterial)
+  TypeManager.registerEngineType("CanvasItemMaterial", CanvasItemMaterial::class, ::CanvasItemMaterial)
   TypeManager.registerEngineType("CanvasLayer", CanvasLayer::class, ::CanvasLayer)
   TypeManager.registerEngineType("CanvasModulate", CanvasModulate::class, ::CanvasModulate)
   TypeManager.registerEngineType("CanvasTexture", CanvasTexture::class, ::CanvasTexture)
@@ -2865,16 +2811,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("CheckBox", CheckBox::class, ::CheckBox)
   TypeManager.registerEngineType("CheckButton", CheckButton::class, ::CheckButton)
   TypeManager.registerEngineType("CircleShape2D", CircleShape2D::class, ::CircleShape2D)
-  TypeManager.registerSingleton("ClassDB")
+  TypeManager.registerSingleton("ClassDB") { ClassDB }
   TypeManager.registerEngineType("ClassDB", ClassDB::class) { ClassDB }
   TypeManager.registerEngineType("CodeEdit", CodeEdit::class, ::CodeEdit)
   TypeManager.registerEngineType("CodeHighlighter", CodeHighlighter::class, ::CodeHighlighter)
   TypeManager.registerEngineType("CollisionObject2D", CollisionObject2D::class, ::CollisionObject2D)
   TypeManager.registerEngineType("CollisionObject3D", CollisionObject3D::class, ::CollisionObject3D)
-  TypeManager.registerEngineType("CollisionPolygon2D", CollisionPolygon2D::class,
-      ::CollisionPolygon2D)
-  TypeManager.registerEngineType("CollisionPolygon3D", CollisionPolygon3D::class,
-      ::CollisionPolygon3D)
+  TypeManager.registerEngineType("CollisionPolygon2D", CollisionPolygon2D::class, ::CollisionPolygon2D)
+  TypeManager.registerEngineType("CollisionPolygon3D", CollisionPolygon3D::class, ::CollisionPolygon3D)
   TypeManager.registerEngineType("CollisionShape2D", CollisionShape2D::class, ::CollisionShape2D)
   TypeManager.registerEngineType("CollisionShape3D", CollisionShape3D::class, ::CollisionShape3D)
   TypeManager.registerEngineType("ColorPalette", ColorPalette::class, ::ColorPalette)
@@ -2884,30 +2828,20 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Compositor", Compositor::class, ::Compositor)
   TypeManager.registerEngineType("CompositorEffect", CompositorEffect::class, ::CompositorEffect)
   TypeManager.registerEngineType("CompressedCubemap", CompressedCubemap::class, ::CompressedCubemap)
-  TypeManager.registerEngineType("CompressedCubemapArray", CompressedCubemapArray::class,
-      ::CompressedCubemapArray)
-  TypeManager.registerEngineType("CompressedTexture2D", CompressedTexture2D::class,
-      ::CompressedTexture2D)
-  TypeManager.registerEngineType("CompressedTexture2DArray", CompressedTexture2DArray::class,
-      ::CompressedTexture2DArray)
-  TypeManager.registerEngineType("CompressedTexture3D", CompressedTexture3D::class,
-      ::CompressedTexture3D)
-  TypeManager.registerEngineType("CompressedTextureLayered", CompressedTextureLayered::class,
-      ::CompressedTextureLayered)
-  TypeManager.registerEngineType("ConcavePolygonShape2D", ConcavePolygonShape2D::class,
-      ::ConcavePolygonShape2D)
-  TypeManager.registerEngineType("ConcavePolygonShape3D", ConcavePolygonShape3D::class,
-      ::ConcavePolygonShape3D)
+  TypeManager.registerEngineType("CompressedCubemapArray", CompressedCubemapArray::class, ::CompressedCubemapArray)
+  TypeManager.registerEngineType("CompressedTexture2D", CompressedTexture2D::class, ::CompressedTexture2D)
+  TypeManager.registerEngineType("CompressedTexture2DArray", CompressedTexture2DArray::class, ::CompressedTexture2DArray)
+  TypeManager.registerEngineType("CompressedTexture3D", CompressedTexture3D::class, ::CompressedTexture3D)
+  TypeManager.registerEngineType("CompressedTextureLayered", CompressedTextureLayered::class, ::CompressedTextureLayered)
+  TypeManager.registerEngineType("ConcavePolygonShape2D", ConcavePolygonShape2D::class, ::ConcavePolygonShape2D)
+  TypeManager.registerEngineType("ConcavePolygonShape3D", ConcavePolygonShape3D::class, ::ConcavePolygonShape3D)
   TypeManager.registerEngineType("ConeTwistJoint3D", ConeTwistJoint3D::class, ::ConeTwistJoint3D)
   TypeManager.registerEngineType("ConfigFile", ConfigFile::class, ::ConfigFile)
-  TypeManager.registerEngineType("ConfirmationDialog", ConfirmationDialog::class,
-      ::ConfirmationDialog)
+  TypeManager.registerEngineType("ConfirmationDialog", ConfirmationDialog::class, ::ConfirmationDialog)
   TypeManager.registerEngineType("Container", Container::class, ::Container)
   TypeManager.registerEngineType("Control", Control::class, ::Control)
-  TypeManager.registerEngineType("ConvexPolygonShape2D", ConvexPolygonShape2D::class,
-      ::ConvexPolygonShape2D)
-  TypeManager.registerEngineType("ConvexPolygonShape3D", ConvexPolygonShape3D::class,
-      ::ConvexPolygonShape3D)
+  TypeManager.registerEngineType("ConvexPolygonShape2D", ConvexPolygonShape2D::class, ::ConvexPolygonShape2D)
+  TypeManager.registerEngineType("ConvexPolygonShape3D", ConvexPolygonShape3D::class, ::ConvexPolygonShape3D)
   TypeManager.registerEngineType("Crypto", Crypto::class, ::Crypto)
   TypeManager.registerEngineType("CryptoKey", CryptoKey::class, ::CryptoKey)
   TypeManager.registerEngineType("Cubemap", Cubemap::class, ::Cubemap)
@@ -2920,24 +2854,20 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("CylinderMesh", CylinderMesh::class, ::CylinderMesh)
   TypeManager.registerEngineType("CylinderShape3D", CylinderShape3D::class, ::CylinderShape3D)
   TypeManager.registerEngineType("DTLSServer", DTLSServer::class, ::DTLSServer)
-  TypeManager.registerEngineType("DampedSpringJoint2D", DampedSpringJoint2D::class,
-      ::DampedSpringJoint2D)
+  TypeManager.registerEngineType("DampedSpringJoint2D", DampedSpringJoint2D::class, ::DampedSpringJoint2D)
   TypeManager.registerEngineType("Decal", Decal::class, ::Decal)
   TypeManager.registerEngineType("DirAccess", DirAccess::class, ::DirAccess)
-  TypeManager.registerEngineType("DirectionalLight2D", DirectionalLight2D::class,
-      ::DirectionalLight2D)
-  TypeManager.registerEngineType("DirectionalLight3D", DirectionalLight3D::class,
-      ::DirectionalLight3D)
-  TypeManager.registerSingleton("DisplayServer")
+  TypeManager.registerEngineType("DirectionalLight2D", DirectionalLight2D::class, ::DirectionalLight2D)
+  TypeManager.registerEngineType("DirectionalLight3D", DirectionalLight3D::class, ::DirectionalLight3D)
+  TypeManager.registerSingleton("DisplayServer") { DisplayServer }
   TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
   TypeManager.registerEngineType("ENetConnection", ENetConnection::class, ::ENetConnection)
-  TypeManager.registerEngineType("ENetMultiplayerPeer", ENetMultiplayerPeer::class,
-      ::ENetMultiplayerPeer)
+  TypeManager.registerEngineType("ENetMultiplayerPeer", ENetMultiplayerPeer::class, ::ENetMultiplayerPeer)
   TypeManager.registerEngineType("ENetPacketPeer", ENetPacketPeer::class, ::ENetPacketPeer)
   TypeManager.registerEngineType("EncodedObjectAsID", EncodedObjectAsID::class, ::EncodedObjectAsID)
-  TypeManager.registerSingleton("Engine")
+  TypeManager.registerSingleton("Engine") { Engine }
   TypeManager.registerEngineType("Engine", Engine::class) { Engine }
-  TypeManager.registerSingleton("EngineDebugger")
+  TypeManager.registerSingleton("EngineDebugger") { EngineDebugger }
   TypeManager.registerEngineType("EngineDebugger", EngineDebugger::class) { EngineDebugger }
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
@@ -2954,27 +2884,22 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Font", Font::class, ::Font)
   TypeManager.registerEngineType("FontFile", FontFile::class, ::FontFile)
   TypeManager.registerEngineType("FontVariation", FontVariation::class, ::FontVariation)
-  TypeManager.registerEngineType("FramebufferCacheRD", FramebufferCacheRD::class,
-      ::FramebufferCacheRD)
+  TypeManager.registerEngineType("FramebufferCacheRD", FramebufferCacheRD::class, ::FramebufferCacheRD)
   TypeManager.registerEngineType("GDExtension", GDExtension::class, ::GDExtension)
-  TypeManager.registerSingleton("GDExtensionManager")
-  TypeManager.registerEngineType("GDExtensionManager", GDExtensionManager::class) {
-      GDExtensionManager }
+  TypeManager.registerSingleton("GDExtensionManager") { GDExtensionManager }
+  TypeManager.registerEngineType("GDExtensionManager", GDExtensionManager::class) { GDExtensionManager }
   TypeManager.registerEngineType("GDScript", GDScript::class, ::GDScript)
   TypeManager.registerEngineType("GLTFAccessor", GLTFAccessor::class, ::GLTFAccessor)
   TypeManager.registerEngineType("GLTFAnimation", GLTFAnimation::class, ::GLTFAnimation)
   TypeManager.registerEngineType("GLTFBufferView", GLTFBufferView::class, ::GLTFBufferView)
   TypeManager.registerEngineType("GLTFCamera", GLTFCamera::class, ::GLTFCamera)
   TypeManager.registerEngineType("GLTFDocument", GLTFDocument::class, ::GLTFDocument)
-  TypeManager.registerEngineType("GLTFDocumentExtension", GLTFDocumentExtension::class,
-      ::GLTFDocumentExtension)
-  TypeManager.registerEngineType("GLTFDocumentExtensionConvertImporterMesh",
-      GLTFDocumentExtensionConvertImporterMesh::class, ::GLTFDocumentExtensionConvertImporterMesh)
+  TypeManager.registerEngineType("GLTFDocumentExtension", GLTFDocumentExtension::class, ::GLTFDocumentExtension)
+  TypeManager.registerEngineType("GLTFDocumentExtensionConvertImporterMesh", GLTFDocumentExtensionConvertImporterMesh::class, ::GLTFDocumentExtensionConvertImporterMesh)
   TypeManager.registerEngineType("GLTFLight", GLTFLight::class, ::GLTFLight)
   TypeManager.registerEngineType("GLTFMesh", GLTFMesh::class, ::GLTFMesh)
   TypeManager.registerEngineType("GLTFNode", GLTFNode::class, ::GLTFNode)
-  TypeManager.registerEngineType("GLTFObjectModelProperty", GLTFObjectModelProperty::class,
-      ::GLTFObjectModelProperty)
+  TypeManager.registerEngineType("GLTFObjectModelProperty", GLTFObjectModelProperty::class, ::GLTFObjectModelProperty)
   TypeManager.registerEngineType("GLTFPhysicsBody", GLTFPhysicsBody::class, ::GLTFPhysicsBody)
   TypeManager.registerEngineType("GLTFPhysicsShape", GLTFPhysicsShape::class, ::GLTFPhysicsShape)
   TypeManager.registerEngineType("GLTFSkeleton", GLTFSkeleton::class, ::GLTFSkeleton)
@@ -2982,37 +2907,25 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GLTFSpecGloss", GLTFSpecGloss::class, ::GLTFSpecGloss)
   TypeManager.registerEngineType("GLTFState", GLTFState::class, ::GLTFState)
   TypeManager.registerEngineType("GLTFTexture", GLTFTexture::class, ::GLTFTexture)
-  TypeManager.registerEngineType("GLTFTextureSampler", GLTFTextureSampler::class,
-      ::GLTFTextureSampler)
+  TypeManager.registerEngineType("GLTFTextureSampler", GLTFTextureSampler::class, ::GLTFTextureSampler)
   TypeManager.registerEngineType("GPUParticles2D", GPUParticles2D::class, ::GPUParticles2D)
   TypeManager.registerEngineType("GPUParticles3D", GPUParticles3D::class, ::GPUParticles3D)
-  TypeManager.registerEngineType("GPUParticlesAttractor3D", GPUParticlesAttractor3D::class,
-      ::GPUParticlesAttractor3D)
-  TypeManager.registerEngineType("GPUParticlesAttractorBox3D", GPUParticlesAttractorBox3D::class,
-      ::GPUParticlesAttractorBox3D)
-  TypeManager.registerEngineType("GPUParticlesAttractorSphere3D",
-      GPUParticlesAttractorSphere3D::class, ::GPUParticlesAttractorSphere3D)
-  TypeManager.registerEngineType("GPUParticlesAttractorVectorField3D",
-      GPUParticlesAttractorVectorField3D::class, ::GPUParticlesAttractorVectorField3D)
-  TypeManager.registerEngineType("GPUParticlesCollision3D", GPUParticlesCollision3D::class,
-      ::GPUParticlesCollision3D)
-  TypeManager.registerEngineType("GPUParticlesCollisionBox3D", GPUParticlesCollisionBox3D::class,
-      ::GPUParticlesCollisionBox3D)
-  TypeManager.registerEngineType("GPUParticlesCollisionHeightField3D",
-      GPUParticlesCollisionHeightField3D::class, ::GPUParticlesCollisionHeightField3D)
-  TypeManager.registerEngineType("GPUParticlesCollisionSDF3D", GPUParticlesCollisionSDF3D::class,
-      ::GPUParticlesCollisionSDF3D)
-  TypeManager.registerEngineType("GPUParticlesCollisionSphere3D",
-      GPUParticlesCollisionSphere3D::class, ::GPUParticlesCollisionSphere3D)
+  TypeManager.registerEngineType("GPUParticlesAttractor3D", GPUParticlesAttractor3D::class, ::GPUParticlesAttractor3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorBox3D", GPUParticlesAttractorBox3D::class, ::GPUParticlesAttractorBox3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorSphere3D", GPUParticlesAttractorSphere3D::class, ::GPUParticlesAttractorSphere3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorVectorField3D", GPUParticlesAttractorVectorField3D::class, ::GPUParticlesAttractorVectorField3D)
+  TypeManager.registerEngineType("GPUParticlesCollision3D", GPUParticlesCollision3D::class, ::GPUParticlesCollision3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionBox3D", GPUParticlesCollisionBox3D::class, ::GPUParticlesCollisionBox3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionHeightField3D", GPUParticlesCollisionHeightField3D::class, ::GPUParticlesCollisionHeightField3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionSDF3D", GPUParticlesCollisionSDF3D::class, ::GPUParticlesCollisionSDF3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionSphere3D", GPUParticlesCollisionSphere3D::class, ::GPUParticlesCollisionSphere3D)
   TypeManager.registerEngineType("GdjScript", GdjScript::class, ::GdjScript)
-  TypeManager.registerEngineType("Generic6DOFJoint3D", Generic6DOFJoint3D::class,
-      ::Generic6DOFJoint3D)
-  TypeManager.registerSingleton("Geometry2D")
+  TypeManager.registerEngineType("Generic6DOFJoint3D", Generic6DOFJoint3D::class, ::Generic6DOFJoint3D)
+  TypeManager.registerSingleton("Geometry2D") { Geometry2D }
   TypeManager.registerEngineType("Geometry2D", Geometry2D::class) { Geometry2D }
-  TypeManager.registerSingleton("Geometry3D")
+  TypeManager.registerSingleton("Geometry3D") { Geometry3D }
   TypeManager.registerEngineType("Geometry3D", Geometry3D::class) { Geometry3D }
-  TypeManager.registerEngineType("GeometryInstance3D", GeometryInstance3D::class,
-      ::GeometryInstance3D)
+  TypeManager.registerEngineType("GeometryInstance3D", GeometryInstance3D::class, ::GeometryInstance3D)
   TypeManager.registerEngineType("Gradient", Gradient::class, ::Gradient)
   TypeManager.registerEngineType("GradientTexture1D", GradientTexture1D::class, ::GradientTexture1D)
   TypeManager.registerEngineType("GradientTexture2D", GradientTexture2D::class, ::GradientTexture2D)
@@ -3035,74 +2948,57 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("HashingContext", HashingContext::class, ::HashingContext)
   TypeManager.registerEngineType("HeightMapShape3D", HeightMapShape3D::class, ::HeightMapShape3D)
   TypeManager.registerEngineType("HingeJoint3D", HingeJoint3D::class, ::HingeJoint3D)
-  TypeManager.registerSingleton("IP")
+  TypeManager.registerSingleton("IP") { IP }
   TypeManager.registerEngineType("IP", IP::class) { IP }
   TypeManager.registerEngineType("Image", Image::class, ::Image)
   TypeManager.registerEngineType("ImageFormatLoader", ImageFormatLoader::class, ::ImageFormatLoader)
-  TypeManager.registerEngineType("ImageFormatLoaderExtension", ImageFormatLoaderExtension::class,
-      ::ImageFormatLoaderExtension)
+  TypeManager.registerEngineType("ImageFormatLoaderExtension", ImageFormatLoaderExtension::class, ::ImageFormatLoaderExtension)
   TypeManager.registerEngineType("ImageTexture", ImageTexture::class, ::ImageTexture)
   TypeManager.registerEngineType("ImageTexture3D", ImageTexture3D::class, ::ImageTexture3D)
-  TypeManager.registerEngineType("ImageTextureLayered", ImageTextureLayered::class,
-      ::ImageTextureLayered)
+  TypeManager.registerEngineType("ImageTextureLayered", ImageTextureLayered::class, ::ImageTextureLayered)
   TypeManager.registerEngineType("ImmediateMesh", ImmediateMesh::class, ::ImmediateMesh)
   TypeManager.registerEngineType("ImporterMesh", ImporterMesh::class, ::ImporterMesh)
-  TypeManager.registerEngineType("ImporterMeshInstance3D", ImporterMeshInstance3D::class,
-      ::ImporterMeshInstance3D)
-  TypeManager.registerSingleton("Input")
+  TypeManager.registerEngineType("ImporterMeshInstance3D", ImporterMeshInstance3D::class, ::ImporterMeshInstance3D)
+  TypeManager.registerSingleton("Input") { Input }
   TypeManager.registerEngineType("Input", Input::class) { Input }
   TypeManager.registerEngineType("InputEvent", InputEvent::class, ::InputEvent)
   TypeManager.registerEngineType("InputEventAction", InputEventAction::class, ::InputEventAction)
-  TypeManager.registerEngineType("InputEventFromWindow", InputEventFromWindow::class,
-      ::InputEventFromWindow)
+  TypeManager.registerEngineType("InputEventFromWindow", InputEventFromWindow::class, ::InputEventFromWindow)
   TypeManager.registerEngineType("InputEventGesture", InputEventGesture::class, ::InputEventGesture)
-  TypeManager.registerEngineType("InputEventJoypadButton", InputEventJoypadButton::class,
-      ::InputEventJoypadButton)
-  TypeManager.registerEngineType("InputEventJoypadMotion", InputEventJoypadMotion::class,
-      ::InputEventJoypadMotion)
+  TypeManager.registerEngineType("InputEventJoypadButton", InputEventJoypadButton::class, ::InputEventJoypadButton)
+  TypeManager.registerEngineType("InputEventJoypadMotion", InputEventJoypadMotion::class, ::InputEventJoypadMotion)
   TypeManager.registerEngineType("InputEventKey", InputEventKey::class, ::InputEventKey)
   TypeManager.registerEngineType("InputEventMIDI", InputEventMIDI::class, ::InputEventMIDI)
-  TypeManager.registerEngineType("InputEventMagnifyGesture", InputEventMagnifyGesture::class,
-      ::InputEventMagnifyGesture)
+  TypeManager.registerEngineType("InputEventMagnifyGesture", InputEventMagnifyGesture::class, ::InputEventMagnifyGesture)
   TypeManager.registerEngineType("InputEventMouse", InputEventMouse::class, ::InputEventMouse)
-  TypeManager.registerEngineType("InputEventMouseButton", InputEventMouseButton::class,
-      ::InputEventMouseButton)
-  TypeManager.registerEngineType("InputEventMouseMotion", InputEventMouseMotion::class,
-      ::InputEventMouseMotion)
-  TypeManager.registerEngineType("InputEventPanGesture", InputEventPanGesture::class,
-      ::InputEventPanGesture)
-  TypeManager.registerEngineType("InputEventScreenDrag", InputEventScreenDrag::class,
-      ::InputEventScreenDrag)
-  TypeManager.registerEngineType("InputEventScreenTouch", InputEventScreenTouch::class,
-      ::InputEventScreenTouch)
-  TypeManager.registerEngineType("InputEventShortcut", InputEventShortcut::class,
-      ::InputEventShortcut)
-  TypeManager.registerEngineType("InputEventWithModifiers", InputEventWithModifiers::class,
-      ::InputEventWithModifiers)
-  TypeManager.registerSingleton("InputMap")
+  TypeManager.registerEngineType("InputEventMouseButton", InputEventMouseButton::class, ::InputEventMouseButton)
+  TypeManager.registerEngineType("InputEventMouseMotion", InputEventMouseMotion::class, ::InputEventMouseMotion)
+  TypeManager.registerEngineType("InputEventPanGesture", InputEventPanGesture::class, ::InputEventPanGesture)
+  TypeManager.registerEngineType("InputEventScreenDrag", InputEventScreenDrag::class, ::InputEventScreenDrag)
+  TypeManager.registerEngineType("InputEventScreenTouch", InputEventScreenTouch::class, ::InputEventScreenTouch)
+  TypeManager.registerEngineType("InputEventShortcut", InputEventShortcut::class, ::InputEventShortcut)
+  TypeManager.registerEngineType("InputEventWithModifiers", InputEventWithModifiers::class, ::InputEventWithModifiers)
+  TypeManager.registerSingleton("InputMap") { InputMap }
   TypeManager.registerEngineType("InputMap", InputMap::class) { InputMap }
-  TypeManager.registerEngineType("InstancePlaceholder", InstancePlaceholder::class,
-      ::InstancePlaceholder)
+  TypeManager.registerEngineType("InstancePlaceholder", InstancePlaceholder::class, ::InstancePlaceholder)
   TypeManager.registerEngineType("IntervalTweener", IntervalTweener::class, ::IntervalTweener)
   TypeManager.registerEngineType("ItemList", ItemList::class, ::ItemList)
   TypeManager.registerEngineType("JNISingleton", JNISingleton::class, ::JNISingleton)
   TypeManager.registerEngineType("JSON", JSON::class, ::JSON)
   TypeManager.registerEngineType("JSONRPC", JSONRPC::class, ::JSONRPC)
   TypeManager.registerEngineType("JavaClass", JavaClass::class, ::JavaClass)
-  TypeManager.registerSingleton("JavaClassWrapper")
+  TypeManager.registerSingleton("JavaClassWrapper") { JavaClassWrapper }
   TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
   TypeManager.registerEngineType("JavaObject", JavaObject::class, ::JavaObject)
   TypeManager.registerEngineType("JavaScript", JavaScript::class, ::JavaScript)
-  TypeManager.registerSingleton("JavaScriptBridge")
+  TypeManager.registerSingleton("JavaScriptBridge") { JavaScriptBridge }
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
   TypeManager.registerEngineType("JavaScriptObject", JavaScriptObject::class, ::JavaScriptObject)
   TypeManager.registerEngineType("Joint2D", Joint2D::class, ::Joint2D)
   TypeManager.registerEngineType("Joint3D", Joint3D::class, ::Joint3D)
   TypeManager.registerEngineType("JvmScript", JvmScript::class, ::JvmScript)
-  TypeManager.registerEngineType("KinematicCollision2D", KinematicCollision2D::class,
-      ::KinematicCollision2D)
-  TypeManager.registerEngineType("KinematicCollision3D", KinematicCollision3D::class,
-      ::KinematicCollision3D)
+  TypeManager.registerEngineType("KinematicCollision2D", KinematicCollision2D::class, ::KinematicCollision2D)
+  TypeManager.registerEngineType("KinematicCollision3D", KinematicCollision3D::class, ::KinematicCollision3D)
   TypeManager.registerEngineType("KotlinScript", KotlinScript::class, ::KotlinScript)
   TypeManager.registerEngineType("Label", Label::class, ::Label)
   TypeManager.registerEngineType("Label3D", Label3D::class, ::Label3D)
@@ -3123,14 +3019,13 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("MarginContainer", MarginContainer::class, ::MarginContainer)
   TypeManager.registerEngineType("Marker2D", Marker2D::class, ::Marker2D)
   TypeManager.registerEngineType("Marker3D", Marker3D::class, ::Marker3D)
-  TypeManager.registerSingleton("Marshalls")
+  TypeManager.registerSingleton("Marshalls") { Marshalls }
   TypeManager.registerEngineType("Marshalls", Marshalls::class) { Marshalls }
   TypeManager.registerEngineType("Material", Material::class, ::Material)
   TypeManager.registerEngineType("MenuBar", MenuBar::class, ::MenuBar)
   TypeManager.registerEngineType("MenuButton", MenuButton::class, ::MenuButton)
   TypeManager.registerEngineType("Mesh", Mesh::class, ::Mesh)
-  TypeManager.registerEngineType("MeshConvexDecompositionSettings",
-      MeshConvexDecompositionSettings::class, ::MeshConvexDecompositionSettings)
+  TypeManager.registerEngineType("MeshConvexDecompositionSettings", MeshConvexDecompositionSettings::class, ::MeshConvexDecompositionSettings)
   TypeManager.registerEngineType("MeshDataTool", MeshDataTool::class, ::MeshDataTool)
   TypeManager.registerEngineType("MeshInstance2D", MeshInstance2D::class, ::MeshInstance2D)
   TypeManager.registerEngineType("MeshInstance3D", MeshInstance3D::class, ::MeshInstance3D)
@@ -3142,58 +3037,39 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("MobileVRInterface", MobileVRInterface::class, ::MobileVRInterface)
   TypeManager.registerEngineType("MovieWriter", MovieWriter::class, ::MovieWriter)
   TypeManager.registerEngineType("MultiMesh", MultiMesh::class, ::MultiMesh)
-  TypeManager.registerEngineType("MultiMeshInstance2D", MultiMeshInstance2D::class,
-      ::MultiMeshInstance2D)
-  TypeManager.registerEngineType("MultiMeshInstance3D", MultiMeshInstance3D::class,
-      ::MultiMeshInstance3D)
+  TypeManager.registerEngineType("MultiMeshInstance2D", MultiMeshInstance2D::class, ::MultiMeshInstance2D)
+  TypeManager.registerEngineType("MultiMeshInstance3D", MultiMeshInstance3D::class, ::MultiMeshInstance3D)
   TypeManager.registerEngineType("MultiplayerAPI", MultiplayerAPI::class, ::MultiplayerAPI)
-  TypeManager.registerEngineType("MultiplayerAPIExtension", MultiplayerAPIExtension::class,
-      ::MultiplayerAPIExtension)
+  TypeManager.registerEngineType("MultiplayerAPIExtension", MultiplayerAPIExtension::class, ::MultiplayerAPIExtension)
   TypeManager.registerEngineType("MultiplayerPeer", MultiplayerPeer::class, ::MultiplayerPeer)
-  TypeManager.registerEngineType("MultiplayerPeerExtension", MultiplayerPeerExtension::class,
-      ::MultiplayerPeerExtension)
-  TypeManager.registerEngineType("MultiplayerSpawner", MultiplayerSpawner::class,
-      ::MultiplayerSpawner)
-  TypeManager.registerEngineType("MultiplayerSynchronizer", MultiplayerSynchronizer::class,
-      ::MultiplayerSynchronizer)
+  TypeManager.registerEngineType("MultiplayerPeerExtension", MultiplayerPeerExtension::class, ::MultiplayerPeerExtension)
+  TypeManager.registerEngineType("MultiplayerSpawner", MultiplayerSpawner::class, ::MultiplayerSpawner)
+  TypeManager.registerEngineType("MultiplayerSynchronizer", MultiplayerSynchronizer::class, ::MultiplayerSynchronizer)
   TypeManager.registerEngineType("Mutex", Mutex::class, ::Mutex)
-  TypeManager.registerSingleton("NativeMenu")
+  TypeManager.registerSingleton("NativeMenu") { NativeMenu }
   TypeManager.registerEngineType("NativeMenu", NativeMenu::class) { NativeMenu }
   TypeManager.registerEngineType("NavigationAgent2D", NavigationAgent2D::class, ::NavigationAgent2D)
   TypeManager.registerEngineType("NavigationAgent3D", NavigationAgent3D::class, ::NavigationAgent3D)
   TypeManager.registerEngineType("NavigationLink2D", NavigationLink2D::class, ::NavigationLink2D)
   TypeManager.registerEngineType("NavigationLink3D", NavigationLink3D::class, ::NavigationLink3D)
   TypeManager.registerEngineType("NavigationMesh", NavigationMesh::class, ::NavigationMesh)
-  TypeManager.registerSingleton("NavigationMeshGenerator")
-  TypeManager.registerEngineType("NavigationMeshGenerator", NavigationMeshGenerator::class) {
-      NavigationMeshGenerator }
-  TypeManager.registerEngineType("NavigationMeshSourceGeometryData2D",
-      NavigationMeshSourceGeometryData2D::class, ::NavigationMeshSourceGeometryData2D)
-  TypeManager.registerEngineType("NavigationMeshSourceGeometryData3D",
-      NavigationMeshSourceGeometryData3D::class, ::NavigationMeshSourceGeometryData3D)
-  TypeManager.registerEngineType("NavigationObstacle2D", NavigationObstacle2D::class,
-      ::NavigationObstacle2D)
-  TypeManager.registerEngineType("NavigationObstacle3D", NavigationObstacle3D::class,
-      ::NavigationObstacle3D)
-  TypeManager.registerEngineType("NavigationPathQueryParameters2D",
-      NavigationPathQueryParameters2D::class, ::NavigationPathQueryParameters2D)
-  TypeManager.registerEngineType("NavigationPathQueryParameters3D",
-      NavigationPathQueryParameters3D::class, ::NavigationPathQueryParameters3D)
-  TypeManager.registerEngineType("NavigationPathQueryResult2D", NavigationPathQueryResult2D::class,
-      ::NavigationPathQueryResult2D)
-  TypeManager.registerEngineType("NavigationPathQueryResult3D", NavigationPathQueryResult3D::class,
-      ::NavigationPathQueryResult3D)
+  TypeManager.registerSingleton("NavigationMeshGenerator") { NavigationMeshGenerator }
+  TypeManager.registerEngineType("NavigationMeshGenerator", NavigationMeshGenerator::class) { NavigationMeshGenerator }
+  TypeManager.registerEngineType("NavigationMeshSourceGeometryData2D", NavigationMeshSourceGeometryData2D::class, ::NavigationMeshSourceGeometryData2D)
+  TypeManager.registerEngineType("NavigationMeshSourceGeometryData3D", NavigationMeshSourceGeometryData3D::class, ::NavigationMeshSourceGeometryData3D)
+  TypeManager.registerEngineType("NavigationObstacle2D", NavigationObstacle2D::class, ::NavigationObstacle2D)
+  TypeManager.registerEngineType("NavigationObstacle3D", NavigationObstacle3D::class, ::NavigationObstacle3D)
+  TypeManager.registerEngineType("NavigationPathQueryParameters2D", NavigationPathQueryParameters2D::class, ::NavigationPathQueryParameters2D)
+  TypeManager.registerEngineType("NavigationPathQueryParameters3D", NavigationPathQueryParameters3D::class, ::NavigationPathQueryParameters3D)
+  TypeManager.registerEngineType("NavigationPathQueryResult2D", NavigationPathQueryResult2D::class, ::NavigationPathQueryResult2D)
+  TypeManager.registerEngineType("NavigationPathQueryResult3D", NavigationPathQueryResult3D::class, ::NavigationPathQueryResult3D)
   TypeManager.registerEngineType("NavigationPolygon", NavigationPolygon::class, ::NavigationPolygon)
-  TypeManager.registerEngineType("NavigationRegion2D", NavigationRegion2D::class,
-      ::NavigationRegion2D)
-  TypeManager.registerEngineType("NavigationRegion3D", NavigationRegion3D::class,
-      ::NavigationRegion3D)
-  TypeManager.registerSingleton("NavigationServer2D")
-  TypeManager.registerEngineType("NavigationServer2D", NavigationServer2D::class) {
-      NavigationServer2D }
-  TypeManager.registerSingleton("NavigationServer3D")
-  TypeManager.registerEngineType("NavigationServer3D", NavigationServer3D::class) {
-      NavigationServer3D }
+  TypeManager.registerEngineType("NavigationRegion2D", NavigationRegion2D::class, ::NavigationRegion2D)
+  TypeManager.registerEngineType("NavigationRegion3D", NavigationRegion3D::class, ::NavigationRegion3D)
+  TypeManager.registerSingleton("NavigationServer2D") { NavigationServer2D }
+  TypeManager.registerEngineType("NavigationServer2D", NavigationServer2D::class) { NavigationServer2D }
+  TypeManager.registerSingleton("NavigationServer3D") { NavigationServer3D }
+  TypeManager.registerEngineType("NavigationServer3D", NavigationServer3D::class) { NavigationServer3D }
   TypeManager.registerEngineType("NinePatchRect", NinePatchRect::class, ::NinePatchRect)
   TypeManager.registerEngineType("Node", Node::class, ::Node)
   TypeManager.registerEngineType("Node2D", Node2D::class, ::Node2D)
@@ -3203,167 +3079,108 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NoiseTexture2D", NoiseTexture2D::class, ::NoiseTexture2D)
   TypeManager.registerEngineType("NoiseTexture3D", NoiseTexture3D::class, ::NoiseTexture3D)
   TypeManager.registerEngineType("ORMMaterial3D", ORMMaterial3D::class, ::ORMMaterial3D)
-  TypeManager.registerSingleton("OS")
+  TypeManager.registerSingleton("OS") { OS }
   TypeManager.registerEngineType("OS", OS::class) { OS }
-  TypeManager.registerEngineType("Object", Object::class, ::Object)
   TypeManager.registerEngineType("Occluder3D", Occluder3D::class, ::Occluder3D)
-  TypeManager.registerEngineType("OccluderInstance3D", OccluderInstance3D::class,
-      ::OccluderInstance3D)
+  TypeManager.registerEngineType("OccluderInstance3D", OccluderInstance3D::class, ::OccluderInstance3D)
   TypeManager.registerEngineType("OccluderPolygon2D", OccluderPolygon2D::class, ::OccluderPolygon2D)
-  TypeManager.registerEngineType("OfflineMultiplayerPeer", OfflineMultiplayerPeer::class,
-      ::OfflineMultiplayerPeer)
+  TypeManager.registerEngineType("OfflineMultiplayerPeer", OfflineMultiplayerPeer::class, ::OfflineMultiplayerPeer)
   TypeManager.registerEngineType("OggPacketSequence", OggPacketSequence::class, ::OggPacketSequence)
-  TypeManager.registerEngineType("OggPacketSequencePlayback", OggPacketSequencePlayback::class,
-      ::OggPacketSequencePlayback)
+  TypeManager.registerEngineType("OggPacketSequencePlayback", OggPacketSequencePlayback::class, ::OggPacketSequencePlayback)
   TypeManager.registerEngineType("OmniLight3D", OmniLight3D::class, ::OmniLight3D)
-  TypeManager.registerEngineType("OpenXRAPIExtension", OpenXRAPIExtension::class,
-      ::OpenXRAPIExtension)
+  TypeManager.registerEngineType("OpenXRAPIExtension", OpenXRAPIExtension::class, ::OpenXRAPIExtension)
   TypeManager.registerEngineType("OpenXRAction", OpenXRAction::class, ::OpenXRAction)
-  TypeManager.registerEngineType("OpenXRActionBindingModifier", OpenXRActionBindingModifier::class,
-      ::OpenXRActionBindingModifier)
+  TypeManager.registerEngineType("OpenXRActionBindingModifier", OpenXRActionBindingModifier::class, ::OpenXRActionBindingModifier)
   TypeManager.registerEngineType("OpenXRActionMap", OpenXRActionMap::class, ::OpenXRActionMap)
   TypeManager.registerEngineType("OpenXRActionSet", OpenXRActionSet::class, ::OpenXRActionSet)
-  TypeManager.registerEngineType("OpenXRAnalogThresholdModifier",
-      OpenXRAnalogThresholdModifier::class, ::OpenXRAnalogThresholdModifier)
-  TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class,
-      ::OpenXRBindingModifier)
-  TypeManager.registerEngineType("OpenXRBindingModifierEditor", OpenXRBindingModifierEditor::class,
-      ::OpenXRBindingModifierEditor)
-  TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class,
-      ::OpenXRCompositionLayer)
-  TypeManager.registerEngineType("OpenXRCompositionLayerCylinder",
-      OpenXRCompositionLayerCylinder::class, ::OpenXRCompositionLayerCylinder)
-  TypeManager.registerEngineType("OpenXRCompositionLayerEquirect",
-      OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
-  TypeManager.registerEngineType("OpenXRCompositionLayerQuad", OpenXRCompositionLayerQuad::class,
-      ::OpenXRCompositionLayerQuad)
-  TypeManager.registerEngineType("OpenXRDpadBindingModifier", OpenXRDpadBindingModifier::class,
-      ::OpenXRDpadBindingModifier)
-  TypeManager.registerEngineType("OpenXRExtensionWrapperExtension",
-      OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
+  TypeManager.registerEngineType("OpenXRAnalogThresholdModifier", OpenXRAnalogThresholdModifier::class, ::OpenXRAnalogThresholdModifier)
+  TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class, ::OpenXRBindingModifier)
+  TypeManager.registerEngineType("OpenXRBindingModifierEditor", OpenXRBindingModifierEditor::class, ::OpenXRBindingModifierEditor)
+  TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class, ::OpenXRCompositionLayer)
+  TypeManager.registerEngineType("OpenXRCompositionLayerCylinder", OpenXRCompositionLayerCylinder::class, ::OpenXRCompositionLayerCylinder)
+  TypeManager.registerEngineType("OpenXRCompositionLayerEquirect", OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
+  TypeManager.registerEngineType("OpenXRCompositionLayerQuad", OpenXRCompositionLayerQuad::class, ::OpenXRCompositionLayerQuad)
+  TypeManager.registerEngineType("OpenXRDpadBindingModifier", OpenXRDpadBindingModifier::class, ::OpenXRDpadBindingModifier)
+  TypeManager.registerEngineType("OpenXRExtensionWrapperExtension", OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
   TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
   TypeManager.registerEngineType("OpenXRHapticBase", OpenXRHapticBase::class, ::OpenXRHapticBase)
-  TypeManager.registerEngineType("OpenXRHapticVibration", OpenXRHapticVibration::class,
-      ::OpenXRHapticVibration)
+  TypeManager.registerEngineType("OpenXRHapticVibration", OpenXRHapticVibration::class, ::OpenXRHapticVibration)
   TypeManager.registerEngineType("OpenXRIPBinding", OpenXRIPBinding::class, ::OpenXRIPBinding)
-  TypeManager.registerEngineType("OpenXRIPBindingModifier", OpenXRIPBindingModifier::class,
-      ::OpenXRIPBindingModifier)
-  TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class,
-      ::OpenXRInteractionProfile)
-  TypeManager.registerEngineType("OpenXRInteractionProfileEditor",
-      OpenXRInteractionProfileEditor::class, ::OpenXRInteractionProfileEditor)
-  TypeManager.registerEngineType("OpenXRInteractionProfileEditorBase",
-      OpenXRInteractionProfileEditorBase::class, ::OpenXRInteractionProfileEditorBase)
-  TypeManager.registerEngineType("OpenXRInteractionProfileMetadata",
-      OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
+  TypeManager.registerEngineType("OpenXRIPBindingModifier", OpenXRIPBindingModifier::class, ::OpenXRIPBindingModifier)
+  TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class, ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInteractionProfileEditor", OpenXRInteractionProfileEditor::class, ::OpenXRInteractionProfileEditor)
+  TypeManager.registerEngineType("OpenXRInteractionProfileEditorBase", OpenXRInteractionProfileEditorBase::class, ::OpenXRInteractionProfileEditorBase)
+  TypeManager.registerEngineType("OpenXRInteractionProfileMetadata", OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
-  TypeManager.registerEngineType("OpenXRVisibilityMask", OpenXRVisibilityMask::class,
-      ::OpenXRVisibilityMask)
-  TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class,
-      ::OptimizedTranslation)
+  TypeManager.registerEngineType("OpenXRVisibilityMask", OpenXRVisibilityMask::class, ::OpenXRVisibilityMask)
+  TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class, ::OptimizedTranslation)
   TypeManager.registerEngineType("OptionButton", OptionButton::class, ::OptionButton)
   TypeManager.registerEngineType("PCKPacker", PCKPacker::class, ::PCKPacker)
-  TypeManager.registerEngineType("PackedDataContainer", PackedDataContainer::class,
-      ::PackedDataContainer)
-  TypeManager.registerEngineType("PackedDataContainerRef", PackedDataContainerRef::class,
-      ::PackedDataContainerRef)
+  TypeManager.registerEngineType("PackedDataContainer", PackedDataContainer::class, ::PackedDataContainer)
+  TypeManager.registerEngineType("PackedDataContainerRef", PackedDataContainerRef::class, ::PackedDataContainerRef)
   TypeManager.registerEngineType("PackedScene", PackedScene::class, ::PackedScene)
   TypeManager.registerEngineType("PacketPeer", PacketPeer::class, ::PacketPeer)
   TypeManager.registerEngineType("PacketPeerDTLS", PacketPeerDTLS::class, ::PacketPeerDTLS)
-  TypeManager.registerEngineType("PacketPeerExtension", PacketPeerExtension::class,
-      ::PacketPeerExtension)
+  TypeManager.registerEngineType("PacketPeerExtension", PacketPeerExtension::class, ::PacketPeerExtension)
   TypeManager.registerEngineType("PacketPeerStream", PacketPeerStream::class, ::PacketPeerStream)
   TypeManager.registerEngineType("PacketPeerUDP", PacketPeerUDP::class, ::PacketPeerUDP)
   TypeManager.registerEngineType("Panel", Panel::class, ::Panel)
   TypeManager.registerEngineType("PanelContainer", PanelContainer::class, ::PanelContainer)
-  TypeManager.registerEngineType("PanoramaSkyMaterial", PanoramaSkyMaterial::class,
-      ::PanoramaSkyMaterial)
+  TypeManager.registerEngineType("PanoramaSkyMaterial", PanoramaSkyMaterial::class, ::PanoramaSkyMaterial)
   TypeManager.registerEngineType("Parallax2D", Parallax2D::class, ::Parallax2D)
-  TypeManager.registerEngineType("ParallaxBackground", ParallaxBackground::class,
-      ::ParallaxBackground)
+  TypeManager.registerEngineType("ParallaxBackground", ParallaxBackground::class, ::ParallaxBackground)
   TypeManager.registerEngineType("ParallaxLayer", ParallaxLayer::class, ::ParallaxLayer)
-  TypeManager.registerEngineType("ParticleProcessMaterial", ParticleProcessMaterial::class,
-      ::ParticleProcessMaterial)
+  TypeManager.registerEngineType("ParticleProcessMaterial", ParticleProcessMaterial::class, ::ParticleProcessMaterial)
   TypeManager.registerEngineType("Path2D", Path2D::class, ::Path2D)
   TypeManager.registerEngineType("Path3D", Path3D::class, ::Path3D)
   TypeManager.registerEngineType("PathFollow2D", PathFollow2D::class, ::PathFollow2D)
   TypeManager.registerEngineType("PathFollow3D", PathFollow3D::class, ::PathFollow3D)
-  TypeManager.registerSingleton("Performance")
+  TypeManager.registerSingleton("Performance") { Performance }
   TypeManager.registerEngineType("Performance", Performance::class) { Performance }
   TypeManager.registerEngineType("PhysicalBone2D", PhysicalBone2D::class, ::PhysicalBone2D)
   TypeManager.registerEngineType("PhysicalBone3D", PhysicalBone3D::class, ::PhysicalBone3D)
-  TypeManager.registerEngineType("PhysicalBoneSimulator3D", PhysicalBoneSimulator3D::class,
-      ::PhysicalBoneSimulator3D)
-  TypeManager.registerEngineType("PhysicalSkyMaterial", PhysicalSkyMaterial::class,
-      ::PhysicalSkyMaterial)
+  TypeManager.registerEngineType("PhysicalBoneSimulator3D", PhysicalBoneSimulator3D::class, ::PhysicalBoneSimulator3D)
+  TypeManager.registerEngineType("PhysicalSkyMaterial", PhysicalSkyMaterial::class, ::PhysicalSkyMaterial)
   TypeManager.registerEngineType("PhysicsBody2D", PhysicsBody2D::class, ::PhysicsBody2D)
   TypeManager.registerEngineType("PhysicsBody3D", PhysicsBody3D::class, ::PhysicsBody3D)
-  TypeManager.registerEngineType("PhysicsDirectBodyState2D", PhysicsDirectBodyState2D::class,
-      ::PhysicsDirectBodyState2D)
-  TypeManager.registerEngineType("PhysicsDirectBodyState2DExtension",
-      PhysicsDirectBodyState2DExtension::class, ::PhysicsDirectBodyState2DExtension)
-  TypeManager.registerEngineType("PhysicsDirectBodyState3D", PhysicsDirectBodyState3D::class,
-      ::PhysicsDirectBodyState3D)
-  TypeManager.registerEngineType("PhysicsDirectBodyState3DExtension",
-      PhysicsDirectBodyState3DExtension::class, ::PhysicsDirectBodyState3DExtension)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState2D", PhysicsDirectSpaceState2D::class,
-      ::PhysicsDirectSpaceState2D)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState2DExtension",
-      PhysicsDirectSpaceState2DExtension::class, ::PhysicsDirectSpaceState2DExtension)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState3D", PhysicsDirectSpaceState3D::class,
-      ::PhysicsDirectSpaceState3D)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState3DExtension",
-      PhysicsDirectSpaceState3DExtension::class, ::PhysicsDirectSpaceState3DExtension)
+  TypeManager.registerEngineType("PhysicsDirectBodyState2D", PhysicsDirectBodyState2D::class, ::PhysicsDirectBodyState2D)
+  TypeManager.registerEngineType("PhysicsDirectBodyState2DExtension", PhysicsDirectBodyState2DExtension::class, ::PhysicsDirectBodyState2DExtension)
+  TypeManager.registerEngineType("PhysicsDirectBodyState3D", PhysicsDirectBodyState3D::class, ::PhysicsDirectBodyState3D)
+  TypeManager.registerEngineType("PhysicsDirectBodyState3DExtension", PhysicsDirectBodyState3DExtension::class, ::PhysicsDirectBodyState3DExtension)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState2D", PhysicsDirectSpaceState2D::class, ::PhysicsDirectSpaceState2D)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState2DExtension", PhysicsDirectSpaceState2DExtension::class, ::PhysicsDirectSpaceState2DExtension)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState3D", PhysicsDirectSpaceState3D::class, ::PhysicsDirectSpaceState3D)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState3DExtension", PhysicsDirectSpaceState3DExtension::class, ::PhysicsDirectSpaceState3DExtension)
   TypeManager.registerEngineType("PhysicsMaterial", PhysicsMaterial::class, ::PhysicsMaterial)
-  TypeManager.registerEngineType("PhysicsPointQueryParameters2D",
-      PhysicsPointQueryParameters2D::class, ::PhysicsPointQueryParameters2D)
-  TypeManager.registerEngineType("PhysicsPointQueryParameters3D",
-      PhysicsPointQueryParameters3D::class, ::PhysicsPointQueryParameters3D)
-  TypeManager.registerEngineType("PhysicsRayQueryParameters2D", PhysicsRayQueryParameters2D::class,
-      ::PhysicsRayQueryParameters2D)
-  TypeManager.registerEngineType("PhysicsRayQueryParameters3D", PhysicsRayQueryParameters3D::class,
-      ::PhysicsRayQueryParameters3D)
-  TypeManager.registerSingleton("PhysicsServer2D")
+  TypeManager.registerEngineType("PhysicsPointQueryParameters2D", PhysicsPointQueryParameters2D::class, ::PhysicsPointQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsPointQueryParameters3D", PhysicsPointQueryParameters3D::class, ::PhysicsPointQueryParameters3D)
+  TypeManager.registerEngineType("PhysicsRayQueryParameters2D", PhysicsRayQueryParameters2D::class, ::PhysicsRayQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsRayQueryParameters3D", PhysicsRayQueryParameters3D::class, ::PhysicsRayQueryParameters3D)
+  TypeManager.registerSingleton("PhysicsServer2D") { PhysicsServer2D }
   TypeManager.registerEngineType("PhysicsServer2D", PhysicsServer2D::class) { PhysicsServer2D }
-  TypeManager.registerSingleton("PhysicsServer2DManager")
-  TypeManager.registerEngineType("PhysicsServer2DManager", PhysicsServer2DManager::class) {
-      PhysicsServer2DManager }
-  TypeManager.registerSingleton("PhysicsServer3D")
+  TypeManager.registerSingleton("PhysicsServer2DManager") { PhysicsServer2DManager }
+  TypeManager.registerEngineType("PhysicsServer2DManager", PhysicsServer2DManager::class) { PhysicsServer2DManager }
+  TypeManager.registerSingleton("PhysicsServer3D") { PhysicsServer3D }
   TypeManager.registerEngineType("PhysicsServer3D", PhysicsServer3D::class) { PhysicsServer3D }
-  TypeManager.registerSingleton("PhysicsServer3DManager")
-  TypeManager.registerEngineType("PhysicsServer3DManager", PhysicsServer3DManager::class) {
-      PhysicsServer3DManager }
-  TypeManager.registerEngineType("PhysicsServer3DRenderingServerHandler",
-      PhysicsServer3DRenderingServerHandler::class, ::PhysicsServer3DRenderingServerHandler)
-  TypeManager.registerEngineType("PhysicsShapeQueryParameters2D",
-      PhysicsShapeQueryParameters2D::class, ::PhysicsShapeQueryParameters2D)
-  TypeManager.registerEngineType("PhysicsShapeQueryParameters3D",
-      PhysicsShapeQueryParameters3D::class, ::PhysicsShapeQueryParameters3D)
-  TypeManager.registerEngineType("PhysicsTestMotionParameters2D",
-      PhysicsTestMotionParameters2D::class, ::PhysicsTestMotionParameters2D)
-  TypeManager.registerEngineType("PhysicsTestMotionParameters3D",
-      PhysicsTestMotionParameters3D::class, ::PhysicsTestMotionParameters3D)
-  TypeManager.registerEngineType("PhysicsTestMotionResult2D", PhysicsTestMotionResult2D::class,
-      ::PhysicsTestMotionResult2D)
-  TypeManager.registerEngineType("PhysicsTestMotionResult3D", PhysicsTestMotionResult3D::class,
-      ::PhysicsTestMotionResult3D)
+  TypeManager.registerSingleton("PhysicsServer3DManager") { PhysicsServer3DManager }
+  TypeManager.registerEngineType("PhysicsServer3DManager", PhysicsServer3DManager::class) { PhysicsServer3DManager }
+  TypeManager.registerEngineType("PhysicsServer3DRenderingServerHandler", PhysicsServer3DRenderingServerHandler::class, ::PhysicsServer3DRenderingServerHandler)
+  TypeManager.registerEngineType("PhysicsShapeQueryParameters2D", PhysicsShapeQueryParameters2D::class, ::PhysicsShapeQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsShapeQueryParameters3D", PhysicsShapeQueryParameters3D::class, ::PhysicsShapeQueryParameters3D)
+  TypeManager.registerEngineType("PhysicsTestMotionParameters2D", PhysicsTestMotionParameters2D::class, ::PhysicsTestMotionParameters2D)
+  TypeManager.registerEngineType("PhysicsTestMotionParameters3D", PhysicsTestMotionParameters3D::class, ::PhysicsTestMotionParameters3D)
+  TypeManager.registerEngineType("PhysicsTestMotionResult2D", PhysicsTestMotionResult2D::class, ::PhysicsTestMotionResult2D)
+  TypeManager.registerEngineType("PhysicsTestMotionResult3D", PhysicsTestMotionResult3D::class, ::PhysicsTestMotionResult3D)
   TypeManager.registerEngineType("PinJoint2D", PinJoint2D::class, ::PinJoint2D)
   TypeManager.registerEngineType("PinJoint3D", PinJoint3D::class, ::PinJoint3D)
-  TypeManager.registerEngineType("PlaceholderCubemap", PlaceholderCubemap::class,
-      ::PlaceholderCubemap)
-  TypeManager.registerEngineType("PlaceholderCubemapArray", PlaceholderCubemapArray::class,
-      ::PlaceholderCubemapArray)
-  TypeManager.registerEngineType("PlaceholderMaterial", PlaceholderMaterial::class,
-      ::PlaceholderMaterial)
+  TypeManager.registerEngineType("PlaceholderCubemap", PlaceholderCubemap::class, ::PlaceholderCubemap)
+  TypeManager.registerEngineType("PlaceholderCubemapArray", PlaceholderCubemapArray::class, ::PlaceholderCubemapArray)
+  TypeManager.registerEngineType("PlaceholderMaterial", PlaceholderMaterial::class, ::PlaceholderMaterial)
   TypeManager.registerEngineType("PlaceholderMesh", PlaceholderMesh::class, ::PlaceholderMesh)
-  TypeManager.registerEngineType("PlaceholderTexture2D", PlaceholderTexture2D::class,
-      ::PlaceholderTexture2D)
-  TypeManager.registerEngineType("PlaceholderTexture2DArray", PlaceholderTexture2DArray::class,
-      ::PlaceholderTexture2DArray)
-  TypeManager.registerEngineType("PlaceholderTexture3D", PlaceholderTexture3D::class,
-      ::PlaceholderTexture3D)
-  TypeManager.registerEngineType("PlaceholderTextureLayered", PlaceholderTextureLayered::class,
-      ::PlaceholderTextureLayered)
+  TypeManager.registerEngineType("PlaceholderTexture2D", PlaceholderTexture2D::class, ::PlaceholderTexture2D)
+  TypeManager.registerEngineType("PlaceholderTexture2DArray", PlaceholderTexture2DArray::class, ::PlaceholderTexture2DArray)
+  TypeManager.registerEngineType("PlaceholderTexture3D", PlaceholderTexture3D::class, ::PlaceholderTexture3D)
+  TypeManager.registerEngineType("PlaceholderTextureLayered", PlaceholderTextureLayered::class, ::PlaceholderTextureLayered)
   TypeManager.registerEngineType("PlaneMesh", PlaneMesh::class, ::PlaneMesh)
   TypeManager.registerEngineType("PointLight2D", PointLight2D::class, ::PointLight2D)
   TypeManager.registerEngineType("PointMesh", PointMesh::class, ::PointMesh)
@@ -3373,33 +3190,24 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Popup", Popup::class, ::Popup)
   TypeManager.registerEngineType("PopupMenu", PopupMenu::class, ::PopupMenu)
   TypeManager.registerEngineType("PopupPanel", PopupPanel::class, ::PopupPanel)
-  TypeManager.registerEngineType("PortableCompressedTexture2D", PortableCompressedTexture2D::class,
-      ::PortableCompressedTexture2D)
+  TypeManager.registerEngineType("PortableCompressedTexture2D", PortableCompressedTexture2D::class, ::PortableCompressedTexture2D)
   TypeManager.registerEngineType("PrimitiveMesh", PrimitiveMesh::class, ::PrimitiveMesh)
   TypeManager.registerEngineType("PrismMesh", PrismMesh::class, ::PrismMesh)
-  TypeManager.registerEngineType("ProceduralSkyMaterial", ProceduralSkyMaterial::class,
-      ::ProceduralSkyMaterial)
+  TypeManager.registerEngineType("ProceduralSkyMaterial", ProceduralSkyMaterial::class, ::ProceduralSkyMaterial)
   TypeManager.registerEngineType("ProgressBar", ProgressBar::class, ::ProgressBar)
-  TypeManager.registerSingleton("ProjectSettings")
+  TypeManager.registerSingleton("ProjectSettings") { ProjectSettings }
   TypeManager.registerEngineType("ProjectSettings", ProjectSettings::class) { ProjectSettings }
   TypeManager.registerEngineType("PropertyTweener", PropertyTweener::class, ::PropertyTweener)
   TypeManager.registerEngineType("QuadMesh", QuadMesh::class, ::QuadMesh)
   TypeManager.registerEngineType("QuadOccluder3D", QuadOccluder3D::class, ::QuadOccluder3D)
-  TypeManager.registerEngineType("RDAttachmentFormat", RDAttachmentFormat::class,
-      ::RDAttachmentFormat)
+  TypeManager.registerEngineType("RDAttachmentFormat", RDAttachmentFormat::class, ::RDAttachmentFormat)
   TypeManager.registerEngineType("RDFramebufferPass", RDFramebufferPass::class, ::RDFramebufferPass)
-  TypeManager.registerEngineType("RDPipelineColorBlendState", RDPipelineColorBlendState::class,
-      ::RDPipelineColorBlendState)
-  TypeManager.registerEngineType("RDPipelineColorBlendStateAttachment",
-      RDPipelineColorBlendStateAttachment::class, ::RDPipelineColorBlendStateAttachment)
-  TypeManager.registerEngineType("RDPipelineDepthStencilState", RDPipelineDepthStencilState::class,
-      ::RDPipelineDepthStencilState)
-  TypeManager.registerEngineType("RDPipelineMultisampleState", RDPipelineMultisampleState::class,
-      ::RDPipelineMultisampleState)
-  TypeManager.registerEngineType("RDPipelineRasterizationState",
-      RDPipelineRasterizationState::class, ::RDPipelineRasterizationState)
-  TypeManager.registerEngineType("RDPipelineSpecializationConstant",
-      RDPipelineSpecializationConstant::class, ::RDPipelineSpecializationConstant)
+  TypeManager.registerEngineType("RDPipelineColorBlendState", RDPipelineColorBlendState::class, ::RDPipelineColorBlendState)
+  TypeManager.registerEngineType("RDPipelineColorBlendStateAttachment", RDPipelineColorBlendStateAttachment::class, ::RDPipelineColorBlendStateAttachment)
+  TypeManager.registerEngineType("RDPipelineDepthStencilState", RDPipelineDepthStencilState::class, ::RDPipelineDepthStencilState)
+  TypeManager.registerEngineType("RDPipelineMultisampleState", RDPipelineMultisampleState::class, ::RDPipelineMultisampleState)
+  TypeManager.registerEngineType("RDPipelineRasterizationState", RDPipelineRasterizationState::class, ::RDPipelineRasterizationState)
+  TypeManager.registerEngineType("RDPipelineSpecializationConstant", RDPipelineSpecializationConstant::class, ::RDPipelineSpecializationConstant)
   TypeManager.registerEngineType("RDSamplerState", RDSamplerState::class, ::RDSamplerState)
   TypeManager.registerEngineType("RDShaderFile", RDShaderFile::class, ::RDShaderFile)
   TypeManager.registerEngineType("RDShaderSPIRV", RDShaderSPIRV::class, ::RDShaderSPIRV)
@@ -3408,13 +3216,11 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RDTextureView", RDTextureView::class, ::RDTextureView)
   TypeManager.registerEngineType("RDUniform", RDUniform::class, ::RDUniform)
   TypeManager.registerEngineType("RDVertexAttribute", RDVertexAttribute::class, ::RDVertexAttribute)
-  TypeManager.registerEngineType("RandomNumberGenerator", RandomNumberGenerator::class,
-      ::RandomNumberGenerator)
+  TypeManager.registerEngineType("RandomNumberGenerator", RandomNumberGenerator::class, ::RandomNumberGenerator)
   TypeManager.registerEngineType("Range", Range::class, ::Range)
   TypeManager.registerEngineType("RayCast2D", RayCast2D::class, ::RayCast2D)
   TypeManager.registerEngineType("RayCast3D", RayCast3D::class, ::RayCast3D)
   TypeManager.registerEngineType("RectangleShape2D", RectangleShape2D::class, ::RectangleShape2D)
-  TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("ReferenceRect", ReferenceRect::class, ::ReferenceRect)
   TypeManager.registerEngineType("ReflectionProbe", ReflectionProbe::class, ::ReflectionProbe)
   TypeManager.registerEngineType("RegEx", RegEx::class, ::RegEx)
@@ -3422,39 +3228,30 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RemoteTransform2D", RemoteTransform2D::class, ::RemoteTransform2D)
   TypeManager.registerEngineType("RemoteTransform3D", RemoteTransform3D::class, ::RemoteTransform3D)
   TypeManager.registerEngineType("RenderData", RenderData::class, ::RenderData)
-  TypeManager.registerEngineType("RenderDataExtension", RenderDataExtension::class,
-      ::RenderDataExtension)
+  TypeManager.registerEngineType("RenderDataExtension", RenderDataExtension::class, ::RenderDataExtension)
   TypeManager.registerEngineType("RenderDataRD", RenderDataRD::class, ::RenderDataRD)
-  TypeManager.registerEngineType("RenderSceneBuffers", RenderSceneBuffers::class,
-      ::RenderSceneBuffers)
-  TypeManager.registerEngineType("RenderSceneBuffersConfiguration",
-      RenderSceneBuffersConfiguration::class, ::RenderSceneBuffersConfiguration)
-  TypeManager.registerEngineType("RenderSceneBuffersExtension", RenderSceneBuffersExtension::class,
-      ::RenderSceneBuffersExtension)
-  TypeManager.registerEngineType("RenderSceneBuffersRD", RenderSceneBuffersRD::class,
-      ::RenderSceneBuffersRD)
+  TypeManager.registerEngineType("RenderSceneBuffers", RenderSceneBuffers::class, ::RenderSceneBuffers)
+  TypeManager.registerEngineType("RenderSceneBuffersConfiguration", RenderSceneBuffersConfiguration::class, ::RenderSceneBuffersConfiguration)
+  TypeManager.registerEngineType("RenderSceneBuffersExtension", RenderSceneBuffersExtension::class, ::RenderSceneBuffersExtension)
+  TypeManager.registerEngineType("RenderSceneBuffersRD", RenderSceneBuffersRD::class, ::RenderSceneBuffersRD)
   TypeManager.registerEngineType("RenderSceneData", RenderSceneData::class, ::RenderSceneData)
-  TypeManager.registerEngineType("RenderSceneDataExtension", RenderSceneDataExtension::class,
-      ::RenderSceneDataExtension)
+  TypeManager.registerEngineType("RenderSceneDataExtension", RenderSceneDataExtension::class, ::RenderSceneDataExtension)
   TypeManager.registerEngineType("RenderSceneDataRD", RenderSceneDataRD::class, ::RenderSceneDataRD)
   TypeManager.registerEngineType("RenderingDevice", RenderingDevice::class, ::RenderingDevice)
-  TypeManager.registerSingleton("RenderingServer")
+  TypeManager.registerSingleton("RenderingServer") { RenderingServer }
   TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
   TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
-  TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class,
-      ::ResourceFormatLoader)
-  TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class,
-      ::ResourceFormatSaver)
+  TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class, ::ResourceFormatLoader)
+  TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class, ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
-  TypeManager.registerSingleton("ResourceLoader")
+  TypeManager.registerSingleton("ResourceLoader") { ResourceLoader }
   TypeManager.registerEngineType("ResourceLoader", ResourceLoader::class) { ResourceLoader }
   TypeManager.registerEngineType("ResourcePreloader", ResourcePreloader::class, ::ResourcePreloader)
-  TypeManager.registerSingleton("ResourceSaver")
+  TypeManager.registerSingleton("ResourceSaver") { ResourceSaver }
   TypeManager.registerEngineType("ResourceSaver", ResourceSaver::class) { ResourceSaver }
-  TypeManager.registerSingleton("ResourceUID")
+  TypeManager.registerSingleton("ResourceUID") { ResourceUID }
   TypeManager.registerEngineType("ResourceUID", ResourceUID::class) { ResourceUID }
-  TypeManager.registerEngineType("RetargetModifier3D", RetargetModifier3D::class,
-      ::RetargetModifier3D)
+  TypeManager.registerEngineType("RetargetModifier3D", RetargetModifier3D::class, ::RetargetModifier3D)
   TypeManager.registerEngineType("RibbonTrailMesh", RibbonTrailMesh::class, ::RibbonTrailMesh)
   TypeManager.registerEngineType("RichTextEffect", RichTextEffect::class, ::RichTextEffect)
   TypeManager.registerEngineType("RichTextLabel", RichTextLabel::class, ::RichTextLabel)
@@ -3462,28 +3259,23 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RigidBody3D", RigidBody3D::class, ::RigidBody3D)
   TypeManager.registerEngineType("RootMotionView", RootMotionView::class, ::RootMotionView)
   TypeManager.registerEngineType("SceneMultiplayer", SceneMultiplayer::class, ::SceneMultiplayer)
-  TypeManager.registerEngineType("SceneReplicationConfig", SceneReplicationConfig::class,
-      ::SceneReplicationConfig)
+  TypeManager.registerEngineType("SceneReplicationConfig", SceneReplicationConfig::class, ::SceneReplicationConfig)
   TypeManager.registerEngineType("SceneState", SceneState::class, ::SceneState)
   TypeManager.registerEngineType("SceneTree", SceneTree::class, ::SceneTree)
   TypeManager.registerEngineType("SceneTreeTimer", SceneTreeTimer::class, ::SceneTreeTimer)
   TypeManager.registerEngineType("Script", Script::class, ::Script)
   TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, ::ScriptExtension)
   TypeManager.registerEngineType("ScriptLanguage", ScriptLanguage::class, ::ScriptLanguage)
-  TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class,
-      ::ScriptLanguageExtension)
+  TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class, ::ScriptLanguageExtension)
   TypeManager.registerEngineType("ScrollBar", ScrollBar::class, ::ScrollBar)
   TypeManager.registerEngineType("ScrollContainer", ScrollContainer::class, ::ScrollContainer)
   TypeManager.registerEngineType("SegmentShape2D", SegmentShape2D::class, ::SegmentShape2D)
   TypeManager.registerEngineType("Semaphore", Semaphore::class, ::Semaphore)
-  TypeManager.registerEngineType("SeparationRayShape2D", SeparationRayShape2D::class,
-      ::SeparationRayShape2D)
-  TypeManager.registerEngineType("SeparationRayShape3D", SeparationRayShape3D::class,
-      ::SeparationRayShape3D)
+  TypeManager.registerEngineType("SeparationRayShape2D", SeparationRayShape2D::class, ::SeparationRayShape2D)
+  TypeManager.registerEngineType("SeparationRayShape3D", SeparationRayShape3D::class, ::SeparationRayShape3D)
   TypeManager.registerEngineType("Separator", Separator::class, ::Separator)
   TypeManager.registerEngineType("Shader", Shader::class, ::Shader)
-  TypeManager.registerEngineType("ShaderGlobalsOverride", ShaderGlobalsOverride::class,
-      ::ShaderGlobalsOverride)
+  TypeManager.registerEngineType("ShaderGlobalsOverride", ShaderGlobalsOverride::class, ::ShaderGlobalsOverride)
   TypeManager.registerEngineType("ShaderInclude", ShaderInclude::class, ::ShaderInclude)
   TypeManager.registerEngineType("ShaderIncludeDB", ShaderIncludeDB::class, ::ShaderIncludeDB)
   TypeManager.registerEngineType("ShaderMaterial", ShaderMaterial::class, ::ShaderMaterial)
@@ -3495,29 +3287,18 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Skeleton2D", Skeleton2D::class, ::Skeleton2D)
   TypeManager.registerEngineType("Skeleton3D", Skeleton3D::class, ::Skeleton3D)
   TypeManager.registerEngineType("SkeletonIK3D", SkeletonIK3D::class, ::SkeletonIK3D)
-  TypeManager.registerEngineType("SkeletonModification2D", SkeletonModification2D::class,
-      ::SkeletonModification2D)
-  TypeManager.registerEngineType("SkeletonModification2DCCDIK", SkeletonModification2DCCDIK::class,
-      ::SkeletonModification2DCCDIK)
-  TypeManager.registerEngineType("SkeletonModification2DFABRIK",
-      SkeletonModification2DFABRIK::class, ::SkeletonModification2DFABRIK)
-  TypeManager.registerEngineType("SkeletonModification2DJiggle",
-      SkeletonModification2DJiggle::class, ::SkeletonModification2DJiggle)
-  TypeManager.registerEngineType("SkeletonModification2DLookAt",
-      SkeletonModification2DLookAt::class, ::SkeletonModification2DLookAt)
-  TypeManager.registerEngineType("SkeletonModification2DPhysicalBones",
-      SkeletonModification2DPhysicalBones::class, ::SkeletonModification2DPhysicalBones)
-  TypeManager.registerEngineType("SkeletonModification2DStackHolder",
-      SkeletonModification2DStackHolder::class, ::SkeletonModification2DStackHolder)
-  TypeManager.registerEngineType("SkeletonModification2DTwoBoneIK",
-      SkeletonModification2DTwoBoneIK::class, ::SkeletonModification2DTwoBoneIK)
-  TypeManager.registerEngineType("SkeletonModificationStack2D", SkeletonModificationStack2D::class,
-      ::SkeletonModificationStack2D)
-  TypeManager.registerEngineType("SkeletonModifier3D", SkeletonModifier3D::class,
-      ::SkeletonModifier3D)
+  TypeManager.registerEngineType("SkeletonModification2D", SkeletonModification2D::class, ::SkeletonModification2D)
+  TypeManager.registerEngineType("SkeletonModification2DCCDIK", SkeletonModification2DCCDIK::class, ::SkeletonModification2DCCDIK)
+  TypeManager.registerEngineType("SkeletonModification2DFABRIK", SkeletonModification2DFABRIK::class, ::SkeletonModification2DFABRIK)
+  TypeManager.registerEngineType("SkeletonModification2DJiggle", SkeletonModification2DJiggle::class, ::SkeletonModification2DJiggle)
+  TypeManager.registerEngineType("SkeletonModification2DLookAt", SkeletonModification2DLookAt::class, ::SkeletonModification2DLookAt)
+  TypeManager.registerEngineType("SkeletonModification2DPhysicalBones", SkeletonModification2DPhysicalBones::class, ::SkeletonModification2DPhysicalBones)
+  TypeManager.registerEngineType("SkeletonModification2DStackHolder", SkeletonModification2DStackHolder::class, ::SkeletonModification2DStackHolder)
+  TypeManager.registerEngineType("SkeletonModification2DTwoBoneIK", SkeletonModification2DTwoBoneIK::class, ::SkeletonModification2DTwoBoneIK)
+  TypeManager.registerEngineType("SkeletonModificationStack2D", SkeletonModificationStack2D::class, ::SkeletonModificationStack2D)
+  TypeManager.registerEngineType("SkeletonModifier3D", SkeletonModifier3D::class, ::SkeletonModifier3D)
   TypeManager.registerEngineType("SkeletonProfile", SkeletonProfile::class, ::SkeletonProfile)
-  TypeManager.registerEngineType("SkeletonProfileHumanoid", SkeletonProfileHumanoid::class,
-      ::SkeletonProfileHumanoid)
+  TypeManager.registerEngineType("SkeletonProfileHumanoid", SkeletonProfileHumanoid::class, ::SkeletonProfileHumanoid)
   TypeManager.registerEngineType("Skin", Skin::class, ::Skin)
   TypeManager.registerEngineType("SkinReference", SkinReference::class, ::SkinReference)
   TypeManager.registerEngineType("Sky", Sky::class, ::Sky)
@@ -3531,29 +3312,22 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SplitContainer", SplitContainer::class, ::SplitContainer)
   TypeManager.registerEngineType("SpotLight3D", SpotLight3D::class, ::SpotLight3D)
   TypeManager.registerEngineType("SpringArm3D", SpringArm3D::class, ::SpringArm3D)
-  TypeManager.registerEngineType("SpringBoneCollision3D", SpringBoneCollision3D::class,
-      ::SpringBoneCollision3D)
-  TypeManager.registerEngineType("SpringBoneCollisionCapsule3D",
-      SpringBoneCollisionCapsule3D::class, ::SpringBoneCollisionCapsule3D)
-  TypeManager.registerEngineType("SpringBoneCollisionPlane3D", SpringBoneCollisionPlane3D::class,
-      ::SpringBoneCollisionPlane3D)
-  TypeManager.registerEngineType("SpringBoneCollisionSphere3D", SpringBoneCollisionSphere3D::class,
-      ::SpringBoneCollisionSphere3D)
-  TypeManager.registerEngineType("SpringBoneSimulator3D", SpringBoneSimulator3D::class,
-      ::SpringBoneSimulator3D)
+  TypeManager.registerEngineType("SpringBoneCollision3D", SpringBoneCollision3D::class, ::SpringBoneCollision3D)
+  TypeManager.registerEngineType("SpringBoneCollisionCapsule3D", SpringBoneCollisionCapsule3D::class, ::SpringBoneCollisionCapsule3D)
+  TypeManager.registerEngineType("SpringBoneCollisionPlane3D", SpringBoneCollisionPlane3D::class, ::SpringBoneCollisionPlane3D)
+  TypeManager.registerEngineType("SpringBoneCollisionSphere3D", SpringBoneCollisionSphere3D::class, ::SpringBoneCollisionSphere3D)
+  TypeManager.registerEngineType("SpringBoneSimulator3D", SpringBoneSimulator3D::class, ::SpringBoneSimulator3D)
   TypeManager.registerEngineType("Sprite2D", Sprite2D::class, ::Sprite2D)
   TypeManager.registerEngineType("Sprite3D", Sprite3D::class, ::Sprite3D)
   TypeManager.registerEngineType("SpriteBase3D", SpriteBase3D::class, ::SpriteBase3D)
   TypeManager.registerEngineType("SpriteFrames", SpriteFrames::class, ::SpriteFrames)
-  TypeManager.registerEngineType("StandardMaterial3D", StandardMaterial3D::class,
-      ::StandardMaterial3D)
+  TypeManager.registerEngineType("StandardMaterial3D", StandardMaterial3D::class, ::StandardMaterial3D)
   TypeManager.registerEngineType("StaticBody2D", StaticBody2D::class, ::StaticBody2D)
   TypeManager.registerEngineType("StaticBody3D", StaticBody3D::class, ::StaticBody3D)
   TypeManager.registerEngineType("StatusIndicator", StatusIndicator::class, ::StatusIndicator)
   TypeManager.registerEngineType("StreamPeer", StreamPeer::class, ::StreamPeer)
   TypeManager.registerEngineType("StreamPeerBuffer", StreamPeerBuffer::class, ::StreamPeerBuffer)
-  TypeManager.registerEngineType("StreamPeerExtension", StreamPeerExtension::class,
-      ::StreamPeerExtension)
+  TypeManager.registerEngineType("StreamPeerExtension", StreamPeerExtension::class, ::StreamPeerExtension)
   TypeManager.registerEngineType("StreamPeerGZIP", StreamPeerGZIP::class, ::StreamPeerGZIP)
   TypeManager.registerEngineType("StreamPeerTCP", StreamPeerTCP::class, ::StreamPeerTCP)
   TypeManager.registerEngineType("StreamPeerTLS", StreamPeerTLS::class, ::StreamPeerTLS)
@@ -3563,8 +3337,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("StyleBoxLine", StyleBoxLine::class, ::StyleBoxLine)
   TypeManager.registerEngineType("StyleBoxTexture", StyleBoxTexture::class, ::StyleBoxTexture)
   TypeManager.registerEngineType("SubViewport", SubViewport::class, ::SubViewport)
-  TypeManager.registerEngineType("SubViewportContainer", SubViewportContainer::class,
-      ::SubViewportContainer)
+  TypeManager.registerEngineType("SubViewportContainer", SubViewportContainer::class, ::SubViewportContainer)
   TypeManager.registerEngineType("SubtweenTweener", SubtweenTweener::class, ::SubtweenTweener)
   TypeManager.registerEngineType("SurfaceTool", SurfaceTool::class, ::SurfaceTool)
   TypeManager.registerEngineType("SyntaxHighlighter", SyntaxHighlighter::class, ::SyntaxHighlighter)
@@ -3578,14 +3351,11 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("TextMesh", TextMesh::class, ::TextMesh)
   TypeManager.registerEngineType("TextParagraph", TextParagraph::class, ::TextParagraph)
   TypeManager.registerEngineType("TextServer", TextServer::class, ::TextServer)
-  TypeManager.registerEngineType("TextServerAdvanced", TextServerAdvanced::class,
-      ::TextServerAdvanced)
+  TypeManager.registerEngineType("TextServerAdvanced", TextServerAdvanced::class, ::TextServerAdvanced)
   TypeManager.registerEngineType("TextServerDummy", TextServerDummy::class, ::TextServerDummy)
-  TypeManager.registerEngineType("TextServerExtension", TextServerExtension::class,
-      ::TextServerExtension)
-  TypeManager.registerSingleton("TextServerManager")
-  TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager
-      }
+  TypeManager.registerEngineType("TextServerExtension", TextServerExtension::class, ::TextServerExtension)
+  TypeManager.registerSingleton("TextServerManager") { TextServerManager }
+  TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager }
   TypeManager.registerEngineType("Texture", Texture::class, ::Texture)
   TypeManager.registerEngineType("Texture2D", Texture2D::class, ::Texture2D)
   TypeManager.registerEngineType("Texture2DArray", Texture2DArray::class, ::Texture2DArray)
@@ -3594,16 +3364,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Texture3D", Texture3D::class, ::Texture3D)
   TypeManager.registerEngineType("Texture3DRD", Texture3DRD::class, ::Texture3DRD)
   TypeManager.registerEngineType("TextureButton", TextureButton::class, ::TextureButton)
-  TypeManager.registerEngineType("TextureCubemapArrayRD", TextureCubemapArrayRD::class,
-      ::TextureCubemapArrayRD)
+  TypeManager.registerEngineType("TextureCubemapArrayRD", TextureCubemapArrayRD::class, ::TextureCubemapArrayRD)
   TypeManager.registerEngineType("TextureCubemapRD", TextureCubemapRD::class, ::TextureCubemapRD)
   TypeManager.registerEngineType("TextureLayered", TextureLayered::class, ::TextureLayered)
   TypeManager.registerEngineType("TextureLayeredRD", TextureLayeredRD::class, ::TextureLayeredRD)
-  TypeManager.registerEngineType("TextureProgressBar", TextureProgressBar::class,
-      ::TextureProgressBar)
+  TypeManager.registerEngineType("TextureProgressBar", TextureProgressBar::class, ::TextureProgressBar)
   TypeManager.registerEngineType("TextureRect", TextureRect::class, ::TextureRect)
   TypeManager.registerEngineType("Theme", Theme::class, ::Theme)
-  TypeManager.registerSingleton("ThemeDB")
+  TypeManager.registerSingleton("ThemeDB") { ThemeDB }
   TypeManager.registerEngineType("ThemeDB", ThemeDB::class) { ThemeDB }
   TypeManager.registerEngineType("Thread", Thread::class, ::Thread)
   TypeManager.registerEngineType("TileData", TileData::class, ::TileData)
@@ -3611,21 +3379,18 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("TileMapLayer", TileMapLayer::class, ::TileMapLayer)
   TypeManager.registerEngineType("TileMapPattern", TileMapPattern::class, ::TileMapPattern)
   TypeManager.registerEngineType("TileSet", TileSet::class, ::TileSet)
-  TypeManager.registerEngineType("TileSetAtlasSource", TileSetAtlasSource::class,
-      ::TileSetAtlasSource)
-  TypeManager.registerEngineType("TileSetScenesCollectionSource",
-      TileSetScenesCollectionSource::class, ::TileSetScenesCollectionSource)
+  TypeManager.registerEngineType("TileSetAtlasSource", TileSetAtlasSource::class, ::TileSetAtlasSource)
+  TypeManager.registerEngineType("TileSetScenesCollectionSource", TileSetScenesCollectionSource::class, ::TileSetScenesCollectionSource)
   TypeManager.registerEngineType("TileSetSource", TileSetSource::class, ::TileSetSource)
-  TypeManager.registerSingleton("Time")
+  TypeManager.registerSingleton("Time") { Time }
   TypeManager.registerEngineType("Time", Time::class) { Time }
   TypeManager.registerEngineType("Timer", Timer::class, ::Timer)
   TypeManager.registerEngineType("TorusMesh", TorusMesh::class, ::TorusMesh)
   TypeManager.registerEngineType("TouchScreenButton", TouchScreenButton::class, ::TouchScreenButton)
   TypeManager.registerEngineType("Translation", Translation::class, ::Translation)
   TypeManager.registerEngineType("TranslationDomain", TranslationDomain::class, ::TranslationDomain)
-  TypeManager.registerSingleton("TranslationServer")
-  TypeManager.registerEngineType("TranslationServer", TranslationServer::class) { TranslationServer
-      }
+  TypeManager.registerSingleton("TranslationServer") { TranslationServer }
+  TypeManager.registerEngineType("TranslationServer", TranslationServer::class) { TranslationServer }
   TypeManager.registerEngineType("Tree", Tree::class, ::Tree)
   TypeManager.registerEngineType("TreeItem", TreeItem::class, ::TreeItem)
   TypeManager.registerEngineType("TriangleMesh", TriangleMesh::class, ::TriangleMesh)
@@ -3646,269 +3411,146 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("VehicleBody3D", VehicleBody3D::class, ::VehicleBody3D)
   TypeManager.registerEngineType("VehicleWheel3D", VehicleWheel3D::class, ::VehicleWheel3D)
   TypeManager.registerEngineType("VideoStream", VideoStream::class, ::VideoStream)
-  TypeManager.registerEngineType("VideoStreamPlayback", VideoStreamPlayback::class,
-      ::VideoStreamPlayback)
+  TypeManager.registerEngineType("VideoStreamPlayback", VideoStreamPlayback::class, ::VideoStreamPlayback)
   TypeManager.registerEngineType("VideoStreamPlayer", VideoStreamPlayer::class, ::VideoStreamPlayer)
   TypeManager.registerEngineType("VideoStreamTheora", VideoStreamTheora::class, ::VideoStreamTheora)
   TypeManager.registerEngineType("Viewport", Viewport::class, ::Viewport)
   TypeManager.registerEngineType("ViewportTexture", ViewportTexture::class, ::ViewportTexture)
-  TypeManager.registerEngineType("VisibleOnScreenEnabler2D", VisibleOnScreenEnabler2D::class,
-      ::VisibleOnScreenEnabler2D)
-  TypeManager.registerEngineType("VisibleOnScreenEnabler3D", VisibleOnScreenEnabler3D::class,
-      ::VisibleOnScreenEnabler3D)
-  TypeManager.registerEngineType("VisibleOnScreenNotifier2D", VisibleOnScreenNotifier2D::class,
-      ::VisibleOnScreenNotifier2D)
-  TypeManager.registerEngineType("VisibleOnScreenNotifier3D", VisibleOnScreenNotifier3D::class,
-      ::VisibleOnScreenNotifier3D)
+  TypeManager.registerEngineType("VisibleOnScreenEnabler2D", VisibleOnScreenEnabler2D::class, ::VisibleOnScreenEnabler2D)
+  TypeManager.registerEngineType("VisibleOnScreenEnabler3D", VisibleOnScreenEnabler3D::class, ::VisibleOnScreenEnabler3D)
+  TypeManager.registerEngineType("VisibleOnScreenNotifier2D", VisibleOnScreenNotifier2D::class, ::VisibleOnScreenNotifier2D)
+  TypeManager.registerEngineType("VisibleOnScreenNotifier3D", VisibleOnScreenNotifier3D::class, ::VisibleOnScreenNotifier3D)
   TypeManager.registerEngineType("VisualInstance3D", VisualInstance3D::class, ::VisualInstance3D)
   TypeManager.registerEngineType("VisualShader", VisualShader::class, ::VisualShader)
   TypeManager.registerEngineType("VisualShaderNode", VisualShaderNode::class, ::VisualShaderNode)
-  TypeManager.registerEngineType("VisualShaderNodeBillboard", VisualShaderNodeBillboard::class,
-      ::VisualShaderNodeBillboard)
-  TypeManager.registerEngineType("VisualShaderNodeBooleanConstant",
-      VisualShaderNodeBooleanConstant::class, ::VisualShaderNodeBooleanConstant)
-  TypeManager.registerEngineType("VisualShaderNodeBooleanParameter",
-      VisualShaderNodeBooleanParameter::class, ::VisualShaderNodeBooleanParameter)
-  TypeManager.registerEngineType("VisualShaderNodeClamp", VisualShaderNodeClamp::class,
-      ::VisualShaderNodeClamp)
-  TypeManager.registerEngineType("VisualShaderNodeColorConstant",
-      VisualShaderNodeColorConstant::class, ::VisualShaderNodeColorConstant)
-  TypeManager.registerEngineType("VisualShaderNodeColorFunc", VisualShaderNodeColorFunc::class,
-      ::VisualShaderNodeColorFunc)
-  TypeManager.registerEngineType("VisualShaderNodeColorOp", VisualShaderNodeColorOp::class,
-      ::VisualShaderNodeColorOp)
-  TypeManager.registerEngineType("VisualShaderNodeColorParameter",
-      VisualShaderNodeColorParameter::class, ::VisualShaderNodeColorParameter)
-  TypeManager.registerEngineType("VisualShaderNodeComment", VisualShaderNodeComment::class,
-      ::VisualShaderNodeComment)
-  TypeManager.registerEngineType("VisualShaderNodeCompare", VisualShaderNodeCompare::class,
-      ::VisualShaderNodeCompare)
-  TypeManager.registerEngineType("VisualShaderNodeConstant", VisualShaderNodeConstant::class,
-      ::VisualShaderNodeConstant)
-  TypeManager.registerEngineType("VisualShaderNodeCubemap", VisualShaderNodeCubemap::class,
-      ::VisualShaderNodeCubemap)
-  TypeManager.registerEngineType("VisualShaderNodeCubemapParameter",
-      VisualShaderNodeCubemapParameter::class, ::VisualShaderNodeCubemapParameter)
-  TypeManager.registerEngineType("VisualShaderNodeCurveTexture",
-      VisualShaderNodeCurveTexture::class, ::VisualShaderNodeCurveTexture)
-  TypeManager.registerEngineType("VisualShaderNodeCurveXYZTexture",
-      VisualShaderNodeCurveXYZTexture::class, ::VisualShaderNodeCurveXYZTexture)
-  TypeManager.registerEngineType("VisualShaderNodeCustom", VisualShaderNodeCustom::class,
-      ::VisualShaderNodeCustom)
-  TypeManager.registerEngineType("VisualShaderNodeDerivativeFunc",
-      VisualShaderNodeDerivativeFunc::class, ::VisualShaderNodeDerivativeFunc)
-  TypeManager.registerEngineType("VisualShaderNodeDeterminant", VisualShaderNodeDeterminant::class,
-      ::VisualShaderNodeDeterminant)
-  TypeManager.registerEngineType("VisualShaderNodeDistanceFade",
-      VisualShaderNodeDistanceFade::class, ::VisualShaderNodeDistanceFade)
-  TypeManager.registerEngineType("VisualShaderNodeDotProduct", VisualShaderNodeDotProduct::class,
-      ::VisualShaderNodeDotProduct)
-  TypeManager.registerEngineType("VisualShaderNodeExpression", VisualShaderNodeExpression::class,
-      ::VisualShaderNodeExpression)
-  TypeManager.registerEngineType("VisualShaderNodeFaceForward", VisualShaderNodeFaceForward::class,
-      ::VisualShaderNodeFaceForward)
-  TypeManager.registerEngineType("VisualShaderNodeFloatConstant",
-      VisualShaderNodeFloatConstant::class, ::VisualShaderNodeFloatConstant)
-  TypeManager.registerEngineType("VisualShaderNodeFloatFunc", VisualShaderNodeFloatFunc::class,
-      ::VisualShaderNodeFloatFunc)
-  TypeManager.registerEngineType("VisualShaderNodeFloatOp", VisualShaderNodeFloatOp::class,
-      ::VisualShaderNodeFloatOp)
-  TypeManager.registerEngineType("VisualShaderNodeFloatParameter",
-      VisualShaderNodeFloatParameter::class, ::VisualShaderNodeFloatParameter)
-  TypeManager.registerEngineType("VisualShaderNodeFrame", VisualShaderNodeFrame::class,
-      ::VisualShaderNodeFrame)
-  TypeManager.registerEngineType("VisualShaderNodeFresnel", VisualShaderNodeFresnel::class,
-      ::VisualShaderNodeFresnel)
-  TypeManager.registerEngineType("VisualShaderNodeGlobalExpression",
-      VisualShaderNodeGlobalExpression::class, ::VisualShaderNodeGlobalExpression)
-  TypeManager.registerEngineType("VisualShaderNodeGroupBase", VisualShaderNodeGroupBase::class,
-      ::VisualShaderNodeGroupBase)
-  TypeManager.registerEngineType("VisualShaderNodeIf", VisualShaderNodeIf::class,
-      ::VisualShaderNodeIf)
-  TypeManager.registerEngineType("VisualShaderNodeInput", VisualShaderNodeInput::class,
-      ::VisualShaderNodeInput)
-  TypeManager.registerEngineType("VisualShaderNodeIntConstant", VisualShaderNodeIntConstant::class,
-      ::VisualShaderNodeIntConstant)
-  TypeManager.registerEngineType("VisualShaderNodeIntFunc", VisualShaderNodeIntFunc::class,
-      ::VisualShaderNodeIntFunc)
-  TypeManager.registerEngineType("VisualShaderNodeIntOp", VisualShaderNodeIntOp::class,
-      ::VisualShaderNodeIntOp)
-  TypeManager.registerEngineType("VisualShaderNodeIntParameter",
-      VisualShaderNodeIntParameter::class, ::VisualShaderNodeIntParameter)
-  TypeManager.registerEngineType("VisualShaderNodeIs", VisualShaderNodeIs::class,
-      ::VisualShaderNodeIs)
-  TypeManager.registerEngineType("VisualShaderNodeLinearSceneDepth",
-      VisualShaderNodeLinearSceneDepth::class, ::VisualShaderNodeLinearSceneDepth)
-  TypeManager.registerEngineType("VisualShaderNodeMix", VisualShaderNodeMix::class,
-      ::VisualShaderNodeMix)
-  TypeManager.registerEngineType("VisualShaderNodeMultiplyAdd", VisualShaderNodeMultiplyAdd::class,
-      ::VisualShaderNodeMultiplyAdd)
-  TypeManager.registerEngineType("VisualShaderNodeOuterProduct",
-      VisualShaderNodeOuterProduct::class, ::VisualShaderNodeOuterProduct)
-  TypeManager.registerEngineType("VisualShaderNodeOutput", VisualShaderNodeOutput::class,
-      ::VisualShaderNodeOutput)
-  TypeManager.registerEngineType("VisualShaderNodeParameter", VisualShaderNodeParameter::class,
-      ::VisualShaderNodeParameter)
-  TypeManager.registerEngineType("VisualShaderNodeParameterRef",
-      VisualShaderNodeParameterRef::class, ::VisualShaderNodeParameterRef)
-  TypeManager.registerEngineType("VisualShaderNodeParticleAccelerator",
-      VisualShaderNodeParticleAccelerator::class, ::VisualShaderNodeParticleAccelerator)
-  TypeManager.registerEngineType("VisualShaderNodeParticleBoxEmitter",
-      VisualShaderNodeParticleBoxEmitter::class, ::VisualShaderNodeParticleBoxEmitter)
-  TypeManager.registerEngineType("VisualShaderNodeParticleConeVelocity",
-      VisualShaderNodeParticleConeVelocity::class, ::VisualShaderNodeParticleConeVelocity)
-  TypeManager.registerEngineType("VisualShaderNodeParticleEmit",
-      VisualShaderNodeParticleEmit::class, ::VisualShaderNodeParticleEmit)
-  TypeManager.registerEngineType("VisualShaderNodeParticleEmitter",
-      VisualShaderNodeParticleEmitter::class, ::VisualShaderNodeParticleEmitter)
-  TypeManager.registerEngineType("VisualShaderNodeParticleMeshEmitter",
-      VisualShaderNodeParticleMeshEmitter::class, ::VisualShaderNodeParticleMeshEmitter)
-  TypeManager.registerEngineType("VisualShaderNodeParticleMultiplyByAxisAngle",
-      VisualShaderNodeParticleMultiplyByAxisAngle::class,
-      ::VisualShaderNodeParticleMultiplyByAxisAngle)
-  TypeManager.registerEngineType("VisualShaderNodeParticleOutput",
-      VisualShaderNodeParticleOutput::class, ::VisualShaderNodeParticleOutput)
-  TypeManager.registerEngineType("VisualShaderNodeParticleRandomness",
-      VisualShaderNodeParticleRandomness::class, ::VisualShaderNodeParticleRandomness)
-  TypeManager.registerEngineType("VisualShaderNodeParticleRingEmitter",
-      VisualShaderNodeParticleRingEmitter::class, ::VisualShaderNodeParticleRingEmitter)
-  TypeManager.registerEngineType("VisualShaderNodeParticleSphereEmitter",
-      VisualShaderNodeParticleSphereEmitter::class, ::VisualShaderNodeParticleSphereEmitter)
-  TypeManager.registerEngineType("VisualShaderNodeProximityFade",
-      VisualShaderNodeProximityFade::class, ::VisualShaderNodeProximityFade)
-  TypeManager.registerEngineType("VisualShaderNodeRandomRange", VisualShaderNodeRandomRange::class,
-      ::VisualShaderNodeRandomRange)
-  TypeManager.registerEngineType("VisualShaderNodeRemap", VisualShaderNodeRemap::class,
-      ::VisualShaderNodeRemap)
-  TypeManager.registerEngineType("VisualShaderNodeReroute", VisualShaderNodeReroute::class,
-      ::VisualShaderNodeReroute)
-  TypeManager.registerEngineType("VisualShaderNodeResizableBase",
-      VisualShaderNodeResizableBase::class, ::VisualShaderNodeResizableBase)
-  TypeManager.registerEngineType("VisualShaderNodeRotationByAxis",
-      VisualShaderNodeRotationByAxis::class, ::VisualShaderNodeRotationByAxis)
-  TypeManager.registerEngineType("VisualShaderNodeSDFRaymarch", VisualShaderNodeSDFRaymarch::class,
-      ::VisualShaderNodeSDFRaymarch)
-  TypeManager.registerEngineType("VisualShaderNodeSDFToScreenUV",
-      VisualShaderNodeSDFToScreenUV::class, ::VisualShaderNodeSDFToScreenUV)
-  TypeManager.registerEngineType("VisualShaderNodeSample3D", VisualShaderNodeSample3D::class,
-      ::VisualShaderNodeSample3D)
-  TypeManager.registerEngineType("VisualShaderNodeScreenNormalWorldSpace",
-      VisualShaderNodeScreenNormalWorldSpace::class, ::VisualShaderNodeScreenNormalWorldSpace)
-  TypeManager.registerEngineType("VisualShaderNodeScreenUVToSDF",
-      VisualShaderNodeScreenUVToSDF::class, ::VisualShaderNodeScreenUVToSDF)
-  TypeManager.registerEngineType("VisualShaderNodeSmoothStep", VisualShaderNodeSmoothStep::class,
-      ::VisualShaderNodeSmoothStep)
-  TypeManager.registerEngineType("VisualShaderNodeStep", VisualShaderNodeStep::class,
-      ::VisualShaderNodeStep)
-  TypeManager.registerEngineType("VisualShaderNodeSwitch", VisualShaderNodeSwitch::class,
-      ::VisualShaderNodeSwitch)
-  TypeManager.registerEngineType("VisualShaderNodeTexture", VisualShaderNodeTexture::class,
-      ::VisualShaderNodeTexture)
-  TypeManager.registerEngineType("VisualShaderNodeTexture2DArray",
-      VisualShaderNodeTexture2DArray::class, ::VisualShaderNodeTexture2DArray)
-  TypeManager.registerEngineType("VisualShaderNodeTexture2DArrayParameter",
-      VisualShaderNodeTexture2DArrayParameter::class, ::VisualShaderNodeTexture2DArrayParameter)
-  TypeManager.registerEngineType("VisualShaderNodeTexture2DParameter",
-      VisualShaderNodeTexture2DParameter::class, ::VisualShaderNodeTexture2DParameter)
-  TypeManager.registerEngineType("VisualShaderNodeTexture3D", VisualShaderNodeTexture3D::class,
-      ::VisualShaderNodeTexture3D)
-  TypeManager.registerEngineType("VisualShaderNodeTexture3DParameter",
-      VisualShaderNodeTexture3DParameter::class, ::VisualShaderNodeTexture3DParameter)
-  TypeManager.registerEngineType("VisualShaderNodeTextureParameter",
-      VisualShaderNodeTextureParameter::class, ::VisualShaderNodeTextureParameter)
-  TypeManager.registerEngineType("VisualShaderNodeTextureParameterTriplanar",
-      VisualShaderNodeTextureParameterTriplanar::class, ::VisualShaderNodeTextureParameterTriplanar)
-  TypeManager.registerEngineType("VisualShaderNodeTextureSDF", VisualShaderNodeTextureSDF::class,
-      ::VisualShaderNodeTextureSDF)
-  TypeManager.registerEngineType("VisualShaderNodeTextureSDFNormal",
-      VisualShaderNodeTextureSDFNormal::class, ::VisualShaderNodeTextureSDFNormal)
-  TypeManager.registerEngineType("VisualShaderNodeTransformCompose",
-      VisualShaderNodeTransformCompose::class, ::VisualShaderNodeTransformCompose)
-  TypeManager.registerEngineType("VisualShaderNodeTransformConstant",
-      VisualShaderNodeTransformConstant::class, ::VisualShaderNodeTransformConstant)
-  TypeManager.registerEngineType("VisualShaderNodeTransformDecompose",
-      VisualShaderNodeTransformDecompose::class, ::VisualShaderNodeTransformDecompose)
-  TypeManager.registerEngineType("VisualShaderNodeTransformFunc",
-      VisualShaderNodeTransformFunc::class, ::VisualShaderNodeTransformFunc)
-  TypeManager.registerEngineType("VisualShaderNodeTransformOp", VisualShaderNodeTransformOp::class,
-      ::VisualShaderNodeTransformOp)
-  TypeManager.registerEngineType("VisualShaderNodeTransformParameter",
-      VisualShaderNodeTransformParameter::class, ::VisualShaderNodeTransformParameter)
-  TypeManager.registerEngineType("VisualShaderNodeTransformVecMult",
-      VisualShaderNodeTransformVecMult::class, ::VisualShaderNodeTransformVecMult)
-  TypeManager.registerEngineType("VisualShaderNodeUIntConstant",
-      VisualShaderNodeUIntConstant::class, ::VisualShaderNodeUIntConstant)
-  TypeManager.registerEngineType("VisualShaderNodeUIntFunc", VisualShaderNodeUIntFunc::class,
-      ::VisualShaderNodeUIntFunc)
-  TypeManager.registerEngineType("VisualShaderNodeUIntOp", VisualShaderNodeUIntOp::class,
-      ::VisualShaderNodeUIntOp)
-  TypeManager.registerEngineType("VisualShaderNodeUIntParameter",
-      VisualShaderNodeUIntParameter::class, ::VisualShaderNodeUIntParameter)
-  TypeManager.registerEngineType("VisualShaderNodeUVFunc", VisualShaderNodeUVFunc::class,
-      ::VisualShaderNodeUVFunc)
-  TypeManager.registerEngineType("VisualShaderNodeUVPolarCoord",
-      VisualShaderNodeUVPolarCoord::class, ::VisualShaderNodeUVPolarCoord)
-  TypeManager.registerEngineType("VisualShaderNodeVarying", VisualShaderNodeVarying::class,
-      ::VisualShaderNodeVarying)
-  TypeManager.registerEngineType("VisualShaderNodeVaryingGetter",
-      VisualShaderNodeVaryingGetter::class, ::VisualShaderNodeVaryingGetter)
-  TypeManager.registerEngineType("VisualShaderNodeVaryingSetter",
-      VisualShaderNodeVaryingSetter::class, ::VisualShaderNodeVaryingSetter)
-  TypeManager.registerEngineType("VisualShaderNodeVec2Constant",
-      VisualShaderNodeVec2Constant::class, ::VisualShaderNodeVec2Constant)
-  TypeManager.registerEngineType("VisualShaderNodeVec2Parameter",
-      VisualShaderNodeVec2Parameter::class, ::VisualShaderNodeVec2Parameter)
-  TypeManager.registerEngineType("VisualShaderNodeVec3Constant",
-      VisualShaderNodeVec3Constant::class, ::VisualShaderNodeVec3Constant)
-  TypeManager.registerEngineType("VisualShaderNodeVec3Parameter",
-      VisualShaderNodeVec3Parameter::class, ::VisualShaderNodeVec3Parameter)
-  TypeManager.registerEngineType("VisualShaderNodeVec4Constant",
-      VisualShaderNodeVec4Constant::class, ::VisualShaderNodeVec4Constant)
-  TypeManager.registerEngineType("VisualShaderNodeVec4Parameter",
-      VisualShaderNodeVec4Parameter::class, ::VisualShaderNodeVec4Parameter)
-  TypeManager.registerEngineType("VisualShaderNodeVectorBase", VisualShaderNodeVectorBase::class,
-      ::VisualShaderNodeVectorBase)
-  TypeManager.registerEngineType("VisualShaderNodeVectorCompose",
-      VisualShaderNodeVectorCompose::class, ::VisualShaderNodeVectorCompose)
-  TypeManager.registerEngineType("VisualShaderNodeVectorDecompose",
-      VisualShaderNodeVectorDecompose::class, ::VisualShaderNodeVectorDecompose)
-  TypeManager.registerEngineType("VisualShaderNodeVectorDistance",
-      VisualShaderNodeVectorDistance::class, ::VisualShaderNodeVectorDistance)
-  TypeManager.registerEngineType("VisualShaderNodeVectorFunc", VisualShaderNodeVectorFunc::class,
-      ::VisualShaderNodeVectorFunc)
-  TypeManager.registerEngineType("VisualShaderNodeVectorLen", VisualShaderNodeVectorLen::class,
-      ::VisualShaderNodeVectorLen)
-  TypeManager.registerEngineType("VisualShaderNodeVectorOp", VisualShaderNodeVectorOp::class,
-      ::VisualShaderNodeVectorOp)
-  TypeManager.registerEngineType("VisualShaderNodeVectorRefract",
-      VisualShaderNodeVectorRefract::class, ::VisualShaderNodeVectorRefract)
-  TypeManager.registerEngineType("VisualShaderNodeWorldPositionFromDepth",
-      VisualShaderNodeWorldPositionFromDepth::class, ::VisualShaderNodeWorldPositionFromDepth)
+  TypeManager.registerEngineType("VisualShaderNodeBillboard", VisualShaderNodeBillboard::class, ::VisualShaderNodeBillboard)
+  TypeManager.registerEngineType("VisualShaderNodeBooleanConstant", VisualShaderNodeBooleanConstant::class, ::VisualShaderNodeBooleanConstant)
+  TypeManager.registerEngineType("VisualShaderNodeBooleanParameter", VisualShaderNodeBooleanParameter::class, ::VisualShaderNodeBooleanParameter)
+  TypeManager.registerEngineType("VisualShaderNodeClamp", VisualShaderNodeClamp::class, ::VisualShaderNodeClamp)
+  TypeManager.registerEngineType("VisualShaderNodeColorConstant", VisualShaderNodeColorConstant::class, ::VisualShaderNodeColorConstant)
+  TypeManager.registerEngineType("VisualShaderNodeColorFunc", VisualShaderNodeColorFunc::class, ::VisualShaderNodeColorFunc)
+  TypeManager.registerEngineType("VisualShaderNodeColorOp", VisualShaderNodeColorOp::class, ::VisualShaderNodeColorOp)
+  TypeManager.registerEngineType("VisualShaderNodeColorParameter", VisualShaderNodeColorParameter::class, ::VisualShaderNodeColorParameter)
+  TypeManager.registerEngineType("VisualShaderNodeComment", VisualShaderNodeComment::class, ::VisualShaderNodeComment)
+  TypeManager.registerEngineType("VisualShaderNodeCompare", VisualShaderNodeCompare::class, ::VisualShaderNodeCompare)
+  TypeManager.registerEngineType("VisualShaderNodeConstant", VisualShaderNodeConstant::class, ::VisualShaderNodeConstant)
+  TypeManager.registerEngineType("VisualShaderNodeCubemap", VisualShaderNodeCubemap::class, ::VisualShaderNodeCubemap)
+  TypeManager.registerEngineType("VisualShaderNodeCubemapParameter", VisualShaderNodeCubemapParameter::class, ::VisualShaderNodeCubemapParameter)
+  TypeManager.registerEngineType("VisualShaderNodeCurveTexture", VisualShaderNodeCurveTexture::class, ::VisualShaderNodeCurveTexture)
+  TypeManager.registerEngineType("VisualShaderNodeCurveXYZTexture", VisualShaderNodeCurveXYZTexture::class, ::VisualShaderNodeCurveXYZTexture)
+  TypeManager.registerEngineType("VisualShaderNodeCustom", VisualShaderNodeCustom::class, ::VisualShaderNodeCustom)
+  TypeManager.registerEngineType("VisualShaderNodeDerivativeFunc", VisualShaderNodeDerivativeFunc::class, ::VisualShaderNodeDerivativeFunc)
+  TypeManager.registerEngineType("VisualShaderNodeDeterminant", VisualShaderNodeDeterminant::class, ::VisualShaderNodeDeterminant)
+  TypeManager.registerEngineType("VisualShaderNodeDistanceFade", VisualShaderNodeDistanceFade::class, ::VisualShaderNodeDistanceFade)
+  TypeManager.registerEngineType("VisualShaderNodeDotProduct", VisualShaderNodeDotProduct::class, ::VisualShaderNodeDotProduct)
+  TypeManager.registerEngineType("VisualShaderNodeExpression", VisualShaderNodeExpression::class, ::VisualShaderNodeExpression)
+  TypeManager.registerEngineType("VisualShaderNodeFaceForward", VisualShaderNodeFaceForward::class, ::VisualShaderNodeFaceForward)
+  TypeManager.registerEngineType("VisualShaderNodeFloatConstant", VisualShaderNodeFloatConstant::class, ::VisualShaderNodeFloatConstant)
+  TypeManager.registerEngineType("VisualShaderNodeFloatFunc", VisualShaderNodeFloatFunc::class, ::VisualShaderNodeFloatFunc)
+  TypeManager.registerEngineType("VisualShaderNodeFloatOp", VisualShaderNodeFloatOp::class, ::VisualShaderNodeFloatOp)
+  TypeManager.registerEngineType("VisualShaderNodeFloatParameter", VisualShaderNodeFloatParameter::class, ::VisualShaderNodeFloatParameter)
+  TypeManager.registerEngineType("VisualShaderNodeFrame", VisualShaderNodeFrame::class, ::VisualShaderNodeFrame)
+  TypeManager.registerEngineType("VisualShaderNodeFresnel", VisualShaderNodeFresnel::class, ::VisualShaderNodeFresnel)
+  TypeManager.registerEngineType("VisualShaderNodeGlobalExpression", VisualShaderNodeGlobalExpression::class, ::VisualShaderNodeGlobalExpression)
+  TypeManager.registerEngineType("VisualShaderNodeGroupBase", VisualShaderNodeGroupBase::class, ::VisualShaderNodeGroupBase)
+  TypeManager.registerEngineType("VisualShaderNodeIf", VisualShaderNodeIf::class, ::VisualShaderNodeIf)
+  TypeManager.registerEngineType("VisualShaderNodeInput", VisualShaderNodeInput::class, ::VisualShaderNodeInput)
+  TypeManager.registerEngineType("VisualShaderNodeIntConstant", VisualShaderNodeIntConstant::class, ::VisualShaderNodeIntConstant)
+  TypeManager.registerEngineType("VisualShaderNodeIntFunc", VisualShaderNodeIntFunc::class, ::VisualShaderNodeIntFunc)
+  TypeManager.registerEngineType("VisualShaderNodeIntOp", VisualShaderNodeIntOp::class, ::VisualShaderNodeIntOp)
+  TypeManager.registerEngineType("VisualShaderNodeIntParameter", VisualShaderNodeIntParameter::class, ::VisualShaderNodeIntParameter)
+  TypeManager.registerEngineType("VisualShaderNodeIs", VisualShaderNodeIs::class, ::VisualShaderNodeIs)
+  TypeManager.registerEngineType("VisualShaderNodeLinearSceneDepth", VisualShaderNodeLinearSceneDepth::class, ::VisualShaderNodeLinearSceneDepth)
+  TypeManager.registerEngineType("VisualShaderNodeMix", VisualShaderNodeMix::class, ::VisualShaderNodeMix)
+  TypeManager.registerEngineType("VisualShaderNodeMultiplyAdd", VisualShaderNodeMultiplyAdd::class, ::VisualShaderNodeMultiplyAdd)
+  TypeManager.registerEngineType("VisualShaderNodeOuterProduct", VisualShaderNodeOuterProduct::class, ::VisualShaderNodeOuterProduct)
+  TypeManager.registerEngineType("VisualShaderNodeOutput", VisualShaderNodeOutput::class, ::VisualShaderNodeOutput)
+  TypeManager.registerEngineType("VisualShaderNodeParameter", VisualShaderNodeParameter::class, ::VisualShaderNodeParameter)
+  TypeManager.registerEngineType("VisualShaderNodeParameterRef", VisualShaderNodeParameterRef::class, ::VisualShaderNodeParameterRef)
+  TypeManager.registerEngineType("VisualShaderNodeParticleAccelerator", VisualShaderNodeParticleAccelerator::class, ::VisualShaderNodeParticleAccelerator)
+  TypeManager.registerEngineType("VisualShaderNodeParticleBoxEmitter", VisualShaderNodeParticleBoxEmitter::class, ::VisualShaderNodeParticleBoxEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleConeVelocity", VisualShaderNodeParticleConeVelocity::class, ::VisualShaderNodeParticleConeVelocity)
+  TypeManager.registerEngineType("VisualShaderNodeParticleEmit", VisualShaderNodeParticleEmit::class, ::VisualShaderNodeParticleEmit)
+  TypeManager.registerEngineType("VisualShaderNodeParticleEmitter", VisualShaderNodeParticleEmitter::class, ::VisualShaderNodeParticleEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleMeshEmitter", VisualShaderNodeParticleMeshEmitter::class, ::VisualShaderNodeParticleMeshEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleMultiplyByAxisAngle", VisualShaderNodeParticleMultiplyByAxisAngle::class, ::VisualShaderNodeParticleMultiplyByAxisAngle)
+  TypeManager.registerEngineType("VisualShaderNodeParticleOutput", VisualShaderNodeParticleOutput::class, ::VisualShaderNodeParticleOutput)
+  TypeManager.registerEngineType("VisualShaderNodeParticleRandomness", VisualShaderNodeParticleRandomness::class, ::VisualShaderNodeParticleRandomness)
+  TypeManager.registerEngineType("VisualShaderNodeParticleRingEmitter", VisualShaderNodeParticleRingEmitter::class, ::VisualShaderNodeParticleRingEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleSphereEmitter", VisualShaderNodeParticleSphereEmitter::class, ::VisualShaderNodeParticleSphereEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeProximityFade", VisualShaderNodeProximityFade::class, ::VisualShaderNodeProximityFade)
+  TypeManager.registerEngineType("VisualShaderNodeRandomRange", VisualShaderNodeRandomRange::class, ::VisualShaderNodeRandomRange)
+  TypeManager.registerEngineType("VisualShaderNodeRemap", VisualShaderNodeRemap::class, ::VisualShaderNodeRemap)
+  TypeManager.registerEngineType("VisualShaderNodeReroute", VisualShaderNodeReroute::class, ::VisualShaderNodeReroute)
+  TypeManager.registerEngineType("VisualShaderNodeResizableBase", VisualShaderNodeResizableBase::class, ::VisualShaderNodeResizableBase)
+  TypeManager.registerEngineType("VisualShaderNodeRotationByAxis", VisualShaderNodeRotationByAxis::class, ::VisualShaderNodeRotationByAxis)
+  TypeManager.registerEngineType("VisualShaderNodeSDFRaymarch", VisualShaderNodeSDFRaymarch::class, ::VisualShaderNodeSDFRaymarch)
+  TypeManager.registerEngineType("VisualShaderNodeSDFToScreenUV", VisualShaderNodeSDFToScreenUV::class, ::VisualShaderNodeSDFToScreenUV)
+  TypeManager.registerEngineType("VisualShaderNodeSample3D", VisualShaderNodeSample3D::class, ::VisualShaderNodeSample3D)
+  TypeManager.registerEngineType("VisualShaderNodeScreenNormalWorldSpace", VisualShaderNodeScreenNormalWorldSpace::class, ::VisualShaderNodeScreenNormalWorldSpace)
+  TypeManager.registerEngineType("VisualShaderNodeScreenUVToSDF", VisualShaderNodeScreenUVToSDF::class, ::VisualShaderNodeScreenUVToSDF)
+  TypeManager.registerEngineType("VisualShaderNodeSmoothStep", VisualShaderNodeSmoothStep::class, ::VisualShaderNodeSmoothStep)
+  TypeManager.registerEngineType("VisualShaderNodeStep", VisualShaderNodeStep::class, ::VisualShaderNodeStep)
+  TypeManager.registerEngineType("VisualShaderNodeSwitch", VisualShaderNodeSwitch::class, ::VisualShaderNodeSwitch)
+  TypeManager.registerEngineType("VisualShaderNodeTexture", VisualShaderNodeTexture::class, ::VisualShaderNodeTexture)
+  TypeManager.registerEngineType("VisualShaderNodeTexture2DArray", VisualShaderNodeTexture2DArray::class, ::VisualShaderNodeTexture2DArray)
+  TypeManager.registerEngineType("VisualShaderNodeTexture2DArrayParameter", VisualShaderNodeTexture2DArrayParameter::class, ::VisualShaderNodeTexture2DArrayParameter)
+  TypeManager.registerEngineType("VisualShaderNodeTexture2DParameter", VisualShaderNodeTexture2DParameter::class, ::VisualShaderNodeTexture2DParameter)
+  TypeManager.registerEngineType("VisualShaderNodeTexture3D", VisualShaderNodeTexture3D::class, ::VisualShaderNodeTexture3D)
+  TypeManager.registerEngineType("VisualShaderNodeTexture3DParameter", VisualShaderNodeTexture3DParameter::class, ::VisualShaderNodeTexture3DParameter)
+  TypeManager.registerEngineType("VisualShaderNodeTextureParameter", VisualShaderNodeTextureParameter::class, ::VisualShaderNodeTextureParameter)
+  TypeManager.registerEngineType("VisualShaderNodeTextureParameterTriplanar", VisualShaderNodeTextureParameterTriplanar::class, ::VisualShaderNodeTextureParameterTriplanar)
+  TypeManager.registerEngineType("VisualShaderNodeTextureSDF", VisualShaderNodeTextureSDF::class, ::VisualShaderNodeTextureSDF)
+  TypeManager.registerEngineType("VisualShaderNodeTextureSDFNormal", VisualShaderNodeTextureSDFNormal::class, ::VisualShaderNodeTextureSDFNormal)
+  TypeManager.registerEngineType("VisualShaderNodeTransformCompose", VisualShaderNodeTransformCompose::class, ::VisualShaderNodeTransformCompose)
+  TypeManager.registerEngineType("VisualShaderNodeTransformConstant", VisualShaderNodeTransformConstant::class, ::VisualShaderNodeTransformConstant)
+  TypeManager.registerEngineType("VisualShaderNodeTransformDecompose", VisualShaderNodeTransformDecompose::class, ::VisualShaderNodeTransformDecompose)
+  TypeManager.registerEngineType("VisualShaderNodeTransformFunc", VisualShaderNodeTransformFunc::class, ::VisualShaderNodeTransformFunc)
+  TypeManager.registerEngineType("VisualShaderNodeTransformOp", VisualShaderNodeTransformOp::class, ::VisualShaderNodeTransformOp)
+  TypeManager.registerEngineType("VisualShaderNodeTransformParameter", VisualShaderNodeTransformParameter::class, ::VisualShaderNodeTransformParameter)
+  TypeManager.registerEngineType("VisualShaderNodeTransformVecMult", VisualShaderNodeTransformVecMult::class, ::VisualShaderNodeTransformVecMult)
+  TypeManager.registerEngineType("VisualShaderNodeUIntConstant", VisualShaderNodeUIntConstant::class, ::VisualShaderNodeUIntConstant)
+  TypeManager.registerEngineType("VisualShaderNodeUIntFunc", VisualShaderNodeUIntFunc::class, ::VisualShaderNodeUIntFunc)
+  TypeManager.registerEngineType("VisualShaderNodeUIntOp", VisualShaderNodeUIntOp::class, ::VisualShaderNodeUIntOp)
+  TypeManager.registerEngineType("VisualShaderNodeUIntParameter", VisualShaderNodeUIntParameter::class, ::VisualShaderNodeUIntParameter)
+  TypeManager.registerEngineType("VisualShaderNodeUVFunc", VisualShaderNodeUVFunc::class, ::VisualShaderNodeUVFunc)
+  TypeManager.registerEngineType("VisualShaderNodeUVPolarCoord", VisualShaderNodeUVPolarCoord::class, ::VisualShaderNodeUVPolarCoord)
+  TypeManager.registerEngineType("VisualShaderNodeVarying", VisualShaderNodeVarying::class, ::VisualShaderNodeVarying)
+  TypeManager.registerEngineType("VisualShaderNodeVaryingGetter", VisualShaderNodeVaryingGetter::class, ::VisualShaderNodeVaryingGetter)
+  TypeManager.registerEngineType("VisualShaderNodeVaryingSetter", VisualShaderNodeVaryingSetter::class, ::VisualShaderNodeVaryingSetter)
+  TypeManager.registerEngineType("VisualShaderNodeVec2Constant", VisualShaderNodeVec2Constant::class, ::VisualShaderNodeVec2Constant)
+  TypeManager.registerEngineType("VisualShaderNodeVec2Parameter", VisualShaderNodeVec2Parameter::class, ::VisualShaderNodeVec2Parameter)
+  TypeManager.registerEngineType("VisualShaderNodeVec3Constant", VisualShaderNodeVec3Constant::class, ::VisualShaderNodeVec3Constant)
+  TypeManager.registerEngineType("VisualShaderNodeVec3Parameter", VisualShaderNodeVec3Parameter::class, ::VisualShaderNodeVec3Parameter)
+  TypeManager.registerEngineType("VisualShaderNodeVec4Constant", VisualShaderNodeVec4Constant::class, ::VisualShaderNodeVec4Constant)
+  TypeManager.registerEngineType("VisualShaderNodeVec4Parameter", VisualShaderNodeVec4Parameter::class, ::VisualShaderNodeVec4Parameter)
+  TypeManager.registerEngineType("VisualShaderNodeVectorBase", VisualShaderNodeVectorBase::class, ::VisualShaderNodeVectorBase)
+  TypeManager.registerEngineType("VisualShaderNodeVectorCompose", VisualShaderNodeVectorCompose::class, ::VisualShaderNodeVectorCompose)
+  TypeManager.registerEngineType("VisualShaderNodeVectorDecompose", VisualShaderNodeVectorDecompose::class, ::VisualShaderNodeVectorDecompose)
+  TypeManager.registerEngineType("VisualShaderNodeVectorDistance", VisualShaderNodeVectorDistance::class, ::VisualShaderNodeVectorDistance)
+  TypeManager.registerEngineType("VisualShaderNodeVectorFunc", VisualShaderNodeVectorFunc::class, ::VisualShaderNodeVectorFunc)
+  TypeManager.registerEngineType("VisualShaderNodeVectorLen", VisualShaderNodeVectorLen::class, ::VisualShaderNodeVectorLen)
+  TypeManager.registerEngineType("VisualShaderNodeVectorOp", VisualShaderNodeVectorOp::class, ::VisualShaderNodeVectorOp)
+  TypeManager.registerEngineType("VisualShaderNodeVectorRefract", VisualShaderNodeVectorRefract::class, ::VisualShaderNodeVectorRefract)
+  TypeManager.registerEngineType("VisualShaderNodeWorldPositionFromDepth", VisualShaderNodeWorldPositionFromDepth::class, ::VisualShaderNodeWorldPositionFromDepth)
   TypeManager.registerEngineType("VoxelGI", VoxelGI::class, ::VoxelGI)
   TypeManager.registerEngineType("VoxelGIData", VoxelGIData::class, ::VoxelGIData)
   TypeManager.registerEngineType("WeakRef", WeakRef::class, ::WeakRef)
   TypeManager.registerEngineType("WebRTCDataChannel", WebRTCDataChannel::class, ::WebRTCDataChannel)
-  TypeManager.registerEngineType("WebRTCDataChannelExtension", WebRTCDataChannelExtension::class,
-      ::WebRTCDataChannelExtension)
-  TypeManager.registerEngineType("WebRTCMultiplayerPeer", WebRTCMultiplayerPeer::class,
-      ::WebRTCMultiplayerPeer)
-  TypeManager.registerEngineType("WebRTCPeerConnection", WebRTCPeerConnection::class,
-      ::WebRTCPeerConnection)
-  TypeManager.registerEngineType("WebRTCPeerConnectionExtension",
-      WebRTCPeerConnectionExtension::class, ::WebRTCPeerConnectionExtension)
-  TypeManager.registerEngineType("WebSocketMultiplayerPeer", WebSocketMultiplayerPeer::class,
-      ::WebSocketMultiplayerPeer)
+  TypeManager.registerEngineType("WebRTCDataChannelExtension", WebRTCDataChannelExtension::class, ::WebRTCDataChannelExtension)
+  TypeManager.registerEngineType("WebRTCMultiplayerPeer", WebRTCMultiplayerPeer::class, ::WebRTCMultiplayerPeer)
+  TypeManager.registerEngineType("WebRTCPeerConnection", WebRTCPeerConnection::class, ::WebRTCPeerConnection)
+  TypeManager.registerEngineType("WebRTCPeerConnectionExtension", WebRTCPeerConnectionExtension::class, ::WebRTCPeerConnectionExtension)
+  TypeManager.registerEngineType("WebSocketMultiplayerPeer", WebSocketMultiplayerPeer::class, ::WebSocketMultiplayerPeer)
   TypeManager.registerEngineType("WebSocketPeer", WebSocketPeer::class, ::WebSocketPeer)
   TypeManager.registerEngineType("WebXRInterface", WebXRInterface::class, ::WebXRInterface)
   TypeManager.registerEngineType("Window", Window::class, ::Window)
-  TypeManager.registerSingleton("WorkerThreadPool")
+  TypeManager.registerSingleton("WorkerThreadPool") { WorkerThreadPool }
   TypeManager.registerEngineType("WorkerThreadPool", WorkerThreadPool::class) { WorkerThreadPool }
   TypeManager.registerEngineType("World2D", World2D::class, ::World2D)
   TypeManager.registerEngineType("World3D", World3D::class, ::World3D)
-  TypeManager.registerEngineType("WorldBoundaryShape2D", WorldBoundaryShape2D::class,
-      ::WorldBoundaryShape2D)
-  TypeManager.registerEngineType("WorldBoundaryShape3D", WorldBoundaryShape3D::class,
-      ::WorldBoundaryShape3D)
+  TypeManager.registerEngineType("WorldBoundaryShape2D", WorldBoundaryShape2D::class, ::WorldBoundaryShape2D)
+  TypeManager.registerEngineType("WorldBoundaryShape3D", WorldBoundaryShape3D::class, ::WorldBoundaryShape3D)
   TypeManager.registerEngineType("WorldEnvironment", WorldEnvironment::class, ::WorldEnvironment)
   TypeManager.registerEngineType("X509Certificate", X509Certificate::class, ::X509Certificate)
   TypeManager.registerEngineType("XMLParser", XMLParser::class, ::XMLParser)
@@ -3917,21 +3559,18 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("XRBodyTracker", XRBodyTracker::class, ::XRBodyTracker)
   TypeManager.registerEngineType("XRCamera3D", XRCamera3D::class, ::XRCamera3D)
   TypeManager.registerEngineType("XRController3D", XRController3D::class, ::XRController3D)
-  TypeManager.registerEngineType("XRControllerTracker", XRControllerTracker::class,
-      ::XRControllerTracker)
+  TypeManager.registerEngineType("XRControllerTracker", XRControllerTracker::class, ::XRControllerTracker)
   TypeManager.registerEngineType("XRFaceModifier3D", XRFaceModifier3D::class, ::XRFaceModifier3D)
   TypeManager.registerEngineType("XRFaceTracker", XRFaceTracker::class, ::XRFaceTracker)
   TypeManager.registerEngineType("XRHandModifier3D", XRHandModifier3D::class, ::XRHandModifier3D)
   TypeManager.registerEngineType("XRHandTracker", XRHandTracker::class, ::XRHandTracker)
   TypeManager.registerEngineType("XRInterface", XRInterface::class, ::XRInterface)
-  TypeManager.registerEngineType("XRInterfaceExtension", XRInterfaceExtension::class,
-      ::XRInterfaceExtension)
+  TypeManager.registerEngineType("XRInterfaceExtension", XRInterfaceExtension::class, ::XRInterfaceExtension)
   TypeManager.registerEngineType("XRNode3D", XRNode3D::class, ::XRNode3D)
   TypeManager.registerEngineType("XROrigin3D", XROrigin3D::class, ::XROrigin3D)
   TypeManager.registerEngineType("XRPose", XRPose::class, ::XRPose)
-  TypeManager.registerEngineType("XRPositionalTracker", XRPositionalTracker::class,
-      ::XRPositionalTracker)
-  TypeManager.registerSingleton("XRServer")
+  TypeManager.registerEngineType("XRPositionalTracker", XRPositionalTracker::class, ::XRPositionalTracker)
+  TypeManager.registerSingleton("XRServer") { XRServer }
   TypeManager.registerEngineType("XRServer", XRServer::class) { XRServer }
   TypeManager.registerEngineType("XRTracker", XRTracker::class, ::XRTracker)
   TypeManager.registerEngineType("XRVRS", XRVRS::class, ::XRVRS)

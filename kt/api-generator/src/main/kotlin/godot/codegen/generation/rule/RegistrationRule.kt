@@ -12,9 +12,21 @@ import godot.tools.common.constants.godotCorePackage
 
 class RegistrationRule() : GodotApiRule<RegistrationTask>() {
     override fun apply(task: RegistrationTask, context: Context) {
-        context
+        val types = context
             .classRepository
             .listTypes()
+
+        val coreTypes = types
+            .filter { it.type == "Object" || it.type == "RefCounted" }
+
+        val apiTypes = types
+            .filter { it.type != "Object" && it.type != "RefCounted" }
+            .filter {  //Remove class extending singletons
+                val parent = it.parent
+                parent == null || parent.isSingleton == false
+            }
+
+        (coreTypes + apiTypes)
             .filter { clazz ->  //Remove class extending singletons
                 val parent = clazz.parent
                 parent == null || parent.isSingleton == false
@@ -23,38 +35,38 @@ class RegistrationRule() : GodotApiRule<RegistrationTask>() {
                 task.addClassRegistering(clazz)
                 task.addMethodBindings(clazz)
             }
-}
-
-fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
-    variantMapper.addStatement(
-        "%M[%T::class] = %T",
-        MemberName(godotCorePackage, "variantMapper"),
-        enrichedClass.getClassName(),
-        enrichedClass.jvmVariantTypeValue
-    )
-}
-
-fun RegistrationTask.addClassRegistering(clazz: EnrichedClass) {
-    val formatString: String
-    if (clazz.isSingleton) {
-        engineTypes.addStatement("%T.registerSingleton(%S)", TYPE_MANAGER, clazz.type)
-        formatString = "%T.registerEngineType(%S, %T::class) { %T }"
-    } else {
-        formatString = "%T.registerEngineType(%S, %T::class, ::%T)"
     }
-    engineTypes.addStatement(
-        formatString,
-        TYPE_MANAGER,
-        clazz.type,
-        clazz.getClassName(),
-        clazz.getClassName()
-    )
-}
 
-fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
-    engineMethods.addStatement(
-        "%T",
-        clazz.getClassName().nestedClass(methodBindingsInnerClassName)
-    )
-}
+    fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
+        variantMapper.addStatement(
+            "%M[%T::class] = %T",
+            MemberName(godotCorePackage, "variantMapper"),
+            enrichedClass.getClassName(),
+            enrichedClass.jvmVariantTypeValue
+        )
+    }
+
+    fun RegistrationTask.addClassRegistering(clazz: EnrichedClass) {
+        val formatString: String
+        if (clazz.isSingleton) {
+            engineTypes.addStatement("%T.registerSingleton(%S)·{·%T·}", TYPE_MANAGER, clazz.type, clazz.getClassName())
+            formatString = "%T.registerEngineType(%S,·%T::class)·{·%T·}"
+        } else {
+            formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
+        }
+        engineTypes.addStatement(
+            formatString,
+            TYPE_MANAGER,
+            clazz.type,
+            clazz.getClassName(),
+            clazz.getClassName()
+        )
+    }
+
+    fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
+        engineMethods.addStatement(
+            "%T",
+            clazz.getClassName().nestedClass(methodBindingsInnerClassName)
+        )
+    }
 }
