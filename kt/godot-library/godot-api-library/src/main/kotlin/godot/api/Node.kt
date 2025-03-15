@@ -2301,10 +2301,22 @@ public open class Node : Object() {
     public infix fun ushr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag ushr bits)
 
     public companion object {
+      /**
+       * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
+       * before [_process] is called.
+       */
       public val FLAG: ProcessThreadMessages = ProcessThreadMessages(1)
 
+      /**
+       * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
+       * before [_physicsProcess] is called.
+       */
       public val FLAG_PHYSICS: ProcessThreadMessages = ProcessThreadMessages(2)
 
+      /**
+       * Allows this node to process threaded messages created with [callDeferredThreadGroup] right
+       * before either [_process] or [_physicsProcess] are called.
+       */
       public val FLAG_ALL: ProcessThreadMessages = ProcessThreadMessages(3)
     }
   }

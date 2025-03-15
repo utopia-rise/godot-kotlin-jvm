@@ -2588,16 +2588,47 @@ public open class Control : CanvasItem() {
     public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Tells the parent [Container] to align the node with its start, either the top or the left
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       * **Note:** Setting this flag is equal to not having any size flags.
+       */
       public val SHRINK_BEGIN: SizeFlags = SizeFlags(0)
 
+      /**
+       * Tells the parent [Container] to expand the bounds of this node to fill all the available
+       * space without pushing any other node. It is mutually exclusive with shrink size flags. Use
+       * with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
       public val FILL: SizeFlags = SizeFlags(1)
 
+      /**
+       * Tells the parent [Container] to let this node take all the available space on the axis you
+       * flag. If multiple neighboring nodes are set to expand, they'll share the space based on their
+       * stretch ratio. See [sizeFlagsStretchRatio]. Use with [sizeFlagsHorizontal] and
+       * [sizeFlagsVertical].
+       */
       public val EXPAND: SizeFlags = SizeFlags(2)
 
+      /**
+       * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for
+       * more information.
+       */
       public val EXPAND_FILL: SizeFlags = SizeFlags(3)
 
+      /**
+       * Tells the parent [Container] to center the node in the available space. It is mutually
+       * exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in
+       * some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
       public val SHRINK_CENTER: SizeFlags = SizeFlags(4)
 
+      /**
+       * Tells the parent [Container] to align the node with its end, either the bottom or the right
+       * edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used
+       * with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+       */
       public val SHRINK_END: SizeFlags = SizeFlags(8)
     }
   }

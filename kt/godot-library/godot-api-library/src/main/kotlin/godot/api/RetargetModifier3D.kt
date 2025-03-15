@@ -201,12 +201,24 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     public infix fun ushr(bits: Int): TransformFlag = TransformFlag(flag ushr bits)
 
     public companion object {
+      /**
+       * If set, allows to retarget the position.
+       */
       public val POSITION: TransformFlag = TransformFlag(1)
 
+      /**
+       * If set, allows to retarget the rotation.
+       */
       public val ROTATION: TransformFlag = TransformFlag(2)
 
+      /**
+       * If set, allows to retarget the scale.
+       */
       public val SCALE: TransformFlag = TransformFlag(4)
 
+      /**
+       * If set, allows to retarget the position/rotation/scale.
+       */
       public val ALL: TransformFlag = TransformFlag(7)
     }
   }

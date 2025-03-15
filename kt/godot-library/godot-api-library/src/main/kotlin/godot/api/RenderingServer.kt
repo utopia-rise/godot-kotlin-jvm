@@ -6719,70 +6719,185 @@ public object RenderingServer : Object() {
     public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
 
     public companion object {
+      /**
+       * Flag used to mark a vertex position array.
+       */
       public val VERTEX: ArrayFormat = ArrayFormat(1)
 
+      /**
+       * Flag used to mark a normal array.
+       */
       public val NORMAL: ArrayFormat = ArrayFormat(2)
 
+      /**
+       * Flag used to mark a tangent array.
+       */
       public val TANGENT: ArrayFormat = ArrayFormat(4)
 
+      /**
+       * Flag used to mark a vertex color array.
+       */
       public val COLOR: ArrayFormat = ArrayFormat(8)
 
+      /**
+       * Flag used to mark a UV coordinates array.
+       */
       public val TEX_UV: ArrayFormat = ArrayFormat(16)
 
+      /**
+       * Flag used to mark a UV coordinates array for the second UV coordinates.
+       */
       public val TEX_UV2: ArrayFormat = ArrayFormat(32)
 
+      /**
+       * Flag used to mark an array of custom per-vertex data for the first set of custom data.
+       */
       public val CUSTOM0: ArrayFormat = ArrayFormat(64)
 
+      /**
+       * Flag used to mark an array of custom per-vertex data for the second set of custom data.
+       */
       public val CUSTOM1: ArrayFormat = ArrayFormat(128)
 
+      /**
+       * Flag used to mark an array of custom per-vertex data for the third set of custom data.
+       */
       public val CUSTOM2: ArrayFormat = ArrayFormat(256)
 
+      /**
+       * Flag used to mark an array of custom per-vertex data for the fourth set of custom data.
+       */
       public val CUSTOM3: ArrayFormat = ArrayFormat(512)
 
+      /**
+       * Flag used to mark a bone information array.
+       */
       public val BONES: ArrayFormat = ArrayFormat(1024)
 
+      /**
+       * Flag used to mark a weights array.
+       */
       public val WEIGHTS: ArrayFormat = ArrayFormat(2048)
 
+      /**
+       * Flag used to mark an index array.
+       */
       public val INDEX: ArrayFormat = ArrayFormat(4096)
 
+      /**
+       * Mask of mesh channels permitted in blend shapes.
+       */
       public val BLEND_SHAPE_MASK: ArrayFormat = ArrayFormat(7)
 
+      /**
+       * Shift of first custom channel.
+       */
       public val CUSTOM_BASE: ArrayFormat = ArrayFormat(13)
 
+      /**
+       * Number of format bits per custom channel. See [ArrayCustomFormat].
+       */
       public val CUSTOM_BITS: ArrayFormat = ArrayFormat(3)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 0.
+       */
       public val CUSTOM0_SHIFT: ArrayFormat = ArrayFormat(13)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 1.
+       */
       public val CUSTOM1_SHIFT: ArrayFormat = ArrayFormat(16)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 2.
+       */
       public val CUSTOM2_SHIFT: ArrayFormat = ArrayFormat(19)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 3.
+       */
       public val CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
+      /**
+       * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT
+       * constants. See [ArrayCustomFormat].
+       */
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
+      /**
+       * Shift of first compress flag. Compress flags should be passed to
+       * [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
+       */
       public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
+      /**
+       * Flag used to mark that the array contains 2D vertices.
+       */
       public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
+      /**
+       * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
+       */
       public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
+      /**
+       * Flag used to mark that the array uses 8 bone weights instead of 4.
+       */
       public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
+      /**
+       * Flag used to mark that the mesh does not have a vertex array and instead will infer vertex
+       * positions in the shader using indices and other information.
+       */
       public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
+      /**
+       * Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents,
+       * UVs). When this form of compression is enabled, vertex positions will be packed into an
+       * RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed
+       * into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the
+       * vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using
+       * this compression mode you must use either vertices, normals, and tangents or only vertices.
+       * You cannot use normals without tangents. Importers will automatically enable this compression
+       * if they can.
+       */
       public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
 
+      /**
+       * Flag used to mark the start of the bits used to store the mesh version.
+       */
       public val FLAG_FORMAT_VERSION_BASE: ArrayFormat = ArrayFormat(35)
 
+      /**
+       * Flag used to shift a mesh format int to bring the version into the lowest digits.
+       */
       public val FLAG_FORMAT_VERSION_SHIFT: ArrayFormat = ArrayFormat(35)
 
+      /**
+       * Flag used to record the format used by prior mesh versions before the introduction of a
+       * version.
+       */
       public val FLAG_FORMAT_VERSION_1: ArrayFormat = ArrayFormat(0)
 
+      /**
+       * Flag used to record the second iteration of the mesh version flag. The primary difference
+       * between this and [ARRAY_FLAG_FORMAT_VERSION_1] is that this version supports
+       * [ARRAY_FLAG_COMPRESS_ATTRIBUTES] and in this version vertex positions are de-interleaved from
+       * normals and tangents.
+       */
       public val FLAG_FORMAT_VERSION_2: ArrayFormat = ArrayFormat(34359738368)
 
+      /**
+       * Flag used to record the current version that the engine expects. Currently this is the same
+       * as [ARRAY_FLAG_FORMAT_VERSION_2].
+       */
       public val FLAG_FORMAT_CURRENT_VERSION: ArrayFormat = ArrayFormat(34359738368)
 
+      /**
+       * Flag used to isolate the bits used for mesh version after using
+       * [ARRAY_FLAG_FORMAT_VERSION_SHIFT] to shift them into place.
+       */
       public val FLAG_FORMAT_VERSION_MASK: ArrayFormat = ArrayFormat(255)
     }
   }

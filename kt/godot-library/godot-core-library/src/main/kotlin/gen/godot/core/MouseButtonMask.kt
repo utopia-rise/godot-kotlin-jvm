@@ -49,14 +49,29 @@ public value class MouseButtonMask(
   public infix fun ushr(bits: Int): MouseButtonMask = MouseButtonMask(flag ushr bits)
 
   public companion object {
+    /**
+     * Primary mouse button mask, usually for the left button.
+     */
     public val LEFT: MouseButtonMask = MouseButtonMask(1)
 
+    /**
+     * Secondary mouse button mask, usually for the right button.
+     */
     public val RIGHT: MouseButtonMask = MouseButtonMask(2)
 
+    /**
+     * Middle mouse button mask.
+     */
     public val MIDDLE: MouseButtonMask = MouseButtonMask(4)
 
+    /**
+     * Extra mouse button 1 mask.
+     */
     public val MB_XBUTTON1: MouseButtonMask = MouseButtonMask(128)
 
+    /**
+     * Extra mouse button 2 mask.
+     */
     public val MB_XBUTTON2: MouseButtonMask = MouseButtonMask(256)
   }
 }

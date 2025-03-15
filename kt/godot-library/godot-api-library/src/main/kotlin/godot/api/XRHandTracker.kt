@@ -368,16 +368,36 @@ public open class XRHandTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * The hand joint's orientation data is valid.
+       */
       public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
+      /**
+       * The hand joint's orientation is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
       public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
+      /**
+       * The hand joint's position data is valid.
+       */
       public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
+      /**
+       * The hand joint's position is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
       public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
+      /**
+       * The hand joint's linear velocity data is valid.
+       */
       public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
+      /**
+       * The hand joint's angular velocity data is valid.
+       */
       public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }

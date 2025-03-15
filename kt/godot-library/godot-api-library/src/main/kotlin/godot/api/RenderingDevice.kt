@@ -3166,18 +3166,40 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): BarrierMask = BarrierMask(flag ushr bits)
 
     public companion object {
+      /**
+       * Vertex shader barrier mask.
+       */
       public val VERTEX: BarrierMask = BarrierMask(1)
 
+      /**
+       * Fragment shader barrier mask.
+       */
       public val FRAGMENT: BarrierMask = BarrierMask(8)
 
+      /**
+       * Compute barrier mask.
+       */
       public val COMPUTE: BarrierMask = BarrierMask(2)
 
+      /**
+       * Transfer barrier mask.
+       */
       public val TRANSFER: BarrierMask = BarrierMask(4)
 
+      /**
+       * Raster barrier mask (vertex and fragment). Equivalent to `BARRIER_MASK_VERTEX |
+       * BARRIER_MASK_FRAGMENT`.
+       */
       public val RASTER: BarrierMask = BarrierMask(9)
 
+      /**
+       * Barrier mask for all types (vertex, fragment, compute, transfer).
+       */
       public val ALL_BARRIERS: BarrierMask = BarrierMask(32767)
 
+      /**
+       * No barrier for any type.
+       */
       public val NO_BARRIER: BarrierMask = BarrierMask(32768)
     }
   }
@@ -3309,24 +3331,61 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBits(flag ushr bits)
 
     public companion object {
+      /**
+       * Texture can be sampled.
+       */
       public val SAMPLING: TextureUsageBits = TextureUsageBits(1)
 
+      /**
+       * Texture can be used as a color attachment in a framebuffer.
+       */
       public val COLOR_ATTACHMENT: TextureUsageBits = TextureUsageBits(2)
 
+      /**
+       * Texture can be used as a depth/stencil attachment in a framebuffer.
+       */
       public val DEPTH_STENCIL_ATTACHMENT: TextureUsageBits = TextureUsageBits(4)
 
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
+       * image[/url].
+       */
       public val STORAGE: TextureUsageBits = TextureUsageBits(8)
 
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
+       * image[/url] with support for atomic operations.
+       */
       public val STORAGE_ATOMIC: TextureUsageBits = TextureUsageBits(16)
 
+      /**
+       * Texture can be read back on the CPU using [textureGetData] faster than without this bit,
+       * since it is always kept in the system memory.
+       */
       public val CPU_READ: TextureUsageBits = TextureUsageBits(32)
 
+      /**
+       * Texture can be updated using [textureUpdate].
+       */
       public val CAN_UPDATE: TextureUsageBits = TextureUsageBits(64)
 
+      /**
+       * Texture can be a source for [textureCopy].
+       */
       public val CAN_COPY_FROM: TextureUsageBits = TextureUsageBits(128)
 
+      /**
+       * Texture can be a destination for [textureCopy].
+       */
       public val CAN_COPY_TO: TextureUsageBits = TextureUsageBits(256)
 
+      /**
+       * Texture can be used as a
+       * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment]input
+       * attachment[/url] in a framebuffer.
+       */
       public val INPUT_ATTACHMENT: TextureUsageBits = TextureUsageBits(512)
     }
   }
@@ -3642,8 +3701,28 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBits(flag ushr bits)
 
     public companion object {
+      /**
+       * Optionally, set this flag if you wish to use [bufferGetDeviceAddress] functionality. You
+       * must first check the GPU supports it:
+       *
+       * gdscript:
+       * ```gdscript
+       * rd = RenderingServer.get_rendering_device()
+       *
+       * if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
+       *       storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
+       * RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS):
+       *       storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+       * ```
+       */
       public val DEVICE_ADDRESS: BufferCreationBits = BufferCreationBits(1)
 
+      /**
+       * Set this flag so that it is created as storage. This is useful if Compute Shaders need
+       * access (for reading or writing) to the buffer, e.g. skeletal animations are processed in
+       * Compute Shaders which need access to vertex buffers, to be later consumed by vertex shaders as
+       * part of the regular rasterization pipeline.
+       */
       public val AS_STORAGE: BufferCreationBits = BufferCreationBits(2)
     }
   }
@@ -4207,8 +4286,14 @@ public open class RenderingDevice internal constructor() : Object() {
         PipelineDynamicStateFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Allows dynamically changing the width of rendering lines.
+       */
       public val DYNAMIC_STATE_LINE_WIDTH: PipelineDynamicStateFlags = PipelineDynamicStateFlags(1)
 
+      /**
+       * Allows dynamically changing the depth bias.
+       */
       public val DYNAMIC_STATE_DEPTH_BIAS: PipelineDynamicStateFlags = PipelineDynamicStateFlags(2)
 
       public val DYNAMIC_STATE_BLEND_CONSTANTS: PipelineDynamicStateFlags =
@@ -4697,58 +4782,139 @@ public open class RenderingDevice internal constructor() : Object() {
     public infix fun ushr(bits: Int): DrawFlags = DrawFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Do not clear or ignore any attachments.
+       */
       public val DEFAULT_ALL: DrawFlags = DrawFlags(0)
 
+      /**
+       * Clear the first color attachment.
+       */
       public val CLEAR_COLOR_0: DrawFlags = DrawFlags(1)
 
+      /**
+       * Clear the second color attachment.
+       */
       public val CLEAR_COLOR_1: DrawFlags = DrawFlags(2)
 
+      /**
+       * Clear the third color attachment.
+       */
       public val CLEAR_COLOR_2: DrawFlags = DrawFlags(4)
 
+      /**
+       * Clear the fourth color attachment.
+       */
       public val CLEAR_COLOR_3: DrawFlags = DrawFlags(8)
 
+      /**
+       * Clear the fifth color attachment.
+       */
       public val CLEAR_COLOR_4: DrawFlags = DrawFlags(16)
 
+      /**
+       * Clear the sixth color attachment.
+       */
       public val CLEAR_COLOR_5: DrawFlags = DrawFlags(32)
 
+      /**
+       * Clear the seventh color attachment.
+       */
       public val CLEAR_COLOR_6: DrawFlags = DrawFlags(64)
 
+      /**
+       * Clear the eighth color attachment.
+       */
       public val CLEAR_COLOR_7: DrawFlags = DrawFlags(128)
 
+      /**
+       * Mask for clearing all color attachments.
+       */
       public val CLEAR_COLOR_MASK: DrawFlags = DrawFlags(255)
 
+      /**
+       * Clear all color attachments.
+       */
       public val CLEAR_COLOR_ALL: DrawFlags = DrawFlags(255)
 
+      /**
+       * Ignore the previous contents of the first color attachment.
+       */
       public val IGNORE_COLOR_0: DrawFlags = DrawFlags(256)
 
+      /**
+       * Ignore the previous contents of the second color attachment.
+       */
       public val IGNORE_COLOR_1: DrawFlags = DrawFlags(512)
 
+      /**
+       * Ignore the previous contents of the third color attachment.
+       */
       public val IGNORE_COLOR_2: DrawFlags = DrawFlags(1024)
 
+      /**
+       * Ignore the previous contents of the fourth color attachment.
+       */
       public val IGNORE_COLOR_3: DrawFlags = DrawFlags(2048)
 
+      /**
+       * Ignore the previous contents of the fifth color attachment.
+       */
       public val IGNORE_COLOR_4: DrawFlags = DrawFlags(4096)
 
+      /**
+       * Ignore the previous contents of the sixth color attachment.
+       */
       public val IGNORE_COLOR_5: DrawFlags = DrawFlags(8192)
 
+      /**
+       * Ignore the previous contents of the seventh color attachment.
+       */
       public val IGNORE_COLOR_6: DrawFlags = DrawFlags(16384)
 
+      /**
+       * Ignore the previous contents of the eighth color attachment.
+       */
       public val IGNORE_COLOR_7: DrawFlags = DrawFlags(32768)
 
+      /**
+       * Mask for ignoring all the previous contents of the color attachments.
+       */
       public val IGNORE_COLOR_MASK: DrawFlags = DrawFlags(65280)
 
+      /**
+       * Ignore the previous contents of all color attachments.
+       */
       public val IGNORE_COLOR_ALL: DrawFlags = DrawFlags(65280)
 
+      /**
+       * Clear the depth attachment.
+       */
       public val CLEAR_DEPTH: DrawFlags = DrawFlags(65536)
 
+      /**
+       * Ignore the previous contents of the depth attachment.
+       */
       public val IGNORE_DEPTH: DrawFlags = DrawFlags(131072)
 
+      /**
+       * Clear the stencil attachment.
+       */
       public val CLEAR_STENCIL: DrawFlags = DrawFlags(262144)
 
+      /**
+       * Ignore the previous contents of the stencil attachment.
+       */
       public val IGNORE_STENCIL: DrawFlags = DrawFlags(524288)
 
+      /**
+       * Clear all attachments.
+       */
       public val CLEAR_ALL: DrawFlags = DrawFlags(327935)
 
+      /**
+       * Ignore the previous contents of all attachments.
+       */
       public val IGNORE_ALL: DrawFlags = DrawFlags(720640)
     }
   }

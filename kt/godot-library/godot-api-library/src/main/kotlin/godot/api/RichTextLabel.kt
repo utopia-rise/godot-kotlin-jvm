@@ -1708,20 +1708,44 @@ public open class RichTextLabel : Control() {
     public infix fun ushr(bits: Int): ImageUpdateMask = ImageUpdateMask(flag ushr bits)
 
     public companion object {
+      /**
+       * If this bit is set, [updateImage] changes image texture.
+       */
       public val UPDATE_TEXTURE: ImageUpdateMask = ImageUpdateMask(1)
 
+      /**
+       * If this bit is set, [updateImage] changes image size.
+       */
       public val UPDATE_SIZE: ImageUpdateMask = ImageUpdateMask(2)
 
+      /**
+       * If this bit is set, [updateImage] changes image color.
+       */
       public val UPDATE_COLOR: ImageUpdateMask = ImageUpdateMask(4)
 
+      /**
+       * If this bit is set, [updateImage] changes image inline alignment.
+       */
       public val UPDATE_ALIGNMENT: ImageUpdateMask = ImageUpdateMask(8)
 
+      /**
+       * If this bit is set, [updateImage] changes image texture region.
+       */
       public val UPDATE_REGION: ImageUpdateMask = ImageUpdateMask(16)
 
+      /**
+       * If this bit is set, [updateImage] changes image padding.
+       */
       public val UPDATE_PAD: ImageUpdateMask = ImageUpdateMask(32)
 
+      /**
+       * If this bit is set, [updateImage] changes image tooltip.
+       */
       public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMask(64)
 
+      /**
+       * If this bit is set, [updateImage] changes image width from/to percents.
+       */
       public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMask(128)
     }
   }

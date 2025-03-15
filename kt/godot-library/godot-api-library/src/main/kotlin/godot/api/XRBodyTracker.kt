@@ -155,10 +155,19 @@ public open class XRBodyTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): BodyFlags = BodyFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Upper body tracking supported.
+       */
       public val UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
 
+      /**
+       * Lower body tracking supported.
+       */
       public val LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
 
+      /**
+       * Hand tracking supported.
+       */
       public val HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
     }
   }
@@ -515,12 +524,26 @@ public open class XRBodyTracker : XRPositionalTracker() {
     public infix fun ushr(bits: Int): JointFlags = JointFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * The joint's orientation data is valid.
+       */
       public val ORIENTATION_VALID: JointFlags = JointFlags(1)
 
+      /**
+       * The joint's orientation is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
       public val ORIENTATION_TRACKED: JointFlags = JointFlags(2)
 
+      /**
+       * The joint's position data is valid.
+       */
       public val POSITION_VALID: JointFlags = JointFlags(4)
 
+      /**
+       * The joint's position is actively tracked. May not be set if tracking has been temporarily
+       * lost.
+       */
       public val POSITION_TRACKED: JointFlags = JointFlags(8)
     }
   }

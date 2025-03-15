@@ -649,18 +649,45 @@ public open class OpenXRInterface : XRInterface() {
     public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * No flags are set.
+       */
       public val NONE: HandJointFlags = HandJointFlags(0)
 
+      /**
+       * If set, the orientation data is valid, otherwise, the orientation data is unreliable and
+       * should not be used.
+       */
       public val ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
+      /**
+       * If set, the orientation data comes from tracking data, otherwise, the orientation data
+       * contains predicted data.
+       */
       public val ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
+      /**
+       * If set, the positional data is valid, otherwise, the positional data is unreliable and
+       * should not be used.
+       */
       public val POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
+      /**
+       * If set, the positional data comes from tracking data, otherwise, the positional data
+       * contains predicted data.
+       */
       public val POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
+      /**
+       * If set, our linear velocity data is valid, otherwise, the linear velocity data is
+       * unreliable and should not be used.
+       */
       public val LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
+      /**
+       * If set, our angular velocity data is valid, otherwise, the angular velocity data is
+       * unreliable and should not be used.
+       */
       public val ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }

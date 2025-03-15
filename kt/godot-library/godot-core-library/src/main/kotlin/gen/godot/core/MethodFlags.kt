@@ -46,22 +46,50 @@ public value class MethodFlags(
   public infix fun ushr(bits: Int): MethodFlags = MethodFlags(flag ushr bits)
 
   public companion object {
+    /**
+     * Flag for a normal method.
+     */
     public val NORMAL: MethodFlags = MethodFlags(1)
 
+    /**
+     * Flag for an editor method.
+     */
     public val EDITOR: MethodFlags = MethodFlags(2)
 
+    /**
+     * Flag for a constant method.
+     */
     public val CONST: MethodFlags = MethodFlags(4)
 
+    /**
+     * Flag for a virtual method.
+     */
     public val VIRTUAL: MethodFlags = MethodFlags(8)
 
+    /**
+     * Flag for a method with a variable number of arguments.
+     */
     public val VARARG: MethodFlags = MethodFlags(16)
 
+    /**
+     * Flag for a static method.
+     */
     public val STATIC: MethodFlags = MethodFlags(32)
 
+    /**
+     * Used internally. Allows to not dump core virtual methods (such as [Object.Notification]) to
+     * the JSON API.
+     */
     public val OBJECT_CORE: MethodFlags = MethodFlags(64)
 
+    /**
+     * Flag for a virtual method that is required.
+     */
     public val VIRTUAL_REQUIRED: MethodFlags = MethodFlags(128)
 
+    /**
+     * Default method flags (normal).
+     */
     public val DEFAULT: MethodFlags = MethodFlags(1)
   }
 }

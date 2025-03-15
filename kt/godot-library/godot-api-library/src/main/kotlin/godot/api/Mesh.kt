@@ -549,58 +549,150 @@ public open class Mesh : Resource() {
     public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
 
     public companion object {
+      /**
+       * Mesh array contains vertices. All meshes require a vertex array so this should always be
+       * present.
+       */
       public val VERTEX: ArrayFormat = ArrayFormat(1)
 
+      /**
+       * Mesh array contains normals.
+       */
       public val NORMAL: ArrayFormat = ArrayFormat(2)
 
+      /**
+       * Mesh array contains tangents.
+       */
       public val TANGENT: ArrayFormat = ArrayFormat(4)
 
+      /**
+       * Mesh array contains colors.
+       */
       public val COLOR: ArrayFormat = ArrayFormat(8)
 
+      /**
+       * Mesh array contains UVs.
+       */
       public val TEX_UV: ArrayFormat = ArrayFormat(16)
 
+      /**
+       * Mesh array contains second UV.
+       */
       public val TEX_UV2: ArrayFormat = ArrayFormat(32)
 
+      /**
+       * Mesh array contains custom channel index 0.
+       */
       public val CUSTOM0: ArrayFormat = ArrayFormat(64)
 
+      /**
+       * Mesh array contains custom channel index 1.
+       */
       public val CUSTOM1: ArrayFormat = ArrayFormat(128)
 
+      /**
+       * Mesh array contains custom channel index 2.
+       */
       public val CUSTOM2: ArrayFormat = ArrayFormat(256)
 
+      /**
+       * Mesh array contains custom channel index 3.
+       */
       public val CUSTOM3: ArrayFormat = ArrayFormat(512)
 
+      /**
+       * Mesh array contains bones.
+       */
       public val BONES: ArrayFormat = ArrayFormat(1024)
 
+      /**
+       * Mesh array contains bone weights.
+       */
       public val WEIGHTS: ArrayFormat = ArrayFormat(2048)
 
+      /**
+       * Mesh array uses indices.
+       */
       public val INDEX: ArrayFormat = ArrayFormat(4096)
 
+      /**
+       * Mask of mesh channels permitted in blend shapes.
+       */
       public val BLEND_SHAPE_MASK: ArrayFormat = ArrayFormat(7)
 
+      /**
+       * Shift of first custom channel.
+       */
       public val CUSTOM_BASE: ArrayFormat = ArrayFormat(13)
 
+      /**
+       * Number of format bits per custom channel. See [ArrayCustomFormat].
+       */
       public val CUSTOM_BITS: ArrayFormat = ArrayFormat(3)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 0.
+       */
       public val CUSTOM0_SHIFT: ArrayFormat = ArrayFormat(13)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 1.
+       */
       public val CUSTOM1_SHIFT: ArrayFormat = ArrayFormat(16)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 2.
+       */
       public val CUSTOM2_SHIFT: ArrayFormat = ArrayFormat(19)
 
+      /**
+       * Amount to shift [ArrayCustomFormat] for custom channel index 3.
+       */
       public val CUSTOM3_SHIFT: ArrayFormat = ArrayFormat(22)
 
+      /**
+       * Mask of custom format bits per custom channel. Must be shifted by one of the SHIFT
+       * constants. See [ArrayCustomFormat].
+       */
       public val CUSTOM_MASK: ArrayFormat = ArrayFormat(7)
 
+      /**
+       * Shift of first compress flag. Compress flags should be passed to
+       * [ArrayMesh.addSurfaceFromArrays] and [SurfaceTool.commit].
+       */
       public val COMPRESS_FLAGS_BASE: ArrayFormat = ArrayFormat(25)
 
+      /**
+       * Flag used to mark that the array contains 2D vertices.
+       */
       public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
+      /**
+       * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
+       */
       public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
 
+      /**
+       * Flag used to mark that the mesh contains up to 8 bone influences per vertex. This flag
+       * indicates that [ARRAY_BONES] and [ARRAY_WEIGHTS] elements will have double length.
+       */
       public val FLAG_USE_8_BONE_WEIGHTS: ArrayFormat = ArrayFormat(134217728)
 
+      /**
+       * Flag used to mark that the mesh intentionally contains no vertex array.
+       */
       public val FLAG_USES_EMPTY_VERTEX_ARRAY: ArrayFormat = ArrayFormat(268435456)
 
+      /**
+       * Flag used to mark that a mesh is using compressed attributes (vertices, normals, tangents,
+       * UVs). When this form of compression is enabled, vertex positions will be packed into an
+       * RGBA16UNORM attribute and scaled in the vertex shader. The normal and tangent will be packed
+       * into an RG16UNORM representing an axis, and a 16-bit float stored in the A-channel of the
+       * vertex. UVs will use 16-bit normalized floats instead of full 32-bit signed floats. When using
+       * this compression mode you must use either vertices, normals, and tangents or only vertices.
+       * You cannot use normals without tangents. Importers will automatically enable this compression
+       * if they can.
+       */
       public val FLAG_COMPRESS_ATTRIBUTES: ArrayFormat = ArrayFormat(536870912)
     }
   }

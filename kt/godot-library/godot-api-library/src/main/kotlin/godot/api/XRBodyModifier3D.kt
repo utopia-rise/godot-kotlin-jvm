@@ -136,10 +136,19 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     public infix fun ushr(bits: Int): BodyUpdate = BodyUpdate(flag ushr bits)
 
     public companion object {
+      /**
+       * The skeleton's upper body joints are updated.
+       */
       public val UPPER_BODY: BodyUpdate = BodyUpdate(1)
 
+      /**
+       * The skeleton's lower body joints are updated.
+       */
       public val LOWER_BODY: BodyUpdate = BodyUpdate(2)
 
+      /**
+       * The skeleton's hand joints are updated.
+       */
       public val HANDS: BodyUpdate = BodyUpdate(4)
     }
   }

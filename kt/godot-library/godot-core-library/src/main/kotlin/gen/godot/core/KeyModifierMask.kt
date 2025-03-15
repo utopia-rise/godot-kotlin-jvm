@@ -49,22 +49,50 @@ public value class KeyModifierMask(
   public infix fun ushr(bits: Int): KeyModifierMask = KeyModifierMask(flag ushr bits)
 
   public companion object {
+    /**
+     * Key Code mask.
+     */
     public val CODE: KeyModifierMask = KeyModifierMask(8388607)
 
+    /**
+     * Modifier key mask.
+     */
     public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMask(2130706432)
 
+    /**
+     * Automatically remapped to [KEY_META] on macOS and [KEY_CTRL] on other platforms, this mask is
+     * never set in the actual events, and should be used for key mapping only.
+     */
     public val MASK_CMD_OR_CTRL: KeyModifierMask = KeyModifierMask(16777216)
 
+    /**
+     * Shift key mask.
+     */
     public val MASK_SHIFT: KeyModifierMask = KeyModifierMask(33554432)
 
+    /**
+     * Alt or Option (on macOS) key mask.
+     */
     public val MASK_ALT: KeyModifierMask = KeyModifierMask(67108864)
 
+    /**
+     * Command (on macOS) or Meta/Windows key mask.
+     */
     public val MASK_META: KeyModifierMask = KeyModifierMask(134217728)
 
+    /**
+     * Control key mask.
+     */
     public val MASK_CTRL: KeyModifierMask = KeyModifierMask(268435456)
 
+    /**
+     * Keypad key mask.
+     */
     public val MASK_KPAD: KeyModifierMask = KeyModifierMask(536870912)
 
+    /**
+     * Group Switch key mask.
+     */
     public val MASK_GROUP_SWITCH: KeyModifierMask = KeyModifierMask(1073741824)
   }
 }

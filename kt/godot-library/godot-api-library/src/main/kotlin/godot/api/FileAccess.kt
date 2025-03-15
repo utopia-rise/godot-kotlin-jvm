@@ -748,28 +748,64 @@ public open class FileAccess internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Read for owner bit.
+       */
       public val READ_OWNER: UnixPermissionFlags = UnixPermissionFlags(256)
 
+      /**
+       * Write for owner bit.
+       */
       public val WRITE_OWNER: UnixPermissionFlags = UnixPermissionFlags(128)
 
+      /**
+       * Execute for owner bit.
+       */
       public val EXECUTE_OWNER: UnixPermissionFlags = UnixPermissionFlags(64)
 
+      /**
+       * Read for group bit.
+       */
       public val READ_GROUP: UnixPermissionFlags = UnixPermissionFlags(32)
 
+      /**
+       * Write for group bit.
+       */
       public val WRITE_GROUP: UnixPermissionFlags = UnixPermissionFlags(16)
 
+      /**
+       * Execute for group bit.
+       */
       public val EXECUTE_GROUP: UnixPermissionFlags = UnixPermissionFlags(8)
 
+      /**
+       * Read for other bit.
+       */
       public val READ_OTHER: UnixPermissionFlags = UnixPermissionFlags(4)
 
+      /**
+       * Write for other bit.
+       */
       public val WRITE_OTHER: UnixPermissionFlags = UnixPermissionFlags(2)
 
+      /**
+       * Execute for other bit.
+       */
       public val EXECUTE_OTHER: UnixPermissionFlags = UnixPermissionFlags(1)
 
+      /**
+       * Set user id on execution bit.
+       */
       public val SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
 
+      /**
+       * Set group id on execution bit.
+       */
       public val SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
 
+      /**
+       * Restricted deletion (sticky) bit.
+       */
       public val RESTRICTED_DELETE: UnixPermissionFlags = UnixPermissionFlags(512)
     }
   }

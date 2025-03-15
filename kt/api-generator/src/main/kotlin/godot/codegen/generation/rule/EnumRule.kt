@@ -121,6 +121,7 @@ class EnumRule : GodotApiRule<EnumTask>() {
                 .addProperty(
                     PropertySpec.builder(value.name, className)
                         .initializer(CodeBlock.of("%T(%L)", className, value.value))
+                        .addKdoc(value)
                         .build()
                 )
         }

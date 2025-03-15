@@ -2618,22 +2618,52 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): JustificationFlag = JustificationFlag(flag ushr bits)
 
     public companion object {
+      /**
+       * Do not justify text.
+       */
       public val NONE: JustificationFlag = JustificationFlag(0)
 
+      /**
+       * Justify text by adding and removing kashidas.
+       */
       public val KASHIDA: JustificationFlag = JustificationFlag(1)
 
+      /**
+       * Justify text by changing width of the spaces between the words.
+       */
       public val WORD_BOUND: JustificationFlag = JustificationFlag(2)
 
+      /**
+       * Remove trailing and leading spaces from the justified text.
+       */
       public val TRIM_EDGE_SPACES: JustificationFlag = JustificationFlag(4)
 
+      /**
+       * Only apply justification to the part of the text after the last tab.
+       */
       public val AFTER_LAST_TAB: JustificationFlag = JustificationFlag(8)
 
+      /**
+       * Apply justification to the trimmed line with ellipsis.
+       */
       public val CONSTRAIN_ELLIPSIS: JustificationFlag = JustificationFlag(16)
 
+      /**
+       * Do not apply justification to the last line of the paragraph.
+       */
       public val SKIP_LAST_LINE: JustificationFlag = JustificationFlag(32)
 
+      /**
+       * Do not apply justification to the last line of the paragraph with visible characters (takes
+       * precedence over [JUSTIFICATION_SKIP_LAST_LINE]).
+       */
       public val SKIP_LAST_LINE_WITH_VISIBLE_CHARS: JustificationFlag = JustificationFlag(64)
 
+      /**
+       * Always apply justification to the paragraphs with a single line
+       * ([JUSTIFICATION_SKIP_LAST_LINE] and [JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS] are
+       * ignored).
+       */
       public val DO_NOT_SKIP_SINGLE_LINE: JustificationFlag = JustificationFlag(128)
     }
   }
@@ -2700,18 +2730,40 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): LineBreakFlag = LineBreakFlag(flag ushr bits)
 
     public companion object {
+      /**
+       * Do not break the line.
+       */
       public val BREAK_NONE: LineBreakFlag = LineBreakFlag(0)
 
+      /**
+       * Break the line at the line mandatory break characters (e.g. `"\n"`).
+       */
       public val BREAK_MANDATORY: LineBreakFlag = LineBreakFlag(1)
 
+      /**
+       * Break the line between the words.
+       */
       public val BREAK_WORD_BOUND: LineBreakFlag = LineBreakFlag(2)
 
+      /**
+       * Break the line between any unconnected graphemes.
+       */
       public val BREAK_GRAPHEME_BOUND: LineBreakFlag = LineBreakFlag(4)
 
+      /**
+       * Should be used only in conjunction with [BREAK_WORD_BOUND], break the line between any
+       * unconnected graphemes, if it's impossible to break it between the words.
+       */
       public val BREAK_ADAPTIVE: LineBreakFlag = LineBreakFlag(8)
 
+      /**
+       * Remove edge spaces from the broken line segments.
+       */
       public val BREAK_TRIM_EDGE_SPACES: LineBreakFlag = LineBreakFlag(16)
 
+      /**
+       * Subtract first line indentation width from all lines after the first one.
+       */
       public val BREAK_TRIM_INDENT: LineBreakFlag = LineBreakFlag(32)
     }
   }
@@ -2825,16 +2877,35 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): TextOverrunFlag = TextOverrunFlag(flag ushr bits)
 
     public companion object {
+      /**
+       * No trimming is performed.
+       */
       public val OVERRUN_NO_TRIM: TextOverrunFlag = TextOverrunFlag(0)
 
+      /**
+       * Trims the text when it exceeds the given width.
+       */
       public val OVERRUN_TRIM: TextOverrunFlag = TextOverrunFlag(1)
 
+      /**
+       * Trims the text per word instead of per grapheme.
+       */
       public val OVERRUN_TRIM_WORD_ONLY: TextOverrunFlag = TextOverrunFlag(2)
 
+      /**
+       * Determines whether an ellipsis should be added at the end of the text.
+       */
       public val OVERRUN_ADD_ELLIPSIS: TextOverrunFlag = TextOverrunFlag(4)
 
+      /**
+       * Determines whether the ellipsis at the end of the text is enforced and may not be hidden.
+       */
       public val OVERRUN_ENFORCE_ELLIPSIS: TextOverrunFlag = TextOverrunFlag(8)
 
+      /**
+       * Accounts for the text being justified before attempting to trim it (see
+       * [JustificationFlag]).
+       */
       public val OVERRUN_JUSTIFICATION_AWARE: TextOverrunFlag = TextOverrunFlag(16)
     }
   }
@@ -2868,32 +2939,75 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): GraphemeFlag = GraphemeFlag(flag ushr bits)
 
     public companion object {
+      /**
+       * Grapheme is supported by the font, and can be drawn.
+       */
       public val IS_VALID: GraphemeFlag = GraphemeFlag(1)
 
+      /**
+       * Grapheme is part of right-to-left or bottom-to-top run.
+       */
       public val IS_RTL: GraphemeFlag = GraphemeFlag(2)
 
+      /**
+       * Grapheme is not part of source text, it was added by justification process.
+       */
       public val IS_VIRTUAL: GraphemeFlag = GraphemeFlag(4)
 
+      /**
+       * Grapheme is whitespace.
+       */
       public val IS_SPACE: GraphemeFlag = GraphemeFlag(8)
 
+      /**
+       * Grapheme is mandatory break point (e.g. `"\n"`).
+       */
       public val IS_BREAK_HARD: GraphemeFlag = GraphemeFlag(16)
 
+      /**
+       * Grapheme is optional break point (e.g. space).
+       */
       public val IS_BREAK_SOFT: GraphemeFlag = GraphemeFlag(32)
 
+      /**
+       * Grapheme is the tabulation character.
+       */
       public val IS_TAB: GraphemeFlag = GraphemeFlag(64)
 
+      /**
+       * Grapheme is kashida.
+       */
       public val IS_ELONGATION: GraphemeFlag = GraphemeFlag(128)
 
+      /**
+       * Grapheme is punctuation character.
+       */
       public val IS_PUNCTUATION: GraphemeFlag = GraphemeFlag(256)
 
+      /**
+       * Grapheme is underscore character.
+       */
       public val IS_UNDERSCORE: GraphemeFlag = GraphemeFlag(512)
 
+      /**
+       * Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not
+       * safe.
+       */
       public val IS_CONNECTED: GraphemeFlag = GraphemeFlag(1024)
 
+      /**
+       * It is safe to insert a U+0640 before this grapheme for elongation.
+       */
       public val IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlag(2048)
 
+      /**
+       * Grapheme is an object replacement character for the embedded object.
+       */
       public val IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlag(4096)
 
+      /**
+       * Grapheme is a soft hyphen.
+       */
       public val IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlag(8192)
     }
   }
@@ -3144,10 +3258,19 @@ public open class TextServer internal constructor() : RefCounted() {
     public infix fun ushr(bits: Int): FontStyle = FontStyle(flag ushr bits)
 
     public companion object {
+      /**
+       * Font is bold.
+       */
       public val BOLD: FontStyle = FontStyle(1)
 
+      /**
+       * Font is italic or oblique.
+       */
       public val ITALIC: FontStyle = FontStyle(2)
 
+      /**
+       * Font have fixed-width characters.
+       */
       public val FIXED_WIDTH: FontStyle = FontStyle(4)
     }
   }

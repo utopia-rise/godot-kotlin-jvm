@@ -387,14 +387,31 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * Don't include any additional metadata about the returned path.
+       */
       public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
+      /**
+       * Include the type of navigation primitive (region or link) that each point of the path goes
+       * through.
+       */
       public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
 
+      /**
+       * Include the [RID]s of the regions and links that each point of the path goes through.
+       */
       public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
+      /**
+       * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of
+       * the path goes through.
+       */
       public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
 
+      /**
+       * Include all available metadata about the returned path.
+       */
       public val INCLUDE_ALL: PathMetadataFlags = PathMetadataFlags(7)
     }
   }

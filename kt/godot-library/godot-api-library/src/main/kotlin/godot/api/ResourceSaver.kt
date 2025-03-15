@@ -141,20 +141,45 @@ public object ResourceSaver : Object() {
     public infix fun ushr(bits: Int): SaverFlags = SaverFlags(flag ushr bits)
 
     public companion object {
+      /**
+       * No resource saving option.
+       */
       public val FLAG_NONE: SaverFlags = SaverFlags(0)
 
+      /**
+       * Save the resource with a path relative to the scene which uses it.
+       */
       public val FLAG_RELATIVE_PATHS: SaverFlags = SaverFlags(1)
 
+      /**
+       * Bundles external resources.
+       */
       public val FLAG_BUNDLE_RESOURCES: SaverFlags = SaverFlags(2)
 
+      /**
+       * Changes the [Resource.resourcePath] of the saved resource to match its new location.
+       */
       public val FLAG_CHANGE_PATH: SaverFlags = SaverFlags(4)
 
+      /**
+       * Do not save editor-specific metadata (identified by their `__editor` prefix).
+       */
       public val FLAG_OMIT_EDITOR_PROPERTIES: SaverFlags = SaverFlags(8)
 
+      /**
+       * Save as big endian (see [FileAccess.bigEndian]).
+       */
       public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlags(16)
 
+      /**
+       * Compress the resource on save using [FileAccess.COMPRESSION_ZSTD]. Only available for
+       * binary resource types.
+       */
       public val FLAG_COMPRESS: SaverFlags = SaverFlags(32)
 
+      /**
+       * Take over the paths of the saved subresources (see [Resource.takeOverPath]).
+       */
       public val FLAG_REPLACE_SUBRESOURCE_PATHS: SaverFlags = SaverFlags(64)
     }
   }
