@@ -37,6 +37,7 @@ godot {
 
     // uncomment to test ios
 //    isIOSExportEnabled.set(true)
+
 }
 
 dependencies {
