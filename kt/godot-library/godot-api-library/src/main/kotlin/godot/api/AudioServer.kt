@@ -22,6 +22,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -642,6 +643,20 @@ public object AudioServer : Object() {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.registerStreamAsSamplePtr, NIL)
   }
+
+  /**
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
+   * name exist.
+   */
+  @JvmStatic
+  public final fun getBusIndex(busName: String): Int = getBusIndex(busName.asCachedStringName())
+
+  /**
+   * Connects the output of the bus at [busIdx] to the bus named [send].
+   */
+  @JvmStatic
+  public final fun setBusSend(busIdx: Int, send: String) =
+      setBusSend(busIdx, send.asCachedStringName())
 
   public enum class SpeakerMode(
     id: Long,

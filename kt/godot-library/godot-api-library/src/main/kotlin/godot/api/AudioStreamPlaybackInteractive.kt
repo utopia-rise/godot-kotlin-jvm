@@ -14,8 +14,10 @@ import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -60,6 +62,12 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
     TransferContext.callMethod(ptr, MethodBindings.getCurrentClipIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
+
+  /**
+   * Switch to a clip (by name).
+   */
+  public final fun switchToClipByName(clipName: String) =
+      switchToClipByName(clipName.asCachedStringName())
 
   public companion object
 

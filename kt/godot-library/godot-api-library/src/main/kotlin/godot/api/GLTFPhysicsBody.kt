@@ -445,8 +445,14 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
+
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_node", 3224013656)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary", 3102165223)
@@ -498,11 +504,5 @@ public open class GLTFPhysicsBody : Resource() {
 
     internal val setInertiaTensorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor", 1055510324)
-
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
   }
 }

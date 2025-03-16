@@ -22,6 +22,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -358,6 +359,14 @@ public open class WebRTCPeerConnection : RefCounted() {
       TransferContext.writeArguments(STRING_NAME to extensionClass)
       TransferContext.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
     }
+
+    /**
+     * Sets the [extensionClass] as the default [WebRTCPeerConnectionExtension] returned when
+     * creating a new [WebRTCPeerConnection].
+     */
+    @JvmStatic
+    public final fun setDefaultExtension(extensionClass: String) =
+        setDefaultExtension(extensionClass.asCachedStringName())
   }
 
   public object MethodBindings {

@@ -24,6 +24,7 @@ import godot.core.Vector2i
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -88,6 +89,7 @@ public open class GraphNode : GraphElement() {
     left: Boolean,
     color: Color,
   ): Unit {
+    throw NotImplementedError("_drawPort is not implemented for GraphNode")
   }
 
   public final fun setTitle(title: String): Unit {

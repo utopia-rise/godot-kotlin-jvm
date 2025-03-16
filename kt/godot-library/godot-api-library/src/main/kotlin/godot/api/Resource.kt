@@ -140,6 +140,7 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public open fun _setupLocalToScene(): Unit {
+    throw NotImplementedError("_setupLocalToScene is not implemented for Resource")
   }
 
   /**
@@ -155,12 +156,14 @@ public open class Resource : RefCounted() {
    * state.
    */
   public open fun _resetState(): Unit {
+    throw NotImplementedError("_resetState is not implemented for Resource")
   }
 
   /**
    * Sets the resource's path to [path] without involving the resource cache.
    */
   public open fun _setPathCache(path: String): Unit {
+    throw NotImplementedError("_setPathCache is not implemented for Resource")
   }
 
   public final fun setPath(path: String): Unit {

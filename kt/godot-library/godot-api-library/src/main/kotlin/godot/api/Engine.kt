@@ -25,6 +25,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -721,6 +722,56 @@ public object Engine : Object() {
     TransferContext.callMethod(ptr, MethodBindings.isPrintingErrorMessagesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if a singleton with the given [name] exists in the global scope. See also
+   * [getSingleton].
+   *
+   * gdscript:
+   * ```gdscript
+   * print(Engine.has_singleton("OS"))          # Prints true
+   * print(Engine.has_singleton("Engine"))      # Prints true
+   * print(Engine.has_singleton("AudioServer")) # Prints true
+   * print(Engine.has_singleton("Unknown"))     # Prints false
+   * ```
+   * csharp:
+   * ```csharp
+   * GD.Print(Engine.HasSingleton("OS"));          // Prints True
+   * GD.Print(Engine.HasSingleton("Engine"));      // Prints True
+   * GD.Print(Engine.HasSingleton("AudioServer")); // Prints True
+   * GD.Print(Engine.HasSingleton("Unknown"));     // Prints False
+   * ```
+   *
+   * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
+   * project settings.
+   */
+  @JvmStatic
+  public final fun hasSingleton(name: String): Boolean = hasSingleton(name.asCachedStringName())
+
+  /**
+   * Returns the global singleton with the given [name], or `null` if it does not exist. Often used
+   * for plugins. See also [hasSingleton] and [getSingletonList].
+   * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
+   * project settings.
+   */
+  @JvmStatic
+  public final fun getSingleton(name: String): Object? = getSingleton(name.asCachedStringName())
+
+  /**
+   * Registers the given [Object] [instance] as a singleton, available globally under [name]. Useful
+   * for plugins.
+   */
+  @JvmStatic
+  public final fun registerSingleton(name: String, instance: Object?) =
+      registerSingleton(name.asCachedStringName(), instance)
+
+  /**
+   * Removes the singleton registered under [name]. The singleton object is *not* freed. Only works
+   * with user-defined singletons registered with [registerSingleton].
+   */
+  @JvmStatic
+  public final fun unregisterSingleton(name: String) =
+      unregisterSingleton(name.asCachedStringName())
 
   public object MethodBindings {
     internal val setPhysicsTicksPerSecondPtr: VoidPtr =

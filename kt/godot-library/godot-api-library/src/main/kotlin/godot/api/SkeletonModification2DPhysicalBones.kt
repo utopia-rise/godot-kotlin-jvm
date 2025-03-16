@@ -17,8 +17,10 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
+import godot.core.asCachedNodePath
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -108,6 +110,14 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.stopSimulationPtr, NIL)
   }
+
+  /**
+   * Sets the [PhysicalBone2D] node at [jointIdx].
+   * **Note:** This is just the index used for this modification, not the bone index used in the
+   * [Skeleton2D].
+   */
+  public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: String) =
+      setPhysicalBoneNode(jointIdx, physicalbone2dNode.asCachedNodePath())
 
   public companion object
 

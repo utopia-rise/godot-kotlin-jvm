@@ -25,10 +25,12 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -341,6 +343,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxDeltaPacketSizePtr, NIL)
   }
+
+  public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
 
   public companion object
 

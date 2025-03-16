@@ -1052,6 +1052,29 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
+
+    internal val openEncryptedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788003459)
+
+    internal val openEncryptedWithPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
+
+    internal val openCompressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
+
+    internal val getOpenErrorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
+
+    internal val createTempPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
+
+    internal val getFileAsBytesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
+
+    internal val getFileAsStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
+
     internal val resizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "resize", 844576869)
 
@@ -1115,6 +1138,12 @@ public open class FileAccess internal constructor() : RefCounted() {
     internal val getAsTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
 
+    internal val getMd5Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
+
+    internal val getSha256Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
+
     internal val isBigEndianPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
 
@@ -1173,35 +1202,6 @@ public open class FileAccess internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
 
     internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "close", 3218959716)
-
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
-
-    internal val openEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788003459)
-
-    internal val openEncryptedWithPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
-
-    internal val openCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
-
-    internal val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
-
-    internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
-
-    internal val getFileAsBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
-
-    internal val getFileAsStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
-
-    internal val getMd5Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
-
-    internal val getSha256Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
 
     internal val fileExistsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "file_exists", 2323990056)

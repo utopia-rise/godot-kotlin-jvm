@@ -218,6 +218,7 @@ public open class GLTFDocumentExtension : Resource() {
     gltfNode: GLTFNode?,
     sceneNode: Node?,
   ): Unit {
+    throw NotImplementedError("_convertSceneNode is not implemented for GLTFDocumentExtension")
   }
 
   /**

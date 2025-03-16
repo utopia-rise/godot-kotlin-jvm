@@ -23,7 +23,7 @@ class EnrichedClass(model: Class) : TypedTrait, IDocumented {
     val methods = model.methods?.toEnriched() ?: listOf()
 
     override val description = model.description
-    val additionalImports = mutableListOf<AdditionalImport>()
+    val additionalImports = mutableSetOf<AdditionalImport>()
 
     fun makeSingleton() {
         isSingleton = true

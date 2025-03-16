@@ -194,8 +194,14 @@ public open class GLTFCamera : Resource() {
   }
 
   public object MethodBindings {
+    internal val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "from_node", 237784)
+
     internal val toNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
 
     internal val toDictionaryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFCamera", "to_dictionary", 3102165223)
@@ -229,11 +235,5 @@ public open class GLTFCamera : Resource() {
 
     internal val setDepthNearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_near", 373806689)
-
-    internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "from_node", 237784)
-
-    internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
   }
 }

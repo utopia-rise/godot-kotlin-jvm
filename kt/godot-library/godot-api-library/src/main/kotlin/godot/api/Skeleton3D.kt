@@ -33,6 +33,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -641,6 +642,27 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
+
+  /**
+   * Returns bone metadata for [boneIdx] with [key].
+   */
+  public final fun getBoneMeta(boneIdx: Int, key: String): Any? =
+      getBoneMeta(boneIdx, key.asCachedStringName())
+
+  /**
+   * Returns whether there exists any bone metadata for [boneIdx] with key [key].
+   */
+  public final fun hasBoneMeta(boneIdx: Int, key: String): Boolean =
+      hasBoneMeta(boneIdx, key.asCachedStringName())
+
+  /**
+   * Sets bone metadata for [boneIdx], will set the [key] meta to [value].
+   */
+  public final fun setBoneMeta(
+    boneIdx: Int,
+    key: String,
+    `value`: Any?,
+  ) = setBoneMeta(boneIdx, key.asCachedStringName(), value)
 
   public enum class ModifierCallbackModeProcess(
     id: Long,

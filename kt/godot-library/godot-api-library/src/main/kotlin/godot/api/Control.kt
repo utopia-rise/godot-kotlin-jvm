@@ -36,6 +36,8 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3i
+import godot.core.asCachedNodePath
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -941,6 +943,7 @@ public open class Control : CanvasItem() {
    * ```
    */
   public open fun _dropData(atPosition: Vector2, `data`: Any?): Unit {
+    throw NotImplementedError("_dropData is not implemented for Control")
   }
 
   /**
@@ -1042,6 +1045,7 @@ public open class Control : CanvasItem() {
    * **Note:** The [event]'s position is relative to this control's origin.
    */
   public open fun _guiInput(event: InputEvent?): Unit {
+    throw NotImplementedError("_guiInput is not implemented for Control")
   }
 
   /**
@@ -1689,7 +1693,6 @@ public open class Control : CanvasItem() {
    * with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
       Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1702,7 +1705,6 @@ public open class Control : CanvasItem() {
    * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1715,7 +1717,6 @@ public open class Control : CanvasItem() {
    * with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontPtr, OBJECT)
@@ -1727,7 +1728,6 @@ public open class Control : CanvasItem() {
    * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeFontSizePtr, LONG)
@@ -1766,7 +1766,6 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
-  @JvmOverloads
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeColorPtr, COLOR)
@@ -1778,7 +1777,6 @@ public open class Control : CanvasItem() {
    * item with the specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeConstantPtr, LONG)
@@ -1856,7 +1854,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeIconPtr, BOOL)
@@ -1868,7 +1865,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1881,7 +1877,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeFontPtr, BOOL)
@@ -1893,7 +1888,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1906,7 +1900,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -1919,7 +1912,6 @@ public open class Control : CanvasItem() {
    * specified [name] and [themeType].
    * See [getThemeColor] for details.
    */
-  @JvmOverloads
   public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
@@ -2299,6 +2291,337 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(ptr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  public final fun setThemeTypeVariation(themeType: String) =
+      setThemeTypeVariation(themeType.asCachedStringName())
+
+  /**
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeIconOverride].
+   * See also [getThemeIcon].
+   */
+  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
+      addThemeIconOverride(name.asCachedStringName(), texture)
+
+  /**
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeStyleboxOverride].
+   * See also [getThemeStylebox].
+   * **Example:** Modify a property in a [StyleBox] by duplicating it:
+   *
+   * gdscript:
+   * ```gdscript
+   * # The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
+   * # Resources are shared across instances, so we need to duplicate it
+   * # to avoid modifying the appearance of all other buttons.
+   * var new_stylebox_normal = $MyButton.get_theme_stylebox("normal").duplicate()
+   * new_stylebox_normal.border_width_top = 3
+   * new_stylebox_normal.border_color = Color(0, 1, 0.5)
+   * $MyButton.add_theme_stylebox_override("normal", new_stylebox_normal)
+   * # Remove the stylebox override.
+   * $MyButton.remove_theme_stylebox_override("normal")
+   * ```
+   * csharp:
+   * ```csharp
+   * // The snippet below assumes the child node "MyButton" has a StyleBoxFlat assigned.
+   * // Resources are shared across instances, so we need to duplicate it
+   * // to avoid modifying the appearance of all other buttons.
+   * StyleBoxFlat newStyleboxNormal =
+   * GetNode<Button>("MyButton").GetThemeStylebox("normal").Duplicate() as StyleBoxFlat;
+   * newStyleboxNormal.BorderWidthTop = 3;
+   * newStyleboxNormal.BorderColor = new Color(0, 1, 0.5f);
+   * GetNode<Button>("MyButton").AddThemeStyleboxOverride("normal", newStyleboxNormal);
+   * // Remove the stylebox override.
+   * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
+   * ```
+   */
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
+      addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
+
+  /**
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontOverride].
+   * See also [getThemeFont].
+   */
+  public final fun addThemeFontOverride(name: String, font: Font?) =
+      addThemeFontOverride(name.asCachedStringName(), font)
+
+  /**
+   * Creates a local override for a theme font size with the specified [name]. Local overrides
+   * always take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeFontSizeOverride].
+   * See also [getThemeFontSize].
+   */
+  public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
+      addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
+
+  /**
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeColorOverride].
+   * See also [getThemeColor].
+   * **Example:** Override a [Label]'s color and reset it later:
+   *
+   * gdscript:
+   * ```gdscript
+   * # Given the child Label node "MyLabel", override its font color with a custom value.
+   * $MyLabel.add_theme_color_override("font_color", Color(1, 0.5, 0))
+   * # Reset the font color of the child label.
+   * $MyLabel.remove_theme_color_override("font_color")
+   * # Alternatively it can be overridden with the default value from the Label type.
+   * $MyLabel.add_theme_color_override("font_color", get_theme_color("font_color", "Label"))
+   * ```
+   * csharp:
+   * ```csharp
+   * // Given the child Label node "MyLabel", override its font color with a custom value.
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", new Color(1, 0.5f, 0));
+   * // Reset the font color of the child label.
+   * GetNode<Label>("MyLabel").RemoveThemeColorOverride("font_color");
+   * // Alternatively it can be overridden with the default value from the Label type.
+   * GetNode<Label>("MyLabel").AddThemeColorOverride("font_color", GetThemeColor("font_color",
+   * "Label"));
+   * ```
+   */
+  public final fun addThemeColorOverride(name: String, color: Color) =
+      addThemeColorOverride(name.asCachedStringName(), color)
+
+  /**
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always
+   * take precedence when fetching theme items for the control. An override can be removed with
+   * [removeThemeConstantOverride].
+   * See also [getThemeConstant].
+   */
+  public final fun addThemeConstantOverride(name: String, constant: Int) =
+      addThemeConstantOverride(name.asCachedStringName(), constant)
+
+  /**
+   * Removes a local override for a theme icon with the specified [name] previously added by
+   * [addThemeIconOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeIconOverride(name: String) =
+      removeThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
+   * [addThemeStyleboxOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeStyleboxOverride(name: String) =
+      removeThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Font] with the specified [name] previously added by
+   * [addThemeFontOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontOverride(name: String) =
+      removeThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme font size with the specified [name] previously added by
+   * [addThemeFontSizeOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeFontSizeOverride(name: String) =
+      removeThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme [Color] with the specified [name] previously added by
+   * [addThemeColorOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeColorOverride(name: String) =
+      removeThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Removes a local override for a theme constant with the specified [name] previously added by
+   * [addThemeConstantOverride] or via the Inspector dock.
+   */
+  public final fun removeThemeConstantOverride(name: String) =
+      removeThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
+   * with the specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeIcon(name: String, themeType: String): Texture2D? =
+      getThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
+   * item with the specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeStylebox(name: String, themeType: String): StyleBox? =
+      getThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
+   * with the specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeFont(name: String, themeType: String): Font? =
+      getThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
+   * item with the specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeFontSize(name: String, themeType: String): Int =
+      getThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
+   * with the specified [name] and [themeType]. If [themeType] is omitted the class name of the current
+   * control is used as the type, or [themeTypeVariation] if it is defined. If the type is a class name
+   * its parent classes are also checked, in order of inheritance. If the type is a variation its base
+   * types are checked, in order of dependency, then the control's class name and its parent classes
+   * are checked.
+   * For the current control its local overrides are considered first (see [addThemeColorOverride]),
+   * then its assigned [theme]. After the current control, each parent control and its assigned [theme]
+   * are considered; controls without a [theme] assigned are skipped. If no matching [Theme] is found
+   * in the tree, the custom project [Theme] (see [ProjectSettings.gui/theme/custom]) and the default
+   * [Theme] are used (see [ThemeDB]).
+   *
+   * gdscript:
+   * ```gdscript
+   * func _ready():
+   *     # Get the font color defined for the current Control's class, if it exists.
+   *     modulate = get_theme_color("font_color")
+   *     # Get the font color defined for the Button class.
+   *     modulate = get_theme_color("font_color", "Button")
+   * ```
+   * csharp:
+   * ```csharp
+   * public override void _Ready()
+   * {
+   *     // Get the font color defined for the current Control's class, if it exists.
+   *     Modulate = GetThemeColor("font_color");
+   *     // Get the font color defined for the Button class.
+   *     Modulate = GetThemeColor("font_color", "Button");
+   * }
+   * ```
+   */
+  public final fun getThemeColor(name: String, themeType: String): Color =
+      getThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
+   * item with the specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun getThemeConstant(name: String, themeType: String): Int =
+      getThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
+   * [Control] node.
+   * See [addThemeIconOverride].
+   */
+  public final fun hasThemeIconOverride(name: String): Boolean =
+      hasThemeIconOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeStyleboxOverride].
+   */
+  public final fun hasThemeStyleboxOverride(name: String): Boolean =
+      hasThemeStyleboxOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeFontOverride].
+   */
+  public final fun hasThemeFontOverride(name: String): Boolean =
+      hasThemeFontOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in
+   * this [Control] node.
+   * See [addThemeFontSizeOverride].
+   */
+  public final fun hasThemeFontSizeOverride(name: String): Boolean =
+      hasThemeFontSizeOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
+   * this [Control] node.
+   * See [addThemeColorOverride].
+   */
+  public final fun hasThemeColorOverride(name: String): Boolean =
+      hasThemeColorOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in
+   * this [Control] node.
+   * See [addThemeConstantOverride].
+   */
+  public final fun hasThemeConstantOverride(name: String): Boolean =
+      hasThemeConstantOverride(name.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeIcon(name: String, themeType: String): Boolean =
+      hasThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeStylebox(name: String, themeType: String): Boolean =
+      hasThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeFont(name: String, themeType: String): Boolean =
+      hasThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeFontSize(name: String, themeType: String): Boolean =
+      hasThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeColor(name: String, themeType: String): Boolean =
+      hasThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
+   * specified [name] and [themeType].
+   * See [getThemeColor] for details.
+   */
+  public final fun hasThemeConstant(name: String, themeType: String): Boolean =
+      hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  /**
+   * Sets the focus neighbor for the specified [Side] to the [Control] at [neighbor] node path. A
+   * setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and
+   * [focusNeighborTop].
+   */
+  public final fun setFocusNeighbor(side: Side, neighbor: String) =
+      setFocusNeighbor(side, neighbor.asCachedNodePath())
+
+  public final fun setFocusNext(next: String) = setFocusNext(next.asCachedNodePath())
+
+  public final fun setFocusPrevious(previous: String) =
+      setFocusPrevious(previous.asCachedNodePath())
 
   public enum class FocusMode(
     id: Long,

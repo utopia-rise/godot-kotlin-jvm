@@ -32,6 +32,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
+import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -846,6 +847,128 @@ public object Input : Object() {
     TransferContext.callMethod(ptr, MethodBindings.isEmulatingTouchFromMousePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
+
+  /**
+   * Returns `true` if you are pressing the action event.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionPressed(action: String, exactMatch: Boolean = false): Boolean =
+      isActionPressed(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` when the user has *started* pressing the action event in the current frame or
+   * physics tick. It will only return `true` on the frame or tick that the user pressed down the
+   * button.
+   * This is useful for code that needs to run only once when an action is pressed, instead of every
+   * frame while it's pressed.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
+   * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionPressed] instead
+   * to query the action state of the current event.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustPressed(action: String, exactMatch: Boolean = false): Boolean =
+      isActionJustPressed(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics
+   * tick. It will only return `true` on the frame or tick that the user releases the button.
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
+   * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
+   * to query the action state of the current event.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustReleased(action: String, exactMatch: Boolean = false): Boolean =
+      isActionJustReleased(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad,
+   * for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone,
+   * the closer the value will be to 1. If the action is mapped to a control that has no axis such as
+   * the keyboard, the value returned will be 0 or 1.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getActionStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionStrength(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring
+   * the action's deadzone. In most cases, you should use [getActionStrength] instead.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getActionRawStrength(action: String, exactMatch: Boolean = false): Float =
+      getActionRawStrength(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Get axis input by specifying two actions, one negative and one positive.
+   * This is a shorthand for writing `Input.get_action_strength("positive_action") -
+   * Input.get_action_strength("negative_action")`.
+   */
+  @JvmStatic
+  public final fun getAxis(negativeAction: String, positiveAction: String): Float =
+      getAxis(negativeAction.asCachedStringName(), positiveAction.asCachedStringName())
+
+  /**
+   * Gets an input vector by specifying four actions for the positive and negative X and Y axes.
+   * This method is useful when getting vector input, such as from a joystick, directional pad,
+   * arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is
+   * useful for using vector input as movement.
+   * By default, the deadzone is automatically calculated from the average of the action deadzones.
+   * However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun getVector(
+    negativeX: String,
+    positiveX: String,
+    negativeY: String,
+    positiveY: String,
+    deadzone: Float = -1.0f,
+  ): Vector2 =
+      getVector(negativeX.asCachedStringName(), positiveX.asCachedStringName(), negativeY.asCachedStringName(), positiveY.asCachedStringName(), deadzone)
+
+  /**
+   * This will simulate pressing the specified action.
+   * The strength can be used for non-boolean actions, it's ranged between 0 and 1 representing the
+   * intensity of the given action.
+   * **Note:** This method will not cause any [Node.Input] calls. It is intended to be used with
+   * [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use
+   * [parseInputEvent] instead.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun actionPress(action: String, strength: Float = 1.0f) =
+      actionPress(action.asCachedStringName(), strength)
+
+  /**
+   * If the specified action is already pressed, this will release it.
+   */
+  @JvmStatic
+  public final fun actionRelease(action: String) = actionRelease(action.asCachedStringName())
 
   public enum class MouseMode(
     id: Long,

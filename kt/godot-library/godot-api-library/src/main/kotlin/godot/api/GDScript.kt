@@ -37,8 +37,8 @@ public open class GDScript : Script() {
    * print(instance.get_script() == MyClass) # Prints true
    * [/codeblock]
    */
-  public final fun new(vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
+  public final fun new(vararg args: Any?): Any? {
+    TransferContext.writeArguments( *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
