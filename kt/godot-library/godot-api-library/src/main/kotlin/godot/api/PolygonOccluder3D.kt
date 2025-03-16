@@ -44,7 +44,7 @@ public open class PolygonOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(513, scriptIndex)
+    createNativeObject(502, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

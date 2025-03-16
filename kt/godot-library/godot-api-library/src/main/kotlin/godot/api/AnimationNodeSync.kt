@@ -37,7 +37,7 @@ public open class AnimationNodeSync : AnimationNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(67, scriptIndex)
+    createNativeObject(31, scriptIndex)
   }
 
   public final fun setUseSync(enable: Boolean): Unit {

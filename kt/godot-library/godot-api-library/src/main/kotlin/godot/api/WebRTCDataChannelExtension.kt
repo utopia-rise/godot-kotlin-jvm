@@ -18,15 +18,15 @@ import kotlin.Unit
 @GodotBaseType
 public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(847, scriptIndex)
+    createNativeObject(845, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Int {
-    throw NotImplementedError("_get_available_packet_count is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getAvailablePacketCount is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getMaxPacketSize(): Int {
-    throw NotImplementedError("_get_max_packet_size is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getMaxPacketSize is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _poll(): Error {
@@ -40,47 +40,47 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
   }
 
   public open fun _getWriteMode(): WebRTCDataChannel.WriteMode {
-    throw NotImplementedError("_get_write_mode is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getWriteMode is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _wasStringPacket(): Boolean {
-    throw NotImplementedError("_was_string_packet is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_wasStringPacket is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getReadyState(): WebRTCDataChannel.ChannelState {
-    throw NotImplementedError("_get_ready_state is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getReadyState is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getLabel(): String {
-    throw NotImplementedError("_get_label is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getLabel is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _isOrdered(): Boolean {
-    throw NotImplementedError("_is_ordered is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_isOrdered is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getId(): Int {
-    throw NotImplementedError("_get_id is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getId is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getMaxPacketLifeTime(): Int {
-    throw NotImplementedError("_get_max_packet_life_time is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getMaxPacketLifeTime is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getMaxRetransmits(): Int {
-    throw NotImplementedError("_get_max_retransmits is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getMaxRetransmits is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getProtocol(): String {
-    throw NotImplementedError("_get_protocol is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getProtocol is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _isNegotiated(): Boolean {
-    throw NotImplementedError("_is_negotiated is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_isNegotiated is not implemented for WebRTCDataChannelExtension")
   }
 
   public open fun _getBufferedAmount(): Int {
-    throw NotImplementedError("_get_buffered_amount is not implemented for WebRTCDataChannelExtension")
+    throw NotImplementedError("_getBufferedAmount is not implemented for WebRTCDataChannelExtension")
   }
 
   public companion object

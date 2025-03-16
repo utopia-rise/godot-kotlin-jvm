@@ -92,7 +92,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(652, scriptIndex)
+    createNativeObject(646, scriptIndex)
   }
 
   /**

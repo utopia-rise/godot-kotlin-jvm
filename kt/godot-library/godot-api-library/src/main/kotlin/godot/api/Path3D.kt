@@ -43,7 +43,7 @@ public open class Path3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(470, scriptIndex)
+    createNativeObject(454, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve3D?): Unit {

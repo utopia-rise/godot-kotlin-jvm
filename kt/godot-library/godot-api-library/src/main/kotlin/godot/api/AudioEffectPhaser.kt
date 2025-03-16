@@ -84,7 +84,7 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(104, scriptIndex)
+    createNativeObject(68, scriptIndex)
   }
 
   public final fun setRangeMinHz(hz: Float): Unit {

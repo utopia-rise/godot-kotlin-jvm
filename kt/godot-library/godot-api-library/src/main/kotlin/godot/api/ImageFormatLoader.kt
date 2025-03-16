@@ -13,28 +13,11 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 
-public infix fun Long.or(other: godot.api.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: ImageFormatLoader.LoaderFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.ImageFormatLoader.LoaderFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: ImageFormatLoader.LoaderFlags): Long = this.and(other.flag)
 
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
@@ -44,74 +27,45 @@ public operator fun Long.rem(other: godot.api.ImageFormatLoader.LoaderFlags): Lo
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(309, scriptIndex)
-  }
-
-  public sealed interface LoaderFlags {
-    public val flag: Long
-
-    public infix fun or(other: LoaderFlags): LoaderFlags = LoaderFlagsValue(flag.or(other.flag))
-
-    public infix fun or(other: Long): LoaderFlags = LoaderFlagsValue(flag.or(other))
-
-    public infix fun xor(other: LoaderFlags): LoaderFlags = LoaderFlagsValue(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): LoaderFlags = LoaderFlagsValue(flag.xor(other))
-
-    public infix fun and(other: LoaderFlags): LoaderFlags = LoaderFlagsValue(flag.and(other.flag))
-
-    public infix fun and(other: Long): LoaderFlags = LoaderFlagsValue(flag.and(other))
-
-    public operator fun plus(other: LoaderFlags): LoaderFlags =
-        LoaderFlagsValue(flag.plus(other.flag))
-
-    public operator fun plus(other: Long): LoaderFlags = LoaderFlagsValue(flag.plus(other))
-
-    public operator fun minus(other: LoaderFlags): LoaderFlags =
-        LoaderFlagsValue(flag.minus(other.flag))
-
-    public operator fun minus(other: Long): LoaderFlags = LoaderFlagsValue(flag.minus(other))
-
-    public operator fun times(other: LoaderFlags): LoaderFlags =
-        LoaderFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): LoaderFlags = LoaderFlagsValue(flag.times(other))
-
-    public operator fun div(other: LoaderFlags): LoaderFlags =
-        LoaderFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): LoaderFlags = LoaderFlagsValue(flag.div(other))
-
-    public operator fun rem(other: LoaderFlags): LoaderFlags =
-        LoaderFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): LoaderFlags = LoaderFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): LoaderFlags = LoaderFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): LoaderFlags = LoaderFlagsValue(flag.unaryMinus())
-
-    public fun inv(): LoaderFlags = LoaderFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): LoaderFlags = LoaderFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): LoaderFlags = LoaderFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): LoaderFlags = LoaderFlagsValue(flag ushr bits)
-
-    public companion object {
-      public val FLAG_NONE: LoaderFlags = LoaderFlagsValue(0)
-
-      public val FLAG_FORCE_LINEAR: LoaderFlags = LoaderFlagsValue(1)
-
-      public val FLAG_CONVERT_COLORS: LoaderFlags = LoaderFlagsValue(2)
-    }
+    createNativeObject(283, scriptIndex)
   }
 
   @JvmInline
-  public value class LoaderFlagsValue(
-    public override val flag: Long,
-  ) : LoaderFlags
+  public value class LoaderFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.or(other.flag))
+
+    public infix fun or(other: Long): LoaderFlags = LoaderFlags(flag.or(other))
+
+    public infix fun xor(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.xor(other.flag))
+
+    public infix fun xor(other: Long): LoaderFlags = LoaderFlags(flag.xor(other))
+
+    public infix fun and(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.and(other.flag))
+
+    public infix fun and(other: Long): LoaderFlags = LoaderFlags(flag.and(other))
+
+    public fun unaryPlus(): LoaderFlags = LoaderFlags(flag.unaryPlus())
+
+    public fun unaryMinus(): LoaderFlags = LoaderFlags(flag.unaryMinus())
+
+    public fun inv(): LoaderFlags = LoaderFlags(flag.inv())
+
+    public infix fun shl(bits: Int): LoaderFlags = LoaderFlags(flag shl bits)
+
+    public infix fun shr(bits: Int): LoaderFlags = LoaderFlags(flag shr bits)
+
+    public infix fun ushr(bits: Int): LoaderFlags = LoaderFlags(flag ushr bits)
+
+    public companion object {
+      public val FLAG_NONE: LoaderFlags = LoaderFlags(0)
+
+      public val FLAG_FORCE_LINEAR: LoaderFlags = LoaderFlags(1)
+
+      public val FLAG_CONVERT_COLORS: LoaderFlags = LoaderFlags(2)
+    }
+  }
 
   public companion object
 

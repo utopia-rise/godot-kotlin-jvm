@@ -7,9 +7,11 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A Spotlight is a type of [Light3D] node that emits lights in a specific direction, in the shape
@@ -27,8 +29,66 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
+  /**
+   * The maximal range that can be reached by the spotlight. Note that the effectively lit area may
+   * appear to be smaller depending on the [spotAttenuation] in use. No matter the [spotAttenuation] in
+   * use, the light will never reach anything outside this range.
+   * **Note:** [spotRange] is not affected by [Node3D.scale] (the light's scale or its parent's
+   * scale).
+   */
+  public final inline var spotRange: Float
+    @JvmName("spotRangeProperty")
+    get() = getParam(Light3D.Param.PARAM_RANGE)
+    @JvmName("spotRangeProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_RANGE, value)
+    }
+
+  /**
+   * Controls the distance attenuation function for spotlights.
+   * A value of `0.0` will maintain a constant brightness through most of the range, but smoothly
+   * attenuate the light at the edge of the range. Use a value of `2.0` for physically accurate lights
+   * as it results in the proper inverse square attenutation.
+   * **Note:** Setting attenuation to `2.0` or higher may result in distant objects receiving
+   * minimal light, even within range. For example, with a range of `4096`, an object at `100` units is
+   * attenuated by a factor of `0.0001`. With a default brightness of `1`, the light would not be
+   * visible at that distance.
+   * **Note:** Using negative or values higher than `10.0` may lead to unexpected results.
+   */
+  public final inline var spotAttenuation: Float
+    @JvmName("spotAttenuationProperty")
+    get() = getParam(Light3D.Param.PARAM_ATTENUATION)
+    @JvmName("spotAttenuationProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_ATTENUATION, value)
+    }
+
+  /**
+   * The spotlight's angle in degrees.
+   * **Note:** [spotAngle] is not affected by [Node3D.scale] (the light's scale or its parent's
+   * scale).
+   */
+  public final inline var spotAngle: Float
+    @JvmName("spotAngleProperty")
+    get() = getParam(Light3D.Param.PARAM_SPOT_ANGLE)
+    @JvmName("spotAngleProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_SPOT_ANGLE, value)
+    }
+
+  /**
+   * The spotlight's *angular* attenuation curve. See also [spotAttenuation].
+   */
+  public final inline var spotAngleAttenuation: Float
+    @JvmName("spotAngleAttenuationProperty")
+    get() = getParam(Light3D.Param.PARAM_SPOT_ATTENUATION)
+    @JvmName("spotAngleAttenuationProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_SPOT_ATTENUATION, value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(628, scriptIndex)
+    createNativeObject(622, scriptIndex)
   }
 
   public companion object

@@ -28,6 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the
@@ -123,7 +124,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(490, scriptIndex)
+    createNativeObject(475, scriptIndex)
   }
 
   /**
@@ -262,6 +263,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
      * [/codeblock]
      */
     @JvmOverloads
+    @JvmStatic
     public final fun create(
       from: Vector2,
       to: Vector2,
@@ -275,9 +277,6 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "create", 3196569324)
-
     internal val setFromPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "set_from", 743155724)
 
@@ -319,5 +318,8 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
 
     internal val isHitFromInsideEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "is_hit_from_inside_enabled", 36873697)
+
+    internal val createPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters2D", "create", 3196569324)
   }
 }

@@ -75,7 +75,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object NativeMenu : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(29)
+    getSingleton(15)
   }
 
   /**

@@ -46,7 +46,7 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(601, scriptIndex)
+    createNativeObject(595, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {

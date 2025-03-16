@@ -28,28 +28,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: XRHandTracker.HandJointFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: XRHandTracker.HandJointFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.XRHandTracker.HandJointFlags): Long =
-    this.rem(other.flag)
+public infix fun Long.and(other: XRHandTracker.HandJointFlags): Long = this.and(other.flag)
 
 /**
  * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -82,7 +65,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(871, scriptIndex)
+    createNativeObject(870, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -122,7 +105,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointFlagsPtr, LONG)
-    return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return HandJointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -354,80 +337,70 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
   }
 
-  public sealed interface HandJointFlags {
-    public val flag: Long
+  @JvmInline
+  public value class HandJointFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
 
-    public infix fun or(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.or(other.flag))
-
-    public infix fun or(other: Long): HandJointFlags = HandJointFlagsValue(flag.or(other))
+    public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
 
     public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.xor(other.flag))
+        HandJointFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: Long): HandJointFlags = HandJointFlagsValue(flag.xor(other))
+    public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
 
     public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.and(other.flag))
+        HandJointFlags(flag.and(other.flag))
 
-    public infix fun and(other: Long): HandJointFlags = HandJointFlagsValue(flag.and(other))
+    public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
 
-    public operator fun plus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.plus(other.flag))
+    public fun unaryPlus(): HandJointFlags = HandJointFlags(flag.unaryPlus())
 
-    public operator fun plus(other: Long): HandJointFlags = HandJointFlagsValue(flag.plus(other))
+    public fun unaryMinus(): HandJointFlags = HandJointFlags(flag.unaryMinus())
 
-    public operator fun minus(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.minus(other.flag))
+    public fun inv(): HandJointFlags = HandJointFlags(flag.inv())
 
-    public operator fun minus(other: Long): HandJointFlags = HandJointFlagsValue(flag.minus(other))
+    public infix fun shl(bits: Int): HandJointFlags = HandJointFlags(flag shl bits)
 
-    public operator fun times(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.times(other.flag))
+    public infix fun shr(bits: Int): HandJointFlags = HandJointFlags(flag shr bits)
 
-    public operator fun times(other: Long): HandJointFlags = HandJointFlagsValue(flag.times(other))
-
-    public operator fun div(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): HandJointFlags = HandJointFlagsValue(flag.div(other))
-
-    public operator fun rem(other: HandJointFlags): HandJointFlags =
-        HandJointFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): HandJointFlags = HandJointFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): HandJointFlags = HandJointFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): HandJointFlags = HandJointFlagsValue(flag.unaryMinus())
-
-    public fun inv(): HandJointFlags = HandJointFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): HandJointFlags = HandJointFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): HandJointFlags = HandJointFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
 
     public companion object {
-      public val HAND_JOINT_FLAG_ORIENTATION_VALID: HandJointFlags = HandJointFlagsValue(1)
+      /**
+       * The hand joint's orientation data is valid.
+       */
+      public val HAND_JOINT_FLAG_ORIENTATION_VALID: HandJointFlags = HandJointFlags(1)
 
-      public val HAND_JOINT_FLAG_ORIENTATION_TRACKED: HandJointFlags = HandJointFlagsValue(2)
+      /**
+       * The hand joint's orientation is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
+      public val HAND_JOINT_FLAG_ORIENTATION_TRACKED: HandJointFlags = HandJointFlags(2)
 
-      public val HAND_JOINT_FLAG_POSITION_VALID: HandJointFlags = HandJointFlagsValue(4)
+      /**
+       * The hand joint's position data is valid.
+       */
+      public val HAND_JOINT_FLAG_POSITION_VALID: HandJointFlags = HandJointFlags(4)
 
-      public val HAND_JOINT_FLAG_POSITION_TRACKED: HandJointFlags = HandJointFlagsValue(8)
+      /**
+       * The hand joint's position is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
+      public val HAND_JOINT_FLAG_POSITION_TRACKED: HandJointFlags = HandJointFlags(8)
 
-      public val HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(16)
+      /**
+       * The hand joint's linear velocity data is valid.
+       */
+      public val HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(16)
 
-      public val HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlagsValue(32)
+      /**
+       * The hand joint's angular velocity data is valid.
+       */
+      public val HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID: HandJointFlags = HandJointFlags(32)
     }
   }
-
-  @JvmInline
-  public value class HandJointFlagsValue(
-    public override val flag: Long,
-  ) : HandJointFlags
 
   public companion object
 

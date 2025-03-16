@@ -41,7 +41,7 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(135, scriptIndex)
+    createNativeObject(100, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

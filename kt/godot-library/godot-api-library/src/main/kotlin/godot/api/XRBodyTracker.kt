@@ -23,43 +23,17 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: godot.api.XRBodyTracker.BodyFlags): Long = this.or(other.flag)
+public infix fun Long.or(other: XRBodyTracker.BodyFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: godot.api.XRBodyTracker.BodyFlags): Long = this.xor(other.flag)
+public infix fun Long.xor(other: XRBodyTracker.BodyFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: godot.api.XRBodyTracker.BodyFlags): Long = this.and(other.flag)
+public infix fun Long.and(other: XRBodyTracker.BodyFlags): Long = this.and(other.flag)
 
-public operator fun Long.plus(other: godot.api.XRBodyTracker.BodyFlags): Long =
-    this.plus(other.flag)
+public infix fun Long.or(other: XRBodyTracker.JointFlags): Long = this.or(other.flag)
 
-public operator fun Long.minus(other: godot.api.XRBodyTracker.BodyFlags): Long =
-    this.minus(other.flag)
+public infix fun Long.xor(other: XRBodyTracker.JointFlags): Long = this.xor(other.flag)
 
-public operator fun Long.times(other: godot.api.XRBodyTracker.BodyFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.XRBodyTracker.BodyFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.XRBodyTracker.BodyFlags): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.api.XRBodyTracker.JointFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.api.XRBodyTracker.JointFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.api.XRBodyTracker.JointFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.api.XRBodyTracker.JointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.api.XRBodyTracker.JointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.api.XRBodyTracker.JointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.api.XRBodyTracker.JointFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.api.XRBodyTracker.JointFlags): Long = this.rem(other.flag)
+public infix fun Long.and(other: XRBodyTracker.JointFlags): Long = this.and(other.flag)
 
 /**
  * A body tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -92,7 +66,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(864, scriptIndex)
+    createNativeObject(863, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -114,7 +88,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   public final fun getBodyFlags(): BodyFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBodyFlagsPtr, LONG)
-    return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return BodyFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -132,7 +106,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   public final fun getJointFlags(joint: Joint): JointFlags {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(ptr, MethodBindings.getJointFlagsPtr, LONG)
-    return JointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return JointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -152,66 +126,51 @@ public open class XRBodyTracker : XRPositionalTracker() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public sealed interface BodyFlags {
-    public val flag: Long
+  @JvmInline
+  public value class BodyFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: BodyFlags): BodyFlags = BodyFlags(flag.or(other.flag))
 
-    public infix fun or(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): BodyFlags = BodyFlags(flag.or(other))
 
-    public infix fun or(other: Long): BodyFlags = BodyFlagsValue(flag.or(other))
+    public infix fun xor(other: BodyFlags): BodyFlags = BodyFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): BodyFlags = BodyFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): BodyFlags = BodyFlagsValue(flag.xor(other))
+    public infix fun and(other: BodyFlags): BodyFlags = BodyFlags(flag.and(other.flag))
 
-    public infix fun and(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): BodyFlags = BodyFlags(flag.and(other))
 
-    public infix fun and(other: Long): BodyFlags = BodyFlagsValue(flag.and(other))
+    public fun unaryPlus(): BodyFlags = BodyFlags(flag.unaryPlus())
 
-    public operator fun plus(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): BodyFlags = BodyFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): BodyFlags = BodyFlagsValue(flag.plus(other))
+    public fun inv(): BodyFlags = BodyFlags(flag.inv())
 
-    public operator fun minus(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): BodyFlags = BodyFlags(flag shl bits)
 
-    public operator fun minus(other: Long): BodyFlags = BodyFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): BodyFlags = BodyFlags(flag shr bits)
 
-    public operator fun times(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): BodyFlags = BodyFlagsValue(flag.times(other))
-
-    public operator fun div(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): BodyFlags = BodyFlagsValue(flag.div(other))
-
-    public operator fun rem(other: BodyFlags): BodyFlags = BodyFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): BodyFlags = BodyFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): BodyFlags = BodyFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): BodyFlags = BodyFlagsValue(flag.unaryMinus())
-
-    public fun inv(): BodyFlags = BodyFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): BodyFlags = BodyFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): BodyFlags = BodyFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): BodyFlags = BodyFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): BodyFlags = BodyFlags(flag ushr bits)
 
     public companion object {
-      public val BODY_FLAG_UPPER_BODY_SUPPORTED: BodyFlags = BodyFlagsValue(1)
+      /**
+       * Upper body tracking supported.
+       */
+      public val BODY_FLAG_UPPER_BODY_SUPPORTED: BodyFlags = BodyFlags(1)
 
-      public val BODY_FLAG_LOWER_BODY_SUPPORTED: BodyFlags = BodyFlagsValue(2)
+      /**
+       * Lower body tracking supported.
+       */
+      public val BODY_FLAG_LOWER_BODY_SUPPORTED: BodyFlags = BodyFlags(2)
 
-      public val BODY_FLAG_HANDS_SUPPORTED: BodyFlags = BodyFlagsValue(4)
+      /**
+       * Hand tracking supported.
+       */
+      public val BODY_FLAG_HANDS_SUPPORTED: BodyFlags = BodyFlags(4)
     }
   }
-
-  @JvmInline
-  public value class BodyFlagsValue(
-    public override val flag: Long,
-  ) : BodyFlags
 
   public enum class Joint(
     id: Long,
@@ -536,70 +495,58 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
   }
 
-  public sealed interface JointFlags {
-    public val flag: Long
+  @JvmInline
+  public value class JointFlags(
+    public val flag: Long,
+  ) {
+    public infix fun or(other: JointFlags): JointFlags = JointFlags(flag.or(other.flag))
 
-    public infix fun or(other: JointFlags): JointFlags = JointFlagsValue(flag.or(other.flag))
+    public infix fun or(other: Long): JointFlags = JointFlags(flag.or(other))
 
-    public infix fun or(other: Long): JointFlags = JointFlagsValue(flag.or(other))
+    public infix fun xor(other: JointFlags): JointFlags = JointFlags(flag.xor(other.flag))
 
-    public infix fun xor(other: JointFlags): JointFlags = JointFlagsValue(flag.xor(other.flag))
+    public infix fun xor(other: Long): JointFlags = JointFlags(flag.xor(other))
 
-    public infix fun xor(other: Long): JointFlags = JointFlagsValue(flag.xor(other))
+    public infix fun and(other: JointFlags): JointFlags = JointFlags(flag.and(other.flag))
 
-    public infix fun and(other: JointFlags): JointFlags = JointFlagsValue(flag.and(other.flag))
+    public infix fun and(other: Long): JointFlags = JointFlags(flag.and(other))
 
-    public infix fun and(other: Long): JointFlags = JointFlagsValue(flag.and(other))
+    public fun unaryPlus(): JointFlags = JointFlags(flag.unaryPlus())
 
-    public operator fun plus(other: JointFlags): JointFlags = JointFlagsValue(flag.plus(other.flag))
+    public fun unaryMinus(): JointFlags = JointFlags(flag.unaryMinus())
 
-    public operator fun plus(other: Long): JointFlags = JointFlagsValue(flag.plus(other))
+    public fun inv(): JointFlags = JointFlags(flag.inv())
 
-    public operator fun minus(other: JointFlags): JointFlags =
-        JointFlagsValue(flag.minus(other.flag))
+    public infix fun shl(bits: Int): JointFlags = JointFlags(flag shl bits)
 
-    public operator fun minus(other: Long): JointFlags = JointFlagsValue(flag.minus(other))
+    public infix fun shr(bits: Int): JointFlags = JointFlags(flag shr bits)
 
-    public operator fun times(other: JointFlags): JointFlags =
-        JointFlagsValue(flag.times(other.flag))
-
-    public operator fun times(other: Long): JointFlags = JointFlagsValue(flag.times(other))
-
-    public operator fun div(other: JointFlags): JointFlags = JointFlagsValue(flag.div(other.flag))
-
-    public operator fun div(other: Long): JointFlags = JointFlagsValue(flag.div(other))
-
-    public operator fun rem(other: JointFlags): JointFlags = JointFlagsValue(flag.rem(other.flag))
-
-    public operator fun rem(other: Long): JointFlags = JointFlagsValue(flag.rem(other))
-
-    public fun unaryPlus(): JointFlags = JointFlagsValue(flag.unaryPlus())
-
-    public fun unaryMinus(): JointFlags = JointFlagsValue(flag.unaryMinus())
-
-    public fun inv(): JointFlags = JointFlagsValue(flag.inv())
-
-    public infix fun shl(bits: Int): JointFlags = JointFlagsValue(flag shl bits)
-
-    public infix fun shr(bits: Int): JointFlags = JointFlagsValue(flag shr bits)
-
-    public infix fun ushr(bits: Int): JointFlags = JointFlagsValue(flag ushr bits)
+    public infix fun ushr(bits: Int): JointFlags = JointFlags(flag ushr bits)
 
     public companion object {
-      public val JOINT_FLAG_ORIENTATION_VALID: JointFlags = JointFlagsValue(1)
+      /**
+       * The joint's orientation data is valid.
+       */
+      public val JOINT_FLAG_ORIENTATION_VALID: JointFlags = JointFlags(1)
 
-      public val JOINT_FLAG_ORIENTATION_TRACKED: JointFlags = JointFlagsValue(2)
+      /**
+       * The joint's orientation is actively tracked. May not be set if tracking has been
+       * temporarily lost.
+       */
+      public val JOINT_FLAG_ORIENTATION_TRACKED: JointFlags = JointFlags(2)
 
-      public val JOINT_FLAG_POSITION_VALID: JointFlags = JointFlagsValue(4)
+      /**
+       * The joint's position data is valid.
+       */
+      public val JOINT_FLAG_POSITION_VALID: JointFlags = JointFlags(4)
 
-      public val JOINT_FLAG_POSITION_TRACKED: JointFlags = JointFlagsValue(8)
+      /**
+       * The joint's position is actively tracked. May not be set if tracking has been temporarily
+       * lost.
+       */
+      public val JOINT_FLAG_POSITION_TRACKED: JointFlags = JointFlags(8)
     }
   }
-
-  @JvmInline
-  public value class JointFlagsValue(
-    public override val flag: Long,
-  ) : JointFlags
 
   public companion object
 

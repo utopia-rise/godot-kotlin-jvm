@@ -38,7 +38,7 @@ public open class ColorPalette : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(193, scriptIndex)
+    createNativeObject(160, scriptIndex)
   }
 
   public final fun setColors(colors: PackedColorArray): Unit {

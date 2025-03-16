@@ -45,7 +45,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(27)
+    getSingleton(1)
   }
 
   /**

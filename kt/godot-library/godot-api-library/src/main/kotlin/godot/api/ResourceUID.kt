@@ -37,7 +37,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(21)
+    getSingleton(29)
   }
 
   /**

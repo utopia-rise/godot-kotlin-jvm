@@ -106,7 +106,7 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(843, scriptIndex)
+    createNativeObject(841, scriptIndex)
   }
 
   /**

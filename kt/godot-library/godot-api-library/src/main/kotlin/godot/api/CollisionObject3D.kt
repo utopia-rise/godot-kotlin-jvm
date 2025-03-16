@@ -152,7 +152,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(188, scriptIndex)
+    createNativeObject(155, scriptIndex)
   }
 
   /**

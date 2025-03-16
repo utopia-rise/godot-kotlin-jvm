@@ -131,7 +131,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(408, scriptIndex)
+    createNativeObject(389, scriptIndex)
   }
 
   /**

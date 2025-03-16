@@ -159,7 +159,7 @@ public open class MultiMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(384, scriptIndex)
+    createNativeObject(363, scriptIndex)
   }
 
   /**

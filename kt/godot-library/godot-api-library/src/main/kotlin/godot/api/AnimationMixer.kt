@@ -231,7 +231,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(50, scriptIndex)
+    createNativeObject(14, scriptIndex)
   }
 
   /**
@@ -244,7 +244,7 @@ public open class AnimationMixer internal constructor() : Node() {
     objectId: Long,
     objectSubIdx: Int,
   ): Any? {
-    throw NotImplementedError("_post_process_key_value is not implemented for AnimationMixer")
+    throw NotImplementedError("_postProcessKeyValue is not implemented for AnimationMixer")
   }
 
   /**

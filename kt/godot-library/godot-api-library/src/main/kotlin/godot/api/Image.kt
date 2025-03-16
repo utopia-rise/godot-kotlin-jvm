@@ -37,6 +37,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and
@@ -50,7 +51,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(308, scriptIndex)
+    createNativeObject(282, scriptIndex)
   }
 
   /**
@@ -1320,6 +1321,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun create(
       width: Int,
       height: Int,
@@ -1335,6 +1337,7 @@ public open class Image : Resource() {
      * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
      * `true`, then generate mipmaps for this image. See the [generateMipmaps].
      */
+    @JvmStatic
     public final fun createEmpty(
       width: Int,
       height: Int,
@@ -1351,6 +1354,7 @@ public open class Image : Resource() {
      * the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See
      * [generateMipmaps].
      */
+    @JvmStatic
     public final fun createFromData(
       width: Int,
       height: Int,
@@ -1366,6 +1370,7 @@ public open class Image : Resource() {
     /**
      * Creates a new [Image] and loads data from the specified file.
      */
+    @JvmStatic
     public final fun loadFromFile(path: String): Image? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
@@ -1421,22 +1426,11 @@ public open class Image : Resource() {
     internal val clearMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
 
-    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
-
-    internal val createEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
-
-    internal val createFromDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
-
     internal val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "set_data", 2740482212)
 
     internal val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "is_empty", 36873697)
 
     internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "load", 166001499)
-
-    internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
 
     internal val savePngPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_png", 2113323047)
 
@@ -1574,5 +1568,16 @@ public open class Image : Resource() {
 
     internal val loadSvgFromStringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
+
+    internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
+
+    internal val createEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
+
+    internal val createFromDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
+
+    internal val loadFromFilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
   }
 }

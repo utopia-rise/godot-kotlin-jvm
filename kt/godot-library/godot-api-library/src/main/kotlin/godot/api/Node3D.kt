@@ -290,7 +290,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(413, scriptIndex)
+    createNativeObject(396, scriptIndex)
   }
 
   /**

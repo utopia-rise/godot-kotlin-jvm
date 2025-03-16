@@ -53,7 +53,7 @@ public object JavaScriptBridge : Object() {
   public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(25)
+    getSingleton(13)
   }
 
   /**

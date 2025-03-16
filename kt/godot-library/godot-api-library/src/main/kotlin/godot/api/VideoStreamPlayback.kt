@@ -29,7 +29,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(721, scriptIndex)
+    createNativeObject(719, scriptIndex)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class VideoStreamPlayback : Resource() {
    * Returns the playback state, as determined by calls to [_play] and [_stop].
    */
   public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_isPlaying is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -65,14 +65,14 @@ public open class VideoStreamPlayback : Resource() {
    * Returns the paused status, as set by [_setPaused].
    */
   public open fun _isPaused(): Boolean {
-    throw NotImplementedError("_is_paused is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_isPaused is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the video duration in seconds, if known, or 0 if unknown.
    */
   public open fun _getLength(): Double {
-    throw NotImplementedError("_get_length is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getLength is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -80,7 +80,7 @@ public open class VideoStreamPlayback : Resource() {
    * [VideoStreamPlayer.streamPosition] getter.
    */
   public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("_get_playback_position is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getPlaybackPosition is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -100,7 +100,7 @@ public open class VideoStreamPlayback : Resource() {
    * Allocates a [Texture2D] in which decoded video frames will be drawn.
    */
   public open fun _getTexture(): Texture2D? {
-    throw NotImplementedError("_get_texture is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getTexture is not implemented for VideoStreamPlayback")
   }
 
   /**
@@ -114,14 +114,14 @@ public open class VideoStreamPlayback : Resource() {
    * Returns the number of audio channels.
    */
   public open fun _getChannels(): Int {
-    throw NotImplementedError("_get_channels is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getChannels is not implemented for VideoStreamPlayback")
   }
 
   /**
    * Returns the audio sample rate used for mixing.
    */
   public open fun _getMixRate(): Int {
-    throw NotImplementedError("_get_mix_rate is not implemented for VideoStreamPlayback")
+    throw NotImplementedError("_getMixRate is not implemented for VideoStreamPlayback")
   }
 
   /**

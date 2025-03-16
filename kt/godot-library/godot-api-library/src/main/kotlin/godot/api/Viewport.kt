@@ -750,7 +750,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(724, scriptIndex)
+    createNativeObject(722, scriptIndex)
   }
 
   /**

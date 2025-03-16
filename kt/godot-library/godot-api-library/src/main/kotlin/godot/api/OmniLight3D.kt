@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -35,6 +36,40 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class OmniLight3D : Light3D() {
   /**
+   * The light's radius. Note that the effectively lit area may appear to be smaller depending on
+   * the [omniAttenuation] in use. No matter the [omniAttenuation] in use, the light will never reach
+   * anything outside this radius.
+   * **Note:** [omniRange] is not affected by [Node3D.scale] (the light's scale or its parent's
+   * scale).
+   */
+  public final inline var omniRange: Float
+    @JvmName("omniRangeProperty")
+    get() = getParam(Light3D.Param.PARAM_RANGE)
+    @JvmName("omniRangeProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_RANGE, value)
+    }
+
+  /**
+   * Controls the distance attenuation function for omnilights.
+   * A value of `0.0` will maintain a constant brightness through most of the range, but smoothly
+   * attenuate the light at the edge of the range. Use a value of `2.0` for physically accurate lights
+   * as it results in the proper inverse square attenutation.
+   * **Note:** Setting attenuation to `2.0` or higher may result in distant objects receiving
+   * minimal light, even within range. For example, with a range of `4096`, an object at `100` units is
+   * attenuated by a factor of `0.0001`. With a default brightness of `1`, the light would not be
+   * visible at that distance.
+   * **Note:** Using negative or values higher than `10.0` may lead to unexpected results.
+   */
+  public final inline var omniAttenuation: Float
+    @JvmName("omniAttenuationProperty")
+    get() = getParam(Light3D.Param.PARAM_ATTENUATION)
+    @JvmName("omniAttenuationProperty")
+    set(`value`) {
+      setParam(Light3D.Param.PARAM_ATTENUATION, value)
+    }
+
+  /**
    * See [ShadowMode].
    */
   public final inline var omniShadowMode: ShadowMode
@@ -46,7 +81,7 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(425, scriptIndex)
+    createNativeObject(409, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

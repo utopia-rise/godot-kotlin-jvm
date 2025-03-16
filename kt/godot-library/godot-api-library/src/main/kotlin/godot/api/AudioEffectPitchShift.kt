@@ -67,7 +67,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+    createNativeObject(69, scriptIndex)
   }
 
   public final fun setPitchScale(rate: Float): Unit {

@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(98, scriptIndex)
+    createNativeObject(62, scriptIndex)
   }
 
   /**
@@ -31,7 +31,7 @@ public open class AudioEffectInstance : RefCounted() {
    * been muted or cannot otherwise be heard.
    */
   public open fun _processSilence(): Boolean {
-    throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
+    throw NotImplementedError("_processSilence is not implemented for AudioEffectInstance")
   }
 
   public companion object

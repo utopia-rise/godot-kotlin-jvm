@@ -39,7 +39,7 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(210, scriptIndex)
+    createNativeObject(177, scriptIndex)
   }
 
   /**
@@ -50,7 +50,7 @@ public open class Container : Control() {
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
+    throw NotImplementedError("_getAllowedSizeFlagsHorizontal is not implemented for Container")
   }
 
   /**
@@ -61,7 +61,7 @@ public open class Container : Control() {
    * value is always implicitly allowed.
    */
   public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
-    throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
+    throw NotImplementedError("_getAllowedSizeFlagsVertical is not implemented for Container")
   }
 
   /**

@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileEditor : OpenXRInteractionProfileEditorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(446, scriptIndex)
+    createNativeObject(430, scriptIndex)
   }
 
   public companion object

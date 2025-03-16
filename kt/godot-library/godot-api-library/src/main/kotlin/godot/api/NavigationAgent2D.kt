@@ -11,7 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
-import godot.api.NavigationPathQueryParameters2D.PathMetadataFlagsValue
+import godot.api.NavigationPathQueryParameters2D.PathMetadataFlags
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
@@ -211,7 +211,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Additional information to return with the navigation path.
    */
-  public final inline var pathMetadataFlags: NavigationPathQueryParameters2D.PathMetadataFlags
+  public final inline var pathMetadataFlags: PathMetadataFlags
     @JvmName("pathMetadataFlagsProperty")
     get() = getPathMetadataFlags()
     @JvmName("pathMetadataFlagsProperty")
@@ -449,7 +449,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(394, scriptIndex)
+    createNativeObject(374, scriptIndex)
   }
 
   /**
@@ -704,16 +704,15 @@ public open class NavigationAgent2D : Node() {
     return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters2D.PathMetadataFlags):
-      Unit {
+  public final fun setPathMetadataFlags(flags: PathMetadataFlags): Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
 
-  public final fun getPathMetadataFlags(): NavigationPathQueryParameters2D.PathMetadataFlags {
+  public final fun getPathMetadataFlags(): PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPathMetadataFlagsPtr, LONG)
-    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

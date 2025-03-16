@@ -49,7 +49,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(454, scriptIndex)
+    createNativeObject(438, scriptIndex)
   }
 
   /**

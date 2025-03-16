@@ -370,7 +370,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(356, scriptIndex)
+    createNativeObject(334, scriptIndex)
   }
 
   /**

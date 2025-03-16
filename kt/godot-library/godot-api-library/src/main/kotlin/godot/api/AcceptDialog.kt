@@ -110,7 +110,7 @@ public open class AcceptDialog : Window() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(42, scriptIndex)
+    createNativeObject(6, scriptIndex)
   }
 
   /**

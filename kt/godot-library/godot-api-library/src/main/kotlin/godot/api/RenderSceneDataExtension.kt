@@ -23,42 +23,42 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(561, scriptIndex)
+    createNativeObject(551, scriptIndex)
   }
 
   /**
    * Implement this in GDExtension to return the camera [Transform3D].
    */
   public open fun _getCamTransform(): Transform3D {
-    throw NotImplementedError("_get_cam_transform is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getCamTransform is not implemented for RenderSceneDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the camera [Projection].
    */
   public open fun _getCamProjection(): Projection {
-    throw NotImplementedError("_get_cam_projection is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getCamProjection is not implemented for RenderSceneDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the view count.
    */
   public open fun _getViewCount(): Long {
-    throw NotImplementedError("_get_view_count is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getViewCount is not implemented for RenderSceneDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the eye offset for the given [view].
    */
   public open fun _getViewEyeOffset(view: Long): Vector3 {
-    throw NotImplementedError("_get_view_eye_offset is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getViewEyeOffset is not implemented for RenderSceneDataExtension")
   }
 
   /**
    * Implement this in GDExtension to return the view [Projection] for the given [view].
    */
   public open fun _getViewProjection(view: Long): Projection {
-    throw NotImplementedError("_get_view_projection is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getViewProjection is not implemented for RenderSceneDataExtension")
   }
 
   /**
@@ -66,7 +66,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
    * data as a UBO.
    */
   public open fun _getUniformBuffer(): RID {
-    throw NotImplementedError("_get_uniform_buffer is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("_getUniformBuffer is not implemented for RenderSceneDataExtension")
   }
 
   public companion object

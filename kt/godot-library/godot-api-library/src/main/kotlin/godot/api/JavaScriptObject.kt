@@ -47,7 +47,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(343, scriptIndex)
+    createNativeObject(321, scriptIndex)
   }
 
   public companion object

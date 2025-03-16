@@ -15,15 +15,15 @@ import kotlin.Unit
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(459, scriptIndex)
+    createNativeObject(443, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Int {
-    throw NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")
+    throw NotImplementedError("_getAvailablePacketCount is not implemented for PacketPeerExtension")
   }
 
   public open fun _getMaxPacketSize(): Int {
-    throw NotImplementedError("_get_max_packet_size is not implemented for PacketPeerExtension")
+    throw NotImplementedError("_getMaxPacketSize is not implemented for PacketPeerExtension")
   }
 
   public companion object

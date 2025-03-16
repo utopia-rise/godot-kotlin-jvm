@@ -217,7 +217,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(243, scriptIndex)
+    createNativeObject(213, scriptIndex)
   }
 
   /**

@@ -19,19 +19,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(850, scriptIndex)
+    createNativeObject(848, scriptIndex)
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {
-    throw NotImplementedError("_get_connection_state is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_getConnectionState is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _getGatheringState(): WebRTCPeerConnection.GatheringState {
-    throw NotImplementedError("_get_gathering_state is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_getGatheringState is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _getSignalingState(): WebRTCPeerConnection.SignalingState {
-    throw NotImplementedError("_get_signaling_state is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_getSignalingState is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _initialize(pConfig: Dictionary<Any?, Any?>): Error {
@@ -40,19 +40,19 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public open fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
       WebRTCDataChannel? {
-    throw NotImplementedError("_create_data_channel is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_createDataChannel is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _createOffer(): Error {
-    throw NotImplementedError("_create_offer is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_createOffer is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _setRemoteDescription(pType: String, pSdp: String): Error {
-    throw NotImplementedError("_set_remote_description is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_setRemoteDescription is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _setLocalDescription(pType: String, pSdp: String): Error {
-    throw NotImplementedError("_set_local_description is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_setLocalDescription is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _addIceCandidate(
@@ -60,7 +60,7 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     pSdpMlineIndex: Int,
     pSdpName: String,
   ): Error {
-    throw NotImplementedError("_add_ice_candidate is not implemented for WebRTCPeerConnectionExtension")
+    throw NotImplementedError("_addIceCandidate is not implemented for WebRTCPeerConnectionExtension")
   }
 
   public open fun _poll(): Error {

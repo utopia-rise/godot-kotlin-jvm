@@ -207,7 +207,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(690, scriptIndex)
+    createNativeObject(686, scriptIndex)
   }
 
   /**
@@ -218,7 +218,7 @@ public open class TileMapLayer : Node2D() {
    * notify the [TileMapLayer] it needs an update.
    */
   public open fun _useTileDataRuntimeUpdate(coords: Vector2i): Boolean {
-    throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMapLayer")
+    throw NotImplementedError("_useTileDataRuntimeUpdate is not implemented for TileMapLayer")
   }
 
   /**
